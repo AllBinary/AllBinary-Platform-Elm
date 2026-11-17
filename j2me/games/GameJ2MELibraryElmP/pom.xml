@@ -1,0 +1,192 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.allbinary</groupId>
+  <artifactId>GameJ2MELibraryPOMElm</artifactId>
+  <packaging>pom</packaging>
+  <!-- AllBinary Platform Version Start -->
+  <version>1.0.0-SNAPSHOT</version>
+  <!-- AllBinary Platform Version End -->
+
+  <name>GameJ2MELibraryPOMElm</name>
+  <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+
+    <modules>
+
+        <!--
+        NoGyroSensorLibrary
+
+        -->
+        <!--<module>../../android/AndroidUtilJavaLibraryElmM</module>-->
+
+        <module>../../../allbinary_src/security/SimpleCryptLibraryElmM</module>
+        <!--
+        <module>../../../../working_thirdpartyelm/security/BouncyCastleDESJavaLibraryElmM</module>
+        <module>../../../../working_thirdpartyelm/communication/XmlRpc/XmlRpcJavaLibraryElmM</module>
+        -->
+        <module>../../../allbinary_src/TokenizerJavaLibraryElmM</module>
+        <module>../../../allbinary_src/security/BasicSecurityJavaLibraryElmM</module>
+        <!--<module>../../../replace_these_stub_projects/security/YourCryptFileJavaLibraryElmM</module>-->
+        <module>../../../replace_these_stub_projects/security/YourSecurityJavaLibraryElmM</module>
+        <module>../../../replace_these_stub_projects/communication/YourXmlRpcJavaLibraryElmM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MEOnlyJavaLibraryElmM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MECompatibilityJavaLibraryElmM</module>
+        <module>../../../replace_these_stub_projects/allbinary_src/J2MEJsInteropCompatibilityJavaLibraryElmM</module>
+
+        <module>../../DebugJavaLibraryElmM</module>             
+        <module>../../ResourceLibraryElmM</module>
+        <module>../../ResourceJ2MEJavaLibraryElmM</module>
+        <!--<module>../../AndroidResourceLibraryElmM</module>-->
+        <!--<module>../../../allbinary_src/hardware/AndroidSystemJavaLibraryElmM</module>-->
+
+        <module>../../../game/behavior/ArtificialIntelligenceLibraryElmM</module>
+
+        <module>../../media/graphics/PlatformNullImageJavaLibraryElmM</module>
+        <module>../../media/graphics/ImageCacheBaseJ2MEJavaLibraryElmM</module>
+        <module>../../media/graphics/ImageCacheJ2MEJavaLibraryElmM</module>
+        <module>../../../graphics/opengl/OpenGLJ2MENoneJavaLibraryElmM</module>
+        <module>../../../graphics/opengl/OpenGLNoneJavaLibraryElmM</module>
+        <module>../../../graphics/opengl/OpenGLNoneOtherJavaLibraryElmM</module>
+        <module>../../../graphics/opengl/OpenGLNoneOther2JavaLibraryElmM</module>
+        <module>../../../graphics/opengl/OpenGLESBaseJ2MEJavaLibraryElmM</module>
+
+        <module>../../media/graphics/animation/AnimationLibraryElmM</module>
+        <module>../../media/graphics/animation/RotationAnimationJavaLibraryElmM</module>
+
+        <module>../../games/GameInputLibraryElmM</module>
+
+        <module>../../games/GameScoresBaseJavaLibraryElmM</module>
+        <module>../../games/GameScoresBaseJ2MELibraryElmM</module>
+
+        <module>../../statistics/ApplicationStatisticsHTMLLibraryElmM</module>
+        <!--
+        <module>../../games/GameConfigurationHTMLJavaLibraryElmM</module>
+        -->
+        <module>../../games/GameConfigurationJ2MEJavaLibraryElmM</module>   
+        <module>../../games/GameConfigurationJavaLibraryElmM</module>
+
+        <module>../../games/GameIntermissionLibraryElmM</module>
+
+        <module>../../GroupLibraryElmM</module>
+
+        <module>../../input/NoSensorJavaLibraryElmM</module>
+
+        <module>../../input/AllBinarySensorJavaLibraryElmM</module>
+
+        <module>../../input/platform/me/GameInputMEJavaLibraryElmM</module>
+        <module>../../input/platform/me/GameInputMEKeyOnlyJavaLibraryElmM</module>
+        <module>../../input/platform/me/GameInputMEMotionJavaLibraryElmM</module>
+        <module>../../input/platform/pc/GameInputPCBaseJavaLibraryElmM</module>
+        <module>../../input/platform/pc/GameInputPCJavaLibraryElmM</module>
+        <module>../../input/platform/pc/GameInputPCKeyOnlyJavaLibraryElmM</module>
+        <module>../../input/platform/pc/GameInputPCMotionJavaLibraryElmM</module>
+        <module>../../input/platform/pc/GameInputSwtJavaLibraryElmM</module>
+
+        <module>../../input/AllBinaryGyroSensorJavaLibraryElmM</module>
+        <module>../../input/MotionGestureJavaLibraryElmM</module>
+        
+        <module>../../input/MotionGestureBaseJavaLibraryElmM</module>
+
+        <module>../../games/GameInputPersistanceLibraryElmM</module>
+        <module>../../games/GameInputNoPersistanceLibraryElmM</module>
+        
+        <module>../../lib/VectorThreeDimensionalLibraryElmM</module>
+        <module>../../input/AllBinaryAccelerometerSensorJavaLibraryElmM</module>
+        <module>../../input/NoGyroSensorJavaLibraryElmM</module>
+        <!--<module>../../input/JSEGyroSensorJavaLibraryElmM</module>-->
+        <!--
+        <module>../../input/android/</module>
+        <module>../../input/platform/android/GameInputAndroidBaseJavaLibraryElmM</module>
+        -->
+
+        <module>../../media/sound/BasicPlayerJavaLibraryElmM</module>
+        <!--<module>../../media/sound/BasicPlayerMIDP2JavaLibraryElmM</module>-->
+        <module>../../media/sound/NoPlayerJavaLibraryElmM</module>
+        <module>../../media/sound/SoundJ2MELibraryElmM</module>
+
+        <module>../../media/motion/AllBinaryVibrationJavaLibraryElmM</module>
+        <module>../../media/motion/NoVibrateJavaLibraryElmM</module>
+        <!--<module>../../media/motion/VibrateAndroidJavaLibraryElmM</module>-->
+
+        <module>../../media/graphics/NullCustomUIJavaLibraryElmM</module>
+        <module>../../media/graphics/NullCustomUIBaseJavaLibraryElmM</module>
+
+        <module>../../media/graphics/FormValidationJavaLibraryElmM</module>
+        
+        <module>../../media/graphics/FormJavaLibraryElmM</module>
+        <module>../../media/graphics/FormBaseJavaLibraryElmM</module>
+        <!--
+        <module>../../media/graphics/FormJMEJavaLibraryElmM</module>
+        -->
+        <module>../../../j2me/media/graphics/FormJMEJavaLibraryElmM</module>
+
+        <module>../../media/graphics/animation/AnimationResourceJavaLibraryElmM</module>
+        <module>../../media/graphics/animation/TransitionAnimationJavaLibraryElmM</module>
+        <module>../../media/graphics/animation/NoTransitionAnimationJavaLibraryElmM</module>
+        <!--
+        AndroidTransitionAnimationJavaLibraryM
+        -->
+        <module>../../media/graphics/animation/GameAnimationJavaLibraryElmM</module>
+        <module>../../games/GameResourceJavaLibraryElmM</module>
+        <module>../../games/GameSoundsJavaLibraryElmM</module>
+
+        <module>../../input/TouchInputLibraryElmP</module>
+
+        <module>../../media/MediaDataElmM</module>
+        <module>../../media/sound/NotDeviceSpecificNoMediaMIDP1LibraryElmM</module>
+
+        <module>../../../allbinary_src/content/ContentNoneJavaLibraryElmM</module>
+        <!--<module>../../../allbinary_src/content/ContentAndroidJavaLibraryElmM</module>-->
+
+        <module>../../games/GameConfigurationFormJavaLibraryElmM</module>
+
+        <module>../../FullScreenNoneJavaLibraryElmM</module>
+        <!--
+        <module>../../FullScreenJavaLibraryElmM</module>
+        -->
+
+        <module>../../../physics/VelocityLibraryElmM</module>
+
+        <module>../../games/weapon/SoundsBasicWeaponsJavaLibraryElmM</module>
+
+        <module>../../lib/TrigJ2MELibraryElmM</module>
+
+        <module>../../media/graphics/geography/map/LayerPlacementLibraryElmM</module>
+        <module>../../media/graphics/layer/AllBinaryLayerJavaLibraryElmM</module>
+
+        <module>../../ScreenCaptureNoneJavaLibraryElmM</module>
+        
+        <module>../licensing/GameLicensingNullJavaLibraryElmM</module>
+        
+        <module>../../business/advertisement/AllBinaryAdvertisementClientJavaLibraryElmM</module>
+        <module>../../business/advertisement/AdvertisementClientNoneJavaLibraryElmM</module>
+
+        <module>../GameNotificationJavaLibraryElmM</module>
+
+        <module>../../../graphics/opengl/NoSWTJavaLibraryElmM</module>
+        <module>../../../graphics/opengl/SWTWithoutJOGLJavaLibraryElmM</module>
+        <module>../SWTJavaLibraryElmM</module>
+        <module>../GameJ2MELibraryElmM</module>
+        
+        <!--
+        <module>../GameJ2MEOptionalLibraryPOElmM</module>
+        -->
+    
+    </modules>
+
+</project>
+

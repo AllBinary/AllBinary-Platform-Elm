@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary</groupId>
+    <artifactId>AllBinaryBaseLibraryPOMElm</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>AllBinaryBaseLibraryPOMElm</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    
+    <properties>
+        <buildLabel>${project.version}</buildLabel>
+        <assemblyPluginVersion>2.2-beta-1</assemblyPluginVersion>
+    </properties>
+
+    <modules>
+        <module>../CommonJavaLibraryElmM</module>
+        <module>../TempBaseJavaLibraryElmM</module>
+        
+        <module>../../allbinary_src/LogElmM</module>
+        <module>../../allbinary_src/allbinary_src_designpatterns_srcElmM</module>
+        <module>../../allbinary_src/data/BaseDataJavaLibraryElmM</module>
+        <module>../../allbinary_src/cache/BaseCacheJavaLibraryElmM</module>
+        <module>../../allbinary_src/logic/BasePreloaderJavaLibraryElmM</module>
+        <module>../../allbinary_src/logic/BasePreloaderJ2MEJavaLibraryElmM</module>
+
+        <module>../ExceptionHTMLJavaLibraryElmM</module>
+        <module>../J2MEExceptionLibraryElmM</module>
+        <module>../../allbinary_src/J2SEExceptionLibraryElmM</module>
+        <module>../J2MEUtilJavaLibraryElmM</module>
+        <module>../J2MEColorJavaLibraryElmM</module>
+        <module>../EventJ2MELibraryElmM</module>
+
+        <module>../../allbinary_src/LogNoPlatformJavaLibraryElmM</module>
+        <module>../../allbinary_src/LogJ2MEJavaLibraryElmM</module>
+        <module>../../allbinary_src/LogJ2SEJavaLibraryElmM</module>
+        <!--<module>../../allbinary_src/LogAndroidJavaLibraryElmM</module>-->
+        <module>../logging/LoggingNoneElmM</module>
+        <module>../logging/LoggingJ2MEAllElmM</module>
+        <module>../logging/LoggingJ2MEExceptionElmM</module>
+        <!--<module>../logging/LoggingAndroidAllElmM</module>-->
+        <!--
+        //While it is a possible dependency option it really does not fit here
+        //as such it is actually build in the final POM builds instead
+        <module>../logging/LoggingRemoteExceptionElmM</module>  
+        -->
+        
+        <module>../J2MEWindowingJavaLibraryElmM</module>
+        
+        <module>../lib/BaseMathLibraryElmM</module>
+        <module>../lib/BasicMathLibraryElmM</module>
+        
+        <module>../../allbinary_src/ThreadLibraryElmM</module>
+        <module>../../allbinary_src/ThreadHTMLLibraryElmM</module>
+        <module>../../replace_these_stub_projects/allbinary_src/NoneOnlyJavaLibraryElmM</module>
+        <module>../../allbinary_src/ThreadJ2MELibraryElmM</module>
+        <module>../time/TimeJavaLibraryElmM</module>
+
+        <module>../statistics/ApplicationStatisticsJ2SELibraryElmM</module>
+        <module>../statistics/ApplicationStatisticsJ2MELibraryElmM</module>
+        <module>../statistics/ApplicationStatisticsJavaLibraryElmM</module>
+
+        <module>../../allbinary_src/logging/BasicLogConfigTypeJavaLibraryElmM</module>
+        <module>../../allbinary_src/logging/LogConfigTypeGameClientJavaLibraryElmM</module>
+
+        <module>../../allbinary_src/hardware/HardwareLibraryPOElmM</module>
+
+        <module>../lib/TrigBaseLibraryElmM</module>
+
+    </modules>
+
+</project>
+

@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.allbinary.business</groupId>
+    <artifactId>BlisketJavaLibraryPElm</artifactId>
+    <packaging>pom</packaging>
+    <!-- AllBinary Platform Version Start -->
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- AllBinary Platform Version End -->
+
+    <name>BlisketJavaLibraryPElm</name>
+    <url>http://www.allbinary.com/</url>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>AllBinary Snapshots Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>AllBinary Releases Nexus</name>
+            <url>https://nexus-allbinary.rhcloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
+    
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    <modules>
+
+        <!--
+        <module>../../j2me/AllBinaryJ2MELibraryElmP</module>
+        -->
+        <!--
+        <module>../data/DataJavaLibraryElmM</module>
+        -->
+
+        <!--<module>../licensing/TestServiceClientInfoJavaLibraryElmM</module>-->        
+
+        <module>../data/DataTableInterfacesElmM</module>
+        
+        <!--<module>../QueueJavaLibraryElmM</module>-->
+        
+        <!--
+        <module>../TokenizerJavaLibraryElmM</module>
+        -->
+
+        <module>../logging/LogConfigTypeFreeblisketJavaLibraryElmM</module>
+
+        <module>../JavaUtilLibraryElmM</module>
+        <module>../NullInitInfoJavaLibraryElmM</module>        
+        <module>../InitInfoJavaLibraryElmM</module>
+        <!--<module>../PreLoaderHttpJavaLibraryElmM</module>-->
+        
+        <!--<module>../TagsBaseJavaLibraryElmM</module>-->
+        <!--<module>../CustomLoaderJavaLibraryElmM</module>-->
+        
+        <!--
+        <module>../logic/data/file/FileJ2SEJavaLibraryElmM</module>
+        <module>../logic/data/file/FileJavaLibraryElmM</module>
+        -->
+
+        <!--<module>../data/SQLAllBinaryJavaLibraryElmM</module>-->
+
+        <!--
+        <module>../licensing/FileLicenseInitInfoJavaLibraryElmM</module>
+        -->
+
+        <module>../DocumentObjectModelJavaLibraryElmM</module>
+
+        <!--<module>../VisualStyleJavaLibraryElmM</module>-->
+
+        <!--<module>../ConfigurationJavaLibraryElmM</module>-->
+
+        <!--<module>../VisualTransformBaseJavaLibraryElmM</module>-->
+
+        <!--<module>../CategoryBaseJavaLibraryElmM</module>-->
+        <!--<module>../CategoryJavaLibraryElmM</module>-->
+
+        <!--<module>../UserJavaLibraryElmM</module>-->
+
+        <!--<module>../PaymentGatewayBaseJavaLibraryElmM</module>-->
+
+        <!--<module>../data/vo/EntitiesBlisketVOJavaLibraryElmM</module>-->
+        <!--<module>../PaymentGatewayJavaLibraryElmM</module>-->
+        <!--<module>../data/vo/EntitiesOrderHistoryVOJavaLibraryElmM</module>-->
+        <!--<module>../data/vo/EntityPaymentGatewayVOJavaLibraryElmM</module>-->
+        <!--<module>../data/vo/EntityStoreFrontVOJavaLibraryElmM</module>-->
+
+        <!--<module>../data/EntitiesBlisketBaseInterfacesJavaLibraryElmM</module>-->
+        <!--<module>../data/EntitiesBlisketBaseJavaLibraryElmM</module>-->
+        
+        <!--<module>../data/EntitiesAdvertisementBaseJavaLibraryElmM</module>-->
+        <!--<module>../data/EntityOrderHistoryJavaLibraryElmM</module>-->
+        <!--<module>../data/EntityPaymentGatewayJavaLibraryElmM</module>-->
+        <!--<module>../data/EntityVisualTransformJavaLibraryElmM</module>-->
+        <!--<module>../data/EntityUserJavaLibraryElmM</module>-->
+        <!--<module>../data/EntityWorkflowJavaLibraryElmM</module>-->
+
+        <!--<module>../SMTPConfigurationJavaLibraryElmM</module>-->
+        <!--<module>../SMTPBaseJavaLibraryElmM</module>-->
+
+        <!--<module>../VisualTransformJavaLibraryElmM</module>-->
+
+        <!--<module>../../replace_these_stub_projects/allbinary_src/YourRuntimeEnvironmentJavaLibraryElmM</module>-->
+        <!--<module>../GatewayJavaLibraryElmM</module>-->
+        
+        <!--<module>../WorkflowBaseJavaLibraryElmM</module>-->
+        <!--<module>../WorkflowJavaLibraryElmM</module>-->
+
+        <!--<module>../IdGeneratorUsingFilesJavaLibraryElmM</module>-->
+        <!--<module>../BlisketPreVOJavaLibraryElmM</module>-->
+
+        <!-- 
+        EntitiesOrderHistoryVOJavaLibrary
+        UserJavaLibrary
+        -->
+        
+        <!--<module>../BlisketVOJavaLibraryElmM</module>-->
+
+        <!--<module>../UserCommerceJavaLibraryElmM</module>-->
+
+        <!--<module>../CustomizerValidatorsJavaLibraryElmM</module>-->
+
+        <!-- 
+        AllBinaryCacheForShiftOneJavaLibrary
+        AllBinaryJSECacheJavaLibrary
+        ColorJavaLibrary
+        ImageJavaLibrary
+        -->
+        
+        <!--<module>../logic/data/file/FileMediaJ2SEJavaLibraryElmM</module>-->
+        <!--<module>../BlisketBaseJavaLibraryElmM</module>-->
+
+        <!--<module>../logging/LoggingGAEAllElmM</module>-->
+        <!--<module>../BlisketJavaLibraryElmM</module>-->
+        
+    </modules>
+
+</project>
+

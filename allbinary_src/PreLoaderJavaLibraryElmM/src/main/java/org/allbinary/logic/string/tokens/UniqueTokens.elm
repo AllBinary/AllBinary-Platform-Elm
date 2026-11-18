@@ -1,185 +1,166 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.string.tokens
-module UniqueTokens where
+module Org.Allbinary.Logic.String.Tokens.UniqueTokens exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Tokenizer -- same package or java.lang
-import qualified HashSet -- java.util.HashSet
-import qualified AbPathData -- org.allbinary.logic.io.path.AbPathData
-import qualified Replace -- org.allbinary.logic.string.regex.replace.Replace
-import qualified CommonPhoneStrings -- org.allbinary.string.CommonPhoneStrings
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.logic.string.tokens
+-}
 
-data UniqueTokens = UniqueTokens
-    { header_ :: JavaHeader
-    , specialCharacters :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull UniqueTokens where
-    javaNull = javaNullRecord "UniqueTokens"
-
-instance JavaEquals UniqueTokens where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq UniqueTokens where
-    (==) = jrecordEquals
-
-instance JavaObjectClass UniqueTokens where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO UniqueTokens
-newRecord_ = do
-    header_ <- newJavaHeader
-    specialCharacters <- newIORef javaNull
-    let this = UniqueTokens header_ specialCharacters
-    jregisterLevel header_ this
-    jregisterMethod header_ "getWhithoutDashesAndSkipNumberOnlyTokens" (\() -> getWhithoutDashesAndSkipNumberOnlyTokens_impl this)
-    jregisterMethod header_ "numberOnly" (\() -> numberOnly_impl this)
-    jregisterMethod header_ "isSpecialCharacter" (\() -> isSpecialCharacter_impl this)
-    pure this
-
-initFields_ :: UniqueTokens -> IO ()
-initFields_ this = do
-    jset this.specialCharacters =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
-
-new_ :: IO UniqueTokens
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: UniqueTokens -> IO ()
-init_ this = do
-        initFields_ this
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "!")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "@")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) (jget ((jio (CommonPhoneStrings.getInstance))).pOUND))
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "$")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "%")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "^")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) (jget ((jio (CommonSeps.getInstance))).aMPERSAND))
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) (jget ((jio (CommonPhoneStrings.getInstance))).sTAR))
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "(")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) ")")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "-")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "_")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "+")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "=")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "\\")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "|")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) (jget ((jio (AbPathData.getInstance))).eXTENSION_SEP))
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) ",")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "<")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) ">")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "?")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "/")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "~")
-        Control.Monad.void (BasicArrayList.add ((jget (this).specialCharacters)) "`")
-        pure ()
+import JR
+import Org.Allbinary.Logic.Io.Path.AbPathData as AbPathData
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonPhoneStrings as CommonPhoneStrings
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import JHashSet
+import JInteger
+import Org.Allbinary.Logic.String.Regex.Replace.Replace as Replace
+import Org.Allbinary.Logic.String.Tokens.Tokenizer as Tokenizer
 
 
--- throws Exception
-getWhithoutDashesAndSkipNumberOnlyTokens :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (HashSet.HashSet)
-getWhithoutDashesAndSkipNumberOnlyTokens object_ a1 = jmethod object_ "getWhithoutDashesAndSkipNumberOnlyTokens" (\() -> (getWhithoutDashesAndSkipNumberOnlyTokens_impl (javaCast object_ :: UniqueTokens))) () a1
-
-getWhithoutDashesAndSkipNumberOnlyTokens_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (HashSet.HashSet)
-getWhithoutDashesAndSkipNumberOnlyTokens_super object_ a1 = (getWhithoutDashesAndSkipNumberOnlyTokens_impl (javaCast object_ :: UniqueTokens)) a1
-
-getWhithoutDashesAndSkipNumberOnlyTokens_impl :: UniqueTokens -> BasicArrayList.BasicArrayList -> IO (HashSet.HashSet)
-getWhithoutDashesAndSkipNumberOnlyTokens_impl this stringVector = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            hashSet <- (HashSet.new_)
-            index <- newIORef (0 :: Int)
-            commonSeps <- (CommonSeps.getInstance)
-            fix $ \loop -> when ((jget index) < (jio (BasicArrayList.size stringVector))) $ javaIteration (loop) $ do
-                let keywords = (javaCast (jio (BasicArrayList.get stringVector (jget index))) :: String)
-                tokenizer <- (Tokenizer.new_1 (jget (commonSeps).cOMMA))
-                keywordVector <- (Tokenizer.getTokensFromString tokenizer keywords (jio (BasicArrayListD.new_)))
-                forM_ [0 .. (jio (BasicArrayList.size keywordVector)) - 1] $ \forIndex -> javaIteration (pure ()) $ do
-                    cleanString <- newIORef ((javaCast (jio (BasicArrayList.get keywordVector forIndex)) :: String))
-                    jset cleanString ((jstringTrim (jget cleanString)))
-                    when ((jstringIndexOf (jget cleanString) '-' 0) /= (Prelude.negate 1)) $ do
-                        assignedValue <- (Replace.all ((jio (Replace.new_2 "-" (jget (commonSeps).sPACE)))) (jget cleanString))
-                        jset cleanString (assignedValue)
-                    Control.Monad.void (HashSet.add hashSet (jget cleanString))
-                    when ((jstringIndexOf (jget cleanString) ' ' 0) /= (Prelude.negate 1)) $ do
-                        spaceTokenizer <- (Tokenizer.new_1 (jget (commonSeps).sPACE))
-                        subKeywordVector <- (Tokenizer.getTokensFromString spaceTokenizer (jget cleanString) (jio (BasicArrayListD.new_)))
-                        forM_ [0 .. (jio (BasicArrayList.size subKeywordVector)) - 1] $ \spaceIndex -> javaIteration (pure ()) $ do
-                            let subCleanString = (javaCast (jio (BasicArrayList.get subKeywordVector spaceIndex)) :: String)
-                            when ((Prelude.not (jio (UniqueTokens.isSpecialCharacter this subCleanString))) && (Prelude.not (jio (UniqueTokens.numberOnly this subCleanString)))) $ do
-                                Control.Monad.void (HashSet.add hashSet subCleanString)
-                jset index ((jget index) + 1)
-            pure (hashSet)
+jclass : String
+jclass =
+    "UniqueTokens"
 
 
-numberOnly :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-numberOnly object_ a1 = jmethod object_ "numberOnly" (\() -> (numberOnly_impl (javaCast object_ :: UniqueTokens))) () a1
-
-numberOnly_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-numberOnly_super object_ a1 = (numberOnly_impl (javaCast object_ :: UniqueTokens)) a1
-
-numberOnly_impl :: UniqueTokens -> String -> IO (Bool)
-numberOnly_impl this subCleaningString = do
-        handle (\(e :: JavaException) -> do
-            pure (False)
-            ) $ do
-            Control.Monad.void (jparseInt subCleaningString)
-            pure (True)
+jchain : List String
+jchain =
+    [ "UniqueTokens" ]
 
 
-isSpecialCharacter :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isSpecialCharacter object_ a1 = jmethod object_ "isSpecialCharacter" (\() -> (isSpecialCharacter_impl (javaCast object_ :: UniqueTokens))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "specialCharacters", JR.defaultOf "" ) ]
 
-isSpecialCharacter_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isSpecialCharacter_super object_ a1 = (isSpecialCharacter_impl (javaCast object_ :: UniqueTokens)) a1
 
-isSpecialCharacter_impl :: UniqueTokens -> String -> IO (Bool)
-isSpecialCharacter_impl this subCleaningString = do
-    javaCatchReturn $ do
-        forM_ [0 .. (jio (BasicArrayList.size ((jget (this).specialCharacters)))) - 1] $ \index -> javaIteration (pure ()) $ do
-            when ((Prelude.fromEnum (Prelude.compare subCleaningString (javaCast (jio (BasicArrayList.get ((jget (this).specialCharacters)) index)) :: String)) - 1) == 0) $ do
-                javaReturn (True)
-        pure (False)
+jvtable =
+    JR.vtable
+        [ ( "getWhithoutDashesAndSkipNumberOnlyTokens_1", jm_getWhithoutDashesAndSkipNumberOnlyTokens_1 )
+        , ( "numberOnly_1", jm_numberOnly_1 )
+        , ( "isSpecialCharacter_1", jm_isSpecialCharacter_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "UniqueTokens"
+        [ ( "jm_getWhithoutDashesAndSkipNumberOnlyTokens_1", jm_getWhithoutDashesAndSkipNumberOnlyTokens_1 ), ( "jm_numberOnly_1", jm_numberOnly_1 ), ( "jm_isSpecialCharacter_1", jm_isSpecialCharacter_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "specialCharacters" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "!") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "@") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.field "POUND" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "$") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "%") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "^") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.field "AMPERSAND" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.field "STAR" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "(") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str ")") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "-") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "_") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "+") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "=") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "\\") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "|") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.field "EXTENSION_SEP" (JR.callStatic AbPathData.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str ",") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "<") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str ">") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "?") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "/") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "~") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "specialCharacters") [ (JR.str "`") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getWhithoutDashesAndSkipNumberOnlyTokens_1 : JR.Method
+jm_getWhithoutDashesAndSkipNumberOnlyTokens_1 jheap jthis jargs =
+    JR.method [ ( "stringVector", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "hashSet" "" (JR.new JHashSet.jnew_0 []), 
+                        JR.declare "index" "I" (JR.int 0), 
+                        JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                        JR.while (JR.map2 JR.less (JR.local "index") (JR.invoke "size_0" (JR.local "stringVector") [])) (JR.run [ 
+                            JR.declare "keywords" "" (JR.invoke "get_1" (JR.local "stringVector") [ (JR.local "index") ]), 
+                            JR.declare "tokenizer" "" (JR.new Tokenizer.jnew_1 [ (JR.field "COMMA" (JR.local "commonSeps")) ]), 
+                            JR.declare "keywordVector" "" (JR.invoke "getTokensFromString_2" (JR.local "tokenizer") [ (JR.local "keywords"), (JR.new BasicArrayListD.jnew_0 []) ]), 
+                            JR.run [ JR.declare "forIndex" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "forIndex") (JR.invoke "size_0" (JR.local "keywordVector") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "forIndex") (\jwN68578 -> (JR.setLocal "forIndex" "I" (JR.lit jwN68578))) JR.increment) ]) (JR.run [ 
+                                JR.declare "cleanString" "" (JR.invoke "get_1" (JR.local "keywordVector") [ (JR.local "forIndex") ]), 
+                                JR.exec (JR.setLocal "cleanString" "" (JR.invoke "trim_0" (JR.local "cleanString") [])), 
+                                JR.ifElse (JR.map2 JR.notEquals (JR.invoke "indexOf_1" (JR.local "cleanString") [ (JR.char 45) ]) (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                                JR.exec (JR.setLocal "cleanString" "" (JR.invoke "all_1" (JR.new Replace.jnew_2 [ (JR.str "-"), (JR.field "SPACE" (JR.local "commonSeps")) ]) [ (JR.local "cleanString") ])) ]) identity, 
+                                JR.exec (JR.invoke "add_1" (JR.local "hashSet") [ (JR.local "cleanString") ]), 
+                                JR.ifElse (JR.map2 JR.notEquals (JR.invoke "indexOf_1" (JR.local "cleanString") [ (JR.char 32) ]) (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                                    JR.declare "spaceTokenizer" "" (JR.new Tokenizer.jnew_1 [ (JR.field "SPACE" (JR.local "commonSeps")) ]), 
+                                    JR.declare "subKeywordVector" "" (JR.invoke "getTokensFromString_2" (JR.local "spaceTokenizer") [ (JR.local "cleanString"), (JR.new BasicArrayListD.jnew_0 []) ]), 
+                                    JR.run [ JR.declare "spaceIndex" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "spaceIndex") (JR.invoke "size_0" (JR.local "subKeywordVector") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "spaceIndex") (\jwN68501 -> (JR.setLocal "spaceIndex" "I" (JR.lit jwN68501))) JR.increment) ]) (JR.run [ 
+                                        JR.declare "subCleanString" "" (JR.invoke "get_1" (JR.local "subKeywordVector") [ (JR.local "spaceIndex") ]), 
+                                        JR.ifElse (JR.and (JR.map JR.not_ (JR.invoke "isSpecialCharacter_1" JR.this [ (JR.local "subCleanString") ])) (JR.map JR.not_ (JR.invoke "numberOnly_1" JR.this [ (JR.local "subCleanString") ]))) (JR.run [ 
+                                            JR.exec (JR.invoke "add_1" (JR.local "hashSet") [ (JR.local "subCleanString") ]) ]) identity ]) ] ]) identity ]) ], 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN68596 -> (JR.setLocal "index" "I" (JR.lit jwN68596))) JR.increment) ]), 
+                        JR.return (JR.local "hashSet") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_numberOnly_1 : JR.Method
+jm_numberOnly_1 jheap jthis jargs =
+    JR.method [ ( "subCleaningString", "" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.callStatic JInteger.jm_parseInt_1 [ (JR.local "subCleaningString") ]), 
+                        JR.return (JR.bool True) ]) [ ( [ "NumberFormatException" ], "e", (JR.run [ 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isSpecialCharacter_1 : JR.Method
+jm_isSpecialCharacter_1 jheap jthis jargs =
+    JR.method [ ( "subCleaningString", "" ) ] "Z"
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.invoke "size_0" (JR.thisField "specialCharacters") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69055 -> (JR.setLocal "index" "I" (JR.lit jwN69055))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.local "subCleaningString") [ (JR.invoke "get_1" (JR.thisField "specialCharacters") [ (JR.local "index") ]) ]) (JR.int 0)) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity ]) ], 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,128 +1,113 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module ImageArrayRotationAnimation (module ImageArrayRotationAnimation, module ImageArrayBaseRotationAnimation) where
+module Org.Allbinary.Animation.Image.ImageArrayRotationAnimation exposing (..)
 
-import ImageArrayBaseRotationAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createAnimation, createAnimation_super, createAnimation_impl, initImageArray, initImageArray_super, initImageArray_impl, setImageArray, setImageArray_super, setImageArray_impl, expectedTotalFrames)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ImageArrayRotationAnimationInfo -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified AnimationBehavior -- org.allbinary.animation.AnimationBehavior
-import qualified AngleInfo -- org.allbinary.math.AngleInfo
-import qualified ImageArrayBaseRotationAnimation
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
-data ImageArrayRotationAnimation = ImageArrayRotationAnimation
-    { header_ :: JavaHeader
-    , base :: ImageArrayBaseRotationAnimation.ImageArrayBaseRotationAnimation
-    , expectedTotalFrames :: IORef (Int)
-    }
-
-instance JavaNull ImageArrayRotationAnimation where
-    javaNull = javaNullRecord "ImageArrayRotationAnimation"
-
-instance JavaEquals ImageArrayRotationAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageArrayRotationAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageArrayRotationAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ImageArrayRotationAnimation
-newRecord_ = do
-    base <- ImageArrayBaseRotationAnimation.newRecord_
-    let header_ = base.header_
-    expectedTotalFrames <- newIORef 0
-    let this = ImageArrayRotationAnimation header_ base expectedTotalFrames
-    jregisterLevel header_ this
-    jregisterMethod header_ "initImageArray" (\() -> initImageArray_impl this)
-    jregisterMethod header_ "setImageArray" (\() -> setImageArray_impl this)
-    pure this
-
-initFields_ :: ImageArrayRotationAnimation -> IO ()
-initFields_ this = do
-    jset this.expectedTotalFrames (0)
-    pure ()
+import JR
+import Org.Allbinary.Animation.Image.ImageArrayBaseRotationAnimation as ImageArrayBaseRotationAnimation
 
 
--- throws Exception
-createAnimation :: (JavaObjectClass o1) => o1 -> AnimationBehavior.AnimationBehavior -> IO (ImageArrayRotationAnimation)
-createAnimation anyTypeObject_ animationBehavior = do
-        let anyType = jtoObject anyTypeObject_
-        let imageRotationAnimationInfo = (javaCast anyType :: ImageArrayRotationAnimationInfo.ImageArrayRotationAnimationInfo)
-        (new_4 (jio (ImageArrayRotationAnimationInfo.getImageArray imageRotationAnimationInfo)) (jio (ImageArrayRotationAnimationInfo.getAngleInfoP imageRotationAnimationInfo)) (jio (ImageArrayRotationAnimationInfo.getTotalAngle imageRotationAnimationInfo)) animationBehavior)
-
-new_4 :: JavaArray (Image.Image) -> AngleInfo.AngleInfo -> Int -> AnimationBehavior.AnimationBehavior -> IO ImageArrayRotationAnimation
-new_4 imageArray angleInfo totalAngle animationBehavior = do
-    this <- newRecord_
-    init_4 this imageArray angleInfo totalAngle animationBehavior
-    pure this
-
-init_4 :: ImageArrayRotationAnimation -> JavaArray (Image.Image) -> AngleInfo.AngleInfo -> Int -> AnimationBehavior.AnimationBehavior -> IO ()
-init_4 this imageArray angleInfo totalAngle animationBehavior = do
-        ImageArrayBaseRotationAnimation.init_3 this.base (imageArray) (angleInfo) (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (ImageArrayRotationAnimation.initImageArray this imageArray angleInfo totalAngle)
-        pure ()
+jclass : String
+jclass =
+    "ImageArrayRotationAnimation"
 
 
--- throws Exception
-initImageArray :: (JavaObjectClass this_) => this_ -> JavaArray (Image.Image) -> AngleInfo.AngleInfo -> Int -> IO (())
-initImageArray object_ a1 a2 a3 = jmethod object_ "initImageArray" (\() -> (initImageArray_impl (javaCast object_ :: ImageArrayRotationAnimation))) () a1 a2 a3
-
-initImageArray_super :: (JavaObjectClass this_) => this_ -> JavaArray (Image.Image) -> AngleInfo.AngleInfo -> Int -> IO (())
-initImageArray_super object_ a1 a2 a3 = (initImageArray_impl (javaCast object_ :: ImageArrayRotationAnimation)) a1 a2 a3
-
-initImageArray_impl :: ImageArrayRotationAnimation -> JavaArray (Image.Image) -> AngleInfo.AngleInfo -> Int -> IO (())
-initImageArray_impl this imageArray angleInfo totalAngle = do
-        jset (this).expectedTotalFrames ((totalAngle / (jio (AngleInfo.getAngleIncrement ((jio (AngleInfo.getAngleIncrementInfo ((jget (this).base.angleInfo)))))))))
-        Control.Monad.void (AngleInfo.adjustAngle ((jget (this).base.angleInfo)) 0)
-        when ((jget (this).expectedTotalFrames) /= (jio (ImageArrayBaseRotationAnimation.getSize this))) $ do
-            javaThrow ((JavaException "Exception" "Wrong Number of Frames"))
-        pure ()
+jchain : List String
+jchain =
+    [ "ImageArrayRotationAnimation" ]
+        ++ ImageArrayBaseRotationAnimation.jchain
 
 
-setImageArray :: (JavaObjectClass this_) => this_ -> JavaArray (Image.Image) -> IO (())
-setImageArray object_ a1 = jmethod object_ "setImageArray" (\() -> (setImageArray_impl (javaCast object_ :: ImageArrayRotationAnimation))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    ImageArrayBaseRotationAnimation.jfields ++ [ ( "expectedTotalFrames", JR.defaultOf "I" ) ]
 
-setImageArray_super :: (JavaObjectClass this_) => this_ -> JavaArray (Image.Image) -> IO (())
-setImageArray_super object_ a1 = (setImageArray_impl (javaCast object_ :: ImageArrayRotationAnimation)) a1
 
-setImageArray_impl :: ImageArrayRotationAnimation -> JavaArray (Image.Image) -> IO (())
-setImageArray_impl this imageArray = do
-        Control.Monad.void (ImageArrayBaseRotationAnimation.setImageArray_super this.base imageArray)
-        Control.Monad.void (AngleInfo.adjustAngle ((jget (this).base.angleInfo)) 0)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "createAnimation_2", jm_createAnimation_2 )
+        , ( "initImageArray_3", jm_initImageArray_3 )
+        , ( "setImageArray_1", jm_setImageArray_1 ) ]
+        ImageArrayBaseRotationAnimation.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageArrayRotationAnimation"
+        [ ( "jm_createAnimation_2", jm_createAnimation_2 ), ( "jm_initImageArray_3", jm_initImageArray_3 ), ( "jm_setImageArray_1", jm_setImageArray_1 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "imageArray", "" ), ( "angleInfo", "" ), ( "totalAngle", "I" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ImageArrayBaseRotationAnimation.jinit_3 JR.this [ (JR.local "imageArray"), (JR.local "angleInfo"), (JR.local "animationBehavior") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "initImageArray_3" JR.this [ (JR.local "imageArray"), (JR.local "angleInfo"), (JR.local "totalAngle") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_createAnimation_2 : JR.Method
+jm_createAnimation_2 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "imageRotationAnimationInfo" "" (JR.local "anyType"), 
+                    JR.return (JR.new jnew_4 [ (JR.invoke "getImageArray_0" (JR.local "imageRotationAnimationInfo") []), (JR.invoke "getAngleInfoP_0" (JR.local "imageRotationAnimationInfo") []), (JR.invoke "getTotalAngle_0" (JR.local "imageRotationAnimationInfo") []), (JR.local "animationBehavior") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initImageArray_3 : JR.Method
+jm_initImageArray_3 jheap jthis jargs =
+    JR.method [ ( "imageArray", "" ), ( "angleInfo", "" ), ( "totalAngle", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "expectedTotalFrames" "I" JR.this (JR.map2 JR.div (JR.local "totalAngle") (JR.cast "I" (JR.invoke "getAngleIncrement_0" (JR.invoke "getAngleIncrementInfo_0" (JR.thisField "angleInfo") []) [])))), 
+                    JR.exec (JR.invoke "adjustAngle_1" (JR.thisField "angleInfo") [ (JR.int 0) ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.thisField "expectedTotalFrames") (JR.invoke "getSize_0" JR.this [])) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Wrong Number of Frames") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setImageArray_1 : JR.Method
+jm_setImageArray_1 jheap jthis jargs =
+    JR.method [ ( "imageArray", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia ImageArrayBaseRotationAnimation.jvtable "setImageArray_1" JR.this [ (JR.local "imageArray") ]), 
+                    JR.exec (JR.invoke "adjustAngle_1" (JR.thisField "angleInfo") [ (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

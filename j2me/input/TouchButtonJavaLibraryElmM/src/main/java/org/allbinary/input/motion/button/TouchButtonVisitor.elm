@@ -1,93 +1,81 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
-module TouchButtonVisitor where
+module Org.Allbinary.Input.Motion.Button.TouchButtonVisitor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TouchButtonInput -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.button
+-}
 
-data TouchButtonVisitor = TouchButtonVisitor
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull TouchButtonVisitor where
-    javaNull = javaNullRecord "TouchButtonVisitor"
-
-instance JavaEquals TouchButtonVisitor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TouchButtonVisitor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TouchButtonVisitor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TouchButtonVisitor
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = TouchButtonVisitor header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: TouchButtonVisitor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO TouchButtonVisitor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TouchButtonVisitor -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> TouchButtonInput.TouchButtonInput -> String -> IO (())
-process object_ a1 a2 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: TouchButtonVisitor))) () a1 a2
 
-process_super :: (JavaObjectClass this_) => this_ -> TouchButtonInput.TouchButtonInput -> String -> IO (())
-process_super object_ a1 a2 = (process_impl (javaCast object_ :: TouchButtonVisitor)) a1 a2
+jclass : String
+jclass =
+    "TouchButtonVisitor"
 
-process_impl :: TouchButtonVisitor -> TouchButtonInput.TouchButtonInput -> String -> IO (())
-process_impl this touchButtonInput string = do
-        pure ()
 
+jchain : List String
+jchain =
+    [ "TouchButtonVisitor" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "process_2", jm_process_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TouchButtonVisitor"
+        [ ( "jm_process_2", jm_process_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_process_2 : JR.Method
+jm_process_2 jheap jthis jargs =
+    JR.method [ ( "touchButtonInput", "" ), ( "string", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

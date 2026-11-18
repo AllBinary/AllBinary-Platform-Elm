@@ -1,179 +1,178 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.visual.media
-module MediaData where
+module Org.Allbinary.Logic.Visual.Media.MediaData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified MediaTypeData -- same package or java.lang
-import qualified MediaDataFactory -- same package or java.lang
-import qualified HashMap -- java.util.HashMap
-import qualified StdUtil -- org.allbinary.logic.StdUtil
+{-| Generated Code Do Not Modify package org.allbinary.logic.visual.media
+-}
 
-data MediaData = MediaData
-    { header_ :: JavaHeader
-    , name :: IORef (String)
-    , type_ :: IORef (String)
-    , extension :: IORef (String)
-    }
-
-instance JavaNull MediaData where
-    javaNull = javaNullRecord "MediaData"
-
-instance JavaEquals MediaData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MediaData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MediaData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-hashMap :: IORef (HashMap.HashMap)
-{-# NOINLINE hashMap #-}
-hashMap = unsafePerformIO ((StdUtil.createHashMap ((jio (StdUtil.getInstance)))) >>= newIORef)
-
-newRecord_ :: IO MediaData
-newRecord_ = do
-    header_ <- newJavaHeader
-    name <- newIORef ""
-    type_ <- newIORef ""
-    extension <- newIORef ""
-    let this = MediaData header_ name type_ extension
-    jregisterLevel header_ this
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "getType" (\() -> getType_impl this)
-    jregisterMethod header_ "getExtension" (\() -> getExtension_impl this)
-    jregisterMethod header_ "isConvertableTo" (\() -> isConvertableTo_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: MediaData -> IO ()
-initFields_ this = do
-    jset this.name (javaNull)
-    jset this.type_ (javaNull)
-    jset this.extension (javaNull)
-    pure ()
-
-new_1 :: String -> IO MediaData
-new_1 a_Name = do
-    this <- newRecord_
-    init_1 this a_Name
-    pure this
-
-init_1 :: MediaData -> String -> IO ()
-init_1 this a_Name = do
-        initFields_ this
-        jset (this).name (a_Name)
-        jset (this).extension (("." ++ (jget (this).name)))
-        jset (this).type_ ((jget ((jio (MediaTypeData.getInstance))).nOT_RESIZABLE_MEDIA))
-        Control.Monad.void (HashMap.put ((jget MediaData.hashMap)) a_Name this)
-        pure ()
+import JR
+import Org.Allbinary.Logic.Visual.Media.MediaDataFactory as MediaDataFactory
+import Org.Allbinary.Logic.Visual.Media.MediaTypeData as MediaTypeData
+import Org.Allbinary.Logic.StdUtil as StdUtil
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: MediaData))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: MediaData))
-
-getName_impl :: MediaData -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jclass : String
+jclass =
+    "MediaData"
 
 
-getType :: (JavaObjectClass this_) => this_ -> IO (String)
-getType object_ = jmethod object_ "getType" (\() -> (getType_impl (javaCast object_ :: MediaData))) ()
-
-getType_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getType_super object_ = (getType_impl (javaCast object_ :: MediaData))
-
-getType_impl :: MediaData -> IO (String)
-getType_impl this = do
-        pure ((jget (this).type_))
+jchain : List String
+jchain =
+    [ "MediaData" ]
 
 
-getExtension :: (JavaObjectClass this_) => this_ -> IO (String)
-getExtension object_ = jmethod object_ "getExtension" (\() -> (getExtension_impl (javaCast object_ :: MediaData))) ()
-
-getExtension_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getExtension_super object_ = (getExtension_impl (javaCast object_ :: MediaData))
-
-getExtension_impl :: MediaData -> IO (String)
-getExtension_impl this = do
-        pure ((jget (this).extension))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "name", JR.defaultOf "" ), ( "type", JR.defaultOf "" ), ( "extension", JR.defaultOf "" ) ]
 
 
-isConvertableTo :: (JavaObjectClass this_) => this_ -> MediaData -> IO (Bool)
-isConvertableTo object_ a1 = jmethod object_ "isConvertableTo" (\() -> (isConvertableTo_impl (javaCast object_ :: MediaData))) () a1
-
-isConvertableTo_super :: (JavaObjectClass this_) => this_ -> MediaData -> IO (Bool)
-isConvertableTo_super object_ a1 = (isConvertableTo_impl (javaCast object_ :: MediaData)) a1
-
-isConvertableTo_impl :: MediaData -> MediaData -> IO (Bool)
-isConvertableTo_impl this mediaData = do
-    javaCatchReturn $ do
-        when ((this == (jget ((jio (MediaDataFactory.getInstance))).gIF)) && (mediaData == (jget ((jio (MediaDataFactory.getInstance))).jPG))) $ do
-            javaReturn (True)
-        pure (False)
-
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: MediaData))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: MediaData))
-
-toString_impl :: MediaData -> IO (String)
-toString_impl this = do
-        (MediaData.getName this)
+jvtable =
+    JR.vtable
+        [ ( "getName_0", jm_getName_0 )
+        , ( "getType_0", jm_getType_0 )
+        , ( "getExtension_0", jm_getExtension_0 )
+        , ( "isConvertableTo_1", jm_isConvertableTo_1 )
+        , ( "toString_0", jm_toString_0 )
+        , ( "get_1", jm_get_1 )
+        , ( "getDefault_0", jm_getDefault_0 )
+        , ( "toHashMap_0", jm_toHashMap_0 ) ]
+        JR.noMethods
 
 
--- throws Exception
-get :: String -> IO (MediaData)
-get a_Name = do
-    javaCatchReturn $ do
-        let mediaData = (javaCast (jio (HashMap.get ((jget MediaData.hashMap)) a_Name)) :: MediaData)
-        if (mediaData /= javaNull) then do
-            javaReturn (mediaData)
-        else do
-            javaThrow ((JavaException "Exception" "No Such MediaData"))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MediaData"
+        [ ( "jm_getName_0", jm_getName_0 ), ( "jm_getType_0", jm_getType_0 ), ( "jm_getExtension_0", jm_getExtension_0 ), ( "jm_isConvertableTo_1", jm_isConvertableTo_1 ), ( "jm_toString_0", jm_toString_0 ), ( "jm_get_1", jm_get_1 ), ( "jm_getDefault_0", jm_getDefault_0 ), ( "jm_toHashMap_0", jm_toHashMap_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_hashMap", jstatic_hashMap ) ]
+        jheap
 
 
-getDefault :: IO (MediaData)
-getDefault = do
-        pure ((jget ((jio (MediaDataFactory.getInstance))).jPG))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-toHashMap :: IO (HashMap.HashMap)
-toHashMap = do
-        pure ((jget MediaData.hashMap))
+jstatic_hashMap : JR.M
+jstatic_hashMap s =
+    JR.static "MediaData" jclinit "hashMap"
+        (JR.invoke "createHashMap_0" (JR.callStatic StdUtil.jm_getInstance_0 []) [])
+        s
 
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "a_Name", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "a_Name")), 
+                    JR.exec (JR.setField "extension" "" JR.this (JR.concat (JR.str ".") (JR.thisField "name"))), 
+                    JR.exec (JR.setField "type" "" JR.this (JR.field "NOT_RESIZABLE_MEDIA" (JR.callStatic MediaTypeData.jm_getInstance_0 []))), 
+                    JR.exec (JR.invoke "put_2" jstatic_hashMap [ (JR.local "a_Name"), JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getType_0 : JR.Method
+jm_getType_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "type") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getExtension_0 : JR.Method
+jm_getExtension_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "extension") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isConvertableTo_1 : JR.Method
+jm_isConvertableTo_1 jheap jthis jargs =
+    JR.method [ ( "mediaData", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.and (JR.map2 JR.equals JR.this (JR.field "GIF" (JR.callStatic MediaDataFactory.jm_getInstance_0 []))) (JR.map2 JR.equals (JR.local "mediaData") (JR.field "JPG" (JR.callStatic MediaDataFactory.jm_getInstance_0 [])))) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getName_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_get_1 : JR.Method
+jm_get_1 jheap jthis jargs =
+    JR.method [ ( "a_Name", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "mediaData" "" (JR.invoke "get_1" jstatic_hashMap [ (JR.local "a_Name") ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "mediaData") JR.null) (JR.run [ 
+                        JR.return (JR.local "mediaData") ]) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "No Such MediaData") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDefault_0 : JR.Method
+jm_getDefault_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.field "JPG" (JR.callStatic MediaDataFactory.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toHashMap_0 : JR.Method
+jm_toHashMap_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_hashMap ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

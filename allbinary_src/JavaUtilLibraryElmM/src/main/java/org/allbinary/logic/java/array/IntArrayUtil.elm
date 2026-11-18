@@ -1,129 +1,88 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.java.array
-module IntArrayUtil where
+module Org.Allbinary.Logic.Java.Array.IntArrayUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
+{-| Generated Code Do Not Modify package org.allbinary.logic.java.array
+-}
 
-data IntArrayUtil = IntArrayUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull IntArrayUtil where
-    javaNull = javaNullRecord "IntArrayUtil"
-
-instance JavaEquals IntArrayUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq IntArrayUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass IntArrayUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO IntArrayUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = IntArrayUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: IntArrayUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO IntArrayUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: IntArrayUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
--- Java overloads of toString: calls the overload for the types of the arguments
-toString :: (JavaObjectClass o1) => o1 -> IO (String)
-toString a1
-    | jisInstanceOf a1 (javaNull :: JavaArray (Int)) = toString_overload1 (javaCast a1 :: JavaArray (Int))
-    | jisInstanceOf a1 (javaNull :: JavaArray (JavaArray (Int))) = toString_overload2 (javaCast a1 :: JavaArray (JavaArray (Int)))
-    | jisInstanceOf a1 (javaNull :: JavaArray (JavaArray (JavaArray (Int)))) = toString_overload3 (javaCast a1 :: JavaArray (JavaArray (JavaArray (Int))))
-    | otherwise = toString_overload3 (javaCast a1 :: JavaArray (JavaArray (JavaArray (Int))))
-
-toString_overload1 :: JavaArray (Int) -> IO (String)
-toString_overload1 array = do
-        stringBuffer <- (StringMaker.new_)
-        forM_ [0 .. (jlength array) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (StringMaker.appendint stringBuffer (jindex array (index)))
-            when (index < (jlength array)) $ do
-                Control.Monad.void (StringMaker.append stringBuffer ", ")
-        (StringMaker.toString stringBuffer)
+jclass : String
+jclass =
+    "IntArrayUtil"
 
 
-toString_overload2 :: JavaArray (JavaArray (Int)) -> IO (String)
-toString_overload2 array = do
-        stringBuffer <- (StringMaker.new_)
-        forM_ [0 .. (jlength array) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (StringMaker.append stringBuffer "{")
-            forM_ [0 .. (jlength (jindex array (index))) - 1] $ \index2 -> javaIteration (pure ()) $ do
-                Control.Monad.void (StringMaker.appendint stringBuffer (Prelude.fromInteger (jnumericInteger (jindex ((jindex array (index))) (index2)))))
-                when (index2 < ((jlength (jindex array (index))) - 1)) $ do
-                    Control.Monad.void (StringMaker.append stringBuffer ", ")
-            Control.Monad.void (StringMaker.append stringBuffer "}")
-            when (index < ((jlength array) - 1)) $ do
-                Control.Monad.void (StringMaker.append stringBuffer ", \n")
-        (StringMaker.toString stringBuffer)
+jchain : List String
+jchain =
+    [ "IntArrayUtil" ]
 
 
-toString_overload3 :: JavaArray (JavaArray (JavaArray (Int))) -> IO (String)
-toString_overload3 array = do
-        stringBuffer <- (StringMaker.new_)
-        forM_ [0 .. (jlength array) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (StringMaker.append stringBuffer "{")
-            forM_ [0 .. (jlength (jindex array (index))) - 1] $ \index2 -> javaIteration (pure ()) $ do
-                Control.Monad.void (StringMaker.append stringBuffer "{")
-                forM_ [0 .. (jlength (jindex ((jindex array (index))) (index2))) - 1] $ \index3 -> javaIteration (pure ()) $ do
-                    Control.Monad.void (StringMaker.appendint stringBuffer (Prelude.fromInteger (jnumericInteger (jindex ((jindex ((jindex array (index))) (index2))) (index3)))))
-                    when (index3 < ((jlength (jindex ((jindex array (index))) (index2))) - 1)) $ do
-                        Control.Monad.void (StringMaker.append stringBuffer ", ")
-                Control.Monad.void (StringMaker.append stringBuffer "}")
-                when (index2 < ((jlength (jindex array (index))) - 1)) $ do
-                    Control.Monad.void (StringMaker.append stringBuffer ", ")
-            Control.Monad.void (StringMaker.append stringBuffer "}")
-            when (index < ((jlength array) - 1)) $ do
-                Control.Monad.void (StringMaker.append stringBuffer ", \n")
-        (StringMaker.toString stringBuffer)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "toString_1", jm_toString_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "IntArrayUtil"
+        [ ( "jm_toString_1", jm_toString_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_toString_1 : JR.Method
+jm_toString_1 jheap jthis jargs =
+    JR.method [ ( "array", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "array"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN65997 -> (JR.setLocal "index" "I" (JR.lit jwN65997))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.aget (JR.local "array") (JR.local "index")) ]), 
+                        JR.ifElse (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "array"))) (JR.run [ 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str ", ") ]) ]) identity ]) ], 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

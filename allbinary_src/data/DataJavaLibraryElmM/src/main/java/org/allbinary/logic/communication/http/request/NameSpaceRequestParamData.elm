@@ -1,99 +1,115 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.http.request
-module NameSpaceRequestParamData where
+module Org.Allbinary.Logic.Communication.Http.Request.NameSpaceRequestParamData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.http.request
+-}
 
-data NameSpaceRequestParamData = NameSpaceRequestParamData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull NameSpaceRequestParamData where
-    javaNull = javaNullRecord "NameSpaceRequestParamData"
 
-instance JavaEquals NameSpaceRequestParamData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq NameSpaceRequestParamData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "NameSpaceRequestParamData"
 
-instance JavaObjectClass NameSpaceRequestParamData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-nAME :: String
-nAME = "NAMESPACE_REQUESTDATA_NAME"
+jchain : List String
+jchain =
+    [ "NameSpaceRequestParamData" ]
 
-vALUE :: String
-vALUE = "INPUT_VALUE"
 
-pROPERTIES :: String
-pROPERTIES = "_PROPERTIES_"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-sEP :: String
-sEP = "_DOT_"
 
-pROPERTIESSEPARATOR :: String
-pROPERTIESSEPARATOR = "_PROPDOT_"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-dOCUMENT :: String
-dOCUMENT = "NAMESPACE_REQUESTDATA_DOCUMENT"
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NameSpaceRequestParamData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_VALUE", jstatic_VALUE ), ( "jstatic_PROPERTIES", jstatic_PROPERTIES ), ( "jstatic_SEP", jstatic_SEP ), ( "jstatic_PROPERTIESSEPARATOR", jstatic_PROPERTIESSEPARATOR ), ( "jstatic_DOCUMENT", jstatic_DOCUMENT ) ]
+        jheap
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO NameSpaceRequestParamData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = NameSpaceRequestParamData header_
-    jregisterLevel header_ this
-    pure this
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-initFields_ :: NameSpaceRequestParamData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO NameSpaceRequestParamData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "NameSpaceRequestParamData" jclinit "NAME"
+        (JR.str "NAMESPACE_REQUESTDATA_NAME")
+        s
 
-init_ :: NameSpaceRequestParamData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jstatic_VALUE : JR.M
+jstatic_VALUE s =
+    JR.static "NameSpaceRequestParamData" jclinit "VALUE"
+        (JR.str "INPUT_VALUE")
+        s
+
+
+jstatic_PROPERTIES : JR.M
+jstatic_PROPERTIES s =
+    JR.static "NameSpaceRequestParamData" jclinit "PROPERTIES"
+        (JR.str "_PROPERTIES_")
+        s
+
+
+jstatic_SEP : JR.M
+jstatic_SEP s =
+    JR.static "NameSpaceRequestParamData" jclinit "SEP"
+        (JR.str "_DOT_")
+        s
+
+
+jstatic_PROPERTIESSEPARATOR : JR.M
+jstatic_PROPERTIESSEPARATOR s =
+    JR.static "NameSpaceRequestParamData" jclinit "PROPERTIESSEPARATOR"
+        (JR.str "_PROPDOT_")
+        s
+
+
+jstatic_DOCUMENT : JR.M
+jstatic_DOCUMENT s =
+    JR.static "NameSpaceRequestParamData" jclinit "DOCUMENT"
+        (JR.str "NAMESPACE_REQUESTDATA_DOCUMENT")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

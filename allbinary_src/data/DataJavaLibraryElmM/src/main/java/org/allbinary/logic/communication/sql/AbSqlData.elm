@@ -1,99 +1,115 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.sql
-module AbSqlData where
+module Org.Allbinary.Logic.Communication.Sql.AbSqlData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.sql
+-}
 
-data AbSqlData = AbSqlData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull AbSqlData where
-    javaNull = javaNullRecord "AbSqlData"
 
-instance JavaEquals AbSqlData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq AbSqlData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "AbSqlData"
 
-instance JavaObjectClass AbSqlData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-aNYSINGLECHARACTERMATCH :: String
-aNYSINGLECHARACTERMATCH = "_"
+jchain : List String
+jchain =
+    [ "AbSqlData" ]
 
-aNYMULTICHARACTERMATCH :: String
-aNYMULTICHARACTERMATCH = "%"
 
-mAXNUM :: Int
-mAXNUM = 19
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-mINSTRING :: Int
-mINSTRING = 1
 
-mAXSTRING :: Int
-mAXSTRING = 255
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-mAXBLOB :: Int
-mAXBLOB = 32000
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbSqlData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_ANYSINGLECHARACTERMATCH", jstatic_ANYSINGLECHARACTERMATCH ), ( "jstatic_ANYMULTICHARACTERMATCH", jstatic_ANYMULTICHARACTERMATCH ), ( "jstatic_MAXNUM", jstatic_MAXNUM ), ( "jstatic_MINSTRING", jstatic_MINSTRING ), ( "jstatic_MAXSTRING", jstatic_MAXSTRING ), ( "jstatic_MAXBLOB", jstatic_MAXBLOB ) ]
+        jheap
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO AbSqlData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = AbSqlData header_
-    jregisterLevel header_ this
-    pure this
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-initFields_ :: AbSqlData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO AbSqlData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jstatic_ANYSINGLECHARACTERMATCH : JR.M
+jstatic_ANYSINGLECHARACTERMATCH s =
+    JR.static "AbSqlData" jclinit "ANYSINGLECHARACTERMATCH"
+        (JR.str "_")
+        s
 
-init_ :: AbSqlData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jstatic_ANYMULTICHARACTERMATCH : JR.M
+jstatic_ANYMULTICHARACTERMATCH s =
+    JR.static "AbSqlData" jclinit "ANYMULTICHARACTERMATCH"
+        (JR.str "%")
+        s
+
+
+jstatic_MAXNUM : JR.M
+jstatic_MAXNUM s =
+    JR.static "AbSqlData" jclinit "MAXNUM"
+        (JR.int 19)
+        s
+
+
+jstatic_MINSTRING : JR.M
+jstatic_MINSTRING s =
+    JR.static "AbSqlData" jclinit "MINSTRING"
+        (JR.int 1)
+        s
+
+
+jstatic_MAXSTRING : JR.M
+jstatic_MAXSTRING s =
+    JR.static "AbSqlData" jclinit "MAXSTRING"
+        (JR.int 255)
+        s
+
+
+jstatic_MAXBLOB : JR.M
+jstatic_MAXBLOB s =
+    JR.static "AbSqlData" jclinit "MAXBLOB"
+        (JR.int 32000)
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

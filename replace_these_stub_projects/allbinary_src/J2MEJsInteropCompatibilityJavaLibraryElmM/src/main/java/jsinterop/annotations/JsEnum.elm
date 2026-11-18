@@ -1,4 +1,4 @@
-module JsEnum exposing (..)
+module Jsinterop.Annotations.JsEnum exposing (..)
 
 {-| Generated Code Do Not Modify package jsinterop.annotations
 -}

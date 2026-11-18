@@ -1,207 +1,149 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.emulator.device
-module TrueTypeFontUtilBase where
+module Org.Allbinary.Emulator.Device.TrueTypeFontUtilBase exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified AvianUtil -- org.allbinary.AvianUtil
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.emulator.device
+-}
 
-data TrueTypeFontUtilBase = TrueTypeFontUtilBase
-    { header_ :: JavaHeader
-    , shortPattern :: IORef (String)
-    , patternAsBytes :: IORef (JavaArray (Int8))
-    , pattern :: IORef (String)
-    , charArray :: IORef (JavaArray (Int16))
-    , _characterWidth :: IORef (JavaArray (Int))
-    , characterArray :: IORef (JavaArray (Char))
-    , size :: IORef (Int)
-    , lastCapIndex :: IORef (Int)
-    , currentFont :: IORef (Font.Font)
-    , scale :: IORef (Int)
-    , cELLS_PER_ROW :: IORef (Int)
-    , fontSize :: IORef (Int)
-    , baseCharWidth :: IORef (Int)
-    , cellSize :: IORef (Int)
-    , textureSize :: IORef (Int)
-    , actualCellsPerRow :: IORef (Int)
-    }
-
-instance JavaNull TrueTypeFontUtilBase where
-    javaNull = javaNullRecord "TrueTypeFontUtilBase"
-
-instance JavaEquals TrueTypeFontUtilBase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TrueTypeFontUtilBase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TrueTypeFontUtilBase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TrueTypeFontUtilBase
-newRecord_ = do
-    header_ <- newJavaHeader
-    shortPattern <- newIORef ""
-    patternAsBytes <- newIORef javaNull
-    pattern <- newIORef ""
-    charArray <- newIORef javaNull
-    _characterWidth <- newIORef javaNull
-    characterArray <- newIORef javaNull
-    size <- newIORef 0
-    lastCapIndex <- newIORef 0
-    currentFont <- newIORef javaNull
-    scale <- newIORef 0
-    cELLS_PER_ROW <- newIORef 0
-    fontSize <- newIORef 0
-    baseCharWidth <- newIORef 0
-    cellSize <- newIORef 0
-    textureSize <- newIORef 0
-    actualCellsPerRow <- newIORef 0
-    let this = TrueTypeFontUtilBase header_ shortPattern patternAsBytes pattern charArray _characterWidth characterArray size lastCapIndex currentFont scale cELLS_PER_ROW fontSize baseCharWidth cellSize textureSize actualCellsPerRow
-    jregisterLevel header_ this
-    jregisterMethod header_ "getAsTextureSize" (\() -> getAsTextureSize_impl this)
-    jregisterMethod header_ "getCellSize" (\() -> getCellSize_impl this)
-    jregisterMethod header_ "getYOffset" (\() -> getYOffset_impl this)
-    pure this
-
-initFields_ :: TrueTypeFontUtilBase -> IO ()
-initFields_ this = do
-    jset this.shortPattern (javaNull)
-    jset this.patternAsBytes ((jarrayFromList [32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 32, 32, 32, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 32, 32, 32, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 32, 32, 32, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 32, 32, 32, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 32, 32, 32, 33, 36, 37, 96, (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 84) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 84) :: Int)), 34, (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 93) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 93) :: Int)), 94, 38, 42, 40, 32, 32, 32, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 32, 32, 32, 64, 126, 44, 47, 60, 62, 92, 124, (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 82) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 82) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 87) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 87) :: Int))] :: JavaArray Int8))
-    jset this.pattern =<< (jnewString (jget (this).patternAsBytes))
-    jset this.charArray ((jarrayFromList [0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x6f, 0x50, 0x56, 0x6b, 0x51, 0x52, 0x5a, 0x6a, 0x5c, 0x60, 0x5b, 0x62, 0x72, 0x63, 0x4b, 0x73, 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xa, 0x6c, 0x69, 0x74, 0x64, 0x75, 0x4c, 0x70, 0xb, 0xc, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x65, 0x76, 0x66, 0x59, 0x61, 0x53, 0x2b, 0x2c, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x3a, 0x3b, 0x3c, 0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4a, 0x67, 0x77, 0x68, 0x71, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x58, 0x0, 0x0, 0x0, 0x0, 0x0, 0x7b, 0x0, 0x0, 0x55, 0x0, 0x79, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0] :: JavaArray Int16))
-    jset this._characterWidth ((jnewArray ((Prelude.length (jget (this).pattern))) 0))
-    jset this.characterArray ((jnewArray (1) '\0'))
-    jset this.size ((Prelude.length (jget (this).pattern)))
-    jset this.lastCapIndex ((jstringIndexOf (jget (this).pattern) 'Z' 0))
-    jset this.currentFont =<< (Font.getDefaultFont)
-    jset this.scale (0)
-    jset this.cELLS_PER_ROW (0)
-    jset this.fontSize (0)
-    jset this.baseCharWidth (0)
-    jset this.cellSize (0)
-    jset this.textureSize (0)
-    jset this.actualCellsPerRow (0)
-    pure ()
-
-new_1 :: Int -> IO TrueTypeFontUtilBase
-new_1 scale = do
-    this <- newRecord_
-    init_1 this scale
-    pure this
-
-init_1 :: TrueTypeFontUtilBase -> Int -> IO ()
-init_1 this scale = do
-        initFields_ this
-        shortPattern <- newIORef ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-        if (jio (AvianUtil.isAvian)) then do
-            let shortPatterAsByteArray = (jarrayFromList [32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 33, 36, 37, 96, (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 84) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 84) :: Int)), 34, (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 93) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 93) :: Int)), 94, 38, 42, 40, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 64, 126, 44, 47, 60, 62, 92, 124, (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 82) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 82) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 87) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 87) :: Int))] :: JavaArray Int8)
-            assignedValue <- (jnewString shortPatterAsByteArray)
-            jset shortPattern (assignedValue)
-        else do
-            let shortPatterAsByteArray = (jarrayFromList [32, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 46, 63, 33, 36, 37, 96, (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 84) :: Int)), 34, (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 93) :: Int)), 94, 38, 42, 40, 41, 95, 43, 45, 61, 91, 93, 123, 125, 59, 39, 35, 58, 64, 126, 44, 47, 60, 62, 92, 124, (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 82) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 87) :: Int))] :: JavaArray Int8)
-            assignedValue <- (jnewString shortPatterAsByteArray)
-            jset shortPattern (assignedValue)
-        jset (this).shortPattern ((jget shortPattern))
-        jset (this).scale (scale)
-        jset (this).cELLS_PER_ROW (16)
-        jset (this).fontSize ((((20 + 6)) * (jget (this).scale)))
-        jset (this).baseCharWidth (((jget (this).fontSize) + ((6 * (jget (this).scale)))))
-        jset (this).cellSize (((jget (this).fontSize) + ((6 * (jget (this).scale)))))
-        assignedValue <- (TrueTypeFontUtilBase.getAsTextureSize this ((jget (this).cELLS_PER_ROW) * (jget (this).cellSize)))
-        jset (this).textureSize (assignedValue)
-        jset (this).actualCellsPerRow (((jget (this).textureSize) `quot` (jget (this).cellSize)))
-        pure ()
+import JR
+import Org.Allbinary.AvianUtil as AvianUtil
+import Javax.Microedition.Lcdui.Font as Font
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getAsTextureSize :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getAsTextureSize object_ a1 = jmethod object_ "getAsTextureSize" (\() -> (getAsTextureSize_impl (javaCast object_ :: TrueTypeFontUtilBase))) () a1
-
-getAsTextureSize_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getAsTextureSize_super object_ a1 = (getAsTextureSize_impl (javaCast object_ :: TrueTypeFontUtilBase)) a1
-
-getAsTextureSize_impl :: TrueTypeFontUtilBase -> Int -> IO (Int)
-getAsTextureSize_impl this textureSize = do
-        textureSize <- newIORef textureSize
-        if ((jget textureSize) <= 64) then do
-            jset textureSize (64)
-        else if ((jget textureSize) <= 128) then do
-            jset textureSize (128)
-        else if ((jget textureSize) <= 256) then do
-            jset textureSize (256)
-        else if ((jget textureSize) <= 512) then do
-            jset textureSize (512)
-        else when ((jget textureSize) <= 1024) $ do
-            jset textureSize (1024)
-        pure ((jget textureSize))
+jclass : String
+jclass =
+    "TrueTypeFontUtilBase"
 
 
-getCellSize :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getCellSize object_ a1 = jmethod object_ "getCellSize" (\() -> (getCellSize_impl (javaCast object_ :: TrueTypeFontUtilBase))) () a1
-
-getCellSize_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getCellSize_super object_ a1 = (getCellSize_impl (javaCast object_ :: TrueTypeFontUtilBase)) a1
-
-getCellSize_impl :: TrueTypeFontUtilBase -> Int -> IO (Int)
-getCellSize_impl this cellSize = do
-        cellSize <- newIORef cellSize
-        if ((jget cellSize) <= 16) then do
-            jset cellSize (16)
-        else if ((jget cellSize) <= 32) then do
-            jset cellSize (32)
-        else if ((jget cellSize) <= 64) then do
-            jset cellSize (64)
-        else if ((jget cellSize) <= 128) then do
-            jset cellSize (128)
-        else when ((jget cellSize) <= 256) $ do
-            jset cellSize (256)
-        pure ((jget cellSize))
+jchain : List String
+jchain =
+    [ "TrueTypeFontUtilBase" ]
 
 
-getYOffset :: (JavaObjectClass this_) => this_ -> IO (Int)
-getYOffset object_ = jmethod object_ "getYOffset" (\() -> (getYOffset_impl (javaCast object_ :: TrueTypeFontUtilBase))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "shortPattern", JR.defaultOf "" ), ( "patternAsBytes", JR.defaultOf "" ), ( "pattern", JR.defaultOf "" ), ( "charArray", JR.defaultOf "" ), ( "_characterWidth", JR.defaultOf "" ), ( "characterArray", JR.defaultOf "" ), ( "size", JR.defaultOf "I" ), ( "lastCapIndex", JR.defaultOf "I" ), ( "currentFont", JR.defaultOf "" ), ( "scale", JR.defaultOf "I" ), ( "CELLS_PER_ROW", JR.defaultOf "I" ), ( "fontSize", JR.defaultOf "I" ), ( "baseCharWidth", JR.defaultOf "I" ), ( "cellSize", JR.defaultOf "I" ), ( "textureSize", JR.defaultOf "I" ), ( "actualCellsPerRow", JR.defaultOf "I" ) ]
 
-getYOffset_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getYOffset_super object_ = (getYOffset_impl (javaCast object_ :: TrueTypeFontUtilBase))
 
-getYOffset_impl :: TrueTypeFontUtilBase -> IO (Int)
-getYOffset_impl this = do
-        pure ((((((jget (this).scale) - 1)) * (jget (this).cellSize))))
+jvtable =
+    JR.vtable
+        [ ( "getAsTextureSize_1", jm_getAsTextureSize_1 )
+        , ( "getCellSize_1", jm_getCellSize_1 )
+        , ( "getYOffset_0", jm_getYOffset_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TrueTypeFontUtilBase"
+        [ ( "jm_getAsTextureSize_1", jm_getAsTextureSize_1 ), ( "jm_getCellSize_1", jm_getCellSize_1 ), ( "jm_getYOffset_0", jm_getYOffset_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "scale", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "patternAsBytes" "" JR.this (JR.arrayOf "B" [ (JR.int 32), (JR.int 48), (JR.int 49), (JR.int 50), (JR.int 51), (JR.int 52), (JR.int 53), (JR.int 54), (JR.int 55), (JR.int 56), (JR.int 57), (JR.int 65), (JR.int 66), (JR.int 32), (JR.int 32), (JR.int 32), (JR.int 67), (JR.int 68), (JR.int 69), (JR.int 70), (JR.int 71), (JR.int 72), (JR.int 73), (JR.int 74), (JR.int 75), (JR.int 76), (JR.int 77), (JR.int 78), (JR.int 79), (JR.int 32), (JR.int 32), (JR.int 32), (JR.int 80), (JR.int 81), (JR.int 82), (JR.int 83), (JR.int 84), (JR.int 85), (JR.int 86), (JR.int 87), (JR.int 88), (JR.int 89), (JR.int 90), (JR.int 97), (JR.int 98), (JR.int 32), (JR.int 32), (JR.int 32), (JR.int 99), (JR.int 100), (JR.int 101), (JR.int 102), (JR.int 103), (JR.int 104), (JR.int 105), (JR.int 106), (JR.int 107), (JR.int 108), (JR.int 109), (JR.int 110), (JR.int 111), (JR.int 32), (JR.int 32), (JR.int 32), (JR.int 112), (JR.int 113), (JR.int 114), (JR.int 115), (JR.int 116), (JR.int 117), (JR.int 118), (JR.int 119), (JR.int 120), (JR.int 121), (JR.int 122), (JR.int 46), (JR.int 63), (JR.int 32), (JR.int 32), (JR.int 32), (JR.int 33), (JR.int 36), (JR.int 37), (JR.int 96), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 84))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 84))), (JR.int 34), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 93))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 93))), (JR.int 94), (JR.int 38), (JR.int 42), (JR.int 40), (JR.int 32), (JR.int 32), (JR.int 32), (JR.int 41), (JR.int 95), (JR.int 43), (JR.int 45), (JR.int 61), (JR.int 91), (JR.int 93), (JR.int 123), (JR.int 125), (JR.int 59), (JR.int 39), (JR.int 35), (JR.int 58), (JR.int 32), (JR.int 32), (JR.int 32), (JR.int 64), (JR.int 126), (JR.int 44), (JR.int 47), (JR.int 60), (JR.int 62), (JR.int 92), (JR.int 124), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 82))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 82))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 87))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 87))) ])),
+                JR.exec (JR.setField "pattern" "" JR.this (JR.withState JR.newString [ (JR.thisField "patternAsBytes") ])),
+                JR.exec (JR.setField "charArray" "" JR.this (JR.arrayOf "S" [ (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x6f)), (JR.int (JR.i32 0x50)), (JR.int (JR.i32 0x56)), (JR.int (JR.i32 0x6b)), (JR.int (JR.i32 0x51)), (JR.int (JR.i32 0x52)), (JR.int (JR.i32 0x5a)), (JR.int (JR.i32 0x6a)), (JR.int (JR.i32 0x5c)), (JR.int (JR.i32 0x60)), (JR.int (JR.i32 0x5b)), (JR.int (JR.i32 0x62)), (JR.int (JR.i32 0x72)), (JR.int (JR.i32 0x63)), (JR.int (JR.i32 0x4b)), (JR.int (JR.i32 0x73)), (JR.int (JR.i32 0x1)), (JR.int (JR.i32 0x2)), (JR.int (JR.i32 0x3)), (JR.int (JR.i32 0x4)), (JR.int (JR.i32 0x5)), (JR.int (JR.i32 0x6)), (JR.int (JR.i32 0x7)), (JR.int (JR.i32 0x8)), (JR.int (JR.i32 0x9)), (JR.int (JR.i32 0xa)), (JR.int (JR.i32 0x6c)), (JR.int (JR.i32 0x69)), (JR.int (JR.i32 0x74)), (JR.int (JR.i32 0x64)), (JR.int (JR.i32 0x75)), (JR.int (JR.i32 0x4c)), (JR.int (JR.i32 0x70)), (JR.int (JR.i32 0xb)), (JR.int (JR.i32 0xc)), (JR.int (JR.i32 0x10)), (JR.int (JR.i32 0x11)), (JR.int (JR.i32 0x12)), (JR.int (JR.i32 0x13)), (JR.int (JR.i32 0x14)), (JR.int (JR.i32 0x15)), (JR.int (JR.i32 0x16)), (JR.int (JR.i32 0x17)), (JR.int (JR.i32 0x18)), (JR.int (JR.i32 0x19)), (JR.int (JR.i32 0x1a)), (JR.int (JR.i32 0x1b)), (JR.int (JR.i32 0x1c)), (JR.int (JR.i32 0x20)), (JR.int (JR.i32 0x21)), (JR.int (JR.i32 0x22)), (JR.int (JR.i32 0x23)), (JR.int (JR.i32 0x24)), (JR.int (JR.i32 0x25)), (JR.int (JR.i32 0x26)), (JR.int (JR.i32 0x27)), (JR.int (JR.i32 0x28)), (JR.int (JR.i32 0x29)), (JR.int (JR.i32 0x2a)), (JR.int (JR.i32 0x65)), (JR.int (JR.i32 0x76)), (JR.int (JR.i32 0x66)), (JR.int (JR.i32 0x59)), (JR.int (JR.i32 0x61)), (JR.int (JR.i32 0x53)), (JR.int (JR.i32 0x2b)), (JR.int (JR.i32 0x2c)), (JR.int (JR.i32 0x30)), (JR.int (JR.i32 0x31)), (JR.int (JR.i32 0x32)), (JR.int (JR.i32 0x33)), (JR.int (JR.i32 0x34)), (JR.int (JR.i32 0x35)), (JR.int (JR.i32 0x36)), (JR.int (JR.i32 0x37)), (JR.int (JR.i32 0x38)), (JR.int (JR.i32 0x39)), (JR.int (JR.i32 0x3a)), (JR.int (JR.i32 0x3b)), (JR.int (JR.i32 0x3c)), (JR.int (JR.i32 0x40)), (JR.int (JR.i32 0x41)), (JR.int (JR.i32 0x42)), (JR.int (JR.i32 0x43)), (JR.int (JR.i32 0x44)), (JR.int (JR.i32 0x45)), (JR.int (JR.i32 0x46)), (JR.int (JR.i32 0x47)), (JR.int (JR.i32 0x48)), (JR.int (JR.i32 0x49)), (JR.int (JR.i32 0x4a)), (JR.int (JR.i32 0x67)), (JR.int (JR.i32 0x77)), (JR.int (JR.i32 0x68)), (JR.int (JR.i32 0x71)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x58)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x7b)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x55)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x79)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)), (JR.int (JR.i32 0x0)) ])),
+                JR.exec (JR.setField "_characterWidth" "" JR.this (JR.newArray "I" [ (JR.invoke "length_0" (JR.thisField "pattern") []) ])),
+                JR.exec (JR.setField "characterArray" "" JR.this (JR.newArray "C" [ (JR.int 1) ])),
+                JR.exec (JR.setField "size" "I" JR.this (JR.invoke "length_0" (JR.thisField "pattern") [])),
+                JR.exec (JR.setField "lastCapIndex" "I" JR.this (JR.invoke "indexOf_1" (JR.thisField "pattern") [ (JR.char 90) ])),
+                JR.exec (JR.setField "currentFont" "" JR.this (JR.callStatic Font.jm_getDefaultFont_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.declare "shortPattern" "" (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), 
+                    JR.ifElse (JR.callStatic AvianUtil.jm_isAvian_0 []) (JR.run [ 
+                        JR.declare "shortPatterAsByteArray" "" (JR.arrayOf "B" [ (JR.int 32), (JR.int 48), (JR.int 49), (JR.int 50), (JR.int 51), (JR.int 52), (JR.int 53), (JR.int 54), (JR.int 55), (JR.int 56), (JR.int 57), (JR.int 65), (JR.int 66), (JR.int 67), (JR.int 68), (JR.int 69), (JR.int 70), (JR.int 71), (JR.int 72), (JR.int 73), (JR.int 74), (JR.int 75), (JR.int 76), (JR.int 77), (JR.int 78), (JR.int 79), (JR.int 80), (JR.int 81), (JR.int 82), (JR.int 83), (JR.int 84), (JR.int 85), (JR.int 86), (JR.int 87), (JR.int 88), (JR.int 89), (JR.int 90), (JR.int 97), (JR.int 98), (JR.int 99), (JR.int 100), (JR.int 101), (JR.int 102), (JR.int 103), (JR.int 104), (JR.int 105), (JR.int 106), (JR.int 107), (JR.int 108), (JR.int 109), (JR.int 110), (JR.int 111), (JR.int 112), (JR.int 113), (JR.int 114), (JR.int 115), (JR.int 116), (JR.int 117), (JR.int 118), (JR.int 119), (JR.int 120), (JR.int 121), (JR.int 122), (JR.int 46), (JR.int 63), (JR.int 33), (JR.int 36), (JR.int 37), (JR.int 96), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 84))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 84))), (JR.int 34), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 93))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 93))), (JR.int 94), (JR.int 38), (JR.int 42), (JR.int 40), (JR.int 41), (JR.int 95), (JR.int 43), (JR.int 45), (JR.int 61), (JR.int 91), (JR.int 93), (JR.int 123), (JR.int 125), (JR.int 59), (JR.int 39), (JR.int 35), (JR.int 58), (JR.int 64), (JR.int 126), (JR.int 44), (JR.int 47), (JR.int 60), (JR.int 62), (JR.int 92), (JR.int 124), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 82))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 82))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 87))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 87))) ]), 
+                        JR.exec (JR.setLocal "shortPattern" "" (JR.withState JR.newString [ (JR.local "shortPatterAsByteArray") ])) ]) (JR.run [ 
+                        JR.declare "shortPatterAsByteArray" "" (JR.arrayOf "B" [ (JR.int 32), (JR.int 48), (JR.int 49), (JR.int 50), (JR.int 51), (JR.int 52), (JR.int 53), (JR.int 54), (JR.int 55), (JR.int 56), (JR.int 57), (JR.int 65), (JR.int 66), (JR.int 67), (JR.int 68), (JR.int 69), (JR.int 70), (JR.int 71), (JR.int 72), (JR.int 73), (JR.int 74), (JR.int 75), (JR.int 76), (JR.int 77), (JR.int 78), (JR.int 79), (JR.int 80), (JR.int 81), (JR.int 82), (JR.int 83), (JR.int 84), (JR.int 85), (JR.int 86), (JR.int 87), (JR.int 88), (JR.int 89), (JR.int 90), (JR.int 97), (JR.int 98), (JR.int 99), (JR.int 100), (JR.int 101), (JR.int 102), (JR.int 103), (JR.int 104), (JR.int 105), (JR.int 106), (JR.int 107), (JR.int 108), (JR.int 109), (JR.int 110), (JR.int 111), (JR.int 112), (JR.int 113), (JR.int 114), (JR.int 115), (JR.int 116), (JR.int 117), (JR.int 118), (JR.int 119), (JR.int 120), (JR.int 121), (JR.int 122), (JR.int 46), (JR.int 63), (JR.int 33), (JR.int 36), (JR.int 37), (JR.int 96), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 84))), (JR.int 34), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 93))), (JR.int 94), (JR.int 38), (JR.int 42), (JR.int 40), (JR.int 41), (JR.int 95), (JR.int 43), (JR.int 45), (JR.int 61), (JR.int 91), (JR.int 93), (JR.int 123), (JR.int 125), (JR.int 59), (JR.int 39), (JR.int 35), (JR.int 58), (JR.int 64), (JR.int 126), (JR.int 44), (JR.int 47), (JR.int 60), (JR.int 62), (JR.int 92), (JR.int 124), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 82))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 87))) ]), 
+                        JR.exec (JR.setLocal "shortPattern" "" (JR.withState JR.newString [ (JR.local "shortPatterAsByteArray") ])) ]), 
+                    JR.exec (JR.setField "shortPattern" "" JR.this (JR.local "shortPattern")), 
+                    JR.exec (JR.setField "scale" "I" JR.this (JR.local "scale")), 
+                    JR.exec (JR.setField "CELLS_PER_ROW" "I" JR.this (JR.int 16)), 
+                    JR.exec (JR.setField "fontSize" "I" JR.this (JR.map2 JR.mul ((JR.map2 JR.add (JR.int 20) (JR.int 6))) (JR.thisField "scale"))), 
+                    JR.exec (JR.setField "baseCharWidth" "I" JR.this (JR.map2 JR.add (JR.thisField "fontSize") ((JR.map2 JR.mul (JR.int 6) (JR.thisField "scale"))))), 
+                    JR.exec (JR.setField "cellSize" "I" JR.this (JR.map2 JR.add (JR.thisField "fontSize") ((JR.map2 JR.mul (JR.int 6) (JR.thisField "scale"))))), 
+                    JR.exec (JR.setField "textureSize" "I" JR.this (JR.invoke "getAsTextureSize_1" JR.this [ (JR.map2 JR.mul (JR.thisField "CELLS_PER_ROW") (JR.thisField "cellSize")) ])), 
+                    JR.exec (JR.setField "actualCellsPerRow" "I" JR.this (JR.map2 JR.div (JR.thisField "textureSize") (JR.thisField "cellSize"))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getAsTextureSize_1 : JR.Method
+jm_getAsTextureSize_1 jheap jthis jargs =
+    JR.method [ ( "textureSize", "I" ) ] "I"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.lessEquals (JR.local "textureSize") (JR.int 64)) (JR.run [ 
+                        JR.exec (JR.setLocal "textureSize" "I" (JR.int 64)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.lessEquals (JR.local "textureSize") (JR.int 128)) (JR.run [ 
+                        JR.exec (JR.setLocal "textureSize" "I" (JR.int 128)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.lessEquals (JR.local "textureSize") (JR.int 256)) (JR.run [ 
+                        JR.exec (JR.setLocal "textureSize" "I" (JR.int 256)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.lessEquals (JR.local "textureSize") (JR.int 512)) (JR.run [ 
+                        JR.exec (JR.setLocal "textureSize" "I" (JR.int 512)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.lessEquals (JR.local "textureSize") (JR.int 1024)) (JR.run [ 
+                        JR.exec (JR.setLocal "textureSize" "I" (JR.int 1024)) ]) identity ]) ]) ]) ]), 
+                    JR.return (JR.local "textureSize") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCellSize_1 : JR.Method
+jm_getCellSize_1 jheap jthis jargs =
+    JR.method [ ( "cellSize", "I" ) ] "I"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.lessEquals (JR.local "cellSize") (JR.int 16)) (JR.run [ 
+                        JR.exec (JR.setLocal "cellSize" "I" (JR.int 16)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.lessEquals (JR.local "cellSize") (JR.int 32)) (JR.run [ 
+                        JR.exec (JR.setLocal "cellSize" "I" (JR.int 32)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.lessEquals (JR.local "cellSize") (JR.int 64)) (JR.run [ 
+                        JR.exec (JR.setLocal "cellSize" "I" (JR.int 64)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.lessEquals (JR.local "cellSize") (JR.int 128)) (JR.run [ 
+                        JR.exec (JR.setLocal "cellSize" "I" (JR.int 128)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.lessEquals (JR.local "cellSize") (JR.int 256)) (JR.run [ 
+                        JR.exec (JR.setLocal "cellSize" "I" (JR.int 256)) ]) identity ]) ]) ]) ]), 
+                    JR.return (JR.local "cellSize") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getYOffset_0 : JR.Method
+jm_getYOffset_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return ((JR.map2 JR.mul ((JR.map2 JR.sub (JR.thisField "scale") (JR.int 1))) (JR.thisField "cellSize"))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

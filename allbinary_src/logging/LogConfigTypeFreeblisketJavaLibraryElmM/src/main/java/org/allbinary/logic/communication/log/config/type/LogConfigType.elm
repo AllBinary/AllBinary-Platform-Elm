@@ -1,149 +1,128 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.log.config.type
-module LogConfigType where
+module Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigType exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.log.config.type
+-}
 
-data LogConfigType = LogConfigType
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , name :: IORef (String)
-    , description :: IORef (String)
-    }
-
-instance JavaNull LogConfigType where
-    javaNull = javaNullRecord "LogConfigType"
-
-instance JavaEquals LogConfigType where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LogConfigType where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LogConfigType where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-availableLogConfigTypes :: IORef (BasicArrayList.BasicArrayList)
-{-# NOINLINE availableLogConfigTypes #-}
-availableLogConfigTypes = unsafePerformIO ((fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_)) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LogConfigType
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    name <- newIORef ""
-    description <- newIORef ""
-    let this = LogConfigType header_ logUtil name description
-    jregisterLevel header_ this
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "getDescription" (\() -> getDescription_impl this)
-    jregisterMethod header_ "setName" (\() -> setName_impl this)
-    jregisterMethod header_ "setDescription" (\() -> setDescription_impl this)
-    pure this
-
-initFields_ :: LogConfigType -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.name (javaNull)
-    jset this.description (javaNull)
-    pure ()
-
-new_2 :: String -> String -> IO LogConfigType
-new_2 name description = do
-    this <- newRecord_
-    init_2 this name description
-    pure this
-
-init_2 :: LogConfigType -> String -> String -> IO ()
-init_2 this name description = do
-        initFields_ this
-        jset (this).name (name)
-        jset (this).description (description)
-        Control.Monad.void (BasicArrayList.add ((jget LogConfigType.availableLogConfigTypes)) this)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: LogConfigType))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: LogConfigType))
-
-getName_impl :: LogConfigType -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jclass : String
+jclass =
+    "LogConfigType"
 
 
-getDescription :: (JavaObjectClass this_) => this_ -> IO (String)
-getDescription object_ = jmethod object_ "getDescription" (\() -> (getDescription_impl (javaCast object_ :: LogConfigType))) ()
-
-getDescription_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getDescription_super object_ = (getDescription_impl (javaCast object_ :: LogConfigType))
-
-getDescription_impl :: LogConfigType -> IO (String)
-getDescription_impl this = do
-        pure ((jget (this).description))
+jchain : List String
+jchain =
+    [ "LogConfigType" ]
 
 
-setName :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName object_ a1 = jmethod object_ "setName" (\() -> (setName_impl (javaCast object_ :: LogConfigType))) () a1
-
-setName_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName_super object_ a1 = (setName_impl (javaCast object_ :: LogConfigType)) a1
-
-setName_impl :: LogConfigType -> String -> IO (())
-setName_impl this value = do
-        jset (this).name (value)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "name", JR.defaultOf "" ), ( "description", JR.defaultOf "" ) ]
 
 
-setDescription :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setDescription object_ a1 = jmethod object_ "setDescription" (\() -> (setDescription_impl (javaCast object_ :: LogConfigType))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getName_0", jm_getName_0 )
+        , ( "getDescription_0", jm_getDescription_0 )
+        , ( "setName_1", jm_setName_1 )
+        , ( "setDescription_1", jm_setDescription_1 ) ]
+        JR.noMethods
 
-setDescription_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setDescription_super object_ a1 = (setDescription_impl (javaCast object_ :: LogConfigType)) a1
 
-setDescription_impl :: LogConfigType -> String -> IO (())
-setDescription_impl this value = do
-        jset (this).description (value)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LogConfigType"
+        [ ( "jm_getName_0", jm_getName_0 ), ( "jm_getDescription_0", jm_getDescription_0 ), ( "jm_setName_1", jm_setName_1 ), ( "jm_setDescription_1", jm_setDescription_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_availableLogConfigTypes", jstatic_availableLogConfigTypes ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_availableLogConfigTypes : JR.M
+jstatic_availableLogConfigTypes s =
+    JR.static "LogConfigType" jclinit "availableLogConfigTypes"
+        (JR.new BasicArrayListD.jnew_0 [])
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "description", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "name")), 
+                    JR.exec (JR.setField "description" "" JR.this (JR.local "description")), 
+                    JR.exec (JR.invoke "add_1" jstatic_availableLogConfigTypes [ JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDescription_0 : JR.Method
+jm_getDescription_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "description") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setName_1 : JR.Method
+jm_setName_1 jheap jthis jargs =
+    JR.method [ ( "value", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "value")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDescription_1 : JR.Method
+jm_setDescription_1 jheap jthis jargs =
+    JR.method [ ( "value", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "description" "" JR.this (JR.local "value")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,98 +1,89 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.health
-module NullHealthListener where
+module Org.Allbinary.Game.Health.NullHealthListener exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HealthListenerInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.health
+-}
 
--- implements HealthListenerInterface
-data NullHealthListener = NullHealthListener
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull NullHealthListener where
-    javaNull = javaNullRecord "NullHealthListener"
-
-instance JavaEquals NullHealthListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NullHealthListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NullHealthListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_HEALTH_LISTENER :: NullHealthListener
-{-# NOINLINE nULL_HEALTH_LISTENER #-}
-nULL_HEALTH_LISTENER = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NullHealthListener
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = NullHealthListener header_
-    jregisterLevel header_ this
-    HealthListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "onHealthChange" (\() -> onHealthChange_impl this)
-    pure this
-
-initFields_ :: NullHealthListener -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO NullHealthListener
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NullHealthListener -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Health.HealthListenerInterface as HealthListenerInterface
 
 
-onHealthChange :: (JavaObjectClass this_) => this_ -> IO (())
-onHealthChange object_ = jmethod object_ "onHealthChange" (\() -> (onHealthChange_impl (javaCast object_ :: NullHealthListener))) ()
+jclass : String
+jclass =
+    "NullHealthListener"
 
-onHealthChange_super :: (JavaObjectClass this_) => this_ -> IO (())
-onHealthChange_super object_ = (onHealthChange_impl (javaCast object_ :: NullHealthListener))
 
-onHealthChange_impl :: NullHealthListener -> IO (())
-onHealthChange_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "NullHealthListener" ]
+        ++ HealthListenerInterface.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "onHealthChange_0", jm_onHealthChange_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullHealthListener"
+        [ ( "jm_onHealthChange_0", jm_onHealthChange_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_HEALTH_LISTENER", jstatic_NULL_HEALTH_LISTENER ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_HEALTH_LISTENER : JR.M
+jstatic_NULL_HEALTH_LISTENER s =
+    JR.static "NullHealthListener" jclinit "NULL_HEALTH_LISTENER"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_onHealthChange_0 : JR.Method
+jm_onHealthChange_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

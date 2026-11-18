@@ -1,657 +1,278 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module ABKeyEventWrapper where
+module Org.Allbinary.Game.Input.ABKeyEventWrapper exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified KeyEvent -- java.awt.event.KeyEvent
-import qualified JsType -- jsinterop.annotations.JsType
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data ABKeyEventWrapper = ABKeyEventWrapper
-    { header_ :: JavaHeader
-    , vK_ENTER :: IORef (Int)
-    , vK_BACK_SPACE :: IORef (Int)
-    , vK_TAB :: IORef (Int)
-    , vK_CANCEL :: IORef (Int)
-    , vK_CLEAR :: IORef (Int)
-    , vK_SHIFT :: IORef (Int)
-    , vK_CONTROL :: IORef (Int)
-    , vK_ALT :: IORef (Int)
-    , vK_PAUSE :: IORef (Int)
-    , vK_CAPS_LOCK :: IORef (Int)
-    , vK_ESCAPE :: IORef (Int)
-    , vK_SPACE :: IORef (Int)
-    , vK_PAGE_UP :: IORef (Int)
-    , vK_PAGE_DOWN :: IORef (Int)
-    , vK_END :: IORef (Int)
-    , vK_HOME :: IORef (Int)
-    , vK_LEFT :: IORef (Int)
-    , vK_UP :: IORef (Int)
-    , vK_RIGHT :: IORef (Int)
-    , vK_DOWN :: IORef (Int)
-    , vK_COMMA :: IORef (Int)
-    , vK_MINUS :: IORef (Int)
-    , vK_PERIOD :: IORef (Int)
-    , vK_SLASH :: IORef (Int)
-    , vK_0 :: IORef (Int)
-    , vK_1 :: IORef (Int)
-    , vK_2 :: IORef (Int)
-    , vK_3 :: IORef (Int)
-    , vK_4 :: IORef (Int)
-    , vK_5 :: IORef (Int)
-    , vK_6 :: IORef (Int)
-    , vK_7 :: IORef (Int)
-    , vK_8 :: IORef (Int)
-    , vK_9 :: IORef (Int)
-    , vK_SEMICOLON :: IORef (Int)
-    , vK_EQUALS :: IORef (Int)
-    , vK_A :: IORef (Int)
-    , vK_B :: IORef (Int)
-    , vK_C :: IORef (Int)
-    , vK_D :: IORef (Int)
-    , vK_E :: IORef (Int)
-    , vK_F :: IORef (Int)
-    , vK_G :: IORef (Int)
-    , vK_H :: IORef (Int)
-    , vK_I :: IORef (Int)
-    , vK_J :: IORef (Int)
-    , vK_K :: IORef (Int)
-    , vK_L :: IORef (Int)
-    , vK_M :: IORef (Int)
-    , vK_N :: IORef (Int)
-    , vK_O :: IORef (Int)
-    , vK_P :: IORef (Int)
-    , vK_Q :: IORef (Int)
-    , vK_R :: IORef (Int)
-    , vK_S :: IORef (Int)
-    , vK_T :: IORef (Int)
-    , vK_U :: IORef (Int)
-    , vK_V :: IORef (Int)
-    , vK_W :: IORef (Int)
-    , vK_X :: IORef (Int)
-    , vK_Y :: IORef (Int)
-    , vK_Z :: IORef (Int)
-    , vK_OPEN_BRACKET :: IORef (Int)
-    , vK_BACK_SLASH :: IORef (Int)
-    , vK_CLOSE_BRACKET :: IORef (Int)
-    , vK_NUMPAD0 :: IORef (Int)
-    , vK_NUMPAD1 :: IORef (Int)
-    , vK_NUMPAD2 :: IORef (Int)
-    , vK_NUMPAD3 :: IORef (Int)
-    , vK_NUMPAD4 :: IORef (Int)
-    , vK_NUMPAD5 :: IORef (Int)
-    , vK_NUMPAD6 :: IORef (Int)
-    , vK_NUMPAD7 :: IORef (Int)
-    , vK_NUMPAD8 :: IORef (Int)
-    , vK_NUMPAD9 :: IORef (Int)
-    , vK_MULTIPLY :: IORef (Int)
-    , vK_ADD :: IORef (Int)
-    , vK_SEPARATER :: IORef (Int)
-    , vK_SEPARATOR :: IORef (Int)
-    , vK_SUBTRACT :: IORef (Int)
-    , vK_DECIMAL :: IORef (Int)
-    , vK_DIVIDE :: IORef (Int)
-    , vK_DELETE :: IORef (Int)
-    , vK_NUM_LOCK :: IORef (Int)
-    , vK_SCROLL_LOCK :: IORef (Int)
-    , vK_F1 :: IORef (Int)
-    , vK_F2 :: IORef (Int)
-    , vK_F3 :: IORef (Int)
-    , vK_F4 :: IORef (Int)
-    , vK_F5 :: IORef (Int)
-    , vK_F6 :: IORef (Int)
-    , vK_F7 :: IORef (Int)
-    , vK_F8 :: IORef (Int)
-    , vK_F9 :: IORef (Int)
-    , vK_F10 :: IORef (Int)
-    , vK_F11 :: IORef (Int)
-    , vK_F12 :: IORef (Int)
-    , vK_F13 :: IORef (Int)
-    , vK_F14 :: IORef (Int)
-    , vK_F15 :: IORef (Int)
-    , vK_F16 :: IORef (Int)
-    , vK_F17 :: IORef (Int)
-    , vK_F18 :: IORef (Int)
-    , vK_F19 :: IORef (Int)
-    , vK_F20 :: IORef (Int)
-    , vK_F21 :: IORef (Int)
-    , vK_F22 :: IORef (Int)
-    , vK_F23 :: IORef (Int)
-    , vK_F24 :: IORef (Int)
-    , vK_PRINTSCREEN :: IORef (Int)
-    , vK_INSERT :: IORef (Int)
-    , vK_HELP :: IORef (Int)
-    , vK_META :: IORef (Int)
-    , vK_BACK_QUOTE :: IORef (Int)
-    , vK_QUOTE :: IORef (Int)
-    , vK_KP_UP :: IORef (Int)
-    , vK_KP_DOWN :: IORef (Int)
-    , vK_KP_LEFT :: IORef (Int)
-    , vK_KP_RIGHT :: IORef (Int)
-    , vK_DEAD_GRAVE :: IORef (Int)
-    , vK_DEAD_ACUTE :: IORef (Int)
-    , vK_DEAD_CIRCUMFLEX :: IORef (Int)
-    , vK_DEAD_TILDE :: IORef (Int)
-    , vK_DEAD_MACRON :: IORef (Int)
-    , vK_DEAD_BREVE :: IORef (Int)
-    , vK_DEAD_ABOVEDOT :: IORef (Int)
-    , vK_DEAD_DIAERESIS :: IORef (Int)
-    , vK_DEAD_ABOVERING :: IORef (Int)
-    , vK_DEAD_DOUBLEACUTE :: IORef (Int)
-    , vK_DEAD_CARON :: IORef (Int)
-    , vK_DEAD_CEDILLA :: IORef (Int)
-    , vK_DEAD_OGONEK :: IORef (Int)
-    , vK_DEAD_IOTA :: IORef (Int)
-    , vK_DEAD_VOICED_SOUND :: IORef (Int)
-    , vK_DEAD_SEMIVOICED_SOUND :: IORef (Int)
-    , vK_AMPERSAND :: IORef (Int)
-    , vK_ASTERISK :: IORef (Int)
-    , vK_QUOTEDBL :: IORef (Int)
-    , vK_LESS :: IORef (Int)
-    , vK_GREATER :: IORef (Int)
-    , vK_BRACELEFT :: IORef (Int)
-    , vK_BRACERIGHT :: IORef (Int)
-    , vK_AT :: IORef (Int)
-    , vK_COLON :: IORef (Int)
-    , vK_CIRCUMFLEX :: IORef (Int)
-    , vK_DOLLAR :: IORef (Int)
-    , vK_EURO_SIGN :: IORef (Int)
-    , vK_EXCLAMATION_MARK :: IORef (Int)
-    , vK_INVERTED_EXCLAMATION_MARK :: IORef (Int)
-    , vK_LEFT_PARENTHESIS :: IORef (Int)
-    , vK_NUMBER_SIGN :: IORef (Int)
-    , vK_PLUS :: IORef (Int)
-    , vK_RIGHT_PARENTHESIS :: IORef (Int)
-    , vK_UNDERSCORE :: IORef (Int)
-    , vK_WINDOWS :: IORef (Int)
-    , vK_CONTEXT_MENU :: IORef (Int)
-    , vK_FINAL :: IORef (Int)
-    , vK_CONVERT :: IORef (Int)
-    , vK_NONCONVERT :: IORef (Int)
-    , vK_ACCEPT :: IORef (Int)
-    , vK_MODECHANGE :: IORef (Int)
-    , vK_KANA :: IORef (Int)
-    , vK_KANJI :: IORef (Int)
-    , vK_ALPHANUMERIC :: IORef (Int)
-    , vK_KATAKANA :: IORef (Int)
-    , vK_HIRAGANA :: IORef (Int)
-    , vK_FULL_WIDTH :: IORef (Int)
-    , vK_HALF_WIDTH :: IORef (Int)
-    , vK_ROMAN_CHARACTERS :: IORef (Int)
-    , vK_ALL_CANDIDATES :: IORef (Int)
-    , vK_PREVIOUS_CANDIDATE :: IORef (Int)
-    , vK_CODE_INPUT :: IORef (Int)
-    , vK_JAPANESE_KATAKANA :: IORef (Int)
-    , vK_JAPANESE_HIRAGANA :: IORef (Int)
-    , vK_JAPANESE_ROMAN :: IORef (Int)
-    , vK_KANA_LOCK :: IORef (Int)
-    , vK_INPUT_METHOD_ON_OFF :: IORef (Int)
-    , vK_CUT :: IORef (Int)
-    , vK_COPY :: IORef (Int)
-    , vK_PASTE :: IORef (Int)
-    , vK_UNDO :: IORef (Int)
-    , vK_AGAIN :: IORef (Int)
-    , vK_FIND :: IORef (Int)
-    , vK_PROPS :: IORef (Int)
-    , vK_STOP :: IORef (Int)
-    , vK_COMPOSE :: IORef (Int)
-    , vK_ALT_GRAPH :: IORef (Int)
-    , vK_BEGIN :: IORef (Int)
-    , vK_UNDEFINED :: IORef (Int)
-    }
-
-instance JavaNull ABKeyEventWrapper where
-    javaNull = javaNullRecord "ABKeyEventWrapper"
-
-instance JavaEquals ABKeyEventWrapper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ABKeyEventWrapper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ABKeyEventWrapper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ABKeyEventWrapper
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ABKeyEventWrapper
-newRecord_ = do
-    header_ <- newJavaHeader
-    vK_ENTER <- newIORef 0
-    vK_BACK_SPACE <- newIORef 0
-    vK_TAB <- newIORef 0
-    vK_CANCEL <- newIORef 0
-    vK_CLEAR <- newIORef 0
-    vK_SHIFT <- newIORef 0
-    vK_CONTROL <- newIORef 0
-    vK_ALT <- newIORef 0
-    vK_PAUSE <- newIORef 0
-    vK_CAPS_LOCK <- newIORef 0
-    vK_ESCAPE <- newIORef 0
-    vK_SPACE <- newIORef 0
-    vK_PAGE_UP <- newIORef 0
-    vK_PAGE_DOWN <- newIORef 0
-    vK_END <- newIORef 0
-    vK_HOME <- newIORef 0
-    vK_LEFT <- newIORef 0
-    vK_UP <- newIORef 0
-    vK_RIGHT <- newIORef 0
-    vK_DOWN <- newIORef 0
-    vK_COMMA <- newIORef 0
-    vK_MINUS <- newIORef 0
-    vK_PERIOD <- newIORef 0
-    vK_SLASH <- newIORef 0
-    vK_0 <- newIORef 0
-    vK_1 <- newIORef 0
-    vK_2 <- newIORef 0
-    vK_3 <- newIORef 0
-    vK_4 <- newIORef 0
-    vK_5 <- newIORef 0
-    vK_6 <- newIORef 0
-    vK_7 <- newIORef 0
-    vK_8 <- newIORef 0
-    vK_9 <- newIORef 0
-    vK_SEMICOLON <- newIORef 0
-    vK_EQUALS <- newIORef 0
-    vK_A <- newIORef 0
-    vK_B <- newIORef 0
-    vK_C <- newIORef 0
-    vK_D <- newIORef 0
-    vK_E <- newIORef 0
-    vK_F <- newIORef 0
-    vK_G <- newIORef 0
-    vK_H <- newIORef 0
-    vK_I <- newIORef 0
-    vK_J <- newIORef 0
-    vK_K <- newIORef 0
-    vK_L <- newIORef 0
-    vK_M <- newIORef 0
-    vK_N <- newIORef 0
-    vK_O <- newIORef 0
-    vK_P <- newIORef 0
-    vK_Q <- newIORef 0
-    vK_R <- newIORef 0
-    vK_S <- newIORef 0
-    vK_T <- newIORef 0
-    vK_U <- newIORef 0
-    vK_V <- newIORef 0
-    vK_W <- newIORef 0
-    vK_X <- newIORef 0
-    vK_Y <- newIORef 0
-    vK_Z <- newIORef 0
-    vK_OPEN_BRACKET <- newIORef 0
-    vK_BACK_SLASH <- newIORef 0
-    vK_CLOSE_BRACKET <- newIORef 0
-    vK_NUMPAD0 <- newIORef 0
-    vK_NUMPAD1 <- newIORef 0
-    vK_NUMPAD2 <- newIORef 0
-    vK_NUMPAD3 <- newIORef 0
-    vK_NUMPAD4 <- newIORef 0
-    vK_NUMPAD5 <- newIORef 0
-    vK_NUMPAD6 <- newIORef 0
-    vK_NUMPAD7 <- newIORef 0
-    vK_NUMPAD8 <- newIORef 0
-    vK_NUMPAD9 <- newIORef 0
-    vK_MULTIPLY <- newIORef 0
-    vK_ADD <- newIORef 0
-    vK_SEPARATER <- newIORef 0
-    vK_SEPARATOR <- newIORef 0
-    vK_SUBTRACT <- newIORef 0
-    vK_DECIMAL <- newIORef 0
-    vK_DIVIDE <- newIORef 0
-    vK_DELETE <- newIORef 0
-    vK_NUM_LOCK <- newIORef 0
-    vK_SCROLL_LOCK <- newIORef 0
-    vK_F1 <- newIORef 0
-    vK_F2 <- newIORef 0
-    vK_F3 <- newIORef 0
-    vK_F4 <- newIORef 0
-    vK_F5 <- newIORef 0
-    vK_F6 <- newIORef 0
-    vK_F7 <- newIORef 0
-    vK_F8 <- newIORef 0
-    vK_F9 <- newIORef 0
-    vK_F10 <- newIORef 0
-    vK_F11 <- newIORef 0
-    vK_F12 <- newIORef 0
-    vK_F13 <- newIORef 0
-    vK_F14 <- newIORef 0
-    vK_F15 <- newIORef 0
-    vK_F16 <- newIORef 0
-    vK_F17 <- newIORef 0
-    vK_F18 <- newIORef 0
-    vK_F19 <- newIORef 0
-    vK_F20 <- newIORef 0
-    vK_F21 <- newIORef 0
-    vK_F22 <- newIORef 0
-    vK_F23 <- newIORef 0
-    vK_F24 <- newIORef 0
-    vK_PRINTSCREEN <- newIORef 0
-    vK_INSERT <- newIORef 0
-    vK_HELP <- newIORef 0
-    vK_META <- newIORef 0
-    vK_BACK_QUOTE <- newIORef 0
-    vK_QUOTE <- newIORef 0
-    vK_KP_UP <- newIORef 0
-    vK_KP_DOWN <- newIORef 0
-    vK_KP_LEFT <- newIORef 0
-    vK_KP_RIGHT <- newIORef 0
-    vK_DEAD_GRAVE <- newIORef 0
-    vK_DEAD_ACUTE <- newIORef 0
-    vK_DEAD_CIRCUMFLEX <- newIORef 0
-    vK_DEAD_TILDE <- newIORef 0
-    vK_DEAD_MACRON <- newIORef 0
-    vK_DEAD_BREVE <- newIORef 0
-    vK_DEAD_ABOVEDOT <- newIORef 0
-    vK_DEAD_DIAERESIS <- newIORef 0
-    vK_DEAD_ABOVERING <- newIORef 0
-    vK_DEAD_DOUBLEACUTE <- newIORef 0
-    vK_DEAD_CARON <- newIORef 0
-    vK_DEAD_CEDILLA <- newIORef 0
-    vK_DEAD_OGONEK <- newIORef 0
-    vK_DEAD_IOTA <- newIORef 0
-    vK_DEAD_VOICED_SOUND <- newIORef 0
-    vK_DEAD_SEMIVOICED_SOUND <- newIORef 0
-    vK_AMPERSAND <- newIORef 0
-    vK_ASTERISK <- newIORef 0
-    vK_QUOTEDBL <- newIORef 0
-    vK_LESS <- newIORef 0
-    vK_GREATER <- newIORef 0
-    vK_BRACELEFT <- newIORef 0
-    vK_BRACERIGHT <- newIORef 0
-    vK_AT <- newIORef 0
-    vK_COLON <- newIORef 0
-    vK_CIRCUMFLEX <- newIORef 0
-    vK_DOLLAR <- newIORef 0
-    vK_EURO_SIGN <- newIORef 0
-    vK_EXCLAMATION_MARK <- newIORef 0
-    vK_INVERTED_EXCLAMATION_MARK <- newIORef 0
-    vK_LEFT_PARENTHESIS <- newIORef 0
-    vK_NUMBER_SIGN <- newIORef 0
-    vK_PLUS <- newIORef 0
-    vK_RIGHT_PARENTHESIS <- newIORef 0
-    vK_UNDERSCORE <- newIORef 0
-    vK_WINDOWS <- newIORef 0
-    vK_CONTEXT_MENU <- newIORef 0
-    vK_FINAL <- newIORef 0
-    vK_CONVERT <- newIORef 0
-    vK_NONCONVERT <- newIORef 0
-    vK_ACCEPT <- newIORef 0
-    vK_MODECHANGE <- newIORef 0
-    vK_KANA <- newIORef 0
-    vK_KANJI <- newIORef 0
-    vK_ALPHANUMERIC <- newIORef 0
-    vK_KATAKANA <- newIORef 0
-    vK_HIRAGANA <- newIORef 0
-    vK_FULL_WIDTH <- newIORef 0
-    vK_HALF_WIDTH <- newIORef 0
-    vK_ROMAN_CHARACTERS <- newIORef 0
-    vK_ALL_CANDIDATES <- newIORef 0
-    vK_PREVIOUS_CANDIDATE <- newIORef 0
-    vK_CODE_INPUT <- newIORef 0
-    vK_JAPANESE_KATAKANA <- newIORef 0
-    vK_JAPANESE_HIRAGANA <- newIORef 0
-    vK_JAPANESE_ROMAN <- newIORef 0
-    vK_KANA_LOCK <- newIORef 0
-    vK_INPUT_METHOD_ON_OFF <- newIORef 0
-    vK_CUT <- newIORef 0
-    vK_COPY <- newIORef 0
-    vK_PASTE <- newIORef 0
-    vK_UNDO <- newIORef 0
-    vK_AGAIN <- newIORef 0
-    vK_FIND <- newIORef 0
-    vK_PROPS <- newIORef 0
-    vK_STOP <- newIORef 0
-    vK_COMPOSE <- newIORef 0
-    vK_ALT_GRAPH <- newIORef 0
-    vK_BEGIN <- newIORef 0
-    vK_UNDEFINED <- newIORef 0
-    let this = ABKeyEventWrapper header_ vK_ENTER vK_BACK_SPACE vK_TAB vK_CANCEL vK_CLEAR vK_SHIFT vK_CONTROL vK_ALT vK_PAUSE vK_CAPS_LOCK vK_ESCAPE vK_SPACE vK_PAGE_UP vK_PAGE_DOWN vK_END vK_HOME vK_LEFT vK_UP vK_RIGHT vK_DOWN vK_COMMA vK_MINUS vK_PERIOD vK_SLASH vK_0 vK_1 vK_2 vK_3 vK_4 vK_5 vK_6 vK_7 vK_8 vK_9 vK_SEMICOLON vK_EQUALS vK_A vK_B vK_C vK_D vK_E vK_F vK_G vK_H vK_I vK_J vK_K vK_L vK_M vK_N vK_O vK_P vK_Q vK_R vK_S vK_T vK_U vK_V vK_W vK_X vK_Y vK_Z vK_OPEN_BRACKET vK_BACK_SLASH vK_CLOSE_BRACKET vK_NUMPAD0 vK_NUMPAD1 vK_NUMPAD2 vK_NUMPAD3 vK_NUMPAD4 vK_NUMPAD5 vK_NUMPAD6 vK_NUMPAD7 vK_NUMPAD8 vK_NUMPAD9 vK_MULTIPLY vK_ADD vK_SEPARATER vK_SEPARATOR vK_SUBTRACT vK_DECIMAL vK_DIVIDE vK_DELETE vK_NUM_LOCK vK_SCROLL_LOCK vK_F1 vK_F2 vK_F3 vK_F4 vK_F5 vK_F6 vK_F7 vK_F8 vK_F9 vK_F10 vK_F11 vK_F12 vK_F13 vK_F14 vK_F15 vK_F16 vK_F17 vK_F18 vK_F19 vK_F20 vK_F21 vK_F22 vK_F23 vK_F24 vK_PRINTSCREEN vK_INSERT vK_HELP vK_META vK_BACK_QUOTE vK_QUOTE vK_KP_UP vK_KP_DOWN vK_KP_LEFT vK_KP_RIGHT vK_DEAD_GRAVE vK_DEAD_ACUTE vK_DEAD_CIRCUMFLEX vK_DEAD_TILDE vK_DEAD_MACRON vK_DEAD_BREVE vK_DEAD_ABOVEDOT vK_DEAD_DIAERESIS vK_DEAD_ABOVERING vK_DEAD_DOUBLEACUTE vK_DEAD_CARON vK_DEAD_CEDILLA vK_DEAD_OGONEK vK_DEAD_IOTA vK_DEAD_VOICED_SOUND vK_DEAD_SEMIVOICED_SOUND vK_AMPERSAND vK_ASTERISK vK_QUOTEDBL vK_LESS vK_GREATER vK_BRACELEFT vK_BRACERIGHT vK_AT vK_COLON vK_CIRCUMFLEX vK_DOLLAR vK_EURO_SIGN vK_EXCLAMATION_MARK vK_INVERTED_EXCLAMATION_MARK vK_LEFT_PARENTHESIS vK_NUMBER_SIGN vK_PLUS vK_RIGHT_PARENTHESIS vK_UNDERSCORE vK_WINDOWS vK_CONTEXT_MENU vK_FINAL vK_CONVERT vK_NONCONVERT vK_ACCEPT vK_MODECHANGE vK_KANA vK_KANJI vK_ALPHANUMERIC vK_KATAKANA vK_HIRAGANA vK_FULL_WIDTH vK_HALF_WIDTH vK_ROMAN_CHARACTERS vK_ALL_CANDIDATES vK_PREVIOUS_CANDIDATE vK_CODE_INPUT vK_JAPANESE_KATAKANA vK_JAPANESE_HIRAGANA vK_JAPANESE_ROMAN vK_KANA_LOCK vK_INPUT_METHOD_ON_OFF vK_CUT vK_COPY vK_PASTE vK_UNDO vK_AGAIN vK_FIND vK_PROPS vK_STOP vK_COMPOSE vK_ALT_GRAPH vK_BEGIN vK_UNDEFINED
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: ABKeyEventWrapper -> IO ()
-initFields_ this = do
-    jset this.vK_ENTER (KeyEvent.vK_ENTER)
-    jset this.vK_BACK_SPACE (KeyEvent.vK_BACK_SPACE)
-    jset this.vK_TAB (KeyEvent.vK_TAB)
-    jset this.vK_CANCEL (KeyEvent.vK_CANCEL)
-    jset this.vK_CLEAR (KeyEvent.vK_CLEAR)
-    jset this.vK_SHIFT (KeyEvent.vK_SHIFT)
-    jset this.vK_CONTROL (KeyEvent.vK_CONTROL)
-    jset this.vK_ALT (KeyEvent.vK_ALT)
-    jset this.vK_PAUSE (KeyEvent.vK_PAUSE)
-    jset this.vK_CAPS_LOCK (KeyEvent.vK_CAPS_LOCK)
-    jset this.vK_ESCAPE (KeyEvent.vK_ESCAPE)
-    jset this.vK_SPACE (KeyEvent.vK_SPACE)
-    jset this.vK_PAGE_UP (KeyEvent.vK_PAGE_UP)
-    jset this.vK_PAGE_DOWN (KeyEvent.vK_PAGE_DOWN)
-    jset this.vK_END (KeyEvent.vK_END)
-    jset this.vK_HOME (KeyEvent.vK_HOME)
-    jset this.vK_LEFT (KeyEvent.vK_LEFT)
-    jset this.vK_UP (KeyEvent.vK_UP)
-    jset this.vK_RIGHT (KeyEvent.vK_RIGHT)
-    jset this.vK_DOWN (KeyEvent.vK_DOWN)
-    jset this.vK_COMMA (KeyEvent.vK_COMMA)
-    jset this.vK_MINUS (KeyEvent.vK_MINUS)
-    jset this.vK_PERIOD (KeyEvent.vK_PERIOD)
-    jset this.vK_SLASH (KeyEvent.vK_SLASH)
-    jset this.vK_0 (KeyEvent.vK_0)
-    jset this.vK_1 (KeyEvent.vK_1)
-    jset this.vK_2 (KeyEvent.vK_2)
-    jset this.vK_3 (KeyEvent.vK_3)
-    jset this.vK_4 (KeyEvent.vK_4)
-    jset this.vK_5 (KeyEvent.vK_5)
-    jset this.vK_6 (KeyEvent.vK_6)
-    jset this.vK_7 (KeyEvent.vK_7)
-    jset this.vK_8 (KeyEvent.vK_8)
-    jset this.vK_9 (KeyEvent.vK_9)
-    jset this.vK_SEMICOLON (KeyEvent.vK_SEMICOLON)
-    jset this.vK_EQUALS (KeyEvent.vK_EQUALS)
-    jset this.vK_A (KeyEvent.vK_A)
-    jset this.vK_B (KeyEvent.vK_B)
-    jset this.vK_C (KeyEvent.vK_C)
-    jset this.vK_D (KeyEvent.vK_D)
-    jset this.vK_E (KeyEvent.vK_E)
-    jset this.vK_F (KeyEvent.vK_F)
-    jset this.vK_G (KeyEvent.vK_G)
-    jset this.vK_H (KeyEvent.vK_H)
-    jset this.vK_I (KeyEvent.vK_I)
-    jset this.vK_J (KeyEvent.vK_J)
-    jset this.vK_K (KeyEvent.vK_K)
-    jset this.vK_L (KeyEvent.vK_L)
-    jset this.vK_M (KeyEvent.vK_M)
-    jset this.vK_N (KeyEvent.vK_N)
-    jset this.vK_O (KeyEvent.vK_O)
-    jset this.vK_P (KeyEvent.vK_P)
-    jset this.vK_Q (KeyEvent.vK_Q)
-    jset this.vK_R (KeyEvent.vK_R)
-    jset this.vK_S (KeyEvent.vK_S)
-    jset this.vK_T (KeyEvent.vK_T)
-    jset this.vK_U (KeyEvent.vK_U)
-    jset this.vK_V (KeyEvent.vK_V)
-    jset this.vK_W (KeyEvent.vK_W)
-    jset this.vK_X (KeyEvent.vK_X)
-    jset this.vK_Y (KeyEvent.vK_Y)
-    jset this.vK_Z (KeyEvent.vK_Z)
-    jset this.vK_OPEN_BRACKET (KeyEvent.vK_OPEN_BRACKET)
-    jset this.vK_BACK_SLASH (KeyEvent.vK_BACK_SLASH)
-    jset this.vK_CLOSE_BRACKET (KeyEvent.vK_CLOSE_BRACKET)
-    jset this.vK_NUMPAD0 (KeyEvent.vK_NUMPAD0)
-    jset this.vK_NUMPAD1 (KeyEvent.vK_NUMPAD1)
-    jset this.vK_NUMPAD2 (KeyEvent.vK_NUMPAD2)
-    jset this.vK_NUMPAD3 (KeyEvent.vK_NUMPAD3)
-    jset this.vK_NUMPAD4 (KeyEvent.vK_NUMPAD4)
-    jset this.vK_NUMPAD5 (KeyEvent.vK_NUMPAD5)
-    jset this.vK_NUMPAD6 (KeyEvent.vK_NUMPAD6)
-    jset this.vK_NUMPAD7 (KeyEvent.vK_NUMPAD7)
-    jset this.vK_NUMPAD8 (KeyEvent.vK_NUMPAD8)
-    jset this.vK_NUMPAD9 (KeyEvent.vK_NUMPAD9)
-    jset this.vK_MULTIPLY (KeyEvent.vK_MULTIPLY)
-    jset this.vK_ADD (KeyEvent.vK_ADD)
-    jset this.vK_SEPARATER (KeyEvent.vK_SEPARATER)
-    jset this.vK_SEPARATOR (KeyEvent.vK_SEPARATOR)
-    jset this.vK_SUBTRACT (KeyEvent.vK_SUBTRACT)
-    jset this.vK_DECIMAL (KeyEvent.vK_DECIMAL)
-    jset this.vK_DIVIDE (KeyEvent.vK_DIVIDE)
-    jset this.vK_DELETE (KeyEvent.vK_DELETE)
-    jset this.vK_NUM_LOCK (KeyEvent.vK_NUM_LOCK)
-    jset this.vK_SCROLL_LOCK (KeyEvent.vK_SCROLL_LOCK)
-    jset this.vK_F1 (KeyEvent.vK_F1)
-    jset this.vK_F2 (KeyEvent.vK_F2)
-    jset this.vK_F3 (KeyEvent.vK_F3)
-    jset this.vK_F4 (KeyEvent.vK_F4)
-    jset this.vK_F5 (KeyEvent.vK_F5)
-    jset this.vK_F6 (KeyEvent.vK_F6)
-    jset this.vK_F7 (KeyEvent.vK_F7)
-    jset this.vK_F8 (KeyEvent.vK_F8)
-    jset this.vK_F9 (KeyEvent.vK_F9)
-    jset this.vK_F10 (KeyEvent.vK_F10)
-    jset this.vK_F11 (KeyEvent.vK_F11)
-    jset this.vK_F12 (KeyEvent.vK_F12)
-    jset this.vK_F13 (KeyEvent.vK_F13)
-    jset this.vK_F14 (KeyEvent.vK_F14)
-    jset this.vK_F15 (KeyEvent.vK_F15)
-    jset this.vK_F16 (KeyEvent.vK_F16)
-    jset this.vK_F17 (KeyEvent.vK_F17)
-    jset this.vK_F18 (KeyEvent.vK_F18)
-    jset this.vK_F19 (KeyEvent.vK_F19)
-    jset this.vK_F20 (KeyEvent.vK_F20)
-    jset this.vK_F21 (KeyEvent.vK_F21)
-    jset this.vK_F22 (KeyEvent.vK_F22)
-    jset this.vK_F23 (KeyEvent.vK_F23)
-    jset this.vK_F24 (KeyEvent.vK_F24)
-    jset this.vK_PRINTSCREEN (KeyEvent.vK_PRINTSCREEN)
-    jset this.vK_INSERT (KeyEvent.vK_INSERT)
-    jset this.vK_HELP (KeyEvent.vK_HELP)
-    jset this.vK_META (KeyEvent.vK_META)
-    jset this.vK_BACK_QUOTE (KeyEvent.vK_BACK_QUOTE)
-    jset this.vK_QUOTE (KeyEvent.vK_QUOTE)
-    jset this.vK_KP_UP (KeyEvent.vK_KP_UP)
-    jset this.vK_KP_DOWN (KeyEvent.vK_KP_DOWN)
-    jset this.vK_KP_LEFT (KeyEvent.vK_KP_LEFT)
-    jset this.vK_KP_RIGHT (KeyEvent.vK_KP_RIGHT)
-    jset this.vK_DEAD_GRAVE (KeyEvent.vK_DEAD_GRAVE)
-    jset this.vK_DEAD_ACUTE (KeyEvent.vK_DEAD_ACUTE)
-    jset this.vK_DEAD_CIRCUMFLEX (KeyEvent.vK_DEAD_CIRCUMFLEX)
-    jset this.vK_DEAD_TILDE (KeyEvent.vK_DEAD_TILDE)
-    jset this.vK_DEAD_MACRON (KeyEvent.vK_DEAD_MACRON)
-    jset this.vK_DEAD_BREVE (KeyEvent.vK_DEAD_BREVE)
-    jset this.vK_DEAD_ABOVEDOT (KeyEvent.vK_DEAD_ABOVEDOT)
-    jset this.vK_DEAD_DIAERESIS (KeyEvent.vK_DEAD_DIAERESIS)
-    jset this.vK_DEAD_ABOVERING (KeyEvent.vK_DEAD_ABOVERING)
-    jset this.vK_DEAD_DOUBLEACUTE (KeyEvent.vK_DEAD_DOUBLEACUTE)
-    jset this.vK_DEAD_CARON (KeyEvent.vK_DEAD_CARON)
-    jset this.vK_DEAD_CEDILLA (KeyEvent.vK_DEAD_CEDILLA)
-    jset this.vK_DEAD_OGONEK (KeyEvent.vK_DEAD_OGONEK)
-    jset this.vK_DEAD_IOTA (KeyEvent.vK_DEAD_IOTA)
-    jset this.vK_DEAD_VOICED_SOUND (KeyEvent.vK_DEAD_VOICED_SOUND)
-    jset this.vK_DEAD_SEMIVOICED_SOUND (KeyEvent.vK_DEAD_SEMIVOICED_SOUND)
-    jset this.vK_AMPERSAND (KeyEvent.vK_AMPERSAND)
-    jset this.vK_ASTERISK (KeyEvent.vK_ASTERISK)
-    jset this.vK_QUOTEDBL (KeyEvent.vK_QUOTEDBL)
-    jset this.vK_LESS (KeyEvent.vK_LESS)
-    jset this.vK_GREATER (KeyEvent.vK_GREATER)
-    jset this.vK_BRACELEFT (KeyEvent.vK_BRACELEFT)
-    jset this.vK_BRACERIGHT (KeyEvent.vK_BRACERIGHT)
-    jset this.vK_AT (KeyEvent.vK_AT)
-    jset this.vK_COLON (KeyEvent.vK_COLON)
-    jset this.vK_CIRCUMFLEX (KeyEvent.vK_CIRCUMFLEX)
-    jset this.vK_DOLLAR (KeyEvent.vK_DOLLAR)
-    jset this.vK_EURO_SIGN (KeyEvent.vK_EURO_SIGN)
-    jset this.vK_EXCLAMATION_MARK (KeyEvent.vK_EXCLAMATION_MARK)
-    jset this.vK_INVERTED_EXCLAMATION_MARK (KeyEvent.vK_INVERTED_EXCLAMATION_MARK)
-    jset this.vK_LEFT_PARENTHESIS (KeyEvent.vK_LEFT_PARENTHESIS)
-    jset this.vK_NUMBER_SIGN (KeyEvent.vK_NUMBER_SIGN)
-    jset this.vK_PLUS (KeyEvent.vK_PLUS)
-    jset this.vK_RIGHT_PARENTHESIS (KeyEvent.vK_RIGHT_PARENTHESIS)
-    jset this.vK_UNDERSCORE (KeyEvent.vK_UNDERSCORE)
-    jset this.vK_WINDOWS (KeyEvent.vK_WINDOWS)
-    jset this.vK_CONTEXT_MENU (KeyEvent.vK_CONTEXT_MENU)
-    jset this.vK_FINAL (KeyEvent.vK_FINAL)
-    jset this.vK_CONVERT (KeyEvent.vK_CONVERT)
-    jset this.vK_NONCONVERT (KeyEvent.vK_NONCONVERT)
-    jset this.vK_ACCEPT (KeyEvent.vK_ACCEPT)
-    jset this.vK_MODECHANGE (KeyEvent.vK_MODECHANGE)
-    jset this.vK_KANA (KeyEvent.vK_KANA)
-    jset this.vK_KANJI (KeyEvent.vK_KANJI)
-    jset this.vK_ALPHANUMERIC (KeyEvent.vK_ALPHANUMERIC)
-    jset this.vK_KATAKANA (KeyEvent.vK_KATAKANA)
-    jset this.vK_HIRAGANA (KeyEvent.vK_HIRAGANA)
-    jset this.vK_FULL_WIDTH (KeyEvent.vK_FULL_WIDTH)
-    jset this.vK_HALF_WIDTH (KeyEvent.vK_HALF_WIDTH)
-    jset this.vK_ROMAN_CHARACTERS (KeyEvent.vK_ROMAN_CHARACTERS)
-    jset this.vK_ALL_CANDIDATES (KeyEvent.vK_ALL_CANDIDATES)
-    jset this.vK_PREVIOUS_CANDIDATE (KeyEvent.vK_PREVIOUS_CANDIDATE)
-    jset this.vK_CODE_INPUT (KeyEvent.vK_CODE_INPUT)
-    jset this.vK_JAPANESE_KATAKANA (KeyEvent.vK_JAPANESE_KATAKANA)
-    jset this.vK_JAPANESE_HIRAGANA (KeyEvent.vK_JAPANESE_HIRAGANA)
-    jset this.vK_JAPANESE_ROMAN (KeyEvent.vK_JAPANESE_ROMAN)
-    jset this.vK_KANA_LOCK (KeyEvent.vK_KANA_LOCK)
-    jset this.vK_INPUT_METHOD_ON_OFF (KeyEvent.vK_INPUT_METHOD_ON_OFF)
-    jset this.vK_CUT (KeyEvent.vK_CUT)
-    jset this.vK_COPY (KeyEvent.vK_COPY)
-    jset this.vK_PASTE (KeyEvent.vK_PASTE)
-    jset this.vK_UNDO (KeyEvent.vK_UNDO)
-    jset this.vK_AGAIN (KeyEvent.vK_AGAIN)
-    jset this.vK_FIND (KeyEvent.vK_FIND)
-    jset this.vK_PROPS (KeyEvent.vK_PROPS)
-    jset this.vK_STOP (KeyEvent.vK_STOP)
-    jset this.vK_COMPOSE (KeyEvent.vK_COMPOSE)
-    jset this.vK_ALT_GRAPH (KeyEvent.vK_ALT_GRAPH)
-    jset this.vK_BEGIN (KeyEvent.vK_BEGIN)
-    jset this.vK_UNDEFINED (KeyEvent.vK_UNDEFINED)
-    pure ()
-
-new_ :: IO ABKeyEventWrapper
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ABKeyEventWrapper -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (ABKeyEventWrapper)
-getInstance = do
-        pure (ABKeyEventWrapper.instance_)
 
+jclass : String
+jclass =
+    "ABKeyEventWrapper"
+
+
+jchain : List String
+jchain =
+    [ "ABKeyEventWrapper" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "VK_ENTER", JR.defaultOf "I" ), ( "VK_BACK_SPACE", JR.defaultOf "I" ), ( "VK_TAB", JR.defaultOf "I" ), ( "VK_CANCEL", JR.defaultOf "I" ), ( "VK_CLEAR", JR.defaultOf "I" ), ( "VK_SHIFT", JR.defaultOf "I" ), ( "VK_CONTROL", JR.defaultOf "I" ), ( "VK_ALT", JR.defaultOf "I" ), ( "VK_PAUSE", JR.defaultOf "I" ), ( "VK_CAPS_LOCK", JR.defaultOf "I" ), ( "VK_ESCAPE", JR.defaultOf "I" ), ( "VK_SPACE", JR.defaultOf "I" ), ( "VK_PAGE_UP", JR.defaultOf "I" ), ( "VK_PAGE_DOWN", JR.defaultOf "I" ), ( "VK_END", JR.defaultOf "I" ), ( "VK_HOME", JR.defaultOf "I" ), ( "VK_LEFT", JR.defaultOf "I" ), ( "VK_UP", JR.defaultOf "I" ), ( "VK_RIGHT", JR.defaultOf "I" ), ( "VK_DOWN", JR.defaultOf "I" ), ( "VK_COMMA", JR.defaultOf "I" ), ( "VK_MINUS", JR.defaultOf "I" ), ( "VK_PERIOD", JR.defaultOf "I" ), ( "VK_SLASH", JR.defaultOf "I" ), ( "VK_0", JR.defaultOf "I" ), ( "VK_1", JR.defaultOf "I" ), ( "VK_2", JR.defaultOf "I" ), ( "VK_3", JR.defaultOf "I" ), ( "VK_4", JR.defaultOf "I" ), ( "VK_5", JR.defaultOf "I" ), ( "VK_6", JR.defaultOf "I" ), ( "VK_7", JR.defaultOf "I" ), ( "VK_8", JR.defaultOf "I" ), ( "VK_9", JR.defaultOf "I" ), ( "VK_SEMICOLON", JR.defaultOf "I" ), ( "VK_EQUALS", JR.defaultOf "I" ), ( "VK_A", JR.defaultOf "I" ), ( "VK_B", JR.defaultOf "I" ), ( "VK_C", JR.defaultOf "I" ), ( "VK_D", JR.defaultOf "I" ), ( "VK_E", JR.defaultOf "I" ), ( "VK_F", JR.defaultOf "I" ), ( "VK_G", JR.defaultOf "I" ), ( "VK_H", JR.defaultOf "I" ), ( "VK_I", JR.defaultOf "I" ), ( "VK_J", JR.defaultOf "I" ), ( "VK_K", JR.defaultOf "I" ), ( "VK_L", JR.defaultOf "I" ), ( "VK_M", JR.defaultOf "I" ), ( "VK_N", JR.defaultOf "I" ), ( "VK_O", JR.defaultOf "I" ), ( "VK_P", JR.defaultOf "I" ), ( "VK_Q", JR.defaultOf "I" ), ( "VK_R", JR.defaultOf "I" ), ( "VK_S", JR.defaultOf "I" ), ( "VK_T", JR.defaultOf "I" ), ( "VK_U", JR.defaultOf "I" ), ( "VK_V", JR.defaultOf "I" ), ( "VK_W", JR.defaultOf "I" ), ( "VK_X", JR.defaultOf "I" ), ( "VK_Y", JR.defaultOf "I" ), ( "VK_Z", JR.defaultOf "I" ), ( "VK_OPEN_BRACKET", JR.defaultOf "I" ), ( "VK_BACK_SLASH", JR.defaultOf "I" ), ( "VK_CLOSE_BRACKET", JR.defaultOf "I" ), ( "VK_NUMPAD0", JR.defaultOf "I" ), ( "VK_NUMPAD1", JR.defaultOf "I" ), ( "VK_NUMPAD2", JR.defaultOf "I" ), ( "VK_NUMPAD3", JR.defaultOf "I" ), ( "VK_NUMPAD4", JR.defaultOf "I" ), ( "VK_NUMPAD5", JR.defaultOf "I" ), ( "VK_NUMPAD6", JR.defaultOf "I" ), ( "VK_NUMPAD7", JR.defaultOf "I" ), ( "VK_NUMPAD8", JR.defaultOf "I" ), ( "VK_NUMPAD9", JR.defaultOf "I" ), ( "VK_MULTIPLY", JR.defaultOf "I" ), ( "VK_ADD", JR.defaultOf "I" ), ( "VK_SEPARATER", JR.defaultOf "I" ), ( "VK_SEPARATOR", JR.defaultOf "I" ), ( "VK_SUBTRACT", JR.defaultOf "I" ), ( "VK_DECIMAL", JR.defaultOf "I" ), ( "VK_DIVIDE", JR.defaultOf "I" ), ( "VK_DELETE", JR.defaultOf "I" ), ( "VK_NUM_LOCK", JR.defaultOf "I" ), ( "VK_SCROLL_LOCK", JR.defaultOf "I" ), ( "VK_F1", JR.defaultOf "I" ), ( "VK_F2", JR.defaultOf "I" ), ( "VK_F3", JR.defaultOf "I" ), ( "VK_F4", JR.defaultOf "I" ), ( "VK_F5", JR.defaultOf "I" ), ( "VK_F6", JR.defaultOf "I" ), ( "VK_F7", JR.defaultOf "I" ), ( "VK_F8", JR.defaultOf "I" ), ( "VK_F9", JR.defaultOf "I" ), ( "VK_F10", JR.defaultOf "I" ), ( "VK_F11", JR.defaultOf "I" ), ( "VK_F12", JR.defaultOf "I" ), ( "VK_F13", JR.defaultOf "I" ), ( "VK_F14", JR.defaultOf "I" ), ( "VK_F15", JR.defaultOf "I" ), ( "VK_F16", JR.defaultOf "I" ), ( "VK_F17", JR.defaultOf "I" ), ( "VK_F18", JR.defaultOf "I" ), ( "VK_F19", JR.defaultOf "I" ), ( "VK_F20", JR.defaultOf "I" ), ( "VK_F21", JR.defaultOf "I" ), ( "VK_F22", JR.defaultOf "I" ), ( "VK_F23", JR.defaultOf "I" ), ( "VK_F24", JR.defaultOf "I" ), ( "VK_PRINTSCREEN", JR.defaultOf "I" ), ( "VK_INSERT", JR.defaultOf "I" ), ( "VK_HELP", JR.defaultOf "I" ), ( "VK_META", JR.defaultOf "I" ), ( "VK_BACK_QUOTE", JR.defaultOf "I" ), ( "VK_QUOTE", JR.defaultOf "I" ), ( "VK_KP_UP", JR.defaultOf "I" ), ( "VK_KP_DOWN", JR.defaultOf "I" ), ( "VK_KP_LEFT", JR.defaultOf "I" ), ( "VK_KP_RIGHT", JR.defaultOf "I" ), ( "VK_DEAD_GRAVE", JR.defaultOf "I" ), ( "VK_DEAD_ACUTE", JR.defaultOf "I" ), ( "VK_DEAD_CIRCUMFLEX", JR.defaultOf "I" ), ( "VK_DEAD_TILDE", JR.defaultOf "I" ), ( "VK_DEAD_MACRON", JR.defaultOf "I" ), ( "VK_DEAD_BREVE", JR.defaultOf "I" ), ( "VK_DEAD_ABOVEDOT", JR.defaultOf "I" ), ( "VK_DEAD_DIAERESIS", JR.defaultOf "I" ), ( "VK_DEAD_ABOVERING", JR.defaultOf "I" ), ( "VK_DEAD_DOUBLEACUTE", JR.defaultOf "I" ), ( "VK_DEAD_CARON", JR.defaultOf "I" ), ( "VK_DEAD_CEDILLA", JR.defaultOf "I" ), ( "VK_DEAD_OGONEK", JR.defaultOf "I" ), ( "VK_DEAD_IOTA", JR.defaultOf "I" ), ( "VK_DEAD_VOICED_SOUND", JR.defaultOf "I" ), ( "VK_DEAD_SEMIVOICED_SOUND", JR.defaultOf "I" ), ( "VK_AMPERSAND", JR.defaultOf "I" ), ( "VK_ASTERISK", JR.defaultOf "I" ), ( "VK_QUOTEDBL", JR.defaultOf "I" ), ( "VK_LESS", JR.defaultOf "I" ), ( "VK_GREATER", JR.defaultOf "I" ), ( "VK_BRACELEFT", JR.defaultOf "I" ), ( "VK_BRACERIGHT", JR.defaultOf "I" ), ( "VK_AT", JR.defaultOf "I" ), ( "VK_COLON", JR.defaultOf "I" ), ( "VK_CIRCUMFLEX", JR.defaultOf "I" ), ( "VK_DOLLAR", JR.defaultOf "I" ), ( "VK_EURO_SIGN", JR.defaultOf "I" ), ( "VK_EXCLAMATION_MARK", JR.defaultOf "I" ), ( "VK_INVERTED_EXCLAMATION_MARK", JR.defaultOf "I" ), ( "VK_LEFT_PARENTHESIS", JR.defaultOf "I" ), ( "VK_NUMBER_SIGN", JR.defaultOf "I" ), ( "VK_PLUS", JR.defaultOf "I" ), ( "VK_RIGHT_PARENTHESIS", JR.defaultOf "I" ), ( "VK_UNDERSCORE", JR.defaultOf "I" ), ( "VK_WINDOWS", JR.defaultOf "I" ), ( "VK_CONTEXT_MENU", JR.defaultOf "I" ), ( "VK_FINAL", JR.defaultOf "I" ), ( "VK_CONVERT", JR.defaultOf "I" ), ( "VK_NONCONVERT", JR.defaultOf "I" ), ( "VK_ACCEPT", JR.defaultOf "I" ), ( "VK_MODECHANGE", JR.defaultOf "I" ), ( "VK_KANA", JR.defaultOf "I" ), ( "VK_KANJI", JR.defaultOf "I" ), ( "VK_ALPHANUMERIC", JR.defaultOf "I" ), ( "VK_KATAKANA", JR.defaultOf "I" ), ( "VK_HIRAGANA", JR.defaultOf "I" ), ( "VK_FULL_WIDTH", JR.defaultOf "I" ), ( "VK_HALF_WIDTH", JR.defaultOf "I" ), ( "VK_ROMAN_CHARACTERS", JR.defaultOf "I" ), ( "VK_ALL_CANDIDATES", JR.defaultOf "I" ), ( "VK_PREVIOUS_CANDIDATE", JR.defaultOf "I" ), ( "VK_CODE_INPUT", JR.defaultOf "I" ), ( "VK_JAPANESE_KATAKANA", JR.defaultOf "I" ), ( "VK_JAPANESE_HIRAGANA", JR.defaultOf "I" ), ( "VK_JAPANESE_ROMAN", JR.defaultOf "I" ), ( "VK_KANA_LOCK", JR.defaultOf "I" ), ( "VK_INPUT_METHOD_ON_OFF", JR.defaultOf "I" ), ( "VK_CUT", JR.defaultOf "I" ), ( "VK_COPY", JR.defaultOf "I" ), ( "VK_PASTE", JR.defaultOf "I" ), ( "VK_UNDO", JR.defaultOf "I" ), ( "VK_AGAIN", JR.defaultOf "I" ), ( "VK_FIND", JR.defaultOf "I" ), ( "VK_PROPS", JR.defaultOf "I" ), ( "VK_STOP", JR.defaultOf "I" ), ( "VK_COMPOSE", JR.defaultOf "I" ), ( "VK_ALT_GRAPH", JR.defaultOf "I" ), ( "VK_BEGIN", JR.defaultOf "I" ), ( "VK_UNDEFINED", JR.defaultOf "I" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ABKeyEventWrapper"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ABKeyEventWrapper" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "VK_ENTER" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_ENTER")),
+                JR.exec (JR.setField "VK_BACK_SPACE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_BACK_SPACE")),
+                JR.exec (JR.setField "VK_TAB" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_TAB")),
+                JR.exec (JR.setField "VK_CANCEL" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_CANCEL")),
+                JR.exec (JR.setField "VK_CLEAR" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_CLEAR")),
+                JR.exec (JR.setField "VK_SHIFT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_SHIFT")),
+                JR.exec (JR.setField "VK_CONTROL" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_CONTROL")),
+                JR.exec (JR.setField "VK_ALT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_ALT")),
+                JR.exec (JR.setField "VK_PAUSE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_PAUSE")),
+                JR.exec (JR.setField "VK_CAPS_LOCK" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_CAPS_LOCK")),
+                JR.exec (JR.setField "VK_ESCAPE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_ESCAPE")),
+                JR.exec (JR.setField "VK_SPACE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_SPACE")),
+                JR.exec (JR.setField "VK_PAGE_UP" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_PAGE_UP")),
+                JR.exec (JR.setField "VK_PAGE_DOWN" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_PAGE_DOWN")),
+                JR.exec (JR.setField "VK_END" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_END")),
+                JR.exec (JR.setField "VK_HOME" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_HOME")),
+                JR.exec (JR.setField "VK_LEFT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_LEFT")),
+                JR.exec (JR.setField "VK_UP" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_UP")),
+                JR.exec (JR.setField "VK_RIGHT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_RIGHT")),
+                JR.exec (JR.setField "VK_DOWN" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DOWN")),
+                JR.exec (JR.setField "VK_COMMA" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_COMMA")),
+                JR.exec (JR.setField "VK_MINUS" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_MINUS")),
+                JR.exec (JR.setField "VK_PERIOD" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_PERIOD")),
+                JR.exec (JR.setField "VK_SLASH" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_SLASH")),
+                JR.exec (JR.setField "VK_0" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_0")),
+                JR.exec (JR.setField "VK_1" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_1")),
+                JR.exec (JR.setField "VK_2" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_2")),
+                JR.exec (JR.setField "VK_3" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_3")),
+                JR.exec (JR.setField "VK_4" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_4")),
+                JR.exec (JR.setField "VK_5" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_5")),
+                JR.exec (JR.setField "VK_6" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_6")),
+                JR.exec (JR.setField "VK_7" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_7")),
+                JR.exec (JR.setField "VK_8" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_8")),
+                JR.exec (JR.setField "VK_9" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_9")),
+                JR.exec (JR.setField "VK_SEMICOLON" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_SEMICOLON")),
+                JR.exec (JR.setField "VK_EQUALS" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_EQUALS")),
+                JR.exec (JR.setField "VK_A" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_A")),
+                JR.exec (JR.setField "VK_B" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_B")),
+                JR.exec (JR.setField "VK_C" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_C")),
+                JR.exec (JR.setField "VK_D" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_D")),
+                JR.exec (JR.setField "VK_E" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_E")),
+                JR.exec (JR.setField "VK_F" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F")),
+                JR.exec (JR.setField "VK_G" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_G")),
+                JR.exec (JR.setField "VK_H" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_H")),
+                JR.exec (JR.setField "VK_I" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_I")),
+                JR.exec (JR.setField "VK_J" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_J")),
+                JR.exec (JR.setField "VK_K" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_K")),
+                JR.exec (JR.setField "VK_L" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_L")),
+                JR.exec (JR.setField "VK_M" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_M")),
+                JR.exec (JR.setField "VK_N" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_N")),
+                JR.exec (JR.setField "VK_O" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_O")),
+                JR.exec (JR.setField "VK_P" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_P")),
+                JR.exec (JR.setField "VK_Q" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_Q")),
+                JR.exec (JR.setField "VK_R" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_R")),
+                JR.exec (JR.setField "VK_S" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_S")),
+                JR.exec (JR.setField "VK_T" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_T")),
+                JR.exec (JR.setField "VK_U" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_U")),
+                JR.exec (JR.setField "VK_V" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_V")),
+                JR.exec (JR.setField "VK_W" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_W")),
+                JR.exec (JR.setField "VK_X" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_X")),
+                JR.exec (JR.setField "VK_Y" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_Y")),
+                JR.exec (JR.setField "VK_Z" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_Z")),
+                JR.exec (JR.setField "VK_OPEN_BRACKET" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_OPEN_BRACKET")),
+                JR.exec (JR.setField "VK_BACK_SLASH" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_BACK_SLASH")),
+                JR.exec (JR.setField "VK_CLOSE_BRACKET" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_CLOSE_BRACKET")),
+                JR.exec (JR.setField "VK_NUMPAD0" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUMPAD0")),
+                JR.exec (JR.setField "VK_NUMPAD1" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUMPAD1")),
+                JR.exec (JR.setField "VK_NUMPAD2" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUMPAD2")),
+                JR.exec (JR.setField "VK_NUMPAD3" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUMPAD3")),
+                JR.exec (JR.setField "VK_NUMPAD4" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUMPAD4")),
+                JR.exec (JR.setField "VK_NUMPAD5" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUMPAD5")),
+                JR.exec (JR.setField "VK_NUMPAD6" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUMPAD6")),
+                JR.exec (JR.setField "VK_NUMPAD7" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUMPAD7")),
+                JR.exec (JR.setField "VK_NUMPAD8" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUMPAD8")),
+                JR.exec (JR.setField "VK_NUMPAD9" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUMPAD9")),
+                JR.exec (JR.setField "VK_MULTIPLY" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_MULTIPLY")),
+                JR.exec (JR.setField "VK_ADD" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_ADD")),
+                JR.exec (JR.setField "VK_SEPARATER" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_SEPARATER")),
+                JR.exec (JR.setField "VK_SEPARATOR" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_SEPARATOR")),
+                JR.exec (JR.setField "VK_SUBTRACT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_SUBTRACT")),
+                JR.exec (JR.setField "VK_DECIMAL" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DECIMAL")),
+                JR.exec (JR.setField "VK_DIVIDE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DIVIDE")),
+                JR.exec (JR.setField "VK_DELETE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DELETE")),
+                JR.exec (JR.setField "VK_NUM_LOCK" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUM_LOCK")),
+                JR.exec (JR.setField "VK_SCROLL_LOCK" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_SCROLL_LOCK")),
+                JR.exec (JR.setField "VK_F1" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F1")),
+                JR.exec (JR.setField "VK_F2" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F2")),
+                JR.exec (JR.setField "VK_F3" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F3")),
+                JR.exec (JR.setField "VK_F4" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F4")),
+                JR.exec (JR.setField "VK_F5" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F5")),
+                JR.exec (JR.setField "VK_F6" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F6")),
+                JR.exec (JR.setField "VK_F7" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F7")),
+                JR.exec (JR.setField "VK_F8" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F8")),
+                JR.exec (JR.setField "VK_F9" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F9")),
+                JR.exec (JR.setField "VK_F10" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F10")),
+                JR.exec (JR.setField "VK_F11" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F11")),
+                JR.exec (JR.setField "VK_F12" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F12")),
+                JR.exec (JR.setField "VK_F13" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F13")),
+                JR.exec (JR.setField "VK_F14" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F14")),
+                JR.exec (JR.setField "VK_F15" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F15")),
+                JR.exec (JR.setField "VK_F16" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F16")),
+                JR.exec (JR.setField "VK_F17" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F17")),
+                JR.exec (JR.setField "VK_F18" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F18")),
+                JR.exec (JR.setField "VK_F19" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F19")),
+                JR.exec (JR.setField "VK_F20" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F20")),
+                JR.exec (JR.setField "VK_F21" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F21")),
+                JR.exec (JR.setField "VK_F22" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F22")),
+                JR.exec (JR.setField "VK_F23" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F23")),
+                JR.exec (JR.setField "VK_F24" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_F24")),
+                JR.exec (JR.setField "VK_PRINTSCREEN" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_PRINTSCREEN")),
+                JR.exec (JR.setField "VK_INSERT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_INSERT")),
+                JR.exec (JR.setField "VK_HELP" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_HELP")),
+                JR.exec (JR.setField "VK_META" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_META")),
+                JR.exec (JR.setField "VK_BACK_QUOTE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_BACK_QUOTE")),
+                JR.exec (JR.setField "VK_QUOTE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_QUOTE")),
+                JR.exec (JR.setField "VK_KP_UP" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_KP_UP")),
+                JR.exec (JR.setField "VK_KP_DOWN" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_KP_DOWN")),
+                JR.exec (JR.setField "VK_KP_LEFT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_KP_LEFT")),
+                JR.exec (JR.setField "VK_KP_RIGHT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_KP_RIGHT")),
+                JR.exec (JR.setField "VK_DEAD_GRAVE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_GRAVE")),
+                JR.exec (JR.setField "VK_DEAD_ACUTE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_ACUTE")),
+                JR.exec (JR.setField "VK_DEAD_CIRCUMFLEX" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_CIRCUMFLEX")),
+                JR.exec (JR.setField "VK_DEAD_TILDE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_TILDE")),
+                JR.exec (JR.setField "VK_DEAD_MACRON" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_MACRON")),
+                JR.exec (JR.setField "VK_DEAD_BREVE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_BREVE")),
+                JR.exec (JR.setField "VK_DEAD_ABOVEDOT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_ABOVEDOT")),
+                JR.exec (JR.setField "VK_DEAD_DIAERESIS" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_DIAERESIS")),
+                JR.exec (JR.setField "VK_DEAD_ABOVERING" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_ABOVERING")),
+                JR.exec (JR.setField "VK_DEAD_DOUBLEACUTE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_DOUBLEACUTE")),
+                JR.exec (JR.setField "VK_DEAD_CARON" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_CARON")),
+                JR.exec (JR.setField "VK_DEAD_CEDILLA" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_CEDILLA")),
+                JR.exec (JR.setField "VK_DEAD_OGONEK" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_OGONEK")),
+                JR.exec (JR.setField "VK_DEAD_IOTA" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_IOTA")),
+                JR.exec (JR.setField "VK_DEAD_VOICED_SOUND" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_VOICED_SOUND")),
+                JR.exec (JR.setField "VK_DEAD_SEMIVOICED_SOUND" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DEAD_SEMIVOICED_SOUND")),
+                JR.exec (JR.setField "VK_AMPERSAND" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_AMPERSAND")),
+                JR.exec (JR.setField "VK_ASTERISK" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_ASTERISK")),
+                JR.exec (JR.setField "VK_QUOTEDBL" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_QUOTEDBL")),
+                JR.exec (JR.setField "VK_LESS" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_LESS")),
+                JR.exec (JR.setField "VK_GREATER" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_GREATER")),
+                JR.exec (JR.setField "VK_BRACELEFT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_BRACELEFT")),
+                JR.exec (JR.setField "VK_BRACERIGHT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_BRACERIGHT")),
+                JR.exec (JR.setField "VK_AT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_AT")),
+                JR.exec (JR.setField "VK_COLON" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_COLON")),
+                JR.exec (JR.setField "VK_CIRCUMFLEX" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_CIRCUMFLEX")),
+                JR.exec (JR.setField "VK_DOLLAR" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_DOLLAR")),
+                JR.exec (JR.setField "VK_EURO_SIGN" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_EURO_SIGN")),
+                JR.exec (JR.setField "VK_EXCLAMATION_MARK" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_EXCLAMATION_MARK")),
+                JR.exec (JR.setField "VK_INVERTED_EXCLAMATION_MARK" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_INVERTED_EXCLAMATION_MARK")),
+                JR.exec (JR.setField "VK_LEFT_PARENTHESIS" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_LEFT_PARENTHESIS")),
+                JR.exec (JR.setField "VK_NUMBER_SIGN" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NUMBER_SIGN")),
+                JR.exec (JR.setField "VK_PLUS" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_PLUS")),
+                JR.exec (JR.setField "VK_RIGHT_PARENTHESIS" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_RIGHT_PARENTHESIS")),
+                JR.exec (JR.setField "VK_UNDERSCORE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_UNDERSCORE")),
+                JR.exec (JR.setField "VK_WINDOWS" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_WINDOWS")),
+                JR.exec (JR.setField "VK_CONTEXT_MENU" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_CONTEXT_MENU")),
+                JR.exec (JR.setField "VK_FINAL" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_FINAL")),
+                JR.exec (JR.setField "VK_CONVERT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_CONVERT")),
+                JR.exec (JR.setField "VK_NONCONVERT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_NONCONVERT")),
+                JR.exec (JR.setField "VK_ACCEPT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_ACCEPT")),
+                JR.exec (JR.setField "VK_MODECHANGE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_MODECHANGE")),
+                JR.exec (JR.setField "VK_KANA" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_KANA")),
+                JR.exec (JR.setField "VK_KANJI" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_KANJI")),
+                JR.exec (JR.setField "VK_ALPHANUMERIC" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_ALPHANUMERIC")),
+                JR.exec (JR.setField "VK_KATAKANA" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_KATAKANA")),
+                JR.exec (JR.setField "VK_HIRAGANA" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_HIRAGANA")),
+                JR.exec (JR.setField "VK_FULL_WIDTH" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_FULL_WIDTH")),
+                JR.exec (JR.setField "VK_HALF_WIDTH" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_HALF_WIDTH")),
+                JR.exec (JR.setField "VK_ROMAN_CHARACTERS" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_ROMAN_CHARACTERS")),
+                JR.exec (JR.setField "VK_ALL_CANDIDATES" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_ALL_CANDIDATES")),
+                JR.exec (JR.setField "VK_PREVIOUS_CANDIDATE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_PREVIOUS_CANDIDATE")),
+                JR.exec (JR.setField "VK_CODE_INPUT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_CODE_INPUT")),
+                JR.exec (JR.setField "VK_JAPANESE_KATAKANA" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_JAPANESE_KATAKANA")),
+                JR.exec (JR.setField "VK_JAPANESE_HIRAGANA" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_JAPANESE_HIRAGANA")),
+                JR.exec (JR.setField "VK_JAPANESE_ROMAN" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_JAPANESE_ROMAN")),
+                JR.exec (JR.setField "VK_KANA_LOCK" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_KANA_LOCK")),
+                JR.exec (JR.setField "VK_INPUT_METHOD_ON_OFF" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_INPUT_METHOD_ON_OFF")),
+                JR.exec (JR.setField "VK_CUT" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_CUT")),
+                JR.exec (JR.setField "VK_COPY" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_COPY")),
+                JR.exec (JR.setField "VK_PASTE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_PASTE")),
+                JR.exec (JR.setField "VK_UNDO" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_UNDO")),
+                JR.exec (JR.setField "VK_AGAIN" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_AGAIN")),
+                JR.exec (JR.setField "VK_FIND" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_FIND")),
+                JR.exec (JR.setField "VK_PROPS" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_PROPS")),
+                JR.exec (JR.setField "VK_STOP" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_STOP")),
+                JR.exec (JR.setField "VK_COMPOSE" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_COMPOSE")),
+                JR.exec (JR.setField "VK_ALT_GRAPH" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_ALT_GRAPH")),
+                JR.exec (JR.setField "VK_BEGIN" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_BEGIN")),
+                JR.exec (JR.setField "VK_UNDEFINED" "I" JR.this (JR.namedStatic "KeyEvent.jstatic_VK_UNDEFINED")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

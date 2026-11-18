@@ -1,118 +1,111 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security
-module AbKeys where
+module Org.Allbinary.Logic.System.Security.AbKeys exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AbeLicenseInterface -- same package or java.lang
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified AbeLicenseInterfaceFactory -- org.allbinary.logic.system.security.licensing.AbeLicenseInterfaceFactory
-import qualified LicensingException -- org.allbinary.logic.system.security.licensing.LicensingException
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security
+-}
 
-data AbKeys = AbKeys
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull AbKeys where
-    javaNull = javaNullRecord "AbKeys"
-
-instance JavaEquals AbKeys where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AbKeys where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AbKeys where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AbKeys
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AbKeys
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = AbKeys header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "getKey" (\() -> getKey_impl this)
-    pure this
-
-initFields_ :: AbKeys -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Logic.System.Security.Licensing.AbeLicenseInterfaceFactory as AbeLicenseInterfaceFactory
+import Org.Allbinary.Logic.System.Security.Licensing.LicensingException as LicensingException
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getInstance :: IO (AbKeys)
-getInstance = do
-        pure (AbKeys.instance_)
-
-new_ :: IO AbKeys
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AbKeys -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "AbKeys"
 
 
--- throws LicensingException
-getKey :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (String)
-getKey object_ a1 a2 = jmethod object_ "getKey" (\() -> (getKey_impl (javaCast object_ :: AbKeys))) () a1 a2
+jchain : List String
+jchain =
+    [ "AbKeys" ]
 
-getKey_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (String)
-getKey_super object_ a1 a2 = (getKey_impl (javaCast object_ :: AbKeys)) a1 a2
 
-getKey_impl :: AbKeys -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (String)
-getKey_impl this abeClientInformation keyName = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ("Getting Key: " ++ keyName) this "getKey")
-            when (((((Prelude.fromEnum (Prelude.compare keyName "DirectX 8") - 1) == 0) || ((Prelude.fromEnum (Prelude.compare keyName "DirectX") - 1) == 0)) || ((Prelude.fromEnum (Prelude.compare keyName "Low Level") - 1) == 0)) || ((Prelude.fromEnum (Prelude.compare keyName "System Drivers") - 1) == 0)) $ do
-                javaReturn ("Temp For Input Library")
-            (AbeLicenseInterface.getKey ((jio (AbeLicenseInterfaceFactory.getLicenseInstance ((jio (AbeLicenseInterfaceFactory.getInstance))) abeClientInformation))) keyName)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getKey_2", jm_getKey_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbKeys"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getKey_2", jm_getKey_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AbKeys" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getKey_2 : JR.Method
+jm_getKey_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "keyName", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "Getting Key: ") (JR.local "keyName")), JR.this, (JR.str "getKey") ]), 
+                        JR.ifElse (JR.or (JR.or (JR.or (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.local "keyName") [ (JR.str "DirectX 8") ]) (JR.int 0)) (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.local "keyName") [ (JR.str "DirectX") ]) (JR.int 0))) (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.local "keyName") [ (JR.str "Low Level") ]) (JR.int 0))) (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.local "keyName") [ (JR.str "System Drivers") ]) (JR.int 0))) (JR.run [ 
+                            JR.return (JR.str "Temp For Input Library") ]) identity, 
+                        JR.return (JR.invoke "getKey_1" (JR.invoke "getLicenseInstance_1" (JR.callStatic AbeLicenseInterfaceFactory.jm_getInstance_0 []) [ (JR.local "abeClientInformation") ]) [ (JR.local "keyName") ]) ]) [ ( [ "LicensingException" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ), ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Licensing Failure"), JR.this, (JR.str "getKey()"), (JR.local "e") ]), 
+                        JR.throw (JR.new LicensingException.jnew_1 [ (JR.str "Unknown License Failure") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

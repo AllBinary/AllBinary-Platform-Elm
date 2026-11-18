@@ -1,4 +1,4 @@
-module JsOptional exposing (..)
+module Jsinterop.Annotations.JsOptional exposing (..)
 
 {-| Generated Code Do Not Modify package jsinterop.annotations
 -}

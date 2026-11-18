@@ -1,231 +1,208 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module J2MEKeyFactory where
+module Org.Allbinary.Game.Input.J2MEKeyFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameKeyFactory -- same package or java.lang
-import qualified GameKey -- same package or java.lang
-import qualified InputFactory -- same package or java.lang
-import qualified Input -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data J2MEKeyFactory = J2MEKeyFactory
-    { header_ :: JavaHeader
-    , gameKeyFactory :: IORef (GameKeyFactory.GameKeyFactory)
-    }
-
-instance JavaNull J2MEKeyFactory where
-    javaNull = javaNullRecord "J2MEKeyFactory"
-
-instance JavaEquals J2MEKeyFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq J2MEKeyFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass J2MEKeyFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: J2MEKeyFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO J2MEKeyFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    gameKeyFactory <- newIORef javaNull
-    let this = J2MEKeyFactory header_ gameKeyFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "isSubmission" (\() -> isSubmission_impl this)
-    jregisterMethod header_ "isDelete" (\() -> isDelete_impl this)
-    jregisterMethod header_ "isBackSpace" (\() -> isBackSpace_impl this)
-    jregisterMethod header_ "isUp" (\() -> isUp_impl this)
-    jregisterMethod header_ "isDown" (\() -> isDown_impl this)
-    jregisterMethod header_ "isLeft" (\() -> isLeft_impl this)
-    jregisterMethod header_ "isRight" (\() -> isRight_impl this)
-    jregisterMethod header_ "isEnter" (\() -> isEnter_impl this)
-    pure this
-
-initFields_ :: J2MEKeyFactory -> IO ()
-initFields_ this = do
-    jset this.gameKeyFactory =<< (GameKeyFactory.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Game.Input.GameKeyFactory as GameKeyFactory
+import Org.Allbinary.Game.Input.InputFactory as InputFactory
 
 
-getInstance :: IO (J2MEKeyFactory)
-getInstance = do
-        pure (J2MEKeyFactory.instance_)
-
-new_ :: IO J2MEKeyFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: J2MEKeyFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "J2MEKeyFactory"
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: J2MEKeyFactory))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: J2MEKeyFactory))
-
-init_impl :: J2MEKeyFactory -> IO (())
-init_impl this = do
-        let gameKeyArray = (jarrayFromList [(jget ((jget (this).gameKeyFactory)).dOWN), (jget ((jget (this).gameKeyFactory)).fIRE), (jget ((jget (this).gameKeyFactory)).gAME_A), (jget ((jget (this).gameKeyFactory)).gAME_B), (jget ((jget (this).gameKeyFactory)).gAME_C), (jget ((jget (this).gameKeyFactory)).gAME_D), (jget ((jget (this).gameKeyFactory)).kEY_NUM0), (jget ((jget (this).gameKeyFactory)).kEY_NUM1), (jget ((jget (this).gameKeyFactory)).kEY_NUM2), (jget ((jget (this).gameKeyFactory)).kEY_NUM3), (jget ((jget (this).gameKeyFactory)).kEY_NUM4), (jget ((jget (this).gameKeyFactory)).kEY_NUM5), (jget ((jget (this).gameKeyFactory)).kEY_NUM6), (jget ((jget (this).gameKeyFactory)).kEY_NUM7), (jget ((jget (this).gameKeyFactory)).kEY_NUM8), (jget ((jget (this).gameKeyFactory)).kEY_NUM9), (jget ((jget (this).gameKeyFactory)).kEY_POUND), (jget ((jget (this).gameKeyFactory)).kEY_STAR), (jget ((jget (this).gameKeyFactory)).lEFT), (jget ((jget (this).gameKeyFactory)).lEVEL_DOWN), (jget ((jget (this).gameKeyFactory)).lEVEL_UP), (jget ((jget (this).gameKeyFactory)).nONE), (jget ((jget (this).gameKeyFactory)).rIGHT), (jget ((jget (this).gameKeyFactory)).uP)])
-        inputFactory <- (InputFactory.getInstance)
-        index <- newIORef ((jlength gameKeyArray) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            Control.Monad.void (InputFactory.add inputFactory (jio (GameKey.getId ((jindex gameKeyArray ((jget index)))))) (jindex gameKeyArray ((jget index))))
-        pure ()
+jchain : List String
+jchain =
+    [ "J2MEKeyFactory" ]
 
 
-isSubmission :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isSubmission object_ a1 = jmethod object_ "isSubmission" (\() -> (isSubmission_impl (javaCast object_ :: J2MEKeyFactory))) () a1
-
-isSubmission_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isSubmission_super object_ a1 = (isSubmission_impl (javaCast object_ :: J2MEKeyFactory)) a1
-
-isSubmission_impl :: J2MEKeyFactory -> Input.Input -> IO (Bool)
-isSubmission_impl this input = do
-    javaCatchReturn $ do
-        when (input == (jget ((jget (this).gameKeyFactory)).fIRE)) $ do
-            javaReturn (True)
-        pure (False)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "gameKeyFactory", JR.defaultOf "" ) ]
 
 
-isDelete :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isDelete object_ a1 = jmethod object_ "isDelete" (\() -> (isDelete_impl (javaCast object_ :: J2MEKeyFactory))) () a1
-
-isDelete_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isDelete_super object_ a1 = (isDelete_impl (javaCast object_ :: J2MEKeyFactory)) a1
-
-isDelete_impl :: J2MEKeyFactory -> Input.Input -> IO (Bool)
-isDelete_impl this input = do
-    javaCatchReturn $ do
-        when (input == (jget ((jget (this).gameKeyFactory)).gAME_D)) $ do
-            javaReturn (True)
-        pure (False)
-
-
-isBackSpace :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isBackSpace object_ a1 = jmethod object_ "isBackSpace" (\() -> (isBackSpace_impl (javaCast object_ :: J2MEKeyFactory))) () a1
-
-isBackSpace_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isBackSpace_super object_ a1 = (isBackSpace_impl (javaCast object_ :: J2MEKeyFactory)) a1
-
-isBackSpace_impl :: J2MEKeyFactory -> Input.Input -> IO (Bool)
-isBackSpace_impl this input = do
-        pure (False)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "isSubmission_1", jm_isSubmission_1 )
+        , ( "isDelete_1", jm_isDelete_1 )
+        , ( "isBackSpace_1", jm_isBackSpace_1 )
+        , ( "isUp_1", jm_isUp_1 )
+        , ( "isDown_1", jm_isDown_1 )
+        , ( "isLeft_1", jm_isLeft_1 )
+        , ( "isRight_1", jm_isRight_1 )
+        , ( "isEnter_1", jm_isEnter_1 ) ]
+        JR.noMethods
 
 
-isUp :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isUp object_ a1 = jmethod object_ "isUp" (\() -> (isUp_impl (javaCast object_ :: J2MEKeyFactory))) () a1
-
-isUp_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isUp_super object_ a1 = (isUp_impl (javaCast object_ :: J2MEKeyFactory)) a1
-
-isUp_impl :: J2MEKeyFactory -> Input.Input -> IO (Bool)
-isUp_impl this input = do
-    javaCatchReturn $ do
-        when (input == (jget ((jget (this).gameKeyFactory)).uP)) $ do
-            javaReturn (True)
-        pure (False)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "J2MEKeyFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_isSubmission_1", jm_isSubmission_1 ), ( "jm_isDelete_1", jm_isDelete_1 ), ( "jm_isBackSpace_1", jm_isBackSpace_1 ), ( "jm_isUp_1", jm_isUp_1 ), ( "jm_isDown_1", jm_isDown_1 ), ( "jm_isLeft_1", jm_isLeft_1 ), ( "jm_isRight_1", jm_isRight_1 ), ( "jm_isEnter_1", jm_isEnter_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-isDown :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isDown object_ a1 = jmethod object_ "isDown" (\() -> (isDown_impl (javaCast object_ :: J2MEKeyFactory))) () a1
-
-isDown_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isDown_super object_ a1 = (isDown_impl (javaCast object_ :: J2MEKeyFactory)) a1
-
-isDown_impl :: J2MEKeyFactory -> Input.Input -> IO (Bool)
-isDown_impl this input = do
-    javaCatchReturn $ do
-        when (input == (jget ((jget (this).gameKeyFactory)).dOWN)) $ do
-            javaReturn (True)
-        pure (False)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-isLeft :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isLeft object_ a1 = jmethod object_ "isLeft" (\() -> (isLeft_impl (javaCast object_ :: J2MEKeyFactory))) () a1
-
-isLeft_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isLeft_super object_ a1 = (isLeft_impl (javaCast object_ :: J2MEKeyFactory)) a1
-
-isLeft_impl :: J2MEKeyFactory -> Input.Input -> IO (Bool)
-isLeft_impl this input = do
-    javaCatchReturn $ do
-        when (input == (jget ((jget (this).gameKeyFactory)).lEFT)) $ do
-            javaReturn (True)
-        pure (False)
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "J2MEKeyFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
 
-isRight :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isRight object_ a1 = jmethod object_ "isRight" (\() -> (isRight_impl (javaCast object_ :: J2MEKeyFactory))) () a1
-
-isRight_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isRight_super object_ a1 = (isRight_impl (javaCast object_ :: J2MEKeyFactory)) a1
-
-isRight_impl :: J2MEKeyFactory -> Input.Input -> IO (Bool)
-isRight_impl this input = do
-    javaCatchReturn $ do
-        when (input == (jget ((jget (this).gameKeyFactory)).rIGHT)) $ do
-            javaReturn (True)
-        pure (False)
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "gameKeyFactory" "" JR.this (JR.callStatic GameKeyFactory.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-isEnter :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isEnter object_ a1 = jmethod object_ "isEnter" (\() -> (isEnter_impl (javaCast object_ :: J2MEKeyFactory))) () a1
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
-isEnter_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isEnter_super object_ a1 = (isEnter_impl (javaCast object_ :: J2MEKeyFactory)) a1
 
-isEnter_impl :: J2MEKeyFactory -> Input.Input -> IO (Bool)
-isEnter_impl this input = do
-    javaCatchReturn $ do
-        when (input == (jget ((jget (this).gameKeyFactory)).fIRE)) $ do
-            javaReturn (True)
-        pure (False)
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "gameKeyArray" "" (JR.arrayOf "" [ (JR.field "DOWN" (JR.thisField "gameKeyFactory")), (JR.field "FIRE" (JR.thisField "gameKeyFactory")), (JR.field "GAME_A" (JR.thisField "gameKeyFactory")), (JR.field "GAME_B" (JR.thisField "gameKeyFactory")), (JR.field "GAME_C" (JR.thisField "gameKeyFactory")), (JR.field "GAME_D" (JR.thisField "gameKeyFactory")), (JR.field "KEY_NUM0" (JR.thisField "gameKeyFactory")), (JR.field "KEY_NUM1" (JR.thisField "gameKeyFactory")), (JR.field "KEY_NUM2" (JR.thisField "gameKeyFactory")), (JR.field "KEY_NUM3" (JR.thisField "gameKeyFactory")), (JR.field "KEY_NUM4" (JR.thisField "gameKeyFactory")), (JR.field "KEY_NUM5" (JR.thisField "gameKeyFactory")), (JR.field "KEY_NUM6" (JR.thisField "gameKeyFactory")), (JR.field "KEY_NUM7" (JR.thisField "gameKeyFactory")), (JR.field "KEY_NUM8" (JR.thisField "gameKeyFactory")), (JR.field "KEY_NUM9" (JR.thisField "gameKeyFactory")), (JR.field "KEY_POUND" (JR.thisField "gameKeyFactory")), (JR.field "KEY_STAR" (JR.thisField "gameKeyFactory")), (JR.field "LEFT" (JR.thisField "gameKeyFactory")), (JR.field "LEVEL_DOWN" (JR.thisField "gameKeyFactory")), (JR.field "LEVEL_UP" (JR.thisField "gameKeyFactory")), (JR.field "NONE" (JR.thisField "gameKeyFactory")), (JR.field "RIGHT" (JR.thisField "gameKeyFactory")), (JR.field "UP" (JR.thisField "gameKeyFactory")) ]), 
+                    JR.declare "inputFactory" "" (JR.callStatic InputFactory.jm_getInstance_0 []), 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.local "gameKeyArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67092 -> (JR.setLocal "index" "I" (JR.lit jwN67092))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.invoke "add_2" (JR.local "inputFactory") [ (JR.invoke "getId_0" (JR.aget (JR.local "gameKeyArray") (JR.local "index")) []), (JR.aget (JR.local "gameKeyArray") (JR.local "index")) ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isSubmission_1 : JR.Method
+jm_isSubmission_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "input") (JR.field "FIRE" (JR.thisField "gameKeyFactory"))) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isDelete_1 : JR.Method
+jm_isDelete_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "input") (JR.field "GAME_D" (JR.thisField "gameKeyFactory"))) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isBackSpace_1 : JR.Method
+jm_isBackSpace_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isUp_1 : JR.Method
+jm_isUp_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "input") (JR.field "UP" (JR.thisField "gameKeyFactory"))) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isDown_1 : JR.Method
+jm_isDown_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "input") (JR.field "DOWN" (JR.thisField "gameKeyFactory"))) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isLeft_1 : JR.Method
+jm_isLeft_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "input") (JR.field "LEFT" (JR.thisField "gameKeyFactory"))) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isRight_1 : JR.Method
+jm_isRight_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "input") (JR.field "RIGHT" (JR.thisField "gameKeyFactory"))) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isEnter_1 : JR.Method
+jm_isEnter_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "input") (JR.field "FIRE" (JR.thisField "gameKeyFactory"))) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

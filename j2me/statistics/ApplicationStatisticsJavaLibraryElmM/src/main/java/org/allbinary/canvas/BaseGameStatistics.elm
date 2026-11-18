@@ -1,18 +1,18 @@
-module BaseGameStatistics exposing (..)
+module Org.Allbinary.Canvas.BaseGameStatistics exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.canvas
 -}
 
 import JR
-import CommonSeps
-import GameTickTimeDelayHelperFactory
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Time.GameTickTimeDelayHelperFactory as GameTickTimeDelayHelperFactory
 import JInteger
 import JLong
-import PrimitiveLongSingleton
-import ScaleFactorFactory
-import StringMaker
-import StringUtil
-import TimeDelayHelper
+import Org.Allbinary.Logic.Math.PrimitiveLongSingleton as PrimitiveLongSingleton
+import Org.Allbinary.Logic.Math.ScaleFactorFactory as ScaleFactorFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
 
 
 jclass : String

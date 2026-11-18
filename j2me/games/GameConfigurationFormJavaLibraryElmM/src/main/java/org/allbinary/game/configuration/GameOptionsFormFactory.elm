@@ -1,116 +1,109 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
-module GameOptionsFormFactory where
+module Org.Allbinary.Game.Configuration.GameOptionsFormFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameOptionsForm -- same package or java.lang
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified CommandForm -- org.allbinary.graphics.displayable.screen.CommandForm
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration
+-}
 
-data GameOptionsFormFactory = GameOptionsFormFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull GameOptionsFormFactory where
-    javaNull = javaNullRecord "GameOptionsFormFactory"
-
-instance JavaEquals GameOptionsFormFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameOptionsFormFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameOptionsFormFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameOptionsFormFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameOptionsFormFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = GameOptionsFormFactory header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    pure this
-
-initFields_ :: GameOptionsFormFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_ :: IO GameOptionsFormFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameOptionsFormFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Displayable.Screen.CommandForm as CommandForm
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.GameOptionsForm as GameOptionsForm
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getInstance :: IO (GameOptionsFormFactory)
-getInstance = do
-        pure (GameOptionsFormFactory.instance_)
+jclass : String
+jclass =
+    "GameOptionsFormFactory"
 
 
-init :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO (CommandForm.CommandForm)
-init object_ a1 a2 a3 a4 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: GameOptionsFormFactory))) () a1 a2 a3 a4
+jchain : List String
+jchain =
+    [ "GameOptionsFormFactory" ]
 
-init_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO (CommandForm.CommandForm)
-init_super object_ a1 a2 a3 a4 = (init_impl (javaCast object_ :: GameOptionsFormFactory)) a1 a2 a3 a4
 
-init_impl :: GameOptionsFormFactory -> CommandListener.CommandListener -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO (CommandForm.CommandForm)
-init_impl this commandListener title backgrounBasicColor foregroundBasicColor = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).iNIT) e)
-            (CommandForm.getNullCommandForm)
-            ) $ do
-            (fmap (\value_ -> javaCast value_ :: CommandForm.CommandForm) (GameOptionsForm.new_4 commandListener title backgrounBasicColor foregroundBasicColor))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_4", jm_init_4 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameOptionsFormFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_4", jm_init_4 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameOptionsFormFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_4 : JR.Method
+jm_init_4 jheap jthis jargs =
+    JR.method [ ( "commandListener", "" ), ( "title", "" ), ( "backgrounBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.return (JR.new GameOptionsForm.jnew_4 [ (JR.local "commandListener"), (JR.local "title"), (JR.local "backgrounBasicColor"), (JR.local "foregroundBasicColor") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "INIT" (JR.local "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.callStatic CommandForm.jm_getNullCommandForm_0 []) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,122 +1,102 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer.event
-module LayerManagerEventListener where
+module Org.Allbinary.Layer.Event.LayerManagerEventListener exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LayerManagerEvent -- same package or java.lang
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified LayerManagerEventListenerInterface
+{-| Generated Code Do Not Modify package org.allbinary.layer.event
+-}
 
--- implements LayerManagerEventListenerInterface
-data LayerManagerEventListener = LayerManagerEventListener
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull LayerManagerEventListener where
-    javaNull = javaNullRecord "LayerManagerEventListener"
-
-instance JavaEquals LayerManagerEventListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LayerManagerEventListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LayerManagerEventListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LayerManagerEventListener
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = LayerManagerEventListener header_
-    jregisterLevel header_ this
-    LayerManagerEventListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "onCreateLayerManagerEvent" (\() -> onCreateLayerManagerEvent_impl this)
-    jregisterMethod header_ "onDeleteLayerManagerEvent" (\() -> onDeleteLayerManagerEvent_impl this)
-    pure this
-
-initFields_ :: LayerManagerEventListener -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO LayerManagerEventListener
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LayerManagerEventListener -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Layer.Event.LayerManagerEventListenerInterface as LayerManagerEventListenerInterface
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: LayerManagerEventListener))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: LayerManagerEventListener)) a1
-
-onEvent_impl :: LayerManagerEventListener -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        pure ()
+jclass : String
+jclass =
+    "LayerManagerEventListener"
 
 
--- throws Exception
-onCreateLayerManagerEvent :: (JavaObjectClass this_) => this_ -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onCreateLayerManagerEvent object_ a1 = jmethod object_ "onCreateLayerManagerEvent" (\() -> (onCreateLayerManagerEvent_impl (javaCast object_ :: LayerManagerEventListener))) () a1
-
-onCreateLayerManagerEvent_super :: (JavaObjectClass this_) => this_ -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onCreateLayerManagerEvent_super object_ a1 = (onCreateLayerManagerEvent_impl (javaCast object_ :: LayerManagerEventListener)) a1
-
-onCreateLayerManagerEvent_impl :: LayerManagerEventListener -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onCreateLayerManagerEvent_impl this layerManagerEvent = do
-        pure ()
+jchain : List String
+jchain =
+    [ "LayerManagerEventListener" ]
+        ++ LayerManagerEventListenerInterface.jchain
 
 
--- throws Exception
-onDeleteLayerManagerEvent :: (JavaObjectClass this_) => this_ -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onDeleteLayerManagerEvent object_ a1 = jmethod object_ "onDeleteLayerManagerEvent" (\() -> (onDeleteLayerManagerEvent_impl (javaCast object_ :: LayerManagerEventListener))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-onDeleteLayerManagerEvent_super :: (JavaObjectClass this_) => this_ -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onDeleteLayerManagerEvent_super object_ a1 = (onDeleteLayerManagerEvent_impl (javaCast object_ :: LayerManagerEventListener)) a1
 
-onDeleteLayerManagerEvent_impl :: LayerManagerEventListener -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onDeleteLayerManagerEvent_impl this layerManagerEvent = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "onEvent_1", jm_onEvent_1 )
+        , ( "onCreateLayerManagerEvent_1", jm_onCreateLayerManagerEvent_1 )
+        , ( "onDeleteLayerManagerEvent_1", jm_onDeleteLayerManagerEvent_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LayerManagerEventListener"
+        [ ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_onCreateLayerManagerEvent_1", jm_onCreateLayerManagerEvent_1 ), ( "jm_onDeleteLayerManagerEvent_1", jm_onDeleteLayerManagerEvent_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onCreateLayerManagerEvent_1 : JR.Method
+jm_onCreateLayerManagerEvent_1 jheap jthis jargs =
+    JR.method [ ( "layerManagerEvent", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onDeleteLayerManagerEvent_1 : JR.Method
+jm_onDeleteLayerManagerEvent_1 jheap jthis jargs =
+    JR.method [ ( "layerManagerEvent", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

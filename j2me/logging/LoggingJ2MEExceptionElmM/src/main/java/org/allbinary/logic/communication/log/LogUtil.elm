@@ -1,13 +1,13 @@
-module LogUtil exposing (..)
+module Org.Allbinary.Logic.Communication.Log.LogUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.log
 -}
 
 import JR
-import CommonStrings
+import Org.Allbinary.String.CommonStrings as CommonStrings
 import JSystem
-import LogFactory
-import LogFormatUtil
+import Org.Allbinary.Logic.Communication.Log.LogFactory as LogFactory
+import Org.Allbinary.Logic.Communication.Log.LogFormatUtil as LogFormatUtil
 
 
 jclass : String

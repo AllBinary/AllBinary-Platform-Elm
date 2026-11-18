@@ -1,4 +1,4 @@
-module SynchObject exposing (..)
+module Org.Allbinary.Thread.SynchObject exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}

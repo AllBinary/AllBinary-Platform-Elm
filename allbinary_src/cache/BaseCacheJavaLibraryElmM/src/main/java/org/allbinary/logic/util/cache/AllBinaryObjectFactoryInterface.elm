@@ -1,4 +1,4 @@
-module AllBinaryObjectFactoryInterface exposing (..)
+module Org.Allbinary.Logic.Util.Cache.AllBinaryObjectFactoryInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
 -}

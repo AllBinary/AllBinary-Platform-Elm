@@ -1,4 +1,4 @@
-module SmallLongFactory exposing (..)
+module Org.Allbinary.Logic.Math.SmallLongFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.math
 -}

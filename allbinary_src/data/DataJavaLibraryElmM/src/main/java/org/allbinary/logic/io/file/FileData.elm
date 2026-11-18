@@ -1,138 +1,106 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
-module FileData where
+module Org.Allbinary.Logic.Io.File.FileData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file
+-}
 
-data FileData = FileData
-    { header_ :: JavaHeader
-    , nAME :: IORef (String)
-    , iSFILE :: IORef (String)
-    , iSDIRECTORY :: IORef (String)
-    , iSHIDDEN :: IORef (String)
-    , iSABSOLUTE :: IORef (String)
-    , rOOT_NAME :: IORef (String)
-    , pATH :: IORef (String)
-    , aBSOLUTE_PATH :: IORef (String)
-    , cANONICAL_PATH :: IORef (String)
-    , pARENT :: IORef (String)
-    , mINLEN :: IORef (Int)
-    , mAXLEN :: IORef (Int)
-    , mAXIMAGEFILESIZE :: IORef (Int)
-    , mINIMAGEFILESIZE :: IORef (Int)
-    , mAXDOWNLOADABLEFILESIZE :: IORef (Int)
-    , mINDOWNLOADABLEFILESIZE :: IORef (Int)
-    }
-
-instance JavaNull FileData where
-    javaNull = javaNullRecord "FileData"
-
-instance JavaEquals FileData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FileData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FileData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: FileData
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO FileData
-newRecord_ = do
-    header_ <- newJavaHeader
-    nAME <- newIORef ""
-    iSFILE <- newIORef ""
-    iSDIRECTORY <- newIORef ""
-    iSHIDDEN <- newIORef ""
-    iSABSOLUTE <- newIORef ""
-    rOOT_NAME <- newIORef ""
-    pATH <- newIORef ""
-    aBSOLUTE_PATH <- newIORef ""
-    cANONICAL_PATH <- newIORef ""
-    pARENT <- newIORef ""
-    mINLEN <- newIORef 0
-    mAXLEN <- newIORef 0
-    mAXIMAGEFILESIZE <- newIORef 0
-    mINIMAGEFILESIZE <- newIORef 0
-    mAXDOWNLOADABLEFILESIZE <- newIORef 0
-    mINDOWNLOADABLEFILESIZE <- newIORef 0
-    let this = FileData header_ nAME iSFILE iSDIRECTORY iSHIDDEN iSABSOLUTE rOOT_NAME pATH aBSOLUTE_PATH cANONICAL_PATH pARENT mINLEN mAXLEN mAXIMAGEFILESIZE mINIMAGEFILESIZE mAXDOWNLOADABLEFILESIZE mINDOWNLOADABLEFILESIZE
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: FileData -> IO ()
-initFields_ this = do
-    jset this.nAME ("FILE_NAME")
-    jset this.iSFILE ("FILE_ISFILE")
-    jset this.iSDIRECTORY ("FILE_ISDIRECTORY")
-    jset this.iSHIDDEN ("FILE_ISHIDDEN")
-    jset this.iSABSOLUTE ("FILE_ISABSOLUTE")
-    jset this.rOOT_NAME ("FILE_ROOT_NAME")
-    jset this.pATH ("FILE_PATH")
-    jset this.aBSOLUTE_PATH ("FILE_ABSOLUTE_PATH")
-    jset this.cANONICAL_PATH ("FILE_CANONICAL_PATH")
-    jset this.pARENT ("FILE_PARENT")
-    jset this.mINLEN (1)
-    jset this.mAXLEN (120)
-    jset this.mAXIMAGEFILESIZE (1048576)
-    jset this.mINIMAGEFILESIZE (32)
-    jset this.mAXDOWNLOADABLEFILESIZE ((1048576 * 20))
-    jset this.mINDOWNLOADABLEFILESIZE (1)
-    pure ()
+import JR
 
 
-getInstance :: IO (FileData)
-getInstance = do
-        pure (FileData.instance_)
 
-new_ :: IO FileData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jclass : String
+jclass =
+    "FileData"
 
-init_ :: FileData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jchain : List String
+jchain =
+    [ "FileData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "NAME", JR.defaultOf "" ), ( "ISFILE", JR.defaultOf "" ), ( "ISDIRECTORY", JR.defaultOf "" ), ( "ISHIDDEN", JR.defaultOf "" ), ( "ISABSOLUTE", JR.defaultOf "" ), ( "ROOT_NAME", JR.defaultOf "" ), ( "PATH", JR.defaultOf "" ), ( "ABSOLUTE_PATH", JR.defaultOf "" ), ( "CANONICAL_PATH", JR.defaultOf "" ), ( "PARENT", JR.defaultOf "" ), ( "MINLEN", JR.defaultOf "I" ), ( "MAXLEN", JR.defaultOf "I" ), ( "MAXIMAGEFILESIZE", JR.defaultOf "I" ), ( "MINIMAGEFILESIZE", JR.defaultOf "I" ), ( "MAXDOWNLOADABLEFILESIZE", JR.defaultOf "I" ), ( "MINDOWNLOADABLEFILESIZE", JR.defaultOf "I" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FileData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "FileData" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "NAME" "" JR.this (JR.str "FILE_NAME")),
+                JR.exec (JR.setField "ISFILE" "" JR.this (JR.str "FILE_ISFILE")),
+                JR.exec (JR.setField "ISDIRECTORY" "" JR.this (JR.str "FILE_ISDIRECTORY")),
+                JR.exec (JR.setField "ISHIDDEN" "" JR.this (JR.str "FILE_ISHIDDEN")),
+                JR.exec (JR.setField "ISABSOLUTE" "" JR.this (JR.str "FILE_ISABSOLUTE")),
+                JR.exec (JR.setField "ROOT_NAME" "" JR.this (JR.str "FILE_ROOT_NAME")),
+                JR.exec (JR.setField "PATH" "" JR.this (JR.str "FILE_PATH")),
+                JR.exec (JR.setField "ABSOLUTE_PATH" "" JR.this (JR.str "FILE_ABSOLUTE_PATH")),
+                JR.exec (JR.setField "CANONICAL_PATH" "" JR.this (JR.str "FILE_CANONICAL_PATH")),
+                JR.exec (JR.setField "PARENT" "" JR.this (JR.str "FILE_PARENT")),
+                JR.exec (JR.setField "MINLEN" "I" JR.this (JR.int 1)),
+                JR.exec (JR.setField "MAXLEN" "I" JR.this (JR.int 120)),
+                JR.exec (JR.setField "MAXIMAGEFILESIZE" "I" JR.this (JR.int 1048576)),
+                JR.exec (JR.setField "MINIMAGEFILESIZE" "I" JR.this (JR.int 32)),
+                JR.exec (JR.setField "MAXDOWNLOADABLEFILESIZE" "I" JR.this (JR.map2 JR.mul (JR.int 1048576) (JR.int 20))),
+                JR.exec (JR.setField "MINDOWNLOADABLEFILESIZE" "I" JR.this (JR.int 1)),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

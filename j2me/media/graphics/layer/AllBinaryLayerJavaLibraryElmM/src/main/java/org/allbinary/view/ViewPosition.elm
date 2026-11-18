@@ -1,176 +1,164 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.view
-module ViewPosition (module ViewPosition, module ViewPositionBase) where
+module Org.Allbinary.View.ViewPosition exposing (..)
 
-import ViewPositionBase hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstanceD, getInstanceD_super, getInstanceD_impl, getX, getX_super, getX_impl, getY, getY_super, getY_impl, getZ, getZ_super, getZ_impl, getX2, getX2_super, getX2_impl, getY2, getY2_super, getY2_impl, getZ2, getZ2_super, getZ2_impl, setAllbinaryLayer, setAllbinaryLayer_super, setAllbinaryLayer_impl, allbinaryLayer)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified ViewPositionBase
+{-| Generated Code Do Not Modify package org.allbinary.view
+-}
 
-data ViewPosition = ViewPosition
-    { header_ :: JavaHeader
-    , base :: ViewPositionBase.ViewPositionBase
-    , allbinaryLayer :: IORef (AllBinaryLayer.AllBinaryLayer)
-    }
-
-instance JavaNull ViewPosition where
-    javaNull = javaNullRecord "ViewPosition"
-
-instance JavaEquals ViewPosition where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ViewPosition where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ViewPosition where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ViewPosition
-newRecord_ = do
-    base <- ViewPositionBase.newRecord_
-    let header_ = base.header_
-    allbinaryLayer <- newIORef javaNull
-    let this = ViewPosition header_ base allbinaryLayer
-    jregisterLevel header_ this
-    jregisterMethod header_ "getX" (\() -> getX_impl this)
-    jregisterMethod header_ "getY" (\() -> getY_impl this)
-    jregisterMethod header_ "getZ" (\() -> getZ_impl this)
-    jregisterMethod header_ "getX2" (\() -> getX2_impl this)
-    jregisterMethod header_ "getY2" (\() -> getY2_impl this)
-    jregisterMethod header_ "getZ2" (\() -> getZ2_impl this)
-    jregisterMethod header_ "setAllbinaryLayer" (\() -> setAllbinaryLayer_impl this)
-    pure this
-
-initFields_ :: ViewPosition -> IO ()
-initFields_ this = do
-    jset this.allbinaryLayer (AllBinaryLayer.nULL_ALLBINARY_LAYER)
-    pure ()
+import JR
+import Org.Allbinary.Layer.AllBinaryLayer as AllBinaryLayer
+import Org.Allbinary.View.ViewPositionBase as ViewPositionBase
 
 
-getInstanceD :: IO (ViewPosition)
-getInstanceD = do
-        (new_3 0 0 0)
-
-new_3 :: Int -> Int -> Int -> IO ViewPosition
-new_3 x y z = do
-    this <- newRecord_
-    init_3 this x y z
-    pure this
-
-init_3 :: ViewPosition -> Int -> Int -> Int -> IO ()
-init_3 this x y z = do
-        ViewPositionBase.init_3 this.base (x) (y) (z)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+jclass : String
+jclass =
+    "ViewPosition"
 
 
-getX :: (JavaObjectClass this_) => this_ -> IO (Int)
-getX object_ = jmethod object_ "getX" (\() -> (getX_impl (javaCast object_ :: ViewPosition))) ()
-
-getX_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getX_super object_ = (getX_impl (javaCast object_ :: ViewPosition))
-
-getX_impl :: ViewPosition -> IO (Int)
-getX_impl this = do
-        (AllBinaryLayer.getXP ((jget (this).allbinaryLayer)))
+jchain : List String
+jchain =
+    [ "ViewPosition" ]
+        ++ ViewPositionBase.jchain
 
 
-getY :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY object_ = jmethod object_ "getY" (\() -> (getY_impl (javaCast object_ :: ViewPosition))) ()
-
-getY_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY_super object_ = (getY_impl (javaCast object_ :: ViewPosition))
-
-getY_impl :: ViewPosition -> IO (Int)
-getY_impl this = do
-        (AllBinaryLayer.getYP ((jget (this).allbinaryLayer)))
+jfields : List ( String, JR.JValue )
+jfields =
+    ViewPositionBase.jfields ++ [ ( "allbinaryLayer", JR.defaultOf "" ) ]
 
 
-getZ :: (JavaObjectClass this_) => this_ -> IO (Int)
-getZ object_ = jmethod object_ "getZ" (\() -> (getZ_impl (javaCast object_ :: ViewPosition))) ()
-
-getZ_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getZ_super object_ = (getZ_impl (javaCast object_ :: ViewPosition))
-
-getZ_impl :: ViewPosition -> IO (Int)
-getZ_impl this = do
-        (AllBinaryLayer.getZP ((jget (this).allbinaryLayer)))
-
-
-getX2 :: (JavaObjectClass this_) => this_ -> IO (Int)
-getX2 object_ = jmethod object_ "getX2" (\() -> (getX2_impl (javaCast object_ :: ViewPosition))) ()
-
-getX2_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getX2_super object_ = (getX2_impl (javaCast object_ :: ViewPosition))
-
-getX2_impl :: ViewPosition -> IO (Int)
-getX2_impl this = do
-        pure (((jio (ViewPosition.getX this)) + (jio (AllBinaryLayer.getWidth ((jget (this).allbinaryLayer))))))
+jvtable =
+    JR.vtable
+        [ ( "getInstanceD_0", jm_getInstanceD_0 )
+        , ( "getX_0", jm_getX_0 )
+        , ( "getY_0", jm_getY_0 )
+        , ( "getZ_0", jm_getZ_0 )
+        , ( "getX2_0", jm_getX2_0 )
+        , ( "getY2_0", jm_getY2_0 )
+        , ( "getZ2_0", jm_getZ2_0 )
+        , ( "setAllbinaryLayer_1", jm_setAllbinaryLayer_1 ) ]
+        ViewPositionBase.jvtable
 
 
-getY2 :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY2 object_ = jmethod object_ "getY2" (\() -> (getY2_impl (javaCast object_ :: ViewPosition))) ()
-
-getY2_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY2_super object_ = (getY2_impl (javaCast object_ :: ViewPosition))
-
-getY2_impl :: ViewPosition -> IO (Int)
-getY2_impl this = do
-        pure (((jio (ViewPosition.getY this)) + (jio (AllBinaryLayer.getHeight ((jget (this).allbinaryLayer))))))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ViewPosition"
+        [ ( "jm_getInstanceD_0", jm_getInstanceD_0 ), ( "jm_getX_0", jm_getX_0 ), ( "jm_getY_0", jm_getY_0 ), ( "jm_getZ_0", jm_getZ_0 ), ( "jm_getX2_0", jm_getX2_0 ), ( "jm_getY2_0", jm_getY2_0 ), ( "jm_getZ2_0", jm_getZ2_0 ), ( "jm_setAllbinaryLayer_1", jm_setAllbinaryLayer_1 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
 
 
-getZ2 :: (JavaObjectClass this_) => this_ -> IO (Int)
-getZ2 object_ = jmethod object_ "getZ2" (\() -> (getZ2_impl (javaCast object_ :: ViewPosition))) ()
-
-getZ2_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getZ2_super object_ = (getZ2_impl (javaCast object_ :: ViewPosition))
-
-getZ2_impl :: ViewPosition -> IO (Int)
-getZ2_impl this = do
-        pure ((Prelude.fromIntegral (((Prelude.fromIntegral (jio (ViewPosition.getZ this))) + (jio (AllBinaryLayer.getDepth ((jget (this).allbinaryLayer))))))))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setAllbinaryLayer :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-setAllbinaryLayer object_ a1 = jmethod object_ "setAllbinaryLayer" (\() -> (setAllbinaryLayer_impl (javaCast object_ :: ViewPosition))) () (jtoObject a1)
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ViewPositionBase.jinit_3 JR.this [ (JR.local "x"), (JR.local "y"), (JR.local "z") ]),
+                JR.exec (JR.setField "allbinaryLayer" "" JR.this AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setAllbinaryLayer_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-setAllbinaryLayer_super object_ a1 = (setAllbinaryLayer_impl (javaCast object_ :: ViewPosition)) (jtoObject a1)
 
-setAllbinaryLayer_impl :: ViewPosition -> JavaObject -> IO (())
-setAllbinaryLayer_impl this allbinaryLayerObject_ = do
-        let allbinaryLayer = jtoObject allbinaryLayerObject_
-        jset (this).allbinaryLayer ((javaCast allbinaryLayer :: AllBinaryLayer.AllBinaryLayer))
-        pure ()
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
 
+
+jm_getInstanceD_0 : JR.Method
+jm_getInstanceD_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_3 [ (JR.int 0), (JR.int 0), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getX_0 : JR.Method
+jm_getX_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getXP_0" (JR.thisField "allbinaryLayer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getY_0 : JR.Method
+jm_getY_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getYP_0" (JR.thisField "allbinaryLayer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getZ_0 : JR.Method
+jm_getZ_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getZP_0" (JR.thisField "allbinaryLayer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getX2_0 : JR.Method
+jm_getX2_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.map2 JR.add (JR.invoke "getX_0" JR.this []) (JR.invoke "getWidth_0" (JR.thisField "allbinaryLayer") [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getY2_0 : JR.Method
+jm_getY2_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.map2 JR.add (JR.invoke "getY_0" JR.this []) (JR.invoke "getHeight_0" (JR.thisField "allbinaryLayer") [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getZ2_0 : JR.Method
+jm_getZ2_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.cast "I" ((JR.map2 JR.add (JR.cast "J" (JR.invoke "getZ_0" JR.this [])) (JR.invoke "getDepth_0" (JR.thisField "allbinaryLayer") [])))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAllbinaryLayer_1 : JR.Method
+jm_setAllbinaryLayer_1 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayer", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "allbinaryLayer" "" JR.this (JR.local "allbinaryLayer")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,99 +1,87 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
-module SingleLayerLayerProcessor (module SingleLayerLayerProcessor, module LayerProcessor) where
+module Org.Allbinary.Layer.SingleLayerLayerProcessor exposing (..)
 
-import LayerProcessor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, process, process_super, process_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified SingleLayerLayerManager -- same package or java.lang
-import qualified LayerManager -- same package or java.lang
-import qualified AllBinaryLayer -- same package or java.lang
-import qualified AllBinaryLayerManager -- same package or java.lang
-import qualified LayerProcessor
+{-| Generated Code Do Not Modify package org.allbinary.layer
+-}
 
-data SingleLayerLayerProcessor = SingleLayerLayerProcessor
-    { header_ :: JavaHeader
-    , base :: LayerProcessor.LayerProcessor
-    }
-
-instance JavaNull SingleLayerLayerProcessor where
-    javaNull = javaNullRecord "SingleLayerLayerProcessor"
-
-instance JavaEquals SingleLayerLayerProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SingleLayerLayerProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SingleLayerLayerProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO SingleLayerLayerProcessor
-newRecord_ = do
-    base <- LayerProcessor.newRecord_
-    let header_ = base.header_
-    let this = SingleLayerLayerProcessor header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: SingleLayerLayerProcessor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO SingleLayerLayerProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: SingleLayerLayerProcessor -> IO ()
-init_ this = do
-        LayerProcessor.init_1 this.base (javaCast (jio (SingleLayerLayerManager.new_)))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Layer.LayerProcessor as LayerProcessor
+import Org.Allbinary.Layer.SingleLayerLayerManager as SingleLayerLayerManager
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: SingleLayerLayerProcessor))) () a1
+jclass : String
+jclass =
+    "SingleLayerLayerProcessor"
 
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: SingleLayerLayerProcessor)) a1
 
-process_impl :: SingleLayerLayerProcessor -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-process_impl this allBinaryLayerManager = do
-        layerManager <- (LayerProcessor.getLayerManager this)
-        Control.Monad.void (LayerProcessor.processAt this allBinaryLayerManager (javaCast (jio (LayerManager.getLayerAt layerManager 0)) :: AllBinaryLayer.AllBinaryLayer) 0)
-        pure ()
+jchain : List String
+jchain =
+    [ "SingleLayerLayerProcessor" ]
+        ++ LayerProcessor.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    LayerProcessor.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "process_1", jm_process_1 ) ]
+        LayerProcessor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SingleLayerLayerProcessor"
+        [ ( "jm_process_1", jm_process_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect LayerProcessor.jinit_1 JR.this [ (JR.new SingleLayerLayerManager.jnew_0 []) ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "layerManager" "" (JR.invoke "getLayerManager_0" JR.this []), 
+                    JR.exec (JR.invoke "processAt_3" JR.this [ (JR.local "allBinaryLayerManager"), (JR.invoke "getLayerAt_1" (JR.local "layerManager") [ (JR.int 0) ]), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

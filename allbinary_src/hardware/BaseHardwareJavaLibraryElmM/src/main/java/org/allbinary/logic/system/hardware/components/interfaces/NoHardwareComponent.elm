@@ -1,11 +1,11 @@
-module NoHardwareComponent exposing (..)
+module Org.Allbinary.Logic.System.Hardware.Components.Interfaces.NoHardwareComponent exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.hardware.components.interfaces
 -}
 
 import JR
-import HardwareComponentInterface
-import StringUtil
+import Org.Allbinary.Logic.System.Hardware.Components.Interfaces.HardwareComponentInterface as HardwareComponentInterface
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
 jclass : String

@@ -1,168 +1,163 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
-module UpGameKeyEventHandler (module UpGameKeyEventHandler, module UpGameKeyEventHandlerBase) where
+module Org.Allbinary.Game.Input.Event.UpGameKeyEventHandler exposing (..)
 
-import UpGameKeyEventHandlerBase hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, getInstanceForDevice, getInstanceForDevice_super, getInstanceForDevice_impl, getInstanceForPlayer, getInstanceForPlayer_super, getInstanceForPlayer_impl, removeAllListeners, removeAllListeners_super, removeAllListeners_impl, removeListenerSingleThreaded, removeListenerSingleThreaded_super, removeListenerSingleThreaded_impl, removeListener, removeListener_super, removeListener_impl, instance_, instanceArray, playerInputIdFactory)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified UpGameKeyEventHandlerBase -- same package or java.lang
-import qualified LocalPlayerInputIdFactory -- org.allbinary.game.input.LocalPlayerInputIdFactory
-import qualified EventListenerInterface -- org.allbinary.logic.util.event.EventListenerInterface
-import qualified UpGameKeyEventHandlerBase
+{-| Generated Code Do Not Modify package org.allbinary.game.input.event
+-}
 
-data UpGameKeyEventHandler = UpGameKeyEventHandler
-    { header_ :: JavaHeader
-    , base :: UpGameKeyEventHandlerBase.UpGameKeyEventHandlerBase
-    , playerInputIdFactory :: IORef (LocalPlayerInputIdFactory.LocalPlayerInputIdFactory)
-    }
-
-instance JavaNull UpGameKeyEventHandler where
-    javaNull = javaNullRecord "UpGameKeyEventHandler"
-
-instance JavaEquals UpGameKeyEventHandler where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq UpGameKeyEventHandler where
-    (==) = jrecordEquals
-
-instance JavaObjectClass UpGameKeyEventHandler where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: UpGameKeyEventHandler
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-instanceArray :: JavaArray (UpGameKeyEventHandlerBase.UpGameKeyEventHandlerBase)
-instanceArray = (jarrayFromList [(jio (UpGameKeyEventHandlerBase.new_)), (jio (UpGameKeyEventHandlerBase.new_)), (jio (UpGameKeyEventHandlerBase.new_)), (jio (UpGameKeyEventHandlerBase.new_)), (jio (UpGameKeyEventHandlerBase.new_)), (jio (UpGameKeyEventHandlerBase.new_))])
-
-newRecord_ :: IO UpGameKeyEventHandler
-newRecord_ = do
-    base <- UpGameKeyEventHandlerBase.newRecord_
-    let header_ = base.header_
-    playerInputIdFactory <- newIORef javaNull
-    let this = UpGameKeyEventHandler header_ base playerInputIdFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstanceForDevice" (\() -> getInstanceForDevice_impl this)
-    jregisterMethod header_ "getInstanceForPlayer" (\() -> getInstanceForPlayer_impl this)
-    jregisterMethod header_ "removeAllListeners" (\() -> removeAllListeners_impl this)
-    jregisterMethod header_ "removeListenerSingleThreaded" (\() -> removeListenerSingleThreaded_impl this)
-    jregisterMethod header_ "removeListener" (\() -> removeListener_impl this)
-    pure this
-
-initFields_ :: UpGameKeyEventHandler -> IO ()
-initFields_ this = do
-    jset this.playerInputIdFactory =<< (LocalPlayerInputIdFactory.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Game.Input.LocalPlayerInputIdFactory as LocalPlayerInputIdFactory
+import Org.Allbinary.Game.Input.Event.UpGameKeyEventHandlerBase as UpGameKeyEventHandlerBase
 
 
-getInstance :: IO (UpGameKeyEventHandler)
-getInstance = do
-        pure (UpGameKeyEventHandler.instance_)
+jclass : String
+jclass =
+    "UpGameKeyEventHandler"
 
 
-getInstanceForDevice :: (JavaObjectClass this_) => this_ -> Int -> IO (UpGameKeyEventHandlerBase.UpGameKeyEventHandlerBase)
-getInstanceForDevice object_ a1 = jmethod object_ "getInstanceForDevice" (\() -> (getInstanceForDevice_impl (javaCast object_ :: UpGameKeyEventHandler))) () a1
-
-getInstanceForDevice_super :: (JavaObjectClass this_) => this_ -> Int -> IO (UpGameKeyEventHandlerBase.UpGameKeyEventHandlerBase)
-getInstanceForDevice_super object_ a1 = (getInstanceForDevice_impl (javaCast object_ :: UpGameKeyEventHandler)) a1
-
-getInstanceForDevice_impl :: UpGameKeyEventHandler -> Int -> IO (UpGameKeyEventHandlerBase.UpGameKeyEventHandlerBase)
-getInstanceForDevice_impl this deviceId = do
-        playerInputId <- (LocalPlayerInputIdFactory.getPlayerForDevice ((jget (this).playerInputIdFactory)) deviceId)
-        pure ((jindex UpGameKeyEventHandler.instanceArray (playerInputId)))
+jchain : List String
+jchain =
+    [ "UpGameKeyEventHandler" ]
+        ++ UpGameKeyEventHandlerBase.jchain
 
 
-getInstanceForPlayer :: (JavaObjectClass this_) => this_ -> Int -> IO (UpGameKeyEventHandlerBase.UpGameKeyEventHandlerBase)
-getInstanceForPlayer object_ a1 = jmethod object_ "getInstanceForPlayer" (\() -> (getInstanceForPlayer_impl (javaCast object_ :: UpGameKeyEventHandler))) () a1
-
-getInstanceForPlayer_super :: (JavaObjectClass this_) => this_ -> Int -> IO (UpGameKeyEventHandlerBase.UpGameKeyEventHandlerBase)
-getInstanceForPlayer_super object_ a1 = (getInstanceForPlayer_impl (javaCast object_ :: UpGameKeyEventHandler)) a1
-
-getInstanceForPlayer_impl :: UpGameKeyEventHandler -> Int -> IO (UpGameKeyEventHandlerBase.UpGameKeyEventHandlerBase)
-getInstanceForPlayer_impl this playerInputId = do
-        pure ((jindex UpGameKeyEventHandler.instanceArray (playerInputId)))
-
-new_ :: IO UpGameKeyEventHandler
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: UpGameKeyEventHandler -> IO ()
-init_ this = do
-        UpGameKeyEventHandlerBase.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    UpGameKeyEventHandlerBase.jfields ++ [ ( "playerInputIdFactory", JR.defaultOf "" ) ]
 
 
-removeAllListeners :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllListeners object_ = jmethod object_ "removeAllListeners" (\() -> (removeAllListeners_impl (javaCast object_ :: UpGameKeyEventHandler))) ()
-
-removeAllListeners_super :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllListeners_super object_ = (removeAllListeners_impl (javaCast object_ :: UpGameKeyEventHandler))
-
-removeAllListeners_impl :: UpGameKeyEventHandler -> IO (())
-removeAllListeners_impl this = do
-        Control.Monad.void (UpGameKeyEventHandlerBase.removeAllListeners_super this.base)
-        forM_ [((jlength UpGameKeyEventHandler.instanceArray) - 1), ((jlength UpGameKeyEventHandler.instanceArray) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (UpGameKeyEventHandlerBase.removeAllListeners ((jindex UpGameKeyEventHandler.instanceArray (index))))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInstanceForDevice_1", jm_getInstanceForDevice_1 )
+        , ( "getInstanceForPlayer_1", jm_getInstanceForPlayer_1 )
+        , ( "removeAllListeners_0", jm_removeAllListeners_0 )
+        , ( "removeListenerSingleThreaded_1", jm_removeListenerSingleThreaded_1 )
+        , ( "removeListener_1", jm_removeListener_1 ) ]
+        UpGameKeyEventHandlerBase.jvtable
 
 
-removeListenerSingleThreaded :: (JavaObjectClass this_) => this_ -> EventListenerInterface.EventListenerInterface -> IO (())
-removeListenerSingleThreaded object_ a1 = jmethod object_ "removeListenerSingleThreaded" (\() -> (removeListenerSingleThreaded_impl (javaCast object_ :: UpGameKeyEventHandler))) () a1
-
-removeListenerSingleThreaded_super :: (JavaObjectClass this_) => this_ -> EventListenerInterface.EventListenerInterface -> IO (())
-removeListenerSingleThreaded_super object_ a1 = (removeListenerSingleThreaded_impl (javaCast object_ :: UpGameKeyEventHandler)) a1
-
-removeListenerSingleThreaded_impl :: UpGameKeyEventHandler -> EventListenerInterface.EventListenerInterface -> IO (())
-removeListenerSingleThreaded_impl this eventListenerInterface = do
-        Control.Monad.void (UpGameKeyEventHandlerBase.removeListenerSingleThreaded_super this.base eventListenerInterface)
-        forM_ [((jlength UpGameKeyEventHandler.instanceArray) - 1), ((jlength UpGameKeyEventHandler.instanceArray) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (UpGameKeyEventHandlerBase.removeListenerSingleThreaded ((jindex UpGameKeyEventHandler.instanceArray (index))) eventListenerInterface)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "UpGameKeyEventHandler"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInstanceForDevice_1", jm_getInstanceForDevice_1 ), ( "jm_getInstanceForPlayer_1", jm_getInstanceForPlayer_1 ), ( "jm_removeAllListeners_0", jm_removeAllListeners_0 ), ( "jm_removeListenerSingleThreaded_1", jm_removeListenerSingleThreaded_1 ), ( "jm_removeListener_1", jm_removeListener_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ), ( "jstatic_instanceArray", jstatic_instanceArray ) ]
+        jheap
 
 
-removeListener :: (JavaObjectClass this_) => this_ -> EventListenerInterface.EventListenerInterface -> IO (())
-removeListener object_ a1 = jmethod object_ "removeListener" (\() -> (removeListener_impl (javaCast object_ :: UpGameKeyEventHandler))) () a1
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-removeListener_super :: (JavaObjectClass this_) => this_ -> EventListenerInterface.EventListenerInterface -> IO (())
-removeListener_super object_ a1 = (removeListener_impl (javaCast object_ :: UpGameKeyEventHandler)) a1
 
-removeListener_impl :: UpGameKeyEventHandler -> EventListenerInterface.EventListenerInterface -> IO (())
-removeListener_impl this eventListenerInterface = do
-        Control.Monad.void (UpGameKeyEventHandlerBase.removeListener_super this.base eventListenerInterface)
-        forM_ [((jlength UpGameKeyEventHandler.instanceArray) - 1), ((jlength UpGameKeyEventHandler.instanceArray) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (UpGameKeyEventHandlerBase.removeListener ((jindex UpGameKeyEventHandler.instanceArray (index))) eventListenerInterface)
-        pure ()
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "UpGameKeyEventHandler" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
+
+jstatic_instanceArray : JR.M
+jstatic_instanceArray s =
+    JR.static "UpGameKeyEventHandler" jclinit "instanceArray"
+        (JR.arrayOf "" [ (JR.new UpGameKeyEventHandlerBase.jnew_0 []), (JR.new UpGameKeyEventHandlerBase.jnew_0 []), (JR.new UpGameKeyEventHandlerBase.jnew_0 []), (JR.new UpGameKeyEventHandlerBase.jnew_0 []), (JR.new UpGameKeyEventHandlerBase.jnew_0 []), (JR.new UpGameKeyEventHandlerBase.jnew_0 []) ])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect UpGameKeyEventHandlerBase.jinit_0 JR.this []),
+                JR.exec (JR.setField "playerInputIdFactory" "" JR.this (JR.callStatic LocalPlayerInputIdFactory.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceForDevice_1 : JR.Method
+jm_getInstanceForDevice_1 jheap jthis jargs =
+    JR.method [ ( "deviceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "playerInputId" "I" (JR.invoke "getPlayerForDevice_1" (JR.thisField "playerInputIdFactory") [ (JR.local "deviceId") ]), 
+                    JR.return (JR.aget jstatic_instanceArray (JR.local "playerInputId")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceForPlayer_1 : JR.Method
+jm_getInstanceForPlayer_1 jheap jthis jargs =
+    JR.method [ ( "playerInputId", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.aget jstatic_instanceArray (JR.local "playerInputId")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeAllListeners_0 : JR.Method
+jm_removeAllListeners_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia UpGameKeyEventHandlerBase.jvtable "removeAllListeners_0" JR.this []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength jstatic_instanceArray) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67237 -> (JR.setLocal "index" "I" (JR.lit jwN67237))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.invoke "removeAllListeners_0" (JR.aget jstatic_instanceArray (JR.local "index")) []) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeListenerSingleThreaded_1 : JR.Method
+jm_removeListenerSingleThreaded_1 jheap jthis jargs =
+    JR.method [ ( "eventListenerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia UpGameKeyEventHandlerBase.jvtable "removeListenerSingleThreaded_1" JR.this [ (JR.local "eventListenerInterface") ]), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength jstatic_instanceArray) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67449 -> (JR.setLocal "index" "I" (JR.lit jwN67449))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.invoke "removeListenerSingleThreaded_1" (JR.aget jstatic_instanceArray (JR.local "index")) [ (JR.local "eventListenerInterface") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeListener_1 : JR.Method
+jm_removeListener_1 jheap jthis jargs =
+    JR.method [ ( "eventListenerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia UpGameKeyEventHandlerBase.jvtable "removeListener_1" JR.this [ (JR.local "eventListenerInterface") ]), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength jstatic_instanceArray) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67681 -> (JR.setLocal "index" "I" (JR.lit jwN67681))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.invoke "removeListener_1" (JR.aget jstatic_instanceArray (JR.local "index")) [ (JR.local "eventListenerInterface") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

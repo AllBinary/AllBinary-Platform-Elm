@@ -1,168 +1,119 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module GameKeyFactory where
+module Org.Allbinary.Game.Input.GameKeyFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified GameKey -- same package or java.lang
-import qualified InputFactory -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified CommonPhoneStrings -- org.allbinary.string.CommonPhoneStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data GameKeyFactory = GameKeyFactory
-    { header_ :: JavaHeader
-    , nONE :: IORef (GameKey.GameKey)
-    , uP :: IORef (GameKey.GameKey)
-    , dOWN :: IORef (GameKey.GameKey)
-    , lEFT :: IORef (GameKey.GameKey)
-    , rIGHT :: IORef (GameKey.GameKey)
-    , kEY_POUND :: IORef (GameKey.GameKey)
-    , kEY_STAR :: IORef (GameKey.GameKey)
-    , kEY_NUM0 :: IORef (GameKey.GameKey)
-    , kEY_NUM1 :: IORef (GameKey.GameKey)
-    , kEY_NUM2 :: IORef (GameKey.GameKey)
-    , kEY_NUM3 :: IORef (GameKey.GameKey)
-    , kEY_NUM4 :: IORef (GameKey.GameKey)
-    , kEY_NUM5 :: IORef (GameKey.GameKey)
-    , kEY_NUM6 :: IORef (GameKey.GameKey)
-    , kEY_NUM7 :: IORef (GameKey.GameKey)
-    , kEY_NUM8 :: IORef (GameKey.GameKey)
-    , kEY_NUM9 :: IORef (GameKey.GameKey)
-    , gAME_A :: IORef (GameKey.GameKey)
-    , gAME_B :: IORef (GameKey.GameKey)
-    , gAME_C :: IORef (GameKey.GameKey)
-    , gAME_D :: IORef (GameKey.GameKey)
-    , fIRE :: IORef (GameKey.GameKey)
-    , lEVEL_DOWN :: IORef (GameKey.GameKey)
-    , lEVEL_UP :: IORef (GameKey.GameKey)
-    }
-
-instance JavaNull GameKeyFactory where
-    javaNull = javaNullRecord "GameKeyFactory"
-
-instance JavaEquals GameKeyFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameKeyFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameKeyFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameKeyFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    nONE <- newIORef javaNull
-    uP <- newIORef javaNull
-    dOWN <- newIORef javaNull
-    lEFT <- newIORef javaNull
-    rIGHT <- newIORef javaNull
-    kEY_POUND <- newIORef javaNull
-    kEY_STAR <- newIORef javaNull
-    kEY_NUM0 <- newIORef javaNull
-    kEY_NUM1 <- newIORef javaNull
-    kEY_NUM2 <- newIORef javaNull
-    kEY_NUM3 <- newIORef javaNull
-    kEY_NUM4 <- newIORef javaNull
-    kEY_NUM5 <- newIORef javaNull
-    kEY_NUM6 <- newIORef javaNull
-    kEY_NUM7 <- newIORef javaNull
-    kEY_NUM8 <- newIORef javaNull
-    kEY_NUM9 <- newIORef javaNull
-    gAME_A <- newIORef javaNull
-    gAME_B <- newIORef javaNull
-    gAME_C <- newIORef javaNull
-    gAME_D <- newIORef javaNull
-    fIRE <- newIORef javaNull
-    lEVEL_DOWN <- newIORef javaNull
-    lEVEL_UP <- newIORef javaNull
-    let this = GameKeyFactory header_ nONE uP dOWN lEFT rIGHT kEY_POUND kEY_STAR kEY_NUM0 kEY_NUM1 kEY_NUM2 kEY_NUM3 kEY_NUM4 kEY_NUM5 kEY_NUM6 kEY_NUM7 kEY_NUM8 kEY_NUM9 gAME_A gAME_B gAME_C gAME_D fIRE lEVEL_DOWN lEVEL_UP
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: GameKeyFactory -> IO ()
-initFields_ this = do
-    jset this.nONE =<< (GameKey.new_2 ((jget ((jio (InputFactory.getInstance))).mAX) - 1) "None")
-    jset this.uP =<< (GameKey.new_2 (Canvas.uP) (jget ((jio (CommonPhoneStrings.getInstance))).uP))
-    jset this.dOWN =<< (GameKey.new_2 (Canvas.dOWN) (jget ((jio (CommonPhoneStrings.getInstance))).dOWN))
-    jset this.lEFT =<< (GameKey.new_2 (Canvas.lEFT) (jget ((jio (CommonPhoneStrings.getInstance))).lEFT))
-    jset this.rIGHT =<< (GameKey.new_2 (Canvas.rIGHT) (jget ((jio (CommonPhoneStrings.getInstance))).rIGHT))
-    jset this.kEY_POUND =<< (GameKey.new_2 (Canvas.kEY_POUND) "POUND")
-    jset this.kEY_STAR =<< (GameKey.new_2 (Canvas.kEY_STAR) "STAR")
-    jset this.kEY_NUM0 =<< (GameKey.new_2 (Canvas.kEY_NUM0) (jget ((jio (CommonPhoneStrings.getInstance))).zERO))
-    jset this.kEY_NUM1 =<< (GameKey.new_2 (Canvas.kEY_NUM1) (jget ((jio (CommonPhoneStrings.getInstance))).oNE))
-    jset this.kEY_NUM2 =<< (GameKey.new_2 (Canvas.kEY_NUM2) (jget ((jio (CommonPhoneStrings.getInstance))).tWO))
-    jset this.kEY_NUM3 =<< (GameKey.new_2 (Canvas.kEY_NUM3) (jget ((jio (CommonPhoneStrings.getInstance))).tHREE))
-    jset this.kEY_NUM4 =<< (GameKey.new_2 (Canvas.kEY_NUM4) (jget ((jio (CommonPhoneStrings.getInstance))).fOUR))
-    jset this.kEY_NUM5 =<< (GameKey.new_2 (Canvas.kEY_NUM5) (jget ((jio (CommonPhoneStrings.getInstance))).fIVE))
-    jset this.kEY_NUM6 =<< (GameKey.new_2 (Canvas.kEY_NUM6) (jget ((jio (CommonPhoneStrings.getInstance))).sIX))
-    jset this.kEY_NUM7 =<< (GameKey.new_2 (Canvas.kEY_NUM7) (jget ((jio (CommonPhoneStrings.getInstance))).sEVEN))
-    jset this.kEY_NUM8 =<< (GameKey.new_2 (Canvas.kEY_NUM8) (jget ((jio (CommonPhoneStrings.getInstance))).eIGHT))
-    jset this.kEY_NUM9 =<< (GameKey.new_2 (Canvas.kEY_NUM9) (jget ((jio (CommonPhoneStrings.getInstance))).nINE))
-    jset this.gAME_A =<< (GameKey.new_2 (Canvas.gAME_A) "Game A")
-    jset this.gAME_B =<< (GameKey.new_2 (Canvas.gAME_B) "Game B")
-    jset this.gAME_C =<< (GameKey.new_2 (Canvas.gAME_C) "Game C")
-    jset this.gAME_D =<< (GameKey.new_2 (Canvas.gAME_D) "Game D")
-    jset this.fIRE =<< (GameKey.new_2 (Canvas.fIRE) (jget ((jio (CommonPhoneStrings.getInstance))).fIRE))
-    jset this.lEVEL_DOWN =<< (GameKey.new_2 (Canvas.kEY_NUM9 + 1) "Cheat Level Up")
-    jset this.lEVEL_UP =<< (GameKey.new_2 (Canvas.kEY_NUM9 + 2) "Cheat Level Down")
-    pure ()
-
-new_ :: IO GameKeyFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameKeyFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Javax.Microedition.Lcdui.Canvas as Canvas
+import Org.Allbinary.String.CommonPhoneStrings as CommonPhoneStrings
+import Org.Allbinary.Game.Input.GameKey as GameKey
+import Org.Allbinary.Game.Input.InputFactory as InputFactory
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
-getInstance :: IO (GameKeyFactory)
-getInstance = do
-        when ((jget GameKeyFactory.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset GameKeyFactory.instance_ (assignedValue)
-        pure ((javaCast (jget GameKeyFactory.instance_) :: GameKeyFactory))
+jclass : String
+jclass =
+    "GameKeyFactory"
 
+
+jchain : List String
+jchain =
+    [ "GameKeyFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "NONE", JR.defaultOf "" ), ( "UP", JR.defaultOf "" ), ( "DOWN", JR.defaultOf "" ), ( "LEFT", JR.defaultOf "" ), ( "RIGHT", JR.defaultOf "" ), ( "KEY_POUND", JR.defaultOf "" ), ( "KEY_STAR", JR.defaultOf "" ), ( "KEY_NUM0", JR.defaultOf "" ), ( "KEY_NUM1", JR.defaultOf "" ), ( "KEY_NUM2", JR.defaultOf "" ), ( "KEY_NUM3", JR.defaultOf "" ), ( "KEY_NUM4", JR.defaultOf "" ), ( "KEY_NUM5", JR.defaultOf "" ), ( "KEY_NUM6", JR.defaultOf "" ), ( "KEY_NUM7", JR.defaultOf "" ), ( "KEY_NUM8", JR.defaultOf "" ), ( "KEY_NUM9", JR.defaultOf "" ), ( "GAME_A", JR.defaultOf "" ), ( "GAME_B", JR.defaultOf "" ), ( "GAME_C", JR.defaultOf "" ), ( "GAME_D", JR.defaultOf "" ), ( "FIRE", JR.defaultOf "" ), ( "LEVEL_DOWN", JR.defaultOf "" ), ( "LEVEL_UP", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameKeyFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameKeyFactory" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "NONE" "" JR.this (JR.new GameKey.jnew_2 [ (JR.map2 JR.sub (JR.field "MAX" (JR.callStatic InputFactory.jm_getInstance_0 [])) (JR.int 1)), (JR.str "None") ])),
+                JR.exec (JR.setField "UP" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_UP, (JR.field "UP" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "DOWN" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_DOWN, (JR.field "DOWN" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "LEFT" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_LEFT, (JR.field "LEFT" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "RIGHT" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_RIGHT, (JR.field "RIGHT" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "KEY_POUND" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_POUND, (JR.str "POUND") ])),
+                JR.exec (JR.setField "KEY_STAR" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_STAR, (JR.str "STAR") ])),
+                JR.exec (JR.setField "KEY_NUM0" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_NUM0, (JR.field "ZERO" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "KEY_NUM1" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_NUM1, (JR.field "ONE" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "KEY_NUM2" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_NUM2, (JR.field "TWO" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "KEY_NUM3" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_NUM3, (JR.field "THREE" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "KEY_NUM4" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_NUM4, (JR.field "FOUR" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "KEY_NUM5" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_NUM5, (JR.field "FIVE" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "KEY_NUM6" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_NUM6, (JR.field "SIX" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "KEY_NUM7" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_NUM7, (JR.field "SEVEN" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "KEY_NUM8" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_NUM8, (JR.field "EIGHT" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "KEY_NUM9" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_KEY_NUM9, (JR.field "NINE" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "GAME_A" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_GAME_A, (JR.str "Game A") ])),
+                JR.exec (JR.setField "GAME_B" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_GAME_B, (JR.str "Game B") ])),
+                JR.exec (JR.setField "GAME_C" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_GAME_C, (JR.str "Game C") ])),
+                JR.exec (JR.setField "GAME_D" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_GAME_D, (JR.str "Game D") ])),
+                JR.exec (JR.setField "FIRE" "" JR.this (JR.new GameKey.jnew_2 [ Canvas.jstatic_FIRE, (JR.field "FIRE" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "LEVEL_DOWN" "" JR.this (JR.new GameKey.jnew_2 [ (JR.plus Canvas.jstatic_KEY_NUM9 (JR.int 1)), (JR.str "Cheat Level Up") ])),
+                JR.exec (JR.setField "LEVEL_UP" "" JR.this (JR.new GameKey.jnew_2 [ (JR.plus Canvas.jstatic_KEY_NUM9 (JR.int 2)), (JR.str "Cheat Level Down") ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "GameKeyFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

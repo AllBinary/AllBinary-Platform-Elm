@@ -1,123 +1,171 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.address
-module StreetAddressData where
+module Org.Allbinary.Business.User.Address.StreetAddressData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.address
+-}
 
-data StreetAddressData = StreetAddressData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull StreetAddressData where
-    javaNull = javaNullRecord "StreetAddressData"
 
-instance JavaEquals StreetAddressData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq StreetAddressData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "StreetAddressData"
 
-instance JavaObjectClass StreetAddressData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-mAX :: Int
-mAX = 255
+jchain : List String
+jchain =
+    [ "StreetAddressData" ]
 
-mIN :: Int
-mIN = 0
 
-fORM :: String
-fORM = "FORM"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-sTATES :: String
-sTATES = "STATES"
 
-nUMBEROFADDRESSES :: String
-nUMBEROFADDRESSES = "STREETADDRESS_NUMBEROFADDRESSES"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-iD :: String
-iD = "STREETADDRESS_ID"
 
-dEFAULT :: String
-dEFAULT = "STREETADDRESS_DEFAULT_ADDRESS"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "StreetAddressData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_MAX", jstatic_MAX ), ( "jstatic_MIN", jstatic_MIN ), ( "jstatic_FORM", jstatic_FORM ), ( "jstatic_STATES", jstatic_STATES ), ( "jstatic_NUMBEROFADDRESSES", jstatic_NUMBEROFADDRESSES ), ( "jstatic_ID", jstatic_ID ), ( "jstatic_DEFAULT", jstatic_DEFAULT ), ( "jstatic_ADDRESS", jstatic_ADDRESS ), ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_STREET", jstatic_STREET ), ( "jstatic_CITY", jstatic_CITY ), ( "jstatic_STATE", jstatic_STATE ), ( "jstatic_CODE", jstatic_CODE ), ( "jstatic_COUNTRY", jstatic_COUNTRY ) ]
+        jheap
 
-aDDRESS :: String
-aDDRESS = "STREETADDRESS_ADDRESS"
 
-nAME :: String
-nAME = "STREETADDRESS_NAME"
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-sTREET :: String
-sTREET = "STREETADDRESS_STREET"
 
-cITY :: String
-cITY = "STREETADDRESS_CITY"
+jstatic_MAX : JR.M
+jstatic_MAX s =
+    JR.static "StreetAddressData" jclinit "MAX"
+        (JR.int 255)
+        s
 
-sTATE :: String
-sTATE = "STREETADDRESS_STATE"
 
-cODE :: String
-cODE = "STREETADDRESS_CODE"
+jstatic_MIN : JR.M
+jstatic_MIN s =
+    JR.static "StreetAddressData" jclinit "MIN"
+        (JR.int 0)
+        s
 
-cOUNTRY :: String
-cOUNTRY = "STREETADDRESS_COUNTRY"
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jstatic_FORM : JR.M
+jstatic_FORM s =
+    JR.static "StreetAddressData" jclinit "FORM"
+        (JR.str "FORM")
+        s
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO StreetAddressData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = StreetAddressData header_
-    jregisterLevel header_ this
-    pure this
+jstatic_STATES : JR.M
+jstatic_STATES s =
+    JR.static "StreetAddressData" jclinit "STATES"
+        (JR.str "STATES")
+        s
 
-initFields_ :: StreetAddressData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO StreetAddressData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jstatic_NUMBEROFADDRESSES : JR.M
+jstatic_NUMBEROFADDRESSES s =
+    JR.static "StreetAddressData" jclinit "NUMBEROFADDRESSES"
+        (JR.str "STREETADDRESS_NUMBEROFADDRESSES")
+        s
 
-init_ :: StreetAddressData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jstatic_ID : JR.M
+jstatic_ID s =
+    JR.static "StreetAddressData" jclinit "ID"
+        (JR.str "STREETADDRESS_ID")
+        s
+
+
+jstatic_DEFAULT : JR.M
+jstatic_DEFAULT s =
+    JR.static "StreetAddressData" jclinit "DEFAULT"
+        (JR.str "STREETADDRESS_DEFAULT_ADDRESS")
+        s
+
+
+jstatic_ADDRESS : JR.M
+jstatic_ADDRESS s =
+    JR.static "StreetAddressData" jclinit "ADDRESS"
+        (JR.str "STREETADDRESS_ADDRESS")
+        s
+
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "StreetAddressData" jclinit "NAME"
+        (JR.str "STREETADDRESS_NAME")
+        s
+
+
+jstatic_STREET : JR.M
+jstatic_STREET s =
+    JR.static "StreetAddressData" jclinit "STREET"
+        (JR.str "STREETADDRESS_STREET")
+        s
+
+
+jstatic_CITY : JR.M
+jstatic_CITY s =
+    JR.static "StreetAddressData" jclinit "CITY"
+        (JR.str "STREETADDRESS_CITY")
+        s
+
+
+jstatic_STATE : JR.M
+jstatic_STATE s =
+    JR.static "StreetAddressData" jclinit "STATE"
+        (JR.str "STREETADDRESS_STATE")
+        s
+
+
+jstatic_CODE : JR.M
+jstatic_CODE s =
+    JR.static "StreetAddressData" jclinit "CODE"
+        (JR.str "STREETADDRESS_CODE")
+        s
+
+
+jstatic_COUNTRY : JR.M
+jstatic_COUNTRY s =
+    JR.static "StreetAddressData" jclinit "COUNTRY"
+        (JR.str "STREETADDRESS_COUNTRY")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

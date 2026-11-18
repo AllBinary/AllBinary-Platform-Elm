@@ -1,243 +1,168 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.data.tree.dom
-module XslHelper where
+module Org.Allbinary.Data.Tree.Dom.XslHelper exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ByteArrayOutputStream -- java.io.ByteArrayOutputStream
-import qualified File -- java.io.File
-import qualified OutputStream -- java.io.OutputStream
-import qualified StringBufferInputStream -- java.io.StringBufferInputStream
-import qualified Templates -- javax.xml.transform.Templates
-import qualified Transformer -- javax.xml.transform.Transformer
-import qualified TransformerFactory -- javax.xml.transform.TransformerFactory
-import qualified URIResolver -- javax.xml.transform.URIResolver
-import qualified StreamResult -- javax.xml.transform.stream.StreamResult
-import qualified StreamSource -- javax.xml.transform.stream.StreamSource
-import qualified XmlDocumentHelper -- org.allbinary.data.tree.dom.document.XmlDocumentHelper
-import qualified Document -- org.w3c.dom.Document
+{-| Generated Code Do Not Modify package org.allbinary.data.tree.dom
+-}
 
-data XslHelper = XslHelper
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull XslHelper where
-    javaNull = javaNullRecord "XslHelper"
-
-instance JavaEquals XslHelper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq XslHelper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass XslHelper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: XslHelper
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO XslHelper
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = XslHelper header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "translate_overload1" (\() -> translate_overload1_impl this)
-    jregisterMethod header_ "translate_4" (\() -> translate_4_impl this)
-    jregisterMethod header_ "translateTemplate" (\() -> translateTemplate_impl this)
-    jregisterMethod header_ "translate_2_overload1" (\() -> translate_2_overload1_impl this)
-    jregisterMethod header_ "translate_2_overload2" (\() -> translate_2_overload2_impl this)
-    jregisterMethod header_ "translate_overload2" (\() -> translate_overload2_impl this)
-    jregisterMethod header_ "export" (\() -> export_impl this)
-    pure this
-
-initFields_ :: XslHelper -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import JByteArrayOutputStream
+import Org.Allbinary.Data.Tree.Dom.Document.XmlDocumentHelper as XmlDocumentHelper
 
 
-getInstance :: IO (XslHelper)
-getInstance = do
-        pure (XslHelper.instance_)
-
-new_ :: IO XslHelper
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: XslHelper -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "XslHelper"
 
 
--- Java overloads of translate: calls the overload for the types of the arguments
-translate :: (JavaObjectClass this_, JavaObjectClass o1, JavaObjectClass o3) => this_ -> o1 -> StreamSource.StreamSource -> o3 -> IO (JavaObject)
-translate this a1 a2 a3
-    | jisInstanceOf a1 (javaNull :: StreamSource.StreamSource) && jisInstanceOf a3 (javaNull :: StreamResult.StreamResult) = fmap jtoObject (translate_overload1 this (javaCast a1 :: StreamSource.StreamSource) a2 (javaCast a3 :: StreamResult.StreamResult))
-    | jisInstanceOf a1 (javaNull :: URIResolver.URIResolver) && jisInstanceOf a3 (javaNull :: StreamSource.StreamSource) = fmap jtoObject (translate_overload2 this (javaCast a1 :: URIResolver.URIResolver) a2 (javaCast a3 :: StreamSource.StreamSource))
-    | otherwise = fmap jtoObject (translate_overload2 this (javaCast a1 :: URIResolver.URIResolver) a2 (javaCast a3 :: StreamSource.StreamSource))
-
--- throws Exception
-translate_overload1 :: (JavaObjectClass this_) => this_ -> StreamSource.StreamSource -> StreamSource.StreamSource -> StreamResult.StreamResult -> IO (OutputStream.OutputStream)
-translate_overload1 object_ a1 a2 a3 = jmethod object_ "translate_overload1" (\() -> (translate_overload1_impl (javaCast object_ :: XslHelper))) () a1 a2 a3
-
-translate_overload1_super :: (JavaObjectClass this_) => this_ -> StreamSource.StreamSource -> StreamSource.StreamSource -> StreamResult.StreamResult -> IO (OutputStream.OutputStream)
-translate_overload1_super object_ a1 a2 a3 = (translate_overload1_impl (javaCast object_ :: XslHelper)) a1 a2 a3
-
-translate_overload1_impl :: XslHelper -> StreamSource.StreamSource -> StreamSource.StreamSource -> StreamResult.StreamResult -> IO (OutputStream.OutputStream)
-translate_overload1_impl this xsltStreamSource xmlStreamSource streamResult = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            transformerFactory <- (TransformerFactory.newInstance)
-            transformer <- (TransformerFactory.newTransformer transformerFactory xsltStreamSource)
-            Control.Monad.void (Transformer.transform transformer xmlStreamSource streamResult)
-            (StreamResult.getOutputStream streamResult)
+jchain : List String
+jchain =
+    [ "XslHelper" ]
 
 
--- throws Exception
-translate_4 :: (JavaObjectClass this_) => this_ -> URIResolver.URIResolver -> StreamSource.StreamSource -> StreamSource.StreamSource -> StreamResult.StreamResult -> IO (OutputStream.OutputStream)
-translate_4 object_ a1 a2 a3 a4 = jmethod object_ "translate_4" (\() -> (translate_4_impl (javaCast object_ :: XslHelper))) () a1 a2 a3 a4
-
-translate_4_super :: (JavaObjectClass this_) => this_ -> URIResolver.URIResolver -> StreamSource.StreamSource -> StreamSource.StreamSource -> StreamResult.StreamResult -> IO (OutputStream.OutputStream)
-translate_4_super object_ a1 a2 a3 a4 = (translate_4_impl (javaCast object_ :: XslHelper)) a1 a2 a3 a4
-
-translate_4_impl :: XslHelper -> URIResolver.URIResolver -> StreamSource.StreamSource -> StreamSource.StreamSource -> StreamResult.StreamResult -> IO (OutputStream.OutputStream)
-translate_4_impl this resolver xsltStreamSource xmlStreamSource streamResult = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            tFactory <- (TransformerFactory.newInstance)
-            Control.Monad.void (TransformerFactory.setURIResolver tFactory resolver)
-            transformer <- (TransformerFactory.newTransformer tFactory xsltStreamSource)
-            Control.Monad.void (Transformer.transform transformer xmlStreamSource streamResult)
-            (StreamResult.getOutputStream streamResult)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
--- throws Exception
-translateTemplate :: (JavaObjectClass this_) => this_ -> Templates.Templates -> StreamSource.StreamSource -> IO (String)
-translateTemplate object_ a1 a2 = jmethod object_ "translateTemplate" (\() -> (translateTemplate_impl (javaCast object_ :: XslHelper))) () a1 a2
-
-translateTemplate_super :: (JavaObjectClass this_) => this_ -> Templates.Templates -> StreamSource.StreamSource -> IO (String)
-translateTemplate_super object_ a1 a2 = (translateTemplate_impl (javaCast object_ :: XslHelper)) a1 a2
-
-translateTemplate_impl :: XslHelper -> Templates.Templates -> StreamSource.StreamSource -> IO (String)
-translateTemplate_impl this templates xmlStreamSource = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            outputStream <- (ByteArrayOutputStream.new_)
-            streamResult <- (StreamResult.new_1 outputStream)
-            Control.Monad.void (Templates.transform ((jio (Templates.newTransformer templates))) xmlStreamSource streamResult)
-            (StreamResult.toString ((jio (StreamResult.getOutputStream streamResult))))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "translate_3", jm_translate_3 )
+        , ( "translate_4", jm_translate_4 )
+        , ( "translateTemplate_2", jm_translateTemplate_2 )
+        , ( "translate_2", jm_translate_2 )
+        , ( "export_3", jm_export_3 ) ]
+        JR.noMethods
 
 
--- Java overloads of translate: calls the overload for the types of the arguments
-translate_2 :: (JavaObjectClass this_, JavaObjectClass o2) => this_ -> StreamSource.StreamSource -> o2 -> IO (String)
-translate_2 this a1 a2
-    | jisInstanceOf a2 (javaNull :: Document.Document) = translate_2_overload1 this a1 (javaCast a2 :: Document.Document)
-    | jisInstanceOf a2 (javaNull :: StreamSource.StreamSource) = translate_2_overload2 this a1 (javaCast a2 :: StreamSource.StreamSource)
-    | otherwise = translate_2_overload2 this a1 (javaCast a2 :: StreamSource.StreamSource)
-
--- throws Exception
-translate_2_overload1 :: (JavaObjectClass this_) => this_ -> StreamSource.StreamSource -> Document.Document -> IO (String)
-translate_2_overload1 object_ a1 a2 = jmethod object_ "translate_2_overload1" (\() -> (translate_2_overload1_impl (javaCast object_ :: XslHelper))) () a1 a2
-
-translate_2_overload1_super :: (JavaObjectClass this_) => this_ -> StreamSource.StreamSource -> Document.Document -> IO (String)
-translate_2_overload1_super object_ a1 a2 = (translate_2_overload1_impl (javaCast object_ :: XslHelper)) a1 a2
-
-translate_2_overload1_impl :: XslHelper -> StreamSource.StreamSource -> Document.Document -> IO (String)
-translate_2_overload1_impl this xsltStreamSource xmlDocument = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            outputStream <- (ByteArrayOutputStream.new_)
-            (OutputStream.toString ((jio (XslHelper.translate this xsltStreamSource (jio (StreamSource.new_1 (jio (StringBufferInputStream.new_1 (jio (XmlDocumentHelper.toString xmlDocument)))))) (jio (StreamResult.new_1 outputStream))))))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "XslHelper"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_translate_3", jm_translate_3 ), ( "jm_translate_4", jm_translate_4 ), ( "jm_translateTemplate_2", jm_translateTemplate_2 ), ( "jm_translate_2", jm_translate_2 ), ( "jm_export_3", jm_export_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
--- throws Exception
-translate_2_overload2 :: (JavaObjectClass this_) => this_ -> StreamSource.StreamSource -> StreamSource.StreamSource -> IO (String)
-translate_2_overload2 object_ a1 a2 = jmethod object_ "translate_2_overload2" (\() -> (translate_2_overload2_impl (javaCast object_ :: XslHelper))) () a1 a2
-
-translate_2_overload2_super :: (JavaObjectClass this_) => this_ -> StreamSource.StreamSource -> StreamSource.StreamSource -> IO (String)
-translate_2_overload2_super object_ a1 a2 = (translate_2_overload2_impl (javaCast object_ :: XslHelper)) a1 a2
-
-translate_2_overload2_impl :: XslHelper -> StreamSource.StreamSource -> StreamSource.StreamSource -> IO (String)
-translate_2_overload2_impl this xsltStreamSource xmlStreamSource = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            outputStream <- (ByteArrayOutputStream.new_)
-            (OutputStream.toString ((jio (XslHelper.translate this xsltStreamSource xmlStreamSource (jio (StreamResult.new_1 outputStream))))))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
--- throws Exception
-translate_overload2 :: (JavaObjectClass this_) => this_ -> URIResolver.URIResolver -> StreamSource.StreamSource -> StreamSource.StreamSource -> IO (String)
-translate_overload2 object_ a1 a2 a3 = jmethod object_ "translate_overload2" (\() -> (translate_overload2_impl (javaCast object_ :: XslHelper))) () a1 a2 a3
-
-translate_overload2_super :: (JavaObjectClass this_) => this_ -> URIResolver.URIResolver -> StreamSource.StreamSource -> StreamSource.StreamSource -> IO (String)
-translate_overload2_super object_ a1 a2 a3 = (translate_overload2_impl (javaCast object_ :: XslHelper)) a1 a2 a3
-
-translate_overload2_impl :: XslHelper -> URIResolver.URIResolver -> StreamSource.StreamSource -> StreamSource.StreamSource -> IO (String)
-translate_overload2_impl this resolver xsltStreamSource xmlStreamSource = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            outputStream <- (ByteArrayOutputStream.new_)
-            (OutputStream.toString ((jio (XslHelper.translate_4 this resolver xsltStreamSource xmlStreamSource (jio (StreamResult.new_1 outputStream))))))
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "XslHelper" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
 
--- throws Exception
-export :: (JavaObjectClass this_) => this_ -> File.File -> String -> Document.Document -> IO (())
-export object_ a1 a2 a3 = jmethod object_ "export" (\() -> (export_impl (javaCast object_ :: XslHelper))) () a1 a2 a3
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
-export_super :: (JavaObjectClass this_) => this_ -> File.File -> String -> Document.Document -> IO (())
-export_super object_ a1 a2 a3 = (export_impl (javaCast object_ :: XslHelper)) a1 a2 a3
 
-export_impl :: XslHelper -> File.File -> String -> Document.Document -> IO (())
-export_impl this outputFile xsltFilePath xmlDocument = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            Control.Monad.void (File.createNewFile outputFile)
-            Control.Monad.void (XslHelper.translate this (jio (StreamSource.new_1 xsltFilePath)) (jio (StreamSource.new_1 (jio (StringBufferInputStream.new_1 (jio (XmlDocumentHelper.toString xmlDocument)))))) (jio (StreamResult.new_1 outputFile)))
-        pure ()
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_translate_3 : JR.Method
+jm_translate_3 jheap jthis jargs =
+    JR.method [ ( "xsltStreamSource", "" ), ( "xmlStreamSource", "" ), ( "streamResult", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "transformerFactory" "" (JR.callStatic (JR.namedMethod "TransformerFactory.jm_newInstance_0") []), 
+                        JR.declare "transformer" "" (JR.invoke "newTransformer_1" (JR.local "transformerFactory") [ (JR.local "xsltStreamSource") ]), 
+                        JR.exec (JR.invoke "transform_2" (JR.local "transformer") [ (JR.local "xmlStreamSource"), (JR.local "streamResult") ]), 
+                        JR.return (JR.invoke "getOutputStream_0" (JR.local "streamResult") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_translate_4 : JR.Method
+jm_translate_4 jheap jthis jargs =
+    JR.method [ ( "resolver", "" ), ( "xsltStreamSource", "" ), ( "xmlStreamSource", "" ), ( "streamResult", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "tFactory" "" (JR.callStatic (JR.namedMethod "TransformerFactory.jm_newInstance_0") []), 
+                        JR.exec (JR.invoke "setURIResolver_1" (JR.local "tFactory") [ (JR.local "resolver") ]), 
+                        JR.declare "transformer" "" (JR.invoke "newTransformer_1" (JR.local "tFactory") [ (JR.local "xsltStreamSource") ]), 
+                        JR.exec (JR.invoke "transform_2" (JR.local "transformer") [ (JR.local "xmlStreamSource"), (JR.local "streamResult") ]), 
+                        JR.return (JR.invoke "getOutputStream_0" (JR.local "streamResult") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_translateTemplate_2 : JR.Method
+jm_translateTemplate_2 jheap jthis jargs =
+    JR.method [ ( "templates", "" ), ( "xmlStreamSource", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "outputStream" "" (JR.new JByteArrayOutputStream.jnew_0 []), 
+                        JR.declare "streamResult" "" (JR.new (JR.namedMethod "StreamResult.jnew_1") [ (JR.local "outputStream") ]), 
+                        JR.exec (JR.invoke "transform_2" (JR.invoke "newTransformer_0" (JR.local "templates") []) [ (JR.local "xmlStreamSource"), (JR.local "streamResult") ]), 
+                        JR.return (JR.invoke "toString_0" (JR.invoke "getOutputStream_0" (JR.local "streamResult") []) []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_translate_2 : JR.Method
+jm_translate_2 jheap jthis jargs =
+    JR.method [ ( "xsltStreamSource", "" ), ( "xmlDocument", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "outputStream" "" (JR.new JByteArrayOutputStream.jnew_0 []), 
+                        JR.return (JR.invoke "toString_0" (JR.invoke "translate_3" JR.this [ (JR.local "xsltStreamSource"), (JR.new (JR.namedMethod "StreamSource.jnew_1") [ (JR.new (JR.namedMethod "StringBufferInputStream.jnew_1") [ (JR.callStatic XmlDocumentHelper.jm_toString_1 [ (JR.local "xmlDocument") ]) ]) ]), (JR.new (JR.namedMethod "StreamResult.jnew_1") [ (JR.local "outputStream") ]) ]) []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_export_3 : JR.Method
+jm_export_3 jheap jthis jargs =
+    JR.method [ ( "outputFile", "" ), ( "xsltFilePath", "" ), ( "xmlDocument", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "createNewFile_0" (JR.local "outputFile") []), 
+                        JR.exec (JR.invoke "translate_3" JR.this [ (JR.new (JR.namedMethod "StreamSource.jnew_1") [ (JR.local "xsltFilePath") ]), (JR.new (JR.namedMethod "StreamSource.jnew_1") [ (JR.new (JR.namedMethod "StringBufferInputStream.jnew_1") [ (JR.callStatic XmlDocumentHelper.jm_toString_1 [ (JR.local "xmlDocument") ]) ]) ]), (JR.new (JR.namedMethod "StreamResult.jnew_1") [ (JR.local "outputFile") ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

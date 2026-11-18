@@ -1,131 +1,114 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.motion.action
-module GameKeyFromMotionGestureEventListener (module GameKeyFromMotionGestureEventListener, module CompleteMotionGestureInputEventListener) where
+module Org.Allbinary.Game.Input.Motion.Action.GameKeyFromMotionGestureEventListener exposing (..)
 
-import CompleteMotionGestureInputEventListener hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, onEvent, onEvent_super, onEvent_impl, onCompleteMotionGestureInputEvent, onCompleteMotionGestureInputEvent_super, onCompleteMotionGestureInputEvent_impl, logUtil, previousGameKeyEvent)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameKeyCompleteMotionGestureInputEvent -- same package or java.lang
-import qualified CompleteMotionGestureInputEvent -- org.allbinary.game.input.CompleteMotionGestureInputEvent
-import qualified CompleteMotionGestureInputEventListener -- org.allbinary.game.input.CompleteMotionGestureInputEventListener
-import qualified DownGameKeyEventHandler -- org.allbinary.game.input.event.DownGameKeyEventHandler
-import qualified GameKeyEvent -- org.allbinary.game.input.event.GameKeyEvent
-import qualified UpGameKeyEventHandler -- org.allbinary.game.input.event.UpGameKeyEventHandler
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventStrings -- org.allbinary.logic.util.event.EventStrings
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.input.motion.action
+-}
 
-data GameKeyFromMotionGestureEventListener = GameKeyFromMotionGestureEventListener
-    { header_ :: JavaHeader
-    , base :: CompleteMotionGestureInputEventListener.CompleteMotionGestureInputEventListener
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , previousGameKeyEvent :: IORef (GameKeyEvent.GameKeyEvent)
-    }
-
-instance JavaNull GameKeyFromMotionGestureEventListener where
-    javaNull = javaNullRecord "GameKeyFromMotionGestureEventListener"
-
-instance JavaEquals GameKeyFromMotionGestureEventListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameKeyFromMotionGestureEventListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameKeyFromMotionGestureEventListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO GameKeyFromMotionGestureEventListener
-newRecord_ = do
-    base <- CompleteMotionGestureInputEventListener.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    previousGameKeyEvent <- newIORef javaNull
-    let this = GameKeyFromMotionGestureEventListener header_ base logUtil previousGameKeyEvent
-    jregisterLevel header_ this
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "onCompleteMotionGestureInputEvent" (\() -> onCompleteMotionGestureInputEvent_impl this)
-    pure this
-
-initFields_ :: GameKeyFromMotionGestureEventListener -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.previousGameKeyEvent (GameKeyEvent.nONE)
-    pure ()
-
-new_ :: IO GameKeyFromMotionGestureEventListener
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameKeyFromMotionGestureEventListener -> IO ()
-init_ this = do
-    CompleteMotionGestureInputEventListener.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Input.CompleteMotionGestureInputEventListener as CompleteMotionGestureInputEventListener
+import Org.Allbinary.Game.Input.Event.DownGameKeyEventHandler as DownGameKeyEventHandler
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Game.Input.Event.GameKeyEvent as GameKeyEvent
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Input.Event.UpGameKeyEventHandler as UpGameKeyEventHandler
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: GameKeyFromMotionGestureEventListener))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: GameKeyFromMotionGestureEventListener)) a1
-
-onEvent_impl :: GameKeyFromMotionGestureEventListener -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jio (EventStrings.getInstance))).pERFORMANCE_MESSAGE) this)
-        pure ()
+jclass : String
+jclass =
+    "GameKeyFromMotionGestureEventListener"
 
 
-onCompleteMotionGestureInputEvent :: (JavaObjectClass this_) => this_ -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-onCompleteMotionGestureInputEvent object_ a1 = jmethod object_ "onCompleteMotionGestureInputEvent" (\() -> (onCompleteMotionGestureInputEvent_impl (javaCast object_ :: GameKeyFromMotionGestureEventListener))) () a1
+jchain : List String
+jchain =
+    [ "GameKeyFromMotionGestureEventListener" ]
+        ++ CompleteMotionGestureInputEventListener.jchain
 
-onCompleteMotionGestureInputEvent_super :: (JavaObjectClass this_) => this_ -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-onCompleteMotionGestureInputEvent_super object_ a1 = (onCompleteMotionGestureInputEvent_impl (javaCast object_ :: GameKeyFromMotionGestureEventListener)) a1
 
-onCompleteMotionGestureInputEvent_impl :: GameKeyFromMotionGestureEventListener -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-onCompleteMotionGestureInputEvent_impl this completeMotionGestureInputEvent = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this "onCompleteMotionGestureInputEvent" e)
-            ) $ do
-            let gameKeyCompleteMotionGestureInputEvent = (javaCast completeMotionGestureInputEvent :: GameKeyCompleteMotionGestureInputEvent.GameKeyCompleteMotionGestureInputEvent)
-            gameKeyEvent <- (GameKeyCompleteMotionGestureInputEvent.getGameKeyEvent gameKeyCompleteMotionGestureInputEvent)
-            when (gameKeyEvent /= (jget (this).previousGameKeyEvent)) $ do
-                when ((jget (this).previousGameKeyEvent) /= GameKeyEvent.nONE) $ do
-                    Control.Monad.void (UpGameKeyEventHandler.fireEvent ((jio (UpGameKeyEventHandler.getInstance))) (jget (this).previousGameKeyEvent))
-                jset (this).previousGameKeyEvent (gameKeyEvent)
-                when ((gameKeyEvent /= javaNull) && (gameKeyEvent /= GameKeyEvent.nONE)) $ do
-                    Control.Monad.void (DownGameKeyEventHandler.fireEvent ((jio (DownGameKeyEventHandler.getInstance))) gameKeyEvent)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    CompleteMotionGestureInputEventListener.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "previousGameKeyEvent", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "onEvent_1", jm_onEvent_1 )
+        , ( "onCompleteMotionGestureInputEvent_1", jm_onCompleteMotionGestureInputEvent_1 ) ]
+        CompleteMotionGestureInputEventListener.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameKeyFromMotionGestureEventListener"
+        [ ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_onCompleteMotionGestureInputEvent_1", jm_onCompleteMotionGestureInputEvent_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect CompleteMotionGestureInputEventListener.jinit_0 JR.this []),
+            JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "previousGameKeyEvent" "" JR.this GameKeyEvent.jstatic_NONE),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "PERFORMANCE_MESSAGE" (JR.callStatic EventStrings.jm_getInstance_0 [])), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onCompleteMotionGestureInputEvent_1 : JR.Method
+jm_onCompleteMotionGestureInputEvent_1 jheap jthis jargs =
+    JR.method [ ( "completeMotionGestureInputEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "gameKeyCompleteMotionGestureInputEvent" "" (JR.local "completeMotionGestureInputEvent"), 
+                        JR.declare "gameKeyEvent" "" (JR.invoke "getGameKeyEvent_0" (JR.local "gameKeyCompleteMotionGestureInputEvent") []), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "gameKeyEvent") (JR.thisField "previousGameKeyEvent")) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.thisField "previousGameKeyEvent") GameKeyEvent.jstatic_NONE) (JR.run [ 
+                                JR.exec (JR.invoke "fireEvent_1" (JR.callStatic UpGameKeyEventHandler.jm_getInstance_0 []) [ (JR.thisField "previousGameKeyEvent") ]) ]) identity, 
+                            JR.exec (JR.setField "previousGameKeyEvent" "" JR.this (JR.local "gameKeyEvent")), 
+                            JR.ifElse (JR.and (JR.map2 JR.notEquals (JR.local "gameKeyEvent") JR.null) (JR.map2 JR.notEquals (JR.local "gameKeyEvent") GameKeyEvent.jstatic_NONE)) (JR.run [ 
+                                JR.exec (JR.invoke "fireEvent_1" (JR.callStatic DownGameKeyEventHandler.jm_getInstance_0 []) [ (JR.local "gameKeyEvent") ]) ]) identity ]) identity ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.str "onCompleteMotionGestureInputEvent"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

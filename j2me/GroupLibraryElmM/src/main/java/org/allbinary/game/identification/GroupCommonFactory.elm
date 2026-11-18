@@ -1,108 +1,97 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.identification
-module GroupCommonFactory where
+module Org.Allbinary.Game.Identification.GroupCommonFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
+{-| Generated Code Do Not Modify package org.allbinary.game.identification
+-}
 
-data GroupCommonFactory = GroupCommonFactory
-    { header_ :: JavaHeader
-    , iD :: IORef (Int)
-    , gROUP_NAME_LABEL :: IORef (String)
-    , iD_LABEL :: IORef (String)
-    , aDDING_LABEL :: IORef (String)
-    , tO_LABEL :: IORef (String)
-    }
-
-instance JavaNull GroupCommonFactory where
-    javaNull = javaNullRecord "GroupCommonFactory"
-
-instance JavaEquals GroupCommonFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GroupCommonFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GroupCommonFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GroupCommonFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    iD <- newIORef javaNull
-    gROUP_NAME_LABEL <- newIORef ""
-    iD_LABEL <- newIORef ""
-    aDDING_LABEL <- newIORef ""
-    tO_LABEL <- newIORef ""
-    let this = GroupCommonFactory header_ iD gROUP_NAME_LABEL iD_LABEL aDDING_LABEL tO_LABEL
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: GroupCommonFactory -> IO ()
-initFields_ this = do
-    jset this.iD =<< (SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 10)
-    jset this.gROUP_NAME_LABEL ("Group Name: ")
-    jset this.iD_LABEL (" Id: ")
-    jset this.aDDING_LABEL ("Adding: ")
-    jset this.tO_LABEL (" to: ")
-    pure ()
-
-new_ :: IO GroupCommonFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GroupCommonFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
 
 
-getInstance :: IO (GroupCommonFactory)
-getInstance = do
-        when ((jget GroupCommonFactory.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset GroupCommonFactory.instance_ (assignedValue)
-        pure ((javaCast (jget GroupCommonFactory.instance_) :: GroupCommonFactory))
+jclass : String
+jclass =
+    "GroupCommonFactory"
 
+
+jchain : List String
+jchain =
+    [ "GroupCommonFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "ID", JR.defaultOf "" ), ( "GROUP_NAME_LABEL", JR.defaultOf "" ), ( "ID_LABEL", JR.defaultOf "" ), ( "ADDING_LABEL", JR.defaultOf "" ), ( "TO_LABEL", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GroupCommonFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GroupCommonFactory" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "ID" "" JR.this (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 10) ])),
+                JR.exec (JR.setField "GROUP_NAME_LABEL" "" JR.this (JR.str "Group Name: ")),
+                JR.exec (JR.setField "ID_LABEL" "" JR.this (JR.str " Id: ")),
+                JR.exec (JR.setField "ADDING_LABEL" "" JR.this (JR.str "Adding: ")),
+                JR.exec (JR.setField "TO_LABEL" "" JR.this (JR.str " to: ")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "GroupCommonFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

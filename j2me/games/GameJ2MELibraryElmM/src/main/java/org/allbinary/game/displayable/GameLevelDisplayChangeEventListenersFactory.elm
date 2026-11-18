@@ -1,129 +1,119 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable
-module GameLevelDisplayChangeEventListenersFactory where
+module Org.Allbinary.Game.Displayable.GameLevelDisplayChangeEventListenersFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DisplayChangeEventHandler -- org.allbinary.graphics.displayable.event.DisplayChangeEventHandler
-import qualified DisplayChangeEventListener -- org.allbinary.graphics.displayable.event.DisplayChangeEventListener
-import qualified BasicEventHandler -- org.allbinary.logic.util.event.handler.BasicEventHandler
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable
+-}
 
-data GameLevelDisplayChangeEventListenersFactory = GameLevelDisplayChangeEventListenersFactory
-    { header_ :: JavaHeader
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull GameLevelDisplayChangeEventListenersFactory where
-    javaNull = javaNullRecord "GameLevelDisplayChangeEventListenersFactory"
-
-instance JavaEquals GameLevelDisplayChangeEventListenersFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameLevelDisplayChangeEventListenersFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameLevelDisplayChangeEventListenersFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameLevelDisplayChangeEventListenersFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameLevelDisplayChangeEventListenersFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    list <- newIORef javaNull
-    let this = GameLevelDisplayChangeEventListenersFactory header_ list
-    jregisterLevel header_ this
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    pure this
-
-initFields_ :: GameLevelDisplayChangeEventListenersFactory -> IO ()
-initFields_ this = do
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
-
-new_ :: IO GameLevelDisplayChangeEventListenersFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameLevelDisplayChangeEventListenersFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Graphics.Displayable.Event.DisplayChangeEventHandler as DisplayChangeEventHandler
 
 
-getInstance :: IO (GameLevelDisplayChangeEventListenersFactory)
-getInstance = do
-        pure (GameLevelDisplayChangeEventListenersFactory.instance_)
+jclass : String
+jclass =
+    "GameLevelDisplayChangeEventListenersFactory"
 
 
-add :: (JavaObjectClass this_) => this_ -> DisplayChangeEventListener.DisplayChangeEventListener -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: GameLevelDisplayChangeEventListenersFactory))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> DisplayChangeEventListener.DisplayChangeEventListener -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: GameLevelDisplayChangeEventListenersFactory)) a1
-
-add_impl :: GameLevelDisplayChangeEventListenersFactory -> DisplayChangeEventListener.DisplayChangeEventListener -> IO (())
-add_impl this displayChangeEventListener = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) displayChangeEventListener)
-        Control.Monad.void (DisplayChangeEventHandler.addListenerInterface ((jio (DisplayChangeEventHandler.getInstance))) displayChangeEventListener)
-        pure ()
+jchain : List String
+jchain =
+    [ "GameLevelDisplayChangeEventListenersFactory" ]
 
 
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: GameLevelDisplayChangeEventListenersFactory))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "list", JR.defaultOf "" ) ]
 
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: GameLevelDisplayChangeEventListenersFactory))
 
-clear_impl :: GameLevelDisplayChangeEventListenersFactory -> IO (())
-clear_impl this = do
-        displayChangeEventHandler <- (DisplayChangeEventHandler.getInstance)
-        displayChangeEventListener <- newIORef (javaNull)
-        index <- newIORef =<< (BasicArrayList.size ((jget (this).list)))
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            jset displayChangeEventListener ((javaCast (jindex ((jget ((jget (this).list)).objectArray)) ((jget index))) :: DisplayChangeEventListener.DisplayChangeEventListener))
-            Control.Monad.void (BasicEventHandler.removeListener displayChangeEventHandler (jget displayChangeEventListener))
-        Control.Monad.void (BasicArrayList.clear ((jget (this).list)))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "add_1", jm_add_1 )
+        , ( "clear_0", jm_clear_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameLevelDisplayChangeEventListenersFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_add_1", jm_add_1 ), ( "jm_clear_0", jm_clear_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameLevelDisplayChangeEventListenersFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "displayChangeEventListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "displayChangeEventListener") ]), 
+                    JR.exec (JR.invoke "addListenerInterface_1" (JR.callStatic DisplayChangeEventHandler.jm_getInstance_0 []) [ (JR.local "displayChangeEventListener") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "displayChangeEventHandler" "" (JR.callStatic DisplayChangeEventHandler.jm_getInstance_0 []), 
+                    JR.declare "displayChangeEventListener" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67104 -> (JR.setLocal "index" "I" (JR.lit jwN67104))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.setLocal "displayChangeEventListener" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "removeListener_1" (JR.local "displayChangeEventHandler") [ (JR.local "displayChangeEventListener") ]) ]) ], 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "list") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

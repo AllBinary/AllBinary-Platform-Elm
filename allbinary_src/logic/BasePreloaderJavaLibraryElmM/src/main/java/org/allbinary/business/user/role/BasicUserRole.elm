@@ -1,10 +1,10 @@
-module BasicUserRole exposing (..)
+module Org.Allbinary.Business.User.Role.BasicUserRole exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.business.user.role
 -}
 
 import JR
-import BasicUserRoles
+import Org.Allbinary.Business.User.Role.BasicUserRoles as BasicUserRoles
 import JSerializable
 
 

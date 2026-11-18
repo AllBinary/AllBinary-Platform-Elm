@@ -1,4 +1,4 @@
-module MonitorInterface exposing (..)
+module Org.Allbinary.Logic.System.Hardware.Components.Interfaces.MonitorInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.hardware.components.interfaces
 -}

@@ -1,155 +1,134 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
-module ColorFillBasePaintable (module ColorFillBasePaintable, module Paintable) where
+module Org.Allbinary.Game.Paint.ColorFillBasePaintable exposing (..)
 
-import Paintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, setBasicColorP, setBasicColorP_super, setBasicColorP_impl, getBasicColorP, getBasicColorP_super, getBasicColorP_impl, getColor, getColor_super, getColor_impl, setColor, setColor_super, setColor_impl, paint, paint_super, paint_impl, basicColor, colorP)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified ColorCompositeInterface -- org.allbinary.graphics.color.ColorCompositeInterface
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
+{-| Generated Code Do Not Modify package org.allbinary.game.paint
+-}
 
--- implements ColorCompositeInterface
-data ColorFillBasePaintable = ColorFillBasePaintable
-    { header_ :: JavaHeader
-    , base :: Paintable.Paintable
-    , basicColor :: IORef (BasicColor.BasicColor)
-    , colorP :: IORef (Int)
-    }
-
-instance JavaNull ColorFillBasePaintable where
-    javaNull = javaNullRecord "ColorFillBasePaintable"
-
-instance JavaEquals ColorFillBasePaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ColorFillBasePaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ColorFillBasePaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ColorFillBasePaintable
-newRecord_ = do
-    base <- Paintable.newRecord_
-    let header_ = base.header_
-    basicColor <- newIORef javaNull
-    colorP <- newIORef 0
-    let this = ColorFillBasePaintable header_ base basicColor colorP
-    jregisterLevel header_ this
-    ColorCompositeInterface.registerInterface_ header_
-    jregisterMethod header_ "setBasicColorP" (\() -> setBasicColorP_impl this)
-    jregisterMethod header_ "getBasicColorP" (\() -> getBasicColorP_impl this)
-    jregisterMethod header_ "getColor" (\() -> getColor_impl this)
-    jregisterMethod header_ "setColor" (\() -> setColor_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: ColorFillBasePaintable -> IO ()
-initFields_ this = do
-    jset this.basicColor ((jget ((jio (BasicColorFactory.getInstance))).wHITE))
-    jset this.colorP (0)
-    pure ()
-
-new_1 :: BasicColor.BasicColor -> IO ColorFillBasePaintable
-new_1 basicColor = do
-    this <- newRecord_
-    init_1 this basicColor
-    pure this
-
-init_1 :: ColorFillBasePaintable -> BasicColor.BasicColor -> IO ()
-init_1 this basicColor = do
-        Paintable.init_ this.base
-        initFields_ this
-        Control.Monad.void (ColorFillBasePaintable.setBasicColorP this basicColor)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Graphics.Color.ColorCompositeInterface as ColorCompositeInterface
+import Org.Allbinary.Graphics.Paint.Paintable as Paintable
 
 
-setBasicColorP :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP object_ a1 = jmethod object_ "setBasicColorP" (\() -> (setBasicColorP_impl (javaCast object_ :: ColorFillBasePaintable))) () a1
-
-setBasicColorP_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP_super object_ a1 = (setBasicColorP_impl (javaCast object_ :: ColorFillBasePaintable)) a1
-
-setBasicColorP_impl :: ColorFillBasePaintable -> BasicColor.BasicColor -> IO (())
-setBasicColorP_impl this basicColor = do
-        jset (this).basicColor (basicColor)
-        Control.Monad.void (ColorFillBasePaintable.setColor this (jio (BasicColor.intValue ((jio (ColorFillBasePaintable.getBasicColorP this))))))
-        pure ()
+jclass : String
+jclass =
+    "ColorFillBasePaintable"
 
 
-getBasicColorP :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP object_ = jmethod object_ "getBasicColorP" (\() -> (getBasicColorP_impl (javaCast object_ :: ColorFillBasePaintable))) ()
-
-getBasicColorP_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP_super object_ = (getBasicColorP_impl (javaCast object_ :: ColorFillBasePaintable))
-
-getBasicColorP_impl :: ColorFillBasePaintable -> IO (BasicColor.BasicColor)
-getBasicColorP_impl this = do
-        pure ((jget (this).basicColor))
+jchain : List String
+jchain =
+    [ "ColorFillBasePaintable" ]
+        ++ Paintable.jchain
+        ++ ColorCompositeInterface.jchain
 
 
-getColor :: (JavaObjectClass this_) => this_ -> IO (Int)
-getColor object_ = jmethod object_ "getColor" (\() -> (getColor_impl (javaCast object_ :: ColorFillBasePaintable))) ()
-
-getColor_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getColor_super object_ = (getColor_impl (javaCast object_ :: ColorFillBasePaintable))
-
-getColor_impl :: ColorFillBasePaintable -> IO (Int)
-getColor_impl this = do
-        pure ((jget (this).colorP))
+jfields : List ( String, JR.JValue )
+jfields =
+    Paintable.jfields ++ [ ( "basicColor", JR.defaultOf "" ), ( "colorP", JR.defaultOf "I" ) ]
 
 
-setColor :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setColor object_ a1 = jmethod object_ "setColor" (\() -> (setColor_impl (javaCast object_ :: ColorFillBasePaintable))) () a1
-
-setColor_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setColor_super object_ a1 = (setColor_impl (javaCast object_ :: ColorFillBasePaintable)) a1
-
-setColor_impl :: ColorFillBasePaintable -> Int -> IO (())
-setColor_impl this color = do
-        jset (this).colorP (color)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "setBasicColorP_1", jm_setBasicColorP_1 )
+        , ( "getBasicColorP_0", jm_getBasicColorP_0 )
+        , ( "getColor_0", jm_getColor_0 )
+        , ( "setColor_1", jm_setColor_1 )
+        , ( "paint_1", jm_paint_1 ) ]
+        Paintable.jvtable
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: ColorFillBasePaintable))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ColorFillBasePaintable"
+        [ ( "jm_setBasicColorP_1", jm_setBasicColorP_1 ), ( "jm_getBasicColorP_0", jm_getBasicColorP_0 ), ( "jm_getColor_0", jm_getColor_0 ), ( "jm_setColor_1", jm_setColor_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: ColorFillBasePaintable)) a1
 
-paint_impl :: ColorFillBasePaintable -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Paintable.jinit_0 JR.this []),
+                JR.exec (JR.setField "basicColor" "" JR.this (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setBasicColorP_1" JR.this [ (JR.local "basicColor") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_setBasicColorP_1 : JR.Method
+jm_setBasicColorP_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "basicColor" "" JR.this (JR.local "basicColor")), 
+                    JR.exec (JR.invoke "setColor_1" JR.this [ (JR.invoke "intValue_0" (JR.invoke "getBasicColorP_0" JR.this []) []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBasicColorP_0 : JR.Method
+jm_getBasicColorP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "basicColor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getColor_0 : JR.Method
+jm_getColor_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "colorP") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setColor_1 : JR.Method
+jm_setColor_1 jheap jthis jargs =
+    JR.method [ ( "color", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "colorP" "I" JR.this (JR.local "color")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

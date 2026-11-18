@@ -1,138 +1,106 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.visual.transform.info
-module TransformInfoData where
+module Org.Allbinary.Logic.Visual.Transform.Info.TransformInfoData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.visual.transform.info
+-}
 
-data TransformInfoData = TransformInfoData
-    { header_ :: JavaHeader
-    , pARENT :: IORef (String)
-    , mAPPED :: IORef (String)
-    , nAME :: IORef (String)
-    , dESCRIPTION :: IORef (String)
-    , cATEGORY :: IORef (String)
-    , oBJECTFILENAME :: IORef (String)
-    , oBJECT :: IORef (String)
-    , oBJECTCONFIGFILENAME :: IORef (String)
-    , oBJECTCONFIG :: IORef (String)
-    , tEMPLATEFILENAME :: IORef (String)
-    , tEMPLATE :: IORef (String)
-    , dATAFILENAME :: IORef (String)
-    , dATA :: IORef (String)
-    , lABEL :: IORef (String)
-    , oWNER :: IORef (String)
-    , pARTIAL :: IORef (String)
-    }
-
-instance JavaNull TransformInfoData where
-    javaNull = javaNullRecord "TransformInfoData"
-
-instance JavaEquals TransformInfoData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TransformInfoData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TransformInfoData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: TransformInfoData
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TransformInfoData
-newRecord_ = do
-    header_ <- newJavaHeader
-    pARENT <- newIORef ""
-    mAPPED <- newIORef ""
-    nAME <- newIORef ""
-    dESCRIPTION <- newIORef ""
-    cATEGORY <- newIORef ""
-    oBJECTFILENAME <- newIORef ""
-    oBJECT <- newIORef ""
-    oBJECTCONFIGFILENAME <- newIORef ""
-    oBJECTCONFIG <- newIORef ""
-    tEMPLATEFILENAME <- newIORef ""
-    tEMPLATE <- newIORef ""
-    dATAFILENAME <- newIORef ""
-    dATA <- newIORef ""
-    lABEL <- newIORef ""
-    oWNER <- newIORef ""
-    pARTIAL <- newIORef ""
-    let this = TransformInfoData header_ pARENT mAPPED nAME dESCRIPTION cATEGORY oBJECTFILENAME oBJECT oBJECTCONFIGFILENAME oBJECTCONFIG tEMPLATEFILENAME tEMPLATE dATAFILENAME dATA lABEL oWNER pARTIAL
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: TransformInfoData -> IO ()
-initFields_ this = do
-    jset this.pARENT ("TRANSFORM_INFO_PARENT")
-    jset this.mAPPED ("TRANSFORM_INFO_MAPPED")
-    jset this.nAME ("TRANSFORM_INFO_NAME")
-    jset this.dESCRIPTION ("TRANSFORM_INFO_DESCRIPTION")
-    jset this.cATEGORY ("TRANSFORM_INFO_CATEGORY")
-    jset this.oBJECTFILENAME ("TRANSFORM_INFO_OBJECTFILENAME")
-    jset this.oBJECT ("TRANSFORM_INFO_OBJECT")
-    jset this.oBJECTCONFIGFILENAME ("TRANSFORM_INFO_OBJECTCONFIGFILENAME")
-    jset this.oBJECTCONFIG ("TRANSFORM_INFO_OBJECTCONFIG")
-    jset this.tEMPLATEFILENAME ("TRANSFORM_INFO_TEMPLATEFILENAME")
-    jset this.tEMPLATE ("TRANSFORM_INFO_TEMPLATE")
-    jset this.dATAFILENAME ("TRANSFORM_INFO_DATAFILENAME")
-    jset this.dATA ("TRANSFORM_INFO_DATA")
-    jset this.lABEL ("TRANSFORM_INFO_LABEL")
-    jset this.oWNER (("OWNER_" ++ (jget (this).nAME)))
-    jset this.pARTIAL (("PARTIAL_" ++ (jget (this).nAME)))
-    pure ()
+import JR
 
 
-getInstance :: IO (TransformInfoData)
-getInstance = do
-        pure (TransformInfoData.instance_)
 
-new_ :: IO TransformInfoData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jclass : String
+jclass =
+    "TransformInfoData"
 
-init_ :: TransformInfoData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jchain : List String
+jchain =
+    [ "TransformInfoData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "PARENT", JR.defaultOf "" ), ( "MAPPED", JR.defaultOf "" ), ( "NAME", JR.defaultOf "" ), ( "DESCRIPTION", JR.defaultOf "" ), ( "CATEGORY", JR.defaultOf "" ), ( "OBJECTFILENAME", JR.defaultOf "" ), ( "OBJECT", JR.defaultOf "" ), ( "OBJECTCONFIGFILENAME", JR.defaultOf "" ), ( "OBJECTCONFIG", JR.defaultOf "" ), ( "TEMPLATEFILENAME", JR.defaultOf "" ), ( "TEMPLATE", JR.defaultOf "" ), ( "DATAFILENAME", JR.defaultOf "" ), ( "DATA", JR.defaultOf "" ), ( "LABEL", JR.defaultOf "" ), ( "OWNER", JR.defaultOf "" ), ( "PARTIAL", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TransformInfoData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "TransformInfoData" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "PARENT" "" JR.this (JR.str "TRANSFORM_INFO_PARENT")),
+                JR.exec (JR.setField "MAPPED" "" JR.this (JR.str "TRANSFORM_INFO_MAPPED")),
+                JR.exec (JR.setField "NAME" "" JR.this (JR.str "TRANSFORM_INFO_NAME")),
+                JR.exec (JR.setField "DESCRIPTION" "" JR.this (JR.str "TRANSFORM_INFO_DESCRIPTION")),
+                JR.exec (JR.setField "CATEGORY" "" JR.this (JR.str "TRANSFORM_INFO_CATEGORY")),
+                JR.exec (JR.setField "OBJECTFILENAME" "" JR.this (JR.str "TRANSFORM_INFO_OBJECTFILENAME")),
+                JR.exec (JR.setField "OBJECT" "" JR.this (JR.str "TRANSFORM_INFO_OBJECT")),
+                JR.exec (JR.setField "OBJECTCONFIGFILENAME" "" JR.this (JR.str "TRANSFORM_INFO_OBJECTCONFIGFILENAME")),
+                JR.exec (JR.setField "OBJECTCONFIG" "" JR.this (JR.str "TRANSFORM_INFO_OBJECTCONFIG")),
+                JR.exec (JR.setField "TEMPLATEFILENAME" "" JR.this (JR.str "TRANSFORM_INFO_TEMPLATEFILENAME")),
+                JR.exec (JR.setField "TEMPLATE" "" JR.this (JR.str "TRANSFORM_INFO_TEMPLATE")),
+                JR.exec (JR.setField "DATAFILENAME" "" JR.this (JR.str "TRANSFORM_INFO_DATAFILENAME")),
+                JR.exec (JR.setField "DATA" "" JR.this (JR.str "TRANSFORM_INFO_DATA")),
+                JR.exec (JR.setField "LABEL" "" JR.this (JR.str "TRANSFORM_INFO_LABEL")),
+                JR.exec (JR.setField "OWNER" "" JR.this (JR.concat (JR.str "OWNER_") (JR.thisField "NAME"))),
+                JR.exec (JR.setField "PARTIAL" "" JR.this (JR.concat (JR.str "PARTIAL_") (JR.thisField "NAME"))),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

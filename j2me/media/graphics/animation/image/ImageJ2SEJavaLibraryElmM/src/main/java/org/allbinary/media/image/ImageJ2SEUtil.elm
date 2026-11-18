@@ -1,92 +1,90 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
-module ImageJ2SEUtil where
+module Org.Allbinary.Media.Image.ImageJ2SEUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Color -- java.awt.Color
+{-| Generated Code Do Not Modify package org.allbinary.media.image
+-}
 
-data ImageJ2SEUtil = ImageJ2SEUtil
-    { header_ :: JavaHeader
-    , tRANSPARENT_COLOR :: IORef (Color.Color)
-    }
-
-instance JavaNull ImageJ2SEUtil where
-    javaNull = javaNullRecord "ImageJ2SEUtil"
-
-instance JavaEquals ImageJ2SEUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageJ2SEUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageJ2SEUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ImageJ2SEUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ImageJ2SEUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    tRANSPARENT_COLOR <- newIORef javaNull
-    let this = ImageJ2SEUtil header_ tRANSPARENT_COLOR
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: ImageJ2SEUtil -> IO ()
-initFields_ this = do
-    jset this.tRANSPARENT_COLOR =<< (Color.new_4 0 0 0 0)
-    pure ()
-
-new_ :: IO ImageJ2SEUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ImageJ2SEUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (ImageJ2SEUtil)
-getInstance = do
-        pure (ImageJ2SEUtil.instance_)
 
+jclass : String
+jclass =
+    "ImageJ2SEUtil"
+
+
+jchain : List String
+jchain =
+    [ "ImageJ2SEUtil" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "TRANSPARENT_COLOR", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageJ2SEUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ImageJ2SEUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "TRANSPARENT_COLOR" "" JR.this (JR.new (JR.namedMethod "Color.jnew_4") [ (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 0) ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

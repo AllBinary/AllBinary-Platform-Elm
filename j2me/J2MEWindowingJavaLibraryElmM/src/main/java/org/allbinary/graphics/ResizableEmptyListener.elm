@@ -1,10 +1,10 @@
-module ResizableEmptyListener exposing (..)
+module Org.Allbinary.Graphics.ResizableEmptyListener exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics
 -}
 
 import JR
-import ResizableListenerInterface
+import Org.Allbinary.Graphics.ResizableListenerInterface as ResizableListenerInterface
 
 
 jclass : String

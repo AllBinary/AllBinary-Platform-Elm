@@ -1,160 +1,142 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
-module StreamUtil where
+module Org.Allbinary.Logic.Io.StreamUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ByteArrayOutputStream -- java.io.ByteArrayOutputStream
-import qualified Closeable -- java.io.Closeable
-import qualified InputStream -- java.io.InputStream
-import qualified OutputStream -- java.io.OutputStream
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.logic.io
+-}
 
-data StreamUtil = StreamUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull StreamUtil where
-    javaNull = javaNullRecord "StreamUtil"
-
-instance JavaEquals StreamUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq StreamUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass StreamUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: StreamUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO StreamUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = StreamUtil header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    jregisterMethod header_ "getByteArray" (\() -> getByteArray_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    pure this
-
-initFields_ :: StreamUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getInstance :: IO (StreamUtil)
-getInstance = do
-        pure (StreamUtil.instance_)
-
-new_ :: IO StreamUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: StreamUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "StreamUtil"
 
 
--- throws Exception
-get :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> OutputStream.OutputStream -> JavaArray (Int8) -> IO (OutputStream.OutputStream)
-get object_ a1 a2 a3 = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: StreamUtil))) () a1 a2 a3
-
-get_super :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> OutputStream.OutputStream -> JavaArray (Int8) -> IO (OutputStream.OutputStream)
-get_super object_ a1 a2 a3 = (get_impl (javaCast object_ :: StreamUtil)) a1 a2 a3
-
-get_impl :: StreamUtil -> InputStream.InputStream -> OutputStream.OutputStream -> JavaArray (Int8) -> IO (OutputStream.OutputStream)
-get_impl this inputStream outputStream buffer = do
-        len <- newIORef (0 :: Int)
-        fix $ \loop -> when True $ javaIteration (loop) $ do
-            assignedValue <- (InputStream.read inputStream buffer 0 (jlength buffer))
-            jset len (assignedValue)
-            if ((jget len) /= (Prelude.negate 1)) then do
-                pure ()
-            else do
-                throwIO JavaBreak
-            Control.Monad.void (OutputStream.write outputStream buffer 0 (jget len))
-        pure (outputStream)
+jchain : List String
+jchain =
+    [ "StreamUtil" ]
 
 
--- throws Exception
-getByteArray :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> ByteArrayOutputStream.ByteArrayOutputStream -> JavaArray (Int8) -> IO (JavaArray (Int8))
-getByteArray object_ a1 a2 a3 = jmethod object_ "getByteArray" (\() -> (getByteArray_impl (javaCast object_ :: StreamUtil))) () a1 a2 a3
-
-getByteArray_super :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> ByteArrayOutputStream.ByteArrayOutputStream -> JavaArray (Int8) -> IO (JavaArray (Int8))
-getByteArray_super object_ a1 a2 a3 = (getByteArray_impl (javaCast object_ :: StreamUtil)) a1 a2 a3
-
-getByteArray_impl :: StreamUtil -> InputStream.InputStream -> ByteArrayOutputStream.ByteArrayOutputStream -> JavaArray (Int8) -> IO (JavaArray (Int8))
-getByteArray_impl this inputStream outputStream2 byteArray = do
-        let outputStream = outputStream2
-        flip finally (do
-            Control.Monad.void (StreamUtil.close this (javaCast outputStream))
-            ) $ handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            Control.Monad.void (StreamUtil.get this inputStream (javaCast outputStream) byteArray)
-            (ByteArrayOutputStream.toByteArray outputStream)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
 
-close :: (JavaObjectClass this_) => this_ -> Closeable.Closeable -> IO (Bool)
-close object_ a1 = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: StreamUtil))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "get_3", jm_get_3 )
+        , ( "getByteArray_3", jm_getByteArray_3 )
+        , ( "close_1", jm_close_1 ) ]
+        JR.noMethods
 
-close_super :: (JavaObjectClass this_) => this_ -> Closeable.Closeable -> IO (Bool)
-close_super object_ a1 = (close_impl (javaCast object_ :: StreamUtil)) a1
 
-close_impl :: StreamUtil -> Closeable.Closeable -> IO (Bool)
-close_impl this closeable = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).cLOSE) e)
-            pure (False)
-            ) $ do
-            when (closeable /= javaNull) $ do
-                Control.Monad.void (Closeable.close closeable)
-            pure (True)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "StreamUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_get_3", jm_get_3 ), ( "jm_getByteArray_3", jm_getByteArray_3 ), ( "jm_close_1", jm_close_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "StreamUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_get_3 : JR.Method
+jm_get_3 jheap jthis jargs =
+    JR.method [ ( "inputStream", "" ), ( "outputStream", "" ), ( "buffer", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "len" "I" (JR.int 0), 
+                    JR.while (JR.bool True) (JR.run [ 
+                        JR.exec (JR.setLocal "len" "I" (JR.invoke "read_3" (JR.local "inputStream") [ (JR.local "buffer"), (JR.int 0), (JR.alength (JR.local "buffer")) ])), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "len") (JR.map JR.neg (JR.int 1))) identity (JR.run [ 
+                            JR.break ]), 
+                        JR.exec (JR.invoke "write_3" (JR.local "outputStream") [ (JR.local "buffer"), (JR.int 0), (JR.local "len") ]) ]), 
+                    JR.return (JR.local "outputStream") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getByteArray_3 : JR.Method
+jm_getByteArray_3 jheap jthis jargs =
+    JR.method [ ( "inputStream", "" ), ( "outputStream2", "" ), ( "byteArray", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "outputStream" "" (JR.local "outputStream2"), 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "get_3" JR.this [ (JR.local "inputStream"), (JR.local "outputStream"), (JR.local "byteArray") ]), 
+                        JR.return (JR.invoke "toByteArray_0" (JR.local "outputStream") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] (JR.run [ 
+                        JR.exec (JR.invoke "close_1" JR.this [ (JR.local "outputStream") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_close_1 : JR.Method
+jm_close_1 jheap jthis jargs =
+    JR.method [ ( "closeable", "" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "closeable") JR.null) (JR.run [ 
+                            JR.exec (JR.invoke "close_0" (JR.local "closeable") []) ]) identity, 
+                        JR.return (JR.bool True) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "CLOSE" (JR.local "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

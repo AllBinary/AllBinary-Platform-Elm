@@ -1,120 +1,101 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module GameFrameRunnable (module GameFrameRunnable, module GameRunnable) where
+module Org.Allbinary.Game.Displayable.Canvas.GameFrameRunnable exposing (..)
 
-import GameRunnable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, run, run_super, run_impl, logUtil, gameTickDisplayInfoSingleton, allBinaryGameCanvas, gameTickTimeDelayHelper)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameCanvas -- same package or java.lang
-import qualified GameTickDisplayInfoSingleton -- org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified GameTickTimeDelayHelper -- org.allbinary.time.GameTickTimeDelayHelper
-import qualified GameTickTimeDelayHelperFactory -- org.allbinary.time.GameTickTimeDelayHelperFactory
-import qualified GameRunnable
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data GameFrameRunnable = GameFrameRunnable
-    { header_ :: JavaHeader
-    , base :: GameRunnable.GameRunnable
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , gameTickDisplayInfoSingleton :: IORef (GameTickDisplayInfoSingleton.GameTickDisplayInfoSingleton)
-    , allBinaryGameCanvas :: IORef (AllBinaryGameCanvas.AllBinaryGameCanvas)
-    , gameTickTimeDelayHelper :: IORef (GameTickTimeDelayHelper.GameTickTimeDelayHelper)
-    }
-
-instance JavaNull GameFrameRunnable where
-    javaNull = javaNullRecord "GameFrameRunnable"
-
-instance JavaEquals GameFrameRunnable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameFrameRunnable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameFrameRunnable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO GameFrameRunnable
-newRecord_ = do
-    base <- GameRunnable.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    gameTickDisplayInfoSingleton <- newIORef javaNull
-    allBinaryGameCanvas <- newIORef javaNull
-    gameTickTimeDelayHelper <- newIORef javaNull
-    let this = GameFrameRunnable header_ base logUtil gameTickDisplayInfoSingleton allBinaryGameCanvas gameTickTimeDelayHelper
-    jregisterLevel header_ this
-    jregisterMethod header_ "run" (\() -> run_impl this)
-    pure this
-
-initFields_ :: GameFrameRunnable -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.gameTickDisplayInfoSingleton =<< (GameTickDisplayInfoSingleton.getInstance)
-    jset this.allBinaryGameCanvas (javaNull)
-    jset this.gameTickTimeDelayHelper =<< (GameTickTimeDelayHelperFactory.getInstance)
-    pure ()
-
-new_1 :: AllBinaryGameCanvas.AllBinaryGameCanvas -> IO GameFrameRunnable
-new_1 allBinaryGameCanvas = do
-    this <- newRecord_
-    init_1 this allBinaryGameCanvas
-    pure this
-
-init_1 :: GameFrameRunnable -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO ()
-init_1 this allBinaryGameCanvas = do
-        GameRunnable.init_ this.base
-        initFields_ this
-        jset (this).allBinaryGameCanvas (allBinaryGameCanvas)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Displayable.Canvas.GameRunnable as GameRunnable
+import Org.Allbinary.Graphics.Displayable.GameTickDisplayInfoSingleton as GameTickDisplayInfoSingleton
+import Org.Allbinary.Time.GameTickTimeDelayHelperFactory as GameTickTimeDelayHelperFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-run :: (JavaObjectClass this_) => this_ -> IO (())
-run object_ = jmethod object_ "run" (\() -> (run_impl (javaCast object_ :: GameFrameRunnable))) ()
+jclass : String
+jclass =
+    "GameFrameRunnable"
 
-run_super :: (JavaObjectClass this_) => this_ -> IO (())
-run_super object_ = (run_impl (javaCast object_ :: GameFrameRunnable))
 
-run_impl :: GameFrameRunnable -> IO (())
-run_impl this = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).rUN) e)
-            ) $ do
-            let allBinaryGameCanvas = (jget (this).allBinaryGameCanvas)
-            Control.Monad.void (AllBinaryGameCanvas.setStartTime ((jio (AllBinaryGameCanvas.getLoopTimeHelperP allBinaryGameCanvas))) (jio (GameTickTimeDelayHelper.setStartTime ((jget (this).gameTickTimeDelayHelper)))))
-            Control.Monad.void (GameTickDisplayInfoSingleton.update ((jget (this).gameTickDisplayInfoSingleton)))
-            Control.Monad.void (AllBinaryGameCanvas.processGame allBinaryGameCanvas)
-            when ((Prelude.not (jio (AllBinaryGameCanvas.isRunning allBinaryGameCanvas))) || (jio (AllBinaryGameCanvas.isPaused allBinaryGameCanvas))) $ do
-                Control.Monad.void (AllBinaryGameCanvas.notifyDonePainting allBinaryGameCanvas)
-        pure ()
+jchain : List String
+jchain =
+    [ "GameFrameRunnable" ]
+        ++ GameRunnable.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    GameRunnable.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "gameTickDisplayInfoSingleton", JR.defaultOf "" ), ( "allBinaryGameCanvas", JR.defaultOf "" ), ( "gameTickTimeDelayHelper", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "run_0", jm_run_0 ) ]
+        GameRunnable.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameFrameRunnable"
+        [ ( "jm_run_0", jm_run_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect GameRunnable.jinit_0 JR.this []),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameTickDisplayInfoSingleton" "" JR.this (JR.callStatic GameTickDisplayInfoSingleton.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameTickTimeDelayHelper" "" JR.this (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "allBinaryGameCanvas" "" JR.this (JR.local "allBinaryGameCanvas")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_run_0 : JR.Method
+jm_run_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "allBinaryGameCanvas" "" (JR.thisField "allBinaryGameCanvas"), 
+                        JR.exec (JR.invoke "setStartTime_1" (JR.invoke "getLoopTimeHelperP_0" (JR.local "allBinaryGameCanvas") []) [ (JR.invoke "setStartTime_0" (JR.thisField "gameTickTimeDelayHelper") []) ]), 
+                        JR.exec (JR.invoke "update_0" (JR.thisField "gameTickDisplayInfoSingleton") []), 
+                        JR.exec (JR.invoke "processGame_0" (JR.local "allBinaryGameCanvas") []), 
+                        JR.ifElse (JR.or (JR.map JR.not_ (JR.invoke "isRunning_0" (JR.local "allBinaryGameCanvas") [])) (JR.invoke "isPaused_0" (JR.local "allBinaryGameCanvas") [])) (JR.run [ 
+                            JR.exec (JR.invoke "notifyDonePainting_0" (JR.local "allBinaryGameCanvas") []) ]) identity ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "RUN" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,16 +1,16 @@
-module BasicArrayListUtil exposing (..)
+module Org.Allbinary.Util.BasicArrayListUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}
 
 import JR
-import BasicArrayListD
-import CommonLabels
-import CommonPhoneStrings
-import ImmutableBasicArrayList
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonPhoneStrings as CommonPhoneStrings
+import Org.Allbinary.Util.ImmutableBasicArrayList as ImmutableBasicArrayList
 import JSystem
-import MyRandomFactory
-import StringMaker
+import Org.Allbinary.Game.Rand.MyRandomFactory as MyRandomFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

@@ -1,109 +1,93 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
-module NumberOnOwnGroupSequenceAI (module NumberOnOwnGroupSequenceAI, module SequenceAI) where
+module Org.Allbinary.Game.Ag.Ai.NumberOnOwnGroupSequenceAI exposing (..)
 
-import SequenceAI hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, processAI, processAI_super, processAI_impl, numberOnSameTeam)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ArtificialIntelligenceInterface -- org.allbinary.ai.ArtificialIntelligenceInterface
-import qualified SequenceAI -- org.allbinary.game.ag.ai.sequence.SequenceAI
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified GroupLayerManagerListener -- org.allbinary.game.layer.identification.GroupLayerManagerListener
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai
+-}
 
-data NumberOnOwnGroupSequenceAI = NumberOnOwnGroupSequenceAI
-    { header_ :: JavaHeader
-    , base :: SequenceAI.SequenceAI
-    , numberOnSameTeam :: IORef (JavaArray (Int))
-    }
-
-instance JavaNull NumberOnOwnGroupSequenceAI where
-    javaNull = javaNullRecord "NumberOnOwnGroupSequenceAI"
-
-instance JavaEquals NumberOnOwnGroupSequenceAI where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NumberOnOwnGroupSequenceAI where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NumberOnOwnGroupSequenceAI where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO NumberOnOwnGroupSequenceAI
-newRecord_ = do
-    base <- SequenceAI.newRecord_
-    let header_ = base.header_
-    numberOnSameTeam <- newIORef javaNull
-    let this = NumberOnOwnGroupSequenceAI header_ base numberOnSameTeam
-    jregisterLevel header_ this
-    jregisterMethod header_ "processAI" (\() -> processAI_impl this)
-    pure this
-
-initFields_ :: NumberOnOwnGroupSequenceAI -> IO ()
-initFields_ this = do
-    jset this.numberOnSameTeam (javaNull)
-    pure ()
-
-new_4 :: JavaArray (Int) -> JavaArray (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface) -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO NumberOnOwnGroupSequenceAI
-new_4 numberOnSameTeam artificialIntelligenceInterface ownerLayerInterface gameInput = do
-    this <- newRecord_
-    init_4 this numberOnSameTeam artificialIntelligenceInterface ownerLayerInterface gameInput
-    pure this
-
-init_4 :: NumberOnOwnGroupSequenceAI -> JavaArray (Int) -> JavaArray (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface) -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO ()
-init_4 this numberOnSameTeam artificialIntelligenceInterface ownerLayerInterface gameInput = do
-        SequenceAI.init_3 this.base (artificialIntelligenceInterface) (ownerLayerInterface) (gameInput)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).numberOnSameTeam (numberOnSameTeam)
-        pure ()
+import JR
+import Org.Allbinary.Game.Layer.Identification.GroupLayerManagerListener as GroupLayerManagerListener
+import Org.Allbinary.Game.Ag.Ai.Sequence.SequenceAI as SequenceAI
 
 
--- throws Exception
-processAI :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI object_ a1 = jmethod object_ "processAI" (\() -> (processAI_impl (javaCast object_ :: NumberOnOwnGroupSequenceAI))) () a1
+jclass : String
+jclass =
+    "NumberOnOwnGroupSequenceAI"
 
-processAI_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_super object_ a1 = (processAI_impl (javaCast object_ :: NumberOnOwnGroupSequenceAI)) a1
 
-processAI_impl :: NumberOnOwnGroupSequenceAI -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_impl this allBinaryLayerManager = do
-        layerInterface <- (SequenceAI.getOwnerLayerInterface this)
-        index <- (SequenceAI.getIndex this)
-        when ((jlength (jget (this).numberOnSameTeam)) > index) $ do
-            size <- (GroupLayerManagerListener.getGroupSizeFromInterface ((jio (GroupLayerManagerListener.getInstance))) layerInterface)
-            when ((jindex ((jget (this).numberOnSameTeam)) (index)) > size) $ do
-                Control.Monad.void (SequenceAI.next this)
-        Control.Monad.void (SequenceAI.processAI_super this.base allBinaryLayerManager)
-        pure ()
+jchain : List String
+jchain =
+    [ "NumberOnOwnGroupSequenceAI" ]
+        ++ SequenceAI.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    SequenceAI.jfields ++ [ ( "numberOnSameTeam", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "processAI_1", jm_processAI_1 ) ]
+        SequenceAI.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NumberOnOwnGroupSequenceAI"
+        [ ( "jm_processAI_1", jm_processAI_1 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "numberOnSameTeam", "" ), ( "artificialIntelligenceInterface", "" ), ( "ownerLayerInterface", "" ), ( "gameInput", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect SequenceAI.jinit_3 JR.this [ (JR.local "artificialIntelligenceInterface"), (JR.local "ownerLayerInterface"), (JR.local "gameInput") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "numberOnSameTeam" "" JR.this (JR.local "numberOnSameTeam")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_processAI_1 : JR.Method
+jm_processAI_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "layerInterface" "" (JR.invoke "getOwnerLayerInterface_0" JR.this []), 
+                    JR.declare "index" "I" (JR.invoke "getIndex_0" JR.this []), 
+                    JR.ifElse (JR.map2 JR.greater (JR.alength (JR.thisField "numberOnSameTeam")) (JR.local "index")) (JR.run [ 
+                        JR.declare "size" "I" (JR.invoke "getGroupSizeFromInterface_1" (JR.callStatic GroupLayerManagerListener.jm_getInstance_0 []) [ (JR.local "layerInterface") ]), 
+                        JR.ifElse (JR.map2 JR.greater (JR.invoke "intValue_0" (JR.aget (JR.thisField "numberOnSameTeam") (JR.local "index")) []) (JR.local "size")) (JR.run [ 
+                            JR.exec (JR.invoke "next_0" JR.this []) ]) identity ]) identity, 
+                    JR.exec (JR.callVia SequenceAI.jvtable "processAI_1" JR.this [ (JR.local "allBinaryLayerManager") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

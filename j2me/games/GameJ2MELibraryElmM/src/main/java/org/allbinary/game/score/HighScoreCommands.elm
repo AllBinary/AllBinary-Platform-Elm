@@ -1,99 +1,93 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module HighScoreCommands where
+module Org.Allbinary.Game.Score.HighScoreCommands exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
-data HighScoreCommands = HighScoreCommands
-    { header_ :: JavaHeader
-    , dISPLAY :: IORef (Command.Command)
-    , pERSONAL :: IORef (Command.Command)
-    , wORLD :: IORef (Command.Command)
-    }
-
-instance JavaNull HighScoreCommands where
-    javaNull = javaNullRecord "HighScoreCommands"
-
-instance JavaEquals HighScoreCommands where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoreCommands where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoreCommands where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: HighScoreCommands
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO HighScoreCommands
-newRecord_ = do
-    header_ <- newJavaHeader
-    dISPLAY <- newIORef javaNull
-    pERSONAL <- newIORef javaNull
-    wORLD <- newIORef javaNull
-    let this = HighScoreCommands header_ dISPLAY pERSONAL wORLD
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: HighScoreCommands -> IO ()
-initFields_ this = do
-    jset this.dISPLAY =<< (Command.new_4 "Scores" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.pERSONAL =<< (Command.new_4 "Personal" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.wORLD =<< (Command.new_4 "World" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    pure ()
-
-new_ :: IO HighScoreCommands
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: HighScoreCommands -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Javax.Microedition.Lcdui.Command as Command
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (HighScoreCommands)
-getInstance = do
-        pure (HighScoreCommands.instance_)
+jclass : String
+jclass =
+    "HighScoreCommands"
 
+
+jchain : List String
+jchain =
+    [ "HighScoreCommands" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "DISPLAY", JR.defaultOf "" ), ( "PERSONAL", JR.defaultOf "" ), ( "WORLD", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoreCommands"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "HighScoreCommands" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "DISPLAY" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Scores"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "PERSONAL" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Personal"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "WORLD" "" JR.this (JR.new Command.jnew_4 [ (JR.str "World"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

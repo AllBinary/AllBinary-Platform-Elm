@@ -1,10 +1,10 @@
-module AllBinaryEventObject exposing (..)
+module Org.Allbinary.Logic.Util.Event.AllBinaryEventObject exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.event
 -}
 
 import JR
-import NullUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
 jclass : String

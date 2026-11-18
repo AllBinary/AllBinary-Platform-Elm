@@ -1,152 +1,132 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module CheatGameInputProcessor (module CheatGameInputProcessor, module PlayerGameInput) where
+module Org.Allbinary.Game.Displayable.Canvas.CheatGameInputProcessor exposing (..)
 
-import PlayerGameInput hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, update, update_super, update_impl, pROCESS_GAME, gameCanvas, inputProcessor, gameKeyFactory)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameCanvas -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified LogUtil -- same package or java.lang
-import qualified GameKeyFactory -- org.allbinary.game.input.GameKeyFactory
-import qualified PlayerGameInput -- org.allbinary.game.input.PlayerGameInput
-import qualified GameKeyEvent -- org.allbinary.game.input.event.GameKeyEvent
-import qualified GameKeyEventUtil -- org.allbinary.game.input.event.GameKeyEventUtil
-import qualified AllBinaryGameLayerManager -- org.allbinary.game.layer.AllBinaryGameLayerManager
-import qualified SpecialGameInputFactory -- org.allbinary.game.layer.special.SpecialGameInputFactory
-import qualified SpecialGameInputInterface -- org.allbinary.game.layer.special.SpecialGameInputInterface
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data CheatGameInputProcessor = CheatGameInputProcessor
-    { header_ :: JavaHeader
-    , base :: PlayerGameInput.PlayerGameInput
-    , pROCESS_GAME :: IORef (String)
-    , gameCanvas :: IORef (AllBinaryGameCanvas.AllBinaryGameCanvas)
-    , gameKeyFactory :: IORef (GameKeyFactory.GameKeyFactory)
-    }
-
-instance JavaNull CheatGameInputProcessor where
-    javaNull = javaNullRecord "CheatGameInputProcessor"
-
-instance JavaEquals CheatGameInputProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CheatGameInputProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CheatGameInputProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-inputProcessor :: IORef (SpecialGameInputInterface.SpecialGameInputInterface)
-{-# NOINLINE inputProcessor #-}
-inputProcessor = unsafePerformIO (newIORef ((javaCast SpecialGameInputFactory.nO_SPECIAL_GAME_INPUT :: SpecialGameInputInterface.SpecialGameInputInterface)))
-
-newRecord_ :: IO CheatGameInputProcessor
-newRecord_ = do
-    base <- PlayerGameInput.newRecord_
-    let header_ = base.header_
-    pROCESS_GAME <- newIORef ""
-    gameCanvas <- newIORef javaNull
-    gameKeyFactory <- newIORef javaNull
-    let this = CheatGameInputProcessor header_ base pROCESS_GAME gameCanvas gameKeyFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    pure this
-
-initFields_ :: CheatGameInputProcessor -> IO ()
-initFields_ this = do
-    jset this.pROCESS_GAME ("processGame")
-    jset this.gameCanvas (javaNull)
-    jset this.gameKeyFactory =<< (GameKeyFactory.getInstance)
-    pure ()
-
-new_1 :: AllBinaryGameCanvas.AllBinaryGameCanvas -> IO CheatGameInputProcessor
-new_1 gameCanvas = do
-    this <- newRecord_
-    init_1 this gameCanvas
-    pure this
-
-init_1 :: CheatGameInputProcessor -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO ()
-init_1 this gameCanvas = do
-        PlayerGameInput.init_3 this.base (jio (BasicArrayListD.new_)) (jio (BasicArrayListD.new_)) (Prelude.negate 1)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).gameCanvas (gameCanvas)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Game.Input.Event.GameKeyEvent as GameKeyEvent
+import Org.Allbinary.Game.Input.Event.GameKeyEventUtil as GameKeyEventUtil
+import Org.Allbinary.Game.Input.GameKeyFactory as GameKeyFactory
+import Org.Allbinary.Game.Input.PlayerGameInput as PlayerGameInput
+import Org.Allbinary.Game.Layer.Special.SpecialGameInputFactory as SpecialGameInputFactory
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: CheatGameInputProcessor))) ()
+jclass : String
+jclass =
+    "CheatGameInputProcessor"
 
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: CheatGameInputProcessor))
 
-update_impl :: CheatGameInputProcessor -> IO (())
-update_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.commonStrings)).uPDATE) e)
-            ) $ do
-            gameLayerManager <- (AllBinaryGameCanvas.getLayerManager ((jget (this).gameCanvas)))
-            list <- (PlayerGameInput.getGameKeyEventList this)
-            size <- (BasicArrayList.size list)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                let anyType = (jindex ((jget (list).objectArray)) (index))
-                key <- (GameKeyEventUtil.getKey anyType)
-                if (key == (jio (getId ((jget ((jget (this).gameKeyFactory)).lEVEL_DOWN))))) then do
-                    Control.Monad.void (SpecialGameInputInterface.strafeLeft ((jget CheatGameInputProcessor.inputProcessor)))
-                    throwIO JavaBreak
-                else when (key == (jio (getId ((jget ((jget (this).gameKeyFactory)).lEVEL_UP))))) $ do
-                    Control.Monad.void (SpecialGameInputInterface.strafeRight ((jget CheatGameInputProcessor.inputProcessor)))
-                    throwIO JavaBreak
-                if (key == (jio (getId ((jget ((jget (this).gameKeyFactory)).lEFT))))) then do
-                    Control.Monad.void (SpecialGameInputInterface.left ((jget CheatGameInputProcessor.inputProcessor)))
-                    throwIO JavaBreak
-                else if (key == (jio (getId ((jget ((jget (this).gameKeyFactory)).rIGHT))))) then do
-                    Control.Monad.void (SpecialGameInputInterface.right ((jget CheatGameInputProcessor.inputProcessor)))
-                    throwIO JavaBreak
-                else if (key == (jio (getId ((jget ((jget (this).gameKeyFactory)).uP))))) then do
-                    Control.Monad.void (SpecialGameInputInterface.up ((jget CheatGameInputProcessor.inputProcessor)))
-                    throwIO JavaBreak
-                else if (key == (jio (getId ((jget ((jget (this).gameKeyFactory)).dOWN))))) then do
-                    Control.Monad.void (SpecialGameInputInterface.down ((jget CheatGameInputProcessor.inputProcessor)))
-                    throwIO JavaBreak
-                else if (key == (jio (getId ((jget ((jget (this).gameKeyFactory)).kEY_NUM1))))) then do
-                    Control.Monad.void (SpecialGameInputInterface.special1 ((jget CheatGameInputProcessor.inputProcessor)) (javaCast gameLayerManager) (GameKeyEvent.nONE))
-                    throwIO JavaBreak
-                else when (key == (jio (getId ((jget ((jget (this).gameKeyFactory)).kEY_NUM3))))) $ do
-                    Control.Monad.void (SpecialGameInputInterface.special2 ((jget CheatGameInputProcessor.inputProcessor)) (javaCast gameLayerManager) (GameKeyEvent.nONE))
-                    throwIO JavaBreak
-            Control.Monad.void (BasicArrayList.clear list)
-        pure ()
+jchain : List String
+jchain =
+    [ "CheatGameInputProcessor" ]
+        ++ PlayerGameInput.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    PlayerGameInput.jfields ++ [ ( "PROCESS_GAME", JR.defaultOf "" ), ( "gameCanvas", JR.defaultOf "" ), ( "gameKeyFactory", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "update_0", jm_update_0 ) ]
+        PlayerGameInput.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CheatGameInputProcessor"
+        [ ( "jm_update_0", jm_update_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_inputProcessor", jstatic_inputProcessor ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_inputProcessor : JR.M
+jstatic_inputProcessor s =
+    JR.static "CheatGameInputProcessor" jclinit "inputProcessor"
+        SpecialGameInputFactory.jstatic_NO_SPECIAL_GAME_INPUT
+        s
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "gameCanvas", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect PlayerGameInput.jinit_3 JR.this [ (JR.new BasicArrayListD.jnew_0 []), (JR.new BasicArrayListD.jnew_0 []), (JR.map JR.neg (JR.int 1)) ]),
+                JR.exec (JR.setField "PROCESS_GAME" "" JR.this (JR.str "processGame")),
+                JR.exec (JR.setField "gameKeyFactory" "" JR.this (JR.callStatic GameKeyFactory.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "gameCanvas" "" JR.this (JR.local "gameCanvas")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "gameLayerManager" "" (JR.invoke "getLayerManager_0" (JR.thisField "gameCanvas") []), 
+                        JR.declare "list" "" (JR.invoke "getGameKeyEventList_0" JR.this []), 
+                        JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN76025 -> (JR.setLocal "index" "I" (JR.lit jwN76025))) JR.increment) ]) (JR.run [ 
+                            JR.declare "anyType" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
+                            JR.declare "key" "I" (JR.callStatic GameKeyEventUtil.jm_getKey_1 [ (JR.local "anyType") ]), 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "key") (JR.invoke "getId_0" (JR.field "LEVEL_DOWN" (JR.thisField "gameKeyFactory")) [])) (JR.run [ 
+                                JR.exec (JR.invoke "strafeLeft_0" jstatic_inputProcessor []), 
+                                JR.break ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "key") (JR.invoke "getId_0" (JR.field "LEVEL_UP" (JR.thisField "gameKeyFactory")) [])) (JR.run [ 
+                                JR.exec (JR.invoke "strafeRight_0" jstatic_inputProcessor []), 
+                                JR.break ]) identity ]), 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "key") (JR.invoke "getId_0" (JR.field "LEFT" (JR.thisField "gameKeyFactory")) [])) (JR.run [ 
+                                JR.exec (JR.invoke "left_0" jstatic_inputProcessor []), 
+                                JR.break ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "key") (JR.invoke "getId_0" (JR.field "RIGHT" (JR.thisField "gameKeyFactory")) [])) (JR.run [ 
+                                JR.exec (JR.invoke "right_0" jstatic_inputProcessor []), 
+                                JR.break ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "key") (JR.invoke "getId_0" (JR.field "UP" (JR.thisField "gameKeyFactory")) [])) (JR.run [ 
+                                JR.exec (JR.invoke "up_0" jstatic_inputProcessor []), 
+                                JR.break ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "key") (JR.invoke "getId_0" (JR.field "DOWN" (JR.thisField "gameKeyFactory")) [])) (JR.run [ 
+                                JR.exec (JR.invoke "down_0" jstatic_inputProcessor []), 
+                                JR.break ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "key") (JR.invoke "getId_0" (JR.field "KEY_NUM1" (JR.thisField "gameKeyFactory")) [])) (JR.run [ 
+                                JR.exec (JR.invoke "special1_2" jstatic_inputProcessor [ (JR.local "gameLayerManager"), GameKeyEvent.jstatic_NONE ]), 
+                                JR.break ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "key") (JR.invoke "getId_0" (JR.field "KEY_NUM3" (JR.thisField "gameKeyFactory")) [])) (JR.run [ 
+                                JR.exec (JR.invoke "special2_2" jstatic_inputProcessor [ (JR.local "gameLayerManager"), GameKeyEvent.jstatic_NONE ]), 
+                                JR.break ]) identity ]) ]) ]) ]) ]) ]) ], 
+                        JR.exec (JR.invoke "clear_0" (JR.local "list") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

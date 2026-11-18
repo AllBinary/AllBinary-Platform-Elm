@@ -1,122 +1,119 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.ai
-module ArtificialIntelligence where
+module Org.Allbinary.Ai.ArtificialIntelligence exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified ArtificialIntelligenceInterface
+{-| Generated Code Do Not Modify package org.allbinary.ai
+-}
 
--- implements ArtificialIntelligenceInterface
-data ArtificialIntelligence = ArtificialIntelligence
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ArtificialIntelligence where
-    javaNull = javaNullRecord "ArtificialIntelligence"
-
-instance JavaEquals ArtificialIntelligence where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ArtificialIntelligence where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ArtificialIntelligence where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-aI_ID :: Int
-aI_ID = 2
-
-instance_ :: ArtificialIntelligence
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ArtificialIntelligence
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ArtificialIntelligence header_
-    jregisterLevel header_ this
-    ArtificialIntelligenceInterface.registerInterface_ header_
-    jregisterMethod header_ "processAI" (\() -> processAI_impl this)
-    jregisterMethod header_ "getId" (\() -> getId_impl this)
-    pure this
-
-initFields_ :: ArtificialIntelligence -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Ai.ArtificialIntelligenceInterface as ArtificialIntelligenceInterface
 
 
-getInstance :: IO (ArtificialIntelligence)
-getInstance = do
-        pure (ArtificialIntelligence.instance_)
-
-new_ :: IO ArtificialIntelligence
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ArtificialIntelligence -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "ArtificialIntelligence"
 
 
--- throws Exception
-processAI :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI object_ a1 = jmethod object_ "processAI" (\() -> (processAI_impl (javaCast object_ :: ArtificialIntelligence))) () a1
-
-processAI_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_super object_ a1 = (processAI_impl (javaCast object_ :: ArtificialIntelligence)) a1
-
-processAI_impl :: ArtificialIntelligence -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_impl this layerManager = do
-        pure ()
+jchain : List String
+jchain =
+    [ "ArtificialIntelligence" ]
+        ++ ArtificialIntelligenceInterface.jchain
 
 
-getId :: (JavaObjectClass this_) => this_ -> IO (Int)
-getId object_ = jmethod object_ "getId" (\() -> (getId_impl (javaCast object_ :: ArtificialIntelligence))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-getId_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getId_super object_ = (getId_impl (javaCast object_ :: ArtificialIntelligence))
 
-getId_impl :: ArtificialIntelligence -> IO (Int)
-getId_impl this = do
-        pure (1)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "processAI_1", jm_processAI_1 )
+        , ( "getId_0", jm_getId_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ArtificialIntelligence"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_processAI_1", jm_processAI_1 ), ( "jm_getId_0", jm_getId_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_AI_ID", jstatic_AI_ID ), ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_AI_ID : JR.M
+jstatic_AI_ID s =
+    JR.static "ArtificialIntelligence" jclinit "AI_ID"
+        (JR.int 2)
+        s
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ArtificialIntelligence" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processAI_1 : JR.Method
+jm_processAI_1 jheap jthis jargs =
+    JR.method [ ( "layerManager", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getId_0 : JR.Method
+jm_getId_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 1) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

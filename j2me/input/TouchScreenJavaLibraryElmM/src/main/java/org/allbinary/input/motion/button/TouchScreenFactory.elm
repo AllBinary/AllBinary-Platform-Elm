@@ -1,231 +1,209 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
-module TouchScreenFactory where
+module Org.Allbinary.Input.Motion.Button.TouchScreenFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TouchScreenTypesFactory -- same package or java.lang
-import qualified TouchScreenType -- same package or java.lang
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.button
+-}
 
-data TouchScreenFactory = TouchScreenFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , touch :: IORef (Bool)
-    , multiTouch :: IORef (Bool)
-    , multiTouchDistinct :: IORef (Bool)
-    , touchScreenType :: IORef (TouchScreenType.TouchScreenType)
-    }
-
-instance JavaNull TouchScreenFactory where
-    javaNull = javaNullRecord "TouchScreenFactory"
-
-instance JavaEquals TouchScreenFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TouchScreenFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TouchScreenFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: TouchScreenFactory
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_))
-
-newRecord_ :: IO TouchScreenFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    touch <- newIORef False
-    multiTouch <- newIORef False
-    multiTouchDistinct <- newIORef False
-    touchScreenType <- newIORef javaNull
-    let this = TouchScreenFactory header_ logUtil touch multiTouch multiTouchDistinct touchScreenType
-    jregisterLevel header_ this
-    jregisterMethod header_ "setMultiTouch" (\() -> setMultiTouch_impl this)
-    jregisterMethod header_ "isMultiTouch" (\() -> isMultiTouch_impl this)
-    jregisterMethod header_ "setTouch" (\() -> setTouch_impl this)
-    jregisterMethod header_ "isTouch" (\() -> isTouch_impl this)
-    jregisterMethod header_ "setMultiTouchDistinct" (\() -> setMultiTouchDistinct_impl this)
-    jregisterMethod header_ "isMultiTouchDistinct" (\() -> isMultiTouchDistinct_impl this)
-    jregisterMethod header_ "setTouchScreenType" (\() -> setTouchScreenType_impl this)
-    jregisterMethod header_ "getTouchScreenType" (\() -> getTouchScreenType_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: TouchScreenFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.touch (False)
-    jset this.multiTouch (False)
-    jset this.multiTouchDistinct (False)
-    jset this.touchScreenType ((jget ((jio (TouchScreenTypesFactory.getInstance))).nOTOUCH))
-    pure ()
-
-new_ :: IO TouchScreenFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TouchScreenFactory -> IO ()
-init_ this = do
-        initFields_ this
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) (TouchScreenFactory.sINGLETON) (jget (commonStrings).gET_INSTANCE) e)
-            ) $ do
-            Control.Monad.void (TouchScreenFactory.setTouch this True)
-            Control.Monad.void (TouchScreenFactory.setMultiTouch this False)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Input.Motion.Button.TouchScreenTypesFactory as TouchScreenTypesFactory
 
 
-getInstance :: IO (TouchScreenFactory)
-getInstance = do
-        pure (TouchScreenFactory.sINGLETON)
+jclass : String
+jclass =
+    "TouchScreenFactory"
 
 
-setMultiTouch :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setMultiTouch object_ a1 = jmethod object_ "setMultiTouch" (\() -> (setMultiTouch_impl (javaCast object_ :: TouchScreenFactory))) () a1
-
-setMultiTouch_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setMultiTouch_super object_ a1 = (setMultiTouch_impl (javaCast object_ :: TouchScreenFactory)) a1
-
-setMultiTouch_impl :: TouchScreenFactory -> Bool -> IO (())
-setMultiTouch_impl this multiTouch = do
-        jset (this).multiTouch (multiTouch)
-        pure ()
+jchain : List String
+jchain =
+    [ "TouchScreenFactory" ]
 
 
-isMultiTouch :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isMultiTouch object_ = jmethod object_ "isMultiTouch" (\() -> (isMultiTouch_impl (javaCast object_ :: TouchScreenFactory))) ()
-
-isMultiTouch_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isMultiTouch_super object_ = (isMultiTouch_impl (javaCast object_ :: TouchScreenFactory))
-
-isMultiTouch_impl :: TouchScreenFactory -> IO (Bool)
-isMultiTouch_impl this = do
-        pure ((jget (this).multiTouch))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "touch", JR.defaultOf "Z" ), ( "multiTouch", JR.defaultOf "Z" ), ( "multiTouchDistinct", JR.defaultOf "Z" ), ( "touchScreenType", JR.defaultOf "" ) ]
 
 
-setTouch :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setTouch object_ a1 = jmethod object_ "setTouch" (\() -> (setTouch_impl (javaCast object_ :: TouchScreenFactory))) () a1
-
-setTouch_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setTouch_super object_ a1 = (setTouch_impl (javaCast object_ :: TouchScreenFactory)) a1
-
-setTouch_impl :: TouchScreenFactory -> Bool -> IO (())
-setTouch_impl this touch = do
-        jset (this).touch (touch)
-        pure ()
-
-
-isTouch :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isTouch object_ = jmethod object_ "isTouch" (\() -> (isTouch_impl (javaCast object_ :: TouchScreenFactory))) ()
-
-isTouch_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isTouch_super object_ = (isTouch_impl (javaCast object_ :: TouchScreenFactory))
-
-isTouch_impl :: TouchScreenFactory -> IO (Bool)
-isTouch_impl this = do
-        pure ((jget (this).touch))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "setMultiTouch_1", jm_setMultiTouch_1 )
+        , ( "isMultiTouch_0", jm_isMultiTouch_0 )
+        , ( "setTouch_1", jm_setTouch_1 )
+        , ( "isTouch_0", jm_isTouch_0 )
+        , ( "setMultiTouchDistinct_1", jm_setMultiTouchDistinct_1 )
+        , ( "isMultiTouchDistinct_0", jm_isMultiTouchDistinct_0 )
+        , ( "setTouchScreenType_1", jm_setTouchScreenType_1 )
+        , ( "getTouchScreenType_0", jm_getTouchScreenType_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
 
-setMultiTouchDistinct :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setMultiTouchDistinct object_ a1 = jmethod object_ "setMultiTouchDistinct" (\() -> (setMultiTouchDistinct_impl (javaCast object_ :: TouchScreenFactory))) () a1
-
-setMultiTouchDistinct_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setMultiTouchDistinct_super object_ a1 = (setMultiTouchDistinct_impl (javaCast object_ :: TouchScreenFactory)) a1
-
-setMultiTouchDistinct_impl :: TouchScreenFactory -> Bool -> IO (())
-setMultiTouchDistinct_impl this multiTouchDistinct = do
-        jset (this).multiTouchDistinct (multiTouchDistinct)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TouchScreenFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_setMultiTouch_1", jm_setMultiTouch_1 ), ( "jm_isMultiTouch_0", jm_isMultiTouch_0 ), ( "jm_setTouch_1", jm_setTouch_1 ), ( "jm_isTouch_0", jm_isTouch_0 ), ( "jm_setMultiTouchDistinct_1", jm_setMultiTouchDistinct_1 ), ( "jm_isMultiTouchDistinct_0", jm_isMultiTouchDistinct_0 ), ( "jm_setTouchScreenType_1", jm_setTouchScreenType_1 ), ( "jm_getTouchScreenType_0", jm_getTouchScreenType_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
 
 
-isMultiTouchDistinct :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isMultiTouchDistinct object_ = jmethod object_ "isMultiTouchDistinct" (\() -> (isMultiTouchDistinct_impl (javaCast object_ :: TouchScreenFactory))) ()
-
-isMultiTouchDistinct_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isMultiTouchDistinct_super object_ = (isMultiTouchDistinct_impl (javaCast object_ :: TouchScreenFactory))
-
-isMultiTouchDistinct_impl :: TouchScreenFactory -> IO (Bool)
-isMultiTouchDistinct_impl this = do
-        pure ((jget (this).multiTouchDistinct))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setTouchScreenType :: (JavaObjectClass this_) => this_ -> TouchScreenType.TouchScreenType -> IO (())
-setTouchScreenType object_ a1 = jmethod object_ "setTouchScreenType" (\() -> (setTouchScreenType_impl (javaCast object_ :: TouchScreenFactory))) () a1
-
-setTouchScreenType_super :: (JavaObjectClass this_) => this_ -> TouchScreenType.TouchScreenType -> IO (())
-setTouchScreenType_super object_ a1 = (setTouchScreenType_impl (javaCast object_ :: TouchScreenFactory)) a1
-
-setTouchScreenType_impl :: TouchScreenFactory -> TouchScreenType.TouchScreenType -> IO (())
-setTouchScreenType_impl this touchScreenType = do
-        jset (this).touchScreenType (touchScreenType)
-        pure ()
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "TouchScreenFactory" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
 
 
-getTouchScreenType :: (JavaObjectClass this_) => this_ -> IO (TouchScreenType.TouchScreenType)
-getTouchScreenType object_ = jmethod object_ "getTouchScreenType" (\() -> (getTouchScreenType_impl (javaCast object_ :: TouchScreenFactory))) ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "touchScreenType" "" JR.this (JR.field "NOTOUCH" (JR.callStatic TouchScreenTypesFactory.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "setTouch_1" JR.this [ (JR.bool True) ]), 
+                        JR.exec (JR.invoke "setMultiTouch_1" JR.this [ (JR.bool False) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), jstatic_SINGLETON, (JR.field "GET_INSTANCE" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getTouchScreenType_super :: (JavaObjectClass this_) => this_ -> IO (TouchScreenType.TouchScreenType)
-getTouchScreenType_super object_ = (getTouchScreenType_impl (javaCast object_ :: TouchScreenFactory))
 
-getTouchScreenType_impl :: TouchScreenFactory -> IO (TouchScreenType.TouchScreenType)
-getTouchScreenType_impl this = do
-        pure ((jget (this).touchScreenType))
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: TouchScreenFactory))) ()
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: TouchScreenFactory))
 
-toString_impl :: TouchScreenFactory -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "TouchScreen: ")
-        Control.Monad.void (StringMaker.appendboolean stringBuffer (jio (TouchScreenFactory.isTouch this)))
-        Control.Monad.void (StringMaker.append stringBuffer " MultiTouch: ")
-        Control.Monad.void (StringMaker.appendboolean stringBuffer (jio (TouchScreenFactory.isMultiTouch this)))
-        Control.Monad.void (StringMaker.append stringBuffer " Distinct MultiTouch: ")
-        Control.Monad.void (StringMaker.appendboolean stringBuffer (jio (TouchScreenFactory.isMultiTouchDistinct this)))
-        Control.Monad.void (StringMaker.append stringBuffer " TouchScreenType: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString ((jio (StringUtil.getInstance))) (jio (TouchScreenFactory.getTouchScreenType this)))))
-        (StringMaker.toString stringBuffer)
+jm_setMultiTouch_1 : JR.Method
+jm_setMultiTouch_1 jheap jthis jargs =
+    JR.method [ ( "multiTouch", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "multiTouch" "Z" JR.this (JR.local "multiTouch")) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_isMultiTouch_0 : JR.Method
+jm_isMultiTouch_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "multiTouch") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setTouch_1 : JR.Method
+jm_setTouch_1 jheap jthis jargs =
+    JR.method [ ( "touch", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "touch" "Z" JR.this (JR.local "touch")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isTouch_0 : JR.Method
+jm_isTouch_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "touch") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMultiTouchDistinct_1 : JR.Method
+jm_setMultiTouchDistinct_1 jheap jthis jargs =
+    JR.method [ ( "multiTouchDistinct", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "multiTouchDistinct" "Z" JR.this (JR.local "multiTouchDistinct")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isMultiTouchDistinct_0 : JR.Method
+jm_isMultiTouchDistinct_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "multiTouchDistinct") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setTouchScreenType_1 : JR.Method
+jm_setTouchScreenType_1 jheap jthis jargs =
+    JR.method [ ( "touchScreenType", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "touchScreenType" "" JR.this (JR.local "touchScreenType")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTouchScreenType_0 : JR.Method
+jm_getTouchScreenType_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "touchScreenType") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "TouchScreen: ") ]), 
+                    JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.invoke "isTouch_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " MultiTouch: ") ]), 
+                    JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.invoke "isMultiTouch_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Distinct MultiTouch: ") ]), 
+                    JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.invoke "isMultiTouchDistinct_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " TouchScreenType: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.invoke "getTouchScreenType_0" JR.this []) ]) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

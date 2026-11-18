@@ -1,126 +1,110 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
-module MainGameDemoStatePaintable (module MainGameDemoStatePaintable, module Paintable) where
+module Org.Allbinary.Game.Paint.MainGameDemoStatePaintable exposing (..)
 
-import Paintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, paint, paint_super, paint_impl, getOwnershipPaintableInterface, getOwnershipPaintableInterface_super, getOwnershipPaintableInterface_impl, getMenuPaintableInterface, getMenuPaintableInterface_super, getMenuPaintableInterface_impl, ownershipPaintableInterface, menuPaintableInterface)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
+{-| Generated Code Do Not Modify package org.allbinary.game.paint
+-}
 
-data MainGameDemoStatePaintable = MainGameDemoStatePaintable
-    { header_ :: JavaHeader
-    , base :: Paintable.Paintable
-    , ownershipPaintableInterface :: IORef (Paintable.Paintable)
-    , menuPaintableInterface :: IORef (Paintable.Paintable)
-    }
-
-instance JavaNull MainGameDemoStatePaintable where
-    javaNull = javaNullRecord "MainGameDemoStatePaintable"
-
-instance JavaEquals MainGameDemoStatePaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MainGameDemoStatePaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MainGameDemoStatePaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO MainGameDemoStatePaintable
-newRecord_ = do
-    base <- Paintable.newRecord_
-    let header_ = base.header_
-    ownershipPaintableInterface <- newIORef javaNull
-    menuPaintableInterface <- newIORef javaNull
-    let this = MainGameDemoStatePaintable header_ base ownershipPaintableInterface menuPaintableInterface
-    jregisterLevel header_ this
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "getOwnershipPaintableInterface" (\() -> getOwnershipPaintableInterface_impl this)
-    jregisterMethod header_ "getMenuPaintableInterface" (\() -> getMenuPaintableInterface_impl this)
-    pure this
-
-initFields_ :: MainGameDemoStatePaintable -> IO ()
-initFields_ this = do
-    jset this.ownershipPaintableInterface (javaNull)
-    jset this.menuPaintableInterface (javaNull)
-    pure ()
-
-new_2 :: Paintable.Paintable -> Paintable.Paintable -> IO MainGameDemoStatePaintable
-new_2 ownershipPaintableInterface menuPaintableInterface = do
-    this <- newRecord_
-    init_2 this ownershipPaintableInterface menuPaintableInterface
-    pure this
-
-init_2 :: MainGameDemoStatePaintable -> Paintable.Paintable -> Paintable.Paintable -> IO ()
-init_2 this ownershipPaintableInterface menuPaintableInterface = do
-        Paintable.init_ this.base
-        initFields_ this
-        jset (this).ownershipPaintableInterface (ownershipPaintableInterface)
-        jset (this).menuPaintableInterface (menuPaintableInterface)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Paint.Paintable as Paintable
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: MainGameDemoStatePaintable))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: MainGameDemoStatePaintable)) a1
-
-paint_impl :: MainGameDemoStatePaintable -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (Paintable.paint ((jget (this).menuPaintableInterface)) graphics)
-        Control.Monad.void (Paintable.paint ((jget (this).ownershipPaintableInterface)) graphics)
-        pure ()
+jclass : String
+jclass =
+    "MainGameDemoStatePaintable"
 
 
-getOwnershipPaintableInterface :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getOwnershipPaintableInterface object_ = jmethod object_ "getOwnershipPaintableInterface" (\() -> (getOwnershipPaintableInterface_impl (javaCast object_ :: MainGameDemoStatePaintable))) ()
-
-getOwnershipPaintableInterface_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getOwnershipPaintableInterface_super object_ = (getOwnershipPaintableInterface_impl (javaCast object_ :: MainGameDemoStatePaintable))
-
-getOwnershipPaintableInterface_impl :: MainGameDemoStatePaintable -> IO (Paintable.Paintable)
-getOwnershipPaintableInterface_impl this = do
-        pure ((jget (this).ownershipPaintableInterface))
+jchain : List String
+jchain =
+    [ "MainGameDemoStatePaintable" ]
+        ++ Paintable.jchain
 
 
-getMenuPaintableInterface :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getMenuPaintableInterface object_ = jmethod object_ "getMenuPaintableInterface" (\() -> (getMenuPaintableInterface_impl (javaCast object_ :: MainGameDemoStatePaintable))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    Paintable.jfields ++ [ ( "ownershipPaintableInterface", JR.defaultOf "" ), ( "menuPaintableInterface", JR.defaultOf "" ) ]
 
-getMenuPaintableInterface_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getMenuPaintableInterface_super object_ = (getMenuPaintableInterface_impl (javaCast object_ :: MainGameDemoStatePaintable))
 
-getMenuPaintableInterface_impl :: MainGameDemoStatePaintable -> IO (Paintable.Paintable)
-getMenuPaintableInterface_impl this = do
-        pure ((jget (this).menuPaintableInterface))
+jvtable =
+    JR.vtable
+        [ ( "paint_1", jm_paint_1 )
+        , ( "getOwnershipPaintableInterface_0", jm_getOwnershipPaintableInterface_0 )
+        , ( "getMenuPaintableInterface_0", jm_getMenuPaintableInterface_0 ) ]
+        Paintable.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MainGameDemoStatePaintable"
+        [ ( "jm_paint_1", jm_paint_1 ), ( "jm_getOwnershipPaintableInterface_0", jm_getOwnershipPaintableInterface_0 ), ( "jm_getMenuPaintableInterface_0", jm_getMenuPaintableInterface_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "ownershipPaintableInterface", "" ), ( "menuPaintableInterface", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Paintable.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "ownershipPaintableInterface" "" JR.this (JR.local "ownershipPaintableInterface")), 
+                    JR.exec (JR.setField "menuPaintableInterface" "" JR.this (JR.local "menuPaintableInterface")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "menuPaintableInterface") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "ownershipPaintableInterface") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getOwnershipPaintableInterface_0 : JR.Method
+jm_getOwnershipPaintableInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "ownershipPaintableInterface") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMenuPaintableInterface_0 : JR.Method
+jm_getMenuPaintableInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "menuPaintableInterface") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

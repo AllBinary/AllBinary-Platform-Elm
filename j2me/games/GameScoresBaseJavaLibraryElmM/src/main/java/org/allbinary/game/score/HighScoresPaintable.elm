@@ -1,231 +1,188 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module HighScoresPaintable (module HighScoresPaintable, module Paintable) where
+module Org.Allbinary.Game.Score.HighScoresPaintable exposing (..)
 
-import Paintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, onEvent, onEvent_super, onEvent_impl, paint, paint_super, paint_impl, setBasicColorP, setBasicColorP_super, setBasicColorP_impl, getBasicColorP, getBasicColorP_super, getBasicColorP_impl, setHighScores, setHighScores_super, setHighScores_impl, displayInfoSingleton, myFontProcessor, basicColor, highScores, anchor, charHeight)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NullHighScoresSingletonFactory -- same package or java.lang
-import qualified HighScores -- same package or java.lang
-import qualified HighScore -- same package or java.lang
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Anchor -- org.allbinary.graphics.Anchor
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified ColorChangeEvent -- org.allbinary.graphics.color.ColorChangeEvent
-import qualified ColorChangeListener -- org.allbinary.graphics.color.ColorChangeListener
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
--- implements ColorChangeListener
--- implements UpdateMyFontInterface
-data HighScoresPaintable = HighScoresPaintable
-    { header_ :: JavaHeader
-    , base :: Paintable.Paintable
-    , displayInfoSingleton :: IORef (DisplayInfoSingleton.DisplayInfoSingleton)
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , basicColor :: IORef (BasicColor.BasicColor)
-    , highScores :: IORef (HighScores.HighScores)
-    , anchor :: IORef (Int)
-    , charHeight :: IORef (Int)
-    }
-
-instance JavaNull HighScoresPaintable where
-    javaNull = javaNullRecord "HighScoresPaintable"
-
-instance JavaEquals HighScoresPaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoresPaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoresPaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HighScoresPaintable
-newRecord_ = do
-    base <- Paintable.newRecord_
-    let header_ = base.header_
-    displayInfoSingleton <- newIORef javaNull
-    myFontProcessor <- newIORef javaNull
-    basicColor <- newIORef javaNull
-    highScores <- newIORef javaNull
-    anchor <- newIORef 0
-    charHeight <- newIORef 0
-    let this = HighScoresPaintable header_ base displayInfoSingleton myFontProcessor basicColor highScores anchor charHeight
-    jregisterLevel header_ this
-    ColorChangeListener.registerInterface_ header_
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "setBasicColorP" (\() -> setBasicColorP_impl this)
-    jregisterMethod header_ "getBasicColorP" (\() -> getBasicColorP_impl this)
-    jregisterMethod header_ "setHighScores" (\() -> setHighScores_impl this)
-    pure this
-
-initFields_ :: HighScoresPaintable -> IO ()
-initFields_ this = do
-    jset this.displayInfoSingleton =<< (DisplayInfoSingleton.getInstance)
-    jset this.myFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.basicColor ((jget ((jio (BasicColorFactory.getInstance))).wHITE))
-    jset this.highScores =<< (NullHighScoresSingletonFactory.getInstance)
-    jset this.anchor (Anchor.tOP_LEFT)
-    jset this.charHeight (0)
-    pure ()
-
-new_ :: IO HighScoresPaintable
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: HighScoresPaintable -> IO ()
-init_ this = do
-        Paintable.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Anchor as Anchor
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Graphics.Color.ColorChangeListener as ColorChangeListener
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Game.Score.NullHighScoresSingletonFactory as NullHighScoresSingletonFactory
+import Org.Allbinary.Graphics.Paint.Paintable as Paintable
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: HighScoresPaintable))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: HighScoresPaintable)) a1
-
-updateMeasurement_impl :: HighScoresPaintable -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        assignedValue <- (Font.getHeight font)
-        jset (this).charHeight (assignedValue)
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "HighScoresPaintable"
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: HighScoresPaintable))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: HighScoresPaintable)) a1
-
-onEvent_impl :: HighScoresPaintable -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        let colorChangeEvent = (javaCast eventObject :: ColorChangeEvent.ColorChangeEvent)
-        assignedValue <- (ColorChangeEvent.getBasicColorP colorChangeEvent)
-        jset (this).basicColor (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "HighScoresPaintable" ]
+        ++ Paintable.jchain
+        ++ ColorChangeListener.jchain
+        ++ UpdateMyFontInterface.jchain
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: HighScoresPaintable))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: HighScoresPaintable)) a1
-
-paint_impl :: HighScoresPaintable -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-        width <- (DisplayInfoSingleton.getLastWidth ((jget (this).displayInfoSingleton)))
-        height <- (DisplayInfoSingleton.getLastHeight ((jget (this).displayInfoSingleton)))
-        Control.Monad.void (Graphics.setColor graphics (jio (BasicColor.intValue ((jio (HighScoresPaintable.getBasicColorP this))))))
-        heading <- (HighScores.getHeading ((jget (this).highScores)))
-        let topScoresWidth = (((jio (Graphics.stringWidth ((jio (Graphics.getFont graphics))) heading)) `Data.Bits.shiftR` 1))
-        let charHeight = (jget (this).charHeight)
-        Control.Monad.void (Graphics.drawString graphics heading (((width `Data.Bits.shiftR` 1)) - topScoresWidth) charHeight (jget (this).anchor))
-        Control.Monad.void (Graphics.drawString graphics (jio (HighScores.getColumnOneHeading ((jget (this).highScores)))) 10 (charHeight * 3) (jget (this).anchor))
-        columnTwoHeading <- (HighScores.getColumnTwoHeading ((jget (this).highScores)))
-        columnTwoHeadingWidth <- (Graphics.stringWidth ((jio (Graphics.getFont graphics))) columnTwoHeading)
-        Control.Monad.void (Graphics.drawString graphics columnTwoHeading ((width - 10) - columnTwoHeadingWidth) (charHeight * 3) (jget (this).anchor))
-        index <- newIORef (4 :: Int)
-        largestSecondColumnWidth <- newIORef (columnTwoHeadingWidth :: Int)
-        list <- (HighScores.getList ((jget (this).highScores)))
-        size <- (BasicArrayList.size list)
-        vectorIndex <- newIORef (0 :: Int)
-        highScore <- newIORef (javaNull)
-        fix $ \loop -> when (((jget vectorIndex) < size) && ((charHeight * (jget index)) < (height - ((charHeight * 2))))) $ javaIteration (loop) $ do
-            jset highScore ((javaCast (jindex ((jget (list).objectArray)) ((jget vectorIndex))) :: HighScore.HighScore))
-            nextScoreWidth <- (Graphics.stringWidth ((jio (Graphics.getFont graphics))) (jio (HighScore.getScoreString ((jget highScore)))))
-            when (nextScoreWidth > (jget largestSecondColumnWidth)) $ do
-                jset largestSecondColumnWidth (nextScoreWidth)
-            jset vectorIndex ((jget vectorIndex) + 1)
-        jset vectorIndex (0)
-        fix $ \loop -> when (((jget vectorIndex) < size) && ((charHeight * (jget index)) < (height - ((charHeight * 2))))) $ javaIteration (loop) $ do
-            jset highScore ((javaCast (jindex ((jget (list).objectArray)) ((jget vectorIndex))) :: HighScore.HighScore))
-            Control.Monad.void (Graphics.drawString graphics (jio (HighScore.getName ((jget highScore)))) 10 (charHeight * (jget index)) (jget (this).anchor))
-            Control.Monad.void (Graphics.drawString graphics (jio (HighScore.getScoreString ((jget highScore)))) ((width - 10) - (jget largestSecondColumnWidth)) (charHeight * (jget index)) (jget (this).anchor))
-            jset index ((jget index) + 1)
-            jset vectorIndex ((jget vectorIndex) + 1)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    Paintable.jfields ++ [ ( "displayInfoSingleton", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "basicColor", JR.defaultOf "" ), ( "highScores", JR.defaultOf "" ), ( "anchor", JR.defaultOf "I" ), ( "charHeight", JR.defaultOf "I" ) ]
 
 
-setBasicColorP :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP object_ a1 = jmethod object_ "setBasicColorP" (\() -> (setBasicColorP_impl (javaCast object_ :: HighScoresPaintable))) () a1
-
-setBasicColorP_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP_super object_ a1 = (setBasicColorP_impl (javaCast object_ :: HighScoresPaintable)) a1
-
-setBasicColorP_impl :: HighScoresPaintable -> BasicColor.BasicColor -> IO (())
-setBasicColorP_impl this basicColor = do
-        jset (this).basicColor (basicColor)
-        pure ()
-
-
-getBasicColorP :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP object_ = jmethod object_ "getBasicColorP" (\() -> (getBasicColorP_impl (javaCast object_ :: HighScoresPaintable))) ()
-
-getBasicColorP_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP_super object_ = (getBasicColorP_impl (javaCast object_ :: HighScoresPaintable))
-
-getBasicColorP_impl :: HighScoresPaintable -> IO (BasicColor.BasicColor)
-getBasicColorP_impl this = do
-        pure ((jget (this).basicColor))
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "onEvent_1", jm_onEvent_1 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "setBasicColorP_1", jm_setBasicColorP_1 )
+        , ( "getBasicColorP_0", jm_getBasicColorP_0 )
+        , ( "setHighScores_1", jm_setHighScores_1 ) ]
+        Paintable.jvtable
 
 
-setHighScores :: (JavaObjectClass this_) => this_ -> HighScores.HighScores -> IO (())
-setHighScores object_ a1 = jmethod object_ "setHighScores" (\() -> (setHighScores_impl (javaCast object_ :: HighScoresPaintable))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoresPaintable"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_setBasicColorP_1", jm_setBasicColorP_1 ), ( "jm_getBasicColorP_0", jm_getBasicColorP_0 ), ( "jm_setHighScores_1", jm_setHighScores_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
-setHighScores_super :: (JavaObjectClass this_) => this_ -> HighScores.HighScores -> IO (())
-setHighScores_super object_ a1 = (setHighScores_impl (javaCast object_ :: HighScoresPaintable)) a1
 
-setHighScores_impl :: HighScoresPaintable -> HighScores.HighScores -> IO (())
-setHighScores_impl this highScores = do
-        jset (this).highScores (highScores)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect Paintable.jinit_0 JR.this []),
+                JR.exec (JR.setField "displayInfoSingleton" "" JR.this (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 [])),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "basicColor" "" JR.this (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 []))),
+                JR.exec (JR.setField "highScores" "" JR.this (JR.callStatic NullHighScoresSingletonFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "anchor" "I" JR.this Anchor.jstatic_TOP_LEFT),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "charHeight" "I" JR.this (JR.invoke "getHeight_0" (JR.local "font") [])), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "colorChangeEvent" "" (JR.local "eventObject"), 
+                    JR.exec (JR.setField "basicColor" "" JR.this (JR.invoke "getBasicColorP_0" (JR.local "colorChangeEvent") [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.declare "width" "I" (JR.invoke "getLastWidth_0" (JR.thisField "displayInfoSingleton") []), 
+                    JR.declare "height" "I" (JR.invoke "getLastHeight_0" (JR.thisField "displayInfoSingleton") []), 
+                    JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.invoke "intValue_0" (JR.invoke "getBasicColorP_0" JR.this []) []) ]), 
+                    JR.declare "heading" "" (JR.invoke "getHeading_0" (JR.thisField "highScores") []), 
+                    JR.declare "topScoresWidth" "I" ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.local "heading") ]) (JR.int 1))), 
+                    JR.declare "charHeight" "I" (JR.thisField "charHeight"), 
+                    JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.local "heading"), (JR.map2 JR.sub ((JR.map2 JR.shr (JR.local "width") (JR.int 1))) (JR.local "topScoresWidth")), (JR.local "charHeight"), (JR.thisField "anchor") ]), 
+                    JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.invoke "getColumnOneHeading_0" (JR.thisField "highScores") []), (JR.int 10), (JR.map2 JR.mul (JR.local "charHeight") (JR.int 3)), (JR.thisField "anchor") ]), 
+                    JR.declare "columnTwoHeading" "" (JR.invoke "getColumnTwoHeading_0" (JR.thisField "highScores") []), 
+                    JR.declare "columnTwoHeadingWidth" "I" (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.local "columnTwoHeading") ]), 
+                    JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.local "columnTwoHeading"), (JR.map2 JR.sub (JR.map2 JR.sub (JR.local "width") (JR.int 10)) (JR.local "columnTwoHeadingWidth")), (JR.map2 JR.mul (JR.local "charHeight") (JR.int 3)), (JR.thisField "anchor") ]), 
+                    JR.declare "index" "I" (JR.int 4), 
+                    JR.declare "largestSecondColumnWidth" "I" (JR.local "columnTwoHeadingWidth"), 
+                    JR.declare "list" "" (JR.invoke "getList_0" (JR.thisField "highScores") []), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                    JR.declare "vectorIndex" "I" (JR.int 0), 
+                    JR.declare "highScore" "" (JR.lit (JR.defaultOf "")), 
+                    JR.while (JR.and (JR.map2 JR.less (JR.local "vectorIndex") (JR.local "size")) (JR.map2 JR.less (JR.map2 JR.mul (JR.local "charHeight") (JR.local "index")) (JR.map2 JR.sub (JR.local "height") ((JR.map2 JR.mul (JR.local "charHeight") (JR.int 2)))))) (JR.run [ 
+                        JR.exec (JR.setLocal "highScore" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "vectorIndex"))), 
+                        JR.declare "nextScoreWidth" "I" (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.invoke "getScoreString_0" (JR.local "highScore") []) ]), 
+                        JR.ifElse (JR.map2 JR.greater (JR.local "nextScoreWidth") (JR.local "largestSecondColumnWidth")) (JR.run [ 
+                            JR.exec (JR.setLocal "largestSecondColumnWidth" "I" (JR.local "nextScoreWidth")) ]) identity, 
+                        JR.exec (JR.postUpdate (JR.local "vectorIndex") (\jwN70024 -> (JR.setLocal "vectorIndex" "I" (JR.lit jwN70024))) JR.increment) ]), 
+                    JR.exec (JR.setLocal "vectorIndex" "I" (JR.int 0)), 
+                    JR.while (JR.and (JR.map2 JR.less (JR.local "vectorIndex") (JR.local "size")) (JR.map2 JR.less (JR.map2 JR.mul (JR.local "charHeight") (JR.local "index")) (JR.map2 JR.sub (JR.local "height") ((JR.map2 JR.mul (JR.local "charHeight") (JR.int 2)))))) (JR.run [ 
+                        JR.exec (JR.setLocal "highScore" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "vectorIndex"))), 
+                        JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.invoke "getName_0" (JR.local "highScore") []), (JR.int 10), (JR.map2 JR.mul (JR.local "charHeight") (JR.local "index")), (JR.thisField "anchor") ]), 
+                        JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.invoke "getScoreString_0" (JR.local "highScore") []), (JR.map2 JR.sub (JR.map2 JR.sub (JR.local "width") (JR.int 10)) (JR.local "largestSecondColumnWidth")), (JR.map2 JR.mul (JR.local "charHeight") (JR.local "index")), (JR.thisField "anchor") ]), 
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN70396 -> (JR.setLocal "index" "I" (JR.lit jwN70396))) JR.increment), 
+                        JR.exec (JR.postUpdate (JR.local "vectorIndex") (\jwN70413 -> (JR.setLocal "vectorIndex" "I" (JR.lit jwN70413))) JR.increment) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setBasicColorP_1 : JR.Method
+jm_setBasicColorP_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "basicColor" "" JR.this (JR.local "basicColor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBasicColorP_0 : JR.Method
+jm_getBasicColorP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "basicColor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHighScores_1 : JR.Method
+jm_setHighScores_1 jheap jthis jargs =
+    JR.method [ ( "highScores", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "highScores" "" JR.this (JR.local "highScores")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

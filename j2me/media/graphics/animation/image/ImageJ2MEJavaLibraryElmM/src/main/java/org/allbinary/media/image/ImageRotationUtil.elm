@@ -1,108 +1,102 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
-module ImageRotationUtil where
+module Org.Allbinary.Media.Image.ImageRotationUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Anchor -- org.allbinary.graphics.Anchor
+{-| Generated Code Do Not Modify package org.allbinary.media.image
+-}
 
-data ImageRotationUtil = ImageRotationUtil
-    { header_ :: JavaHeader
-    , anchor :: IORef (Int)
-    }
-
-instance JavaNull ImageRotationUtil where
-    javaNull = javaNullRecord "ImageRotationUtil"
-
-instance JavaEquals ImageRotationUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageRotationUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageRotationUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ImageRotationUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ImageRotationUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    anchor <- newIORef 0
-    let this = ImageRotationUtil header_ anchor
-    jregisterLevel header_ this
-    jregisterMethod header_ "createRotatedImage" (\() -> createRotatedImage_impl this)
-    pure this
-
-initFields_ :: ImageRotationUtil -> IO ()
-initFields_ this = do
-    jset this.anchor (Anchor.tOP_LEFT)
-    pure ()
+import JR
+import Org.Allbinary.Graphics.Anchor as Anchor
 
 
-getInstance :: IO (ImageRotationUtil)
-getInstance = do
-        pure (ImageRotationUtil.instance_)
-
-new_ :: IO ImageRotationUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ImageRotationUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "ImageRotationUtil"
 
 
--- throws Exception
-createRotatedImage :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> IO (Image.Image)
-createRotatedImage object_ a1 a2 = jmethod object_ "createRotatedImage" (\() -> (createRotatedImage_impl (javaCast object_ :: ImageRotationUtil))) () a1 a2
+jchain : List String
+jchain =
+    [ "ImageRotationUtil" ]
 
-createRotatedImage_super :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> IO (Image.Image)
-createRotatedImage_super object_ a1 a2 = (createRotatedImage_impl (javaCast object_ :: ImageRotationUtil)) a1 a2
 
-createRotatedImage_impl :: ImageRotationUtil -> Image.Image -> Int -> IO (Image.Image)
-createRotatedImage_impl this originalImage rotationInDegrees = do
-        pure (originalImage)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "anchor", JR.defaultOf "I" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "createRotatedImage_2", jm_createRotatedImage_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageRotationUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_createRotatedImage_2", jm_createRotatedImage_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ImageRotationUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "anchor" "I" JR.this Anchor.jstatic_TOP_LEFT),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createRotatedImage_2 : JR.Method
+jm_createRotatedImage_2 jheap jthis jargs =
+    JR.method [ ( "originalImage", "" ), ( "rotationInDegrees", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.local "originalImage") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

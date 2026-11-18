@@ -1,12 +1,12 @@
-module WindowsHardware exposing (..)
+module Org.Allbinary.Logic.System.Hardware.Windows.WindowsHardware exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.hardware.windows
 -}
 
 import JR
-import HardwareInterface
-import StdUtil
-import StringUtil
+import Org.Allbinary.Logic.System.Hardware.HardwareInterface as HardwareInterface
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
 jclass : String

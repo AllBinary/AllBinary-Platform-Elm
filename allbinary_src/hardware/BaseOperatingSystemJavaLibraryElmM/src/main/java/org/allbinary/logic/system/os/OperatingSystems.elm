@@ -1,4 +1,4 @@
-module OperatingSystems exposing (..)
+module Org.Allbinary.Logic.System.Os.OperatingSystems exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.os
 -}

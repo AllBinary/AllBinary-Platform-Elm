@@ -1,4 +1,4 @@
-module J2SEMath exposing (..)
+module Org.Allbinary.Logic.Math.J2SEMath exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.math
 -}

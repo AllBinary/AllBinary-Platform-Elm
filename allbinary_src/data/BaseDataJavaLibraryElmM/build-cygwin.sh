@@ -34,10 +34,25 @@ if [ -d "$dependency_dir/src" ]; then
 fi
 cp -R "$source_dir/." "$tree/"
 
-# One Elm project: every module in one source folder and elm.json with elm/core (the package cache of elm make)
-project="$object_dir/project"
+# One Elm project: every module in one source folder and elm.json with elm/core (the package cache of elm make).
+# A module is named by the package of its class (Org.Microemu.Device.Impl.Font) so it is put in the folder of its name
+# (src/Org/Microemu/Device/Impl/Font.elm). A Windows program can not open a path over 260 characters, which a deep
+# project folder plus a deep package reaches, so the project is a short temporary folder.
+project="$(mktemp -d /tmp/elmXXXXXX)"
+trap 'rm -rf "$project"' EXIT
 mkdir -p "$project/src"
-find "$tree" -type f -name '*.elm' -exec cp {} "$project/src/" \;
+# The path in src of the module of a file: its module name with / for each .
+module_path() {
+    local name
+    name="$(sed -n '1,40s/^module \([A-Za-z0-9_.]*\).*/\1/p' "$1" | head -1 | tr -d '\r')"
+    [ -z "$name" ] && name="$(basename "$1" .elm)"
+    echo "${name//.//}.elm"
+}
+while IFS= read -r file; do
+    target="$project/src/$(module_path "$file")"
+    mkdir -p "$(dirname "$target")"
+    cp "$file" "$target"
+done < <(find "$tree" -type f -name '*.elm')
 cat > "$project/elm.json" <<'JSON'
 {
     "type": "application",
@@ -61,7 +76,7 @@ JSON
 cd "$project" || exit 1
 modules=()
 while IFS= read -r file; do
-    modules+=("src/$(basename "$file")")
+    modules+=("src/$(module_path "$file")")
 done < <(find "$source_dir" -type f -name '*.elm' | sort)
 echo "Elm modules: ${#modules[@]}"
 if [ "${#modules[@]}" = "0" ]; then
@@ -83,20 +98,16 @@ repository="$(cygpath -u "$repository")"
 break_cycle() {
     local cycle=("$@")
     local count="${#cycle[@]}"
-    local index from to file
+    local index from to alias module file
     for ((index = count - 1; index >= 0; index--)); do
         from="${cycle[$index]}"
         to="${cycle[$(((index + 1) % count))]}"
-        file="src/$from.elm"
-        if [ -f "$file" ] && grep -q -E "^import $to"$'\r'"?\$" "$file"; then
-            sed -E -i \
-                -e "s/(^|[^A-Za-z0-9_.])$to\.(jm_[A-Za-z0-9_]+|jnew_[0-9]+|jinit_[0-9]+)/\1(JR.namedMethod \"$to.\2\")/g" \
-                -e "s/(^|[^A-Za-z0-9_.])$to\.(jstatic_[A-Za-z0-9_]+)/\1(JR.namedStatic \"$to.\2\")/g" \
-                -e "s/(^|[^A-Za-z0-9_.])$to\.jchain([^A-Za-z0-9_]|$)/\1[ \"$to\" ]\2/g" \
-                -e "s/(^|[^A-Za-z0-9_.])$to\.jvtable([^A-Za-z0-9_]|$)/\1JR.noMethods\2/g" \
-                -e "s/(^|[^A-Za-z0-9_.])$to\.jfields([^A-Za-z0-9_]|$)/\1[]\2/g" \
-                -e "/^import $to"$'\r'"?\$/d" \
-                "$file"
+        # The code names the module by its class name (import Org.X.Name as Name), which is also its registered name
+        alias="${to##*.}"
+        module="${to//./\\.}"
+        file="src/${from//.//}.elm"
+        if [ -f "$file" ] && grep -q -E "^import $module( as $alias)?"$'\r'"?\$" "$file"; then
+            use_by_name "$file" "$to"
             echo "Elm import cycle: $from uses $to by name"
             return 0
         fi
@@ -104,32 +115,109 @@ break_cycle() {
     return 1
 }
 
-# The newest sources jar first: an older jar can have a module of an older conversion
+# true for the Elm module name of a Java library class: java.*, javax.* except javax.microedition, com.sun.*,
+# com.jogamp.*, org.lwjgl.*, android.* (the packages ElmFromJavaParserConverter.isLibraryClass calls by name)
+is_library_module() {
+    case "$1" in
+        Javax.Microedition.*) return 1 ;;
+        Java.*|Javax.*|Com.Sun.*|Com.Jogamp.*|Org.Lwjgl.*|Android.*|Com.Google.Android.*) return 0 ;;
+    esac
+    return 1
+}
+
+# A module file uses another module (Org.X.Name) by name instead of importing it
+use_by_name() {
+    local file="$1"
+    local to="$2"
+    local alias="${to##*.}"
+    local module="${to//./\\.}"
+    sed -E -i \
+        -e "s/(^|[^A-Za-z0-9_.])$alias\.(jm_[A-Za-z0-9_]+|jnew_[0-9]+|jinit_[0-9]+)/\1(JR.namedMethod \"$alias.\2\")/g" \
+        -e "s/(^|[^A-Za-z0-9_.])$alias\.(jstatic_[A-Za-z0-9_]+)/\1(JR.namedStatic \"$alias.\2\")/g" \
+        -e "s/(^|[^A-Za-z0-9_.])$alias\.jchain([^A-Za-z0-9_]|$)/\1[ \"$alias\" ]\2/g" \
+        -e "s/(^|[^A-Za-z0-9_.])$alias\.jvtable([^A-Za-z0-9_]|$)/\1JR.noMethods\2/g" \
+        -e "s/(^|[^A-Za-z0-9_.])$alias\.jfields([^A-Za-z0-9_]|$)/\1[]\2/g" \
+        -e "/^import $module( as $alias)?"$'\r'"?\$/d" \
+        "$file"
+}
+
+# The newest sources jar first: an older jar can have a module of an older conversion. The microemu for polyglot jars
+# (org/microemu) have the javax.microedition modules.
 jars=()
 while IFS= read -r jar; do
     jars+=("$jar")
-done < <(ls -t "$repository"/org/allbinary/*Elm/*/*-sources.jar 2>/dev/null)
+done < <(ls -t "$repository"/org/allbinary/*Elm/*/*-sources.jar "$repository"/org/microemu/*Elm/*/*-sources.jar 2>/dev/null)
+
+# The .elm entries of every jar (jar|entry) in the order of jars, made once when a module is missing
+entries="$object_dir/jar-entries.txt"
+jar_entries() {
+    [ -f "$entries" ] && return 0
+    : > "$entries"
+    local jar
+    for jar in "${jars[@]}"; do
+        unzip -Z1 "$jar" 2>/dev/null | grep -E '\.elm$' | sed "s|^|$jar\||" >> "$entries"
+    done
+}
+
+# true when every module a module file imports is in the project or in a jar
+imports_found() {
+    local module path
+    for module in $(tr -d '\r' < "$1" | sed -n 's/^import \([A-Za-z0-9_.]*\).*/\1/p'); do
+        path="${module//.//}.elm"
+        [ -f "src/$path" ] && continue
+        grep -q -i -E "[|/]${path//./\\.}\$" "$entries" && continue
+        return 1
+    done
+    return 0
+}
 
 round=0
 while [ "$status" != "0" ] && [ "$round" -lt 40 ]; do
     round=$((round + 1))
-    if echo "$output" | grep -q 'You are trying to import a `'; then
+    # elm.exe wraps the message, so the name of a long module is on the line after "You are trying to import a"
+    if echo "$output" | tr -d '\r' | tr '\n' ' ' | grep -q 'You are trying to import a *`'; then
+        jar_entries
         found=0
-        for missing in $(echo "$output" | sed -n 's/^You are trying to import a `\([A-Za-z0-9_]*\)` module:.*/\1/p' | sort -u); do
-            for jar in "${jars[@]}"; do
-                entry="$(unzip -Z1 "$jar" 2>/dev/null | grep -E "(^|/)$missing\.elm$" | head -1)"
-                if [ -n "$entry" ]; then
-                    unzip -p "$jar" "$entry" > "src/$missing.elm"
-                    echo "Elm module of an optional dependency: $missing from $(basename "$jar")"
-                    found=1
+        for missing in $(echo "$output" | tr -d '\r' | tr '\n' ' ' | grep -o 'You are trying to import a *`[A-Za-z0-9_.]*`' | sed 's/.*`\([A-Za-z0-9_.]*\)`/\1/' | sort -u); do
+            # The jar has the module at the path of its Java package (org/allbinary/util/ABVector.elm for
+            # Org.Allbinary.Util.ABVector). Classes of the same name are in more than one module (HardwareFactory of
+            # NoHardware and of PersonalComputerSystem), so the first jar whose module has all of its imports is used,
+            # or the newest jar when none has.
+            path="${missing//.//}.elm"
+            chosen=""
+            candidate="$object_dir/candidate.elm"
+            while IFS='|' read -r jar entry; do
+                [ -z "$jar" ] && continue
+                unzip -p "$jar" "$entry" > "$candidate"
+                [ -z "$chosen" ] && chosen="$jar|$entry"
+                if imports_found "$candidate"; then
+                    chosen="$jar|$entry"
                     break
                 fi
-            done
+            done < <(grep -i -E "[|/]${path//./\\.}\$" "$entries")
+            if [ -n "$chosen" ]; then
+                jar="${chosen%%|*}"
+                entry="${chosen#*|}"
+                mkdir -p "$(dirname "src/$path")"
+                unzip -p "$jar" "$entry" > "src/$path"
+                echo "Elm module of an optional dependency: $missing from $(basename "$jar")"
+                found=1
+            elif is_library_module "$missing"; then
+                # A Java library class (JDK or external library, the classes the converter calls by name) that the
+                # converter could not see as one: the modules that import it call it by name. A missing AllBinary
+                # module is a dependency gap of the pom and still fails the build.
+                module="${missing//./\\.}"
+                while IFS= read -r importer; do
+                    use_by_name "$importer" "$missing"
+                    echo "Elm module not found, used by name: $missing in ${importer#src/}"
+                    found=1
+                done < <(grep -r -l -E "^import $module( as ${missing##*.})?"$'\r'"?\$" src --include='*.elm')
+            fi
         done
         [ "$found" = "0" ] && break
     elif echo "$output" | grep -q 'Your module imports form a cycle'; then
         # elm.exe writes Windows line endings
-        mapfile -t cycle < <(echo "$output" | tr -d '\r' | sed -n '/Your module imports form a cycle/,/+-<---+/p' | sed -n 's/^ *| *\([A-Za-z0-9_][A-Za-z0-9_]*\) *$/\1/p')
+        mapfile -t cycle < <(echo "$output" | tr -d '\r' | sed -n '/Your module imports form a cycle/,/+-<---+/p' | sed -n 's/^ *| *\([A-Za-z0-9_][A-Za-z0-9_.]*\) *$/\1/p')
         [ "${#cycle[@]}" -lt 2 ] && break
         break_cycle "${cycle[@]}" || break
     else

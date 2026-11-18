@@ -1,109 +1,102 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.emulator.swt
-module SWTProcessor where
+module Org.Allbinary.Emulator.Swt.SWTProcessor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Runnable -- same package or java.lang
-import qualified NullRunnable -- org.allbinary.thread.NullRunnable
-import qualified EclipseDisplay -- org.eclipse.swt.widgets.EclipseDisplay
+{-| Generated Code Do Not Modify package org.allbinary.emulator.swt
+-}
 
-data SWTProcessor = SWTProcessor
-    { header_ :: JavaHeader
-    , runnable :: IORef (Runnable.Runnable)
-    }
-
-instance JavaNull SWTProcessor where
-    javaNull = javaNullRecord "SWTProcessor"
-
-instance JavaEquals SWTProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SWTProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SWTProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: SWTProcessor
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO SWTProcessor
-newRecord_ = do
-    header_ <- newJavaHeader
-    runnable <- newIORef javaNull
-    let this = SWTProcessor header_ runnable
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: SWTProcessor -> IO ()
-initFields_ this = do
-    jset this.runnable =<< (NullRunnable.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Thread.NullRunnable as NullRunnable
 
 
-getInstance :: IO (SWTProcessor)
-getInstance = do
-        pure (SWTProcessor.instance_)
-
-new_ :: IO SWTProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: SWTProcessor -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "SWTProcessor"
 
 
-process :: (JavaObjectClass this_) => this_ -> EclipseDisplay.EclipseDisplay -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: SWTProcessor))) () a1
+jchain : List String
+jchain =
+    [ "SWTProcessor" ]
 
-process_super :: (JavaObjectClass this_) => this_ -> EclipseDisplay.EclipseDisplay -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: SWTProcessor)) a1
 
-process_impl :: SWTProcessor -> EclipseDisplay.EclipseDisplay -> IO (())
-process_impl this display = do
-        Control.Monad.void (EclipseDisplay.sleep display)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "runnable", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "process_1", jm_process_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SWTProcessor"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_process_1", jm_process_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "SWTProcessor" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "runnable" "" JR.this (JR.callStatic NullRunnable.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "display", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "sleep_0" (JR.local "display") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

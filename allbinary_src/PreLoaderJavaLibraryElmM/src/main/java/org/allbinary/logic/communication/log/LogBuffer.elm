@@ -1,122 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.log
-module LogBuffer where
+module Org.Allbinary.Logic.Communication.Log.LogBuffer exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LogUtil -- same package or java.lang
-import qualified Log -- same package or java.lang
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified StdUtil -- org.allbinary.logic.StdUtil
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.log
+-}
 
-data LogBuffer = LogBuffer
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , logEntryVector :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull LogBuffer where
-    javaNull = javaNullRecord "LogBuffer"
-
-instance JavaEquals LogBuffer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LogBuffer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LogBuffer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LogBuffer
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    logEntryVector <- newIORef javaNull
-    let this = LogBuffer header_ logUtil logEntryVector
-    jregisterLevel header_ this
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "logAll" (\() -> logAll_impl this)
-    pure this
-
-initFields_ :: LogBuffer -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.logEntryVector (javaNull)
-    pure ()
-
-new_ :: IO LogBuffer
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LogBuffer -> IO ()
-init_ this = do
-        initFields_ this
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        jset (this).logEntryVector (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-add :: (JavaObjectClass this_) => this_ -> Log.Log -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: LogBuffer))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> Log.Log -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: LogBuffer)) a1
-
-add_impl :: LogBuffer -> Log.Log -> IO (())
-add_impl this log = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).logEntryVector)) log)
-        pure ()
+jclass : String
+jclass =
+    "LogBuffer"
 
 
-logAll :: (JavaObjectClass this_) => this_ -> IO (())
-logAll object_ = jmethod object_ "logAll" (\() -> (logAll_impl (javaCast object_ :: LogBuffer))) ()
+jchain : List String
+jchain =
+    [ "LogBuffer" ]
 
-logAll_super :: (JavaObjectClass this_) => this_ -> IO (())
-logAll_super object_ = (logAll_impl (javaCast object_ :: LogBuffer))
 
-logAll_impl :: LogBuffer -> IO (())
-logAll_impl this = do
-        size <- (BasicArrayList.size ((jget (this).logEntryVector)))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let log = (javaCast (jio (BasicArrayList.get ((jget (this).logEntryVector)) index)) :: Log.Log)
-            Control.Monad.void (LogUtil.putL ((jget (this).logUtil)) log)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "logEntryVector", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "add_1", jm_add_1 )
+        , ( "logAll_0", jm_logAll_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LogBuffer"
+        [ ( "jm_add_1", jm_add_1 ), ( "jm_logAll_0", jm_logAll_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "logEntryVector" "" JR.this (JR.new BasicArrayListD.jnew_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "log", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "logEntryVector") [ (JR.local "log") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_logAll_0 : JR.Method
+jm_logAll_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "logEntryVector") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66747 -> (JR.setLocal "index" "I" (JR.lit jwN66747))) JR.increment) ]) (JR.run [ 
+                        JR.declare "log" "" (JR.invoke "get_1" (JR.thisField "logEntryVector") [ (JR.local "index") ]), 
+                        JR.exec (JR.invoke "putL_1" (JR.thisField "logUtil") [ (JR.local "log") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

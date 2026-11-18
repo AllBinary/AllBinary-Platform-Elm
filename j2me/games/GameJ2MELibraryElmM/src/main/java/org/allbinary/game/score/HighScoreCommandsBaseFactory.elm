@@ -1,123 +1,102 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module HighScoreCommandsBaseFactory where
+module Org.Allbinary.Game.Score.HighScoreCommandsBaseFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified J2MEUtil -- org.allbinary.J2MEUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
-data HighScoreCommandsBaseFactory = HighScoreCommandsBaseFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , hIGH_SCORE_COMMANDS :: IORef (JavaArray (Command.Command))
-    }
-
-instance JavaNull HighScoreCommandsBaseFactory where
-    javaNull = javaNullRecord "HighScoreCommandsBaseFactory"
-
-instance JavaEquals HighScoreCommandsBaseFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoreCommandsBaseFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoreCommandsBaseFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO HighScoreCommandsBaseFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    hIGH_SCORE_COMMANDS <- newIORef javaNull
-    let this = HighScoreCommandsBaseFactory header_ logUtil hIGH_SCORE_COMMANDS
-    jregisterLevel header_ this
-    jregisterMethod header_ "isHighScoreCommand" (\() -> isHighScoreCommand_impl this)
-    jregisterMethod header_ "getIndex" (\() -> getIndex_impl this)
-    pure this
-
-initFields_ :: HighScoreCommandsBaseFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.hIGH_SCORE_COMMANDS (javaNull)
-    pure ()
-
-new_1 :: JavaArray (Command.Command) -> IO HighScoreCommandsBaseFactory
-new_1 hIGH_SCORE_COMMANDS = do
-    this <- newRecord_
-    init_1 this hIGH_SCORE_COMMANDS
-    pure this
-
-init_1 :: HighScoreCommandsBaseFactory -> JavaArray (Command.Command) -> IO ()
-init_1 this hIGH_SCORE_COMMANDS = do
-        initFields_ this
-        jset (this).hIGH_SCORE_COMMANDS (hIGH_SCORE_COMMANDS)
-        pure ()
+import JR
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-isHighScoreCommand :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (Bool)
-isHighScoreCommand object_ a1 = jmethod object_ "isHighScoreCommand" (\() -> (isHighScoreCommand_impl (javaCast object_ :: HighScoreCommandsBaseFactory))) () a1
-
-isHighScoreCommand_super :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (Bool)
-isHighScoreCommand_super object_ a1 = (isHighScoreCommand_impl (javaCast object_ :: HighScoreCommandsBaseFactory)) a1
-
-isHighScoreCommand_impl :: HighScoreCommandsBaseFactory -> Command.Command -> IO (Bool)
-isHighScoreCommand_impl this command = do
-    javaCatchReturn $ do
-        forM_ [((jlength (jget (this).hIGH_SCORE_COMMANDS)) - 1), ((jlength (jget (this).hIGH_SCORE_COMMANDS)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            when (command == (jindex ((jget (this).hIGH_SCORE_COMMANDS)) (index))) $ do
-                javaReturn (True)
-        pure (False)
+jclass : String
+jclass =
+    "HighScoreCommandsBaseFactory"
 
 
--- throws Exception
-getIndex :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (Int)
-getIndex object_ a1 = jmethod object_ "getIndex" (\() -> (getIndex_impl (javaCast object_ :: HighScoreCommandsBaseFactory))) () a1
+jchain : List String
+jchain =
+    [ "HighScoreCommandsBaseFactory" ]
 
-getIndex_super :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (Int)
-getIndex_super object_ a1 = (getIndex_impl (javaCast object_ :: HighScoreCommandsBaseFactory)) a1
 
-getIndex_impl :: HighScoreCommandsBaseFactory -> Command.Command -> IO (Int)
-getIndex_impl this command = do
-    javaCatchReturn $ do
-        forM_ [((jlength (jget (this).hIGH_SCORE_COMMANDS)) - 1), ((jlength (jget (this).hIGH_SCORE_COMMANDS)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            when (command == (jindex ((jget (this).hIGH_SCORE_COMMANDS)) (index))) $ do
-                javaReturn (index)
-        javaThrow ((JavaException "Exception" "No Such Command"))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "HIGH_SCORE_COMMANDS", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "isHighScoreCommand_1", jm_isHighScoreCommand_1 )
+        , ( "getIndex_1", jm_getIndex_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoreCommandsBaseFactory"
+        [ ( "jm_isHighScoreCommand_1", jm_isHighScoreCommand_1 ), ( "jm_getIndex_1", jm_getIndex_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "HIGH_SCORE_COMMANDS", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "HIGH_SCORE_COMMANDS" "" JR.this (JR.local "HIGH_SCORE_COMMANDS")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_isHighScoreCommand_1 : JR.Method
+jm_isHighScoreCommand_1 jheap jthis jargs =
+    JR.method [ ( "command", "" ) ] "Z"
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "HIGH_SCORE_COMMANDS")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66209 -> (JR.setLocal "index" "I" (JR.lit jwN66209))) JR.decrement) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "command") (JR.aget (JR.thisField "HIGH_SCORE_COMMANDS") (JR.local "index"))) (JR.run [ 
+                            JR.return (JR.bool True) ]) identity ]) ], 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getIndex_1 : JR.Method
+jm_getIndex_1 jheap jthis jargs =
+    JR.method [ ( "command", "" ) ] "I"
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "HIGH_SCORE_COMMANDS")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66416 -> (JR.setLocal "index" "I" (JR.lit jwN66416))) JR.decrement) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "command") (JR.aget (JR.thisField "HIGH_SCORE_COMMANDS") (JR.local "index"))) (JR.run [ 
+                            JR.return (JR.local "index") ]) identity ]) ], 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "No Such Command") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

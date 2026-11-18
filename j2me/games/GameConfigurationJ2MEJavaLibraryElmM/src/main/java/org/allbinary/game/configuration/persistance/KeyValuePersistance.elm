@@ -1,227 +1,190 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
-module KeyValuePersistance (module KeyValuePersistance, module BasicPersitance) where
+module Org.Allbinary.Game.Configuration.Persistance.KeyValuePersistance exposing (..)
 
-import BasicPersitance hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, loadAll, loadAll_super, loadAll_impl, loadAllSize, loadAllSize_super, loadAllSize_impl, save, save_super, save_impl, get, get_super, get_impl, tsUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NullRecordStore -- same package or java.lang
-import qualified NullRecordFilter -- same package or java.lang
-import qualified NullRecordComparator -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified LogUtil -- same package or java.lang
-import qualified CommonStrings -- same package or java.lang
-import qualified PersistanceStrings -- same package or java.lang
-import qualified BasicArrayList -- same package or java.lang
-import qualified ByteArrayInputStream -- java.io.ByteArrayInputStream
-import qualified ByteArrayOutputStream -- java.io.ByteArrayOutputStream
-import qualified DataInputStream -- java.io.DataInputStream
-import qualified DataOutputStream -- java.io.DataOutputStream
-import qualified RecordEnumeration -- javax.microedition.rms.RecordEnumeration
-import qualified RecordStore -- javax.microedition.rms.RecordStore
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified HashtableUtil -- org.allbinary.util.HashtableUtil
-import qualified BasicPersitance
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.persistance
+-}
 
-data KeyValuePersistance = KeyValuePersistance
-    { header_ :: JavaHeader
-    , base :: BasicPersitance.BasicPersitance
-    , tsUtil :: IORef (TsUtil.TsUtil)
-    }
-
-instance JavaNull KeyValuePersistance where
-    javaNull = javaNullRecord "KeyValuePersistance"
-
-instance JavaEquals KeyValuePersistance where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq KeyValuePersistance where
-    (==) = jrecordEquals
-
-instance JavaObjectClass KeyValuePersistance where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO KeyValuePersistance
-newRecord_ = do
-    base <- BasicPersitance.newRecord_
-    let header_ = base.header_
-    tsUtil <- newIORef javaNull
-    let this = KeyValuePersistance header_ base tsUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "loadAll" (\() -> loadAll_impl this)
-    jregisterMethod header_ "loadAllSize" (\() -> loadAllSize_impl this)
-    jregisterMethod header_ "save" (\() -> save_impl this)
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    pure this
-
-initFields_ :: KeyValuePersistance -> IO ()
-initFields_ this = do
-    jset this.tsUtil =<< (TsUtil.getInstance)
-    pure ()
-
-new_1 :: String -> IO KeyValuePersistance
-new_1 recordId = do
-    this <- newRecord_
-    init_1 this recordId
-    pure this
-
-init_1 :: KeyValuePersistance -> String -> IO ()
-init_1 this recordId = do
-        BasicPersitance.init_1 this.base (recordId)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Util.ABHashtable as ABHashtable
+import Org.Allbinary.Game.Configuration.Persistance.BasicPersitance as BasicPersitance
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Util.HashtableUtil as HashtableUtil
+import JByteArrayInputStream
+import JByteArrayOutputStream
+import JDataInputStream
+import JDataOutputStream
+import Org.Allbinary.Game.Configuration.Persistance.NullRecordComparator as NullRecordComparator
+import Org.Allbinary.Game.Configuration.Persistance.NullRecordFilter as NullRecordFilter
+import Org.Allbinary.Game.Configuration.Persistance.NullRecordStore as NullRecordStore
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Javax.Microedition.Rms.RecordStore as RecordStore
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.TsUtil as TsUtil
 
 
--- throws Exception
-loadAll :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-loadAll object_ a1 = jmethod object_ "loadAll" (\() -> (loadAll_impl (javaCast object_ :: KeyValuePersistance))) () a1
-
-loadAll_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-loadAll_super object_ a1 = (loadAll_impl (javaCast object_ :: KeyValuePersistance)) a1
-
-loadAll_impl :: KeyValuePersistance -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-loadAll_impl this abeClientInformation = do
-        Control.Monad.void (KeyValuePersistance.loadAllSize this abeClientInformation 1)
-        pure ()
+jclass : String
+jclass =
+    "KeyValuePersistance"
 
 
--- throws Exception
-loadAllSize :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> Int -> IO (())
-loadAllSize object_ a1 a2 = jmethod object_ "loadAllSize" (\() -> (loadAllSize_impl (javaCast object_ :: KeyValuePersistance))) () a1 a2
-
-loadAllSize_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> Int -> IO (())
-loadAllSize_super object_ a1 a2 = (loadAllSize_impl (javaCast object_ :: KeyValuePersistance)) a1 a2
-
-loadAllSize_impl :: KeyValuePersistance -> AbeClientInformationInterface.AbeClientInformationInterface -> Int -> IO (())
-loadAllSize_impl this abeClientInformation size = do
-        recordStore <- newIORef ((javaCast (jget NullRecordStore.nULL_RECORD_STORE) :: RecordStore.RecordStore))
-        flip finally (do
-            when ((jget recordStore) /= javaNull) $ do
-                Control.Monad.void (PreLogUtil.put (jget ((jget (this).base.persistanceStrings)).cLOSING_RECORDSTORE) this (jget ((jget (this).base.persistanceStrings)).lOAD_ALL))
-                Control.Monad.void (RecordStore.closeRecordStore ((jget recordStore)))
-            ) $ handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            assignedValue <- (RecordStore.openRecordStore (jio (BasicPersitance.getRecordId this abeClientInformation)) True)
-            jset recordStore (assignedValue)
-            recordEnum <- (RecordStore.enumerateRecords ((jget recordStore)) (jget NullRecordFilter.nULL_RECORD_FILTER) (NullRecordComparator.nULL_RECORD_COMPARATOR) True)
-            hashtable <- newIORef (javaNull)
-            name <- newIORef ("")
-            value <- newIORef ("")
-            smallIntegerSingletonFactory <- (SmallIntegerSingletonFactory.getInstance)
-            stringBuffer <- (StringMaker.new_)
-            recordAsBytes <- newIORef (javaNull)
-            byteArrayInputStream <- newIORef (javaNull)
-            inputStream <- newIORef (javaNull)
-            fix $ \loop -> when (jio (RecordEnumeration.hasNextElement recordEnum)) $ javaIteration (loop) $ do
-                id <- (RecordEnumeration.nextRecordId recordEnum)
-                Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-                Control.Monad.void (LogUtil.putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append stringBuffer (jget ((jget (this).base.persistanceStrings)).lOADING_ID)))) id))))) this (jget ((jget (this).base.persistanceStrings)).lOAD_ALL))
-                assignedValue <- (TsUtil.getRecord ((jget (this).tsUtil)) (jget recordStore) id)
-                jset recordAsBytes (assignedValue)
-                when ((jget recordAsBytes) /= javaNull) $ do
-                    assignedValue <- (ByteArrayInputStream.new_1 (jget recordAsBytes))
-                    jset byteArrayInputStream (assignedValue)
-                    assignedValue <- (DataInputStream.new_1 (jget byteArrayInputStream))
-                    jset inputStream (assignedValue)
-                    assignedValue <- (ABHashtable.new_)
-                    jset hashtable (assignedValue)
-                    forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                        assignedValue <- (DataInputStream.readUTF ((jget inputStream)))
-                        jset name (assignedValue)
-                        Control.Monad.void (DataInputStream.readUTF ((jget inputStream)))
-                        assignedValue <- (DataInputStream.readUTF ((jget inputStream)))
-                        jset value (assignedValue)
-                        Control.Monad.void (ABHashtable.put ((jget hashtable)) (jget name) (jget value))
-                    Control.Monad.void (BasicArrayList.add ((jget (this).base.valueList)) (jget hashtable))
-                    Control.Monad.void (BasicArrayList.add ((jget (this).base.idList)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory id)))
-        pure ()
+jchain : List String
+jchain =
+    [ "KeyValuePersistance" ]
+        ++ BasicPersitance.jchain
 
 
--- throws Exception
-save :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> ABHashtable.ABHashtable -> IO (())
-save object_ a1 a2 = jmethod object_ "save" (\() -> (save_impl (javaCast object_ :: KeyValuePersistance))) () a1 a2
-
-save_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> ABHashtable.ABHashtable -> IO (())
-save_super object_ a1 a2 = (save_impl (javaCast object_ :: KeyValuePersistance)) a1 a2
-
-save_impl :: KeyValuePersistance -> AbeClientInformationInterface.AbeClientInformationInterface -> ABHashtable.ABHashtable -> IO (())
-save_impl this abeClientInformation hashtable = do
-        recordStore <- newIORef ((javaCast (jget NullRecordStore.nULL_RECORD_STORE) :: RecordStore.RecordStore))
-        flip finally (do
-            when ((jget recordStore) /= javaNull) $ do
-                Control.Monad.void (PreLogUtil.put (jget ((jget (this).base.persistanceStrings)).cLOSING_RECORDSTORE) this (jget ((jget (this).base.commonStrings)).sAVE))
-                Control.Monad.void (RecordStore.closeRecordStore ((jget recordStore)))
-            ) $ handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.persistanceStrings)).sAVING)))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) hashtable))))))) this (jget ((jget (this).base.commonStrings)).sAVE))
-            assignedValue <- (RecordStore.openRecordStore (jio (BasicPersitance.getRecordId this abeClientInformation)) True)
-            jset recordStore (assignedValue)
-            byteArrayOutputStream <- (ByteArrayOutputStream.new_)
-            outputStream <- (DataOutputStream.new_1 byteArrayOutputStream)
-            value <- newIORef ("")
-            commonSeps <- (CommonSeps.getInstance)
-            objectArray <- (HashtableUtil.getKeysAsArray ((jio (HashtableUtil.getInstance))) hashtable)
-            anyType <- newIORef (javaNull)
-            let size = (jlength objectArray)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                Control.Monad.void (DataOutputStream.writeUTF outputStream (javaCast (jindex objectArray (index)) :: String))
-                Control.Monad.void (DataOutputStream.writeUTF outputStream (jget (commonSeps).eQUALS))
-                jset anyType ((javaCast (jindex objectArray (index)) :: Any.Any))
-                jset value ((javaCast (jio (ABHashtable.get hashtable (jget anyType))) :: String))
-                Control.Monad.void (DataOutputStream.writeUTF outputStream (jget value))
-            tsUtil <- (TsUtil.getInstance)
-            savedGameBytes <- (TsUtil.getByteArray tsUtil (jio (ByteArrayOutputStream.toString byteArrayOutputStream)))
-            Control.Monad.void (RecordStore.addRecord ((jget recordStore)) savedGameBytes 0 (jlength savedGameBytes))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicPersitance.jfields ++ [ ( "tsUtil", JR.defaultOf "" ) ]
 
 
-get :: (JavaObjectClass this_) => this_ -> Int -> IO (ABHashtable.ABHashtable)
-get object_ a1 = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: KeyValuePersistance))) () a1
+jvtable =
+    JR.vtable
+        [ ( "loadAll_1", jm_loadAll_1 )
+        , ( "loadAllSize_2", jm_loadAllSize_2 )
+        , ( "save_2", jm_save_2 )
+        , ( "get_1", jm_get_1 ) ]
+        BasicPersitance.jvtable
 
-get_super :: (JavaObjectClass this_) => this_ -> Int -> IO (ABHashtable.ABHashtable)
-get_super object_ a1 = (get_impl (javaCast object_ :: KeyValuePersistance)) a1
 
-get_impl :: KeyValuePersistance -> Int -> IO (ABHashtable.ABHashtable)
-get_impl this index = do
-        let hashtable = (javaCast (jindex ((jget ((jget (this).base.valueList)).objectArray)) (index)) :: ABHashtable.ABHashtable)
-        pure (hashtable)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "KeyValuePersistance"
+        [ ( "jm_loadAll_1", jm_loadAll_1 ), ( "jm_loadAllSize_2", jm_loadAllSize_2 ), ( "jm_save_2", jm_save_2 ), ( "jm_get_1", jm_get_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "recordId", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicPersitance.jinit_1 JR.this [ (JR.local "recordId") ]),
+                JR.exec (JR.setField "tsUtil" "" JR.this (JR.callStatic TsUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_loadAll_1 : JR.Method
+jm_loadAll_1 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "loadAllSize_2" JR.this [ (JR.local "abeClientInformation"), (JR.int 1) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_loadAllSize_2 : JR.Method
+jm_loadAllSize_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "size", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "recordStore" "" NullRecordStore.jstatic_NULL_RECORD_STORE, 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.setLocal "recordStore" "" (JR.callStatic RecordStore.jm_openRecordStore_2 [ (JR.invoke "getRecordId_1" JR.this [ (JR.local "abeClientInformation") ]), (JR.bool True) ])), 
+                        JR.declare "recordEnum" "" (JR.invoke "enumerateRecords_3" (JR.local "recordStore") [ NullRecordFilter.jstatic_NULL_RECORD_FILTER, NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR, (JR.bool True) ]), 
+                        JR.declare "hashtable" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "name" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "value" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "smallIntegerSingletonFactory" "" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []), 
+                        JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.declare "recordAsBytes" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "byteArrayInputStream" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "inputStream" "" (JR.lit (JR.defaultOf "")), 
+                        JR.while (JR.invoke "hasNextElement_0" (JR.local "recordEnum") []) (JR.run [ 
+                            JR.declare "id" "I" (JR.invoke "nextRecordId_0" (JR.local "recordEnum") []), 
+                            JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "LOADING_ID" (JR.thisField "persistanceStrings")) ]) [ (JR.local "id") ]) []), JR.this, (JR.field "LOAD_ALL" (JR.thisField "persistanceStrings")) ]), 
+                            JR.exec (JR.setLocal "recordAsBytes" "" (JR.invoke "getRecord_2" (JR.thisField "tsUtil") [ (JR.local "recordStore"), (JR.local "id") ])), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "recordAsBytes") JR.null) (JR.run [ 
+                                JR.exec (JR.setLocal "byteArrayInputStream" "" (JR.new JByteArrayInputStream.jnew_1 [ (JR.local "recordAsBytes") ])), 
+                                JR.exec (JR.setLocal "inputStream" "" (JR.new JDataInputStream.jnew_1 [ (JR.local "byteArrayInputStream") ])), 
+                                JR.exec (JR.setLocal "hashtable" "" (JR.new ABHashtable.jnew_0 [])), 
+                                JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69119 -> (JR.setLocal "index" "I" (JR.lit jwN69119))) JR.increment) ]) (JR.run [ 
+                                    JR.exec (JR.setLocal "name" "" (JR.invoke "readUTF_0" (JR.local "inputStream") [])), 
+                                    JR.exec (JR.invoke "readUTF_0" (JR.local "inputStream") []), 
+                                    JR.exec (JR.setLocal "value" "" (JR.invoke "readUTF_0" (JR.local "inputStream") [])), 
+                                    JR.exec (JR.invoke "put_2" (JR.local "hashtable") [ (JR.local "name"), (JR.local "value") ]) ]) ], 
+                                JR.exec (JR.invoke "add_1" (JR.thisField "valueList") [ (JR.local "hashtable") ]), 
+                                JR.exec (JR.invoke "add_1" (JR.thisField "idList") [ (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.local "id") ]) ]) ]) identity ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "recordStore") JR.null) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.field "CLOSING_RECORDSTORE" (JR.thisField "persistanceStrings")), JR.this, (JR.field "LOAD_ALL" (JR.thisField "persistanceStrings")) ]), 
+                            JR.exec (JR.invoke "closeRecordStore_0" (JR.local "recordStore") []) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_save_2 : JR.Method
+jm_save_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "hashtable", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "recordStore" "" NullRecordStore.jstatic_NULL_RECORD_STORE, 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "SAVING" (JR.thisField "persistanceStrings")) ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "hashtable") ]) ]) []), JR.this, (JR.field "SAVE" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.setLocal "recordStore" "" (JR.callStatic RecordStore.jm_openRecordStore_2 [ (JR.invoke "getRecordId_1" JR.this [ (JR.local "abeClientInformation") ]), (JR.bool True) ])), 
+                        JR.declare "byteArrayOutputStream" "" (JR.new JByteArrayOutputStream.jnew_0 []), 
+                        JR.declare "outputStream" "" (JR.new JDataOutputStream.jnew_1 [ (JR.local "byteArrayOutputStream") ]), 
+                        JR.declare "value" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                        JR.declare "objectArray" "" (JR.invoke "getKeysAsArray_1" (JR.callStatic HashtableUtil.jm_getInstance_0 []) [ (JR.local "hashtable") ]), 
+                        JR.declare "anyType" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "size" "I" (JR.alength (JR.local "objectArray")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70356 -> (JR.setLocal "index" "I" (JR.lit jwN70356))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.aget (JR.local "objectArray") (JR.local "index")) ]), 
+                            JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.field "EQUALS" (JR.local "commonSeps")) ]), 
+                            JR.exec (JR.setLocal "anyType" "" (JR.aget (JR.local "objectArray") (JR.local "index"))), 
+                            JR.exec (JR.setLocal "value" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.local "anyType") ])), 
+                            JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.local "value") ]) ]) ], 
+                        JR.declare "tsUtil" "" (JR.callStatic TsUtil.jm_getInstance_0 []), 
+                        JR.declare "savedGameBytes" "" (JR.invoke "getByteArray_1" (JR.local "tsUtil") [ (JR.invoke "toString_0" (JR.local "byteArrayOutputStream") []) ]), 
+                        JR.exec (JR.invoke "addRecord_3" (JR.local "recordStore") [ (JR.local "savedGameBytes"), (JR.int 0), (JR.alength (JR.local "savedGameBytes")) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "recordStore") JR.null) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.field "CLOSING_RECORDSTORE" (JR.thisField "persistanceStrings")), JR.this, (JR.field "SAVE" (JR.thisField "commonStrings")) ]), 
+                            JR.exec (JR.invoke "closeRecordStore_0" (JR.local "recordStore") []) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_get_1 : JR.Method
+jm_get_1 jheap jthis jargs =
+    JR.method [ ( "index", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "hashtable" "" (JR.aget (JR.field "objectArray" (JR.thisField "valueList")) (JR.local "index")), 
+                    JR.return (JR.local "hashtable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

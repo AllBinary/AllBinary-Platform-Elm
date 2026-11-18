@@ -1,10 +1,10 @@
-module PointFactory exposing (..)
+module Org.Allbinary.Graphics.PointFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics
 -}
 
 import JR
-import GPoint
+import Org.Allbinary.Graphics.GPoint as GPoint
 
 
 jclass : String

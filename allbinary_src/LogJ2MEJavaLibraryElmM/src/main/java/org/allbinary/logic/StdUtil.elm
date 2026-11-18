@@ -1,12 +1,12 @@
-module StdUtil exposing (..)
+module Org.Allbinary.Logic.StdUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic
 -}
 
 import JR
-import ABHashtable
-import ABStack
-import ABVector
+import Org.Allbinary.Util.ABHashtable as ABHashtable
+import Org.Allbinary.Util.ABStack as ABStack
+import Org.Allbinary.Util.ABVector as ABVector
 
 
 jclass : String

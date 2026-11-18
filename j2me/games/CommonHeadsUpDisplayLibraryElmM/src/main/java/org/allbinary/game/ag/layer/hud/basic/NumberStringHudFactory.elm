@@ -1,119 +1,114 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic
-module NumberStringHudFactory where
+module Org.Allbinary.Game.Ag.Layer.Hud.Basic.NumberStringHudFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified NumberStringHud -- same package or java.lang
-import qualified BasicHudFactory -- org.allbinary.game.graphics.hud.BasicHudFactory
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.hud.basic
+-}
 
-data NumberStringHudFactory = NumberStringHudFactory
-    { header_ :: JavaHeader
-    , nULL_NUMBER_STRING_HUD :: IORef (NumberStringHud.NumberStringHud)
-    }
-
-instance JavaNull NumberStringHudFactory where
-    javaNull = javaNullRecord "NumberStringHudFactory"
-
-instance JavaEquals NumberStringHudFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NumberStringHudFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NumberStringHudFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((NullUtil.getInstance) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NumberStringHudFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    nULL_NUMBER_STRING_HUD <- newIORef javaNull
-    let this = NumberStringHudFactory header_ nULL_NUMBER_STRING_HUD
-    jregisterLevel header_ this
-    jregisterMethod header_ "createHud" (\() -> createHud_impl this)
-    pure this
-
-initFields_ :: NumberStringHudFactory -> IO ()
-initFields_ this = do
-    jset this.nULL_NUMBER_STRING_HUD =<< (NumberStringHudFactory.createHud this)
-    pure ()
-
-new_ :: IO NumberStringHudFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NumberStringHudFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Game.Graphics.Hud.BasicHudFactory as BasicHudFactory
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Game.Ag.Layer.Hud.Basic.NumberStringHud as NumberStringHud
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (NumberStringHudFactory)
-getInstance = do
-        when ((jget NumberStringHudFactory.instance_) == (jio (NullUtil.getInstance))) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset NumberStringHudFactory.instance_ (assignedValue)
-        pure ((javaCast (jget NumberStringHudFactory.instance_) :: NumberStringHudFactory))
+jclass : String
+jclass =
+    "NumberStringHudFactory"
 
 
-createHud :: (JavaObjectClass this_) => this_ -> IO (NumberStringHud.NumberStringHud)
-createHud object_ = jmethod object_ "createHud" (\() -> (createHud_impl (javaCast object_ :: NumberStringHudFactory))) ()
+jchain : List String
+jchain =
+    [ "NumberStringHudFactory" ]
 
-createHud_super :: (JavaObjectClass this_) => this_ -> IO (NumberStringHud.NumberStringHud)
-createHud_super object_ = (createHud_impl (javaCast object_ :: NumberStringHudFactory))
 
-createHud_impl :: NumberStringHudFactory -> IO (NumberStringHud.NumberStringHud)
-createHud_impl this = do
-        handle (\(e :: JavaException) -> do
-            logUtil <- (LogUtil.getInstance)
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put logUtil (jget (commonStrings).eXCEPTION) this (jget (commonStrings).cONSTRUCTOR) e)
-            javaThrow ((JavaException "RuntimeException" ""))
-            ) $ do
-            (NumberStringHud.new_6 (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) 9 (jget ((jio (BasicHudFactory.getInstance))).aBSOLUTE) 1 0 (jget ((jio (BasicColorFactory.getInstance))).nULL_COLOR))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "NULL_NUMBER_STRING_HUD", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "createHud_0", jm_createHud_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NumberStringHudFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_createHud_0", jm_createHud_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "NumberStringHudFactory" jclinit "instance"
+        (JR.callStatic NullUtil.jm_getInstance_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "NULL_NUMBER_STRING_HUD" "" JR.this (JR.invoke "createHud_0" JR.this [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.callStatic NullUtil.jm_getInstance_0 [])) (JR.run [ 
+                        JR.exec (JR.setStatic "NumberStringHudFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createHud_0 : JR.Method
+jm_createHud_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.return (JR.new NumberStringHud.jnew_6 [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.int 9), (JR.field "ABSOLUTE" (JR.callStatic BasicHudFactory.jm_getInstance_0 [])), (JR.int 1), (JR.int 0), (JR.field "NULL_COLOR" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "logUtil" "" (JR.callStatic LogUtil.jm_getInstance_0 []), 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.local "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")), (JR.local "e") ]), 
+                        JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

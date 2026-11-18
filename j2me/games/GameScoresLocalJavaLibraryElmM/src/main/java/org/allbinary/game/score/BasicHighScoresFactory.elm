@@ -1,151 +1,135 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module BasicHighScoresFactory (module BasicHighScoresFactory, module HighScoresBase) where
+module Org.Allbinary.Game.Score.BasicHighScoresFactory exposing (..)
 
-import HighScoresBase hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, fetchHighScores, fetchHighScores_super, fetchHighScores_impl, fetchHighScoresPreload, fetchHighScoresPreload_super, fetchHighScoresPreload_impl, createHighScoresHelper, createHighScoresHelper_super, createHighScoresHelper_impl, loaded, loaded_super, loaded_impl, logUtil, abeClientInformation, highScoresArray, tOP, sCORES, pERSONAL_HIGH_SCORES, fETCH)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HighScores -- same package or java.lang
-import qualified HighScoresResultsListener -- same package or java.lang
-import qualified RecordStoreHighScores -- same package or java.lang
-import qualified ScoreComparator -- same package or java.lang
-import qualified HighScoresHelper2 -- same package or java.lang
-import qualified HighScoresHelperBaseInterface -- same package or java.lang
-import qualified GameInfo -- org.allbinary.game.GameInfo
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified SoftwareInformation -- org.allbinary.logic.system.SoftwareInformation
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified HighScoresBase
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
-data BasicHighScoresFactory = BasicHighScoresFactory
-    { header_ :: JavaHeader
-    , base :: HighScoresBase.HighScoresBase
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , abeClientInformation :: IORef (AbeClientInformationInterface.AbeClientInformationInterface)
-    , highScoresArray :: IORef (JavaArray (HighScores.HighScores))
-    , tOP :: IORef (String)
-    , sCORES :: IORef (String)
-    , pERSONAL_HIGH_SCORES :: IORef (String)
-    , fETCH :: IORef (String)
-    }
-
-instance JavaNull BasicHighScoresFactory where
-    javaNull = javaNullRecord "BasicHighScoresFactory"
-
-instance JavaEquals BasicHighScoresFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicHighScoresFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicHighScoresFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO BasicHighScoresFactory
-newRecord_ = do
-    base <- HighScoresBase.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    abeClientInformation <- newIORef javaNull
-    highScoresArray <- newIORef javaNull
-    tOP <- newIORef ""
-    sCORES <- newIORef ""
-    pERSONAL_HIGH_SCORES <- newIORef ""
-    fETCH <- newIORef ""
-    let this = BasicHighScoresFactory header_ base logUtil abeClientInformation highScoresArray tOP sCORES pERSONAL_HIGH_SCORES fETCH
-    jregisterLevel header_ this
-    jregisterMethod header_ "fetchHighScores" (\() -> fetchHighScores_impl this)
-    jregisterMethod header_ "fetchHighScoresPreload" (\() -> fetchHighScoresPreload_impl this)
-    jregisterMethod header_ "createHighScoresHelper" (\() -> createHighScoresHelper_impl this)
-    pure this
-
-initFields_ :: BasicHighScoresFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.abeClientInformation (javaNull)
-    jset this.highScoresArray ((jnewArray (1) javaNull))
-    jset this.tOP ("Top")
-    jset this.sCORES ("Scores")
-    jset this.pERSONAL_HIGH_SCORES ("Personal Top Scores")
-    jset this.fETCH ("fetchHighScores")
-    pure ()
-
-new_2 :: AbeClientInformationInterface.AbeClientInformationInterface -> SoftwareInformation.SoftwareInformation -> IO BasicHighScoresFactory
-new_2 abeClientInformation softwareInformation = do
-    this <- newRecord_
-    init_2 this abeClientInformation softwareInformation
-    pure this
-
-init_2 :: BasicHighScoresFactory -> AbeClientInformationInterface.AbeClientInformationInterface -> SoftwareInformation.SoftwareInformation -> IO ()
-init_2 this abeClientInformation softwareInformation = do
-        HighScoresBase.init_ this.base
-        initFields_ this
-        jset (this).abeClientInformation (abeClientInformation)
-        pure ()
+import JR
+import Org.Allbinary.Game.Score.HighScoresBase as HighScoresBase
+import Org.Allbinary.Game.Score.HighScoresHelper2 as HighScoresHelper2
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Score.RecordStoreHighScores as RecordStoreHighScores
+import Org.Allbinary.Game.Score.ScoreComparator as ScoreComparator
 
 
-fetchHighScores :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> IO (())
-fetchHighScores object_ a1 a2 = jmethod object_ "fetchHighScores" (\() -> (fetchHighScores_impl (javaCast object_ :: BasicHighScoresFactory))) () a1 a2
-
-fetchHighScores_super :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> IO (())
-fetchHighScores_super object_ a1 a2 = (fetchHighScores_impl (javaCast object_ :: BasicHighScoresFactory)) a1 a2
-
-fetchHighScores_impl :: BasicHighScoresFactory -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> IO (())
-fetchHighScores_impl this gameInfo highScoresResultsListener = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Getting Local HighScores" this (jget (this).fETCH))
-        Control.Monad.void (BasicHighScoresFactory.fetchHighScoresPreload this gameInfo highScoresResultsListener True)
-        pure ()
+jclass : String
+jclass =
+    "BasicHighScoresFactory"
 
 
-fetchHighScoresPreload :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> Bool -> IO (())
-fetchHighScoresPreload object_ a1 a2 a3 = jmethod object_ "fetchHighScoresPreload" (\() -> (fetchHighScoresPreload_impl (javaCast object_ :: BasicHighScoresFactory))) () a1 a2 a3
-
-fetchHighScoresPreload_super :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> Bool -> IO (())
-fetchHighScoresPreload_super object_ a1 a2 a3 = (fetchHighScoresPreload_impl (javaCast object_ :: BasicHighScoresFactory)) a1 a2 a3
-
-fetchHighScoresPreload_impl :: BasicHighScoresFactory -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> Bool -> IO (())
-fetchHighScoresPreload_impl this gameInfo highScoresResultsListener preload = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget (this).fETCH) e)
-            ) $ do
-            assignedValue <- (RecordStoreHighScores.getInstance (jget (this).abeClientInformation) gameInfo (jget (this).tOP) (jget (this).pERSONAL_HIGH_SCORES) (jget (this).sCORES) (jio (ScoreComparator.new_1 True)))
-            jsetIndex ((jget (this).highScoresArray)) (0) (assignedValue)
-            Control.Monad.void (HighScoresResultsListener.setHighScoresArray highScoresResultsListener (jget (this).highScoresArray))
-        pure ()
+jchain : List String
+jchain =
+    [ "BasicHighScoresFactory" ]
+        ++ HighScoresBase.jchain
 
 
-createHighScoresHelper :: (JavaObjectClass this_) => this_ -> IO (HighScoresHelperBaseInterface.HighScoresHelperBaseInterface)
-createHighScoresHelper object_ = jmethod object_ "createHighScoresHelper" (\() -> (createHighScoresHelper_impl (javaCast object_ :: BasicHighScoresFactory))) ()
-
-createHighScoresHelper_super :: (JavaObjectClass this_) => this_ -> IO (HighScoresHelperBaseInterface.HighScoresHelperBaseInterface)
-createHighScoresHelper_super object_ = (createHighScoresHelper_impl (javaCast object_ :: BasicHighScoresFactory))
-
-createHighScoresHelper_impl :: BasicHighScoresFactory -> IO (HighScoresHelperBaseInterface.HighScoresHelperBaseInterface)
-createHighScoresHelper_impl this = do
-        (fmap (\value_ -> javaCast value_ :: HighScoresHelperBaseInterface.HighScoresHelperBaseInterface) (HighScoresHelper2.new_))
+jfields : List ( String, JR.JValue )
+jfields =
+    HighScoresBase.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "abeClientInformation", JR.defaultOf "" ), ( "highScoresArray", JR.defaultOf "" ), ( "TOP", JR.defaultOf "" ), ( "SCORES", JR.defaultOf "" ), ( "PERSONAL_HIGH_SCORES", JR.defaultOf "" ), ( "FETCH", JR.defaultOf "" ) ]
 
 
-loaded :: Int -> IO (Bool)
-loaded index2 = do
-    javaCatchReturn $ do
-        when (index2 >= 0) $ do
-            javaReturn (True)
-        pure (False)
+jvtable =
+    JR.vtable
+        [ ( "fetchHighScores_2", jm_fetchHighScores_2 )
+        , ( "fetchHighScoresPreload_3", jm_fetchHighScoresPreload_3 )
+        , ( "createHighScoresHelper_0", jm_createHighScoresHelper_0 )
+        , ( "loaded_1", jm_loaded_1 ) ]
+        HighScoresBase.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicHighScoresFactory"
+        [ ( "jm_fetchHighScores_2", jm_fetchHighScores_2 ), ( "jm_fetchHighScoresPreload_3", jm_fetchHighScoresPreload_3 ), ( "jm_createHighScoresHelper_0", jm_createHighScoresHelper_0 ), ( "jm_loaded_1", jm_loaded_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "softwareInformation", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect HighScoresBase.jinit_0 JR.this []),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "highScoresArray" "" JR.this (JR.newArray "" [ (JR.int 1) ])),
+                JR.exec (JR.setField "TOP" "" JR.this (JR.str "Top")),
+                JR.exec (JR.setField "SCORES" "" JR.this (JR.str "Scores")),
+                JR.exec (JR.setField "PERSONAL_HIGH_SCORES" "" JR.this (JR.str "Personal Top Scores")),
+                JR.exec (JR.setField "FETCH" "" JR.this (JR.str "fetchHighScores")),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "abeClientInformation" "" JR.this (JR.local "abeClientInformation")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_fetchHighScores_2 : JR.Method
+jm_fetchHighScores_2 jheap jthis jargs =
+    JR.method [ ( "gameInfo", "" ), ( "highScoresResultsListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Getting Local HighScores"), JR.this, (JR.thisField "FETCH") ]), 
+                    JR.exec (JR.invoke "fetchHighScoresPreload_3" JR.this [ (JR.local "gameInfo"), (JR.local "highScoresResultsListener"), (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fetchHighScoresPreload_3 : JR.Method
+jm_fetchHighScoresPreload_3 jheap jthis jargs =
+    JR.method [ ( "gameInfo", "" ), ( "highScoresResultsListener", "" ), ( "preload", "Z" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "highScoresArray") (\jaN68318 -> JR.andThen (JR.int 0) (\jiN68318 -> (JR.aset (JR.lit jaN68318) (JR.lit jiN68318) (JR.callStatic RecordStoreHighScores.jm_getInstance_6 [ (JR.thisField "abeClientInformation"), (JR.local "gameInfo"), (JR.thisField "TOP"), (JR.thisField "PERSONAL_HIGH_SCORES"), (JR.thisField "SCORES"), (JR.new ScoreComparator.jnew_1 [ (JR.bool True) ]) ]))))), 
+                        JR.exec (JR.invoke "setHighScoresArray_1" (JR.local "highScoresResultsListener") [ (JR.thisField "highScoresArray") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.thisField "FETCH"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createHighScoresHelper_0 : JR.Method
+jm_createHighScoresHelper_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.new HighScoresHelper2.jnew_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_loaded_1 : JR.Method
+jm_loaded_1 jheap jthis jargs =
+    JR.method [ ( "index2", "I" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greaterEquals (JR.local "index2") (JR.int 0)) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

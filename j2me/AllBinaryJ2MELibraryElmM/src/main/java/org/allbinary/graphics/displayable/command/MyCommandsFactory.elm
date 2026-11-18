@@ -1,107 +1,96 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.command
-module MyCommandsFactory where
+module Org.Allbinary.Graphics.Displayable.Command.MyCommandsFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.graphics.displayable.command
+-}
 
-data MyCommandsFactory = MyCommandsFactory
-    { header_ :: JavaHeader
-    , nO_COMMAND :: IORef (Command.Command)
-    , gAUGE_CHANGE :: IORef (Command.Command)
-    , sET_DISPLAYABLE :: IORef (Command.Command)
-    , pAUSE_COMMAND :: IORef (Command.Command)
-    , rESUME_COMMAND :: IORef (Command.Command)
-    }
-
-instance JavaNull MyCommandsFactory where
-    javaNull = javaNullRecord "MyCommandsFactory"
-
-instance JavaEquals MyCommandsFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MyCommandsFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MyCommandsFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: MyCommandsFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MyCommandsFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    nO_COMMAND <- newIORef javaNull
-    gAUGE_CHANGE <- newIORef javaNull
-    sET_DISPLAYABLE <- newIORef javaNull
-    pAUSE_COMMAND <- newIORef javaNull
-    rESUME_COMMAND <- newIORef javaNull
-    let this = MyCommandsFactory header_ nO_COMMAND gAUGE_CHANGE sET_DISPLAYABLE pAUSE_COMMAND rESUME_COMMAND
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: MyCommandsFactory -> IO ()
-initFields_ this = do
-    jset this.nO_COMMAND =<< (Command.new_4 (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Prelude.negate 1) (Prelude.negate 1))
-    jset this.gAUGE_CHANGE =<< (Command.new_4 "GAUGE_CHANGE" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.iTEM) 1)
-    jset this.sET_DISPLAYABLE =<< (Command.new_4 "Display" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 2)
-    jset this.pAUSE_COMMAND =<< (Command.new_4 "Pause" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 0)
-    jset this.rESUME_COMMAND =<< (Command.new_4 "Resume" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 0)
-    pure ()
+import JR
+import Javax.Microedition.Lcdui.Command as Command
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (MyCommandsFactory)
-getInstance = do
-        pure (MyCommandsFactory.instance_)
+jclass : String
+jclass =
+    "MyCommandsFactory"
 
-new_ :: IO MyCommandsFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: MyCommandsFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jchain : List String
+jchain =
+    [ "MyCommandsFactory" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "NO_COMMAND", JR.defaultOf "" ), ( "GAUGE_CHANGE", JR.defaultOf "" ), ( "SET_DISPLAYABLE", JR.defaultOf "" ), ( "PAUSE_COMMAND", JR.defaultOf "" ), ( "RESUME_COMMAND", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MyCommandsFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "MyCommandsFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "NO_COMMAND" "" JR.this (JR.new Command.jnew_4 [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.map JR.neg (JR.int 1)), (JR.map JR.neg (JR.int 1)) ])),
+                JR.exec (JR.setField "GAUGE_CHANGE" "" JR.this (JR.new Command.jnew_4 [ (JR.str "GAUGE_CHANGE"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_ITEM, (JR.int 1) ])),
+                JR.exec (JR.setField "SET_DISPLAYABLE" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Display"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 2) ])),
+                JR.exec (JR.setField "PAUSE_COMMAND" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Pause"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 0) ])),
+                JR.exec (JR.setField "RESUME_COMMAND" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Resume"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 0) ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

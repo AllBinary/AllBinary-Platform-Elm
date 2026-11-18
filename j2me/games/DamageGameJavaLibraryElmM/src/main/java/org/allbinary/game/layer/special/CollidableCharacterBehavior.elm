@@ -1,122 +1,103 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.special
-module CollidableCharacterBehavior (module CollidableCharacterBehavior, module CollidableDestroyableDamageableBehavior) where
+module Org.Allbinary.Game.Layer.Special.CollidableCharacterBehavior exposing (..)
 
-import CollidableDestroyableDamageableBehavior hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, collide, collide_super, collide_impl, collideInterface, collideInterface_super, collideInterface_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CollidableDestroyableDamageableLayer -- same package or java.lang
-import qualified PickupBehavior -- same package or java.lang
-import qualified CollidableInterfaceCompositeInterface -- org.allbinary.game.collision.CollidableInterfaceCompositeInterface
-import qualified CollisionType -- org.allbinary.game.collision.CollisionType
-import qualified CollisionTypeFactory -- org.allbinary.game.collision.CollisionTypeFactory
-import qualified CollidableCompositeLayer -- org.allbinary.game.layer.CollidableCompositeLayer
-import qualified PickedUpLayerInterface -- org.allbinary.game.layer.pickup.PickedUpLayerInterface
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified CollidableDestroyableDamageableBehavior
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.special
+-}
 
-data CollidableCharacterBehavior = CollidableCharacterBehavior
-    { header_ :: JavaHeader
-    , base :: CollidableDestroyableDamageableBehavior.CollidableDestroyableDamageableBehavior
-    }
-
-instance JavaNull CollidableCharacterBehavior where
-    javaNull = javaNullRecord "CollidableCharacterBehavior"
-
-instance JavaEquals CollidableCharacterBehavior where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CollidableCharacterBehavior where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CollidableCharacterBehavior where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO CollidableCharacterBehavior
-newRecord_ = do
-    base <- CollidableDestroyableDamageableBehavior.newRecord_
-    let header_ = base.header_
-    let this = CollidableCharacterBehavior header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "collide" (\() -> collide_impl this)
-    jregisterMethod header_ "collideInterface" (\() -> collideInterface_impl this)
-    pure this
-
-initFields_ :: CollidableCharacterBehavior -> IO ()
-initFields_ this = do
-    pure ()
-
-new_1 :: Bool -> IO CollidableCharacterBehavior
-new_1 collidable = do
-    this <- newRecord_
-    init_1 this collidable
-    pure this
-
-init_1 :: CollidableCharacterBehavior -> Bool -> IO ()
-init_1 this collidable = do
-        CollidableDestroyableDamageableBehavior.init_1 this.base (collidable)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Game.Layer.Special.CollidableDestroyableDamageableBehavior as CollidableDestroyableDamageableBehavior
+import Org.Allbinary.Game.Collision.CollisionTypeFactory as CollisionTypeFactory
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
 
 
--- throws Exception
-collide :: (JavaObjectClass this_) => this_ -> CollidableCompositeLayer.CollidableCompositeLayer -> CollidableCompositeLayer.CollidableCompositeLayer -> IO (())
-collide object_ a1 a2 = jmethod object_ "collide" (\() -> (collide_impl (javaCast object_ :: CollidableCharacterBehavior))) () a1 a2
-
-collide_super :: (JavaObjectClass this_) => this_ -> CollidableCompositeLayer.CollidableCompositeLayer -> CollidableCompositeLayer.CollidableCompositeLayer -> IO (())
-collide_super object_ a1 a2 = (collide_impl (javaCast object_ :: CollidableCharacterBehavior)) a1 a2
-
-collide_impl :: CollidableCharacterBehavior -> CollidableCompositeLayer.CollidableCompositeLayer -> CollidableCompositeLayer.CollidableCompositeLayer -> IO (())
-collide_impl this ownerLayer collidableInterfaceCompositeInterface = do
-        collisionTypeFactory <- (CollisionTypeFactory.getInstance)
-        collisionType <- (CollidableCompositeLayer.getCollisionTypeWith ((jio (CollidableCompositeLayer.getCollidableInferface collidableInterfaceCompositeInterface))) ownerLayer)
-        if (collisionType == (jget (collisionTypeFactory).pICKUP)) then do
-            let collidableDestroyableDamageableLayer = (javaCast ownerLayer :: CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer)
-            Control.Monad.void (PickupBehavior.doPickupLayer ((jio (CollidableDestroyableDamageableLayer.getPickupBehavior collidableDestroyableDamageableLayer))) (javaCast collidableInterfaceCompositeInterface :: PickedUpLayerInterface.PickedUpLayerInterface))
-        else do
-            Control.Monad.void (CollidableDestroyableDamageableBehavior.collide_super this.base ownerLayer collidableInterfaceCompositeInterface)
-        pure ()
+jclass : String
+jclass =
+    "CollidableCharacterBehavior"
 
 
--- throws Exception
-collideInterface :: (JavaObjectClass this_) => this_ -> CollidableCompositeLayer.CollidableCompositeLayer -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> IO (())
-collideInterface object_ a1 a2 = jmethod object_ "collideInterface" (\() -> (collideInterface_impl (javaCast object_ :: CollidableCharacterBehavior))) () a1 a2
+jchain : List String
+jchain =
+    [ "CollidableCharacterBehavior" ]
+        ++ CollidableDestroyableDamageableBehavior.jchain
 
-collideInterface_super :: (JavaObjectClass this_) => this_ -> CollidableCompositeLayer.CollidableCompositeLayer -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> IO (())
-collideInterface_super object_ a1 a2 = (collideInterface_impl (javaCast object_ :: CollidableCharacterBehavior)) a1 a2
 
-collideInterface_impl :: CollidableCharacterBehavior -> CollidableCompositeLayer.CollidableCompositeLayer -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> IO (())
-collideInterface_impl this ownerLayer collidableInterfaceCompositeInterface = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jget (this).base.commonStrings)).nOT_IMPLEMENTED) this)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    CollidableDestroyableDamageableBehavior.jfields ++ []
 
+
+jvtable =
+    JR.vtable
+        [ ( "collide_2", jm_collide_2 )
+        , ( "collideInterface_2", jm_collideInterface_2 ) ]
+        CollidableDestroyableDamageableBehavior.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CollidableCharacterBehavior"
+        [ ( "jm_collide_2", jm_collide_2 ), ( "jm_collideInterface_2", jm_collideInterface_2 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "collidable", "Z" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect CollidableDestroyableDamageableBehavior.jinit_1 JR.this [ (JR.local "collidable") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_collide_2 : JR.Method
+jm_collide_2 jheap jthis jargs =
+    JR.method [ ( "ownerLayer", "" ), ( "collidableInterfaceCompositeInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "collisionTypeFactory" "" (JR.callStatic CollisionTypeFactory.jm_getInstance_0 []), 
+                    JR.declare "collisionType" "" (JR.invoke "getCollisionTypeWith_1" (JR.invoke "getCollidableInferface_0" (JR.local "collidableInterfaceCompositeInterface") []) [ (JR.local "ownerLayer") ]), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "collisionType") (JR.field "PICKUP" (JR.local "collisionTypeFactory"))) (JR.run [ 
+                        JR.declare "collidableDestroyableDamageableLayer" "" (JR.local "ownerLayer"), 
+                        JR.exec (JR.invoke "doPickupLayer_1" (JR.invoke "getPickupBehavior_0" (JR.local "collidableDestroyableDamageableLayer") []) [ (JR.local "collidableInterfaceCompositeInterface") ]) ]) (JR.run [ 
+                        JR.exec (JR.callVia CollidableDestroyableDamageableBehavior.jvtable "collide_2" JR.this [ (JR.local "ownerLayer"), (JR.local "collidableInterfaceCompositeInterface") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_collideInterface_2 : JR.Method
+jm_collideInterface_2 jheap jthis jargs =
+    JR.method [ ( "ownerLayer", "" ), ( "collidableInterfaceCompositeInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

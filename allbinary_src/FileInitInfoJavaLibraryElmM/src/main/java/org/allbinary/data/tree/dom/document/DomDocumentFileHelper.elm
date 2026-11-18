@@ -1,124 +1,112 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.data.tree.dom.document
-module DomDocumentFileHelper where
+module Org.Allbinary.Data.Tree.Dom.Document.DomDocumentFileHelper exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DomDocumentHelper -- same package or java.lang
-import qualified Transformer -- javax.xml.transform.Transformer
-import qualified TransformerFactory -- javax.xml.transform.TransformerFactory
-import qualified DOMSource -- javax.xml.transform.dom.DOMSource
-import qualified StreamResult -- javax.xml.transform.stream.StreamResult
-import qualified AbDataOutputStream -- org.allbinary.logic.io.AbDataOutputStream
-import qualified AbFileInputStream -- org.allbinary.logic.io.AbFileInputStream
-import qualified DataOutputStreamFactory -- org.allbinary.logic.io.DataOutputStreamFactory
-import qualified StreamUtil -- org.allbinary.logic.io.StreamUtil
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified Document -- org.w3c.dom.Document
+{-| Generated Code Do Not Modify package org.allbinary.data.tree.dom.document
+-}
 
-data DomDocumentFileHelper = DomDocumentFileHelper
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull DomDocumentFileHelper where
-    javaNull = javaNullRecord "DomDocumentFileHelper"
-
-instance JavaEquals DomDocumentFileHelper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DomDocumentFileHelper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DomDocumentFileHelper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DomDocumentFileHelper
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = DomDocumentFileHelper header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: DomDocumentFileHelper -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO DomDocumentFileHelper
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DomDocumentFileHelper -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.Io.AbFileInputStream as AbFileInputStream
+import Org.Allbinary.Logic.Io.DataOutputStreamFactory as DataOutputStreamFactory
+import Org.Allbinary.Data.Tree.Dom.Document.DomDocumentHelper as DomDocumentHelper
+import Org.Allbinary.Logic.Io.StreamUtil as StreamUtil
 
 
--- throws Exception
-createDocument :: AbFile.AbFile -> IO (Document.Document)
-createDocument xmlFile = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            (DomDocumentHelper.create (jio (AbFileInputStream.createFromAbFile xmlFile)))
+jclass : String
+jclass =
+    "DomDocumentFileHelper"
 
 
--- throws Exception
-save :: AbFile.AbFile -> Document.Document -> IO (())
-save file document = do
-        dataOutputStream <- newIORef (javaNull)
-        flip finally (do
-            Control.Monad.void (StreamUtil.close ((jio (StreamUtil.getInstance))) (jget dataOutputStream))
-            ) $ handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            copyTransformerFactory <- (TransformerFactory.newInstance)
-            copyTransformer <- (TransformerFactory.newTransformer copyTransformerFactory)
-            domSource <- (DOMSource.new_1 document)
-            when (jio (AbFile.isFile file)) $ do
-                Control.Monad.void (AbFile.delete file)
-            Control.Monad.void (AbFile.createNewFile file)
-            assignedValue <- (DataOutputStreamFactory.getInstanceForAbFile ((jio (DataOutputStreamFactory.getInstance))) file)
-            jset dataOutputStream (assignedValue)
-            streamResult <- (StreamResult.new_1 (jget dataOutputStream))
-            Control.Monad.void (Transformer.transform copyTransformer domSource streamResult)
-            Control.Monad.void (AbDataOutputStream.flush ((jget dataOutputStream)))
-        pure ()
+jchain : List String
+jchain =
+    [ "DomDocumentFileHelper" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "createDocument_1", jm_createDocument_1 )
+        , ( "save_2", jm_save_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DomDocumentFileHelper"
+        [ ( "jm_createDocument_1", jm_createDocument_1 ), ( "jm_save_2", jm_save_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_createDocument_1 : JR.Method
+jm_createDocument_1 jheap jthis jargs =
+    JR.method [ ( "xmlFile", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.return (JR.callStatic DomDocumentHelper.jm_create_1 [ (JR.callStatic AbFileInputStream.jm_createFromAbFile_1 [ (JR.local "xmlFile") ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_save_2 : JR.Method
+jm_save_2 jheap jthis jargs =
+    JR.method [ ( "file", "" ), ( "document", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "dataOutputStream" "" JR.null, 
+                    JR.try (JR.run [ 
+                        JR.declare "copyTransformerFactory" "" (JR.callStatic (JR.namedMethod "TransformerFactory.jm_newInstance_0") []), 
+                        JR.declare "copyTransformer" "" (JR.invoke "newTransformer_0" (JR.local "copyTransformerFactory") []), 
+                        JR.declare "domSource" "" (JR.new (JR.namedMethod "DOMSource.jnew_1") [ (JR.local "document") ]), 
+                        JR.ifElse (JR.invoke "isFile_0" (JR.local "file") []) (JR.run [ 
+                            JR.exec (JR.invoke "delete_0" (JR.local "file") []) ]) identity, 
+                        JR.exec (JR.invoke "createNewFile_0" (JR.local "file") []), 
+                        JR.exec (JR.setLocal "dataOutputStream" "" (JR.invoke "getInstanceForAbFile_1" (JR.callStatic DataOutputStreamFactory.jm_getInstance_0 []) [ (JR.local "file") ])), 
+                        JR.declare "streamResult" "" (JR.new (JR.namedMethod "StreamResult.jnew_1") [ (JR.local "dataOutputStream") ]), 
+                        JR.exec (JR.invoke "transform_2" (JR.local "copyTransformer") [ (JR.local "domSource"), (JR.local "streamResult") ]), 
+                        JR.exec (JR.invoke "flush_0" (JR.local "dataOutputStream") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] (JR.run [ 
+                        JR.exec (JR.invoke "close_1" (JR.callStatic StreamUtil.jm_getInstance_0 []) [ (JR.local "dataOutputStream") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

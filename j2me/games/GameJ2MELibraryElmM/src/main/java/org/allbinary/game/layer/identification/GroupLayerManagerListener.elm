@@ -1,359 +1,326 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.identification
-module GroupLayerManagerListener (module GroupLayerManagerListener, module LayerManagerEventListener) where
-
-import LayerManagerEventListener hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, clear, clear_super, clear_impl, getGroupSizeFromInterface, getGroupSizeFromInterface_super, getGroupSizeFromInterface_impl, getGroupSize, getGroupSize_super, getGroupSize_impl, getList, getList_super, getList_impl, getListById, getListById_super, getListById_impl, getGroupSizeById, getGroupSizeById_super, getGroupSizeById_impl, areAllOtherGroupsEmpty, areAllOtherGroupsEmpty_super, areAllOtherGroupsEmpty_impl, isIdInList, isIdInList_super, isIdInList_impl, areAllOtherGroupsLessThan, areAllOtherGroupsLessThan_super, areAllOtherGroupsLessThan_impl, init, init_super, init_impl, onEvent, onEvent_super, onEvent_impl, onCreateLayerManagerEvent, onCreateLayerManagerEvent_super, onCreateLayerManagerEvent_impl, onDeleteLayerManagerEvent, onDeleteLayerManagerEvent_super, onDeleteLayerManagerEvent_impl, log, log_super, log_impl, sINGLETON, logUtil, list)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Group -- org.allbinary.game.identification.Group
-import qualified GroupInterfaceCompositeInterface -- org.allbinary.game.identification.GroupInterfaceCompositeInterface
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified LayerManagerEvent -- org.allbinary.layer.event.LayerManagerEvent
-import qualified LayerManagerEventHandler -- org.allbinary.layer.event.LayerManagerEventHandler
-import qualified LayerManagerEventListener -- org.allbinary.layer.event.LayerManagerEventListener
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventStrings -- org.allbinary.logic.util.event.EventStrings
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-
-data GroupLayerManagerListener = GroupLayerManagerListener
-    { header_ :: JavaHeader
-    , base :: LayerManagerEventListener.LayerManagerEventListener
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull GroupLayerManagerListener where
-    javaNull = javaNullRecord "GroupLayerManagerListener"
-
-instance JavaEquals GroupLayerManagerListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GroupLayerManagerListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GroupLayerManagerListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: IORef (GroupLayerManagerListener)
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_) >>= newIORef)
-
-newRecord_ :: IO GroupLayerManagerListener
-newRecord_ = do
-    base <- LayerManagerEventListener.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    list <- newIORef javaNull
-    let this = GroupLayerManagerListener header_ base logUtil list
-    jregisterLevel header_ this
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    jregisterMethod header_ "getGroupSizeFromInterface" (\() -> getGroupSizeFromInterface_impl this)
-    jregisterMethod header_ "getGroupSize" (\() -> getGroupSize_impl this)
-    jregisterMethod header_ "getList" (\() -> getList_impl this)
-    jregisterMethod header_ "getListById" (\() -> getListById_impl this)
-    jregisterMethod header_ "getGroupSizeById" (\() -> getGroupSizeById_impl this)
-    jregisterMethod header_ "areAllOtherGroupsEmpty" (\() -> areAllOtherGroupsEmpty_impl this)
-    jregisterMethod header_ "isIdInList" (\() -> isIdInList_impl this)
-    jregisterMethod header_ "areAllOtherGroupsLessThan" (\() -> areAllOtherGroupsLessThan_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "onCreateLayerManagerEvent" (\() -> onCreateLayerManagerEvent_impl this)
-    jregisterMethod header_ "onDeleteLayerManagerEvent" (\() -> onDeleteLayerManagerEvent_impl this)
-    jregisterMethod header_ "log" (\() -> log_impl this)
-    pure this
-
-initFields_ :: GroupLayerManagerListener -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
+module Org.Allbinary.Game.Layer.Identification.GroupLayerManagerListener exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.identification
+-}
+
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Layer.Event.LayerManagerEventHandler as LayerManagerEventHandler
+import Org.Allbinary.Layer.Event.LayerManagerEventListener as LayerManagerEventListener
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+
+
+jclass : String
+jclass =
+    "GroupLayerManagerListener"
+
+
+jchain : List String
+jchain =
+    [ "GroupLayerManagerListener" ]
+        ++ LayerManagerEventListener.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    LayerManagerEventListener.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "list", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "clear_0", jm_clear_0 )
+        , ( "getGroupSizeFromInterface_1", jm_getGroupSizeFromInterface_1 )
+        , ( "getGroupSize_1", jm_getGroupSize_1 )
+        , ( "getList_1", jm_getList_1 )
+        , ( "getListById_1", jm_getListById_1 )
+        , ( "getGroupSizeById_1", jm_getGroupSizeById_1 )
+        , ( "areAllOtherGroupsEmpty_1", jm_areAllOtherGroupsEmpty_1 )
+        , ( "isIdInList_2", jm_isIdInList_2 )
+        , ( "areAllOtherGroupsLessThan_2", jm_areAllOtherGroupsLessThan_2 )
+        , ( "init_1", jm_init_1 )
+        , ( "onEvent_1", jm_onEvent_1 )
+        , ( "onCreateLayerManagerEvent_1", jm_onCreateLayerManagerEvent_1 )
+        , ( "onDeleteLayerManagerEvent_1", jm_onDeleteLayerManagerEvent_1 )
+        , ( "log_0", jm_log_0 ) ]
+        LayerManagerEventListener.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GroupLayerManagerListener"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_clear_0", jm_clear_0 ), ( "jm_getGroupSizeFromInterface_1", jm_getGroupSizeFromInterface_1 ), ( "jm_getGroupSize_1", jm_getGroupSize_1 ), ( "jm_getList_1", jm_getList_1 ), ( "jm_getListById_1", jm_getListById_1 ), ( "jm_getGroupSizeById_1", jm_getGroupSizeById_1 ), ( "jm_areAllOtherGroupsEmpty_1", jm_areAllOtherGroupsEmpty_1 ), ( "jm_isIdInList_2", jm_isIdInList_2 ), ( "jm_areAllOtherGroupsLessThan_2", jm_areAllOtherGroupsLessThan_2 ), ( "jm_init_1", jm_init_1 ), ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_onCreateLayerManagerEvent_1", jm_onCreateLayerManagerEvent_1 ), ( "jm_onDeleteLayerManagerEvent_1", jm_onDeleteLayerManagerEvent_1 ), ( "jm_log_0", jm_log_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "GroupLayerManagerListener" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect LayerManagerEventListener.jinit_0 JR.this []),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "addListener_1" (JR.callStatic LayerManagerEventHandler.jm_getInstance_0 []) [ JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
 
-
-getInstance :: IO (GroupLayerManagerListener)
-getInstance = do
-        pure ((jget GroupLayerManagerListener.sINGLETON))
-
-new_ :: IO GroupLayerManagerListener
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GroupLayerManagerListener -> IO ()
-init_ this = do
-        LayerManagerEventListener.init_ this.base
-        initFields_ this
-        Control.Monad.void (LayerManagerEventHandler.addListener ((jio (LayerManagerEventHandler.getInstance))) this)
-        pure ()
-
-
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: GroupLayerManagerListener))) ()
-
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: GroupLayerManagerListener))
-
-clear_impl :: GroupLayerManagerListener -> IO (())
-clear_impl this = do
-        groupList <- newIORef (javaNull)
-        size <- (BasicArrayList.size ((jget (this).list)))
-        forM_ [(size - 1), (size - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jset groupList ((javaCast (jindex ((jget ((jget (this).list)).objectArray)) (index)) :: BasicArrayList.BasicArrayList))
-            Control.Monad.void (BasicArrayList.clear ((jget groupList)))
-        pure ()
-
-
-getGroupSizeFromInterface :: (JavaObjectClass this_) => this_ -> GroupInterfaceCompositeInterface.GroupInterfaceCompositeInterface -> IO (Int)
-getGroupSizeFromInterface object_ a1 = jmethod object_ "getGroupSizeFromInterface" (\() -> (getGroupSizeFromInterface_impl (javaCast object_ :: GroupLayerManagerListener))) () a1
-
-getGroupSizeFromInterface_super :: (JavaObjectClass this_) => this_ -> GroupInterfaceCompositeInterface.GroupInterfaceCompositeInterface -> IO (Int)
-getGroupSizeFromInterface_super object_ a1 = (getGroupSizeFromInterface_impl (javaCast object_ :: GroupLayerManagerListener)) a1
-
-getGroupSizeFromInterface_impl :: GroupLayerManagerListener -> GroupInterfaceCompositeInterface.GroupInterfaceCompositeInterface -> IO (Int)
-getGroupSizeFromInterface_impl this groupInterfaceCompositeInterface = do
-        groupInterfaceArray <- (GroupInterfaceCompositeInterface.getGroupInterface groupInterfaceCompositeInterface)
-        (GroupLayerManagerListener.getGroupSize this (jindex groupInterfaceArray (0)))
-
-
-getGroupSize :: (JavaObjectClass this_) => this_ -> Group.Group -> IO (Int)
-getGroupSize object_ a1 = jmethod object_ "getGroupSize" (\() -> (getGroupSize_impl (javaCast object_ :: GroupLayerManagerListener))) () a1
-
-getGroupSize_super :: (JavaObjectClass this_) => this_ -> Group.Group -> IO (Int)
-getGroupSize_super object_ a1 = (getGroupSize_impl (javaCast object_ :: GroupLayerManagerListener)) a1
-
-getGroupSize_impl :: GroupLayerManagerListener -> Group.Group -> IO (Int)
-getGroupSize_impl this groupInterface = do
-        let id = (Prelude.fromInteger (jnumericInteger (jio (Group.getGroupId groupInterface))))
-        (GroupLayerManagerListener.getGroupSizeById this id)
-
-
-getList :: (JavaObjectClass this_) => this_ -> Group.Group -> IO (BasicArrayList.BasicArrayList)
-getList object_ a1 = jmethod object_ "getList" (\() -> (getList_impl (javaCast object_ :: GroupLayerManagerListener))) () a1
-
-getList_super :: (JavaObjectClass this_) => this_ -> Group.Group -> IO (BasicArrayList.BasicArrayList)
-getList_super object_ a1 = (getList_impl (javaCast object_ :: GroupLayerManagerListener)) a1
-
-getList_impl :: GroupLayerManagerListener -> Group.Group -> IO (BasicArrayList.BasicArrayList)
-getList_impl this groupInterface = do
-        let id = (Prelude.fromInteger (jnumericInteger (jio (Group.getGroupId groupInterface))))
-        (GroupLayerManagerListener.getListById this id)
-
-
-getListById :: (JavaObjectClass this_) => this_ -> Int -> IO (BasicArrayList.BasicArrayList)
-getListById object_ a1 = jmethod object_ "getListById" (\() -> (getListById_impl (javaCast object_ :: GroupLayerManagerListener))) () a1
-
-getListById_super :: (JavaObjectClass this_) => this_ -> Int -> IO (BasicArrayList.BasicArrayList)
-getListById_super object_ a1 = (getListById_impl (javaCast object_ :: GroupLayerManagerListener)) a1
-
-getListById_impl :: GroupLayerManagerListener -> Int -> IO (BasicArrayList.BasicArrayList)
-getListById_impl this groupId = do
-        let groupList = (javaCast (jindex ((jget ((jget (this).list)).objectArray)) (groupId)) :: BasicArrayList.BasicArrayList)
-        pure (groupList)
-
-
-getGroupSizeById :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getGroupSizeById object_ a1 = jmethod object_ "getGroupSizeById" (\() -> (getGroupSizeById_impl (javaCast object_ :: GroupLayerManagerListener))) () a1
-
-getGroupSizeById_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getGroupSizeById_super object_ a1 = (getGroupSizeById_impl (javaCast object_ :: GroupLayerManagerListener)) a1
-
-getGroupSizeById_impl :: GroupLayerManagerListener -> Int -> IO (Int)
-getGroupSizeById_impl this groupId = do
-        let groupList = (javaCast (jindex ((jget ((jget (this).list)).objectArray)) (groupId)) :: BasicArrayList.BasicArrayList)
-        size <- (BasicArrayList.size groupList)
-        pure (size)
-
-
-areAllOtherGroupsEmpty :: (JavaObjectClass this_) => this_ -> Group.Group -> IO (Bool)
-areAllOtherGroupsEmpty object_ a1 = jmethod object_ "areAllOtherGroupsEmpty" (\() -> (areAllOtherGroupsEmpty_impl (javaCast object_ :: GroupLayerManagerListener))) () a1
-
-areAllOtherGroupsEmpty_super :: (JavaObjectClass this_) => this_ -> Group.Group -> IO (Bool)
-areAllOtherGroupsEmpty_super object_ a1 = (areAllOtherGroupsEmpty_impl (javaCast object_ :: GroupLayerManagerListener)) a1
-
-areAllOtherGroupsEmpty_impl :: GroupLayerManagerListener -> Group.Group -> IO (Bool)
-areAllOtherGroupsEmpty_impl this groupInterface = do
-    javaCatchReturn $ do
-        let id = (Prelude.fromInteger (jnumericInteger (jio (Group.getGroupId groupInterface))))
-        size <- (BasicArrayList.size ((jget (this).list)))
-        forM_ [(size - 1), (size - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            when (id /= index) $ do
-                groupSize <- (GroupLayerManagerListener.getGroupSizeById this index)
-                when (groupSize /= 0) $ do
-                    Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "Group Size: "))) groupSize))))) this "areAllOtherGroupsEmpty")
-                    javaReturn (False)
-        pure (True)
-
-
-isIdInList :: (JavaObjectClass this_) => this_ -> Int -> BasicArrayList.BasicArrayList -> IO (Bool)
-isIdInList object_ a1 a2 = jmethod object_ "isIdInList" (\() -> (isIdInList_impl (javaCast object_ :: GroupLayerManagerListener))) () a1 a2
-
-isIdInList_super :: (JavaObjectClass this_) => this_ -> Int -> BasicArrayList.BasicArrayList -> IO (Bool)
-isIdInList_super object_ a1 a2 = (isIdInList_impl (javaCast object_ :: GroupLayerManagerListener)) a1 a2
-
-isIdInList_impl :: GroupLayerManagerListener -> Int -> BasicArrayList.BasicArrayList -> IO (Bool)
-isIdInList_impl this id excludeGroupList = do
-    javaCatchReturn $ do
-        size <- (BasicArrayList.size excludeGroupList)
-        groupInterfaceArray <- newIORef (javaNull)
-        groupInterface <- newIORef (javaNull)
-        groupId <- newIORef (0 :: Int)
-        forM_ [(size - 1), (size - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jset groupInterfaceArray ((javaCast (jindex ((jget (excludeGroupList).objectArray)) (index)) :: JavaArray (Group.Group)))
-            let size2 = (jlength (jget groupInterfaceArray))
-            forM_ [0 .. size2 - 1] $ \index2 -> javaIteration (pure ()) $ do
-                jset groupInterface ((jindex ((jget groupInterfaceArray)) (index2)))
-                jset groupId ((Prelude.fromInteger (jnumericInteger (jio (Group.getGroupId ((jget groupInterface)))))))
-                when ((jget groupId) == id) $ do
-                    javaReturn (True)
-        pure (False)
-
-
-areAllOtherGroupsLessThan :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Int -> IO (Bool)
-areAllOtherGroupsLessThan object_ a1 a2 = jmethod object_ "areAllOtherGroupsLessThan" (\() -> (areAllOtherGroupsLessThan_impl (javaCast object_ :: GroupLayerManagerListener))) () a1 a2
-
-areAllOtherGroupsLessThan_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Int -> IO (Bool)
-areAllOtherGroupsLessThan_super object_ a1 a2 = (areAllOtherGroupsLessThan_impl (javaCast object_ :: GroupLayerManagerListener)) a1 a2
-
-areAllOtherGroupsLessThan_impl :: GroupLayerManagerListener -> BasicArrayList.BasicArrayList -> Int -> IO (Bool)
-areAllOtherGroupsLessThan_impl this excludeGroupList maxSize = do
-    javaCatchReturn $ do
-        size <- (BasicArrayList.size ((jget (this).list)))
-        forM_ [(size - 1), (size - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            when (Prelude.not (jio (GroupLayerManagerListener.isIdInList this index excludeGroupList))) $ do
-                groupSize <- (GroupLayerManagerListener.getGroupSizeById this index)
-                when (groupSize >= maxSize) $ do
-                    javaReturn (False)
-        pure (True)
-
-
-init :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-init object_ a1 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: GroupLayerManagerListener))) () a1
-
-init_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-init_super object_ a1 = (init_impl (javaCast object_ :: GroupLayerManagerListener)) a1
-
-init_impl :: GroupLayerManagerListener -> Int -> IO (())
-init_impl this total = do
-        fix $ \loop -> when ((jio (BasicArrayList.size ((jget (this).list)))) <= (total + 1)) $ javaIteration (loop) $ do
-            Control.Monad.void (BasicArrayList.add ((jget (this).list)) (jio (BasicArrayListD.new_)))
-        pure ()
-
-
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: GroupLayerManagerListener))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: GroupLayerManagerListener)) a1
-
-onEvent_impl :: GroupLayerManagerListener -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jio (EventStrings.getInstance))).pERFORMANCE_MESSAGE) this)
-        pure ()
-
-
--- throws Exception
-onCreateLayerManagerEvent :: (JavaObjectClass this_) => this_ -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onCreateLayerManagerEvent object_ a1 = jmethod object_ "onCreateLayerManagerEvent" (\() -> (onCreateLayerManagerEvent_impl (javaCast object_ :: GroupLayerManagerListener))) () a1
-
-onCreateLayerManagerEvent_super :: (JavaObjectClass this_) => this_ -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onCreateLayerManagerEvent_super object_ a1 = (onCreateLayerManagerEvent_impl (javaCast object_ :: GroupLayerManagerListener)) a1
-
-onCreateLayerManagerEvent_impl :: GroupLayerManagerListener -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onCreateLayerManagerEvent_impl this layerManagerEvent = do
-        layerInterface <- (LayerManagerEvent.getLayerInterface layerManagerEvent)
-        groupInterfaceArray <- (AllBinaryLayer.getGroupInterface layerInterface)
-        let size = (jlength groupInterfaceArray)
-        id <- newIORef (0 :: Int)
-        groupList <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset id ((Prelude.fromInteger (jnumericInteger (jio (Group.getGroupId ((jindex groupInterfaceArray (index))))))))
-            jset groupList ((javaCast (jindex ((jget ((jget (this).list)).objectArray)) ((jget id))) :: BasicArrayList.BasicArrayList))
-            when ((jget groupList) == javaNull) $ do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "id: "))) (jget id)))))) this "onCreateLayerManagerEvent")
-            if (Prelude.not (jio (BasicArrayList.contains ((jget groupList)) layerInterface))) then do
-                Control.Monad.void (BasicArrayList.add ((jget groupList)) layerInterface)
-            else do
-                pure ()
-        pure ()
-
-
--- throws Exception
-onDeleteLayerManagerEvent :: (JavaObjectClass this_) => this_ -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onDeleteLayerManagerEvent object_ a1 = jmethod object_ "onDeleteLayerManagerEvent" (\() -> (onDeleteLayerManagerEvent_impl (javaCast object_ :: GroupLayerManagerListener))) () a1
-
-onDeleteLayerManagerEvent_super :: (JavaObjectClass this_) => this_ -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onDeleteLayerManagerEvent_super object_ a1 = (onDeleteLayerManagerEvent_impl (javaCast object_ :: GroupLayerManagerListener)) a1
-
-onDeleteLayerManagerEvent_impl :: GroupLayerManagerListener -> LayerManagerEvent.LayerManagerEvent -> IO (())
-onDeleteLayerManagerEvent_impl this layerManagerEvent = do
-        layerInterface <- (LayerManagerEvent.getLayerInterface layerManagerEvent)
-        groupInterfaceArray <- (AllBinaryLayer.getGroupInterface layerInterface)
-        let size = (jlength groupInterfaceArray)
-        id <- newIORef (0 :: Int)
-        groupList <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset id ((Prelude.fromInteger (jnumericInteger (jio (Group.getGroupId ((jindex groupInterfaceArray (index))))))))
-            jset groupList ((javaCast (jindex ((jget ((jget (this).list)).objectArray)) ((jget id))) :: BasicArrayList.BasicArrayList))
-            Control.Monad.void (BasicArrayList.remove ((jget groupList)) layerInterface)
-        pure ()
-
-
-log :: (JavaObjectClass this_) => this_ -> IO (())
-log object_ = jmethod object_ "log" (\() -> (log_impl (javaCast object_ :: GroupLayerManagerListener))) ()
-
-log_super :: (JavaObjectClass this_) => this_ -> IO (())
-log_super object_ = (log_impl (javaCast object_ :: GroupLayerManagerListener))
-
-log_impl :: GroupLayerManagerListener -> IO (())
-log_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        let gROUP = "Group: "
-        let sPACE = (jget ((jio (CommonSeps.getInstance))).sPACE)
-        let tOTAL_LABEL = (jget ((jio (CommonLabels.getInstance))).tOTAL_LABEL)
-        size <- (BasicArrayList.size ((jget (this).list)))
-        forM_ [(size - 1), (size - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            let groupList = (javaCast (jindex ((jget ((jget (this).list)).objectArray)) (index)) :: BasicArrayList.BasicArrayList)
-            Control.Monad.void (StringMaker.append stringBuffer gROUP)
-            Control.Monad.void (StringMaker.appendint stringBuffer index)
-            Control.Monad.void (StringMaker.append stringBuffer sPACE)
-            Control.Monad.void (StringMaker.append stringBuffer tOTAL_LABEL)
-            Control.Monad.void (StringMaker.appendint stringBuffer (jio (BasicArrayList.size groupList)))
-            Control.Monad.void (StringMaker.append stringBuffer sPACE)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this "log")
-        pure ()
-
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "groupList" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "list") []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68874 -> (JR.setLocal "index" "I" (JR.lit jwN68874))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "groupList" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "clear_0" (JR.local "groupList") []) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGroupSizeFromInterface_1 : JR.Method
+jm_getGroupSizeFromInterface_1 jheap jthis jargs =
+    JR.method [ ( "groupInterfaceCompositeInterface", "" ) ] "I"
+        (JR.run [ 
+                    JR.declare "groupInterfaceArray" "" (JR.invoke "getGroupInterface_0" (JR.local "groupInterfaceCompositeInterface") []), 
+                    JR.return (JR.invoke "getGroupSize_1" JR.this [ (JR.aget (JR.local "groupInterfaceArray") (JR.int 0)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGroupSize_1 : JR.Method
+jm_getGroupSize_1 jheap jthis jargs =
+    JR.method [ ( "groupInterface", "" ) ] "I"
+        (JR.run [ 
+                    JR.declare "id" "I" (JR.cast "I" (JR.invoke "getGroupId_0" (JR.local "groupInterface") [])), 
+                    JR.return (JR.invoke "getGroupSizeById_1" JR.this [ (JR.local "id") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getList_1 : JR.Method
+jm_getList_1 jheap jthis jargs =
+    JR.method [ ( "groupInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "id" "I" (JR.cast "I" (JR.invoke "getGroupId_0" (JR.local "groupInterface") [])), 
+                    JR.return (JR.invoke "getListById_1" JR.this [ (JR.local "id") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getListById_1 : JR.Method
+jm_getListById_1 jheap jthis jargs =
+    JR.method [ ( "groupId", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "groupList" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "groupId")), 
+                    JR.return (JR.local "groupList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGroupSizeById_1 : JR.Method
+jm_getGroupSizeById_1 jheap jthis jargs =
+    JR.method [ ( "groupId", "I" ) ] "I"
+        (JR.run [ 
+                    JR.declare "groupList" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "groupId")), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "groupList") []), 
+                    JR.return (JR.local "size") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_areAllOtherGroupsEmpty_1 : JR.Method
+jm_areAllOtherGroupsEmpty_1 jheap jthis jargs =
+    JR.method [ ( "groupInterface", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "id" "I" (JR.cast "I" (JR.invoke "getGroupId_0" (JR.local "groupInterface") [])), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "list") []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70027 -> (JR.setLocal "index" "I" (JR.lit jwN70027))) JR.decrement) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "id") (JR.local "index")) (JR.run [ 
+                            JR.declare "groupSize" "I" (JR.invoke "getGroupSizeById_1" JR.this [ (JR.local "index") ]), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "groupSize") (JR.int 0)) (JR.run [ 
+                                JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Group Size: ") ]) [ (JR.local "groupSize") ]) []), JR.this, (JR.str "areAllOtherGroupsEmpty") ]), 
+                                JR.return (JR.bool False) ]) identity ]) identity ]) ], 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isIdInList_2 : JR.Method
+jm_isIdInList_2 jheap jthis jargs =
+    JR.method [ ( "id", "I" ), ( "excludeGroupList", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "excludeGroupList") []), 
+                    JR.declare "groupInterfaceArray" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "groupInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "groupId" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70599 -> (JR.setLocal "index" "I" (JR.lit jwN70599))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "groupInterfaceArray" "" (JR.aget (JR.field "objectArray" (JR.local "excludeGroupList")) (JR.local "index"))), 
+                        JR.declare "size2" "I" (JR.alength (JR.local "groupInterfaceArray")), 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN70524 -> (JR.setLocal "index2" "I" (JR.lit jwN70524))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "groupInterface" "" (JR.aget (JR.local "groupInterfaceArray") (JR.local "index2"))), 
+                            JR.exec (JR.setLocal "groupId" "I" (JR.cast "I" (JR.invoke "getGroupId_0" (JR.local "groupInterface") []))), 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "groupId") (JR.local "id")) (JR.run [ 
+                                JR.return (JR.bool True) ]) identity ]) ] ]) ], 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_areAllOtherGroupsLessThan_2 : JR.Method
+jm_areAllOtherGroupsLessThan_2 jheap jthis jargs =
+    JR.method [ ( "excludeGroupList", "" ), ( "maxSize", "I" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "list") []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70951 -> (JR.setLocal "index" "I" (JR.lit jwN70951))) JR.decrement) ]) (JR.run [ 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "isIdInList_2" JR.this [ (JR.local "index"), (JR.local "excludeGroupList") ])) (JR.run [ 
+                            JR.declare "groupSize" "I" (JR.invoke "getGroupSizeById_1" JR.this [ (JR.local "index") ]), 
+                            JR.ifElse (JR.map2 JR.greaterEquals (JR.local "groupSize") (JR.local "maxSize")) (JR.run [ 
+                                JR.return (JR.bool False) ]) identity ]) identity ]) ], 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "total", "I" ) ] ""
+        (JR.run [ 
+                    JR.while (JR.map2 JR.lessEquals (JR.invoke "size_0" (JR.thisField "list") []) (JR.map2 JR.add (JR.local "total") (JR.int 1))) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.new BasicArrayListD.jnew_0 []) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "PERFORMANCE_MESSAGE" (JR.callStatic EventStrings.jm_getInstance_0 [])), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onCreateLayerManagerEvent_1 : JR.Method
+jm_onCreateLayerManagerEvent_1 jheap jthis jargs =
+    JR.method [ ( "layerManagerEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "layerInterface" "" (JR.invoke "getLayerInterface_0" (JR.local "layerManagerEvent") []), 
+                    JR.declare "groupInterfaceArray" "" (JR.invoke "getGroupInterface_0" (JR.local "layerInterface") []), 
+                    JR.declare "size" "I" (JR.alength (JR.local "groupInterfaceArray")), 
+                    JR.declare "id" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "groupList" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71871 -> (JR.setLocal "index" "I" (JR.lit jwN71871))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "id" "I" (JR.cast "I" (JR.invoke "getGroupId_0" (JR.aget (JR.local "groupInterfaceArray") (JR.local "index")) []))), 
+                        JR.exec (JR.setLocal "groupList" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "id"))), 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "groupList") JR.null) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "id: ") ]) [ (JR.local "id") ]) []), JR.this, (JR.str "onCreateLayerManagerEvent") ]) ]) identity, 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "contains_1" (JR.local "groupList") [ (JR.local "layerInterface") ])) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "groupList") [ (JR.local "layerInterface") ]) ]) identity ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onDeleteLayerManagerEvent_1 : JR.Method
+jm_onDeleteLayerManagerEvent_1 jheap jthis jargs =
+    JR.method [ ( "layerManagerEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "layerInterface" "" (JR.invoke "getLayerInterface_0" (JR.local "layerManagerEvent") []), 
+                    JR.declare "groupInterfaceArray" "" (JR.invoke "getGroupInterface_0" (JR.local "layerInterface") []), 
+                    JR.declare "size" "I" (JR.alength (JR.local "groupInterfaceArray")), 
+                    JR.declare "id" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "groupList" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72372 -> (JR.setLocal "index" "I" (JR.lit jwN72372))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "id" "I" (JR.cast "I" (JR.invoke "getGroupId_0" (JR.aget (JR.local "groupInterfaceArray") (JR.local "index")) []))), 
+                        JR.exec (JR.setLocal "groupList" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "id"))), 
+                        JR.exec (JR.invoke "remove_1" (JR.local "groupList") [ (JR.local "layerInterface") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_log_0 : JR.Method
+jm_log_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "GROUP" "" (JR.str "Group: "), 
+                    JR.declare "SPACE" "" (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])), 
+                    JR.declare "TOTAL_LABEL" "" (JR.field "TOTAL_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "list") []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN73046 -> (JR.setLocal "index" "I" (JR.lit jwN73046))) JR.decrement) ]) (JR.run [ 
+                        JR.declare "groupList" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "GROUP") ]), 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "index") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "SPACE") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "TOTAL_LABEL") ]), 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "size_0" (JR.local "groupList") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "SPACE") ]) ]) ], 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "log") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

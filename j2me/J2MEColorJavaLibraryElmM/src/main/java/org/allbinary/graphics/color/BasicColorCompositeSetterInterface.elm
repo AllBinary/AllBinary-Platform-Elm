@@ -1,4 +1,4 @@
-module BasicColorCompositeSetterInterface exposing (..)
+module Org.Allbinary.Graphics.Color.BasicColorCompositeSetterInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics.color
 -}

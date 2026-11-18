@@ -1,203 +1,173 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module PlayerGameInput (module PlayerGameInput, module GameInput) where
+module Org.Allbinary.Game.Input.PlayerGameInput exposing (..)
 
-import GameInput hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, onPressGameKeyEvent, onPressGameKeyEvent_super, onPressGameKeyEvent_impl, onDownGameKeyEvent, onDownGameKeyEvent_super, onDownGameKeyEvent_impl, onDownKeyEvent, onDownKeyEvent_super, onDownKeyEvent_impl, onDownKey, onDownKey_super, onDownKey_impl, onUpGameKeyEvent, onUpGameKeyEvent_super, onUpGameKeyEvent_impl, onUpKeyEvent, onUpKeyEvent_super, onUpKeyEvent_impl, onEvent, onEvent_super, onEvent_impl, getPlayerInputId, getPlayerInputId_super, getPlayerInputId_impl, gameInputStrings, playerInputId)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameInputStrings -- same package or java.lang
-import qualified GameKeyEvent -- org.allbinary.game.input.event.GameKeyEvent
-import qualified GameKeyEventListenerInterface -- org.allbinary.game.input.event.GameKeyEventListenerInterface
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventStrings -- org.allbinary.logic.util.event.EventStrings
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified GameInput
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
--- implements GameKeyEventListenerInterface
-data PlayerGameInput = PlayerGameInput
-    { header_ :: JavaHeader
-    , base :: GameInput.GameInput
-    , gameInputStrings :: IORef (GameInputStrings.GameInputStrings)
-    , playerInputId :: IORef (Int)
-    }
-
-instance JavaNull PlayerGameInput where
-    javaNull = javaNullRecord "PlayerGameInput"
-
-instance JavaEquals PlayerGameInput where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlayerGameInput where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlayerGameInput where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO PlayerGameInput
-newRecord_ = do
-    base <- GameInput.newRecord_
-    let header_ = base.header_
-    gameInputStrings <- newIORef javaNull
-    playerInputId <- newIORef 0
-    let this = PlayerGameInput header_ base gameInputStrings playerInputId
-    jregisterLevel header_ this
-    GameKeyEventListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "onPressGameKeyEvent" (\() -> onPressGameKeyEvent_impl this)
-    jregisterMethod header_ "onDownGameKeyEvent" (\() -> onDownGameKeyEvent_impl this)
-    jregisterMethod header_ "onDownKeyEvent" (\() -> onDownKeyEvent_impl this)
-    jregisterMethod header_ "onDownKey" (\() -> onDownKey_impl this)
-    jregisterMethod header_ "onUpGameKeyEvent" (\() -> onUpGameKeyEvent_impl this)
-    jregisterMethod header_ "onUpKeyEvent" (\() -> onUpKeyEvent_impl this)
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "getPlayerInputId" (\() -> getPlayerInputId_impl this)
-    pure this
-
-initFields_ :: PlayerGameInput -> IO ()
-initFields_ this = do
-    jset this.gameInputStrings =<< (GameInputStrings.getInstance)
-    jset this.playerInputId (0)
-    pure ()
-
-new_3 :: BasicArrayList.BasicArrayList -> BasicArrayList.BasicArrayList -> Int -> IO PlayerGameInput
-new_3 gameKeyEventList removalGameKeyEventList playerInputId = do
-    this <- newRecord_
-    init_3 this gameKeyEventList removalGameKeyEventList playerInputId
-    pure this
-
-init_3 :: PlayerGameInput -> BasicArrayList.BasicArrayList -> BasicArrayList.BasicArrayList -> Int -> IO ()
-init_3 this gameKeyEventList removalGameKeyEventList playerInputId = do
-        GameInput.init_2 this.base (gameKeyEventList) (removalGameKeyEventList)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).playerInputId (playerInputId)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Game.Input.GameInput as GameInput
+import Org.Allbinary.Game.Input.GameInputStrings as GameInputStrings
+import Org.Allbinary.Game.Input.Event.GameKeyEventListenerInterface as GameKeyEventListenerInterface
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-onPressGameKeyEvent :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-onPressGameKeyEvent object_ a1 = jmethod object_ "onPressGameKeyEvent" (\() -> (onPressGameKeyEvent_impl (javaCast object_ :: PlayerGameInput))) () a1
-
-onPressGameKeyEvent_super :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-onPressGameKeyEvent_super object_ a1 = (onPressGameKeyEvent_impl (javaCast object_ :: PlayerGameInput)) a1
-
-onPressGameKeyEvent_impl :: PlayerGameInput -> GameKeyEvent.GameKeyEvent -> IO (())
-onPressGameKeyEvent_impl this gameKeyEvent = do
-        Control.Monad.void (GameInput.add this gameKeyEvent)
-        Control.Monad.void (GameInput.addForRemoval this gameKeyEvent)
-        pure ()
+jclass : String
+jclass =
+    "PlayerGameInput"
 
 
-onDownGameKeyEvent :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-onDownGameKeyEvent object_ a1 = jmethod object_ "onDownGameKeyEvent" (\() -> (onDownGameKeyEvent_impl (javaCast object_ :: PlayerGameInput))) () a1
-
-onDownGameKeyEvent_super :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-onDownGameKeyEvent_super object_ a1 = (onDownGameKeyEvent_impl (javaCast object_ :: PlayerGameInput)) a1
-
-onDownGameKeyEvent_impl :: PlayerGameInput -> GameKeyEvent.GameKeyEvent -> IO (())
-onDownGameKeyEvent_impl this gameKeyEvent = do
-        Control.Monad.void (GameInput.add this gameKeyEvent)
-        pure ()
+jchain : List String
+jchain =
+    [ "PlayerGameInput" ]
+        ++ GameInput.jchain
+        ++ GameKeyEventListenerInterface.jchain
 
 
-onDownKeyEvent :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-onDownKeyEvent object_ a1 = jmethod object_ "onDownKeyEvent" (\() -> (onDownKeyEvent_impl (javaCast object_ :: PlayerGameInput))) () a1
-
-onDownKeyEvent_super :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-onDownKeyEvent_super object_ a1 = (onDownKeyEvent_impl (javaCast object_ :: PlayerGameInput)) a1
-
-onDownKeyEvent_impl :: PlayerGameInput -> GameKeyEvent.GameKeyEvent -> IO (())
-onDownKeyEvent_impl this gameKeyEvent = do
-        Control.Monad.void (GameInput.add this gameKeyEvent)
-        Control.Monad.void (GameInput.addForRemoval this gameKeyEvent)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    GameInput.jfields ++ [ ( "gameInputStrings", JR.defaultOf "" ), ( "playerInputId", JR.defaultOf "I" ) ]
 
 
-onDownKey :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-onDownKey object_ a1 = jmethod object_ "onDownKey" (\() -> (onDownKey_impl (javaCast object_ :: PlayerGameInput))) () a1
-
-onDownKey_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-onDownKey_super object_ a1 = (onDownKey_impl (javaCast object_ :: PlayerGameInput)) a1
-
-onDownKey_impl :: PlayerGameInput -> Int -> IO (())
-onDownKey_impl this gameKeyEvent = do
-        Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonLabels.getInstance))).sTART_LABEL)))) (javaToString gameKeyEvent)))))) this (jget ((jget (this).gameInputStrings)).oN_DOWN_GAME_KEY))
-        pure ()
-
-
-onUpGameKeyEvent :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-onUpGameKeyEvent object_ a1 = jmethod object_ "onUpGameKeyEvent" (\() -> (onUpGameKeyEvent_impl (javaCast object_ :: PlayerGameInput))) () a1
-
-onUpGameKeyEvent_super :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-onUpGameKeyEvent_super object_ a1 = (onUpGameKeyEvent_impl (javaCast object_ :: PlayerGameInput)) a1
-
-onUpGameKeyEvent_impl :: PlayerGameInput -> GameKeyEvent.GameKeyEvent -> IO (())
-onUpGameKeyEvent_impl this gameKeyEvent = do
-        Control.Monad.void (GameInput.addForRemoval this gameKeyEvent)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "onPressGameKeyEvent_1", jm_onPressGameKeyEvent_1 )
+        , ( "onDownGameKeyEvent_1", jm_onDownGameKeyEvent_1 )
+        , ( "onDownKeyEvent_1", jm_onDownKeyEvent_1 )
+        , ( "onDownKey_1", jm_onDownKey_1 )
+        , ( "onUpGameKeyEvent_1", jm_onUpGameKeyEvent_1 )
+        , ( "onUpKeyEvent_1", jm_onUpKeyEvent_1 )
+        , ( "onEvent_1", jm_onEvent_1 )
+        , ( "getPlayerInputId_0", jm_getPlayerInputId_0 ) ]
+        GameInput.jvtable
 
 
-onUpKeyEvent :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-onUpKeyEvent object_ a1 = jmethod object_ "onUpKeyEvent" (\() -> (onUpKeyEvent_impl (javaCast object_ :: PlayerGameInput))) () a1
-
-onUpKeyEvent_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-onUpKeyEvent_super object_ a1 = (onUpKeyEvent_impl (javaCast object_ :: PlayerGameInput)) a1
-
-onUpKeyEvent_impl :: PlayerGameInput -> Int -> IO (())
-onUpKeyEvent_impl this gameKeyEvent = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlayerGameInput"
+        [ ( "jm_onPressGameKeyEvent_1", jm_onPressGameKeyEvent_1 ), ( "jm_onDownGameKeyEvent_1", jm_onDownGameKeyEvent_1 ), ( "jm_onDownKeyEvent_1", jm_onDownKeyEvent_1 ), ( "jm_onDownKey_1", jm_onDownKey_1 ), ( "jm_onUpGameKeyEvent_1", jm_onUpGameKeyEvent_1 ), ( "jm_onUpKeyEvent_1", jm_onUpKeyEvent_1 ), ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_getPlayerInputId_0", jm_getPlayerInputId_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: PlayerGameInput))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: PlayerGameInput)) a1
-
-onEvent_impl :: PlayerGameInput -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jio (EventStrings.getInstance))).pERFORMANCE_MESSAGE) this)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getPlayerInputId :: (JavaObjectClass this_) => this_ -> IO (Int)
-getPlayerInputId object_ = jmethod object_ "getPlayerInputId" (\() -> (getPlayerInputId_impl (javaCast object_ :: PlayerGameInput))) ()
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "gameKeyEventList", "" ), ( "removalGameKeyEventList", "" ), ( "playerInputId", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect GameInput.jinit_2 JR.this [ (JR.local "gameKeyEventList"), (JR.local "removalGameKeyEventList") ]),
+                JR.exec (JR.setField "gameInputStrings" "" JR.this (JR.callStatic GameInputStrings.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "playerInputId" "I" JR.this (JR.local "playerInputId")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getPlayerInputId_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getPlayerInputId_super object_ = (getPlayerInputId_impl (javaCast object_ :: PlayerGameInput))
 
-getPlayerInputId_impl :: PlayerGameInput -> IO (Int)
-getPlayerInputId_impl this = do
-        pure ((jget (this).playerInputId))
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
 
+
+jm_onPressGameKeyEvent_1 : JR.Method
+jm_onPressGameKeyEvent_1 jheap jthis jargs =
+    JR.method [ ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" JR.this [ (JR.local "gameKeyEvent") ]), 
+                    JR.exec (JR.invoke "addForRemoval_1" JR.this [ (JR.local "gameKeyEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onDownGameKeyEvent_1 : JR.Method
+jm_onDownGameKeyEvent_1 jheap jthis jargs =
+    JR.method [ ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" JR.this [ (JR.local "gameKeyEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onDownKeyEvent_1 : JR.Method
+jm_onDownKeyEvent_1 jheap jthis jargs =
+    JR.method [ ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" JR.this [ (JR.local "gameKeyEvent") ]), 
+                    JR.exec (JR.invoke "addForRemoval_1" JR.this [ (JR.local "gameKeyEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onDownKey_1 : JR.Method
+jm_onDownKey_1 jheap jthis jargs =
+    JR.method [ ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.invoke "toString_0" (JR.local "gameKeyEvent") []) ]) []), JR.this, (JR.field "ON_DOWN_GAME_KEY" (JR.thisField "gameInputStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onUpGameKeyEvent_1 : JR.Method
+jm_onUpGameKeyEvent_1 jheap jthis jargs =
+    JR.method [ ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "addForRemoval_1" JR.this [ (JR.local "gameKeyEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onUpKeyEvent_1 : JR.Method
+jm_onUpKeyEvent_1 jheap jthis jargs =
+    JR.method [ ( "gameKeyEvent", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "PERFORMANCE_MESSAGE" (JR.callStatic EventStrings.jm_getInstance_0 [])), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPlayerInputId_0 : JR.Method
+jm_getPlayerInputId_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "playerInputId") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,191 +1,156 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
-module Sounds where
+module Org.Allbinary.Media.Audio.Sounds exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified SoundStrings -- same package or java.lang
-import qualified SoundsFactoryInterface -- same package or java.lang
-import qualified Sound -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified Player -- javax.microedition.media.Player
-import qualified ProgressCanvas -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvas
-import qualified ProgressCanvasFactory -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.media.audio
+-}
 
-data Sounds = Sounds
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , soundStrings :: IORef (SoundStrings.SoundStrings)
-    , soundsFactoryInterface :: IORef (SoundsFactoryInterface.SoundsFactoryInterface)
-    }
-
-instance JavaNull Sounds where
-    javaNull = javaNullRecord "Sounds"
-
-instance JavaEquals Sounds where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Sounds where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Sounds where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO Sounds
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    soundStrings <- newIORef javaNull
-    soundsFactoryInterface <- newIORef javaNull
-    let this = Sounds header_ logUtil commonStrings soundStrings soundsFactoryInterface
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "stopAll" (\() -> stopAll_impl this)
-    jregisterMethod header_ "closeAll" (\() -> closeAll_impl this)
-    pure this
-
-initFields_ :: Sounds -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.soundStrings =<< (SoundStrings.getInstance)
-    jset this.soundsFactoryInterface (javaNull)
-    pure ()
-
-new_1 :: SoundsFactoryInterface.SoundsFactoryInterface -> IO Sounds
-new_1 soundsFactoryInterface = do
-    this <- newRecord_
-    init_1 this soundsFactoryInterface
-    pure this
-
-init_1 :: Sounds -> SoundsFactoryInterface.SoundsFactoryInterface -> IO ()
-init_1 this soundsFactoryInterface = do
-        initFields_ this
-        jset (this).soundsFactoryInterface (soundsFactoryInterface)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressCanvasFactory as ProgressCanvasFactory
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Media.Audio.SoundStrings as SoundStrings
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: Sounds))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: Sounds))
-
-init_impl :: Sounds -> IO (())
-init_impl this = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).sTART) this (jget ((jget (this).commonStrings)).iNIT))
-        commonLabels <- (CommonLabels.getInstance)
-        progressCanvas <- (ProgressCanvasFactory.getInstance)
-        Control.Monad.void (SoundsFactoryInterface.init ((jget (this).soundsFactoryInterface)))
-        soundInterfaceArray <- (SoundsFactoryInterface.getSoundInterfaceArray ((jget (this).soundsFactoryInterface)))
-        smallIntegerSingletonFactory <- (SmallIntegerSingletonFactory.getInstance)
-        indexInteger <- newIORef (javaNull)
-        indexString <- newIORef ("")
-        stringBuffer <- (StringMaker.new_)
-        forM_ [0 .. (jlength soundInterfaceArray) - 1] $ \i -> javaIteration (pure ()) $ do
-            let soundInterface = (jindex soundInterfaceArray (i))
-            when (soundInterface /= javaNull) $ do
-                assignedValue <- (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory i)
-                jset indexInteger (assignedValue)
-                jset indexString ((javaToString (jget indexInteger)))
-                Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-                Control.Monad.void (StringMaker.append stringBuffer (jget (commonLabels).iNDEX_LABEL))
-                Control.Monad.void (StringMaker.append stringBuffer (jget indexString))
-                Control.Monad.void (StringMaker.append stringBuffer (jget ((jget (this).soundStrings)).sOUND))
-                Control.Monad.void (StringMaker.append stringBuffer (jio (Class.getName ((jio (jobjectGetClass soundInterface))))))
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this (jget ((jget (this).commonStrings)).iNIT))
-                Control.Monad.void (Sound.init soundInterface)
-                Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas 100 (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).soundStrings)).iNIT_SOUND)))) (jget indexString)))))))
-        Control.Monad.void (SoundsFactoryInterface.setInitialized ((jget (this).soundsFactoryInterface)) True)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eND) this (jget ((jget (this).commonStrings)).iNIT))
-        pure ()
+jclass : String
+jclass =
+    "Sounds"
 
 
--- throws Exception
-stopAll :: (JavaObjectClass this_) => this_ -> IO (())
-stopAll object_ = jmethod object_ "stopAll" (\() -> (stopAll_impl (javaCast object_ :: Sounds))) ()
-
-stopAll_super :: (JavaObjectClass this_) => this_ -> IO (())
-stopAll_super object_ = (stopAll_impl (javaCast object_ :: Sounds))
-
-stopAll_impl :: Sounds -> IO (())
-stopAll_impl this = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).sTART) this (jget ((jget (this).soundStrings)).sTOP_ALL))
-        soundInterfaceArray <- (SoundsFactoryInterface.getSoundInterfaceArray ((jget (this).soundsFactoryInterface)))
-        progressCanvas <- (ProgressCanvasFactory.getInstance)
-        player <- newIORef (javaNull)
-        forM_ [0 .. (jlength soundInterfaceArray) - 1] $ \index -> javaIteration (pure ()) $ do
-            when ((jindex soundInterfaceArray (index)) /= javaNull) $ do
-                assignedValue <- (Sound.getPlayerP ((jindex soundInterfaceArray (index))))
-                jset player (assignedValue)
-                when ((jget player) /= javaNull) $ do
-                    Control.Monad.void (Player.stop ((jget player)))
-                    Control.Monad.void (ProgressCanvas.addPortion progressCanvas 100 (jget ((jget (this).soundStrings)).sTOPPING_SOUND) index)
-        pure ()
+jchain : List String
+jchain =
+    [ "Sounds" ]
 
 
--- throws Exception
-closeAll :: (JavaObjectClass this_) => this_ -> IO (())
-closeAll object_ = jmethod object_ "closeAll" (\() -> (closeAll_impl (javaCast object_ :: Sounds))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "soundStrings", JR.defaultOf "" ), ( "soundsFactoryInterface", JR.defaultOf "" ) ]
 
-closeAll_super :: (JavaObjectClass this_) => this_ -> IO (())
-closeAll_super object_ = (closeAll_impl (javaCast object_ :: Sounds))
 
-closeAll_impl :: Sounds -> IO (())
-closeAll_impl this = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).sTART) this (jget ((jget (this).soundStrings)).cLOSE_ALL))
-        soundInterfaceArray <- (SoundsFactoryInterface.getSoundInterfaceArray ((jget (this).soundsFactoryInterface)))
-        progressCanvas <- (ProgressCanvasFactory.getInstance)
-        player <- newIORef (javaNull)
-        forM_ [0 .. (jlength soundInterfaceArray) - 1] $ \index -> javaIteration (pure ()) $ do
-            when ((jindex soundInterfaceArray (index)) /= javaNull) $ do
-                assignedValue <- (Sound.getPlayerP ((jindex soundInterfaceArray (index))))
-                jset player (assignedValue)
-                when ((jget player) /= javaNull) $ do
-                    Control.Monad.void (Player.close ((jget player)))
-                    Control.Monad.void (ProgressCanvas.addPortion progressCanvas 100 (jget ((jget (this).soundStrings)).cLOSING_SOUND) index)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 )
+        , ( "stopAll_0", jm_stopAll_0 )
+        , ( "closeAll_0", jm_closeAll_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Sounds"
+        [ ( "jm_init_0", jm_init_0 ), ( "jm_stopAll_0", jm_stopAll_0 ), ( "jm_closeAll_0", jm_closeAll_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "soundsFactoryInterface", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "soundStrings" "" JR.this (JR.callStatic SoundStrings.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "soundsFactoryInterface" "" JR.this (JR.local "soundsFactoryInterface")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")) ]), 
+                    JR.declare "commonLabels" "" (JR.callStatic CommonLabels.jm_getInstance_0 []), 
+                    JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "init_0" (JR.thisField "soundsFactoryInterface") []), 
+                    JR.declare "soundInterfaceArray" "" (JR.invoke "getSoundInterfaceArray_0" (JR.thisField "soundsFactoryInterface") []), 
+                    JR.declare "smallIntegerSingletonFactory" "" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []), 
+                    JR.declare "indexInteger" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "indexString" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.alength (JR.local "soundInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN70650 -> (JR.setLocal "i" "I" (JR.lit jwN70650))) JR.increment) ]) (JR.run [ 
+                        JR.declare "soundInterface" "" (JR.aget (JR.local "soundInterfaceArray") (JR.local "i")), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "soundInterface") JR.null) (JR.run [ 
+                            JR.exec (JR.setLocal "indexInteger" "" (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.local "i") ])), 
+                            JR.exec (JR.setLocal "indexString" "" (JR.invoke "toString_0" (JR.local "indexInteger") [])), 
+                            JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "INDEX_LABEL" (JR.local "commonLabels")) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "indexString") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SOUND" (JR.thisField "soundStrings")) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.getClass (JR.local "soundInterface")) []) ]), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")) ]), 
+                            JR.exec (JR.invoke "init_0" (JR.local "soundInterface") []), 
+                            JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.int 100), (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "INIT_SOUND" (JR.thisField "soundStrings")) ]) [ (JR.local "indexString") ]) []) ]) ]) identity ]) ], 
+                    JR.exec (JR.invoke "setInitialized_1" (JR.thisField "soundsFactoryInterface") [ (JR.bool True) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "END" (JR.thisField "commonStrings")), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_stopAll_0 : JR.Method
+jm_stopAll_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "STOP_ALL" (JR.thisField "soundStrings")) ]), 
+                    JR.declare "soundInterfaceArray" "" (JR.invoke "getSoundInterfaceArray_0" (JR.thisField "soundsFactoryInterface") []), 
+                    JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                    JR.declare "player" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "soundInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71252 -> (JR.setLocal "index" "I" (JR.lit jwN71252))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.local "soundInterfaceArray") (JR.local "index")) JR.null) (JR.run [ 
+                            JR.exec (JR.setLocal "player" "" (JR.invoke "getPlayerP_0" (JR.aget (JR.local "soundInterfaceArray") (JR.local "index")) [])), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "player") JR.null) (JR.run [ 
+                                JR.exec (JR.invoke "stop_0" (JR.local "player") []), 
+                                JR.exec (JR.invoke "addPortion_3" (JR.local "progressCanvas") [ (JR.int 100), (JR.field "STOPPING_SOUND" (JR.thisField "soundStrings")), (JR.local "index") ]) ]) identity ]) identity ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_closeAll_0 : JR.Method
+jm_closeAll_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CLOSE_ALL" (JR.thisField "soundStrings")) ]), 
+                    JR.declare "soundInterfaceArray" "" (JR.invoke "getSoundInterfaceArray_0" (JR.thisField "soundsFactoryInterface") []), 
+                    JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                    JR.declare "player" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "soundInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71757 -> (JR.setLocal "index" "I" (JR.lit jwN71757))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.local "soundInterfaceArray") (JR.local "index")) JR.null) (JR.run [ 
+                            JR.exec (JR.setLocal "player" "" (JR.invoke "getPlayerP_0" (JR.aget (JR.local "soundInterfaceArray") (JR.local "index")) [])), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "player") JR.null) (JR.run [ 
+                                JR.exec (JR.invoke "close_0" (JR.local "player") []), 
+                                JR.exec (JR.invoke "addPortion_3" (JR.local "progressCanvas") [ (JR.int 100), (JR.field "CLOSING_SOUND" (JR.thisField "soundStrings")), (JR.local "index") ]) ]) identity ]) identity ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

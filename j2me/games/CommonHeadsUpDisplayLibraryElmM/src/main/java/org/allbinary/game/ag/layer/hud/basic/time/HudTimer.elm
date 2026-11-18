@@ -1,215 +1,169 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.time
-module HudTimer where
+module Org.Allbinary.Game.Ag.Layer.Hud.Basic.Time.HudTimer exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified PrimitiveLongSingleton -- org.allbinary.logic.math.PrimitiveLongSingleton
-import qualified PrimitiveLongUtil -- org.allbinary.logic.math.PrimitiveLongUtil
-import qualified GameTickTimeDelayHelper -- org.allbinary.time.GameTickTimeDelayHelper
-import qualified GameTickTimeDelayHelperFactory -- org.allbinary.time.GameTickTimeDelayHelperFactory
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.hud.basic.time
+-}
 
-data HudTimer = HudTimer
-    { header_ :: JavaHeader
-    , startTime :: IORef (Int64)
-    , hundredthTime :: IORef (Int64)
-    , maxTime :: IORef (Int64)
-    , modifier :: IORef (Int64)
-    , hundrethsString :: IORef (JavaArray (Char))
-    , totalDigits :: IORef (Int)
-    , primitiveLongUtil :: IORef (PrimitiveLongUtil.PrimitiveLongUtil)
-    , mAX :: IORef (JavaArray (Char))
-    , gameTickTimeDelayHelper :: IORef (GameTickTimeDelayHelper.GameTickTimeDelayHelper)
-    }
-
-instance JavaNull HudTimer where
-    javaNull = javaNullRecord "HudTimer"
-
-instance JavaEquals HudTimer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HudTimer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HudTimer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO HudTimer
-newRecord_ = do
-    header_ <- newJavaHeader
-    startTime <- newIORef 0
-    hundredthTime <- newIORef 0
-    maxTime <- newIORef 0
-    modifier <- newIORef 0
-    hundrethsString <- newIORef javaNull
-    totalDigits <- newIORef 0
-    primitiveLongUtil <- newIORef javaNull
-    mAX <- newIORef javaNull
-    gameTickTimeDelayHelper <- newIORef javaNull
-    let this = HudTimer header_ startTime hundredthTime maxTime modifier hundrethsString totalDigits primitiveLongUtil mAX gameTickTimeDelayHelper
-    jregisterLevel header_ this
-    jregisterMethod header_ "start" (\() -> start_impl this)
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "reduce" (\() -> reduce_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "getTimeChars" (\() -> getTimeChars_impl this)
-    jregisterMethod header_ "getCurrentTotalDigits" (\() -> getCurrentTotalDigits_impl this)
-    pure this
-
-initFields_ :: HudTimer -> IO ()
-initFields_ this = do
-    jset this.startTime ((Prelude.fromIntegral ((Prelude.negate 1) :: Int)))
-    jset this.hundredthTime (0)
-    jset this.maxTime (0)
-    jset this.modifier (0)
-    jset this.hundrethsString ((jget ((jio (PrimitiveLongSingleton.getInstance))).zERO))
-    jset this.totalDigits (1)
-    jset this.primitiveLongUtil (javaNull)
-    jset this.mAX ((jarrayFromList ['L', 'O', 'L'] :: JavaArray Char))
-    jset this.gameTickTimeDelayHelper =<< (GameTickTimeDelayHelperFactory.getInstance)
-    pure ()
-
-new_1 :: Int -> IO HudTimer
-new_1 maxTime = do
-    this <- newRecord_
-    init_1 this maxTime
-    pure this
-
-init_1 :: HudTimer -> Int -> IO ()
-init_1 this maxTime = do
-        initFields_ this
-        assignedValue <- (PrimitiveLongUtil.createPowerOfTen maxTime)
-        jset (this).primitiveLongUtil (assignedValue)
-        jset (this).maxTime ((Prelude.fromIntegral maxTime))
-        pure ()
+import JR
+import Org.Allbinary.Time.GameTickTimeDelayHelperFactory as GameTickTimeDelayHelperFactory
+import Org.Allbinary.Logic.Math.PrimitiveLongSingleton as PrimitiveLongSingleton
+import Org.Allbinary.Logic.Math.PrimitiveLongUtil as PrimitiveLongUtil
 
 
-start :: (JavaObjectClass this_) => this_ -> IO (())
-start object_ = jmethod object_ "start" (\() -> (start_impl (javaCast object_ :: HudTimer))) ()
-
-start_super :: (JavaObjectClass this_) => this_ -> IO (())
-start_super object_ = (start_impl (javaCast object_ :: HudTimer))
-
-start_impl :: HudTimer -> IO (())
-start_impl this = do
-        jset (this).hundredthTime (0)
-        jset (this).startTime ((jget ((jget (this).gameTickTimeDelayHelper)).startTime))
-        pure ()
+jclass : String
+jclass =
+    "HudTimer"
 
 
-get :: (JavaObjectClass this_) => this_ -> IO (Int64)
-get object_ = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: HudTimer))) ()
-
-get_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-get_super object_ = (get_impl (javaCast object_ :: HudTimer))
-
-get_impl :: HudTimer -> IO (Int64)
-get_impl this = do
-        pure ((jget (this).hundredthTime))
+jchain : List String
+jchain =
+    [ "HudTimer" ]
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: HudTimer))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: HudTimer))
-
-update_impl :: HudTimer -> IO (())
-update_impl this = do
-        let lastLowerTime = (jget (this).hundredthTime)
-        currentTime <- newIORef ((((((jget (this).modifier) + (jget ((jget (this).gameTickTimeDelayHelper)).startTime))) - (jget (this).startTime))) :: Int64)
-        when ((jget currentTime) < 0) $ do
-            jset currentTime (0)
-        jset (this).hundredthTime (((jget currentTime) `quot` 100))
-        if ((jget (this).hundredthTime) >= (jget (this).maxTime)) then do
-            when ((jget (this).startTime) > 0) $ do
-                jset (this).hundrethsString ((jget (this).mAX))
-        else when (lastLowerTime /= (jget (this).hundredthTime)) $ do
-            assignedValue <- (PrimitiveLongUtil.getCharArray ((jget (this).primitiveLongUtil)) (Prelude.fromIntegral (jget (this).hundredthTime)))
-            jset (this).hundrethsString (assignedValue)
-            assignedValue <- (PrimitiveLongUtil.getCurrentTotalDigits ((jget (this).primitiveLongUtil)))
-            jset (this).totalDigits (assignedValue)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "startTime", JR.defaultOf "J" ), ( "hundredthTime", JR.defaultOf "J" ), ( "maxTime", JR.defaultOf "J" ), ( "modifier", JR.defaultOf "J" ), ( "hundrethsString", JR.defaultOf "" ), ( "totalDigits", JR.defaultOf "I" ), ( "primitiveLongUtil", JR.defaultOf "" ), ( "MAX", JR.defaultOf "" ), ( "gameTickTimeDelayHelper", JR.defaultOf "" ) ]
 
 
-reduce :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-reduce object_ a1 = jmethod object_ "reduce" (\() -> (reduce_impl (javaCast object_ :: HudTimer))) () a1
-
-reduce_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-reduce_super object_ a1 = (reduce_impl (javaCast object_ :: HudTimer)) a1
-
-reduce_impl :: HudTimer -> Int -> IO (())
-reduce_impl this value = do
-        jset (this).modifier (((jget (this).modifier) - (Prelude.fromIntegral value)))
-        pure ()
-
-
-add :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: HudTimer))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: HudTimer)) a1
-
-add_impl :: HudTimer -> Int -> IO (())
-add_impl this value = do
-        jset (this).modifier (((jget (this).modifier) + (Prelude.fromIntegral value)))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "start_0", jm_start_0 )
+        , ( "get_0", jm_get_0 )
+        , ( "update_0", jm_update_0 )
+        , ( "reduce_1", jm_reduce_1 )
+        , ( "add_1", jm_add_1 )
+        , ( "getTimeChars_0", jm_getTimeChars_0 )
+        , ( "getCurrentTotalDigits_0", jm_getCurrentTotalDigits_0 ) ]
+        JR.noMethods
 
 
-getTimeChars :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Char))
-getTimeChars object_ = jmethod object_ "getTimeChars" (\() -> (getTimeChars_impl (javaCast object_ :: HudTimer))) ()
-
-getTimeChars_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Char))
-getTimeChars_super object_ = (getTimeChars_impl (javaCast object_ :: HudTimer))
-
-getTimeChars_impl :: HudTimer -> IO (JavaArray (Char))
-getTimeChars_impl this = do
-        pure ((jget (this).hundrethsString))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HudTimer"
+        [ ( "jm_start_0", jm_start_0 ), ( "jm_get_0", jm_get_0 ), ( "jm_update_0", jm_update_0 ), ( "jm_reduce_1", jm_reduce_1 ), ( "jm_add_1", jm_add_1 ), ( "jm_getTimeChars_0", jm_getTimeChars_0 ), ( "jm_getCurrentTotalDigits_0", jm_getCurrentTotalDigits_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
 
-getCurrentTotalDigits :: (JavaObjectClass this_) => this_ -> IO (Int)
-getCurrentTotalDigits object_ = jmethod object_ "getCurrentTotalDigits" (\() -> (getCurrentTotalDigits_impl (javaCast object_ :: HudTimer))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-getCurrentTotalDigits_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getCurrentTotalDigits_super object_ = (getCurrentTotalDigits_impl (javaCast object_ :: HudTimer))
 
-getCurrentTotalDigits_impl :: HudTimer -> IO (Int)
-getCurrentTotalDigits_impl this = do
-        pure ((jget (this).totalDigits))
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "maxTime", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "startTime" "J" JR.this (JR.cast "J" (JR.map JR.neg (JR.int 1)))),
+                JR.exec (JR.setField "hundrethsString" "" JR.this (JR.field "ZERO" (JR.callStatic PrimitiveLongSingleton.jm_getInstance_0 []))),
+                JR.exec (JR.setField "totalDigits" "I" JR.this (JR.int 1)),
+                JR.exec (JR.setField "MAX" "" JR.this (JR.arrayOf "C" [ (JR.char 76), (JR.char 79), (JR.char 76) ])),
+                JR.exec (JR.setField "gameTickTimeDelayHelper" "" JR.this (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "primitiveLongUtil" "" JR.this (JR.callStatic PrimitiveLongUtil.jm_createPowerOfTen_1 [ (JR.local "maxTime") ])), 
+                    JR.exec (JR.setField "maxTime" "J" JR.this (JR.cast "J" (JR.local "maxTime"))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_start_0 : JR.Method
+jm_start_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "hundredthTime" "J" JR.this (JR.int 0)), 
+                    JR.exec (JR.setField "startTime" "J" JR.this (JR.field "startTime" (JR.thisField "gameTickTimeDelayHelper"))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_get_0 : JR.Method
+jm_get_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.thisField "hundredthTime") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "lastLowerTime" "J" (JR.thisField "hundredthTime"), 
+                    JR.declare "currentTime" "J" ((JR.map2 JR.sub ((JR.plus (JR.thisField "modifier") (JR.field "startTime" (JR.thisField "gameTickTimeDelayHelper")))) (JR.thisField "startTime"))), 
+                    JR.ifElse (JR.map2 JR.less (JR.local "currentTime") (JR.long 0)) (JR.run [ 
+                        JR.exec (JR.setLocal "currentTime" "J" (JR.int 0)) ]) identity, 
+                    JR.exec (JR.setField "hundredthTime" "J" JR.this (JR.map2 JR.div (JR.local "currentTime") (JR.long 100))), 
+                    JR.ifElse (JR.map2 JR.greaterEquals (JR.thisField "hundredthTime") (JR.thisField "maxTime")) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.greater (JR.thisField "startTime") (JR.long 0)) (JR.run [ 
+                            JR.exec (JR.setField "hundrethsString" "" JR.this (JR.thisField "MAX")) ]) identity ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "lastLowerTime") (JR.thisField "hundredthTime")) (JR.run [ 
+                        JR.exec (JR.setField "hundrethsString" "" JR.this (JR.invoke "getCharArray_1" (JR.thisField "primitiveLongUtil") [ (JR.cast "I" (JR.thisField "hundredthTime")) ])), 
+                        JR.exec (JR.setField "totalDigits" "I" JR.this (JR.invoke "getCurrentTotalDigits_0" (JR.thisField "primitiveLongUtil") [])) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_reduce_1 : JR.Method
+jm_reduce_1 jheap jthis jargs =
+    JR.method [ ( "value", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "modifier" "J" JR.this (JR.map2 JR.sub (JR.thisField "modifier") (JR.local "value"))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "value", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "modifier" "J" JR.this (JR.map2 JR.add (JR.thisField "modifier") (JR.local "value"))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTimeChars_0 : JR.Method
+jm_getTimeChars_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "hundrethsString") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCurrentTotalDigits_0 : JR.Method
+jm_getCurrentTotalDigits_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "totalDigits") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

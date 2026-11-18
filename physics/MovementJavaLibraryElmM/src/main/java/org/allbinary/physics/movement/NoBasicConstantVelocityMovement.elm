@@ -1,96 +1,86 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
-module NoBasicConstantVelocityMovement (module NoBasicConstantVelocityMovement, module BasicConstantVelocityMovement) where
+module Org.Allbinary.Physics.Movement.NoBasicConstantVelocityMovement exposing (..)
 
-import BasicConstantVelocityMovement hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, process, process_super, process_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameLayer -- org.allbinary.game.layer.AllBinaryGameLayer
-import qualified BasicVelocityProperties -- org.allbinary.game.physics.velocity.BasicVelocityProperties
-import qualified BasicDecimal -- org.allbinary.logic.math.BasicDecimal
-import qualified BasicConstantVelocityMovement
+{-| Generated Code Do Not Modify package org.allbinary.physics.movement
+-}
 
-data NoBasicConstantVelocityMovement = NoBasicConstantVelocityMovement
-    { header_ :: JavaHeader
-    , base :: BasicConstantVelocityMovement.BasicConstantVelocityMovement
-    }
-
-instance JavaNull NoBasicConstantVelocityMovement where
-    javaNull = javaNullRecord "NoBasicConstantVelocityMovement"
-
-instance JavaEquals NoBasicConstantVelocityMovement where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NoBasicConstantVelocityMovement where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NoBasicConstantVelocityMovement where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO NoBasicConstantVelocityMovement
-newRecord_ = do
-    base <- BasicConstantVelocityMovement.newRecord_
-    let header_ = base.header_
-    let this = NoBasicConstantVelocityMovement header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: NoBasicConstantVelocityMovement -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO NoBasicConstantVelocityMovement
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NoBasicConstantVelocityMovement -> IO ()
-init_ this = do
-        BasicConstantVelocityMovement.init_2 this.base (BasicDecimal.zERO_BIGDECIMAL) (jio (BasicVelocityProperties.new_))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Physics.Movement.BasicConstantVelocityMovement as BasicConstantVelocityMovement
+import Org.Allbinary.Logic.Math.BasicDecimal as BasicDecimal
+import Org.Allbinary.Game.Physics.Velocity.BasicVelocityProperties as BasicVelocityProperties
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: NoBasicConstantVelocityMovement))) () a1
+jclass : String
+jclass =
+    "NoBasicConstantVelocityMovement"
 
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: NoBasicConstantVelocityMovement)) a1
 
-process_impl :: NoBasicConstantVelocityMovement -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_impl this layer = do
-        pure ()
+jchain : List String
+jchain =
+    [ "NoBasicConstantVelocityMovement" ]
+        ++ BasicConstantVelocityMovement.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicConstantVelocityMovement.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "process_1", jm_process_1 ) ]
+        BasicConstantVelocityMovement.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NoBasicConstantVelocityMovement"
+        [ ( "jm_process_1", jm_process_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect BasicConstantVelocityMovement.jinit_2 JR.this [ BasicDecimal.jstatic_ZERO_BIGDECIMAL, (JR.new BasicVelocityProperties.jnew_0 []) ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "layer", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

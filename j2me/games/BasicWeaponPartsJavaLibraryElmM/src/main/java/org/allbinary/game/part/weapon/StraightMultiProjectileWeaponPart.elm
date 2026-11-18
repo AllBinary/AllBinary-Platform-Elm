@@ -1,140 +1,123 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part.weapon
-module StraightMultiProjectileWeaponPart (module StraightMultiProjectileWeaponPart, module BasicWeaponPart) where
+module Org.Allbinary.Game.Part.Weapon.StraightMultiProjectileWeaponPart exposing (..)
 
-import BasicWeaponPart hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createStraightMultiProjectileWeaponPart, createStraightMultiProjectileWeaponPart_super, createStraightMultiProjectileWeaponPart_impl, processScore, processScore_super, processScore_impl, weaponLayerCircularStaticPool, total, noDecimalTrigTable)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified WeaponProperties -- org.allbinary.game.combat.weapon.WeaponProperties
-import qualified WeaponLayer -- org.allbinary.game.layer.weapon.WeaponLayer
-import qualified WeaponLayerCircularPool -- org.allbinary.game.layer.weapon.WeaponLayerCircularPool
-import qualified NoScoreable -- org.allbinary.game.score.NoScoreable
-import qualified ScoreableInterface -- org.allbinary.game.score.ScoreableInterface
-import qualified RelativeRelationship -- org.allbinary.graphics.RelativeRelationship
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified NoDecimalTrigTable -- org.allbinary.math.NoDecimalTrigTable
-import qualified BasicWeaponPart
+{-| Generated Code Do Not Modify package org.allbinary.game.part.weapon
+-}
 
-data StraightMultiProjectileWeaponPart = StraightMultiProjectileWeaponPart
-    { header_ :: JavaHeader
-    , base :: BasicWeaponPart.BasicWeaponPart
-    , weaponLayerCircularStaticPool :: IORef (WeaponLayerCircularPool.WeaponLayerCircularPool)
-    , total :: IORef (Int)
-    , noDecimalTrigTable :: IORef (NoDecimalTrigTable.NoDecimalTrigTable)
-    }
-
-instance JavaNull StraightMultiProjectileWeaponPart where
-    javaNull = javaNullRecord "StraightMultiProjectileWeaponPart"
-
-instance JavaEquals StraightMultiProjectileWeaponPart where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq StraightMultiProjectileWeaponPart where
-    (==) = jrecordEquals
-
-instance JavaObjectClass StraightMultiProjectileWeaponPart where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO StraightMultiProjectileWeaponPart
-newRecord_ = do
-    base <- BasicWeaponPart.newRecord_
-    let header_ = base.header_
-    weaponLayerCircularStaticPool <- newIORef javaNull
-    total <- newIORef 0
-    noDecimalTrigTable <- newIORef javaNull
-    let this = StraightMultiProjectileWeaponPart header_ base weaponLayerCircularStaticPool total noDecimalTrigTable
-    jregisterLevel header_ this
-    jregisterMethod header_ "processScore" (\() -> processScore_impl this)
-    pure this
-
-initFields_ :: StraightMultiProjectileWeaponPart -> IO ()
-initFields_ this = do
-    jset this.weaponLayerCircularStaticPool (javaNull)
-    jset this.total (0)
-    jset this.noDecimalTrigTable =<< (NoDecimalTrigTable.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Layer.AllBinaryLayer as AllBinaryLayer
+import Org.Allbinary.Game.Part.Weapon.BasicWeaponPart as BasicWeaponPart
+import Org.Allbinary.Math.NoDecimalTrigTable as NoDecimalTrigTable
+import Org.Allbinary.Game.Score.NoScoreable as NoScoreable
+import Org.Allbinary.Graphics.RelativeRelationship as RelativeRelationship
+import Org.Allbinary.Game.Combat.Weapon.WeaponProperties as WeaponProperties
 
 
-createStraightMultiProjectileWeaponPart :: Animation.Animation -> WeaponLayerCircularPool.WeaponLayerCircularPool -> IO (StraightMultiProjectileWeaponPart)
-createStraightMultiProjectileWeaponPart animationInterface weaponLayerCircularStaticPool = do
-        (new_7 animationInterface (AllBinaryLayer.nULL_ALLBINARY_LAYER) weaponLayerCircularStaticPool 2 (WeaponProperties.nULL_WEAPON_PROPERTIES) (jio (NoScoreable.getInstance)) (RelativeRelationship.nULL_RELATIVE_RELATIONSHIP))
-
-new_7 :: Animation.Animation -> AllBinaryLayer.AllBinaryLayer -> WeaponLayerCircularPool.WeaponLayerCircularPool -> Int -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> RelativeRelationship.RelativeRelationship -> IO StraightMultiProjectileWeaponPart
-new_7 animationInterface sourceLayerInterface weaponLayerCircularStaticPool total weaponProperties scoreableInterface relativeRelationship = do
-    this <- newRecord_
-    init_7 this animationInterface sourceLayerInterface weaponLayerCircularStaticPool total weaponProperties scoreableInterface relativeRelationship
-    pure this
-
-init_7 :: StraightMultiProjectileWeaponPart -> Animation.Animation -> AllBinaryLayer.AllBinaryLayer -> WeaponLayerCircularPool.WeaponLayerCircularPool -> Int -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> RelativeRelationship.RelativeRelationship -> IO ()
-init_7 this animationInterface sourceLayerInterface weaponLayerCircularStaticPool total weaponProperties scoreableInterface relativeRelationship = do
-        BasicWeaponPart.init_5 this.base (animationInterface) (sourceLayerInterface) (weaponProperties) (scoreableInterface) (relativeRelationship)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).total (total)
-        jset (this).weaponLayerCircularStaticPool (weaponLayerCircularStaticPool)
-        pure ()
+jclass : String
+jclass =
+    "StraightMultiProjectileWeaponPart"
 
 
--- throws Exception
-processScore :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> Int16 -> Int16 -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> IO (())
-processScore object_ a1 a2 a3 a4 a5 = jmethod object_ "processScore" (\() -> (processScore_impl (javaCast object_ :: StraightMultiProjectileWeaponPart))) () a1 a2 a3 a4 a5
+jchain : List String
+jchain =
+    [ "StraightMultiProjectileWeaponPart" ]
+        ++ BasicWeaponPart.jchain
 
-processScore_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> Int16 -> Int16 -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> IO (())
-processScore_super object_ a1 a2 a3 a4 a5 = (processScore_impl (javaCast object_ :: StraightMultiProjectileWeaponPart)) a1 a2 a3 a4 a5
 
-processScore_impl :: StraightMultiProjectileWeaponPart -> AllBinaryLayerManager.AllBinaryLayerManager -> Int16 -> Int16 -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> IO (())
-processScore_impl this allbinaryLayerManager angle otherAngle weaponProperties scoreableInterface = do
-        sourceLayerInterface <- (BasicWeaponPart.getOwnerLayerInterface this)
-        let reducedWidth = ((((jio (AllBinaryLayer.getWidth sourceLayerInterface)) * 8) / 10))
-        let halfWidth = ((reducedWidth `Data.Bits.shiftR` 1))
-        x <- (RelativeRelationship.getX ((jget (this).base.relativeRelationship)))
-        y <- (RelativeRelationship.getY ((jget (this).base.relativeRelationship)))
-        sine <- newIORef (0 :: Int64)
-        beamX <- newIORef (0 :: Int)
-        cosine <- newIORef (0 :: Int64)
-        beamY <- newIORef (0 :: Int)
-        weaponLayer <- newIORef (javaNull)
-        let increment = (reducedWidth `quot` (((jget (this).total) - 1)))
-        next <- newIORef ((Prelude.negate halfWidth) :: Int)
-        forM_ [0 .. (jget (this).total) - 1] $ \index -> javaIteration (pure ()) $ do
-            jset sine ((Prelude.fromInteger (jnumericInteger (((jget next) * (jio (NoDecimalTrigTable.sin ((jget (this).noDecimalTrigTable)) (Prelude.fromIntegral angle))))))))
-            jset beamX ((Prelude.fromInteger (jnumericInteger (((jget sine) / (jget ((jget (this).noDecimalTrigTable)).sCALE))))))
-            jset cosine ((Prelude.fromInteger (jnumericInteger (((jget next) * (jio (NoDecimalTrigTable.cos ((jget (this).noDecimalTrigTable)) (Prelude.fromIntegral angle))))))))
-            jset beamY ((Prelude.negate (Prelude.fromInteger (jnumericInteger (((jget cosine) / (jget ((jget (this).noDecimalTrigTable)).sCALE)))))))
-            assignedValue <- (WeaponLayerCircularPool.getInstanceWeaponLayer ((jget (this).weaponLayerCircularStaticPool)) sourceLayerInterface (x + (jget beamX)) (y + (jget beamY)) 0 (Prelude.fromIntegral angle) (Prelude.fromIntegral otherAngle) weaponProperties scoreableInterface)
-            jset weaponLayer (assignedValue)
-            Control.Monad.void (AllBinaryLayerManager.append allbinaryLayerManager (jget weaponLayer))
-            jset next (((jget next) + increment))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicWeaponPart.jfields ++ [ ( "weaponLayerCircularStaticPool", JR.defaultOf "" ), ( "total", JR.defaultOf "I" ), ( "noDecimalTrigTable", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "createStraightMultiProjectileWeaponPart_2", jm_createStraightMultiProjectileWeaponPart_2 )
+        , ( "processScore_5", jm_processScore_5 ) ]
+        BasicWeaponPart.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "StraightMultiProjectileWeaponPart"
+        [ ( "jm_createStraightMultiProjectileWeaponPart_2", jm_createStraightMultiProjectileWeaponPart_2 ), ( "jm_processScore_5", jm_processScore_5 ), ( "jnew_7", jnew_7 ), ( "jinit_7", jinit_7 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_7 : JR.Method
+jinit_7 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ), ( "sourceLayerInterface", "" ), ( "weaponLayerCircularStaticPool", "" ), ( "total", "I" ), ( "weaponProperties", "" ), ( "scoreableInterface", "" ), ( "relativeRelationship", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicWeaponPart.jinit_5 JR.this [ (JR.local "animationInterface"), (JR.local "sourceLayerInterface"), (JR.local "weaponProperties"), (JR.local "scoreableInterface"), (JR.local "relativeRelationship") ]),
+                JR.exec (JR.setField "noDecimalTrigTable" "" JR.this (JR.callStatic NoDecimalTrigTable.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "total" "I" JR.this (JR.local "total")), 
+                    JR.exec (JR.setField "weaponLayerCircularStaticPool" "" JR.this (JR.local "weaponLayerCircularStaticPool")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_7 : JR.Method
+jnew_7 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_7 jheap jthis jargs
+
+
+jm_createStraightMultiProjectileWeaponPart_2 : JR.Method
+jm_createStraightMultiProjectileWeaponPart_2 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ), ( "weaponLayerCircularStaticPool", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_7 [ (JR.local "animationInterface"), AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER, (JR.local "weaponLayerCircularStaticPool"), (JR.int 2), WeaponProperties.jstatic_NULL_WEAPON_PROPERTIES, (JR.callStatic NoScoreable.jm_getInstance_0 []), RelativeRelationship.jstatic_NULL_RELATIVE_RELATIONSHIP ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processScore_5 : JR.Method
+jm_processScore_5 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "angle", "S" ), ( "otherAngle", "S" ), ( "weaponProperties", "" ), ( "scoreableInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "sourceLayerInterface" "" (JR.invoke "getOwnerLayerInterface_0" JR.this []), 
+                    JR.declare "reducedWidth" "I" ((JR.map2 JR.div (JR.map2 JR.mul (JR.invoke "getWidth_0" (JR.local "sourceLayerInterface") []) (JR.int 8)) (JR.int 10))), 
+                    JR.declare "halfWidth" "I" ((JR.map2 JR.shr (JR.local "reducedWidth") (JR.int 1))), 
+                    JR.declare "x" "I" (JR.invoke "getX_0" (JR.thisField "relativeRelationship") []), 
+                    JR.declare "y" "I" (JR.invoke "getY_0" (JR.thisField "relativeRelationship") []), 
+                    JR.declare "sine" "J" (JR.lit (JR.defaultOf "J")), 
+                    JR.declare "beamX" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "cosine" "J" (JR.lit (JR.defaultOf "J")), 
+                    JR.declare "beamY" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "weaponLayer" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "increment" "I" (JR.map2 JR.div (JR.local "reducedWidth") ((JR.map2 JR.sub (JR.thisField "total") (JR.int 1)))), 
+                    JR.declare "next" "I" (JR.map JR.neg (JR.local "halfWidth")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "total")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72435 -> (JR.setLocal "index" "I" (JR.lit jwN72435))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "sine" "J" ((JR.map2 JR.mul (JR.cast "J" (JR.local "next")) (JR.invoke "sin_1" (JR.thisField "noDecimalTrigTable") [ (JR.cast "I" (JR.local "angle")) ])))), 
+                        JR.exec (JR.setLocal "beamX" "I" (JR.cast "I" ((JR.map2 JR.div (JR.local "sine") (JR.cast "J" (JR.field "SCALE" (JR.thisField "noDecimalTrigTable"))))))), 
+                        JR.exec (JR.setLocal "cosine" "J" ((JR.map2 JR.mul (JR.cast "J" (JR.local "next")) (JR.invoke "cos_1" (JR.thisField "noDecimalTrigTable") [ (JR.cast "I" (JR.local "angle")) ])))), 
+                        JR.exec (JR.setLocal "beamY" "I" (JR.map JR.neg (JR.cast "I" ((JR.map2 JR.div (JR.local "cosine") (JR.cast "J" (JR.field "SCALE" (JR.thisField "noDecimalTrigTable")))))))), 
+                        JR.exec (JR.setLocal "weaponLayer" "" (JR.invoke "getInstanceWeaponLayer_8" (JR.thisField "weaponLayerCircularStaticPool") [ (JR.local "sourceLayerInterface"), (JR.map2 JR.add (JR.local "x") (JR.local "beamX")), (JR.map2 JR.add (JR.local "y") (JR.local "beamY")), (JR.int 0), (JR.cast "I" (JR.local "angle")), (JR.cast "I" (JR.local "otherAngle")), (JR.local "weaponProperties"), (JR.local "scoreableInterface") ])), 
+                        JR.exec (JR.invoke "append_1" (JR.local "allbinaryLayerManager") [ (JR.local "weaponLayer") ]), 
+                        JR.exec (JR.setLocal "next" "I" (JR.map2 JR.add (JR.local "next") (JR.local "increment"))) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

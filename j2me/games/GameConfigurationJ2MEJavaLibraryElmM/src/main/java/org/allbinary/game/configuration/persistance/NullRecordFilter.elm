@@ -1,98 +1,90 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
-module NullRecordFilter where
+module Org.Allbinary.Game.Configuration.Persistance.NullRecordFilter exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified RecordFilter -- javax.microedition.rms.RecordFilter
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.persistance
+-}
 
--- implements RecordFilter
-data NullRecordFilter = NullRecordFilter
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull NullRecordFilter where
-    javaNull = javaNullRecord "NullRecordFilter"
-
-instance JavaEquals NullRecordFilter where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NullRecordFilter where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NullRecordFilter where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_RECORD_FILTER :: IORef (NullRecordFilter)
-{-# NOINLINE nULL_RECORD_FILTER #-}
-nULL_RECORD_FILTER = unsafePerformIO ((new_) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NullRecordFilter
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = NullRecordFilter header_
-    jregisterLevel header_ this
-    RecordFilter.registerInterface_ header_
-    jregisterMethod header_ "matches" (\() -> matches_impl this)
-    pure this
-
-initFields_ :: NullRecordFilter -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO NullRecordFilter
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NullRecordFilter -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Javax.Microedition.Rms.RecordFilter as RecordFilter
 
 
-matches :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (Bool)
-matches object_ a1 = jmethod object_ "matches" (\() -> (matches_impl (javaCast object_ :: NullRecordFilter))) () a1
+jclass : String
+jclass =
+    "NullRecordFilter"
 
-matches_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (Bool)
-matches_super object_ a1 = (matches_impl (javaCast object_ :: NullRecordFilter)) a1
 
-matches_impl :: NullRecordFilter -> JavaArray (Int8) -> IO (Bool)
-matches_impl this candidate = do
-        pure (True)
+jchain : List String
+jchain =
+    [ "NullRecordFilter" ]
+        ++ RecordFilter.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "matches_1", jm_matches_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullRecordFilter"
+        [ ( "jm_matches_1", jm_matches_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_RECORD_FILTER", jstatic_NULL_RECORD_FILTER ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_RECORD_FILTER : JR.M
+jstatic_NULL_RECORD_FILTER s =
+    JR.static "NullRecordFilter" jclinit "NULL_RECORD_FILTER"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_matches_1 : JR.Method
+jm_matches_1 jheap jthis jargs =
+    JR.method [ ( "candidate", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

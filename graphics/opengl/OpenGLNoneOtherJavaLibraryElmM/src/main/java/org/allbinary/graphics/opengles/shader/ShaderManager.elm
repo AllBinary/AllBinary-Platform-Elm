@@ -1,130 +1,116 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
-module ShaderManager where
+module Org.Allbinary.Graphics.Opengles.Shader.ShaderManager exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GL10 -- javax.microedition.khronos.opengles.GL10
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.graphics.opengles.shader
+-}
 
-data ShaderManager = ShaderManager
-    { header_ :: JavaHeader
-    , lOAD_SHADER :: IORef (String)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , gL_VERTEX_SHADER :: IORef (Int)
-    , gL_FRAGMENT_SHADER :: IORef (Int)
-    }
-
-instance JavaNull ShaderManager where
-    javaNull = javaNullRecord "ShaderManager"
-
-instance JavaEquals ShaderManager where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ShaderManager where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ShaderManager where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ShaderManager
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_2 (Prelude.negate 1) (Prelude.negate 1)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ShaderManager
-newRecord_ = do
-    header_ <- newJavaHeader
-    lOAD_SHADER <- newIORef ""
-    commonStrings <- newIORef javaNull
-    gL_VERTEX_SHADER <- newIORef 0
-    gL_FRAGMENT_SHADER <- newIORef 0
-    let this = ShaderManager header_ lOAD_SHADER commonStrings gL_VERTEX_SHADER gL_FRAGMENT_SHADER
-    jregisterLevel header_ this
-    jregisterMethod header_ "load" (\() -> load_impl this)
-    jregisterMethod header_ "loadShader" (\() -> loadShader_impl this)
-    pure this
-
-initFields_ :: ShaderManager -> IO ()
-initFields_ this = do
-    jset this.lOAD_SHADER ("loadShader")
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.gL_VERTEX_SHADER (0)
-    jset this.gL_FRAGMENT_SHADER (0)
-    pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
 
 
-getInstance :: IO (ShaderManager)
-getInstance = do
-        pure (ShaderManager.instance_)
-
-new_2 :: Int -> Int -> IO ShaderManager
-new_2 gL_VERTEX_SHADER gL_FRAGMENT_SHADER = do
-    this <- newRecord_
-    init_2 this gL_VERTEX_SHADER gL_FRAGMENT_SHADER
-    pure this
-
-init_2 :: ShaderManager -> Int -> Int -> IO ()
-init_2 this gL_VERTEX_SHADER gL_FRAGMENT_SHADER = do
-        initFields_ this
-        jset (this).gL_VERTEX_SHADER (gL_VERTEX_SHADER)
-        jset (this).gL_FRAGMENT_SHADER (gL_FRAGMENT_SHADER)
-        pure ()
+jclass : String
+jclass =
+    "ShaderManager"
 
 
-load :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> String -> JavaArray (String) -> Int -> IO (Int)
-load object_ a1 a2 a3 a4 = jmethod object_ "load" (\() -> (load_impl (javaCast object_ :: ShaderManager))) () a1 a2 a3 a4
-
-load_super :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> String -> JavaArray (String) -> Int -> IO (Int)
-load_super object_ a1 a2 a3 a4 = (load_impl (javaCast object_ :: ShaderManager)) a1 a2 a3 a4
-
-load_impl :: ShaderManager -> GL10.GL10 -> String -> JavaArray (String) -> Int -> IO (Int)
-load_impl this gl resource shaderAsStringArray shaderType = do
-        pure ((Prelude.negate 1))
+jchain : List String
+jchain =
+    [ "ShaderManager" ]
 
 
-loadShader :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> String -> BasicArrayList.BasicArrayList -> Int -> IO (Int)
-loadShader object_ a1 a2 a3 a4 = jmethod object_ "loadShader" (\() -> (loadShader_impl (javaCast object_ :: ShaderManager))) () a1 a2 a3 a4
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "LOAD_SHADER", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "GL_VERTEX_SHADER", JR.defaultOf "I" ), ( "GL_FRAGMENT_SHADER", JR.defaultOf "I" ) ]
 
-loadShader_super :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> String -> BasicArrayList.BasicArrayList -> Int -> IO (Int)
-loadShader_super object_ a1 a2 a3 a4 = (loadShader_impl (javaCast object_ :: ShaderManager)) a1 a2 a3 a4
 
-loadShader_impl :: ShaderManager -> GL10.GL10 -> String -> BasicArrayList.BasicArrayList -> Int -> IO (Int)
-loadShader_impl this gl resource stringList shaderType = do
-        pure ((Prelude.negate 1))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "load_4", jm_load_4 )
+        , ( "loadShader_4", jm_loadShader_4 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ShaderManager"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_load_4", jm_load_4 ), ( "jm_loadShader_4", jm_loadShader_4 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ShaderManager" jclinit "instance"
+        (JR.new jnew_2 [ (JR.map JR.neg (JR.int 1)), (JR.map JR.neg (JR.int 1)) ])
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "GL_VERTEX_SHADER", "I" ), ( "GL_FRAGMENT_SHADER", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "LOAD_SHADER" "" JR.this (JR.str "loadShader")),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "GL_VERTEX_SHADER" "I" JR.this (JR.local "GL_VERTEX_SHADER")), 
+                    JR.exec (JR.setField "GL_FRAGMENT_SHADER" "I" JR.this (JR.local "GL_FRAGMENT_SHADER")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_load_4 : JR.Method
+jm_load_4 jheap jthis jargs =
+    JR.method [ ( "gl", "" ), ( "resource", "" ), ( "shaderAsStringArray", "" ), ( "shaderType", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.map JR.neg (JR.int 1)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_loadShader_4 : JR.Method
+jm_loadShader_4 jheap jthis jargs =
+    JR.method [ ( "gl", "" ), ( "resource", "" ), ( "stringList", "" ), ( "shaderType", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.map JR.neg (JR.int 1)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

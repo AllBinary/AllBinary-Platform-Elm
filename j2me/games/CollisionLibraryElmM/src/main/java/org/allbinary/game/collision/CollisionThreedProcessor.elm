@@ -1,83 +1,86 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
-module CollisionThreedProcessor (module CollisionThreedProcessor, module CollisionProcessor) where
+module Org.Allbinary.Game.Collision.CollisionThreedProcessor exposing (..)
 
-import CollisionProcessor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, isCollision, isCollision_super, isCollision_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified CollisionProcessor
+{-| Generated Code Do Not Modify package org.allbinary.game.collision
+-}
 
-data CollisionThreedProcessor = CollisionThreedProcessor
-    { header_ :: JavaHeader
-    , base :: CollisionProcessor.CollisionProcessor
-    }
-
-instance JavaNull CollisionThreedProcessor where
-    javaNull = javaNullRecord "CollisionThreedProcessor"
-
-instance JavaEquals CollisionThreedProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CollisionThreedProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CollisionThreedProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO CollisionThreedProcessor
-newRecord_ = do
-    base <- CollisionProcessor.newRecord_
-    let header_ = base.header_
-    let this = CollisionThreedProcessor header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "isCollision" (\() -> isCollision_impl this)
-    pure this
-
-initFields_ :: CollisionThreedProcessor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO CollisionThreedProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CollisionThreedProcessor -> IO ()
-init_ this = do
-    CollisionProcessor.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Collision.CollisionProcessor as CollisionProcessor
 
 
-isCollision :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> AllBinaryLayer.AllBinaryLayer -> IO (Bool)
-isCollision object_ a1 a2 = jmethod object_ "isCollision" (\() -> (isCollision_impl (javaCast object_ :: CollisionThreedProcessor))) () a1 a2
+jclass : String
+jclass =
+    "CollisionThreedProcessor"
 
-isCollision_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> AllBinaryLayer.AllBinaryLayer -> IO (Bool)
-isCollision_super object_ a1 a2 = (isCollision_impl (javaCast object_ :: CollisionThreedProcessor)) a1 a2
 
-isCollision_impl :: CollisionThreedProcessor -> AllBinaryLayer.AllBinaryLayer -> AllBinaryLayer.AllBinaryLayer -> IO (Bool)
-isCollision_impl this myLayer myLayer2 = do
-    javaCatchReturn $ do
-        if (((((((jio (AllBinaryLayer.getXP myLayer2)) >= (jio (AllBinaryLayer.getX2 myLayer))) || ((jio (AllBinaryLayer.getYP myLayer2)) >= (jio (AllBinaryLayer.getY2 myLayer)))) || ((jio (AllBinaryLayer.getX2 myLayer2)) <= (jio (AllBinaryLayer.getXP myLayer)))) || ((jio (AllBinaryLayer.getY2 myLayer2)) <= (jio (AllBinaryLayer.getYP myLayer)))) || ((jio (AllBinaryLayer.getZP myLayer2)) < (jio (AllBinaryLayer.getZ2 myLayer)))) || ((jio (AllBinaryLayer.getZ2 myLayer2)) > (jio (AllBinaryLayer.getZP myLayer)))) then do
-            javaReturn (False)
-        else do
-            javaReturn (True)
+jchain : List String
+jchain =
+    [ "CollisionThreedProcessor" ]
+        ++ CollisionProcessor.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    CollisionProcessor.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "isCollision_2", jm_isCollision_2 ) ]
+        CollisionProcessor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CollisionThreedProcessor"
+        [ ( "jm_isCollision_2", jm_isCollision_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect CollisionProcessor.jinit_0 JR.this []),
+            identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_isCollision_2 : JR.Method
+jm_isCollision_2 jheap jthis jargs =
+    JR.method [ ( "myLayer", "" ), ( "myLayer2", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.or (JR.or (JR.or (JR.or (JR.or (JR.map2 JR.greaterEquals (JR.invoke "getXP_0" (JR.local "myLayer2") []) (JR.invoke "getX2_0" (JR.local "myLayer") [])) (JR.map2 JR.greaterEquals (JR.invoke "getYP_0" (JR.local "myLayer2") []) (JR.invoke "getY2_0" (JR.local "myLayer") []))) (JR.map2 JR.lessEquals (JR.invoke "getX2_0" (JR.local "myLayer2") []) (JR.invoke "getXP_0" (JR.local "myLayer") []))) (JR.map2 JR.lessEquals (JR.invoke "getY2_0" (JR.local "myLayer2") []) (JR.invoke "getYP_0" (JR.local "myLayer") []))) (JR.map2 JR.less (JR.invoke "getZP_0" (JR.local "myLayer2") []) (JR.invoke "getZ2_0" (JR.local "myLayer") []))) (JR.map2 JR.greater (JR.invoke "getZ2_0" (JR.local "myLayer2") []) (JR.invoke "getZP_0" (JR.local "myLayer") []))) (JR.run [ 
+                        JR.return (JR.bool False) ]) (JR.run [ 
+                        JR.return (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

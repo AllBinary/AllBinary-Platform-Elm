@@ -1,136 +1,129 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.visual.transform.info
-module TransformInfoPropertiesFactory where
+module Org.Allbinary.Logic.Visual.Transform.Info.TransformInfoPropertiesFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TransformInfoData -- same package or java.lang
-import qualified TransformInfoProperties -- same package or java.lang
-import qualified DomNodeHelper -- org.allbinary.data.tree.dom.DomNodeHelper
-import qualified DomSearchHelper -- org.allbinary.data.tree.dom.DomSearchHelper
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified Attr -- org.w3c.dom.Attr
-import qualified NamedNodeMap -- org.w3c.dom.NamedNodeMap
-import qualified Node -- org.w3c.dom.Node
-import qualified NodeList -- org.w3c.dom.NodeList
+{-| Generated Code Do Not Modify package org.allbinary.logic.visual.transform.info
+-}
 
-data TransformInfoPropertiesFactory = TransformInfoPropertiesFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull TransformInfoPropertiesFactory where
-    javaNull = javaNullRecord "TransformInfoPropertiesFactory"
-
-instance JavaEquals TransformInfoPropertiesFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TransformInfoPropertiesFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TransformInfoPropertiesFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: TransformInfoPropertiesFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TransformInfoPropertiesFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = TransformInfoPropertiesFactory header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstance_1" (\() -> getInstance_1_impl this)
-    pure this
-
-initFields_ :: TransformInfoPropertiesFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.Data.Tree.Dom.DomNodeHelper as DomNodeHelper
+import Org.Allbinary.Data.Tree.Dom.DomSearchHelper as DomSearchHelper
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.Visual.Transform.Info.TransformInfoData as TransformInfoData
+import Org.Allbinary.Logic.Visual.Transform.Info.TransformInfoProperties as TransformInfoProperties
 
 
-getInstance :: IO (TransformInfoPropertiesFactory)
-getInstance = do
-        pure (TransformInfoPropertiesFactory.instance_)
-
-new_ :: IO TransformInfoPropertiesFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TransformInfoPropertiesFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "TransformInfoPropertiesFactory"
 
 
--- throws Exception
-getInstance_1 :: (JavaObjectClass this_) => this_ -> Node.Node -> IO (TransformInfoProperties.TransformInfoProperties)
-getInstance_1 object_ a1 = jmethod object_ "getInstance_1" (\() -> (getInstance_1_impl (javaCast object_ :: TransformInfoPropertiesFactory))) () a1
+jchain : List String
+jchain =
+    [ "TransformInfoPropertiesFactory" ]
 
-getInstance_1_super :: (JavaObjectClass this_) => this_ -> Node.Node -> IO (TransformInfoProperties.TransformInfoProperties)
-getInstance_1_super object_ a1 = (getInstance_1_impl (javaCast object_ :: TransformInfoPropertiesFactory)) a1
 
-getInstance_1_impl :: TransformInfoPropertiesFactory -> Node.Node -> IO (TransformInfoProperties.TransformInfoProperties)
-getInstance_1_impl this node = do
-        transformInfoChildNodeList <- (Node.getChildNodes node)
-        transformInfoData <- (TransformInfoData.getInstance)
-        attributes <- (Node.getAttributes node)
-        let attrNode = (javaCast (jio (NamedNodeMap.getNamedItem attributes (jget (transformInfoData).nAME))) :: Attr.Attr)
-        name <- (Attr.getValue attrNode)
-        when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).vIEW))) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ((javaToString (jget ((jio (CommonLabels.getInstance))).nEXT) ++ " View Name: ") ++ name) this "toTransformInfoPropertiesHashMap()")
-        labelNode <- (DomSearchHelper.getNodeNoThrow (jget (transformInfoData).lABEL) transformInfoChildNodeList)
-        label <- newIORef =<< (DomNodeHelper.getTextNodesValue labelNode)
-        when ((jget label) == javaNull) $ do
-            jset label (name)
-        descriptionNode <- (DomSearchHelper.getNode (jget (transformInfoData).dESCRIPTION) transformInfoChildNodeList)
-        description <- (DomNodeHelper.getTextNodesValue descriptionNode)
-        objectFileNode <- (DomSearchHelper.getNode (jget (transformInfoData).oBJECTFILENAME) transformInfoChildNodeList)
-        objectFileName <- (DomNodeHelper.getTextNodeValue objectFileNode)
-        objectConfigFileNode <- (DomSearchHelper.getNode (jget (transformInfoData).oBJECTCONFIGFILENAME) transformInfoChildNodeList)
-        objectConfigFileName <- (DomNodeHelper.getTextNodeValue objectConfigFileNode)
-        templateFileNode <- (DomSearchHelper.getNode (jget (transformInfoData).tEMPLATEFILENAME) transformInfoChildNodeList)
-        templateFileName <- (DomNodeHelper.getTextNodeValue templateFileNode)
-        transformInfoProperties <- (TransformInfoProperties.new_6 name (jget label) description objectFileName objectConfigFileName templateFileName)
-        pure (transformInfoProperties)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInstance_1", jm_getInstance_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TransformInfoPropertiesFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "TransformInfoPropertiesFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "node", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "transformInfoChildNodeList" "" (JR.invoke "getChildNodes_0" (JR.local "node") []), 
+                    JR.declare "transformInfoData" "" (JR.callStatic TransformInfoData.jm_getInstance_0 []), 
+                    JR.declare "attributes" "" (JR.invoke "getAttributes_0" (JR.local "node") []), 
+                    JR.declare "attrNode" "" (JR.invoke "getNamedItem_1" (JR.local "attributes") [ (JR.field "NAME" (JR.local "transformInfoData")) ]), 
+                    JR.declare "name" "" (JR.invoke "getValue_0" (JR.local "attrNode") []), 
+                    JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "VIEW" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.concat (JR.field "NEXT" (JR.callStatic CommonLabels.jm_getInstance_0 [])) (JR.str " View Name: ")) (JR.local "name")), JR.this, (JR.str "toTransformInfoPropertiesHashMap()") ]) ]) identity, 
+                    JR.declare "labelNode" "" (JR.callStatic DomSearchHelper.jm_getNodeNoThrow_2 [ (JR.field "LABEL" (JR.local "transformInfoData")), (JR.local "transformInfoChildNodeList") ]), 
+                    JR.declare "label" "" (JR.callStatic DomNodeHelper.jm_getTextNodesValue_1 [ (JR.local "labelNode") ]), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "label") JR.null) (JR.run [ 
+                        JR.exec (JR.setLocal "label" "" (JR.local "name")) ]) identity, 
+                    JR.declare "descriptionNode" "" (JR.callStatic DomSearchHelper.jm_getNode_2 [ (JR.field "DESCRIPTION" (JR.local "transformInfoData")), (JR.local "transformInfoChildNodeList") ]), 
+                    JR.declare "description" "" (JR.callStatic DomNodeHelper.jm_getTextNodesValue_1 [ (JR.local "descriptionNode") ]), 
+                    JR.declare "objectFileNode" "" (JR.callStatic DomSearchHelper.jm_getNode_2 [ (JR.field "OBJECTFILENAME" (JR.local "transformInfoData")), (JR.local "transformInfoChildNodeList") ]), 
+                    JR.declare "objectFileName" "" (JR.callStatic DomNodeHelper.jm_getTextNodeValue_1 [ (JR.local "objectFileNode") ]), 
+                    JR.declare "objectConfigFileNode" "" (JR.callStatic DomSearchHelper.jm_getNode_2 [ (JR.field "OBJECTCONFIGFILENAME" (JR.local "transformInfoData")), (JR.local "transformInfoChildNodeList") ]), 
+                    JR.declare "objectConfigFileName" "" (JR.callStatic DomNodeHelper.jm_getTextNodeValue_1 [ (JR.local "objectConfigFileNode") ]), 
+                    JR.declare "templateFileNode" "" (JR.callStatic DomSearchHelper.jm_getNode_2 [ (JR.field "TEMPLATEFILENAME" (JR.local "transformInfoData")), (JR.local "transformInfoChildNodeList") ]), 
+                    JR.declare "templateFileName" "" (JR.callStatic DomNodeHelper.jm_getTextNodeValue_1 [ (JR.local "templateFileNode") ]), 
+                    JR.declare "transformInfoProperties" "" (JR.new TransformInfoProperties.jnew_6 [ (JR.local "name"), (JR.local "label"), (JR.local "description"), (JR.local "objectFileName"), (JR.local "objectConfigFileName"), (JR.local "templateFileName") ]), 
+                    JR.return (JR.local "transformInfoProperties") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

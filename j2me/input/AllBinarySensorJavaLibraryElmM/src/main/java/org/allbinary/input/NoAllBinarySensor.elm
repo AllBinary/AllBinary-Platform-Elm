@@ -1,89 +1,92 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input
-module NoAllBinarySensor (module NoAllBinarySensor, module AllBinarySensor) where
+module Org.Allbinary.Input.NoAllBinarySensor exposing (..)
 
-import AllBinarySensor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, instance_)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinarySensor
+{-| Generated Code Do Not Modify package org.allbinary.input
+-}
 
-data NoAllBinarySensor = NoAllBinarySensor
-    { header_ :: JavaHeader
-    , base :: AllBinarySensor.AllBinarySensor
-    }
-
-instance JavaNull NoAllBinarySensor where
-    javaNull = javaNullRecord "NoAllBinarySensor"
-
-instance JavaEquals NoAllBinarySensor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NoAllBinarySensor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NoAllBinarySensor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: NoAllBinarySensor
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-newRecord_ :: IO NoAllBinarySensor
-newRecord_ = do
-    base <- AllBinarySensor.newRecord_
-    let header_ = base.header_
-    let this = NoAllBinarySensor header_ base
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: NoAllBinarySensor -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Input.AllBinarySensor as AllBinarySensor
 
 
-getInstance :: IO (NoAllBinarySensor)
-getInstance = do
-        pure (NoAllBinarySensor.instance_)
+jclass : String
+jclass =
+    "NoAllBinarySensor"
 
-new_ :: IO NoAllBinarySensor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: NoAllBinarySensor -> IO ()
-init_ this = do
-        AllBinarySensor.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+jchain : List String
+jchain =
+    [ "NoAllBinarySensor" ]
+        ++ AllBinarySensor.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinarySensor.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        AllBinarySensor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NoAllBinarySensor"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "NoAllBinarySensor" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinarySensor.jinit_0 JR.this []),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,118 +1,113 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
-module CancelTouchButtonInputFactory where
+module Org.Allbinary.Input.Motion.Button.CancelTouchButtonInputFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified TouchButtonInput -- same package or java.lang
-import qualified BasicTouchInputFactory -- same package or java.lang
-import qualified InputFactory -- org.allbinary.game.input.InputFactory
-import qualified NullUtil -- org.allbinary.logic.NullUtil
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.button
+-}
 
-data CancelTouchButtonInputFactory = CancelTouchButtonInputFactory
-    { header_ :: JavaHeader
-    , cancelInputArray :: IORef (JavaArray (TouchButtonInput.TouchButtonInput))
-    }
-
-instance JavaNull CancelTouchButtonInputFactory where
-    javaNull = javaNullRecord "CancelTouchButtonInputFactory"
-
-instance JavaEquals CancelTouchButtonInputFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CancelTouchButtonInputFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CancelTouchButtonInputFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CancelTouchButtonInputFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    cancelInputArray <- newIORef javaNull
-    let this = CancelTouchButtonInputFactory header_ cancelInputArray
-    jregisterLevel header_ this
-    jregisterMethod header_ "getCancel" (\() -> getCancel_impl this)
-    pure this
-
-initFields_ :: CancelTouchButtonInputFactory -> IO ()
-initFields_ this = do
-    jset this.cancelInputArray ((jnewArray ((jget ((jio (InputFactory.getInstance))).mAX)) javaNull))
-    pure ()
+import JR
+import Org.Allbinary.Input.Motion.Button.BasicTouchInputFactory as BasicTouchInputFactory
+import Org.Allbinary.Game.Input.InputFactory as InputFactory
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
-getInstance :: IO (CancelTouchButtonInputFactory)
-getInstance = do
-        when ((jget CancelTouchButtonInputFactory.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset CancelTouchButtonInputFactory.instance_ (assignedValue)
-        pure ((javaCast (jget CancelTouchButtonInputFactory.instance_) :: CancelTouchButtonInputFactory))
-
-new_ :: IO CancelTouchButtonInputFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CancelTouchButtonInputFactory -> IO ()
-init_ this = do
-        initFields_ this
-        basicTouchInputFactory <- (BasicTouchInputFactory.getInstance)
-        forM_ [((jlength (jget (this).cancelInputArray)) - 1), ((jlength (jget (this).cancelInputArray)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex ((jget (this).cancelInputArray)) (index) ((jget (basicTouchInputFactory).nONE))
-        jsetIndex ((jget (this).cancelInputArray)) ((jio (TouchButtonInput.getSourceId ((jget (basicTouchInputFactory).uP))))) ((jget (basicTouchInputFactory).dOWN))
-        jsetIndex ((jget (this).cancelInputArray)) ((jio (TouchButtonInput.getSourceId ((jget (basicTouchInputFactory).dOWN))))) ((jget (basicTouchInputFactory).uP))
-        jsetIndex ((jget (this).cancelInputArray)) ((jio (TouchButtonInput.getSourceId ((jget (basicTouchInputFactory).lEFT))))) ((jget (basicTouchInputFactory).rIGHT))
-        jsetIndex ((jget (this).cancelInputArray)) ((jio (TouchButtonInput.getSourceId ((jget (basicTouchInputFactory).rIGHT))))) ((jget (basicTouchInputFactory).lEFT))
-        pure ()
+jclass : String
+jclass =
+    "CancelTouchButtonInputFactory"
 
 
-getCancel :: (JavaObjectClass this_) => this_ -> TouchButtonInput.TouchButtonInput -> IO (TouchButtonInput.TouchButtonInput)
-getCancel object_ a1 = jmethod object_ "getCancel" (\() -> (getCancel_impl (javaCast object_ :: CancelTouchButtonInputFactory))) () a1
+jchain : List String
+jchain =
+    [ "CancelTouchButtonInputFactory" ]
 
-getCancel_super :: (JavaObjectClass this_) => this_ -> TouchButtonInput.TouchButtonInput -> IO (TouchButtonInput.TouchButtonInput)
-getCancel_super object_ a1 = (getCancel_impl (javaCast object_ :: CancelTouchButtonInputFactory)) a1
 
-getCancel_impl :: CancelTouchButtonInputFactory -> TouchButtonInput.TouchButtonInput -> IO (TouchButtonInput.TouchButtonInput)
-getCancel_impl this touchButtonInput = do
-        pure ((jindex ((jget (this).cancelInputArray)) ((jio (TouchButtonInput.getSourceId touchButtonInput)))))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "cancelInputArray", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getCancel_1", jm_getCancel_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CancelTouchButtonInputFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getCancel_1", jm_getCancel_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "CancelTouchButtonInputFactory" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "cancelInputArray" "" JR.this (JR.newArray "" [ (JR.field "MAX" (JR.callStatic InputFactory.jm_getInstance_0 [])) ])),
+                identity,
+                (JR.run [ 
+                    JR.declare "basicTouchInputFactory" "" (JR.callStatic BasicTouchInputFactory.jm_getInstance_0 []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "cancelInputArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67245 -> (JR.setLocal "index" "I" (JR.lit jwN67245))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "cancelInputArray") (\jaN67129 -> JR.andThen (JR.local "index") (\jiN67129 -> (JR.aset (JR.lit jaN67129) (JR.lit jiN67129) (JR.field "NONE" (JR.local "basicTouchInputFactory")))))) ]) ], 
+                    JR.exec (JR.andThen (JR.thisField "cancelInputArray") (\jaN67263 -> JR.andThen (JR.invoke "getSourceId_0" (JR.field "UP" (JR.local "basicTouchInputFactory")) []) (\jiN67263 -> (JR.aset (JR.lit jaN67263) (JR.lit jiN67263) (JR.field "DOWN" (JR.local "basicTouchInputFactory")))))), 
+                    JR.exec (JR.andThen (JR.thisField "cancelInputArray") (\jaN67331 -> JR.andThen (JR.invoke "getSourceId_0" (JR.field "DOWN" (JR.local "basicTouchInputFactory")) []) (\jiN67331 -> (JR.aset (JR.lit jaN67331) (JR.lit jiN67331) (JR.field "UP" (JR.local "basicTouchInputFactory")))))), 
+                    JR.exec (JR.andThen (JR.thisField "cancelInputArray") (\jaN67395 -> JR.andThen (JR.invoke "getSourceId_0" (JR.field "LEFT" (JR.local "basicTouchInputFactory")) []) (\jiN67395 -> (JR.aset (JR.lit jaN67395) (JR.lit jiN67395) (JR.field "RIGHT" (JR.local "basicTouchInputFactory")))))), 
+                    JR.exec (JR.andThen (JR.thisField "cancelInputArray") (\jaN67459 -> JR.andThen (JR.invoke "getSourceId_0" (JR.field "RIGHT" (JR.local "basicTouchInputFactory")) []) (\jiN67459 -> (JR.aset (JR.lit jaN67459) (JR.lit jiN67459) (JR.field "LEFT" (JR.local "basicTouchInputFactory")))))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "CancelTouchButtonInputFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCancel_1 : JR.Method
+jm_getCancel_1 jheap jthis jargs =
+    JR.method [ ( "touchButtonInput", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.aget (JR.thisField "cancelInputArray") (JR.invoke "getSourceId_0" (JR.local "touchButtonInput") [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,4 +1,4 @@
-module BasicColorUtil exposing (..)
+module Org.Allbinary.Graphics.Color.BasicColorUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics.color
 -}

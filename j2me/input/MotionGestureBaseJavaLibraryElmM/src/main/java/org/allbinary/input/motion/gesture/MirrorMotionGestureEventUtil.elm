@@ -1,136 +1,127 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture
-module MirrorMotionGestureEventUtil where
+module Org.Allbinary.Input.Motion.Gesture.MirrorMotionGestureEventUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified MotionEventCircularPool -- org.allbinary.input.motion.gesture.observer.MotionEventCircularPool
-import qualified MotionGestureEvent -- org.allbinary.input.motion.gesture.observer.MotionGestureEvent
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.gesture
+-}
 
-data MirrorMotionGestureEventUtil = MirrorMotionGestureEventUtil
-    { header_ :: JavaHeader
-    , motionEventCircularPool :: IORef (MotionEventCircularPool.MotionEventCircularPool)
-    }
-
-instance JavaNull MirrorMotionGestureEventUtil where
-    javaNull = javaNullRecord "MirrorMotionGestureEventUtil"
-
-instance JavaEquals MirrorMotionGestureEventUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MirrorMotionGestureEventUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MirrorMotionGestureEventUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: MirrorMotionGestureEventUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MirrorMotionGestureEventUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    motionEventCircularPool <- newIORef javaNull
-    let this = MirrorMotionGestureEventUtil header_ motionEventCircularPool
-    jregisterLevel header_ this
-    jregisterMethod header_ "mirrorVerticle" (\() -> mirrorVerticle_impl this)
-    jregisterMethod header_ "getNewX" (\() -> getNewX_impl this)
-    pure this
-
-initFields_ :: MirrorMotionGestureEventUtil -> IO ()
-initFields_ this = do
-    jset this.motionEventCircularPool (javaNull)
-    pure ()
-
-new_ :: IO MirrorMotionGestureEventUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: MirrorMotionGestureEventUtil -> IO ()
-init_ this = do
-        initFields_ this
-        assignedValue <- (MotionEventCircularPool.createPool (2147483647 :: Int))
-        jset (this).motionEventCircularPool (assignedValue)
-        pure ()
+import JR
+import JInteger
+import Org.Allbinary.Input.Motion.Gesture.Observer.MotionEventCircularPool as MotionEventCircularPool
+import Org.Allbinary.Graphics.PointFactory as PointFactory
 
 
--- throws Exception
-mirrorVerticle :: (JavaObjectClass this_) => this_ -> MotionGestureEvent.MotionGestureEvent -> Int -> IO (MotionGestureEvent.MotionGestureEvent)
-mirrorVerticle object_ a1 a2 = jmethod object_ "mirrorVerticle" (\() -> (mirrorVerticle_impl (javaCast object_ :: MirrorMotionGestureEventUtil))) () a1 a2
-
-mirrorVerticle_super :: (JavaObjectClass this_) => this_ -> MotionGestureEvent.MotionGestureEvent -> Int -> IO (MotionGestureEvent.MotionGestureEvent)
-mirrorVerticle_super object_ a1 a2 = (mirrorVerticle_impl (javaCast object_ :: MirrorMotionGestureEventUtil)) a1 a2
-
-mirrorVerticle_impl :: MirrorMotionGestureEventUtil -> MotionGestureEvent.MotionGestureEvent -> Int -> IO (MotionGestureEvent.MotionGestureEvent)
-mirrorVerticle_impl this motionGestureEvent halfWidth = do
-        event <- (MotionEventCircularPool.getInstance ((jget (this).motionEventCircularPool)) (jio (MotionGestureEvent.getMotionGesture motionGestureEvent)))
-        previousNewX <- (MirrorMotionGestureEventUtil.getNewX this (jio (GPoint.getX ((jio (MotionGestureEvent.getPreviousPoint motionGestureEvent))))) halfWidth)
-        currentNewX <- (MirrorMotionGestureEventUtil.getNewX this (jio (GPoint.getX ((jio (MotionGestureEvent.getCurrentPoint motionGestureEvent))))) halfWidth)
-        pointFactory <- (PointFactory.getInstance)
-        mirroredPreviousPoint <- (PointFactory.createXY pointFactory previousNewX (jio (GPoint.getY ((jio (MotionGestureEvent.getPreviousPoint motionGestureEvent))))))
-        mirroredCurrentPoint <- (PointFactory.createXY pointFactory currentNewX (jio (GPoint.getY ((jio (MotionGestureEvent.getCurrentPoint motionGestureEvent))))))
-        Control.Monad.void (MotionGestureEvent.setPreviousPoint event mirroredPreviousPoint)
-        Control.Monad.void (MotionGestureEvent.setCurrentPoint event mirroredCurrentPoint)
-        pure (event)
+jclass : String
+jclass =
+    "MirrorMotionGestureEventUtil"
 
 
-getNewX :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (Int)
-getNewX object_ a1 a2 = jmethod object_ "getNewX" (\() -> (getNewX_impl (javaCast object_ :: MirrorMotionGestureEventUtil))) () a1 a2
-
-getNewX_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (Int)
-getNewX_super object_ a1 a2 = (getNewX_impl (javaCast object_ :: MirrorMotionGestureEventUtil)) a1 a2
-
-getNewX_impl :: MirrorMotionGestureEventUtil -> Int -> Int -> IO (Int)
-getNewX_impl this x halfWidth = do
-        newX <- newIORef (0 :: Int)
-        if (x > halfWidth) then do
-            jset newX ((halfWidth - ((x - halfWidth))))
-        else do
-            jset newX ((halfWidth + ((halfWidth - x))))
-        pure ((jget newX))
+jchain : List String
+jchain =
+    [ "MirrorMotionGestureEventUtil" ]
 
 
-getInstance :: IO (MirrorMotionGestureEventUtil)
-getInstance = do
-        pure (MirrorMotionGestureEventUtil.instance_)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "motionEventCircularPool", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "mirrorVerticle_2", jm_mirrorVerticle_2 )
+        , ( "getNewX_2", jm_getNewX_2 )
+        , ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MirrorMotionGestureEventUtil"
+        [ ( "jm_mirrorVerticle_2", jm_mirrorVerticle_2 ), ( "jm_getNewX_2", jm_getNewX_2 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "MirrorMotionGestureEventUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "motionEventCircularPool" "" JR.this (JR.callStatic MotionEventCircularPool.jm_createPool_1 [ JInteger.jstatic_MAX_VALUE ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_mirrorVerticle_2 : JR.Method
+jm_mirrorVerticle_2 jheap jthis jargs =
+    JR.method [ ( "motionGestureEvent", "" ), ( "halfWidth", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "event" "" (JR.invoke "getInstance_1" (JR.thisField "motionEventCircularPool") [ (JR.invoke "getMotionGesture_0" (JR.local "motionGestureEvent") []) ]), 
+                    JR.declare "previousNewX" "I" (JR.invoke "getNewX_2" JR.this [ (JR.invoke "getX_0" (JR.invoke "getPreviousPoint_0" (JR.local "motionGestureEvent") []) []), (JR.local "halfWidth") ]), 
+                    JR.declare "currentNewX" "I" (JR.invoke "getNewX_2" JR.this [ (JR.invoke "getX_0" (JR.invoke "getCurrentPoint_0" (JR.local "motionGestureEvent") []) []), (JR.local "halfWidth") ]), 
+                    JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
+                    JR.declare "mirroredPreviousPoint" "" (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.local "previousNewX"), (JR.invoke "getY_0" (JR.invoke "getPreviousPoint_0" (JR.local "motionGestureEvent") []) []) ]), 
+                    JR.declare "mirroredCurrentPoint" "" (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.local "currentNewX"), (JR.invoke "getY_0" (JR.invoke "getCurrentPoint_0" (JR.local "motionGestureEvent") []) []) ]), 
+                    JR.exec (JR.invoke "setPreviousPoint_1" (JR.local "event") [ (JR.local "mirroredPreviousPoint") ]), 
+                    JR.exec (JR.invoke "setCurrentPoint_1" (JR.local "event") [ (JR.local "mirroredCurrentPoint") ]), 
+                    JR.return (JR.local "event") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNewX_2 : JR.Method
+jm_getNewX_2 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "halfWidth", "I" ) ] "I"
+        (JR.run [ 
+                    JR.declare "newX" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "x") (JR.local "halfWidth")) (JR.run [ 
+                        JR.exec (JR.setLocal "newX" "I" (JR.map2 JR.sub (JR.local "halfWidth") ((JR.map2 JR.sub (JR.local "x") (JR.local "halfWidth"))))) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "newX" "I" (JR.map2 JR.add (JR.local "halfWidth") ((JR.map2 JR.sub (JR.local "halfWidth") (JR.local "x"))))) ]), 
+                    JR.return (JR.local "newX") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

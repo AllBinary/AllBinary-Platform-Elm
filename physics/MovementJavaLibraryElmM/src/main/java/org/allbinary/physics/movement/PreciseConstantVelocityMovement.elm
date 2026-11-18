@@ -1,122 +1,109 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
-module PreciseConstantVelocityMovement (module PreciseConstantVelocityMovement, module BasicConstantVelocityMovement) where
+module Org.Allbinary.Physics.Movement.PreciseConstantVelocityMovement exposing (..)
 
-import BasicConstantVelocityMovement hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, init, init_super, init_impl, process, process_super, process_impl, accumulatedX, accumulatedY, accumulatedZ, factorValue)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameLayer -- org.allbinary.game.layer.AllBinaryGameLayer
-import qualified BasicVelocityProperties -- org.allbinary.game.physics.velocity.BasicVelocityProperties
-import qualified BasicDecimal -- org.allbinary.logic.math.BasicDecimal
-import qualified MathUtil -- org.allbinary.logic.math.MathUtil
-import qualified ScaleFactorFactory -- org.allbinary.logic.math.ScaleFactorFactory
-import qualified BasicConstantVelocityMovement
+{-| Generated Code Do Not Modify package org.allbinary.physics.movement
+-}
 
-data PreciseConstantVelocityMovement = PreciseConstantVelocityMovement
-    { header_ :: JavaHeader
-    , base :: BasicConstantVelocityMovement.BasicConstantVelocityMovement
-    , accumulatedX :: IORef (Int)
-    , accumulatedY :: IORef (Int)
-    , accumulatedZ :: IORef (Int)
-    , factorValue :: IORef (Int)
-    }
-
-instance JavaNull PreciseConstantVelocityMovement where
-    javaNull = javaNullRecord "PreciseConstantVelocityMovement"
-
-instance JavaEquals PreciseConstantVelocityMovement where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PreciseConstantVelocityMovement where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PreciseConstantVelocityMovement where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO PreciseConstantVelocityMovement
-newRecord_ = do
-    base <- BasicConstantVelocityMovement.newRecord_
-    let header_ = base.header_
-    accumulatedX <- newIORef 0
-    accumulatedY <- newIORef 0
-    accumulatedZ <- newIORef 0
-    factorValue <- newIORef 0
-    let this = PreciseConstantVelocityMovement header_ base accumulatedX accumulatedY accumulatedZ factorValue
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: PreciseConstantVelocityMovement -> IO ()
-initFields_ this = do
-    jset this.accumulatedX (0)
-    jset this.accumulatedY (0)
-    jset this.accumulatedZ (0)
-    jset this.factorValue ((jget ((jio (ScaleFactorFactory.getInstance))).dEFAULT_SCALE_VALUE))
-    pure ()
-
-new_2 :: BasicDecimal.BasicDecimal -> BasicVelocityProperties.BasicVelocityProperties -> IO PreciseConstantVelocityMovement
-new_2 basicDecimal velocityProperties = do
-    this <- newRecord_
-    init_2 this basicDecimal velocityProperties
-    pure this
-
-init_2 :: PreciseConstantVelocityMovement -> BasicDecimal.BasicDecimal -> BasicVelocityProperties.BasicVelocityProperties -> IO ()
-init_2 this basicDecimal velocityProperties = do
-        BasicConstantVelocityMovement.init_2 this.base (basicDecimal) (velocityProperties)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Physics.Movement.BasicConstantVelocityMovement as BasicConstantVelocityMovement
+import Org.Allbinary.Logic.Math.MathUtil as MathUtil
+import Org.Allbinary.Logic.Math.ScaleFactorFactory as ScaleFactorFactory
 
 
-init :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Int -> Int -> IO (())
-init object_ a1 a2 a3 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: PreciseConstantVelocityMovement))) () a1 a2 a3
-
-init_super :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Int -> Int -> IO (())
-init_super object_ a1 a2 a3 = (init_impl (javaCast object_ :: PreciseConstantVelocityMovement)) a1 a2 a3
-
-init_impl :: PreciseConstantVelocityMovement -> BasicDecimal.BasicDecimal -> Int -> Int -> IO (())
-init_impl this speedBasicDecimal angle otherAngle = do
-        pure ()
+jclass : String
+jclass =
+    "PreciseConstantVelocityMovement"
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: PreciseConstantVelocityMovement))) () a1
+jchain : List String
+jchain =
+    [ "PreciseConstantVelocityMovement" ]
+        ++ BasicConstantVelocityMovement.jchain
 
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: PreciseConstantVelocityMovement)) a1
 
-process_impl :: PreciseConstantVelocityMovement -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_impl this layer = do
-        mathUtil <- (MathUtil.getInstance)
-        velocityProperties <- (BasicConstantVelocityMovement.getVelocityProperties this)
-        jset (this).accumulatedX ((Prelude.fromInteger (jnumericInteger (((jget (this).accumulatedX) + (jio (BasicVelocityProperties.getUnscaled ((jio (BasicVelocityProperties.getVelocityXBasicDecimalP velocityProperties))))))))))
-        jset (this).accumulatedY ((Prelude.fromInteger (jnumericInteger (((jget (this).accumulatedY) + (jio (BasicVelocityProperties.getUnscaled ((jio (BasicVelocityProperties.getVelocityYBasicDecimalP velocityProperties))))))))))
-        jset (this).accumulatedZ ((Prelude.fromInteger (jnumericInteger (((jget (this).accumulatedZ) + (jio (BasicVelocityProperties.getUnscaled ((jio (BasicVelocityProperties.getVelocityZBasicDecimalP velocityProperties))))))))))
-        Control.Monad.void (AllBinaryGameLayer.moveDXYZ layer ((jget (this).accumulatedX) `quot` (jget (this).factorValue)) ((jget (this).accumulatedY) `quot` (jget (this).factorValue)) ((jget (this).accumulatedZ) `quot` (jget (this).factorValue)))
-        when ((jio (MathUtil.abs mathUtil (jget (this).accumulatedX))) > (jget (this).factorValue)) $ do
-            jset (this).accumulatedX (0)
-        when ((jio (MathUtil.abs mathUtil (jget (this).accumulatedY))) > (jget (this).factorValue)) $ do
-            jset (this).accumulatedY (0)
-        when ((jio (MathUtil.abs mathUtil (jget (this).accumulatedZ))) > (jget (this).factorValue)) $ do
-            jset (this).accumulatedZ (0)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicConstantVelocityMovement.jfields ++ [ ( "accumulatedX", JR.defaultOf "I" ), ( "accumulatedY", JR.defaultOf "I" ), ( "accumulatedZ", JR.defaultOf "I" ), ( "factorValue", JR.defaultOf "I" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "init_3", jm_init_3 )
+        , ( "process_1", jm_process_1 ) ]
+        BasicConstantVelocityMovement.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PreciseConstantVelocityMovement"
+        [ ( "jm_init_3", jm_init_3 ), ( "jm_process_1", jm_process_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "basicDecimal", "" ), ( "velocityProperties", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicConstantVelocityMovement.jinit_2 JR.this [ (JR.local "basicDecimal"), (JR.local "velocityProperties") ]),
+                JR.exec (JR.setField "factorValue" "I" JR.this (JR.field "DEFAULT_SCALE_VALUE" (JR.callStatic ScaleFactorFactory.jm_getInstance_0 []))),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_init_3 : JR.Method
+jm_init_3 jheap jthis jargs =
+    JR.method [ ( "speedBasicDecimal", "" ), ( "angle", "I" ), ( "otherAngle", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "layer", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "mathUtil" "" (JR.callStatic MathUtil.jm_getInstance_0 []), 
+                    JR.declare "velocityProperties" "" (JR.invoke "getVelocityProperties_0" JR.this []), 
+                    JR.exec (JR.setField "accumulatedX" "I" JR.this (JR.cast "I" ((JR.map2 JR.add (JR.cast "J" (JR.thisField "accumulatedX")) (JR.invoke "getUnscaled_0" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.local "velocityProperties") []) []))))), 
+                    JR.exec (JR.setField "accumulatedY" "I" JR.this (JR.cast "I" ((JR.map2 JR.add (JR.cast "J" (JR.thisField "accumulatedY")) (JR.invoke "getUnscaled_0" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.local "velocityProperties") []) []))))), 
+                    JR.exec (JR.setField "accumulatedZ" "I" JR.this (JR.cast "I" ((JR.map2 JR.add (JR.cast "J" (JR.thisField "accumulatedZ")) (JR.invoke "getUnscaled_0" (JR.invoke "getVelocityZBasicDecimalP_0" (JR.local "velocityProperties") []) []))))), 
+                    JR.exec (JR.invoke "moveDXYZ_3" (JR.local "layer") [ (JR.map2 JR.div (JR.thisField "accumulatedX") (JR.thisField "factorValue")), (JR.map2 JR.div (JR.thisField "accumulatedY") (JR.thisField "factorValue")), (JR.map2 JR.div (JR.thisField "accumulatedZ") (JR.thisField "factorValue")) ]), 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "abs_1" (JR.local "mathUtil") [ (JR.thisField "accumulatedX") ]) (JR.thisField "factorValue")) (JR.run [ 
+                        JR.exec (JR.setField "accumulatedX" "I" JR.this (JR.int 0)) ]) identity, 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "abs_1" (JR.local "mathUtil") [ (JR.thisField "accumulatedY") ]) (JR.thisField "factorValue")) (JR.run [ 
+                        JR.exec (JR.setField "accumulatedY" "I" JR.this (JR.int 0)) ]) identity, 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "abs_1" (JR.local "mathUtil") [ (JR.thisField "accumulatedZ") ]) (JR.thisField "factorValue")) (JR.run [ 
+                        JR.exec (JR.setField "accumulatedZ" "I" JR.this (JR.int 0)) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

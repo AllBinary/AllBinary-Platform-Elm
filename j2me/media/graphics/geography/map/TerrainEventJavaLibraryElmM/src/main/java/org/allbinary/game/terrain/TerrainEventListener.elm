@@ -1,118 +1,110 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.game.terrain
-module TerrainEventListener where
+module Org.Allbinary.Game.Terrain.TerrainEventListener exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TerrainEvent -- same package or java.lang
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventStrings -- org.allbinary.logic.util.event.EventStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified TerrainEventListenerInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.terrain
+-}
 
--- implements TerrainEventListenerInterface
-data TerrainEventListener = TerrainEventListener
-    { header_ :: JavaHeader
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull TerrainEventListener where
-    javaNull = javaNullRecord "TerrainEventListener"
-
-instance JavaEquals TerrainEventListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TerrainEventListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TerrainEventListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TerrainEventListener
-newRecord_ = do
-    header_ <- newJavaHeader
-    list <- newIORef javaNull
-    let this = TerrainEventListener header_ list
-    jregisterLevel header_ this
-    TerrainEventListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "onTerrainEvent" (\() -> onTerrainEvent_impl this)
-    jregisterMethod header_ "getList" (\() -> getList_impl this)
-    pure this
-
-initFields_ :: TerrainEventListener -> IO ()
-initFields_ this = do
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
-
-new_ :: IO TerrainEventListener
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TerrainEventListener -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Game.Terrain.TerrainEventListenerInterface as TerrainEventListenerInterface
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: TerrainEventListener))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: TerrainEventListener)) a1
-
-onEvent_impl :: TerrainEventListener -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jio (EventStrings.getInstance))).pERFORMANCE_MESSAGE) this)
-        pure ()
+jclass : String
+jclass =
+    "TerrainEventListener"
 
 
-onTerrainEvent :: (JavaObjectClass this_) => this_ -> TerrainEvent.TerrainEvent -> IO (())
-onTerrainEvent object_ a1 = jmethod object_ "onTerrainEvent" (\() -> (onTerrainEvent_impl (javaCast object_ :: TerrainEventListener))) () a1
-
-onTerrainEvent_super :: (JavaObjectClass this_) => this_ -> TerrainEvent.TerrainEvent -> IO (())
-onTerrainEvent_super object_ a1 = (onTerrainEvent_impl (javaCast object_ :: TerrainEventListener)) a1
-
-onTerrainEvent_impl :: TerrainEventListener -> TerrainEvent.TerrainEvent -> IO (())
-onTerrainEvent_impl this terrainEvent = do
-        Control.Monad.void (BasicArrayList.clear ((jget (this).list)))
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) terrainEvent)
-        pure ()
+jchain : List String
+jchain =
+    [ "TerrainEventListener" ]
+        ++ TerrainEventListenerInterface.jchain
 
 
-getList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList object_ = jmethod object_ "getList" (\() -> (getList_impl (javaCast object_ :: TerrainEventListener))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "list", JR.defaultOf "" ) ]
 
-getList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList_super object_ = (getList_impl (javaCast object_ :: TerrainEventListener))
 
-getList_impl :: TerrainEventListener -> IO (BasicArrayList.BasicArrayList)
-getList_impl this = do
-        pure ((jget (this).list))
+jvtable =
+    JR.vtable
+        [ ( "onEvent_1", jm_onEvent_1 )
+        , ( "onTerrainEvent_1", jm_onTerrainEvent_1 )
+        , ( "getList_0", jm_getList_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TerrainEventListener"
+        [ ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_onTerrainEvent_1", jm_onTerrainEvent_1 ), ( "jm_getList_0", jm_getList_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "PERFORMANCE_MESSAGE" (JR.callStatic EventStrings.jm_getInstance_0 [])), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onTerrainEvent_1 : JR.Method
+jm_onTerrainEvent_1 jheap jthis jargs =
+    JR.method [ ( "terrainEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "list") []), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "terrainEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getList_0 : JR.Method
+jm_getList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "list") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

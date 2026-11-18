@@ -1,109 +1,105 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
-module OpenGLBitmap (module OpenGLBitmap, module PlatformBitmapBase) where
+module Org.Allbinary.Graphics.OpenGLBitmap exposing (..)
 
-import PlatformBitmapBase hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getPixels, getPixels_super, getPixels_impl, setPixels, setPixels_super, setPixels_impl, recycle, recycle_super, recycle_impl, bitmap)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified PlatformBitmapBase -- org.allbinary.platform.graphics.PlatformBitmapBase
+{-| Generated Code Do Not Modify package org.allbinary.graphics
+-}
 
-data OpenGLBitmap = OpenGLBitmap
-    { header_ :: JavaHeader
-    , base :: PlatformBitmapBase.PlatformBitmapBase
-    , bitmap :: IORef (Any.Any)
-    }
-
-instance JavaNull OpenGLBitmap where
-    javaNull = javaNullRecord "OpenGLBitmap"
-
-instance JavaEquals OpenGLBitmap where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLBitmap where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLBitmap where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO OpenGLBitmap
-newRecord_ = do
-    base <- PlatformBitmapBase.newRecord_
-    let header_ = base.header_
-    bitmap <- newIORef javaNull
-    let this = OpenGLBitmap header_ base bitmap
-    jregisterLevel header_ this
-    jregisterMethod header_ "getPixels" (\() -> getPixels_impl this)
-    jregisterMethod header_ "setPixels" (\() -> setPixels_impl this)
-    jregisterMethod header_ "recycle" (\() -> recycle_impl this)
-    pure this
-
-initFields_ :: OpenGLBitmap -> IO ()
-initFields_ this = do
-    jset this.bitmap (javaNull)
-    pure ()
-
-new_1 :: (JavaObjectClass o1) => o1 -> IO OpenGLBitmap
-new_1 bitmapObject_ = do
-    this <- newRecord_
-    init_1 this bitmapObject_
-    pure this
-
-init_1 :: (JavaObjectClass o1) => OpenGLBitmap -> o1 -> IO ()
-init_1 this bitmapObject_ = do
-        let bitmap = jtoObject bitmapObject_
-        PlatformBitmapBase.init_ this.base
-        initFields_ this
-        jset (this).bitmap (bitmap)
-        pure ()
+import JR
+import Org.Allbinary.Platform.Graphics.PlatformBitmapBase as PlatformBitmapBase
 
 
-getPixels :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> IO (())
-getPixels object_ a1 a2 a3 a4 a5 a6 a7 = jmethod object_ "getPixels" (\() -> (getPixels_impl (javaCast object_ :: OpenGLBitmap))) () a1 a2 a3 a4 a5 a6 a7
-
-getPixels_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> IO (())
-getPixels_super object_ a1 a2 a3 a4 a5 a6 a7 = (getPixels_impl (javaCast object_ :: OpenGLBitmap)) a1 a2 a3 a4 a5 a6 a7
-
-getPixels_impl :: OpenGLBitmap -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> IO (())
-getPixels_impl this pixels offset stride x y width height = do
-        pure ()
+jclass : String
+jclass =
+    "OpenGLBitmap"
 
 
-setPixels :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> IO (())
-setPixels object_ a1 a2 a3 a4 a5 a6 a7 = jmethod object_ "setPixels" (\() -> (setPixels_impl (javaCast object_ :: OpenGLBitmap))) () a1 a2 a3 a4 a5 a6 a7
-
-setPixels_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> IO (())
-setPixels_super object_ a1 a2 a3 a4 a5 a6 a7 = (setPixels_impl (javaCast object_ :: OpenGLBitmap)) a1 a2 a3 a4 a5 a6 a7
-
-setPixels_impl :: OpenGLBitmap -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> IO (())
-setPixels_impl this pixels offset stride x y width height = do
-        pure ()
+jchain : List String
+jchain =
+    [ "OpenGLBitmap" ]
+        ++ PlatformBitmapBase.jchain
 
 
-recycle :: (JavaObjectClass this_) => this_ -> IO (())
-recycle object_ = jmethod object_ "recycle" (\() -> (recycle_impl (javaCast object_ :: OpenGLBitmap))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    PlatformBitmapBase.jfields ++ [ ( "bitmap", JR.defaultOf "" ) ]
 
-recycle_super :: (JavaObjectClass this_) => this_ -> IO (())
-recycle_super object_ = (recycle_impl (javaCast object_ :: OpenGLBitmap))
 
-recycle_impl :: OpenGLBitmap -> IO (())
-recycle_impl this = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getPixels_7", jm_getPixels_7 )
+        , ( "setPixels_7", jm_setPixels_7 )
+        , ( "recycle_0", jm_recycle_0 ) ]
+        PlatformBitmapBase.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLBitmap"
+        [ ( "jm_getPixels_7", jm_getPixels_7 ), ( "jm_setPixels_7", jm_setPixels_7 ), ( "jm_recycle_0", jm_recycle_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "bitmap", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect PlatformBitmapBase.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "bitmap" "" JR.this (JR.local "bitmap")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getPixels_7 : JR.Method
+jm_getPixels_7 jheap jthis jargs =
+    JR.method [ ( "pixels", "" ), ( "offset", "I" ), ( "stride", "I" ), ( "x", "I" ), ( "y", "I" ), ( "width", "I" ), ( "height", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPixels_7 : JR.Method
+jm_setPixels_7 jheap jthis jargs =
+    JR.method [ ( "pixels", "" ), ( "offset", "I" ), ( "stride", "I" ), ( "x", "I" ), ( "y", "I" ), ( "width", "I" ), ( "height", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_recycle_0 : JR.Method
+jm_recycle_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

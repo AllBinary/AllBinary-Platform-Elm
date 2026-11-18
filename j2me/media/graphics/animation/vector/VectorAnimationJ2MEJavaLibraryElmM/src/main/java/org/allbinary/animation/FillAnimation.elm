@@ -1,187 +1,166 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module FillAnimation (module FillAnimation, module IndexedAnimation) where
+module Org.Allbinary.Animation.FillAnimation exposing (..)
 
-import IndexedAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, setBasicColorP, setBasicColorP_super, setBasicColorP_impl, changeBasicColor, changeBasicColor_super, changeBasicColor_impl, setAlpha, setAlpha_super, setAlpha_impl, setScale, setScale_super, setScale_impl, setMaxScale, setMaxScale_super, setMaxScale_impl, updateModifiers, updateModifiers_super, updateModifiers_impl, paint, paint_super, paint_impl, pixelBuffer, width, height)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnimationBehavior -- same package or java.lang
-import qualified IndexedAnimation -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified IndexedAnimation
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
-data FillAnimation = FillAnimation
-    { header_ :: JavaHeader
-    , base :: IndexedAnimation.IndexedAnimation
-    , pixelBuffer :: IORef (JavaArray (Int))
-    , width :: IORef (Int)
-    , height :: IORef (Int)
-    }
-
-instance JavaNull FillAnimation where
-    javaNull = javaNullRecord "FillAnimation"
-
-instance JavaEquals FillAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FillAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FillAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO FillAnimation
-newRecord_ = do
-    base <- IndexedAnimation.newRecord_
-    let header_ = base.header_
-    pixelBuffer <- newIORef javaNull
-    width <- newIORef 0
-    height <- newIORef 0
-    let this = FillAnimation header_ base pixelBuffer width height
-    jregisterLevel header_ this
-    jregisterMethod header_ "setBasicColorP" (\() -> setBasicColorP_impl this)
-    jregisterMethod header_ "changeBasicColor" (\() -> changeBasicColor_impl this)
-    jregisterMethod header_ "setAlpha" (\() -> setAlpha_impl this)
-    jregisterMethod header_ "setScale" (\() -> setScale_impl this)
-    jregisterMethod header_ "setMaxScale" (\() -> setMaxScale_impl this)
-    jregisterMethod header_ "updateModifiers" (\() -> updateModifiers_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: FillAnimation -> IO ()
-initFields_ this = do
-    jset this.pixelBuffer (javaNull)
-    jset this.width (0)
-    jset this.height (0)
-    pure ()
-
-new_4 :: JavaArray (Int) -> Int -> Int -> AnimationBehavior.AnimationBehavior -> IO FillAnimation
-new_4 pixelBuffer width height animationBehavior = do
-    this <- newRecord_
-    init_4 this pixelBuffer width height animationBehavior
-    pure this
-
-init_4 :: FillAnimation -> JavaArray (Int) -> Int -> Int -> AnimationBehavior.AnimationBehavior -> IO ()
-init_4 this pixelBuffer width height animationBehavior = do
-        IndexedAnimation.init_1 this.base (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).width (100)
-        jset (this).height (100)
-        jset (this).pixelBuffer (pixelBuffer)
-        pure ()
+import JR
+import Org.Allbinary.Animation.IndexedAnimation as IndexedAnimation
 
 
-setBasicColorP :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP object_ a1 = jmethod object_ "setBasicColorP" (\() -> (setBasicColorP_impl (javaCast object_ :: FillAnimation))) () a1
-
-setBasicColorP_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP_super object_ a1 = (setBasicColorP_impl (javaCast object_ :: FillAnimation)) a1
-
-setBasicColorP_impl :: FillAnimation -> BasicColor.BasicColor -> IO (())
-setBasicColorP_impl this basicColor = do
-        changed <- newIORef (False :: Bool)
-        when (((jio (IndexedAnimation.getBasicColorP this)) == javaNull) || ((jio (IndexedAnimation.intValue ((jio (IndexedAnimation.getBasicColorP this))))) /= (jio (BasicColor.intValue basicColor)))) $ do
-            jset changed (True)
-        Control.Monad.void (IndexedAnimation.setBasicColorP_super this.base basicColor)
-        when (jget changed) $ do
-            Control.Monad.void (FillAnimation.updateModifiers this)
-        pure ()
+jclass : String
+jclass =
+    "FillAnimation"
 
 
-changeBasicColor :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-changeBasicColor object_ a1 = jmethod object_ "changeBasicColor" (\() -> (changeBasicColor_impl (javaCast object_ :: FillAnimation))) () a1
-
-changeBasicColor_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-changeBasicColor_super object_ a1 = (changeBasicColor_impl (javaCast object_ :: FillAnimation)) a1
-
-changeBasicColor_impl :: FillAnimation -> BasicColor.BasicColor -> IO (())
-changeBasicColor_impl this basicColor = do
-        changed <- newIORef (False :: Bool)
-        when (((jio (IndexedAnimation.getChangeBasicColor this)) == javaNull) || ((jio (IndexedAnimation.intValue ((jio (IndexedAnimation.getChangeBasicColor this))))) /= (jio (BasicColor.intValue basicColor)))) $ do
-            jset changed (True)
-        Control.Monad.void (IndexedAnimation.changeBasicColor_super this.base basicColor)
-        when (jget changed) $ do
-            Control.Monad.void (FillAnimation.updateModifiers this)
-        pure ()
+jchain : List String
+jchain =
+    [ "FillAnimation" ]
+        ++ IndexedAnimation.jchain
 
 
-setAlpha :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setAlpha object_ a1 = jmethod object_ "setAlpha" (\() -> (setAlpha_impl (javaCast object_ :: FillAnimation))) () a1
-
-setAlpha_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setAlpha_super object_ a1 = (setAlpha_impl (javaCast object_ :: FillAnimation)) a1
-
-setAlpha_impl :: FillAnimation -> Int -> IO (())
-setAlpha_impl this alpha = do
-        changed <- newIORef (False :: Bool)
-        when ((jget (this).base.alphaP) /= alpha) $ do
-            jset changed (True)
-        Control.Monad.void (IndexedAnimation.setAlpha_super this.base alpha)
-        when (jget changed) $ do
-            Control.Monad.void (FillAnimation.updateModifiers this)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    IndexedAnimation.jfields ++ [ ( "pixelBuffer", JR.defaultOf "" ), ( "width", JR.defaultOf "I" ), ( "height", JR.defaultOf "I" ) ]
 
 
-setScale :: (JavaObjectClass this_) => this_ -> Float -> Float -> IO (())
-setScale object_ a1 a2 = jmethod object_ "setScale" (\() -> (setScale_impl (javaCast object_ :: FillAnimation))) () a1 a2
-
-setScale_super :: (JavaObjectClass this_) => this_ -> Float -> Float -> IO (())
-setScale_super object_ a1 a2 = (setScale_impl (javaCast object_ :: FillAnimation)) a1 a2
-
-setScale_impl :: FillAnimation -> Float -> Float -> IO (())
-setScale_impl this scaleX scaleY = do
-        pure ()
-
-
-setMaxScale :: (JavaObjectClass this_) => this_ -> Float -> Float -> IO (())
-setMaxScale object_ a1 a2 = jmethod object_ "setMaxScale" (\() -> (setMaxScale_impl (javaCast object_ :: FillAnimation))) () a1 a2
-
-setMaxScale_super :: (JavaObjectClass this_) => this_ -> Float -> Float -> IO (())
-setMaxScale_super object_ a1 a2 = (setMaxScale_impl (javaCast object_ :: FillAnimation)) a1 a2
-
-setMaxScale_impl :: FillAnimation -> Float -> Float -> IO (())
-setMaxScale_impl this maxScaleX maxScaleY = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "setBasicColorP_1", jm_setBasicColorP_1 )
+        , ( "changeBasicColor_1", jm_changeBasicColor_1 )
+        , ( "setAlpha_1", jm_setAlpha_1 )
+        , ( "setScale_2", jm_setScale_2 )
+        , ( "setMaxScale_2", jm_setMaxScale_2 )
+        , ( "updateModifiers_0", jm_updateModifiers_0 )
+        , ( "paint_1", jm_paint_1 ) ]
+        IndexedAnimation.jvtable
 
 
-updateModifiers :: (JavaObjectClass this_) => this_ -> IO (())
-updateModifiers object_ = jmethod object_ "updateModifiers" (\() -> (updateModifiers_impl (javaCast object_ :: FillAnimation))) ()
-
-updateModifiers_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateModifiers_super object_ = (updateModifiers_impl (javaCast object_ :: FillAnimation))
-
-updateModifiers_impl :: FillAnimation -> IO (())
-updateModifiers_impl this = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FillAnimation"
+        [ ( "jm_setBasicColorP_1", jm_setBasicColorP_1 ), ( "jm_changeBasicColor_1", jm_changeBasicColor_1 ), ( "jm_setAlpha_1", jm_setAlpha_1 ), ( "jm_setScale_2", jm_setScale_2 ), ( "jm_setMaxScale_2", jm_setMaxScale_2 ), ( "jm_updateModifiers_0", jm_updateModifiers_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: FillAnimation))) () a1
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: FillAnimation)) a1
 
-paint_impl :: FillAnimation -> Graphics.Graphics -> IO (())
-paint_impl this g = do
-        Control.Monad.void (Graphics.drawRGB g (jget this.pixelBuffer) 0 (jget this.width) 0 0 (jget this.width) (jget this.height) True)
-        pure ()
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "pixelBuffer", "" ), ( "width", "I" ), ( "height", "I" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect IndexedAnimation.jinit_1 JR.this [ (JR.local "animationBehavior") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "width" "I" JR.this (JR.int 100)), 
+                    JR.exec (JR.setField "height" "I" JR.this (JR.int 100)), 
+                    JR.exec (JR.setField "pixelBuffer" "" JR.this (JR.local "pixelBuffer")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_setBasicColorP_1 : JR.Method
+jm_setBasicColorP_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "changed" "Z" (JR.bool False), 
+                    JR.ifElse (JR.or (JR.map2 JR.equals (JR.invoke "getBasicColorP_0" JR.this []) JR.null) (JR.map2 JR.notEquals (JR.invoke "intValue_0" (JR.invoke "getBasicColorP_0" JR.this []) []) (JR.invoke "intValue_0" (JR.local "basicColor") []))) (JR.run [ 
+                        JR.exec (JR.setLocal "changed" "Z" (JR.bool True)) ]) identity, 
+                    JR.exec (JR.callVia IndexedAnimation.jvtable "setBasicColorP_1" JR.this [ (JR.local "basicColor") ]), 
+                    JR.ifElse (JR.local "changed") (JR.run [ 
+                        JR.exec (JR.invoke "updateModifiers_0" JR.this []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_changeBasicColor_1 : JR.Method
+jm_changeBasicColor_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "changed" "Z" (JR.bool False), 
+                    JR.ifElse (JR.or (JR.map2 JR.equals (JR.invoke "getChangeBasicColor_0" JR.this []) JR.null) (JR.map2 JR.notEquals (JR.invoke "intValue_0" (JR.invoke "getChangeBasicColor_0" JR.this []) []) (JR.invoke "intValue_0" (JR.local "basicColor") []))) (JR.run [ 
+                        JR.exec (JR.setLocal "changed" "Z" (JR.bool True)) ]) identity, 
+                    JR.exec (JR.callVia IndexedAnimation.jvtable "changeBasicColor_1" JR.this [ (JR.local "basicColor") ]), 
+                    JR.ifElse (JR.local "changed") (JR.run [ 
+                        JR.exec (JR.invoke "updateModifiers_0" JR.this []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAlpha_1 : JR.Method
+jm_setAlpha_1 jheap jthis jargs =
+    JR.method [ ( "alpha", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "changed" "Z" (JR.bool False), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.thisField "alphaP") (JR.local "alpha")) (JR.run [ 
+                        JR.exec (JR.setLocal "changed" "Z" (JR.bool True)) ]) identity, 
+                    JR.exec (JR.callVia IndexedAnimation.jvtable "setAlpha_1" JR.this [ (JR.local "alpha") ]), 
+                    JR.ifElse (JR.local "changed") (JR.run [ 
+                        JR.exec (JR.invoke "updateModifiers_0" JR.this []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setScale_2 : JR.Method
+jm_setScale_2 jheap jthis jargs =
+    JR.method [ ( "scaleX", "F" ), ( "scaleY", "F" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMaxScale_2 : JR.Method
+jm_setMaxScale_2 jheap jthis jargs =
+    JR.method [ ( "maxScaleX", "F" ), ( "maxScaleY", "F" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateModifiers_0 : JR.Method
+jm_updateModifiers_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "g", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "drawRGB_8" (JR.local "g") [ (JR.thisField "pixelBuffer"), (JR.int 0), (JR.thisField "width"), (JR.int 0), (JR.int 0), (JR.thisField "width"), (JR.thisField "height"), (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

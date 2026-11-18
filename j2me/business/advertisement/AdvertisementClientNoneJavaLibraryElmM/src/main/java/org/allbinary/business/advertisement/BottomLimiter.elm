@@ -1,162 +1,141 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
-module BottomLimiter where
+module Org.Allbinary.Business.Advertisement.BottomLimiter exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameAdStateFactory -- same package or java.lang
-import qualified GameAdState -- org.allbinary.game.GameAdState
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
+{-| Generated Code Do Not Modify package org.allbinary.business.advertisement
+-}
 
-data BottomLimiter = BottomLimiter
-    { header_ :: JavaHeader
-    , bottom :: IORef (Int)
-    , deltaY :: IORef (Int)
-    , lower :: IORef (Int)
-    , higher :: IORef (Int)
-    }
-
-instance JavaNull BottomLimiter where
-    javaNull = javaNullRecord "BottomLimiter"
-
-instance JavaEquals BottomLimiter where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BottomLimiter where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BottomLimiter where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: BottomLimiter
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BottomLimiter
-newRecord_ = do
-    header_ <- newJavaHeader
-    bottom <- newIORef 0
-    deltaY <- newIORef 0
-    lower <- newIORef 0
-    higher <- newIORef 0
-    let this = BottomLimiter header_ bottom deltaY lower higher
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "getDeltaY" (\() -> getDeltaY_impl this)
-    jregisterMethod header_ "getBottom" (\() -> getBottom_impl this)
-    pure this
-
-initFields_ :: BottomLimiter -> IO ()
-initFields_ this = do
-    jset this.bottom (0)
-    jset this.deltaY (0)
-    jset this.lower (0)
-    jset this.higher (0)
-    pure ()
+import JR
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Business.Advertisement.GameAdStateFactory as GameAdStateFactory
 
 
-getInstance :: IO (BottomLimiter)
-getInstance = do
-        pure (BottomLimiter.instance_)
-
-new_ :: IO BottomLimiter
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BottomLimiter -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "BottomLimiter"
 
 
-init :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-init object_ a1 a2 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: BottomLimiter))) () a1 a2
-
-init_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-init_super object_ a1 a2 = (init_impl (javaCast object_ :: BottomLimiter)) a1 a2
-
-init_impl :: BottomLimiter -> Int -> Int -> IO (())
-init_impl this lower higher = do
-        jset (this).lower (lower)
-        jset (this).higher (higher)
-        pure ()
+jchain : List String
+jchain =
+    [ "BottomLimiter" ]
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: BottomLimiter))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: BottomLimiter))
-
-update_impl :: BottomLimiter -> IO (())
-update_impl this = do
-        displayInfo <- (DisplayInfoSingleton.getInstance)
-        gameAdState <- (GameAdStateFactory.getCurrentInstance ((jio (GameAdStateFactory.getInstance))))
-        if (jio (GameAdState.isShowingAt gameAdState)) then do
-            jset (this).deltaY ((jget (this).higher))
-        else do
-            jset (this).deltaY ((jget (this).lower))
-        jset (this).bottom (((jio (DisplayInfoSingleton.getLastHeight displayInfo)) - (jget (this).deltaY)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "bottom", JR.defaultOf "I" ), ( "deltaY", JR.defaultOf "I" ), ( "lower", JR.defaultOf "I" ), ( "higher", JR.defaultOf "I" ) ]
 
 
-getDeltaY :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDeltaY object_ = jmethod object_ "getDeltaY" (\() -> (getDeltaY_impl (javaCast object_ :: BottomLimiter))) ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_2", jm_init_2 )
+        , ( "update_0", jm_update_0 )
+        , ( "getDeltaY_0", jm_getDeltaY_0 )
+        , ( "getBottom_0", jm_getBottom_0 ) ]
+        JR.noMethods
 
-getDeltaY_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDeltaY_super object_ = (getDeltaY_impl (javaCast object_ :: BottomLimiter))
 
-getDeltaY_impl :: BottomLimiter -> IO (Int)
-getDeltaY_impl this = do
-        pure ((jget (this).deltaY))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BottomLimiter"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_2", jm_init_2 ), ( "jm_update_0", jm_update_0 ), ( "jm_getDeltaY_0", jm_getDeltaY_0 ), ( "jm_getBottom_0", jm_getBottom_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-getBottom :: (JavaObjectClass this_) => this_ -> IO (Int)
-getBottom object_ = jmethod object_ "getBottom" (\() -> (getBottom_impl (javaCast object_ :: BottomLimiter))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-getBottom_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getBottom_super object_ = (getBottom_impl (javaCast object_ :: BottomLimiter))
 
-getBottom_impl :: BottomLimiter -> IO (Int)
-getBottom_impl this = do
-        pure ((jget (this).bottom))
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "BottomLimiter" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_2 : JR.Method
+jm_init_2 jheap jthis jargs =
+    JR.method [ ( "lower", "I" ), ( "higher", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "lower" "I" JR.this (JR.local "lower")), 
+                    JR.exec (JR.setField "higher" "I" JR.this (JR.local "higher")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "displayInfo" "" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []), 
+                    JR.declare "gameAdState" "" (JR.invoke "getCurrentInstance_0" (JR.callStatic GameAdStateFactory.jm_getInstance_0 []) []), 
+                    JR.ifElse (JR.invoke "isShowingAt_0" (JR.local "gameAdState") []) (JR.run [ 
+                        JR.exec (JR.setField "deltaY" "I" JR.this (JR.thisField "higher")) ]) (JR.run [ 
+                        JR.exec (JR.setField "deltaY" "I" JR.this (JR.thisField "lower")) ]), 
+                    JR.exec (JR.setField "bottom" "I" JR.this (JR.map2 JR.sub (JR.invoke "getLastHeight_0" (JR.local "displayInfo") []) (JR.thisField "deltaY"))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDeltaY_0 : JR.Method
+jm_getDeltaY_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "deltaY") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBottom_0 : JR.Method
+jm_getBottom_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "bottom") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

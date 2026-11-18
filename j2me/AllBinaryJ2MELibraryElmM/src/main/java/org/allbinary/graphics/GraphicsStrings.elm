@@ -1,112 +1,97 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
-module GraphicsStrings where
+module Org.Allbinary.Graphics.GraphicsStrings exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.graphics
+-}
 
-data GraphicsStrings = GraphicsStrings
-    { header_ :: JavaHeader
-    , aNIMATION :: IORef (String)
-    , aNGLE :: IORef (String)
-    , mOVEMENT_ANGLE :: IORef (String)
-    , rOTATION :: IORef (String)
-    , oPACITY :: IORef (String)
-    , hTML :: IORef (String)
-    , wIDTH :: IORef (String)
-    , hEIGHT :: IORef (String)
-    }
-
-instance JavaNull GraphicsStrings where
-    javaNull = javaNullRecord "GraphicsStrings"
-
-instance JavaEquals GraphicsStrings where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GraphicsStrings where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GraphicsStrings where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GraphicsStrings
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GraphicsStrings
-newRecord_ = do
-    header_ <- newJavaHeader
-    aNIMATION <- newIORef ""
-    aNGLE <- newIORef ""
-    mOVEMENT_ANGLE <- newIORef ""
-    rOTATION <- newIORef ""
-    oPACITY <- newIORef ""
-    hTML <- newIORef ""
-    wIDTH <- newIORef ""
-    hEIGHT <- newIORef ""
-    let this = GraphicsStrings header_ aNIMATION aNGLE mOVEMENT_ANGLE rOTATION oPACITY hTML wIDTH hEIGHT
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: GraphicsStrings -> IO ()
-initFields_ this = do
-    jset this.aNIMATION ("animation")
-    jset this.aNGLE ("angle")
-    jset this.mOVEMENT_ANGLE ("movement_angle")
-    jset this.rOTATION ("rotation")
-    jset this.oPACITY ("opacity")
-    jset this.hTML ("HTML")
-    jset this.wIDTH ("width")
-    jset this.hEIGHT ("height")
-    pure ()
-
-new_ :: IO GraphicsStrings
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GraphicsStrings -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (GraphicsStrings)
-getInstance = do
-        pure (GraphicsStrings.instance_)
 
+jclass : String
+jclass =
+    "GraphicsStrings"
+
+
+jchain : List String
+jchain =
+    [ "GraphicsStrings" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "ANIMATION", JR.defaultOf "" ), ( "ANGLE", JR.defaultOf "" ), ( "MOVEMENT_ANGLE", JR.defaultOf "" ), ( "ROTATION", JR.defaultOf "" ), ( "OPACITY", JR.defaultOf "" ), ( "HTML", JR.defaultOf "" ), ( "WIDTH", JR.defaultOf "" ), ( "HEIGHT", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GraphicsStrings"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GraphicsStrings" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "ANIMATION" "" JR.this (JR.str "animation")),
+                JR.exec (JR.setField "ANGLE" "" JR.this (JR.str "angle")),
+                JR.exec (JR.setField "MOVEMENT_ANGLE" "" JR.this (JR.str "movement_angle")),
+                JR.exec (JR.setField "ROTATION" "" JR.this (JR.str "rotation")),
+                JR.exec (JR.setField "OPACITY" "" JR.this (JR.str "opacity")),
+                JR.exec (JR.setField "HTML" "" JR.this (JR.str "HTML")),
+                JR.exec (JR.setField "WIDTH" "" JR.this (JR.str "width")),
+                JR.exec (JR.setField "HEIGHT" "" JR.this (JR.str "height")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

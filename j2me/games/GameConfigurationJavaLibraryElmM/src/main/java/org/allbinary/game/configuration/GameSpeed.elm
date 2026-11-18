@@ -1,116 +1,113 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
-module GameSpeed where
+module Org.Allbinary.Game.Configuration.GameSpeed exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameConfigurationCentral -- same package or java.lang
-import qualified GameConfiguration -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration
+-}
 
-data GameSpeed = GameSpeed
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull GameSpeed where
-    javaNull = javaNullRecord "GameSpeed"
-
-instance JavaEquals GameSpeed where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameSpeed where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameSpeed where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameSpeed
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameSpeed
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = GameSpeed header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getSpeed" (\() -> getSpeed_impl this)
-    jregisterMethod header_ "getDelay" (\() -> getDelay_impl this)
-    pure this
-
-initFields_ :: GameSpeed -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO GameSpeed
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameSpeed -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Configuration.GameConfigurationCentral as GameConfigurationCentral
 
 
-getSpeed :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSpeed object_ = jmethod object_ "getSpeed" (\() -> (getSpeed_impl (javaCast object_ :: GameSpeed))) ()
-
-getSpeed_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSpeed_super object_ = (getSpeed_impl (javaCast object_ :: GameSpeed))
-
-getSpeed_impl :: GameSpeed -> IO (Int)
-getSpeed_impl this = do
-        let speedGameConfiguration = (jget ((jio (GameConfigurationCentral.getInstance))).sPEED)
-        pure (((((jio (GameConfiguration.getMaxValue speedGameConfiguration)) - (jio (GameConfiguration.getValue speedGameConfiguration))) + 1)))
+jclass : String
+jclass =
+    "GameSpeed"
 
 
-getDelay :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDelay object_ = jmethod object_ "getDelay" (\() -> (getDelay_impl (javaCast object_ :: GameSpeed))) ()
-
-getDelay_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDelay_super object_ = (getDelay_impl (javaCast object_ :: GameSpeed))
-
-getDelay_impl :: GameSpeed -> IO (Int)
-getDelay_impl this = do
-        let speedGameConfiguration = (jget ((jio (GameConfigurationCentral.getInstance))).sPEED)
-        pure ((19 * (((jio (GameConfiguration.getMaxValue speedGameConfiguration)) - (jio (GameConfiguration.getValue speedGameConfiguration))))))
+jchain : List String
+jchain =
+    [ "GameSpeed" ]
 
 
-getInstance :: IO (GameSpeed)
-getInstance = do
-        pure (GameSpeed.instance_)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getSpeed_0", jm_getSpeed_0 )
+        , ( "getDelay_0", jm_getDelay_0 )
+        , ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameSpeed"
+        [ ( "jm_getSpeed_0", jm_getSpeed_0 ), ( "jm_getDelay_0", jm_getDelay_0 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameSpeed" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getSpeed_0 : JR.Method
+jm_getSpeed_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.declare "speedGameConfiguration" "" (JR.field "SPEED" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 [])), 
+                    JR.return ((JR.plus (JR.map2 JR.sub (JR.invoke "intValue_0" (JR.invoke "getMaxValue_0" (JR.local "speedGameConfiguration") []) []) (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.local "speedGameConfiguration") []) [])) (JR.int 1))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDelay_0 : JR.Method
+jm_getDelay_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.declare "speedGameConfiguration" "" (JR.field "SPEED" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 [])), 
+                    JR.return (JR.map2 JR.mul (JR.int 19) ((JR.map2 JR.sub (JR.invoke "intValue_0" (JR.invoke "getMaxValue_0" (JR.local "speedGameConfiguration") []) []) (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.local "speedGameConfiguration") []) [])))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

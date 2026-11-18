@@ -1,118 +1,106 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
-module AbeClientInformation (module AbeClientInformation, module ClientInformation) where
+module Org.Allbinary.Logic.System.Security.Licensing.AbeClientInformation exposing (..)
 
-import ClientInformation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, init, init_super, init_impl, logUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LicenseInitInfo -- org.allbinary.business.init.LicenseInitInfo
-import qualified LicenseInitInfoUtil -- org.allbinary.business.init.LicenseInitInfoUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringValidationUtil -- org.allbinary.logic.string.StringValidationUtil
-import qualified OperatingSystemFactory -- org.allbinary.logic.system.os.OperatingSystemFactory
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified ClientInformation
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.licensing
+-}
 
-data AbeClientInformation = AbeClientInformation
-    { header_ :: JavaHeader
-    , base :: ClientInformation.ClientInformation
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull AbeClientInformation where
-    javaNull = javaNullRecord "AbeClientInformation"
-
-instance JavaEquals AbeClientInformation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AbeClientInformation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AbeClientInformation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AbeClientInformation
-newRecord_ = do
-    base <- ClientInformation.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    let this = AbeClientInformation header_ base logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    pure this
-
-initFields_ :: AbeClientInformation -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_4 :: String -> String -> String -> String -> IO AbeClientInformation
-new_4 name version specialName shortName = do
-    this <- newRecord_
-    init_4 this name version specialName shortName
-    pure this
-
-init_4 :: AbeClientInformation -> String -> String -> String -> String -> IO ()
-init_4 this name version specialName shortName = do
-        ClientInformation.init_4 this.base (name) (version) (specialName) (shortName)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Logic.System.Security.Licensing.ClientInformation as ClientInformation
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Business.Init.LicenseInitInfoUtil as LicenseInitInfoUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.System.Os.OperatingSystemFactory as OperatingSystemFactory
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: AbeClientInformation))) ()
+jclass : String
+jclass =
+    "AbeClientInformation"
 
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: AbeClientInformation))
 
-init_impl :: AbeClientInformation -> IO (())
-init_impl this = do
-        handle (\(e :: JavaException) -> do
-            logUtil <- (LogUtil.getInstance)
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put logUtil (jget (commonStrings).eXCEPTION) this (jget (commonStrings).cONSTRUCTOR) e)
-            ) $ do
-            Control.Monad.void (ClientInformation.setOperatingSystemInterface this (jio (OperatingSystemFactory.getOperatingSystemInstance ((jio (OperatingSystemFactory.getInstance))))))
-            licenseInitInfo <- (LicenseInitInfoUtil.read ((jio (LicenseInitInfoUtil.getInstance))))
-            Control.Monad.void (ClientInformation.setLicenseId this (jio (LicenseInitInfo.getLicenseId licenseInitInfo)))
-            Control.Monad.void (ClientInformation.setLicenseServers this (jio (LicenseInitInfo.getServerList licenseInitInfo)))
-            stringValidationUtil <- (StringValidationUtil.getInstance)
-            when (jio (StringValidationUtil.isEmpty stringValidationUtil (jio (ClientInformation.getLicenseId this)))) $ do
-                let nONE = "No License Id"
-                Control.Monad.void (ClientInformation.setLicenseId this nONE)
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "Special Name: "))) (jio (ClientInformation.getSpecialName this))))))) this (jget (commonStrings).cONSTRUCTOR))
-        pure ()
+jchain : List String
+jchain =
+    [ "AbeClientInformation" ]
+        ++ ClientInformation.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    ClientInformation.jfields ++ [ ( "logUtil", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 ) ]
+        ClientInformation.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbeClientInformation"
+        [ ( "jm_init_0", jm_init_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "version", "" ), ( "specialName", "" ), ( "shortName", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ClientInformation.jinit_4 JR.this [ (JR.local "name"), (JR.local "version"), (JR.local "specialName"), (JR.local "shortName") ]),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "setOperatingSystemInterface_1" JR.this [ (JR.invoke "getOperatingSystemInstance_0" (JR.callStatic OperatingSystemFactory.jm_getInstance_0 []) []) ]), 
+                        JR.declare "licenseInitInfo" "" (JR.invoke "read_0" (JR.callStatic LicenseInitInfoUtil.jm_getInstance_0 []) []), 
+                        JR.exec (JR.invoke "setLicenseId_1" JR.this [ (JR.invoke "getLicenseId_0" (JR.local "licenseInitInfo") []) ]), 
+                        JR.exec (JR.invoke "setLicenseServers_1" JR.this [ (JR.invoke "getServerList_0" (JR.local "licenseInitInfo") []) ]), 
+                        JR.declare "stringValidationUtil" "" (JR.callStatic StringValidationUtil.jm_getInstance_0 []), 
+                        JR.ifElse (JR.invoke "isEmpty_1" (JR.local "stringValidationUtil") [ (JR.invoke "getLicenseId_0" JR.this []) ]) (JR.run [ 
+                            JR.declare "NONE" "" (JR.str "No License Id"), 
+                            JR.exec (JR.invoke "setLicenseId_1" JR.this [ (JR.local "NONE") ]) ]) identity, 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Special Name: ") ]) [ (JR.invoke "getSpecialName_0" JR.this []) ]) []), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "logUtil" "" (JR.callStatic LogUtil.jm_getInstance_0 []), 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.local "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

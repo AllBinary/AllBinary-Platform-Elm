@@ -1,101 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module ScaleBaseProcessor where
+module Org.Allbinary.Animation.Image.ScaleBaseProcessor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- javax.microedition.lcdui.Image
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
-data ScaleBaseProcessor = ScaleBaseProcessor
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ScaleBaseProcessor where
-    javaNull = javaNullRecord "ScaleBaseProcessor"
-
-instance JavaEquals ScaleBaseProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ScaleBaseProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ScaleBaseProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ScaleBaseProcessor
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ScaleBaseProcessor
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ScaleBaseProcessor header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    pure this
-
-initFields_ :: ScaleBaseProcessor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO ScaleBaseProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ScaleBaseProcessor -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (ScaleBaseProcessor)
-getInstance = do
-        pure (ScaleBaseProcessor.instance_)
+
+jclass : String
+jclass =
+    "ScaleBaseProcessor"
 
 
-update :: (JavaObjectClass this_) => this_ -> Image.Image -> JavaArray (Image.Image) -> JavaArray (Image.Image) -> Int -> Float -> Float -> Float -> Float -> IO (())
-update object_ a1 a2 a3 a4 a5 a6 a7 a8 = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: ScaleBaseProcessor))) () a1 a2 a3 a4 a5 a6 a7 a8
+jchain : List String
+jchain =
+    [ "ScaleBaseProcessor" ]
 
-update_super :: (JavaObjectClass this_) => this_ -> Image.Image -> JavaArray (Image.Image) -> JavaArray (Image.Image) -> Int -> Float -> Float -> Float -> Float -> IO (())
-update_super object_ a1 a2 a3 a4 a5 a6 a7 a8 = (update_impl (javaCast object_ :: ScaleBaseProcessor)) a1 a2 a3 a4 a5 a6 a7 a8
 
-update_impl :: ScaleBaseProcessor -> Image.Image -> JavaArray (Image.Image) -> JavaArray (Image.Image) -> Int -> Float -> Float -> Float -> Float -> IO (())
-update_impl this originalImage originalImageArray imageToShowArray index scaleX scaleY maxScaleX maxScaleY = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "update_8", jm_update_8 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ScaleBaseProcessor"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_update_8", jm_update_8 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ScaleBaseProcessor" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_8 : JR.Method
+jm_update_8 jheap jthis jargs =
+    JR.method [ ( "originalImage", "" ), ( "originalImageArray", "" ), ( "imageToShowArray", "" ), ( "index", "I" ), ( "scaleX", "F" ), ( "scaleY", "F" ), ( "maxScaleX", "F" ), ( "maxScaleY", "F" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

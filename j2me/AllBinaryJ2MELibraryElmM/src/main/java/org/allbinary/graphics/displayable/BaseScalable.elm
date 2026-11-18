@@ -1,130 +1,115 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable
-module BaseScalable where
+module Org.Allbinary.Graphics.Displayable.BaseScalable exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ScalableListener
+{-| Generated Code Do Not Modify package org.allbinary.graphics.displayable
+-}
 
--- implements ScalableListener
-data BaseScalable = BaseScalable
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull BaseScalable where
-    javaNull = javaNullRecord "BaseScalable"
-
-instance JavaEquals BaseScalable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BaseScalable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BaseScalable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BaseScalable
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = BaseScalable header_
-    jregisterLevel header_ this
-    ScalableListener.registerInterface_ header_
-    jregisterMethod header_ "getRatio" (\() -> getRatio_impl this)
-    jregisterMethod header_ "getLeft" (\() -> getLeft_impl this)
-    jregisterMethod header_ "getTop" (\() -> getTop_impl this)
-    jregisterMethod header_ "scale" (\() -> scale_impl this)
-    pure this
-
-initFields_ :: BaseScalable -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO BaseScalable
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BaseScalable -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Displayable.ScalableListener as ScalableListener
 
 
-getRatio :: (JavaObjectClass this_) => this_ -> Float -> IO (Float)
-getRatio object_ a1 = jmethod object_ "getRatio" (\() -> (getRatio_impl (javaCast object_ :: BaseScalable))) () a1
-
-getRatio_super :: (JavaObjectClass this_) => this_ -> Float -> IO (Float)
-getRatio_super object_ a1 = (getRatio_impl (javaCast object_ :: BaseScalable)) a1
-
-getRatio_impl :: BaseScalable -> Float -> IO (Float)
-getRatio_impl this ratio = do
-        pure (1.0)
+jclass : String
+jclass =
+    "BaseScalable"
 
 
-getLeft :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getLeft object_ a1 = jmethod object_ "getLeft" (\() -> (getLeft_impl (javaCast object_ :: BaseScalable))) () a1
-
-getLeft_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getLeft_super object_ a1 = (getLeft_impl (javaCast object_ :: BaseScalable)) a1
-
-getLeft_impl :: BaseScalable -> Int -> IO (Int)
-getLeft_impl this xOffset = do
-        pure ((Prelude.negate 1))
+jchain : List String
+jchain =
+    [ "BaseScalable" ]
+        ++ ScalableListener.jchain
 
 
-getTop :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getTop object_ a1 = jmethod object_ "getTop" (\() -> (getTop_impl (javaCast object_ :: BaseScalable))) () a1
-
-getTop_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getTop_super object_ a1 = (getTop_impl (javaCast object_ :: BaseScalable)) a1
-
-getTop_impl :: BaseScalable -> Int -> IO (Int)
-getTop_impl this yOffset = do
-        pure ((Prelude.negate 1))
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-scale :: (JavaObjectClass this_) => this_ -> Float -> IO (())
-scale object_ a1 = jmethod object_ "scale" (\() -> (scale_impl (javaCast object_ :: BaseScalable))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getRatio_1", jm_getRatio_1 )
+        , ( "getLeft_1", jm_getLeft_1 )
+        , ( "getTop_1", jm_getTop_1 )
+        , ( "scale_1", jm_scale_1 ) ]
+        JR.noMethods
 
-scale_super :: (JavaObjectClass this_) => this_ -> Float -> IO (())
-scale_super object_ a1 = (scale_impl (javaCast object_ :: BaseScalable)) a1
 
-scale_impl :: BaseScalable -> Float -> IO (())
-scale_impl this ratio = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BaseScalable"
+        [ ( "jm_getRatio_1", jm_getRatio_1 ), ( "jm_getLeft_1", jm_getLeft_1 ), ( "jm_getTop_1", jm_getTop_1 ), ( "jm_scale_1", jm_scale_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getRatio_1 : JR.Method
+jm_getRatio_1 jheap jthis jargs =
+    JR.method [ ( "ratio", "F" ) ] "F"
+        (JR.run [ 
+                    JR.return (JR.float 1.0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLeft_1 : JR.Method
+jm_getLeft_1 jheap jthis jargs =
+    JR.method [ ( "xOffset", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.map JR.neg (JR.int 1)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTop_1 : JR.Method
+jm_getTop_1 jheap jthis jargs =
+    JR.method [ ( "yOffset", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.map JR.neg (JR.int 1)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_scale_1 : JR.Method
+jm_scale_1 jheap jthis jargs =
+    JR.method [ ( "ratio", "F" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

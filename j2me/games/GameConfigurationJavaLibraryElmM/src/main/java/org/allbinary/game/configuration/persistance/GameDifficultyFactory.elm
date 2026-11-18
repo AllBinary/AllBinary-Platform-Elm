@@ -1,116 +1,112 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
-module GameDifficultyFactory where
+module Org.Allbinary.Game.Configuration.Persistance.GameDifficultyFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.persistance
+-}
 
-data GameDifficultyFactory = GameDifficultyFactory
-    { header_ :: JavaHeader
-    , level :: IORef (Int)
-    }
-
-instance JavaNull GameDifficultyFactory where
-    javaNull = javaNullRecord "GameDifficultyFactory"
-
-instance JavaEquals GameDifficultyFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameDifficultyFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameDifficultyFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameDifficultyFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameDifficultyFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    level <- newIORef 0
-    let this = GameDifficultyFactory header_ level
-    jregisterLevel header_ this
-    jregisterMethod header_ "setLevel" (\() -> setLevel_impl this)
-    jregisterMethod header_ "getLevel" (\() -> getLevel_impl this)
-    pure this
-
-initFields_ :: GameDifficultyFactory -> IO ()
-initFields_ this = do
-    jset this.level (0)
-    pure ()
-
-new_ :: IO GameDifficultyFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameDifficultyFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (GameDifficultyFactory)
-getInstance = do
-        pure (GameDifficultyFactory.instance_)
+
+jclass : String
+jclass =
+    "GameDifficultyFactory"
 
 
-setLevel :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLevel object_ a1 = jmethod object_ "setLevel" (\() -> (setLevel_impl (javaCast object_ :: GameDifficultyFactory))) () a1
-
-setLevel_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLevel_super object_ a1 = (setLevel_impl (javaCast object_ :: GameDifficultyFactory)) a1
-
-setLevel_impl :: GameDifficultyFactory -> Int -> IO (())
-setLevel_impl this level = do
-        jset (this).level (level)
-        pure ()
+jchain : List String
+jchain =
+    [ "GameDifficultyFactory" ]
 
 
-getLevel :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLevel object_ = jmethod object_ "getLevel" (\() -> (getLevel_impl (javaCast object_ :: GameDifficultyFactory))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "level", JR.defaultOf "I" ) ]
 
-getLevel_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLevel_super object_ = (getLevel_impl (javaCast object_ :: GameDifficultyFactory))
 
-getLevel_impl :: GameDifficultyFactory -> IO (Int)
-getLevel_impl this = do
-        pure ((jget (this).level))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "setLevel_1", jm_setLevel_1 )
+        , ( "getLevel_0", jm_getLevel_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameDifficultyFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_setLevel_1", jm_setLevel_1 ), ( "jm_getLevel_0", jm_getLevel_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameDifficultyFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "level" "I" JR.this (JR.int 0)),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLevel_1 : JR.Method
+jm_setLevel_1 jheap jthis jargs =
+    JR.method [ ( "level", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "level" "I" JR.this (JR.local "level")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLevel_0 : JR.Method
+jm_getLevel_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "level") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

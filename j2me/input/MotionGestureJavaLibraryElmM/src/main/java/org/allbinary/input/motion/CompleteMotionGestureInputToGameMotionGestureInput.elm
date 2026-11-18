@@ -1,162 +1,147 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion
-module CompleteMotionGestureInputToGameMotionGestureInput where
+module Org.Allbinary.Input.Motion.CompleteMotionGestureInputToGameMotionGestureInput exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TouchMotionGestureFactory -- org.allbinary.input.motion.gesture.TouchMotionGestureFactory
-import qualified MotionGestureConfiguration -- org.allbinary.input.motion.gesture.configuration.MotionGestureConfiguration
-import qualified MotionGestureConfigurationFactory -- org.allbinary.input.motion.gesture.configuration.MotionGestureConfigurationFactory
-import qualified DiagonalDownLeftTouchInputToGameKeyEventAction -- org.allbinary.input.motion.touch.action.DiagonalDownLeftTouchInputToGameKeyEventAction
-import qualified DiagonalDownRightTouchInputToGameKeyEventAction -- org.allbinary.input.motion.touch.action.DiagonalDownRightTouchInputToGameKeyEventAction
-import qualified DiagonalUpLeftTouchInputToGameKeyEventAction -- org.allbinary.input.motion.touch.action.DiagonalUpLeftTouchInputToGameKeyEventAction
-import qualified DiagonalUpRightTouchInputToGameKeyEventAction -- org.allbinary.input.motion.touch.action.DiagonalUpRightTouchInputToGameKeyEventAction
-import qualified DownTouchInputToGameKeyEventAction -- org.allbinary.input.motion.touch.action.DownTouchInputToGameKeyEventAction
-import qualified LeftTouchInputToGameKeyEventAction -- org.allbinary.input.motion.touch.action.LeftTouchInputToGameKeyEventAction
-import qualified ReleaseTouchInputToGameKeyEventAction -- org.allbinary.input.motion.touch.action.ReleaseTouchInputToGameKeyEventAction
-import qualified RightTouchInputToGameKeyEventAction -- org.allbinary.input.motion.touch.action.RightTouchInputToGameKeyEventAction
-import qualified UpTouchInputToGameKeyEventAction -- org.allbinary.input.motion.touch.action.UpTouchInputToGameKeyEventAction
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.input.motion
+-}
 
-data CompleteMotionGestureInputToGameMotionGestureInput = CompleteMotionGestureInputToGameMotionGestureInput
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull CompleteMotionGestureInputToGameMotionGestureInput where
-    javaNull = javaNullRecord "CompleteMotionGestureInputToGameMotionGestureInput"
-
-instance JavaEquals CompleteMotionGestureInputToGameMotionGestureInput where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CompleteMotionGestureInputToGameMotionGestureInput where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CompleteMotionGestureInputToGameMotionGestureInput where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: CompleteMotionGestureInputToGameMotionGestureInput
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CompleteMotionGestureInputToGameMotionGestureInput
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = CompleteMotionGestureInputToGameMotionGestureInput header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    pure this
-
-initFields_ :: CompleteMotionGestureInputToGameMotionGestureInput -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_ :: IO CompleteMotionGestureInputToGameMotionGestureInput
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CompleteMotionGestureInputToGameMotionGestureInput -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Input.Motion.Touch.Action.DiagonalDownLeftTouchInputToGameKeyEventAction as DiagonalDownLeftTouchInputToGameKeyEventAction
+import Org.Allbinary.Input.Motion.Touch.Action.DiagonalDownRightTouchInputToGameKeyEventAction as DiagonalDownRightTouchInputToGameKeyEventAction
+import Org.Allbinary.Input.Motion.Touch.Action.DiagonalUpLeftTouchInputToGameKeyEventAction as DiagonalUpLeftTouchInputToGameKeyEventAction
+import Org.Allbinary.Input.Motion.Touch.Action.DiagonalUpRightTouchInputToGameKeyEventAction as DiagonalUpRightTouchInputToGameKeyEventAction
+import Org.Allbinary.Input.Motion.Touch.Action.DownTouchInputToGameKeyEventAction as DownTouchInputToGameKeyEventAction
+import Org.Allbinary.Input.Motion.Touch.Action.LeftTouchInputToGameKeyEventAction as LeftTouchInputToGameKeyEventAction
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Input.Motion.Gesture.Configuration.MotionGestureConfigurationFactory as MotionGestureConfigurationFactory
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Input.Motion.Touch.Action.ReleaseTouchInputToGameKeyEventAction as ReleaseTouchInputToGameKeyEventAction
+import Org.Allbinary.Input.Motion.Touch.Action.RightTouchInputToGameKeyEventAction as RightTouchInputToGameKeyEventAction
+import Org.Allbinary.Input.Motion.Gesture.TouchMotionGestureFactory as TouchMotionGestureFactory
+import Org.Allbinary.Input.Motion.Touch.Action.UpTouchInputToGameKeyEventAction as UpTouchInputToGameKeyEventAction
 
 
-getInstance :: IO (CompleteMotionGestureInputToGameMotionGestureInput)
-getInstance = do
-        pure (CompleteMotionGestureInputToGameMotionGestureInput.instance_)
+jclass : String
+jclass =
+    "CompleteMotionGestureInputToGameMotionGestureInput"
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: CompleteMotionGestureInputToGameMotionGestureInput))) ()
+jchain : List String
+jchain =
+    [ "CompleteMotionGestureInputToGameMotionGestureInput" ]
 
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: CompleteMotionGestureInputToGameMotionGestureInput))
 
-init_impl :: CompleteMotionGestureInputToGameMotionGestureInput -> IO (())
-init_impl this = do
-        commonStrings <- (CommonStrings.getInstance)
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).iNIT) e)
-            ) $ do
-            Control.Monad.void (PreLogUtil.put "Compound Motion Gestures" this (jget (commonStrings).iNIT))
-            motionGestureConfiguration <- (MotionGestureConfigurationFactory.getInstance)
-            touchMotionGestureFactory <- (TouchMotionGestureFactory.getInstance)
-            list <- newIORef =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            Control.Monad.void (BasicArrayList.add ((jget list)) (jget (touchMotionGestureFactory).dIAGONAL_DOWN_LEFT))
-            Control.Monad.void (MotionGestureConfiguration.addMotionGestureAction motionGestureConfiguration (jget list) (jio (DiagonalDownLeftTouchInputToGameKeyEventAction.getInstance)))
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            jset list (assignedValue)
-            Control.Monad.void (BasicArrayList.add ((jget list)) (jget (touchMotionGestureFactory).dIAGONAL_DOWN_RIGHT))
-            Control.Monad.void (MotionGestureConfiguration.addMotionGestureAction motionGestureConfiguration (jget list) (jio (DiagonalDownRightTouchInputToGameKeyEventAction.getInstance)))
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            jset list (assignedValue)
-            Control.Monad.void (BasicArrayList.add ((jget list)) (jget (touchMotionGestureFactory).dIAGONAL_UP_LEFT))
-            Control.Monad.void (MotionGestureConfiguration.addMotionGestureAction motionGestureConfiguration (jget list) (jio (DiagonalUpLeftTouchInputToGameKeyEventAction.getInstance)))
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            jset list (assignedValue)
-            Control.Monad.void (BasicArrayList.add ((jget list)) (jget (touchMotionGestureFactory).dIAGONAL_UP_RIGHT))
-            Control.Monad.void (MotionGestureConfiguration.addMotionGestureAction motionGestureConfiguration (jget list) (jio (DiagonalUpRightTouchInputToGameKeyEventAction.getInstance)))
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            jset list (assignedValue)
-            Control.Monad.void (BasicArrayList.add ((jget list)) (jget (touchMotionGestureFactory).lEFT))
-            Control.Monad.void (MotionGestureConfiguration.addMotionGestureAction motionGestureConfiguration (jget list) (jio (LeftTouchInputToGameKeyEventAction.getInstance)))
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            jset list (assignedValue)
-            Control.Monad.void (BasicArrayList.add ((jget list)) (jget (touchMotionGestureFactory).rIGHT))
-            Control.Monad.void (MotionGestureConfiguration.addMotionGestureAction motionGestureConfiguration (jget list) (jio (RightTouchInputToGameKeyEventAction.getInstance)))
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            jset list (assignedValue)
-            Control.Monad.void (BasicArrayList.add ((jget list)) (jget (touchMotionGestureFactory).dOWN))
-            Control.Monad.void (MotionGestureConfiguration.addMotionGestureAction motionGestureConfiguration (jget list) (jio (DownTouchInputToGameKeyEventAction.getInstance)))
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            jset list (assignedValue)
-            Control.Monad.void (BasicArrayList.add ((jget list)) (jget (touchMotionGestureFactory).uP))
-            Control.Monad.void (MotionGestureConfiguration.addMotionGestureAction motionGestureConfiguration (jget list) (jio (UpTouchInputToGameKeyEventAction.getInstance)))
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            jset list (assignedValue)
-            Control.Monad.void (BasicArrayList.add ((jget list)) (jget (touchMotionGestureFactory).rELEASED))
-            Control.Monad.void (MotionGestureConfiguration.addMotionGestureAction motionGestureConfiguration (jget list) (jio (ReleaseTouchInputToGameKeyEventAction.getInstance)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CompleteMotionGestureInputToGameMotionGestureInput"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "CompleteMotionGestureInputToGameMotionGestureInput" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.str "Compound Motion Gestures"), JR.this, (JR.field "INIT" (JR.local "commonStrings")) ]), 
+                        JR.declare "motionGestureConfiguration" "" (JR.callStatic MotionGestureConfigurationFactory.jm_getInstance_0 []), 
+                        JR.declare "touchMotionGestureFactory" "" (JR.callStatic TouchMotionGestureFactory.jm_getInstance_0 []), 
+                        JR.declare "list" "" (JR.new BasicArrayListD.jnew_0 []), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.field "DIAGONAL_DOWN_LEFT" (JR.local "touchMotionGestureFactory")) ]), 
+                        JR.exec (JR.invoke "addMotionGestureAction_2" (JR.local "motionGestureConfiguration") [ (JR.local "list"), (JR.callStatic DiagonalDownLeftTouchInputToGameKeyEventAction.jm_getInstance_0 []) ]), 
+                        JR.exec (JR.setLocal "list" "" (JR.new BasicArrayListD.jnew_0 [])), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.field "DIAGONAL_DOWN_RIGHT" (JR.local "touchMotionGestureFactory")) ]), 
+                        JR.exec (JR.invoke "addMotionGestureAction_2" (JR.local "motionGestureConfiguration") [ (JR.local "list"), (JR.callStatic DiagonalDownRightTouchInputToGameKeyEventAction.jm_getInstance_0 []) ]), 
+                        JR.exec (JR.setLocal "list" "" (JR.new BasicArrayListD.jnew_0 [])), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.field "DIAGONAL_UP_LEFT" (JR.local "touchMotionGestureFactory")) ]), 
+                        JR.exec (JR.invoke "addMotionGestureAction_2" (JR.local "motionGestureConfiguration") [ (JR.local "list"), (JR.callStatic DiagonalUpLeftTouchInputToGameKeyEventAction.jm_getInstance_0 []) ]), 
+                        JR.exec (JR.setLocal "list" "" (JR.new BasicArrayListD.jnew_0 [])), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.field "DIAGONAL_UP_RIGHT" (JR.local "touchMotionGestureFactory")) ]), 
+                        JR.exec (JR.invoke "addMotionGestureAction_2" (JR.local "motionGestureConfiguration") [ (JR.local "list"), (JR.callStatic DiagonalUpRightTouchInputToGameKeyEventAction.jm_getInstance_0 []) ]), 
+                        JR.exec (JR.setLocal "list" "" (JR.new BasicArrayListD.jnew_0 [])), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.field "LEFT" (JR.local "touchMotionGestureFactory")) ]), 
+                        JR.exec (JR.invoke "addMotionGestureAction_2" (JR.local "motionGestureConfiguration") [ (JR.local "list"), (JR.callStatic LeftTouchInputToGameKeyEventAction.jm_getInstance_0 []) ]), 
+                        JR.exec (JR.setLocal "list" "" (JR.new BasicArrayListD.jnew_0 [])), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.field "RIGHT" (JR.local "touchMotionGestureFactory")) ]), 
+                        JR.exec (JR.invoke "addMotionGestureAction_2" (JR.local "motionGestureConfiguration") [ (JR.local "list"), (JR.callStatic RightTouchInputToGameKeyEventAction.jm_getInstance_0 []) ]), 
+                        JR.exec (JR.setLocal "list" "" (JR.new BasicArrayListD.jnew_0 [])), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.field "DOWN" (JR.local "touchMotionGestureFactory")) ]), 
+                        JR.exec (JR.invoke "addMotionGestureAction_2" (JR.local "motionGestureConfiguration") [ (JR.local "list"), (JR.callStatic DownTouchInputToGameKeyEventAction.jm_getInstance_0 []) ]), 
+                        JR.exec (JR.setLocal "list" "" (JR.new BasicArrayListD.jnew_0 [])), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.field "UP" (JR.local "touchMotionGestureFactory")) ]), 
+                        JR.exec (JR.invoke "addMotionGestureAction_2" (JR.local "motionGestureConfiguration") [ (JR.local "list"), (JR.callStatic UpTouchInputToGameKeyEventAction.jm_getInstance_0 []) ]), 
+                        JR.exec (JR.setLocal "list" "" (JR.new BasicArrayListD.jnew_0 [])), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.field "RELEASED" (JR.local "touchMotionGestureFactory")) ]), 
+                        JR.exec (JR.invoke "addMotionGestureAction_2" (JR.local "motionGestureConfiguration") [ (JR.local "list"), (JR.callStatic ReleaseTouchInputToGameKeyEventAction.jm_getInstance_0 []) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "INIT" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

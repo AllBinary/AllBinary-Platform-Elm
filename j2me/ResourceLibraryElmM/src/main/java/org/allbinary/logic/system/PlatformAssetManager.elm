@@ -1,105 +1,102 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system
-module PlatformAssetManager where
+module Org.Allbinary.Logic.System.PlatformAssetManager exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified InputStream -- java.io.InputStream
-import qualified ResourceUtil -- org.allbinary.data.resource.ResourceUtil
+{-| Generated Code Do Not Modify package org.allbinary.logic.system
+-}
 
-data PlatformAssetManager = PlatformAssetManager
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull PlatformAssetManager where
-    javaNull = javaNullRecord "PlatformAssetManager"
-
-instance JavaEquals PlatformAssetManager where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlatformAssetManager where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlatformAssetManager where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: PlatformAssetManager
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PlatformAssetManager
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = PlatformAssetManager header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getResourceAsStream" (\() -> getResourceAsStream_impl this)
-    pure this
-
-initFields_ :: PlatformAssetManager -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO PlatformAssetManager
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PlatformAssetManager -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Data.Resource.ResourceUtil as ResourceUtil
 
 
-getInstance :: IO (PlatformAssetManager)
-getInstance = do
-        pure (PlatformAssetManager.instance_)
+jclass : String
+jclass =
+    "PlatformAssetManager"
 
 
--- throws Exception
-getResourceAsStream :: (JavaObjectClass this_) => this_ -> String -> IO (InputStream.InputStream)
-getResourceAsStream object_ a1 = jmethod object_ "getResourceAsStream" (\() -> (getResourceAsStream_impl (javaCast object_ :: PlatformAssetManager))) () a1
+jchain : List String
+jchain =
+    [ "PlatformAssetManager" ]
 
-getResourceAsStream_super :: (JavaObjectClass this_) => this_ -> String -> IO (InputStream.InputStream)
-getResourceAsStream_super object_ a1 = (getResourceAsStream_impl (javaCast object_ :: PlatformAssetManager)) a1
 
-getResourceAsStream_impl :: PlatformAssetManager -> String -> IO (InputStream.InputStream)
-getResourceAsStream_impl this resource = do
-        resourceUtil <- (ResourceUtil.getInstance)
-        inputStream <- (ResourceUtil.getResourceAsStream resourceUtil resource)
-        pure (inputStream)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getResourceAsStream_1", jm_getResourceAsStream_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlatformAssetManager"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getResourceAsStream_1", jm_getResourceAsStream_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "PlatformAssetManager" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getResourceAsStream_1 : JR.Method
+jm_getResourceAsStream_1 jheap jthis jargs =
+    JR.method [ ( "resource", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "resourceUtil" "" (JR.callStatic ResourceUtil.jm_getInstance_0 []), 
+                    JR.declare "inputStream" "" (JR.invoke "getResourceAsStream_1" (JR.local "resourceUtil") [ (JR.local "resource") ]), 
+                    JR.return (JR.local "inputStream") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

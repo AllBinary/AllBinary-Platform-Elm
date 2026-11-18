@@ -1,268 +1,225 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.layer
-module LayerManager where
+module Org.Allbinary.Layer.LayerManager exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LayerManagerLoggingBase -- same package or java.lang
-import qualified AllBinaryLayer -- same package or java.lang
-import qualified Layer -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified SynchObject -- org.allbinary.thread.SynchObject
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified ABSystemWrapper -- org.allbinary.logic.ABSystemWrapper
+{-| Generated Code Do Not Modify package org.allbinary.layer
+-}
 
-data LayerManager = LayerManager
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , systemWrapper :: IORef (ABSystemWrapper.ABSystemWrapper)
-    , tsUtil :: IORef (TsUtil.TsUtil)
-    , layerManagerLogging :: IORef (LayerManagerLoggingBase.LayerManagerLoggingBase)
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    , anyType :: IORef (SynchObject.SynchObject)
-    }
-
-instance JavaNull LayerManager where
-    javaNull = javaNullRecord "LayerManager"
-
-instance JavaEquals LayerManager where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LayerManager where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LayerManager where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LayerManager
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    systemWrapper <- newIORef javaNull
-    tsUtil <- newIORef javaNull
-    layerManagerLogging <- newIORef javaNull
-    list <- newIORef javaNull
-    anyType <- newIORef javaNull
-    let this = LayerManager header_ logUtil commonStrings systemWrapper tsUtil layerManagerLogging list anyType
-    jregisterLevel header_ this
-    jregisterMethod header_ "contains" (\() -> contains_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "insert" (\() -> insert_impl this)
-    jregisterMethod header_ "append" (\() -> append_impl this)
-    jregisterMethod header_ "appendAt" (\() -> appendAt_impl this)
-    jregisterMethod header_ "remove" (\() -> remove_impl this)
-    jregisterMethod header_ "getLayerAt" (\() -> getLayerAt_impl this)
-    jregisterMethod header_ "getSize" (\() -> getSize_impl this)
-    jregisterMethod header_ "cleanup" (\() -> cleanup_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: LayerManager -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.systemWrapper =<< (ABSystemWrapper.getInstance)
-    jset this.tsUtil =<< (TsUtil.getInstance)
-    jset this.layerManagerLogging (javaNull)
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    jset this.anyType =<< (SynchObject.new_)
-    pure ()
-
-new_1 :: LayerManagerLoggingBase.LayerManagerLoggingBase -> IO LayerManager
-new_1 layerManagerLogging = do
-    this <- newRecord_
-    init_1 this layerManagerLogging
-    pure this
-
-init_1 :: LayerManager -> LayerManagerLoggingBase.LayerManagerLoggingBase -> IO ()
-init_1 this layerManagerLogging = do
-        initFields_ this
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).sTART) this (jget ((jget (this).commonStrings)).cONSTRUCTOR))
-        jset (this).layerManagerLogging (layerManagerLogging)
-        pure ()
+import JR
+import Org.Allbinary.Logic.ABSystemWrapper as ABSystemWrapper
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Thread.SynchObject as SynchObject
+import Org.Allbinary.TsUtil as TsUtil
 
 
-contains :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (Bool)
-contains object_ a1 = jmethod object_ "contains" (\() -> (contains_impl (javaCast object_ :: LayerManager))) () a1
-
-contains_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (Bool)
-contains_super object_ a1 = (contains_impl (javaCast object_ :: LayerManager)) a1
-
-contains_impl :: LayerManager -> AllBinaryLayer.AllBinaryLayer -> IO (Bool)
-contains_impl this layerInterface = do
-        (BasicArrayList.contains ((jget (this).list)) layerInterface)
+jclass : String
+jclass =
+    "LayerManager"
 
 
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-update object_ a1 = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: LayerManager))) () a1
-
-update_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-update_super object_ a1 = (update_impl (javaCast object_ :: LayerManager)) a1
-
-update_impl :: LayerManager -> AllBinaryLayer.AllBinaryLayer -> IO (())
-update_impl this layerInterface = do
-    javaCatchReturn $ do
-        had <- (BasicArrayList.remove ((jget (this).list)) layerInterface)
-        when had $ do
-            nextLayerInterface <- newIORef (javaNull)
-            size <- (BasicArrayList.size ((jget (this).list)))
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                jset nextLayerInterface ((javaCast (jio (BasicArrayList.get ((jget (this).list)) index)) :: AllBinaryLayer.AllBinaryLayer))
-                when ((jio (AllBinaryLayer.getZP layerInterface)) > (jio (AllBinaryLayer.getZP ((jget nextLayerInterface))))) $ do
-                    Control.Monad.void (BasicArrayList.addAt ((jget (this).list)) index layerInterface)
-                    javaReturn (())
-            Control.Monad.void (BasicArrayList.add ((jget (this).list)) layerInterface)
-    pure ()
+jchain : List String
+jchain =
+    [ "LayerManager" ]
 
 
--- throws Exception
-insert :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-insert object_ a1 = jmethod object_ "insert" (\() -> (insert_impl (javaCast object_ :: LayerManager))) () a1
-
-insert_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-insert_super object_ a1 = (insert_impl (javaCast object_ :: LayerManager)) a1
-
-insert_impl :: LayerManager -> AllBinaryLayer.AllBinaryLayer -> IO (())
-insert_impl this layerInterface = do
-    javaCatchReturn $ do
-        nextLayerInterface <- newIORef (javaNull)
-        size <- (BasicArrayList.size ((jget (this).list)))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset nextLayerInterface ((javaCast (jio (BasicArrayList.get ((jget (this).list)) index)) :: AllBinaryLayer.AllBinaryLayer))
-            when ((jio (AllBinaryLayer.getZP layerInterface)) > (jio (AllBinaryLayer.getZP ((jget nextLayerInterface))))) $ do
-                Control.Monad.void (LayerManager.appendAt this layerInterface index)
-                javaReturn (())
-        Control.Monad.void (LayerManager.append this layerInterface)
-    pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "systemWrapper", JR.defaultOf "" ), ( "tsUtil", JR.defaultOf "" ), ( "layerManagerLogging", JR.defaultOf "" ), ( "list", JR.defaultOf "" ), ( "anyType", JR.defaultOf "" ) ]
 
 
--- throws Exception
-append :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append object_ a1 = jmethod object_ "append" (\() -> (append_impl (javaCast object_ :: LayerManager))) () a1
-
-append_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append_super object_ a1 = (append_impl (javaCast object_ :: LayerManager)) a1
-
-append_impl :: LayerManager -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append_impl this layerInterface = do
-        Control.Monad.void (LayerManagerLoggingBase.append ((jget (this).layerManagerLogging)) layerInterface)
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) layerInterface)
-        pure ()
-
-
--- throws Exception
-appendAt :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt object_ a1 a2 = jmethod object_ "appendAt" (\() -> (appendAt_impl (javaCast object_ :: LayerManager))) () a1 a2
-
-appendAt_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt_super object_ a1 a2 = (appendAt_impl (javaCast object_ :: LayerManager)) a1 a2
-
-appendAt_impl :: LayerManager -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt_impl this layerInterface index = do
-        Control.Monad.void (LayerManagerLoggingBase.appendAt ((jget (this).layerManagerLogging)) layerInterface index)
-        Control.Monad.void (BasicArrayList.addAt ((jget (this).list)) index layerInterface)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "contains_1", jm_contains_1 )
+        , ( "update_1", jm_update_1 )
+        , ( "insert_1", jm_insert_1 )
+        , ( "append_1", jm_append_1 )
+        , ( "appendAt_2", jm_appendAt_2 )
+        , ( "remove_1", jm_remove_1 )
+        , ( "getLayerAt_1", jm_getLayerAt_1 )
+        , ( "getSize_0", jm_getSize_0 )
+        , ( "cleanup_0", jm_cleanup_0 )
+        , ( "paint_3", jm_paint_3 ) ]
+        JR.noMethods
 
 
--- throws Exception
-remove :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove object_ a1 = jmethod object_ "remove" (\() -> (remove_impl (javaCast object_ :: LayerManager))) () a1
-
-remove_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove_super object_ a1 = (remove_impl (javaCast object_ :: LayerManager)) a1
-
-remove_impl :: LayerManager -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove_impl this layerInterface = do
-        do -- synchronized
-            Control.Monad.void (LayerManagerLoggingBase.remove ((jget (this).layerManagerLogging)) layerInterface)
-            result <- (BasicArrayList.remove ((jget (this).list)) layerInterface)
-            Control.Monad.void (LayerManagerLoggingBase.removeResult ((jget (this).layerManagerLogging)) this layerInterface result)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LayerManager"
+        [ ( "jm_contains_1", jm_contains_1 ), ( "jm_update_1", jm_update_1 ), ( "jm_insert_1", jm_insert_1 ), ( "jm_append_1", jm_append_1 ), ( "jm_appendAt_2", jm_appendAt_2 ), ( "jm_remove_1", jm_remove_1 ), ( "jm_getLayerAt_1", jm_getLayerAt_1 ), ( "jm_getSize_0", jm_getSize_0 ), ( "jm_cleanup_0", jm_cleanup_0 ), ( "jm_paint_3", jm_paint_3 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
 
-getLayerAt :: (JavaObjectClass this_) => this_ -> Int -> IO (Layer.Layer)
-getLayerAt object_ a1 = jmethod object_ "getLayerAt" (\() -> (getLayerAt_impl (javaCast object_ :: LayerManager))) () a1
-
-getLayerAt_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Layer.Layer)
-getLayerAt_super object_ a1 = (getLayerAt_impl (javaCast object_ :: LayerManager)) a1
-
-getLayerAt_impl :: LayerManager -> Int -> IO (Layer.Layer)
-getLayerAt_impl this index = do
-        pure ((javaCast (jindex ((jget ((jget (this).list)).objectArray)) (index)) :: Layer.Layer))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize object_ = jmethod object_ "getSize" (\() -> (getSize_impl (javaCast object_ :: LayerManager))) ()
-
-getSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize_super object_ = (getSize_impl (javaCast object_ :: LayerManager))
-
-getSize_impl :: LayerManager -> IO (Int)
-getSize_impl this = do
-        (BasicArrayList.size ((jget (this).list)))
-
-
--- throws Exception
-cleanup :: (JavaObjectClass this_) => this_ -> IO (())
-cleanup object_ = jmethod object_ "cleanup" (\() -> (cleanup_impl (javaCast object_ :: LayerManager))) ()
-
-cleanup_super :: (JavaObjectClass this_) => this_ -> IO (())
-cleanup_super object_ = (cleanup_impl (javaCast object_ :: LayerManager))
-
-cleanup_impl :: LayerManager -> IO (())
-cleanup_impl this = do
-        do -- synchronized
-            Control.Monad.void (BasicArrayList.clear ((jget (this).list)))
-            Control.Monad.void (LayerManagerLoggingBase.clear ((jget (this).layerManagerLogging)))
-            Control.Monad.void (TsUtil.gc ((jget (this).tsUtil)))
-            Control.Monad.void (TsUtil.gc ((jget (this).tsUtil)))
-        pure ()
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "layerManagerLogging", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "systemWrapper" "" JR.this (JR.callStatic ABSystemWrapper.jm_getInstance_0 [])),
+                JR.exec (JR.setField "tsUtil" "" JR.this (JR.callStatic TsUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                JR.exec (JR.setField "anyType" "" JR.this (JR.new SynchObject.jnew_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.setField "layerManagerLogging" "" JR.this (JR.local "layerManagerLogging")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paint object_ a1 a2 a3 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: LayerManager))) () a1 a2 a3
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paint_super object_ a1 a2 a3 = (paint_impl (javaCast object_ :: LayerManager)) a1 a2 a3
 
-paint_impl :: LayerManager -> Graphics.Graphics -> Int -> Int -> IO (())
-paint_impl this g x y = do
-        do -- synchronized
-            comp <- newIORef (javaNull)
-            index <- newIORef =<< (BasicArrayList.size ((jget (this).list)))
-            fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-                jset comp ((javaCast (jindex ((jget ((jget (this).list)).objectArray)) ((jget index))) :: Layer.Layer))
-                when (((jget comp) /= javaNull) && (jio (Layer.isVisible ((jget comp))))) $ do
-                    Control.Monad.void (Layer.paint ((jget comp)) g)
-        pure ()
+jm_contains_1 : JR.Method
+jm_contains_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "contains_1" (JR.thisField "list") [ (JR.local "layerInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_update_1 : JR.Method
+jm_update_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "had" "Z" (JR.invoke "remove_1" (JR.thisField "list") [ (JR.local "layerInterface") ]), 
+                    JR.ifElse (JR.local "had") (JR.run [ 
+                        JR.declare "nextLayerInterface" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "list") []), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68531 -> (JR.setLocal "index" "I" (JR.lit jwN68531))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "nextLayerInterface" "" (JR.invoke "get_1" (JR.thisField "list") [ (JR.local "index") ])), 
+                            JR.ifElse (JR.map2 JR.greater (JR.invoke "getZP_0" (JR.local "layerInterface") []) (JR.invoke "getZP_0" (JR.local "nextLayerInterface") [])) (JR.run [ 
+                                JR.exec (JR.invoke "addAt_2" (JR.thisField "list") [ (JR.local "index"), (JR.local "layerInterface") ]), 
+                                JR.returnVoid ]) identity ]) ], 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "layerInterface") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_insert_1 : JR.Method
+jm_insert_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "nextLayerInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "list") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68925 -> (JR.setLocal "index" "I" (JR.lit jwN68925))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "nextLayerInterface" "" (JR.invoke "get_1" (JR.thisField "list") [ (JR.local "index") ])), 
+                        JR.ifElse (JR.map2 JR.greater (JR.invoke "getZP_0" (JR.local "layerInterface") []) (JR.invoke "getZP_0" (JR.local "nextLayerInterface") [])) (JR.run [ 
+                            JR.exec (JR.invoke "appendAt_2" JR.this [ (JR.local "layerInterface"), (JR.local "index") ]), 
+                            JR.returnVoid ]) identity ]) ], 
+                    JR.exec (JR.invoke "append_1" JR.this [ (JR.local "layerInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_append_1 : JR.Method
+jm_append_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "append_1" (JR.thisField "layerManagerLogging") [ (JR.local "layerInterface") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "layerInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_appendAt_2 : JR.Method
+jm_appendAt_2 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ), ( "index", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "appendAt_2" (JR.thisField "layerManagerLogging") [ (JR.local "layerInterface"), (JR.local "index") ]), 
+                    JR.exec (JR.invoke "addAt_2" (JR.thisField "list") [ (JR.local "index"), (JR.local "layerInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_remove_1 : JR.Method
+jm_remove_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ 
+                    (JR.run [ 
+                        JR.exec (JR.invoke "remove_1" (JR.thisField "layerManagerLogging") [ (JR.local "layerInterface") ]), 
+                        JR.declare "result" "Z" (JR.invoke "remove_1" (JR.thisField "list") [ (JR.local "layerInterface") ]), 
+                        JR.exec (JR.invoke "removeResult_3" (JR.thisField "layerManagerLogging") [ JR.this, (JR.local "layerInterface"), (JR.local "result") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLayerAt_1 : JR.Method
+jm_getLayerAt_1 jheap jthis jargs =
+    JR.method [ ( "index", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSize_0 : JR.Method
+jm_getSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "size_0" (JR.thisField "list") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_cleanup_0 : JR.Method
+jm_cleanup_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    (JR.run [ 
+                        JR.exec (JR.invoke "clear_0" (JR.thisField "list") []), 
+                        JR.exec (JR.invoke "clear_0" (JR.thisField "layerManagerLogging") []), 
+                        JR.exec (JR.invoke "gc_0" (JR.thisField "tsUtil") []), 
+                        JR.exec (JR.invoke "gc_0" (JR.thisField "tsUtil") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_3 : JR.Method
+jm_paint_3 jheap jthis jargs =
+    JR.method [ ( "g", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    (JR.run [ 
+                        JR.declare "comp" "" (JR.lit (JR.defaultOf "")), 
+                        JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN70046 -> (JR.setLocal "index" "I" (JR.lit jwN70046))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                            JR.exec (JR.setLocal "comp" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index"))), 
+                            JR.ifElse (JR.and (JR.map2 JR.notEquals (JR.local "comp") JR.null) (JR.invoke "isVisible_0" (JR.local "comp") [])) (JR.run [ 
+                                JR.exec (JR.invoke "paint_1" (JR.local "comp") [ (JR.local "g") ]) ]) identity ]) ] ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

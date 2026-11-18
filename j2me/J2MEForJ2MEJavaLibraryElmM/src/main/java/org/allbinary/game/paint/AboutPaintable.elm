@@ -1,188 +1,151 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
-module AboutPaintable (module AboutPaintable, module Paintable) where
+module Org.Allbinary.Game.Paint.AboutPaintable exposing (..)
 
-import Paintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, getPaintableArrayInstance, getPaintableArrayInstance_super, getPaintableArrayInstance_impl, paint, paint_super, paint_impl, displayInfoSingleton, aBOUT, info, developers, paintableArray, myFontProcessor, charHeight, aboutBeginWidth, infoBeginWidth, developersBeginWidth, anchor)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Anchor -- org.allbinary.graphics.Anchor
-import qualified CanvasStrings -- org.allbinary.graphics.displayable.CanvasStrings
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
+{-| Generated Code Do Not Modify package org.allbinary.game.paint
+-}
 
--- implements UpdateMyFontInterface
-data AboutPaintable = AboutPaintable
-    { header_ :: JavaHeader
-    , base :: Paintable.Paintable
-    , displayInfoSingleton :: IORef (DisplayInfoSingleton.DisplayInfoSingleton)
-    , aBOUT :: IORef (String)
-    , info :: IORef (JavaArray (String))
-    , developers :: IORef (JavaArray (String))
-    , paintableArray :: IORef (JavaArray (Paintable.Paintable))
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , charHeight :: IORef (Int)
-    , aboutBeginWidth :: IORef (Int)
-    , infoBeginWidth :: IORef (JavaArray (Int))
-    , developersBeginWidth :: IORef (JavaArray (Int))
-    , anchor :: IORef (Int)
-    }
-
-instance JavaNull AboutPaintable where
-    javaNull = javaNullRecord "AboutPaintable"
-
-instance JavaEquals AboutPaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AboutPaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AboutPaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AboutPaintable
-newRecord_ = do
-    base <- Paintable.newRecord_
-    let header_ = base.header_
-    displayInfoSingleton <- newIORef javaNull
-    aBOUT <- newIORef ""
-    info <- newIORef javaNull
-    developers <- newIORef javaNull
-    paintableArray <- newIORef javaNull
-    myFontProcessor <- newIORef javaNull
-    charHeight <- newIORef 0
-    aboutBeginWidth <- newIORef 0
-    infoBeginWidth <- newIORef javaNull
-    developersBeginWidth <- newIORef javaNull
-    anchor <- newIORef 0
-    let this = AboutPaintable header_ base displayInfoSingleton aBOUT info developers paintableArray myFontProcessor charHeight aboutBeginWidth infoBeginWidth developersBeginWidth anchor
-    jregisterLevel header_ this
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "getPaintableArrayInstance" (\() -> getPaintableArrayInstance_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: AboutPaintable -> IO ()
-initFields_ this = do
-    jset this.displayInfoSingleton =<< (DisplayInfoSingleton.getInstance)
-    jset this.aBOUT ((jget ((jio (CanvasStrings.getInstance))).aBOUT))
-    jset this.info (javaNull)
-    jset this.developers (javaNull)
-    jset this.paintableArray ((jarrayFromList [(javaCast this :: Paintable.Paintable)]))
-    jset this.myFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.charHeight (0)
-    jset this.aboutBeginWidth (0)
-    jset this.infoBeginWidth (javaNull)
-    jset this.developersBeginWidth (javaNull)
-    jset this.anchor (Anchor.tOP_LEFT)
-    pure ()
+import JR
+import Org.Allbinary.Graphics.Anchor as Anchor
+import Org.Allbinary.Graphics.Displayable.CanvasStrings as CanvasStrings
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Graphics.Paint.Paintable as Paintable
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
 
 
-getInstance :: JavaArray (String) -> JavaArray (String) -> IO (AboutPaintable)
-getInstance info developers = do
-        (new_2 info developers)
-
-new_2 :: JavaArray (String) -> JavaArray (String) -> IO AboutPaintable
-new_2 info developers = do
-    this <- newRecord_
-    init_2 this info developers
-    pure this
-
-init_2 :: AboutPaintable -> JavaArray (String) -> JavaArray (String) -> IO ()
-init_2 this info developers = do
-        Paintable.init_ this.base
-        initFields_ this
-        jset (this).info (info)
-        jset (this).infoBeginWidth ((jnewArray ((jlength (jget (this).info))) 0))
-        jset (this).developers (developers)
-        jset (this).developersBeginWidth ((jnewArray ((jlength (jget (this).developers))) 0))
-        pure ()
+jclass : String
+jclass =
+    "AboutPaintable"
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: AboutPaintable))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: AboutPaintable)) a1
-
-updateMeasurement_impl :: AboutPaintable -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        assignedValue <- (Font.getHeight font)
-        jset (this).charHeight (assignedValue)
-        jset (this).aboutBeginWidth ((((jio (Font.stringWidth font (jget (this).aBOUT))) `Data.Bits.shiftR` 1)))
-        let infoSize = (jlength (jget (this).info))
-        forM_ [0 .. infoSize - 1] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex ((jget (this).infoBeginWidth)) (index) ((((jio (Font.stringWidth font (jindex ((jget (this).info)) (index)))) `Data.Bits.shiftR` 1)))
-        let size = (jlength (jget (this).developers))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex ((jget (this).developersBeginWidth)) (index) ((((jio (Font.stringWidth font (jindex ((jget (this).developers)) (index)))) `Data.Bits.shiftR` 1)))
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "AboutPaintable" ]
+        ++ Paintable.jchain
+        ++ UpdateMyFontInterface.jchain
 
 
-getPaintableArrayInstance :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Paintable.Paintable))
-getPaintableArrayInstance object_ = jmethod object_ "getPaintableArrayInstance" (\() -> (getPaintableArrayInstance_impl (javaCast object_ :: AboutPaintable))) ()
-
-getPaintableArrayInstance_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Paintable.Paintable))
-getPaintableArrayInstance_super object_ = (getPaintableArrayInstance_impl (javaCast object_ :: AboutPaintable))
-
-getPaintableArrayInstance_impl :: AboutPaintable -> IO (JavaArray (Paintable.Paintable))
-getPaintableArrayInstance_impl this = do
-        pure ((jget (this).paintableArray))
+jfields : List ( String, JR.JValue )
+jfields =
+    Paintable.jfields ++ [ ( "displayInfoSingleton", JR.defaultOf "" ), ( "ABOUT", JR.defaultOf "" ), ( "info", JR.defaultOf "" ), ( "developers", JR.defaultOf "" ), ( "paintableArray", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "charHeight", JR.defaultOf "I" ), ( "aboutBeginWidth", JR.defaultOf "I" ), ( "infoBeginWidth", JR.defaultOf "" ), ( "developersBeginWidth", JR.defaultOf "" ), ( "anchor", JR.defaultOf "I" ) ]
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: AboutPaintable))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getInstance_2", jm_getInstance_2 )
+        , ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "getPaintableArrayInstance_0", jm_getPaintableArrayInstance_0 )
+        , ( "paint_1", jm_paint_1 ) ]
+        Paintable.jvtable
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: AboutPaintable)) a1
 
-paint_impl :: AboutPaintable -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-        halfWidth <- (DisplayInfoSingleton.getLastHalfWidth ((jget (this).displayInfoSingleton)))
-        Control.Monad.void (Graphics.drawString graphics (jget (this).aBOUT) (halfWidth - (jget (this).aboutBeginWidth)) (2 * (jget (this).charHeight)) (jget (this).anchor))
-        let infoSize = (jlength (jget (this).info))
-        forM_ [0 .. infoSize - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (Graphics.drawString graphics (jindex ((jget (this).info)) (index)) (halfWidth - (jindex ((jget (this).infoBeginWidth)) (index))) (((4 + index)) * (jget (this).charHeight)) (jget (this).anchor))
-        let size = (jlength (jget (this).developers))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (Graphics.drawString graphics (jindex ((jget (this).developers)) (index)) (halfWidth - (jindex ((jget (this).developersBeginWidth)) (index))) ((((5 + infoSize) + index)) * (jget (this).charHeight)) (jget (this).anchor))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AboutPaintable"
+        [ ( "jm_getInstance_2", jm_getInstance_2 ), ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_getPaintableArrayInstance_0", jm_getPaintableArrayInstance_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "info", "" ), ( "developers", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Paintable.jinit_0 JR.this []),
+                JR.exec (JR.setField "displayInfoSingleton" "" JR.this (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 [])),
+                JR.exec (JR.setField "ABOUT" "" JR.this (JR.field "ABOUT" (JR.callStatic CanvasStrings.jm_getInstance_0 []))),
+                JR.exec (JR.setField "paintableArray" "" JR.this (JR.arrayOf "" [ JR.this ])),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "anchor" "I" JR.this Anchor.jstatic_TOP_LEFT),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "info" "" JR.this (JR.local "info")), 
+                    JR.exec (JR.setField "infoBeginWidth" "" JR.this (JR.newArray "I" [ (JR.alength (JR.thisField "info")) ])), 
+                    JR.exec (JR.setField "developers" "" JR.this (JR.local "developers")), 
+                    JR.exec (JR.setField "developersBeginWidth" "" JR.this (JR.newArray "I" [ (JR.alength (JR.thisField "developers")) ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getInstance_2 : JR.Method
+jm_getInstance_2 jheap jthis jargs =
+    JR.method [ ( "info", "" ), ( "developers", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_2 [ (JR.local "info"), (JR.local "developers") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "charHeight" "I" JR.this (JR.invoke "getHeight_0" (JR.local "font") [])), 
+                    JR.exec (JR.setField "aboutBeginWidth" "I" JR.this ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.thisField "ABOUT") ]) (JR.int 1)))), 
+                    JR.declare "infoSize" "I" (JR.alength (JR.thisField "info")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "infoSize")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68587 -> (JR.setLocal "index" "I" (JR.lit jwN68587))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "infoBeginWidth") (\jaN68452 -> JR.andThen (JR.local "index") (\jiN68452 -> (JR.aset (JR.lit jaN68452) (JR.lit jiN68452) ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.aget (JR.thisField "info") (JR.local "index")) ]) (JR.int 1))))))) ]) ], 
+                    JR.declare "size" "I" (JR.alength (JR.thisField "developers")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68797 -> (JR.setLocal "index" "I" (JR.lit jwN68797))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "developersBeginWidth") (\jaN68662 -> JR.andThen (JR.local "index") (\jiN68662 -> (JR.aset (JR.lit jaN68662) (JR.lit jiN68662) ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.aget (JR.thisField "developers") (JR.local "index")) ]) (JR.int 1))))))) ]) ], 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPaintableArrayInstance_0 : JR.Method
+jm_getPaintableArrayInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "paintableArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.declare "halfWidth" "I" (JR.invoke "getLastHalfWidth_0" (JR.thisField "displayInfoSingleton") []), 
+                    JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.thisField "ABOUT"), (JR.map2 JR.sub (JR.local "halfWidth") (JR.thisField "aboutBeginWidth")), (JR.map2 JR.mul (JR.int 2) (JR.thisField "charHeight")), (JR.thisField "anchor") ]), 
+                    JR.declare "infoSize" "I" (JR.alength (JR.thisField "info")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "infoSize")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69371 -> (JR.setLocal "index" "I" (JR.lit jwN69371))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.aget (JR.thisField "info") (JR.local "index")), (JR.map2 JR.sub (JR.local "halfWidth") (JR.aget (JR.thisField "infoBeginWidth") (JR.local "index"))), (JR.map2 JR.mul ((JR.map2 JR.add (JR.int 4) (JR.local "index"))) (JR.thisField "charHeight")), (JR.thisField "anchor") ]) ]) ], 
+                    JR.declare "size" "I" (JR.alength (JR.thisField "developers")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69637 -> (JR.setLocal "index" "I" (JR.lit jwN69637))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.aget (JR.thisField "developers") (JR.local "index")), (JR.map2 JR.sub (JR.local "halfWidth") (JR.aget (JR.thisField "developersBeginWidth") (JR.local "index"))), (JR.map2 JR.mul ((JR.map2 JR.add (JR.map2 JR.add (JR.int 5) (JR.local "infoSize")) (JR.local "index"))) (JR.thisField "charHeight")), (JR.thisField "anchor") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

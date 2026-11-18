@@ -1,81 +1,75 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
-module GameConfigurationGauge (module GameConfigurationGauge, module Gauge) where
+module Org.Allbinary.Game.Configuration.GameConfigurationGauge exposing (..)
 
-import Gauge hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameConfiguration -- same package or java.lang
-import qualified Gauge -- javax.microedition.lcdui.Gauge
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration
+-}
 
-data GameConfigurationGauge = GameConfigurationGauge
-    { header_ :: JavaHeader
-    , base :: Gauge.Gauge
-    }
+import JR
+import Javax.Microedition.Lcdui.Gauge as Gauge
 
-instance JavaNull GameConfigurationGauge where
-    javaNull = javaNullRecord "GameConfigurationGauge"
 
-instance JavaEquals GameConfigurationGauge where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "GameConfigurationGauge"
 
-instance Eq GameConfigurationGauge where
-    (==) = jrecordEquals
 
-instance JavaObjectClass GameConfigurationGauge where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "GameConfigurationGauge" ]
+        ++ Gauge.jchain
 
-newRecord_ :: IO GameConfigurationGauge
-newRecord_ = do
-    base <- Gauge.newRecord_
-    let header_ = base.header_
-    let this = GameConfigurationGauge header_ base
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: GameConfigurationGauge -> IO ()
-initFields_ this = do
-    pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    Gauge.jfields ++ []
 
-new_1 :: GameConfiguration.GameConfiguration -> IO GameConfigurationGauge
-new_1 gameConfiguration = do
-    this <- newRecord_
-    init_1 this gameConfiguration
-    pure this
 
-init_1 :: GameConfigurationGauge -> GameConfiguration.GameConfiguration -> IO ()
-init_1 this gameConfiguration = do
-        Gauge.init_4 this.base (jio (GameConfiguration.getName gameConfiguration)) (jio (GameConfiguration.isModifiable gameConfiguration)) ((jio (GameConfiguration.getMaxValue gameConfiguration)) - (jio (GameConfiguration.getMinValue gameConfiguration))) ((jio (GameConfiguration.getValue gameConfiguration)) - (jio (GameConfiguration.getMinValue gameConfiguration)))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+jvtable =
+    JR.vtable
+        []
+        Gauge.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameConfigurationGauge"
+        [ ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "gameConfiguration", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Gauge.jinit_4 JR.this [ (JR.invoke "getName_0" (JR.local "gameConfiguration") []), (JR.invoke "booleanValue_0" (JR.invoke "isModifiable_0" (JR.local "gameConfiguration") []) []), (JR.map2 JR.sub (JR.invoke "intValue_0" (JR.invoke "getMaxValue_0" (JR.local "gameConfiguration") []) []) (JR.invoke "intValue_0" (JR.invoke "getMinValue_0" (JR.local "gameConfiguration") []) [])), (JR.map2 JR.sub (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.local "gameConfiguration") []) []) (JR.invoke "intValue_0" (JR.invoke "getMinValue_0" (JR.local "gameConfiguration") []) [])) ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

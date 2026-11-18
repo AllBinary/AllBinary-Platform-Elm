@@ -1,157 +1,178 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
-module AllBinaryMediaManager where
+module Org.Allbinary.Media.Audio.AllBinaryMediaManager exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Sounds -- same package or java.lang
-import qualified SoundsFactoryInterface -- same package or java.lang
-import qualified NoPlayer -- same package or java.lang
-import qualified InputStream -- java.io.InputStream
-import qualified Manager -- javax.microedition.media.Manager
-import qualified MediaException -- javax.microedition.media.MediaException
-import qualified Player -- javax.microedition.media.Player
-import qualified MIDPUtil -- org.allbinary.MIDPUtil
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified AudioContentTypeDataFactory -- org.allbinary.audio.AudioContentTypeDataFactory
-import qualified ResourceUtil -- org.allbinary.data.resource.ResourceUtil
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified GameFeatureFactory -- org.allbinary.game.configuration.feature.GameFeatureFactory
-import qualified ProgressCanvasFactory -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.media.audio
+-}
 
-data AllBinaryMediaManager = AllBinaryMediaManager
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull AllBinaryMediaManager where
-    javaNull = javaNullRecord "AllBinaryMediaManager"
-
-instance JavaEquals AllBinaryMediaManager where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryMediaManager where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryMediaManager where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-tHIS :: String
-tHIS = "AllBinaryMediaManagerNoMIPD2"
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AllBinaryMediaManager
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = AllBinaryMediaManager header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: AllBinaryMediaManager -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AllBinaryMediaManager
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllBinaryMediaManager -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Audio.AudioContentTypeDataFactory as AudioContentTypeDataFactory
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Configuration.Feature.GameFeatureFactory as GameFeatureFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.MIDPUtil as MIDPUtil
+import Javax.Microedition.Media.Manager as Manager
+import Org.Allbinary.Media.Audio.NoPlayer as NoPlayer
+import Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressCanvasFactory as ProgressCanvasFactory
+import Org.Allbinary.Data.Resource.ResourceUtil as ResourceUtil
+import Org.Allbinary.Media.Audio.Sounds as Sounds
+import Org.Allbinary.TsUtil as TsUtil
 
 
-isMuted :: IO (Bool)
-isMuted = do
-        pure (False)
+jclass : String
+jclass =
+    "AllBinaryMediaManager"
 
 
-setMuted :: Bool -> IO (())
-setMuted aMuted = do
-        pure ()
+jchain : List String
+jchain =
+    [ "AllBinaryMediaManager" ]
 
 
-update :: IO (Bool)
-update = do
-        pure (True)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
--- throws Exception
-init :: SoundsFactoryInterface.SoundsFactoryInterface -> IO (())
-init soundsFactoryInterface = do
-        logUtil <- (LogUtil.getInstance)
-        commonString <- (CommonStrings.getInstance)
-        Control.Monad.void (LogUtil.putF logUtil (jget (commonString).sTART) (AllBinaryMediaManager.tHIS) (jget (commonString).iNIT))
-        Control.Monad.void (ProgressCanvasFactory.addNormalPortion ((jio (ProgressCanvasFactory.getInstance))) 50 "Media Manager")
-        Control.Monad.void (Sounds.init ((jio (Sounds.new_1 soundsFactoryInterface))))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "isMuted_0", jm_isMuted_0 )
+        , ( "setMuted_1", jm_setMuted_1 )
+        , ( "update_0", jm_update_0 )
+        , ( "init_1", jm_init_1 )
+        , ( "shutdown_1", jm_shutdown_1 )
+        , ( "createPlayer_1", jm_createPlayer_1 )
+        , ( "playTone_3", jm_playTone_3 ) ]
+        JR.noMethods
 
 
--- throws Exception
-shutdown :: SoundsFactoryInterface.SoundsFactoryInterface -> IO (())
-shutdown soundsFactoryInterface = do
-        Control.Monad.void (Sounds.stopAll ((jio (Sounds.new_1 soundsFactoryInterface))))
-        Control.Monad.void (Sounds.closeAll ((jio (Sounds.new_1 soundsFactoryInterface))))
-        Control.Monad.void (TsUtil.gc ((jio (TsUtil.getInstance))))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryMediaManager"
+        [ ( "jm_isMuted_0", jm_isMuted_0 ), ( "jm_setMuted_1", jm_setMuted_1 ), ( "jm_update_0", jm_update_0 ), ( "jm_init_1", jm_init_1 ), ( "jm_shutdown_1", jm_shutdown_1 ), ( "jm_createPlayer_1", jm_createPlayer_1 ), ( "jm_playTone_3", jm_playTone_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_THIS", jstatic_THIS ) ]
+        jheap
 
 
--- throws Exception
-createPlayer :: String -> IO (Player.Player)
-createPlayer resource = do
-    javaCatchReturn $ do
-        if (jio (Features.isFeature ((jio (Features.getInstance))) (jget ((jio (GameFeatureFactory.getInstance))).sOUND))) then do
-            if ((jio (TsUtil.compareTo ((jio (TsUtil.getInstance))) resource (Manager.tONE_DEVICE_LOCATOR))) == 0) then do
-                javaReturn =<< (Manager.createPlayer resource)
-            else do
-                inputStream <- (ResourceUtil.getResourceAsStream ((jio (ResourceUtil.getInstance))) resource)
-                javaReturn =<< (MIDPUtil.createPlayerFromInputStream ((jio (MIDPUtil.getInstance))) inputStream (jio (getName ((jget ((jio (AudioContentTypeDataFactory.getInstance))).mIME_AUDIO_WAV)))))
-        else do
-            javaReturn (NoPlayer.nO_PLAYER)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
--- throws MediaException
-playTone :: Int -> Int -> Int -> IO (())
-playTone frequency time volume = do
-        when (jio (Features.isFeature ((jio (Features.getInstance))) (jget ((jio (GameFeatureFactory.getInstance))).sOUND))) $ do
-            Control.Monad.void (Manager.playTone frequency time volume)
-        pure ()
+jstatic_THIS : JR.M
+jstatic_THIS s =
+    JR.static "AllBinaryMediaManager" jclinit "THIS"
+        (JR.str "AllBinaryMediaManagerNoMIPD2")
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_isMuted_0 : JR.Method
+jm_isMuted_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMuted_1 : JR.Method
+jm_setMuted_1 jheap jthis jargs =
+    JR.method [ ( "aMuted", "Z" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "soundsFactoryInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "logUtil" "" (JR.callStatic LogUtil.jm_getInstance_0 []), 
+                    JR.declare "commonString" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "putF_3" (JR.local "logUtil") [ (JR.field "START" (JR.local "commonString")), jstatic_THIS, (JR.field "INIT" (JR.local "commonString")) ]), 
+                    JR.exec (JR.invoke "addNormalPortion_2" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []) [ (JR.int 50), (JR.str "Media Manager") ]), 
+                    JR.exec (JR.invoke "init_0" (JR.new Sounds.jnew_1 [ (JR.local "soundsFactoryInterface") ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_shutdown_1 : JR.Method
+jm_shutdown_1 jheap jthis jargs =
+    JR.method [ ( "soundsFactoryInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "stopAll_0" (JR.new Sounds.jnew_1 [ (JR.local "soundsFactoryInterface") ]) []), 
+                    JR.exec (JR.invoke "closeAll_0" (JR.new Sounds.jnew_1 [ (JR.local "soundsFactoryInterface") ]) []), 
+                    JR.exec (JR.invoke "gc_0" (JR.callStatic TsUtil.jm_getInstance_0 []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createPlayer_1 : JR.Method
+jm_createPlayer_1 jheap jthis jargs =
+    JR.method [ ( "resource", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.callStatic Features.jm_getInstance_0 []) [ (JR.field "SOUND" (JR.callStatic GameFeatureFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_2" (JR.callStatic TsUtil.jm_getInstance_0 []) [ (JR.local "resource"), Manager.jstatic_TONE_DEVICE_LOCATOR ]) (JR.int 0)) (JR.run [ 
+                            JR.return (JR.callStatic Manager.jm_createPlayer_1 [ (JR.local "resource") ]) ]) (JR.run [ 
+                            JR.declare "inputStream" "" (JR.invoke "getResourceAsStream_1" (JR.callStatic ResourceUtil.jm_getInstance_0 []) [ (JR.local "resource") ]), 
+                            JR.return (JR.invoke "createPlayerFromInputStream_2" (JR.callStatic MIDPUtil.jm_getInstance_0 []) [ (JR.local "inputStream"), (JR.invoke "getName_0" (JR.field "MIME_AUDIO_WAV" (JR.callStatic AudioContentTypeDataFactory.jm_getInstance_0 [])) []) ]) ]) ]) (JR.run [ 
+                        JR.return NoPlayer.jstatic_NO_PLAYER ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_playTone_3 : JR.Method
+jm_playTone_3 jheap jthis jargs =
+    JR.method [ ( "frequency", "I" ), ( "time", "I" ), ( "volume", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.callStatic Features.jm_getInstance_0 []) [ (JR.field "SOUND" (JR.callStatic GameFeatureFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.exec (JR.callStatic Manager.jm_playTone_3 [ (JR.local "frequency"), (JR.local "time"), (JR.local "volume") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

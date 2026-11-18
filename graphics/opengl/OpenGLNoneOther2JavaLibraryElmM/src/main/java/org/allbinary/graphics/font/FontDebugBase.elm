@@ -1,119 +1,120 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.font
-module FontDebugBase where
+module Org.Allbinary.Graphics.Font.FontDebugBase exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
+{-| Generated Code Do Not Modify package org.allbinary.graphics.font
+-}
 
-data FontDebugBase = FontDebugBase
-    { header_ :: JavaHeader
-    , sET_FONT :: IORef (String)
-    }
-
-instance JavaNull FontDebugBase where
-    javaNull = javaNullRecord "FontDebugBase"
-
-instance JavaEquals FontDebugBase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FontDebugBase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FontDebugBase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instanceBase :: FontDebugBase
-{-# NOINLINE instanceBase #-}
-instanceBase = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO FontDebugBase
-newRecord_ = do
-    header_ <- newJavaHeader
-    sET_FONT <- newIORef ""
-    let this = FontDebugBase header_ sET_FONT
-    jregisterLevel header_ this
-    jregisterMethod header_ "debugMetrics" (\() -> debugMetrics_impl this)
-    jregisterMethod header_ "debugDpi" (\() -> debugDpi_impl this)
-    jregisterMethod header_ "debugDimension" (\() -> debugDimension_impl this)
-    pure this
-
-initFields_ :: FontDebugBase -> IO ()
-initFields_ this = do
-    jset this.sET_FONT ("setFont")
-    pure ()
-
-new_ :: IO FontDebugBase
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: FontDebugBase -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (FontDebugBase)
-getInstance = do
-        pure (FontDebugBase.instanceBase)
+
+jclass : String
+jclass =
+    "FontDebugBase"
 
 
-debugMetrics :: (JavaObjectClass this_, JavaObjectClass o3) => this_ -> Font.Font -> Float -> o3 -> StringMaker.StringMaker -> IO (())
-debugMetrics object_ a1 a2 a3 a4 = jmethod object_ "debugMetrics" (\() -> (debugMetrics_impl (javaCast object_ :: FontDebugBase))) () a1 a2 (jtoObject a3) a4
-
-debugMetrics_super :: (JavaObjectClass this_, JavaObjectClass o3) => this_ -> Font.Font -> Float -> o3 -> StringMaker.StringMaker -> IO (())
-debugMetrics_super object_ a1 a2 a3 a4 = (debugMetrics_impl (javaCast object_ :: FontDebugBase)) a1 a2 (jtoObject a3) a4
-
-debugMetrics_impl :: FontDebugBase -> Font.Font -> Float -> JavaObject -> StringMaker.StringMaker -> IO (())
-debugMetrics_impl this currentFont convertedTextSize displayMetricsObject_ stringBuffer = do
-        let displayMetrics = jtoObject displayMetricsObject_
-        pure ()
+jchain : List String
+jchain =
+    [ "FontDebugBase" ]
 
 
-debugDpi :: (JavaObjectClass this_) => this_ -> Int -> StringMaker.StringMaker -> IO (())
-debugDpi object_ a1 a2 = jmethod object_ "debugDpi" (\() -> (debugDpi_impl (javaCast object_ :: FontDebugBase))) () a1 a2
-
-debugDpi_super :: (JavaObjectClass this_) => this_ -> Int -> StringMaker.StringMaker -> IO (())
-debugDpi_super object_ a1 a2 = (debugDpi_impl (javaCast object_ :: FontDebugBase)) a1 a2
-
-debugDpi_impl :: FontDebugBase -> Int -> StringMaker.StringMaker -> IO (())
-debugDpi_impl this densityDpi stringBuffer = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "SET_FONT", JR.defaultOf "" ) ]
 
 
-debugDimension :: (JavaObjectClass this_) => this_ -> Font.Font -> Float -> Int -> StringMaker.StringMaker -> IO (())
-debugDimension object_ a1 a2 a3 a4 = jmethod object_ "debugDimension" (\() -> (debugDimension_impl (javaCast object_ :: FontDebugBase))) () a1 a2 a3 a4
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "debugMetrics_4", jm_debugMetrics_4 )
+        , ( "debugDpi_2", jm_debugDpi_2 )
+        , ( "debugDimension_4", jm_debugDimension_4 ) ]
+        JR.noMethods
 
-debugDimension_super :: (JavaObjectClass this_) => this_ -> Font.Font -> Float -> Int -> StringMaker.StringMaker -> IO (())
-debugDimension_super object_ a1 a2 a3 a4 = (debugDimension_impl (javaCast object_ :: FontDebugBase)) a1 a2 a3 a4
 
-debugDimension_impl :: FontDebugBase -> Font.Font -> Float -> Int -> StringMaker.StringMaker -> IO (())
-debugDimension_impl this currentFont convertedTextSize longestDimensionTotalPixels stringBuffer = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FontDebugBase"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_debugMetrics_4", jm_debugMetrics_4 ), ( "jm_debugDpi_2", jm_debugDpi_2 ), ( "jm_debugDimension_4", jm_debugDimension_4 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instanceBase", jstatic_instanceBase ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instanceBase : JR.M
+jstatic_instanceBase s =
+    JR.static "FontDebugBase" jclinit "instanceBase"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "SET_FONT" "" JR.this (JR.str "setFont")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instanceBase ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_debugMetrics_4 : JR.Method
+jm_debugMetrics_4 jheap jthis jargs =
+    JR.method [ ( "currentFont", "" ), ( "convertedTextSize", "F" ), ( "displayMetrics", "" ), ( "stringBuffer", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_debugDpi_2 : JR.Method
+jm_debugDpi_2 jheap jthis jargs =
+    JR.method [ ( "densityDpi", "I" ), ( "stringBuffer", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_debugDimension_4 : JR.Method
+jm_debugDimension_4 jheap jthis jargs =
+    JR.method [ ( "currentFont", "" ), ( "convertedTextSize", "F" ), ( "longestDimensionTotalPixels", "I" ), ( "stringBuffer", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

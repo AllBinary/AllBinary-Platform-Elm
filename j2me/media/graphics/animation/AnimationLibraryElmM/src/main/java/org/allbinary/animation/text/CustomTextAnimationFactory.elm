@@ -1,192 +1,151 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.text
-module CustomTextAnimationFactory where
+module Org.Allbinary.Animation.Text.CustomTextAnimationFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CustomTextAnimation -- same package or java.lang
-import qualified AdjustCustomTextAnimation -- same package or java.lang
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified AnimationBehaviorFactory -- org.allbinary.animation.AnimationBehaviorFactory
-import qualified AnimationInterfaceFactoryInterface -- org.allbinary.animation.AnimationInterfaceFactoryInterface
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified ScaleProperties -- org.allbinary.media.ScaleProperties
+{-| Generated Code Do Not Modify package org.allbinary.animation.text
+-}
 
--- implements AnimationInterfaceFactoryInterface
-data CustomTextAnimationFactory = CustomTextAnimationFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , animationBehaviorFactory :: IORef (AnimationBehaviorFactory.AnimationBehaviorFactory)
-    , basicColor :: IORef (BasicColor.BasicColor)
-    , text :: IORef (String)
-    , initScaleHeight :: IORef (Int)
-    , dx :: IORef (Int)
-    , dy :: IORef (Int)
-    , font :: IORef (Font.Font)
-    , scaleProperties :: IORef (ScaleProperties.ScaleProperties)
-    }
-
-instance JavaNull CustomTextAnimationFactory where
-    javaNull = javaNullRecord "CustomTextAnimationFactory"
-
-instance JavaEquals CustomTextAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CustomTextAnimationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CustomTextAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CustomTextAnimationFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    animationBehaviorFactory <- newIORef javaNull
-    basicColor <- newIORef javaNull
-    text <- newIORef ""
-    initScaleHeight <- newIORef 0
-    dx <- newIORef 0
-    dy <- newIORef 0
-    font <- newIORef javaNull
-    scaleProperties <- newIORef javaNull
-    let this = CustomTextAnimationFactory header_ logUtil animationBehaviorFactory basicColor text initScaleHeight dx dy font scaleProperties
-    jregisterLevel header_ this
-    AnimationInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    jregisterMethod header_ "setInitialScale" (\() -> setInitialScale_impl this)
-    jregisterMethod header_ "getWidth" (\() -> getWidth_impl this)
-    jregisterMethod header_ "getHeight" (\() -> getHeight_impl this)
-    pure this
-
-initFields_ :: CustomTextAnimationFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.animationBehaviorFactory (javaNull)
-    jset this.basicColor ((jget ((jio (BasicColorFactory.getInstance))).bLACK))
-    jset this.text (javaNull)
-    jset this.initScaleHeight (0)
-    jset this.dx (0)
-    jset this.dy (0)
-    jset this.font (javaNull)
-    jset this.scaleProperties (javaNull)
-    pure ()
+import JR
+import Org.Allbinary.Animation.Text.AdjustCustomTextAnimation as AdjustCustomTextAnimation
+import Org.Allbinary.Animation.AnimationInterfaceFactoryInterface as AnimationInterfaceFactoryInterface
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Animation.Text.CustomTextAnimation as CustomTextAnimation
+import Javax.Microedition.Lcdui.Font as Font
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Media.ScaleProperties as ScaleProperties
 
 
-createDXY :: String -> Int -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO (CustomTextAnimationFactory)
-createDXY text fontSize dx dy animationBehaviorFactory = do
-        customTextAnimationFactory <- (new_3 text fontSize animationBehaviorFactory)
-        jset (customTextAnimationFactory).dx (dx)
-        jset (customTextAnimationFactory).dy (dy)
-        pure (customTextAnimationFactory)
-
-new_3 :: String -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO CustomTextAnimationFactory
-new_3 text fontSize animationBehaviorFactory = do
-    this <- newRecord_
-    init_3 this text fontSize animationBehaviorFactory
-    pure this
-
-init_3 :: CustomTextAnimationFactory -> String -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ()
-init_3 this text fontSize animationBehaviorFactory = do
-        initFields_ this
-        assignedValue <- (ScaleProperties.new_)
-        jset (this).scaleProperties (assignedValue)
-        jset (this).text (text)
-        jset ((jget (this).scaleProperties)).scaleHeight ((fontSize - ((fontSize `quot` 4))))
-        jset (this).initScaleHeight ((jget ((jget (this).scaleProperties)).scaleHeight))
-        jset (this).animationBehaviorFactory (animationBehaviorFactory)
-        assignedValue <- (Font.getFont (Font.fACE_SYSTEM) (Font.sTYLE_PLAIN) (jget (this).initScaleHeight))
-        jset (this).font (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "CustomTextAnimationFactory"
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: CustomTextAnimationFactory))) () a1
-
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: CustomTextAnimationFactory)) a1
-
-getInstance_impl :: CustomTextAnimationFactory -> Int -> IO (Animation.Animation)
-getInstance_impl this instanceId = do
-        customTextAnimation <- newIORef (javaNull)
-        if (((jget (this).dx) /= 0) || ((jget (this).dy) /= 0)) then do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: CustomTextAnimation.CustomTextAnimation) (AdjustCustomTextAnimation.new_5 (jget (this).text) (jget ((jget (this).scaleProperties)).scaleHeight) (jget (this).dx) (jget (this).dy) (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).animationBehaviorFactory))))))
-            jset customTextAnimation (assignedValue)
-        else do
-            assignedValue <- (CustomTextAnimation.new_3 (jget (this).text) (jget ((jget (this).scaleProperties)).scaleHeight) (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).animationBehaviorFactory)))))
-            jset customTextAnimation (assignedValue)
-        Control.Monad.void (CustomTextAnimation.setBasicColorP ((jget customTextAnimation)) (jget (this).basicColor))
-        pure ((javaCast (jget customTextAnimation) :: Animation.Animation))
+jchain : List String
+jchain =
+    [ "CustomTextAnimationFactory" ]
+        ++ AnimationInterfaceFactoryInterface.jchain
 
 
-setInitialScale :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale object_ a1 = jmethod object_ "setInitialScale" (\() -> (setInitialScale_impl (javaCast object_ :: CustomTextAnimationFactory))) () a1
-
-setInitialScale_super :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_super object_ a1 = (setInitialScale_impl (javaCast object_ :: CustomTextAnimationFactory)) a1
-
-setInitialScale_impl :: CustomTextAnimationFactory -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_impl this scaleProperties = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "animationBehaviorFactory", JR.defaultOf "" ), ( "basicColor", JR.defaultOf "" ), ( "text", JR.defaultOf "" ), ( "initScaleHeight", JR.defaultOf "I" ), ( "dx", JR.defaultOf "I" ), ( "dy", JR.defaultOf "I" ), ( "font", JR.defaultOf "" ), ( "scaleProperties", JR.defaultOf "" ) ]
 
 
-getWidth :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth object_ = jmethod object_ "getWidth" (\() -> (getWidth_impl (javaCast object_ :: CustomTextAnimationFactory))) ()
+jvtable =
+    JR.vtable
+        [ ( "createDXY_5", jm_createDXY_5 )
+        , ( "getInstance_1", jm_getInstance_1 )
+        , ( "setInitialScale_1", jm_setInitialScale_1 )
+        , ( "getWidth_0", jm_getWidth_0 )
+        , ( "getHeight_0", jm_getHeight_0 ) ]
+        JR.noMethods
 
-getWidth_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth_super object_ = (getWidth_impl (javaCast object_ :: CustomTextAnimationFactory))
 
-getWidth_impl :: CustomTextAnimationFactory -> IO (Int)
-getWidth_impl this = do
-        (Font.stringWidth ((jget (this).font)) (jget (this).text))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CustomTextAnimationFactory"
+        [ ( "jm_createDXY_5", jm_createDXY_5 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_setInitialScale_1", jm_setInitialScale_1 ), ( "jm_getWidth_0", jm_getWidth_0 ), ( "jm_getHeight_0", jm_getHeight_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
 
 
-getHeight :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight object_ = jmethod object_ "getHeight" (\() -> (getHeight_impl (javaCast object_ :: CustomTextAnimationFactory))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-getHeight_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight_super object_ = (getHeight_impl (javaCast object_ :: CustomTextAnimationFactory))
 
-getHeight_impl :: CustomTextAnimationFactory -> IO (Int)
-getHeight_impl this = do
-        (Font.getHeight ((jget (this).font)))
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "text", "" ), ( "fontSize", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "basicColor" "" JR.this (JR.field "BLACK" (JR.callStatic BasicColorFactory.jm_getInstance_0 []))),
+                JR.exec (JR.setField "dx" "I" JR.this (JR.int 0)),
+                JR.exec (JR.setField "dy" "I" JR.this (JR.int 0)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "scaleProperties" "" JR.this (JR.new ScaleProperties.jnew_0 [])), 
+                    JR.exec (JR.setField "text" "" JR.this (JR.local "text")), 
+                    JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN68207 -> (JR.setField "scaleHeight" "I" (JR.lit jtN68207) (JR.map2 JR.sub (JR.local "fontSize") ((JR.map2 JR.div (JR.local "fontSize") (JR.int 4))))))), 
+                    JR.exec (JR.setField "initScaleHeight" "I" JR.this (JR.field "scaleHeight" (JR.thisField "scaleProperties"))), 
+                    JR.exec (JR.setField "animationBehaviorFactory" "" JR.this (JR.local "animationBehaviorFactory")), 
+                    JR.exec (JR.setField "font" "" JR.this (JR.callStatic Font.jm_getFont_3 [ Font.jstatic_FACE_SYSTEM, Font.jstatic_STYLE_PLAIN, (JR.thisField "initScaleHeight") ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_createDXY_5 : JR.Method
+jm_createDXY_5 jheap jthis jargs =
+    JR.method [ ( "text", "" ), ( "fontSize", "I" ), ( "dx", "I" ), ( "dy", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "customTextAnimationFactory" "" (JR.new jnew_3 [ (JR.local "text"), (JR.local "fontSize"), (JR.local "animationBehaviorFactory") ]), 
+                    JR.exec (JR.andThen (JR.local "customTextAnimationFactory") (\jtN67610 -> (JR.setField "dx" "" (JR.lit jtN67610) (JR.local "dx")))), 
+                    JR.exec (JR.andThen (JR.local "customTextAnimationFactory") (\jtN67643 -> (JR.setField "dy" "" (JR.lit jtN67643) (JR.local "dy")))), 
+                    JR.return (JR.local "customTextAnimationFactory") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "instanceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "customTextAnimation" "" (JR.lit (JR.defaultOf "")), 
+                    JR.ifElse (JR.or (JR.map2 JR.notEquals (JR.thisField "dx") (JR.int 0)) (JR.map2 JR.notEquals (JR.thisField "dy") (JR.int 0))) (JR.run [ 
+                        JR.exec (JR.setLocal "customTextAnimation" "" (JR.new AdjustCustomTextAnimation.jnew_5 [ (JR.thisField "text"), (JR.field "scaleHeight" (JR.thisField "scaleProperties")), (JR.thisField "dx"), (JR.thisField "dy"), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ])) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "customTextAnimation" "" (JR.new CustomTextAnimation.jnew_3 [ (JR.thisField "text"), (JR.field "scaleHeight" (JR.thisField "scaleProperties")), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ])) ]), 
+                    JR.exec (JR.invoke "setBasicColorP_1" (JR.local "customTextAnimation") [ (JR.thisField "basicColor") ]), 
+                    JR.return (JR.local "customTextAnimation") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInitialScale_1 : JR.Method
+jm_setInitialScale_1 jheap jthis jargs =
+    JR.method [ ( "scaleProperties", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getWidth_0 : JR.Method
+jm_getWidth_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "stringWidth_1" (JR.thisField "font") [ (JR.thisField "text") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHeight_0 : JR.Method
+jm_getHeight_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getHeight_0" (JR.thisField "font") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,87 +1,87 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.money.tax.components
-module TaxData where
+module Org.Allbinary.Business.User.Commerce.Money.Tax.Components.TaxData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.money.tax.components
+-}
 
-data TaxData = TaxData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull TaxData where
-    javaNull = javaNullRecord "TaxData"
 
-instance JavaEquals TaxData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq TaxData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "TaxData"
 
-instance JavaObjectClass TaxData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-nAME :: String
-nAME = "TAX_NAME"
+jchain : List String
+jchain =
+    [ "TaxData" ]
 
-rATE :: String
-rATE = "TAX_RATE"
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO TaxData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = TaxData header_
-    jregisterLevel header_ this
-    pure this
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-initFields_ :: TaxData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO TaxData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TaxData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_RATE", jstatic_RATE ) ]
+        jheap
 
-init_ :: TaxData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "TaxData" jclinit "NAME"
+        (JR.str "TAX_NAME")
+        s
+
+
+jstatic_RATE : JR.M
+jstatic_RATE s =
+    JR.static "TaxData" jclinit "RATE"
+        (JR.str "TAX_RATE")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

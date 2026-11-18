@@ -1,124 +1,116 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
-module LevelLayersFinder where
+module Org.Allbinary.Game.Layer.LevelLayersFinder exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Enumeration -- java.util.Enumeration
-import qualified Layer -- org.allbinary.layer.Layer
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified EnumerationUtil -- org.allbinary.util.EnumerationUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.layer
+-}
 
-data LevelLayersFinder = LevelLayersFinder
-    { header_ :: JavaHeader
-    , enumerationUtil :: IORef (EnumerationUtil.EnumerationUtil)
-    }
-
-instance JavaNull LevelLayersFinder where
-    javaNull = javaNullRecord "LevelLayersFinder"
-
-instance JavaEquals LevelLayersFinder where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LevelLayersFinder where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LevelLayersFinder where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: LevelLayersFinder
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LevelLayersFinder
-newRecord_ = do
-    header_ <- newJavaHeader
-    enumerationUtil <- newIORef javaNull
-    let this = LevelLayersFinder header_ enumerationUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    pure this
-
-initFields_ :: LevelLayersFinder -> IO ()
-initFields_ this = do
-    jset this.enumerationUtil =<< (EnumerationUtil.getInstance)
-    pure ()
-
-new_ :: IO LevelLayersFinder
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LevelLayersFinder -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Util.EnumerationUtil as EnumerationUtil
+import Org.Allbinary.Layer.Layer as Layer
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
 
 
-getInstance :: IO (LevelLayersFinder)
-getInstance = do
-        pure (LevelLayersFinder.instance_)
+jclass : String
+jclass =
+    "LevelLayersFinder"
 
 
-get :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> IO (BasicArrayList.BasicArrayList)
-get object_ a1 = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: LevelLayersFinder))) () a1
+jchain : List String
+jchain =
+    [ "LevelLayersFinder" ]
 
-get_super :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> IO (BasicArrayList.BasicArrayList)
-get_super object_ a1 = (get_impl (javaCast object_ :: LevelLayersFinder)) a1
 
-get_impl :: LevelLayersFinder -> ABHashtable.ABHashtable -> IO (BasicArrayList.BasicArrayList)
-get_impl this hashtable = do
-        smallIntegerSingletonFactory <- (SmallIntegerSingletonFactory.getInstance)
-        list <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        enumeration <- (ABHashtable.keys hashtable)
-        layerHashtableCanBeNull <- newIORef (javaNull)
-        integerCanBeNull <- newIORef (javaNull)
-        cachedIntegerCanBeNull <- newIORef (javaNull)
-        fix $ \loop -> when (jio (EnumerationUtil.hasMoreElements ((jget (this).enumerationUtil)) enumeration)) $ javaIteration (loop) $ do
-            jset layerHashtableCanBeNull ((javaCast (jio (ABHashtable.get hashtable (javaCast (jio (EnumerationUtil.nextElement ((jget (this).enumerationUtil)) enumeration)) :: Any.Any))) :: ABHashtable.ABHashtable))
-            jset integerCanBeNull ((javaCast (jio (ABHashtable.get ((jget layerHashtableCanBeNull)) (javaCast Layer.iD :: Any.Any))) :: Int))
-            assignedValue <- (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory (jget integerCanBeNull))
-            jset cachedIntegerCanBeNull (assignedValue)
-            when (Prelude.not (jio (BasicArrayList.contains list (jget cachedIntegerCanBeNull)))) $ do
-                Control.Monad.void (BasicArrayList.add list (jget cachedIntegerCanBeNull))
-        pure (list)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "enumerationUtil", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "get_1", jm_get_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LevelLayersFinder"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_get_1", jm_get_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LevelLayersFinder" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "enumerationUtil" "" JR.this (JR.callStatic EnumerationUtil.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_get_1 : JR.Method
+jm_get_1 jheap jthis jargs =
+    JR.method [ ( "hashtable", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "smallIntegerSingletonFactory" "" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []), 
+                    JR.declare "list" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "enumeration" "" (JR.invoke "keys_0" (JR.local "hashtable") []), 
+                    JR.declare "layerHashtableCanBeNull" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "integerCanBeNull" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "cachedIntegerCanBeNull" "" (JR.lit (JR.defaultOf "")), 
+                    JR.while (JR.invoke "hasMoreElements_1" (JR.thisField "enumerationUtil") [ (JR.local "enumeration") ]) (JR.run [ 
+                        JR.exec (JR.setLocal "layerHashtableCanBeNull" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.invoke "nextElement_1" (JR.thisField "enumerationUtil") [ (JR.local "enumeration") ]) ])), 
+                        JR.exec (JR.setLocal "integerCanBeNull" "" (JR.invoke "get_1" (JR.local "layerHashtableCanBeNull") [ Layer.jstatic_ID ])), 
+                        JR.exec (JR.setLocal "cachedIntegerCanBeNull" "" (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.invoke "intValue_0" (JR.local "integerCanBeNull") []) ])), 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "contains_1" (JR.local "list") [ (JR.local "cachedIntegerCanBeNull") ])) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.local "cachedIntegerCanBeNull") ]) ]) identity ]), 
+                    JR.return (JR.local "list") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

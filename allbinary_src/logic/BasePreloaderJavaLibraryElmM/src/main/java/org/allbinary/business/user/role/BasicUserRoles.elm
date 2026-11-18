@@ -1,10 +1,10 @@
-module BasicUserRoles exposing (..)
+module Org.Allbinary.Business.User.Role.BasicUserRoles exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.business.user.role
 -}
 
 import JR
-import BasicArrayListD
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
 
 
 jclass : String

@@ -1,165 +1,147 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module TextNotificationUtil where
+module Org.Allbinary.Game.Input.TextNotificationUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameNotificationEvent -- org.allbinary.game.layer.hud.event.GameNotificationEvent
-import qualified GameNotificationEventHandler -- org.allbinary.game.layer.hud.event.GameNotificationEventHandler
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified BooleanFactory -- org.allbinary.logic.java.bool.BooleanFactory
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified ErrorSound -- org.allbinary.media.audio.ErrorSound
-import qualified PrimaryPlayerQueueFactory -- org.allbinary.media.audio.PrimaryPlayerQueueFactory
-import qualified SelectSound -- org.allbinary.media.audio.SelectSound
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data TextNotificationUtil = TextNotificationUtil
-    { header_ :: JavaHeader
-    , tWO :: IORef (Int)
-    , fALSE :: IORef (Bool)
-    , gameNotificationEventHandler :: IORef (GameNotificationEventHandler.GameNotificationEventHandler)
-    }
-
-instance JavaNull TextNotificationUtil where
-    javaNull = javaNullRecord "TextNotificationUtil"
-
-instance JavaEquals TextNotificationUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TextNotificationUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TextNotificationUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: TextNotificationUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TextNotificationUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    tWO <- newIORef javaNull
-    fALSE <- newIORef javaNull
-    gameNotificationEventHandler <- newIORef javaNull
-    let this = TextNotificationUtil header_ tWO fALSE gameNotificationEventHandler
-    jregisterLevel header_ this
-    jregisterMethod header_ "fireError" (\() -> fireError_impl this)
-    jregisterMethod header_ "fireNew" (\() -> fireNew_impl this)
-    jregisterMethod header_ "fireSuccess" (\() -> fireSuccess_impl this)
-    jregisterMethod header_ "fire" (\() -> fire_impl this)
-    pure this
-
-initFields_ :: TextNotificationUtil -> IO ()
-initFields_ this = do
-    jset this.tWO =<< (SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 2)
-    jset this.fALSE ((jget ((jio (BooleanFactory.getInstance))).fALSE))
-    jset this.gameNotificationEventHandler =<< (GameNotificationEventHandler.getInstance)
-    pure ()
-
-new_ :: IO TextNotificationUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TextNotificationUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Logic.Java.Bool.BooleanFactory as BooleanFactory
+import Org.Allbinary.Media.Audio.ErrorSound as ErrorSound
+import Org.Allbinary.Game.Layer.Hud.Event.GameNotificationEvent as GameNotificationEvent
+import Org.Allbinary.Game.Layer.Hud.Event.GameNotificationEventHandler as GameNotificationEventHandler
+import Org.Allbinary.Media.Audio.PrimaryPlayerQueueFactory as PrimaryPlayerQueueFactory
+import Org.Allbinary.Media.Audio.SelectSound as SelectSound
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
 
 
-getInstance :: IO (TextNotificationUtil)
-getInstance = do
-        pure (TextNotificationUtil.instance_)
+jclass : String
+jclass =
+    "TextNotificationUtil"
 
 
--- throws Exception
-fireError :: (JavaObjectClass this_) => this_ -> String -> IO (())
-fireError object_ a1 = jmethod object_ "fireError" (\() -> (fireError_impl (javaCast object_ :: TextNotificationUtil))) () a1
-
-fireError_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-fireError_super object_ a1 = (fireError_impl (javaCast object_ :: TextNotificationUtil)) a1
-
-fireError_impl :: TextNotificationUtil -> String -> IO (())
-fireError_impl this message = do
-        Control.Monad.void (PrimaryPlayerQueueFactory.add ((jio (PrimaryPlayerQueueFactory.getInstance))) (jio (ErrorSound.getInstance)))
-        Control.Monad.void (TextNotificationUtil.fire this message)
-        pure ()
+jchain : List String
+jchain =
+    [ "TextNotificationUtil" ]
 
 
--- throws Exception
-fireNew :: (JavaObjectClass this_) => this_ -> String -> IO (())
-fireNew object_ a1 = jmethod object_ "fireNew" (\() -> (fireNew_impl (javaCast object_ :: TextNotificationUtil))) () a1
-
-fireNew_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-fireNew_super object_ a1 = (fireNew_impl (javaCast object_ :: TextNotificationUtil)) a1
-
-fireNew_impl :: TextNotificationUtil -> String -> IO (())
-fireNew_impl this message = do
-        Control.Monad.void (PrimaryPlayerQueueFactory.add ((jio (PrimaryPlayerQueueFactory.getInstance))) (jio (SelectSound.getInstance)))
-        Control.Monad.void (TextNotificationUtil.fire this message)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "TWO", JR.defaultOf "" ), ( "FALSE", JR.defaultOf "" ), ( "gameNotificationEventHandler", JR.defaultOf "" ) ]
 
 
--- throws Exception
-fireSuccess :: (JavaObjectClass this_) => this_ -> String -> IO (())
-fireSuccess object_ a1 = jmethod object_ "fireSuccess" (\() -> (fireSuccess_impl (javaCast object_ :: TextNotificationUtil))) () a1
-
-fireSuccess_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-fireSuccess_super object_ a1 = (fireSuccess_impl (javaCast object_ :: TextNotificationUtil)) a1
-
-fireSuccess_impl :: TextNotificationUtil -> String -> IO (())
-fireSuccess_impl this message = do
-        Control.Monad.void (PrimaryPlayerQueueFactory.add ((jio (PrimaryPlayerQueueFactory.getInstance))) (jio (SelectSound.getInstance)))
-        Control.Monad.void (TextNotificationUtil.fire this message)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "fireError_1", jm_fireError_1 )
+        , ( "fireNew_1", jm_fireNew_1 )
+        , ( "fireSuccess_1", jm_fireSuccess_1 )
+        , ( "fire_1", jm_fire_1 ) ]
+        JR.noMethods
 
 
--- throws Exception
-fire :: (JavaObjectClass this_) => this_ -> String -> IO (())
-fire object_ a1 = jmethod object_ "fire" (\() -> (fire_impl (javaCast object_ :: TextNotificationUtil))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TextNotificationUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_fireError_1", jm_fireError_1 ), ( "jm_fireNew_1", jm_fireNew_1 ), ( "jm_fireSuccess_1", jm_fireSuccess_1 ), ( "jm_fire_1", jm_fire_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
-fire_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-fire_super object_ a1 = (fire_impl (javaCast object_ :: TextNotificationUtil)) a1
 
-fire_impl :: TextNotificationUtil -> String -> IO (())
-fire_impl this message = do
-        gameNotificationEvent <- (GameNotificationEvent.new_5 this message (jget (this).tWO) (jget ((jio (BasicColorFactory.getInstance))).rED) (jget (this).fALSE))
-        Control.Monad.void (GameNotificationEventHandler.fireEvent ((jget (this).gameNotificationEventHandler)) gameNotificationEvent)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "TextNotificationUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "TWO" "" JR.this (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 2) ])),
+                JR.exec (JR.setField "FALSE" "" JR.this (JR.field "FALSE" (JR.callStatic BooleanFactory.jm_getInstance_0 []))),
+                JR.exec (JR.setField "gameNotificationEventHandler" "" JR.this (JR.callStatic GameNotificationEventHandler.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fireError_1 : JR.Method
+jm_fireError_1 jheap jthis jargs =
+    JR.method [ ( "message", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.callStatic PrimaryPlayerQueueFactory.jm_getInstance_0 []) [ (JR.callStatic ErrorSound.jm_getInstance_0 []) ]), 
+                    JR.exec (JR.invoke "fire_1" JR.this [ (JR.local "message") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fireNew_1 : JR.Method
+jm_fireNew_1 jheap jthis jargs =
+    JR.method [ ( "message", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.callStatic PrimaryPlayerQueueFactory.jm_getInstance_0 []) [ (JR.callStatic SelectSound.jm_getInstance_0 []) ]), 
+                    JR.exec (JR.invoke "fire_1" JR.this [ (JR.local "message") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fireSuccess_1 : JR.Method
+jm_fireSuccess_1 jheap jthis jargs =
+    JR.method [ ( "message", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.callStatic PrimaryPlayerQueueFactory.jm_getInstance_0 []) [ (JR.callStatic SelectSound.jm_getInstance_0 []) ]), 
+                    JR.exec (JR.invoke "fire_1" JR.this [ (JR.local "message") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fire_1 : JR.Method
+jm_fire_1 jheap jthis jargs =
+    JR.method [ ( "message", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameNotificationEvent" "" (JR.new GameNotificationEvent.jnew_5 [ JR.this, (JR.local "message"), (JR.thisField "TWO"), (JR.field "RED" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.thisField "FALSE") ]), 
+                    JR.exec (JR.invoke "fireEvent_1" (JR.thisField "gameNotificationEventHandler") [ (JR.local "gameNotificationEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,213 +1,188 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
-module Rectangle where
+module Org.Allbinary.Graphics.Rectangle exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GPoint -- same package or java.lang
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
+{-| Generated Code Do Not Modify package org.allbinary.graphics
+-}
 
-data Rectangle = Rectangle
-    { header_ :: JavaHeader
-    , point :: IORef (GPoint.GPoint)
-    , width :: IORef (Int)
-    , height :: IORef (Int)
-    }
-
-instance JavaNull Rectangle where
-    javaNull = javaNullRecord "Rectangle"
-
-instance JavaEquals Rectangle where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Rectangle where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Rectangle where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO Rectangle
-newRecord_ = do
-    header_ <- newJavaHeader
-    point <- newIORef javaNull
-    width <- newIORef 0
-    height <- newIORef 0
-    let this = Rectangle header_ point width height
-    jregisterLevel header_ this
-    jregisterMethod header_ "getPoint" (\() -> getPoint_impl this)
-    jregisterMethod header_ "setPoint" (\() -> setPoint_impl this)
-    jregisterMethod header_ "getMaxX" (\() -> getMaxX_impl this)
-    jregisterMethod header_ "getMaxY" (\() -> getMaxY_impl this)
-    jregisterMethod header_ "getWidth" (\() -> getWidth_impl this)
-    jregisterMethod header_ "setWidth" (\() -> setWidth_impl this)
-    jregisterMethod header_ "getHeight" (\() -> getHeight_impl this)
-    jregisterMethod header_ "setHeight" (\() -> setHeight_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: Rectangle -> IO ()
-initFields_ this = do
-    jset this.point (javaNull)
-    jset this.width (0)
-    jset this.height (0)
-    pure ()
-
-new_3 :: GPoint.GPoint -> Int -> Int -> IO Rectangle
-new_3 point width height = do
-    this <- newRecord_
-    init_3 this point width height
-    pure this
-
-init_3 :: Rectangle -> GPoint.GPoint -> Int -> Int -> IO ()
-init_3 this point width height = do
-        initFields_ this
-        jset (this).point (point)
-        jset (this).width (width)
-        jset (this).height (height)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getPoint :: (JavaObjectClass this_) => this_ -> IO (GPoint.GPoint)
-getPoint object_ = jmethod object_ "getPoint" (\() -> (getPoint_impl (javaCast object_ :: Rectangle))) ()
-
-getPoint_super :: (JavaObjectClass this_) => this_ -> IO (GPoint.GPoint)
-getPoint_super object_ = (getPoint_impl (javaCast object_ :: Rectangle))
-
-getPoint_impl :: Rectangle -> IO (GPoint.GPoint)
-getPoint_impl this = do
-        pure ((jget (this).point))
+jclass : String
+jclass =
+    "Rectangle"
 
 
-setPoint :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (())
-setPoint object_ a1 = jmethod object_ "setPoint" (\() -> (setPoint_impl (javaCast object_ :: Rectangle))) () a1
-
-setPoint_super :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (())
-setPoint_super object_ a1 = (setPoint_impl (javaCast object_ :: Rectangle)) a1
-
-setPoint_impl :: Rectangle -> GPoint.GPoint -> IO (())
-setPoint_impl this point = do
-        jset (this).point (point)
-        pure ()
+jchain : List String
+jchain =
+    [ "Rectangle" ]
 
 
-getMaxX :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMaxX object_ = jmethod object_ "getMaxX" (\() -> (getMaxX_impl (javaCast object_ :: Rectangle))) ()
-
-getMaxX_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMaxX_super object_ = (getMaxX_impl (javaCast object_ :: Rectangle))
-
-getMaxX_impl :: Rectangle -> IO (Int)
-getMaxX_impl this = do
-        pure (((jio (GPoint.getX ((jget (this).point)))) + (jget (this).width)))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "point", JR.defaultOf "" ), ( "width", JR.defaultOf "I" ), ( "height", JR.defaultOf "I" ) ]
 
 
-getMaxY :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMaxY object_ = jmethod object_ "getMaxY" (\() -> (getMaxY_impl (javaCast object_ :: Rectangle))) ()
-
-getMaxY_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMaxY_super object_ = (getMaxY_impl (javaCast object_ :: Rectangle))
-
-getMaxY_impl :: Rectangle -> IO (Int)
-getMaxY_impl this = do
-        pure (((jio (GPoint.getY ((jget (this).point)))) + (jget (this).height)))
-
-
-getWidth :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth object_ = jmethod object_ "getWidth" (\() -> (getWidth_impl (javaCast object_ :: Rectangle))) ()
-
-getWidth_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth_super object_ = (getWidth_impl (javaCast object_ :: Rectangle))
-
-getWidth_impl :: Rectangle -> IO (Int)
-getWidth_impl this = do
-        pure ((jget (this).width))
+jvtable =
+    JR.vtable
+        [ ( "getPoint_0", jm_getPoint_0 )
+        , ( "setPoint_1", jm_setPoint_1 )
+        , ( "getMaxX_0", jm_getMaxX_0 )
+        , ( "getMaxY_0", jm_getMaxY_0 )
+        , ( "getWidth_0", jm_getWidth_0 )
+        , ( "setWidth_1", jm_setWidth_1 )
+        , ( "getHeight_0", jm_getHeight_0 )
+        , ( "setHeight_1", jm_setHeight_1 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
 
-setWidth :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setWidth object_ a1 = jmethod object_ "setWidth" (\() -> (setWidth_impl (javaCast object_ :: Rectangle))) () a1
-
-setWidth_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setWidth_super object_ a1 = (setWidth_impl (javaCast object_ :: Rectangle)) a1
-
-setWidth_impl :: Rectangle -> Int -> IO (())
-setWidth_impl this width = do
-        jset (this).width (width)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Rectangle"
+        [ ( "jm_getPoint_0", jm_getPoint_0 ), ( "jm_setPoint_1", jm_setPoint_1 ), ( "jm_getMaxX_0", jm_getMaxX_0 ), ( "jm_getMaxY_0", jm_getMaxY_0 ), ( "jm_getWidth_0", jm_getWidth_0 ), ( "jm_setWidth_1", jm_setWidth_1 ), ( "jm_getHeight_0", jm_getHeight_0 ), ( "jm_setHeight_1", jm_setHeight_1 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
 
 
-getHeight :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight object_ = jmethod object_ "getHeight" (\() -> (getHeight_impl (javaCast object_ :: Rectangle))) ()
-
-getHeight_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight_super object_ = (getHeight_impl (javaCast object_ :: Rectangle))
-
-getHeight_impl :: Rectangle -> IO (Int)
-getHeight_impl this = do
-        pure ((jget (this).height))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setHeight :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setHeight object_ a1 = jmethod object_ "setHeight" (\() -> (setHeight_impl (javaCast object_ :: Rectangle))) () a1
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "point", "" ), ( "width", "I" ), ( "height", "I" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "point" "" JR.this (JR.local "point")), 
+                    JR.exec (JR.setField "width" "I" JR.this (JR.local "width")), 
+                    JR.exec (JR.setField "height" "I" JR.this (JR.local "height")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setHeight_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setHeight_super object_ a1 = (setHeight_impl (javaCast object_ :: Rectangle)) a1
 
-setHeight_impl :: Rectangle -> Int -> IO (())
-setHeight_impl this height = do
-        jset (this).height (height)
-        pure ()
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: Rectangle))) ()
+jm_getPoint_0 : JR.Method
+jm_getPoint_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "point") ])
+        (jregister jheap)
+        jthis
+        jargs
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: Rectangle))
 
-toString_impl :: Rectangle -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GPoint.toString ((jio (Rectangle.getPoint this))))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-        Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonLabels.getInstance))).wIDTH_LABEL))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (Rectangle.getWidth this)))
-        Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-        Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonLabels.getInstance))).hEIGHT_LABEL))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (Rectangle.getHeight this)))
-        Control.Monad.void (StringMaker.append stringBuffer " MaxX: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (Rectangle.getMaxX this)))
-        Control.Monad.void (StringMaker.append stringBuffer " MaxY: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (Rectangle.getMaxY this)))
-        (StringMaker.toString stringBuffer)
+jm_setPoint_1 : JR.Method
+jm_setPoint_1 jheap jthis jargs =
+    JR.method [ ( "point", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "point" "" JR.this (JR.local "point")) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_getMaxX_0 : JR.Method
+jm_getMaxX_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.map2 JR.add (JR.invoke "getX_0" (JR.thisField "point") []) (JR.thisField "width")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMaxY_0 : JR.Method
+jm_getMaxY_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.map2 JR.add (JR.invoke "getY_0" (JR.thisField "point") []) (JR.thisField "height")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getWidth_0 : JR.Method
+jm_getWidth_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "width") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setWidth_1 : JR.Method
+jm_setWidth_1 jheap jthis jargs =
+    JR.method [ ( "width", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "width" "I" JR.this (JR.local "width")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHeight_0 : JR.Method
+jm_getHeight_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "height") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHeight_1 : JR.Method
+jm_setHeight_1 jheap jthis jargs =
+    JR.method [ ( "height", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "height" "I" JR.this (JR.local "height")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.invoke "getPoint_0" JR.this []) []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "WIDTH_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "getWidth_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "HEIGHT_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "getHeight_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " MaxX: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "getMaxX_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " MaxY: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "getMaxY_0" JR.this []) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,104 +1,87 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module AdjustedVectorAnimation (module AdjustedVectorAnimation, module VectorAnimation) where
+module Org.Allbinary.Animation.AdjustedVectorAnimation exposing (..)
 
-import VectorAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, paintXY, paintXY_super, paintXY_impl, dx, dy)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnimationBehavior -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified VectorAnimation
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
-data AdjustedVectorAnimation = AdjustedVectorAnimation
-    { header_ :: JavaHeader
-    , base :: VectorAnimation.VectorAnimation
-    , dx :: IORef (Int)
-    , dy :: IORef (Int)
-    }
-
-instance JavaNull AdjustedVectorAnimation where
-    javaNull = javaNullRecord "AdjustedVectorAnimation"
-
-instance JavaEquals AdjustedVectorAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AdjustedVectorAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AdjustedVectorAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AdjustedVectorAnimation
-newRecord_ = do
-    base <- VectorAnimation.newRecord_
-    let header_ = base.header_
-    dx <- newIORef 0
-    dy <- newIORef 0
-    let this = AdjustedVectorAnimation header_ base dx dy
-    jregisterLevel header_ this
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    pure this
-
-initFields_ :: AdjustedVectorAnimation -> IO ()
-initFields_ this = do
-    jset this.dx (0)
-    jset this.dy (0)
-    pure ()
-
-new_5 :: JavaArray (JavaArray (JavaArray (Int))) -> BasicColor.BasicColor -> Int -> Int -> AnimationBehavior.AnimationBehavior -> IO AdjustedVectorAnimation
-new_5 currentPoints basicColor dx dy animationBehavior = do
-    this <- newRecord_
-    init_5 this currentPoints basicColor dx dy animationBehavior
-    pure this
-
-init_5 :: AdjustedVectorAnimation -> JavaArray (JavaArray (JavaArray (Int))) -> BasicColor.BasicColor -> Int -> Int -> AnimationBehavior.AnimationBehavior -> IO ()
-init_5 this currentPoints basicColor dx dy animationBehavior = do
-        VectorAnimation.init_3 this.base (currentPoints) (basicColor) (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).dx (dx)
-        jset (this).dy (dy)
-        pure ()
+import JR
+import Org.Allbinary.Animation.VectorAnimation as VectorAnimation
 
 
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: AdjustedVectorAnimation))) () a1 a2 a3
+jclass : String
+jclass =
+    "AdjustedVectorAnimation"
 
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: AdjustedVectorAnimation)) a1 a2 a3
 
-paintXY_impl :: AdjustedVectorAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        Control.Monad.void (VectorAnimation.paintXY_super this.base graphics (x + (jget (this).dx)) (y + (jget (this).dy)))
-        pure ()
+jchain : List String
+jchain =
+    [ "AdjustedVectorAnimation" ]
+        ++ VectorAnimation.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    VectorAnimation.jfields ++ [ ( "dx", JR.defaultOf "I" ), ( "dy", JR.defaultOf "I" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "paintXY_3", jm_paintXY_3 ) ]
+        VectorAnimation.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AdjustedVectorAnimation"
+        [ ( "jm_paintXY_3", jm_paintXY_3 ), ( "jnew_5", jnew_5 ), ( "jinit_5", jinit_5 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_5 : JR.Method
+jinit_5 jheap jthis jargs =
+    JR.method [ ( "currentPoints", "" ), ( "basicColor", "" ), ( "dx", "I" ), ( "dy", "I" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect VectorAnimation.jinit_3 JR.this [ (JR.local "currentPoints"), (JR.local "basicColor"), (JR.local "animationBehavior") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "dx" "I" JR.this (JR.local "dx")), 
+                    JR.exec (JR.setField "dy" "I" JR.this (JR.local "dy")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_5 : JR.Method
+jnew_5 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_5 jheap jthis jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia VectorAnimation.jvtable "paintXY_3" JR.this [ (JR.local "graphics"), (JR.map2 JR.add (JR.local "x") (JR.thisField "dx")), (JR.map2 JR.add (JR.local "y") (JR.thisField "dy")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

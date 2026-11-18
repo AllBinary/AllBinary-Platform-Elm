@@ -1,10 +1,10 @@
-module EnumerationUtil exposing (..)
+module Org.Allbinary.Util.EnumerationUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}
 
 import JR
-import BasicArrayListD
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
 
 
 jclass : String

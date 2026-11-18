@@ -1,10 +1,10 @@
-module NullPriorityRunnable exposing (..)
+module Org.Allbinary.Thread.NullPriorityRunnable exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}
 
 import JR
-import PriorityRunnable
+import Org.Allbinary.Thread.PriorityRunnable as PriorityRunnable
 
 
 jclass : String

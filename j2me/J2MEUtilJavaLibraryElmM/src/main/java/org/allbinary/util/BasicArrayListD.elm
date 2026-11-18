@@ -1,10 +1,10 @@
-module BasicArrayListD exposing (..)
+module Org.Allbinary.Util.BasicArrayListD exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}
 
 import JR
-import BasicArrayListS
+import Org.Allbinary.Util.BasicArrayListS as BasicArrayListS
 
 
 jclass : String

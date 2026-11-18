@@ -1,90 +1,98 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.bouncycastle.jce.provider
-module BouncyCastleProvider (module BouncyCastleProvider, module Provider) where
+module Org.Bouncycastle.Jce.Provider.BouncyCastleProvider exposing (..)
 
-import Provider hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, setParameter, setParameter_super, setParameter_impl, info, pROVIDER_NAME)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Provider -- java.security.Provider
+{-| Generated Code Do Not Modify package org.bouncycastle.jce.provider
+-}
 
-data BouncyCastleProvider = BouncyCastleProvider
-    { header_ :: JavaHeader
-    , base :: Provider.Provider
-    }
-
-instance JavaNull BouncyCastleProvider where
-    javaNull = javaNullRecord "BouncyCastleProvider"
-
-instance JavaEquals BouncyCastleProvider where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BouncyCastleProvider where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BouncyCastleProvider where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-info :: IORef (String)
-{-# NOINLINE info #-}
-info = unsafePerformIO (newIORef ("BouncyCastle Security Provider v1.41"))
-
-pROVIDER_NAME :: IORef (String)
-{-# NOINLINE pROVIDER_NAME #-}
-pROVIDER_NAME = unsafePerformIO (newIORef ("BC"))
-
-newRecord_ :: IO BouncyCastleProvider
-newRecord_ = do
-    base <- Provider.newRecord_
-    let header_ = base.header_
-    let this = BouncyCastleProvider header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "setParameter" (\() -> setParameter_impl this)
-    pure this
-
-initFields_ :: BouncyCastleProvider -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO BouncyCastleProvider
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BouncyCastleProvider -> IO ()
-init_ this = do
-        Provider.init_3 this.base (jget BouncyCastleProvider.pROVIDER_NAME) (1.41) (jget BouncyCastleProvider.info)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
 
 
-setParameter :: (JavaObjectClass this_, JavaObjectClass o2) => this_ -> String -> o2 -> IO (())
-setParameter object_ a1 a2 = jmethod object_ "setParameter" (\() -> (setParameter_impl (javaCast object_ :: BouncyCastleProvider))) () a1 (jtoObject a2)
 
-setParameter_super :: (JavaObjectClass this_, JavaObjectClass o2) => this_ -> String -> o2 -> IO (())
-setParameter_super object_ a1 a2 = (setParameter_impl (javaCast object_ :: BouncyCastleProvider)) a1 (jtoObject a2)
+jclass : String
+jclass =
+    "BouncyCastleProvider"
 
-setParameter_impl :: BouncyCastleProvider -> String -> JavaObject -> IO (())
-setParameter_impl this parameterName parameterObject_ = do
-        let parameter = jtoObject parameterObject_
-        pure ()
 
+jchain : List String
+jchain =
+    [ "BouncyCastleProvider" ]
+        ++ [ "Provider" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [] ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "setParameter_2", jm_setParameter_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BouncyCastleProvider"
+        [ ( "jm_setParameter_2", jm_setParameter_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_info", jstatic_info ), ( "jstatic_PROVIDER_NAME", jstatic_PROVIDER_NAME ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_info : JR.M
+jstatic_info s =
+    JR.static "BouncyCastleProvider" jclinit "info"
+        (JR.str "BouncyCastle Security Provider v1.41")
+        s
+
+
+jstatic_PROVIDER_NAME : JR.M
+jstatic_PROVIDER_NAME s =
+    JR.static "BouncyCastleProvider" jclinit "PROVIDER_NAME"
+        (JR.str "BC")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect (JR.namedMethod "Provider.jinit_3") JR.this [ jstatic_PROVIDER_NAME, (JR.float 1.41), jstatic_info ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_setParameter_2 : JR.Method
+jm_setParameter_2 jheap jthis jargs =
+    JR.method [ ( "parameterName", "" ), ( "parameter", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

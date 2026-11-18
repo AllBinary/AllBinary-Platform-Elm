@@ -1,94 +1,89 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.pipeline
-module RandomTranslation where
+module Org.Allbinary.Graphics.Pipeline.RandomTranslation exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicGraphicsPipeline -- same package or java.lang
-import qualified MyRandomFactory -- org.allbinary.game.rand.MyRandomFactory
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.graphics.pipeline
+-}
 
-data RandomTranslation = RandomTranslation
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull RandomTranslation where
-    javaNull = javaNullRecord "RandomTranslation"
-
-instance JavaEquals RandomTranslation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RandomTranslation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RandomTranslation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO RandomTranslation
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = RandomTranslation header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: RandomTranslation -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO RandomTranslation
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: RandomTranslation -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Pipeline.BasicGraphicsPipeline as BasicGraphicsPipeline
+import Org.Allbinary.Game.Rand.MyRandomFactory as MyRandomFactory
 
 
--- throws Exception
-getInstance :: BasicArrayList.BasicArrayList -> Int -> IO (BasicArrayList.BasicArrayList)
-getInstance vector howMuch = do
-        myRandomFactory <- (MyRandomFactory.getInstance)
-        let x = (Prelude.negate (jio (MyRandomFactory.getNextInt myRandomFactory howMuch)))
-        y <- (MyRandomFactory.getNextInt myRandomFactory howMuch)
-        graphicsPipe <- (BasicGraphicsPipeline.new_1 vector)
-        Control.Monad.void (BasicGraphicsPipeline.createMatrix graphicsPipe)
-        Control.Monad.void (BasicGraphicsPipeline.translate graphicsPipe x y)
-        (BasicGraphicsPipeline.getMatrix graphicsPipe)
+jclass : String
+jclass =
+    "RandomTranslation"
 
+
+jchain : List String
+jchain =
+    [ "RandomTranslation" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_2", jm_getInstance_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RandomTranslation"
+        [ ( "jm_getInstance_2", jm_getInstance_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_2 : JR.Method
+jm_getInstance_2 jheap jthis jargs =
+    JR.method [ ( "vector", "" ), ( "howMuch", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "myRandomFactory" "" (JR.callStatic MyRandomFactory.jm_getInstance_0 []), 
+                    JR.declare "x" "I" (JR.map JR.neg (JR.invoke "getNextInt_1" (JR.local "myRandomFactory") [ (JR.local "howMuch") ])), 
+                    JR.declare "y" "I" (JR.invoke "getNextInt_1" (JR.local "myRandomFactory") [ (JR.local "howMuch") ]), 
+                    JR.declare "graphicsPipe" "" (JR.new BasicGraphicsPipeline.jnew_1 [ (JR.local "vector") ]), 
+                    JR.exec (JR.invoke "createMatrix_0" (JR.local "graphicsPipe") []), 
+                    JR.exec (JR.invoke "translate_2" (JR.local "graphicsPipe") [ (JR.local "x"), (JR.local "y") ]), 
+                    JR.return (JR.invoke "getMatrix_0" (JR.local "graphicsPipe") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

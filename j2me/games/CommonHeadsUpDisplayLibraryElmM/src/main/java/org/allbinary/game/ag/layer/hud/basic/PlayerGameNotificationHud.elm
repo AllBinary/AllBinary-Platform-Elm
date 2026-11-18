@@ -1,342 +1,264 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic
-module PlayerGameNotificationHud (module PlayerGameNotificationHud, module GameNotificationHud) where
+module Org.Allbinary.Game.Ag.Layer.Hud.Basic.PlayerGameNotificationHud exposing (..)
 
-import GameNotificationHud hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, getPoint, getPoint_super, getPoint_impl, add, add_super, add_impl, processTick, processTick_super, processTick_impl, setAndRemove, setAndRemove_super, setAndRemove_impl, setAndRemoveProcess, setAndRemoveProcess_super, setAndRemoveProcess_impl, setNextUnremoveable, setNextUnremoveable_super, setNextUnremoveable_impl, setNextUnremoveableProcess, setNextUnremoveableProcess_super, setNextUnremoveableProcess_impl, clear, clear_super, clear_impl, paint, paint_super, paint_impl, gameTickTimeDelayHelper, eMPTY_STRING, displayInfo, timeDelayHelper, circularIndexUtil, gameNotification, permanentGameNotification, setAndRemoveProcessor, nextUnremoveableProcessor, processor, pERMANENT_GAME_NOTIFICATION, lastString, string, point, width)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified SetAndRemoveProcessor -- same package or java.lang
-import qualified NextUnremoveableProcessor -- same package or java.lang
-import qualified BasicArrayList -- same package or java.lang
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified GameAdStateFactory -- org.allbinary.business.advertisement.GameAdStateFactory
-import qualified Processor -- org.allbinary.canvas.Processor
-import qualified GameAdState -- org.allbinary.game.GameAdState
-import qualified GameNotification -- org.allbinary.game.ag.layer.hud.basic.notification.GameNotification
-import qualified GameNotificationHud -- org.allbinary.game.ag.layer.hud.basic.notification.GameNotificationHud
-import qualified GameNotificationEventHandler -- org.allbinary.game.layer.hud.event.GameNotificationEventHandler
-import qualified CustomGPoint -- org.allbinary.graphics.CustomGPoint
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified GameTickTimeDelayHelper -- org.allbinary.time.GameTickTimeDelayHelper
-import qualified GameTickTimeDelayHelperFactory -- org.allbinary.time.GameTickTimeDelayHelperFactory
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-import qualified CircularIndexUtil -- org.allbinary.util.CircularIndexUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.hud.basic
+-}
 
--- implements UpdateMyFontInterface
-data PlayerGameNotificationHud = PlayerGameNotificationHud
-    { header_ :: JavaHeader
-    , base :: GameNotificationHud.GameNotificationHud
-    , gameTickTimeDelayHelper :: IORef (GameTickTimeDelayHelper.GameTickTimeDelayHelper)
-    , eMPTY_STRING :: IORef (String)
-    , displayInfo :: IORef (DisplayInfoSingleton.DisplayInfoSingleton)
-    , timeDelayHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , circularIndexUtil :: IORef (CircularIndexUtil.CircularIndexUtil)
-    , gameNotification :: IORef (GameNotification.GameNotification)
-    , permanentGameNotification :: IORef (GameNotification.GameNotification)
-    , setAndRemoveProcessor :: IORef (Processor.Processor)
-    , nextUnremoveableProcessor :: IORef (Processor.Processor)
-    , processor :: IORef (Processor.Processor)
-    , pERMANENT_GAME_NOTIFICATION :: IORef (String)
-    , lastString :: IORef (String)
-    , string :: IORef (String)
-    , point :: IORef (CustomGPoint.CustomGPoint)
-    , width :: IORef (Int)
-    }
-
-instance JavaNull PlayerGameNotificationHud where
-    javaNull = javaNullRecord "PlayerGameNotificationHud"
-
-instance JavaEquals PlayerGameNotificationHud where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlayerGameNotificationHud where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlayerGameNotificationHud where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO PlayerGameNotificationHud
-newRecord_ = do
-    base <- GameNotificationHud.newRecord_
-    let header_ = base.header_
-    gameTickTimeDelayHelper <- newIORef javaNull
-    eMPTY_STRING <- newIORef ""
-    displayInfo <- newIORef javaNull
-    timeDelayHelper <- newIORef javaNull
-    circularIndexUtil <- newIORef javaNull
-    gameNotification <- newIORef javaNull
-    permanentGameNotification <- newIORef javaNull
-    setAndRemoveProcessor <- newIORef javaNull
-    nextUnremoveableProcessor <- newIORef javaNull
-    processor <- newIORef javaNull
-    pERMANENT_GAME_NOTIFICATION <- newIORef ""
-    lastString <- newIORef ""
-    string <- newIORef ""
-    point <- newIORef javaNull
-    width <- newIORef 0
-    let this = PlayerGameNotificationHud header_ base gameTickTimeDelayHelper eMPTY_STRING displayInfo timeDelayHelper circularIndexUtil gameNotification permanentGameNotification setAndRemoveProcessor nextUnremoveableProcessor processor pERMANENT_GAME_NOTIFICATION lastString string point width
-    jregisterLevel header_ this
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "getPoint" (\() -> getPoint_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "processTick" (\() -> processTick_impl this)
-    jregisterMethod header_ "setAndRemove" (\() -> setAndRemove_impl this)
-    jregisterMethod header_ "setAndRemoveProcess" (\() -> setAndRemoveProcess_impl this)
-    jregisterMethod header_ "setNextUnremoveable" (\() -> setNextUnremoveable_impl this)
-    jregisterMethod header_ "setNextUnremoveableProcess" (\() -> setNextUnremoveableProcess_impl this)
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: PlayerGameNotificationHud -> IO ()
-initFields_ this = do
-    jset this.gameTickTimeDelayHelper =<< (GameTickTimeDelayHelperFactory.getInstance)
-    jset this.eMPTY_STRING ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.displayInfo =<< (DisplayInfoSingleton.getInstance)
-    jset this.timeDelayHelper =<< (TimeDelayHelper.new_1 0)
-    jset this.circularIndexUtil (javaNull)
-    jset this.gameNotification =<< (GameNotification.new_)
-    jset this.permanentGameNotification =<< (GameNotification.new_)
-    jset this.setAndRemoveProcessor =<< (fmap (\value_ -> javaCast value_ :: Processor.Processor) (SetAndRemoveProcessor.new_1 this))
-    jset this.nextUnremoveableProcessor =<< (fmap (\value_ -> javaCast value_ :: Processor.Processor) (NextUnremoveableProcessor.new_1 this))
-    jset this.processor =<< (Processor.getInstance)
-    jset this.pERMANENT_GAME_NOTIFICATION ("Permanent Game Notification: ")
-    jset this.lastString ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.string ((jget (this).eMPTY_STRING))
-    jset this.point (CustomGPoint.nULL_CUSTOM_POINT)
-    jset this.width (0)
-    pure ()
-
-new_4 :: Int -> Int -> Int -> BasicColor.BasicColor -> IO PlayerGameNotificationHud
-new_4 location direction bufferZone basicColor = do
-    this <- newRecord_
-    init_4 this location direction bufferZone basicColor
-    pure this
-
-init_4 :: PlayerGameNotificationHud -> Int -> Int -> Int -> BasicColor.BasicColor -> IO ()
-init_4 this location direction bufferZone basicColor = do
-        GameNotificationHud.init_4 this.base (location) (direction) (bufferZone) (basicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        assignedValue <- (CircularIndexUtil.createInstance 0)
-        jset (this).circularIndexUtil (assignedValue)
-        gameNotificationEventHandler <- (GameNotificationEventHandler.getInstance)
-        Control.Monad.void (GameNotificationEventHandler.removeAllListeners gameNotificationEventHandler)
-        Control.Monad.void (GameNotificationEventHandler.addListenerInterface gameNotificationEventHandler this)
-        pure ()
+import JR
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Graphics.CustomGPoint as CustomGPoint
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Business.Advertisement.GameAdStateFactory as GameAdStateFactory
+import Org.Allbinary.Game.Ag.Layer.Hud.Basic.Notification.GameNotification as GameNotification
+import Org.Allbinary.Game.Layer.Hud.Event.GameNotificationEventHandler as GameNotificationEventHandler
+import Org.Allbinary.Game.Ag.Layer.Hud.Basic.Notification.GameNotificationHud as GameNotificationHud
+import Org.Allbinary.Time.GameTickTimeDelayHelperFactory as GameTickTimeDelayHelperFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Ag.Layer.Hud.Basic.NextUnremoveableProcessor as NextUnremoveableProcessor
+import Org.Allbinary.Canvas.Processor as Processor
+import Org.Allbinary.Game.Ag.Layer.Hud.Basic.SetAndRemoveProcessor as SetAndRemoveProcessor
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: PlayerGameNotificationHud))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: PlayerGameNotificationHud)) a1
-
-updateMeasurement_impl :: PlayerGameNotificationHud -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        handle (\(e :: JavaException) -> do
-            logUtil <- (LogUtil.getInstance)
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put logUtil (jget (commonStrings).eXCEPTION) this (jget (commonStrings).uPDATE) e)
-            ) $ do
-            Control.Monad.void (GameNotificationHud.updateMeasurement_super this.base graphics)
-            font <- (Graphics.getFont graphics)
-            assignedValue <- (Font.stringWidth font (jget (this).string))
-            jset (this).width (assignedValue)
-            Control.Monad.void (Processor.process ((jget (this).processor)))
-            assignedValue <- (Processor.getInstance)
-            jset (this).processor (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "PlayerGameNotificationHud"
 
 
-getPoint :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (GPoint.GPoint)
-getPoint object_ a1 a2 = jmethod object_ "getPoint" (\() -> (getPoint_impl (javaCast object_ :: PlayerGameNotificationHud))) () a1 a2
-
-getPoint_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (GPoint.GPoint)
-getPoint_super object_ a1 a2 = (getPoint_impl (javaCast object_ :: PlayerGameNotificationHud)) a1 a2
-
-getPoint_impl :: PlayerGameNotificationHud -> Int -> Int -> IO (GPoint.GPoint)
-getPoint_impl this x y = do
-        assignedValue <- (CustomGPoint.getInstance3 0 0)
-        jset (this).point (assignedValue)
-        Control.Monad.void (CustomGPoint.setX ((jget (this).point)) x)
-        Control.Monad.void (CustomGPoint.setY ((jget (this).point)) y)
-        pure ((javaCast (jget (this).point) :: GPoint.GPoint))
+jchain : List String
+jchain =
+    [ "PlayerGameNotificationHud" ]
+        ++ GameNotificationHud.jchain
+        ++ UpdateMyFontInterface.jchain
 
 
-add :: (JavaObjectClass this_) => this_ -> String -> Int -> BasicColor.BasicColor -> Bool -> IO (())
-add object_ a1 a2 a3 a4 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: PlayerGameNotificationHud))) () a1 a2 a3 a4
-
-add_super :: (JavaObjectClass this_) => this_ -> String -> Int -> BasicColor.BasicColor -> Bool -> IO (())
-add_super object_ a1 a2 a3 a4 = (add_impl (javaCast object_ :: PlayerGameNotificationHud)) a1 a2 a3 a4
-
-add_impl :: PlayerGameNotificationHud -> String -> Int -> BasicColor.BasicColor -> Bool -> IO (())
-add_impl this string seconds basicColor permanent = do
-        if permanent then do
-            when ((jget (this).lastString) /= string) $ do
-                jset (this).lastString (string)
-                Control.Monad.void (LogUtil.putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (this).pERMANENT_GAME_NOTIFICATION)))) string))))) this (jget ((jget (this).base.commonStrings)).aDD))
-            Control.Monad.void (GameNotification.add ((jget (this).permanentGameNotification)) string seconds basicColor)
-            Control.Monad.void (CircularIndexUtil.setSize ((jget (this).circularIndexUtil)) (jio (GameNotification.getSize ((jget (this).permanentGameNotification)))))
-        else do
-            Control.Monad.void (GameNotification.add ((jget (this).gameNotification)) string seconds basicColor)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    GameNotificationHud.jfields ++ [ ( "gameTickTimeDelayHelper", JR.defaultOf "" ), ( "EMPTY_STRING", JR.defaultOf "" ), ( "displayInfo", JR.defaultOf "" ), ( "timeDelayHelper", JR.defaultOf "" ), ( "circularIndexUtil", JR.defaultOf "" ), ( "gameNotification", JR.defaultOf "" ), ( "permanentGameNotification", JR.defaultOf "" ), ( "setAndRemoveProcessor", JR.defaultOf "" ), ( "nextUnremoveableProcessor", JR.defaultOf "" ), ( "processor", JR.defaultOf "" ), ( "PERMANENT_GAME_NOTIFICATION", JR.defaultOf "" ), ( "lastString", JR.defaultOf "" ), ( "string", JR.defaultOf "" ), ( "point", JR.defaultOf "" ), ( "width", JR.defaultOf "I" ) ]
 
 
--- throws Exception
-processTick :: (JavaObjectClass this_) => this_ -> IO (())
-processTick object_ = jmethod object_ "processTick" (\() -> (processTick_impl (javaCast object_ :: PlayerGameNotificationHud))) ()
-
-processTick_super :: (JavaObjectClass this_) => this_ -> IO (())
-processTick_super object_ = (processTick_impl (javaCast object_ :: PlayerGameNotificationHud))
-
-processTick_impl :: PlayerGameNotificationHud -> IO (())
-processTick_impl this = do
-        when (jio (TimeDelayHelper.isTime ((jget (this).timeDelayHelper)) (jget ((jget (this).gameTickTimeDelayHelper)).startTime))) $ do
-            gameAdState <- (GameAdStateFactory.getCurrentInstance ((jio (GameAdStateFactory.getInstance))))
-            if (jio (GameAdState.isShowingAtLocation gameAdState (jio (GameNotificationHud.getLocation this)))) then do
-                jset (this).base.offsetY ((Prelude.negate 54))
-            else do
-                jset (this).base.offsetY (0)
-            if ((jio (GameNotification.getSize ((jget (this).gameNotification)))) > 0) then do
-                Control.Monad.void (PlayerGameNotificationHud.setAndRemove this)
-            else if ((jio (GameNotification.getSize ((jget (this).permanentGameNotification)))) > 0) then do
-                Control.Monad.void (PlayerGameNotificationHud.setNextUnremoveable this)
-            else do
-                jset (this).string ((jget (this).eMPTY_STRING))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "getPoint_2", jm_getPoint_2 )
+        , ( "add_4", jm_add_4 )
+        , ( "processTick_0", jm_processTick_0 )
+        , ( "setAndRemove_0", jm_setAndRemove_0 )
+        , ( "setAndRemoveProcess_0", jm_setAndRemoveProcess_0 )
+        , ( "setNextUnremoveable_0", jm_setNextUnremoveable_0 )
+        , ( "setNextUnremoveableProcess_0", jm_setNextUnremoveableProcess_0 )
+        , ( "clear_0", jm_clear_0 )
+        , ( "paint_1", jm_paint_1 ) ]
+        GameNotificationHud.jvtable
 
 
--- throws Exception
-setAndRemove :: (JavaObjectClass this_) => this_ -> IO (())
-setAndRemove object_ = jmethod object_ "setAndRemove" (\() -> (setAndRemove_impl (javaCast object_ :: PlayerGameNotificationHud))) ()
-
-setAndRemove_super :: (JavaObjectClass this_) => this_ -> IO (())
-setAndRemove_super object_ = (setAndRemove_impl (javaCast object_ :: PlayerGameNotificationHud))
-
-setAndRemove_impl :: PlayerGameNotificationHud -> IO (())
-setAndRemove_impl this = do
-        jset (this).string ((javaCast (jio (BasicArrayList.removeAt ((jget ((jget (this).gameNotification)).stringList)) 0)) :: String))
-        jset (this).processor ((jget (this).setAndRemoveProcessor))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlayerGameNotificationHud"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_getPoint_2", jm_getPoint_2 ), ( "jm_add_4", jm_add_4 ), ( "jm_processTick_0", jm_processTick_0 ), ( "jm_setAndRemove_0", jm_setAndRemove_0 ), ( "jm_setAndRemoveProcess_0", jm_setAndRemoveProcess_0 ), ( "jm_setNextUnremoveable_0", jm_setNextUnremoveable_0 ), ( "jm_setNextUnremoveableProcess_0", jm_setNextUnremoveableProcess_0 ), ( "jm_clear_0", jm_clear_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
 
 
--- throws Exception
-setAndRemoveProcess :: (JavaObjectClass this_) => this_ -> IO (())
-setAndRemoveProcess object_ = jmethod object_ "setAndRemoveProcess" (\() -> (setAndRemoveProcess_impl (javaCast object_ :: PlayerGameNotificationHud))) ()
-
-setAndRemoveProcess_super :: (JavaObjectClass this_) => this_ -> IO (())
-setAndRemoveProcess_super object_ = (setAndRemoveProcess_impl (javaCast object_ :: PlayerGameNotificationHud))
-
-setAndRemoveProcess_impl :: PlayerGameNotificationHud -> IO (())
-setAndRemoveProcess_impl this = do
-        Control.Monad.void (GameNotificationHud.setX this ((((jio (DisplayInfoSingleton.getLastWidth ((jget (this).displayInfo)))) - (jget (this).width))) `Data.Bits.shiftR` 1))
-        Control.Monad.void (CustomGPoint.setX ((jget (this).point)) (jio (GameNotificationHud.getX this)))
-        Control.Monad.void (CustomGPoint.setY ((jget (this).point)) (jio (GameNotificationHud.getY this)))
-        let time = (javaCast (jio (BasicArrayList.removeAt ((jget ((jget (this).gameNotification)).timeList)) 0)) :: Int)
-        iTime <- newIORef ((time * 1000) :: Int)
-        when ((jget iTime) == 0) $ do
-            jset iTime (500)
-        jset ((jget (this).timeDelayHelper)).delay ((jget iTime))
-        Control.Monad.void (GameNotificationHud.setBasicColorP this (javaCast (jio (BasicArrayList.removeAt ((jget ((jget (this).gameNotification)).colorList)) 0)) :: BasicColor.BasicColor))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
--- throws Exception
-setNextUnremoveable :: (JavaObjectClass this_) => this_ -> IO (())
-setNextUnremoveable object_ = jmethod object_ "setNextUnremoveable" (\() -> (setNextUnremoveable_impl (javaCast object_ :: PlayerGameNotificationHud))) ()
-
-setNextUnremoveable_super :: (JavaObjectClass this_) => this_ -> IO (())
-setNextUnremoveable_super object_ = (setNextUnremoveable_impl (javaCast object_ :: PlayerGameNotificationHud))
-
-setNextUnremoveable_impl :: PlayerGameNotificationHud -> IO (())
-setNextUnremoveable_impl this = do
-        index <- (CircularIndexUtil.getIndex ((jget (this).circularIndexUtil)))
-        jset (this).string ((javaCast (jindex ((jget ((jget ((jget (this).permanentGameNotification)).stringList)).objectArray)) (index)) :: String))
-        jset (this).processor ((jget (this).nextUnremoveableProcessor))
-        pure ()
-
-
--- throws Exception
-setNextUnremoveableProcess :: (JavaObjectClass this_) => this_ -> IO (())
-setNextUnremoveableProcess object_ = jmethod object_ "setNextUnremoveableProcess" (\() -> (setNextUnremoveableProcess_impl (javaCast object_ :: PlayerGameNotificationHud))) ()
-
-setNextUnremoveableProcess_super :: (JavaObjectClass this_) => this_ -> IO (())
-setNextUnremoveableProcess_super object_ = (setNextUnremoveableProcess_impl (javaCast object_ :: PlayerGameNotificationHud))
-
-setNextUnremoveableProcess_impl :: PlayerGameNotificationHud -> IO (())
-setNextUnremoveableProcess_impl this = do
-        index <- (CircularIndexUtil.getIndex ((jget (this).circularIndexUtil)))
-        Control.Monad.void (GameNotificationHud.setX this ((((jio (DisplayInfoSingleton.getLastWidth ((jget (this).displayInfo)))) - (jget (this).width))) `Data.Bits.shiftR` 1))
-        Control.Monad.void (CustomGPoint.setX ((jget (this).point)) (jio (GameNotificationHud.getX this)))
-        Control.Monad.void (CustomGPoint.setY ((jget (this).point)) (jio (GameNotificationHud.getY this)))
-        let time = (javaCast (jindex ((jget ((jget ((jget (this).permanentGameNotification)).timeList)).objectArray)) (index)) :: Int)
-        jset ((jget (this).timeDelayHelper)).delay ((time * 1000))
-        Control.Monad.void (GameNotificationHud.setBasicColorP this (javaCast (jindex ((jget ((jget ((jget (this).permanentGameNotification)).colorList)).objectArray)) (index)) :: BasicColor.BasicColor))
-        Control.Monad.void (CircularIndexUtil.next ((jget (this).circularIndexUtil)))
-        pure ()
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "location", "I" ), ( "direction", "I" ), ( "bufferZone", "I" ), ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect GameNotificationHud.jinit_4 JR.this [ (JR.local "location"), (JR.local "direction"), (JR.local "bufferZone"), (JR.local "basicColor") ]),
+                JR.exec (JR.setField "gameTickTimeDelayHelper" "" JR.this (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "EMPTY_STRING" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "displayInfo" "" JR.this (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 [])),
+                JR.exec (JR.setField "timeDelayHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 0) ])),
+                JR.exec (JR.setField "gameNotification" "" JR.this (JR.new GameNotification.jnew_0 [])),
+                JR.exec (JR.setField "permanentGameNotification" "" JR.this (JR.new GameNotification.jnew_0 [])),
+                JR.exec (JR.setField "setAndRemoveProcessor" "" JR.this (JR.new SetAndRemoveProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "nextUnremoveableProcessor" "" JR.this (JR.new NextUnremoveableProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "processor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "PERMANENT_GAME_NOTIFICATION" "" JR.this (JR.str "Permanent Game Notification: ")),
+                JR.exec (JR.setField "lastString" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "string" "" JR.this (JR.thisField "EMPTY_STRING")),
+                JR.exec (JR.setField "point" "" JR.this CustomGPoint.jstatic_NULL_CUSTOM_POINT),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.int 0) ])), 
+                    JR.declare "gameNotificationEventHandler" "" (JR.callStatic GameNotificationEventHandler.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "removeAllListeners_0" (JR.local "gameNotificationEventHandler") []), 
+                    JR.exec (JR.invoke "addListenerInterface_1" (JR.local "gameNotificationEventHandler") [ JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: PlayerGameNotificationHud))) ()
-
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: PlayerGameNotificationHud))
-
-clear_impl :: PlayerGameNotificationHud -> IO (())
-clear_impl this = do
-        Control.Monad.void (GameNotification.clear ((jget (this).gameNotification)))
-        Control.Monad.void (GameNotification.clear ((jget (this).permanentGameNotification)))
-        pure ()
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: PlayerGameNotificationHud))) () a1
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.callVia GameNotificationHud.jvtable "updateMeasurement_1" JR.this [ (JR.local "graphics") ]), 
+                        JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                        JR.exec (JR.setField "width" "I" JR.this (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.thisField "string") ])), 
+                        JR.exec (JR.invoke "process_0" (JR.thisField "processor") []), 
+                        JR.exec (JR.setField "processor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "logUtil" "" (JR.callStatic LogUtil.jm_getInstance_0 []), 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.local "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "UPDATE" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: PlayerGameNotificationHud)) a1
 
-paint_impl :: PlayerGameNotificationHud -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (process ((jget (this).base.myFontProcessor)) graphics)
-        Control.Monad.void (GameNotificationHud.paintString_super this.base graphics (jget (this).string))
-        pure ()
+jm_getPoint_2 : JR.Method
+jm_getPoint_2 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "point" "" JR.this (JR.callStatic CustomGPoint.jm_getInstance3_2 [ (JR.int 0), (JR.int 0) ])), 
+                    JR.exec (JR.invoke "setX_1" (JR.thisField "point") [ (JR.local "x") ]), 
+                    JR.exec (JR.invoke "setY_1" (JR.thisField "point") [ (JR.local "y") ]), 
+                    JR.return (JR.thisField "point") ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_add_4 : JR.Method
+jm_add_4 jheap jthis jargs =
+    JR.method [ ( "string", "" ), ( "seconds", "" ), ( "basicColor", "" ), ( "permanent", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "booleanValue_0" (JR.local "permanent") []) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.thisField "lastString") (JR.local "string")) (JR.run [ 
+                            JR.exec (JR.setField "lastString" "" JR.this (JR.local "string")), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "PERMANENT_GAME_NOTIFICATION") ]) [ (JR.local "string") ]) []), JR.this, (JR.field "ADD" (JR.thisField "commonStrings")) ]) ]) identity, 
+                        JR.exec (JR.invoke "add_3" (JR.thisField "permanentGameNotification") [ (JR.local "string"), (JR.local "seconds"), (JR.local "basicColor") ]), 
+                        JR.exec (JR.invoke "setSize_1" (JR.thisField "circularIndexUtil") [ (JR.invoke "getSize_0" (JR.thisField "permanentGameNotification") []) ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "add_3" (JR.thisField "gameNotification") [ (JR.local "string"), (JR.local "seconds"), (JR.local "basicColor") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processTick_0 : JR.Method
+jm_processTick_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isTime_1" (JR.thisField "timeDelayHelper") [ (JR.field "startTime" (JR.thisField "gameTickTimeDelayHelper")) ]) (JR.run [ 
+                        JR.declare "gameAdState" "" (JR.invoke "getCurrentInstance_0" (JR.callStatic GameAdStateFactory.jm_getInstance_0 []) []), 
+                        JR.ifElse (JR.invoke "isShowingAtLocation_1" (JR.local "gameAdState") [ (JR.invoke "getLocation_0" JR.this []) ]) (JR.run [ 
+                            JR.exec (JR.setField "offsetY" "" JR.this (JR.map JR.neg (JR.int 54))) ]) (JR.run [ 
+                            JR.exec (JR.setField "offsetY" "" JR.this (JR.int 0)) ]), 
+                        JR.ifElse (JR.map2 JR.greater (JR.invoke "getSize_0" (JR.thisField "gameNotification") []) (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.invoke "setAndRemove_0" JR.this []) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.greater (JR.invoke "getSize_0" (JR.thisField "permanentGameNotification") []) (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.invoke "setNextUnremoveable_0" JR.this []) ]) (JR.run [ 
+                            JR.exec (JR.setField "string" "" JR.this (JR.thisField "EMPTY_STRING")) ]) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAndRemove_0 : JR.Method
+jm_setAndRemove_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "string" "" JR.this (JR.invoke "removeAt_1" (JR.field "stringList" (JR.thisField "gameNotification")) [ (JR.int 0) ])), 
+                    JR.exec (JR.setField "processor" "" JR.this (JR.thisField "setAndRemoveProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAndRemoveProcess_0 : JR.Method
+jm_setAndRemoveProcess_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setX_1" JR.this [ (JR.map2 JR.shr ((JR.map2 JR.sub (JR.invoke "getLastWidth_0" (JR.thisField "displayInfo") []) (JR.thisField "width"))) (JR.int 1)) ]), 
+                    JR.exec (JR.invoke "setX_1" (JR.thisField "point") [ (JR.invoke "getX_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "setY_1" (JR.thisField "point") [ (JR.invoke "getY_0" JR.this []) ]), 
+                    JR.declare "time" "" (JR.invoke "removeAt_1" (JR.field "timeList" (JR.thisField "gameNotification")) [ (JR.int 0) ]), 
+                    JR.declare "iTime" "I" (JR.map2 JR.mul (JR.invoke "intValue_0" (JR.local "time") []) (JR.int 1000)), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "iTime") (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.setLocal "iTime" "I" (JR.int 500)) ]) identity, 
+                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN72845 -> (JR.setField "delay" "I" (JR.lit jtN72845) (JR.local "iTime")))), 
+                    JR.exec (JR.invoke "setBasicColorP_1" JR.this [ (JR.invoke "removeAt_1" (JR.field "colorList" (JR.thisField "gameNotification")) [ (JR.int 0) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setNextUnremoveable_0 : JR.Method
+jm_setNextUnremoveable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "index" "I" (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") []), 
+                    JR.exec (JR.setField "string" "" JR.this (JR.aget (JR.field "objectArray" (JR.field "stringList" (JR.thisField "permanentGameNotification"))) (JR.local "index"))), 
+                    JR.exec (JR.setField "processor" "" JR.this (JR.thisField "nextUnremoveableProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setNextUnremoveableProcess_0 : JR.Method
+jm_setNextUnremoveableProcess_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "index" "I" (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") []), 
+                    JR.exec (JR.invoke "setX_1" JR.this [ (JR.map2 JR.shr ((JR.map2 JR.sub (JR.invoke "getLastWidth_0" (JR.thisField "displayInfo") []) (JR.thisField "width"))) (JR.int 1)) ]), 
+                    JR.exec (JR.invoke "setX_1" (JR.thisField "point") [ (JR.invoke "getX_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "setY_1" (JR.thisField "point") [ (JR.invoke "getY_0" JR.this []) ]), 
+                    JR.declare "time" "" (JR.aget (JR.field "objectArray" (JR.field "timeList" (JR.thisField "permanentGameNotification"))) (JR.local "index")), 
+                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN73432 -> (JR.setField "delay" "I" (JR.lit jtN73432) (JR.map2 JR.mul (JR.invoke "intValue_0" (JR.local "time") []) (JR.int 1000))))), 
+                    JR.exec (JR.invoke "setBasicColorP_1" JR.this [ (JR.aget (JR.field "objectArray" (JR.field "colorList" (JR.thisField "permanentGameNotification"))) (JR.local "index")) ]), 
+                    JR.exec (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "gameNotification") []), 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "permanentGameNotification") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.callVia GameNotificationHud.jvtable "paintString_2" JR.this [ (JR.local "graphics"), (JR.thisField "string") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

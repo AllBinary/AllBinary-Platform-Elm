@@ -1,115 +1,101 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.scroller
-module TimedFireAI (module TimedFireAI, module BasicAI) where
+module Org.Allbinary.Game.Ag.Ai.Scroller.TimedFireAI exposing (..)
 
-import BasicAI hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, processAI, processAI_super, processAI_impl, tIME, maxFireDelayTimeHelper, delay)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TimeFiredInterface -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified BasicAI -- org.allbinary.game.ai.BasicAI
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified GameTickTimeDelayHelperFactory -- org.allbinary.time.GameTickTimeDelayHelperFactory
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai.scroller
+-}
 
-data TimedFireAI = TimedFireAI
-    { header_ :: JavaHeader
-    , base :: BasicAI.BasicAI
-    , maxFireDelayTimeHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , delay :: IORef (Int)
-    }
-
-instance JavaNull TimedFireAI where
-    javaNull = javaNullRecord "TimedFireAI"
-
-instance JavaEquals TimedFireAI where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TimedFireAI where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TimedFireAI where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE tIME #-}
-tIME = unsafePerformIO ((SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 1))
-
-newRecord_ :: IO TimedFireAI
-newRecord_ = do
-    base <- BasicAI.newRecord_
-    let header_ = base.header_
-    maxFireDelayTimeHelper <- newIORef javaNull
-    delay <- newIORef 0
-    let this = TimedFireAI header_ base maxFireDelayTimeHelper delay
-    jregisterLevel header_ this
-    jregisterMethod header_ "processAI" (\() -> processAI_impl this)
-    pure this
-
-initFields_ :: TimedFireAI -> IO ()
-initFields_ this = do
-    jset this.maxFireDelayTimeHelper =<< (TimeDelayHelper.new_1 0)
-    jset this.delay (0)
-    pure ()
-
-new_3 :: Int -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO TimedFireAI
-new_3 delay ownerLayerInterface gameInput = do
-    this <- newRecord_
-    init_3 this delay ownerLayerInterface gameInput
-    pure this
-
-init_3 :: TimedFireAI -> Int -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO ()
-init_3 this delay ownerLayerInterface gameInput = do
-        BasicAI.init_2 this.base (ownerLayerInterface) (gameInput)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).delay (delay)
-        pure ()
+import JR
+import Org.Allbinary.Game.Ai.BasicAI as BasicAI
+import Javax.Microedition.Lcdui.Canvas as Canvas
+import Org.Allbinary.Time.GameTickTimeDelayHelperFactory as GameTickTimeDelayHelperFactory
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
 
 
--- throws Exception
-processAI :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI object_ a1 = jmethod object_ "processAI" (\() -> (processAI_impl (javaCast object_ :: TimedFireAI))) () a1
+jclass : String
+jclass =
+    "TimedFireAI"
 
-processAI_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_super object_ a1 = (processAI_impl (javaCast object_ :: TimedFireAI)) a1
 
-processAI_impl :: TimedFireAI -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_impl this allBinaryLayerManager = do
-        let timeFiredInterface = (javaCast (jio (BasicAI.getOwnerLayerInterface this)) :: TimeFiredInterface.TimeFiredInterface)
-        when ((jio (TimeDelayHelper.isTime ((jget (this).maxFireDelayTimeHelper)) (jget ((jio (GameTickTimeDelayHelperFactory.getInstance))).startTime))) && (((jio (TimeFiredInterface.getLastFireTime timeFiredInterface)) + (jget ((jget (this).maxFireDelayTimeHelper)).delay)) < (jio (TimeDelayHelper.getStartTime ((jget (this).maxFireDelayTimeHelper)))))) $ do
-            Control.Monad.void (BasicAI.processKeyAI_super this.base (Canvas.kEY_NUM1))
-            jset ((jget (this).maxFireDelayTimeHelper)).delay ((jget (this).delay))
-        pure ()
+jchain : List String
+jchain =
+    [ "TimedFireAI" ]
+        ++ BasicAI.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicAI.jfields ++ [ ( "maxFireDelayTimeHelper", JR.defaultOf "" ), ( "delay", JR.defaultOf "I" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "processAI_1", jm_processAI_1 ) ]
+        BasicAI.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TimedFireAI"
+        [ ( "jm_processAI_1", jm_processAI_1 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        [ ( "jstatic_TIME", jstatic_TIME ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_TIME : JR.M
+jstatic_TIME s =
+    JR.static "TimedFireAI" jclinit "TIME"
+        (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 1) ])
+        s
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "delay", "I" ), ( "ownerLayerInterface", "" ), ( "gameInput", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicAI.jinit_2 JR.this [ (JR.local "ownerLayerInterface"), (JR.local "gameInput") ]),
+                JR.exec (JR.setField "maxFireDelayTimeHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 0) ])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "delay" "I" JR.this (JR.local "delay")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_processAI_1 : JR.Method
+jm_processAI_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "timeFiredInterface" "" (JR.invoke "getOwnerLayerInterface_0" JR.this []), 
+                    JR.ifElse (JR.and (JR.invoke "isTime_1" (JR.thisField "maxFireDelayTimeHelper") [ (JR.field "startTime" (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])) ]) (JR.map2 JR.less (JR.plus (JR.invoke "getLastFireTime_0" (JR.local "timeFiredInterface") []) (JR.field "delay" (JR.thisField "maxFireDelayTimeHelper"))) (JR.invoke "getStartTime_0" (JR.thisField "maxFireDelayTimeHelper") []))) (JR.run [ 
+                        JR.exec (JR.callVia BasicAI.jvtable "processKeyAI_1" JR.this [ Canvas.jstatic_KEY_NUM1 ]), 
+                        JR.exec (JR.andThen (JR.thisField "maxFireDelayTimeHelper") (\jtN68986 -> (JR.setField "delay" "" (JR.lit jtN68986) (JR.thisField "delay")))) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

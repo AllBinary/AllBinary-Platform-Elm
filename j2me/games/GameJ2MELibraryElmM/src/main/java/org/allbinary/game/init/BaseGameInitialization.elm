@@ -1,318 +1,261 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.init
-module BaseGameInitialization where
+module Org.Allbinary.Game.Init.BaseGameInitialization exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified FeaturedAnimationInterfaceFactoryInterfaceFactory -- org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory
-import qualified GameConfigurationCentral -- org.allbinary.game.configuration.GameConfigurationCentral
-import qualified ChangedGameFeatureListener -- org.allbinary.game.configuration.event.ChangedGameFeatureListener
-import qualified InputFeatureFactory -- org.allbinary.game.configuration.feature.InputFeatureFactory
-import qualified MainFeatureFactory -- org.allbinary.game.configuration.feature.MainFeatureFactory
-import qualified PlatformInputMappingFactory -- org.allbinary.game.input.PlatformInputMappingFactory
-import qualified GameKeyEventFactory -- org.allbinary.game.input.event.GameKeyEventFactory
-import qualified FeaturedResourceRelativeRelationshipFactory -- org.allbinary.game.resource.FeaturedResourceRelativeRelationshipFactory
-import qualified ResourceInitialization -- org.allbinary.game.resource.ResourceInitialization
-import qualified ResourceLoadingLevelFactory -- org.allbinary.game.resource.ResourceLoadingLevelFactory
-import qualified ProgressCanvas -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvas
-import qualified ProgressCanvasFactory -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
-import qualified GameFeatureImageCacheFactory -- org.allbinary.image.GameFeatureImageCacheFactory
-import qualified CompleteMotionGestureInputToGameMotionGestureInput -- org.allbinary.input.motion.CompleteMotionGestureInputToGameMotionGestureInput
-import qualified BasicTouchInputFactory -- org.allbinary.input.motion.button.BasicTouchInputFactory
-import qualified CancelTouchButtonInputFactory -- org.allbinary.input.motion.button.CancelTouchButtonInputFactory
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified GameInitializationInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.init
+-}
 
--- implements GameInitializationInterface
-data BaseGameInitialization = BaseGameInitialization
-    { header_ :: JavaHeader
-    , resourceInitializationArray :: IORef (JavaArray (ResourceInitialization.ResourceInitialization))
-    , portion :: IORef (Int)
-    , initialized :: IORef (Bool)
-    , eARLY_RESOURCES :: IORef (Int)
-    , gAME_RESOURCES :: IORef (Int)
-    , eARLY_CHANGABLE_RESOURCES :: IORef (Int)
-    , gAME_CHANGABLE_RESOURCES :: IORef (Int)
-    , gameInitialized :: IORef (Bool)
-    , allLoaded :: IORef (Bool)
-    }
-
-instance JavaNull BaseGameInitialization where
-    javaNull = javaNullRecord "BaseGameInitialization"
-
-instance JavaEquals BaseGameInitialization where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BaseGameInitialization where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BaseGameInitialization where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_BASE_GAME_INITIALIZATION :: BaseGameInitialization
-{-# NOINLINE nULL_BASE_GAME_INITIALIZATION #-}
-nULL_BASE_GAME_INITIALIZATION = unsafePerformIO ((new_2 (jnewArray (0) javaNull) 0))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BaseGameInitialization
-newRecord_ = do
-    header_ <- newJavaHeader
-    resourceInitializationArray <- newIORef javaNull
-    portion <- newIORef 0
-    initialized <- newIORef False
-    eARLY_RESOURCES <- newIORef 0
-    gAME_RESOURCES <- newIORef 0
-    eARLY_CHANGABLE_RESOURCES <- newIORef 0
-    gAME_CHANGABLE_RESOURCES <- newIORef 0
-    gameInitialized <- newIORef False
-    allLoaded <- newIORef False
-    let this = BaseGameInitialization header_ resourceInitializationArray portion initialized eARLY_RESOURCES gAME_RESOURCES eARLY_CHANGABLE_RESOURCES gAME_CHANGABLE_RESOURCES gameInitialized allLoaded
-    jregisterLevel header_ this
-    GameInitializationInterface.registerInterface_ header_
-    jregisterMethod header_ "initKey" (\() -> initKey_impl this)
-    jregisterMethod header_ "initKeyMapping" (\() -> initKeyMapping_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "resourceInitialization" (\() -> resourceInitialization_impl this)
-    jregisterMethod header_ "resourceAnimationChange" (\() -> resourceAnimationChange_impl this)
-    jregisterMethod header_ "clearResources" (\() -> clearResources_impl this)
-    jregisterMethod header_ "setGameInitialized" (\() -> setGameInitialized_impl this)
-    jregisterMethod header_ "isGameInitialized" (\() -> isGameInitialized_impl this)
-    jregisterMethod header_ "getPortion" (\() -> getPortion_impl this)
-    jregisterMethod header_ "setInitialized" (\() -> setInitialized_impl this)
-    jregisterMethod header_ "isInitialized" (\() -> isInitialized_impl this)
-    pure this
-
-initFields_ :: BaseGameInitialization -> IO ()
-initFields_ this = do
-    jset this.resourceInitializationArray (javaNull)
-    jset this.portion (0)
-    jset this.initialized (False)
-    jset this.eARLY_RESOURCES (0)
-    jset this.gAME_RESOURCES (1)
-    jset this.eARLY_CHANGABLE_RESOURCES (2)
-    jset this.gAME_CHANGABLE_RESOURCES (3)
-    jset this.gameInitialized (False)
-    jset this.allLoaded (False)
-    pure ()
-
-new_2 :: JavaArray (ResourceInitialization.ResourceInitialization) -> Int -> IO BaseGameInitialization
-new_2 resourceInitializationArray portion = do
-    this <- newRecord_
-    init_2 this resourceInitializationArray portion
-    pure this
-
-init_2 :: BaseGameInitialization -> JavaArray (ResourceInitialization.ResourceInitialization) -> Int -> IO ()
-init_2 this resourceInitializationArray portion = do
-        initFields_ this
-        jset (this).resourceInitializationArray (resourceInitializationArray)
-        jset (this).portion (portion)
-        pure ()
+import JR
+import Org.Allbinary.Input.Motion.Button.BasicTouchInputFactory as BasicTouchInputFactory
+import Org.Allbinary.Input.Motion.Button.CancelTouchButtonInputFactory as CancelTouchButtonInputFactory
+import Org.Allbinary.Game.Configuration.Event.ChangedGameFeatureListener as ChangedGameFeatureListener
+import Org.Allbinary.Input.Motion.CompleteMotionGestureInputToGameMotionGestureInput as CompleteMotionGestureInputToGameMotionGestureInput
+import Org.Allbinary.Animation.FeaturedAnimationInterfaceFactoryInterfaceFactory as FeaturedAnimationInterfaceFactoryInterfaceFactory
+import Org.Allbinary.Game.Resource.FeaturedResourceRelativeRelationshipFactory as FeaturedResourceRelativeRelationshipFactory
+import Org.Allbinary.Game.Configuration.GameConfigurationCentral as GameConfigurationCentral
+import Org.Allbinary.Image.GameFeatureImageCacheFactory as GameFeatureImageCacheFactory
+import Org.Allbinary.Game.Init.GameInitializationInterface as GameInitializationInterface
+import Org.Allbinary.Game.Input.Event.GameKeyEventFactory as GameKeyEventFactory
+import Org.Allbinary.Game.Configuration.Feature.InputFeatureFactory as InputFeatureFactory
+import Org.Allbinary.Game.Configuration.Feature.MainFeatureFactory as MainFeatureFactory
+import Org.Allbinary.Game.Input.PlatformInputMappingFactory as PlatformInputMappingFactory
+import Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressCanvasFactory as ProgressCanvasFactory
+import Org.Allbinary.Game.Resource.ResourceLoadingLevelFactory as ResourceLoadingLevelFactory
 
 
--- throws Exception
-initKey :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-initKey object_ a1 = jmethod object_ "initKey" (\() -> (initKey_impl (javaCast object_ :: BaseGameInitialization))) () a1
-
-initKey_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-initKey_super object_ a1 = (initKey_impl (javaCast object_ :: BaseGameInitialization)) a1
-
-initKey_impl :: BaseGameInitialization -> Int -> IO (())
-initKey_impl this portion = do
-        pure ()
+jclass : String
+jclass =
+    "BaseGameInitialization"
 
 
--- throws Exception
-initKeyMapping :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> Int -> IO (())
-initKeyMapping object_ a1 a2 = jmethod object_ "initKeyMapping" (\() -> (initKeyMapping_impl (javaCast object_ :: BaseGameInitialization))) () a1 a2
-
-initKeyMapping_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> Int -> IO (())
-initKeyMapping_super object_ a1 a2 = (initKeyMapping_impl (javaCast object_ :: BaseGameInitialization)) a1 a2
-
-initKeyMapping_impl :: BaseGameInitialization -> AbeClientInformationInterface.AbeClientInformationInterface -> Int -> IO (())
-initKeyMapping_impl this abeClientInformation portion = do
-        when (jio (ChangedGameFeatureListener.isChangedFeature ((jio (ChangedGameFeatureListener.getInstance))) (jget ((jio (InputFeatureFactory.getInstance))).iNPUT_MAPPING))) $ do
-            Control.Monad.void (PlatformInputMappingFactory.init ((jio (PlatformInputMappingFactory.getPersistentInputMappingInstance ((jio (PlatformInputMappingFactory.getInstance)))))) abeClientInformation)
-            Control.Monad.void (ProgressCanvasFactory.addNormalPortion ((jio (ProgressCanvasFactory.getInstance))) 50 "Game Keys")
-            Control.Monad.void (ChangedGameFeatureListener.remove ((jio (ChangedGameFeatureListener.getInstance))) (jget ((jio (InputFeatureFactory.getInstance))).iNPUT_MAPPING))
-        pure ()
+jchain : List String
+jchain =
+    [ "BaseGameInitialization" ]
+        ++ GameInitializationInterface.jchain
 
 
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> CommandListener.CommandListener -> Int -> IO (())
-init object_ a1 a2 a3 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: BaseGameInitialization))) () a1 a2 a3
-
-init_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> CommandListener.CommandListener -> Int -> IO (())
-init_super object_ a1 a2 a3 = (init_impl (javaCast object_ :: BaseGameInitialization)) a1 a2 a3
-
-init_impl :: BaseGameInitialization -> AbeClientInformationInterface.AbeClientInformationInterface -> CommandListener.CommandListener -> Int -> IO (())
-init_impl this abeClientInformation commandListener level = do
-        resourceLoadingLevelFactory <- (ResourceLoadingLevelFactory.getInstance)
-        when ((Prelude.not (jio (BaseGameInitialization.isInitialized this))) && (((level == (jio (getLevel ((jget (resourceLoadingLevelFactory).lOAD_ALL))))) || (level == (jio (getLevel ((jget (resourceLoadingLevelFactory).lOAD_EARLY)))))))) $ do
-            localPortion <- newIORef (40 :: Int)
-            when (level == (jio (getLevel ((jget (resourceLoadingLevelFactory).lOAD_EARLY))))) $ do
-                jset localPortion (8)
-            Control.Monad.void (BaseGameInitialization.setInitialized this True)
-            Control.Monad.void (BaseGameInitialization.initKey this (jio (BaseGameInitialization.getPortion this)))
-            Control.Monad.void (BaseGameInitialization.initKeyMapping this abeClientInformation (jio (BaseGameInitialization.getPortion this)))
-            Control.Monad.void (GameKeyEventFactory.init ((jio (GameKeyEventFactory.getInstance))))
-            progressCanvas <- (ProgressCanvasFactory.getInstance)
-            Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas (jget localPortion) "Game Key Events")
-            Control.Monad.void (BasicTouchInputFactory.init ((jio (BasicTouchInputFactory.getInstance))) (jio (PlatformInputMappingFactory.getInputMapping ((jio (PlatformInputMappingFactory.getPersistentInputMappingInstance ((jio (PlatformInputMappingFactory.getInstance)))))))))
-            Control.Monad.void (CancelTouchButtonInputFactory.getInstance)
-            Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas (jget localPortion) "Touch Input")
-            Control.Monad.void (CompleteMotionGestureInputToGameMotionGestureInput.init ((jio (CompleteMotionGestureInputToGameMotionGestureInput.getInstance))))
-            Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas (jget localPortion) "Motion Input")
-            Control.Monad.void (GameFeatureImageCacheFactory.init)
-            Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas (jget localPortion) "Image Cache")
-            Control.Monad.void (ResourceInitialization.init ((jindex ((jget (this).resourceInitializationArray)) ((jget (this).eARLY_RESOURCES)))))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "resourceInitializationArray", JR.defaultOf "" ), ( "portion", JR.defaultOf "I" ), ( "initialized", JR.defaultOf "Z" ), ( "EARLY_RESOURCES", JR.defaultOf "I" ), ( "GAME_RESOURCES", JR.defaultOf "I" ), ( "EARLY_CHANGABLE_RESOURCES", JR.defaultOf "I" ), ( "GAME_CHANGABLE_RESOURCES", JR.defaultOf "I" ), ( "gameInitialized", JR.defaultOf "Z" ), ( "allLoaded", JR.defaultOf "Z" ) ]
 
 
--- throws Exception
-resourceInitialization :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-resourceInitialization object_ a1 = jmethod object_ "resourceInitialization" (\() -> (resourceInitialization_impl (javaCast object_ :: BaseGameInitialization))) () a1
-
-resourceInitialization_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-resourceInitialization_super object_ a1 = (resourceInitialization_impl (javaCast object_ :: BaseGameInitialization)) a1
-
-resourceInitialization_impl :: BaseGameInitialization -> Int -> IO (())
-resourceInitialization_impl this level = do
-        resourceLoadingLevelFactory <- (ResourceLoadingLevelFactory.getInstance)
-        when ((jio (BaseGameInitialization.resourceAnimationChange this)) && (level == (jio (getLevel ((jget (resourceLoadingLevelFactory).lOAD_EARLY)))))) $ do
-            Control.Monad.void (BaseGameInitialization.clearResources this)
-            Control.Monad.void (ResourceInitialization.init ((jindex ((jget (this).resourceInitializationArray)) ((jget (this).eARLY_CHANGABLE_RESOURCES)))))
-        when ((jio (BaseGameInitialization.resourceAnimationChange this)) && (level == (jio (getLevel ((jget (resourceLoadingLevelFactory).lOAD_ALL)))))) $ do
-            when (jget (this).allLoaded) $ do
-                Control.Monad.void (BaseGameInitialization.clearResources this)
-            when ((jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.size ((jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.getList ((jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance)))))))) == 0) $ do
-                Control.Monad.void (ResourceInitialization.init ((jindex ((jget (this).resourceInitializationArray)) ((jget (this).eARLY_CHANGABLE_RESOURCES)))))
-            Control.Monad.void (ResourceInitialization.init ((jindex ((jget (this).resourceInitializationArray)) ((jget (this).gAME_CHANGABLE_RESOURCES)))))
-            jset (this).allLoaded (True)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "initKey_1", jm_initKey_1 )
+        , ( "initKeyMapping_2", jm_initKeyMapping_2 )
+        , ( "init_3", jm_init_3 )
+        , ( "resourceInitialization_1", jm_resourceInitialization_1 )
+        , ( "resourceAnimationChange_0", jm_resourceAnimationChange_0 )
+        , ( "clearResources_0", jm_clearResources_0 )
+        , ( "setGameInitialized_1", jm_setGameInitialized_1 )
+        , ( "isGameInitialized_0", jm_isGameInitialized_0 )
+        , ( "getPortion_0", jm_getPortion_0 )
+        , ( "setInitialized_1", jm_setInitialized_1 )
+        , ( "isInitialized_0", jm_isInitialized_0 ) ]
+        JR.noMethods
 
 
-resourceAnimationChange :: (JavaObjectClass this_) => this_ -> IO (Bool)
-resourceAnimationChange object_ = jmethod object_ "resourceAnimationChange" (\() -> (resourceAnimationChange_impl (javaCast object_ :: BaseGameInitialization))) ()
-
-resourceAnimationChange_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-resourceAnimationChange_super object_ = (resourceAnimationChange_impl (javaCast object_ :: BaseGameInitialization))
-
-resourceAnimationChange_impl :: BaseGameInitialization -> IO (Bool)
-resourceAnimationChange_impl this = do
-    javaCatchReturn $ do
-        changedGameFeatureListener <- (ChangedGameFeatureListener.getInstance)
-        gameConfigurationCentral <- (GameConfigurationCentral.getInstance)
-        when (jio (ChangedGameFeatureListener.isChangedGameConfiguration changedGameFeatureListener (jget (gameConfigurationCentral).sCALE))) $ do
-            javaReturn (True)
-        when (jio (ChangedGameFeatureListener.isChangedFeature ((jio (ChangedGameFeatureListener.getInstance))) (jget ((jio (MainFeatureFactory.getInstance))).sTATIC))) $ do
-            javaReturn (True)
-        pure (False)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BaseGameInitialization"
+        [ ( "jm_initKey_1", jm_initKey_1 ), ( "jm_initKeyMapping_2", jm_initKeyMapping_2 ), ( "jm_init_3", jm_init_3 ), ( "jm_resourceInitialization_1", jm_resourceInitialization_1 ), ( "jm_resourceAnimationChange_0", jm_resourceAnimationChange_0 ), ( "jm_clearResources_0", jm_clearResources_0 ), ( "jm_setGameInitialized_1", jm_setGameInitialized_1 ), ( "jm_isGameInitialized_0", jm_isGameInitialized_0 ), ( "jm_getPortion_0", jm_getPortion_0 ), ( "jm_setInitialized_1", jm_setInitialized_1 ), ( "jm_isInitialized_0", jm_isInitialized_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_NULL_BASE_GAME_INITIALIZATION", jstatic_NULL_BASE_GAME_INITIALIZATION ) ]
+        jheap
 
 
-clearResources :: (JavaObjectClass this_) => this_ -> IO (())
-clearResources object_ = jmethod object_ "clearResources" (\() -> (clearResources_impl (javaCast object_ :: BaseGameInitialization))) ()
-
-clearResources_super :: (JavaObjectClass this_) => this_ -> IO (())
-clearResources_super object_ = (clearResources_impl (javaCast object_ :: BaseGameInitialization))
-
-clearResources_impl :: BaseGameInitialization -> IO (())
-clearResources_impl this = do
-        jset (this).allLoaded (False)
-        Control.Monad.void (GameFeatureImageCacheFactory.releaseAll)
-        featuredAnimationInterfaceFactoryInterfaceFactory <- (FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance)
-        Control.Monad.void (FeaturedAnimationInterfaceFactoryInterfaceFactory.clear featuredAnimationInterfaceFactoryInterfaceFactory)
-        Control.Monad.void (FeaturedResourceRelativeRelationshipFactory.clear ((jio (FeaturedResourceRelativeRelationshipFactory.getInstance))))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setGameInitialized :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setGameInitialized object_ a1 = jmethod object_ "setGameInitialized" (\() -> (setGameInitialized_impl (javaCast object_ :: BaseGameInitialization))) () a1
-
-setGameInitialized_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setGameInitialized_super object_ a1 = (setGameInitialized_impl (javaCast object_ :: BaseGameInitialization)) a1
-
-setGameInitialized_impl :: BaseGameInitialization -> Bool -> IO (())
-setGameInitialized_impl this gameInitialized = do
-        jset (this).gameInitialized (gameInitialized)
-        pure ()
+jstatic_NULL_BASE_GAME_INITIALIZATION : JR.M
+jstatic_NULL_BASE_GAME_INITIALIZATION s =
+    JR.static "BaseGameInitialization" jclinit "NULL_BASE_GAME_INITIALIZATION"
+        (JR.new jnew_2 [ (JR.newArray "" [ (JR.int 0) ]), (JR.int 0) ])
+        s
 
 
-isGameInitialized :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isGameInitialized object_ = jmethod object_ "isGameInitialized" (\() -> (isGameInitialized_impl (javaCast object_ :: BaseGameInitialization))) ()
-
-isGameInitialized_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isGameInitialized_super object_ = (isGameInitialized_impl (javaCast object_ :: BaseGameInitialization))
-
-isGameInitialized_impl :: BaseGameInitialization -> IO (Bool)
-isGameInitialized_impl this = do
-        pure ((jget (this).gameInitialized))
-
-
-getPortion :: (JavaObjectClass this_) => this_ -> IO (Int)
-getPortion object_ = jmethod object_ "getPortion" (\() -> (getPortion_impl (javaCast object_ :: BaseGameInitialization))) ()
-
-getPortion_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getPortion_super object_ = (getPortion_impl (javaCast object_ :: BaseGameInitialization))
-
-getPortion_impl :: BaseGameInitialization -> IO (Int)
-getPortion_impl this = do
-        pure ((jget (this).portion))
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "resourceInitializationArray", "" ), ( "portion", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "EARLY_RESOURCES" "I" JR.this (JR.int 0)),
+                JR.exec (JR.setField "GAME_RESOURCES" "I" JR.this (JR.int 1)),
+                JR.exec (JR.setField "EARLY_CHANGABLE_RESOURCES" "I" JR.this (JR.int 2)),
+                JR.exec (JR.setField "GAME_CHANGABLE_RESOURCES" "I" JR.this (JR.int 3)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "resourceInitializationArray" "" JR.this (JR.local "resourceInitializationArray")), 
+                    JR.exec (JR.setField "portion" "I" JR.this (JR.local "portion")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-setInitialized :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setInitialized object_ a1 = jmethod object_ "setInitialized" (\() -> (setInitialized_impl (javaCast object_ :: BaseGameInitialization))) () a1
-
-setInitialized_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setInitialized_super object_ a1 = (setInitialized_impl (javaCast object_ :: BaseGameInitialization)) a1
-
-setInitialized_impl :: BaseGameInitialization -> Bool -> IO (())
-setInitialized_impl this initialized = do
-        jset (this).initialized (initialized)
-        pure ()
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
 
 
-isInitialized :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isInitialized object_ = jmethod object_ "isInitialized" (\() -> (isInitialized_impl (javaCast object_ :: BaseGameInitialization))) ()
+jm_initKey_1 : JR.Method
+jm_initKey_1 jheap jthis jargs =
+    JR.method [ ( "portion", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
 
-isInitialized_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isInitialized_super object_ = (isInitialized_impl (javaCast object_ :: BaseGameInitialization))
 
-isInitialized_impl :: BaseGameInitialization -> IO (Bool)
-isInitialized_impl this = do
-        pure ((jget (this).initialized))
+jm_initKeyMapping_2 : JR.Method
+jm_initKeyMapping_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "portion", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isChangedFeature_1" (JR.callStatic ChangedGameFeatureListener.jm_getInstance_0 []) [ (JR.field "INPUT_MAPPING" (JR.callStatic InputFeatureFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.exec (JR.invoke "init_1" (JR.invoke "getPersistentInputMappingInstance_0" (JR.callStatic PlatformInputMappingFactory.jm_getInstance_0 []) []) [ (JR.local "abeClientInformation") ]), 
+                        JR.exec (JR.invoke "addNormalPortion_2" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []) [ (JR.int 50), (JR.str "Game Keys") ]), 
+                        JR.exec (JR.invoke "remove_1" (JR.callStatic ChangedGameFeatureListener.jm_getInstance_0 []) [ (JR.field "INPUT_MAPPING" (JR.callStatic InputFeatureFactory.jm_getInstance_0 [])) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_init_3 : JR.Method
+jm_init_3 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "commandListener", "" ), ( "level", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "resourceLoadingLevelFactory" "" (JR.callStatic ResourceLoadingLevelFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.and (JR.map JR.not_ (JR.invoke "isInitialized_0" JR.this [])) ((JR.or (JR.map2 JR.equals (JR.local "level") (JR.invoke "getLevel_0" (JR.field "LOAD_ALL" (JR.local "resourceLoadingLevelFactory")) [])) (JR.map2 JR.equals (JR.local "level") (JR.invoke "getLevel_0" (JR.field "LOAD_EARLY" (JR.local "resourceLoadingLevelFactory")) []))))) (JR.run [ 
+                        JR.declare "localPortion" "I" (JR.int 40), 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "level") (JR.invoke "getLevel_0" (JR.field "LOAD_EARLY" (JR.local "resourceLoadingLevelFactory")) [])) (JR.run [ 
+                            JR.exec (JR.setLocal "localPortion" "I" (JR.int 8)) ]) identity, 
+                        JR.exec (JR.invoke "setInitialized_1" JR.this [ (JR.bool True) ]), 
+                        JR.exec (JR.invoke "initKey_1" JR.this [ (JR.invoke "getPortion_0" JR.this []) ]), 
+                        JR.exec (JR.invoke "initKeyMapping_2" JR.this [ (JR.local "abeClientInformation"), (JR.invoke "getPortion_0" JR.this []) ]), 
+                        JR.exec (JR.invoke "init_0" (JR.callStatic GameKeyEventFactory.jm_getInstance_0 []) []), 
+                        JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.local "localPortion"), (JR.str "Game Key Events") ]), 
+                        JR.exec (JR.invoke "init_1" (JR.callStatic BasicTouchInputFactory.jm_getInstance_0 []) [ (JR.invoke "getInputMapping_0" (JR.invoke "getPersistentInputMappingInstance_0" (JR.callStatic PlatformInputMappingFactory.jm_getInstance_0 []) []) []) ]), 
+                        JR.exec (JR.callStatic CancelTouchButtonInputFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.local "localPortion"), (JR.str "Touch Input") ]), 
+                        JR.exec (JR.invoke "init_0" (JR.callStatic CompleteMotionGestureInputToGameMotionGestureInput.jm_getInstance_0 []) []), 
+                        JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.local "localPortion"), (JR.str "Motion Input") ]), 
+                        JR.exec (JR.callStatic GameFeatureImageCacheFactory.jm_init_0 []), 
+                        JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.local "localPortion"), (JR.str "Image Cache") ]), 
+                        JR.exec (JR.invoke "init_0" (JR.aget (JR.thisField "resourceInitializationArray") (JR.thisField "EARLY_RESOURCES")) []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_resourceInitialization_1 : JR.Method
+jm_resourceInitialization_1 jheap jthis jargs =
+    JR.method [ ( "level", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "resourceLoadingLevelFactory" "" (JR.callStatic ResourceLoadingLevelFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.and (JR.invoke "resourceAnimationChange_0" JR.this []) (JR.map2 JR.equals (JR.local "level") (JR.invoke "getLevel_0" (JR.field "LOAD_EARLY" (JR.local "resourceLoadingLevelFactory")) []))) (JR.run [ 
+                        JR.exec (JR.invoke "clearResources_0" JR.this []), 
+                        JR.exec (JR.invoke "init_0" (JR.aget (JR.thisField "resourceInitializationArray") (JR.thisField "EARLY_CHANGABLE_RESOURCES")) []) ]) identity, 
+                    JR.ifElse (JR.and (JR.invoke "resourceAnimationChange_0" JR.this []) (JR.map2 JR.equals (JR.local "level") (JR.invoke "getLevel_0" (JR.field "LOAD_ALL" (JR.local "resourceLoadingLevelFactory")) []))) (JR.run [ 
+                        JR.ifElse (JR.thisField "allLoaded") (JR.run [ 
+                            JR.exec (JR.invoke "clearResources_0" JR.this []) ]) identity, 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "size_0" (JR.invoke "getList_0" (JR.callStatic FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0 []) []) []) (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.invoke "init_0" (JR.aget (JR.thisField "resourceInitializationArray") (JR.thisField "EARLY_CHANGABLE_RESOURCES")) []) ]) identity, 
+                        JR.exec (JR.invoke "init_0" (JR.aget (JR.thisField "resourceInitializationArray") (JR.thisField "GAME_CHANGABLE_RESOURCES")) []), 
+                        JR.exec (JR.setField "allLoaded" "Z" JR.this (JR.bool True)) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_resourceAnimationChange_0 : JR.Method
+jm_resourceAnimationChange_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.declare "changedGameFeatureListener" "" (JR.callStatic ChangedGameFeatureListener.jm_getInstance_0 []), 
+                    JR.declare "gameConfigurationCentral" "" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isChangedGameConfiguration_1" (JR.local "changedGameFeatureListener") [ (JR.field "SCALE" (JR.local "gameConfigurationCentral")) ]) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.ifElse (JR.invoke "isChangedFeature_1" (JR.callStatic ChangedGameFeatureListener.jm_getInstance_0 []) [ (JR.field "STATIC" (JR.callStatic MainFeatureFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clearResources_0 : JR.Method
+jm_clearResources_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "allLoaded" "Z" JR.this (JR.bool False)), 
+                    JR.exec (JR.callStatic GameFeatureImageCacheFactory.jm_releaseAll_0 []), 
+                    JR.declare "featuredAnimationInterfaceFactoryInterfaceFactory" "" (JR.callStatic FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "clear_0" (JR.local "featuredAnimationInterfaceFactoryInterfaceFactory") []), 
+                    JR.exec (JR.invoke "clear_0" (JR.callStatic FeaturedResourceRelativeRelationshipFactory.jm_getInstance_0 []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setGameInitialized_1 : JR.Method
+jm_setGameInitialized_1 jheap jthis jargs =
+    JR.method [ ( "gameInitialized", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "gameInitialized" "Z" JR.this (JR.local "gameInitialized")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isGameInitialized_0 : JR.Method
+jm_isGameInitialized_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "gameInitialized") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPortion_0 : JR.Method
+jm_getPortion_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "portion") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInitialized_1 : JR.Method
+jm_setInitialized_1 jheap jthis jargs =
+    JR.method [ ( "initialized", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "initialized" "Z" JR.this (JR.local "initialized")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isInitialized_0 : JR.Method
+jm_isInitialized_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "initialized") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

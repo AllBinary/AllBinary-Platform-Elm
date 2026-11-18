@@ -1,279 +1,242 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module VectorBaseRotationAnimation (module VectorBaseRotationAnimation, module RotationAnimation) where
+module Org.Allbinary.Animation.VectorBaseRotationAnimation exposing (..)
 
-import RotationAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getAnimationSize, getAnimationSize_super, getAnimationSize_impl, getFrame, getFrame_super, getFrame_impl, setFrame, setFrame_super, setFrame_impl, nextFrame, nextFrame_super, nextFrame_impl, previousFrame, previousFrame_super, previousFrame_impl, getSize, getSize_super, getSize_impl, setSequence, setSequence_super, setSequence_impl, getSequence, getSequence_super, getSequence_impl, paintXY, paintXY_super, paintXY_impl, getPoints, getPoints_super, getPoints_impl, setPoints, setPoints_super, setPoints_impl, getBasicColorP, getBasicColorP_super, getBasicColorP_impl, setBasicColorP, setBasicColorP_super, setBasicColorP_impl, currentPoints)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnimationBehavior -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified PrimitiveIntUtil -- org.allbinary.logic.math.PrimitiveIntUtil
-import qualified AngleInfo -- org.allbinary.math.AngleInfo
-import qualified CircularIndexUtil -- org.allbinary.util.CircularIndexUtil
-import qualified RotationAnimation
-import qualified VectorAnimationInterface
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
--- implements VectorAnimationInterface
-data VectorBaseRotationAnimation = VectorBaseRotationAnimation
-    { header_ :: JavaHeader
-    , base :: RotationAnimation.RotationAnimation
-    , currentPoints :: IORef (JavaArray (JavaArray (JavaArray (Int))))
-    }
-
-instance JavaNull VectorBaseRotationAnimation where
-    javaNull = javaNullRecord "VectorBaseRotationAnimation"
-
-instance JavaEquals VectorBaseRotationAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq VectorBaseRotationAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass VectorBaseRotationAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO VectorBaseRotationAnimation
-newRecord_ = do
-    base <- RotationAnimation.newRecord_
-    let header_ = base.header_
-    currentPoints <- newIORef javaNull
-    let this = VectorBaseRotationAnimation header_ base currentPoints
-    jregisterLevel header_ this
-    VectorAnimationInterface.registerInterface_ header_
-    jregisterMethod header_ "getAnimationSize" (\() -> getAnimationSize_impl this)
-    jregisterMethod header_ "getFrame" (\() -> getFrame_impl this)
-    jregisterMethod header_ "setFrame" (\() -> setFrame_impl this)
-    jregisterMethod header_ "nextFrame" (\() -> nextFrame_impl this)
-    jregisterMethod header_ "previousFrame" (\() -> previousFrame_impl this)
-    jregisterMethod header_ "getSize" (\() -> getSize_impl this)
-    jregisterMethod header_ "setSequence" (\() -> setSequence_impl this)
-    jregisterMethod header_ "getSequence" (\() -> getSequence_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    jregisterMethod header_ "getPoints" (\() -> getPoints_impl this)
-    jregisterMethod header_ "setPoints" (\() -> setPoints_impl this)
-    jregisterMethod header_ "getBasicColorP" (\() -> getBasicColorP_impl this)
-    jregisterMethod header_ "setBasicColorP" (\() -> setBasicColorP_impl this)
-    pure this
-
-initFields_ :: VectorBaseRotationAnimation -> IO ()
-initFields_ this = do
-    jset this.currentPoints ((jget ((jio (NullUtil.getInstance))).nULL_INT_ARRAY_ARRAY_ARRAY))
-    pure ()
-
-new_4 :: AngleInfo.AngleInfo -> JavaArray (JavaArray (JavaArray (Int))) -> BasicColor.BasicColor -> AnimationBehavior.AnimationBehavior -> IO VectorBaseRotationAnimation
-new_4 angleInfo currentPoints basicColor animationBehavior = do
-    this <- newRecord_
-    init_4 this angleInfo currentPoints basicColor animationBehavior
-    pure this
-
-init_4 :: VectorBaseRotationAnimation -> AngleInfo.AngleInfo -> JavaArray (JavaArray (JavaArray (Int))) -> BasicColor.BasicColor -> AnimationBehavior.AnimationBehavior -> IO ()
-init_4 this angleInfo currentPoints basicColor animationBehavior = do
-        RotationAnimation.init_3 this.base (angleInfo) (jio (CircularIndexUtil.createInstance (360 / (jio (AngleInfo.getAngleIncrement ((jio (AngleInfo.getAngleIncrementInfo angleInfo)))))))) (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (VectorBaseRotationAnimation.setPoints this currentPoints)
-        Control.Monad.void (VectorBaseRotationAnimation.setBasicColorP this basicColor)
-        pure ()
+import JR
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Math.PrimitiveIntUtil as PrimitiveIntUtil
+import Org.Allbinary.Animation.RotationAnimation as RotationAnimation
+import Org.Allbinary.Animation.VectorAnimationInterface as VectorAnimationInterface
 
 
--- throws Exception
-getAnimationSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize object_ = jmethod object_ "getAnimationSize" (\() -> (getAnimationSize_impl (javaCast object_ :: VectorBaseRotationAnimation))) ()
-
-getAnimationSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize_super object_ = (getAnimationSize_impl (javaCast object_ :: VectorBaseRotationAnimation))
-
-getAnimationSize_impl :: VectorBaseRotationAnimation -> IO (Int)
-getAnimationSize_impl this = do
-        (VectorBaseRotationAnimation.getSize this)
+jclass : String
+jclass =
+    "VectorBaseRotationAnimation"
 
 
-getFrame :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame object_ = jmethod object_ "getFrame" (\() -> (getFrame_impl (javaCast object_ :: VectorBaseRotationAnimation))) ()
-
-getFrame_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame_super object_ = (getFrame_impl (javaCast object_ :: VectorBaseRotationAnimation))
-
-getFrame_impl :: VectorBaseRotationAnimation -> IO (Int)
-getFrame_impl this = do
-        (getIndex ((jget (this).base.circularIndexUtil)))
+jchain : List String
+jchain =
+    [ "VectorBaseRotationAnimation" ]
+        ++ RotationAnimation.jchain
+        ++ VectorAnimationInterface.jchain
 
 
-setFrame :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame object_ a1 = jmethod object_ "setFrame" (\() -> (setFrame_impl (javaCast object_ :: VectorBaseRotationAnimation))) () a1
-
-setFrame_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame_super object_ a1 = (setFrame_impl (javaCast object_ :: VectorBaseRotationAnimation)) a1
-
-setFrame_impl :: VectorBaseRotationAnimation -> Int -> IO (())
-setFrame_impl this index = do
-        Control.Monad.void (setIndex ((jget (this).base.circularIndexUtil)) index)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    RotationAnimation.jfields ++ [ ( "currentPoints", JR.defaultOf "" ) ]
 
 
-nextFrame :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame object_ = jmethod object_ "nextFrame" (\() -> (nextFrame_impl (javaCast object_ :: VectorBaseRotationAnimation))) ()
-
-nextFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame_super object_ = (nextFrame_impl (javaCast object_ :: VectorBaseRotationAnimation))
-
-nextFrame_impl :: VectorBaseRotationAnimation -> IO (())
-nextFrame_impl this = do
-        Control.Monad.void (next ((jget (this).base.circularIndexUtil)))
-        pure ()
-
-
-previousFrame :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame object_ = jmethod object_ "previousFrame" (\() -> (previousFrame_impl (javaCast object_ :: VectorBaseRotationAnimation))) ()
-
-previousFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame_super object_ = (previousFrame_impl (javaCast object_ :: VectorBaseRotationAnimation))
-
-previousFrame_impl :: VectorBaseRotationAnimation -> IO (())
-previousFrame_impl this = do
-        Control.Monad.void (previous ((jget (this).base.circularIndexUtil)))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getAnimationSize_0", jm_getAnimationSize_0 )
+        , ( "getFrame_0", jm_getFrame_0 )
+        , ( "setFrame_1", jm_setFrame_1 )
+        , ( "nextFrame_0", jm_nextFrame_0 )
+        , ( "previousFrame_0", jm_previousFrame_0 )
+        , ( "getSize_0", jm_getSize_0 )
+        , ( "setSequence_1", jm_setSequence_1 )
+        , ( "getSequence_0", jm_getSequence_0 )
+        , ( "paintXY_3", jm_paintXY_3 )
+        , ( "getPoints_1", jm_getPoints_1 )
+        , ( "setPoints_1", jm_setPoints_1 )
+        , ( "getBasicColorP_0", jm_getBasicColorP_0 )
+        , ( "setBasicColorP_1", jm_setBasicColorP_1 ) ]
+        RotationAnimation.jvtable
 
 
-getSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize object_ = jmethod object_ "getSize" (\() -> (getSize_impl (javaCast object_ :: VectorBaseRotationAnimation))) ()
-
-getSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize_super object_ = (getSize_impl (javaCast object_ :: VectorBaseRotationAnimation))
-
-getSize_impl :: VectorBaseRotationAnimation -> IO (Int)
-getSize_impl this = do
-        pure ((jlength (jget (this).currentPoints)))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "VectorBaseRotationAnimation"
+        [ ( "jm_getAnimationSize_0", jm_getAnimationSize_0 ), ( "jm_getFrame_0", jm_getFrame_0 ), ( "jm_setFrame_1", jm_setFrame_1 ), ( "jm_nextFrame_0", jm_nextFrame_0 ), ( "jm_previousFrame_0", jm_previousFrame_0 ), ( "jm_getSize_0", jm_getSize_0 ), ( "jm_setSequence_1", jm_setSequence_1 ), ( "jm_getSequence_0", jm_getSequence_0 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jm_getPoints_1", jm_getPoints_1 ), ( "jm_setPoints_1", jm_setPoints_1 ), ( "jm_getBasicColorP_0", jm_getBasicColorP_0 ), ( "jm_setBasicColorP_1", jm_setBasicColorP_1 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
 
 
-setSequence :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence object_ a1 = jmethod object_ "setSequence" (\() -> (setSequence_impl (javaCast object_ :: VectorBaseRotationAnimation))) () a1
-
-setSequence_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence_super object_ a1 = (setSequence_impl (javaCast object_ :: VectorBaseRotationAnimation)) a1
-
-setSequence_impl :: VectorBaseRotationAnimation -> JavaArray (Int) -> IO (())
-setSequence_impl this sequence = do
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getSequence :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence object_ = jmethod object_ "getSequence" (\() -> (getSequence_impl (javaCast object_ :: VectorBaseRotationAnimation))) ()
-
-getSequence_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence_super object_ = (getSequence_impl (javaCast object_ :: VectorBaseRotationAnimation))
-
-getSequence_impl :: VectorBaseRotationAnimation -> IO (JavaArray (Int))
-getSequence_impl this = do
-        (PrimitiveIntUtil.getArrayInstance)
-
-
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: VectorBaseRotationAnimation))) () a1 a2 a3
-
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: VectorBaseRotationAnimation)) a1 a2 a3
-
-paintXY_impl :: VectorBaseRotationAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        Control.Monad.void (setBasicColorP ((jget (this).base.basicSetColorUtil)) graphics (jget (this).base.basicColor))
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this "paintVectors" e)
-            ) $ do
-            nextPointX <- newIORef (0 :: Int)
-            nextPointY <- newIORef (0 :: Int)
-            nextPoint <- newIORef (javaNull)
-            point <- newIORef (javaNull)
-            let currentPointsFrame = (jindex ((jget (this).currentPoints)) ((jio (getIndex ((jget (this).base.circularIndexUtil))))))
-            let size = (jlength currentPointsFrame)
-            index <- newIORef ((size - 2) :: Int)
-            fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (loop) $ do
-                jset nextPoint ((jindex currentPointsFrame ((jget index))))
-                jset point ((jindex currentPointsFrame (((jget index) + 1))))
-                jset nextPointX ((jindex ((jget nextPoint)) (0)))
-                jset nextPointY ((jindex ((jget nextPoint)) (1)))
-                if ((jget nextPointX) /= 1000) then do
-                    Control.Monad.void (Graphics.drawLine graphics ((jindex ((jget point)) (0)) + x) ((jindex ((jget point)) (1)) + y) ((jget nextPointX) + x) ((jget nextPointY) + y))
-                else do
-                    jset index ((jget index) - 1)
-        pure ()
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "angleInfo", "" ), ( "currentPoints", "" ), ( "basicColor", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect RotationAnimation.jinit_3 JR.this [ (JR.local "angleInfo"), (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.map2 JR.div (JR.int 360) (JR.cast "I" (JR.invoke "getAngleIncrement_0" (JR.invoke "getAngleIncrementInfo_0" (JR.local "angleInfo") []) []))) ]), (JR.local "animationBehavior") ]),
+                JR.exec (JR.setField "currentPoints" "" JR.this (JR.field "NULL_INT_ARRAY_ARRAY_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setPoints_1" JR.this [ (JR.local "currentPoints") ]), 
+                    JR.exec (JR.invoke "setBasicColorP_1" JR.this [ (JR.local "basicColor") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getPoints :: (JavaObjectClass this_) => this_ -> Int -> IO (JavaArray (JavaArray (Int)))
-getPoints object_ a1 = jmethod object_ "getPoints" (\() -> (getPoints_impl (javaCast object_ :: VectorBaseRotationAnimation))) () a1
-
-getPoints_super :: (JavaObjectClass this_) => this_ -> Int -> IO (JavaArray (JavaArray (Int)))
-getPoints_super object_ a1 = (getPoints_impl (javaCast object_ :: VectorBaseRotationAnimation)) a1
-
-getPoints_impl :: VectorBaseRotationAnimation -> Int -> IO (JavaArray (JavaArray (Int)))
-getPoints_impl this frame = do
-        pure ((jindex ((jget (this).currentPoints)) (frame)))
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
 
 
-setPoints :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (JavaArray (Int))) -> IO (())
-setPoints object_ a1 = jmethod object_ "setPoints" (\() -> (setPoints_impl (javaCast object_ :: VectorBaseRotationAnimation))) () a1
-
-setPoints_super :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (JavaArray (Int))) -> IO (())
-setPoints_super object_ a1 = (setPoints_impl (javaCast object_ :: VectorBaseRotationAnimation)) a1
-
-setPoints_impl :: VectorBaseRotationAnimation -> JavaArray (JavaArray (JavaArray (Int))) -> IO (())
-setPoints_impl this currentPoints = do
-        jset (this).currentPoints (currentPoints)
-        assignedValue <- (CircularIndexUtil.createInstance (jlength (jget (this).currentPoints)))
-        jset (this).base.circularIndexUtil (assignedValue)
-        pure ()
+jm_getAnimationSize_0 : JR.Method
+jm_getAnimationSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getSize_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getBasicColorP :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP object_ = jmethod object_ "getBasicColorP" (\() -> (getBasicColorP_impl (javaCast object_ :: VectorBaseRotationAnimation))) ()
+jm_getFrame_0 : JR.Method
+jm_getFrame_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getBasicColorP_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP_super object_ = (getBasicColorP_impl (javaCast object_ :: VectorBaseRotationAnimation))
 
-getBasicColorP_impl :: VectorBaseRotationAnimation -> IO (BasicColor.BasicColor)
-getBasicColorP_impl this = do
-        (RotationAnimation.getBasicColorP_super this.base)
+jm_setFrame_1 : JR.Method
+jm_setFrame_1 jheap jthis jargs =
+    JR.method [ ( "index", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setIndex_1" (JR.thisField "circularIndexUtil") [ (JR.local "index") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-setBasicColorP :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP object_ a1 = jmethod object_ "setBasicColorP" (\() -> (setBasicColorP_impl (javaCast object_ :: VectorBaseRotationAnimation))) () a1
+jm_nextFrame_0 : JR.Method
+jm_nextFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setBasicColorP_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP_super object_ a1 = (setBasicColorP_impl (javaCast object_ :: VectorBaseRotationAnimation)) a1
 
-setBasicColorP_impl :: VectorBaseRotationAnimation -> BasicColor.BasicColor -> IO (())
-setBasicColorP_impl this basicColor = do
-        Control.Monad.void (RotationAnimation.setBasicColorP_super this.base basicColor)
-        pure ()
+jm_previousFrame_0 : JR.Method
+jm_previousFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "previous_0" (JR.thisField "circularIndexUtil") []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_getSize_0 : JR.Method
+jm_getSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.alength (JR.thisField "currentPoints")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setSequence_1 : JR.Method
+jm_setSequence_1 jheap jthis jargs =
+    JR.method [ ( "sequence", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSequence_0 : JR.Method
+jm_getSequence_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setBasicColorP_2" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.thisField "basicColor") ]), 
+                    JR.try (JR.run [ 
+                        JR.declare "nextPointX" "I" (JR.int 0), 
+                        JR.declare "nextPointY" "I" (JR.int 0), 
+                        JR.declare "nextPoint" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "currentPointsFrame" "" (JR.aget (JR.thisField "currentPoints") (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") [])), 
+                        JR.declare "size" "I" (JR.alength (JR.local "currentPointsFrame")), 
+                        JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 2)), 
+                        JR.while (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68852 -> (JR.setLocal "index" "I" (JR.lit jwN68852))) JR.decrement) (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.setLocal "nextPoint" "" (JR.aget (JR.local "currentPointsFrame") (JR.local "index"))), 
+                            JR.exec (JR.setLocal "point" "" (JR.aget (JR.local "currentPointsFrame") (JR.map2 JR.add (JR.local "index") (JR.int 1)))), 
+                            JR.exec (JR.setLocal "nextPointX" "I" (JR.aget (JR.local "nextPoint") (JR.int 0))), 
+                            JR.exec (JR.setLocal "nextPointY" "I" (JR.aget (JR.local "nextPoint") (JR.int 1))), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "nextPointX") (JR.int 1000)) (JR.run [ 
+                                JR.exec (JR.invoke "drawLine_4" (JR.local "graphics") [ (JR.map2 JR.add (JR.aget (JR.local "point") (JR.int 0)) (JR.local "x")), (JR.map2 JR.add (JR.aget (JR.local "point") (JR.int 1)) (JR.local "y")), (JR.map2 JR.add (JR.local "nextPointX") (JR.local "x")), (JR.map2 JR.add (JR.local "nextPointY") (JR.local "y")) ]) ]) (JR.run [ 
+                                JR.exec (JR.postUpdate (JR.local "index") (\jwN68695 -> (JR.setLocal "index" "I" (JR.lit jwN68695))) JR.decrement) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "paintVectors"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPoints_1 : JR.Method
+jm_getPoints_1 jheap jthis jargs =
+    JR.method [ ( "frame", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.aget (JR.thisField "currentPoints") (JR.local "frame")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPoints_1 : JR.Method
+jm_setPoints_1 jheap jthis jargs =
+    JR.method [ ( "currentPoints", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "currentPoints" "" JR.this (JR.local "currentPoints")), 
+                    JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.alength (JR.thisField "currentPoints")) ])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBasicColorP_0 : JR.Method
+jm_getBasicColorP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callVia RotationAnimation.jvtable "getBasicColorP_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setBasicColorP_1 : JR.Method
+jm_setBasicColorP_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia RotationAnimation.jvtable "setBasicColorP_1" JR.this [ (JR.local "basicColor") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,4 +1,4 @@
-module J2MEUtil exposing (..)
+module Org.Allbinary.J2MEUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary
 -}

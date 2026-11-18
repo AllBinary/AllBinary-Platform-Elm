@@ -1,546 +1,433 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.canvas.transition.progress
-module ProgressCanvas (module ProgressCanvas, module RunnableCanvas) where
-
-import RunnableCanvas hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, init, init_super, init_impl, update, update_super, update_impl, initCommands, initCommands_super, initCommands_impl, getMaxValue, getMaxValue_super, getMaxValue_impl, start, start_super, start_impl, startBackground, startBackground_super, startBackground_impl, endActual, endActual_super, endActual_impl, inGame, inGame_super, inGame_impl, end, end_super, end_impl, endFromInitialLazyLoadingComplete, endFromInitialLazyLoadingComplete_super, endFromInitialLazyLoadingComplete_impl, isInGame, isInGame_super, isInGame_impl, endIfPaintedSinceStart, endIfPaintedSinceStart_super, endIfPaintedSinceStart_impl, addEarlyPortion, addEarlyPortion_super, addEarlyPortion_impl, addPortion, addPortion_super, addPortion_impl, addNormalPortion, addNormalPortion_super, addNormalPortion_impl, setValue, setValue_super, setValue_impl, paint, paint_super, paint_impl, paint2, paint2_super, paint2_impl, paintThreed, paintThreed_super, paintThreed_impl, getValue, getValue_super, getValue_impl, setText, setText_super, setText_impl, getText, getText_super, getText_impl, setBackground, setBackground_super, setBackground_impl, isBackground, isBackground_super, isBackground_impl, hasPainted, backgroundBasicColor, gAUGE_PAINTABLE, maxValue, gauge, tEXT, updateMyFontProcessor, myFontProcessor, allbinaryMidlet, value, text, background, paintable, inProgress, iN_GAME_PROCESSOR, inGameProcessor, progressEndListener, backgroundLabel, sTART_BACKGROUND, aDD_PORTION, aDD_EARLY_PORTION)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ProgressPaintable -- same package or java.lang
-import qualified ProgressEndListener -- same package or java.lang
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified NullCanvas -- javax.microedition.lcdui.NullCanvas
-import qualified NullCommandListener -- javax.microedition.lcdui.NullCommandListener
-import qualified Processor -- org.allbinary.canvas.Processor
-import qualified RunnableCanvas -- org.allbinary.canvas.RunnableCanvas
-import qualified GameCommandsFactory -- org.allbinary.game.commands.GameCommandsFactory
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified CanvasStrings -- org.allbinary.graphics.displayable.CanvasStrings
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified ABCustomGaugeItem -- org.allbinary.graphics.form.item.ABCustomGaugeItem
-import qualified NullPaintable -- org.allbinary.graphics.paint.NullPaintable
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified PaintableInterface -- org.allbinary.graphics.paint.PaintableInterface
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified AllBinaryMidlet -- org.allbinary.midlet.AllBinaryMidlet
-import qualified PathFindingThreadPool -- org.allbinary.thread.PathFindingThreadPool
-import qualified ThreadPool -- org.allbinary.thread.ThreadPool
-
--- implements PaintableInterface
--- implements UpdateMyFontInterface
-data ProgressCanvas = ProgressCanvas
-    { header_ :: JavaHeader
-    , base :: RunnableCanvas.RunnableCanvas
-    , hasPainted :: IORef (Bool)
-    , backgroundBasicColor :: IORef (BasicColor.BasicColor)
-    , gAUGE_PAINTABLE :: IORef (Paintable.Paintable)
-    , maxValue :: IORef (Float)
-    , gauge :: IORef (ABCustomGaugeItem.ABCustomGaugeItem)
-    , tEXT :: IORef (String)
-    , updateMyFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , allbinaryMidlet :: IORef (AllBinaryMidlet.AllBinaryMidlet)
-    , value :: IORef (Float)
-    , text :: IORef (String)
-    , background :: IORef (Bool)
-    , paintable :: IORef (PaintableInterface.PaintableInterface)
-    , inProgress :: IORef (Bool)
-    , iN_GAME_PROCESSOR :: IORef (Processor.Processor)
-    , inGameProcessor :: IORef (Processor.Processor)
-    , progressEndListener :: IORef (ProgressEndListener.ProgressEndListener)
-    , backgroundLabel :: IORef (String)
-    , sTART_BACKGROUND :: IORef (String)
-    , aDD_PORTION :: IORef (String)
-    , aDD_EARLY_PORTION :: IORef (String)
-    }
-
-instance JavaNull ProgressCanvas where
-    javaNull = javaNullRecord "ProgressCanvas"
-
-instance JavaEquals ProgressCanvas where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ProgressCanvas where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ProgressCanvas where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ProgressCanvas
-newRecord_ = do
-    base <- RunnableCanvas.newRecord_
-    let header_ = base.header_
-    hasPainted <- newIORef False
-    backgroundBasicColor <- newIORef javaNull
-    gAUGE_PAINTABLE <- newIORef javaNull
-    maxValue <- newIORef 0.0
-    gauge <- newIORef javaNull
-    tEXT <- newIORef ""
-    updateMyFontProcessor <- newIORef javaNull
-    myFontProcessor <- newIORef javaNull
-    allbinaryMidlet <- newIORef javaNull
-    value <- newIORef 0.0
-    text <- newIORef ""
-    background <- newIORef False
-    paintable <- newIORef javaNull
-    inProgress <- newIORef False
-    iN_GAME_PROCESSOR <- newIORef javaNull
-    inGameProcessor <- newIORef javaNull
-    progressEndListener <- newIORef javaNull
-    backgroundLabel <- newIORef ""
-    sTART_BACKGROUND <- newIORef ""
-    aDD_PORTION <- newIORef ""
-    aDD_EARLY_PORTION <- newIORef ""
-    let this = ProgressCanvas header_ base hasPainted backgroundBasicColor gAUGE_PAINTABLE maxValue gauge tEXT updateMyFontProcessor myFontProcessor allbinaryMidlet value text background paintable inProgress iN_GAME_PROCESSOR inGameProcessor progressEndListener backgroundLabel sTART_BACKGROUND aDD_PORTION aDD_EARLY_PORTION
-    jregisterLevel header_ this
-    PaintableInterface.registerInterface_ header_
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "initCommands" (\() -> initCommands_impl this)
-    jregisterMethod header_ "getMaxValue" (\() -> getMaxValue_impl this)
-    jregisterMethod header_ "start" (\() -> start_impl this)
-    jregisterMethod header_ "startBackground" (\() -> startBackground_impl this)
-    jregisterMethod header_ "endActual" (\() -> endActual_impl this)
-    jregisterMethod header_ "inGame" (\() -> inGame_impl this)
-    jregisterMethod header_ "end" (\() -> end_impl this)
-    jregisterMethod header_ "endFromInitialLazyLoadingComplete" (\() -> endFromInitialLazyLoadingComplete_impl this)
-    jregisterMethod header_ "isInGame" (\() -> isInGame_impl this)
-    jregisterMethod header_ "endIfPaintedSinceStart" (\() -> endIfPaintedSinceStart_impl this)
-    jregisterMethod header_ "addEarlyPortion" (\() -> addEarlyPortion_impl this)
-    jregisterMethod header_ "addPortion" (\() -> addPortion_impl this)
-    jregisterMethod header_ "addNormalPortion" (\() -> addNormalPortion_impl this)
-    jregisterMethod header_ "setValue" (\() -> setValue_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "paint2" (\() -> paint2_impl this)
-    jregisterMethod header_ "paintThreed" (\() -> paintThreed_impl this)
-    jregisterMethod header_ "getValue" (\() -> getValue_impl this)
-    jregisterMethod header_ "setText" (\() -> setText_impl this)
-    jregisterMethod header_ "getText" (\() -> getText_impl this)
-    jregisterMethod header_ "setBackground" (\() -> setBackground_impl this)
-    jregisterMethod header_ "isBackground" (\() -> isBackground_impl this)
-    pure this
-
-initFields_ :: ProgressCanvas -> IO ()
-initFields_ this = do
-    jset this.hasPainted (False)
-    jset this.backgroundBasicColor (javaNull)
-    jset this.gAUGE_PAINTABLE =<< (fmap (\value_ -> javaCast value_ :: Paintable.Paintable) (ProgressPaintable.new_1 this))
-    jset this.maxValue (100.0)
-    jset this.gauge (javaNull)
-    jset this.tEXT ((jget ((jget (this).base.commonStrings)).lOADING))
-    jset this.updateMyFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.myFontProcessor ((jget (this).updateMyFontProcessor))
-    jset this.allbinaryMidlet =<< (AllBinaryMidlet.getNullInstance)
-    jset this.value (0.0)
-    jset this.text ((jget (this).tEXT))
-    jset this.background (True)
-    jset this.paintable ((javaCast (jget (this).gAUGE_PAINTABLE) :: PaintableInterface.PaintableInterface))
-    jset this.inProgress (False)
-    jset this.iN_GAME_PROCESSOR =<< (Processor.new_ >>= anonymousProgressCanvas0_ this)
-    jset this.inGameProcessor =<< (Processor.getInstance)
-    jset this.progressEndListener (ProgressEndListener.instance_)
-    jset this.backgroundLabel ("Background AI Game Loading...")
-    jset this.sTART_BACKGROUND ("startBackground")
-    jset this.aDD_PORTION ("addPortion")
-    jset this.aDD_EARLY_PORTION ("addEarlyPortion")
-    pure ()
-
-new_3 :: String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ProgressCanvas
-new_3 title backgroundBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_3 this title backgroundBasicColor foregroundBasicColor
-    pure this
-
-init_3 :: ProgressCanvas -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_3 this title backgroundBasicColor foregroundBasicColor = do
-        RunnableCanvas.init_3 this.base (NullCommandListener.nULL_COMMAND_LISTENER) (jget ((jio (CanvasStrings.getInstance))).eMPTY_CHILD_NAME_LIST) (False)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).backgroundBasicColor (backgroundBasicColor)
-        assignedValue <- (ABCustomGaugeItem.new_5 (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Prelude.truncate (jget (this).maxValue)) 0 backgroundBasicColor foregroundBasicColor)
-        jset (this).gauge (assignedValue)
-        pure ()
-
-
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: ProgressCanvas))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: ProgressCanvas)) a1
-
-updateMeasurement_impl :: ProgressCanvas -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        Control.Monad.void (ABCustomGaugeItem.setHeight ((jget (this).gauge)) ((jio (Font.getHeight font)) + 2))
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
-
-
-init :: (JavaObjectClass this_) => this_ -> AllBinaryMidlet.AllBinaryMidlet -> IO (())
-init object_ a1 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: ProgressCanvas))) () a1
-
-init_super :: (JavaObjectClass this_) => this_ -> AllBinaryMidlet.AllBinaryMidlet -> IO (())
-init_super object_ a1 = (init_impl (javaCast object_ :: ProgressCanvas)) a1
-
-init_impl :: ProgressCanvas -> AllBinaryMidlet.AllBinaryMidlet -> IO (())
-init_impl this gameMidlet = do
-        jset (this).allbinaryMidlet (gameMidlet)
-        pure ()
-
-
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-update object_ a1 = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: ProgressCanvas))) () a1
-
-update_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-update_super object_ a1 = (update_impl (javaCast object_ :: ProgressCanvas)) a1
-
-update_impl :: ProgressCanvas -> Graphics.Graphics -> IO (())
-update_impl this graphics = do
-        pure ()
-
-
-initCommands :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands object_ a1 = jmethod object_ "initCommands" (\() -> (initCommands_impl (javaCast object_ :: ProgressCanvas))) () a1
-
-initCommands_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands_super object_ a1 = (initCommands_impl (javaCast object_ :: ProgressCanvas)) a1
-
-initCommands_impl :: ProgressCanvas -> CommandListener.CommandListener -> IO (())
-initCommands_impl this cmdListener = do
-        pure ()
-
-
-getMaxValue :: (JavaObjectClass this_) => this_ -> IO (Float)
-getMaxValue object_ = jmethod object_ "getMaxValue" (\() -> (getMaxValue_impl (javaCast object_ :: ProgressCanvas))) ()
-
-getMaxValue_super :: (JavaObjectClass this_) => this_ -> IO (Float)
-getMaxValue_super object_ = (getMaxValue_impl (javaCast object_ :: ProgressCanvas))
-
-getMaxValue_impl :: ProgressCanvas -> IO (Float)
-getMaxValue_impl this = do
-        pure ((jget (this).maxValue))
-
-
-start :: (JavaObjectClass this_) => this_ -> IO (())
-start object_ = jmethod object_ "start" (\() -> (start_impl (javaCast object_ :: ProgressCanvas))) ()
-
-start_super :: (JavaObjectClass this_) => this_ -> IO (())
-start_super object_ = (start_impl (javaCast object_ :: ProgressCanvas))
-
-start_impl :: ProgressCanvas -> IO (())
-start_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).sTART_METHOD_NAME))
-        Control.Monad.void (ProgressCanvas.setBackground this True)
-        Control.Monad.void (ABCustomGaugeItem.setHeight ((jget (this).gauge)) 30)
-        Control.Monad.void (ABCustomGaugeItem.setLabel ((jget (this).gauge)) (jget ((jget (this).base.commonStrings)).pLEASE_WAIT))
-        Control.Monad.void (ProgressCanvas.setText this (jget (this).tEXT))
-        Control.Monad.void (ProgressCanvas.setValue this 0)
-        assignedValue <- (Processor.getInstance)
-        jset (this).inGameProcessor (assignedValue)
-        jset (this).paintable ((javaCast (jget (this).gAUGE_PAINTABLE) :: PaintableInterface.PaintableInterface))
-        jset (this).inProgress (True)
-        pure ()
-
-
-startBackground :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-startBackground object_ a1 = jmethod object_ "startBackground" (\() -> (startBackground_impl (javaCast object_ :: ProgressCanvas))) () a1
-
-startBackground_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-startBackground_super object_ a1 = (startBackground_impl (javaCast object_ :: ProgressCanvas)) a1
-
-startBackground_impl :: ProgressCanvas -> Bool -> IO (())
-startBackground_impl this background = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget (this).sTART_BACKGROUND))
-        Control.Monad.void (ProgressCanvas.setBackground this background)
-        jset (this).myFontProcessor ((jget (this).updateMyFontProcessor))
-        Control.Monad.void (ABCustomGaugeItem.setLabel ((jget (this).gauge)) (jget (this).backgroundLabel))
-        Control.Monad.void (ProgressCanvas.setText this (jget (this).tEXT))
-        Control.Monad.void (ProgressCanvas.setValue this 0)
-        assignedValue <- (Processor.getInstance)
-        jset (this).inGameProcessor (assignedValue)
-        jset (this).paintable ((javaCast (jget (this).gAUGE_PAINTABLE) :: PaintableInterface.PaintableInterface))
-        pure ()
-
-
-endActual :: (JavaObjectClass this_) => this_ -> IO (())
-endActual object_ = jmethod object_ "endActual" (\() -> (endActual_impl (javaCast object_ :: ProgressCanvas))) ()
-
-endActual_super :: (JavaObjectClass this_) => this_ -> IO (())
-endActual_super object_ = (endActual_impl (javaCast object_ :: ProgressCanvas))
-
-endActual_impl :: ProgressCanvas -> IO (())
-endActual_impl this = do
-        Control.Monad.void (AllBinaryMidlet.commandAction ((jget (this).allbinaryMidlet)) (jget ((jio (GameCommandsFactory.getInstance))).sHOW_GAME_CANVAS) (NullCanvas.nULL_CANVAS))
-        jset (this).inProgress (False)
-        Control.Monad.void (ProgressCanvas.inGame this)
-        pure ()
-
-
-inGame :: (JavaObjectClass this_) => this_ -> IO (())
-inGame object_ = jmethod object_ "inGame" (\() -> (inGame_impl (javaCast object_ :: ProgressCanvas))) ()
-
-inGame_super :: (JavaObjectClass this_) => this_ -> IO (())
-inGame_super object_ = (inGame_impl (javaCast object_ :: ProgressCanvas))
-
-inGame_impl :: ProgressCanvas -> IO (())
-inGame_impl this = do
-        Control.Monad.void (ProgressEndListener.onEndEvent ((jget (this).progressEndListener)))
-        jset (this).inGameProcessor ((jget (this).iN_GAME_PROCESSOR))
-        pure ()
-
-
-end :: (JavaObjectClass this_) => this_ -> IO (())
-end object_ = jmethod object_ "end" (\() -> (end_impl (javaCast object_ :: ProgressCanvas))) ()
-
-end_super :: (JavaObjectClass this_) => this_ -> IO (())
-end_super object_ = (end_impl (javaCast object_ :: ProgressCanvas))
-
-end_impl :: ProgressCanvas -> IO (())
-end_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).eND_METHOD_NAME))
-        Control.Monad.void (ABCustomGaugeItem.setValue ((jget (this).gauge)) (jio (ProgressCanvas.getMaxValue this)))
-        Control.Monad.void (ProgressCanvas.endActual this)
-        assignedValue <- (NullPaintable.getInstance)
-        jset (this).paintable (assignedValue)
-        pure ()
-
-
-endFromInitialLazyLoadingComplete :: (JavaObjectClass this_) => this_ -> IO (())
-endFromInitialLazyLoadingComplete object_ = jmethod object_ "endFromInitialLazyLoadingComplete" (\() -> (endFromInitialLazyLoadingComplete_impl (javaCast object_ :: ProgressCanvas))) ()
-
-endFromInitialLazyLoadingComplete_super :: (JavaObjectClass this_) => this_ -> IO (())
-endFromInitialLazyLoadingComplete_super object_ = (endFromInitialLazyLoadingComplete_impl (javaCast object_ :: ProgressCanvas))
-
-endFromInitialLazyLoadingComplete_impl :: ProgressCanvas -> IO (())
-endFromInitialLazyLoadingComplete_impl this = do
-        Control.Monad.void (ProgressEndListener.onEndEvent ((jget (this).progressEndListener)))
-        Control.Monad.void (ABCustomGaugeItem.setValue ((jget (this).gauge)) (jio (ProgressCanvas.getMaxValue this)))
-        jset (this).inGameProcessor ((jget (this).iN_GAME_PROCESSOR))
-        pure ()
-
-
-isInGame :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isInGame object_ = jmethod object_ "isInGame" (\() -> (isInGame_impl (javaCast object_ :: ProgressCanvas))) ()
-
-isInGame_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isInGame_super object_ = (isInGame_impl (javaCast object_ :: ProgressCanvas))
-
-isInGame_impl :: ProgressCanvas -> IO (Bool)
-isInGame_impl this = do
-    javaCatchReturn $ do
-        when ((jget (this).inGameProcessor) == (jget (this).iN_GAME_PROCESSOR)) $ do
-            javaReturn (True)
-        pure (False)
-
-
-endIfPaintedSinceStart :: (JavaObjectClass this_) => this_ -> IO (())
-endIfPaintedSinceStart object_ = jmethod object_ "endIfPaintedSinceStart" (\() -> (endIfPaintedSinceStart_impl (javaCast object_ :: ProgressCanvas))) ()
-
-endIfPaintedSinceStart_super :: (JavaObjectClass this_) => this_ -> IO (())
-endIfPaintedSinceStart_super object_ = (endIfPaintedSinceStart_impl (javaCast object_ :: ProgressCanvas))
-
-endIfPaintedSinceStart_impl :: ProgressCanvas -> IO (())
-endIfPaintedSinceStart_impl this = do
-        pure ()
-
-
-addEarlyPortion :: (JavaObjectClass this_) => this_ -> Int -> String -> Int -> IO (())
-addEarlyPortion object_ a1 a2 a3 = jmethod object_ "addEarlyPortion" (\() -> (addEarlyPortion_impl (javaCast object_ :: ProgressCanvas))) () a1 a2 a3
-
-addEarlyPortion_super :: (JavaObjectClass this_) => this_ -> Int -> String -> Int -> IO (())
-addEarlyPortion_super object_ a1 a2 a3 = (addEarlyPortion_impl (javaCast object_ :: ProgressCanvas)) a1 a2 a3
-
-addEarlyPortion_impl :: ProgressCanvas -> Int -> String -> Int -> IO (())
-addEarlyPortion_impl this value text index = do
-        Control.Monad.void (ProgressCanvas.setText this (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) text))) (jio (SmallIntegerSingletonFactory.toString ((jio (SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) index)))))))))))
-        Control.Monad.void (ABCustomGaugeItem.setValue ((jget (this).gauge)) ((jio (ABCustomGaugeItem.getValue ((jget (this).gauge)))) + ((jio (ProgressCanvas.getMaxValue this)) / (Prelude.fromIntegral value))))
-        pure ()
-
-
-addPortion :: (JavaObjectClass this_) => this_ -> Int -> String -> Int -> IO (())
-addPortion object_ a1 a2 a3 = jmethod object_ "addPortion" (\() -> (addPortion_impl (javaCast object_ :: ProgressCanvas))) () a1 a2 a3
-
-addPortion_super :: (JavaObjectClass this_) => this_ -> Int -> String -> Int -> IO (())
-addPortion_super object_ a1 a2 a3 = (addPortion_impl (javaCast object_ :: ProgressCanvas)) a1 a2 a3
-
-addPortion_impl :: ProgressCanvas -> Int -> String -> Int -> IO (())
-addPortion_impl this value text index = do
-        Control.Monad.void (ProgressCanvas.setText this (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) text))) (jio (SmallIntegerSingletonFactory.toString ((jio (SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) index)))))))))))
-        Control.Monad.void (PreLogUtil.put (jget (this).text) this (jget (this).aDD_PORTION))
-        Control.Monad.void (ABCustomGaugeItem.setValue ((jget (this).gauge)) ((jio (ABCustomGaugeItem.getValue ((jget (this).gauge)))) + ((jio (ProgressCanvas.getMaxValue this)) / (Prelude.fromIntegral value))))
-        pure ()
-
-
-addNormalPortion :: (JavaObjectClass this_) => this_ -> Int -> String -> IO (())
-addNormalPortion object_ a1 a2 = jmethod object_ "addNormalPortion" (\() -> (addNormalPortion_impl (javaCast object_ :: ProgressCanvas))) () a1 a2
-
-addNormalPortion_super :: (JavaObjectClass this_) => this_ -> Int -> String -> IO (())
-addNormalPortion_super object_ a1 a2 = (addNormalPortion_impl (javaCast object_ :: ProgressCanvas)) a1 a2
-
-addNormalPortion_impl :: ProgressCanvas -> Int -> String -> IO (())
-addNormalPortion_impl this value text = do
-        when ((jget (this).text) /= text) $ do
-            Control.Monad.void (PreLogUtil.put text this (jget (this).aDD_PORTION))
-        Control.Monad.void (ProgressCanvas.setText this text)
-        Control.Monad.void (ABCustomGaugeItem.setValue ((jget (this).gauge)) ((jio (ABCustomGaugeItem.getValue ((jget (this).gauge)))) + ((jio (ProgressCanvas.getMaxValue this)) / (Prelude.fromIntegral value))))
-        pure ()
-
-
-setValue :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setValue object_ a1 = jmethod object_ "setValue" (\() -> (setValue_impl (javaCast object_ :: ProgressCanvas))) () a1
-
-setValue_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setValue_super object_ a1 = (setValue_impl (javaCast object_ :: ProgressCanvas)) a1
-
-setValue_impl :: ProgressCanvas -> Int -> IO (())
-setValue_impl this value = do
-        jset (this).value ((Prelude.fromIntegral value))
-        Control.Monad.void (ABCustomGaugeItem.setValue ((jget (this).gauge)) (Prelude.fromIntegral value))
-        pure ()
-
-
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: ProgressCanvas))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: ProgressCanvas)) a1
-
-paint_impl :: ProgressCanvas -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (PaintableInterface.paint ((jget (this).paintable)) graphics)
-        pure ()
-
-
-paint2 :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint2 object_ a1 = jmethod object_ "paint2" (\() -> (paint2_impl (javaCast object_ :: ProgressCanvas))) () a1
-
-paint2_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint2_super object_ a1 = (paint2_impl (javaCast object_ :: ProgressCanvas)) a1
-
-paint2_impl :: ProgressCanvas -> Graphics.Graphics -> IO (())
-paint2_impl this graphics = do
-        Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-        Control.Monad.void (Graphics.setColor graphics (jio (BasicColor.intValue ((jget (this).backgroundBasicColor)))))
-        Control.Monad.void (Graphics.fillRect graphics 0 0 (jio (getLastWidth ((jget (this).base.displayInfo)))) (jio (getLastHeight ((jget (this).base.displayInfo)))))
-        Control.Monad.void (ABCustomGaugeItem.paintXY ((jget (this).gauge)) graphics 0 0)
-        jset (this).hasPainted (True)
-        pure ()
-
-
-paintThreed :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed object_ a1 = jmethod object_ "paintThreed" (\() -> (paintThreed_impl (javaCast object_ :: ProgressCanvas))) () a1
-
-paintThreed_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed_super object_ a1 = (paintThreed_impl (javaCast object_ :: ProgressCanvas)) a1
-
-paintThreed_impl :: ProgressCanvas -> Graphics.Graphics -> IO (())
-paintThreed_impl this graphics = do
-        pure ()
-
-
-getValue :: (JavaObjectClass this_) => this_ -> IO (Float)
-getValue object_ = jmethod object_ "getValue" (\() -> (getValue_impl (javaCast object_ :: ProgressCanvas))) ()
-
-getValue_super :: (JavaObjectClass this_) => this_ -> IO (Float)
-getValue_super object_ = (getValue_impl (javaCast object_ :: ProgressCanvas))
-
-getValue_impl :: ProgressCanvas -> IO (Float)
-getValue_impl this = do
-        pure ((jget (this).value))
-
-
-setText :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setText object_ a1 = jmethod object_ "setText" (\() -> (setText_impl (javaCast object_ :: ProgressCanvas))) () a1
-
-setText_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setText_super object_ a1 = (setText_impl (javaCast object_ :: ProgressCanvas)) a1
-
-setText_impl :: ProgressCanvas -> String -> IO (())
-setText_impl this text = do
-        jset (this).text (text)
-        pure ()
-
-
-getText :: (JavaObjectClass this_) => this_ -> IO (String)
-getText object_ = jmethod object_ "getText" (\() -> (getText_impl (javaCast object_ :: ProgressCanvas))) ()
-
-getText_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getText_super object_ = (getText_impl (javaCast object_ :: ProgressCanvas))
-
-getText_impl :: ProgressCanvas -> IO (String)
-getText_impl this = do
-        pure ((jget (this).text))
-
-
-setBackground :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setBackground object_ a1 = jmethod object_ "setBackground" (\() -> (setBackground_impl (javaCast object_ :: ProgressCanvas))) () a1
-
-setBackground_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setBackground_super object_ a1 = (setBackground_impl (javaCast object_ :: ProgressCanvas)) a1
-
-setBackground_impl :: ProgressCanvas -> Bool -> IO (())
-setBackground_impl this background = do
-        jset (this).background (background)
-        pure ()
-
-
-isBackground :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isBackground object_ = jmethod object_ "isBackground" (\() -> (isBackground_impl (javaCast object_ :: ProgressCanvas))) ()
-
-isBackground_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isBackground_super object_ = (isBackground_impl (javaCast object_ :: ProgressCanvas))
-
-isBackground_impl :: ProgressCanvas -> IO (Bool)
-isBackground_impl this = do
-        pure ((jget (this).background))
-
-
--- Java anonymous class new Processor() {...}
-anonymousProgressCanvas0_ (this :: ProgressCanvas) (anonymous_ :: Processor.Processor) = do
-    pathFindingThreadPool <- newIORef =<< fmap (\value_ -> javaCast value_ :: ThreadPool.ThreadPool) (PathFindingThreadPool.getInstance)
-    jregisterMethod (jheaderOf anonymous_) "process" (\() -> anonymousProgressCanvas0_process this pathFindingThreadPool anonymous_)
-    pure anonymous_
-
-anonymousProgressCanvas0_process (this :: ProgressCanvas) (pathFindingThreadPool :: IORef (ThreadPool.ThreadPool)) (anonymous_ :: Processor.Processor) = ( do
-            Control.Monad.void (ThreadPool.runAPriorityTask ((jget pathFindingThreadPool)))
-            pure ()
- ) :: IO (())
+module Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressCanvas exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.graphics.canvas.transition.progress
+-}
+
+import JR
+import Org.Allbinary.Graphics.Form.Item.ABCustomGaugeItem as ABCustomGaugeItem
+import Org.Allbinary.Midlet.AllBinaryMidlet as AllBinaryMidlet
+import Org.Allbinary.Graphics.Displayable.CanvasStrings as CanvasStrings
+import Org.Allbinary.Game.Commands.GameCommandsFactory as GameCommandsFactory
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Javax.Microedition.Lcdui.NullCanvas as NullCanvas
+import Javax.Microedition.Lcdui.NullCommandListener as NullCommandListener
+import Org.Allbinary.Graphics.Paint.NullPaintable as NullPaintable
+import Org.Allbinary.Graphics.Paint.PaintableInterface as PaintableInterface
+import Org.Allbinary.Thread.PathFindingThreadPool as PathFindingThreadPool
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Canvas.Processor as Processor
+import Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressEndListener as ProgressEndListener
+import Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressPaintable as ProgressPaintable
+import Org.Allbinary.Canvas.RunnableCanvas as RunnableCanvas
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
+
+
+jclass : String
+jclass =
+    "ProgressCanvas"
+
+
+jchain : List String
+jchain =
+    [ "ProgressCanvas" ]
+        ++ RunnableCanvas.jchain
+        ++ PaintableInterface.jchain
+        ++ UpdateMyFontInterface.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    RunnableCanvas.jfields ++ [ ( "hasPainted", JR.defaultOf "Z" ), ( "backgroundBasicColor", JR.defaultOf "" ), ( "GAUGE_PAINTABLE", JR.defaultOf "" ), ( "maxValue", JR.defaultOf "F" ), ( "gauge", JR.defaultOf "" ), ( "TEXT", JR.defaultOf "" ), ( "updateMyFontProcessor", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "allbinaryMidlet", JR.defaultOf "" ), ( "value", JR.defaultOf "F" ), ( "text", JR.defaultOf "" ), ( "background", JR.defaultOf "Z" ), ( "paintable", JR.defaultOf "" ), ( "inProgress", JR.defaultOf "Z" ), ( "IN_GAME_PROCESSOR", JR.defaultOf "" ), ( "inGameProcessor", JR.defaultOf "" ), ( "progressEndListener", JR.defaultOf "" ), ( "backgroundLabel", JR.defaultOf "" ), ( "START_BACKGROUND", JR.defaultOf "" ), ( "ADD_PORTION", JR.defaultOf "" ), ( "ADD_EARLY_PORTION", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "init_1", jm_init_1 )
+        , ( "update_1", jm_update_1 )
+        , ( "initCommands_1", jm_initCommands_1 )
+        , ( "getMaxValue_0", jm_getMaxValue_0 )
+        , ( "start_0", jm_start_0 )
+        , ( "startBackground_1", jm_startBackground_1 )
+        , ( "endActual_0", jm_endActual_0 )
+        , ( "inGame_0", jm_inGame_0 )
+        , ( "end_0", jm_end_0 )
+        , ( "endFromInitialLazyLoadingComplete_0", jm_endFromInitialLazyLoadingComplete_0 )
+        , ( "isInGame_0", jm_isInGame_0 )
+        , ( "endIfPaintedSinceStart_0", jm_endIfPaintedSinceStart_0 )
+        , ( "addEarlyPortion_3", jm_addEarlyPortion_3 )
+        , ( "addPortion_3", jm_addPortion_3 )
+        , ( "addNormalPortion_2", jm_addNormalPortion_2 )
+        , ( "setValue_1", jm_setValue_1 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "paint2_1", jm_paint2_1 )
+        , ( "paintThreed_1", jm_paintThreed_1 )
+        , ( "getValue_0", jm_getValue_0 )
+        , ( "setText_1", jm_setText_1 )
+        , ( "getText_0", jm_getText_0 )
+        , ( "setBackground_1", jm_setBackground_1 )
+        , ( "isBackground_0", jm_isBackground_0 ) ]
+        RunnableCanvas.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ProgressCanvas"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_init_1", jm_init_1 ), ( "jm_update_1", jm_update_1 ), ( "jm_initCommands_1", jm_initCommands_1 ), ( "jm_getMaxValue_0", jm_getMaxValue_0 ), ( "jm_start_0", jm_start_0 ), ( "jm_startBackground_1", jm_startBackground_1 ), ( "jm_endActual_0", jm_endActual_0 ), ( "jm_inGame_0", jm_inGame_0 ), ( "jm_end_0", jm_end_0 ), ( "jm_endFromInitialLazyLoadingComplete_0", jm_endFromInitialLazyLoadingComplete_0 ), ( "jm_isInGame_0", jm_isInGame_0 ), ( "jm_endIfPaintedSinceStart_0", jm_endIfPaintedSinceStart_0 ), ( "jm_addEarlyPortion_3", jm_addEarlyPortion_3 ), ( "jm_addPortion_3", jm_addPortion_3 ), ( "jm_addNormalPortion_2", jm_addNormalPortion_2 ), ( "jm_setValue_1", jm_setValue_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_paint2_1", jm_paint2_1 ), ( "jm_paintThreed_1", jm_paintThreed_1 ), ( "jm_getValue_0", jm_getValue_0 ), ( "jm_setText_1", jm_setText_1 ), ( "jm_getText_0", jm_getText_0 ), ( "jm_setBackground_1", jm_setBackground_1 ), ( "jm_isBackground_0", jm_isBackground_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "title", "" ), ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect RunnableCanvas.jinit_3 JR.this [ NullCommandListener.jstatic_NULL_COMMAND_LISTENER, (JR.field "EMPTY_CHILD_NAME_LIST" (JR.callStatic CanvasStrings.jm_getInstance_0 [])), (JR.bool False) ]),
+                JR.exec (JR.setField "GAUGE_PAINTABLE" "" JR.this (JR.new ProgressPaintable.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "maxValue" "F" JR.this (JR.float 100.0)),
+                JR.exec (JR.setField "TEXT" "" JR.this (JR.field "LOADING" (JR.thisField "commonStrings"))),
+                JR.exec (JR.setField "updateMyFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")),
+                JR.exec (JR.setField "allbinaryMidlet" "" JR.this (JR.callStatic AllBinaryMidlet.jm_getNullInstance_0 [])),
+                JR.exec (JR.setField "text" "" JR.this (JR.thisField "TEXT")),
+                JR.exec (JR.setField "background" "Z" JR.this (JR.bool True)),
+                JR.exec (JR.setField "paintable" "" JR.this (JR.thisField "GAUGE_PAINTABLE")),
+                JR.exec (JR.setField "inProgress" "Z" JR.this (JR.bool False)),
+                JR.exec (JR.setField "IN_GAME_PROCESSOR" "" JR.this (JR.anonymous "ProgressCanvas$1" Processor.jchain Processor.jvtable Processor.jfields Processor.jinit_0 [ ( "process_0", janon1_jm_process_0 ) ] [ ( "pathFindingThreadPool", "", (JR.callStatic PathFindingThreadPool.jm_getInstance_0 []) ) ] [])),
+                JR.exec (JR.setField "inGameProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "progressEndListener" "" JR.this ProgressEndListener.jstatic_instance),
+                JR.exec (JR.setField "backgroundLabel" "" JR.this (JR.str "Background AI Game Loading...")),
+                JR.exec (JR.setField "START_BACKGROUND" "" JR.this (JR.str "startBackground")),
+                JR.exec (JR.setField "ADD_PORTION" "" JR.this (JR.str "addPortion")),
+                JR.exec (JR.setField "ADD_EARLY_PORTION" "" JR.this (JR.str "addEarlyPortion")),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "backgroundBasicColor" "" JR.this (JR.local "backgroundBasicColor")), 
+                    JR.exec (JR.setField "gauge" "" JR.this (JR.new ABCustomGaugeItem.jnew_5 [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.cast "I" (JR.thisField "maxValue")), (JR.int 0), (JR.local "backgroundBasicColor"), (JR.local "foregroundBasicColor") ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.invoke "setHeight_1" (JR.thisField "gauge") [ (JR.map2 JR.add (JR.invoke "getHeight_0" (JR.local "font") []) (JR.int 2)) ]), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "gameMidlet", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "allbinaryMidlet" "" JR.this (JR.local "gameMidlet")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_1 : JR.Method
+jm_update_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initCommands_1 : JR.Method
+jm_initCommands_1 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMaxValue_0 : JR.Method
+jm_getMaxValue_0 jheap jthis jargs =
+    JR.method [] "F"
+        (JR.run [ 
+                    JR.return (JR.thisField "maxValue") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_start_0 : JR.Method
+jm_start_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "START_METHOD_NAME" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.invoke "setBackground_1" JR.this [ (JR.bool True) ]), 
+                    JR.exec (JR.invoke "setHeight_1" (JR.thisField "gauge") [ (JR.int 30) ]), 
+                    JR.exec (JR.invoke "setLabel_1" (JR.thisField "gauge") [ (JR.field "PLEASE_WAIT" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.invoke "setText_1" JR.this [ (JR.thisField "TEXT") ]), 
+                    JR.exec (JR.invoke "setValue_1" JR.this [ (JR.int 0) ]), 
+                    JR.exec (JR.setField "inGameProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])), 
+                    JR.exec (JR.setField "paintable" "" JR.this (JR.thisField "GAUGE_PAINTABLE")), 
+                    JR.exec (JR.setField "inProgress" "Z" JR.this (JR.bool True)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_startBackground_1 : JR.Method
+jm_startBackground_1 jheap jthis jargs =
+    JR.method [ ( "background", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.thisField "START_BACKGROUND") ]), 
+                    JR.exec (JR.invoke "setBackground_1" JR.this [ (JR.local "background") ]), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")), 
+                    JR.exec (JR.invoke "setLabel_1" (JR.thisField "gauge") [ (JR.thisField "backgroundLabel") ]), 
+                    JR.exec (JR.invoke "setText_1" JR.this [ (JR.thisField "TEXT") ]), 
+                    JR.exec (JR.invoke "setValue_1" JR.this [ (JR.int 0) ]), 
+                    JR.exec (JR.setField "inGameProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])), 
+                    JR.exec (JR.setField "paintable" "" JR.this (JR.thisField "GAUGE_PAINTABLE")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_endActual_0 : JR.Method
+jm_endActual_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "commandAction_2" (JR.thisField "allbinaryMidlet") [ (JR.field "SHOW_GAME_CANVAS" (JR.callStatic GameCommandsFactory.jm_getInstance_0 [])), NullCanvas.jstatic_NULL_CANVAS ]), 
+                    JR.exec (JR.setField "inProgress" "Z" JR.this (JR.bool False)), 
+                    JR.exec (JR.invoke "inGame_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_inGame_0 : JR.Method
+jm_inGame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "onEndEvent_0" (JR.thisField "progressEndListener") []), 
+                    JR.exec (JR.setField "inGameProcessor" "" JR.this (JR.thisField "IN_GAME_PROCESSOR")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_end_0 : JR.Method
+jm_end_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "END_METHOD_NAME" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.invoke "setValue_1" (JR.thisField "gauge") [ (JR.invoke "getMaxValue_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "endActual_0" JR.this []), 
+                    JR.exec (JR.setField "paintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_endFromInitialLazyLoadingComplete_0 : JR.Method
+jm_endFromInitialLazyLoadingComplete_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "onEndEvent_0" (JR.thisField "progressEndListener") []), 
+                    JR.exec (JR.invoke "setValue_1" (JR.thisField "gauge") [ (JR.invoke "getMaxValue_0" JR.this []) ]), 
+                    JR.exec (JR.setField "inGameProcessor" "" JR.this (JR.thisField "IN_GAME_PROCESSOR")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isInGame_0 : JR.Method
+jm_isInGame_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "inGameProcessor") (JR.thisField "IN_GAME_PROCESSOR")) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_endIfPaintedSinceStart_0 : JR.Method
+jm_endIfPaintedSinceStart_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addEarlyPortion_3 : JR.Method
+jm_addEarlyPortion_3 jheap jthis jargs =
+    JR.method [ ( "value", "I" ), ( "text", "" ), ( "index", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setText_1" JR.this [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.local "text") ]) [ (JR.invoke "toString_0" (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.local "index") ]) []) ]) []) ]), 
+                    JR.exec (JR.invoke "setValue_1" (JR.thisField "gauge") [ (JR.plus (JR.invoke "getValue_0" (JR.thisField "gauge") []) (JR.map2 JR.div (JR.invoke "getMaxValue_0" JR.this []) (JR.cast "F" (JR.local "value")))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addPortion_3 : JR.Method
+jm_addPortion_3 jheap jthis jargs =
+    JR.method [ ( "value", "I" ), ( "text", "" ), ( "index", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setText_1" JR.this [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.local "text") ]) [ (JR.invoke "toString_0" (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.local "index") ]) []) ]) []) ]), 
+                    JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.thisField "text"), JR.this, (JR.thisField "ADD_PORTION") ]), 
+                    JR.exec (JR.invoke "setValue_1" (JR.thisField "gauge") [ (JR.plus (JR.invoke "getValue_0" (JR.thisField "gauge") []) (JR.map2 JR.div (JR.invoke "getMaxValue_0" JR.this []) (JR.cast "F" (JR.local "value")))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addNormalPortion_2 : JR.Method
+jm_addNormalPortion_2 jheap jthis jargs =
+    JR.method [ ( "value", "I" ), ( "text", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.thisField "text") (JR.local "text")) (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.local "text"), JR.this, (JR.thisField "ADD_PORTION") ]) ]) identity, 
+                    JR.exec (JR.invoke "setText_1" JR.this [ (JR.local "text") ]), 
+                    JR.exec (JR.invoke "setValue_1" (JR.thisField "gauge") [ (JR.plus (JR.invoke "getValue_0" (JR.thisField "gauge") []) (JR.map2 JR.div (JR.invoke "getMaxValue_0" JR.this []) (JR.cast "F" (JR.local "value")))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setValue_1 : JR.Method
+jm_setValue_1 jheap jthis jargs =
+    JR.method [ ( "value", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "value" "F" JR.this (JR.cast "F" (JR.local "value"))), 
+                    JR.exec (JR.invoke "setValue_1" (JR.thisField "gauge") [ (JR.cast "F" (JR.local "value")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "paintable") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint2_1 : JR.Method
+jm_paint2_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.invoke "intValue_0" (JR.thisField "backgroundBasicColor") []) ]), 
+                    JR.exec (JR.invoke "fillRect_4" (JR.local "graphics") [ (JR.int 0), (JR.int 0), (JR.invoke "getLastWidth_0" (JR.thisField "displayInfo") []), (JR.invoke "getLastHeight_0" (JR.thisField "displayInfo") []) ]), 
+                    JR.exec (JR.invoke "paintXY_3" (JR.thisField "gauge") [ (JR.local "graphics"), (JR.int 0), (JR.int 0) ]), 
+                    JR.exec (JR.setField "hasPainted" "Z" JR.this (JR.bool True)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintThreed_1 : JR.Method
+jm_paintThreed_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getValue_0 : JR.Method
+jm_getValue_0 jheap jthis jargs =
+    JR.method [] "F"
+        (JR.run [ 
+                    JR.return (JR.thisField "value") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setText_1 : JR.Method
+jm_setText_1 jheap jthis jargs =
+    JR.method [ ( "text", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "text" "" JR.this (JR.local "text")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getText_0 : JR.Method
+jm_getText_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "text") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setBackground_1 : JR.Method
+jm_setBackground_1 jheap jthis jargs =
+    JR.method [ ( "background", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "background" "Z" JR.this (JR.local "background")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isBackground_0 : JR.Method
+jm_isBackground_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "background") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+janon1_jm_process_0 : JR.Method
+janon1_jm_process_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                        JR.exec (JR.invoke "runAPriorityTask_0" (JR.thisField "pathFindingThreadPool") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

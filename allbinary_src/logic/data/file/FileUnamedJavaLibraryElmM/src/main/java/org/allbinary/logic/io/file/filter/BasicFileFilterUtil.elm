@@ -1,94 +1,88 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file.filter
-module BasicFileFilterUtil where
+module Org.Allbinary.Logic.Io.File.Filter.BasicFileFilterUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified VisitorFileFilter -- same package or java.lang
-import qualified FileFilter -- java.io.FileFilter
-import qualified IncludeFileExtensionsBooleanFileVisitor -- org.allbinary.logic.io.file.visitor.IncludeFileExtensionsBooleanFileVisitor
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file.filter
+-}
 
-data BasicFileFilterUtil = BasicFileFilterUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull BasicFileFilterUtil where
-    javaNull = javaNullRecord "BasicFileFilterUtil"
-
-instance JavaEquals BasicFileFilterUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicFileFilterUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicFileFilterUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BasicFileFilterUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = BasicFileFilterUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: BasicFileFilterUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO BasicFileFilterUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BasicFileFilterUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Io.File.Visitor.IncludeFileExtensionsBooleanFileVisitor as IncludeFileExtensionsBooleanFileVisitor
+import Org.Allbinary.Logic.Io.File.Filter.VisitorFileFilter as VisitorFileFilter
 
 
-getInstance :: String -> IO (FileFilter.FileFilter)
-getInstance extension = do
-        vector <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        Control.Monad.void (BasicArrayList.add vector extension)
-        includeFileExtensionsBooleanFileVisitor <- (IncludeFileExtensionsBooleanFileVisitor.new_1 vector)
-        pure ((javaCast (jio (VisitorFileFilter.new_1 (javaCast includeFileExtensionsBooleanFileVisitor))) :: FileFilter.FileFilter))
+jclass : String
+jclass =
+    "BasicFileFilterUtil"
 
+
+jchain : List String
+jchain =
+    [ "BasicFileFilterUtil" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_1", jm_getInstance_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicFileFilterUtil"
+        [ ( "jm_getInstance_1", jm_getInstance_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "extension", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "vector" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.exec (JR.invoke "add_1" (JR.local "vector") [ (JR.local "extension") ]), 
+                    JR.declare "includeFileExtensionsBooleanFileVisitor" "" (JR.new IncludeFileExtensionsBooleanFileVisitor.jnew_1 [ (JR.local "vector") ]), 
+                    JR.return (JR.new VisitorFileFilter.jnew_1 [ (JR.local "includeFileExtensionsBooleanFileVisitor") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

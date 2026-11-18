@@ -1,11 +1,11 @@
-module Log exposing (..)
+module Org.Allbinary.Logic.Communication.Log.Log exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.log
 -}
 
 import JR
-import CommonStrings
-import LogFormatUtil
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogFormatUtil as LogFormatUtil
 
 
 jclass : String

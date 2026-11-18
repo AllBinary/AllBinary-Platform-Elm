@@ -1,107 +1,88 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
-module AllBinaryAdjustedSpriteRotationAnimation (module AllBinaryAdjustedSpriteRotationAnimation, module AllBinarySpriteRotationAnimation) where
+module Org.Allbinary.Animation.Image.Sprite.AllBinaryAdjustedSpriteRotationAnimation exposing (..)
 
-import AllBinarySpriteRotationAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, paintXY, paintXY_super, paintXY_impl, dx, dy)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HackRotationSpriteIndexedAnimation -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Sprite -- javax.microedition.lcdui.game.Sprite
-import qualified AnimationBehavior -- org.allbinary.animation.AnimationBehavior
-import qualified AllBinarySpriteRotationAnimation
+{-| Generated Code Do Not Modify package org.allbinary.animation.image.sprite
+-}
 
-data AllBinaryAdjustedSpriteRotationAnimation = AllBinaryAdjustedSpriteRotationAnimation
-    { header_ :: JavaHeader
-    , base :: AllBinarySpriteRotationAnimation.AllBinarySpriteRotationAnimation
-    , dx :: IORef (Int)
-    , dy :: IORef (Int)
-    }
-
-instance JavaNull AllBinaryAdjustedSpriteRotationAnimation where
-    javaNull = javaNullRecord "AllBinaryAdjustedSpriteRotationAnimation"
-
-instance JavaEquals AllBinaryAdjustedSpriteRotationAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryAdjustedSpriteRotationAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryAdjustedSpriteRotationAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AllBinaryAdjustedSpriteRotationAnimation
-newRecord_ = do
-    base <- AllBinarySpriteRotationAnimation.newRecord_
-    let header_ = base.header_
-    dx <- newIORef 0
-    dy <- newIORef 0
-    let this = AllBinaryAdjustedSpriteRotationAnimation header_ base dx dy
-    jregisterLevel header_ this
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    pure this
-
-initFields_ :: AllBinaryAdjustedSpriteRotationAnimation -> IO ()
-initFields_ this = do
-    jset this.dx (0)
-    jset this.dy (0)
-    pure ()
-
-new_5 :: Sprite.Sprite -> Image.Image -> Int -> Int -> AnimationBehavior.AnimationBehavior -> IO AllBinaryAdjustedSpriteRotationAnimation
-new_5 sprite image dx dy animationBehavior = do
-    this <- newRecord_
-    init_5 this sprite image dx dy animationBehavior
-    pure this
-
-init_5 :: AllBinaryAdjustedSpriteRotationAnimation -> Sprite.Sprite -> Image.Image -> Int -> Int -> AnimationBehavior.AnimationBehavior -> IO ()
-init_5 this sprite image dx dy animationBehavior = do
-        AllBinarySpriteRotationAnimation.init_3 this.base (sprite) (image) (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).dx (dx)
-        jset (this).dy (dy)
-        pure ()
+import JR
+import Org.Allbinary.Animation.Image.Sprite.AllBinarySpriteRotationAnimation as AllBinarySpriteRotationAnimation
 
 
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: AllBinaryAdjustedSpriteRotationAnimation))) () a1 a2 a3
+jclass : String
+jclass =
+    "AllBinaryAdjustedSpriteRotationAnimation"
 
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: AllBinaryAdjustedSpriteRotationAnimation)) a1 a2 a3
 
-paintXY_impl :: AllBinaryAdjustedSpriteRotationAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this g x y = do
-        Control.Monad.void (Sprite.setPosition ((jget (this).base.base.sprite)) (x + (jget (this).dx)) (y + (jget (this).dy)))
-        Control.Monad.void (AllBinarySpriteRotationAnimation.paint this g)
-        pure ()
+jchain : List String
+jchain =
+    [ "AllBinaryAdjustedSpriteRotationAnimation" ]
+        ++ AllBinarySpriteRotationAnimation.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinarySpriteRotationAnimation.jfields ++ [ ( "dx", JR.defaultOf "I" ), ( "dy", JR.defaultOf "I" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "paintXY_3", jm_paintXY_3 ) ]
+        AllBinarySpriteRotationAnimation.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryAdjustedSpriteRotationAnimation"
+        [ ( "jm_paintXY_3", jm_paintXY_3 ), ( "jnew_5", jnew_5 ), ( "jinit_5", jinit_5 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_5 : JR.Method
+jinit_5 jheap jthis jargs =
+    JR.method [ ( "sprite", "" ), ( "image", "" ), ( "dx", "I" ), ( "dy", "I" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinarySpriteRotationAnimation.jinit_3 JR.this [ (JR.local "sprite"), (JR.local "image"), (JR.local "animationBehavior") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "dx" "I" JR.this (JR.local "dx")), 
+                    JR.exec (JR.setField "dy" "I" JR.this (JR.local "dy")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_5 : JR.Method
+jnew_5 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_5 jheap jthis jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "g", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setPosition_2" (JR.thisField "sprite") [ (JR.map2 JR.add (JR.local "x") (JR.thisField "dx")), (JR.map2 JR.add (JR.local "y") (JR.thisField "dy")) ]), 
+                    JR.exec (JR.invoke "paint_1" JR.this [ (JR.local "g") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

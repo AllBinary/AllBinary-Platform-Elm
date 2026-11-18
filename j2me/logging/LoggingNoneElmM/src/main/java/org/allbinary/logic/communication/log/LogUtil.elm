@@ -1,4 +1,4 @@
-module LogUtil exposing (..)
+module Org.Allbinary.Logic.Communication.Log.LogUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.log
 -}

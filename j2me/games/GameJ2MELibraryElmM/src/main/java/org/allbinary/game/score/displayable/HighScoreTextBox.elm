@@ -1,236 +1,187 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score.displayable
-module HighScoreTextBox (module HighScoreTextBox, module CustomTextBox) where
+module Org.Allbinary.Game.Score.Displayable.HighScoreTextBox exposing (..)
 
-import CustomTextBox hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, initCommands, initCommands_super, initCommands_impl, open, open_super, open_impl, close, close_super, close_impl, update, update_super, update_impl, paint, paint_super, paint_impl, saveHighScore, saveHighScore_super, saveHighScore_impl, submit, submit_super, submit_impl, virtualKeyboardEventHandler, highScoreUtil, pleaseWait, paintable, submitted)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HighScoreUtil -- same package or java.lang
-import qualified ABTextFieldItem -- same package or java.lang
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified TextField -- javax.microedition.lcdui.TextField
-import qualified PostGameCommandFactory -- org.allbinary.PostGameCommandFactory
-import qualified GameInfo -- org.allbinary.game.GameInfo
-import qualified HighScore -- org.allbinary.game.score.HighScore
-import qualified HighScoresHelperBaseInterface -- org.allbinary.game.score.HighScoresHelperBaseInterface
-import qualified HighScoresFactoryInterface -- org.allbinary.game.score.HighScoresFactoryInterface
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified CustomTextBox -- org.allbinary.graphics.form.item.CustomTextBox
-import qualified NullPaintable -- org.allbinary.graphics.paint.NullPaintable
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified SimpleTextPaintable -- org.allbinary.graphics.paint.SimpleTextPaintable
-import qualified VirtualKeyboardEventHandler -- org.allbinary.input.event.VirtualKeyboardEventHandler
-import qualified GenericOperatingSystem -- org.allbinary.logic.system.os.GenericOperatingSystem
-import qualified OperatingSystemFactory -- org.allbinary.logic.system.os.OperatingSystemFactory
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified InApplicationPurchaseFactory -- org.allbinary.logic.system.security.licensing.InApplicationPurchaseFactory
+{-| Generated Code Do Not Modify package org.allbinary.game.score.displayable
+-}
 
-data HighScoreTextBox = HighScoreTextBox
-    { header_ :: JavaHeader
-    , base :: CustomTextBox.CustomTextBox
-    , virtualKeyboardEventHandler :: IORef (VirtualKeyboardEventHandler.VirtualKeyboardEventHandler)
-    , highScoreUtil :: IORef (HighScoreUtil.HighScoreUtil)
-    , pleaseWait :: IORef (Paintable.Paintable)
-    , paintable :: IORef (Paintable.Paintable)
-    , submitted :: IORef (Bool)
-    }
-
-instance JavaNull HighScoreTextBox where
-    javaNull = javaNullRecord "HighScoreTextBox"
-
-instance JavaEquals HighScoreTextBox where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoreTextBox where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoreTextBox where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HighScoreTextBox
-newRecord_ = do
-    base <- CustomTextBox.newRecord_
-    let header_ = base.header_
-    virtualKeyboardEventHandler <- newIORef javaNull
-    highScoreUtil <- newIORef javaNull
-    pleaseWait <- newIORef javaNull
-    paintable <- newIORef javaNull
-    submitted <- newIORef False
-    let this = HighScoreTextBox header_ base virtualKeyboardEventHandler highScoreUtil pleaseWait paintable submitted
-    jregisterLevel header_ this
-    jregisterMethod header_ "initCommands" (\() -> initCommands_impl this)
-    jregisterMethod header_ "open" (\() -> open_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "saveHighScore" (\() -> saveHighScore_impl this)
-    jregisterMethod header_ "submit" (\() -> submit_impl this)
-    pure this
-
-initFields_ :: HighScoreTextBox -> IO ()
-initFields_ this = do
-    jset this.virtualKeyboardEventHandler =<< (VirtualKeyboardEventHandler.getInstance)
-    jset this.highScoreUtil (javaNull)
-    jset this.pleaseWait =<< (fmap (\value_ -> javaCast value_ :: Paintable.Paintable) (SimpleTextPaintable.new_2 (jget ((jget (this).base.commonStrings)).pLEASE_WAIT) (jget ((jio (BasicColorFactory.getInstance))).wHITE)))
-    jset this.paintable =<< (NullPaintable.getInstance)
-    jset this.submitted (False)
-    pure ()
-
-new_9 :: HighScoresFactoryInterface.HighScoresFactoryInterface -> HighScoresHelperBaseInterface.HighScoresHelperBaseInterface -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> CommandListener.CommandListener -> String -> HighScore.HighScore -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO HighScoreTextBox
-new_9 highScoresFactoryInterface highScoresHelper abeClientInformation gameInfo cmdListener name highScore backgrounBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_9 this highScoresFactoryInterface highScoresHelper abeClientInformation gameInfo cmdListener name highScore backgrounBasicColor foregroundBasicColor
-    pure this
-
-init_9 :: HighScoreTextBox -> HighScoresFactoryInterface.HighScoresFactoryInterface -> HighScoresHelperBaseInterface.HighScoresHelperBaseInterface -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> CommandListener.CommandListener -> String -> HighScore.HighScore -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_9 this highScoresFactoryInterface highScoresHelper abeClientInformation gameInfo cmdListener name highScore backgrounBasicColor foregroundBasicColor = do
-        CustomTextBox.init_8 this.base (cmdListener) ("New High Score Enter Name:") (name) (12) (TextField.aNY) (jio (Font.getDefaultFont)) (backgrounBasicColor) (foregroundBasicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        assignedValue <- (HighScoreUtil.new_7 highScoresFactoryInterface highScoresHelper abeClientInformation gameInfo cmdListener name highScore)
-        jset (this).highScoreUtil (assignedValue)
-        operatingSystemInterface <- (OperatingSystemFactory.getOperatingSystemInstance ((jio (OperatingSystemFactory.getInstance))))
-        when (jio (GenericOperatingSystem.isOverScan operatingSystemInterface)) $ do
-            username <- (InApplicationPurchaseFactory.getUserName ((jio (InApplicationPurchaseFactory.getInstance))))
-            Control.Monad.void (ABTextFieldItem.setString ((jio (CustomTextBox.getTextFieldItem this))) username)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Graphics.Form.Item.CustomTextBox as CustomTextBox
+import Javax.Microedition.Lcdui.Font as Font
+import Org.Allbinary.Game.Score.Displayable.HighScoreUtil as HighScoreUtil
+import Org.Allbinary.Logic.System.Security.Licensing.InApplicationPurchaseFactory as InApplicationPurchaseFactory
+import Org.Allbinary.Graphics.Paint.NullPaintable as NullPaintable
+import Org.Allbinary.Logic.System.Os.OperatingSystemFactory as OperatingSystemFactory
+import Org.Allbinary.PostGameCommandFactory as PostGameCommandFactory
+import Org.Allbinary.Graphics.Paint.SimpleTextPaintable as SimpleTextPaintable
+import Javax.Microedition.Lcdui.TextField as TextField
+import Org.Allbinary.Input.Event.VirtualKeyboardEventHandler as VirtualKeyboardEventHandler
 
 
-initCommands :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands object_ a1 = jmethod object_ "initCommands" (\() -> (initCommands_impl (javaCast object_ :: HighScoreTextBox))) () a1
-
-initCommands_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands_super object_ a1 = (initCommands_impl (javaCast object_ :: HighScoreTextBox)) a1
-
-initCommands_impl :: HighScoreTextBox -> CommandListener.CommandListener -> IO (())
-initCommands_impl this cmdListener = do
-        Control.Monad.void (CustomTextBox.removeAllCommands this)
-        Control.Monad.void (PostGameCommandFactory.addCommands ((jio (PostGameCommandFactory.getInstance))) this)
-        Control.Monad.void (CustomTextBox.addCommand this (HighScoreUtil.sUBMIT_TEXTBOX_COMMAND))
-        Control.Monad.void (CustomTextBox.setCommandListener this cmdListener)
-        pure ()
+jclass : String
+jclass =
+    "HighScoreTextBox"
 
 
-open :: (JavaObjectClass this_) => this_ -> IO (())
-open object_ = jmethod object_ "open" (\() -> (open_impl (javaCast object_ :: HighScoreTextBox))) ()
-
-open_super :: (JavaObjectClass this_) => this_ -> IO (())
-open_super object_ = (open_impl (javaCast object_ :: HighScoreTextBox))
-
-open_impl :: HighScoreTextBox -> IO (())
-open_impl this = do
-        Control.Monad.void (VirtualKeyboardEventHandler.open ((jget (this).virtualKeyboardEventHandler)))
-        assignedValue <- (NullPaintable.getInstance)
-        jset (this).paintable (assignedValue)
-        Control.Monad.void (CustomTextBox.open_super this.base)
-        pure ()
+jchain : List String
+jchain =
+    [ "HighScoreTextBox" ]
+        ++ CustomTextBox.jchain
 
 
--- throws Exception
-close :: (JavaObjectClass this_) => this_ -> IO (())
-close object_ = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: HighScoreTextBox))) ()
-
-close_super :: (JavaObjectClass this_) => this_ -> IO (())
-close_super object_ = (close_impl (javaCast object_ :: HighScoreTextBox))
-
-close_impl :: HighScoreTextBox -> IO (())
-close_impl this = do
-        Control.Monad.void (VirtualKeyboardEventHandler.close ((jget (this).virtualKeyboardEventHandler)))
-        jset (this).paintable ((jget (this).pleaseWait))
-        Control.Monad.void (onChangeRepaint ((jget (this).base.repaintBehavior)) this)
-        Control.Monad.void (CustomTextBox.close_super this.base)
-        Control.Monad.void (CustomTextBox.removeCommand this (HighScoreUtil.sUBMIT_TEXTBOX_COMMAND))
-        Control.Monad.void (HighScoreTextBox.update this)
-        if (jget (this).submitted) then do
-            Control.Monad.void (HighScoreUtil.saveHighScore ((jget (this).highScoreUtil)))
-        else do
-            pure ()
-        assignedValue <- (NullPaintable.getInstance)
-        jset (this).paintable (assignedValue)
-        Control.Monad.void (onChangeRepaint ((jget (this).base.repaintBehavior)) this)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    CustomTextBox.jfields ++ [ ( "virtualKeyboardEventHandler", JR.defaultOf "" ), ( "highScoreUtil", JR.defaultOf "" ), ( "pleaseWait", JR.defaultOf "" ), ( "paintable", JR.defaultOf "" ), ( "submitted", JR.defaultOf "Z" ) ]
 
 
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: HighScoreTextBox))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: HighScoreTextBox))
-
-update_impl :: HighScoreTextBox -> IO (())
-update_impl this = do
-        name <- (ABTextFieldItem.getString ((jio (CustomTextBox.getTextFieldItem this))))
-        Control.Monad.void (HighScoreUtil.update ((jget (this).highScoreUtil)) name)
-        Control.Monad.void (CustomTextBox.update_super this.base)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "initCommands_1", jm_initCommands_1 )
+        , ( "open_0", jm_open_0 )
+        , ( "close_0", jm_close_0 )
+        , ( "update_0", jm_update_0 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "saveHighScore_0", jm_saveHighScore_0 )
+        , ( "submit_0", jm_submit_0 ) ]
+        CustomTextBox.jvtable
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: HighScoreTextBox))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: HighScoreTextBox)) a1
-
-paint_impl :: HighScoreTextBox -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (CustomTextBox.paint_super this.base graphics)
-        Control.Monad.void (Paintable.paint ((jget (this).paintable)) graphics)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoreTextBox"
+        [ ( "jm_initCommands_1", jm_initCommands_1 ), ( "jm_open_0", jm_open_0 ), ( "jm_close_0", jm_close_0 ), ( "jm_update_0", jm_update_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_saveHighScore_0", jm_saveHighScore_0 ), ( "jm_submit_0", jm_submit_0 ), ( "jnew_9", jnew_9 ), ( "jinit_9", jinit_9 ) ]
+        []
+        jheap
 
 
-saveHighScore :: (JavaObjectClass this_) => this_ -> IO (())
-saveHighScore object_ = jmethod object_ "saveHighScore" (\() -> (saveHighScore_impl (javaCast object_ :: HighScoreTextBox))) ()
-
-saveHighScore_super :: (JavaObjectClass this_) => this_ -> IO (())
-saveHighScore_super object_ = (saveHighScore_impl (javaCast object_ :: HighScoreTextBox))
-
-saveHighScore_impl :: HighScoreTextBox -> IO (())
-saveHighScore_impl this = do
-        Control.Monad.void (HighScoreUtil.saveHighScore ((jget (this).highScoreUtil)))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-submit :: (JavaObjectClass this_) => this_ -> IO (())
-submit object_ = jmethod object_ "submit" (\() -> (submit_impl (javaCast object_ :: HighScoreTextBox))) ()
+jinit_9 : JR.Method
+jinit_9 jheap jthis jargs =
+    JR.method [ ( "highScoresFactoryInterface", "" ), ( "highScoresHelper", "" ), ( "abeClientInformation", "" ), ( "gameInfo", "" ), ( "cmdListener", "" ), ( "name", "" ), ( "highScore", "" ), ( "backgrounBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect CustomTextBox.jinit_8 JR.this [ (JR.local "cmdListener"), (JR.str "New High Score Enter Name:"), (JR.local "name"), (JR.int 12), TextField.jstatic_ANY, (JR.callStatic Font.jm_getDefaultFont_0 []), (JR.local "backgrounBasicColor"), (JR.local "foregroundBasicColor") ]),
+                JR.exec (JR.setField "virtualKeyboardEventHandler" "" JR.this (JR.callStatic VirtualKeyboardEventHandler.jm_getInstance_0 [])),
+                JR.exec (JR.setField "pleaseWait" "" JR.this (JR.new SimpleTextPaintable.jnew_2 [ (JR.field "PLEASE_WAIT" (JR.thisField "commonStrings")), (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "paintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "submitted" "Z" JR.this (JR.bool False)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "highScoreUtil" "" JR.this (JR.new HighScoreUtil.jnew_7 [ (JR.local "highScoresFactoryInterface"), (JR.local "highScoresHelper"), (JR.local "abeClientInformation"), (JR.local "gameInfo"), (JR.local "cmdListener"), (JR.local "name"), (JR.local "highScore") ])), 
+                    JR.declare "operatingSystemInterface" "" (JR.invoke "getOperatingSystemInstance_0" (JR.callStatic OperatingSystemFactory.jm_getInstance_0 []) []), 
+                    JR.ifElse (JR.invoke "isOverScan_0" (JR.local "operatingSystemInterface") []) (JR.run [ 
+                        JR.declare "username" "" (JR.invoke "getUserName_0" (JR.callStatic InApplicationPurchaseFactory.jm_getInstance_0 []) []), 
+                        JR.exec (JR.invoke "setString_1" (JR.invoke "getTextFieldItem_0" JR.this []) [ (JR.local "username") ]) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-submit_super :: (JavaObjectClass this_) => this_ -> IO (())
-submit_super object_ = (submit_impl (javaCast object_ :: HighScoreTextBox))
 
-submit_impl :: HighScoreTextBox -> IO (())
-submit_impl this = do
-        Control.Monad.void (HighScoreUtil.submit ((jget (this).highScoreUtil)) (javaCast this))
-        pure ()
+jnew_9 : JR.Method
+jnew_9 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_9 jheap jthis jargs
 
+
+jm_initCommands_1 : JR.Method
+jm_initCommands_1 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeAllCommands_0" JR.this []), 
+                    JR.exec (JR.invoke "addCommands_1" (JR.callStatic PostGameCommandFactory.jm_getInstance_0 []) [ JR.this ]), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ HighScoreUtil.jstatic_SUBMIT_TEXTBOX_COMMAND ]), 
+                    JR.exec (JR.invoke "setCommandListener_1" JR.this [ (JR.local "cmdListener") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_open_0 : JR.Method
+jm_open_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "open_0" (JR.thisField "virtualKeyboardEventHandler") []), 
+                    JR.exec (JR.setField "paintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])), 
+                    JR.exec (JR.callVia CustomTextBox.jvtable "open_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_close_0 : JR.Method
+jm_close_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "close_0" (JR.thisField "virtualKeyboardEventHandler") []), 
+                    JR.exec (JR.setField "paintable" "" JR.this (JR.thisField "pleaseWait")), 
+                    JR.exec (JR.invoke "onChangeRepaint_1" (JR.thisField "repaintBehavior") [ JR.this ]), 
+                    JR.exec (JR.callVia CustomTextBox.jvtable "close_0" JR.this []), 
+                    JR.exec (JR.invoke "removeCommand_1" JR.this [ HighScoreUtil.jstatic_SUBMIT_TEXTBOX_COMMAND ]), 
+                    JR.exec (JR.invoke "update_0" JR.this []), 
+                    JR.ifElse (JR.thisField "submitted") (JR.run [ 
+                        JR.exec (JR.invoke "saveHighScore_0" (JR.thisField "highScoreUtil") []) ]) identity, 
+                    JR.exec (JR.setField "paintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])), 
+                    JR.exec (JR.invoke "onChangeRepaint_1" (JR.thisField "repaintBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "name" "" (JR.invoke "getString_0" (JR.invoke "getTextFieldItem_0" JR.this []) []), 
+                    JR.exec (JR.invoke "update_1" (JR.thisField "highScoreUtil") [ (JR.local "name") ]), 
+                    JR.exec (JR.callVia CustomTextBox.jvtable "update_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia CustomTextBox.jvtable "paint_1" JR.this [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "paintable") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_saveHighScore_0 : JR.Method
+jm_saveHighScore_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "saveHighScore_0" (JR.thisField "highScoreUtil") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_submit_0 : JR.Method
+jm_submit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "submit_1" (JR.thisField "highScoreUtil") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

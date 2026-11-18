@@ -1,105 +1,95 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
-module ImageCacheable where
+module Org.Allbinary.Logic.Util.Cache.ImageCacheable exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
+-}
 
-data ImageCacheable = ImageCacheable
-    { header_ :: JavaHeader
-    , name :: IORef (String)
-    }
-
-instance JavaNull ImageCacheable where
-    javaNull = javaNullRecord "ImageCacheable"
-
-instance JavaEquals ImageCacheable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageCacheable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageCacheable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ImageCacheable
-newRecord_ = do
-    header_ <- newJavaHeader
-    name <- newIORef ""
-    let this = ImageCacheable header_ name
-    jregisterLevel header_ this
-    jregisterMethod header_ "getKey" (\() -> getKey_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: ImageCacheable -> IO ()
-initFields_ this = do
-    jset this.name ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    pure ()
-
-new_2 :: (JavaObjectClass o2) => String -> o2 -> IO ImageCacheable
-new_2 name anyTypeObject_ = do
-    this <- newRecord_
-    init_2 this name anyTypeObject_
-    pure this
-
-init_2 :: (JavaObjectClass o2) => ImageCacheable -> String -> o2 -> IO ()
-init_2 this name anyTypeObject_ = do
-        let anyType = jtoObject anyTypeObject_
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getKey :: (JavaObjectClass this_) => this_ -> IO (Any.Any)
-getKey object_ = jmethod object_ "getKey" (\() -> (getKey_impl (javaCast object_ :: ImageCacheable))) ()
-
-getKey_super :: (JavaObjectClass this_) => this_ -> IO (Any.Any)
-getKey_super object_ = (getKey_impl (javaCast object_ :: ImageCacheable))
-
-getKey_impl :: ImageCacheable -> IO (Any.Any)
-getKey_impl this = do
-        pure ((jtoObject (jget (this).name)))
+jclass : String
+jclass =
+    "ImageCacheable"
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: ImageCacheable))) ()
+jchain : List String
+jchain =
+    [ "ImageCacheable" ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: ImageCacheable))
 
-toString_impl :: ImageCacheable -> IO (String)
-toString_impl this = do
-        pure ((jget (this).name))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "name", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getKey_0", jm_getKey_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageCacheable"
+        [ ( "jm_getKey_0", jm_getKey_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "anyType", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "name" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getKey_0 : JR.Method
+jm_getKey_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

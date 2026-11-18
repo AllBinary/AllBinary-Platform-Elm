@@ -1,14 +1,14 @@
-module PrimitiveLongUtil exposing (..)
+module Org.Allbinary.Logic.Math.PrimitiveLongUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.math
 -}
 
 import JR
-import CommonStrings
-import LogUtil
-import MathUtil
-import NullUtil
-import PrimitiveLongSingleton
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.Math.MathUtil as MathUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Math.PrimitiveLongSingleton as PrimitiveLongSingleton
 
 
 jclass : String

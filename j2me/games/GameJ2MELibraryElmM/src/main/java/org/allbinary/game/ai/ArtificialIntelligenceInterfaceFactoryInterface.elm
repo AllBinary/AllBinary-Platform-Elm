@@ -1,79 +1,58 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ai
-module ArtificialIntelligenceInterfaceFactoryInterface where
+module Org.Allbinary.Game.Ai.ArtificialIntelligenceInterfaceFactoryInterface exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified ArtificialIntelligenceInterface -- org.allbinary.ai.ArtificialIntelligenceInterface
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
+{-| Generated Code Do Not Modify package org.allbinary.game.ai
+-}
 
--- Java interface: the classes that implement it have these functions
-data ArtificialIntelligenceInterfaceFactoryInterface = ArtificialIntelligenceInterfaceFactoryInterface
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ArtificialIntelligenceInterfaceFactoryInterface where
-    javaNull = javaNullRecord "ArtificialIntelligenceInterfaceFactoryInterface"
-
-instance JavaEquals ArtificialIntelligenceInterfaceFactoryInterface where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ArtificialIntelligenceInterfaceFactoryInterface where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ArtificialIntelligenceInterfaceFactoryInterface where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-fromHeader_ :: JavaHeader -> ArtificialIntelligenceInterfaceFactoryInterface
-fromHeader_ header = ArtificialIntelligenceInterfaceFactoryInterface header
-
-registerInterface_ :: JavaHeader -> IO ()
-registerInterface_ header = do
-    jregisterLevel header (ArtificialIntelligenceInterfaceFactoryInterface header)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+import JR
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface)
-getInstance object_ a1 a2 a3 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: ArtificialIntelligenceInterfaceFactoryInterface))) () a1 a2 a3
 
-getInstance_super :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface)
-getInstance_super object_ a1 a2 a3 = (getInstance_impl (javaCast object_ :: ArtificialIntelligenceInterfaceFactoryInterface)) a1 a2 a3
+jclass : String
+jclass =
+    "ArtificialIntelligenceInterfaceFactoryInterface"
 
-getInstance_impl :: ArtificialIntelligenceInterfaceFactoryInterface -> ABHashtable.ABHashtable -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface)
-getInstance_impl this hashtable ownerLayerInterface gameInput = javaAbstractMethod "getInstance"
 
+jchain : List String
+jchain =
+    [ "ArtificialIntelligenceInterfaceFactoryInterface" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ArtificialIntelligenceInterfaceFactoryInterface"
+        []
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

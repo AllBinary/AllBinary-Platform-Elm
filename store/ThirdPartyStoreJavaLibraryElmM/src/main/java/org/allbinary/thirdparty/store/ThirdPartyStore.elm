@@ -1,137 +1,116 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.thirdparty.store
-module ThirdPartyStore where
+module Org.Allbinary.Thirdparty.Store.ThirdPartyStore exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
+{-| Generated Code Do Not Modify package org.allbinary.thirdparty.store
+-}
 
-data ThirdPartyStore = ThirdPartyStore
-    { header_ :: JavaHeader
-    , authorized :: IORef (Bool)
-    , name :: IORef (String)
-    }
-
-instance JavaNull ThirdPartyStore where
-    javaNull = javaNullRecord "ThirdPartyStore"
-
-instance JavaEquals ThirdPartyStore where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ThirdPartyStore where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ThirdPartyStore where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ThirdPartyStore
-newRecord_ = do
-    header_ <- newJavaHeader
-    authorized <- newIORef False
-    name <- newIORef ""
-    let this = ThirdPartyStore header_ authorized name
-    jregisterLevel header_ this
-    jregisterMethod header_ "authorize" (\() -> authorize_impl this)
-    jregisterMethod header_ "isAuthorized" (\() -> isAuthorized_impl this)
-    jregisterMethod header_ "setAuthorized" (\() -> setAuthorized_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    pure this
-
-initFields_ :: ThirdPartyStore -> IO ()
-initFields_ this = do
-    jset this.authorized (False)
-    jset this.name (javaNull)
-    pure ()
-
-new_1 :: String -> IO ThirdPartyStore
-new_1 name = do
-    this <- newRecord_
-    init_1 this name
-    pure this
-
-init_1 :: ThirdPartyStore -> String -> IO ()
-init_1 this name = do
-        initFields_ this
-        jset (this).name (name)
-        pure ()
+import JR
 
 
-authorize :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-authorize object_ a1 = jmethod object_ "authorize" (\() -> (authorize_impl (javaCast object_ :: ThirdPartyStore))) () a1
 
-authorize_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-authorize_super object_ a1 = (authorize_impl (javaCast object_ :: ThirdPartyStore)) a1
-
-authorize_impl :: ThirdPartyStore -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-authorize_impl this clientInformationInterface = do
-        pure ()
+jclass : String
+jclass =
+    "ThirdPartyStore"
 
 
-isAuthorized :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isAuthorized object_ = jmethod object_ "isAuthorized" (\() -> (isAuthorized_impl (javaCast object_ :: ThirdPartyStore))) ()
-
-isAuthorized_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isAuthorized_super object_ = (isAuthorized_impl (javaCast object_ :: ThirdPartyStore))
-
-isAuthorized_impl :: ThirdPartyStore -> IO (Bool)
-isAuthorized_impl this = do
-        pure ((jget (this).authorized))
+jchain : List String
+jchain =
+    [ "ThirdPartyStore" ]
 
 
-setAuthorized :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setAuthorized object_ a1 = jmethod object_ "setAuthorized" (\() -> (setAuthorized_impl (javaCast object_ :: ThirdPartyStore))) () a1
-
-setAuthorized_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setAuthorized_super object_ a1 = (setAuthorized_impl (javaCast object_ :: ThirdPartyStore)) a1
-
-setAuthorized_impl :: ThirdPartyStore -> Bool -> IO (())
-setAuthorized_impl this authorized = do
-        jset (this).authorized (authorized)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "authorized", JR.defaultOf "Z" ), ( "name", JR.defaultOf "" ) ]
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: ThirdPartyStore))) ()
+jvtable =
+    JR.vtable
+        [ ( "authorize_1", jm_authorize_1 )
+        , ( "isAuthorized_0", jm_isAuthorized_0 )
+        , ( "setAuthorized_1", jm_setAuthorized_1 )
+        , ( "getName_0", jm_getName_0 ) ]
+        JR.noMethods
 
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: ThirdPartyStore))
 
-getName_impl :: ThirdPartyStore -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ThirdPartyStore"
+        [ ( "jm_authorize_1", jm_authorize_1 ), ( "jm_isAuthorized_0", jm_isAuthorized_0 ), ( "jm_setAuthorized_1", jm_setAuthorized_1 ), ( "jm_getName_0", jm_getName_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "name")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_authorize_1 : JR.Method
+jm_authorize_1 jheap jthis jargs =
+    JR.method [ ( "clientInformationInterface", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isAuthorized_0 : JR.Method
+jm_isAuthorized_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "authorized") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAuthorized_1 : JR.Method
+jm_setAuthorized_1 jheap jthis jargs =
+    JR.method [ ( "authorized", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "authorized" "Z" JR.this (JR.local "authorized")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

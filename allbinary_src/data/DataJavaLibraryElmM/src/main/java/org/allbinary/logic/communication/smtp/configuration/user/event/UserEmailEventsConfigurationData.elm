@@ -1,84 +1,80 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.smtp.configuration.user.event
-module UserEmailEventsConfigurationData where
+module Org.Allbinary.Logic.Communication.Smtp.Configuration.User.Event.UserEmailEventsConfigurationData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.smtp.configuration.user.event
+-}
 
-data UserEmailEventsConfigurationData = UserEmailEventsConfigurationData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull UserEmailEventsConfigurationData where
-    javaNull = javaNullRecord "UserEmailEventsConfigurationData"
 
-instance JavaEquals UserEmailEventsConfigurationData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq UserEmailEventsConfigurationData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "UserEmailEventsConfigurationData"
 
-instance JavaObjectClass UserEmailEventsConfigurationData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-nAME :: String
-nAME = "EMAIL_EVENTS_CONFIGURATION_NAME"
+jchain : List String
+jchain =
+    [ "UserEmailEventsConfigurationData" ]
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-newRecord_ :: IO UserEmailEventsConfigurationData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = UserEmailEventsConfigurationData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: UserEmailEventsConfigurationData -> IO ()
-initFields_ this = do
-    pure ()
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-new_ :: IO UserEmailEventsConfigurationData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: UserEmailEventsConfigurationData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "UserEmailEventsConfigurationData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NAME", jstatic_NAME ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "UserEmailEventsConfigurationData" jclinit "NAME"
+        (JR.str "EMAIL_EVENTS_CONFIGURATION_NAME")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,117 +1,112 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.business.init
-module InitInfo2 where
+module Org.Allbinary.Business.Init.InitInfo2 exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Directory -- org.allbinary.logic.io.file.directory.Directory
-import qualified AbPath -- org.allbinary.logic.io.path.AbPath
+{-| Generated Code Do Not Modify package org.allbinary.business.init
+-}
 
-data InitInfo2 = InitInfo2
-    { header_ :: JavaHeader
-    , directory :: IORef (Directory.Directory)
-    }
-
-instance JavaNull InitInfo2 where
-    javaNull = javaNullRecord "InitInfo2"
-
-instance JavaEquals InitInfo2 where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InitInfo2 where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InitInfo2 where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: InitInfo2
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO InitInfo2
-newRecord_ = do
-    header_ <- newJavaHeader
-    directory <- newIORef javaNull
-    let this = InitInfo2 header_ directory
-    jregisterLevel header_ this
-    jregisterMethod header_ "isTestHtmlPathValid" (\() -> isTestHtmlPathValid_impl this)
-    jregisterMethod header_ "isMainPathValid" (\() -> isMainPathValid_impl this)
-    pure this
-
-initFields_ :: InitInfo2 -> IO ()
-initFields_ this = do
-    jset this.directory =<< (Directory.getInstance)
-    pure ()
-
-new_ :: IO InitInfo2
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: InitInfo2 -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.Io.File.Directory.Directory as Directory
 
 
-getInstance :: IO (InitInfo2)
-getInstance = do
-        pure (InitInfo2.instance_)
+jclass : String
+jclass =
+    "InitInfo2"
 
 
-isTestHtmlPathValid :: (JavaObjectClass this_) => this_ -> AbPath.AbPath -> IO (Bool)
-isTestHtmlPathValid object_ a1 = jmethod object_ "isTestHtmlPathValid" (\() -> (isTestHtmlPathValid_impl (javaCast object_ :: InitInfo2))) () a1
-
-isTestHtmlPathValid_super :: (JavaObjectClass this_) => this_ -> AbPath.AbPath -> IO (Bool)
-isTestHtmlPathValid_super object_ a1 = (isTestHtmlPathValid_impl (javaCast object_ :: InitInfo2)) a1
-
-isTestHtmlPathValid_impl :: InitInfo2 -> AbPath.AbPath -> IO (Bool)
-isTestHtmlPathValid_impl this value = do
-        (Directory.create ((jget (this).directory)) value)
+jchain : List String
+jchain =
+    [ "InitInfo2" ]
 
 
-isMainPathValid :: (JavaObjectClass this_) => this_ -> AbPath.AbPath -> IO (Bool)
-isMainPathValid object_ a1 = jmethod object_ "isMainPathValid" (\() -> (isMainPathValid_impl (javaCast object_ :: InitInfo2))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "directory", JR.defaultOf "" ) ]
 
-isMainPathValid_super :: (JavaObjectClass this_) => this_ -> AbPath.AbPath -> IO (Bool)
-isMainPathValid_super object_ a1 = (isMainPathValid_impl (javaCast object_ :: InitInfo2)) a1
 
-isMainPathValid_impl :: InitInfo2 -> AbPath.AbPath -> IO (Bool)
-isMainPathValid_impl this value = do
-        (Directory.create ((jget (this).directory)) value)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "isTestHtmlPathValid_1", jm_isTestHtmlPathValid_1 )
+        , ( "isMainPathValid_1", jm_isMainPathValid_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InitInfo2"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_isTestHtmlPathValid_1", jm_isTestHtmlPathValid_1 ), ( "jm_isMainPathValid_1", jm_isMainPathValid_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "InitInfo2" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "directory" "" JR.this (JR.callStatic Directory.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isTestHtmlPathValid_1 : JR.Method
+jm_isTestHtmlPathValid_1 jheap jthis jargs =
+    JR.method [ ( "value", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "create_1" (JR.thisField "directory") [ (JR.local "value") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isMainPathValid_1 : JR.Method
+jm_isMainPathValid_1 jheap jthis jargs =
+    JR.method [ ( "value", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "create_1" (JR.thisField "directory") [ (JR.local "value") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

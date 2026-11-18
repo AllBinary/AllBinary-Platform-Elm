@@ -1,82 +1,75 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module AllBinaryPlatformImageRotationAnimationFactory (module AllBinaryPlatformImageRotationAnimationFactory, module AllBinaryJ2SEImageRotationAnimationFactory) where
+module Org.Allbinary.Animation.Image.AllBinaryPlatformImageRotationAnimationFactory exposing (..)
 
-import AllBinaryJ2SEImageRotationAnimationFactory hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified AnimationBehaviorFactory -- org.allbinary.animation.AnimationBehaviorFactory
-import qualified AllBinaryJ2SEImageRotationAnimationFactory
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
-data AllBinaryPlatformImageRotationAnimationFactory = AllBinaryPlatformImageRotationAnimationFactory
-    { header_ :: JavaHeader
-    , base :: AllBinaryJ2SEImageRotationAnimationFactory.AllBinaryJ2SEImageRotationAnimationFactory
-    }
+import JR
+import Org.Allbinary.Animation.Image.AllBinaryJ2SEImageRotationAnimationFactory as AllBinaryJ2SEImageRotationAnimationFactory
 
-instance JavaNull AllBinaryPlatformImageRotationAnimationFactory where
-    javaNull = javaNullRecord "AllBinaryPlatformImageRotationAnimationFactory"
 
-instance JavaEquals AllBinaryPlatformImageRotationAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "AllBinaryPlatformImageRotationAnimationFactory"
 
-instance Eq AllBinaryPlatformImageRotationAnimationFactory where
-    (==) = jrecordEquals
 
-instance JavaObjectClass AllBinaryPlatformImageRotationAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "AllBinaryPlatformImageRotationAnimationFactory" ]
+        ++ AllBinaryJ2SEImageRotationAnimationFactory.jchain
 
-newRecord_ :: IO AllBinaryPlatformImageRotationAnimationFactory
-newRecord_ = do
-    base <- AllBinaryJ2SEImageRotationAnimationFactory.newRecord_
-    let header_ = base.header_
-    let this = AllBinaryPlatformImageRotationAnimationFactory header_ base
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: AllBinaryPlatformImageRotationAnimationFactory -> IO ()
-initFields_ this = do
-    pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinaryJ2SEImageRotationAnimationFactory.jfields ++ []
 
-new_6 :: Image.Image -> Int -> Int -> Int16 -> AnimationBehaviorFactory.AnimationBehaviorFactory -> Bool -> IO AllBinaryPlatformImageRotationAnimationFactory
-new_6 image width height angleIncrement animationBehaviorFactory resizeCanvasForRotation = do
-    this <- newRecord_
-    init_6 this image width height angleIncrement animationBehaviorFactory resizeCanvasForRotation
-    pure this
 
-init_6 :: AllBinaryPlatformImageRotationAnimationFactory -> Image.Image -> Int -> Int -> Int16 -> AnimationBehaviorFactory.AnimationBehaviorFactory -> Bool -> IO ()
-init_6 this image width height angleIncrement animationBehaviorFactory resizeCanvasForRotation = do
-        AllBinaryJ2SEImageRotationAnimationFactory.init_6 this.base (image) (width) (height) (angleIncrement) (animationBehaviorFactory) (resizeCanvasForRotation)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+jvtable =
+    JR.vtable
+        []
+        AllBinaryJ2SEImageRotationAnimationFactory.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryPlatformImageRotationAnimationFactory"
+        [ ( "jnew_6", jnew_6 ), ( "jinit_6", jinit_6 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_6 : JR.Method
+jinit_6 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "width", "I" ), ( "height", "I" ), ( "angleIncrement", "S" ), ( "animationBehaviorFactory", "" ), ( "resizeCanvasForRotation", "Z" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinaryJ2SEImageRotationAnimationFactory.jinit_6 JR.this [ (JR.local "image"), (JR.local "width"), (JR.local "height"), (JR.local "angleIncrement"), (JR.local "animationBehaviorFactory"), (JR.local "resizeCanvasForRotation") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_6 : JR.Method
+jnew_6 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_6 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

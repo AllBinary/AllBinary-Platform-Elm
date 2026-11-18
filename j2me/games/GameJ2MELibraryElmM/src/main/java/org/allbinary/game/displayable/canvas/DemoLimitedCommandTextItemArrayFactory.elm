@@ -1,105 +1,102 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module DemoLimitedCommandTextItemArrayFactory where
+module Org.Allbinary.Game.Displayable.Canvas.DemoLimitedCommandTextItemArrayFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommandTextItemArrayFactory -- org.allbinary.graphics.form.item.CommandTextItemArrayFactory
-import qualified LimitCommandsVisitor -- org.allbinary.graphics.form.item.LimitCommandsVisitor
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data DemoLimitedCommandTextItemArrayFactory = DemoLimitedCommandTextItemArrayFactory
-    { header_ :: JavaHeader
-    , commandTextItemArrayFactory :: IORef (CommandTextItemArrayFactory.CommandTextItemArrayFactory)
-    }
-
-instance JavaNull DemoLimitedCommandTextItemArrayFactory where
-    javaNull = javaNullRecord "DemoLimitedCommandTextItemArrayFactory"
-
-instance JavaEquals DemoLimitedCommandTextItemArrayFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DemoLimitedCommandTextItemArrayFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DemoLimitedCommandTextItemArrayFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: DemoLimitedCommandTextItemArrayFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DemoLimitedCommandTextItemArrayFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    commandTextItemArrayFactory <- newIORef javaNull
-    let this = DemoLimitedCommandTextItemArrayFactory header_ commandTextItemArrayFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "getCommandTextItemArrayFactory" (\() -> getCommandTextItemArrayFactory_impl this)
-    pure this
-
-initFields_ :: DemoLimitedCommandTextItemArrayFactory -> IO ()
-initFields_ this = do
-    jset this.commandTextItemArrayFactory =<< (CommandTextItemArrayFactory.new_1 (jio (LimitCommandsVisitor.new_)))
-    pure ()
-
-new_ :: IO DemoLimitedCommandTextItemArrayFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DemoLimitedCommandTextItemArrayFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Form.Item.CommandTextItemArrayFactory as CommandTextItemArrayFactory
+import Org.Allbinary.Graphics.Form.Item.LimitCommandsVisitor as LimitCommandsVisitor
 
 
-getInstance :: IO (DemoLimitedCommandTextItemArrayFactory)
-getInstance = do
-        pure (DemoLimitedCommandTextItemArrayFactory.instance_)
+jclass : String
+jclass =
+    "DemoLimitedCommandTextItemArrayFactory"
 
 
-getCommandTextItemArrayFactory :: (JavaObjectClass this_) => this_ -> IO (CommandTextItemArrayFactory.CommandTextItemArrayFactory)
-getCommandTextItemArrayFactory object_ = jmethod object_ "getCommandTextItemArrayFactory" (\() -> (getCommandTextItemArrayFactory_impl (javaCast object_ :: DemoLimitedCommandTextItemArrayFactory))) ()
+jchain : List String
+jchain =
+    [ "DemoLimitedCommandTextItemArrayFactory" ]
 
-getCommandTextItemArrayFactory_super :: (JavaObjectClass this_) => this_ -> IO (CommandTextItemArrayFactory.CommandTextItemArrayFactory)
-getCommandTextItemArrayFactory_super object_ = (getCommandTextItemArrayFactory_impl (javaCast object_ :: DemoLimitedCommandTextItemArrayFactory))
 
-getCommandTextItemArrayFactory_impl :: DemoLimitedCommandTextItemArrayFactory -> IO (CommandTextItemArrayFactory.CommandTextItemArrayFactory)
-getCommandTextItemArrayFactory_impl this = do
-        pure ((jget (this).commandTextItemArrayFactory))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commandTextItemArrayFactory", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getCommandTextItemArrayFactory_0", jm_getCommandTextItemArrayFactory_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DemoLimitedCommandTextItemArrayFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getCommandTextItemArrayFactory_0", jm_getCommandTextItemArrayFactory_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "DemoLimitedCommandTextItemArrayFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "commandTextItemArrayFactory" "" JR.this (JR.new CommandTextItemArrayFactory.jnew_1 [ (JR.new LimitCommandsVisitor.jnew_0 []) ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCommandTextItemArrayFactory_0 : JR.Method
+jm_getCommandTextItemArrayFactory_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "commandTextItemArrayFactory") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

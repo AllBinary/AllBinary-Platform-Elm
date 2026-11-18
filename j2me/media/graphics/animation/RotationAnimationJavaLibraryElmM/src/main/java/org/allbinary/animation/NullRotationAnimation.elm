@@ -1,95 +1,110 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module NullRotationAnimation (module NullRotationAnimation, module RotationAnimation) where
+module Org.Allbinary.Animation.NullRotationAnimation exposing (..)
 
-import RotationAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createTotalAngle, createTotalAngle_super, createTotalAngle_impl, createQuarter, createQuarter_super, createQuarter_impl, getAnimationSize, getAnimationSize_super, getAnimationSize_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnimationBehavior -- same package or java.lang
-import qualified AngleFactory -- org.allbinary.math.AngleFactory
-import qualified AngleInfo -- org.allbinary.math.AngleInfo
-import qualified CircularIndexUtil -- org.allbinary.util.CircularIndexUtil
-import qualified RotationAnimation
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
-data NullRotationAnimation = NullRotationAnimation
-    { header_ :: JavaHeader
-    , base :: RotationAnimation.RotationAnimation
-    }
-
-instance JavaNull NullRotationAnimation where
-    javaNull = javaNullRecord "NullRotationAnimation"
-
-instance JavaEquals NullRotationAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NullRotationAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NullRotationAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO NullRotationAnimation
-newRecord_ = do
-    base <- RotationAnimation.newRecord_
-    let header_ = base.header_
-    let this = NullRotationAnimation header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "getAnimationSize" (\() -> getAnimationSize_impl this)
-    pure this
-
-initFields_ :: NullRotationAnimation -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Math.AngleInfo as AngleInfo
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
+import Org.Allbinary.Animation.RotationAnimation as RotationAnimation
 
 
-createTotalAngle :: AngleInfo.AngleInfo -> Int16 -> AnimationBehavior.AnimationBehavior -> IO (NullRotationAnimation)
-createTotalAngle angleInfo totalAngle animationBehavior = do
-        (new_3 angleInfo (jio (CircularIndexUtil.createInstance (totalAngle / (jio (AngleInfo.getAngleIncrement ((jio (AngleInfo.getAngleIncrementInfo angleInfo)))))))) animationBehavior)
+jclass : String
+jclass =
+    "NullRotationAnimation"
 
 
-createQuarter :: AnimationBehavior.AnimationBehavior -> IO (NullRotationAnimation)
-createQuarter animationBehavior = do
-        (new_3 (jio (AngleInfo.getInstance (jget ((jio (AngleFactory.getInstance))).qUARTER_TOTAL_ANGLE))) (jio (CircularIndexUtil.createInstance 4)) animationBehavior)
-
-new_3 :: AngleInfo.AngleInfo -> CircularIndexUtil.CircularIndexUtil -> AnimationBehavior.AnimationBehavior -> IO NullRotationAnimation
-new_3 angleInfo circularIndexUtil animationBehavior = do
-    this <- newRecord_
-    init_3 this angleInfo circularIndexUtil animationBehavior
-    pure this
-
-init_3 :: NullRotationAnimation -> AngleInfo.AngleInfo -> CircularIndexUtil.CircularIndexUtil -> AnimationBehavior.AnimationBehavior -> IO ()
-init_3 this angleInfo circularIndexUtil animationBehavior = do
-        RotationAnimation.init_3 this.base (angleInfo) (circularIndexUtil) (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+jchain : List String
+jchain =
+    [ "NullRotationAnimation" ]
+        ++ RotationAnimation.jchain
 
 
--- throws Exception
-getAnimationSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize object_ = jmethod object_ "getAnimationSize" (\() -> (getAnimationSize_impl (javaCast object_ :: NullRotationAnimation))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    RotationAnimation.jfields ++ []
 
-getAnimationSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize_super object_ = (getAnimationSize_impl (javaCast object_ :: NullRotationAnimation))
 
-getAnimationSize_impl :: NullRotationAnimation -> IO (Int)
-getAnimationSize_impl this = do
-        pure (0)
+jvtable =
+    JR.vtable
+        [ ( "createTotalAngle_3", jm_createTotalAngle_3 )
+        , ( "createQuarter_1", jm_createQuarter_1 )
+        , ( "getAnimationSize_0", jm_getAnimationSize_0 ) ]
+        RotationAnimation.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullRotationAnimation"
+        [ ( "jm_createTotalAngle_3", jm_createTotalAngle_3 ), ( "jm_createQuarter_1", jm_createQuarter_1 ), ( "jm_getAnimationSize_0", jm_getAnimationSize_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "angleInfo", "" ), ( "circularIndexUtil", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect RotationAnimation.jinit_3 JR.this [ (JR.local "angleInfo"), (JR.local "circularIndexUtil"), (JR.local "animationBehavior") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_createTotalAngle_3 : JR.Method
+jm_createTotalAngle_3 jheap jthis jargs =
+    JR.method [ ( "angleInfo", "" ), ( "totalAngle", "S" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_3 [ (JR.local "angleInfo"), (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.map2 JR.div (JR.local "totalAngle") (JR.invoke "getAngleIncrement_0" (JR.invoke "getAngleIncrementInfo_0" (JR.local "angleInfo") []) [])) ]), (JR.local "animationBehavior") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createQuarter_1 : JR.Method
+jm_createQuarter_1 jheap jthis jargs =
+    JR.method [ ( "animationBehavior", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_3 [ (JR.callStatic AngleInfo.jm_getInstance_1 [ (JR.field "QUARTER_TOTAL_ANGLE" (JR.callStatic AngleFactory.jm_getInstance_0 [])) ]), (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.int 4) ]), (JR.local "animationBehavior") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAnimationSize_0 : JR.Method
+jm_getAnimationSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

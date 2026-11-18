@@ -1,144 +1,126 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.graphics.hud
-module HudGraphicsPosition where
+module Org.Allbinary.Game.Graphics.Hud.HudGraphicsPosition exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
+{-| Generated Code Do Not Modify package org.allbinary.game.graphics.hud
+-}
 
-data HudGraphicsPosition = HudGraphicsPosition
-    { header_ :: JavaHeader
-    , anchor :: IORef (Int)
-    , point :: IORef (GPoint.GPoint)
-    }
-
-instance JavaNull HudGraphicsPosition where
-    javaNull = javaNullRecord "HudGraphicsPosition"
-
-instance JavaEquals HudGraphicsPosition where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HudGraphicsPosition where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HudGraphicsPosition where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_HUD_GRAPHICS_POSITION :: HudGraphicsPosition
-{-# NOINLINE nULL_HUD_GRAPHICS_POSITION #-}
-nULL_HUD_GRAPHICS_POSITION = unsafePerformIO ((new_2 (jget ((jio (PointFactory.getInstance))).zERO_ZERO) 9))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO HudGraphicsPosition
-newRecord_ = do
-    header_ <- newJavaHeader
-    anchor <- newIORef 0
-    point <- newIORef javaNull
-    let this = HudGraphicsPosition header_ anchor point
-    jregisterLevel header_ this
-    jregisterMethod header_ "getAnchor" (\() -> getAnchor_impl this)
-    jregisterMethod header_ "setAnchor" (\() -> setAnchor_impl this)
-    jregisterMethod header_ "getPoint" (\() -> getPoint_impl this)
-    jregisterMethod header_ "setPoint" (\() -> setPoint_impl this)
-    pure this
-
-initFields_ :: HudGraphicsPosition -> IO ()
-initFields_ this = do
-    jset this.anchor (0)
-    jset this.point ((jget ((jio (PointFactory.getInstance))).zERO_ZERO))
-    pure ()
-
-new_2 :: GPoint.GPoint -> Int -> IO HudGraphicsPosition
-new_2 point anchor = do
-    this <- newRecord_
-    init_2 this point anchor
-    pure this
-
-init_2 :: HudGraphicsPosition -> GPoint.GPoint -> Int -> IO ()
-init_2 this point anchor = do
-        initFields_ this
-        Control.Monad.void (HudGraphicsPosition.setAnchor this anchor)
-        Control.Monad.void (HudGraphicsPosition.setPoint this point)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.PointFactory as PointFactory
 
 
-getAnchor :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnchor object_ = jmethod object_ "getAnchor" (\() -> (getAnchor_impl (javaCast object_ :: HudGraphicsPosition))) ()
-
-getAnchor_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnchor_super object_ = (getAnchor_impl (javaCast object_ :: HudGraphicsPosition))
-
-getAnchor_impl :: HudGraphicsPosition -> IO (Int)
-getAnchor_impl this = do
-        pure ((jget (this).anchor))
+jclass : String
+jclass =
+    "HudGraphicsPosition"
 
 
-setAnchor :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setAnchor object_ a1 = jmethod object_ "setAnchor" (\() -> (setAnchor_impl (javaCast object_ :: HudGraphicsPosition))) () a1
-
-setAnchor_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setAnchor_super object_ a1 = (setAnchor_impl (javaCast object_ :: HudGraphicsPosition)) a1
-
-setAnchor_impl :: HudGraphicsPosition -> Int -> IO (())
-setAnchor_impl this anchor = do
-        jset (this).anchor (anchor)
-        pure ()
+jchain : List String
+jchain =
+    [ "HudGraphicsPosition" ]
 
 
-getPoint :: (JavaObjectClass this_) => this_ -> IO (GPoint.GPoint)
-getPoint object_ = jmethod object_ "getPoint" (\() -> (getPoint_impl (javaCast object_ :: HudGraphicsPosition))) ()
-
-getPoint_super :: (JavaObjectClass this_) => this_ -> IO (GPoint.GPoint)
-getPoint_super object_ = (getPoint_impl (javaCast object_ :: HudGraphicsPosition))
-
-getPoint_impl :: HudGraphicsPosition -> IO (GPoint.GPoint)
-getPoint_impl this = do
-        pure ((jget (this).point))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "anchor", JR.defaultOf "I" ), ( "point", JR.defaultOf "" ) ]
 
 
-setPoint :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (())
-setPoint object_ a1 = jmethod object_ "setPoint" (\() -> (setPoint_impl (javaCast object_ :: HudGraphicsPosition))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getAnchor_0", jm_getAnchor_0 )
+        , ( "setAnchor_1", jm_setAnchor_1 )
+        , ( "getPoint_0", jm_getPoint_0 )
+        , ( "setPoint_1", jm_setPoint_1 ) ]
+        JR.noMethods
 
-setPoint_super :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (())
-setPoint_super object_ a1 = (setPoint_impl (javaCast object_ :: HudGraphicsPosition)) a1
 
-setPoint_impl :: HudGraphicsPosition -> GPoint.GPoint -> IO (())
-setPoint_impl this point = do
-        jset (this).point (point)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HudGraphicsPosition"
+        [ ( "jm_getAnchor_0", jm_getAnchor_0 ), ( "jm_setAnchor_1", jm_setAnchor_1 ), ( "jm_getPoint_0", jm_getPoint_0 ), ( "jm_setPoint_1", jm_setPoint_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_NULL_HUD_GRAPHICS_POSITION", jstatic_NULL_HUD_GRAPHICS_POSITION ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_HUD_GRAPHICS_POSITION : JR.M
+jstatic_NULL_HUD_GRAPHICS_POSITION s =
+    JR.static "HudGraphicsPosition" jclinit "NULL_HUD_GRAPHICS_POSITION"
+        (JR.new jnew_2 [ (JR.field "ZERO_ZERO" (JR.callStatic PointFactory.jm_getInstance_0 [])), (JR.int 9) ])
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "point", "" ), ( "anchor", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "point" "" JR.this (JR.field "ZERO_ZERO" (JR.callStatic PointFactory.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setAnchor_1" JR.this [ (JR.local "anchor") ]), 
+                    JR.exec (JR.invoke "setPoint_1" JR.this [ (JR.local "point") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getAnchor_0 : JR.Method
+jm_getAnchor_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "anchor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAnchor_1 : JR.Method
+jm_setAnchor_1 jheap jthis jargs =
+    JR.method [ ( "anchor", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "anchor" "I" JR.this (JR.local "anchor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPoint_0 : JR.Method
+jm_getPoint_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "point") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPoint_1 : JR.Method
+jm_setPoint_1 jheap jthis jargs =
+    JR.method [ ( "point", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "point" "" JR.this (JR.local "point")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

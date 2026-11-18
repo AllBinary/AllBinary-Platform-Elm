@@ -1,96 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
-module OpenGLImageCacheFactory where
+module Org.Allbinary.Image.Opengles.OpenGLImageCacheFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ImageCache -- org.allbinary.image.ImageCache
+{-| Generated Code Do Not Modify package org.allbinary.image.opengles
+-}
 
-data OpenGLImageCacheFactory = OpenGLImageCacheFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull OpenGLImageCacheFactory where
-    javaNull = javaNullRecord "OpenGLImageCacheFactory"
-
-instance JavaEquals OpenGLImageCacheFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLImageCacheFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLImageCacheFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-iMAGE_CACHE :: IORef (ImageCache.ImageCache)
-{-# NOINLINE iMAGE_CACHE #-}
-iMAGE_CACHE = unsafePerformIO (newIORef (ImageCache.nULL_IMAGE_CACHE))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OpenGLImageCacheFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = OpenGLImageCacheFactory header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: OpenGLImageCacheFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO OpenGLImageCacheFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLImageCacheFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Image.ImageCache as ImageCache
 
 
-getInstance :: IO (ImageCache.ImageCache)
-getInstance = do
-        pure ((jget OpenGLImageCacheFactory.iMAGE_CACHE))
+jclass : String
+jclass =
+    "OpenGLImageCacheFactory"
 
 
-init :: IO (())
-init = do
-        when ((jget OpenGLImageCacheFactory.iMAGE_CACHE) == javaNull) $ do
-            pure ()
-        pure ()
+jchain : List String
+jchain =
+    [ "OpenGLImageCacheFactory" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLImageCacheFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_IMAGE_CACHE", jstatic_IMAGE_CACHE ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_IMAGE_CACHE : JR.M
+jstatic_IMAGE_CACHE s =
+    JR.static "OpenGLImageCacheFactory" jclinit "IMAGE_CACHE"
+        ImageCache.jstatic_NULL_IMAGE_CACHE
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_IMAGE_CACHE ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_IMAGE_CACHE JR.null) identity identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

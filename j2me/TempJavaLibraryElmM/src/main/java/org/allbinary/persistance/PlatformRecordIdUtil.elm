@@ -1,106 +1,102 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.persistance
-module PlatformRecordIdUtil where
+module Org.Allbinary.Persistance.PlatformRecordIdUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
+{-| Generated Code Do Not Modify package org.allbinary.persistance
+-}
 
-data PlatformRecordIdUtil = PlatformRecordIdUtil
-    { header_ :: JavaHeader
-    , pLATFORM_SHORT_NAME :: IORef (String)
-    }
-
-instance JavaNull PlatformRecordIdUtil where
-    javaNull = javaNullRecord "PlatformRecordIdUtil"
-
-instance JavaEquals PlatformRecordIdUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlatformRecordIdUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlatformRecordIdUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: PlatformRecordIdUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PlatformRecordIdUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    pLATFORM_SHORT_NAME <- newIORef ""
-    let this = PlatformRecordIdUtil header_ pLATFORM_SHORT_NAME
-    jregisterLevel header_ this
-    jregisterMethod header_ "getRecordId" (\() -> getRecordId_impl this)
-    pure this
-
-initFields_ :: PlatformRecordIdUtil -> IO ()
-initFields_ this = do
-    jset this.pLATFORM_SHORT_NAME ("AVN")
-    pure ()
-
-new_ :: IO PlatformRecordIdUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PlatformRecordIdUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (PlatformRecordIdUtil)
-getInstance = do
-        pure (PlatformRecordIdUtil.instance_)
+jclass : String
+jclass =
+    "PlatformRecordIdUtil"
 
 
-getRecordId :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (String)
-getRecordId object_ a1 a2 = jmethod object_ "getRecordId" (\() -> (getRecordId_impl (javaCast object_ :: PlatformRecordIdUtil))) () a1 a2
+jchain : List String
+jchain =
+    [ "PlatformRecordIdUtil" ]
 
-getRecordId_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (String)
-getRecordId_super object_ a1 a2 = (getRecordId_impl (javaCast object_ :: PlatformRecordIdUtil)) a1 a2
 
-getRecordId_impl :: PlatformRecordIdUtil -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (String)
-getRecordId_impl this abeClientInformation baseRecordId = do
-        (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jio (AbeClientInformationInterface.toShortString abeClientInformation))))) (jget ((jio (CommonSeps.getInstance))).uNDERSCORE)))) (jget (this).pLATFORM_SHORT_NAME)))) baseRecordId))))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "PLATFORM_SHORT_NAME", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getRecordId_2", jm_getRecordId_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlatformRecordIdUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getRecordId_2", jm_getRecordId_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "PlatformRecordIdUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "PLATFORM_SHORT_NAME" "" JR.this (JR.str "AVN")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRecordId_2 : JR.Method
+jm_getRecordId_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "baseRecordId", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.invoke "toShortString_0" (JR.local "abeClientInformation") []) ]) [ (JR.field "UNDERSCORE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.thisField "PLATFORM_SHORT_NAME") ]) [ (JR.local "baseRecordId") ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

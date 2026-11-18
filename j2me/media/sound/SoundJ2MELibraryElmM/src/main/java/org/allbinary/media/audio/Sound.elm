@@ -1,176 +1,148 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
-module Sound where
+module Org.Allbinary.Media.Audio.Sound exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NoPlayer -- same package or java.lang
-import qualified Player -- javax.microedition.media.Player
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified SoundInterface
-import qualified Runnable
+{-| Generated Code Do Not Modify package org.allbinary.media.audio
+-}
 
--- implements SoundInterface
--- implements Runnable
-data Sound = Sound
-    { header_ :: JavaHeader
-    , resource :: IORef (String)
-    , player :: IORef (Player.Player)
-    }
-
-instance JavaNull Sound where
-    javaNull = javaNullRecord "Sound"
-
-instance JavaEquals Sound where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Sound where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Sound where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO Sound
-newRecord_ = do
-    header_ <- newJavaHeader
-    resource <- newIORef ""
-    player <- newIORef javaNull
-    let this = Sound header_ resource player
-    jregisterLevel header_ this
-    SoundInterface.registerInterface_ header_
-    Runnable.registerInterface_ header_
-    jregisterMethod header_ "getResource" (\() -> getResource_impl this)
-    jregisterMethod header_ "getPlayerP" (\() -> getPlayerP_impl this)
-    jregisterMethod header_ "setPlayerP" (\() -> setPlayerP_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "getDuration" (\() -> getDuration_impl this)
-    jregisterMethod header_ "run" (\() -> run_impl this)
-    pure this
-
-initFields_ :: Sound -> IO ()
-initFields_ this = do
-    jset this.resource (javaNull)
-    jset this.player (NoPlayer.nO_PLAYER)
-    pure ()
-
-new_1 :: String -> IO Sound
-new_1 resource = do
-    this <- newRecord_
-    init_1 this resource
-    pure this
-
-init_1 :: Sound -> String -> IO ()
-init_1 this resource = do
-        initFields_ this
-        jset (this).resource (resource)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JRunnable
+import Org.Allbinary.Media.Audio.NoPlayer as NoPlayer
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Media.Audio.SoundInterface as SoundInterface
 
 
-getResource :: (JavaObjectClass this_) => this_ -> IO (String)
-getResource object_ = jmethod object_ "getResource" (\() -> (getResource_impl (javaCast object_ :: Sound))) ()
-
-getResource_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getResource_super object_ = (getResource_impl (javaCast object_ :: Sound))
-
-getResource_impl :: Sound -> IO (String)
-getResource_impl this = do
-        pure ((jget (this).resource))
+jclass : String
+jclass =
+    "Sound"
 
 
-getPlayerP :: (JavaObjectClass this_) => this_ -> IO (Player.Player)
-getPlayerP object_ = jmethod object_ "getPlayerP" (\() -> (getPlayerP_impl (javaCast object_ :: Sound))) ()
-
-getPlayerP_super :: (JavaObjectClass this_) => this_ -> IO (Player.Player)
-getPlayerP_super object_ = (getPlayerP_impl (javaCast object_ :: Sound))
-
-getPlayerP_impl :: Sound -> IO (Player.Player)
-getPlayerP_impl this = do
-        pure ((jget (this).player))
+jchain : List String
+jchain =
+    [ "Sound" ]
+        ++ SoundInterface.jchain
+        ++ JRunnable.jchain
 
 
-setPlayerP :: (JavaObjectClass this_) => this_ -> Player.Player -> IO (())
-setPlayerP object_ a1 = jmethod object_ "setPlayerP" (\() -> (setPlayerP_impl (javaCast object_ :: Sound))) () a1
-
-setPlayerP_super :: (JavaObjectClass this_) => this_ -> Player.Player -> IO (())
-setPlayerP_super object_ a1 = (setPlayerP_impl (javaCast object_ :: Sound)) a1
-
-setPlayerP_impl :: Sound -> Player.Player -> IO (())
-setPlayerP_impl this player = do
-        jset (this).player (player)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "resource", JR.defaultOf "" ), ( "player", JR.defaultOf "" ) ]
 
 
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: Sound))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: Sound))
-
-init_impl :: Sound -> IO (())
-init_impl this = do
-        pure ()
-
-
-getDuration :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDuration object_ = jmethod object_ "getDuration" (\() -> (getDuration_impl (javaCast object_ :: Sound))) ()
-
-getDuration_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDuration_super object_ = (getDuration_impl (javaCast object_ :: Sound))
-
-getDuration_impl :: Sound -> IO (Int)
-getDuration_impl this = do
-        pure ((Prelude.negate 1))
+jvtable =
+    JR.vtable
+        [ ( "getResource_0", jm_getResource_0 )
+        , ( "getPlayerP_0", jm_getPlayerP_0 )
+        , ( "setPlayerP_1", jm_setPlayerP_1 )
+        , ( "init_0", jm_init_0 )
+        , ( "getDuration_0", jm_getDuration_0 )
+        , ( "run_0", jm_run_0 ) ]
+        JR.noMethods
 
 
-run :: (JavaObjectClass this_) => this_ -> IO (())
-run object_ = jmethod object_ "run" (\() -> (run_impl (javaCast object_ :: Sound))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Sound"
+        [ ( "jm_getResource_0", jm_getResource_0 ), ( "jm_getPlayerP_0", jm_getPlayerP_0 ), ( "jm_setPlayerP_1", jm_setPlayerP_1 ), ( "jm_init_0", jm_init_0 ), ( "jm_getDuration_0", jm_getDuration_0 ), ( "jm_run_0", jm_run_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
-run_super :: (JavaObjectClass this_) => this_ -> IO (())
-run_super object_ = (run_impl (javaCast object_ :: Sound))
 
-run_impl :: Sound -> IO (())
-run_impl this = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (PreLogUtil.put (jget (commonStrings).eXCEPTION) this (jget (commonStrings).rUN))
-            ) $ do
-            Control.Monad.void (Player.start ((jget (this).player)))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "resource", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "player" "" JR.this NoPlayer.jstatic_NO_PLAYER),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "resource" "" JR.this (JR.local "resource")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getResource_0 : JR.Method
+jm_getResource_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "resource") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPlayerP_0 : JR.Method
+jm_getPlayerP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "player") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPlayerP_1 : JR.Method
+jm_setPlayerP_1 jheap jthis jargs =
+    JR.method [ ( "player", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "player" "" JR.this (JR.local "player")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDuration_0 : JR.Method
+jm_getDuration_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.map JR.neg (JR.int 1)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_run_0 : JR.Method
+jm_run_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "start_0" (JR.thisField "player") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "RUN" (JR.local "commonStrings")) ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

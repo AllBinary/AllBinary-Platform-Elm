@@ -1,96 +1,92 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.gyro
-module OrientationData where
+module Org.Allbinary.Input.Gyro.OrientationData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.input.gyro
+-}
 
-data OrientationData = OrientationData
-    { header_ :: JavaHeader
-    , oRIENTATION_SENSOR_INPUT :: IORef (String)
-    , oRIENTATION_TYPE :: IORef (String)
-    }
-
-instance JavaNull OrientationData where
-    javaNull = javaNullRecord "OrientationData"
-
-instance JavaEquals OrientationData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OrientationData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OrientationData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: OrientationData
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OrientationData
-newRecord_ = do
-    header_ <- newJavaHeader
-    oRIENTATION_SENSOR_INPUT <- newIORef ""
-    oRIENTATION_TYPE <- newIORef ""
-    let this = OrientationData header_ oRIENTATION_SENSOR_INPUT oRIENTATION_TYPE
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: OrientationData -> IO ()
-initFields_ this = do
-    jset this.oRIENTATION_SENSOR_INPUT ("Orientation Sensor Input")
-    jset this.oRIENTATION_TYPE ("Orientation Type")
-    pure ()
-
-new_ :: IO OrientationData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OrientationData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
 
 
-getInstance :: IO (OrientationData)
-getInstance = do
-        pure (OrientationData.sINGLETON)
 
+jclass : String
+jclass =
+    "OrientationData"
+
+
+jchain : List String
+jchain =
+    [ "OrientationData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "ORIENTATION_SENSOR_INPUT", JR.defaultOf "" ), ( "ORIENTATION_TYPE", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OrientationData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "OrientationData" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "ORIENTATION_SENSOR_INPUT" "" JR.this (JR.str "Orientation Sensor Input")),
+                JR.exec (JR.setField "ORIENTATION_TYPE" "" JR.this (JR.str "Orientation Type")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

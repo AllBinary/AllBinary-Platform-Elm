@@ -1,127 +1,129 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
-module SaveGameForm (module SaveGameForm, module CommandForm) where
+module Org.Allbinary.Game.Configuration.SaveGameForm exposing (..)
 
-import CommandForm hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createForm, createForm_super, createForm_impl, getInstance, getInstance_super, getInstance_impl, initCommands, initCommands_super, initCommands_impl, fORM, meUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified TextField -- javax.microedition.lcdui.TextField
-import qualified MIDPUtil -- org.allbinary.MIDPUtil
-import qualified GameCommandsFactory -- org.allbinary.game.commands.GameCommandsFactory
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified CommandForm -- org.allbinary.graphics.displayable.screen.CommandForm
-import qualified ABSystemWrapper -- org.allbinary.logic.ABSystemWrapper
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration
+-}
 
-data SaveGameForm = SaveGameForm
-    { header_ :: JavaHeader
-    , base :: CommandForm.CommandForm
-    , meUtil :: IORef (MIDPUtil.MIDPUtil)
-    }
-
-instance JavaNull SaveGameForm where
-    javaNull = javaNullRecord "SaveGameForm"
-
-instance JavaEquals SaveGameForm where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SaveGameForm where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SaveGameForm where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-fORM :: IORef (CommandForm.CommandForm)
-{-# NOINLINE fORM #-}
-fORM = unsafePerformIO ((CommandForm.getNullCommandForm) >>= newIORef)
-
-newRecord_ :: IO SaveGameForm
-newRecord_ = do
-    base <- CommandForm.newRecord_
-    let header_ = base.header_
-    meUtil <- newIORef javaNull
-    let this = SaveGameForm header_ base meUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "initCommands" (\() -> initCommands_impl this)
-    pure this
-
-initFields_ :: SaveGameForm -> IO ()
-initFields_ this = do
-    jset this.meUtil =<< (MIDPUtil.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Logic.ABSystemWrapper as ABSystemWrapper
+import Org.Allbinary.Graphics.Displayable.Screen.CommandForm as CommandForm
+import Org.Allbinary.Game.Commands.GameCommandsFactory as GameCommandsFactory
+import JLong
+import Org.Allbinary.MIDPUtil as MIDPUtil
+import Javax.Microedition.Lcdui.TextField as TextField
 
 
--- throws Exception
-createForm :: CommandListener.CommandListener -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO (CommandForm.CommandForm)
-createForm commandListener title backgrounBasicColor foregroundBasicColor = do
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: CommandForm.CommandForm) (new_4 commandListener title backgrounBasicColor foregroundBasicColor))
-        jset SaveGameForm.fORM (assignedValue)
-        pure ((jget SaveGameForm.fORM))
+jclass : String
+jclass =
+    "SaveGameForm"
 
 
-getInstance :: IO (CommandForm.CommandForm)
-getInstance = do
-        pure ((jget SaveGameForm.fORM))
-
-new_4 :: CommandListener.CommandListener -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO SaveGameForm
-new_4 commandListener title backgrounBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_4 this commandListener title backgrounBasicColor foregroundBasicColor
-    pure this
-
-init_4 :: SaveGameForm -> CommandListener.CommandListener -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_4 this commandListener title backgrounBasicColor foregroundBasicColor = do
-        CommandForm.init_4 this.base (commandListener) (title) (backgrounBasicColor) (foregroundBasicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-        let timeString = (javaToString (jio (ABSystemWrapper.currentTimeMillis ((jio (ABSystemWrapper.getInstance))))))
-        Control.Monad.void (MIDPUtil.appendItem ((jget (this).meUtil)) this (jio (TextField.new_4 "Name: " timeString 30 (TextField.aNY))))
-        Control.Monad.void (SaveGameForm.initCommands this commandListener)
-        pure ()
+jchain : List String
+jchain =
+    [ "SaveGameForm" ]
+        ++ CommandForm.jchain
 
 
-initCommands :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands object_ a1 = jmethod object_ "initCommands" (\() -> (initCommands_impl (javaCast object_ :: SaveGameForm))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    CommandForm.jfields ++ [ ( "meUtil", JR.defaultOf "" ) ]
 
-initCommands_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands_super object_ a1 = (initCommands_impl (javaCast object_ :: SaveGameForm)) a1
 
-initCommands_impl :: SaveGameForm -> CommandListener.CommandListener -> IO (())
-initCommands_impl this cmdListener = do
-        gameCommandsFactory <- (GameCommandsFactory.getInstance)
-        Control.Monad.void (CommandForm.removeAllCommands this)
-        Control.Monad.void (CommandForm.addCommand this (jget (gameCommandsFactory).sAVE))
-        Control.Monad.void (CommandForm.addCommand this (jget (gameCommandsFactory).cLOSE_AND_SHOW_GAME_CANVAS))
-        Control.Monad.void (CommandForm.setCommandListener this cmdListener)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "createForm_4", jm_createForm_4 )
+        , ( "getInstance_0", jm_getInstance_0 )
+        , ( "initCommands_1", jm_initCommands_1 ) ]
+        CommandForm.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SaveGameForm"
+        [ ( "jm_createForm_4", jm_createForm_4 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_initCommands_1", jm_initCommands_1 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        [ ( "jstatic_FORM", jstatic_FORM ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_FORM : JR.M
+jstatic_FORM s =
+    JR.static "SaveGameForm" jclinit "FORM"
+        (JR.callStatic CommandForm.jm_getNullCommandForm_0 [])
+        s
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "commandListener", "" ), ( "title", "" ), ( "backgrounBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect CommandForm.jinit_4 JR.this [ (JR.local "commandListener"), (JR.local "title"), (JR.local "backgrounBasicColor"), (JR.local "foregroundBasicColor") ]),
+                JR.exec (JR.setField "meUtil" "" JR.this (JR.callStatic MIDPUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]), 
+                    JR.declare "timeString" "" (JR.callStatic JLong.jm_toString_1 [ (JR.invoke "currentTimeMillis_0" (JR.callStatic ABSystemWrapper.jm_getInstance_0 []) []) ]), 
+                    JR.exec (JR.invoke "appendItem_2" (JR.thisField "meUtil") [ JR.this, (JR.new TextField.jnew_4 [ (JR.str "Name: "), (JR.local "timeString"), (JR.int 30), TextField.jstatic_ANY ]) ]), 
+                    JR.exec (JR.invoke "initCommands_1" JR.this [ (JR.local "commandListener") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_createForm_4 : JR.Method
+jm_createForm_4 jheap jthis jargs =
+    JR.method [ ( "commandListener", "" ), ( "title", "" ), ( "backgrounBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setStatic "SaveGameForm.FORM" "" (JR.new jnew_4 [ (JR.local "commandListener"), (JR.local "title"), (JR.local "backgrounBasicColor"), (JR.local "foregroundBasicColor") ])), 
+                    JR.return jstatic_FORM ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_FORM ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initCommands_1 : JR.Method
+jm_initCommands_1 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameCommandsFactory" "" (JR.callStatic GameCommandsFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "removeAllCommands_0" JR.this []), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "SAVE" (JR.local "gameCommandsFactory")) ]), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "CLOSE_AND_SHOW_GAME_CANVAS" (JR.local "gameCommandsFactory")) ]), 
+                    JR.exec (JR.invoke "setCommandListener_1" JR.this [ (JR.local "cmdListener") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

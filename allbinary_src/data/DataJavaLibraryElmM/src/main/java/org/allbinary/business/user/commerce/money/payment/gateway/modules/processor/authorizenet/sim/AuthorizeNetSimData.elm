@@ -1,129 +1,185 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.money.payment.gateway.modules.processor.authorizenet.sim
-module AuthorizeNetSimData where
+module Org.Allbinary.Business.User.Commerce.Money.Payment.Gateway.Modules.Processor.Authorizenet.Sim.AuthorizeNetSimData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.money.payment.gateway.modules.processor.authorizenet.sim
+-}
 
-data AuthorizeNetSimData = AuthorizeNetSimData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull AuthorizeNetSimData where
-    javaNull = javaNullRecord "AuthorizeNetSimData"
 
-instance JavaEquals AuthorizeNetSimData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq AuthorizeNetSimData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "AuthorizeNetSimData"
 
-instance JavaObjectClass AuthorizeNetSimData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-x_FP_HASH :: String
-x_FP_HASH = "x_fp_hash"
+jchain : List String
+jchain =
+    [ "AuthorizeNetSimData" ]
 
-x_FP_SEQUENCE :: String
-x_FP_SEQUENCE = "x_fp_sequence"
 
-x_FP_TIMESTAMP :: String
-x_FP_TIMESTAMP = "x_fp_timestamp"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-x_SHOW_FORM :: String
-x_SHOW_FORM = "x_show_form"
 
-x_HEADER_HTML_PAYMENT_FORM :: String
-x_HEADER_HTML_PAYMENT_FORM = "x_header_html_payment_form"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-x_FOOTER_HTML_PAYMENT_FORM :: String
-x_FOOTER_HTML_PAYMENT_FORM = "x_footer_html_payment_form"
 
-x_HEADER_HTML_RECEIPT :: String
-x_HEADER_HTML_RECEIPT = "x_header_html_receipt"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AuthorizeNetSimData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_X_FP_HASH", jstatic_X_FP_HASH ), ( "jstatic_X_FP_SEQUENCE", jstatic_X_FP_SEQUENCE ), ( "jstatic_X_FP_TIMESTAMP", jstatic_X_FP_TIMESTAMP ), ( "jstatic_X_SHOW_FORM", jstatic_X_SHOW_FORM ), ( "jstatic_X_HEADER_HTML_PAYMENT_FORM", jstatic_X_HEADER_HTML_PAYMENT_FORM ), ( "jstatic_X_FOOTER_HTML_PAYMENT_FORM", jstatic_X_FOOTER_HTML_PAYMENT_FORM ), ( "jstatic_X_HEADER_HTML_RECEIPT", jstatic_X_HEADER_HTML_RECEIPT ), ( "jstatic_X_FOOTER_HTML_RECEIPT", jstatic_X_FOOTER_HTML_RECEIPT ), ( "jstatic_X_RECEIPT_LINK_TEXT", jstatic_X_RECEIPT_LINK_TEXT ), ( "jstatic_X_RECEIPT_LINK_URL", jstatic_X_RECEIPT_LINK_URL ), ( "jstatic_X_LOGO_URL", jstatic_X_LOGO_URL ), ( "jstatic_X_BACKGROUND_URL", jstatic_X_BACKGROUND_URL ), ( "jstatic_X_COLOR_BACKGROUND", jstatic_X_COLOR_BACKGROUND ), ( "jstatic_X_COLOR_LINK", jstatic_X_COLOR_LINK ), ( "jstatic_X_COLOR_TEXT", jstatic_X_COLOR_TEXT ), ( "jstatic_X_RELAY_URL", jstatic_X_RELAY_URL ) ]
+        jheap
 
-x_FOOTER_HTML_RECEIPT :: String
-x_FOOTER_HTML_RECEIPT = "x_footer_html_receipt"
 
-x_RECEIPT_LINK_TEXT :: String
-x_RECEIPT_LINK_TEXT = "x_receipt_link_text"
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-x_RECEIPT_LINK_URL :: String
-x_RECEIPT_LINK_URL = "x_receipt_link_url"
 
-x_LOGO_URL :: String
-x_LOGO_URL = "x_logo_url"
+jstatic_X_FP_HASH : JR.M
+jstatic_X_FP_HASH s =
+    JR.static "AuthorizeNetSimData" jclinit "X_FP_HASH"
+        (JR.str "x_fp_hash")
+        s
 
-x_BACKGROUND_URL :: String
-x_BACKGROUND_URL = "x_background_url"
 
-x_COLOR_BACKGROUND :: String
-x_COLOR_BACKGROUND = "x_color_background"
+jstatic_X_FP_SEQUENCE : JR.M
+jstatic_X_FP_SEQUENCE s =
+    JR.static "AuthorizeNetSimData" jclinit "X_FP_SEQUENCE"
+        (JR.str "x_fp_sequence")
+        s
 
-x_COLOR_LINK :: String
-x_COLOR_LINK = "x_color_link"
 
-x_COLOR_TEXT :: String
-x_COLOR_TEXT = "x_color_text"
+jstatic_X_FP_TIMESTAMP : JR.M
+jstatic_X_FP_TIMESTAMP s =
+    JR.static "AuthorizeNetSimData" jclinit "X_FP_TIMESTAMP"
+        (JR.str "x_fp_timestamp")
+        s
 
-x_RELAY_URL :: String
-x_RELAY_URL = "x_relay_url"
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jstatic_X_SHOW_FORM : JR.M
+jstatic_X_SHOW_FORM s =
+    JR.static "AuthorizeNetSimData" jclinit "X_SHOW_FORM"
+        (JR.str "x_show_form")
+        s
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO AuthorizeNetSimData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = AuthorizeNetSimData header_
-    jregisterLevel header_ this
-    pure this
+jstatic_X_HEADER_HTML_PAYMENT_FORM : JR.M
+jstatic_X_HEADER_HTML_PAYMENT_FORM s =
+    JR.static "AuthorizeNetSimData" jclinit "X_HEADER_HTML_PAYMENT_FORM"
+        (JR.str "x_header_html_payment_form")
+        s
 
-initFields_ :: AuthorizeNetSimData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO AuthorizeNetSimData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jstatic_X_FOOTER_HTML_PAYMENT_FORM : JR.M
+jstatic_X_FOOTER_HTML_PAYMENT_FORM s =
+    JR.static "AuthorizeNetSimData" jclinit "X_FOOTER_HTML_PAYMENT_FORM"
+        (JR.str "x_footer_html_payment_form")
+        s
 
-init_ :: AuthorizeNetSimData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jstatic_X_HEADER_HTML_RECEIPT : JR.M
+jstatic_X_HEADER_HTML_RECEIPT s =
+    JR.static "AuthorizeNetSimData" jclinit "X_HEADER_HTML_RECEIPT"
+        (JR.str "x_header_html_receipt")
+        s
+
+
+jstatic_X_FOOTER_HTML_RECEIPT : JR.M
+jstatic_X_FOOTER_HTML_RECEIPT s =
+    JR.static "AuthorizeNetSimData" jclinit "X_FOOTER_HTML_RECEIPT"
+        (JR.str "x_footer_html_receipt")
+        s
+
+
+jstatic_X_RECEIPT_LINK_TEXT : JR.M
+jstatic_X_RECEIPT_LINK_TEXT s =
+    JR.static "AuthorizeNetSimData" jclinit "X_RECEIPT_LINK_TEXT"
+        (JR.str "x_receipt_link_text")
+        s
+
+
+jstatic_X_RECEIPT_LINK_URL : JR.M
+jstatic_X_RECEIPT_LINK_URL s =
+    JR.static "AuthorizeNetSimData" jclinit "X_RECEIPT_LINK_URL"
+        (JR.str "x_receipt_link_url")
+        s
+
+
+jstatic_X_LOGO_URL : JR.M
+jstatic_X_LOGO_URL s =
+    JR.static "AuthorizeNetSimData" jclinit "X_LOGO_URL"
+        (JR.str "x_logo_url")
+        s
+
+
+jstatic_X_BACKGROUND_URL : JR.M
+jstatic_X_BACKGROUND_URL s =
+    JR.static "AuthorizeNetSimData" jclinit "X_BACKGROUND_URL"
+        (JR.str "x_background_url")
+        s
+
+
+jstatic_X_COLOR_BACKGROUND : JR.M
+jstatic_X_COLOR_BACKGROUND s =
+    JR.static "AuthorizeNetSimData" jclinit "X_COLOR_BACKGROUND"
+        (JR.str "x_color_background")
+        s
+
+
+jstatic_X_COLOR_LINK : JR.M
+jstatic_X_COLOR_LINK s =
+    JR.static "AuthorizeNetSimData" jclinit "X_COLOR_LINK"
+        (JR.str "x_color_link")
+        s
+
+
+jstatic_X_COLOR_TEXT : JR.M
+jstatic_X_COLOR_TEXT s =
+    JR.static "AuthorizeNetSimData" jclinit "X_COLOR_TEXT"
+        (JR.str "x_color_text")
+        s
+
+
+jstatic_X_RELAY_URL : JR.M
+jstatic_X_RELAY_URL s =
+    JR.static "AuthorizeNetSimData" jclinit "X_RELAY_URL"
+        (JR.str "x_relay_url")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

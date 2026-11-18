@@ -1,4 +1,4 @@
-module CommonLabels exposing (..)
+module Org.Allbinary.String.CommonLabels exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.string
 -}

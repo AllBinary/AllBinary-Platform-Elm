@@ -1,108 +1,96 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.quoterequest
-module QuoteRequestData where
+module Org.Allbinary.Business.Quoterequest.QuoteRequestData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.quoterequest
+-}
 
-data QuoteRequestData = QuoteRequestData
-    { header_ :: JavaHeader
-    , iD :: IORef (String)
-    , pROJECT_INFO :: IORef (String)
-    , cUSTOMER_COMMENTS :: IORef (String)
-    , bUDGET :: IORef (String)
-    , tIMEFRAME :: IORef (String)
-    , cOMMENTS :: IORef (String)
-    }
-
-instance JavaNull QuoteRequestData where
-    javaNull = javaNullRecord "QuoteRequestData"
-
-instance JavaEquals QuoteRequestData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq QuoteRequestData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass QuoteRequestData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: QuoteRequestData
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO QuoteRequestData
-newRecord_ = do
-    header_ <- newJavaHeader
-    iD <- newIORef ""
-    pROJECT_INFO <- newIORef ""
-    cUSTOMER_COMMENTS <- newIORef ""
-    bUDGET <- newIORef ""
-    tIMEFRAME <- newIORef ""
-    cOMMENTS <- newIORef ""
-    let this = QuoteRequestData header_ iD pROJECT_INFO cUSTOMER_COMMENTS bUDGET tIMEFRAME cOMMENTS
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: QuoteRequestData -> IO ()
-initFields_ this = do
-    jset this.iD ("QUOTEREQUEST_ID")
-    jset this.pROJECT_INFO ("QUOTEREQUEST_PROJECT_INFO")
-    jset this.cUSTOMER_COMMENTS ("QUOTEREQUEST_CUSTOMER_COMMENTS")
-    jset this.bUDGET ("QUOTEREQUEST_BUDGET")
-    jset this.tIMEFRAME ("QUOTEREQUEST_TIMEFRAME")
-    jset this.cOMMENTS ("QUOTEREQUEST_COMMENTS")
-    pure ()
+import JR
 
 
-getInstance :: IO (QuoteRequestData)
-getInstance = do
-        pure (QuoteRequestData.instance_)
 
-new_ :: IO QuoteRequestData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jclass : String
+jclass =
+    "QuoteRequestData"
 
-init_ :: QuoteRequestData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jchain : List String
+jchain =
+    [ "QuoteRequestData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "ID", JR.defaultOf "" ), ( "PROJECT_INFO", JR.defaultOf "" ), ( "CUSTOMER_COMMENTS", JR.defaultOf "" ), ( "BUDGET", JR.defaultOf "" ), ( "TIMEFRAME", JR.defaultOf "" ), ( "COMMENTS", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "QuoteRequestData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "QuoteRequestData" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "ID" "" JR.this (JR.str "QUOTEREQUEST_ID")),
+                JR.exec (JR.setField "PROJECT_INFO" "" JR.this (JR.str "QUOTEREQUEST_PROJECT_INFO")),
+                JR.exec (JR.setField "CUSTOMER_COMMENTS" "" JR.this (JR.str "QUOTEREQUEST_CUSTOMER_COMMENTS")),
+                JR.exec (JR.setField "BUDGET" "" JR.this (JR.str "QUOTEREQUEST_BUDGET")),
+                JR.exec (JR.setField "TIMEFRAME" "" JR.this (JR.str "QUOTEREQUEST_TIMEFRAME")),
+                JR.exec (JR.setField "COMMENTS" "" JR.this (JR.str "QUOTEREQUEST_COMMENTS")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

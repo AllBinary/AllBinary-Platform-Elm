@@ -1,17 +1,17 @@
-module NoDecimalTrigTable exposing (..)
+module Org.Allbinary.Math.NoDecimalTrigTable exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.math
 -}
 
 import JR
-import AngleFactory
-import CommonLabels
-import CommonSeps
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
 import JInteger
-import MathUtil
-import PositionStrings
-import PreLogUtil
-import StringMaker
+import Org.Allbinary.Logic.Math.MathUtil as MathUtil
+import Org.Allbinary.Math.PositionStrings as PositionStrings
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

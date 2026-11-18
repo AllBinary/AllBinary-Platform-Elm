@@ -1,461 +1,396 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
-module NullClip where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NullJ2SEControl -- same package or java.lang
-import qualified NullAudioFormat -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified IOException -- java.io.IOException
-import qualified AudioFormat -- javax.sound.sampled.AudioFormat
-import qualified AudioInputStream -- javax.sound.sampled.AudioInputStream
-import qualified BooleanControl -- javax.sound.sampled.BooleanControl
-import qualified Clip -- javax.sound.sampled.Clip
-import qualified Control -- javax.sound.sampled.Control
-import qualified Type -- javax.sound.sampled.Control.Type
-import qualified Info -- javax.sound.sampled.Line.Info
-import qualified LineListener -- javax.sound.sampled.LineListener
-import qualified LineUnavailableException -- javax.sound.sampled.LineUnavailableException
-
--- implements Clip
-data NullClip = NullClip
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull NullClip where
-    javaNull = javaNullRecord "NullClip"
-
-instance JavaEquals NullClip where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NullClip where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NullClip where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_CONTROL :: NullJ2SEControl.NullJ2SEControl
-{-# NOINLINE nULL_CONTROL #-}
-nULL_CONTROL = unsafePerformIO ((NullJ2SEControl.new_1 (jget (BooleanControl.type_).mUTE)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NullClip
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = NullClip header_
-    jregisterLevel header_ this
-    Clip.registerInterface_ header_
-    jregisterMethod header_ "open" (\() -> open_impl this)
-    jregisterMethod header_ "open_1" (\() -> open_1_impl this)
-    jregisterMethod header_ "getFrameLength" (\() -> getFrameLength_impl this)
-    jregisterMethod header_ "getMicrosecondLength" (\() -> getMicrosecondLength_impl this)
-    jregisterMethod header_ "setFramePosition" (\() -> setFramePosition_impl this)
-    jregisterMethod header_ "setMicrosecondPosition" (\() -> setMicrosecondPosition_impl this)
-    jregisterMethod header_ "setLoopPoints" (\() -> setLoopPoints_impl this)
-    jregisterMethod header_ "loop_" (\() -> loop__impl this)
-    jregisterMethod header_ "drain" (\() -> drain_impl this)
-    jregisterMethod header_ "flush" (\() -> flush_impl this)
-    jregisterMethod header_ "start" (\() -> start_impl this)
-    jregisterMethod header_ "stop" (\() -> stop_impl this)
-    jregisterMethod header_ "isRunning" (\() -> isRunning_impl this)
-    jregisterMethod header_ "isActive" (\() -> isActive_impl this)
-    jregisterMethod header_ "getFormat" (\() -> getFormat_impl this)
-    jregisterMethod header_ "getBufferSize" (\() -> getBufferSize_impl this)
-    jregisterMethod header_ "available" (\() -> available_impl this)
-    jregisterMethod header_ "getFramePosition" (\() -> getFramePosition_impl this)
-    jregisterMethod header_ "getLongFramePosition" (\() -> getLongFramePosition_impl this)
-    jregisterMethod header_ "getMicrosecondPosition" (\() -> getMicrosecondPosition_impl this)
-    jregisterMethod header_ "getLevel" (\() -> getLevel_impl this)
-    jregisterMethod header_ "getLineInfo" (\() -> getLineInfo_impl this)
-    jregisterMethod header_ "open_0" (\() -> open_0_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    jregisterMethod header_ "isOpen" (\() -> isOpen_impl this)
-    jregisterMethod header_ "getControls" (\() -> getControls_impl this)
-    jregisterMethod header_ "isControlSupported" (\() -> isControlSupported_impl this)
-    jregisterMethod header_ "getControl" (\() -> getControl_impl this)
-    jregisterMethod header_ "addLineListener" (\() -> addLineListener_impl this)
-    jregisterMethod header_ "removeLineListener" (\() -> removeLineListener_impl this)
-    pure this
-
-initFields_ :: NullClip -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO NullClip
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NullClip -> IO ()
-init_ this = do
-    initFields_ this
-
-
--- throws LineUnavailableException
-open :: (JavaObjectClass this_) => this_ -> AudioFormat.AudioFormat -> JavaArray (Int8) -> Int -> Int -> IO (())
-open object_ a1 a2 a3 a4 = jmethod object_ "open" (\() -> (open_impl (javaCast object_ :: NullClip))) () a1 a2 a3 a4
-
-open_super :: (JavaObjectClass this_) => this_ -> AudioFormat.AudioFormat -> JavaArray (Int8) -> Int -> Int -> IO (())
-open_super object_ a1 a2 a3 a4 = (open_impl (javaCast object_ :: NullClip)) a1 a2 a3 a4
-
-open_impl :: NullClip -> AudioFormat.AudioFormat -> JavaArray (Int8) -> Int -> Int -> IO (())
-open_impl this format data_ offset bufferSize = do
-        pure ()
-
-
--- throws LineUnavailableException, IOException
-open_1 :: (JavaObjectClass this_) => this_ -> AudioInputStream.AudioInputStream -> IO (())
-open_1 object_ a1 = jmethod object_ "open_1" (\() -> (open_1_impl (javaCast object_ :: NullClip))) () a1
-
-open_1_super :: (JavaObjectClass this_) => this_ -> AudioInputStream.AudioInputStream -> IO (())
-open_1_super object_ a1 = (open_1_impl (javaCast object_ :: NullClip)) a1
-
-open_1_impl :: NullClip -> AudioInputStream.AudioInputStream -> IO (())
-open_1_impl this stream = do
-        pure ()
-
-
-getFrameLength :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrameLength object_ = jmethod object_ "getFrameLength" (\() -> (getFrameLength_impl (javaCast object_ :: NullClip))) ()
-
-getFrameLength_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrameLength_super object_ = (getFrameLength_impl (javaCast object_ :: NullClip))
-
-getFrameLength_impl :: NullClip -> IO (Int)
-getFrameLength_impl this = do
-        pure (0)
-
-
-getMicrosecondLength :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getMicrosecondLength object_ = jmethod object_ "getMicrosecondLength" (\() -> (getMicrosecondLength_impl (javaCast object_ :: NullClip))) ()
-
-getMicrosecondLength_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getMicrosecondLength_super object_ = (getMicrosecondLength_impl (javaCast object_ :: NullClip))
-
-getMicrosecondLength_impl :: NullClip -> IO (Int64)
-getMicrosecondLength_impl this = do
-        pure (0)
-
-
-setFramePosition :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFramePosition object_ a1 = jmethod object_ "setFramePosition" (\() -> (setFramePosition_impl (javaCast object_ :: NullClip))) () a1
-
-setFramePosition_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFramePosition_super object_ a1 = (setFramePosition_impl (javaCast object_ :: NullClip)) a1
-
-setFramePosition_impl :: NullClip -> Int -> IO (())
-setFramePosition_impl this frames = do
-        pure ()
-
-
-setMicrosecondPosition :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-setMicrosecondPosition object_ a1 = jmethod object_ "setMicrosecondPosition" (\() -> (setMicrosecondPosition_impl (javaCast object_ :: NullClip))) () a1
-
-setMicrosecondPosition_super :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-setMicrosecondPosition_super object_ a1 = (setMicrosecondPosition_impl (javaCast object_ :: NullClip)) a1
-
-setMicrosecondPosition_impl :: NullClip -> Int64 -> IO (())
-setMicrosecondPosition_impl this microseconds = do
-        pure ()
-
-
-setLoopPoints :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-setLoopPoints object_ a1 a2 = jmethod object_ "setLoopPoints" (\() -> (setLoopPoints_impl (javaCast object_ :: NullClip))) () a1 a2
-
-setLoopPoints_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-setLoopPoints_super object_ a1 a2 = (setLoopPoints_impl (javaCast object_ :: NullClip)) a1 a2
-
-setLoopPoints_impl :: NullClip -> Int -> Int -> IO (())
-setLoopPoints_impl this start end = do
-        pure ()
-
-
-loop_ :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-loop_ object_ a1 = jmethod object_ "loop_" (\() -> (loop__impl (javaCast object_ :: NullClip))) () a1
-
-loop__super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-loop__super object_ a1 = (loop__impl (javaCast object_ :: NullClip)) a1
-
-loop__impl :: NullClip -> Int -> IO (())
-loop__impl this count = do
-        pure ()
-
-
-drain :: (JavaObjectClass this_) => this_ -> IO (())
-drain object_ = jmethod object_ "drain" (\() -> (drain_impl (javaCast object_ :: NullClip))) ()
-
-drain_super :: (JavaObjectClass this_) => this_ -> IO (())
-drain_super object_ = (drain_impl (javaCast object_ :: NullClip))
-
-drain_impl :: NullClip -> IO (())
-drain_impl this = do
-        pure ()
-
-
-flush :: (JavaObjectClass this_) => this_ -> IO (())
-flush object_ = jmethod object_ "flush" (\() -> (flush_impl (javaCast object_ :: NullClip))) ()
-
-flush_super :: (JavaObjectClass this_) => this_ -> IO (())
-flush_super object_ = (flush_impl (javaCast object_ :: NullClip))
-
-flush_impl :: NullClip -> IO (())
-flush_impl this = do
-        pure ()
-
-
-start :: (JavaObjectClass this_) => this_ -> IO (())
-start object_ = jmethod object_ "start" (\() -> (start_impl (javaCast object_ :: NullClip))) ()
-
-start_super :: (JavaObjectClass this_) => this_ -> IO (())
-start_super object_ = (start_impl (javaCast object_ :: NullClip))
-
-start_impl :: NullClip -> IO (())
-start_impl this = do
-        pure ()
-
-
-stop :: (JavaObjectClass this_) => this_ -> IO (())
-stop object_ = jmethod object_ "stop" (\() -> (stop_impl (javaCast object_ :: NullClip))) ()
-
-stop_super :: (JavaObjectClass this_) => this_ -> IO (())
-stop_super object_ = (stop_impl (javaCast object_ :: NullClip))
-
-stop_impl :: NullClip -> IO (())
-stop_impl this = do
-        pure ()
-
-
-isRunning :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isRunning object_ = jmethod object_ "isRunning" (\() -> (isRunning_impl (javaCast object_ :: NullClip))) ()
-
-isRunning_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isRunning_super object_ = (isRunning_impl (javaCast object_ :: NullClip))
-
-isRunning_impl :: NullClip -> IO (Bool)
-isRunning_impl this = do
-        pure (False)
-
-
-isActive :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isActive object_ = jmethod object_ "isActive" (\() -> (isActive_impl (javaCast object_ :: NullClip))) ()
-
-isActive_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isActive_super object_ = (isActive_impl (javaCast object_ :: NullClip))
-
-isActive_impl :: NullClip -> IO (Bool)
-isActive_impl this = do
-        pure (False)
-
-
-getFormat :: (JavaObjectClass this_) => this_ -> IO (AudioFormat.AudioFormat)
-getFormat object_ = jmethod object_ "getFormat" (\() -> (getFormat_impl (javaCast object_ :: NullClip))) ()
-
-getFormat_super :: (JavaObjectClass this_) => this_ -> IO (AudioFormat.AudioFormat)
-getFormat_super object_ = (getFormat_impl (javaCast object_ :: NullClip))
-
-getFormat_impl :: NullClip -> IO (AudioFormat.AudioFormat)
-getFormat_impl this = do
-        pure (NullAudioFormat.nULL_AUDIO_FORMAT)
-
-
-getBufferSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getBufferSize object_ = jmethod object_ "getBufferSize" (\() -> (getBufferSize_impl (javaCast object_ :: NullClip))) ()
-
-getBufferSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getBufferSize_super object_ = (getBufferSize_impl (javaCast object_ :: NullClip))
-
-getBufferSize_impl :: NullClip -> IO (Int)
-getBufferSize_impl this = do
-        pure (0)
-
-
-available :: (JavaObjectClass this_) => this_ -> IO (Int)
-available object_ = jmethod object_ "available" (\() -> (available_impl (javaCast object_ :: NullClip))) ()
-
-available_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-available_super object_ = (available_impl (javaCast object_ :: NullClip))
-
-available_impl :: NullClip -> IO (Int)
-available_impl this = do
-        pure (0)
-
-
-getFramePosition :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFramePosition object_ = jmethod object_ "getFramePosition" (\() -> (getFramePosition_impl (javaCast object_ :: NullClip))) ()
-
-getFramePosition_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFramePosition_super object_ = (getFramePosition_impl (javaCast object_ :: NullClip))
-
-getFramePosition_impl :: NullClip -> IO (Int)
-getFramePosition_impl this = do
-        pure (0)
-
-
-getLongFramePosition :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getLongFramePosition object_ = jmethod object_ "getLongFramePosition" (\() -> (getLongFramePosition_impl (javaCast object_ :: NullClip))) ()
-
-getLongFramePosition_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getLongFramePosition_super object_ = (getLongFramePosition_impl (javaCast object_ :: NullClip))
-
-getLongFramePosition_impl :: NullClip -> IO (Int64)
-getLongFramePosition_impl this = do
-        pure (0)
-
-
-getMicrosecondPosition :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getMicrosecondPosition object_ = jmethod object_ "getMicrosecondPosition" (\() -> (getMicrosecondPosition_impl (javaCast object_ :: NullClip))) ()
-
-getMicrosecondPosition_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getMicrosecondPosition_super object_ = (getMicrosecondPosition_impl (javaCast object_ :: NullClip))
-
-getMicrosecondPosition_impl :: NullClip -> IO (Int64)
-getMicrosecondPosition_impl this = do
-        pure (0)
-
-
-getLevel :: (JavaObjectClass this_) => this_ -> IO (Float)
-getLevel object_ = jmethod object_ "getLevel" (\() -> (getLevel_impl (javaCast object_ :: NullClip))) ()
-
-getLevel_super :: (JavaObjectClass this_) => this_ -> IO (Float)
-getLevel_super object_ = (getLevel_impl (javaCast object_ :: NullClip))
-
-getLevel_impl :: NullClip -> IO (Float)
-getLevel_impl this = do
-        pure (0.0)
-
-
-getLineInfo :: (JavaObjectClass this_) => this_ -> IO (Info.Info)
-getLineInfo object_ = jmethod object_ "getLineInfo" (\() -> (getLineInfo_impl (javaCast object_ :: NullClip))) ()
-
-getLineInfo_super :: (JavaObjectClass this_) => this_ -> IO (Info.Info)
-getLineInfo_super object_ = (getLineInfo_impl (javaCast object_ :: NullClip))
-
-getLineInfo_impl :: NullClip -> IO (Info.Info)
-getLineInfo_impl this = do
-        (Info.new_2 (jio (jobjectGetClass this)) (NullAudioFormat.nULL_AUDIO_FORMAT))
-
-
--- throws LineUnavailableException
-open_0 :: (JavaObjectClass this_) => this_ -> IO (())
-open_0 object_ = jmethod object_ "open_0" (\() -> (open_0_impl (javaCast object_ :: NullClip))) ()
-
-open_0_super :: (JavaObjectClass this_) => this_ -> IO (())
-open_0_super object_ = (open_0_impl (javaCast object_ :: NullClip))
-
-open_0_impl :: NullClip -> IO (())
-open_0_impl this = do
-        pure ()
-
-
-close :: (JavaObjectClass this_) => this_ -> IO (())
-close object_ = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: NullClip))) ()
-
-close_super :: (JavaObjectClass this_) => this_ -> IO (())
-close_super object_ = (close_impl (javaCast object_ :: NullClip))
-
-close_impl :: NullClip -> IO (())
-close_impl this = do
-        pure ()
-
-
-isOpen :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isOpen object_ = jmethod object_ "isOpen" (\() -> (isOpen_impl (javaCast object_ :: NullClip))) ()
-
-isOpen_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isOpen_super object_ = (isOpen_impl (javaCast object_ :: NullClip))
-
-isOpen_impl :: NullClip -> IO (Bool)
-isOpen_impl this = do
-        pure (False)
-
-
-getControls :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Control.Control))
-getControls object_ = jmethod object_ "getControls" (\() -> (getControls_impl (javaCast object_ :: NullClip))) ()
-
-getControls_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Control.Control))
-getControls_super object_ = (getControls_impl (javaCast object_ :: NullClip))
-
-getControls_impl :: NullClip -> IO (JavaArray (Control.Control))
-getControls_impl this = do
-        pure ((jnewArray (0) javaNull))
-
-
-isControlSupported :: (JavaObjectClass this_) => this_ -> Type.Type -> IO (Bool)
-isControlSupported object_ a1 = jmethod object_ "isControlSupported" (\() -> (isControlSupported_impl (javaCast object_ :: NullClip))) () a1
-
-isControlSupported_super :: (JavaObjectClass this_) => this_ -> Type.Type -> IO (Bool)
-isControlSupported_super object_ a1 = (isControlSupported_impl (javaCast object_ :: NullClip)) a1
-
-isControlSupported_impl :: NullClip -> Type.Type -> IO (Bool)
-isControlSupported_impl this control = do
-        pure (False)
-
-
-getControl :: (JavaObjectClass this_) => this_ -> Type.Type -> IO (Control.Control)
-getControl object_ a1 = jmethod object_ "getControl" (\() -> (getControl_impl (javaCast object_ :: NullClip))) () a1
-
-getControl_super :: (JavaObjectClass this_) => this_ -> Type.Type -> IO (Control.Control)
-getControl_super object_ a1 = (getControl_impl (javaCast object_ :: NullClip)) a1
-
-getControl_impl :: NullClip -> Type.Type -> IO (Control.Control)
-getControl_impl this control = do
-        pure ((javaCast NullClip.nULL_CONTROL :: Control.Control))
-
-
-addLineListener :: (JavaObjectClass this_) => this_ -> LineListener.LineListener -> IO (())
-addLineListener object_ a1 = jmethod object_ "addLineListener" (\() -> (addLineListener_impl (javaCast object_ :: NullClip))) () a1
-
-addLineListener_super :: (JavaObjectClass this_) => this_ -> LineListener.LineListener -> IO (())
-addLineListener_super object_ a1 = (addLineListener_impl (javaCast object_ :: NullClip)) a1
-
-addLineListener_impl :: NullClip -> LineListener.LineListener -> IO (())
-addLineListener_impl this listener = do
-        pure ()
-
-
-removeLineListener :: (JavaObjectClass this_) => this_ -> LineListener.LineListener -> IO (())
-removeLineListener object_ a1 = jmethod object_ "removeLineListener" (\() -> (removeLineListener_impl (javaCast object_ :: NullClip))) () a1
-
-removeLineListener_super :: (JavaObjectClass this_) => this_ -> LineListener.LineListener -> IO (())
-removeLineListener_super object_ a1 = (removeLineListener_impl (javaCast object_ :: NullClip)) a1
-
-removeLineListener_impl :: NullClip -> LineListener.LineListener -> IO (())
-removeLineListener_impl this listener = do
-        pure ()
-
+module Org.Allbinary.Media.Audio.NullClip exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.media.audio
+-}
+
+import JR
+import Org.Allbinary.Media.Audio.NullAudioFormat as NullAudioFormat
+import Org.Allbinary.Media.Audio.NullJ2SEControl as NullJ2SEControl
+
+
+jclass : String
+jclass =
+    "NullClip"
+
+
+jchain : List String
+jchain =
+    [ "NullClip" ]
+        ++ [ "Clip" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "open_4", jm_open_4 )
+        , ( "open_1", jm_open_1 )
+        , ( "getFrameLength_0", jm_getFrameLength_0 )
+        , ( "getMicrosecondLength_0", jm_getMicrosecondLength_0 )
+        , ( "setFramePosition_1", jm_setFramePosition_1 )
+        , ( "setMicrosecondPosition_1", jm_setMicrosecondPosition_1 )
+        , ( "setLoopPoints_2", jm_setLoopPoints_2 )
+        , ( "loop_1", jm_loop_1 )
+        , ( "drain_0", jm_drain_0 )
+        , ( "flush_0", jm_flush_0 )
+        , ( "start_0", jm_start_0 )
+        , ( "stop_0", jm_stop_0 )
+        , ( "isRunning_0", jm_isRunning_0 )
+        , ( "isActive_0", jm_isActive_0 )
+        , ( "getFormat_0", jm_getFormat_0 )
+        , ( "getBufferSize_0", jm_getBufferSize_0 )
+        , ( "available_0", jm_available_0 )
+        , ( "getFramePosition_0", jm_getFramePosition_0 )
+        , ( "getLongFramePosition_0", jm_getLongFramePosition_0 )
+        , ( "getMicrosecondPosition_0", jm_getMicrosecondPosition_0 )
+        , ( "getLevel_0", jm_getLevel_0 )
+        , ( "getLineInfo_0", jm_getLineInfo_0 )
+        , ( "open_0", jm_open_0 )
+        , ( "close_0", jm_close_0 )
+        , ( "isOpen_0", jm_isOpen_0 )
+        , ( "getControls_0", jm_getControls_0 )
+        , ( "isControlSupported_1", jm_isControlSupported_1 )
+        , ( "getControl_1", jm_getControl_1 )
+        , ( "addLineListener_1", jm_addLineListener_1 )
+        , ( "removeLineListener_1", jm_removeLineListener_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullClip"
+        [ ( "jm_open_4", jm_open_4 ), ( "jm_open_1", jm_open_1 ), ( "jm_getFrameLength_0", jm_getFrameLength_0 ), ( "jm_getMicrosecondLength_0", jm_getMicrosecondLength_0 ), ( "jm_setFramePosition_1", jm_setFramePosition_1 ), ( "jm_setMicrosecondPosition_1", jm_setMicrosecondPosition_1 ), ( "jm_setLoopPoints_2", jm_setLoopPoints_2 ), ( "jm_loop_1", jm_loop_1 ), ( "jm_drain_0", jm_drain_0 ), ( "jm_flush_0", jm_flush_0 ), ( "jm_start_0", jm_start_0 ), ( "jm_stop_0", jm_stop_0 ), ( "jm_isRunning_0", jm_isRunning_0 ), ( "jm_isActive_0", jm_isActive_0 ), ( "jm_getFormat_0", jm_getFormat_0 ), ( "jm_getBufferSize_0", jm_getBufferSize_0 ), ( "jm_available_0", jm_available_0 ), ( "jm_getFramePosition_0", jm_getFramePosition_0 ), ( "jm_getLongFramePosition_0", jm_getLongFramePosition_0 ), ( "jm_getMicrosecondPosition_0", jm_getMicrosecondPosition_0 ), ( "jm_getLevel_0", jm_getLevel_0 ), ( "jm_getLineInfo_0", jm_getLineInfo_0 ), ( "jm_open_0", jm_open_0 ), ( "jm_close_0", jm_close_0 ), ( "jm_isOpen_0", jm_isOpen_0 ), ( "jm_getControls_0", jm_getControls_0 ), ( "jm_isControlSupported_1", jm_isControlSupported_1 ), ( "jm_getControl_1", jm_getControl_1 ), ( "jm_addLineListener_1", jm_addLineListener_1 ), ( "jm_removeLineListener_1", jm_removeLineListener_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_CONTROL", jstatic_NULL_CONTROL ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_CONTROL : JR.M
+jstatic_NULL_CONTROL s =
+    JR.static "NullClip" jclinit "NULL_CONTROL"
+        (JR.new NullJ2SEControl.jnew_1 [ (JR.field "MUTE" (JR.namedStatic "BooleanControl.jstatic_Type")) ])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_open_4 : JR.Method
+jm_open_4 jheap jthis jargs =
+    JR.method [ ( "format", "" ), ( "data", "" ), ( "offset", "I" ), ( "bufferSize", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_open_1 : JR.Method
+jm_open_1 jheap jthis jargs =
+    JR.method [ ( "stream", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFrameLength_0 : JR.Method
+jm_getFrameLength_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMicrosecondLength_0 : JR.Method
+jm_getMicrosecondLength_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.long 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFramePosition_1 : JR.Method
+jm_setFramePosition_1 jheap jthis jargs =
+    JR.method [ ( "frames", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMicrosecondPosition_1 : JR.Method
+jm_setMicrosecondPosition_1 jheap jthis jargs =
+    JR.method [ ( "microseconds", "J" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLoopPoints_2 : JR.Method
+jm_setLoopPoints_2 jheap jthis jargs =
+    JR.method [ ( "start", "I" ), ( "end", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_loop_1 : JR.Method
+jm_loop_1 jheap jthis jargs =
+    JR.method [ ( "count", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_drain_0 : JR.Method
+jm_drain_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_flush_0 : JR.Method
+jm_flush_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_start_0 : JR.Method
+jm_start_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_stop_0 : JR.Method
+jm_stop_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isRunning_0 : JR.Method
+jm_isRunning_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isActive_0 : JR.Method
+jm_isActive_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFormat_0 : JR.Method
+jm_getFormat_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return NullAudioFormat.jstatic_NULL_AUDIO_FORMAT ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBufferSize_0 : JR.Method
+jm_getBufferSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_available_0 : JR.Method
+jm_available_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFramePosition_0 : JR.Method
+jm_getFramePosition_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLongFramePosition_0 : JR.Method
+jm_getLongFramePosition_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.long 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMicrosecondPosition_0 : JR.Method
+jm_getMicrosecondPosition_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.long 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLevel_0 : JR.Method
+jm_getLevel_0 jheap jthis jargs =
+    JR.method [] "F"
+        (JR.run [ 
+                    JR.return (JR.float 0.0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLineInfo_0 : JR.Method
+jm_getLineInfo_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.new (JR.namedMethod "Info.jnew_2") [ (JR.getClass JR.this), NullAudioFormat.jstatic_NULL_AUDIO_FORMAT ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_open_0 : JR.Method
+jm_open_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_close_0 : JR.Method
+jm_close_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isOpen_0 : JR.Method
+jm_isOpen_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getControls_0 : JR.Method
+jm_getControls_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.newArray "" [ (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isControlSupported_1 : JR.Method
+jm_isControlSupported_1 jheap jthis jargs =
+    JR.method [ ( "control", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getControl_1 : JR.Method
+jm_getControl_1 jheap jthis jargs =
+    JR.method [ ( "control", "" ) ] ""
+        (JR.run [ 
+                    JR.return jstatic_NULL_CONTROL ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addLineListener_1 : JR.Method
+jm_addLineListener_1 jheap jthis jargs =
+    JR.method [ ( "listener", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeLineListener_1 : JR.Method
+jm_removeLineListener_1 jheap jthis jargs =
+    JR.method [ ( "listener", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

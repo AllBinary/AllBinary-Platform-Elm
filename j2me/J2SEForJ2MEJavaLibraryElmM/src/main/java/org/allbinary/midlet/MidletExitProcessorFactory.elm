@@ -1,109 +1,105 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
-module MidletExitProcessorFactory where
+module Org.Allbinary.Midlet.MidletExitProcessorFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified MidletExitProcessor -- same package or java.lang
-import qualified MIDlet -- javax.microedition.midlet.MIDlet
-import qualified AppletUtil -- org.allbinary.AppletUtil
-import qualified J2MEUtil -- org.allbinary.J2MEUtil
-import qualified Processor -- org.allbinary.canvas.Processor
+{-| Generated Code Do Not Modify package org.allbinary.midlet
+-}
 
-data MidletExitProcessorFactory = MidletExitProcessorFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull MidletExitProcessorFactory where
-    javaNull = javaNullRecord "MidletExitProcessorFactory"
-
-instance JavaEquals MidletExitProcessorFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MidletExitProcessorFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MidletExitProcessorFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: MidletExitProcessorFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MidletExitProcessorFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = MidletExitProcessorFactory header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getExitInstance" (\() -> getExitInstance_impl this)
-    pure this
-
-initFields_ :: MidletExitProcessorFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO MidletExitProcessorFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: MidletExitProcessorFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.AppletUtil as AppletUtil
+import Org.Allbinary.J2MEUtil as J2MEUtil
+import Org.Allbinary.Midlet.MidletExitProcessor as MidletExitProcessor
+import Org.Allbinary.Canvas.Processor as Processor
 
 
-getInstance :: IO (MidletExitProcessorFactory)
-getInstance = do
-        pure (MidletExitProcessorFactory.instance_)
+jclass : String
+jclass =
+    "MidletExitProcessorFactory"
 
 
-getExitInstance :: (JavaObjectClass this_) => this_ -> MIDlet.MIDlet -> IO (Processor.Processor)
-getExitInstance object_ a1 = jmethod object_ "getExitInstance" (\() -> (getExitInstance_impl (javaCast object_ :: MidletExitProcessorFactory))) () a1
+jchain : List String
+jchain =
+    [ "MidletExitProcessorFactory" ]
 
-getExitInstance_super :: (JavaObjectClass this_) => this_ -> MIDlet.MIDlet -> IO (Processor.Processor)
-getExitInstance_super object_ a1 = (getExitInstance_impl (javaCast object_ :: MidletExitProcessorFactory)) a1
 
-getExitInstance_impl :: MidletExitProcessorFactory -> MIDlet.MIDlet -> IO (Processor.Processor)
-getExitInstance_impl this midlet = do
-    javaCatchReturn $ do
-        if ((jio (AppletUtil.isAppletLoader midlet)) || (jio (J2MEUtil.isJ2ME))) then do
-            javaReturn =<< (Processor.getInstance)
-        else do
-            javaReturn =<< (fmap (\value_ -> javaCast value_ :: Processor.Processor) (MidletExitProcessor.new_1 midlet))
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getExitInstance_1", jm_getExitInstance_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MidletExitProcessorFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getExitInstance_1", jm_getExitInstance_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "MidletExitProcessorFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getExitInstance_1 : JR.Method
+jm_getExitInstance_1 jheap jthis jargs =
+    JR.method [ ( "midlet", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.or (JR.callStatic AppletUtil.jm_isAppletLoader_1 [ (JR.local "midlet") ]) (JR.callStatic J2MEUtil.jm_isJ2ME_0 [])) (JR.run [ 
+                        JR.return (JR.callStatic Processor.jm_getInstance_0 []) ]) (JR.run [ 
+                        JR.return (JR.new MidletExitProcessor.jnew_1 [ (JR.local "midlet") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

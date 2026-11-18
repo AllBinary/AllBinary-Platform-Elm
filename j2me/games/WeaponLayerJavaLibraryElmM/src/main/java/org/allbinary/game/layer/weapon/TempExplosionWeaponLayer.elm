@@ -1,103 +1,95 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.weapon
-module TempExplosionWeaponLayer (module TempExplosionWeaponLayer, module SimpleWeaponLayer) where
+module Org.Allbinary.Game.Layer.Weapon.TempExplosionWeaponLayer exposing (..)
 
-import SimpleWeaponLayer hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, processTick, processTick_super, processTick_impl, weaponProperties, timeDelayHelper)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified SimpleWeaponLayer -- same package or java.lang
-import qualified WeaponLayer -- same package or java.lang
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified WeaponProperties -- org.allbinary.game.combat.weapon.WeaponProperties
-import qualified RemoteInfo -- org.allbinary.game.multiplayer.layer.RemoteInfo
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified Movement -- org.allbinary.physics.movement.Movement
-import qualified GameTickTimeDelayHelperFactory -- org.allbinary.time.GameTickTimeDelayHelperFactory
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-import qualified ViewPositionBase -- org.allbinary.view.ViewPositionBase
-import qualified SimpleWeaponLayer
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.weapon
+-}
 
-data TempExplosionWeaponLayer = TempExplosionWeaponLayer
-    { header_ :: JavaHeader
-    , base :: SimpleWeaponLayer.SimpleWeaponLayer
-    , weaponProperties :: IORef (WeaponProperties.WeaponProperties)
-    , timeDelayHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    }
-
-instance JavaNull TempExplosionWeaponLayer where
-    javaNull = javaNullRecord "TempExplosionWeaponLayer"
-
-instance JavaEquals TempExplosionWeaponLayer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TempExplosionWeaponLayer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TempExplosionWeaponLayer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO TempExplosionWeaponLayer
-newRecord_ = do
-    base <- SimpleWeaponLayer.newRecord_
-    let header_ = base.header_
-    weaponProperties <- newIORef javaNull
-    timeDelayHelper <- newIORef javaNull
-    let this = TempExplosionWeaponLayer header_ base weaponProperties timeDelayHelper
-    jregisterLevel header_ this
-    jregisterMethod header_ "processTick" (\() -> processTick_impl this)
-    pure this
-
-initFields_ :: TempExplosionWeaponLayer -> IO ()
-initFields_ this = do
-    jset this.weaponProperties =<< (WeaponProperties.new_5 (Prelude.negate 1) (Prelude.negate 1) 0 1000 (Prelude.fromIntegral (0 :: Int)))
-    jset this.timeDelayHelper =<< (TimeDelayHelper.new_1 0)
-    pure ()
-
-new_6 :: String -> Movement.Movement -> Animation.Animation -> Rectangle.Rectangle -> ViewPositionBase.ViewPositionBase -> Int -> IO TempExplosionWeaponLayer
-new_6 name movement animationInterface rectangle viewPosition timeDelay = do
-    this <- newRecord_
-    init_6 this name movement animationInterface rectangle viewPosition timeDelay
-    pure this
-
-init_6 :: TempExplosionWeaponLayer -> String -> Movement.Movement -> Animation.Animation -> Rectangle.Rectangle -> ViewPositionBase.ViewPositionBase -> Int -> IO ()
-init_6 this name movement animationInterface rectangle viewPosition timeDelay = do
-        SimpleWeaponLayer.init_8 this.base (name) (RemoteInfo.rEMOTE_INFO) (Prelude.negate 1) (movement) (animationInterface) (jio (SimpleWeaponLayer.createDestroyed)) (rectangle) (viewPosition)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset ((jget (this).timeDelayHelper)).delay (timeDelay)
-        pure ()
+import JR
+import Org.Allbinary.Time.GameTickTimeDelayHelperFactory as GameTickTimeDelayHelperFactory
+import Org.Allbinary.Game.Multiplayer.Layer.RemoteInfo as RemoteInfo
+import Org.Allbinary.Game.Layer.Weapon.SimpleWeaponLayer as SimpleWeaponLayer
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
+import Org.Allbinary.Game.Combat.Weapon.WeaponProperties as WeaponProperties
 
 
--- throws Exception
-processTick :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processTick object_ a1 = jmethod object_ "processTick" (\() -> (processTick_impl (javaCast object_ :: TempExplosionWeaponLayer))) () a1
+jclass : String
+jclass =
+    "TempExplosionWeaponLayer"
 
-processTick_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processTick_super object_ a1 = (processTick_impl (javaCast object_ :: TempExplosionWeaponLayer)) a1
 
-processTick_impl :: TempExplosionWeaponLayer -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processTick_impl this allBinaryLayerManager = do
-        when (jio (TimeDelayHelper.isTime ((jget (this).timeDelayHelper)) (jget ((jio (GameTickTimeDelayHelperFactory.getInstance))).startTime))) $ do
-            Control.Monad.void (SimpleWeaponLayer.collide ((jio (SimpleWeaponLayer.getCollidableInferface this))) this this)
-            jset (this).base.base.totalDamage (((jio (SimpleWeaponLayer.getInitDamage this)) + 1))
-        Control.Monad.void (SimpleWeaponLayer.processTick_super this.base allBinaryLayerManager)
-        pure ()
+jchain : List String
+jchain =
+    [ "TempExplosionWeaponLayer" ]
+        ++ SimpleWeaponLayer.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    SimpleWeaponLayer.jfields ++ [ ( "weaponProperties", JR.defaultOf "" ), ( "timeDelayHelper", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "processTick_1", jm_processTick_1 ) ]
+        SimpleWeaponLayer.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TempExplosionWeaponLayer"
+        [ ( "jm_processTick_1", jm_processTick_1 ), ( "jnew_6", jnew_6 ), ( "jinit_6", jinit_6 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_6 : JR.Method
+jinit_6 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "movement", "" ), ( "animationInterface", "" ), ( "rectangle", "" ), ( "viewPosition", "" ), ( "timeDelay", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect SimpleWeaponLayer.jinit_8 JR.this [ (JR.local "name"), RemoteInfo.jstatic_REMOTE_INFO, (JR.map JR.neg (JR.int 1)), (JR.local "movement"), (JR.local "animationInterface"), (JR.callStatic SimpleWeaponLayer.jm_createDestroyed_0 []), (JR.local "rectangle"), (JR.local "viewPosition") ]),
+                JR.exec (JR.setField "weaponProperties" "" JR.this (JR.new WeaponProperties.jnew_5 [ (JR.map JR.neg (JR.long 1)), (JR.map JR.neg (JR.long 1)), (JR.int 0), (JR.int 1000), (JR.cast "S" (JR.int 0)) ])),
+                JR.exec (JR.setField "timeDelayHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 0) ])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN70718 -> (JR.setField "delay" "I" (JR.lit jtN70718) (JR.local "timeDelay")))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_6 : JR.Method
+jnew_6 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_6 jheap jthis jargs
+
+
+jm_processTick_1 : JR.Method
+jm_processTick_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isTime_1" (JR.thisField "timeDelayHelper") [ (JR.field "startTime" (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.exec (JR.invoke "collide_2" (JR.invoke "getCollidableInferface_0" JR.this []) [ JR.this, JR.this ]), 
+                        JR.exec (JR.setField "totalDamage" "I" JR.this (JR.map2 JR.add (JR.invoke "getInitDamage_0" JR.this []) (JR.int 1))) ]) identity, 
+                    JR.exec (JR.callVia SimpleWeaponLayer.jvtable "processTick_1" JR.this [ (JR.local "allBinaryLayerManager") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

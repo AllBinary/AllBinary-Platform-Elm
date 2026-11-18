@@ -1,138 +1,128 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part
-module MakeCountedPartsSingletonArrayFactory where
+module Org.Allbinary.Game.Part.MakeCountedPartsSingletonArrayFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CountedLayerInterfaceFactoryPart -- same package or java.lang
-import qualified PartInterface -- same package or java.lang
-import qualified CountedPickedUpLayerInterfaceFactory -- org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactory
-import qualified CountedPickedUpLayerInterfaceFactoryPool -- org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactoryPool
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified BasicArrayListUtil -- org.allbinary.util.BasicArrayListUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.part
+-}
 
-data MakeCountedPartsSingletonArrayFactory = MakeCountedPartsSingletonArrayFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull MakeCountedPartsSingletonArrayFactory where
-    javaNull = javaNullRecord "MakeCountedPartsSingletonArrayFactory"
-
-instance JavaEquals MakeCountedPartsSingletonArrayFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MakeCountedPartsSingletonArrayFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MakeCountedPartsSingletonArrayFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: MakeCountedPartsSingletonArrayFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MakeCountedPartsSingletonArrayFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    list <- newIORef javaNull
-    let this = MakeCountedPartsSingletonArrayFactory header_ logUtil list
-    jregisterLevel header_ this
-    jregisterMethod header_ "getUpdated" (\() -> getUpdated_impl this)
-    pure this
-
-initFields_ :: MakeCountedPartsSingletonArrayFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.list =<< (BasicArrayListUtil.getImmutableInstance ((jio (BasicArrayListUtil.getInstance))))
-    pure ()
-
-new_ :: IO MakeCountedPartsSingletonArrayFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: MakeCountedPartsSingletonArrayFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Util.BasicArrayListUtil as BasicArrayListUtil
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Part.CountedLayerInterfaceFactoryPart as CountedLayerInterfaceFactoryPart
+import Org.Allbinary.Game.Layer.Pickup.CountedPickedUpLayerInterfaceFactoryPool as CountedPickedUpLayerInterfaceFactoryPool
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (MakeCountedPartsSingletonArrayFactory)
-getInstance = do
-        pure (MakeCountedPartsSingletonArrayFactory.instance_)
+jclass : String
+jclass =
+    "MakeCountedPartsSingletonArrayFactory"
 
 
--- throws Exception
-getUpdated :: (JavaObjectClass this_) => this_ -> JavaArray (PartInterface.PartInterface) -> IO (JavaArray (PartInterface.PartInterface))
-getUpdated object_ a1 = jmethod object_ "getUpdated" (\() -> (getUpdated_impl (javaCast object_ :: MakeCountedPartsSingletonArrayFactory))) () a1
+jchain : List String
+jchain =
+    [ "MakeCountedPartsSingletonArrayFactory" ]
 
-getUpdated_super :: (JavaObjectClass this_) => this_ -> JavaArray (PartInterface.PartInterface) -> IO (JavaArray (PartInterface.PartInterface))
-getUpdated_super object_ a1 = (getUpdated_impl (javaCast object_ :: MakeCountedPartsSingletonArrayFactory)) a1
 
-getUpdated_impl :: MakeCountedPartsSingletonArrayFactory -> JavaArray (PartInterface.PartInterface) -> IO (JavaArray (PartInterface.PartInterface))
-getUpdated_impl this partInterfaceArray = do
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        jset (this).list (assignedValue)
-        forM_ [0 .. (jlength partInterfaceArray) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (BasicArrayList.add ((jget (this).list)) (jindex partInterfaceArray (index)))
-        countedBasicArrayList <- (CountedPickedUpLayerInterfaceFactoryPool.getList ((jio (CountedPickedUpLayerInterfaceFactoryPool.getInstance))))
-        layerInterfaceFactoryInterface <- newIORef (javaNull)
-        size <- (BasicArrayList.size countedBasicArrayList)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset layerInterfaceFactoryInterface ((javaCast (jindex ((jget (countedBasicArrayList).objectArray)) (index)) :: CountedPickedUpLayerInterfaceFactory.CountedPickedUpLayerInterfaceFactory))
-            Control.Monad.void (BasicArrayList.add ((jget (this).list)) (jio (CountedLayerInterfaceFactoryPart.new_2 0 (jget layerInterfaceFactoryInterface))))
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "Total Parts: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (BasicArrayList.size ((jget (this).list)))))
-        Control.Monad.void (StringMaker.append stringBuffer " Counted: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (BasicArrayList.size countedBasicArrayList)))
-        commonStrings <- (CommonStrings.getInstance)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this (jget (commonStrings).gET_INSTANCE))
-        let newPartInterfaceArray = (jnewArray ((jio (BasicArrayList.size ((jget (this).list))))) javaNull)
-        let newSize = (jlength newPartInterfaceArray)
-        forM_ [0 .. newSize - 1] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex newPartInterfaceArray (index) ((javaCast (jio (BasicArrayList.get ((jget (this).list)) index)) :: PartInterface.PartInterface))
-        pure (newPartInterfaceArray)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "list", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getUpdated_1", jm_getUpdated_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MakeCountedPartsSingletonArrayFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getUpdated_1", jm_getUpdated_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "MakeCountedPartsSingletonArrayFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "list" "" JR.this (JR.invoke "getImmutableInstance_0" (JR.callStatic BasicArrayListUtil.jm_getInstance_0 []) [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getUpdated_1 : JR.Method
+jm_getUpdated_1 jheap jthis jargs =
+    JR.method [ ( "partInterfaceArray", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "partInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68523 -> (JR.setLocal "index" "I" (JR.lit jwN68523))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.aget (JR.local "partInterfaceArray") (JR.local "index")) ]) ]) ], 
+                    JR.declare "countedBasicArrayList" "" (JR.invoke "getList_0" (JR.callStatic CountedPickedUpLayerInterfaceFactoryPool.jm_getInstance_0 []) []), 
+                    JR.declare "layerInterfaceFactoryInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "countedBasicArrayList") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68831 -> (JR.setLocal "index" "I" (JR.lit jwN68831))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "layerInterfaceFactoryInterface" "" (JR.aget (JR.field "objectArray" (JR.local "countedBasicArrayList")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.new CountedLayerInterfaceFactoryPart.jnew_2 [ (JR.int 0), (JR.local "layerInterfaceFactoryInterface") ]) ]) ]) ], 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Total Parts: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "size_0" (JR.thisField "list") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Counted: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "size_0" (JR.local "countedBasicArrayList") []) ]), 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "GET_INSTANCE" (JR.local "commonStrings")) ]), 
+                    JR.declare "newPartInterfaceArray" "" (JR.newArray "" [ (JR.invoke "size_0" (JR.thisField "list") []) ]), 
+                    JR.declare "newSize" "I" (JR.alength (JR.local "newPartInterfaceArray")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "newSize")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69395 -> (JR.setLocal "index" "I" (JR.lit jwN69395))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "newPartInterfaceArray") (\jaN69276 -> JR.andThen (JR.local "index") (\jiN69276 -> (JR.aset (JR.lit jaN69276) (JR.lit jiN69276) (JR.invoke "get_1" (JR.thisField "list") [ (JR.local "index") ]))))) ]) ], 
+                    JR.return (JR.local "newPartInterfaceArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

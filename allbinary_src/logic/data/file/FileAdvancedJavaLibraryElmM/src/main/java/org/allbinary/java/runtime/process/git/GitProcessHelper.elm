@@ -1,169 +1,153 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.java.runtime.process.git
-module GitProcessHelper where
+module Org.Allbinary.Java.Runtime.Process.Git.GitProcessHelper exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ProcessBuilder -- same package or java.lang
-import qualified Process -- same package or java.lang
-import qualified File -- java.io.File
-import qualified IOException -- java.io.IOException
-import qualified StandardCharsets -- java.nio.charset.StandardCharsets
-import qualified ArrayList -- java.util.ArrayList
-import qualified List -- java.util.List
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified AbFileNativeUtil -- org.allbinary.logic.io.file.AbFileNativeUtil
-import qualified TrackedStrings -- org.allbinary.logic.io.file.directory.TrackedStrings
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.java.runtime.process.git
+-}
 
-data GitProcessHelper = GitProcessHelper
-    { header_ :: JavaHeader
-    , trackedStrings :: IORef (TrackedStrings.TrackedStrings)
-    }
-
-instance JavaNull GitProcessHelper where
-    javaNull = javaNullRecord "GitProcessHelper"
-
-instance JavaEquals GitProcessHelper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GitProcessHelper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GitProcessHelper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GitProcessHelper
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GitProcessHelper
-newRecord_ = do
-    header_ <- newJavaHeader
-    trackedStrings <- newIORef javaNull
-    let this = GitProcessHelper header_ trackedStrings
-    jregisterLevel header_ this
-    jregisterMethod header_ "trackedFiles" (\() -> trackedFiles_impl this)
-    jregisterMethod header_ "trackedFiles_3" (\() -> trackedFiles_3_impl this)
-    jregisterMethod header_ "isTracked" (\() -> isTracked_impl this)
-    pure this
-
-initFields_ :: GitProcessHelper -> IO ()
-initFields_ this = do
-    jset this.trackedStrings =<< (TrackedStrings.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Logic.Io.File.AbFileNativeUtil as AbFileNativeUtil
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JArrayList
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.Io.File.Directory.TrackedStrings as TrackedStrings
 
 
-getInstance :: IO (GitProcessHelper)
-getInstance = do
-        pure (GitProcessHelper.instance_)
-
-new_ :: IO GitProcessHelper
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GitProcessHelper -> IO ()
-init_ this = do
-        initFields_ this
-        logUtil <- (LogUtil.getInstance)
-        commonStrings <- (CommonStrings.getInstance)
-        let tHIS_IS_SLOW = "This is slow consider path exclusion instead"
-        Control.Monad.void (LogUtil.putF logUtil tHIS_IS_SLOW this (jget (commonStrings).cONSTRUCTOR))
-        pure ()
+jclass : String
+jclass =
+    "GitProcessHelper"
 
 
--- throws IOException, InterruptedException
-trackedFiles :: (JavaObjectClass this_) => this_ -> String -> String -> IO (List.List)
-trackedFiles object_ a1 a2 = jmethod object_ "trackedFiles" (\() -> (trackedFiles_impl (javaCast object_ :: GitProcessHelper))) () a1 a2
-
-trackedFiles_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (List.List)
-trackedFiles_super object_ a1 a2 = (trackedFiles_impl (javaCast object_ :: GitProcessHelper)) a1 a2
-
-trackedFiles_impl :: GitProcessHelper -> String -> String -> IO (List.List)
-trackedFiles_impl this rootAsString pathspec = do
-        (GitProcessHelper.trackedFiles_3 this rootAsString pathspec ".java")
+jchain : List String
+jchain =
+    [ "GitProcessHelper" ]
 
 
--- throws IOException, InterruptedException
-trackedFiles_3 :: (JavaObjectClass this_) => this_ -> String -> String -> String -> IO (List.List)
-trackedFiles_3 object_ a1 a2 a3 = jmethod object_ "trackedFiles_3" (\() -> (trackedFiles_3_impl (javaCast object_ :: GitProcessHelper))) () a1 a2 a3
-
-trackedFiles_3_super :: (JavaObjectClass this_) => this_ -> String -> String -> String -> IO (List.List)
-trackedFiles_3_super object_ a1 a2 a3 = (trackedFiles_3_impl (javaCast object_ :: GitProcessHelper)) a1 a2 a3
-
-trackedFiles_3_impl :: GitProcessHelper -> String -> String -> String -> IO (List.List)
-trackedFiles_3_impl this rootAsString pathspec suffix = do
-        process <- (ProcessBuilder.start ((jio (ProcessBuilder.redirectError ((jio (ProcessBuilder.new_7 (jget ((jget (this).trackedStrings)).gIT_COMMAND) (jget ((jget (this).trackedStrings)).cHANGE_DIRECTORY_OPTION) rootAsString (jget ((jget (this).trackedStrings)).lIST_FILES_COMMAND) (jget ((jget (this).trackedStrings)).sEP_BY_NULL_CHAR_INSTEAD_OF_NEW_LINE) (jget ((jget (this).trackedStrings)).pATHSPEC_SEPARATOR) pathspec))) (jget (ProcessBuilder.redirect).iNHERIT)))))
-        output <- (Process.readAllBytes ((jio (Process.getInputStream process))))
-        exitCode <- (Process.waitFor process)
-        when (exitCode /= 0) $ do
-            javaThrow ((JavaException "IllegalStateException" (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "git ls-files failed for "))) rootAsString))) " with exit code "))) exitCode)))))))
-        files <- (fmap (\value_ -> javaCast value_ :: List.List) (ArrayList.new_))
-        start <- newIORef (0 :: Int)
-        relativePath <- newIORef ("")
-        forM_ [0 .. (jlength output) - 1] $ \index -> javaIteration (pure ()) $ do
-            when ((Prelude.fromIntegral (jindex output (index))) == 0) $ do
-                assignedValue <- (jnewString output (jget start) (index - (jget start)) (StandardCharsets.uTF_8))
-                jset relativePath (assignedValue)
-                when (Data.List.isSuffixOf suffix (jget relativePath)) $ do
-                    Control.Monad.void (List.add files (jget relativePath))
-                jset start ((index + 1))
-        pure (files)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "trackedStrings", JR.defaultOf "" ) ]
 
 
-isTracked :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (Bool)
-isTracked object_ a1 = jmethod object_ "isTracked" (\() -> (isTracked_impl (javaCast object_ :: GitProcessHelper))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "trackedFiles_2", jm_trackedFiles_2 )
+        , ( "trackedFiles_3", jm_trackedFiles_3 )
+        , ( "isTracked_1", jm_isTracked_1 ) ]
+        JR.noMethods
 
-isTracked_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (Bool)
-isTracked_super object_ a1 = (isTracked_impl (javaCast object_ :: GitProcessHelper)) a1
 
-isTracked_impl :: GitProcessHelper -> AbFile.AbFile -> IO (Bool)
-isTracked_impl this file = do
-        handle (\(e :: JavaException) -> do
-            pure (False)
-            ) $ do
-            nativeFile <- (AbFileNativeUtil.get file)
-            parentFile <- (File.getParentFile nativeFile)
-            process <- (ProcessBuilder.start ((jio (ProcessBuilder.redirectErrorStream ((jio (ProcessBuilder.new_7 (jget ((jget (this).trackedStrings)).gIT_COMMAND) (jget ((jget (this).trackedStrings)).cHANGE_DIRECTORY_OPTION) (jio (File.getPath parentFile)) (jget ((jget (this).trackedStrings)).lIST_FILES_COMMAND) (jget ((jget (this).trackedStrings)).eRROR_UNMATCH_OPTION) (jget ((jget (this).trackedStrings)).pATHSPEC_SEPARATOR) (jio (File.getName nativeFile))))) True))))
-            Control.Monad.void (Process.readAllBytes ((jio (Process.getInputStream process))))
-            pure (((jio (Process.waitFor process)) == 0))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GitProcessHelper"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_trackedFiles_2", jm_trackedFiles_2 ), ( "jm_trackedFiles_3", jm_trackedFiles_3 ), ( "jm_isTracked_1", jm_isTracked_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GitProcessHelper" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "trackedStrings" "" JR.this (JR.callStatic TrackedStrings.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.declare "logUtil" "" (JR.callStatic LogUtil.jm_getInstance_0 []), 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.declare "THIS_IS_SLOW" "" (JR.str "This is slow consider path exclusion instead"), 
+                    JR.exec (JR.invoke "putF_3" (JR.local "logUtil") [ (JR.local "THIS_IS_SLOW"), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_trackedFiles_2 : JR.Method
+jm_trackedFiles_2 jheap jthis jargs =
+    JR.method [ ( "rootAsString", "" ), ( "pathspec", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "trackedFiles_3" JR.this [ (JR.local "rootAsString"), (JR.local "pathspec"), (JR.str ".java") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_trackedFiles_3 : JR.Method
+jm_trackedFiles_3 jheap jthis jargs =
+    JR.method [ ( "rootAsString", "" ), ( "pathspec", "" ), ( "suffix", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "process" "" (JR.invoke "start_0" (JR.invoke "redirectError_1" (JR.new (JR.namedMethod "ProcessBuilder.jnew_7") [ (JR.field "GIT_COMMAND" (JR.thisField "trackedStrings")), (JR.field "CHANGE_DIRECTORY_OPTION" (JR.thisField "trackedStrings")), (JR.local "rootAsString"), (JR.field "LIST_FILES_COMMAND" (JR.thisField "trackedStrings")), (JR.field "SEP_BY_NULL_CHAR_INSTEAD_OF_NEW_LINE" (JR.thisField "trackedStrings")), (JR.field "PATHSPEC_SEPARATOR" (JR.thisField "trackedStrings")), (JR.local "pathspec") ]) [ (JR.field "INHERIT" (JR.namedStatic "ProcessBuilder.jstatic_Redirect")) ]) []), 
+                    JR.declare "output" "" (JR.invoke "readAllBytes_0" (JR.invoke "getInputStream_0" (JR.local "process") []) []), 
+                    JR.declare "exitCode" "I" (JR.invoke "waitFor_0" (JR.local "process") []), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "exitCode") (JR.int 0)) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "IllegalStateException" [ "RuntimeException", "Exception" ]) [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "git ls-files failed for ") ]) [ (JR.local "rootAsString") ]) [ (JR.str " with exit code ") ]) [ (JR.local "exitCode") ]) []) ]) ]) identity, 
+                    JR.declare "files" "" (JR.new JArrayList.jnew_0 []), 
+                    JR.declare "start" "I" (JR.int 0), 
+                    JR.declare "relativePath" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "output"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68443 -> (JR.setLocal "index" "I" (JR.lit jwN68443))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.cast "I" (JR.aget (JR.local "output") (JR.local "index"))) (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.setLocal "relativePath" "" (JR.withState JR.newString [ (JR.local "output"), (JR.local "start"), (JR.map2 JR.sub (JR.local "index") (JR.local "start")), (JR.namedStatic "StandardCharsets.jstatic_UTF_8") ])), 
+                            JR.ifElse (JR.invoke "endsWith_1" (JR.local "relativePath") [ (JR.local "suffix") ]) (JR.run [ 
+                                JR.exec (JR.invoke "add_1" (JR.local "files") [ (JR.local "relativePath") ]) ]) identity, 
+                            JR.exec (JR.setLocal "start" "I" (JR.map2 JR.add (JR.local "index") (JR.int 1))) ]) identity ]) ], 
+                    JR.return (JR.local "files") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isTracked_1 : JR.Method
+jm_isTracked_1 jheap jthis jargs =
+    JR.method [ ( "file", "" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "nativeFile" "" (JR.callStatic AbFileNativeUtil.jm_get_1 [ (JR.local "file") ]), 
+                        JR.declare "parentFile" "" (JR.invoke "getParentFile_0" (JR.local "nativeFile") []), 
+                        JR.declare "process" "" (JR.invoke "start_0" (JR.invoke "redirectErrorStream_1" (JR.new (JR.namedMethod "ProcessBuilder.jnew_7") [ (JR.field "GIT_COMMAND" (JR.thisField "trackedStrings")), (JR.field "CHANGE_DIRECTORY_OPTION" (JR.thisField "trackedStrings")), (JR.invoke "getPath_0" (JR.local "parentFile") []), (JR.field "LIST_FILES_COMMAND" (JR.thisField "trackedStrings")), (JR.field "ERROR_UNMATCH_OPTION" (JR.thisField "trackedStrings")), (JR.field "PATHSPEC_SEPARATOR" (JR.thisField "trackedStrings")), (JR.invoke "getName_0" (JR.local "nativeFile") []) ]) [ (JR.bool True) ]) []), 
+                        JR.exec (JR.invoke "readAllBytes_0" (JR.invoke "getInputStream_0" (JR.local "process") []) []), 
+                        JR.return (JR.map2 JR.equals (JR.invoke "waitFor_0" (JR.local "process") []) (JR.int 0)) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

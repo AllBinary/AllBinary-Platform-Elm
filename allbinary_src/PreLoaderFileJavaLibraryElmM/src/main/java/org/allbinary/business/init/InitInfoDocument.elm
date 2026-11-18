@@ -1,85 +1,73 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.init
-module InitInfoDocument where
+module Org.Allbinary.Business.Init.InitInfoDocument exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Document -- org.w3c.dom.Document
+{-| Generated Code Do Not Modify package org.allbinary.business.init
+-}
 
-data InitInfoDocument = InitInfoDocument
-    { header_ :: JavaHeader
-    , initInfoDocument :: IORef (Document.Document)
-    }
+import JR
 
-instance JavaNull InitInfoDocument where
-    javaNull = javaNullRecord "InitInfoDocument"
 
-instance JavaEquals InitInfoDocument where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq InitInfoDocument where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "InitInfoDocument"
 
-instance JavaObjectClass InitInfoDocument where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jchain : List String
+jchain =
+    [ "InitInfoDocument" ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO InitInfoDocument
-newRecord_ = do
-    header_ <- newJavaHeader
-    initInfoDocument <- newIORef javaNull
-    let this = InitInfoDocument header_ initInfoDocument
-    jregisterLevel header_ this
-    pure this
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "initInfoDocument", JR.defaultOf "" ) ]
 
-initFields_ :: InitInfoDocument -> IO ()
-initFields_ this = do
-    jset this.initInfoDocument (javaNull)
-    pure ()
 
-new_ :: IO InitInfoDocument
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-init_ :: InitInfoDocument -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InitInfoDocument"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

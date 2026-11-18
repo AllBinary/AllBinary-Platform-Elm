@@ -1,134 +1,122 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable
-module RepaintBehavior where
+module Org.Allbinary.Game.Displayable.RepaintBehavior exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Thread -- same package or java.lang
-import qualified RepaintRunnable -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified OpenGLFeatureFactory -- org.allbinary.graphics.opengles.OpenGLFeatureFactory
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified NullRunnable -- org.allbinary.thread.NullRunnable
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable
+-}
 
-data RepaintBehavior = RepaintBehavior
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , nAME :: IORef (String)
-    }
-
-instance JavaNull RepaintBehavior where
-    javaNull = javaNullRecord "RepaintBehavior"
-
-instance JavaEquals RepaintBehavior where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RepaintBehavior where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RepaintBehavior where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: RepaintBehavior
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO RepaintBehavior
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    nAME <- newIORef ""
-    let this = RepaintBehavior header_ logUtil nAME
-    jregisterLevel header_ this
-    jregisterMethod header_ "repaint" (\() -> repaint_impl this)
-    jregisterMethod header_ "onChangeRepaint" (\() -> onChangeRepaint_impl this)
-    pure this
-
-initFields_ :: RepaintBehavior -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.nAME ("RepaintBehavior")
-    pure ()
-
-new_ :: IO RepaintBehavior
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: RepaintBehavior -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import JThread
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Graphics.Opengles.OpenGLFeatureFactory as OpenGLFeatureFactory
+import Org.Allbinary.Game.Displayable.RepaintRunnable as RepaintRunnable
 
 
-getInstance :: IO (RepaintBehavior)
-getInstance = do
-        pure (RepaintBehavior.instance_)
+jclass : String
+jclass =
+    "RepaintBehavior"
 
 
-repaint :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (())
-repaint object_ a1 = jmethod object_ "repaint" (\() -> (repaint_impl (javaCast object_ :: RepaintBehavior))) () a1
-
-repaint_super :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (())
-repaint_super object_ a1 = (repaint_impl (javaCast object_ :: RepaintBehavior)) a1
-
-repaint_impl :: RepaintBehavior -> Canvas.Canvas -> IO (())
-repaint_impl this canvas = do
-        pure ()
+jchain : List String
+jchain =
+    [ "RepaintBehavior" ]
 
 
-onChangeRepaint :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (())
-onChangeRepaint object_ a1 = jmethod object_ "onChangeRepaint" (\() -> (onChangeRepaint_impl (javaCast object_ :: RepaintBehavior))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "NAME", JR.defaultOf "" ) ]
 
-onChangeRepaint_super :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (())
-onChangeRepaint_super object_ a1 = (onChangeRepaint_impl (javaCast object_ :: RepaintBehavior)) a1
 
-onChangeRepaint_impl :: RepaintBehavior -> Canvas.Canvas -> IO (())
-onChangeRepaint_impl this canvas = do
-        features <- (Features.getInstance)
-        openGLFeatureFactory <- (OpenGLFeatureFactory.getInstance)
-        if (jio (Features.isFeature features (jget (openGLFeatureFactory).oPENGL))) then do
-            Control.Monad.void (DisplayInfoSingleton.process ((jio (DisplayInfoSingleton.getInstance))))
-        else do
-            thread <- (Thread.new_2 (jio (RepaintRunnable.new_1 canvas)) (jget (this).nAME))
-            Control.Monad.void (Thread.start thread)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "repaint_1", jm_repaint_1 )
+        , ( "onChangeRepaint_1", jm_onChangeRepaint_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RepaintBehavior"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_repaint_1", jm_repaint_1 ), ( "jm_onChangeRepaint_1", jm_onChangeRepaint_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "RepaintBehavior" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "NAME" "" JR.this (JR.str "RepaintBehavior")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_repaint_1 : JR.Method
+jm_repaint_1 jheap jthis jargs =
+    JR.method [ ( "canvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onChangeRepaint_1 : JR.Method
+jm_onChangeRepaint_1 jheap jthis jargs =
+    JR.method [ ( "canvas", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.declare "openGLFeatureFactory" "" (JR.callStatic OpenGLFeatureFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "OPENGL" (JR.local "openGLFeatureFactory")) ]) (JR.run [ 
+                        JR.exec (JR.invoke "process_0" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []) []) ]) (JR.run [ 
+                        JR.declare "thread" "" (JR.new JThread.jnew_2 [ (JR.new RepaintRunnable.jnew_1 [ (JR.local "canvas") ]), (JR.thisField "NAME") ]), 
+                        JR.exec (JR.invoke "start_0" (JR.local "thread") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

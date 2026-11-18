@@ -1,310 +1,262 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.layer
-module Layer where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified CanvasStrings -- org.allbinary.graphics.displayable.CanvasStrings
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-
-data Layer = Layer
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , x :: IORef (Int)
-    , y :: IORef (Int)
-    , z :: IORef (Int)
-    , width :: IORef (Int)
-    , height :: IORef (Int)
-    , visible :: IORef (Bool)
-    }
-
-instance JavaNull Layer where
-    javaNull = javaNullRecord "Layer"
-
-instance JavaEquals Layer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Layer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Layer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE iD #-}
-iD = unsafePerformIO ((SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 0))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO Layer
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    x <- newIORef 0
-    y <- newIORef 0
-    z <- newIORef 0
-    width <- newIORef 0
-    height <- newIORef 0
-    visible <- newIORef False
-    let this = Layer header_ logUtil x y z width height visible
-    jregisterLevel header_ this
-    jregisterMethod header_ "setPosition" (\() -> setPosition_impl this)
-    jregisterMethod header_ "moveDXY" (\() -> moveDXY_impl this)
-    jregisterMethod header_ "moveDXYZ" (\() -> moveDXYZ_impl this)
-    jregisterMethod header_ "getXP" (\() -> getXP_impl this)
-    jregisterMethod header_ "getYP" (\() -> getYP_impl this)
-    jregisterMethod header_ "getZP" (\() -> getZP_impl this)
-    jregisterMethod header_ "getWidth" (\() -> getWidth_impl this)
-    jregisterMethod header_ "getHeight" (\() -> getHeight_impl this)
-    jregisterMethod header_ "getDepth" (\() -> getDepth_impl this)
-    jregisterMethod header_ "setVisible" (\() -> setVisible_impl this)
-    jregisterMethod header_ "isVisible" (\() -> isVisible_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "setLayerWidth" (\() -> setLayerWidth_impl this)
-    jregisterMethod header_ "setLayerHeight" (\() -> setLayerHeight_impl this)
-    jregisterMethod header_ "toStringAppend" (\() -> toStringAppend_impl this)
-    pure this
-
-initFields_ :: Layer -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.x (0)
-    jset this.y (0)
-    jset this.z (3)
-    jset this.width (0)
-    jset this.height (0)
-    jset this.visible (True)
-    pure ()
-
-new_2 :: Int -> Int -> IO Layer
-new_2 width height = do
-    this <- newRecord_
-    init_2 this width height
-    pure this
-
-init_2 :: Layer -> Int -> Int -> IO ()
-init_2 this width height = do
-        initFields_ this
-        Control.Monad.void (Layer.setLayerWidth this width)
-        Control.Monad.void (Layer.setLayerHeight this height)
-        pure ()
-
-
-setPosition :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-setPosition object_ a1 a2 a3 = jmethod object_ "setPosition" (\() -> (setPosition_impl (javaCast object_ :: Layer))) () a1 a2 a3
-
-setPosition_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-setPosition_super object_ a1 a2 a3 = (setPosition_impl (javaCast object_ :: Layer)) a1 a2 a3
-
-setPosition_impl :: Layer -> Int -> Int -> Int -> IO (())
-setPosition_impl this x y z = do
-        jset (this).x (x)
-        jset (this).y (y)
-        jset (this).z (z)
-        pure ()
-
-
-moveDXY :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-moveDXY object_ a1 a2 = jmethod object_ "moveDXY" (\() -> (moveDXY_impl (javaCast object_ :: Layer))) () a1 a2
-
-moveDXY_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-moveDXY_super object_ a1 a2 = (moveDXY_impl (javaCast object_ :: Layer)) a1 a2
-
-moveDXY_impl :: Layer -> Int -> Int -> IO (())
-moveDXY_impl this dx dy = do
-        jset (this).x (((jget (this).x) + dx))
-        jset (this).y (((jget (this).y) + dy))
-        pure ()
-
-
-moveDXYZ :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-moveDXYZ object_ a1 a2 a3 = jmethod object_ "moveDXYZ" (\() -> (moveDXYZ_impl (javaCast object_ :: Layer))) () a1 a2 a3
-
-moveDXYZ_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-moveDXYZ_super object_ a1 a2 a3 = (moveDXYZ_impl (javaCast object_ :: Layer)) a1 a2 a3
-
-moveDXYZ_impl :: Layer -> Int -> Int -> Int -> IO (())
-moveDXYZ_impl this dx dy dz = do
-        jset (this).x (((jget (this).x) + dx))
-        jset (this).y (((jget (this).y) + dy))
-        jset (this).z (((jget (this).z) + dz))
-        pure ()
-
-
-getXP :: (JavaObjectClass this_) => this_ -> IO (Int)
-getXP object_ = jmethod object_ "getXP" (\() -> (getXP_impl (javaCast object_ :: Layer))) ()
-
-getXP_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getXP_super object_ = (getXP_impl (javaCast object_ :: Layer))
-
-getXP_impl :: Layer -> IO (Int)
-getXP_impl this = do
-        pure ((jget (this).x))
-
-
-getYP :: (JavaObjectClass this_) => this_ -> IO (Int)
-getYP object_ = jmethod object_ "getYP" (\() -> (getYP_impl (javaCast object_ :: Layer))) ()
-
-getYP_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getYP_super object_ = (getYP_impl (javaCast object_ :: Layer))
-
-getYP_impl :: Layer -> IO (Int)
-getYP_impl this = do
-        pure ((jget (this).y))
-
-
-getZP :: (JavaObjectClass this_) => this_ -> IO (Int)
-getZP object_ = jmethod object_ "getZP" (\() -> (getZP_impl (javaCast object_ :: Layer))) ()
-
-getZP_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getZP_super object_ = (getZP_impl (javaCast object_ :: Layer))
-
-getZP_impl :: Layer -> IO (Int)
-getZP_impl this = do
-        pure ((jget (this).z))
-
-
-getWidth :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth object_ = jmethod object_ "getWidth" (\() -> (getWidth_impl (javaCast object_ :: Layer))) ()
-
-getWidth_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth_super object_ = (getWidth_impl (javaCast object_ :: Layer))
-
-getWidth_impl :: Layer -> IO (Int)
-getWidth_impl this = do
-        pure ((jget (this).width))
-
-
-getHeight :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight object_ = jmethod object_ "getHeight" (\() -> (getHeight_impl (javaCast object_ :: Layer))) ()
-
-getHeight_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight_super object_ = (getHeight_impl (javaCast object_ :: Layer))
-
-getHeight_impl :: Layer -> IO (Int)
-getHeight_impl this = do
-        pure ((jget (this).height))
-
-
-getDepth :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getDepth object_ = jmethod object_ "getDepth" (\() -> (getDepth_impl (javaCast object_ :: Layer))) ()
-
-getDepth_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getDepth_super object_ = (getDepth_impl (javaCast object_ :: Layer))
-
-getDepth_impl :: Layer -> IO (Int64)
-getDepth_impl this = do
-        pure (0)
-
-
-setVisible :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setVisible object_ a1 = jmethod object_ "setVisible" (\() -> (setVisible_impl (javaCast object_ :: Layer))) () a1
-
-setVisible_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setVisible_super object_ a1 = (setVisible_impl (javaCast object_ :: Layer)) a1
-
-setVisible_impl :: Layer -> Bool -> IO (())
-setVisible_impl this visible = do
-        jset (this).visible (visible)
-        pure ()
-
-
-isVisible :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isVisible object_ = jmethod object_ "isVisible" (\() -> (isVisible_impl (javaCast object_ :: Layer))) ()
-
-isVisible_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isVisible_super object_ = (isVisible_impl (javaCast object_ :: Layer))
-
-isVisible_impl :: Layer -> IO (Bool)
-isVisible_impl this = do
-        pure ((jget (this).visible))
-
-
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: Layer))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: Layer)) a1
-
-paint_impl :: Layer -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        commonStrings <- (CommonStrings.getInstance)
-        canvasStrings <- (CanvasStrings.getInstance)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget (commonStrings).nOT_IMPLEMENTED) this (jget (canvasStrings).pAINT))
-        pure ()
-
-
-setLayerWidth :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLayerWidth object_ a1 = jmethod object_ "setLayerWidth" (\() -> (setLayerWidth_impl (javaCast object_ :: Layer))) () a1
-
-setLayerWidth_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLayerWidth_super object_ a1 = (setLayerWidth_impl (javaCast object_ :: Layer)) a1
-
-setLayerWidth_impl :: Layer -> Int -> IO (())
-setLayerWidth_impl this width = do
-        when (width < 0) $ do
-            javaThrow ((JavaException "IllegalArgumentException" ""))
-        jset (this).width (width)
-        pure ()
-
-
-setLayerHeight :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLayerHeight object_ a1 = jmethod object_ "setLayerHeight" (\() -> (setLayerHeight_impl (javaCast object_ :: Layer))) () a1
-
-setLayerHeight_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLayerHeight_super object_ a1 = (setLayerHeight_impl (javaCast object_ :: Layer)) a1
-
-setLayerHeight_impl :: Layer -> Int -> IO (())
-setLayerHeight_impl this height = do
-        when (height < 0) $ do
-            javaThrow ((JavaException "IllegalArgumentException" ""))
-        jset (this).height (height)
-        pure ()
-
-
-toStringAppend :: (JavaObjectClass this_) => this_ -> StringMaker.StringMaker -> IO (())
-toStringAppend object_ a1 = jmethod object_ "toStringAppend" (\() -> (toStringAppend_impl (javaCast object_ :: Layer))) () a1
-
-toStringAppend_super :: (JavaObjectClass this_) => this_ -> StringMaker.StringMaker -> IO (())
-toStringAppend_super object_ a1 = (toStringAppend_impl (javaCast object_ :: Layer)) a1
-
-toStringAppend_impl :: Layer -> StringMaker.StringMaker -> IO (())
-toStringAppend_impl this stringBuffer = do
-        pure ()
-
+module Org.Allbinary.Layer.Layer exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.layer
+-}
+
+import JR
+import Org.Allbinary.Graphics.Displayable.CanvasStrings as CanvasStrings
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+
+
+jclass : String
+jclass =
+    "Layer"
+
+
+jchain : List String
+jchain =
+    [ "Layer" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "x", JR.defaultOf "I" ), ( "y", JR.defaultOf "I" ), ( "z", JR.defaultOf "I" ), ( "width", JR.defaultOf "I" ), ( "height", JR.defaultOf "I" ), ( "visible", JR.defaultOf "Z" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "setPosition_3", jm_setPosition_3 )
+        , ( "moveDXY_2", jm_moveDXY_2 )
+        , ( "moveDXYZ_3", jm_moveDXYZ_3 )
+        , ( "getXP_0", jm_getXP_0 )
+        , ( "getYP_0", jm_getYP_0 )
+        , ( "getZP_0", jm_getZP_0 )
+        , ( "getWidth_0", jm_getWidth_0 )
+        , ( "getHeight_0", jm_getHeight_0 )
+        , ( "getDepth_0", jm_getDepth_0 )
+        , ( "setVisible_1", jm_setVisible_1 )
+        , ( "isVisible_0", jm_isVisible_0 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "setLayerWidth_1", jm_setLayerWidth_1 )
+        , ( "setLayerHeight_1", jm_setLayerHeight_1 )
+        , ( "toStringAppend_1", jm_toStringAppend_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Layer"
+        [ ( "jm_setPosition_3", jm_setPosition_3 ), ( "jm_moveDXY_2", jm_moveDXY_2 ), ( "jm_moveDXYZ_3", jm_moveDXYZ_3 ), ( "jm_getXP_0", jm_getXP_0 ), ( "jm_getYP_0", jm_getYP_0 ), ( "jm_getZP_0", jm_getZP_0 ), ( "jm_getWidth_0", jm_getWidth_0 ), ( "jm_getHeight_0", jm_getHeight_0 ), ( "jm_getDepth_0", jm_getDepth_0 ), ( "jm_setVisible_1", jm_setVisible_1 ), ( "jm_isVisible_0", jm_isVisible_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_setLayerWidth_1", jm_setLayerWidth_1 ), ( "jm_setLayerHeight_1", jm_setLayerHeight_1 ), ( "jm_toStringAppend_1", jm_toStringAppend_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_ID", jstatic_ID ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_ID : JR.M
+jstatic_ID s =
+    JR.static "Layer" jclinit "ID"
+        (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 0) ])
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "z" "I" JR.this (JR.int 3)),
+                JR.exec (JR.setField "visible" "Z" JR.this (JR.bool True)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setLayerWidth_1" JR.this [ (JR.local "width") ]), 
+                    JR.exec (JR.invoke "setLayerHeight_1" JR.this [ (JR.local "height") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_setPosition_3 : JR.Method
+jm_setPosition_3 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "x" "I" JR.this (JR.local "x")), 
+                    JR.exec (JR.setField "y" "I" JR.this (JR.local "y")), 
+                    JR.exec (JR.setField "z" "I" JR.this (JR.local "z")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_moveDXY_2 : JR.Method
+jm_moveDXY_2 jheap jthis jargs =
+    JR.method [ ( "dx", "I" ), ( "dy", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "x" "I" JR.this (JR.map2 JR.add (JR.thisField "x") (JR.local "dx"))), 
+                    JR.exec (JR.setField "y" "I" JR.this (JR.map2 JR.add (JR.thisField "y") (JR.local "dy"))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_moveDXYZ_3 : JR.Method
+jm_moveDXYZ_3 jheap jthis jargs =
+    JR.method [ ( "dx", "I" ), ( "dy", "I" ), ( "dz", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "x" "I" JR.this (JR.map2 JR.add (JR.thisField "x") (JR.local "dx"))), 
+                    JR.exec (JR.setField "y" "I" JR.this (JR.map2 JR.add (JR.thisField "y") (JR.local "dy"))), 
+                    JR.exec (JR.setField "z" "I" JR.this (JR.map2 JR.add (JR.thisField "z") (JR.local "dz"))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getXP_0 : JR.Method
+jm_getXP_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "x") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getYP_0 : JR.Method
+jm_getYP_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "y") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getZP_0 : JR.Method
+jm_getZP_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "z") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getWidth_0 : JR.Method
+jm_getWidth_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "width") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHeight_0 : JR.Method
+jm_getHeight_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "height") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDepth_0 : JR.Method
+jm_getDepth_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.long 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setVisible_1 : JR.Method
+jm_setVisible_1 jheap jthis jargs =
+    JR.method [ ( "visible", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "visible" "Z" JR.this (JR.local "visible")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isVisible_0 : JR.Method
+jm_isVisible_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "visible") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.declare "canvasStrings" "" (JR.callStatic CanvasStrings.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "NOT_IMPLEMENTED" (JR.local "commonStrings")), JR.this, (JR.field "PAINT" (JR.local "canvasStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLayerWidth_1 : JR.Method
+jm_setLayerWidth_1 jheap jthis jargs =
+    JR.method [ ( "width", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.less (JR.local "width") (JR.int 0)) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "IllegalArgumentException" [ "RuntimeException", "Exception" ]) []) ]) identity, 
+                    JR.exec (JR.setField "width" "I" JR.this (JR.local "width")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLayerHeight_1 : JR.Method
+jm_setLayerHeight_1 jheap jthis jargs =
+    JR.method [ ( "height", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.less (JR.local "height") (JR.int 0)) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "IllegalArgumentException" [ "RuntimeException", "Exception" ]) []) ]) identity, 
+                    JR.exec (JR.setField "height" "I" JR.this (JR.local "height")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toStringAppend_1 : JR.Method
+jm_toStringAppend_1 jheap jthis jargs =
+    JR.method [ ( "stringBuffer", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

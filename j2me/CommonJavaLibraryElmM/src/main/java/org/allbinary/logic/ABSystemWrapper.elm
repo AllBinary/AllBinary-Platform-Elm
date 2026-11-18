@@ -1,4 +1,4 @@
-module ABSystemWrapper exposing (..)
+module Org.Allbinary.Logic.ABSystemWrapper exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic
 -}

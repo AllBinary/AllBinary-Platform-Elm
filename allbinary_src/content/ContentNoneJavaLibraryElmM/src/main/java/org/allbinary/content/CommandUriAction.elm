@@ -1,117 +1,110 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.content
-module CommandUriAction where
+module Org.Allbinary.Content.CommandUriAction exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
+{-| Generated Code Do Not Modify package org.allbinary.content
+-}
 
-data CommandUriAction = CommandUriAction
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull CommandUriAction where
-    javaNull = javaNullRecord "CommandUriAction"
-
-instance JavaEquals CommandUriAction where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CommandUriAction where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CommandUriAction where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: CommandUriAction
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CommandUriAction
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = CommandUriAction header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: CommandUriAction -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_ :: IO CommandUriAction
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CommandUriAction -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getInstance :: IO (CommandUriAction)
-getInstance = do
-        pure (CommandUriAction.instance_)
+jclass : String
+jclass =
+    "CommandUriAction"
 
 
-add :: (JavaObjectClass this_) => this_ -> Command.Command -> String -> IO (())
-add object_ a1 a2 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: CommandUriAction))) () a1 a2
-
-add_super :: (JavaObjectClass this_) => this_ -> Command.Command -> String -> IO (())
-add_super object_ a1 a2 = (add_impl (javaCast object_ :: CommandUriAction)) a1 a2
-
-add_impl :: CommandUriAction -> Command.Command -> String -> IO (())
-add_impl this command url = do
-        pure ()
+jchain : List String
+jchain =
+    [ "CommandUriAction" ]
 
 
-process :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: CommandUriAction))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
-process_super :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: CommandUriAction)) a1
 
-process_impl :: CommandUriAction -> Command.Command -> IO (())
-process_impl this command = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "add_2", jm_add_2 )
+        , ( "process_1", jm_process_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CommandUriAction"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_add_2", jm_add_2 ), ( "jm_process_1", jm_process_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "CommandUriAction" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_2 : JR.Method
+jm_add_2 jheap jthis jargs =
+    JR.method [ ( "command", "" ), ( "url", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "command", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

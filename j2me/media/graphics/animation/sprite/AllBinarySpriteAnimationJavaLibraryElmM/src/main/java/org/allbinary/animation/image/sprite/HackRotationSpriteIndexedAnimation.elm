@@ -1,236 +1,200 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
-module HackRotationSpriteIndexedAnimation (module HackRotationSpriteIndexedAnimation, module RotationAnimation) where
+module Org.Allbinary.Animation.Image.Sprite.HackRotationSpriteIndexedAnimation exposing (..)
 
-import RotationAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getAnimationSize, getAnimationSize_super, getAnimationSize_impl, paintFrame, paintFrame_super, paintFrame_impl, paintXY, paintXY_super, paintXY_impl, paint, paint_super, paint_impl, nextRotation, nextRotation_super, nextRotation_impl, previousRotation, previousRotation_super, previousRotation_impl, getSize, getSize_super, getSize_impl, setFrame, setFrame_super, setFrame_impl, getFrame, getFrame_super, getFrame_impl, setSequence, setSequence_super, setSequence_impl, getSequence, getSequence_super, getSequence_impl, sprite, image)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Sprite -- javax.microedition.lcdui.game.Sprite
-import qualified AnimationBehavior -- org.allbinary.animation.AnimationBehavior
-import qualified RotationAnimation -- org.allbinary.animation.RotationAnimation
-import qualified PrimitiveIntUtil -- org.allbinary.logic.math.PrimitiveIntUtil
-import qualified AngleInfo -- org.allbinary.math.AngleInfo
-import qualified CircularIndexUtil -- org.allbinary.util.CircularIndexUtil
+{-| Generated Code Do Not Modify package org.allbinary.animation.image.sprite
+-}
 
-data HackRotationSpriteIndexedAnimation = HackRotationSpriteIndexedAnimation
-    { header_ :: JavaHeader
-    , base :: RotationAnimation.RotationAnimation
-    , sprite :: IORef (Sprite.Sprite)
-    , image :: IORef (Image.Image)
-    }
-
-instance JavaNull HackRotationSpriteIndexedAnimation where
-    javaNull = javaNullRecord "HackRotationSpriteIndexedAnimation"
-
-instance JavaEquals HackRotationSpriteIndexedAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HackRotationSpriteIndexedAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HackRotationSpriteIndexedAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HackRotationSpriteIndexedAnimation
-newRecord_ = do
-    base <- RotationAnimation.newRecord_
-    let header_ = base.header_
-    sprite <- newIORef javaNull
-    image <- newIORef javaNull
-    let this = HackRotationSpriteIndexedAnimation header_ base sprite image
-    jregisterLevel header_ this
-    jregisterMethod header_ "getAnimationSize" (\() -> getAnimationSize_impl this)
-    jregisterMethod header_ "paintFrame" (\() -> paintFrame_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "nextRotation" (\() -> nextRotation_impl this)
-    jregisterMethod header_ "previousRotation" (\() -> previousRotation_impl this)
-    jregisterMethod header_ "getSize" (\() -> getSize_impl this)
-    jregisterMethod header_ "setFrame" (\() -> setFrame_impl this)
-    jregisterMethod header_ "getFrame" (\() -> getFrame_impl this)
-    jregisterMethod header_ "setSequence" (\() -> setSequence_impl this)
-    jregisterMethod header_ "getSequence" (\() -> getSequence_impl this)
-    pure this
-
-initFields_ :: HackRotationSpriteIndexedAnimation -> IO ()
-initFields_ this = do
-    jset this.sprite (javaNull)
-    jset this.image (javaNull)
-    pure ()
-
-new_4 :: Sprite.Sprite -> Image.Image -> AngleInfo.AngleInfo -> AnimationBehavior.AnimationBehavior -> IO HackRotationSpriteIndexedAnimation
-new_4 sprite image angleInfo animationBehavior = do
-    this <- newRecord_
-    init_4 this sprite image angleInfo animationBehavior
-    pure this
-
-init_4 :: HackRotationSpriteIndexedAnimation -> Sprite.Sprite -> Image.Image -> AngleInfo.AngleInfo -> AnimationBehavior.AnimationBehavior -> IO ()
-init_4 this sprite image angleInfo animationBehavior = do
-        RotationAnimation.init_3 this.base (angleInfo) (jio (CircularIndexUtil.createInstance (360 / (jio (AngleInfo.getAngleIncrement ((jio (AngleInfo.getAngleIncrementInfo angleInfo)))))))) (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).sprite (sprite)
-        jset (this).image (image)
-        pure ()
+import JR
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
+import Org.Allbinary.Logic.Math.PrimitiveIntUtil as PrimitiveIntUtil
+import Org.Allbinary.Animation.RotationAnimation as RotationAnimation
 
 
--- throws Exception
-getAnimationSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize object_ = jmethod object_ "getAnimationSize" (\() -> (getAnimationSize_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))) ()
-
-getAnimationSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize_super object_ = (getAnimationSize_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))
-
-getAnimationSize_impl :: HackRotationSpriteIndexedAnimation -> IO (Int)
-getAnimationSize_impl this = do
-        (HackRotationSpriteIndexedAnimation.getSize this)
+jclass : String
+jclass =
+    "HackRotationSpriteIndexedAnimation"
 
 
-paintFrame :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintFrame object_ a1 a2 a3 a4 = jmethod object_ "paintFrame" (\() -> (paintFrame_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))) () a1 a2 a3 a4
-
-paintFrame_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintFrame_super object_ a1 a2 a3 a4 = (paintFrame_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation)) a1 a2 a3 a4
-
-paintFrame_impl :: HackRotationSpriteIndexedAnimation -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintFrame_impl this g frame x y = do
-        Control.Monad.void (HackRotationSpriteIndexedAnimation.setFrame this frame)
-        Control.Monad.void (HackRotationSpriteIndexedAnimation.paintXY this g x y)
-        pure ()
+jchain : List String
+jchain =
+    [ "HackRotationSpriteIndexedAnimation" ]
+        ++ RotationAnimation.jchain
 
 
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))) () a1 a2 a3
-
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation)) a1 a2 a3
-
-paintXY_impl :: HackRotationSpriteIndexedAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this g x y = do
-        Control.Monad.void (Sprite.setPosition ((jget (this).sprite)) x y)
-        Control.Monad.void (HackRotationSpriteIndexedAnimation.paint this g)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    RotationAnimation.jfields ++ [ ( "sprite", JR.defaultOf "" ), ( "image", JR.defaultOf "" ) ]
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation)) a1
-
-paint_impl :: HackRotationSpriteIndexedAnimation -> Graphics.Graphics -> IO (())
-paint_impl this g = do
-        Control.Monad.void (Sprite.paint ((jget (this).sprite)) g)
-        pure ()
-
-
-nextRotation :: (JavaObjectClass this_) => this_ -> IO (())
-nextRotation object_ = jmethod object_ "nextRotation" (\() -> (nextRotation_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))) ()
-
-nextRotation_super :: (JavaObjectClass this_) => this_ -> IO (())
-nextRotation_super object_ = (nextRotation_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))
-
-nextRotation_impl :: HackRotationSpriteIndexedAnimation -> IO (())
-nextRotation_impl this = do
-        Control.Monad.void (Sprite.nextFrame ((jget (this).sprite)))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getAnimationSize_0", jm_getAnimationSize_0 )
+        , ( "paintFrame_4", jm_paintFrame_4 )
+        , ( "paintXY_3", jm_paintXY_3 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "nextRotation_0", jm_nextRotation_0 )
+        , ( "previousRotation_0", jm_previousRotation_0 )
+        , ( "getSize_0", jm_getSize_0 )
+        , ( "setFrame_1", jm_setFrame_1 )
+        , ( "getFrame_0", jm_getFrame_0 )
+        , ( "setSequence_1", jm_setSequence_1 )
+        , ( "getSequence_0", jm_getSequence_0 ) ]
+        RotationAnimation.jvtable
 
 
-previousRotation :: (JavaObjectClass this_) => this_ -> IO (())
-previousRotation object_ = jmethod object_ "previousRotation" (\() -> (previousRotation_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))) ()
-
-previousRotation_super :: (JavaObjectClass this_) => this_ -> IO (())
-previousRotation_super object_ = (previousRotation_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))
-
-previousRotation_impl :: HackRotationSpriteIndexedAnimation -> IO (())
-previousRotation_impl this = do
-        Control.Monad.void (Sprite.prevFrame ((jget (this).sprite)))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HackRotationSpriteIndexedAnimation"
+        [ ( "jm_getAnimationSize_0", jm_getAnimationSize_0 ), ( "jm_paintFrame_4", jm_paintFrame_4 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_nextRotation_0", jm_nextRotation_0 ), ( "jm_previousRotation_0", jm_previousRotation_0 ), ( "jm_getSize_0", jm_getSize_0 ), ( "jm_setFrame_1", jm_setFrame_1 ), ( "jm_getFrame_0", jm_getFrame_0 ), ( "jm_setSequence_1", jm_setSequence_1 ), ( "jm_getSequence_0", jm_getSequence_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
 
 
-getSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize object_ = jmethod object_ "getSize" (\() -> (getSize_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))) ()
-
-getSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize_super object_ = (getSize_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))
-
-getSize_impl :: HackRotationSpriteIndexedAnimation -> IO (Int)
-getSize_impl this = do
-        (Sprite.getRawFrameCount ((jget (this).sprite)))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setFrame :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame object_ a1 = jmethod object_ "setFrame" (\() -> (setFrame_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))) () a1
-
-setFrame_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame_super object_ a1 = (setFrame_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation)) a1
-
-setFrame_impl :: HackRotationSpriteIndexedAnimation -> Int -> IO (())
-setFrame_impl this frame = do
-        Control.Monad.void (Sprite.setFrame ((jget (this).sprite)) frame)
-        pure ()
-
-
-getFrame :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame object_ = jmethod object_ "getFrame" (\() -> (getFrame_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))) ()
-
-getFrame_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame_super object_ = (getFrame_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))
-
-getFrame_impl :: HackRotationSpriteIndexedAnimation -> IO (Int)
-getFrame_impl this = do
-        (Sprite.getFrame ((jget (this).sprite)))
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "sprite", "" ), ( "image", "" ), ( "angleInfo", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect RotationAnimation.jinit_3 JR.this [ (JR.local "angleInfo"), (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.map2 JR.div (JR.int 360) (JR.cast "I" (JR.invoke "getAngleIncrement_0" (JR.invoke "getAngleIncrementInfo_0" (JR.local "angleInfo") []) []))) ]), (JR.local "animationBehavior") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "sprite" "" JR.this (JR.local "sprite")), 
+                    JR.exec (JR.setField "image" "" JR.this (JR.local "image")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-setSequence :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence object_ a1 = jmethod object_ "setSequence" (\() -> (setSequence_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))) () a1
-
-setSequence_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence_super object_ a1 = (setSequence_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation)) a1
-
-setSequence_impl :: HackRotationSpriteIndexedAnimation -> JavaArray (Int) -> IO (())
-setSequence_impl this sequence = do
-        pure ()
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
 
 
-getSequence :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence object_ = jmethod object_ "getSequence" (\() -> (getSequence_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))) ()
+jm_getAnimationSize_0 : JR.Method
+jm_getAnimationSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getSize_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getSequence_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence_super object_ = (getSequence_impl (javaCast object_ :: HackRotationSpriteIndexedAnimation))
 
-getSequence_impl :: HackRotationSpriteIndexedAnimation -> IO (JavaArray (Int))
-getSequence_impl this = do
-        (PrimitiveIntUtil.getArrayInstance)
+jm_paintFrame_4 : JR.Method
+jm_paintFrame_4 jheap jthis jargs =
+    JR.method [ ( "g", "" ), ( "frame", "I" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setFrame_1" JR.this [ (JR.local "frame") ]), 
+                    JR.exec (JR.invoke "paintXY_3" JR.this [ (JR.local "g"), (JR.local "x"), (JR.local "y") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "g", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setPosition_2" (JR.thisField "sprite") [ (JR.local "x"), (JR.local "y") ]), 
+                    JR.exec (JR.invoke "paint_1" JR.this [ (JR.local "g") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "g", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "sprite") [ (JR.local "g") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_nextRotation_0 : JR.Method
+jm_nextRotation_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "nextFrame_0" (JR.thisField "sprite") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_previousRotation_0 : JR.Method
+jm_previousRotation_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "prevFrame_0" (JR.thisField "sprite") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSize_0 : JR.Method
+jm_getSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getRawFrameCount_0" (JR.thisField "sprite") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFrame_1 : JR.Method
+jm_setFrame_1 jheap jthis jargs =
+    JR.method [ ( "frame", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setFrame_1" (JR.thisField "sprite") [ (JR.local "frame") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFrame_0 : JR.Method
+jm_getFrame_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getFrame_0" (JR.thisField "sprite") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setSequence_1 : JR.Method
+jm_setSequence_1 jheap jthis jargs =
+    JR.method [ ( "sequence", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSequence_0 : JR.Method
+jm_getSequence_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

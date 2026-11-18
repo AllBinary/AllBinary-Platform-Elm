@@ -1,154 +1,134 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module InputFactory where
+module Org.Allbinary.Game.Input.InputFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Input -- same package or java.lang
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data InputFactory = InputFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , kEY_CODE_LABEL :: IORef (String)
-    , dEVICE_ID_LABEL :: IORef (String)
-    , mAX :: IORef (Int)
-    , inputIntegerArray :: IORef (JavaArray (Input.Input))
-    , nO_INPUT :: IORef (Input.Input)
-    }
-
-instance JavaNull InputFactory where
-    javaNull = javaNullRecord "InputFactory"
-
-instance JavaEquals InputFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InputFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InputFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO InputFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    kEY_CODE_LABEL <- newIORef ""
-    dEVICE_ID_LABEL <- newIORef ""
-    mAX <- newIORef 0
-    inputIntegerArray <- newIORef javaNull
-    nO_INPUT <- newIORef javaNull
-    let this = InputFactory header_ logUtil commonStrings kEY_CODE_LABEL dEVICE_ID_LABEL mAX inputIntegerArray nO_INPUT
-    jregisterLevel header_ this
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "getInstanceById" (\() -> getInstanceById_impl this)
-    pure this
-
-initFields_ :: InputFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.kEY_CODE_LABEL ("KeyCode: ")
-    jset this.dEVICE_ID_LABEL ("DeviceId: ")
-    jset this.mAX =<< (SmallIntegerSingletonFactory.getMin ((jio (SmallIntegerSingletonFactory.getInstance))))
-    jset this.inputIntegerArray ((jnewArray ((jget (this).mAX)) javaNull))
-    jset this.nO_INPUT =<< (Input.new_2 0 (jget ((jget (this).commonStrings)).uNKNOWN))
-    pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Input.Input as Input
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (InputFactory)
-getInstance = do
-        when ((jget InputFactory.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset InputFactory.instance_ (assignedValue)
-        pure ((javaCast (jget InputFactory.instance_) :: InputFactory))
-
-new_ :: IO InputFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: InputFactory -> IO ()
-init_ this = do
-        initFields_ this
-        let size = (jlength (jget (this).inputIntegerArray))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex ((jget (this).inputIntegerArray)) (index) ((jget (this).nO_INPUT))
-        pure ()
+jclass : String
+jclass =
+    "InputFactory"
 
 
-add :: (JavaObjectClass this_) => this_ -> Int -> Input.Input -> IO (())
-add object_ a1 a2 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: InputFactory))) () a1 a2
-
-add_super :: (JavaObjectClass this_) => this_ -> Int -> Input.Input -> IO (())
-add_super object_ a1 a2 = (add_impl (javaCast object_ :: InputFactory)) a1 a2
-
-add_impl :: InputFactory -> Int -> Input.Input -> IO (())
-add_impl this id input = do
-        jsetIndex ((jget (this).inputIntegerArray)) (id) (input)
-        pure ()
+jchain : List String
+jchain =
+    [ "InputFactory" ]
 
 
-getInstanceById :: (JavaObjectClass this_) => this_ -> Int -> IO (Input.Input)
-getInstanceById object_ a1 = jmethod object_ "getInstanceById" (\() -> (getInstanceById_impl (javaCast object_ :: InputFactory))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "KEY_CODE_LABEL", JR.defaultOf "" ), ( "DEVICE_ID_LABEL", JR.defaultOf "" ), ( "MAX", JR.defaultOf "I" ), ( "inputIntegerArray", JR.defaultOf "" ), ( "NO_INPUT", JR.defaultOf "" ) ]
 
-getInstanceById_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Input.Input)
-getInstanceById_super object_ a1 = (getInstanceById_impl (javaCast object_ :: InputFactory)) a1
 
-getInstanceById_impl :: InputFactory -> Int -> IO (Input.Input)
-getInstanceById_impl this id = do
-    id <- newIORef id
-    javaCatchReturn $ do
-        when ((jget id) < 0) $ do
-            jset id ((Prelude.negate (jget id)))
-        when ((jget id) > (jlength (jget (this).inputIntegerArray))) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "Warning id: "))) (jget id)))))) this (jget ((jget (this).commonStrings)).gET_INSTANCE))
-            javaReturn ((jget (this).nO_INPUT))
-        pure ((jindex ((jget (this).inputIntegerArray)) ((jget id))))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "add_2", jm_add_2 )
+        , ( "getInstanceById_1", jm_getInstanceById_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InputFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_add_2", jm_add_2 ), ( "jm_getInstanceById_1", jm_getInstanceById_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "InputFactory" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "KEY_CODE_LABEL" "" JR.this (JR.str "KeyCode: ")),
+                JR.exec (JR.setField "DEVICE_ID_LABEL" "" JR.this (JR.str "DeviceId: ")),
+                JR.exec (JR.setField "MAX" "I" JR.this (JR.invoke "getMin_0" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [])),
+                JR.exec (JR.setField "inputIntegerArray" "" JR.this (JR.newArray "" [ (JR.thisField "MAX") ])),
+                JR.exec (JR.setField "NO_INPUT" "" JR.this (JR.new Input.jnew_2 [ (JR.int 0), (JR.field "UNKNOWN" (JR.thisField "commonStrings")) ])),
+                identity,
+                (JR.run [ 
+                    JR.declare "size" "I" (JR.alength (JR.thisField "inputIntegerArray")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67335 -> (JR.setLocal "index" "I" (JR.lit jwN67335))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "inputIntegerArray") (\jaN67240 -> JR.andThen (JR.local "index") (\jiN67240 -> (JR.aset (JR.lit jaN67240) (JR.lit jiN67240) (JR.thisField "NO_INPUT"))))) ]) ] ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "InputFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_2 : JR.Method
+jm_add_2 jheap jthis jargs =
+    JR.method [ ( "id", "I" ), ( "input", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.andThen (JR.thisField "inputIntegerArray") (\jaN67375 -> JR.andThen (JR.local "id") (\jiN67375 -> (JR.aset (JR.lit jaN67375) (JR.lit jiN67375) (JR.local "input"))))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceById_1 : JR.Method
+jm_getInstanceById_1 jheap jthis jargs =
+    JR.method [ ( "id", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.less (JR.local "id") (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.setLocal "id" "I" (JR.map JR.neg (JR.local "id"))) ]) identity, 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "id") (JR.alength (JR.thisField "inputIntegerArray"))) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Warning id: ") ]) [ (JR.local "id") ]) []), JR.this, (JR.field "GET_INSTANCE" (JR.thisField "commonStrings")) ]), 
+                        JR.return (JR.thisField "NO_INPUT") ]) identity, 
+                    JR.return (JR.aget (JR.thisField "inputIntegerArray") (JR.local "id")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

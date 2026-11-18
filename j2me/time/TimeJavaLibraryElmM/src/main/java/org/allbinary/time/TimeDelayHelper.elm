@@ -1,14 +1,14 @@
-module TimeDelayHelper exposing (..)
+module Org.Allbinary.Time.TimeDelayHelper exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.time
 -}
 
 import JR
-import CommonLabels
+import Org.Allbinary.String.CommonLabels as CommonLabels
 import JLong
 import JSystem
-import StringMaker
-import StringUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
 jclass : String

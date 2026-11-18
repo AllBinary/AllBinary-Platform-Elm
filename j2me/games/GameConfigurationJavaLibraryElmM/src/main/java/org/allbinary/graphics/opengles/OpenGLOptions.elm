@@ -1,109 +1,97 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
-module OpenGLOptions where
+module Org.Allbinary.Graphics.Opengles.OpenGLOptions exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified OpenGLFeatureFactory -- same package or java.lang
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified GameFeatureChoiceGroups -- org.allbinary.game.configuration.feature.GameFeatureChoiceGroups
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.graphics.opengles
+-}
 
-data OpenGLOptions = OpenGLOptions
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull OpenGLOptions where
-    javaNull = javaNullRecord "OpenGLOptions"
-
-instance JavaEquals OpenGLOptions where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLOptions where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLOptions where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OpenGLOptions
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = OpenGLOptions header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    pure this
-
-initFields_ :: OpenGLOptions -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO OpenGLOptions
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLOptions -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Configuration.Feature.GameFeatureChoiceGroups as GameFeatureChoiceGroups
+import Org.Allbinary.Graphics.Opengles.OpenGLFeatureFactory as OpenGLFeatureFactory
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: OpenGLOptions))) ()
+jclass : String
+jclass =
+    "OpenGLOptions"
 
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: OpenGLOptions))
 
-init_impl :: OpenGLOptions -> IO (())
-init_impl this = do
-        openGLFeatureFactory <- (OpenGLFeatureFactory.getInstance)
-        when (jio (Features.isFeature ((jio (Features.getInstance))) (javaCast (jget (openGLFeatureFactory).oPENGL_OPTIONS)))) $ do
-            openGLMultipleList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            Control.Monad.void (BasicArrayList.add openGLMultipleList (jget (openGLFeatureFactory).oPENGL))
-            Control.Monad.void (GameFeatureChoiceGroups.add ((jio (GameFeatureChoiceGroups.getMultipleInstance))) "OpenGL (Complete Restart)" openGLMultipleList)
-            openGLVersionSelectorMultipleList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            Control.Monad.void (BasicArrayList.add openGLVersionSelectorMultipleList (jget (openGLFeatureFactory).oPENGL_AUTO_SELECT))
-            Control.Monad.void (BasicArrayList.add openGLVersionSelectorMultipleList (jget (openGLFeatureFactory).oPENGL_MINIMUM))
-            Control.Monad.void (GameFeatureChoiceGroups.add ((jio (GameFeatureChoiceGroups.getExclusiveInstance))) "OpenGL Version Selector" openGLVersionSelectorMultipleList)
-            openGLImageColorMultipleList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            Control.Monad.void (BasicArrayList.add openGLImageColorMultipleList (jget (openGLFeatureFactory).iMAGE_COLOR_DEPTH_4444))
-            Control.Monad.void (BasicArrayList.add openGLImageColorMultipleList (jget (openGLFeatureFactory).iMAGE_COLOR_DEPTH_8888))
-            Control.Monad.void (GameFeatureChoiceGroups.add ((jio (GameFeatureChoiceGroups.getExclusiveInstance))) "OpenGL Image Color RGBA" openGLImageColorMultipleList)
-        pure ()
+jchain : List String
+jchain =
+    [ "OpenGLOptions" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLOptions"
+        [ ( "jm_init_0", jm_init_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "openGLFeatureFactory" "" (JR.callStatic OpenGLFeatureFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.callStatic Features.jm_getInstance_0 []) [ (JR.field "OPENGL_OPTIONS" (JR.local "openGLFeatureFactory")) ]) (JR.run [ 
+                        JR.declare "openGLMultipleList" "" (JR.new BasicArrayListD.jnew_0 []), 
+                        JR.exec (JR.invoke "add_1" (JR.local "openGLMultipleList") [ (JR.field "OPENGL" (JR.local "openGLFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "add_2" (JR.callStatic GameFeatureChoiceGroups.jm_getMultipleInstance_0 []) [ (JR.str "OpenGL (Complete Restart)"), (JR.local "openGLMultipleList") ]), 
+                        JR.declare "openGLVersionSelectorMultipleList" "" (JR.new BasicArrayListD.jnew_0 []), 
+                        JR.exec (JR.invoke "add_1" (JR.local "openGLVersionSelectorMultipleList") [ (JR.field "OPENGL_AUTO_SELECT" (JR.local "openGLFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "add_1" (JR.local "openGLVersionSelectorMultipleList") [ (JR.field "OPENGL_MINIMUM" (JR.local "openGLFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "add_2" (JR.callStatic GameFeatureChoiceGroups.jm_getExclusiveInstance_0 []) [ (JR.str "OpenGL Version Selector"), (JR.local "openGLVersionSelectorMultipleList") ]), 
+                        JR.declare "openGLImageColorMultipleList" "" (JR.new BasicArrayListD.jnew_0 []), 
+                        JR.exec (JR.invoke "add_1" (JR.local "openGLImageColorMultipleList") [ (JR.field "IMAGE_COLOR_DEPTH_4444" (JR.local "openGLFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "add_1" (JR.local "openGLImageColorMultipleList") [ (JR.field "IMAGE_COLOR_DEPTH_8888" (JR.local "openGLFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "add_2" (JR.callStatic GameFeatureChoiceGroups.jm_getExclusiveInstance_0 []) [ (JR.str "OpenGL Image Color RGBA"), (JR.local "openGLImageColorMultipleList") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

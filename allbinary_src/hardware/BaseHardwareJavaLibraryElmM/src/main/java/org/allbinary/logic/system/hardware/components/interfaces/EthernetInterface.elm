@@ -1,4 +1,4 @@
-module EthernetInterface exposing (..)
+module Org.Allbinary.Logic.System.Hardware.Components.Interfaces.EthernetInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.hardware.components.interfaces
 -}

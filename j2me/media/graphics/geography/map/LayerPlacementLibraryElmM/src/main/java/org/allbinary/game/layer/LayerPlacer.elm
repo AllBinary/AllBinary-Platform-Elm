@@ -1,183 +1,146 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
-module LayerPlacer where
+module Org.Allbinary.Game.Layer.LayerPlacer exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LayerPlacementInterface -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified LayerPlacementType -- same package or java.lang
-import qualified LayerPlacementTypeFactory -- same package or java.lang
-import qualified Enumeration -- java.util.Enumeration
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified LayerInterfaceFactory -- org.allbinary.layer.LayerInterfaceFactory
-import qualified LayerInterfaceVisitor -- org.allbinary.layer.LayerInterfaceVisitor
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified EnumerationUtil -- org.allbinary.util.EnumerationUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.layer
+-}
 
-data LayerPlacer = LayerPlacer
-    { header_ :: JavaHeader
-    , enumerationUtil :: IORef (EnumerationUtil.EnumerationUtil)
-    , layerInterfaceVisitor :: IORef (LayerInterfaceVisitor.LayerInterfaceVisitor)
-    , dimension :: IORef (GPoint.GPoint)
-    }
-
-instance JavaNull LayerPlacer where
-    javaNull = javaNullRecord "LayerPlacer"
-
-instance JavaEquals LayerPlacer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LayerPlacer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LayerPlacer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LayerPlacer
-newRecord_ = do
-    header_ <- newJavaHeader
-    enumerationUtil <- newIORef javaNull
-    layerInterfaceVisitor <- newIORef javaNull
-    dimension <- newIORef javaNull
-    let this = LayerPlacer header_ enumerationUtil layerInterfaceVisitor dimension
-    jregisterLevel header_ this
-    jregisterMethod header_ "processList" (\() -> processList_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "getPoint" (\() -> getPoint_impl this)
-    pure this
-
-initFields_ :: LayerPlacer -> IO ()
-initFields_ this = do
-    jset this.enumerationUtil =<< (EnumerationUtil.getInstance)
-    jset this.layerInterfaceVisitor (javaNull)
-    jset this.dimension (javaNull)
-    pure ()
-
-new_2 :: LayerInterfaceVisitor.LayerInterfaceVisitor -> GPoint.GPoint -> IO LayerPlacer
-new_2 layerInterfaceVisitor dimension = do
-    this <- newRecord_
-    init_2 this layerInterfaceVisitor dimension
-    pure this
-
-init_2 :: LayerPlacer -> LayerInterfaceVisitor.LayerInterfaceVisitor -> GPoint.GPoint -> IO ()
-init_2 this layerInterfaceVisitor dimension = do
-        initFields_ this
-        jset (this).layerInterfaceVisitor (layerInterfaceVisitor)
-        jset (this).dimension (dimension)
-        pure ()
+import JR
+import Org.Allbinary.Util.EnumerationUtil as EnumerationUtil
+import Org.Allbinary.Layer.LayerInterfaceFactory as LayerInterfaceFactory
+import Org.Allbinary.Game.Layer.LayerPlacementTypeFactory as LayerPlacementTypeFactory
+import Org.Allbinary.Graphics.PointFactory as PointFactory
 
 
--- throws Exception
-processList :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-processList object_ a1 = jmethod object_ "processList" (\() -> (processList_impl (javaCast object_ :: LayerPlacer))) () a1
-
-processList_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-processList_super object_ a1 = (processList_impl (javaCast object_ :: LayerPlacer)) a1
-
-processList_impl :: LayerPlacer -> BasicArrayList.BasicArrayList -> IO (())
-processList_impl this list = do
-        size <- (BasicArrayList.size list)
-        layerPlacementInterface <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset layerPlacementInterface ((javaCast (jindex ((jget (list).objectArray)) (index)) :: LayerPlacementInterface.LayerPlacementInterface))
-            Control.Monad.void (LayerPlacer.process this (jget layerPlacementInterface))
-        pure ()
+jclass : String
+jclass =
+    "LayerPlacer"
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> LayerPlacementInterface.LayerPlacementInterface -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: LayerPlacer))) () a1
-
-process_super :: (JavaObjectClass this_) => this_ -> LayerPlacementInterface.LayerPlacementInterface -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: LayerPlacer)) a1
-
-process_impl :: LayerPlacer -> LayerPlacementInterface.LayerPlacementInterface -> IO (())
-process_impl this layerPlacementInterface = do
-        relativePoint <- (LayerPlacer.getPoint this layerPlacementInterface)
-        layerInterfaceFactory <- (LayerInterfaceFactory.getInstance)
-        hashtable <- (LayerPlacementInterface.getInstance layerPlacementInterface)
-        enumeration <- (ABHashtable.keys hashtable)
-        point <- newIORef (javaNull)
-        layerHashtable <- newIORef (javaNull)
-        x <- newIORef (0 :: Int)
-        y <- newIORef (0 :: Int)
-        z <- newIORef (0 :: Int)
-        layerInterface <- newIORef (javaNull)
-        fix $ \loop -> when (jio (EnumerationUtil.hasMoreElements ((jget (this).enumerationUtil)) enumeration)) $ javaIteration (loop) $ do
-            jset point ((javaCast (jio (EnumerationUtil.nextElement ((jget (this).enumerationUtil)) enumeration)) :: GPoint.GPoint))
-            jset layerHashtable ((javaCast (jio (ABHashtable.get hashtable (jget point))) :: ABHashtable.ABHashtable))
-            jset x (((jio (GPoint.getX ((jget point)))) + (jio (GPoint.getX relativePoint))))
-            jset y (((jio (GPoint.getY ((jget point)))) + (jio (GPoint.getY relativePoint))))
-            jset z (((jio (GPoint.getZ ((jget point)))) + (jio (GPoint.getZ relativePoint))))
-            assignedValue <- (LayerInterfaceFactory.getNexInstance layerInterfaceFactory (jget layerHashtable) (jget x) (jget y) (jget z))
-            jset layerInterface (assignedValue)
-            Control.Monad.void (LayerInterfaceVisitor.visit ((jget (this).layerInterfaceVisitor)) (jget layerInterface))
-        pure ()
+jchain : List String
+jchain =
+    [ "LayerPlacer" ]
 
 
--- throws Exception
-getPoint :: (JavaObjectClass this_) => this_ -> LayerPlacementInterface.LayerPlacementInterface -> IO (GPoint.GPoint)
-getPoint object_ a1 = jmethod object_ "getPoint" (\() -> (getPoint_impl (javaCast object_ :: LayerPlacer))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "enumerationUtil", JR.defaultOf "" ), ( "layerInterfaceVisitor", JR.defaultOf "" ), ( "dimension", JR.defaultOf "" ) ]
 
-getPoint_super :: (JavaObjectClass this_) => this_ -> LayerPlacementInterface.LayerPlacementInterface -> IO (GPoint.GPoint)
-getPoint_super object_ a1 = (getPoint_impl (javaCast object_ :: LayerPlacer)) a1
 
-getPoint_impl :: LayerPlacer -> LayerPlacementInterface.LayerPlacementInterface -> IO (GPoint.GPoint)
-getPoint_impl this layerPlacementInterface = do
-    javaCatchReturn $ do
-        pointFactory <- (PointFactory.getInstance)
-        layerPlacementType <- (LayerPlacementInterface.getLayerType layerPlacementInterface)
-        if (layerPlacementType == (jget ((jio (LayerPlacementTypeFactory.getInstance))).mAP)) then do
-            width <- (LayerPlacementInterface.getWidth layerPlacementInterface)
-            height <- (LayerPlacementInterface.getHeight layerPlacementInterface)
-            let x = (((((jio (GPoint.getX ((jget (this).dimension)))) - width)) / 2))
-            let y = (((((jio (GPoint.getY ((jget (this).dimension)))) - height)) / 2))
-            javaReturn =<< (PointFactory.createXY pointFactory x y)
-        else if (layerPlacementType == (jget ((jio (LayerPlacementTypeFactory.getInstance))).uP)) then do
-            width <- (LayerPlacementInterface.getWidth layerPlacementInterface)
-            height <- (LayerPlacementInterface.getHeight layerPlacementInterface)
-            let x = (((((jio (GPoint.getX ((jget (this).dimension)))) - width)) / 2))
-            let y = (Prelude.negate height)
-            javaReturn =<< (PointFactory.createXY pointFactory x y)
-        else do
-            javaThrow ((JavaException "Exception" "PlacementType Not Recognized"))
+jvtable =
+    JR.vtable
+        [ ( "processList_1", jm_processList_1 )
+        , ( "process_1", jm_process_1 )
+        , ( "getPoint_1", jm_getPoint_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LayerPlacer"
+        [ ( "jm_processList_1", jm_processList_1 ), ( "jm_process_1", jm_process_1 ), ( "jm_getPoint_1", jm_getPoint_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "layerInterfaceVisitor", "" ), ( "dimension", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "enumerationUtil" "" JR.this (JR.callStatic EnumerationUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "layerInterfaceVisitor" "" JR.this (JR.local "layerInterfaceVisitor")), 
+                    JR.exec (JR.setField "dimension" "" JR.this (JR.local "dimension")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_processList_1 : JR.Method
+jm_processList_1 jheap jthis jargs =
+    JR.method [ ( "list", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                    JR.declare "layerPlacementInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67704 -> (JR.setLocal "index" "I" (JR.lit jwN67704))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "layerPlacementInterface" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "process_1" JR.this [ (JR.local "layerPlacementInterface") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "layerPlacementInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "relativePoint" "" (JR.invoke "getPoint_1" JR.this [ (JR.local "layerPlacementInterface") ]), 
+                    JR.declare "layerInterfaceFactory" "" (JR.callStatic LayerInterfaceFactory.jm_getInstance_0 []), 
+                    JR.declare "hashtable" "" (JR.invoke "getInstance_0" (JR.local "layerPlacementInterface") []), 
+                    JR.declare "enumeration" "" (JR.invoke "keys_0" (JR.local "hashtable") []), 
+                    JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "layerHashtable" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "x" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "y" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "z" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "layerInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.while (JR.invoke "hasMoreElements_1" (JR.thisField "enumerationUtil") [ (JR.local "enumeration") ]) (JR.run [ 
+                        JR.exec (JR.setLocal "point" "" (JR.invoke "nextElement_1" (JR.thisField "enumerationUtil") [ (JR.local "enumeration") ])), 
+                        JR.exec (JR.setLocal "layerHashtable" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.local "point") ])), 
+                        JR.exec (JR.setLocal "x" "I" (JR.map2 JR.add (JR.invoke "getX_0" (JR.local "point") []) (JR.invoke "getX_0" (JR.local "relativePoint") []))), 
+                        JR.exec (JR.setLocal "y" "I" (JR.map2 JR.add (JR.invoke "getY_0" (JR.local "point") []) (JR.invoke "getY_0" (JR.local "relativePoint") []))), 
+                        JR.exec (JR.setLocal "z" "I" (JR.map2 JR.add (JR.invoke "getZ_0" (JR.local "point") []) (JR.invoke "getZ_0" (JR.local "relativePoint") []))), 
+                        JR.exec (JR.setLocal "layerInterface" "" (JR.invoke "getNexInstance_4" (JR.local "layerInterfaceFactory") [ (JR.local "layerHashtable"), (JR.local "x"), (JR.local "y"), (JR.local "z") ])), 
+                        JR.exec (JR.invoke "visit_1" (JR.thisField "layerInterfaceVisitor") [ (JR.local "layerInterface") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPoint_1 : JR.Method
+jm_getPoint_1 jheap jthis jargs =
+    JR.method [ ( "layerPlacementInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
+                    JR.declare "layerPlacementType" "" (JR.invoke "getLayerType_0" (JR.local "layerPlacementInterface") []), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "layerPlacementType") (JR.field "MAP" (JR.callStatic LayerPlacementTypeFactory.jm_getInstance_0 []))) (JR.run [ 
+                        JR.declare "width" "I" (JR.invoke "getWidth_0" (JR.local "layerPlacementInterface") []), 
+                        JR.declare "height" "I" (JR.invoke "getHeight_0" (JR.local "layerPlacementInterface") []), 
+                        JR.declare "x" "I" ((JR.map2 JR.div ((JR.map2 JR.sub (JR.invoke "getX_0" (JR.thisField "dimension") []) (JR.local "width"))) (JR.int 2))), 
+                        JR.declare "y" "I" ((JR.map2 JR.div ((JR.map2 JR.sub (JR.invoke "getY_0" (JR.thisField "dimension") []) (JR.local "height"))) (JR.int 2))), 
+                        JR.return (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.local "x"), (JR.local "y") ]) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "layerPlacementType") (JR.field "UP" (JR.callStatic LayerPlacementTypeFactory.jm_getInstance_0 []))) (JR.run [ 
+                        JR.declare "width" "I" (JR.invoke "getWidth_0" (JR.local "layerPlacementInterface") []), 
+                        JR.declare "height" "I" (JR.invoke "getHeight_0" (JR.local "layerPlacementInterface") []), 
+                        JR.declare "x" "I" ((JR.map2 JR.div ((JR.map2 JR.sub (JR.invoke "getX_0" (JR.thisField "dimension") []) (JR.local "width"))) (JR.int 2))), 
+                        JR.declare "y" "I" (JR.map JR.neg (JR.local "height")), 
+                        JR.return (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.local "x"), (JR.local "y") ]) ]) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "PlacementType Not Recognized") ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,105 +1,101 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
-module NullIntermissionEnableListener where
+module Org.Allbinary.Game.NullIntermissionEnableListener exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified IntermissionEnableListenerInterface
+{-| Generated Code Do Not Modify package org.allbinary.game
+-}
 
--- implements IntermissionEnableListenerInterface
-data NullIntermissionEnableListener = NullIntermissionEnableListener
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull NullIntermissionEnableListener where
-    javaNull = javaNullRecord "NullIntermissionEnableListener"
-
-instance JavaEquals NullIntermissionEnableListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NullIntermissionEnableListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NullIntermissionEnableListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: IntermissionEnableListenerInterface.IntermissionEnableListenerInterface
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((fmap (\value_ -> javaCast value_ :: IntermissionEnableListenerInterface.IntermissionEnableListenerInterface) (new_)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NullIntermissionEnableListener
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = NullIntermissionEnableListener header_
-    jregisterLevel header_ this
-    IntermissionEnableListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "notifyIntermission" (\() -> notifyIntermission_impl this)
-    pure this
-
-initFields_ :: NullIntermissionEnableListener -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Game.IntermissionEnableListenerInterface as IntermissionEnableListenerInterface
 
 
-getInstance :: IO (IntermissionEnableListenerInterface.IntermissionEnableListenerInterface)
-getInstance = do
-        pure (NullIntermissionEnableListener.sINGLETON)
-
-new_ :: IO NullIntermissionEnableListener
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NullIntermissionEnableListener -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "NullIntermissionEnableListener"
 
 
-notifyIntermission :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-notifyIntermission object_ a1 = jmethod object_ "notifyIntermission" (\() -> (notifyIntermission_impl (javaCast object_ :: NullIntermissionEnableListener))) () a1
+jchain : List String
+jchain =
+    [ "NullIntermissionEnableListener" ]
+        ++ IntermissionEnableListenerInterface.jchain
 
-notifyIntermission_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-notifyIntermission_super object_ a1 = (notifyIntermission_impl (javaCast object_ :: NullIntermissionEnableListener)) a1
 
-notifyIntermission_impl :: NullIntermissionEnableListener -> Bool -> IO (())
-notifyIntermission_impl this enable = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "notifyIntermission_1", jm_notifyIntermission_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullIntermissionEnableListener"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_notifyIntermission_1", jm_notifyIntermission_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "NullIntermissionEnableListener" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_notifyIntermission_1 : JR.Method
+jm_notifyIntermission_1 jheap jthis jargs =
+    JR.method [ ( "enable", "Z" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

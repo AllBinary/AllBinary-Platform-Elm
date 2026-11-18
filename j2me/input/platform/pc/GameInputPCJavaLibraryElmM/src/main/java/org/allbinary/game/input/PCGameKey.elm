@@ -1,107 +1,104 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module PCGameKey (module PCGameKey, module Input) where
+module Org.Allbinary.Game.Input.PCGameKey exposing (..)
 
-import Input hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, toString, toString_super, toString_impl, getString, getString_super, getString_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified InputFactory -- same package or java.lang
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified Input
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data PCGameKey = PCGameKey
-    { header_ :: JavaHeader
-    , base :: Input.Input
-    }
-
-instance JavaNull PCGameKey where
-    javaNull = javaNullRecord "PCGameKey"
-
-instance JavaEquals PCGameKey where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PCGameKey where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PCGameKey where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO PCGameKey
-newRecord_ = do
-    base <- Input.newRecord_
-    let header_ = base.header_
-    let this = PCGameKey header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: PCGameKey -> IO ()
-initFields_ this = do
-    pure ()
-
-new_2 :: Int -> String -> IO PCGameKey
-new_2 keyCode name = do
-    this <- newRecord_
-    init_2 this keyCode name
-    pure this
-
-init_2 :: PCGameKey -> Int -> String -> IO ()
-init_2 this keyCode name = do
-        Input.init_2 this.base (keyCode) (name)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        id <- (Input.getId this)
-        when (id >= 0) $ do
-            Control.Monad.void (InputFactory.add ((jio (InputFactory.getInstance))) id this)
-        pure ()
+import JR
+import Org.Allbinary.Game.Input.Input as Input
+import Org.Allbinary.Game.Input.InputFactory as InputFactory
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: PCGameKey))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: PCGameKey))
-
-toString_impl :: PCGameKey -> IO (String)
-toString_impl this = do
-        pure (("PCGameKey: " ++ (jio (Input.toString_super this.base))))
+jclass : String
+jclass =
+    "PCGameKey"
 
 
-getString :: Int -> IO (String)
-getString keyCode = do
-    javaCatchReturn $ do
-        input <- (InputFactory.getInstanceById ((jio (InputFactory.getInstance))) keyCode)
-        if (input /= javaNull) then do
-            javaReturn =<< (Input.getName input)
-        else do
-            javaReturn ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
+jchain : List String
+jchain =
+    [ "PCGameKey" ]
+        ++ Input.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    Input.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "toString_0", jm_toString_0 )
+        , ( "getString_1", jm_getString_1 ) ]
+        Input.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PCGameKey"
+        [ ( "jm_toString_0", jm_toString_0 ), ( "jm_getString_1", jm_getString_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "name", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Input.jinit_2 JR.this [ (JR.local "keyCode"), (JR.local "name") ]),
+                identity,
+                (JR.run [ 
+                    JR.declare "id" "I" (JR.invoke "getId_0" JR.this []), 
+                    JR.ifElse (JR.map2 JR.greaterEquals (JR.local "id") (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.invoke "add_2" (JR.callStatic InputFactory.jm_getInstance_0 []) [ (JR.local "id"), JR.this ]) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.concat (JR.str "PCGameKey: ") (JR.callVia Input.jvtable "toString_0" JR.this [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getString_1 : JR.Method
+jm_getString_1 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "input" "" (JR.invoke "getInstanceById_1" (JR.callStatic InputFactory.jm_getInstance_0 []) [ (JR.local "keyCode") ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "input") JR.null) (JR.run [ 
+                        JR.return (JR.invoke "getName_0" (JR.local "input") []) ]) (JR.run [ 
+                        JR.return (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

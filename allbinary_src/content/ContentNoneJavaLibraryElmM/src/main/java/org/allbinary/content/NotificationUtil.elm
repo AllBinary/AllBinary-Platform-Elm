@@ -1,101 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.content
-module NotificationUtil where
+module Org.Allbinary.Content.NotificationUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Command -- javax.microedition.lcdui.Command
+{-| Generated Code Do Not Modify package org.allbinary.content
+-}
 
-data NotificationUtil = NotificationUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull NotificationUtil where
-    javaNull = javaNullRecord "NotificationUtil"
-
-instance JavaEquals NotificationUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NotificationUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NotificationUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: NotificationUtil
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NotificationUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = NotificationUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "notify" (\() -> notify_impl this)
-    pure this
-
-initFields_ :: NotificationUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO NotificationUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NotificationUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (NotificationUtil)
-getInstance = do
-        pure (NotificationUtil.sINGLETON)
+
+jclass : String
+jclass =
+    "NotificationUtil"
 
 
-notify :: (JavaObjectClass this_) => this_ -> Command.Command -> String -> String -> IO (())
-notify object_ a1 a2 a3 = jmethod object_ "notify" (\() -> (notify_impl (javaCast object_ :: NotificationUtil))) () a1 a2 a3
+jchain : List String
+jchain =
+    [ "NotificationUtil" ]
 
-notify_super :: (JavaObjectClass this_) => this_ -> Command.Command -> String -> String -> IO (())
-notify_super object_ a1 a2 a3 = (notify_impl (javaCast object_ :: NotificationUtil)) a1 a2 a3
 
-notify_impl :: NotificationUtil -> Command.Command -> String -> String -> IO (())
-notify_impl this command resource message = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "notify_3", jm_notify_3 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NotificationUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_notify_3", jm_notify_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "NotificationUtil" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_notify_3 : JR.Method
+jm_notify_3 jheap jthis jargs =
+    JR.method [ ( "command", "" ), ( "resource", "" ), ( "message", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

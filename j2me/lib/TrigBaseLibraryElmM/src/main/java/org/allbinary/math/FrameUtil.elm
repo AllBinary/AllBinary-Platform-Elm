@@ -1,10 +1,10 @@
-module FrameUtil exposing (..)
+module Org.Allbinary.Math.FrameUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.math
 -}
 
 import JR
-import AngleFactory
+import Org.Allbinary.Math.AngleFactory as AngleFactory
 
 
 jclass : String

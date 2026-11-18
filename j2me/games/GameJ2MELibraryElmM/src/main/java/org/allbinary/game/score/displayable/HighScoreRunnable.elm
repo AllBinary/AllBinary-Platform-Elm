@@ -1,123 +1,109 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score.displayable
-module HighScoreRunnable (module HighScoreRunnable, module ARunnable) where
+module Org.Allbinary.Game.Score.Displayable.HighScoreRunnable exposing (..)
 
-import ARunnable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, run, run_super, run_impl, highScoresCanvas)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HighScoresCanvas -- same package or java.lang
-import qualified J2MEUtil -- org.allbinary.J2MEUtil
-import qualified ABSystemWrapper -- org.allbinary.logic.ABSystemWrapper
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified ARunnable -- org.allbinary.thread.ARunnable
+{-| Generated Code Do Not Modify package org.allbinary.game.score.displayable
+-}
 
-data HighScoreRunnable = HighScoreRunnable
-    { header_ :: JavaHeader
-    , base :: ARunnable.ARunnable
-    , highScoresCanvas :: IORef (HighScoresCanvas.HighScoresCanvas)
-    }
-
-instance JavaNull HighScoreRunnable where
-    javaNull = javaNullRecord "HighScoreRunnable"
-
-instance JavaEquals HighScoreRunnable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoreRunnable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoreRunnable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HighScoreRunnable
-newRecord_ = do
-    base <- ARunnable.newRecord_
-    let header_ = base.header_
-    highScoresCanvas <- newIORef javaNull
-    let this = HighScoreRunnable header_ base highScoresCanvas
-    jregisterLevel header_ this
-    jregisterMethod header_ "run" (\() -> run_impl this)
-    pure this
-
-initFields_ :: HighScoreRunnable -> IO ()
-initFields_ this = do
-    jset this.highScoresCanvas (javaNull)
-    pure ()
-
-new_1 :: HighScoresCanvas.HighScoresCanvas -> IO HighScoreRunnable
-new_1 highScoresCanvas = do
-    this <- newRecord_
-    init_1 this highScoresCanvas
-    pure this
-
-init_1 :: HighScoreRunnable -> HighScoresCanvas.HighScoresCanvas -> IO ()
-init_1 this highScoresCanvas = do
-        ARunnable.init_ this.base
-        initFields_ this
-        jset (this).highScoresCanvas (highScoresCanvas)
-        pure ()
+import JR
+import Org.Allbinary.Logic.ABSystemWrapper as ABSystemWrapper
+import Org.Allbinary.Thread.ARunnable as ARunnable
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.J2MEUtil as J2MEUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-run :: (JavaObjectClass this_) => this_ -> IO (())
-run object_ = jmethod object_ "run" (\() -> (run_impl (javaCast object_ :: HighScoreRunnable))) ()
+jclass : String
+jclass =
+    "HighScoreRunnable"
 
-run_super :: (JavaObjectClass this_) => this_ -> IO (())
-run_super object_ = (run_impl (javaCast object_ :: HighScoreRunnable))
 
-run_impl :: HighScoreRunnable -> IO (())
-run_impl this = do
-        commonStrings <- (CommonStrings.getInstance)
-        logUtil <- (LogUtil.getInstance)
-        let highScoresCanvas = (jget (this).highScoresCanvas)
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put logUtil (jget (commonStrings).eXCEPTION) this (jget (commonStrings).rUN) e)
-            ) $ do
-            isHTML <- (J2MEUtil.isHTML)
-            when (Prelude.not isHTML) $ do
-                fix $ \loop -> when (Prelude.not (jget (highScoresCanvas).hasPainted)) $ javaIteration (loop) $ do
-                    pure ()
-                jset (highScoresCanvas).hasPainted (False)
-            stringMaker <- (StringMaker.new_)
-            systemWrapper <- (ABSystemWrapper.getInstance)
-            currentTimeMillis <- (ABSystemWrapper.currentTimeMillis systemWrapper)
-            Control.Monad.void (LogUtil.putF logUtil (jio (StringMaker.toString ((jio (StringMaker.appendlong ((jio (StringMaker.append stringMaker "HighScoresCanvas - Request repaint to be sure: "))) currentTimeMillis))))) this (jget (commonStrings).rUN))
-            Control.Monad.void (onChangeRepaint ((jget (highScoresCanvas).repaintBehavior)) highScoresCanvas)
-            when (Prelude.not isHTML) $ do
-                fix $ \loop -> when (Prelude.not (jget (highScoresCanvas).hasPainted)) $ javaIteration (loop) $ do
-                    pure ()
-            Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-            Control.Monad.void (LogUtil.putF logUtil (jio (StringMaker.toString ((jio (StringMaker.appendlong ((jio (StringMaker.append stringMaker "HighScoresCanvas - Now that the canvas has completed repaint go ahead and fetch the scores: "))) currentTimeMillis))))) this (jget (commonStrings).rUN))
-            Control.Monad.void (HighScoresCanvas.executeUpdate highScoresCanvas)
-        pure ()
+jchain : List String
+jchain =
+    [ "HighScoreRunnable" ]
+        ++ ARunnable.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    ARunnable.jfields ++ [ ( "highScoresCanvas", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "run_0", jm_run_0 ) ]
+        ARunnable.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoreRunnable"
+        [ ( "jm_run_0", jm_run_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "highScoresCanvas", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ARunnable.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "highScoresCanvas" "" JR.this (JR.local "highScoresCanvas")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_run_0 : JR.Method
+jm_run_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.declare "logUtil" "" (JR.callStatic LogUtil.jm_getInstance_0 []), 
+                    JR.declare "highScoresCanvas" "" (JR.thisField "highScoresCanvas"), 
+                    JR.try (JR.run [ 
+                        JR.declare "isHTML" "Z" (JR.callStatic J2MEUtil.jm_isHTML_0 []), 
+                        JR.ifElse (JR.map JR.not_ (JR.local "isHTML")) (JR.run [ 
+                            JR.while (JR.map JR.not_ (JR.field "hasPainted" (JR.local "highScoresCanvas"))) identity, 
+                            JR.exec (JR.andThen (JR.local "highScoresCanvas") (\jtN70825 -> (JR.setField "hasPainted" "Z" (JR.lit jtN70825) (JR.bool False)))) ]) identity, 
+                        JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.declare "systemWrapper" "" (JR.callStatic ABSystemWrapper.jm_getInstance_0 []), 
+                        JR.declare "currentTimeMillis" "J" (JR.invoke "currentTimeMillis_0" (JR.local "systemWrapper") []), 
+                        JR.exec (JR.invoke "putF_3" (JR.local "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendlong_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.str "HighScoresCanvas - Request repaint to be sure: ") ]) [ (JR.local "currentTimeMillis") ]) []), JR.this, (JR.field "RUN" (JR.local "commonStrings")) ]), 
+                        JR.exec (JR.invoke "onChangeRepaint_1" (JR.field "repaintBehavior" (JR.local "highScoresCanvas")) [ (JR.local "highScoresCanvas") ]), 
+                        JR.ifElse (JR.map JR.not_ (JR.local "isHTML")) (JR.run [ 
+                            JR.while (JR.map JR.not_ (JR.field "hasPainted" (JR.local "highScoresCanvas"))) identity ]) identity, 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.local "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendlong_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.str "HighScoresCanvas - Now that the canvas has completed repaint go ahead and fetch the scores: ") ]) [ (JR.local "currentTimeMillis") ]) []), JR.this, (JR.field "RUN" (JR.local "commonStrings")) ]), 
+                        JR.exec (JR.invoke "executeUpdate_0" (JR.local "highScoresCanvas") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.local "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "RUN" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

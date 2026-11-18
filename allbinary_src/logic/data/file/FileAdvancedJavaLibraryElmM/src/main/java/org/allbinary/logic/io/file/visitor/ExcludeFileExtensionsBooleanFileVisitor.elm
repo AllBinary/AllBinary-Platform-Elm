@@ -1,116 +1,104 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file.visitor
-module ExcludeFileExtensionsBooleanFileVisitor (module ExcludeFileExtensionsBooleanFileVisitor, module BooleanFileVisitor) where
+module Org.Allbinary.Logic.Io.File.Visitor.ExcludeFileExtensionsBooleanFileVisitor exposing (..)
 
-import BooleanFileVisitor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, visit, visit_super, visit_impl, visit_2, visit_2_super, visit_2_impl, visit)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BooleanFileVisitor
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file.visitor
+-}
 
-data ExcludeFileExtensionsBooleanFileVisitor = ExcludeFileExtensionsBooleanFileVisitor
-    { header_ :: JavaHeader
-    , base :: BooleanFileVisitor.BooleanFileVisitor
-    }
-
-instance JavaNull ExcludeFileExtensionsBooleanFileVisitor where
-    javaNull = javaNullRecord "ExcludeFileExtensionsBooleanFileVisitor"
-
-instance JavaEquals ExcludeFileExtensionsBooleanFileVisitor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ExcludeFileExtensionsBooleanFileVisitor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ExcludeFileExtensionsBooleanFileVisitor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ExcludeFileExtensionsBooleanFileVisitor
-newRecord_ = do
-    base <- BooleanFileVisitor.newRecord_
-    let header_ = base.header_
-    let this = ExcludeFileExtensionsBooleanFileVisitor header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "visit" (\() -> visit_impl this)
-    jregisterMethod header_ "visit_2" (\() -> visit_2_impl this)
-    pure this
-
-initFields_ :: ExcludeFileExtensionsBooleanFileVisitor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_1 :: BasicArrayList.BasicArrayList -> IO ExcludeFileExtensionsBooleanFileVisitor
-new_1 filterStringBasicArrayList = do
-    this <- newRecord_
-    init_1 this filterStringBasicArrayList
-    pure this
-
-init_1 :: ExcludeFileExtensionsBooleanFileVisitor -> BasicArrayList.BasicArrayList -> IO ()
-init_1 this filterStringBasicArrayList = do
-        BooleanFileVisitor.init_1 this.base (filterStringBasicArrayList)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Logic.Io.File.Visitor.BooleanFileVisitor as BooleanFileVisitor
 
 
-visit :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (Bool)
-visit object_ a1 = jmethod object_ "visit" (\() -> (visit_impl (javaCast object_ :: ExcludeFileExtensionsBooleanFileVisitor))) () a1
-
-visit_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (Bool)
-visit_super object_ a1 = (visit_impl (javaCast object_ :: ExcludeFileExtensionsBooleanFileVisitor)) a1
-
-visit_impl :: ExcludeFileExtensionsBooleanFileVisitor -> AbFile.AbFile -> IO (Bool)
-visit_impl this file = do
-    javaCatchReturn $ do
-        when ((jio (BasicArrayList.size ((jio (BooleanFileVisitor.getFilterStringBasicArrayList this))))) == 0) $ do
-            javaReturn (True)
-        (BooleanFileVisitor.visit_super this.base file)
+jclass : String
+jclass =
+    "ExcludeFileExtensionsBooleanFileVisitor"
 
 
-visit_2 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> String -> IO (Bool)
-visit_2 object_ a1 a2 = jmethod object_ "visit_2" (\() -> (visit_2_impl (javaCast object_ :: ExcludeFileExtensionsBooleanFileVisitor))) () a1 a2
+jchain : List String
+jchain =
+    [ "ExcludeFileExtensionsBooleanFileVisitor" ]
+        ++ BooleanFileVisitor.jchain
 
-visit_2_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> String -> IO (Bool)
-visit_2_super object_ a1 a2 = (visit_2_impl (javaCast object_ :: ExcludeFileExtensionsBooleanFileVisitor)) a1 a2
 
-visit_2_impl :: ExcludeFileExtensionsBooleanFileVisitor -> AbFile.AbFile -> String -> IO (Bool)
-visit_2_impl this file fileNameString = do
-    javaCatchReturn $ do
-        fileNameAndExtension <- (AbFile.getPath file)
-        when ((Prelude.length fileNameAndExtension) > (Prelude.length fileNameString)) $ do
-            let startIndex = ((Prelude.length fileNameAndExtension) - (Prelude.length fileNameString))
-            let fileName = (Prelude.drop startIndex fileNameAndExtension)
-            when ((Prelude.fromEnum (Prelude.compare fileName fileNameString) - 1) == 0) $ do
-                javaReturn (False)
-        pure (True)
+jfields : List ( String, JR.JValue )
+jfields =
+    BooleanFileVisitor.jfields ++ []
 
+
+jvtable =
+    JR.vtable
+        [ ( "visit_1", jm_visit_1 )
+        , ( "visit_2", jm_visit_2 ) ]
+        BooleanFileVisitor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ExcludeFileExtensionsBooleanFileVisitor"
+        [ ( "jm_visit_1", jm_visit_1 ), ( "jm_visit_2", jm_visit_2 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "filterStringBasicArrayList", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BooleanFileVisitor.jinit_1 JR.this [ (JR.local "filterStringBasicArrayList") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_visit_1 : JR.Method
+jm_visit_1 jheap jthis jargs =
+    JR.method [ ( "file", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "size_0" (JR.invoke "getFilterStringBasicArrayList_0" JR.this []) []) (JR.int 0)) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.callVia BooleanFileVisitor.jvtable "visit_1" JR.this [ (JR.local "file") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_visit_2 : JR.Method
+jm_visit_2 jheap jthis jargs =
+    JR.method [ ( "file", "" ), ( "fileNameString", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "fileNameAndExtension" "" (JR.invoke "getPath_0" (JR.local "file") []), 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "length_0" (JR.local "fileNameAndExtension") []) (JR.invoke "length_0" (JR.local "fileNameString") [])) (JR.run [ 
+                        JR.declare "startIndex" "I" (JR.map2 JR.sub (JR.invoke "length_0" (JR.local "fileNameAndExtension") []) (JR.invoke "length_0" (JR.local "fileNameString") [])), 
+                        JR.declare "fileName" "" (JR.invoke "substring_1" (JR.local "fileNameAndExtension") [ (JR.local "startIndex") ]), 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.local "fileName") [ (JR.local "fileNameString") ]) (JR.int 0)) (JR.run [ 
+                            JR.return (JR.bool False) ]) identity ]) identity, 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

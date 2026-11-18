@@ -1,273 +1,246 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module TestingInputSingleton (module TestingInputSingleton, module AllBinaryGameLayer) where
+module Org.Allbinary.Game.Input.TestingInputSingleton exposing (..)
 
-import AllBinaryGameLayer hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, initInputProcessors, initInputProcessors_super, initInputProcessors_impl, initInputProcessorsForTestInput, initInputProcessorsForTestInput_super, initInputProcessorsForTestInput_impl, processInputList, processInputList_super, processInputList_impl, processInput, processInput_super, processInput_impl, paint, paint_super, paint_impl, implmentsGameInputInterface, implmentsGameInputInterface_super, implmentsGameInputInterface_impl, instance_, inputProcessorArray, testInputPaintable)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameInputProcessor -- same package or java.lang
-import qualified InputFactory -- same package or java.lang
-import qualified GameInputProcessorUtil -- same package or java.lang
-import qualified TestInputInterface -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified GameKeyEvent -- org.allbinary.game.input.event.GameKeyEvent
-import qualified AllBinaryGameLayer -- org.allbinary.game.layer.AllBinaryGameLayer
-import qualified RectangleFactory -- org.allbinary.graphics.RectangleFactory
-import qualified NullPaintable -- org.allbinary.graphics.paint.NullPaintable
-import qualified PaintableInterface -- org.allbinary.graphics.paint.PaintableInterface
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified ViewPosition -- org.allbinary.view.ViewPosition
-import qualified GameInputInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
--- implements GameInputInterface
-data TestingInputSingleton = TestingInputSingleton
-    { header_ :: JavaHeader
-    , base :: AllBinaryGameLayer.AllBinaryGameLayer
-    , inputProcessorArray :: IORef (JavaArray (GameInputProcessor.GameInputProcessor))
-    , testInputPaintable :: IORef (PaintableInterface.PaintableInterface)
-    }
-
-instance JavaNull TestingInputSingleton where
-    javaNull = javaNullRecord "TestingInputSingleton"
-
-instance JavaEquals TestingInputSingleton where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TestingInputSingleton where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TestingInputSingleton where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: TestingInputSingleton
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-newRecord_ :: IO TestingInputSingleton
-newRecord_ = do
-    base <- AllBinaryGameLayer.newRecord_
-    let header_ = base.header_
-    inputProcessorArray <- newIORef javaNull
-    testInputPaintable <- newIORef javaNull
-    let this = TestingInputSingleton header_ base inputProcessorArray testInputPaintable
-    jregisterLevel header_ this
-    GameInputInterface.registerInterface_ header_
-    jregisterMethod header_ "initInputProcessors" (\() -> initInputProcessors_impl this)
-    jregisterMethod header_ "initInputProcessorsForTestInput" (\() -> initInputProcessorsForTestInput_impl this)
-    jregisterMethod header_ "processInputList" (\() -> processInputList_impl this)
-    jregisterMethod header_ "processInput" (\() -> processInput_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "implmentsGameInputInterface" (\() -> implmentsGameInputInterface_impl this)
-    pure this
-
-initFields_ :: TestingInputSingleton -> IO ()
-initFields_ this = do
-    jset this.inputProcessorArray ((jnewArray ((jget ((jio (InputFactory.getInstance))).mAX)) javaNull))
-    jset this.testInputPaintable =<< (NullPaintable.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Game.Layer.AllBinaryGameLayer as AllBinaryGameLayer
+import Javax.Microedition.Lcdui.Canvas as Canvas
+import Org.Allbinary.Game.Input.GameInputInterface as GameInputInterface
+import Org.Allbinary.Game.Input.GameInputProcessor as GameInputProcessor
+import Org.Allbinary.Game.Input.GameInputProcessorUtil as GameInputProcessorUtil
+import Org.Allbinary.Game.Input.Event.GameKeyEvent as GameKeyEvent
+import Org.Allbinary.Game.Input.InputFactory as InputFactory
+import Org.Allbinary.Graphics.Paint.NullPaintable as NullPaintable
+import Org.Allbinary.Graphics.RectangleFactory as RectangleFactory
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.View.ViewPosition as ViewPosition
 
 
-getInstance :: IO (TestingInputSingleton)
-getInstance = do
-        pure (TestingInputSingleton.instance_)
-
-new_ :: IO TestingInputSingleton
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TestingInputSingleton -> IO ()
-init_ this = do
-        AllBinaryGameLayer.init_3 this.base (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (RectangleFactory.sINGLETON) (jio (ViewPosition.getInstanceD))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (GameInputProcessorUtil.init (jget (this).inputProcessorArray))
-        pure ()
+jclass : String
+jclass =
+    "TestingInputSingleton"
 
 
-initInputProcessors :: (JavaObjectClass this_) => this_ -> IO (())
-initInputProcessors object_ = jmethod object_ "initInputProcessors" (\() -> (initInputProcessors_impl (javaCast object_ :: TestingInputSingleton))) ()
-
-initInputProcessors_super :: (JavaObjectClass this_) => this_ -> IO (())
-initInputProcessors_super object_ = (initInputProcessors_impl (javaCast object_ :: TestingInputSingleton))
-
-initInputProcessors_impl :: TestingInputSingleton -> IO (())
-initInputProcessors_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "TestingInputSingleton" ]
+        ++ AllBinaryGameLayer.jchain
+        ++ GameInputInterface.jchain
 
 
-initInputProcessorsForTestInput :: (JavaObjectClass this_) => this_ -> TestInputInterface.TestInputInterface -> IO (())
-initInputProcessorsForTestInput object_ a1 = jmethod object_ "initInputProcessorsForTestInput" (\() -> (initInputProcessorsForTestInput_impl (javaCast object_ :: TestingInputSingleton))) () a1
-
-initInputProcessorsForTestInput_super :: (JavaObjectClass this_) => this_ -> TestInputInterface.TestInputInterface -> IO (())
-initInputProcessorsForTestInput_super object_ a1 = (initInputProcessorsForTestInput_impl (javaCast object_ :: TestingInputSingleton)) a1
-
-initInputProcessorsForTestInput_impl :: TestingInputSingleton -> TestInputInterface.TestInputInterface -> IO (())
-initInputProcessorsForTestInput_impl this aTestInputInterface = do
-        let testInputInterface = aTestInputInterface
-        jset (this).testInputPaintable ((javaCast testInputInterface :: PaintableInterface.PaintableInterface))
-        assignedValue <- (GameInputProcessor.new_ >>= anonymousTestingInputSingleton0_ this testInputInterface)
-        jsetIndex ((jget (this).inputProcessorArray)) (Canvas.uP) (assignedValue)
-        assignedValue <- (GameInputProcessor.new_ >>= anonymousTestingInputSingleton1_ this testInputInterface)
-        jsetIndex ((jget (this).inputProcessorArray)) (Canvas.dOWN) (assignedValue)
-        assignedValue <- (GameInputProcessor.new_ >>= anonymousTestingInputSingleton2_ this testInputInterface)
-        jsetIndex ((jget (this).inputProcessorArray)) (Canvas.lEFT) (assignedValue)
-        assignedValue <- (GameInputProcessor.new_ >>= anonymousTestingInputSingleton3_ this testInputInterface)
-        jsetIndex ((jget (this).inputProcessorArray)) (Canvas.rIGHT) (assignedValue)
-        assignedValue <- (GameInputProcessor.new_ >>= anonymousTestingInputSingleton4_ this testInputInterface)
-        jsetIndex ((jget (this).inputProcessorArray)) (Canvas.kEY_NUM7) (assignedValue)
-        assignedValue <- (GameInputProcessor.new_ >>= anonymousTestingInputSingleton5_ this testInputInterface)
-        jsetIndex ((jget (this).inputProcessorArray)) (Canvas.kEY_NUM9) (assignedValue)
-        Control.Monad.void (GameInputProcessorUtil.init (jget (this).inputProcessorArray))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinaryGameLayer.jfields ++ [ ( "inputProcessorArray", JR.defaultOf "" ), ( "testInputPaintable", JR.defaultOf "" ) ]
 
 
--- throws Exception
-processInputList :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> BasicArrayList.BasicArrayList -> IO (())
-processInputList object_ a1 a2 = jmethod object_ "processInputList" (\() -> (processInputList_impl (javaCast object_ :: TestingInputSingleton))) () a1 a2
-
-processInputList_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> BasicArrayList.BasicArrayList -> IO (())
-processInputList_super object_ a1 a2 = (processInputList_impl (javaCast object_ :: TestingInputSingleton)) a1 a2
-
-processInputList_impl :: TestingInputSingleton -> AllBinaryLayerManager.AllBinaryLayerManager -> BasicArrayList.BasicArrayList -> IO (())
-processInputList_impl this allbinaryLayerManager list = do
-        key <- newIORef (0 :: Int)
-        gameKeyEvent <- newIORef (javaNull)
-        size <- (BasicArrayList.size list)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset gameKeyEvent (((javaCast (jindex ((jget (list).objectArray)) (index)) :: GameKeyEvent.GameKeyEvent)))
-            assignedValue <- (GameKeyEvent.getKey ((jget gameKeyEvent)))
-            jset key (assignedValue)
-            Control.Monad.void (GameInputProcessor.processEvent ((jindex ((jget (this).inputProcessorArray)) ((jget key)))) allbinaryLayerManager (GameKeyEvent.nONE))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "initInputProcessors_0", jm_initInputProcessors_0 )
+        , ( "initInputProcessorsForTestInput_1", jm_initInputProcessorsForTestInput_1 )
+        , ( "processInputList_2", jm_processInputList_2 )
+        , ( "processInput_1", jm_processInput_1 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "implmentsGameInputInterface_0", jm_implmentsGameInputInterface_0 ) ]
+        AllBinaryGameLayer.jvtable
 
 
--- throws Exception
-processInput :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processInput object_ a1 = jmethod object_ "processInput" (\() -> (processInput_impl (javaCast object_ :: TestingInputSingleton))) () a1
-
-processInput_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processInput_super object_ a1 = (processInput_impl (javaCast object_ :: TestingInputSingleton)) a1
-
-processInput_impl :: TestingInputSingleton -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processInput_impl this allbinaryLayerManager = do
-        Control.Monad.void (TestingInputSingleton.processInputList this allbinaryLayerManager (jio (AllBinaryGameLayer.getGameKeyEventList this)))
-        Control.Monad.void (BasicArrayList.clear ((jio (AllBinaryGameLayer.getGameKeyEventList this))))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TestingInputSingleton"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_initInputProcessors_0", jm_initInputProcessors_0 ), ( "jm_initInputProcessorsForTestInput_1", jm_initInputProcessorsForTestInput_1 ), ( "jm_processInputList_2", jm_processInputList_2 ), ( "jm_processInput_1", jm_processInput_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_implmentsGameInputInterface_0", jm_implmentsGameInputInterface_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: TestingInputSingleton))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: TestingInputSingleton)) a1
-
-paint_impl :: TestingInputSingleton -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (PaintableInterface.paint ((jget (this).testInputPaintable)) graphics)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-implmentsGameInputInterface :: (JavaObjectClass this_) => this_ -> IO (Bool)
-implmentsGameInputInterface object_ = jmethod object_ "implmentsGameInputInterface" (\() -> (implmentsGameInputInterface_impl (javaCast object_ :: TestingInputSingleton))) ()
-
-implmentsGameInputInterface_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-implmentsGameInputInterface_super object_ = (implmentsGameInputInterface_impl (javaCast object_ :: TestingInputSingleton))
-
-implmentsGameInputInterface_impl :: TestingInputSingleton -> IO (Bool)
-implmentsGameInputInterface_impl this = do
-        pure (True)
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "TestingInputSingleton" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
 
--- Java anonymous class new GameInputProcessor() {...}
-anonymousTestingInputSingleton0_ (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) = do
-    jregisterMethod (jheaderOf anonymous_) "processEvent" (\() -> anonymousTestingInputSingleton0_processEvent this testInputInterface anonymous_)
-    pure anonymous_
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinaryGameLayer.jinit_3 JR.this [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), RectangleFactory.jstatic_SINGLETON, (JR.callStatic ViewPosition.jm_getInstanceD_0 []) ]),
+                JR.exec (JR.setField "inputProcessorArray" "" JR.this (JR.newArray "" [ (JR.field "MAX" (JR.callStatic InputFactory.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "testInputPaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.callStatic GameInputProcessorUtil.jm_init_1 [ (JR.thisField "inputProcessorArray") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-anonymousTestingInputSingleton0_processEvent (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) (allbinaryLayerManager :: AllBinaryLayerManager.AllBinaryLayerManager) (gameKeyEvent :: GameKeyEvent.GameKeyEvent) = ( do
-                Control.Monad.void (TestInputInterface.up testInputInterface)
-                pure ()
- ) :: IO (())
 
--- Java anonymous class new GameInputProcessor() {...}
-anonymousTestingInputSingleton1_ (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) = do
-    jregisterMethod (jheaderOf anonymous_) "processEvent" (\() -> anonymousTestingInputSingleton1_processEvent this testInputInterface anonymous_)
-    pure anonymous_
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
-anonymousTestingInputSingleton1_processEvent (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) (allbinaryLayerManager :: AllBinaryLayerManager.AllBinaryLayerManager) (gameKeyEvent :: GameKeyEvent.GameKeyEvent) = ( do
-                Control.Monad.void (TestInputInterface.down testInputInterface)
-                pure ()
- ) :: IO (())
 
--- Java anonymous class new GameInputProcessor() {...}
-anonymousTestingInputSingleton2_ (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) = do
-    jregisterMethod (jheaderOf anonymous_) "processEvent" (\() -> anonymousTestingInputSingleton2_processEvent this testInputInterface anonymous_)
-    pure anonymous_
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
 
-anonymousTestingInputSingleton2_processEvent (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) (allbinaryLayerManager :: AllBinaryLayerManager.AllBinaryLayerManager) (gameKeyEvent :: GameKeyEvent.GameKeyEvent) = ( do
-                Control.Monad.void (TestInputInterface.left testInputInterface)
-                pure ()
- ) :: IO (())
 
--- Java anonymous class new GameInputProcessor() {...}
-anonymousTestingInputSingleton3_ (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) = do
-    jregisterMethod (jheaderOf anonymous_) "processEvent" (\() -> anonymousTestingInputSingleton3_processEvent this testInputInterface anonymous_)
-    pure anonymous_
+jm_initInputProcessors_0 : JR.Method
+jm_initInputProcessors_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
 
-anonymousTestingInputSingleton3_processEvent (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) (allbinaryLayerManager :: AllBinaryLayerManager.AllBinaryLayerManager) (gameKeyEvent :: GameKeyEvent.GameKeyEvent) = ( do
-                Control.Monad.void (TestInputInterface.right testInputInterface)
-                pure ()
- ) :: IO (())
 
--- Java anonymous class new GameInputProcessor() {...}
-anonymousTestingInputSingleton4_ (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) = do
-    jregisterMethod (jheaderOf anonymous_) "processEvent" (\() -> anonymousTestingInputSingleton4_processEvent this testInputInterface anonymous_)
-    pure anonymous_
+jm_initInputProcessorsForTestInput_1 : JR.Method
+jm_initInputProcessorsForTestInput_1 jheap jthis jargs =
+    JR.method [ ( "aTestInputInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "testInputInterface" "" (JR.local "aTestInputInterface"), 
+                    JR.exec (JR.setField "testInputPaintable" "" JR.this (JR.local "testInputInterface")), 
+                    JR.exec (JR.andThen (JR.thisField "inputProcessorArray") (\jaN69475 -> JR.andThen Canvas.jstatic_UP (\jiN69475 -> (JR.aset (JR.lit jaN69475) (JR.lit jiN69475) (JR.anonymous "TestingInputSingleton$1" GameInputProcessor.jchain GameInputProcessor.jvtable GameInputProcessor.jfields GameInputProcessor.jinit_0 [ ( "processEvent_2", janon1_jm_processEvent_2 ) ] [] []))))), 
+                    JR.exec (JR.andThen (JR.thisField "inputProcessorArray") (\jaN69623 -> JR.andThen Canvas.jstatic_DOWN (\jiN69623 -> (JR.aset (JR.lit jaN69623) (JR.lit jiN69623) (JR.anonymous "TestingInputSingleton$2" GameInputProcessor.jchain GameInputProcessor.jvtable GameInputProcessor.jfields GameInputProcessor.jinit_0 [ ( "processEvent_2", janon2_jm_processEvent_2 ) ] [] []))))), 
+                    JR.exec (JR.andThen (JR.thisField "inputProcessorArray") (\jaN69771 -> JR.andThen Canvas.jstatic_LEFT (\jiN69771 -> (JR.aset (JR.lit jaN69771) (JR.lit jiN69771) (JR.anonymous "TestingInputSingleton$3" GameInputProcessor.jchain GameInputProcessor.jvtable GameInputProcessor.jfields GameInputProcessor.jinit_0 [ ( "processEvent_2", janon3_jm_processEvent_2 ) ] [] []))))), 
+                    JR.exec (JR.andThen (JR.thisField "inputProcessorArray") (\jaN69919 -> JR.andThen Canvas.jstatic_RIGHT (\jiN69919 -> (JR.aset (JR.lit jaN69919) (JR.lit jiN69919) (JR.anonymous "TestingInputSingleton$4" GameInputProcessor.jchain GameInputProcessor.jvtable GameInputProcessor.jfields GameInputProcessor.jinit_0 [ ( "processEvent_2", janon4_jm_processEvent_2 ) ] [] []))))), 
+                    JR.exec (JR.andThen (JR.thisField "inputProcessorArray") (\jaN70067 -> JR.andThen Canvas.jstatic_KEY_NUM7 (\jiN70067 -> (JR.aset (JR.lit jaN70067) (JR.lit jiN70067) (JR.anonymous "TestingInputSingleton$5" GameInputProcessor.jchain GameInputProcessor.jvtable GameInputProcessor.jfields GameInputProcessor.jinit_0 [ ( "processEvent_2", janon5_jm_processEvent_2 ) ] [] []))))), 
+                    JR.exec (JR.andThen (JR.thisField "inputProcessorArray") (\jaN70215 -> JR.andThen Canvas.jstatic_KEY_NUM9 (\jiN70215 -> (JR.aset (JR.lit jaN70215) (JR.lit jiN70215) (JR.anonymous "TestingInputSingleton$6" GameInputProcessor.jchain GameInputProcessor.jvtable GameInputProcessor.jfields GameInputProcessor.jinit_0 [ ( "processEvent_2", janon6_jm_processEvent_2 ) ] [] []))))), 
+                    JR.exec (JR.callStatic GameInputProcessorUtil.jm_init_1 [ (JR.thisField "inputProcessorArray") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-anonymousTestingInputSingleton4_processEvent (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) (allbinaryLayerManager :: AllBinaryLayerManager.AllBinaryLayerManager) (gameKeyEvent :: GameKeyEvent.GameKeyEvent) = ( do
-                Control.Monad.void (TestInputInterface.strafeLeft testInputInterface)
-                pure ()
- ) :: IO (())
 
--- Java anonymous class new GameInputProcessor() {...}
-anonymousTestingInputSingleton5_ (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) = do
-    jregisterMethod (jheaderOf anonymous_) "processEvent" (\() -> anonymousTestingInputSingleton5_processEvent this testInputInterface anonymous_)
-    pure anonymous_
+jm_processInputList_2 : JR.Method
+jm_processInputList_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "list", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "key" "I" (JR.int 0), 
+                    JR.declare "gameKeyEvent" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70754 -> (JR.setLocal "index" "I" (JR.lit jwN70754))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "gameKeyEvent" "" ((JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")))), 
+                        JR.exec (JR.setLocal "key" "I" (JR.invoke "getKey_0" (JR.local "gameKeyEvent") [])), 
+                        JR.exec (JR.invoke "processEvent_2" (JR.aget (JR.thisField "inputProcessorArray") (JR.local "key")) [ (JR.local "allbinaryLayerManager"), GameKeyEvent.jstatic_NONE ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
 
-anonymousTestingInputSingleton5_processEvent (this :: TestingInputSingleton) (testInputInterface :: TestInputInterface.TestInputInterface) (anonymous_ :: GameInputProcessor.GameInputProcessor) (allbinaryLayerManager :: AllBinaryLayerManager.AllBinaryLayerManager) (gameKeyEvent :: GameKeyEvent.GameKeyEvent) = ( do
-                Control.Monad.void (TestInputInterface.strafeRight testInputInterface)
-                pure ()
- ) :: IO (())
+
+jm_processInput_1 : JR.Method
+jm_processInput_1 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "processInputList_2" JR.this [ (JR.local "allbinaryLayerManager"), (JR.invoke "getGameKeyEventList_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "clear_0" (JR.invoke "getGameKeyEventList_0" JR.this []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "testInputPaintable") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_implmentsGameInputInterface_0 : JR.Method
+jm_implmentsGameInputInterface_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+janon1_jm_processEvent_2 : JR.Method
+janon1_jm_processEvent_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                            JR.exec (JR.invoke "up_0" (JR.local "testInputInterface") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+janon2_jm_processEvent_2 : JR.Method
+janon2_jm_processEvent_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                            JR.exec (JR.invoke "down_0" (JR.local "testInputInterface") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+janon3_jm_processEvent_2 : JR.Method
+janon3_jm_processEvent_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                            JR.exec (JR.invoke "left_0" (JR.local "testInputInterface") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+janon4_jm_processEvent_2 : JR.Method
+janon4_jm_processEvent_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                            JR.exec (JR.invoke "right_0" (JR.local "testInputInterface") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+janon5_jm_processEvent_2 : JR.Method
+janon5_jm_processEvent_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                            JR.exec (JR.invoke "strafeLeft_0" (JR.local "testInputInterface") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+janon6_jm_processEvent_2 : JR.Method
+janon6_jm_processEvent_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                            JR.exec (JR.invoke "strafeRight_0" (JR.local "testInputInterface") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

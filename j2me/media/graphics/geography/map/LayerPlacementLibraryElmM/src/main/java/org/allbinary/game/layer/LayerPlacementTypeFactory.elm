@@ -1,105 +1,96 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
-module LayerPlacementTypeFactory where
+module Org.Allbinary.Game.Layer.LayerPlacementTypeFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LayerPlacementType -- same package or java.lang
-import qualified DirectionFactory -- org.allbinary.direction.DirectionFactory
+{-| Generated Code Do Not Modify package org.allbinary.game.layer
+-}
 
-data LayerPlacementTypeFactory = LayerPlacementTypeFactory
-    { header_ :: JavaHeader
-    , mAP :: IORef (LayerPlacementType.LayerPlacementType)
-    , lEFT :: IORef (LayerPlacementType.LayerPlacementType)
-    , dOWN :: IORef (LayerPlacementType.LayerPlacementType)
-    , uP :: IORef (LayerPlacementType.LayerPlacementType)
-    , rIGHT :: IORef (LayerPlacementType.LayerPlacementType)
-    }
-
-instance JavaNull LayerPlacementTypeFactory where
-    javaNull = javaNullRecord "LayerPlacementTypeFactory"
-
-instance JavaEquals LayerPlacementTypeFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LayerPlacementTypeFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LayerPlacementTypeFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: LayerPlacementTypeFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LayerPlacementTypeFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    mAP <- newIORef javaNull
-    lEFT <- newIORef javaNull
-    dOWN <- newIORef javaNull
-    uP <- newIORef javaNull
-    rIGHT <- newIORef javaNull
-    let this = LayerPlacementTypeFactory header_ mAP lEFT dOWN uP rIGHT
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: LayerPlacementTypeFactory -> IO ()
-initFields_ this = do
-    jset this.mAP =<< (LayerPlacementType.new_1 (2147483647 :: Int))
-    jset this.lEFT =<< (LayerPlacementType.new_1 (jio (getValue ((jget ((jio (DirectionFactory.getInstance))).lEFT)))))
-    jset this.dOWN =<< (LayerPlacementType.new_1 (jio (getValue ((jget ((jio (DirectionFactory.getInstance))).dOWN)))))
-    jset this.uP =<< (LayerPlacementType.new_1 (jio (getValue ((jget ((jio (DirectionFactory.getInstance))).uP)))))
-    jset this.rIGHT =<< (LayerPlacementType.new_1 (jio (getValue ((jget ((jio (DirectionFactory.getInstance))).rIGHT)))))
-    pure ()
-
-new_ :: IO LayerPlacementTypeFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LayerPlacementTypeFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Direction.DirectionFactory as DirectionFactory
+import JInteger
+import Org.Allbinary.Game.Layer.LayerPlacementType as LayerPlacementType
 
 
-getInstance :: IO (LayerPlacementTypeFactory)
-getInstance = do
-        pure (LayerPlacementTypeFactory.instance_)
+jclass : String
+jclass =
+    "LayerPlacementTypeFactory"
 
+
+jchain : List String
+jchain =
+    [ "LayerPlacementTypeFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "MAP", JR.defaultOf "" ), ( "LEFT", JR.defaultOf "" ), ( "DOWN", JR.defaultOf "" ), ( "UP", JR.defaultOf "" ), ( "RIGHT", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LayerPlacementTypeFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LayerPlacementTypeFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "MAP" "" JR.this (JR.new LayerPlacementType.jnew_1 [ JInteger.jstatic_MAX_VALUE ])),
+                JR.exec (JR.setField "LEFT" "" JR.this (JR.new LayerPlacementType.jnew_1 [ (JR.invoke "getValue_0" (JR.field "LEFT" (JR.callStatic DirectionFactory.jm_getInstance_0 [])) []) ])),
+                JR.exec (JR.setField "DOWN" "" JR.this (JR.new LayerPlacementType.jnew_1 [ (JR.invoke "getValue_0" (JR.field "DOWN" (JR.callStatic DirectionFactory.jm_getInstance_0 [])) []) ])),
+                JR.exec (JR.setField "UP" "" JR.this (JR.new LayerPlacementType.jnew_1 [ (JR.invoke "getValue_0" (JR.field "UP" (JR.callStatic DirectionFactory.jm_getInstance_0 [])) []) ])),
+                JR.exec (JR.setField "RIGHT" "" JR.this (JR.new LayerPlacementType.jnew_1 [ (JR.invoke "getValue_0" (JR.field "RIGHT" (JR.callStatic DirectionFactory.jm_getInstance_0 [])) []) ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

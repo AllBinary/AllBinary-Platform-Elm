@@ -1,164 +1,150 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file.directory
-module DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor (module DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor, module IncludeFileExtensionsBooleanFileVisitor) where
+module Org.Allbinary.Logic.Io.File.Directory.DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor exposing (..)
 
-import IncludeFileExtensionsBooleanFileVisitor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, visit, visit_super, visit_impl, visit_2, visit_2_super, visit_2_impl, visit, main, main_super, main_impl, trackedStrings, gitProcessHelper, includesString)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TrackedStrings -- same package or java.lang
-import qualified GitProcessHelper -- org.allbinary.java.runtime.process.git.GitProcessHelper
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified CommonDataFileStrings -- org.allbinary.logic.io.file.CommonDataFileStrings
-import qualified IncludeFileExtensionsBooleanFileVisitor -- org.allbinary.logic.io.file.visitor.IncludeFileExtensionsBooleanFileVisitor
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file.directory
+-}
 
-data DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor = DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor
-    { header_ :: JavaHeader
-    , base :: IncludeFileExtensionsBooleanFileVisitor.IncludeFileExtensionsBooleanFileVisitor
-    , trackedStrings :: IORef (TrackedStrings.TrackedStrings)
-    , gitProcessHelper :: IORef (GitProcessHelper.GitProcessHelper)
-    , includesString :: IORef (String)
-    }
-
-instance JavaNull DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor where
-    javaNull = javaNullRecord "DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor"
-
-instance JavaEquals DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor
-newRecord_ = do
-    base <- IncludeFileExtensionsBooleanFileVisitor.newRecord_
-    let header_ = base.header_
-    trackedStrings <- newIORef javaNull
-    gitProcessHelper <- newIORef javaNull
-    includesString <- newIORef ""
-    let this = DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor header_ base trackedStrings gitProcessHelper includesString
-    jregisterLevel header_ this
-    jregisterMethod header_ "visit" (\() -> visit_impl this)
-    jregisterMethod header_ "visit_2" (\() -> visit_2_impl this)
-    pure this
-
-initFields_ :: DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor -> IO ()
-initFields_ this = do
-    jset this.trackedStrings =<< (TrackedStrings.getInstance)
-    jset this.gitProcessHelper =<< (GitProcessHelper.getInstance)
-    jset this.includesString (javaNull)
-    pure ()
-
-new_1 :: BasicArrayList.BasicArrayList -> IO DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor
-new_1 filterStringBasicArrayList = do
-    this <- newRecord_
-    init_1 this filterStringBasicArrayList
-    pure this
-
-init_1 :: DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor -> BasicArrayList.BasicArrayList -> IO ()
-init_1 this filterStringBasicArrayList = do
-        IncludeFileExtensionsBooleanFileVisitor.init_1 this.base (filterStringBasicArrayList)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).includesString (javaNull)
-        pure ()
-
-new_2 :: BasicArrayList.BasicArrayList -> String -> IO DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor
-new_2 filterStringBasicArrayList includesString = do
-    this <- newRecord_
-    init_2 this filterStringBasicArrayList includesString
-    pure this
-
-init_2 :: DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor -> BasicArrayList.BasicArrayList -> String -> IO ()
-init_2 this filterStringBasicArrayList includesString = do
-        IncludeFileExtensionsBooleanFileVisitor.init_1 this.base (filterStringBasicArrayList)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).includesString (includesString)
-        pure ()
+import JR
+import Org.Allbinary.Logic.Io.File.AbFile as AbFile
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Io.File.CommonDataFileStrings as CommonDataFileStrings
+import Org.Allbinary.Java.Runtime.Process.Git.GitProcessHelper as GitProcessHelper
+import Org.Allbinary.Logic.Io.File.Visitor.IncludeFileExtensionsBooleanFileVisitor as IncludeFileExtensionsBooleanFileVisitor
+import JSystem
+import Org.Allbinary.Logic.Io.File.Directory.TrackedStrings as TrackedStrings
 
 
-visit :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (Bool)
-visit object_ a1 = jmethod object_ "visit" (\() -> (visit_impl (javaCast object_ :: DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor))) () a1
-
-visit_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (Bool)
-visit_super object_ a1 = (visit_impl (javaCast object_ :: DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor)) a1
-
-visit_impl :: DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor -> AbFile.AbFile -> IO (Bool)
-visit_impl this file = do
-    javaCatchReturn $ do
-        when (jio (AbFile.isDirectory file)) $ do
-            javaReturn (True)
-        if (((jget (this).includesString) == javaNull) || ((jio (AbFile.indexOf ((jio (AbFile.getAbsolutePath file))) (jget (this).includesString))) >= 0)) then do
-            javaReturn =<< (IncludeFileExtensionsBooleanFileVisitor.visit_super this.base file)
-        else do
-            javaReturn (False)
+jclass : String
+jclass =
+    "DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor"
 
 
-visit_2 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> String -> IO (Bool)
-visit_2 object_ a1 a2 = jmethod object_ "visit_2" (\() -> (visit_2_impl (javaCast object_ :: DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor))) () a1 a2
-
-visit_2_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> String -> IO (Bool)
-visit_2_super object_ a1 a2 = (visit_2_impl (javaCast object_ :: DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor)) a1 a2
-
-visit_2_impl :: DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor -> AbFile.AbFile -> String -> IO (Bool)
-visit_2_impl this file fileNameString = do
-    javaCatchReturn $ do
-        filePath <- (AbFile.getPath file)
-        when (jio (IncludeFileExtensionsBooleanFileVisitor.visit_2_super this.base file fileNameString)) $ do
-            if (Prelude.not ((((Data.List.isInfixOf (jget ((jget (this).trackedStrings)).aPPLICATION) filePath) || (Data.List.isInfixOf (jget ((jget (this).trackedStrings)).aPP) filePath)) || (Data.List.isInfixOf (jget ((jget (this).trackedStrings)).hTML_TEMP) filePath)))) then do
-                if (Prelude.not (((Data.List.isInfixOf (jget ((jget (this).trackedStrings)).tARGET_PATH_WINDOWS) filePath) || (Data.List.isInfixOf (jget ((jget (this).trackedStrings)).tARGET_PATH_UNIX) filePath)))) then do
-                    if (jio (GitProcessHelper.isTracked ((jget (this).gitProcessHelper)) file)) then do
-                        javaReturn (True)
-                    else do
-                        pure ()
-                else do
-                    pure ()
-            else do
-                pure ()
-        pure (False)
+jchain : List String
+jchain =
+    [ "DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor" ]
+        ++ IncludeFileExtensionsBooleanFileVisitor.jchain
 
 
-main :: JavaArray (String) -> IO (())
-main args = do
-        commonFileStrings <- (CommonDataFileStrings.getInstance)
-        list <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        Control.Monad.void (BasicArrayList.add list (jget (commonFileStrings).jAVA))
-        let filePath = "G:\\mnt\\bc\\mydev\\games\\ZeptoRacer\\platform\\j2se\\ZeptoRacerStaticPathsJ2SEM\\target\\dependency\\org\\allbinary\\logic\\system\\security\\licensing\\ZeptoRacerPCClientInformation.java"
-        result <- (DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor.visit ((jio (new_1 list))) (jio (AbFile.createAbFileFromRawPath filePath)))
-        Control.Monad.void (putStrLn (javaToString ((filePath ++ " is Tracked: ") ++ javaToString result)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    IncludeFileExtensionsBooleanFileVisitor.jfields ++ [ ( "trackedStrings", JR.defaultOf "" ), ( "gitProcessHelper", JR.defaultOf "" ), ( "includesString", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "visit_1", jm_visit_1 )
+        , ( "visit_2", jm_visit_2 )
+        , ( "main_1", jm_main_1 ) ]
+        IncludeFileExtensionsBooleanFileVisitor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor"
+        [ ( "jm_visit_1", jm_visit_1 ), ( "jm_visit_2", jm_visit_2 ), ( "jm_main_1", jm_main_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "filterStringBasicArrayList", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect IncludeFileExtensionsBooleanFileVisitor.jinit_1 JR.this [ (JR.local "filterStringBasicArrayList") ]),
+                JR.exec (JR.setField "trackedStrings" "" JR.this (JR.callStatic TrackedStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gitProcessHelper" "" JR.this (JR.callStatic GitProcessHelper.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "includesString" "" JR.this JR.null) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "filterStringBasicArrayList", "" ), ( "includesString", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect IncludeFileExtensionsBooleanFileVisitor.jinit_1 JR.this [ (JR.local "filterStringBasicArrayList") ]),
+                JR.exec (JR.setField "trackedStrings" "" JR.this (JR.callStatic TrackedStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gitProcessHelper" "" JR.this (JR.callStatic GitProcessHelper.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "includesString" "" JR.this (JR.local "includesString")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_visit_1 : JR.Method
+jm_visit_1 jheap jthis jargs =
+    JR.method [ ( "file", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isDirectory_0" (JR.local "file") []) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.ifElse (JR.or (JR.map2 JR.equals (JR.thisField "includesString") JR.null) (JR.map2 JR.greaterEquals (JR.invoke "indexOf_1" (JR.invoke "getAbsolutePath_0" (JR.local "file") []) [ (JR.thisField "includesString") ]) (JR.int 0))) (JR.run [ 
+                        JR.return (JR.callVia IncludeFileExtensionsBooleanFileVisitor.jvtable "visit_1" JR.this [ (JR.local "file") ]) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_visit_2 : JR.Method
+jm_visit_2 jheap jthis jargs =
+    JR.method [ ( "file", "" ), ( "fileNameString", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "filePath" "" (JR.invoke "getPath_0" (JR.local "file") []), 
+                    JR.ifElse (JR.callVia IncludeFileExtensionsBooleanFileVisitor.jvtable "visit_2" JR.this [ (JR.local "file"), (JR.local "fileNameString") ]) (JR.run [ 
+                        JR.ifElse (JR.map JR.not_ ((JR.or (JR.or (JR.invoke "contains_1" (JR.local "filePath") [ (JR.field "APPLICATION" (JR.thisField "trackedStrings")) ]) (JR.invoke "contains_1" (JR.local "filePath") [ (JR.field "APP" (JR.thisField "trackedStrings")) ])) (JR.invoke "contains_1" (JR.local "filePath") [ (JR.field "HTML_TEMP" (JR.thisField "trackedStrings")) ])))) (JR.run [ 
+                            JR.ifElse (JR.map JR.not_ ((JR.or (JR.invoke "contains_1" (JR.local "filePath") [ (JR.field "TARGET_PATH_WINDOWS" (JR.thisField "trackedStrings")) ]) (JR.invoke "contains_1" (JR.local "filePath") [ (JR.field "TARGET_PATH_UNIX" (JR.thisField "trackedStrings")) ])))) (JR.run [ 
+                                JR.ifElse (JR.invoke "isTracked_1" (JR.thisField "gitProcessHelper") [ (JR.local "file") ]) (JR.run [ 
+                                    JR.return (JR.bool True) ]) identity ]) identity ]) identity ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_main_1 : JR.Method
+jm_main_1 jheap jthis jargs =
+    JR.method [ ( "args", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "commonFileStrings" "" (JR.callStatic CommonDataFileStrings.jm_getInstance_0 []), 
+                    JR.declare "list" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.field "JAVA" (JR.local "commonFileStrings")) ]), 
+                    JR.declare "filePath" "" (JR.str "G:\\mnt\\bc\\mydev\\games\\ZeptoRacer\\platform\\j2se\\ZeptoRacerStaticPathsJ2SEM\\target\\dependency\\org\\allbinary\\logic\\system\\security\\licensing\\ZeptoRacerPCClientInformation.java"), 
+                    JR.declare "result" "Z" (JR.invoke "visit_1" (JR.new jnew_1 [ (JR.local "list") ]) [ (JR.callStatic AbFile.jm_createAbFileFromRawPath_1 [ (JR.local "filePath") ]) ]), 
+                    JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.concat (JR.local "filePath") (JR.str " is Tracked: ")) (JR.local "result")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,13 +1,13 @@
-module BasicArrayList exposing (..)
+module Org.Allbinary.Util.BasicArrayList exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}
 
 import JR
-import ArrayUtil
-import CommonLabels
-import CommonSeps
-import StringMaker
+import Org.Allbinary.Util.ArrayUtil as ArrayUtil
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

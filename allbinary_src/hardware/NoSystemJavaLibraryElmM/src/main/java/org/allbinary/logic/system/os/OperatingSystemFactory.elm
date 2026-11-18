@@ -1,14 +1,14 @@
-module OperatingSystemFactory exposing (..)
+module Org.Allbinary.Logic.System.Os.OperatingSystemFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.os
 -}
 
 import JR
-import CommonStrings
+import Org.Allbinary.String.CommonStrings as CommonStrings
 import JSystem
-import LogUtil
-import NoOperatingSystem
-import StringMaker
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.System.Os.NoOperatingSystem as NoOperatingSystem
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

@@ -1,103 +1,86 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.weapon.mine
-module MineLayerFactory where
+module Org.Allbinary.Game.Ag.Layer.Weapon.Mine.MineLayerFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified MineLayer -- same package or java.lang
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerFactoryInterface -- org.allbinary.layer.AllBinaryLayerFactoryInterface
-import qualified ViewPositionFactoryInterface -- org.allbinary.view.ViewPositionFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.weapon.mine
+-}
 
--- implements AllBinaryLayerFactoryInterface
-data MineLayerFactory = MineLayerFactory
-    { header_ :: JavaHeader
-    , viewPositionFactoryInterface :: IORef (ViewPositionFactoryInterface.ViewPositionFactoryInterface)
-    }
-
-instance JavaNull MineLayerFactory where
-    javaNull = javaNullRecord "MineLayerFactory"
-
-instance JavaEquals MineLayerFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MineLayerFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MineLayerFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MineLayerFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    viewPositionFactoryInterface <- newIORef javaNull
-    let this = MineLayerFactory header_ viewPositionFactoryInterface
-    jregisterLevel header_ this
-    AllBinaryLayerFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    pure this
-
-initFields_ :: MineLayerFactory -> IO ()
-initFields_ this = do
-    jset this.viewPositionFactoryInterface (javaNull)
-    pure ()
-
-new_1 :: ViewPositionFactoryInterface.ViewPositionFactoryInterface -> IO MineLayerFactory
-new_1 viewPositionFactoryInterface = do
-    this <- newRecord_
-    init_1 this viewPositionFactoryInterface
-    pure this
-
-init_1 :: MineLayerFactory -> ViewPositionFactoryInterface.ViewPositionFactoryInterface -> IO ()
-init_1 this viewPositionFactoryInterface = do
-        initFields_ this
-        jset (this).viewPositionFactoryInterface (viewPositionFactoryInterface)
-        pure ()
+import JR
+import Org.Allbinary.Layer.AllBinaryLayerFactoryInterface as AllBinaryLayerFactoryInterface
+import Org.Allbinary.Game.Ag.Layer.Weapon.Mine.MineLayer as MineLayer
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> IO (AllBinaryLayer.AllBinaryLayer)
-getInstance object_ = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: MineLayerFactory))) ()
+jclass : String
+jclass =
+    "MineLayerFactory"
 
-getInstance_super :: (JavaObjectClass this_) => this_ -> IO (AllBinaryLayer.AllBinaryLayer)
-getInstance_super object_ = (getInstance_impl (javaCast object_ :: MineLayerFactory))
 
-getInstance_impl :: MineLayerFactory -> IO (AllBinaryLayer.AllBinaryLayer)
-getInstance_impl this = do
-        (fmap (\value_ -> javaCast value_ :: AllBinaryLayer.AllBinaryLayer) (MineLayer.new_1 (jio (ViewPositionFactoryInterface.getInstance ((jget (this).viewPositionFactoryInterface))))))
+jchain : List String
+jchain =
+    [ "MineLayerFactory" ]
+        ++ AllBinaryLayerFactoryInterface.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "viewPositionFactoryInterface", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MineLayerFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "viewPositionFactoryInterface", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "viewPositionFactoryInterface" "" JR.this (JR.local "viewPositionFactoryInterface")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.new MineLayer.jnew_1 [ (JR.invoke "getInstance_0" (JR.thisField "viewPositionFactoryInterface") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

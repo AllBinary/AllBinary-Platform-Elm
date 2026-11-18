@@ -1,91 +1,92 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.eclipse.swt.graphics
-module Resource where
+module Org.Eclipse.Swt.Graphics.Resource exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.eclipse.swt.graphics
+-}
 
-data Resource = Resource
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull Resource where
-    javaNull = javaNullRecord "Resource"
-
-instance JavaEquals Resource where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Resource where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Resource where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO Resource
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = Resource header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "dispose" (\() -> dispose_impl this)
-    jregisterMethod header_ "isDisposed" (\() -> isDisposed_impl this)
-    pure this
-
-initFields_ :: Resource -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO Resource
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: Resource -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-dispose :: (JavaObjectClass this_) => this_ -> IO (())
-dispose object_ = jmethod object_ "dispose" (\() -> (dispose_impl (javaCast object_ :: Resource))) ()
 
-dispose_super :: (JavaObjectClass this_) => this_ -> IO (())
-dispose_super object_ = (dispose_impl (javaCast object_ :: Resource))
-
-dispose_impl :: Resource -> IO (())
-dispose_impl this = do
-        pure ()
+jclass : String
+jclass =
+    "Resource"
 
 
-isDisposed :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isDisposed object_ = jmethod object_ "isDisposed" (\() -> (isDisposed_impl (javaCast object_ :: Resource))) ()
+jchain : List String
+jchain =
+    [ "Resource" ]
 
-isDisposed_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isDisposed_super object_ = (isDisposed_impl (javaCast object_ :: Resource))
 
-isDisposed_impl :: Resource -> IO (Bool)
-isDisposed_impl this = do
-        pure (False)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "dispose_0", jm_dispose_0 )
+        , ( "isDisposed_0", jm_isDisposed_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Resource"
+        [ ( "jm_dispose_0", jm_dispose_0 ), ( "jm_isDisposed_0", jm_isDisposed_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_dispose_0 : JR.Method
+jm_dispose_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isDisposed_0 : JR.Method
+jm_isDisposed_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

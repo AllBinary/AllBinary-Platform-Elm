@@ -1,92 +1,88 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.string
-module StringValidationJSEUtil where
+module Org.Allbinary.Logic.String.StringValidationJSEUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.string
+-}
 
-data StringValidationJSEUtil = StringValidationJSEUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull StringValidationJSEUtil where
-    javaNull = javaNullRecord "StringValidationJSEUtil"
-
-instance JavaEquals StringValidationJSEUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq StringValidationJSEUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass StringValidationJSEUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO StringValidationJSEUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = StringValidationJSEUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: StringValidationJSEUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO StringValidationJSEUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: StringValidationJSEUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import JCharacter
 
 
-isBlank :: String -> IO (Bool)
-isBlank string = do
-    javaCatchReturn $ do
-        let len = (Prelude.length string)
-        forM_ [0 .. len - 1] $ \i -> javaIteration (pure ()) $ do
-            let c = (string Prelude.!! i)
-            when ((Data.Char.isSpace c) == False) $ do
-                javaReturn (False)
-        pure (True)
+jclass : String
+jclass =
+    "StringValidationJSEUtil"
 
+
+jchain : List String
+jchain =
+    [ "StringValidationJSEUtil" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "isBlank_1", jm_isBlank_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "StringValidationJSEUtil"
+        [ ( "jm_isBlank_1", jm_isBlank_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_isBlank_1 : JR.Method
+jm_isBlank_1 jheap jthis jargs =
+    JR.method [ ( "string", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "len" "I" (JR.invoke "length_0" (JR.local "string") []), 
+                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "len")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN65830 -> (JR.setLocal "i" "I" (JR.lit jwN65830))) JR.increment) ]) (JR.run [ 
+                        JR.declare "c" "C" (JR.invoke "charAt_1" (JR.local "string") [ (JR.local "i") ]), 
+                        JR.ifElse (JR.map2 JR.equals (JR.callStatic JCharacter.jm_isWhitespace_1 [ (JR.local "c") ]) (JR.bool False)) (JR.run [ 
+                            JR.return (JR.bool False) ]) identity ]) ], 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

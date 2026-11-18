@@ -1,166 +1,131 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion
-module AnalogControllerHelper where
+module Org.Allbinary.Android.Input.Motion.AnalogControllerHelper exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnalogControllerConfigurationFactory -- same package or java.lang
-import qualified CollidableDestroyableDamageableLayer -- org.allbinary.game.layer.special.CollidableDestroyableDamageableLayer
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
+{-| Generated Code Do Not Modify package org.allbinary.android.input.motion
+-}
 
-data AnalogControllerHelper = AnalogControllerHelper
-    { header_ :: JavaHeader
-    , reduceTimeFactor :: IORef (Int)
-    , sCALE_VALUE :: IORef (Int)
-    , rightTimeElapsedHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , leftTimeElapsedHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , downTimeElapsedHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , upTimeElapsedHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    }
-
-instance JavaNull AnalogControllerHelper where
-    javaNull = javaNullRecord "AnalogControllerHelper"
-
-instance JavaEquals AnalogControllerHelper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AnalogControllerHelper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AnalogControllerHelper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AnalogControllerHelper
-newRecord_ = do
-    header_ <- newJavaHeader
-    reduceTimeFactor <- newIORef 0
-    sCALE_VALUE <- newIORef 0
-    rightTimeElapsedHelper <- newIORef javaNull
-    leftTimeElapsedHelper <- newIORef javaNull
-    downTimeElapsedHelper <- newIORef javaNull
-    upTimeElapsedHelper <- newIORef javaNull
-    let this = AnalogControllerHelper header_ reduceTimeFactor sCALE_VALUE rightTimeElapsedHelper leftTimeElapsedHelper downTimeElapsedHelper upTimeElapsedHelper
-    jregisterLevel header_ this
-    jregisterMethod header_ "right" (\() -> right_impl this)
-    jregisterMethod header_ "left" (\() -> left_impl this)
-    jregisterMethod header_ "up" (\() -> up_impl this)
-    jregisterMethod header_ "down" (\() -> down_impl this)
-    pure this
-
-initFields_ :: AnalogControllerHelper -> IO ()
-initFields_ this = do
-    jset this.reduceTimeFactor (0)
-    jset this.sCALE_VALUE ((jget ((jio (AnalogControllerConfigurationFactory.getInstance))).sCALE_VALUE))
-    jset this.rightTimeElapsedHelper =<< (TimeDelayHelper.new_1 0)
-    jset this.leftTimeElapsedHelper =<< (TimeDelayHelper.new_1 0)
-    jset this.downTimeElapsedHelper =<< (TimeDelayHelper.new_1 0)
-    jset this.upTimeElapsedHelper =<< (TimeDelayHelper.new_1 0)
-    pure ()
-
-new_1 :: Int -> IO AnalogControllerHelper
-new_1 reduceTimeFactor = do
-    this <- newRecord_
-    init_1 this reduceTimeFactor
-    pure this
-
-init_1 :: AnalogControllerHelper -> Int -> IO ()
-init_1 this reduceTimeFactor = do
-        initFields_ this
-        jset (this).reduceTimeFactor (reduceTimeFactor)
-        pure ()
+import JR
+import Org.Allbinary.Android.Input.Motion.AnalogControllerConfigurationFactory as AnalogControllerConfigurationFactory
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
 
 
--- throws Exception
-right :: (JavaObjectClass this_) => this_ -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-right object_ a1 a2 = jmethod object_ "right" (\() -> (right_impl (javaCast object_ :: AnalogControllerHelper))) () a1 a2
-
-right_super :: (JavaObjectClass this_) => this_ -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-right_super object_ a1 a2 = (right_impl (javaCast object_ :: AnalogControllerHelper)) a1 a2
-
-right_impl :: AnalogControllerHelper -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-right_impl this collidableDestroyableDamageableLayer xAnalogValue = do
-        jset ((jget (this).rightTimeElapsedHelper)).delay ((((((jget (this).sCALE_VALUE) - xAnalogValue)) `Data.Bits.shiftR` (jget (this).reduceTimeFactor))))
-        when (jio (TimeDelayHelper.isTimeTNT ((jget (this).rightTimeElapsedHelper)))) $ do
-            Control.Monad.void (CollidableDestroyableDamageableLayer.right collidableDestroyableDamageableLayer)
-        pure ()
+jclass : String
+jclass =
+    "AnalogControllerHelper"
 
 
--- throws Exception
-left :: (JavaObjectClass this_) => this_ -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-left object_ a1 a2 = jmethod object_ "left" (\() -> (left_impl (javaCast object_ :: AnalogControllerHelper))) () a1 a2
-
-left_super :: (JavaObjectClass this_) => this_ -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-left_super object_ a1 a2 = (left_impl (javaCast object_ :: AnalogControllerHelper)) a1 a2
-
-left_impl :: AnalogControllerHelper -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-left_impl this collidableDestroyableDamageableLayer xAnalogValue = do
-        jset ((jget (this).leftTimeElapsedHelper)).delay ((((((jget (this).sCALE_VALUE) + xAnalogValue)) `Data.Bits.shiftR` (jget (this).reduceTimeFactor))))
-        when (jio (TimeDelayHelper.isTimeTNT ((jget (this).leftTimeElapsedHelper)))) $ do
-            Control.Monad.void (CollidableDestroyableDamageableLayer.left collidableDestroyableDamageableLayer)
-        pure ()
+jchain : List String
+jchain =
+    [ "AnalogControllerHelper" ]
 
 
--- throws Exception
-up :: (JavaObjectClass this_) => this_ -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-up object_ a1 a2 = jmethod object_ "up" (\() -> (up_impl (javaCast object_ :: AnalogControllerHelper))) () a1 a2
-
-up_super :: (JavaObjectClass this_) => this_ -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-up_super object_ a1 a2 = (up_impl (javaCast object_ :: AnalogControllerHelper)) a1 a2
-
-up_impl :: AnalogControllerHelper -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-up_impl this collidableDestroyableDamageableLayer xAnalogValue = do
-        jset ((jget (this).upTimeElapsedHelper)).delay ((((((jget (this).sCALE_VALUE) - xAnalogValue)) `Data.Bits.shiftR` (jget (this).reduceTimeFactor))))
-        when (jio (TimeDelayHelper.isTimeTNT ((jget (this).upTimeElapsedHelper)))) $ do
-            Control.Monad.void (CollidableDestroyableDamageableLayer.up collidableDestroyableDamageableLayer)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "reduceTimeFactor", JR.defaultOf "I" ), ( "SCALE_VALUE", JR.defaultOf "I" ), ( "rightTimeElapsedHelper", JR.defaultOf "" ), ( "leftTimeElapsedHelper", JR.defaultOf "" ), ( "downTimeElapsedHelper", JR.defaultOf "" ), ( "upTimeElapsedHelper", JR.defaultOf "" ) ]
 
 
--- throws Exception
-down :: (JavaObjectClass this_) => this_ -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-down object_ a1 a2 = jmethod object_ "down" (\() -> (down_impl (javaCast object_ :: AnalogControllerHelper))) () a1 a2
+jvtable =
+    JR.vtable
+        [ ( "right_2", jm_right_2 )
+        , ( "left_2", jm_left_2 )
+        , ( "up_2", jm_up_2 )
+        , ( "down_2", jm_down_2 ) ]
+        JR.noMethods
 
-down_super :: (JavaObjectClass this_) => this_ -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-down_super object_ a1 a2 = (down_impl (javaCast object_ :: AnalogControllerHelper)) a1 a2
 
-down_impl :: AnalogControllerHelper -> CollidableDestroyableDamageableLayer.CollidableDestroyableDamageableLayer -> Int -> IO (())
-down_impl this collidableDestroyableDamageableLayer xAnalogValue = do
-        jset ((jget (this).downTimeElapsedHelper)).delay ((((((jget (this).sCALE_VALUE) + xAnalogValue)) `Data.Bits.shiftR` (jget (this).reduceTimeFactor))))
-        when (jio (TimeDelayHelper.isTimeTNT ((jget (this).downTimeElapsedHelper)))) $ do
-            Control.Monad.void (CollidableDestroyableDamageableLayer.down collidableDestroyableDamageableLayer)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AnalogControllerHelper"
+        [ ( "jm_right_2", jm_right_2 ), ( "jm_left_2", jm_left_2 ), ( "jm_up_2", jm_up_2 ), ( "jm_down_2", jm_down_2 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "reduceTimeFactor", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "SCALE_VALUE" "I" JR.this (JR.field "SCALE_VALUE" (JR.callStatic AnalogControllerConfigurationFactory.jm_getInstance_0 []))),
+                JR.exec (JR.setField "rightTimeElapsedHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 0) ])),
+                JR.exec (JR.setField "leftTimeElapsedHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 0) ])),
+                JR.exec (JR.setField "downTimeElapsedHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 0) ])),
+                JR.exec (JR.setField "upTimeElapsedHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 0) ])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "reduceTimeFactor" "I" JR.this (JR.local "reduceTimeFactor")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_right_2 : JR.Method
+jm_right_2 jheap jthis jargs =
+    JR.method [ ( "collidableDestroyableDamageableLayer", "" ), ( "xAnalogValue", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.andThen (JR.thisField "rightTimeElapsedHelper") (\jtN68989 -> (JR.setField "delay" "I" (JR.lit jtN68989) ((JR.map2 JR.shr ((JR.map2 JR.sub (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
+                    JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "rightTimeElapsedHelper") []) (JR.run [ 
+                        JR.exec (JR.invoke "right_0" (JR.local "collidableDestroyableDamageableLayer") []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_left_2 : JR.Method
+jm_left_2 jheap jthis jargs =
+    JR.method [ ( "collidableDestroyableDamageableLayer", "" ), ( "xAnalogValue", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.andThen (JR.thisField "leftTimeElapsedHelper") (\jtN69184 -> (JR.setField "delay" "I" (JR.lit jtN69184) ((JR.map2 JR.shr ((JR.map2 JR.add (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
+                    JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "leftTimeElapsedHelper") []) (JR.run [ 
+                        JR.exec (JR.invoke "left_0" (JR.local "collidableDestroyableDamageableLayer") []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_up_2 : JR.Method
+jm_up_2 jheap jthis jargs =
+    JR.method [ ( "collidableDestroyableDamageableLayer", "" ), ( "xAnalogValue", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.andThen (JR.thisField "upTimeElapsedHelper") (\jtN69379 -> (JR.setField "delay" "I" (JR.lit jtN69379) ((JR.map2 JR.shr ((JR.map2 JR.sub (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
+                    JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "upTimeElapsedHelper") []) (JR.run [ 
+                        JR.exec (JR.invoke "up_0" (JR.local "collidableDestroyableDamageableLayer") []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_down_2 : JR.Method
+jm_down_2 jheap jthis jargs =
+    JR.method [ ( "collidableDestroyableDamageableLayer", "" ), ( "xAnalogValue", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.andThen (JR.thisField "downTimeElapsedHelper") (\jtN69574 -> (JR.setField "delay" "I" (JR.lit jtN69574) ((JR.map2 JR.shr ((JR.map2 JR.add (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
+                    JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "downTimeElapsedHelper") []) (JR.run [ 
+                        JR.exec (JR.invoke "down_0" (JR.local "collidableDestroyableDamageableLayer") []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

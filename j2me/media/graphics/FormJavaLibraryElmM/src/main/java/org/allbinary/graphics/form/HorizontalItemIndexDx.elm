@@ -1,98 +1,86 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
-module HorizontalItemIndexDx (module HorizontalItemIndexDx, module ItemIndexDx) where
+module Org.Allbinary.Graphics.Form.HorizontalItemIndexDx exposing (..)
 
-import ItemIndexDx hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getDx, getDx_super, getDx_impl, scrollCurrentSelectionForm)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ScrollCurrentSelectionForm -- same package or java.lang
-import qualified ABCustomItem -- org.allbinary.graphics.form.item.ABCustomItem
-import qualified ItemIndexDx
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form
+-}
 
-data HorizontalItemIndexDx = HorizontalItemIndexDx
-    { header_ :: JavaHeader
-    , base :: ItemIndexDx.ItemIndexDx
-    , scrollCurrentSelectionForm :: IORef (ScrollCurrentSelectionForm.ScrollCurrentSelectionForm)
-    }
-
-instance JavaNull HorizontalItemIndexDx where
-    javaNull = javaNullRecord "HorizontalItemIndexDx"
-
-instance JavaEquals HorizontalItemIndexDx where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HorizontalItemIndexDx where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HorizontalItemIndexDx where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HorizontalItemIndexDx
-newRecord_ = do
-    base <- ItemIndexDx.newRecord_
-    let header_ = base.header_
-    scrollCurrentSelectionForm <- newIORef javaNull
-    let this = HorizontalItemIndexDx header_ base scrollCurrentSelectionForm
-    jregisterLevel header_ this
-    jregisterMethod header_ "getDx" (\() -> getDx_impl this)
-    pure this
-
-initFields_ :: HorizontalItemIndexDx -> IO ()
-initFields_ this = do
-    jset this.scrollCurrentSelectionForm (javaNull)
-    pure ()
-
-new_1 :: ScrollCurrentSelectionForm.ScrollCurrentSelectionForm -> IO HorizontalItemIndexDx
-new_1 scrollCurrentSelectionForm = do
-    this <- newRecord_
-    init_1 this scrollCurrentSelectionForm
-    pure this
-
-init_1 :: HorizontalItemIndexDx -> ScrollCurrentSelectionForm.ScrollCurrentSelectionForm -> IO ()
-init_1 this scrollCurrentSelectionForm = do
-        ItemIndexDx.init_ this.base
-        initFields_ this
-        jset (this).scrollCurrentSelectionForm (scrollCurrentSelectionForm)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Form.ItemIndexDx as ItemIndexDx
 
 
--- throws Exception
-getDx :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getDx object_ a1 a2 a3 a4 = jmethod object_ "getDx" (\() -> (getDx_impl (javaCast object_ :: HorizontalItemIndexDx))) () a1 a2 a3 a4
+jclass : String
+jclass =
+    "HorizontalItemIndexDx"
 
-getDx_super :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getDx_super object_ a1 a2 a3 a4 = (getDx_impl (javaCast object_ :: HorizontalItemIndexDx)) a1 a2 a3 a4
 
-getDx_impl :: HorizontalItemIndexDx -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getDx_impl this index item dx dy = do
-        (ScrollCurrentSelectionForm.getXHorizontalForm ((jget (this).scrollCurrentSelectionForm)) index item dx dy)
+jchain : List String
+jchain =
+    [ "HorizontalItemIndexDx" ]
+        ++ ItemIndexDx.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    ItemIndexDx.jfields ++ [ ( "scrollCurrentSelectionForm", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getDx_4", jm_getDx_4 ) ]
+        ItemIndexDx.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HorizontalItemIndexDx"
+        [ ( "jm_getDx_4", jm_getDx_4 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "scrollCurrentSelectionForm", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ItemIndexDx.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "scrollCurrentSelectionForm" "" JR.this (JR.local "scrollCurrentSelectionForm")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getDx_4 : JR.Method
+jm_getDx_4 jheap jthis jargs =
+    JR.method [ ( "index", "I" ), ( "item", "" ), ( "dx", "I" ), ( "dy", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getXHorizontalForm_4" (JR.thisField "scrollCurrentSelectionForm") [ (JR.local "index"), (JR.local "item"), (JR.local "dx"), (JR.local "dy") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

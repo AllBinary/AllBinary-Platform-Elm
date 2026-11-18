@@ -1,11 +1,11 @@
-module HashtableUtil exposing (..)
+module Org.Allbinary.Util.HashtableUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}
 
 import JR
-import BasicArrayListS
-import EnumerationUtil
+import Org.Allbinary.Util.BasicArrayListS as BasicArrayListS
+import Org.Allbinary.Util.EnumerationUtil as EnumerationUtil
 
 
 jclass : String

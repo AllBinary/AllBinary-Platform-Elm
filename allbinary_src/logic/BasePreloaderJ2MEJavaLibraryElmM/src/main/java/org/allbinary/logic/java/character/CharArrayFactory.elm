@@ -1,4 +1,4 @@
-module CharArrayFactory exposing (..)
+module Org.Allbinary.Logic.Java.Character.CharArrayFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.java.character
 -}

@@ -1,221 +1,189 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package javax.microedition.lcdui
-module PlatformImage where
+module Javax.Microedition.Lcdui.PlatformImage exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NullImage -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified Image -- same package or java.lang
-import qualified Graphics -- same package or java.lang
-import qualified NullUtil -- org.allbinary.logic.NullUtil
+{-| Generated Code Do Not Modify package javax.microedition.lcdui
+-}
 
-data PlatformImage = PlatformImage
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull PlatformImage where
-    javaNull = javaNullRecord "PlatformImage"
-
-instance JavaEquals PlatformImage where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlatformImage where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlatformImage where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PlatformImage
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = PlatformImage header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getImage" (\() -> getImage_impl this)
-    jregisterMethod header_ "getSurfaceWidth" (\() -> getSurfaceWidth_impl this)
-    jregisterMethod header_ "getSurfaceHeight" (\() -> getSurfaceHeight_impl this)
-    jregisterMethod header_ "getWidth" (\() -> getWidth_impl this)
-    jregisterMethod header_ "getHeight" (\() -> getHeight_impl this)
-    jregisterMethod header_ "getGraphics" (\() -> getGraphics_impl this)
-    jregisterMethod header_ "drawImage" (\() -> drawImage_impl this)
-    jregisterMethod header_ "drawRegion" (\() -> drawRegion_impl this)
-    jregisterMethod header_ "getRGB" (\() -> getRGB_impl this)
-    jregisterMethod header_ "setRGB" (\() -> setRGB_impl this)
-    jregisterMethod header_ "getData" (\() -> getData_impl this)
-    pure this
-
-initFields_ :: PlatformImage -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO PlatformImage
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PlatformImage -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Javax.Microedition.Lcdui.NullImage as NullImage
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
-getImage :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Any.Any)
-getImage object_ a1 = jmethod object_ "getImage" (\() -> (getImage_impl (javaCast object_ :: PlatformImage))) () (jtoObject a1)
-
-getImage_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Any.Any)
-getImage_super object_ a1 = (getImage_impl (javaCast object_ :: PlatformImage)) (jtoObject a1)
-
-getImage_impl :: PlatformImage -> JavaObject -> IO (Any.Any)
-getImage_impl this graphicsSurface2Object_ = do
-        let graphicsSurface2 = jtoObject graphicsSurface2Object_
-        pure ((jtoObject NullImage.nULL_IMAGE))
+jclass : String
+jclass =
+    "PlatformImage"
 
 
-getSurfaceWidth :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> Int -> IO (Int)
-getSurfaceWidth object_ a1 a2 = jmethod object_ "getSurfaceWidth" (\() -> (getSurfaceWidth_impl (javaCast object_ :: PlatformImage))) () (jtoObject a1) a2
-
-getSurfaceWidth_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> Int -> IO (Int)
-getSurfaceWidth_super object_ a1 a2 = (getSurfaceWidth_impl (javaCast object_ :: PlatformImage)) (jtoObject a1) a2
-
-getSurfaceWidth_impl :: PlatformImage -> JavaObject -> Int -> IO (Int)
-getSurfaceWidth_impl this graphicsSurface2Object_ width = do
-        let graphicsSurface2 = jtoObject graphicsSurface2Object_
-        pure (width)
+jchain : List String
+jchain =
+    [ "PlatformImage" ]
 
 
-getSurfaceHeight :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> Int -> IO (Int)
-getSurfaceHeight object_ a1 a2 = jmethod object_ "getSurfaceHeight" (\() -> (getSurfaceHeight_impl (javaCast object_ :: PlatformImage))) () (jtoObject a1) a2
-
-getSurfaceHeight_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> Int -> IO (Int)
-getSurfaceHeight_super object_ a1 a2 = (getSurfaceHeight_impl (javaCast object_ :: PlatformImage)) (jtoObject a1) a2
-
-getSurfaceHeight_impl :: PlatformImage -> JavaObject -> Int -> IO (Int)
-getSurfaceHeight_impl this graphicsSurface2Object_ height = do
-        let graphicsSurface2 = jtoObject graphicsSurface2Object_
-        pure (height)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-getWidth :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> IO (Int)
-getWidth object_ a1 a2 = jmethod object_ "getWidth" (\() -> (getWidth_impl (javaCast object_ :: PlatformImage))) () a1 a2
-
-getWidth_super :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> IO (Int)
-getWidth_super object_ a1 a2 = (getWidth_impl (javaCast object_ :: PlatformImage)) a1 a2
-
-getWidth_impl :: PlatformImage -> Image.Image -> Int -> IO (Int)
-getWidth_impl this image width = do
-        pure (width)
-
-
-getHeight :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> IO (Int)
-getHeight object_ a1 a2 = jmethod object_ "getHeight" (\() -> (getHeight_impl (javaCast object_ :: PlatformImage))) () a1 a2
-
-getHeight_super :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> IO (Int)
-getHeight_super object_ a1 a2 = (getHeight_impl (javaCast object_ :: PlatformImage)) a1 a2
-
-getHeight_impl :: PlatformImage -> Image.Image -> Int -> IO (Int)
-getHeight_impl this image height = do
-        pure (height)
+jvtable =
+    JR.vtable
+        [ ( "getImage_1", jm_getImage_1 )
+        , ( "getSurfaceWidth_2", jm_getSurfaceWidth_2 )
+        , ( "getSurfaceHeight_2", jm_getSurfaceHeight_2 )
+        , ( "getWidth_2", jm_getWidth_2 )
+        , ( "getHeight_2", jm_getHeight_2 )
+        , ( "getGraphics_4", jm_getGraphics_4 )
+        , ( "drawImage_6", jm_drawImage_6 )
+        , ( "drawRegion_10", jm_drawRegion_10 )
+        , ( "getRGB_8", jm_getRGB_8 )
+        , ( "setRGB_8", jm_setRGB_8 )
+        , ( "getData_1", jm_getData_1 ) ]
+        JR.noMethods
 
 
-getGraphics :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> Int -> Int -> Image.Image -> IO (Graphics.Graphics)
-getGraphics object_ a1 a2 a3 a4 = jmethod object_ "getGraphics" (\() -> (getGraphics_impl (javaCast object_ :: PlatformImage))) () (jtoObject a1) a2 a3 a4
-
-getGraphics_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> Int -> Int -> Image.Image -> IO (Graphics.Graphics)
-getGraphics_super object_ a1 a2 a3 a4 = (getGraphics_impl (javaCast object_ :: PlatformImage)) (jtoObject a1) a2 a3 a4
-
-getGraphics_impl :: PlatformImage -> JavaObject -> Int -> Int -> Image.Image -> IO (Graphics.Graphics)
-getGraphics_impl this graphicsSurfaceObject_ width height image = do
-        let graphicsSurface = jtoObject graphicsSurfaceObject_
-        javaThrow ((JavaException "RuntimeException" ""))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlatformImage"
+        [ ( "jm_getImage_1", jm_getImage_1 ), ( "jm_getSurfaceWidth_2", jm_getSurfaceWidth_2 ), ( "jm_getSurfaceHeight_2", jm_getSurfaceHeight_2 ), ( "jm_getWidth_2", jm_getWidth_2 ), ( "jm_getHeight_2", jm_getHeight_2 ), ( "jm_getGraphics_4", jm_getGraphics_4 ), ( "jm_drawImage_6", jm_drawImage_6 ), ( "jm_drawRegion_10", jm_drawRegion_10 ), ( "jm_getRGB_8", jm_getRGB_8 ), ( "jm_setRGB_8", jm_setRGB_8 ), ( "jm_getData_1", jm_getData_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
 
-drawImage :: (JavaObjectClass this_, JavaObjectClass o6) => this_ -> Image.Image -> Int -> Int -> Int -> Graphics.Graphics -> o6 -> IO (())
-drawImage object_ a1 a2 a3 a4 a5 a6 = jmethod object_ "drawImage" (\() -> (drawImage_impl (javaCast object_ :: PlatformImage))) () a1 a2 a3 a4 a5 (jtoObject a6)
-
-drawImage_super :: (JavaObjectClass this_, JavaObjectClass o6) => this_ -> Image.Image -> Int -> Int -> Int -> Graphics.Graphics -> o6 -> IO (())
-drawImage_super object_ a1 a2 a3 a4 a5 a6 = (drawImage_impl (javaCast object_ :: PlatformImage)) a1 a2 a3 a4 a5 (jtoObject a6)
-
-drawImage_impl :: PlatformImage -> Image.Image -> Int -> Int -> Int -> Graphics.Graphics -> JavaObject -> IO (())
-drawImage_impl this image x y anchor g2 gObject_ = do
-        let g = jtoObject gObject_
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-drawRegion :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> Graphics.Graphics -> IO (())
-drawRegion object_ a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 = jmethod object_ "drawRegion" (\() -> (drawRegion_impl (javaCast object_ :: PlatformImage))) () a1 a2 a3 a4 a5 a6 a7 a8 a9 a10
-
-drawRegion_super :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> Graphics.Graphics -> IO (())
-drawRegion_super object_ a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 = (drawRegion_impl (javaCast object_ :: PlatformImage)) a1 a2 a3 a4 a5 a6 a7 a8 a9 a10
-
-drawRegion_impl :: PlatformImage -> Image.Image -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> Graphics.Graphics -> IO (())
-drawRegion_impl this image x_src y_src width height transform x_dst y_dst anchor g = do
-        pure ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getRGB :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> Image.Image -> IO (())
-getRGB object_ a1 a2 a3 a4 a5 a6 a7 a8 = jmethod object_ "getRGB" (\() -> (getRGB_impl (javaCast object_ :: PlatformImage))) () a1 a2 a3 a4 a5 a6 a7 a8
-
-getRGB_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> Image.Image -> IO (())
-getRGB_super object_ a1 a2 a3 a4 a5 a6 a7 a8 = (getRGB_impl (javaCast object_ :: PlatformImage)) a1 a2 a3 a4 a5 a6 a7 a8
-
-getRGB_impl :: PlatformImage -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> Image.Image -> IO (())
-getRGB_impl this argb offset scanlength x y width height image = do
-        pure ()
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
 
-setRGB :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> Image.Image -> IO (())
-setRGB object_ a1 a2 a3 a4 a5 a6 a7 a8 = jmethod object_ "setRGB" (\() -> (setRGB_impl (javaCast object_ :: PlatformImage))) () a1 a2 a3 a4 a5 a6 a7 a8
+jm_getImage_1 : JR.Method
+jm_getImage_1 jheap jthis jargs =
+    JR.method [ ( "graphicsSurface2", "" ) ] ""
+        (JR.run [ 
+                    JR.return NullImage.jstatic_NULL_IMAGE ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setRGB_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> Image.Image -> IO (())
-setRGB_super object_ a1 a2 a3 a4 a5 a6 a7 a8 = (setRGB_impl (javaCast object_ :: PlatformImage)) a1 a2 a3 a4 a5 a6 a7 a8
 
-setRGB_impl :: PlatformImage -> JavaArray (Int) -> Int -> Int -> Int -> Int -> Int -> Int -> Image.Image -> IO (())
-setRGB_impl this argb offset scanlength x y width height image = do
-        pure ()
+jm_getSurfaceWidth_2 : JR.Method
+jm_getSurfaceWidth_2 jheap jthis jargs =
+    JR.method [ ( "graphicsSurface2", "" ), ( "width", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.local "width") ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getData :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (JavaArray (Int))
-getData object_ a1 = jmethod object_ "getData" (\() -> (getData_impl (javaCast object_ :: PlatformImage))) () a1
+jm_getSurfaceHeight_2 : JR.Method
+jm_getSurfaceHeight_2 jheap jthis jargs =
+    JR.method [ ( "graphicsSurface2", "" ), ( "height", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.local "height") ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getData_super :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (JavaArray (Int))
-getData_super object_ a1 = (getData_impl (javaCast object_ :: PlatformImage)) a1
 
-getData_impl :: PlatformImage -> Image.Image -> IO (JavaArray (Int))
-getData_impl this image = do
-        pure ((jget ((jio (NullUtil.getInstance))).nULL_INT_ARRAY))
+jm_getWidth_2 : JR.Method
+jm_getWidth_2 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "width", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.local "width") ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_getHeight_2 : JR.Method
+jm_getHeight_2 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "height", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.local "height") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGraphics_4 : JR.Method
+jm_getGraphics_4 jheap jthis jargs =
+    JR.method [ ( "graphicsSurface", "" ), ( "width", "I" ), ( "height", "I" ), ( "image", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_drawImage_6 : JR.Method
+jm_drawImage_6 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "x", "I" ), ( "y", "I" ), ( "anchor", "I" ), ( "g2", "" ), ( "g", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_drawRegion_10 : JR.Method
+jm_drawRegion_10 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "x_src", "I" ), ( "y_src", "I" ), ( "width", "I" ), ( "height", "I" ), ( "transform", "I" ), ( "x_dst", "I" ), ( "y_dst", "I" ), ( "anchor", "I" ), ( "g", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRGB_8 : JR.Method
+jm_getRGB_8 jheap jthis jargs =
+    JR.method [ ( "argb", "" ), ( "offset", "I" ), ( "scanlength", "I" ), ( "x", "I" ), ( "y", "I" ), ( "width", "I" ), ( "height", "I" ), ( "image", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setRGB_8 : JR.Method
+jm_setRGB_8 jheap jthis jargs =
+    JR.method [ ( "argb", "" ), ( "offset", "I" ), ( "scanlength", "I" ), ( "x", "I" ), ( "y", "I" ), ( "width", "I" ), ( "height", "I" ), ( "image", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getData_1 : JR.Method
+jm_getData_1 jheap jthis jargs =
+    JR.method [ ( "image", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.field "NULL_INT_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

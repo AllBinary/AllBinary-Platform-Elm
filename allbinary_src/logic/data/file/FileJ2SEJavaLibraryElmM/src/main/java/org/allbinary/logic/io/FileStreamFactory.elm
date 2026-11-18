@@ -1,147 +1,138 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
-module FileStreamFactory where
+module Org.Allbinary.Logic.Io.FileStreamFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified AbFileInputStream -- same package or java.lang
-import qualified AbFileOutputStream -- same package or java.lang
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified AbPath -- org.allbinary.logic.io.path.AbPath
+{-| Generated Code Do Not Modify package org.allbinary.logic.io
+-}
 
-data FileStreamFactory = FileStreamFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull FileStreamFactory where
-    javaNull = javaNullRecord "FileStreamFactory"
-
-instance JavaEquals FileStreamFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FileStreamFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FileStreamFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO FileStreamFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = FileStreamFactory header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getFileInputStreamInstance" (\() -> getFileInputStreamInstance_impl this)
-    jregisterMethod header_ "getFileOutputStreamInstance" (\() -> getFileOutputStreamInstance_impl this)
-    jregisterMethod header_ "delete" (\() -> delete_impl this)
-    pure this
-
-initFields_ :: FileStreamFactory -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Logic.Io.File.AbFile as AbFile
+import Org.Allbinary.Logic.Io.AbFileInputStream as AbFileInputStream
+import Org.Allbinary.Logic.Io.AbFileOutputStream as AbFileOutputStream
+import Org.Allbinary.Logic.Io.Path.AbPath as AbPath
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
-getInstance :: IO (FileStreamFactory)
-getInstance = do
-        when ((jget FileStreamFactory.sINGLETON) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset FileStreamFactory.sINGLETON (assignedValue)
-        pure ((javaCast (jget FileStreamFactory.sINGLETON) :: FileStreamFactory))
-
-new_ :: IO FileStreamFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: FileStreamFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "FileStreamFactory"
 
 
--- throws Exception
-getFileInputStreamInstance :: (JavaObjectClass this_) => this_ -> String -> String -> IO (AbFileInputStream.AbFileInputStream)
-getFileInputStreamInstance object_ a1 a2 = jmethod object_ "getFileInputStreamInstance" (\() -> (getFileInputStreamInstance_impl (javaCast object_ :: FileStreamFactory))) () a1 a2
-
-getFileInputStreamInstance_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (AbFileInputStream.AbFileInputStream)
-getFileInputStreamInstance_super object_ a1 a2 = (getFileInputStreamInstance_impl (javaCast object_ :: FileStreamFactory)) a1 a2
-
-getFileInputStreamInstance_impl :: FileStreamFactory -> String -> String -> IO (AbFileInputStream.AbFileInputStream)
-getFileInputStreamInstance_impl this path fileName = do
-        fILEABPATH <- (AbPath.new_2 path fileName)
-        file <- (AbFile.createAbFileFromAbPath fILEABPATH)
-        (AbFileInputStream.createFromAbFile file)
+jchain : List String
+jchain =
+    [ "FileStreamFactory" ]
 
 
--- throws Exception
-getFileOutputStreamInstance :: (JavaObjectClass this_) => this_ -> String -> String -> IO (AbFileOutputStream.AbFileOutputStream)
-getFileOutputStreamInstance object_ a1 a2 = jmethod object_ "getFileOutputStreamInstance" (\() -> (getFileOutputStreamInstance_impl (javaCast object_ :: FileStreamFactory))) () a1 a2
-
-getFileOutputStreamInstance_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (AbFileOutputStream.AbFileOutputStream)
-getFileOutputStreamInstance_super object_ a1 a2 = (getFileOutputStreamInstance_impl (javaCast object_ :: FileStreamFactory)) a1 a2
-
-getFileOutputStreamInstance_impl :: FileStreamFactory -> String -> String -> IO (AbFileOutputStream.AbFileOutputStream)
-getFileOutputStreamInstance_impl this path fileName = do
-        fILEABPATH <- (AbPath.new_2 path fileName)
-        file <- (AbFile.createAbFileFromAbPath fILEABPATH)
-        when (jio (AbFile.exists file)) $ do
-            Control.Monad.void (AbFile.delete file)
-            Control.Monad.void (AbFile.createNewFile file)
-        (AbFileOutputStream.createFromAbFile file)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
--- throws Exception
-delete :: (JavaObjectClass this_) => this_ -> String -> String -> IO (())
-delete object_ a1 a2 = jmethod object_ "delete" (\() -> (delete_impl (javaCast object_ :: FileStreamFactory))) () a1 a2
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getFileInputStreamInstance_2", jm_getFileInputStreamInstance_2 )
+        , ( "getFileOutputStreamInstance_2", jm_getFileOutputStreamInstance_2 )
+        , ( "delete_2", jm_delete_2 ) ]
+        JR.noMethods
 
-delete_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (())
-delete_super object_ a1 a2 = (delete_impl (javaCast object_ :: FileStreamFactory)) a1 a2
 
-delete_impl :: FileStreamFactory -> String -> String -> IO (())
-delete_impl this path fileName = do
-        fILEABPATH <- (AbPath.new_2 path fileName)
-        file <- (AbFile.createAbFileFromAbPath fILEABPATH)
-        Control.Monad.void (AbFile.delete file)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FileStreamFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getFileInputStreamInstance_2", jm_getFileInputStreamInstance_2 ), ( "jm_getFileOutputStreamInstance_2", jm_getFileOutputStreamInstance_2 ), ( "jm_delete_2", jm_delete_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "FileStreamFactory" jclinit "SINGLETON"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_SINGLETON (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "FileStreamFactory.SINGLETON" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFileInputStreamInstance_2 : JR.Method
+jm_getFileInputStreamInstance_2 jheap jthis jargs =
+    JR.method [ ( "path", "" ), ( "fileName", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "FILEABPATH" "" (JR.new AbPath.jnew_2 [ (JR.local "path"), (JR.local "fileName") ]), 
+                    JR.declare "file" "" (JR.callStatic AbFile.jm_createAbFileFromAbPath_1 [ (JR.local "FILEABPATH") ]), 
+                    JR.return (JR.callStatic AbFileInputStream.jm_createFromAbFile_1 [ (JR.local "file") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFileOutputStreamInstance_2 : JR.Method
+jm_getFileOutputStreamInstance_2 jheap jthis jargs =
+    JR.method [ ( "path", "" ), ( "fileName", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "FILEABPATH" "" (JR.new AbPath.jnew_2 [ (JR.local "path"), (JR.local "fileName") ]), 
+                    JR.declare "file" "" (JR.callStatic AbFile.jm_createAbFileFromAbPath_1 [ (JR.local "FILEABPATH") ]), 
+                    JR.ifElse (JR.invoke "exists_0" (JR.local "file") []) (JR.run [ 
+                        JR.exec (JR.invoke "delete_0" (JR.local "file") []), 
+                        JR.exec (JR.invoke "createNewFile_0" (JR.local "file") []) ]) identity, 
+                    JR.return (JR.callStatic AbFileOutputStream.jm_createFromAbFile_1 [ (JR.local "file") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_delete_2 : JR.Method
+jm_delete_2 jheap jthis jargs =
+    JR.method [ ( "path", "" ), ( "fileName", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "FILEABPATH" "" (JR.new AbPath.jnew_2 [ (JR.local "path"), (JR.local "fileName") ]), 
+                    JR.declare "file" "" (JR.callStatic AbFile.jm_createAbFileFromAbPath_1 [ (JR.local "FILEABPATH") ]), 
+                    JR.exec (JR.invoke "delete_0" (JR.local "file") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

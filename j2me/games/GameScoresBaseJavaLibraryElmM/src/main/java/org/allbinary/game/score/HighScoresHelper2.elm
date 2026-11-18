@@ -1,150 +1,132 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module HighScoresHelper2 (module HighScoresHelper2, module HighScoresHelperBase) where
+module Org.Allbinary.Game.Score.HighScoresHelper2 exposing (..)
 
-import HighScoresHelperBase hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, setSelectedHighScores, setSelectedHighScores_super, setSelectedHighScores_impl, getSelectedHighScores, getSelectedHighScores_super, getSelectedHighScores_impl, setHighScoresArray, setHighScoresArray_super, setHighScoresArray_impl, selectHighScores, selectHighScores_super, selectHighScores_impl, circularIndexUtil, selectedHighScores)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NullHighScoresSingletonFactory -- same package or java.lang
-import qualified HighScores -- same package or java.lang
-import qualified CircularIndexUtil -- org.allbinary.util.CircularIndexUtil
-import qualified HighScoresHelperBase
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
-data HighScoresHelper2 = HighScoresHelper2
-    { header_ :: JavaHeader
-    , base :: HighScoresHelperBase.HighScoresHelperBase
-    , circularIndexUtil :: IORef (CircularIndexUtil.CircularIndexUtil)
-    , selectedHighScores :: IORef (HighScores.HighScores)
-    }
-
-instance JavaNull HighScoresHelper2 where
-    javaNull = javaNullRecord "HighScoresHelper2"
-
-instance JavaEquals HighScoresHelper2 where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoresHelper2 where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoresHelper2 where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HighScoresHelper2
-newRecord_ = do
-    base <- HighScoresHelperBase.newRecord_
-    let header_ = base.header_
-    circularIndexUtil <- newIORef javaNull
-    selectedHighScores <- newIORef javaNull
-    let this = HighScoresHelper2 header_ base circularIndexUtil selectedHighScores
-    jregisterLevel header_ this
-    jregisterMethod header_ "setSelectedHighScores" (\() -> setSelectedHighScores_impl this)
-    jregisterMethod header_ "getSelectedHighScores" (\() -> getSelectedHighScores_impl this)
-    jregisterMethod header_ "setHighScoresArray" (\() -> setHighScoresArray_impl this)
-    jregisterMethod header_ "selectHighScores" (\() -> selectHighScores_impl this)
-    pure this
-
-initFields_ :: HighScoresHelper2 -> IO ()
-initFields_ this = do
-    jset this.circularIndexUtil =<< (CircularIndexUtil.createInstanceAt 0 0)
-    jset this.selectedHighScores =<< (NullHighScoresSingletonFactory.getInstance)
-    pure ()
-
-new_ :: IO HighScoresHelper2
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: HighScoresHelper2 -> IO ()
-init_ this = do
-    HighScoresHelperBase.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
+import Org.Allbinary.Game.Score.HighScoresHelperBase as HighScoresHelperBase
+import Org.Allbinary.Game.Score.NullHighScoresSingletonFactory as NullHighScoresSingletonFactory
 
 
-setSelectedHighScores :: (JavaObjectClass this_) => this_ -> HighScores.HighScores -> IO (())
-setSelectedHighScores object_ a1 = jmethod object_ "setSelectedHighScores" (\() -> (setSelectedHighScores_impl (javaCast object_ :: HighScoresHelper2))) () a1
-
-setSelectedHighScores_super :: (JavaObjectClass this_) => this_ -> HighScores.HighScores -> IO (())
-setSelectedHighScores_super object_ a1 = (setSelectedHighScores_impl (javaCast object_ :: HighScoresHelper2)) a1
-
-setSelectedHighScores_impl :: HighScoresHelper2 -> HighScores.HighScores -> IO (())
-setSelectedHighScores_impl this selectedHighScores = do
-        jset (this).selectedHighScores (selectedHighScores)
-        pure ()
+jclass : String
+jclass =
+    "HighScoresHelper2"
 
 
-getSelectedHighScores :: (JavaObjectClass this_) => this_ -> IO (HighScores.HighScores)
-getSelectedHighScores object_ = jmethod object_ "getSelectedHighScores" (\() -> (getSelectedHighScores_impl (javaCast object_ :: HighScoresHelper2))) ()
-
-getSelectedHighScores_super :: (JavaObjectClass this_) => this_ -> IO (HighScores.HighScores)
-getSelectedHighScores_super object_ = (getSelectedHighScores_impl (javaCast object_ :: HighScoresHelper2))
-
-getSelectedHighScores_impl :: HighScoresHelper2 -> IO (HighScores.HighScores)
-getSelectedHighScores_impl this = do
-        pure ((jget (this).selectedHighScores))
+jchain : List String
+jchain =
+    [ "HighScoresHelper2" ]
+        ++ HighScoresHelperBase.jchain
 
 
-setHighScoresArray :: (JavaObjectClass this_) => this_ -> JavaArray (HighScores.HighScores) -> IO (())
-setHighScoresArray object_ a1 = jmethod object_ "setHighScoresArray" (\() -> (setHighScoresArray_impl (javaCast object_ :: HighScoresHelper2))) () a1
-
-setHighScoresArray_super :: (JavaObjectClass this_) => this_ -> JavaArray (HighScores.HighScores) -> IO (())
-setHighScoresArray_super object_ a1 = (setHighScoresArray_impl (javaCast object_ :: HighScoresHelper2)) a1
-
-setHighScoresArray_impl :: HighScoresHelper2 -> JavaArray (HighScores.HighScores) -> IO (())
-setHighScoresArray_impl this highScoresArrayP = do
-        Control.Monad.void (HighScoresHelperBase.setHighScoresArray_super this.base highScoresArrayP)
-        Control.Monad.void (CircularIndexUtil.setSize ((jget (this).circularIndexUtil)) (jlength (jget (this).base.highScoresArrayP)))
-        Control.Monad.void (HighScoresHelper2.selectHighScores this)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    HighScoresHelperBase.jfields ++ [ ( "circularIndexUtil", JR.defaultOf "" ), ( "selectedHighScores", JR.defaultOf "" ) ]
 
 
-selectHighScores :: (JavaObjectClass this_) => this_ -> IO (())
-selectHighScores object_ = jmethod object_ "selectHighScores" (\() -> (selectHighScores_impl (javaCast object_ :: HighScoresHelper2))) ()
+jvtable =
+    JR.vtable
+        [ ( "setSelectedHighScores_1", jm_setSelectedHighScores_1 )
+        , ( "getSelectedHighScores_0", jm_getSelectedHighScores_0 )
+        , ( "setHighScoresArray_1", jm_setHighScoresArray_1 )
+        , ( "selectHighScores_0", jm_selectHighScores_0 ) ]
+        HighScoresHelperBase.jvtable
 
-selectHighScores_super :: (JavaObjectClass this_) => this_ -> IO (())
-selectHighScores_super object_ = (selectHighScores_impl (javaCast object_ :: HighScoresHelper2))
 
-selectHighScores_impl :: HighScoresHelper2 -> IO (())
-selectHighScores_impl this = do
-    javaCatchReturn $ do
-        when ((jlength (jget (this).base.highScoresArrayP)) == 0) $ do
-            Control.Monad.void (HighScoresHelper2.setSelectedHighScores this (jio (NullHighScoresSingletonFactory.getInstance)))
-            javaReturn (())
-        Control.Monad.void (CircularIndexUtil.next ((jget (this).circularIndexUtil)))
-        highScores <- newIORef ((jindex ((jget (this).base.highScoresArrayP)) ((jio (CircularIndexUtil.getIndex ((jget (this).circularIndexUtil)))))))
-        index <- newIORef (0 :: Int)
-        fix $ \loop -> when (((jio (HighScores.getTotal ((jget highScores)))) < 1) && ((jget index) < (jlength (jget (this).base.highScoresArrayP)))) $ javaIteration (loop) $ do
-            jset highScores ((jindex ((jget (this).base.highScoresArrayP)) ((jio (CircularIndexUtil.next ((jget (this).circularIndexUtil)))))))
-            jset index ((jget index) + 1)
-        Control.Monad.void (HighScoresHelper2.setSelectedHighScores this (jget highScores))
-    pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoresHelper2"
+        [ ( "jm_setSelectedHighScores_1", jm_setSelectedHighScores_1 ), ( "jm_getSelectedHighScores_0", jm_getSelectedHighScores_0 ), ( "jm_setHighScoresArray_1", jm_setHighScoresArray_1 ), ( "jm_selectHighScores_0", jm_selectHighScores_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect HighScoresHelperBase.jinit_0 JR.this []),
+            JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstanceAt_2 [ (JR.int 0), (JR.int 0) ])),
+                JR.exec (JR.setField "selectedHighScores" "" JR.this (JR.callStatic NullHighScoresSingletonFactory.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_setSelectedHighScores_1 : JR.Method
+jm_setSelectedHighScores_1 jheap jthis jargs =
+    JR.method [ ( "selectedHighScores", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "selectedHighScores" "" JR.this (JR.local "selectedHighScores")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSelectedHighScores_0 : JR.Method
+jm_getSelectedHighScores_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "selectedHighScores") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHighScoresArray_1 : JR.Method
+jm_setHighScoresArray_1 jheap jthis jargs =
+    JR.method [ ( "highScoresArrayP", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia HighScoresHelperBase.jvtable "setHighScoresArray_1" JR.this [ (JR.local "highScoresArrayP") ]), 
+                    JR.exec (JR.invoke "setSize_1" (JR.thisField "circularIndexUtil") [ (JR.alength (JR.thisField "highScoresArrayP")) ]), 
+                    JR.exec (JR.invoke "selectHighScores_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_selectHighScores_0 : JR.Method
+jm_selectHighScores_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.alength (JR.thisField "highScoresArrayP")) (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.invoke "setSelectedHighScores_1" JR.this [ (JR.callStatic NullHighScoresSingletonFactory.jm_getInstance_0 []) ]), 
+                        JR.returnVoid ]) identity, 
+                    JR.exec (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []), 
+                    JR.declare "highScores" "" (JR.aget (JR.thisField "highScoresArrayP") (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") [])), 
+                    JR.declare "index" "I" (JR.int 0), 
+                    JR.while (JR.and (JR.map2 JR.less (JR.invoke "getTotal_0" (JR.local "highScores") []) (JR.int 1)) (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "highScoresArrayP")))) (JR.run [ 
+                        JR.exec (JR.setLocal "highScores" "" (JR.aget (JR.thisField "highScoresArrayP") (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []))), 
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN66878 -> (JR.setLocal "index" "I" (JR.lit jwN66878))) JR.increment) ]), 
+                    JR.exec (JR.invoke "setSelectedHighScores_1" JR.this [ (JR.local "highScores") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

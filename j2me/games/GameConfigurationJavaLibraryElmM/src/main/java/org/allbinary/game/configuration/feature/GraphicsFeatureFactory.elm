@@ -1,119 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
-module GraphicsFeatureFactory where
+module Org.Allbinary.Game.Configuration.Feature.GraphicsFeatureFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GraphicsFeature -- same package or java.lang
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.feature
+-}
 
-data GraphicsFeatureFactory = GraphicsFeatureFactory
-    { header_ :: JavaHeader
-    , nONE :: IORef (GraphicsFeature.GraphicsFeature)
-    , tRANSPARENT_IMAGE_CREATION :: IORef (GraphicsFeature.GraphicsFeature)
-    , iMAGE_GRAPHICS :: IORef (GraphicsFeature.GraphicsFeature)
-    , iMAGE_ROTATION_ON_THE_FLY :: IORef (GraphicsFeature.GraphicsFeature)
-    , iMAGE_TO_ARRAY_GRAPHICS :: IORef (GraphicsFeature.GraphicsFeature)
-    , sPRITE_QUARTER_ROTATION_GRAPHICS :: IORef (GraphicsFeature.GraphicsFeature)
-    , sPRITE_FULL_GRAPHICS :: IORef (GraphicsFeature.GraphicsFeature)
-    , vECTOR_GRAPHICS :: IORef (GraphicsFeature.GraphicsFeature)
-    , vECTOR_TO_IMAGE_GRAPHICS :: IORef (GraphicsFeature.GraphicsFeature)
-    }
-
-instance JavaNull GraphicsFeatureFactory where
-    javaNull = javaNullRecord "GraphicsFeatureFactory"
-
-instance JavaEquals GraphicsFeatureFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GraphicsFeatureFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GraphicsFeatureFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GraphicsFeatureFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GraphicsFeatureFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    nONE <- newIORef javaNull
-    tRANSPARENT_IMAGE_CREATION <- newIORef javaNull
-    iMAGE_GRAPHICS <- newIORef javaNull
-    iMAGE_ROTATION_ON_THE_FLY <- newIORef javaNull
-    iMAGE_TO_ARRAY_GRAPHICS <- newIORef javaNull
-    sPRITE_QUARTER_ROTATION_GRAPHICS <- newIORef javaNull
-    sPRITE_FULL_GRAPHICS <- newIORef javaNull
-    vECTOR_GRAPHICS <- newIORef javaNull
-    vECTOR_TO_IMAGE_GRAPHICS <- newIORef javaNull
-    let this = GraphicsFeatureFactory header_ nONE tRANSPARENT_IMAGE_CREATION iMAGE_GRAPHICS iMAGE_ROTATION_ON_THE_FLY iMAGE_TO_ARRAY_GRAPHICS sPRITE_QUARTER_ROTATION_GRAPHICS sPRITE_FULL_GRAPHICS vECTOR_GRAPHICS vECTOR_TO_IMAGE_GRAPHICS
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: GraphicsFeatureFactory -> IO ()
-initFields_ this = do
-    jset this.nONE =<< (GraphicsFeature.new_1 (jget ((jio (StringUtil.getInstance))).nULL_STRING))
-    jset this.tRANSPARENT_IMAGE_CREATION =<< (GraphicsFeature.new_1 "Transparent Image Creation")
-    jset this.iMAGE_GRAPHICS =<< (GraphicsFeature.new_1 "Image Graphics")
-    jset this.iMAGE_ROTATION_ON_THE_FLY =<< (GraphicsFeature.new_1 "Image Rotated On The Fly")
-    jset this.iMAGE_TO_ARRAY_GRAPHICS =<< (GraphicsFeature.new_1 "Image To Array Graphics")
-    jset this.sPRITE_QUARTER_ROTATION_GRAPHICS =<< (GraphicsFeature.new_1 "Sprite Quarter Rotation Graphics")
-    jset this.sPRITE_FULL_GRAPHICS =<< (GraphicsFeature.new_1 "Sprite Full Rotation Graphics")
-    jset this.vECTOR_GRAPHICS =<< (GraphicsFeature.new_1 "BasicArrayList Graphics")
-    jset this.vECTOR_TO_IMAGE_GRAPHICS =<< (GraphicsFeature.new_1 "BasicArrayList To Image Graphics")
-    pure ()
+import JR
+import Org.Allbinary.Game.Configuration.Feature.GraphicsFeature as GraphicsFeature
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (GraphicsFeatureFactory)
-getInstance = do
-        pure (GraphicsFeatureFactory.instance_)
+jclass : String
+jclass =
+    "GraphicsFeatureFactory"
 
-new_ :: IO GraphicsFeatureFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: GraphicsFeatureFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jchain : List String
+jchain =
+    [ "GraphicsFeatureFactory" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "NONE", JR.defaultOf "" ), ( "TRANSPARENT_IMAGE_CREATION", JR.defaultOf "" ), ( "IMAGE_GRAPHICS", JR.defaultOf "" ), ( "IMAGE_ROTATION_ON_THE_FLY", JR.defaultOf "" ), ( "IMAGE_TO_ARRAY_GRAPHICS", JR.defaultOf "" ), ( "SPRITE_QUARTER_ROTATION_GRAPHICS", JR.defaultOf "" ), ( "SPRITE_FULL_GRAPHICS", JR.defaultOf "" ), ( "VECTOR_GRAPHICS", JR.defaultOf "" ), ( "VECTOR_TO_IMAGE_GRAPHICS", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GraphicsFeatureFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GraphicsFeatureFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "NONE" "" JR.this (JR.new GraphicsFeature.jnew_1 [ (JR.field "NULL_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "TRANSPARENT_IMAGE_CREATION" "" JR.this (JR.new GraphicsFeature.jnew_1 [ (JR.str "Transparent Image Creation") ])),
+                JR.exec (JR.setField "IMAGE_GRAPHICS" "" JR.this (JR.new GraphicsFeature.jnew_1 [ (JR.str "Image Graphics") ])),
+                JR.exec (JR.setField "IMAGE_ROTATION_ON_THE_FLY" "" JR.this (JR.new GraphicsFeature.jnew_1 [ (JR.str "Image Rotated On The Fly") ])),
+                JR.exec (JR.setField "IMAGE_TO_ARRAY_GRAPHICS" "" JR.this (JR.new GraphicsFeature.jnew_1 [ (JR.str "Image To Array Graphics") ])),
+                JR.exec (JR.setField "SPRITE_QUARTER_ROTATION_GRAPHICS" "" JR.this (JR.new GraphicsFeature.jnew_1 [ (JR.str "Sprite Quarter Rotation Graphics") ])),
+                JR.exec (JR.setField "SPRITE_FULL_GRAPHICS" "" JR.this (JR.new GraphicsFeature.jnew_1 [ (JR.str "Sprite Full Rotation Graphics") ])),
+                JR.exec (JR.setField "VECTOR_GRAPHICS" "" JR.this (JR.new GraphicsFeature.jnew_1 [ (JR.str "BasicArrayList Graphics") ])),
+                JR.exec (JR.setField "VECTOR_TO_IMAGE_GRAPHICS" "" JR.this (JR.new GraphicsFeature.jnew_1 [ (JR.str "BasicArrayList To Image Graphics") ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

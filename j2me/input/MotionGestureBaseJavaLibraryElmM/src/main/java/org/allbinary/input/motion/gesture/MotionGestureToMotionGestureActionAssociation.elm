@@ -1,159 +1,135 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture
-module MotionGestureToMotionGestureActionAssociation where
+module Org.Allbinary.Input.Motion.Gesture.MotionGestureToMotionGestureActionAssociation exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CompleteMotionGestureInputEvent -- org.allbinary.game.input.CompleteMotionGestureInputEvent
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.gesture
+-}
 
-data MotionGestureToMotionGestureActionAssociation = MotionGestureToMotionGestureActionAssociation
-    { header_ :: JavaHeader
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    , motionGestureAction :: IORef (CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent)
-    }
-
-instance JavaNull MotionGestureToMotionGestureActionAssociation where
-    javaNull = javaNullRecord "MotionGestureToMotionGestureActionAssociation"
-
-instance JavaEquals MotionGestureToMotionGestureActionAssociation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MotionGestureToMotionGestureActionAssociation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MotionGestureToMotionGestureActionAssociation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MotionGestureToMotionGestureActionAssociation
-newRecord_ = do
-    header_ <- newJavaHeader
-    list <- newIORef javaNull
-    motionGestureAction <- newIORef javaNull
-    let this = MotionGestureToMotionGestureActionAssociation header_ list motionGestureAction
-    jregisterLevel header_ this
-    jregisterMethod header_ "getMotionGesture" (\() -> getMotionGesture_impl this)
-    jregisterMethod header_ "setMotionGestures" (\() -> setMotionGestures_impl this)
-    jregisterMethod header_ "getCommandAction" (\() -> getCommandAction_impl this)
-    jregisterMethod header_ "setMotionGestureAction" (\() -> setMotionGestureAction_impl this)
-    jregisterMethod header_ "isMotionGestureArrayEquals" (\() -> isMotionGestureArrayEquals_impl this)
-    pure this
-
-initFields_ :: MotionGestureToMotionGestureActionAssociation -> IO ()
-initFields_ this = do
-    jset this.list (javaNull)
-    jset this.motionGestureAction (javaNull)
-    pure ()
-
-new_2 :: BasicArrayList.BasicArrayList -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO MotionGestureToMotionGestureActionAssociation
-new_2 list commandAction = do
-    this <- newRecord_
-    init_2 this list commandAction
-    pure this
-
-init_2 :: MotionGestureToMotionGestureActionAssociation -> BasicArrayList.BasicArrayList -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO ()
-init_2 this list commandAction = do
-        initFields_ this
-        jset (this).list (list)
-        jset (this).motionGestureAction (commandAction)
-        pure ()
+import JR
 
 
-getMotionGesture :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getMotionGesture object_ = jmethod object_ "getMotionGesture" (\() -> (getMotionGesture_impl (javaCast object_ :: MotionGestureToMotionGestureActionAssociation))) ()
 
-getMotionGesture_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getMotionGesture_super object_ = (getMotionGesture_impl (javaCast object_ :: MotionGestureToMotionGestureActionAssociation))
-
-getMotionGesture_impl :: MotionGestureToMotionGestureActionAssociation -> IO (BasicArrayList.BasicArrayList)
-getMotionGesture_impl this = do
-        pure ((jget (this).list))
+jclass : String
+jclass =
+    "MotionGestureToMotionGestureActionAssociation"
 
 
-setMotionGestures :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setMotionGestures object_ a1 = jmethod object_ "setMotionGestures" (\() -> (setMotionGestures_impl (javaCast object_ :: MotionGestureToMotionGestureActionAssociation))) () a1
-
-setMotionGestures_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setMotionGestures_super object_ a1 = (setMotionGestures_impl (javaCast object_ :: MotionGestureToMotionGestureActionAssociation)) a1
-
-setMotionGestures_impl :: MotionGestureToMotionGestureActionAssociation -> BasicArrayList.BasicArrayList -> IO (())
-setMotionGestures_impl this list = do
-        jset (this).list (list)
-        pure ()
+jchain : List String
+jchain =
+    [ "MotionGestureToMotionGestureActionAssociation" ]
 
 
-getCommandAction :: (JavaObjectClass this_) => this_ -> IO (CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent)
-getCommandAction object_ = jmethod object_ "getCommandAction" (\() -> (getCommandAction_impl (javaCast object_ :: MotionGestureToMotionGestureActionAssociation))) ()
-
-getCommandAction_super :: (JavaObjectClass this_) => this_ -> IO (CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent)
-getCommandAction_super object_ = (getCommandAction_impl (javaCast object_ :: MotionGestureToMotionGestureActionAssociation))
-
-getCommandAction_impl :: MotionGestureToMotionGestureActionAssociation -> IO (CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent)
-getCommandAction_impl this = do
-        pure ((jget (this).motionGestureAction))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "list", JR.defaultOf "" ), ( "motionGestureAction", JR.defaultOf "" ) ]
 
 
-setMotionGestureAction :: (JavaObjectClass this_) => this_ -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-setMotionGestureAction object_ a1 = jmethod object_ "setMotionGestureAction" (\() -> (setMotionGestureAction_impl (javaCast object_ :: MotionGestureToMotionGestureActionAssociation))) () a1
-
-setMotionGestureAction_super :: (JavaObjectClass this_) => this_ -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-setMotionGestureAction_super object_ a1 = (setMotionGestureAction_impl (javaCast object_ :: MotionGestureToMotionGestureActionAssociation)) a1
-
-setMotionGestureAction_impl :: MotionGestureToMotionGestureActionAssociation -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-setMotionGestureAction_impl this commandAction = do
-        jset (this).motionGestureAction (commandAction)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getMotionGesture_0", jm_getMotionGesture_0 )
+        , ( "setMotionGestures_1", jm_setMotionGestures_1 )
+        , ( "getCommandAction_0", jm_getCommandAction_0 )
+        , ( "setMotionGestureAction_1", jm_setMotionGestureAction_1 )
+        , ( "isMotionGestureArrayEquals_1", jm_isMotionGestureArrayEquals_1 ) ]
+        JR.noMethods
 
 
-isMotionGestureArrayEquals :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (Bool)
-isMotionGestureArrayEquals object_ a1 = jmethod object_ "isMotionGestureArrayEquals" (\() -> (isMotionGestureArrayEquals_impl (javaCast object_ :: MotionGestureToMotionGestureActionAssociation))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MotionGestureToMotionGestureActionAssociation"
+        [ ( "jm_getMotionGesture_0", jm_getMotionGesture_0 ), ( "jm_setMotionGestures_1", jm_setMotionGestures_1 ), ( "jm_getCommandAction_0", jm_getCommandAction_0 ), ( "jm_setMotionGestureAction_1", jm_setMotionGestureAction_1 ), ( "jm_isMotionGestureArrayEquals_1", jm_isMotionGestureArrayEquals_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
-isMotionGestureArrayEquals_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (Bool)
-isMotionGestureArrayEquals_super object_ a1 = (isMotionGestureArrayEquals_impl (javaCast object_ :: MotionGestureToMotionGestureActionAssociation)) a1
 
-isMotionGestureArrayEquals_impl :: MotionGestureToMotionGestureActionAssociation -> BasicArrayList.BasicArrayList -> IO (Bool)
-isMotionGestureArrayEquals_impl this aList = do
-    javaCatchReturn $ do
-        size <- (BasicArrayList.size aList)
-        when ((jio (BasicArrayList.size ((jget (this).list)))) /= size) $ do
-            javaReturn (False)
-        forM_ [(size - 1), (size - 1) + (-1) .. 0] $ \i -> javaIteration (pure ()) $ do
-            when ((jindex ((jget (aList).objectArray)) (i)) /= (jindex ((jget ((jget (this).list)).objectArray)) (i))) $ do
-                javaReturn (False)
-        pure (True)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "list", "" ), ( "commandAction", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "list" "" JR.this (JR.local "list")), 
+                    JR.exec (JR.setField "motionGestureAction" "" JR.this (JR.local "commandAction")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getMotionGesture_0 : JR.Method
+jm_getMotionGesture_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "list") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMotionGestures_1 : JR.Method
+jm_setMotionGestures_1 jheap jthis jargs =
+    JR.method [ ( "list", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "list" "" JR.this (JR.local "list")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCommandAction_0 : JR.Method
+jm_getCommandAction_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "motionGestureAction") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMotionGestureAction_1 : JR.Method
+jm_setMotionGestureAction_1 jheap jthis jargs =
+    JR.method [ ( "commandAction", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "motionGestureAction" "" JR.this (JR.local "commandAction")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isMotionGestureArrayEquals_1 : JR.Method
+jm_isMotionGestureArrayEquals_1 jheap jthis jargs =
+    JR.method [ ( "aList", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "aList") []), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.invoke "size_0" (JR.thisField "list") []) (JR.local "size")) (JR.run [ 
+                        JR.return (JR.bool False) ]) identity, 
+                    JR.run [ JR.declare "i" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "i") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN66867 -> (JR.setLocal "i" "I" (JR.lit jwN66867))) JR.decrement) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.field "objectArray" (JR.local "aList")) (JR.local "i")) (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "i"))) (JR.run [ 
+                            JR.return (JR.bool False) ]) identity ]) ], 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

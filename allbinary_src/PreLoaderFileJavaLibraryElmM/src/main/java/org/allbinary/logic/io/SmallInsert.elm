@@ -1,170 +1,145 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
-module SmallInsert where
+module Org.Allbinary.Logic.Io.SmallInsert exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DataOutputStream -- java.io.DataOutputStream
-import qualified FileOutputStream -- java.io.FileOutputStream
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified AbFileSystem -- org.allbinary.logic.io.file.AbFileSystem
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.logic.io
+-}
 
-data SmallInsert = SmallInsert
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , fileName :: IORef (String)
-    , string :: IORef (String)
-    }
-
-instance JavaNull SmallInsert where
-    javaNull = javaNullRecord "SmallInsert"
-
-instance JavaEquals SmallInsert where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SmallInsert where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SmallInsert where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO SmallInsert
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    fileName <- newIORef ""
-    string <- newIORef ""
-    let this = SmallInsert header_ logUtil commonStrings fileName string
-    jregisterLevel header_ this
-    jregisterMethod header_ "atBeginning" (\() -> atBeginning_impl this)
-    jregisterMethod header_ "after" (\() -> after_impl this)
-    jregisterMethod header_ "atEnd" (\() -> atEnd_impl this)
-    pure this
-
-initFields_ :: SmallInsert -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.fileName (javaNull)
-    jset this.string (javaNull)
-    pure ()
-
-new_1 :: String -> IO SmallInsert
-new_1 fileName = do
-    this <- newRecord_
-    init_1 this fileName
-    pure this
-
-init_1 :: SmallInsert -> String -> IO ()
-init_1 this fileName = do
-        initFields_ this
-        jset (this).fileName (fileName)
-        assignedValue <- (AbFileSystem.readAsString ((jio (AbFileSystem.getInstance))) fileName)
-        jset (this).string (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Logic.Io.File.AbFileSystem as AbFileSystem
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JDataOutputStream
+import JSystem
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-atBeginning :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-atBeginning object_ a1 = jmethod object_ "atBeginning" (\() -> (atBeginning_impl (javaCast object_ :: SmallInsert))) () a1
-
-atBeginning_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-atBeginning_super object_ a1 = (atBeginning_impl (javaCast object_ :: SmallInsert)) a1
-
-atBeginning_impl :: SmallInsert -> String -> IO (Bool)
-atBeginning_impl this text = do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).iDLOGGING))) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "insertAtBeginning" e)
-            pure (False)
-            ) $ do
-            idFile <- (FileOutputStream.new_1 (jget (this).fileName))
-            idOutData <- (DataOutputStream.new_1 idFile)
-            Control.Monad.void (DataOutputStream.writeBytes idOutData (text ++ (jget (this).string)))
-            pure (True)
+jclass : String
+jclass =
+    "SmallInsert"
 
 
-after :: (JavaObjectClass this_) => this_ -> String -> String -> IO (Bool)
-after object_ a1 a2 = jmethod object_ "after" (\() -> (after_impl (javaCast object_ :: SmallInsert))) () a1 a2
-
-after_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (Bool)
-after_super object_ a1 a2 = (after_impl (javaCast object_ :: SmallInsert)) a1 a2
-
-after_impl :: SmallInsert -> String -> String -> IO (Bool)
-after_impl this text after = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).iDLOGGING))) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "after" e)
-            pure (False)
-            ) $ do
-            index <- newIORef ((jstringIndexOf (jget (this).string) after 0) :: Int)
-            when ((jget index) < 0) $ do
-                Control.Monad.void (putStrLn (javaToString ((("No such start: " ++ after) ++ " in: ") ++ (jget (this).string))))
-                javaReturn (False)
-            jset index (((jget index) + (Prelude.length after)))
-            let start = (Prelude.take (((jget index)) - (0)) (Prelude.drop (0) (jget (this).string)))
-            let end = (Prelude.take (((Prelude.length (jget (this).string))) - (((jget index) + 1))) (Prelude.drop (((jget index) + 1)) (jget (this).string)))
-            idFile <- (FileOutputStream.new_1 (jget (this).fileName))
-            idOutData <- (DataOutputStream.new_1 idFile)
-            Control.Monad.void (DataOutputStream.writeBytes idOutData ((start ++ text) ++ end))
-            Control.Monad.void (DataOutputStream.close idOutData)
-            Control.Monad.void (FileOutputStream.close idFile)
-            pure (True)
+jchain : List String
+jchain =
+    [ "SmallInsert" ]
 
 
-atEnd :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-atEnd object_ a1 = jmethod object_ "atEnd" (\() -> (atEnd_impl (javaCast object_ :: SmallInsert))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "fileName", JR.defaultOf "" ), ( "string", JR.defaultOf "" ) ]
 
-atEnd_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-atEnd_super object_ a1 = (atEnd_impl (javaCast object_ :: SmallInsert)) a1
 
-atEnd_impl :: SmallInsert -> String -> IO (Bool)
-atEnd_impl this text = do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).iDLOGGING))) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "insertAtEnd" e)
-            pure (False)
-            ) $ do
-            idFile <- (FileOutputStream.new_1 (jget (this).fileName))
-            idOutData <- (DataOutputStream.new_1 idFile)
-            Control.Monad.void (DataOutputStream.writeBytes idOutData ((jget (this).string) ++ text))
-            pure (True)
+jvtable =
+    JR.vtable
+        [ ( "atBeginning_1", jm_atBeginning_1 )
+        , ( "after_2", jm_after_2 )
+        , ( "atEnd_1", jm_atEnd_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SmallInsert"
+        [ ( "jm_atBeginning_1", jm_atBeginning_1 ), ( "jm_after_2", jm_after_2 ), ( "jm_atEnd_1", jm_atEnd_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "fileName", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "fileName" "" JR.this (JR.local "fileName")), 
+                    JR.exec (JR.setField "string" "" JR.this (JR.invoke "readAsString_1" (JR.callStatic AbFileSystem.jm_getInstance_0 []) [ (JR.local "fileName") ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_atBeginning_1 : JR.Method
+jm_atBeginning_1 jheap jthis jargs =
+    JR.method [ ( "text", "" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "idFile" "" (JR.new (JR.namedMethod "FileOutputStream.jnew_1") [ (JR.thisField "fileName") ]), 
+                        JR.declare "idOutData" "" (JR.new JDataOutputStream.jnew_1 [ (JR.local "idFile") ]), 
+                        JR.exec (JR.invoke "writeBytes_1" (JR.local "idOutData") [ (JR.concat (JR.local "text") (JR.thisField "string")) ]), 
+                        JR.return (JR.bool True) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "IDLOGGING" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "insertAtBeginning"), (JR.local "e") ]) ]) identity, 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_after_2 : JR.Method
+jm_after_2 jheap jthis jargs =
+    JR.method [ ( "text", "" ), ( "after", "" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "index" "I" (JR.invoke "indexOf_1" (JR.thisField "string") [ (JR.local "after") ]), 
+                        JR.ifElse (JR.map2 JR.less (JR.local "index") (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.concat (JR.concat (JR.str "No such start: ") (JR.local "after")) (JR.str " in: ")) (JR.thisField "string")) ]), 
+                            JR.return (JR.bool False) ]) identity, 
+                        JR.exec (JR.setLocal "index" "I" (JR.map2 JR.add (JR.local "index") (JR.invoke "length_0" (JR.local "after") []))), 
+                        JR.declare "start" "" (JR.invoke "substring_2" (JR.thisField "string") [ (JR.int 0), (JR.local "index") ]), 
+                        JR.declare "end" "" (JR.invoke "substring_2" (JR.thisField "string") [ (JR.map2 JR.add (JR.local "index") (JR.int 1)), (JR.invoke "length_0" (JR.thisField "string") []) ]), 
+                        JR.declare "idFile" "" (JR.new (JR.namedMethod "FileOutputStream.jnew_1") [ (JR.thisField "fileName") ]), 
+                        JR.declare "idOutData" "" (JR.new JDataOutputStream.jnew_1 [ (JR.local "idFile") ]), 
+                        JR.exec (JR.invoke "writeBytes_1" (JR.local "idOutData") [ (JR.concat (JR.concat (JR.local "start") (JR.local "text")) (JR.local "end")) ]), 
+                        JR.exec (JR.invoke "close_0" (JR.local "idOutData") []), 
+                        JR.exec (JR.invoke "close_0" (JR.local "idFile") []), 
+                        JR.return (JR.bool True) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "IDLOGGING" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "after"), (JR.local "e") ]) ]) identity, 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_atEnd_1 : JR.Method
+jm_atEnd_1 jheap jthis jargs =
+    JR.method [ ( "text", "" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "idFile" "" (JR.new (JR.namedMethod "FileOutputStream.jnew_1") [ (JR.thisField "fileName") ]), 
+                        JR.declare "idOutData" "" (JR.new JDataOutputStream.jnew_1 [ (JR.local "idFile") ]), 
+                        JR.exec (JR.invoke "writeBytes_1" (JR.local "idOutData") [ (JR.concat (JR.thisField "string") (JR.local "text")) ]), 
+                        JR.return (JR.bool True) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "IDLOGGING" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "insertAtEnd"), (JR.local "e") ]) ]) identity, 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

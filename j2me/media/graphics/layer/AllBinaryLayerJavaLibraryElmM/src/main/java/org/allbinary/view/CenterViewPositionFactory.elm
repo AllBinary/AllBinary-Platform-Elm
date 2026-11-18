@@ -1,78 +1,74 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.view
-module CenterViewPositionFactory (module CenterViewPositionFactory, module CenterStaticViewPositionFactory) where
+module Org.Allbinary.View.CenterViewPositionFactory exposing (..)
 
-import CenterStaticViewPositionFactory hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CenterStaticViewPositionFactory
+{-| Generated Code Do Not Modify package org.allbinary.view
+-}
 
-data CenterViewPositionFactory = CenterViewPositionFactory
-    { header_ :: JavaHeader
-    , base :: CenterStaticViewPositionFactory.CenterStaticViewPositionFactory
-    }
+import JR
+import Org.Allbinary.View.CenterStaticViewPositionFactory as CenterStaticViewPositionFactory
 
-instance JavaNull CenterViewPositionFactory where
-    javaNull = javaNullRecord "CenterViewPositionFactory"
 
-instance JavaEquals CenterViewPositionFactory where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "CenterViewPositionFactory"
 
-instance Eq CenterViewPositionFactory where
-    (==) = jrecordEquals
 
-instance JavaObjectClass CenterViewPositionFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "CenterViewPositionFactory" ]
+        ++ CenterStaticViewPositionFactory.jchain
 
-newRecord_ :: IO CenterViewPositionFactory
-newRecord_ = do
-    base <- CenterStaticViewPositionFactory.newRecord_
-    let header_ = base.header_
-    let this = CenterViewPositionFactory header_ base
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: CenterViewPositionFactory -> IO ()
-initFields_ this = do
-    pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    CenterStaticViewPositionFactory.jfields ++ []
 
-new_ :: IO CenterViewPositionFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: CenterViewPositionFactory -> IO ()
-init_ this = do
-    CenterStaticViewPositionFactory.init_ this.base
-    initFields_ this
+jvtable =
+    JR.vtable
+        []
+        CenterStaticViewPositionFactory.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CenterViewPositionFactory"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect CenterStaticViewPositionFactory.jinit_0 JR.this []),
+            identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

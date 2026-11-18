@@ -1,216 +1,190 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.draw
-module DrawVerticalStringUtil where
+module Org.Allbinary.Graphics.Draw.DrawVerticalStringUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified AndroidUtil -- org.allbinary.AndroidUtil
-import qualified J2MEUtil -- org.allbinary.J2MEUtil
-import qualified Anchor -- org.allbinary.graphics.Anchor
-import qualified OpenGLFeatureUtil -- org.allbinary.graphics.opengles.OpenGLFeatureUtil
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.graphics.draw
+-}
 
-data DrawVerticalStringUtil = DrawVerticalStringUtil
-    { header_ :: JavaHeader
-    , eMPTY_STRING :: IORef (String)
-    , anchor :: IORef (Int)
-    , charHeight :: IORef (Int)
-    , offsetY :: IORef (Int)
-    , offsetXArray :: IORef (JavaArray (Int))
-    }
-
-instance JavaNull DrawVerticalStringUtil where
-    javaNull = javaNullRecord "DrawVerticalStringUtil"
-
-instance JavaEquals DrawVerticalStringUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DrawVerticalStringUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DrawVerticalStringUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: DrawVerticalStringUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DrawVerticalStringUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    eMPTY_STRING <- newIORef ""
-    anchor <- newIORef 0
-    charHeight <- newIORef 0
-    offsetY <- newIORef 0
-    offsetXArray <- newIORef javaNull
-    let this = DrawVerticalStringUtil header_ eMPTY_STRING anchor charHeight offsetY offsetXArray
-    jregisterLevel header_ this
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "paintVerticle" (\() -> paintVerticle_impl this)
-    jregisterMethod header_ "drawCenterString" (\() -> drawCenterString_impl this)
-    jregisterMethod header_ "drawCenterStrings" (\() -> drawCenterStrings_impl this)
-    pure this
-
-initFields_ :: DrawVerticalStringUtil -> IO ()
-initFields_ this = do
-    jset this.eMPTY_STRING ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.anchor (Anchor.tOP_LEFT)
-    jset this.charHeight (0)
-    jset this.offsetY (0)
-    jset this.offsetXArray ((jget ((jio (NullUtil.getInstance))).nULL_INT_ARRAY))
-    pure ()
-
-new_ :: IO DrawVerticalStringUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DrawVerticalStringUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Anchor as Anchor
+import Org.Allbinary.AndroidUtil as AndroidUtil
+import Org.Allbinary.J2MEUtil as J2MEUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Graphics.Opengles.OpenGLFeatureUtil as OpenGLFeatureUtil
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (DrawVerticalStringUtil)
-getInstance = do
-        pure (DrawVerticalStringUtil.instance_)
+jclass : String
+jclass =
+    "DrawVerticalStringUtil"
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> String -> IO (())
-updateMeasurement object_ a1 a2 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: DrawVerticalStringUtil))) () a1 a2
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> String -> IO (())
-updateMeasurement_super object_ a1 a2 = (updateMeasurement_impl (javaCast object_ :: DrawVerticalStringUtil)) a1 a2
-
-updateMeasurement_impl :: DrawVerticalStringUtil -> Graphics.Graphics -> String -> IO (())
-updateMeasurement_impl this graphics string = do
-        openGLFeatureUtil <- (OpenGLFeatureUtil.getInstance)
-        font <- (Graphics.getFont graphics)
-        assignedValue <- (Font.getHeight font)
-        jset (this).charHeight (assignedValue)
-        jset (this).offsetY (0)
-        if (jio (J2MEUtil.isHTML)) then do
-            jset (this).charHeight (((jget (this).charHeight) + 1))
-        else when (jio (OpenGLFeatureUtil.isAnyThreed openGLFeatureUtil)) $ do
-            jset (this).charHeight (((jget (this).charHeight) + 2))
-            if (jio (AndroidUtil.isAndroid)) then do
-                pure ()
-            else do
-                jset (this).offsetY ((2 + ((((jget (this).charHeight) * 2) `quot` 3))))
-        let size = (Prelude.length string)
-        aChar <- newIORef ('\0' :: Char)
-        let offsetXArray = (jnewArray (size) 0)
-        forM_ [(size - 1), (size - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jset aChar ((string Prelude.!! index))
-            when (jio (OpenGLFeatureUtil.isAnyThreed openGLFeatureUtil)) $ do
-                jsetIndex offsetXArray (index) (((jio (Font.charWidth font (jget aChar))) / 2))
-        jset (this).offsetXArray (offsetXArray)
-        pure ()
+jchain : List String
+jchain =
+    [ "DrawVerticalStringUtil" ]
 
 
-paintVerticle :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> String -> Int -> Int -> Int -> IO (())
-paintVerticle object_ a1 a2 a3 a4 a5 = jmethod object_ "paintVerticle" (\() -> (paintVerticle_impl (javaCast object_ :: DrawVerticalStringUtil))) () a1 a2 a3 a4 a5
-
-paintVerticle_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> String -> Int -> Int -> Int -> IO (())
-paintVerticle_super object_ a1 a2 a3 a4 a5 = (paintVerticle_impl (javaCast object_ :: DrawVerticalStringUtil)) a1 a2 a3 a4 a5
-
-paintVerticle_impl :: DrawVerticalStringUtil -> Graphics.Graphics -> String -> Int -> Int -> Int -> IO (())
-paintVerticle_impl this graphics string x y anchor = do
-        let size = (Prelude.length string)
-        aChar <- newIORef ('\0' :: Char)
-        forM_ [(size - 1), (size - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jset aChar ((string Prelude.!! index))
-            Control.Monad.void (Graphics.drawChar graphics (jget aChar) (x + (jindex ((jget (this).offsetXArray)) (index))) ((y + (((jget (this).charHeight) * index))) + (jget (this).offsetY)) anchor)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "EMPTY_STRING", JR.defaultOf "" ), ( "anchor", JR.defaultOf "I" ), ( "charHeight", JR.defaultOf "I" ), ( "offsetY", JR.defaultOf "I" ), ( "offsetXArray", JR.defaultOf "" ) ]
 
 
-drawCenterString :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> String -> Int -> Int -> Int -> Int -> IO (())
-drawCenterString object_ a1 a2 a3 a4 a5 a6 = jmethod object_ "drawCenterString" (\() -> (drawCenterString_impl (javaCast object_ :: DrawVerticalStringUtil))) () a1 a2 a3 a4 a5 a6
-
-drawCenterString_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> String -> Int -> Int -> Int -> Int -> IO (())
-drawCenterString_super object_ a1 a2 a3 a4 a5 a6 = (drawCenterString_impl (javaCast object_ :: DrawVerticalStringUtil)) a1 a2 a3 a4 a5 a6
-
-drawCenterString_impl :: DrawVerticalStringUtil -> Graphics.Graphics -> String -> Int -> Int -> Int -> Int -> IO (())
-drawCenterString_impl this graphics string offset length x y = do
-        let width = (((jio (Graphics.substringWidth ((jio (Graphics.getFont graphics))) string offset length)) `Data.Bits.shiftR` 1))
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "Exception: stringLength: "))) (Prelude.length string)))) " offset: "))) offset))) " currentLength: "))) length))))) this "drawCenterString")
-            ) $ do
-            Control.Monad.void (Graphics.drawSubstring graphics string offset length (x - width) y (jget (this).anchor))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "updateMeasurement_2", jm_updateMeasurement_2 )
+        , ( "paintVerticle_5", jm_paintVerticle_5 )
+        , ( "drawCenterString_6", jm_drawCenterString_6 )
+        , ( "drawCenterStrings_5", jm_drawCenterStrings_5 ) ]
+        JR.noMethods
 
 
-drawCenterStrings :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> JavaArray (String) -> Int -> Int -> Int -> IO (())
-drawCenterStrings object_ a1 a2 a3 a4 a5 = jmethod object_ "drawCenterStrings" (\() -> (drawCenterStrings_impl (javaCast object_ :: DrawVerticalStringUtil))) () a1 a2 a3 a4 a5
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DrawVerticalStringUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_updateMeasurement_2", jm_updateMeasurement_2 ), ( "jm_paintVerticle_5", jm_paintVerticle_5 ), ( "jm_drawCenterString_6", jm_drawCenterString_6 ), ( "jm_drawCenterStrings_5", jm_drawCenterStrings_5 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
-drawCenterStrings_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> JavaArray (String) -> Int -> Int -> Int -> IO (())
-drawCenterStrings_super object_ a1 a2 a3 a4 a5 = (drawCenterStrings_impl (javaCast object_ :: DrawVerticalStringUtil)) a1 a2 a3 a4 a5
 
-drawCenterStrings_impl :: DrawVerticalStringUtil -> Graphics.Graphics -> JavaArray (String) -> Int -> Int -> Int -> IO (())
-drawCenterStrings_impl this graphics stringArray maxWidth x y = do
-        extraLines <- newIORef (0 :: Int)
-        forM_ [0 .. (jlength stringArray) - 1] $ \index -> javaIteration (pure ()) $ do
-            let string = (jindex stringArray (index))
-            when (string /= (jget (this).eMPTY_STRING)) $ do
-                width <- (Graphics.stringWidth ((jio (Graphics.getFont graphics))) string)
-                minTotalLines <- newIORef (1 :: Int)
-                when (width > maxWidth) $ do
-                    jset minTotalLines ((((width `quot` maxWidth)) + 1))
-                let linePortion = ((Prelude.length string) `quot` (jget minTotalLines))
-                offset <- newIORef (0 :: Int)
-                currentLength <- newIORef (linePortion :: Int)
-                let size = (Prelude.length string)
-                fix $ \loop -> when ((jget offset) < size) $ javaIteration (loop) $ do
-                    when (((jget offset) + (jget currentLength)) > size) $ do
-                        jset currentLength ((size - (jget offset)))
-                    when (((jget offset) + (jget currentLength)) /= size) $ do
-                        fix $ \loop -> when (((jget currentLength) > 0) && (((jindex stringArray (index)) Prelude.!! ((jget offset) + (jget currentLength))) /= ' ')) $ javaIteration (loop) $ do
-                            jset currentLength ((jget currentLength) - 1)
-                        when ((jget currentLength) <= 4) $ do
-                            jset currentLength (linePortion)
-                    Control.Monad.void (DrawVerticalStringUtil.drawCenterString this graphics string (jget offset) (jget currentLength) x (y + ((((index + (jpostIncrement extraLines (+ 1)))) * (jget (this).charHeight)))))
-                    jset offset (((jget offset) + (jget currentLength)))
-                    jset currentLength (linePortion)
-                jset extraLines ((jget extraLines) - 1)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "DrawVerticalStringUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "EMPTY_STRING" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "anchor" "I" JR.this Anchor.jstatic_TOP_LEFT),
+                JR.exec (JR.setField "offsetXArray" "" JR.this (JR.field "NULL_INT_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 []))),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateMeasurement_2 : JR.Method
+jm_updateMeasurement_2 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "string", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "openGLFeatureUtil" "" (JR.callStatic OpenGLFeatureUtil.jm_getInstance_0 []), 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "charHeight" "I" JR.this (JR.invoke "getHeight_0" (JR.local "font") [])), 
+                    JR.exec (JR.setField "offsetY" "I" JR.this (JR.int 0)), 
+                    JR.ifElse (JR.callStatic J2MEUtil.jm_isHTML_0 []) (JR.run [ 
+                        JR.exec (JR.setField "charHeight" "I" JR.this (JR.map2 JR.add (JR.thisField "charHeight") (JR.int 1))) ]) (JR.run [ 
+                    JR.ifElse (JR.invoke "isAnyThreed_0" (JR.local "openGLFeatureUtil") []) (JR.run [ 
+                        JR.exec (JR.setField "charHeight" "I" JR.this (JR.map2 JR.add (JR.thisField "charHeight") (JR.int 2))), 
+                        JR.ifElse (JR.callStatic AndroidUtil.jm_isAndroid_0 []) identity (JR.run [ 
+                            JR.exec (JR.setField "offsetY" "I" JR.this (JR.map2 JR.add (JR.int 2) ((JR.map2 JR.div (JR.map2 JR.mul (JR.thisField "charHeight") (JR.int 2)) (JR.int 3))))) ]) ]) identity ]), 
+                    JR.declare "size" "I" (JR.invoke "length_0" (JR.local "string") []), 
+                    JR.declare "aChar" "C" (JR.lit (JR.defaultOf "C")), 
+                    JR.declare "offsetXArray" "" (JR.newArray "I" [ (JR.local "size") ]), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67306 -> (JR.setLocal "index" "I" (JR.lit jwN67306))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "aChar" "C" (JR.invoke "charAt_1" (JR.local "string") [ (JR.local "index") ])), 
+                        JR.ifElse (JR.invoke "isAnyThreed_0" (JR.local "openGLFeatureUtil") []) (JR.run [ 
+                            JR.exec (JR.andThen (JR.local "offsetXArray") (\jaN67181 -> JR.andThen (JR.local "index") (\jiN67181 -> (JR.aset (JR.lit jaN67181) (JR.lit jiN67181) (JR.map2 JR.div (JR.invoke "charWidth_1" (JR.local "font") [ (JR.local "aChar") ]) (JR.int 2)))))) ]) identity ]) ], 
+                    JR.exec (JR.setField "offsetXArray" "" JR.this (JR.local "offsetXArray")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintVerticle_5 : JR.Method
+jm_paintVerticle_5 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "string", "" ), ( "x", "I" ), ( "y", "I" ), ( "anchor", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.invoke "length_0" (JR.local "string") []), 
+                    JR.declare "aChar" "C" (JR.lit (JR.defaultOf "C")), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67738 -> (JR.setLocal "index" "I" (JR.lit jwN67738))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "aChar" "C" (JR.invoke "charAt_1" (JR.local "string") [ (JR.local "index") ])), 
+                        JR.exec (JR.invoke "drawChar_4" (JR.local "graphics") [ (JR.local "aChar"), (JR.map2 JR.add (JR.local "x") (JR.aget (JR.thisField "offsetXArray") (JR.local "index"))), (JR.map2 JR.add (JR.map2 JR.add (JR.local "y") ((JR.map2 JR.mul (JR.thisField "charHeight") (JR.local "index")))) (JR.thisField "offsetY")), (JR.local "anchor") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_drawCenterString_6 : JR.Method
+jm_drawCenterString_6 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "string", "" ), ( "offset", "I" ), ( "length", "I" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "width" "I" ((JR.map2 JR.shr (JR.invoke "substringWidth_3" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.local "string"), (JR.local "offset"), (JR.local "length") ]) (JR.int 1))), 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "drawSubstring_6" (JR.local "graphics") [ (JR.local "string"), (JR.local "offset"), (JR.local "length"), (JR.map2 JR.sub (JR.local "x") (JR.local "width")), (JR.local "y"), (JR.thisField "anchor") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Exception: stringLength: ") ]) [ (JR.invoke "length_0" (JR.local "string") []) ]) [ (JR.str " offset: ") ]) [ (JR.local "offset") ]) [ (JR.str " currentLength: ") ]) [ (JR.local "length") ]) []), JR.this, (JR.str "drawCenterString") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_drawCenterStrings_5 : JR.Method
+jm_drawCenterStrings_5 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "stringArray", "" ), ( "maxWidth", "I" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "extraLines" "I" (JR.int 0), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "stringArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69445 -> (JR.setLocal "index" "I" (JR.lit jwN69445))) JR.increment) ]) (JR.run [ 
+                        JR.declare "string" "" (JR.aget (JR.local "stringArray") (JR.local "index")), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "string") (JR.thisField "EMPTY_STRING")) (JR.run [ 
+                            JR.declare "width" "I" (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.local "string") ]), 
+                            JR.declare "minTotalLines" "I" (JR.int 1), 
+                            JR.ifElse (JR.map2 JR.greater (JR.local "width") (JR.local "maxWidth")) (JR.run [ 
+                                JR.exec (JR.setLocal "minTotalLines" "I" (JR.map2 JR.add ((JR.map2 JR.div (JR.local "width") (JR.local "maxWidth"))) (JR.int 1))) ]) identity, 
+                            JR.declare "linePortion" "I" (JR.map2 JR.div (JR.invoke "length_0" (JR.local "string") []) (JR.local "minTotalLines")), 
+                            JR.declare "offset" "I" (JR.int 0), 
+                            JR.declare "currentLength" "I" (JR.local "linePortion"), 
+                            JR.declare "size" "I" (JR.invoke "length_0" (JR.local "string") []), 
+                            JR.while (JR.map2 JR.less (JR.local "offset") (JR.local "size")) (JR.run [ 
+                                JR.ifElse (JR.map2 JR.greater (JR.map2 JR.add (JR.local "offset") (JR.local "currentLength")) (JR.local "size")) (JR.run [ 
+                                    JR.exec (JR.setLocal "currentLength" "I" (JR.map2 JR.sub (JR.local "size") (JR.local "offset"))) ]) identity, 
+                                JR.ifElse (JR.map2 JR.notEquals (JR.map2 JR.add (JR.local "offset") (JR.local "currentLength")) (JR.local "size")) (JR.run [ 
+                                    JR.while (JR.and (JR.map2 JR.greater (JR.local "currentLength") (JR.int 0)) (JR.map2 JR.notEquals (JR.invoke "charAt_1" (JR.aget (JR.local "stringArray") (JR.local "index")) [ (JR.map2 JR.add (JR.local "offset") (JR.local "currentLength")) ]) (JR.char 32))) (JR.run [ 
+                                        JR.exec (JR.postUpdate (JR.local "currentLength") (\jwN68994 -> (JR.setLocal "currentLength" "I" (JR.lit jwN68994))) JR.decrement) ]), 
+                                    JR.ifElse (JR.map2 JR.lessEquals (JR.local "currentLength") (JR.int 4)) (JR.run [ 
+                                        JR.exec (JR.setLocal "currentLength" "I" (JR.local "linePortion")) ]) identity ]) identity, 
+                                JR.exec (JR.invoke "drawCenterString_6" JR.this [ (JR.local "graphics"), (JR.local "string"), (JR.local "offset"), (JR.local "currentLength"), (JR.local "x"), (JR.map2 JR.add (JR.local "y") ((JR.map2 JR.mul ((JR.map2 JR.add (JR.local "index") (JR.postUpdate (JR.local "extraLines") (\jwN69243 -> (JR.setLocal "extraLines" "I" (JR.lit jwN69243))) JR.increment))) (JR.thisField "charHeight")))) ]), 
+                                JR.exec (JR.setLocal "offset" "I" (JR.map2 JR.add (JR.local "offset") (JR.local "currentLength"))), 
+                                JR.exec (JR.setLocal "currentLength" "I" (JR.local "linePortion")) ]), 
+                            JR.exec (JR.postUpdate (JR.local "extraLines") (\jwN69369 -> (JR.setLocal "extraLines" "I" (JR.lit jwN69369))) JR.decrement) ]) identity ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

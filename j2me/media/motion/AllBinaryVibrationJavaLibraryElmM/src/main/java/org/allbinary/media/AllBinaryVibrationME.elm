@@ -1,91 +1,81 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media
-module AllBinaryVibrationME where
+module Org.Allbinary.Media.AllBinaryVibrationME exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.media
+-}
 
-data AllBinaryVibrationME = AllBinaryVibrationME
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull AllBinaryVibrationME where
-    javaNull = javaNullRecord "AllBinaryVibrationME"
-
-instance JavaEquals AllBinaryVibrationME where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryVibrationME where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryVibrationME where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AllBinaryVibrationME
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = AllBinaryVibrationME header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "vibrate" (\() -> vibrate_impl this)
-    pure this
-
-initFields_ :: AllBinaryVibrationME -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AllBinaryVibrationME
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllBinaryVibrationME -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-vibrate :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-vibrate object_ a1 a2 a3 = jmethod object_ "vibrate" (\() -> (vibrate_impl (javaCast object_ :: AllBinaryVibrationME))) () a1 a2 a3
 
-vibrate_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-vibrate_super object_ a1 a2 a3 = (vibrate_impl (javaCast object_ :: AllBinaryVibrationME)) a1 a2 a3
+jclass : String
+jclass =
+    "AllBinaryVibrationME"
 
-vibrate_impl :: AllBinaryVibrationME -> Int -> Int -> Int -> IO (())
-vibrate_impl this duration type_ volume = do
-        pure ()
 
+jchain : List String
+jchain =
+    [ "AllBinaryVibrationME" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "vibrate_3", jm_vibrate_3 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryVibrationME"
+        [ ( "jm_vibrate_3", jm_vibrate_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_vibrate_3 : JR.Method
+jm_vibrate_3 jheap jthis jargs =
+    JR.method [ ( "duration", "I" ), ( "type", "I" ), ( "volume", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

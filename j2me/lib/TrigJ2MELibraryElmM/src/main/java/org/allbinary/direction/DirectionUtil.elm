@@ -1,133 +1,125 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.direction
-module DirectionUtil where
+module Org.Allbinary.Direction.DirectionUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DirectionFactory -- same package or java.lang
-import qualified Direction -- same package or java.lang
-import qualified Angle -- org.allbinary.math.Angle
-import qualified AngleFactory -- org.allbinary.math.AngleFactory
+{-| Generated Code Do Not Modify package org.allbinary.direction
+-}
 
-data DirectionUtil = DirectionUtil
-    { header_ :: JavaHeader
-    , directionArray :: IORef (JavaArray (Angle.Angle))
-    , directionArray2 :: IORef (JavaArray (Angle.Angle))
-    }
-
-instance JavaNull DirectionUtil where
-    javaNull = javaNullRecord "DirectionUtil"
-
-instance JavaEquals DirectionUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DirectionUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DirectionUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: DirectionUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DirectionUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    directionArray <- newIORef javaNull
-    directionArray2 <- newIORef javaNull
-    let this = DirectionUtil header_ directionArray directionArray2
-    jregisterLevel header_ this
-    jregisterMethod header_ "getAngle" (\() -> getAngle_impl this)
-    jregisterMethod header_ "getFrameAngle" (\() -> getFrameAngle_impl this)
-    pure this
-
-initFields_ :: DirectionUtil -> IO ()
-initFields_ this = do
-    jset this.directionArray ((jnewArray (10) javaNull))
-    jset this.directionArray2 ((jnewArray (10) javaNull))
-    pure ()
+import JR
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Direction.DirectionFactory as DirectionFactory
 
 
-getInstance :: IO (DirectionUtil)
-getInstance = do
-        pure (DirectionUtil.instance_)
-
-new_ :: IO DirectionUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DirectionUtil -> IO ()
-init_ this = do
-        initFields_ this
-        angleFactory <- (AngleFactory.getInstance)
-        directionFactory <- (DirectionFactory.getInstance)
-        jsetIndex ((jget (this).directionArray)) ((jio (Direction.getValue ((jget (directionFactory).lEFT))))) ((jget (angleFactory).lEFT))
-        jsetIndex ((jget (this).directionArray)) ((jio (Direction.getValue ((jget (directionFactory).rIGHT))))) ((jget (angleFactory).rIGHT))
-        jsetIndex ((jget (this).directionArray)) ((jio (Direction.getValue ((jget (directionFactory).uP))))) ((jget (angleFactory).uP))
-        jsetIndex ((jget (this).directionArray)) ((jio (Direction.getValue ((jget (directionFactory).dOWN))))) ((jget (angleFactory).dOWN))
-        jsetIndex ((jget (this).directionArray2)) ((jio (Direction.getValue ((jget (directionFactory).lEFT))))) ((jget (angleFactory).lEFT))
-        jsetIndex ((jget (this).directionArray2)) ((jio (Direction.getValue ((jget (directionFactory).rIGHT))))) ((jget (angleFactory).rIGHT))
-        jsetIndex ((jget (this).directionArray2)) ((jio (Direction.getValue ((jget (directionFactory).uP))))) ((jget (angleFactory).uP))
-        jsetIndex ((jget (this).directionArray2)) ((jio (Direction.getValue ((jget (directionFactory).dOWN))))) ((jget (angleFactory).dOWN))
-        pure ()
+jclass : String
+jclass =
+    "DirectionUtil"
 
 
-getAngle :: (JavaObjectClass this_) => this_ -> Direction.Direction -> IO (Angle.Angle)
-getAngle object_ a1 = jmethod object_ "getAngle" (\() -> (getAngle_impl (javaCast object_ :: DirectionUtil))) () a1
-
-getAngle_super :: (JavaObjectClass this_) => this_ -> Direction.Direction -> IO (Angle.Angle)
-getAngle_super object_ a1 = (getAngle_impl (javaCast object_ :: DirectionUtil)) a1
-
-getAngle_impl :: DirectionUtil -> Direction.Direction -> IO (Angle.Angle)
-getAngle_impl this direction = do
-        pure ((jindex ((jget (this).directionArray2)) ((jio (Direction.getValue direction)))))
+jchain : List String
+jchain =
+    [ "DirectionUtil" ]
 
 
-getFrameAngle :: (JavaObjectClass this_) => this_ -> Direction.Direction -> IO (Angle.Angle)
-getFrameAngle object_ a1 = jmethod object_ "getFrameAngle" (\() -> (getFrameAngle_impl (javaCast object_ :: DirectionUtil))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "directionArray", JR.defaultOf "" ), ( "directionArray2", JR.defaultOf "" ) ]
 
-getFrameAngle_super :: (JavaObjectClass this_) => this_ -> Direction.Direction -> IO (Angle.Angle)
-getFrameAngle_super object_ a1 = (getFrameAngle_impl (javaCast object_ :: DirectionUtil)) a1
 
-getFrameAngle_impl :: DirectionUtil -> Direction.Direction -> IO (Angle.Angle)
-getFrameAngle_impl this direction = do
-        pure ((jindex ((jget (this).directionArray)) ((jio (Direction.getValue direction)))))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getAngle_1", jm_getAngle_1 )
+        , ( "getFrameAngle_1", jm_getFrameAngle_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DirectionUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getAngle_1", jm_getAngle_1 ), ( "jm_getFrameAngle_1", jm_getFrameAngle_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "DirectionUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "directionArray" "" JR.this (JR.newArray "" [ (JR.int 10) ])),
+                JR.exec (JR.setField "directionArray2" "" JR.this (JR.newArray "" [ (JR.int 10) ])),
+                identity,
+                (JR.run [ 
+                    JR.declare "angleFactory" "" (JR.callStatic AngleFactory.jm_getInstance_0 []), 
+                    JR.declare "directionFactory" "" (JR.callStatic DirectionFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.andThen (JR.thisField "directionArray") (\jaN66391 -> JR.andThen (JR.invoke "getValue_0" (JR.field "LEFT" (JR.local "directionFactory")) []) (\jiN66391 -> (JR.aset (JR.lit jaN66391) (JR.lit jiN66391) (JR.field "LEFT" (JR.local "angleFactory")))))), 
+                    JR.exec (JR.andThen (JR.thisField "directionArray") (\jaN66455 -> JR.andThen (JR.invoke "getValue_0" (JR.field "RIGHT" (JR.local "directionFactory")) []) (\jiN66455 -> (JR.aset (JR.lit jaN66455) (JR.lit jiN66455) (JR.field "RIGHT" (JR.local "angleFactory")))))), 
+                    JR.exec (JR.andThen (JR.thisField "directionArray") (\jaN66519 -> JR.andThen (JR.invoke "getValue_0" (JR.field "UP" (JR.local "directionFactory")) []) (\jiN66519 -> (JR.aset (JR.lit jaN66519) (JR.lit jiN66519) (JR.field "UP" (JR.local "angleFactory")))))), 
+                    JR.exec (JR.andThen (JR.thisField "directionArray") (\jaN66583 -> JR.andThen (JR.invoke "getValue_0" (JR.field "DOWN" (JR.local "directionFactory")) []) (\jiN66583 -> (JR.aset (JR.lit jaN66583) (JR.lit jiN66583) (JR.field "DOWN" (JR.local "angleFactory")))))), 
+                    JR.exec (JR.andThen (JR.thisField "directionArray2") (\jaN66647 -> JR.andThen (JR.invoke "getValue_0" (JR.field "LEFT" (JR.local "directionFactory")) []) (\jiN66647 -> (JR.aset (JR.lit jaN66647) (JR.lit jiN66647) (JR.field "LEFT" (JR.local "angleFactory")))))), 
+                    JR.exec (JR.andThen (JR.thisField "directionArray2") (\jaN66711 -> JR.andThen (JR.invoke "getValue_0" (JR.field "RIGHT" (JR.local "directionFactory")) []) (\jiN66711 -> (JR.aset (JR.lit jaN66711) (JR.lit jiN66711) (JR.field "RIGHT" (JR.local "angleFactory")))))), 
+                    JR.exec (JR.andThen (JR.thisField "directionArray2") (\jaN66775 -> JR.andThen (JR.invoke "getValue_0" (JR.field "UP" (JR.local "directionFactory")) []) (\jiN66775 -> (JR.aset (JR.lit jaN66775) (JR.lit jiN66775) (JR.field "UP" (JR.local "angleFactory")))))), 
+                    JR.exec (JR.andThen (JR.thisField "directionArray2") (\jaN66839 -> JR.andThen (JR.invoke "getValue_0" (JR.field "DOWN" (JR.local "directionFactory")) []) (\jiN66839 -> (JR.aset (JR.lit jaN66839) (JR.lit jiN66839) (JR.field "DOWN" (JR.local "angleFactory")))))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAngle_1 : JR.Method
+jm_getAngle_1 jheap jthis jargs =
+    JR.method [ ( "direction", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.aget (JR.thisField "directionArray2") (JR.invoke "getValue_0" (JR.local "direction") [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFrameAngle_1 : JR.Method
+jm_getFrameAngle_1 jheap jthis jargs =
+    JR.method [ ( "direction", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.aget (JR.thisField "directionArray") (JR.invoke "getValue_0" (JR.local "direction") [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

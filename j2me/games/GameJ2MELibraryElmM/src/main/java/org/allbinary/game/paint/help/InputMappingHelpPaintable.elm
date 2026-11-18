@@ -1,345 +1,288 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint.help
-module InputMappingHelpPaintable (module InputMappingHelpPaintable, module HelpPaintable) where
+module Org.Allbinary.Game.Paint.Help.InputMappingHelpPaintable exposing (..)
 
-import HelpPaintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, update, update_super, update_impl, get, get_super, get_impl, paint, paint_super, paint_impl, aND, sEP, mORE_THAN_TWO_IN_LIST_AND, logUtil, commonStrings, commonSeps, stringUtil, basicColorFactory, nONE, eMPTY_STRING, gameInputMappingArray, keyMappingArray, actionBasicColor, inputBasicColorArray, selectedBasicColor, updateMyFontProperties)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified UpdateMyFontProperties -- same package or java.lang
-import qualified DisplayInfoSingleton -- same package or java.lang
-import qualified MyFontProcessor -- same package or java.lang
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified GameKey -- org.allbinary.game.input.GameKey
-import qualified GameKeyFactory -- org.allbinary.game.input.GameKeyFactory
-import qualified Input -- org.allbinary.game.input.Input
-import qualified PlatformInputMappingFactory -- org.allbinary.game.input.PlatformInputMappingFactory
-import qualified GameInputMapping -- org.allbinary.game.input.mapping.GameInputMapping
-import qualified PersistentInputMapping -- org.allbinary.game.input.mapping.PersistentInputMapping
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified BasicColorUtil -- org.allbinary.graphics.color.BasicColorUtil
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified HelpPaintable
+{-| Generated Code Do Not Modify package org.allbinary.game.paint.help
+-}
 
-data InputMappingHelpPaintable = InputMappingHelpPaintable
-    { header_ :: JavaHeader
-    , base :: HelpPaintable.HelpPaintable
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , commonSeps :: IORef (CommonSeps.CommonSeps)
-    , stringUtil :: IORef (StringUtil.StringUtil)
-    , basicColorFactory :: IORef (BasicColorFactory.BasicColorFactory)
-    , nONE :: IORef (GameKey.GameKey)
-    , eMPTY_STRING :: IORef (String)
-    , gameInputMappingArray :: IORef (JavaArray (GameInputMapping.GameInputMapping))
-    , keyMappingArray :: IORef (JavaArray (BasicArrayList.BasicArrayList))
-    , actionBasicColor :: IORef (JavaArray (BasicColor.BasicColor))
-    , inputBasicColorArray :: IORef (JavaArray (JavaArray (BasicColor.BasicColor)))
-    , selectedBasicColor :: IORef (BasicColor.BasicColor)
-    , updateMyFontProperties :: IORef (UpdateMyFontProperties.UpdateMyFontProperties)
-    }
-
-instance JavaNull InputMappingHelpPaintable where
-    javaNull = javaNullRecord "InputMappingHelpPaintable"
-
-instance JavaEquals InputMappingHelpPaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InputMappingHelpPaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InputMappingHelpPaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-aND :: String
-aND = " and "
-
-sEP :: String
-sEP = ", "
-
-mORE_THAN_TWO_IN_LIST_AND :: String
-mORE_THAN_TWO_IN_LIST_AND = ", and "
-
-newRecord_ :: IO InputMappingHelpPaintable
-newRecord_ = do
-    base <- HelpPaintable.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    commonSeps <- newIORef javaNull
-    stringUtil <- newIORef javaNull
-    basicColorFactory <- newIORef javaNull
-    nONE <- newIORef javaNull
-    eMPTY_STRING <- newIORef ""
-    gameInputMappingArray <- newIORef javaNull
-    keyMappingArray <- newIORef javaNull
-    actionBasicColor <- newIORef javaNull
-    inputBasicColorArray <- newIORef javaNull
-    selectedBasicColor <- newIORef javaNull
-    updateMyFontProperties <- newIORef javaNull
-    let this = InputMappingHelpPaintable header_ base logUtil commonStrings commonSeps stringUtil basicColorFactory nONE eMPTY_STRING gameInputMappingArray keyMappingArray actionBasicColor inputBasicColorArray selectedBasicColor updateMyFontProperties
-    jregisterLevel header_ this
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: InputMappingHelpPaintable -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.commonSeps =<< (CommonSeps.getInstance)
-    jset this.stringUtil =<< (StringUtil.getInstance)
-    jset this.basicColorFactory =<< (BasicColorFactory.getInstance)
-    jset this.nONE ((jget ((jio (GameKeyFactory.getInstance))).nONE))
-    jset this.eMPTY_STRING ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.gameInputMappingArray (javaNull)
-    jset this.keyMappingArray ((jnewArray (0) javaNull))
-    jset this.actionBasicColor ((jget ((jio (BasicColorUtil.getInstance))).zERO_ARRAY))
-    jset this.inputBasicColorArray ((jnewArray2 (0) (0) javaNull))
-    jset this.selectedBasicColor (javaNull)
-    jset this.updateMyFontProperties =<< (UpdateMyFontProperties.new_)
-    pure ()
-
-new_3 :: JavaArray (GameInputMapping.GameInputMapping) -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO InputMappingHelpPaintable
-new_3 gameInputMappingArray backgroundBasicColor basicColor = do
-    this <- newRecord_
-    init_3 this gameInputMappingArray backgroundBasicColor basicColor
-    pure this
-
-init_3 :: InputMappingHelpPaintable -> JavaArray (GameInputMapping.GameInputMapping) -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_3 this gameInputMappingArray backgroundBasicColor basicColor = do
-        HelpPaintable.init_3 this.base ("Input Mapping") (backgroundBasicColor) (basicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).gameInputMappingArray (gameInputMappingArray)
-        Control.Monad.void (InputMappingHelpPaintable.update this (jget (this).nONE) (javaCast (jget (this).nONE)))
-        if ((backgroundBasicColor == (jget ((jget (this).basicColorFactory)).wHITE)) || (basicColor == (jget ((jget (this).basicColorFactory)).wHITE))) then do
-            jset (this).selectedBasicColor ((jget ((jget (this).basicColorFactory)).rED))
-        else do
-            jset (this).selectedBasicColor ((jget ((jget (this).basicColorFactory)).wHITE))
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Graphics.Color.BasicColorUtil as BasicColorUtil
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Input.GameKeyFactory as GameKeyFactory
+import Org.Allbinary.Game.Paint.Help.HelpPaintable as HelpPaintable
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Input.PlatformInputMappingFactory as PlatformInputMappingFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Game.Paint.Help.UpdateMyFontProperties as UpdateMyFontProperties
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: InputMappingHelpPaintable))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: InputMappingHelpPaintable)) a1
-
-updateMeasurement_impl :: InputMappingHelpPaintable -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        updateMyFontProperties <- (UpdateMyFontProperties.new_)
-        assignedValue <- (Font.getHeight font)
-        jset (updateMyFontProperties).charHeight (assignedValue)
-        stringMaker <- (StringMaker.new_)
-        let inputInfo = (jget (this).base.inputInfo)
-        let size = (jlength inputInfo)
-        jset (updateMyFontProperties).actionStringArray ((jnewArray (size) javaNull))
-        jset (updateMyFontProperties).keymappingBeginWidthArray ((jnewArray (size) 0))
-        jset (updateMyFontProperties).actionStringDeltaXArray ((jnewArray (size) 0))
-        jset (updateMyFontProperties).inputDeltaXArray ((jnewArray2 (size) (0) 0))
-        jset (updateMyFontProperties).sepArray ((jnewArray2 (size) (0) javaNull))
-        jset (updateMyFontProperties).sepWidthArray ((jnewArray2 (size) (0) 0))
-        list <- newIORef (javaNull)
-        keyMappings <- newIORef ("")
-        actionString <- newIORef ("")
-        input <- newIORef (javaNull)
-        size2 <- newIORef (0 :: Int)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset list ((jindex ((jget (this).keyMappingArray)) (index)))
-            assignedValue <- (InputMappingHelpPaintable.get this (jget list))
-            jset keyMappings (assignedValue)
-            Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-            assignedValue <- (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append stringMaker (jindex inputInfo (index))))) (jget ((jget this.commonSeps)).cOLON)))) (jget ((jget this.commonSeps)).sPACE)))) (jget ((jget this.commonSeps)).sPACE)))))
-            jset actionString (assignedValue)
-            jsetIndex ((jget (updateMyFontProperties).actionStringArray)) (index) ((jget actionString))
-            Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-            jsetIndex ((jget (updateMyFontProperties).keymappingBeginWidthArray)) (index) ((((jio (Font.stringWidth font (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append stringMaker (jindex ((jget (updateMyFontProperties).actionStringArray)) (index))))) (jget keyMappings)))))))) `Data.Bits.shiftR` 1)))
-            assignedValue <- (Font.stringWidth font (jget actionString))
-            jsetIndex ((jget (updateMyFontProperties).actionStringDeltaXArray)) (index) (assignedValue)
-            assignedValue <- (BasicArrayList.size ((jget list)))
-            jset size2 (assignedValue)
-            jsetIndex ((jget (updateMyFontProperties).inputDeltaXArray)) (index) ((jnewArray ((jget size2)) 0))
-            jsetIndex ((jget (updateMyFontProperties).sepArray)) (index) ((jnewArray ((jget size2)) javaNull))
-            jsetIndex ((jget (updateMyFontProperties).sepWidthArray)) (index) ((jnewArray ((jget size2)) 0))
-            forM_ [0 .. (jget size2) - 1] $ \index2 -> javaIteration (pure ()) $ do
-                jset input ((javaCast (jindex ((jget ((jget list)).objectArray)) (index2)) :: Input.Input))
-                assignedValue <- (Font.stringWidth font (jio (Input.getName ((jget input)))))
-                jsetIndex ((jindex ((jget (updateMyFontProperties).inputDeltaXArray)) (index))) (index2) (assignedValue)
-                jsetIndex ((jindex ((jget (updateMyFontProperties).sepArray)) (index))) (index2) ((jget this.eMPTY_STRING))
-                when ((index2 + 1) < (jio (BasicArrayList.size ((jget list))))) $ do
-                    if ((jio (BasicArrayList.size ((jget list)))) == 2) then do
-                        jsetIndex ((jindex ((jget (updateMyFontProperties).sepArray)) (index))) (index2) (InputMappingHelpPaintable.aND)
-                    else do
-                        if ((index2 + 2) == (jio (BasicArrayList.size ((jget list))))) then do
-                            jsetIndex ((jindex ((jget (updateMyFontProperties).sepArray)) (index))) (index2) (InputMappingHelpPaintable.mORE_THAN_TWO_IN_LIST_AND)
-                        else do
-                            jsetIndex ((jindex ((jget (updateMyFontProperties).sepArray)) (index))) (index2) (InputMappingHelpPaintable.sEP)
-                when ((jindex ((jindex ((jget (updateMyFontProperties).sepArray)) (index))) (index2)) /= (jget this.eMPTY_STRING)) $ do
-                    assignedValue <- (Font.stringWidth font (jindex ((jindex ((jget (updateMyFontProperties).sepArray)) (index))) (index2)))
-                    jsetIndex ((jindex ((jget (updateMyFontProperties).sepWidthArray)) (index))) (index2) (assignedValue)
-        jset (this).updateMyFontProperties (updateMyFontProperties)
-        Control.Monad.void (HelpPaintable.updateMeasurement_super this.base graphics)
-        pure ()
+jclass : String
+jclass =
+    "InputMappingHelpPaintable"
 
 
-update :: (JavaObjectClass this_) => this_ -> GameKey.GameKey -> Input.Input -> IO (())
-update object_ a1 a2 = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: InputMappingHelpPaintable))) () a1 a2
-
-update_super :: (JavaObjectClass this_) => this_ -> GameKey.GameKey -> Input.Input -> IO (())
-update_super object_ a1 a2 = (update_impl (javaCast object_ :: InputMappingHelpPaintable)) a1 a2
-
-update_impl :: InputMappingHelpPaintable -> GameKey.GameKey -> Input.Input -> IO (())
-update_impl this selectedGameKey selectedInput = do
-        stringMaker <- (StringMaker.new_)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append stringMaker (jget ((jio (CommonLabels.getInstance))).sTART_LABEL)))) "selected GameKey: "))) (jio (StringUtil.toString ((jget (this).stringUtil)) selectedGameKey))))) " Input: "))) (jio (StringUtil.toString ((jget (this).stringUtil)) selectedInput))))))) this (jget ((jget (this).commonStrings)).uPDATE))
-        gameKeyMapping <- (PlatformInputMappingFactory.getPersistentInputMappingInstance ((jio (PlatformInputMappingFactory.getInstance))))
-        let size = (jlength (jget (this).gameInputMappingArray))
-        let keyInfo = (jnewArray (size) javaNull)
-        let keyMappingArray = (jnewArray (size) javaNull)
-        let actionBasicColor = (jnewArray (size) javaNull)
-        let inputBasicColorArray = (jnewArray (size) javaNull)
-        gameInputMapping <- newIORef (javaNull)
-        gameKey <- newIORef (javaNull)
-        list <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset gameInputMapping ((jindex ((jget (this).gameInputMappingArray)) (index)))
-            assignedValue <- (GameInputMapping.getGameKey ((jget gameInputMapping)))
-            jset gameKey (assignedValue)
-            assignedValue <- (PersistentInputMapping.getMappedInput ((jio (PersistentInputMapping.getInputMapping gameKeyMapping))) (jget gameKey))
-            jset list (assignedValue)
-            size2 <- (BasicArrayList.size ((jget list)))
-            jsetIndex inputBasicColorArray (index) ((jnewArray (size2) javaNull))
-            forM_ [0 .. size2 - 1] $ \index2 -> javaIteration (pure ()) $ do
-                jsetIndex ((jindex inputBasicColorArray (index))) (index2) ((jget (this).base.basicColor))
-            if ((jget gameKey) == selectedGameKey) then do
-                Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append stringMaker "Found: selected GameKey: "))) (jio (StringUtil.toString ((jget (this).stringUtil)) selectedGameKey))))))) this (jget ((jget (this).commonStrings)).uPDATE))
-                jsetIndex actionBasicColor (index) ((jget (this).selectedBasicColor))
-                indexOfSelectedInput <- (BasicArrayList.indexOf ((jget list)) selectedInput)
-                when (indexOfSelectedInput >= 0) $ do
-                    Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-                    Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append stringMaker "Found: selected Input: "))) (jio (StringUtil.toString ((jget (this).stringUtil)) selectedInput))))))) this (jget ((jget (this).commonStrings)).uPDATE))
-                    jsetIndex ((jindex inputBasicColorArray (index))) (indexOfSelectedInput) ((jget (this).selectedBasicColor))
-            else do
-                jsetIndex actionBasicColor (index) ((jget (this).base.basicColor))
-            assignedValue <- (GameInputMapping.getName ((jget gameInputMapping)))
-            jsetIndex keyInfo (index) (assignedValue)
-            jsetIndex keyMappingArray (index) ((jget list))
-        jset (this).keyMappingArray (keyMappingArray)
-        jset (this).actionBasicColor (actionBasicColor)
-        jset (this).inputBasicColorArray (inputBasicColorArray)
-        Control.Monad.void (HelpPaintable.setInputInfoP_super this.base keyInfo)
-        jset (this).base.myFontProcessor ((jget (this).base.updateMyFontProcessor))
-        pure ()
+jchain : List String
+jchain =
+    [ "InputMappingHelpPaintable" ]
+        ++ HelpPaintable.jchain
 
 
-get :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (String)
-get object_ a1 = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: InputMappingHelpPaintable))) () a1
-
-get_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (String)
-get_super object_ a1 = (get_impl (javaCast object_ :: InputMappingHelpPaintable)) a1
-
-get_impl :: InputMappingHelpPaintable -> BasicArrayList.BasicArrayList -> IO (String)
-get_impl this keyList = do
-        stringBuffer <- (StringMaker.new_)
-        key <- newIORef (javaNull)
-        size <- (BasicArrayList.size keyList)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset key ((javaCast (jindex ((jget (keyList).objectArray)) (index)) :: Input.Input))
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Input.getName ((jget key)))))
-            when ((index + 1) < (jio (BasicArrayList.size keyList))) $ do
-                if ((jio (BasicArrayList.size keyList)) == 2) then do
-                    Control.Monad.void (StringMaker.append stringBuffer (InputMappingHelpPaintable.aND))
-                else do
-                    if ((index + 2) == (jio (BasicArrayList.size keyList))) then do
-                        Control.Monad.void (StringMaker.append stringBuffer (InputMappingHelpPaintable.mORE_THAN_TWO_IN_LIST_AND))
-                    else do
-                        Control.Monad.void (StringMaker.append stringBuffer (InputMappingHelpPaintable.sEP))
-        (StringMaker.toString stringBuffer)
+jfields : List ( String, JR.JValue )
+jfields =
+    HelpPaintable.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "commonSeps", JR.defaultOf "" ), ( "stringUtil", JR.defaultOf "" ), ( "basicColorFactory", JR.defaultOf "" ), ( "NONE", JR.defaultOf "" ), ( "EMPTY_STRING", JR.defaultOf "" ), ( "gameInputMappingArray", JR.defaultOf "" ), ( "keyMappingArray", JR.defaultOf "" ), ( "actionBasicColor", JR.defaultOf "" ), ( "inputBasicColorArray", JR.defaultOf "" ), ( "selectedBasicColor", JR.defaultOf "" ), ( "updateMyFontProperties", JR.defaultOf "" ) ]
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: InputMappingHelpPaintable))) () a1
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "update_2", jm_update_2 )
+        , ( "get_1", jm_get_1 )
+        , ( "paint_1", jm_paint_1 ) ]
+        HelpPaintable.jvtable
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: InputMappingHelpPaintable)) a1
 
-paint_impl :: InputMappingHelpPaintable -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (MyFontProcessor.process ((jget (this).base.myFontProcessor)) graphics)
-        halfWidth <- (DisplayInfoSingleton.getLastHalfWidth ((jget (this).base.displayInfo)))
-        Control.Monad.void (Graphics.setColor graphics (jio (BasicColor.intValue ((jget (this).base.basicColor)))))
-        Control.Monad.void (Graphics.drawString graphics (jget (this).base.title) (halfWidth - (jget (this).base.titleBeginWidth)) (jget ((jget (this).updateMyFontProperties)).charHeight) (jget (this).base.anchor))
-        let inputInfo = (jget (this).base.inputInfo)
-        let size = (jlength inputInfo)
-        y <- newIORef (0 :: Int)
-        deltaX <- newIORef (0 :: Int)
-        size2 <- newIORef (0 :: Int)
-        actionString <- newIORef ("")
-        input <- newIORef (javaNull)
-        list <- newIORef (javaNull)
-        sep <- newIORef ("")
-        beginWidth <- newIORef (0 :: Int)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset y ((((index + 3)) * (jget ((jget (this).updateMyFontProperties)).charHeight)))
-            jset deltaX (0)
-            jset list ((jindex ((jget (this).keyMappingArray)) (index)))
-            assignedValue <- (BasicArrayList.size ((jget list)))
-            jset size2 (assignedValue)
-            jset beginWidth ((jindex ((jget ((jget (this).updateMyFontProperties)).keymappingBeginWidthArray)) (index)))
-            Control.Monad.void (Graphics.setColor graphics (jio (BasicColor.intValue ((jindex ((jget (this).actionBasicColor)) (index))))))
-            jset actionString ((jindex ((jget ((jget (this).updateMyFontProperties)).actionStringArray)) (index)))
-            Control.Monad.void (Graphics.drawString graphics (jget actionString) ((halfWidth - (jget beginWidth)) + (jget deltaX)) (jget y) (jget (this).base.anchor))
-            jset deltaX (((jget deltaX) + (jindex ((jget ((jget (this).updateMyFontProperties)).actionStringDeltaXArray)) (index))))
-            forM_ [0 .. (jget size2) - 1] $ \index2 -> javaIteration (pure ()) $ do
-                jset input ((javaCast (jindex ((jget ((jget list)).objectArray)) (index2)) :: Input.Input))
-                Control.Monad.void (Graphics.setColor graphics (jio (BasicColor.intValue ((jindex ((jindex ((jget (this).inputBasicColorArray)) (index))) (index2))))))
-                Control.Monad.void (Graphics.drawString graphics (jio (Input.getName ((jget input)))) ((halfWidth - (jget beginWidth)) + (jget deltaX)) (jget y) (jget (this).base.anchor))
-                jset deltaX (((jget deltaX) + (jindex ((jindex ((jget ((jget (this).updateMyFontProperties)).inputDeltaXArray)) (index))) (index2))))
-                jset sep ((jindex ((jindex ((jget ((jget (this).updateMyFontProperties)).sepArray)) (index))) (index2)))
-                Control.Monad.void (Graphics.setColor graphics (jio (BasicColor.intValue ((jget (this).base.basicColor)))))
-                Control.Monad.void (Graphics.drawString graphics (jget sep) ((halfWidth - (jget beginWidth)) + (jget deltaX)) (jget y) (jget (this).base.anchor))
-                jset deltaX (((jget deltaX) + (jindex ((jindex ((jget ((jget (this).updateMyFontProperties)).sepWidthArray)) (index))) (index2))))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InputMappingHelpPaintable"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_update_2", jm_update_2 ), ( "jm_get_1", jm_get_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        [ ( "jstatic_AND", jstatic_AND ), ( "jstatic_SEP", jstatic_SEP ), ( "jstatic_MORE_THAN_TWO_IN_LIST_AND", jstatic_MORE_THAN_TWO_IN_LIST_AND ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_AND : JR.M
+jstatic_AND s =
+    JR.static "InputMappingHelpPaintable" jclinit "AND"
+        (JR.str " and ")
+        s
+
+
+jstatic_SEP : JR.M
+jstatic_SEP s =
+    JR.static "InputMappingHelpPaintable" jclinit "SEP"
+        (JR.str ", ")
+        s
+
+
+jstatic_MORE_THAN_TWO_IN_LIST_AND : JR.M
+jstatic_MORE_THAN_TWO_IN_LIST_AND s =
+    JR.static "InputMappingHelpPaintable" jclinit "MORE_THAN_TWO_IN_LIST_AND"
+        (JR.str ", and ")
+        s
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "gameInputMappingArray", "" ), ( "backgroundBasicColor", "" ), ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect HelpPaintable.jinit_3 JR.this [ (JR.str "Input Mapping"), (JR.local "backgroundBasicColor"), (JR.local "basicColor") ]),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonSeps" "" JR.this (JR.callStatic CommonSeps.jm_getInstance_0 [])),
+                JR.exec (JR.setField "stringUtil" "" JR.this (JR.callStatic StringUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "basicColorFactory" "" JR.this (JR.callStatic BasicColorFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "NONE" "" JR.this (JR.field "NONE" (JR.callStatic GameKeyFactory.jm_getInstance_0 []))),
+                JR.exec (JR.setField "EMPTY_STRING" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "keyMappingArray" "" JR.this (JR.newArray "" [ (JR.int 0) ])),
+                JR.exec (JR.setField "actionBasicColor" "" JR.this (JR.field "ZERO_ARRAY" (JR.callStatic BasicColorUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "inputBasicColorArray" "" JR.this (JR.newArray "" [ (JR.int 0), (JR.int 0) ])),
+                JR.exec (JR.setField "updateMyFontProperties" "" JR.this (JR.new UpdateMyFontProperties.jnew_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "gameInputMappingArray" "" JR.this (JR.local "gameInputMappingArray")), 
+                    JR.exec (JR.invoke "update_2" JR.this [ (JR.thisField "NONE"), (JR.thisField "NONE") ]), 
+                    JR.ifElse (JR.or (JR.map2 JR.equals (JR.local "backgroundBasicColor") (JR.field "WHITE" (JR.thisField "basicColorFactory"))) (JR.map2 JR.equals (JR.local "basicColor") (JR.field "WHITE" (JR.thisField "basicColorFactory")))) (JR.run [ 
+                        JR.exec (JR.setField "selectedBasicColor" "" JR.this (JR.field "RED" (JR.thisField "basicColorFactory"))) ]) (JR.run [ 
+                        JR.exec (JR.setField "selectedBasicColor" "" JR.this (JR.field "WHITE" (JR.thisField "basicColorFactory"))) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.declare "updateMyFontProperties" "" (JR.new UpdateMyFontProperties.jnew_0 []), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70586 -> (JR.setField "charHeight" "I" (JR.lit jtN70586) (JR.invoke "getHeight_0" (JR.local "font") [])))), 
+                    JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "inputInfo" "" (JR.thisField "inputInfo"), 
+                    JR.declare "size" "I" (JR.alength (JR.local "inputInfo")), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70769 -> (JR.setField "actionStringArray" "" (JR.lit jtN70769) (JR.newArray "" [ (JR.local "size") ])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70821 -> (JR.setField "keymappingBeginWidthArray" "" (JR.lit jtN70821) (JR.newArray "I" [ (JR.local "size") ])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70869 -> (JR.setField "actionStringDeltaXArray" "" (JR.lit jtN70869) (JR.newArray "I" [ (JR.local "size") ])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70917 -> (JR.setField "inputDeltaXArray" "" (JR.lit jtN70917) (JR.newArray "I" [ (JR.local "size"), (JR.int 0) ])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70973 -> (JR.setField "sepArray" "" (JR.lit jtN70973) (JR.newArray "" [ (JR.local "size"), (JR.int 0) ])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN71033 -> (JR.setField "sepWidthArray" "" (JR.lit jtN71033) (JR.newArray "I" [ (JR.local "size"), (JR.int 0) ])))), 
+                    JR.declare "list" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "keyMappings" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "actionString" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "input" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size2" "I" (JR.int 0), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72854 -> (JR.setLocal "index" "I" (JR.lit jwN72854))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "list" "" (JR.aget (JR.thisField "keyMappingArray") (JR.local "index"))), 
+                        JR.exec (JR.setLocal "keyMappings" "" (JR.invoke "get_1" JR.this [ (JR.local "list") ])), 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                        JR.exec (JR.setLocal "actionString" "" (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.aget (JR.local "inputInfo") (JR.local "index")) ]) [ (JR.field "COLON" (JR.thisField "commonSeps")) ]) [ (JR.field "SPACE" (JR.thisField "commonSeps")) ]) [ (JR.field "SPACE" (JR.thisField "commonSeps")) ]) [])), 
+                        JR.exec (JR.andThen (JR.field "actionStringArray" (JR.local "updateMyFontProperties")) (\jaN71503 -> JR.andThen (JR.local "index") (\jiN71503 -> (JR.aset (JR.lit jaN71503) (JR.lit jiN71503) (JR.local "actionString"))))), 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                        JR.exec (JR.andThen (JR.field "keymappingBeginWidthArray" (JR.local "updateMyFontProperties")) (\jaN71595 -> JR.andThen (JR.local "index") (\jiN71595 -> (JR.aset (JR.lit jaN71595) (JR.lit jiN71595) ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.aget (JR.field "actionStringArray" (JR.local "updateMyFontProperties")) (JR.local "index")) ]) [ (JR.local "keyMappings") ]) []) ]) (JR.int 1))))))), 
+                        JR.exec (JR.andThen (JR.field "actionStringDeltaXArray" (JR.local "updateMyFontProperties")) (\jaN71738 -> JR.andThen (JR.local "index") (\jiN71738 -> (JR.aset (JR.lit jaN71738) (JR.lit jiN71738) (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.local "actionString") ]))))), 
+                        JR.exec (JR.setLocal "size2" "I" (JR.invoke "size_0" (JR.local "list") [])), 
+                        JR.exec (JR.andThen (JR.field "inputDeltaXArray" (JR.local "updateMyFontProperties")) (\jaN71835 -> JR.andThen (JR.local "index") (\jiN71835 -> (JR.aset (JR.lit jaN71835) (JR.lit jiN71835) (JR.newArray "I" [ (JR.local "size2") ]))))), 
+                        JR.exec (JR.andThen (JR.field "sepArray" (JR.local "updateMyFontProperties")) (\jaN71895 -> JR.andThen (JR.local "index") (\jiN71895 -> (JR.aset (JR.lit jaN71895) (JR.lit jiN71895) (JR.newArray "" [ (JR.local "size2") ]))))), 
+                        JR.exec (JR.andThen (JR.field "sepWidthArray" (JR.local "updateMyFontProperties")) (\jaN71959 -> JR.andThen (JR.local "index") (\jiN71959 -> (JR.aset (JR.lit jaN71959) (JR.lit jiN71959) (JR.newArray "I" [ (JR.local "size2") ]))))), 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN72788 -> (JR.setLocal "index2" "I" (JR.lit jwN72788))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "input" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index2"))), 
+                            JR.exec (JR.andThen (JR.aget (JR.field "inputDeltaXArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72084 -> JR.andThen (JR.local "index2") (\jiN72084 -> (JR.aset (JR.lit jaN72084) (JR.lit jiN72084) (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.invoke "getName_0" (JR.local "input") []) ]))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72168 -> JR.andThen (JR.local "index2") (\jiN72168 -> (JR.aset (JR.lit jaN72168) (JR.lit jiN72168) (JR.thisField "EMPTY_STRING"))))), 
+                            JR.ifElse (JR.map2 JR.less (JR.map2 JR.add (JR.local "index2") (JR.int 1)) (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ 
+                                JR.ifElse (JR.map2 JR.equals (JR.invoke "size_0" (JR.local "list") []) (JR.int 2)) (JR.run [ 
+                                    JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72497 -> JR.andThen (JR.local "index2") (\jiN72497 -> (JR.aset (JR.lit jaN72497) (JR.lit jiN72497) jstatic_AND)))) ]) (JR.run [ 
+                                    JR.ifElse (JR.map2 JR.equals (JR.map2 JR.add (JR.local "index2") (JR.int 2)) (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ 
+                                        JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72422 -> JR.andThen (JR.local "index2") (\jiN72422 -> (JR.aset (JR.lit jaN72422) (JR.lit jiN72422) jstatic_MORE_THAN_TWO_IN_LIST_AND)))) ]) (JR.run [ 
+                                        JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72350 -> JR.andThen (JR.local "index2") (\jiN72350 -> (JR.aset (JR.lit jaN72350) (JR.lit jiN72350) jstatic_SEP)))) ]) ]) ]) identity, 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (JR.local "index2")) (JR.thisField "EMPTY_STRING")) (JR.run [ 
+                                JR.exec (JR.andThen (JR.aget (JR.field "sepWidthArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72629 -> JR.andThen (JR.local "index2") (\jiN72629 -> (JR.aset (JR.lit jaN72629) (JR.lit jiN72629) (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.aget (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (JR.local "index2")) ]))))) ]) identity ]) ] ]) ], 
+                    JR.exec (JR.setField "updateMyFontProperties" "" JR.this (JR.local "updateMyFontProperties")), 
+                    JR.exec (JR.callVia HelpPaintable.jvtable "updateMeasurement_1" JR.this [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_2 : JR.Method
+jm_update_2 jheap jthis jargs =
+    JR.method [ ( "selectedGameKey", "" ), ( "selectedInput", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.field "START_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.str "selected GameKey: ") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "selectedGameKey") ]) ]) [ (JR.str " Input: ") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "selectedInput") ]) ]) []), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")) ]), 
+                    JR.declare "gameKeyMapping" "" (JR.invoke "getPersistentInputMappingInstance_0" (JR.callStatic PlatformInputMappingFactory.jm_getInstance_0 []) []), 
+                    JR.declare "size" "I" (JR.alength (JR.thisField "gameInputMappingArray")), 
+                    JR.declare "keyInfo" "" (JR.newArray "" [ (JR.local "size") ]), 
+                    JR.declare "keyMappingArray" "" (JR.newArray "" [ (JR.local "size") ]), 
+                    JR.declare "actionBasicColor" "" (JR.newArray "" [ (JR.local "size") ]), 
+                    JR.declare "inputBasicColorArray" "" (JR.newArray "" [ (JR.local "size") ]), 
+                    JR.declare "gameInputMapping" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "gameKey" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "list" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN74769 -> (JR.setLocal "index" "I" (JR.lit jwN74769))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "gameInputMapping" "" (JR.aget (JR.thisField "gameInputMappingArray") (JR.local "index"))), 
+                        JR.exec (JR.setLocal "gameKey" "" (JR.invoke "getGameKey_0" (JR.local "gameInputMapping") [])), 
+                        JR.exec (JR.setLocal "list" "" (JR.invoke "getMappedInput_1" (JR.invoke "getInputMapping_0" (JR.local "gameKeyMapping") []) [ (JR.local "gameKey") ])), 
+                        JR.declare "size2" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                        JR.exec (JR.andThen (JR.local "inputBasicColorArray") (\jaN73878 -> JR.andThen (JR.local "index") (\jiN73878 -> (JR.aset (JR.lit jaN73878) (JR.lit jiN73878) (JR.newArray "" [ (JR.local "size2") ]))))), 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN74042 -> (JR.setLocal "index2" "I" (JR.lit jwN74042))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.local "inputBasicColorArray") (JR.local "index")) (\jaN73942 -> JR.andThen (JR.local "index2") (\jiN73942 -> (JR.aset (JR.lit jaN73942) (JR.lit jiN73942) (JR.thisField "basicColor"))))) ]) ], 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "gameKey") (JR.local "selectedGameKey")) (JR.run [ 
+                            JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.str "Found: selected GameKey: ") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "selectedGameKey") ]) ]) []), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")) ]), 
+                            JR.exec (JR.andThen (JR.local "actionBasicColor") (\jaN74299 -> JR.andThen (JR.local "index") (\jiN74299 -> (JR.aset (JR.lit jaN74299) (JR.lit jiN74299) (JR.thisField "selectedBasicColor"))))), 
+                            JR.declare "indexOfSelectedInput" "I" (JR.invoke "indexOf_1" (JR.local "list") [ (JR.local "selectedInput") ]), 
+                            JR.ifElse (JR.map2 JR.greaterEquals (JR.local "indexOfSelectedInput") (JR.int 0)) (JR.run [ 
+                                JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                                JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.str "Found: selected Input: ") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "selectedInput") ]) ]) []), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")) ]), 
+                                JR.exec (JR.andThen (JR.aget (JR.local "inputBasicColorArray") (JR.local "index")) (\jaN74577 -> JR.andThen (JR.local "indexOfSelectedInput") (\jiN74577 -> (JR.aset (JR.lit jaN74577) (JR.lit jiN74577) (JR.thisField "selectedBasicColor"))))) ]) identity ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.local "actionBasicColor") (\jaN74089 -> JR.andThen (JR.local "index") (\jiN74089 -> (JR.aset (JR.lit jaN74089) (JR.lit jiN74089) (JR.thisField "basicColor"))))) ]), 
+                        JR.exec (JR.andThen (JR.local "keyInfo") (\jaN74635 -> JR.andThen (JR.local "index") (\jiN74635 -> (JR.aset (JR.lit jaN74635) (JR.lit jiN74635) (JR.invoke "getName_0" (JR.local "gameInputMapping") []))))), 
+                        JR.exec (JR.andThen (JR.local "keyMappingArray") (\jaN74684 -> JR.andThen (JR.local "index") (\jiN74684 -> (JR.aset (JR.lit jaN74684) (JR.lit jiN74684) (JR.local "list"))))) ]) ], 
+                    JR.exec (JR.setField "keyMappingArray" "" JR.this (JR.local "keyMappingArray")), 
+                    JR.exec (JR.setField "actionBasicColor" "" JR.this (JR.local "actionBasicColor")), 
+                    JR.exec (JR.setField "inputBasicColorArray" "" JR.this (JR.local "inputBasicColorArray")), 
+                    JR.exec (JR.callVia HelpPaintable.jvtable "setInputInfoP_1" JR.this [ (JR.local "keyInfo") ]), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_get_1 : JR.Method
+jm_get_1 jheap jthis jargs =
+    JR.method [ ( "keyList", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "key" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "keyList") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75544 -> (JR.setLocal "index" "I" (JR.lit jwN75544))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "key" "" (JR.aget (JR.field "objectArray" (JR.local "keyList")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.local "key") []) ]), 
+                        JR.ifElse (JR.map2 JR.less (JR.map2 JR.add (JR.local "index") (JR.int 1)) (JR.invoke "size_0" (JR.local "keyList") [])) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.invoke "size_0" (JR.local "keyList") []) (JR.int 2)) (JR.run [ 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_AND ]) ]) (JR.run [ 
+                                JR.ifElse (JR.map2 JR.equals (JR.map2 JR.add (JR.local "index") (JR.int 2)) (JR.invoke "size_0" (JR.local "keyList") [])) (JR.run [ 
+                                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_MORE_THAN_TWO_IN_LIST_AND ]) ]) (JR.run [ 
+                                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_SEP ]) ]) ]) ]) identity ]) ], 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.declare "halfWidth" "I" (JR.invoke "getLastHalfWidth_0" (JR.thisField "displayInfo") []), 
+                    JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.invoke "intValue_0" (JR.thisField "basicColor") []) ]), 
+                    JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.thisField "title"), (JR.map2 JR.sub (JR.local "halfWidth") (JR.thisField "titleBeginWidth")), (JR.field "charHeight" (JR.thisField "updateMyFontProperties")), (JR.thisField "anchor") ]), 
+                    JR.declare "inputInfo" "" (JR.thisField "inputInfo"), 
+                    JR.declare "size" "I" (JR.alength (JR.local "inputInfo")), 
+                    JR.declare "y" "I" (JR.int 0), 
+                    JR.declare "deltaX" "I" (JR.int 0), 
+                    JR.declare "size2" "I" (JR.int 0), 
+                    JR.declare "actionString" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "input" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "list" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "sep" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "beginWidth" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN77266 -> (JR.setLocal "index" "I" (JR.lit jwN77266))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "y" "I" (JR.map2 JR.mul ((JR.map2 JR.add (JR.local "index") (JR.int 3))) (JR.field "charHeight" (JR.thisField "updateMyFontProperties")))), 
+                        JR.exec (JR.setLocal "deltaX" "I" (JR.int 0)), 
+                        JR.exec (JR.setLocal "list" "" (JR.aget (JR.thisField "keyMappingArray") (JR.local "index"))), 
+                        JR.exec (JR.setLocal "size2" "I" (JR.invoke "size_0" (JR.local "list") [])), 
+                        JR.exec (JR.setLocal "beginWidth" "I" (JR.aget (JR.field "keymappingBeginWidthArray" (JR.thisField "updateMyFontProperties")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.invoke "intValue_0" (JR.aget (JR.thisField "actionBasicColor") (JR.local "index")) []) ]), 
+                        JR.exec (JR.setLocal "actionString" "" (JR.aget (JR.field "actionStringArray" (JR.thisField "updateMyFontProperties")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.local "actionString"), (JR.map2 JR.add (JR.map2 JR.sub (JR.local "halfWidth") (JR.local "beginWidth")) (JR.local "deltaX")), (JR.local "y"), (JR.thisField "anchor") ]), 
+                        JR.exec (JR.setLocal "deltaX" "I" (JR.map2 JR.add (JR.local "deltaX") (JR.aget (JR.field "actionStringDeltaXArray" (JR.thisField "updateMyFontProperties")) (JR.local "index")))), 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN77200 -> (JR.setLocal "index2" "I" (JR.lit jwN77200))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "input" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index2"))), 
+                            JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.invoke "intValue_0" (JR.aget (JR.aget (JR.thisField "inputBasicColorArray") (JR.local "index")) (JR.local "index2")) []) ]), 
+                            JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.invoke "getName_0" (JR.local "input") []), (JR.map2 JR.add (JR.map2 JR.sub (JR.local "halfWidth") (JR.local "beginWidth")) (JR.local "deltaX")), (JR.local "y"), (JR.thisField "anchor") ]), 
+                            JR.exec (JR.setLocal "deltaX" "I" (JR.map2 JR.add (JR.local "deltaX") (JR.aget (JR.aget (JR.field "inputDeltaXArray" (JR.thisField "updateMyFontProperties")) (JR.local "index")) (JR.local "index2")))), 
+                            JR.exec (JR.setLocal "sep" "" (JR.aget (JR.aget (JR.field "sepArray" (JR.thisField "updateMyFontProperties")) (JR.local "index")) (JR.local "index2"))), 
+                            JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.invoke "intValue_0" (JR.thisField "basicColor") []) ]), 
+                            JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.local "sep"), (JR.map2 JR.add (JR.map2 JR.sub (JR.local "halfWidth") (JR.local "beginWidth")) (JR.local "deltaX")), (JR.local "y"), (JR.thisField "anchor") ]), 
+                            JR.exec (JR.setLocal "deltaX" "I" (JR.map2 JR.add (JR.local "deltaX") (JR.aget (JR.aget (JR.field "sepWidthArray" (JR.thisField "updateMyFontProperties")) (JR.local "index")) (JR.local "index2")))) ]) ] ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

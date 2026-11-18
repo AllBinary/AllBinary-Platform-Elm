@@ -1,124 +1,112 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
-module FormTypeFactory where
+module Org.Allbinary.Graphics.Form.FormTypeFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified FormType -- same package or java.lang
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form
+-}
 
-data FormTypeFactory = FormTypeFactory
-    { header_ :: JavaHeader
-    , uNK :: IORef (String)
-    , nULL_FORM_TYPE :: IORef (FormType.FormType)
-    , tEMP_HORIZONTAL_FORM :: IORef (FormType.FormType)
-    , hORIZONTAL_FORM :: IORef (FormType.FormType)
-    , vERTICAL_CENTER_FORM :: IORef (FormType.FormType)
-    }
-
-instance JavaNull FormTypeFactory where
-    javaNull = javaNullRecord "FormTypeFactory"
-
-instance JavaEquals FormTypeFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FormTypeFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FormTypeFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: FormTypeFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO FormTypeFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    uNK <- newIORef ""
-    nULL_FORM_TYPE <- newIORef javaNull
-    tEMP_HORIZONTAL_FORM <- newIORef javaNull
-    hORIZONTAL_FORM <- newIORef javaNull
-    vERTICAL_CENTER_FORM <- newIORef javaNull
-    let this = FormTypeFactory header_ uNK nULL_FORM_TYPE tEMP_HORIZONTAL_FORM hORIZONTAL_FORM vERTICAL_CENTER_FORM
-    jregisterLevel header_ this
-    jregisterMethod header_ "getFormType" (\() -> getFormType_impl this)
-    pure this
-
-initFields_ :: FormTypeFactory -> IO ()
-initFields_ this = do
-    jset this.uNK ("Unknown FormType")
-    jset this.nULL_FORM_TYPE =<< (FormType.new_1 (jget ((jio (StringUtil.getInstance))).nULL_STRING))
-    jset this.tEMP_HORIZONTAL_FORM =<< (FormType.new_1 "TempHorizontal")
-    jset this.hORIZONTAL_FORM =<< (FormType.new_1 "Horizontal")
-    jset this.vERTICAL_CENTER_FORM =<< (FormType.new_1 "Vertical")
-    pure ()
-
-new_ :: IO FormTypeFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: FormTypeFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Graphics.Form.FormType as FormType
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (FormTypeFactory)
-getInstance = do
-        pure (FormTypeFactory.instance_)
+jclass : String
+jclass =
+    "FormTypeFactory"
 
 
-getFormType :: (JavaObjectClass this_) => this_ -> IO (FormType.FormType)
-getFormType object_ = jmethod object_ "getFormType" (\() -> (getFormType_impl (javaCast object_ :: FormTypeFactory))) ()
+jchain : List String
+jchain =
+    [ "FormTypeFactory" ]
 
-getFormType_super :: (JavaObjectClass this_) => this_ -> IO (FormType.FormType)
-getFormType_super object_ = (getFormType_impl (javaCast object_ :: FormTypeFactory))
 
-getFormType_impl :: FormTypeFactory -> IO (FormType.FormType)
-getFormType_impl this = do
-        displayInfo <- (DisplayInfoSingleton.getInstance)
-        formType <- newIORef (javaNull)
-        if (jio (DisplayInfoSingleton.isPortrait displayInfo)) then do
-            jset formType ((jget (this).vERTICAL_CENTER_FORM))
-        else do
-            jset formType ((jget (this).hORIZONTAL_FORM))
-        pure ((jget formType))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "UNK", JR.defaultOf "" ), ( "NULL_FORM_TYPE", JR.defaultOf "" ), ( "TEMP_HORIZONTAL_FORM", JR.defaultOf "" ), ( "HORIZONTAL_FORM", JR.defaultOf "" ), ( "VERTICAL_CENTER_FORM", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getFormType_0", jm_getFormType_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FormTypeFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getFormType_0", jm_getFormType_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "FormTypeFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "UNK" "" JR.this (JR.str "Unknown FormType")),
+                JR.exec (JR.setField "NULL_FORM_TYPE" "" JR.this (JR.new FormType.jnew_1 [ (JR.field "NULL_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "TEMP_HORIZONTAL_FORM" "" JR.this (JR.new FormType.jnew_1 [ (JR.str "TempHorizontal") ])),
+                JR.exec (JR.setField "HORIZONTAL_FORM" "" JR.this (JR.new FormType.jnew_1 [ (JR.str "Horizontal") ])),
+                JR.exec (JR.setField "VERTICAL_CENTER_FORM" "" JR.this (JR.new FormType.jnew_1 [ (JR.str "Vertical") ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFormType_0 : JR.Method
+jm_getFormType_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "displayInfo" "" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []), 
+                    JR.declare "formType" "" (JR.lit (JR.defaultOf "")), 
+                    JR.ifElse (JR.invoke "isPortrait_0" (JR.local "displayInfo") []) (JR.run [ 
+                        JR.exec (JR.setLocal "formType" "" (JR.thisField "VERTICAL_CENTER_FORM")) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "formType" "" (JR.thisField "HORIZONTAL_FORM")) ]), 
+                    JR.return (JR.local "formType") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

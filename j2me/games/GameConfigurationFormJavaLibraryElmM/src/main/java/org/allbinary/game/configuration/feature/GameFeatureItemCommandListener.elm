@@ -1,120 +1,98 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
-module GameFeatureItemCommandListener where
+module Org.Allbinary.Game.Configuration.Feature.GameFeatureItemCommandListener exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified LcduiItem -- javax.microedition.lcdui.LcduiItem
-import qualified ItemCommandListener -- javax.microedition.lcdui.ItemCommandListener
-import qualified GameConfigurationGauge -- org.allbinary.game.configuration.GameConfigurationGauge
-import qualified GameConfigurationUtil -- org.allbinary.game.configuration.GameConfigurationUtil
-import qualified GameOptionsForm -- org.allbinary.game.configuration.GameOptionsForm
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified MidletStrings -- org.allbinary.midlet.MidletStrings
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.feature
+-}
 
--- implements ItemCommandListener
-data GameFeatureItemCommandListener = GameFeatureItemCommandListener
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , gameOptionsForm :: IORef (GameOptionsForm.GameOptionsForm)
-    }
-
-instance JavaNull GameFeatureItemCommandListener where
-    javaNull = javaNullRecord "GameFeatureItemCommandListener"
-
-instance JavaEquals GameFeatureItemCommandListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameFeatureItemCommandListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameFeatureItemCommandListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameFeatureItemCommandListener
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    gameOptionsForm <- newIORef javaNull
-    let this = GameFeatureItemCommandListener header_ logUtil gameOptionsForm
-    jregisterLevel header_ this
-    ItemCommandListener.registerInterface_ header_
-    jregisterMethod header_ "commandAction" (\() -> commandAction_impl this)
-    pure this
-
-initFields_ :: GameFeatureItemCommandListener -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.gameOptionsForm (javaNull)
-    pure ()
-
-new_1 :: GameOptionsForm.GameOptionsForm -> IO GameFeatureItemCommandListener
-new_1 gameOptionsForm = do
-    this <- newRecord_
-    init_1 this gameOptionsForm
-    pure this
-
-init_1 :: GameFeatureItemCommandListener -> GameOptionsForm.GameOptionsForm -> IO ()
-init_1 this gameOptionsForm = do
-        initFields_ this
-        jset (this).gameOptionsForm (gameOptionsForm)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.GameConfigurationUtil as GameConfigurationUtil
+import Javax.Microedition.Lcdui.ItemCommandListener as ItemCommandListener
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Midlet.MidletStrings as MidletStrings
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-commandAction :: (JavaObjectClass this_) => this_ -> Command.Command -> LcduiItem.LcduiItem -> IO (())
-commandAction object_ a1 a2 = jmethod object_ "commandAction" (\() -> (commandAction_impl (javaCast object_ :: GameFeatureItemCommandListener))) () a1 a2
+jclass : String
+jclass =
+    "GameFeatureItemCommandListener"
 
-commandAction_super :: (JavaObjectClass this_) => this_ -> Command.Command -> LcduiItem.LcduiItem -> IO (())
-commandAction_super object_ a1 a2 = (commandAction_impl (javaCast object_ :: GameFeatureItemCommandListener)) a1 a2
 
-commandAction_impl :: GameFeatureItemCommandListener -> Command.Command -> LcduiItem.LcduiItem -> IO (())
-commandAction_impl this command item = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget ((jio (MidletStrings.getInstance))).cOMMAND_ACTION) e)
-            ) $ do
-            itemLabel <- (LcduiItem.getLabel item)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonLabels.getInstance))).iTEM_LABEL)))) itemLabel))))) this (jget ((jio (MidletStrings.getInstance))).cOMMAND_ACTION))
-            when (javaInstanceOf item "GameConfigurationGauge") $ do
-                Control.Monad.void (GameConfigurationUtil.change ((jio (GameConfigurationUtil.getInstance))) (jget (this).gameOptionsForm) (javaCast item :: GameConfigurationGauge.GameConfigurationGauge))
-        pure ()
+jchain : List String
+jchain =
+    [ "GameFeatureItemCommandListener" ]
+        ++ ItemCommandListener.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "gameOptionsForm", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "commandAction_2", jm_commandAction_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameFeatureItemCommandListener"
+        [ ( "jm_commandAction_2", jm_commandAction_2 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "gameOptionsForm", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "gameOptionsForm" "" JR.this (JR.local "gameOptionsForm")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_commandAction_2 : JR.Method
+jm_commandAction_2 jheap jthis jargs =
+    JR.method [ ( "command", "" ), ( "item", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "itemLabel" "" (JR.invoke "getLabel_0" (JR.local "item") []), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "ITEM_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.local "itemLabel") ]) []), JR.this, (JR.field "COMMAND_ACTION" (JR.callStatic MidletStrings.jm_getInstance_0 [])) ]), 
+                        JR.ifElse (JR.instanceOf "GameConfigurationGauge" (JR.local "item")) (JR.run [ 
+                            JR.exec (JR.invoke "change_2" (JR.callStatic GameConfigurationUtil.jm_getInstance_0 []) [ (JR.thisField "gameOptionsForm"), (JR.local "item") ]) ]) identity ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "COMMAND_ACTION" (JR.callStatic MidletStrings.jm_getInstance_0 [])), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

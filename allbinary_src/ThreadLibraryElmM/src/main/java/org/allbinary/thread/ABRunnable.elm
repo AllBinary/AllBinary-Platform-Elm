@@ -1,10 +1,10 @@
-module ABRunnable exposing (..)
+module Org.Allbinary.Thread.ABRunnable exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}
 
 import JR
-import RunnableInterface
+import Org.Allbinary.Thread.RunnableInterface as RunnableInterface
 
 
 jclass : String

@@ -1,168 +1,157 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.direction
-module Direction where
+module Org.Allbinary.Direction.Direction exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
+{-| Generated Code Do Not Modify package org.allbinary.direction
+-}
 
-data Direction = Direction
-    { header_ :: JavaHeader
-    , name :: IORef (String)
-    , otherName :: IORef (String)
-    , value :: IORef (Int)
-    , frameFactor :: IORef (Int)
-    }
-
-instance JavaNull Direction where
-    javaNull = javaNullRecord "Direction"
-
-instance JavaEquals Direction where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Direction where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Direction where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-directionArray :: IORef (JavaArray (Direction))
-{-# NOINLINE directionArray #-}
-directionArray = unsafePerformIO (newIORef ((jnewArray (13) javaNull)))
-
-newRecord_ :: IO Direction
-newRecord_ = do
-    header_ <- newJavaHeader
-    name <- newIORef ""
-    otherName <- newIORef ""
-    value <- newIORef 0
-    frameFactor <- newIORef 0
-    let this = Direction header_ name otherName value frameFactor
-    jregisterLevel header_ this
-    jregisterMethod header_ "getValue" (\() -> getValue_impl this)
-    jregisterMethod header_ "getFrameFactor" (\() -> getFrameFactor_impl this)
-    jregisterMethod header_ "getOtherName" (\() -> getOtherName_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: Direction -> IO ()
-initFields_ this = do
-    jset this.name (javaNull)
-    jset this.otherName (javaNull)
-    jset this.value (0)
-    jset this.frameFactor (0)
-    pure ()
-
-new_4 :: String -> String -> Int -> Int -> IO Direction
-new_4 name otherName value frameFactor = do
-    this <- newRecord_
-    init_4 this name otherName value frameFactor
-    pure this
-
-init_4 :: Direction -> String -> String -> Int -> Int -> IO ()
-init_4 this name otherName value frameFactor = do
-        initFields_ this
-        jset (this).name (name)
-        jset (this).otherName (otherName)
-        jset (this).value (value)
-        jset (this).frameFactor (frameFactor)
-        jsetIndex ((jget Direction.directionArray)) (value) (this)
-        pure ()
+import JR
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: Int -> IO (Direction)
-getInstance direction = do
-        pure ((jindex ((jget Direction.directionArray)) (direction)))
+jclass : String
+jclass =
+    "Direction"
 
 
-getValue :: (JavaObjectClass this_) => this_ -> IO (Int)
-getValue object_ = jmethod object_ "getValue" (\() -> (getValue_impl (javaCast object_ :: Direction))) ()
-
-getValue_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getValue_super object_ = (getValue_impl (javaCast object_ :: Direction))
-
-getValue_impl :: Direction -> IO (Int)
-getValue_impl this = do
-        pure ((jget (this).value))
+jchain : List String
+jchain =
+    [ "Direction" ]
 
 
-getFrameFactor :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrameFactor object_ = jmethod object_ "getFrameFactor" (\() -> (getFrameFactor_impl (javaCast object_ :: Direction))) ()
-
-getFrameFactor_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrameFactor_super object_ = (getFrameFactor_impl (javaCast object_ :: Direction))
-
-getFrameFactor_impl :: Direction -> IO (Int)
-getFrameFactor_impl this = do
-        pure ((jget (this).frameFactor))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "name", JR.defaultOf "" ), ( "otherName", JR.defaultOf "" ), ( "value", JR.defaultOf "I" ), ( "frameFactor", JR.defaultOf "I" ) ]
 
 
-getOtherName :: (JavaObjectClass this_) => this_ -> IO (String)
-getOtherName object_ = jmethod object_ "getOtherName" (\() -> (getOtherName_impl (javaCast object_ :: Direction))) ()
-
-getOtherName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getOtherName_super object_ = (getOtherName_impl (javaCast object_ :: Direction))
-
-getOtherName_impl :: Direction -> IO (String)
-getOtherName_impl this = do
-        pure ((jget (this).otherName))
-
-
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: Direction))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: Direction))
-
-getName_impl :: Direction -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_1", jm_getInstance_1 )
+        , ( "getValue_0", jm_getValue_0 )
+        , ( "getFrameFactor_0", jm_getFrameFactor_0 )
+        , ( "getOtherName_0", jm_getOtherName_0 )
+        , ( "getName_0", jm_getName_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: Direction))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Direction"
+        [ ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_getValue_0", jm_getValue_0 ), ( "jm_getFrameFactor_0", jm_getFrameFactor_0 ), ( "jm_getOtherName_0", jm_getOtherName_0 ), ( "jm_getName_0", jm_getName_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        [ ( "jstatic_directionArray", jstatic_directionArray ) ]
+        jheap
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: Direction))
 
-toString_impl :: Direction -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "Direction: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (Direction.getName this)))
-        Control.Monad.void (StringMaker.append stringBuffer " Or: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (Direction.getOtherName this)))
-        Control.Monad.void (StringMaker.append stringBuffer " Value: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jget (this).value))
-        (StringMaker.toString stringBuffer)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_directionArray : JR.M
+jstatic_directionArray s =
+    JR.static "Direction" jclinit "directionArray"
+        (JR.newArray "" [ (JR.int 13) ])
+        s
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "otherName", "" ), ( "value", "I" ), ( "frameFactor", "I" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "name")), 
+                    JR.exec (JR.setField "otherName" "" JR.this (JR.local "otherName")), 
+                    JR.exec (JR.setField "value" "I" JR.this (JR.local "value")), 
+                    JR.exec (JR.setField "frameFactor" "I" JR.this (JR.local "frameFactor")), 
+                    JR.exec (JR.andThen jstatic_directionArray (\jaN66085 -> JR.andThen (JR.local "value") (\jiN66085 -> (JR.aset (JR.lit jaN66085) (JR.lit jiN66085) JR.this)))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "direction", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.aget jstatic_directionArray (JR.local "direction")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getValue_0 : JR.Method
+jm_getValue_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "value") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFrameFactor_0 : JR.Method
+jm_getFrameFactor_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "frameFactor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getOtherName_0 : JR.Method
+jm_getOtherName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "otherName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Direction: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Or: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getOtherName_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Value: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.thisField "value") ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

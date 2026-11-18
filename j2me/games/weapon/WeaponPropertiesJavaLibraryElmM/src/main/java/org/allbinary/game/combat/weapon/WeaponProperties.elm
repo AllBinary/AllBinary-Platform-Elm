@@ -1,259 +1,245 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.weapon
-module WeaponProperties (module WeaponProperties, module SimpleWeaponProperties) where
+module Org.Allbinary.Game.Combat.Weapon.WeaponProperties exposing (..)
 
-import SimpleWeaponProperties hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, setReloadTime, setReloadTime_super, setReloadTime_impl, getReloadTime, getReloadTime_super, getReloadTime_impl, setTargetingTime, setTargetingTime_super, setTargetingTime_impl, getTargetingTime, getTargetingTime_super, getTargetingTime_impl, getSpeed, getSpeed_super, getSpeed_impl, setSpeed, setSpeed_super, setSpeed_impl, getDamageI, getDamageI_super, getDamageI_impl, toStringArray, toStringArray_super, toStringArray_impl, toString, toString_super, toString_impl, nULL_WEAPON_PROPERTIES, reloadTime, targetingTime, speed, messageSent, mAX, zERO, dAMAGE, rANGE, rELOAD)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified BasicDecimal -- org.allbinary.logic.math.BasicDecimal
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified SimpleWeaponProperties
+{-| Generated Code Do Not Modify package org.allbinary.game.combat.weapon
+-}
 
-data WeaponProperties = WeaponProperties
-    { header_ :: JavaHeader
-    , base :: SimpleWeaponProperties.SimpleWeaponProperties
-    , reloadTime :: IORef (Int64)
-    , targetingTime :: IORef (Int64)
-    , speed :: IORef (BasicDecimal.BasicDecimal)
-    , mAX :: IORef (Int64)
-    , zERO :: IORef (Int16)
-    }
-
-instance JavaNull WeaponProperties where
-    javaNull = javaNullRecord "WeaponProperties"
-
-instance JavaEquals WeaponProperties where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq WeaponProperties where
-    (==) = jrecordEquals
-
-instance JavaObjectClass WeaponProperties where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_WEAPON_PROPERTIES :: WeaponProperties
-{-# NOINLINE nULL_WEAPON_PROPERTIES #-}
-nULL_WEAPON_PROPERTIES = unsafePerformIO ((new_5 (0) (0) (0) 0 (Prelude.fromIntegral (0 :: Int))))
-
-messageSent :: IORef (Bool)
-{-# NOINLINE messageSent #-}
-messageSent = unsafePerformIO (newIORef (False))
-
-dAMAGE :: String
-dAMAGE = "Damage: "
-
-rANGE :: String
-rANGE = "Range: "
-
-rELOAD :: String
-rELOAD = "Reload: "
-
-newRecord_ :: IO WeaponProperties
-newRecord_ = do
-    base <- SimpleWeaponProperties.newRecord_
-    let header_ = base.header_
-    reloadTime <- newIORef 0
-    targetingTime <- newIORef 0
-    speed <- newIORef javaNull
-    mAX <- newIORef 0
-    zERO <- newIORef 0
-    let this = WeaponProperties header_ base reloadTime targetingTime speed mAX zERO
-    jregisterLevel header_ this
-    jregisterMethod header_ "setReloadTime" (\() -> setReloadTime_impl this)
-    jregisterMethod header_ "getReloadTime" (\() -> getReloadTime_impl this)
-    jregisterMethod header_ "setTargetingTime" (\() -> setTargetingTime_impl this)
-    jregisterMethod header_ "getTargetingTime" (\() -> getTargetingTime_impl this)
-    jregisterMethod header_ "getSpeed" (\() -> getSpeed_impl this)
-    jregisterMethod header_ "setSpeed" (\() -> setSpeed_impl this)
-    jregisterMethod header_ "getDamageI" (\() -> getDamageI_impl this)
-    jregisterMethod header_ "toStringArray" (\() -> toStringArray_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: WeaponProperties -> IO ()
-initFields_ this = do
-    jset this.reloadTime (0)
-    jset this.targetingTime (0)
-    jset this.speed (BasicDecimal.zERO_BIGDECIMAL)
-    jset this.mAX (10240)
-    jset this.zERO (0)
-    pure ()
-
-new_5 :: Int64 -> Int64 -> Int64 -> Int -> Int16 -> IO WeaponProperties
-new_5 reloadTime targetingTime speed damage dissipation = do
-    this <- newRecord_
-    init_5 this reloadTime targetingTime speed damage dissipation
-    pure this
-
-init_5 :: WeaponProperties -> Int64 -> Int64 -> Int64 -> Int -> Int16 -> IO ()
-init_5 this reloadTime targetingTime speed damage dissipation = do
-        SimpleWeaponProperties.init_ this.base
-        initFields_ this
-        when (((speed < (jget (this).mAX)) && (speed /= 0)) && (Prelude.not (jget WeaponProperties.messageSent))) $ do
-            let mESSAGE = "Danger Danger Danger: Speed probably to slow if using 1 degree calculations as velocity for a single axis could be below 1024: "
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.appendlong ((jio (StringMaker.append ((jio (StringMaker.new_))) mESSAGE))) speed))))) this (jget (commonStrings).cONSTRUCTOR))
-            jset WeaponProperties.messageSent (True)
-        Control.Monad.void (WeaponProperties.setReloadTime this reloadTime)
-        Control.Monad.void (WeaponProperties.setTargetingTime this targetingTime)
-        Control.Monad.void (SimpleWeaponProperties.setDamage this damage)
-        Control.Monad.void (SimpleWeaponProperties.setDissipation this dissipation)
-        Control.Monad.void (WeaponProperties.setSpeed this (jio (BasicDecimal.new_1 speed)))
-        when (dissipation /= (jget (this).zERO)) $ do
-            let unscaledDamage = ((jio (BasicDecimal.getUnscaled ((jget (this).speed)))) * damage)
-            let scaledDissipation = (dissipation * (jio (BasicDecimal.getScaledFactorValue ((jget (this).speed)))))
-            let value = ((unscaledDamage `quot` (Prelude.fromIntegral scaledDissipation)))
-            Control.Monad.void (SimpleWeaponProperties.setRange this ((Prelude.fromIntegral ((value * 9))) `quot` 10))
-        pure ()
+import JR
+import Org.Allbinary.Logic.Math.BasicDecimal as BasicDecimal
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Game.Combat.Weapon.SimpleWeaponProperties as SimpleWeaponProperties
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-setReloadTime :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-setReloadTime object_ a1 = jmethod object_ "setReloadTime" (\() -> (setReloadTime_impl (javaCast object_ :: WeaponProperties))) () a1
-
-setReloadTime_super :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-setReloadTime_super object_ a1 = (setReloadTime_impl (javaCast object_ :: WeaponProperties)) a1
-
-setReloadTime_impl :: WeaponProperties -> Int64 -> IO (())
-setReloadTime_impl this reloadTime = do
-        jset (this).reloadTime (reloadTime)
-        pure ()
+jclass : String
+jclass =
+    "WeaponProperties"
 
 
-getReloadTime :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getReloadTime object_ = jmethod object_ "getReloadTime" (\() -> (getReloadTime_impl (javaCast object_ :: WeaponProperties))) ()
-
-getReloadTime_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getReloadTime_super object_ = (getReloadTime_impl (javaCast object_ :: WeaponProperties))
-
-getReloadTime_impl :: WeaponProperties -> IO (Int64)
-getReloadTime_impl this = do
-        pure ((jget (this).reloadTime))
+jchain : List String
+jchain =
+    [ "WeaponProperties" ]
+        ++ SimpleWeaponProperties.jchain
 
 
-setTargetingTime :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-setTargetingTime object_ a1 = jmethod object_ "setTargetingTime" (\() -> (setTargetingTime_impl (javaCast object_ :: WeaponProperties))) () a1
-
-setTargetingTime_super :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-setTargetingTime_super object_ a1 = (setTargetingTime_impl (javaCast object_ :: WeaponProperties)) a1
-
-setTargetingTime_impl :: WeaponProperties -> Int64 -> IO (())
-setTargetingTime_impl this targetingTime = do
-        jset (this).targetingTime (targetingTime)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    SimpleWeaponProperties.jfields ++ [ ( "reloadTime", JR.defaultOf "J" ), ( "targetingTime", JR.defaultOf "J" ), ( "speed", JR.defaultOf "" ), ( "MAX", JR.defaultOf "J" ), ( "ZERO", JR.defaultOf "S" ) ]
 
 
-getTargetingTime :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getTargetingTime object_ = jmethod object_ "getTargetingTime" (\() -> (getTargetingTime_impl (javaCast object_ :: WeaponProperties))) ()
-
-getTargetingTime_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getTargetingTime_super object_ = (getTargetingTime_impl (javaCast object_ :: WeaponProperties))
-
-getTargetingTime_impl :: WeaponProperties -> IO (Int64)
-getTargetingTime_impl this = do
-        pure ((jget (this).targetingTime))
-
-
-getSpeed :: (JavaObjectClass this_) => this_ -> IO (BasicDecimal.BasicDecimal)
-getSpeed object_ = jmethod object_ "getSpeed" (\() -> (getSpeed_impl (javaCast object_ :: WeaponProperties))) ()
-
-getSpeed_super :: (JavaObjectClass this_) => this_ -> IO (BasicDecimal.BasicDecimal)
-getSpeed_super object_ = (getSpeed_impl (javaCast object_ :: WeaponProperties))
-
-getSpeed_impl :: WeaponProperties -> IO (BasicDecimal.BasicDecimal)
-getSpeed_impl this = do
-        pure ((jget (this).speed))
+jvtable =
+    JR.vtable
+        [ ( "setReloadTime_1", jm_setReloadTime_1 )
+        , ( "getReloadTime_0", jm_getReloadTime_0 )
+        , ( "setTargetingTime_1", jm_setTargetingTime_1 )
+        , ( "getTargetingTime_0", jm_getTargetingTime_0 )
+        , ( "getSpeed_0", jm_getSpeed_0 )
+        , ( "setSpeed_1", jm_setSpeed_1 )
+        , ( "getDamageI_1", jm_getDamageI_1 )
+        , ( "toStringArray_0", jm_toStringArray_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        SimpleWeaponProperties.jvtable
 
 
-setSpeed :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> IO (())
-setSpeed object_ a1 = jmethod object_ "setSpeed" (\() -> (setSpeed_impl (javaCast object_ :: WeaponProperties))) () a1
-
-setSpeed_super :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> IO (())
-setSpeed_super object_ a1 = (setSpeed_impl (javaCast object_ :: WeaponProperties)) a1
-
-setSpeed_impl :: WeaponProperties -> BasicDecimal.BasicDecimal -> IO (())
-setSpeed_impl this speed = do
-        jset (this).speed (speed)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "WeaponProperties"
+        [ ( "jm_setReloadTime_1", jm_setReloadTime_1 ), ( "jm_getReloadTime_0", jm_getReloadTime_0 ), ( "jm_setTargetingTime_1", jm_setTargetingTime_1 ), ( "jm_getTargetingTime_0", jm_getTargetingTime_0 ), ( "jm_getSpeed_0", jm_getSpeed_0 ), ( "jm_setSpeed_1", jm_setSpeed_1 ), ( "jm_getDamageI_1", jm_getDamageI_1 ), ( "jm_toStringArray_0", jm_toStringArray_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_5", jnew_5 ), ( "jinit_5", jinit_5 ) ]
+        [ ( "jstatic_NULL_WEAPON_PROPERTIES", jstatic_NULL_WEAPON_PROPERTIES ), ( "jstatic_messageSent", jstatic_messageSent ), ( "jstatic_DAMAGE", jstatic_DAMAGE ), ( "jstatic_RANGE", jstatic_RANGE ), ( "jstatic_RELOAD", jstatic_RELOAD ) ]
+        jheap
 
 
-getDamageI :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getDamageI object_ a1 = jmethod object_ "getDamageI" (\() -> (getDamageI_impl (javaCast object_ :: WeaponProperties))) () a1
-
-getDamageI_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getDamageI_super object_ a1 = (getDamageI_impl (javaCast object_ :: WeaponProperties)) a1
-
-getDamageI_impl :: WeaponProperties -> Int -> IO (Int)
-getDamageI_impl this range = do
-        pure (((jio (SimpleWeaponProperties.getDamage this)) - (((((Prelude.fromIntegral (jio (SimpleWeaponProperties.getDissipation this))) * range)) / (jio (BasicDecimal.getScaled ((jget (this).speed))))))))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-toStringArray :: (JavaObjectClass this_) => this_ -> IO (JavaArray (String))
-toStringArray object_ = jmethod object_ "toStringArray" (\() -> (toStringArray_impl (javaCast object_ :: WeaponProperties))) ()
-
-toStringArray_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (String))
-toStringArray_super object_ = (toStringArray_impl (javaCast object_ :: WeaponProperties))
-
-toStringArray_impl :: WeaponProperties -> IO (JavaArray (String))
-toStringArray_impl this = do
-        index <- newIORef (0 :: Int)
-        let stringArray = (jnewArray (3) javaNull)
-        stringBuffer <- (StringMaker.new_)
-        assignedValue <- (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append stringBuffer (WeaponProperties.dAMAGE)))) (jio (SimpleWeaponProperties.getDamage this))))))
-        jsetIndex stringArray ((jpostIncrement index (+ 1))) (assignedValue)
-        Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-        assignedValue <- (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append stringBuffer (WeaponProperties.rANGE)))) (jio (SimpleWeaponProperties.getRange this))))))
-        jsetIndex stringArray ((jpostIncrement index (+ 1))) (assignedValue)
-        Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-        assignedValue <- (StringMaker.toString ((jio (StringMaker.appendlong ((jio (StringMaker.append stringBuffer (WeaponProperties.rELOAD)))) (jio (WeaponProperties.getReloadTime this))))))
-        jsetIndex stringArray ((jpostIncrement index (+ 1))) (assignedValue)
-        pure (stringArray)
+jstatic_NULL_WEAPON_PROPERTIES : JR.M
+jstatic_NULL_WEAPON_PROPERTIES s =
+    JR.static "WeaponProperties" jclinit "NULL_WEAPON_PROPERTIES"
+        (JR.new jnew_5 [ (JR.long 0), (JR.long 0), (JR.long 0), (JR.int 0), (JR.cast "S" (JR.int 0)) ])
+        s
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: WeaponProperties))) ()
+jstatic_messageSent : JR.M
+jstatic_messageSent s =
+    JR.static "WeaponProperties" jclinit "messageSent"
+        (JR.bool False)
+        s
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: WeaponProperties))
 
-toString_impl :: WeaponProperties -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.appendint ((jio (StringMaker.append stringBuffer (WeaponProperties.dAMAGE)))) (jio (SimpleWeaponProperties.getDamage this)))
-        Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-        Control.Monad.void (StringMaker.appendint ((jio (StringMaker.append stringBuffer (WeaponProperties.rANGE)))) (jio (SimpleWeaponProperties.getRange this)))
-        Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-        Control.Monad.void (StringMaker.appendlong ((jio (StringMaker.append stringBuffer (WeaponProperties.rELOAD)))) (jio (WeaponProperties.getReloadTime this)))
-        (StringMaker.toString stringBuffer)
+jstatic_DAMAGE : JR.M
+jstatic_DAMAGE s =
+    JR.static "WeaponProperties" jclinit "DAMAGE"
+        (JR.str "Damage: ")
+        s
 
+
+jstatic_RANGE : JR.M
+jstatic_RANGE s =
+    JR.static "WeaponProperties" jclinit "RANGE"
+        (JR.str "Range: ")
+        s
+
+
+jstatic_RELOAD : JR.M
+jstatic_RELOAD s =
+    JR.static "WeaponProperties" jclinit "RELOAD"
+        (JR.str "Reload: ")
+        s
+
+
+jinit_5 : JR.Method
+jinit_5 jheap jthis jargs =
+    JR.method [ ( "reloadTime", "J" ), ( "targetingTime", "J" ), ( "speed", "J" ), ( "damage", "I" ), ( "dissipation", "S" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect SimpleWeaponProperties.jinit_0 JR.this []),
+                JR.exec (JR.setField "speed" "" JR.this BasicDecimal.jstatic_ZERO_BIGDECIMAL),
+                JR.exec (JR.setField "MAX" "J" JR.this (JR.long 10240)),
+                JR.exec (JR.setField "ZERO" "S" JR.this (JR.int 0)),
+                identity,
+                (JR.run [ 
+                    JR.ifElse (JR.and (JR.and (JR.map2 JR.less (JR.local "speed") (JR.thisField "MAX")) (JR.map2 JR.notEquals (JR.local "speed") (JR.long 0))) (JR.map JR.not_ jstatic_messageSent)) (JR.run [ 
+                        JR.declare "MESSAGE" "" (JR.str "Danger Danger Danger: Speed probably to slow if using 1 degree calculations as velocity for a single axis could be below 1024: "), 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "appendlong_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.local "MESSAGE") ]) [ (JR.local "speed") ]) []), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")) ]), 
+                        JR.exec (JR.setStatic "WeaponProperties.messageSent" "Z" (JR.bool True)) ]) identity, 
+                    JR.exec (JR.invoke "setReloadTime_1" JR.this [ (JR.local "reloadTime") ]), 
+                    JR.exec (JR.invoke "setTargetingTime_1" JR.this [ (JR.local "targetingTime") ]), 
+                    JR.exec (JR.invoke "setDamage_1" JR.this [ (JR.local "damage") ]), 
+                    JR.exec (JR.invoke "setDissipation_1" JR.this [ (JR.local "dissipation") ]), 
+                    JR.exec (JR.invoke "setSpeed_1" JR.this [ (JR.new BasicDecimal.jnew_1 [ (JR.local "speed") ]) ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "dissipation") (JR.thisField "ZERO")) (JR.run [ 
+                        JR.declare "unscaledDamage" "J" (JR.map2 JR.mul (JR.invoke "getUnscaled_0" (JR.thisField "speed") []) (JR.cast "J" (JR.local "damage"))), 
+                        JR.declare "scaledDissipation" "I" (JR.map2 JR.mul (JR.cast "I" (JR.local "dissipation")) (JR.invoke "getScaledFactorValue_0" (JR.thisField "speed") [])), 
+                        JR.declare "value" "J" ((JR.map2 JR.div (JR.local "unscaledDamage") (JR.cast "J" (JR.local "scaledDissipation")))), 
+                        JR.exec (JR.invoke "setRange_1" JR.this [ (JR.map2 JR.div (JR.cast "I" ((JR.map2 JR.mul (JR.local "value") (JR.long 9)))) (JR.int 10)) ]) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_5 : JR.Method
+jnew_5 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_5 jheap jthis jargs
+
+
+jm_setReloadTime_1 : JR.Method
+jm_setReloadTime_1 jheap jthis jargs =
+    JR.method [ ( "reloadTime", "J" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "reloadTime" "J" JR.this (JR.local "reloadTime")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getReloadTime_0 : JR.Method
+jm_getReloadTime_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.thisField "reloadTime") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setTargetingTime_1 : JR.Method
+jm_setTargetingTime_1 jheap jthis jargs =
+    JR.method [ ( "targetingTime", "J" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "targetingTime" "J" JR.this (JR.local "targetingTime")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTargetingTime_0 : JR.Method
+jm_getTargetingTime_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.thisField "targetingTime") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSpeed_0 : JR.Method
+jm_getSpeed_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "speed") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setSpeed_1 : JR.Method
+jm_setSpeed_1 jheap jthis jargs =
+    JR.method [ ( "speed", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "speed" "" JR.this (JR.local "speed")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDamageI_1 : JR.Method
+jm_getDamageI_1 jheap jthis jargs =
+    JR.method [ ( "range", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.map2 JR.sub (JR.invoke "getDamage_0" JR.this []) ((JR.map2 JR.div ((JR.map2 JR.mul (JR.cast "I" (JR.invoke "getDissipation_0" JR.this [])) (JR.local "range"))) (JR.invoke "getScaled_0" (JR.thisField "speed") [])))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toStringArray_0 : JR.Method
+jm_toStringArray_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "index" "I" (JR.int 0), 
+                    JR.declare "stringArray" "" (JR.newArray "" [ (JR.int 3) ]), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.andThen (JR.local "stringArray") (\jaN68503 -> JR.andThen (JR.postUpdate (JR.local "index") (\jwN68510 -> (JR.setLocal "index" "I" (JR.lit jwN68510))) JR.increment) (\jiN68503 -> (JR.aset (JR.lit jaN68503) (JR.lit jiN68503) (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_DAMAGE ]) [ (JR.invoke "getDamage_0" JR.this []) ]) []))))), 
+                    JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                    JR.exec (JR.andThen (JR.local "stringArray") (\jaN68645 -> JR.andThen (JR.postUpdate (JR.local "index") (\jwN68652 -> (JR.setLocal "index" "I" (JR.lit jwN68652))) JR.increment) (\jiN68645 -> (JR.aset (JR.lit jaN68645) (JR.lit jiN68645) (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_RANGE ]) [ (JR.invoke "getRange_0" JR.this []) ]) []))))), 
+                    JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                    JR.exec (JR.andThen (JR.local "stringArray") (\jaN68791 -> JR.andThen (JR.postUpdate (JR.local "index") (\jwN68798 -> (JR.setLocal "index" "I" (JR.lit jwN68798))) JR.increment) (\jiN68791 -> (JR.aset (JR.lit jaN68791) (JR.lit jiN68791) (JR.invoke "toString_0" (JR.invoke "appendlong_1" (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_RELOAD ]) [ (JR.invoke "getReloadTime_0" JR.this []) ]) []))))), 
+                    JR.return (JR.local "stringArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_DAMAGE ]) [ (JR.invoke "getDamage_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_RANGE ]) [ (JR.invoke "getRange_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "appendlong_1" (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_RELOAD ]) [ (JR.invoke "getReloadTime_0" JR.this []) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

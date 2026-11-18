@@ -1,96 +1,88 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.data.tree.dom
-module BasicErrorNodeUtil where
+module Org.Allbinary.Data.Tree.Dom.BasicErrorNodeUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ModDomHelper -- same package or java.lang
-import qualified ErrorData -- org.allbinary.business.error.ErrorData
-import qualified Document -- org.w3c.dom.Document
-import qualified Node -- org.w3c.dom.Node
+{-| Generated Code Do Not Modify package org.allbinary.data.tree.dom
+-}
 
-data BasicErrorNodeUtil = BasicErrorNodeUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull BasicErrorNodeUtil where
-    javaNull = javaNullRecord "BasicErrorNodeUtil"
-
-instance JavaEquals BasicErrorNodeUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicErrorNodeUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicErrorNodeUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BasicErrorNodeUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = BasicErrorNodeUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: BasicErrorNodeUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO BasicErrorNodeUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BasicErrorNodeUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Business.Error.ErrorData as ErrorData
+import Org.Allbinary.Data.Tree.Dom.ModDomHelper as ModDomHelper
 
 
--- throws Exception
-get :: Document.Document -> String -> IO (Node.Node)
-get document errorText = do
-        handle (\(e :: JavaException) -> do
-            javaThrow ((JavaException "Exception" "Error Node Creation Failure"))
-            ) $ do
-            node <- (Document.createElement document (jget ((jio (ErrorData.getInstance))).nAME))
-            Control.Monad.void (Node.appendChild node (jio (ModDomHelper.createNameValueNodes_3 document (jget ((jio (ErrorData.getInstance))).tEXT) errorText)))
-            pure (node)
+jclass : String
+jclass =
+    "BasicErrorNodeUtil"
 
+
+jchain : List String
+jchain =
+    [ "BasicErrorNodeUtil" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "get_2", jm_get_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicErrorNodeUtil"
+        [ ( "jm_get_2", jm_get_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_get_2 : JR.Method
+jm_get_2 jheap jthis jargs =
+    JR.method [ ( "document", "" ), ( "errorText", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "node" "" (JR.invoke "createElement_1" (JR.local "document") [ (JR.field "NAME" (JR.callStatic ErrorData.jm_getInstance_0 [])) ]), 
+                        JR.exec (JR.invoke "appendChild_1" (JR.local "node") [ (JR.callStatic ModDomHelper.jm_createNameValueNodes_3 [ (JR.local "document"), (JR.field "TEXT" (JR.callStatic ErrorData.jm_getInstance_0 [])), (JR.local "errorText") ]) ]), 
+                        JR.return (JR.local "node") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Error Node Creation Failure") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

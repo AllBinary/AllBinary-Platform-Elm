@@ -1,161 +1,156 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.init
-module WeblisketFinder where
+module Org.Allbinary.Business.Init.WeblisketFinder exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified LogConfigTypeFactory -- org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory
-import qualified LogConfigTypes -- org.allbinary.logic.communication.log.config.type.LogConfigTypes
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified SubDirectory -- org.allbinary.logic.io.file.directory.SubDirectory
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.business.init
+-}
 
-data WeblisketFinder = WeblisketFinder
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , subDirectory :: IORef (SubDirectory.SubDirectory)
-    }
-
-instance JavaNull WeblisketFinder where
-    javaNull = javaNullRecord "WeblisketFinder"
-
-instance JavaEquals WeblisketFinder where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq WeblisketFinder where
-    (==) = jrecordEquals
-
-instance JavaObjectClass WeblisketFinder where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: WeblisketFinder
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-kEY :: String
-kEY = "installerdata.dat"
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO WeblisketFinder
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    subDirectory <- newIORef javaNull
-    let this = WeblisketFinder header_ logUtil commonStrings subDirectory
-    jregisterLevel header_ this
-    jregisterMethod header_ "findAll" (\() -> findAll_impl this)
-    jregisterMethod header_ "getInstallationPath" (\() -> getInstallationPath_impl this)
-    pure this
-
-initFields_ :: WeblisketFinder -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.subDirectory =<< (SubDirectory.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Logic.Io.File.AbFile as AbFile
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JSystem
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Logic.Io.File.Directory.SubDirectory as SubDirectory
 
 
-getInstance :: IO (WeblisketFinder)
-getInstance = do
-        pure (WeblisketFinder.instance_)
-
-new_ :: IO WeblisketFinder
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: WeblisketFinder -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "WeblisketFinder"
 
 
-findAll :: (JavaObjectClass this_) => this_ -> String -> IO (BasicArrayList.BasicArrayList)
-findAll object_ a1 = jmethod object_ "findAll" (\() -> (findAll_impl (javaCast object_ :: WeblisketFinder))) () a1
-
-findAll_super :: (JavaObjectClass this_) => this_ -> String -> IO (BasicArrayList.BasicArrayList)
-findAll_super object_ a1 = (findAll_impl (javaCast object_ :: WeblisketFinder)) a1
-
-findAll_impl :: WeblisketFinder -> String -> IO (BasicArrayList.BasicArrayList)
-findAll_impl this path = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "findAll" e)
-            when (jio (contains LogConfigTypes.lOGGING (jget ((jio (LogConfigTypeFactory.getInstance))).pRELOADERERROR))) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "findAll" e)
-            pure (javaNull)
-            ) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).sTART) this "findAll")
-            (SubDirectory.search ((jget (this).subDirectory)) (WeblisketFinder.kEY) (jio (AbFile.createAbFile path)))
+jchain : List String
+jchain =
+    [ "WeblisketFinder" ]
 
 
-getInstallationPath :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (String)
-getInstallationPath object_ a1 = jmethod object_ "getInstallationPath" (\() -> (getInstallationPath_impl (javaCast object_ :: WeblisketFinder))) () a1
-
-getInstallationPath_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (String)
-getInstallationPath_super object_ a1 = (getInstallationPath_impl (javaCast object_ :: WeblisketFinder)) a1
-
-getInstallationPath_impl :: WeblisketFinder -> AbFile.AbFile -> IO (String)
-getInstallationPath_impl this file = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).pRELOADERERROR))) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "getInstallationPath" e)
-            pure (javaNull)
-            ) $ do
-            filePath <- (AbFile.getPath file)
-            let end = (jstringIndexOf filePath kEY 0)
-            when (end < 0) $ do
-                javaReturn (javaNull)
-            pure ((Prelude.take ((end) - (0)) (Prelude.drop (0) filePath)))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "subDirectory", JR.defaultOf "" ) ]
 
 
--- throws Exception
-main :: JavaArray (String) -> IO (())
-main args = do
-        stringUtil <- (StringUtil.getInstance)
-        vector <- (WeblisketFinder.findAll ((jio (WeblisketFinder.getInstance))) (jget (stringUtil).eMPTY_STRING))
-        Control.Monad.void (putStrLn (javaToString (jio (BasicArrayList.size vector))))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "findAll_1", jm_findAll_1 )
+        , ( "getInstallationPath_1", jm_getInstallationPath_1 )
+        , ( "main_1", jm_main_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "WeblisketFinder"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_findAll_1", jm_findAll_1 ), ( "jm_getInstallationPath_1", jm_getInstallationPath_1 ), ( "jm_main_1", jm_main_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ), ( "jstatic_KEY", jstatic_KEY ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "WeblisketFinder" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jstatic_KEY : JR.M
+jstatic_KEY s =
+    JR.static "WeblisketFinder" jclinit "KEY"
+        (JR.str "installerdata.dat")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "subDirectory" "" JR.this (JR.callStatic SubDirectory.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_findAll_1 : JR.Method
+jm_findAll_1 jheap jthis jargs =
+    JR.method [ ( "path", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.str "findAll") ]), 
+                        JR.return (JR.invoke "search_2" (JR.thisField "subDirectory") [ jstatic_KEY, (JR.callStatic AbFile.jm_createAbFile_1 [ (JR.local "path") ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "findAll"), (JR.local "e") ]), 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "PRELOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "findAll"), (JR.local "e") ]) ]) identity, 
+                        JR.return JR.null ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstallationPath_1 : JR.Method
+jm_getInstallationPath_1 jheap jthis jargs =
+    JR.method [ ( "file", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "filePath" "" (JR.invoke "getPath_0" (JR.local "file") []), 
+                        JR.declare "end" "I" (JR.invoke "indexOf_1" (JR.local "filePath") [ jstatic_KEY ]), 
+                        JR.ifElse (JR.map2 JR.less (JR.local "end") (JR.int 0)) (JR.run [ 
+                            JR.return JR.null ]) identity, 
+                        JR.return (JR.invoke "substring_2" (JR.local "filePath") [ (JR.int 0), (JR.local "end") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "PRELOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "getInstallationPath"), (JR.local "e") ]) ]) identity, 
+                        JR.return JR.null ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_main_1 : JR.Method
+jm_main_1 jheap jthis jargs =
+    JR.method [ ( "args", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringUtil" "" (JR.callStatic StringUtil.jm_getInstance_0 []), 
+                    JR.declare "vector" "" (JR.invoke "findAll_1" (JR.callStatic jm_getInstance_0 []) [ (JR.field "EMPTY_STRING" (JR.local "stringUtil")) ]), 
+                    JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.invoke "size_0" (JR.local "vector") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

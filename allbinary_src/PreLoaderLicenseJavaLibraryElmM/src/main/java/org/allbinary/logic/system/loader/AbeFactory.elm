@@ -1,189 +1,179 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.loader
-module AbeFactory where
+module Org.Allbinary.Logic.System.Loader.AbeFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified WebappClassLoaderInfo -- same package or java.lang
-import qualified ClassLoader -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified AbeClassLoader -- same package or java.lang
-import qualified Constructor -- java.lang.reflect.Constructor
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified ConstructorUtil -- org.allbinary.logic.java.anyType.ConstructorUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified AbKeys -- org.allbinary.logic.system.security.AbKeys
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified LicensingException -- org.allbinary.logic.system.security.licensing.LicensingException
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.loader
+-}
 
-data AbeFactory = AbeFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , useCustomLoader :: IORef (Bool)
-    }
-
-instance JavaNull AbeFactory where
-    javaNull = javaNullRecord "AbeFactory"
-
-instance JavaEquals AbeFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AbeFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AbeFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AbeFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AbeFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    useCustomLoader <- newIORef False
-    let this = AbeFactory header_ logUtil useCustomLoader
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstance_2" (\() -> getInstance_2_impl this)
-    jregisterMethod header_ "getInstance_4" (\() -> getInstance_4_impl this)
-    jregisterMethod header_ "getClass" (\() -> getClass_impl this)
-    pure this
-
-initFields_ :: AbeFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.useCustomLoader (False)
-    pure ()
+import JR
+import Org.Allbinary.Logic.System.Security.AbKeys as AbKeys
+import Org.Allbinary.Logic.System.Loader.AbeClassLoader as AbeClassLoader
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.Java.AnyType.ConstructorUtil as ConstructorUtil
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.System.Loader.WebappClassLoaderInfo as WebappClassLoaderInfo
 
 
-getInstance :: IO (AbeFactory)
-getInstance = do
-        pure (AbeFactory.instance_)
-
-new_ :: IO AbeFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AbeFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "AbeFactory"
 
 
--- throws LicensingException
-getInstance_2 :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (Any.Any)
-getInstance_2 object_ a1 a2 = jmethod object_ "getInstance_2" (\() -> (getInstance_2_impl (javaCast object_ :: AbeFactory))) () a1 a2
-
-getInstance_2_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (Any.Any)
-getInstance_2_super object_ a1 a2 = (getInstance_2_impl (javaCast object_ :: AbeFactory)) a1 a2
-
-getInstance_2_impl :: AbeFactory -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (Any.Any)
-getInstance_2_impl this abeClientInformation className = do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).lOADERERROR))) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) ("Failure for: " ++ className) this "getInstance(classname)" e)
-            javaThrow (e)
-            ) $ do
-            (fmap jtoObject (Class.newInstance ((jio (AbeFactory.getClass this abeClientInformation className)))))
+jchain : List String
+jchain =
+    [ "AbeFactory" ]
 
 
--- throws LicensingException
-getInstance_4 :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> JavaArray (Class.Class) -> JavaArray (Any.Any) -> IO (Any.Any)
-getInstance_4 object_ a1 a2 a3 a4 = jmethod object_ "getInstance_4" (\() -> (getInstance_4_impl (javaCast object_ :: AbeFactory))) () a1 a2 a3 a4
-
-getInstance_4_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> JavaArray (Class.Class) -> JavaArray (Any.Any) -> IO (Any.Any)
-getInstance_4_super object_ a1 a2 a3 a4 = (getInstance_4_impl (javaCast object_ :: AbeFactory)) a1 a2 a3 a4
-
-getInstance_4_impl :: AbeFactory -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> JavaArray (Class.Class) -> JavaArray (Any.Any) -> IO (Any.Any)
-getInstance_4_impl this abeClientInformation className classes params = do
-    javaCatchReturn $ do
-        constructor <- newIORef (javaNull)
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).lOADERERROR))) $ do
-                stringBuffer <- (StringMaker.new_)
-                Control.Monad.void (StringMaker.append stringBuffer "Failure for: ")
-                Control.Monad.void (StringMaker.append stringBuffer className)
-                Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-                Control.Monad.void (StringMaker.append stringBuffer (jio (ConstructorUtil.view (jget constructor) (jget ((jio (CommonSeps.getInstance))).nEW_LINE))))
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this "getInstance(className,params)" e)
-            javaThrow (e)
-            ) $ do
-            parent <- (WebappClassLoaderInfo.getLoader)
-            if (jget (this).useCustomLoader) then do
-                loader <- (fmap (\value_ -> javaCast value_ :: ClassLoader.ClassLoader) (AbeClassLoader.new_2 parent (jio (AbKeys.getKey ((jio (AbKeys.getInstance))) abeClientInformation className))))
-                myClass <- (ClassLoader.loadClass loader className)
-                assignedValue <- (Class.getConstructor myClass classes)
-                jset constructor (assignedValue)
-                javaReturn =<< (fmap jtoObject (Constructor.newInstance ((jget constructor)) params))
-            else do
-                myClass <- (ClassLoader.loadClass parent className)
-                assignedValue <- (Class.getConstructor myClass classes)
-                jset constructor (assignedValue)
-                javaReturn =<< (fmap jtoObject (Constructor.newInstance ((jget constructor)) params))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "useCustomLoader", JR.defaultOf "Z" ) ]
 
 
--- throws LicensingException
-getClass :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (Class.Class)
-getClass object_ a1 a2 = jmethod object_ "getClass" (\() -> (getClass_impl (javaCast object_ :: AbeFactory))) () a1 a2
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInstance_2", jm_getInstance_2 )
+        , ( "getInstance_4", jm_getInstance_4 )
+        , ( "getClass_2", jm_getClass_2 ) ]
+        JR.noMethods
 
-getClass_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (Class.Class)
-getClass_super object_ a1 a2 = (getClass_impl (javaCast object_ :: AbeFactory)) a1 a2
 
-getClass_impl :: AbeFactory -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO (Class.Class)
-getClass_impl this abeClientInformation className = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).lOADERERROR))) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) ("Failure for: " ++ className) this "getClass(className)" e)
-            javaThrow (e)
-            ) $ do
-            parent <- (WebappClassLoaderInfo.getLoader)
-            if (jget (this).useCustomLoader) then do
-                loader <- (fmap (\value_ -> javaCast value_ :: ClassLoader.ClassLoader) (AbeClassLoader.new_2 parent (jio (AbKeys.getKey ((jio (AbKeys.getInstance))) abeClientInformation className))))
-                c <- (ClassLoader.loadClass loader className)
-                javaReturn (c)
-            else do
-                c <- (ClassLoader.loadClass parent className)
-                javaReturn (c)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbeFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInstance_2", jm_getInstance_2 ), ( "jm_getInstance_4", jm_getInstance_4 ), ( "jm_getClass_2", jm_getClass_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AbeFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "useCustomLoader" "Z" JR.this (JR.bool False)),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_2 : JR.Method
+jm_getInstance_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "className", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.return (JR.invoke "newInstance_0" (JR.invoke "getClass_2" JR.this [ (JR.local "abeClientInformation"), (JR.local "className") ]) []) ]) [ ( [ "LicensingException" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.str "Failure for: ") (JR.local "className")), JR.this, (JR.str "getInstance(classname)"), (JR.local "e") ]) ]) identity, 
+                        JR.throw (JR.local "e") ]) ), ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.str "Failure for: ") (JR.local "className")), JR.this, (JR.str "getInstance(classname)"), (JR.local "e") ]) ]) identity, 
+                        JR.return JR.null ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_4 : JR.Method
+jm_getInstance_4 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "className", "" ), ( "classes", "" ), ( "params", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "constructor" "" JR.null, 
+                    JR.try (JR.run [ 
+                        JR.declare "parent" "" (JR.callStatic WebappClassLoaderInfo.jm_getLoader_0 []), 
+                        JR.ifElse (JR.thisField "useCustomLoader") (JR.run [ 
+                            JR.declare "loader" "" (JR.new AbeClassLoader.jnew_2 [ (JR.local "parent"), (JR.invoke "getKey_2" (JR.callStatic AbKeys.jm_getInstance_0 []) [ (JR.local "abeClientInformation"), (JR.local "className") ]) ]), 
+                            JR.declare "myClass" "" (JR.invoke "loadClass_1" (JR.local "loader") [ (JR.local "className") ]), 
+                            JR.exec (JR.setLocal "constructor" "" (JR.invoke "getConstructor_1" (JR.local "myClass") [ (JR.local "classes") ])), 
+                            JR.return (JR.invoke "newInstance_1" (JR.local "constructor") [ (JR.local "params") ]) ]) (JR.run [ 
+                            JR.declare "myClass" "" (JR.invoke "loadClass_1" (JR.local "parent") [ (JR.local "className") ]), 
+                            JR.exec (JR.setLocal "constructor" "" (JR.invoke "getConstructor_1" (JR.local "myClass") [ (JR.local "classes") ])), 
+                            JR.return (JR.invoke "newInstance_1" (JR.local "constructor") [ (JR.local "params") ]) ]) ]) [ ( [ "LicensingException" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Failure for: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "className") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.callStatic ConstructorUtil.jm_view_2 [ (JR.local "constructor"), (JR.field "NEW_LINE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) ]), 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "getInstance(className,params)"), (JR.local "e") ]) ]) identity, 
+                        JR.throw (JR.local "e") ]) ), ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Failure for: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "className") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.callStatic ConstructorUtil.jm_view_2 [ (JR.local "constructor"), (JR.field "NEW_LINE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) ]), 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "getInstance(className,params)"), (JR.local "e") ]) ]) identity, 
+                        JR.return JR.null ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getClass_2 : JR.Method
+jm_getClass_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "className", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "parent" "" (JR.callStatic WebappClassLoaderInfo.jm_getLoader_0 []), 
+                        JR.ifElse (JR.thisField "useCustomLoader") (JR.run [ 
+                            JR.declare "loader" "" (JR.new AbeClassLoader.jnew_2 [ (JR.local "parent"), (JR.invoke "getKey_2" (JR.callStatic AbKeys.jm_getInstance_0 []) [ (JR.local "abeClientInformation"), (JR.local "className") ]) ]), 
+                            JR.declare "c" "" (JR.invoke "loadClass_1" (JR.local "loader") [ (JR.local "className") ]), 
+                            JR.return (JR.local "c") ]) (JR.run [ 
+                            JR.declare "c" "" (JR.invoke "loadClass_1" (JR.local "parent") [ (JR.local "className") ]), 
+                            JR.return (JR.local "c") ]) ]) [ ( [ "LicensingException" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.str "Failure for: ") (JR.local "className")), JR.this, (JR.str "getClass(className)"), (JR.local "e") ]) ]) identity, 
+                        JR.throw (JR.local "e") ]) ), ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.str "Failure for: ") (JR.local "className")), JR.this, (JR.str "getClass(className)"), (JR.local "e") ]) ]) identity, 
+                        JR.return JR.null ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

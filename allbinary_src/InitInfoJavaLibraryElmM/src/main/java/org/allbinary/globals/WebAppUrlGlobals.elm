@@ -1,157 +1,137 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.globals
-module WebAppUrlGlobals (module WebAppUrlGlobals, module UrlGlobalsInterface) where
+module Org.Allbinary.Globals.WebAppUrlGlobals exposing (..)
 
-import UrlGlobalsInterface hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, isTestingMode, isTestingMode_super, isTestingMode_impl, getWebappPath, getWebappPath_super, getWebappPath_impl, setWebappPath, setWebappPath_super, setWebappPath_impl, getTestHtmlPath, getTestHtmlPath_super, getTestHtmlPath_impl, getMainPath, getMainPath_super, getMainPath_impl, path, isWebappPathSet)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified InitInfo -- org.allbinary.business.init.InitInfo
-import qualified StringValidationUtil -- org.allbinary.logic.string.StringValidationUtil
-import qualified UrlGlobalsInterface
+{-| Generated Code Do Not Modify package org.allbinary.globals
+-}
 
-data WebAppUrlGlobals = WebAppUrlGlobals
-    { header_ :: JavaHeader
-    , base :: UrlGlobalsInterface.UrlGlobalsInterface
-    , path :: IORef (String)
-    , isWebappPathSet :: IORef (Bool)
-    }
-
-instance JavaNull WebAppUrlGlobals where
-    javaNull = javaNullRecord "WebAppUrlGlobals"
-
-instance JavaEquals WebAppUrlGlobals where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq WebAppUrlGlobals where
-    (==) = jrecordEquals
-
-instance JavaObjectClass WebAppUrlGlobals where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO WebAppUrlGlobals
-newRecord_ = do
-    base <- UrlGlobalsInterface.newRecord_
-    let header_ = base.header_
-    path <- newIORef ""
-    isWebappPathSet <- newIORef False
-    let this = WebAppUrlGlobals header_ base path isWebappPathSet
-    jregisterLevel header_ this
-    jregisterMethod header_ "isTestingMode" (\() -> isTestingMode_impl this)
-    jregisterMethod header_ "getWebappPath" (\() -> getWebappPath_impl this)
-    jregisterMethod header_ "setWebappPath" (\() -> setWebappPath_impl this)
-    jregisterMethod header_ "getTestHtmlPath" (\() -> getTestHtmlPath_impl this)
-    jregisterMethod header_ "getMainPath" (\() -> getMainPath_impl this)
-    pure this
-
-initFields_ :: WebAppUrlGlobals -> IO ()
-initFields_ this = do
-    jset this.path ("")
-    jset this.isWebappPathSet (False)
-    pure ()
-
-new_ :: IO WebAppUrlGlobals
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: WebAppUrlGlobals -> IO ()
-init_ this = do
-    UrlGlobalsInterface.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Business.Init.InitInfo as InitInfo
+import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
+import Org.Allbinary.Globals.UrlGlobalsInterface as UrlGlobalsInterface
 
 
-isTestingMode :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isTestingMode object_ = jmethod object_ "isTestingMode" (\() -> (isTestingMode_impl (javaCast object_ :: WebAppUrlGlobals))) ()
-
-isTestingMode_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isTestingMode_super object_ = (isTestingMode_impl (javaCast object_ :: WebAppUrlGlobals))
-
-isTestingMode_impl :: WebAppUrlGlobals -> IO (Bool)
-isTestingMode_impl this = do
-        (InitInfo.isTesting ((jio (InitInfo.getInstance))))
+jclass : String
+jclass =
+    "WebAppUrlGlobals"
 
 
-getWebappPath :: (JavaObjectClass this_) => this_ -> IO (String)
-getWebappPath object_ = jmethod object_ "getWebappPath" (\() -> (getWebappPath_impl (javaCast object_ :: WebAppUrlGlobals))) ()
-
-getWebappPath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getWebappPath_super object_ = (getWebappPath_impl (javaCast object_ :: WebAppUrlGlobals))
-
-getWebappPath_impl :: WebAppUrlGlobals -> IO (String)
-getWebappPath_impl this = do
-        pure ((jget (this).path))
+jchain : List String
+jchain =
+    [ "WebAppUrlGlobals" ]
+        ++ UrlGlobalsInterface.jchain
 
 
-setWebappPath :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setWebappPath object_ a1 = jmethod object_ "setWebappPath" (\() -> (setWebappPath_impl (javaCast object_ :: WebAppUrlGlobals))) () a1
-
-setWebappPath_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setWebappPath_super object_ a1 = (setWebappPath_impl (javaCast object_ :: WebAppUrlGlobals)) a1
-
-setWebappPath_impl :: WebAppUrlGlobals -> String -> IO (())
-setWebappPath_impl this path = do
-        path <- newIORef path
-        jset path ((jget path))
-        jset (this).isWebappPathSet (True)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    UrlGlobalsInterface.jfields ++ [ ( "path", JR.defaultOf "" ), ( "isWebappPathSet", JR.defaultOf "Z" ) ]
 
 
-getTestHtmlPath :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHtmlPath object_ = jmethod object_ "getTestHtmlPath" (\() -> (getTestHtmlPath_impl (javaCast object_ :: WebAppUrlGlobals))) ()
+jvtable =
+    JR.vtable
+        [ ( "isTestingMode_0", jm_isTestingMode_0 )
+        , ( "getWebappPath_0", jm_getWebappPath_0 )
+        , ( "setWebappPath_1", jm_setWebappPath_1 )
+        , ( "getTestHtmlPath_0", jm_getTestHtmlPath_0 )
+        , ( "getMainPath_0", jm_getMainPath_0 ) ]
+        UrlGlobalsInterface.jvtable
 
-getTestHtmlPath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHtmlPath_super object_ = (getTestHtmlPath_impl (javaCast object_ :: WebAppUrlGlobals))
 
-getTestHtmlPath_impl :: WebAppUrlGlobals -> IO (String)
-getTestHtmlPath_impl this = do
-        (InitInfo.getTestHtmlPath ((jio (InitInfo.getInstance))))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "WebAppUrlGlobals"
+        [ ( "jm_isTestingMode_0", jm_isTestingMode_0 ), ( "jm_getWebappPath_0", jm_getWebappPath_0 ), ( "jm_setWebappPath_1", jm_setWebappPath_1 ), ( "jm_getTestHtmlPath_0", jm_getTestHtmlPath_0 ), ( "jm_getMainPath_0", jm_getMainPath_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
 
--- throws Exception
-getMainPath :: (JavaObjectClass this_) => this_ -> IO (String)
-getMainPath object_ = jmethod object_ "getMainPath" (\() -> (getMainPath_impl (javaCast object_ :: WebAppUrlGlobals))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-getMainPath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getMainPath_super object_ = (getMainPath_impl (javaCast object_ :: WebAppUrlGlobals))
 
-getMainPath_impl :: WebAppUrlGlobals -> IO (String)
-getMainPath_impl this = do
-    javaCatchReturn $ do
-        mainPath <- (InitInfo.getMainPath ((jio (InitInfo.getInstance))))
-        if (Prelude.not (jio (StringValidationUtil.isEmpty ((jio (StringValidationUtil.getInstance))) mainPath))) then do
-            javaReturn (mainPath)
-        else if (jget (this).isWebappPathSet) then do
-            javaReturn =<< (WebAppUrlGlobals.getWebappPath this)
-        else do
-            javaThrow ((JavaException "Exception" "Webapp Path is not set"))
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect UrlGlobalsInterface.jinit_0 JR.this []),
+            JR.exec (JR.setField "isWebappPathSet" "Z" JR.this (JR.bool False)),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_isTestingMode_0 : JR.Method
+jm_isTestingMode_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isTesting_0" (JR.callStatic InitInfo.jm_getInstance_0 []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getWebappPath_0 : JR.Method
+jm_getWebappPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "path") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setWebappPath_1 : JR.Method
+jm_setWebappPath_1 jheap jthis jargs =
+    JR.method [ ( "path", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setLocal "path" "" (JR.local "path")), 
+                    JR.exec (JR.setField "isWebappPathSet" "Z" JR.this (JR.bool True)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTestHtmlPath_0 : JR.Method
+jm_getTestHtmlPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getTestHtmlPath_0" (JR.callStatic InitInfo.jm_getInstance_0 []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMainPath_0 : JR.Method
+jm_getMainPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "mainPath" "" (JR.invoke "getMainPath_0" (JR.callStatic InitInfo.jm_getInstance_0 []) []), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isEmpty_1" (JR.callStatic StringValidationUtil.jm_getInstance_0 []) [ (JR.local "mainPath") ])) (JR.run [ 
+                        JR.return (JR.local "mainPath") ]) (JR.run [ 
+                    JR.ifElse (JR.thisField "isWebappPathSet") (JR.run [ 
+                        JR.return (JR.invoke "getWebappPath_0" JR.this []) ]) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Webapp Path is not set") ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

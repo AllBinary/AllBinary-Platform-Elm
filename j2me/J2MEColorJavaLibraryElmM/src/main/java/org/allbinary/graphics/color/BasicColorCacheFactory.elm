@@ -1,11 +1,11 @@
-module BasicColorCacheFactory exposing (..)
+module Org.Allbinary.Graphics.Color.BasicColorCacheFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics.color
 -}
 
 import JR
-import BasicColorFactory
-import StdUtil
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Logic.StdUtil as StdUtil
 
 
 jclass : String

@@ -1,123 +1,125 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math
-module Orientation where
+module Org.Allbinary.Logic.Math.Orientation exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicDecimal -- same package or java.lang
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
+{-| Generated Code Do Not Modify package org.allbinary.logic.math
+-}
 
-data Orientation = Orientation
-    { header_ :: JavaHeader
-    , yaw :: IORef (BasicDecimal.BasicDecimal)
-    , pitch :: IORef (BasicDecimal.BasicDecimal)
-    , roll :: IORef (BasicDecimal.BasicDecimal)
-    }
-
-instance JavaNull Orientation where
-    javaNull = javaNullRecord "Orientation"
-
-instance JavaEquals Orientation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Orientation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Orientation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nONE :: IORef (Orientation)
-{-# NOINLINE nONE #-}
-nONE = unsafePerformIO ((new_3 0 0 0) >>= newIORef)
-
-sINGLETON :: IORef (Orientation)
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_3 0 0 0) >>= newIORef)
-
-newRecord_ :: IO Orientation
-newRecord_ = do
-    header_ <- newJavaHeader
-    yaw <- newIORef javaNull
-    pitch <- newIORef javaNull
-    roll <- newIORef javaNull
-    let this = Orientation header_ yaw pitch roll
-    jregisterLevel header_ this
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: Orientation -> IO ()
-initFields_ this = do
-    jset this.yaw =<< (BasicDecimal.new_1 0)
-    jset this.pitch =<< (BasicDecimal.new_1 0)
-    jset this.roll =<< (BasicDecimal.new_1 0)
-    pure ()
+import JR
+import Org.Allbinary.Logic.Math.BasicDecimal as BasicDecimal
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: Int -> Int -> Int -> IO (Orientation)
-getInstance yaw pitch roll = do
-        Control.Monad.void (BasicDecimal.setint ((jget ((jget Orientation.sINGLETON)).yaw)) yaw)
-        Control.Monad.void (BasicDecimal.setint ((jget ((jget Orientation.sINGLETON)).pitch)) pitch)
-        Control.Monad.void (BasicDecimal.setint ((jget ((jget Orientation.sINGLETON)).roll)) roll)
-        pure ((jget Orientation.sINGLETON))
-
-new_3 :: Int -> Int -> Int -> IO Orientation
-new_3 yaw pitch roll = do
-    this <- newRecord_
-    init_3 this yaw pitch roll
-    pure this
-
-init_3 :: Orientation -> Int -> Int -> Int -> IO ()
-init_3 this yaw pitch roll = do
-        initFields_ this
-        Control.Monad.void (BasicDecimal.setint ((jget (this).yaw)) yaw)
-        Control.Monad.void (BasicDecimal.setint ((jget (this).pitch)) pitch)
-        Control.Monad.void (BasicDecimal.setint ((jget (this).roll)) roll)
-        pure ()
+jclass : String
+jclass =
+    "Orientation"
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: Orientation))) ()
+jchain : List String
+jchain =
+    [ "Orientation" ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: Orientation))
 
-toString_impl :: Orientation -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "Y: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (BasicDecimal.toString ((jget (this).yaw)))))
-        Control.Monad.void (StringMaker.append stringBuffer " P: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (BasicDecimal.toString ((jget (this).pitch)))))
-        Control.Monad.void (StringMaker.append stringBuffer " R: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (BasicDecimal.toString ((jget (this).roll)))))
-        (StringMaker.toString stringBuffer)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "yaw", JR.defaultOf "" ), ( "pitch", JR.defaultOf "" ), ( "roll", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_3", jm_getInstance_3 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Orientation"
+        [ ( "jm_getInstance_3", jm_getInstance_3 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        [ ( "jstatic_NONE", jstatic_NONE ), ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NONE : JR.M
+jstatic_NONE s =
+    JR.static "Orientation" jclinit "NONE"
+        (JR.new jnew_3 [ (JR.int 0), (JR.int 0), (JR.int 0) ])
+        s
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "Orientation" jclinit "SINGLETON"
+        (JR.new jnew_3 [ (JR.int 0), (JR.int 0), (JR.int 0) ])
+        s
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "yaw", "I" ), ( "pitch", "I" ), ( "roll", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "yaw" "" JR.this (JR.new BasicDecimal.jnew_1 [ (JR.int 0) ])),
+                JR.exec (JR.setField "pitch" "" JR.this (JR.new BasicDecimal.jnew_1 [ (JR.int 0) ])),
+                JR.exec (JR.setField "roll" "" JR.this (JR.new BasicDecimal.jnew_1 [ (JR.int 0) ])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setint_1" (JR.thisField "yaw") [ (JR.local "yaw") ]), 
+                    JR.exec (JR.invoke "setint_1" (JR.thisField "pitch") [ (JR.local "pitch") ]), 
+                    JR.exec (JR.invoke "setint_1" (JR.thisField "roll") [ (JR.local "roll") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_getInstance_3 : JR.Method
+jm_getInstance_3 jheap jthis jargs =
+    JR.method [ ( "yaw", "I" ), ( "pitch", "I" ), ( "roll", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setint_1" (JR.field "yaw" jstatic_SINGLETON) [ (JR.local "yaw") ]), 
+                    JR.exec (JR.invoke "setint_1" (JR.field "pitch" jstatic_SINGLETON) [ (JR.local "pitch") ]), 
+                    JR.exec (JR.invoke "setint_1" (JR.field "roll" jstatic_SINGLETON) [ (JR.local "roll") ]), 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Y: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.thisField "yaw") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " P: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.thisField "pitch") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " R: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.thisField "roll") []) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

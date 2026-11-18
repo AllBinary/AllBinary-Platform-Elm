@@ -1,13 +1,13 @@
-module ArrayUtil exposing (..)
+module Org.Allbinary.Util.ArrayUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}
 
 import JR
-import CommonSeps
-import MathUtil
-import StringMaker
-import StringUtil
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.Math.MathUtil as MathUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
 jclass : String

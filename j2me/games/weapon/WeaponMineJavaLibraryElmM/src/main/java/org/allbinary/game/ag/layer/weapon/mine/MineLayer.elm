@@ -1,153 +1,140 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.weapon.mine
-module MineLayer (module MineLayer, module SimpleWeaponLayer) where
+module Org.Allbinary.Game.Ag.Layer.Weapon.Mine.MineLayer exposing (..)
 
-import SimpleWeaponLayer hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, initXYZ, initXYZ_super, initXYZ_impl, damage, damage_super, damage_impl, getDamage, getDamage_super, getDamage_impl, setDestroyed, setDestroyed_super, setDestroyed_impl, nAME, viewPositionEventHandler)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified MineWeaponResources -- same package or java.lang
-import qualified DropWeaponSound -- org.allbinary.ag.weapon.media.audio.DropWeaponSound
-import qualified FeaturedAnimationInterfaceFactoryInterfaceFactory -- org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory
-import qualified SimpleWeaponLayer -- org.allbinary.game.layer.weapon.SimpleWeaponLayer
-import qualified RemoteInfo -- org.allbinary.game.multiplayer.layer.RemoteInfo
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified SecondaryPlayerQueueFactory -- org.allbinary.media.audio.SecondaryPlayerQueueFactory
-import qualified NoMovementFactory -- org.allbinary.physics.movement.NoMovementFactory
-import qualified ViewPositionBase -- org.allbinary.view.ViewPositionBase
-import qualified ViewPositionEventHandler -- org.allbinary.view.event.ViewPositionEventHandler
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.weapon.mine
+-}
 
-data MineLayer = MineLayer
-    { header_ :: JavaHeader
-    , base :: SimpleWeaponLayer.SimpleWeaponLayer
-    , viewPositionEventHandler :: IORef (ViewPositionEventHandler.ViewPositionEventHandler)
-    }
-
-instance JavaNull MineLayer where
-    javaNull = javaNullRecord "MineLayer"
-
-instance JavaEquals MineLayer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MineLayer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MineLayer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nAME :: String
-nAME = "MineLayer"
-
-newRecord_ :: IO MineLayer
-newRecord_ = do
-    base <- SimpleWeaponLayer.newRecord_
-    let header_ = base.header_
-    viewPositionEventHandler <- newIORef javaNull
-    let this = MineLayer header_ base viewPositionEventHandler
-    jregisterLevel header_ this
-    jregisterMethod header_ "initXYZ" (\() -> initXYZ_impl this)
-    jregisterMethod header_ "damage" (\() -> damage_impl this)
-    jregisterMethod header_ "getDamage" (\() -> getDamage_impl this)
-    jregisterMethod header_ "setDestroyed" (\() -> setDestroyed_impl this)
-    pure this
-
-initFields_ :: MineLayer -> IO ()
-initFields_ this = do
-    jset this.viewPositionEventHandler =<< (ViewPositionEventHandler.getInstance)
-    pure ()
-
-new_1 :: ViewPositionBase.ViewPositionBase -> IO MineLayer
-new_1 viewPosition = do
-    this <- newRecord_
-    init_1 this viewPosition
-    pure this
-
-init_1 :: MineLayer -> ViewPositionBase.ViewPositionBase -> IO ()
-init_1 this viewPosition = do
-        SimpleWeaponLayer.init_8 this.base (MineLayer.nAME) (RemoteInfo.rEMOTE_INFO) (Prelude.negate 1) (jio (NoMovementFactory.getMovmentInstance ((jio (NoMovementFactory.getInstance))))) (jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance ((jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.get ((jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance))) (jget ((jio (MineWeaponResources.getInstance))).rESOURCE)))) 0)) (jio (SimpleWeaponLayer.createDestroyed)) (jio (Rectangle.new_3 (jget ((jio (PointFactory.getInstance))).zERO_ZERO) 10 10)) (viewPosition)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Ag.Weapon.Media.Audio.DropWeaponSound as DropWeaponSound
+import Org.Allbinary.Animation.FeaturedAnimationInterfaceFactoryInterfaceFactory as FeaturedAnimationInterfaceFactoryInterfaceFactory
+import Org.Allbinary.Game.Ag.Layer.Weapon.Mine.MineWeaponResources as MineWeaponResources
+import Org.Allbinary.Physics.Movement.NoMovementFactory as NoMovementFactory
+import Org.Allbinary.Graphics.PointFactory as PointFactory
+import Org.Allbinary.Graphics.Rectangle as Rectangle
+import Org.Allbinary.Game.Multiplayer.Layer.RemoteInfo as RemoteInfo
+import Org.Allbinary.Media.Audio.SecondaryPlayerQueueFactory as SecondaryPlayerQueueFactory
+import Org.Allbinary.Game.Layer.Weapon.SimpleWeaponLayer as SimpleWeaponLayer
+import Org.Allbinary.View.Event.ViewPositionEventHandler as ViewPositionEventHandler
 
 
-initXYZ :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-initXYZ object_ a1 a2 a3 = jmethod object_ "initXYZ" (\() -> (initXYZ_impl (javaCast object_ :: MineLayer))) () a1 a2 a3
-
-initXYZ_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-initXYZ_super object_ a1 a2 a3 = (initXYZ_impl (javaCast object_ :: MineLayer)) a1 a2 a3
-
-initXYZ_impl :: MineLayer -> Int -> Int -> Int -> IO (())
-initXYZ_impl this x y z = do
-        Control.Monad.void (SimpleWeaponLayer.setPosition this (x + 5) (y + 5) z)
-        Control.Monad.void (ViewPositionEventHandler.addListener ((jget (this).viewPositionEventHandler)) (javaCast this :: AllBinaryLayer.AllBinaryLayer))
-        Control.Monad.void (SecondaryPlayerQueueFactory.add ((jio (SecondaryPlayerQueueFactory.getInstance))) (jio (DropWeaponSound.getInstance)))
-        pure ()
+jclass : String
+jclass =
+    "MineLayer"
 
 
-damage :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-damage object_ a1 a2 = jmethod object_ "damage" (\() -> (damage_impl (javaCast object_ :: MineLayer))) () a1 a2
-
-damage_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-damage_super object_ a1 a2 = (damage_impl (javaCast object_ :: MineLayer)) a1 a2
-
-damage_impl :: MineLayer -> Int -> Int -> IO (())
-damage_impl this damage damageType = do
-        jset (this).base.totalDamage (((jio (SimpleWeaponLayer.getInitDamage this)) + 1))
-        pure ()
+jchain : List String
+jchain =
+    [ "MineLayer" ]
+        ++ SimpleWeaponLayer.jchain
 
 
-getDamage :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getDamage object_ a1 = jmethod object_ "getDamage" (\() -> (getDamage_impl (javaCast object_ :: MineLayer))) () a1
-
-getDamage_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getDamage_super object_ a1 = (getDamage_impl (javaCast object_ :: MineLayer)) a1
-
-getDamage_impl :: MineLayer -> Int -> IO (Int)
-getDamage_impl this damageType = do
-        Control.Monad.void (SimpleWeaponLayer.getDamage_super this.base damageType)
-        (SimpleWeaponLayer.getInitDamage this)
+jfields : List ( String, JR.JValue )
+jfields =
+    SimpleWeaponLayer.jfields ++ [ ( "viewPositionEventHandler", JR.defaultOf "" ) ]
 
 
-setDestroyed :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setDestroyed object_ a1 = jmethod object_ "setDestroyed" (\() -> (setDestroyed_impl (javaCast object_ :: MineLayer))) () a1
+jvtable =
+    JR.vtable
+        [ ( "initXYZ_3", jm_initXYZ_3 )
+        , ( "damage_2", jm_damage_2 )
+        , ( "getDamage_1", jm_getDamage_1 )
+        , ( "setDestroyed_1", jm_setDestroyed_1 ) ]
+        SimpleWeaponLayer.jvtable
 
-setDestroyed_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setDestroyed_super object_ a1 = (setDestroyed_impl (javaCast object_ :: MineLayer)) a1
 
-setDestroyed_impl :: MineLayer -> Bool -> IO (())
-setDestroyed_impl this destroyed = do
-        Control.Monad.void (SimpleWeaponLayer.setDestroyed_super this.base destroyed)
-        when (jio (SimpleWeaponLayer.isDestroyed this)) $ do
-            Control.Monad.void (ViewPositionEventHandler.removeListener ((jget (this).viewPositionEventHandler)) this)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MineLayer"
+        [ ( "jm_initXYZ_3", jm_initXYZ_3 ), ( "jm_damage_2", jm_damage_2 ), ( "jm_getDamage_1", jm_getDamage_1 ), ( "jm_setDestroyed_1", jm_setDestroyed_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_NAME", jstatic_NAME ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "MineLayer" jclinit "NAME"
+        (JR.str "MineLayer")
+        s
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "viewPosition", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect SimpleWeaponLayer.jinit_8 JR.this [ jstatic_NAME, RemoteInfo.jstatic_REMOTE_INFO, (JR.map JR.neg (JR.int 1)), (JR.invoke "getMovmentInstance_0" (JR.callStatic NoMovementFactory.jm_getInstance_0 []) []), (JR.invoke "getInstance_1" (JR.invoke "get_1" (JR.callStatic FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0 []) [ (JR.field "RESOURCE" (JR.callStatic MineWeaponResources.jm_getInstance_0 [])) ]) [ (JR.int 0) ]), (JR.callStatic SimpleWeaponLayer.jm_createDestroyed_0 []), (JR.new Rectangle.jnew_3 [ (JR.field "ZERO_ZERO" (JR.callStatic PointFactory.jm_getInstance_0 [])), (JR.int 10), (JR.int 10) ]), (JR.local "viewPosition") ]),
+                JR.exec (JR.setField "viewPositionEventHandler" "" JR.this (JR.callStatic ViewPositionEventHandler.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_initXYZ_3 : JR.Method
+jm_initXYZ_3 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setPosition_3" JR.this [ (JR.map2 JR.add (JR.local "x") (JR.int 5)), (JR.map2 JR.add (JR.local "y") (JR.int 5)), (JR.local "z") ]), 
+                    JR.exec (JR.invoke "addListener_1" (JR.thisField "viewPositionEventHandler") [ JR.this ]), 
+                    JR.exec (JR.invoke "add_1" (JR.callStatic SecondaryPlayerQueueFactory.jm_getInstance_0 []) [ (JR.callStatic DropWeaponSound.jm_getInstance_0 []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_damage_2 : JR.Method
+jm_damage_2 jheap jthis jargs =
+    JR.method [ ( "damage", "I" ), ( "damageType", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "totalDamage" "" JR.this (JR.map2 JR.add (JR.invoke "getInitDamage_0" JR.this []) (JR.int 1))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDamage_1 : JR.Method
+jm_getDamage_1 jheap jthis jargs =
+    JR.method [ ( "damageType", "I" ) ] "I"
+        (JR.run [ 
+                    JR.exec (JR.callVia SimpleWeaponLayer.jvtable "getDamage_1" JR.this [ (JR.local "damageType") ]), 
+                    JR.return (JR.invoke "getInitDamage_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDestroyed_1 : JR.Method
+jm_setDestroyed_1 jheap jthis jargs =
+    JR.method [ ( "destroyed", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia SimpleWeaponLayer.jvtable "setDestroyed_1" JR.this [ (JR.local "destroyed") ]), 
+                    JR.ifElse (JR.invoke "isDestroyed_0" JR.this []) (JR.run [ 
+                        JR.exec (JR.invoke "removeListener_1" (JR.thisField "viewPositionEventHandler") [ JR.this ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

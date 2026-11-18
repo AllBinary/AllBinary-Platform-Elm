@@ -1,11 +1,11 @@
-module ColorChangeEvent exposing (..)
+module Org.Allbinary.Graphics.Color.ColorChangeEvent exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics.color
 -}
 
 import JR
-import AllBinaryEventObject
-import BasicColorFactory
+import Org.Allbinary.Logic.Util.Event.AllBinaryEventObject as AllBinaryEventObject
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
 
 
 jclass : String

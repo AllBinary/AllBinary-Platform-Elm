@@ -1,132 +1,192 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.address
-module BillingAddressData where
+module Org.Allbinary.Business.User.Address.BillingAddressData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.address
+-}
 
-data BillingAddressData = BillingAddressData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull BillingAddressData where
-    javaNull = javaNullRecord "BillingAddressData"
 
-instance JavaEquals BillingAddressData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq BillingAddressData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "BillingAddressData"
 
-instance JavaObjectClass BillingAddressData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-mAX :: Int
-mAX = 255
+jchain : List String
+jchain =
+    [ "BillingAddressData" ]
 
-mIN :: Int
-mIN = 0
 
-mULTIPLE :: String
-mULTIPLE = "BILLINGADDRESSES"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-sTATES :: String
-sTATES = "BILLINGADDRESS_STATES"
 
-sETTOSHIPPINGADDRESS :: String
-sETTOSHIPPINGADDRESS = "Set To Shipping Address"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-sELECT :: String
-sELECT = "Select Billing Address"
 
-sETTOSHIPPINGADDRESSNAME :: String
-sETTOSHIPPINGADDRESSNAME = "SETTOSHIPPINGADDRESS"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BillingAddressData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_MAX", jstatic_MAX ), ( "jstatic_MIN", jstatic_MIN ), ( "jstatic_MULTIPLE", jstatic_MULTIPLE ), ( "jstatic_STATES", jstatic_STATES ), ( "jstatic_SETTOSHIPPINGADDRESS", jstatic_SETTOSHIPPINGADDRESS ), ( "jstatic_SELECT", jstatic_SELECT ), ( "jstatic_SETTOSHIPPINGADDRESSNAME", jstatic_SETTOSHIPPINGADDRESSNAME ), ( "jstatic_BILLINGADDRESSES", jstatic_BILLINGADDRESSES ), ( "jstatic_BILLINGADDRESS", jstatic_BILLINGADDRESS ), ( "jstatic_ID", jstatic_ID ), ( "jstatic_ADDRESS", jstatic_ADDRESS ), ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_STREET", jstatic_STREET ), ( "jstatic_CITY", jstatic_CITY ), ( "jstatic_STATE", jstatic_STATE ), ( "jstatic_CODE", jstatic_CODE ), ( "jstatic_COUNTRY", jstatic_COUNTRY ) ]
+        jheap
 
-bILLINGADDRESSES :: String
-bILLINGADDRESSES = "BILLINGADDRESSES"
 
-bILLINGADDRESS :: String
-bILLINGADDRESS = "BILLINGADDRESS"
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-iD :: String
-iD = "BILLINGADDRESS_ID"
 
-aDDRESS :: String
-aDDRESS = "BILLINGADDRESS_ADDRESS"
+jstatic_MAX : JR.M
+jstatic_MAX s =
+    JR.static "BillingAddressData" jclinit "MAX"
+        (JR.int 255)
+        s
 
-nAME :: String
-nAME = "BILLINGADDRESS_NAME"
 
-sTREET :: String
-sTREET = "BILLINGADDRESS_STREET"
+jstatic_MIN : JR.M
+jstatic_MIN s =
+    JR.static "BillingAddressData" jclinit "MIN"
+        (JR.int 0)
+        s
 
-cITY :: String
-cITY = "BILLINGADDRESS_CITY"
 
-sTATE :: String
-sTATE = "BILLINGADDRESS_STATE"
+jstatic_MULTIPLE : JR.M
+jstatic_MULTIPLE s =
+    JR.static "BillingAddressData" jclinit "MULTIPLE"
+        (JR.str "BILLINGADDRESSES")
+        s
 
-cODE :: String
-cODE = "BILLINGADDRESS_CODE"
 
-cOUNTRY :: String
-cOUNTRY = "BILLINGADDRESS_COUNTRY"
+jstatic_STATES : JR.M
+jstatic_STATES s =
+    JR.static "BillingAddressData" jclinit "STATES"
+        (JR.str "BILLINGADDRESS_STATES")
+        s
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jstatic_SETTOSHIPPINGADDRESS : JR.M
+jstatic_SETTOSHIPPINGADDRESS s =
+    JR.static "BillingAddressData" jclinit "SETTOSHIPPINGADDRESS"
+        (JR.str "Set To Shipping Address")
+        s
 
-newRecord_ :: IO BillingAddressData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = BillingAddressData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: BillingAddressData -> IO ()
-initFields_ this = do
-    pure ()
+jstatic_SELECT : JR.M
+jstatic_SELECT s =
+    JR.static "BillingAddressData" jclinit "SELECT"
+        (JR.str "Select Billing Address")
+        s
 
-new_ :: IO BillingAddressData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: BillingAddressData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jstatic_SETTOSHIPPINGADDRESSNAME : JR.M
+jstatic_SETTOSHIPPINGADDRESSNAME s =
+    JR.static "BillingAddressData" jclinit "SETTOSHIPPINGADDRESSNAME"
+        (JR.str "SETTOSHIPPINGADDRESS")
+        s
 
+
+jstatic_BILLINGADDRESSES : JR.M
+jstatic_BILLINGADDRESSES s =
+    JR.static "BillingAddressData" jclinit "BILLINGADDRESSES"
+        (JR.str "BILLINGADDRESSES")
+        s
+
+
+jstatic_BILLINGADDRESS : JR.M
+jstatic_BILLINGADDRESS s =
+    JR.static "BillingAddressData" jclinit "BILLINGADDRESS"
+        (JR.str "BILLINGADDRESS")
+        s
+
+
+jstatic_ID : JR.M
+jstatic_ID s =
+    JR.static "BillingAddressData" jclinit "ID"
+        (JR.str "BILLINGADDRESS_ID")
+        s
+
+
+jstatic_ADDRESS : JR.M
+jstatic_ADDRESS s =
+    JR.static "BillingAddressData" jclinit "ADDRESS"
+        (JR.str "BILLINGADDRESS_ADDRESS")
+        s
+
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "BillingAddressData" jclinit "NAME"
+        (JR.str "BILLINGADDRESS_NAME")
+        s
+
+
+jstatic_STREET : JR.M
+jstatic_STREET s =
+    JR.static "BillingAddressData" jclinit "STREET"
+        (JR.str "BILLINGADDRESS_STREET")
+        s
+
+
+jstatic_CITY : JR.M
+jstatic_CITY s =
+    JR.static "BillingAddressData" jclinit "CITY"
+        (JR.str "BILLINGADDRESS_CITY")
+        s
+
+
+jstatic_STATE : JR.M
+jstatic_STATE s =
+    JR.static "BillingAddressData" jclinit "STATE"
+        (JR.str "BILLINGADDRESS_STATE")
+        s
+
+
+jstatic_CODE : JR.M
+jstatic_CODE s =
+    JR.static "BillingAddressData" jclinit "CODE"
+        (JR.str "BILLINGADDRESS_CODE")
+        s
+
+
+jstatic_COUNTRY : JR.M
+jstatic_COUNTRY s =
+    JR.static "BillingAddressData" jclinit "COUNTRY"
+        (JR.str "BILLINGADDRESS_COUNTRY")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

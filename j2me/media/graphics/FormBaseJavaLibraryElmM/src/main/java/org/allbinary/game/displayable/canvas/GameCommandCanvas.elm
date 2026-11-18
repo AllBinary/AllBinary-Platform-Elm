@@ -1,555 +1,437 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module GameCommandCanvas (module GameCommandCanvas, module MyCanvas) where
-
-import MyCanvas hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, onEvent, onEvent_super, onEvent_impl, onDisplayChangeEvent, onDisplayChangeEvent_super, onDisplayChangeEvent_impl, initCommands, initCommands_super, initCommands_impl, initMenu, initMenu_super, initMenu_impl, createForm, createForm_super, createForm_impl, createRectangle, createRectangle_super, createRectangle_impl, open, open_super, open_impl, close, close_super, close_impl, update, update_super, update_impl, getSourceId, getSourceId_super, getSourceId_impl, keyPressed, keyPressed_super, keyPressed_impl, keyReleased, keyReleased_super, keyReleased_impl, keyRepeated, keyRepeated_super, keyRepeated_impl, keyPressedByDevice, keyPressedByDevice_super, keyPressedByDevice_impl, keyReleasedByDevice, keyReleasedByDevice_super, keyReleasedByDevice_impl, keyRepeatedByDevice, keyRepeatedByDevice_super, keyRepeatedByDevice_impl, addGameKeyEvent, addGameKeyEvent_super, addGameKeyEvent_impl, removeGameKeyEvent, removeGameKeyEvent_super, removeGameKeyEvent_impl, paint, paint_super, paint_impl, setMenuInputProcessor, setMenuInputProcessor_super, setMenuInputProcessor_impl, getMenuInputProcessor, getMenuInputProcessor_super, getMenuInputProcessor_impl, repaintProcessor, gameInputStrings, id, foregroundBasicColor, backgroundBasicColor, inputToGameKeyMapping, gameKeyFactory, gameKeyEventFactory, downGameKeyEventHandler, upGameKeyEventHandler, repaintBehavior, updateMyFontProcessor, myFontProcessor, foregroundColor, backgroundColor, menuInputProcessor, menuPaintable, menuForm, isSingleKeyRepeatableProcessing, fontHeight)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NoMenuInputProcessor -- same package or java.lang
-import qualified BasicMenuInputProcessor -- same package or java.lang
-import qualified ImmediateCommandFormInputProcessor -- same package or java.lang
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified NullCommandListener -- javax.microedition.lcdui.NullCommandListener
-import qualified Processor -- org.allbinary.canvas.Processor
-import qualified GameCommandsFactory -- org.allbinary.game.commands.GameCommandsFactory
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified InputFeatureFactory -- org.allbinary.game.configuration.feature.InputFeatureFactory
-import qualified RepaintBehavior -- org.allbinary.game.displayable.RepaintBehavior
-import qualified GameInputStrings -- org.allbinary.game.input.GameInputStrings
-import qualified GameKey -- org.allbinary.game.input.GameKey
-import qualified GameKeyFactory -- org.allbinary.game.input.GameKeyFactory
-import qualified PlatformInputMappingFactory -- org.allbinary.game.input.PlatformInputMappingFactory
-import qualified DownGameKeyEventHandler -- org.allbinary.game.input.event.DownGameKeyEventHandler
-import qualified GameKeyEvent -- org.allbinary.game.input.event.GameKeyEvent
-import qualified GameKeyEventFactory -- org.allbinary.game.input.event.GameKeyEventFactory
-import qualified GameKeyEventHandler -- org.allbinary.game.input.event.GameKeyEventHandler
-import qualified UpGameKeyEventHandler -- org.allbinary.game.input.event.UpGameKeyEventHandler
-import qualified InputToGameKeyMapping -- org.allbinary.game.input.mapping.InputToGameKeyMapping
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified CanvasStrings -- org.allbinary.graphics.displayable.CanvasStrings
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified MyCanvas -- org.allbinary.graphics.displayable.MyCanvas
-import qualified DisplayChangeEvent -- org.allbinary.graphics.displayable.event.DisplayChangeEvent
-import qualified DisplayChangeEventHandler -- org.allbinary.graphics.displayable.event.DisplayChangeEventHandler
-import qualified DisplayChangeEventListener -- org.allbinary.graphics.displayable.event.DisplayChangeEventListener
-import qualified ScreenRepaintProcessorFactory -- org.allbinary.graphics.displayable.screen.ScreenRepaintProcessorFactory
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified CommandCurrentSelectionFormFactory -- org.allbinary.graphics.form.CommandCurrentSelectionFormFactory
-import qualified FormPaintable -- org.allbinary.graphics.form.FormPaintable
-import qualified FormTypeFactory -- org.allbinary.graphics.form.FormTypeFactory
-import qualified PaintableForm -- org.allbinary.graphics.form.PaintableForm
-import qualified ScrollSelectionForm -- org.allbinary.graphics.form.ScrollSelectionForm
-import qualified ScrollSelectionFormNoneFactory -- org.allbinary.graphics.form.ScrollSelectionFormNoneFactory
-import qualified CommandTextItemArrayFactory -- org.allbinary.graphics.form.item.CommandTextItemArrayFactory
-import qualified ABCustomItem -- org.allbinary.graphics.form.item.ABCustomItem
-import qualified AllCommandsVisitor -- org.allbinary.graphics.form.item.validation.AllCommandsVisitor
-import qualified NullPaintable -- org.allbinary.graphics.paint.NullPaintable
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified BasicMotionGesturesHandler -- org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventStrings -- org.allbinary.logic.util.event.EventStrings
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified MenuListener
-
--- implements MenuListener
--- implements DisplayChangeEventListener
--- implements UpdateMyFontInterface
-data GameCommandCanvas = GameCommandCanvas
-    { header_ :: JavaHeader
-    , base :: MyCanvas.MyCanvas
-    , repaintProcessor :: IORef (Processor.Processor)
-    , gameInputStrings :: IORef (GameInputStrings.GameInputStrings)
-    , foregroundBasicColor :: IORef (BasicColor.BasicColor)
-    , backgroundBasicColor :: IORef (BasicColor.BasicColor)
-    , inputToGameKeyMapping :: IORef (InputToGameKeyMapping.InputToGameKeyMapping)
-    , gameKeyFactory :: IORef (GameKeyFactory.GameKeyFactory)
-    , gameKeyEventFactory :: IORef (GameKeyEventFactory.GameKeyEventFactory)
-    , downGameKeyEventHandler :: IORef (DownGameKeyEventHandler.DownGameKeyEventHandler)
-    , upGameKeyEventHandler :: IORef (UpGameKeyEventHandler.UpGameKeyEventHandler)
-    , repaintBehavior :: IORef (RepaintBehavior.RepaintBehavior)
-    , updateMyFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , foregroundColor :: IORef (Int)
-    , backgroundColor :: IORef (Int)
-    , menuInputProcessor :: IORef (BasicMenuInputProcessor.BasicMenuInputProcessor)
-    , menuPaintable :: IORef (Paintable.Paintable)
-    , menuForm :: IORef (PaintableForm.PaintableForm)
-    , isSingleKeyRepeatableProcessing :: IORef (Bool)
-    , fontHeight :: IORef (Int)
-    }
-
-instance JavaNull GameCommandCanvas where
-    javaNull = javaNullRecord "GameCommandCanvas"
-
-instance JavaEquals GameCommandCanvas where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameCommandCanvas where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameCommandCanvas where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-id :: Int
-id = 0
-
-newRecord_ :: IO GameCommandCanvas
-newRecord_ = do
-    base <- MyCanvas.newRecord_
-    let header_ = base.header_
-    repaintProcessor <- newIORef javaNull
-    gameInputStrings <- newIORef javaNull
-    foregroundBasicColor <- newIORef javaNull
-    backgroundBasicColor <- newIORef javaNull
-    inputToGameKeyMapping <- newIORef javaNull
-    gameKeyFactory <- newIORef javaNull
-    gameKeyEventFactory <- newIORef javaNull
-    downGameKeyEventHandler <- newIORef javaNull
-    upGameKeyEventHandler <- newIORef javaNull
-    repaintBehavior <- newIORef javaNull
-    updateMyFontProcessor <- newIORef javaNull
-    myFontProcessor <- newIORef javaNull
-    foregroundColor <- newIORef 0
-    backgroundColor <- newIORef 0
-    menuInputProcessor <- newIORef javaNull
-    menuPaintable <- newIORef javaNull
-    menuForm <- newIORef javaNull
-    isSingleKeyRepeatableProcessing <- newIORef False
-    fontHeight <- newIORef 0
-    let this = GameCommandCanvas header_ base repaintProcessor gameInputStrings foregroundBasicColor backgroundBasicColor inputToGameKeyMapping gameKeyFactory gameKeyEventFactory downGameKeyEventHandler upGameKeyEventHandler repaintBehavior updateMyFontProcessor myFontProcessor foregroundColor backgroundColor menuInputProcessor menuPaintable menuForm isSingleKeyRepeatableProcessing fontHeight
-    jregisterLevel header_ this
-    MenuListener.registerInterface_ header_
-    DisplayChangeEventListener.registerInterface_ header_
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "onDisplayChangeEvent" (\() -> onDisplayChangeEvent_impl this)
-    jregisterMethod header_ "initCommands" (\() -> initCommands_impl this)
-    jregisterMethod header_ "initMenu" (\() -> initMenu_impl this)
-    jregisterMethod header_ "createForm" (\() -> createForm_impl this)
-    jregisterMethod header_ "createRectangle" (\() -> createRectangle_impl this)
-    jregisterMethod header_ "open" (\() -> open_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "getSourceId" (\() -> getSourceId_impl this)
-    jregisterMethod header_ "keyPressed" (\() -> keyPressed_impl this)
-    jregisterMethod header_ "keyReleased" (\() -> keyReleased_impl this)
-    jregisterMethod header_ "keyRepeated" (\() -> keyRepeated_impl this)
-    jregisterMethod header_ "keyPressedByDevice" (\() -> keyPressedByDevice_impl this)
-    jregisterMethod header_ "keyReleasedByDevice" (\() -> keyReleasedByDevice_impl this)
-    jregisterMethod header_ "keyRepeatedByDevice" (\() -> keyRepeatedByDevice_impl this)
-    jregisterMethod header_ "addGameKeyEvent" (\() -> addGameKeyEvent_impl this)
-    jregisterMethod header_ "removeGameKeyEvent" (\() -> removeGameKeyEvent_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "setMenuInputProcessor" (\() -> setMenuInputProcessor_impl this)
-    jregisterMethod header_ "getMenuInputProcessor" (\() -> getMenuInputProcessor_impl this)
-    pure this
-
-initFields_ :: GameCommandCanvas -> IO ()
-initFields_ this = do
-    jset this.repaintProcessor =<< (ScreenRepaintProcessorFactory.create ((jio (ScreenRepaintProcessorFactory.getInstance))) this)
-    jset this.gameInputStrings =<< (GameInputStrings.getInstance)
-    jset this.foregroundBasicColor (javaNull)
-    jset this.backgroundBasicColor (javaNull)
-    jset this.inputToGameKeyMapping =<< (PlatformInputMappingFactory.getInputMapping ((jio (PlatformInputMappingFactory.getPersistentInputMappingInstance ((jio (PlatformInputMappingFactory.getInstance)))))))
-    jset this.gameKeyFactory =<< (GameKeyFactory.getInstance)
-    jset this.gameKeyEventFactory =<< (GameKeyEventFactory.getInstance)
-    jset this.downGameKeyEventHandler =<< (DownGameKeyEventHandler.getInstance)
-    jset this.upGameKeyEventHandler =<< (UpGameKeyEventHandler.getInstance)
-    jset this.repaintBehavior (javaNull)
-    jset this.updateMyFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.myFontProcessor ((jget (this).updateMyFontProcessor))
-    jset this.foregroundColor (0)
-    jset this.backgroundColor (0)
-    jset this.menuInputProcessor =<< (fmap (\value_ -> javaCast value_ :: BasicMenuInputProcessor.BasicMenuInputProcessor) (NoMenuInputProcessor.getInstance))
-    jset this.menuPaintable =<< (NullPaintable.getInstance)
-    jset this.menuForm =<< (PaintableForm.getNullPaintableForm)
-    jset this.isSingleKeyRepeatableProcessing =<< (Features.isFeature ((jio (Features.getInstance))) (jget ((jio (InputFeatureFactory.getInstance))).sINGLE_KEY_REPEAT_PRESS))
-    jset this.fontHeight (0)
-    pure ()
-
-new_4 :: CommandListener.CommandListener -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO GameCommandCanvas
-new_4 cmdListener name backgroundBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_4 this cmdListener name backgroundBasicColor foregroundBasicColor
-    pure this
-
-init_4 :: GameCommandCanvas -> CommandListener.CommandListener -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_4 this cmdListener name backgroundBasicColor foregroundBasicColor = do
-        MyCanvas.init_2 this.base (name) (jget ((jio (CanvasStrings.getInstance))).eMPTY_CHILD_NAME_LIST)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        assignedValue <- (RepaintBehavior.getInstance)
-        jset (this).repaintBehavior (assignedValue)
-        jset (this).foregroundBasicColor (foregroundBasicColor)
-        jset (this).backgroundBasicColor (backgroundBasicColor)
-        assignedValue <- (BasicColor.intValue ((jget (this).foregroundBasicColor)))
-        jset (this).foregroundColor (assignedValue)
-        assignedValue <- (BasicColor.intValue ((jget (this).backgroundBasicColor)))
-        jset (this).backgroundColor (assignedValue)
-        Control.Monad.void (GameCommandCanvas.initCommands this cmdListener)
-        when (cmdListener /= NullCommandListener.nULL_COMMAND_LISTENER) $ do
-            handle (\(e :: JavaException) -> do
-                javaThrow ((JavaException "RuntimeException" ""))
-                ) $ do
-                Control.Monad.void (GameCommandCanvas.initMenu this)
-                Control.Monad.void (Processor.process ((jget (this).repaintProcessor)))
-        pure ()
-
-
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: GameCommandCanvas))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: GameCommandCanvas)) a1
-
-updateMeasurement_impl :: GameCommandCanvas -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.canvasStrings)).oN_DISPLAY_CHANGE_EVENT) e)
-            ) $ do
-            font <- (Graphics.getFont graphics)
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.commonStrings)).sTART)))) (jget ((jget (this).base.canvasStrings)).fD_WIDTH)))) (Prelude.fromInteger (jnumericInteger (jio (MyFontProcessor.defaultCharWidth font))))))) (jget ((jget (this).base.canvasStrings)).fD_HEIGHT)))) (Prelude.fromInteger (jnumericInteger (jio (Font.getHeight font))))))))) this (jget ((jget (this).base.canvasStrings)).uPDATE_MEASUREMENT))
-            assignedValue <- (Font.getHeight font)
-            jset (this).fontHeight (assignedValue)
-            rectangle <- (GameCommandCanvas.createRectangle this (jio (PaintableForm.size ((jget (this).menuForm)))))
-            Control.Monad.void (PaintableForm.init ((jget (this).menuForm)) rectangle (jget ((jio (FormTypeFactory.getInstance))).vERTICAL_CENTER_FORM))
-            Control.Monad.void (GameCommandCanvas.update this)
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
-
-
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: GameCommandCanvas))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: GameCommandCanvas)) a1
-
-onEvent_impl :: GameCommandCanvas -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jio (EventStrings.getInstance))).pERFORMANCE_MESSAGE) this)
-        pure ()
-
-
-onDisplayChangeEvent :: (JavaObjectClass this_) => this_ -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent object_ a1 = jmethod object_ "onDisplayChangeEvent" (\() -> (onDisplayChangeEvent_impl (javaCast object_ :: GameCommandCanvas))) () a1
-
-onDisplayChangeEvent_super :: (JavaObjectClass this_) => this_ -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent_super object_ a1 = (onDisplayChangeEvent_impl (javaCast object_ :: GameCommandCanvas)) a1
-
-onDisplayChangeEvent_impl :: GameCommandCanvas -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent_impl this displayChangeEvent = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.commonStrings)).sTART)))) (jio (DisplayInfoSingleton.toString ((jio (DisplayInfoSingleton.getInstance)))))))))) this (jget ((jget (this).base.canvasStrings)).oN_DISPLAY_CHANGE_EVENT))
-        jset (this).myFontProcessor ((jget (this).updateMyFontProcessor))
-        pure ()
-
-
-initCommands :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands object_ a1 = jmethod object_ "initCommands" (\() -> (initCommands_impl (javaCast object_ :: GameCommandCanvas))) () a1
-
-initCommands_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands_super object_ a1 = (initCommands_impl (javaCast object_ :: GameCommandCanvas)) a1
-
-initCommands_impl :: GameCommandCanvas -> CommandListener.CommandListener -> IO (())
-initCommands_impl this cmdListener = do
-        Control.Monad.void (MyCanvas.removeAllCommands this)
-        Control.Monad.void (MyCanvas.addCommand this (jget ((jio (GameCommandsFactory.getInstance))).cLOSE_AND_SHOW_GAME_CANVAS))
-        Control.Monad.void (MyCanvas.setCommandListener this cmdListener)
-        pure ()
-
-
--- throws Exception
-initMenu :: (JavaObjectClass this_) => this_ -> IO (())
-initMenu object_ = jmethod object_ "initMenu" (\() -> (initMenu_impl (javaCast object_ :: GameCommandCanvas))) ()
-
-initMenu_super :: (JavaObjectClass this_) => this_ -> IO (())
-initMenu_super object_ = (initMenu_impl (javaCast object_ :: GameCommandCanvas))
-
-initMenu_impl :: GameCommandCanvas -> IO (())
-initMenu_impl this = do
-        form <- (GameCommandCanvas.createForm this)
-        jset (this).menuForm ((javaCast form :: PaintableForm.PaintableForm))
-        when (form /= (jio (ScrollSelectionFormNoneFactory.getInstance))) $ do
-            Control.Monad.void (GameCommandCanvas.setMenuInputProcessor this (javaCast (jio (ImmediateCommandFormInputProcessor.new_4 (javaCast (jio (BasicArrayListD.new_))) (Prelude.negate 1) this form))))
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: Paintable.Paintable) (FormPaintable.new_1 form))
-            jset (this).menuPaintable (assignedValue)
-        Control.Monad.void (RepaintBehavior.onChangeRepaint ((jget (this).repaintBehavior)) this)
-        pure ()
-
-
--- throws Exception
-createForm :: (JavaObjectClass this_) => this_ -> IO (ScrollSelectionForm.ScrollSelectionForm)
-createForm object_ = jmethod object_ "createForm" (\() -> (createForm_impl (javaCast object_ :: GameCommandCanvas))) ()
-
-createForm_super :: (JavaObjectClass this_) => this_ -> IO (ScrollSelectionForm.ScrollSelectionForm)
-createForm_super object_ = (createForm_impl (javaCast object_ :: GameCommandCanvas))
-
-createForm_impl :: GameCommandCanvas -> IO (ScrollSelectionForm.ScrollSelectionForm)
-createForm_impl this = do
-        items <- (CommandTextItemArrayFactory.getInstance ((jio (CommandTextItemArrayFactory.new_1 (jio (AllCommandsVisitor.new_))))) (jio (MyCanvas.getCommandStack this)) (jget (this).backgroundBasicColor) (jget (this).foregroundBasicColor))
-        rectangle <- (GameCommandCanvas.createRectangle this (jlength items))
-        (CommandCurrentSelectionFormFactory.getInstance (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) items rectangle (jget ((jio (FormTypeFactory.getInstance))).vERTICAL_CENTER_FORM) 15 False (jget (this).backgroundBasicColor) (jget (this).foregroundBasicColor))
-
-
-createRectangle :: (JavaObjectClass this_) => this_ -> Int -> IO (Rectangle.Rectangle)
-createRectangle object_ a1 = jmethod object_ "createRectangle" (\() -> (createRectangle_impl (javaCast object_ :: GameCommandCanvas))) () a1
-
-createRectangle_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Rectangle.Rectangle)
-createRectangle_super object_ a1 = (createRectangle_impl (javaCast object_ :: GameCommandCanvas)) a1
-
-createRectangle_impl :: GameCommandCanvas -> Int -> IO (Rectangle.Rectangle)
-createRectangle_impl this size = do
-        let height = (size * (jget (this).fontHeight))
-        let startY = (((((jio (getLastHeight ((jget (this).base.displayInfo)))) * 2) / 3)) - height)
-        pointFactory <- (PointFactory.getInstance)
-        rectangle <- (Rectangle.new_3 (jio (PointFactory.createXY pointFactory 30 startY)) ((jio (getLastWidth ((jget (this).base.displayInfo)))) - 30) startY)
-        pure (rectangle)
-
-
-open :: (JavaObjectClass this_) => this_ -> IO (())
-open object_ = jmethod object_ "open" (\() -> (open_impl (javaCast object_ :: GameCommandCanvas))) ()
-
-open_super :: (JavaObjectClass this_) => this_ -> IO (())
-open_super object_ = (open_impl (javaCast object_ :: GameCommandCanvas))
-
-open_impl :: GameCommandCanvas -> IO (())
-open_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this "open")
-        Control.Monad.void (BasicMotionGesturesHandler.addListenerInterface ((jio (BasicMotionGesturesHandler.getInstance))) (jio (GameCommandCanvas.getMenuInputProcessor this)))
-        Control.Monad.void (GameKeyEventHandler.addListener ((jio (GameKeyEventHandler.getInstance))) (jio (GameCommandCanvas.getMenuInputProcessor this)))
-        Control.Monad.void (DisplayChangeEventHandler.addListenerInterface ((jio (DisplayChangeEventHandler.getInstance))) this)
-        pure ()
-
-
--- throws Exception
-close :: (JavaObjectClass this_) => this_ -> IO (())
-close object_ = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: GameCommandCanvas))) ()
-
-close_super :: (JavaObjectClass this_) => this_ -> IO (())
-close_super object_ = (close_impl (javaCast object_ :: GameCommandCanvas))
-
-close_impl :: GameCommandCanvas -> IO (())
-close_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).cLOSE))
-        Control.Monad.void (BasicMotionGesturesHandler.removeListener ((jio (BasicMotionGesturesHandler.getInstance))) (jio (GameCommandCanvas.getMenuInputProcessor this)))
-        Control.Monad.void (GameKeyEventHandler.removeListener ((jio (GameKeyEventHandler.getInstance))) (jio (GameCommandCanvas.getMenuInputProcessor this)))
-        Control.Monad.void (DisplayChangeEventHandler.removeListener ((jio (DisplayChangeEventHandler.getInstance))) this)
-        pure ()
-
-
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: GameCommandCanvas))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: GameCommandCanvas))
-
-update_impl :: GameCommandCanvas -> IO (())
-update_impl this = do
-        Control.Monad.void (Processor.process ((jget (this).repaintProcessor)))
-        pure ()
-
-
-getSourceId :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSourceId object_ = jmethod object_ "getSourceId" (\() -> (getSourceId_impl (javaCast object_ :: GameCommandCanvas))) ()
-
-getSourceId_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSourceId_super object_ = (getSourceId_impl (javaCast object_ :: GameCommandCanvas))
-
-getSourceId_impl :: GameCommandCanvas -> IO (Int)
-getSourceId_impl this = do
-        pure (GameCommandCanvas.id)
-
-
-keyPressed :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyPressed object_ a1 = jmethod object_ "keyPressed" (\() -> (keyPressed_impl (javaCast object_ :: GameCommandCanvas))) () a1
-
-keyPressed_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyPressed_super object_ a1 = (keyPressed_impl (javaCast object_ :: GameCommandCanvas)) a1
-
-keyPressed_impl :: GameCommandCanvas -> Int -> IO (())
-keyPressed_impl this keyCode = do
-        Control.Monad.void (GameCommandCanvas.keyPressedByDevice this keyCode 0)
-        pure ()
-
-
-keyReleased :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyReleased object_ a1 = jmethod object_ "keyReleased" (\() -> (keyReleased_impl (javaCast object_ :: GameCommandCanvas))) () a1
-
-keyReleased_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyReleased_super object_ a1 = (keyReleased_impl (javaCast object_ :: GameCommandCanvas)) a1
-
-keyReleased_impl :: GameCommandCanvas -> Int -> IO (())
-keyReleased_impl this keyCode = do
-        Control.Monad.void (GameCommandCanvas.keyReleasedByDevice this keyCode 0)
-        pure ()
-
-
-keyRepeated :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyRepeated object_ a1 = jmethod object_ "keyRepeated" (\() -> (keyRepeated_impl (javaCast object_ :: GameCommandCanvas))) () a1
-
-keyRepeated_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyRepeated_super object_ a1 = (keyRepeated_impl (javaCast object_ :: GameCommandCanvas)) a1
-
-keyRepeated_impl :: GameCommandCanvas -> Int -> IO (())
-keyRepeated_impl this keyCode = do
-        Control.Monad.void (GameCommandCanvas.keyRepeatedByDevice this keyCode 0)
-        pure ()
-
-
-keyPressedByDevice :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyPressedByDevice object_ a1 a2 = jmethod object_ "keyPressedByDevice" (\() -> (keyPressedByDevice_impl (javaCast object_ :: GameCommandCanvas))) () a1 a2
-
-keyPressedByDevice_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyPressedByDevice_super object_ a1 a2 = (keyPressedByDevice_impl (javaCast object_ :: GameCommandCanvas)) a1 a2
-
-keyPressedByDevice_impl :: GameCommandCanvas -> Int -> Int -> IO (())
-keyPressedByDevice_impl this keyCode deviceId = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonSeps.getInstance))).sPACE)))) keyCode))))) this (jget ((jget (this).gameInputStrings)).kEY_PRESSED))
-        Control.Monad.void (GameCommandCanvas.addGameKeyEvent this keyCode 0 False)
-        pure ()
-
-
-keyReleasedByDevice :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyReleasedByDevice object_ a1 a2 = jmethod object_ "keyReleasedByDevice" (\() -> (keyReleasedByDevice_impl (javaCast object_ :: GameCommandCanvas))) () a1 a2
-
-keyReleasedByDevice_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyReleasedByDevice_super object_ a1 a2 = (keyReleasedByDevice_impl (javaCast object_ :: GameCommandCanvas)) a1 a2
-
-keyReleasedByDevice_impl :: GameCommandCanvas -> Int -> Int -> IO (())
-keyReleasedByDevice_impl this keyCode deviceId = do
-        Control.Monad.void (GameCommandCanvas.removeGameKeyEvent this keyCode deviceId False)
-        pure ()
-
-
-keyRepeatedByDevice :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyRepeatedByDevice object_ a1 a2 = jmethod object_ "keyRepeatedByDevice" (\() -> (keyRepeatedByDevice_impl (javaCast object_ :: GameCommandCanvas))) () a1 a2
-
-keyRepeatedByDevice_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyRepeatedByDevice_super object_ a1 a2 = (keyRepeatedByDevice_impl (javaCast object_ :: GameCommandCanvas)) a1 a2
-
-keyRepeatedByDevice_impl :: GameCommandCanvas -> Int -> Int -> IO (())
-keyRepeatedByDevice_impl this keyCode deviceId = do
-        when (jget (this).isSingleKeyRepeatableProcessing) $ do
-            Control.Monad.void (GameCommandCanvas.addGameKeyEvent this keyCode deviceId True)
-        pure ()
-
-
-addGameKeyEvent :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> IO (())
-addGameKeyEvent object_ a1 a2 a3 = jmethod object_ "addGameKeyEvent" (\() -> (addGameKeyEvent_impl (javaCast object_ :: GameCommandCanvas))) () a1 a2 a3
-
-addGameKeyEvent_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> IO (())
-addGameKeyEvent_super object_ a1 a2 a3 = (addGameKeyEvent_impl (javaCast object_ :: GameCommandCanvas)) a1 a2 a3
-
-addGameKeyEvent_impl :: GameCommandCanvas -> Int -> Int -> Bool -> IO (())
-addGameKeyEvent_impl this keyCode deviceId repeated = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) "Key Event Error" this (jget ((jget (this).gameInputStrings)).aDD_KEY_EVENT) e)
-            ) $ do
-            gameKey <- (InputToGameKeyMapping.getInstanceForCanvas ((jget (this).inputToGameKeyMapping)) this keyCode)
-            if (gameKey /= (jget ((jget (this).gameKeyFactory)).nONE)) then do
-                gameKeyEvent <- (GameKeyEventFactory.getInstanceForInput ((jget (this).gameKeyEventFactory)) this gameKey)
-                Control.Monad.void (DownGameKeyEventHandler.fireEvent ((jget (this).downGameKeyEventHandler)) gameKeyEvent)
-                Control.Monad.void (DownGameKeyEventHandler.fireEvent ((jio (DownGameKeyEventHandler.getInstanceForDevice ((jget (this).downGameKeyEventHandler)) deviceId))) gameKeyEvent)
-            else do
-                Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).gameInputStrings)).nO_KEY)))) keyCode))))) this (jget ((jget (this).gameInputStrings)).aDD_KEY_EVENT))
-        pure ()
-
-
-removeGameKeyEvent :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> IO (())
-removeGameKeyEvent object_ a1 a2 a3 = jmethod object_ "removeGameKeyEvent" (\() -> (removeGameKeyEvent_impl (javaCast object_ :: GameCommandCanvas))) () a1 a2 a3
-
-removeGameKeyEvent_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> IO (())
-removeGameKeyEvent_super object_ a1 a2 a3 = (removeGameKeyEvent_impl (javaCast object_ :: GameCommandCanvas)) a1 a2 a3
-
-removeGameKeyEvent_impl :: GameCommandCanvas -> Int -> Int -> Bool -> IO (())
-removeGameKeyEvent_impl this keyCode deviceId repeated = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) "Key Event Error" this (jget ((jget (this).gameInputStrings)).rEMOVE_KEY_EVENT) e)
-            ) $ do
-            gameKey <- (InputToGameKeyMapping.getInstanceForCanvas ((jget (this).inputToGameKeyMapping)) this keyCode)
-            if (gameKey /= (jget ((jget (this).gameKeyFactory)).nONE)) then do
-                gameKeyEvent <- (GameKeyEventFactory.getInstanceForInput ((jget (this).gameKeyEventFactory)) this gameKey)
-                Control.Monad.void (UpGameKeyEventHandler.fireEvent ((jget (this).upGameKeyEventHandler)) gameKeyEvent)
-                Control.Monad.void (UpGameKeyEventHandler.fireEvent ((jio (UpGameKeyEventHandler.getInstanceForDevice ((jget (this).upGameKeyEventHandler)) deviceId))) gameKeyEvent)
-            else do
-                Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).gameInputStrings)).nO_KEY)))) keyCode))))) this (jget ((jget (this).gameInputStrings)).rEMOVE_KEY_EVENT))
-        pure ()
-
-
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: GameCommandCanvas))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: GameCommandCanvas)) a1
-
-paint_impl :: GameCommandCanvas -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-        Control.Monad.void (Paintable.paint ((jget (this).menuPaintable)) graphics)
-        Control.Monad.void (RepaintBehavior.repaint ((jget (this).repaintBehavior)) this)
-        pure ()
-
-
-setMenuInputProcessor :: (JavaObjectClass this_) => this_ -> BasicMenuInputProcessor.BasicMenuInputProcessor -> IO (())
-setMenuInputProcessor object_ a1 = jmethod object_ "setMenuInputProcessor" (\() -> (setMenuInputProcessor_impl (javaCast object_ :: GameCommandCanvas))) () a1
-
-setMenuInputProcessor_super :: (JavaObjectClass this_) => this_ -> BasicMenuInputProcessor.BasicMenuInputProcessor -> IO (())
-setMenuInputProcessor_super object_ a1 = (setMenuInputProcessor_impl (javaCast object_ :: GameCommandCanvas)) a1
-
-setMenuInputProcessor_impl :: GameCommandCanvas -> BasicMenuInputProcessor.BasicMenuInputProcessor -> IO (())
-setMenuInputProcessor_impl this menuInputProcessor = do
-        jset (this).menuInputProcessor (menuInputProcessor)
-        pure ()
-
-
-getMenuInputProcessor :: (JavaObjectClass this_) => this_ -> IO (BasicMenuInputProcessor.BasicMenuInputProcessor)
-getMenuInputProcessor object_ = jmethod object_ "getMenuInputProcessor" (\() -> (getMenuInputProcessor_impl (javaCast object_ :: GameCommandCanvas))) ()
-
-getMenuInputProcessor_super :: (JavaObjectClass this_) => this_ -> IO (BasicMenuInputProcessor.BasicMenuInputProcessor)
-getMenuInputProcessor_super object_ = (getMenuInputProcessor_impl (javaCast object_ :: GameCommandCanvas))
-
-getMenuInputProcessor_impl :: GameCommandCanvas -> IO (BasicMenuInputProcessor.BasicMenuInputProcessor)
-getMenuInputProcessor_impl this = do
-        pure ((jget (this).menuInputProcessor))
-
+module Org.Allbinary.Game.Displayable.Canvas.GameCommandCanvas exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
+
+import JR
+import Org.Allbinary.Graphics.Form.Item.Validation.AllCommandsVisitor as AllCommandsVisitor
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Input.Motion.Gesture.Observer.BasicMotionGesturesHandler as BasicMotionGesturesHandler
+import Org.Allbinary.Graphics.Displayable.CanvasStrings as CanvasStrings
+import Org.Allbinary.Graphics.Form.CommandCurrentSelectionFormFactory as CommandCurrentSelectionFormFactory
+import Org.Allbinary.Graphics.Form.Item.CommandTextItemArrayFactory as CommandTextItemArrayFactory
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Graphics.Displayable.Event.DisplayChangeEventHandler as DisplayChangeEventHandler
+import Org.Allbinary.Graphics.Displayable.Event.DisplayChangeEventListener as DisplayChangeEventListener
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Game.Input.Event.DownGameKeyEventHandler as DownGameKeyEventHandler
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Graphics.Form.FormPaintable as FormPaintable
+import Org.Allbinary.Graphics.Form.FormTypeFactory as FormTypeFactory
+import Org.Allbinary.Game.Commands.GameCommandsFactory as GameCommandsFactory
+import Org.Allbinary.Game.Input.GameInputStrings as GameInputStrings
+import Org.Allbinary.Game.Input.Event.GameKeyEventFactory as GameKeyEventFactory
+import Org.Allbinary.Game.Input.Event.GameKeyEventHandler as GameKeyEventHandler
+import Org.Allbinary.Game.Input.GameKeyFactory as GameKeyFactory
+import Org.Allbinary.Game.Displayable.Canvas.ImmediateCommandFormInputProcessor as ImmediateCommandFormInputProcessor
+import Org.Allbinary.Game.Configuration.Feature.InputFeatureFactory as InputFeatureFactory
+import Org.Allbinary.Game.Displayable.Canvas.MenuListener as MenuListener
+import Org.Allbinary.Graphics.Displayable.MyCanvas as MyCanvas
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Game.Displayable.Canvas.NoMenuInputProcessor as NoMenuInputProcessor
+import Javax.Microedition.Lcdui.NullCommandListener as NullCommandListener
+import Org.Allbinary.Graphics.Paint.NullPaintable as NullPaintable
+import Org.Allbinary.Graphics.Form.PaintableForm as PaintableForm
+import Org.Allbinary.Game.Input.PlatformInputMappingFactory as PlatformInputMappingFactory
+import Org.Allbinary.Graphics.PointFactory as PointFactory
+import Org.Allbinary.Graphics.Rectangle as Rectangle
+import Org.Allbinary.Game.Displayable.RepaintBehavior as RepaintBehavior
+import Org.Allbinary.Graphics.Displayable.Screen.ScreenRepaintProcessorFactory as ScreenRepaintProcessorFactory
+import Org.Allbinary.Graphics.Form.ScrollSelectionFormNoneFactory as ScrollSelectionFormNoneFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Game.Input.Event.UpGameKeyEventHandler as UpGameKeyEventHandler
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
+
+
+jclass : String
+jclass =
+    "GameCommandCanvas"
+
+
+jchain : List String
+jchain =
+    [ "GameCommandCanvas" ]
+        ++ MyCanvas.jchain
+        ++ MenuListener.jchain
+        ++ DisplayChangeEventListener.jchain
+        ++ UpdateMyFontInterface.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    MyCanvas.jfields ++ [ ( "repaintProcessor", JR.defaultOf "" ), ( "gameInputStrings", JR.defaultOf "" ), ( "foregroundBasicColor", JR.defaultOf "" ), ( "backgroundBasicColor", JR.defaultOf "" ), ( "inputToGameKeyMapping", JR.defaultOf "" ), ( "gameKeyFactory", JR.defaultOf "" ), ( "gameKeyEventFactory", JR.defaultOf "" ), ( "downGameKeyEventHandler", JR.defaultOf "" ), ( "upGameKeyEventHandler", JR.defaultOf "" ), ( "repaintBehavior", JR.defaultOf "" ), ( "updateMyFontProcessor", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "foregroundColor", JR.defaultOf "I" ), ( "backgroundColor", JR.defaultOf "I" ), ( "menuInputProcessor", JR.defaultOf "" ), ( "menuPaintable", JR.defaultOf "" ), ( "menuForm", JR.defaultOf "" ), ( "isSingleKeyRepeatableProcessing", JR.defaultOf "Z" ), ( "fontHeight", JR.defaultOf "I" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "onEvent_1", jm_onEvent_1 )
+        , ( "onDisplayChangeEvent_1", jm_onDisplayChangeEvent_1 )
+        , ( "initCommands_1", jm_initCommands_1 )
+        , ( "initMenu_0", jm_initMenu_0 )
+        , ( "createForm_0", jm_createForm_0 )
+        , ( "createRectangle_1", jm_createRectangle_1 )
+        , ( "open_0", jm_open_0 )
+        , ( "close_0", jm_close_0 )
+        , ( "update_0", jm_update_0 )
+        , ( "getSourceId_0", jm_getSourceId_0 )
+        , ( "keyPressed_1", jm_keyPressed_1 )
+        , ( "keyReleased_1", jm_keyReleased_1 )
+        , ( "keyRepeated_1", jm_keyRepeated_1 )
+        , ( "keyPressedByDevice_2", jm_keyPressedByDevice_2 )
+        , ( "keyReleasedByDevice_2", jm_keyReleasedByDevice_2 )
+        , ( "keyRepeatedByDevice_2", jm_keyRepeatedByDevice_2 )
+        , ( "addGameKeyEvent_3", jm_addGameKeyEvent_3 )
+        , ( "removeGameKeyEvent_3", jm_removeGameKeyEvent_3 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "setMenuInputProcessor_1", jm_setMenuInputProcessor_1 )
+        , ( "getMenuInputProcessor_0", jm_getMenuInputProcessor_0 ) ]
+        MyCanvas.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameCommandCanvas"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_onDisplayChangeEvent_1", jm_onDisplayChangeEvent_1 ), ( "jm_initCommands_1", jm_initCommands_1 ), ( "jm_initMenu_0", jm_initMenu_0 ), ( "jm_createForm_0", jm_createForm_0 ), ( "jm_createRectangle_1", jm_createRectangle_1 ), ( "jm_open_0", jm_open_0 ), ( "jm_close_0", jm_close_0 ), ( "jm_update_0", jm_update_0 ), ( "jm_getSourceId_0", jm_getSourceId_0 ), ( "jm_keyPressed_1", jm_keyPressed_1 ), ( "jm_keyReleased_1", jm_keyReleased_1 ), ( "jm_keyRepeated_1", jm_keyRepeated_1 ), ( "jm_keyPressedByDevice_2", jm_keyPressedByDevice_2 ), ( "jm_keyReleasedByDevice_2", jm_keyReleasedByDevice_2 ), ( "jm_keyRepeatedByDevice_2", jm_keyRepeatedByDevice_2 ), ( "jm_addGameKeyEvent_3", jm_addGameKeyEvent_3 ), ( "jm_removeGameKeyEvent_3", jm_removeGameKeyEvent_3 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_setMenuInputProcessor_1", jm_setMenuInputProcessor_1 ), ( "jm_getMenuInputProcessor_0", jm_getMenuInputProcessor_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        [ ( "jstatic_id", jstatic_id ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_id : JR.M
+jstatic_id s =
+    JR.static "GameCommandCanvas" jclinit "id"
+        (JR.int 0)
+        s
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ), ( "name", "" ), ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect MyCanvas.jinit_2 JR.this [ (JR.local "name"), (JR.field "EMPTY_CHILD_NAME_LIST" (JR.callStatic CanvasStrings.jm_getInstance_0 [])) ]),
+                JR.exec (JR.setField "repaintProcessor" "" JR.this (JR.invoke "create_1" (JR.callStatic ScreenRepaintProcessorFactory.jm_getInstance_0 []) [ JR.this ])),
+                JR.exec (JR.setField "gameInputStrings" "" JR.this (JR.callStatic GameInputStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "inputToGameKeyMapping" "" JR.this (JR.invoke "getInputMapping_0" (JR.invoke "getPersistentInputMappingInstance_0" (JR.callStatic PlatformInputMappingFactory.jm_getInstance_0 []) []) [])),
+                JR.exec (JR.setField "gameKeyFactory" "" JR.this (JR.callStatic GameKeyFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameKeyEventFactory" "" JR.this (JR.callStatic GameKeyEventFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "downGameKeyEventHandler" "" JR.this (JR.callStatic DownGameKeyEventHandler.jm_getInstance_0 [])),
+                JR.exec (JR.setField "upGameKeyEventHandler" "" JR.this (JR.callStatic UpGameKeyEventHandler.jm_getInstance_0 [])),
+                JR.exec (JR.setField "updateMyFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")),
+                JR.exec (JR.setField "menuInputProcessor" "" JR.this (JR.callStatic NoMenuInputProcessor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "menuPaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "menuForm" "" JR.this (JR.callStatic PaintableForm.jm_getNullPaintableForm_0 [])),
+                JR.exec (JR.setField "isSingleKeyRepeatableProcessing" "Z" JR.this (JR.invoke "isFeature_1" (JR.callStatic Features.jm_getInstance_0 []) [ (JR.field "SINGLE_KEY_REPEAT_PRESS" (JR.callStatic InputFeatureFactory.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "fontHeight" "I" JR.this (JR.int 0)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "repaintBehavior" "" JR.this (JR.callStatic RepaintBehavior.jm_getInstance_0 [])), 
+                    JR.exec (JR.setField "foregroundBasicColor" "" JR.this (JR.local "foregroundBasicColor")), 
+                    JR.exec (JR.setField "backgroundBasicColor" "" JR.this (JR.local "backgroundBasicColor")), 
+                    JR.exec (JR.setField "foregroundColor" "I" JR.this (JR.invoke "intValue_0" (JR.thisField "foregroundBasicColor") [])), 
+                    JR.exec (JR.setField "backgroundColor" "I" JR.this (JR.invoke "intValue_0" (JR.thisField "backgroundBasicColor") [])), 
+                    JR.exec (JR.invoke "initCommands_1" JR.this [ (JR.local "cmdListener") ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "cmdListener") NullCommandListener.jstatic_NULL_COMMAND_LISTENER) (JR.run [ 
+                        JR.try (JR.run [ 
+                            JR.exec (JR.invoke "initMenu_0" JR.this []), 
+                            JR.exec (JR.invoke "process_0" (JR.thisField "repaintProcessor") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                            JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ]) ) ] identity ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START" (JR.thisField "commonStrings")) ]) [ (JR.field "FD_WIDTH" (JR.thisField "canvasStrings")) ]) [ (JR.callStatic MyFontProcessor.jm_defaultCharWidth_1 [ (JR.local "font") ]) ]) [ (JR.field "FD_HEIGHT" (JR.thisField "canvasStrings")) ]) [ (JR.invoke "getHeight_0" (JR.local "font") []) ]) []), JR.this, (JR.field "UPDATE_MEASUREMENT" (JR.thisField "canvasStrings")) ]), 
+                        JR.exec (JR.setField "fontHeight" "I" JR.this (JR.invoke "getHeight_0" (JR.local "font") [])), 
+                        JR.declare "rectangle" "" (JR.invoke "createRectangle_1" JR.this [ (JR.invoke "size_0" (JR.thisField "menuForm") []) ]), 
+                        JR.exec (JR.invoke "init_2" (JR.thisField "menuForm") [ (JR.local "rectangle"), (JR.field "VERTICAL_CENTER_FORM" (JR.callStatic FormTypeFactory.jm_getInstance_0 [])) ]), 
+                        JR.exec (JR.invoke "update_0" JR.this []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "ON_DISPLAY_CHANGE_EVENT" (JR.thisField "canvasStrings")), (JR.local "e") ]) ]) ) ] identity, 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "PERFORMANCE_MESSAGE" (JR.callStatic EventStrings.jm_getInstance_0 [])), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onDisplayChangeEvent_1 : JR.Method
+jm_onDisplayChangeEvent_1 jheap jthis jargs =
+    JR.method [ ( "displayChangeEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START" (JR.thisField "commonStrings")) ]) [ (JR.invoke "toString_0" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []) []) ]) []), JR.this, (JR.field "ON_DISPLAY_CHANGE_EVENT" (JR.thisField "canvasStrings")) ]), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initCommands_1 : JR.Method
+jm_initCommands_1 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeAllCommands_0" JR.this []), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "CLOSE_AND_SHOW_GAME_CANVAS" (JR.callStatic GameCommandsFactory.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "setCommandListener_1" JR.this [ (JR.local "cmdListener") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initMenu_0 : JR.Method
+jm_initMenu_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "form" "" (JR.invoke "createForm_0" JR.this []), 
+                    JR.exec (JR.setField "menuForm" "" JR.this (JR.local "form")), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "form") (JR.callStatic ScrollSelectionFormNoneFactory.jm_getInstance_0 [])) (JR.run [ 
+                        JR.exec (JR.invoke "setMenuInputProcessor_1" JR.this [ (JR.new ImmediateCommandFormInputProcessor.jnew_4 [ (JR.new BasicArrayListD.jnew_0 []), (JR.map JR.neg (JR.int 1)), JR.this, (JR.local "form") ]) ]), 
+                        JR.exec (JR.setField "menuPaintable" "" JR.this (JR.new FormPaintable.jnew_1 [ (JR.local "form") ])) ]) identity, 
+                    JR.exec (JR.invoke "onChangeRepaint_1" (JR.thisField "repaintBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createForm_0 : JR.Method
+jm_createForm_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "items" "" (JR.invoke "getInstance_3" (JR.new CommandTextItemArrayFactory.jnew_1 [ (JR.new AllCommandsVisitor.jnew_0 []) ]) [ (JR.invoke "getCommandStack_0" JR.this []), (JR.thisField "backgroundBasicColor"), (JR.thisField "foregroundBasicColor") ]), 
+                    JR.declare "rectangle" "" (JR.invoke "createRectangle_1" JR.this [ (JR.alength (JR.local "items")) ]), 
+                    JR.return (JR.callStatic CommandCurrentSelectionFormFactory.jm_getInstance_8 [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.local "items"), (JR.local "rectangle"), (JR.field "VERTICAL_CENTER_FORM" (JR.callStatic FormTypeFactory.jm_getInstance_0 [])), (JR.int 15), (JR.bool False), (JR.thisField "backgroundBasicColor"), (JR.thisField "foregroundBasicColor") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createRectangle_1 : JR.Method
+jm_createRectangle_1 jheap jthis jargs =
+    JR.method [ ( "size", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "height" "I" (JR.map2 JR.mul (JR.local "size") (JR.thisField "fontHeight")), 
+                    JR.declare "startY" "I" (JR.map2 JR.sub ((JR.map2 JR.div (JR.map2 JR.mul (JR.invoke "getLastHeight_0" (JR.thisField "displayInfo") []) (JR.int 2)) (JR.int 3))) (JR.local "height")), 
+                    JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
+                    JR.declare "rectangle" "" (JR.new Rectangle.jnew_3 [ (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.int 30), (JR.local "startY") ]), (JR.map2 JR.sub (JR.invoke "getLastWidth_0" (JR.thisField "displayInfo") []) (JR.int 30)), (JR.local "startY") ]), 
+                    JR.return (JR.local "rectangle") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_open_0 : JR.Method
+jm_open_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.str "open") ]), 
+                    JR.exec (JR.invoke "addListenerInterface_1" (JR.callStatic BasicMotionGesturesHandler.jm_getInstance_0 []) [ (JR.invoke "getMenuInputProcessor_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "addListener_1" (JR.callStatic GameKeyEventHandler.jm_getInstance_0 []) [ (JR.invoke "getMenuInputProcessor_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "addListenerInterface_1" (JR.callStatic DisplayChangeEventHandler.jm_getInstance_0 []) [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_close_0 : JR.Method
+jm_close_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CLOSE" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.invoke "removeListener_1" (JR.callStatic BasicMotionGesturesHandler.jm_getInstance_0 []) [ (JR.invoke "getMenuInputProcessor_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "removeListener_1" (JR.callStatic GameKeyEventHandler.jm_getInstance_0 []) [ (JR.invoke "getMenuInputProcessor_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "removeListener_1" (JR.callStatic DisplayChangeEventHandler.jm_getInstance_0 []) [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_0" (JR.thisField "repaintProcessor") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSourceId_0 : JR.Method
+jm_getSourceId_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return jstatic_id ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyPressed_1 : JR.Method
+jm_keyPressed_1 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "keyPressedByDevice_2" JR.this [ (JR.local "keyCode"), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyReleased_1 : JR.Method
+jm_keyReleased_1 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "keyReleasedByDevice_2" JR.this [ (JR.local "keyCode"), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyRepeated_1 : JR.Method
+jm_keyRepeated_1 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "keyRepeatedByDevice_2" JR.this [ (JR.local "keyCode"), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyPressedByDevice_2 : JR.Method
+jm_keyPressedByDevice_2 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.local "keyCode") ]) []), JR.this, (JR.field "KEY_PRESSED" (JR.thisField "gameInputStrings")) ]), 
+                    JR.exec (JR.invoke "addGameKeyEvent_3" JR.this [ (JR.local "keyCode"), (JR.int 0), (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyReleasedByDevice_2 : JR.Method
+jm_keyReleasedByDevice_2 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeGameKeyEvent_3" JR.this [ (JR.local "keyCode"), (JR.local "deviceId"), (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyRepeatedByDevice_2 : JR.Method
+jm_keyRepeatedByDevice_2 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.thisField "isSingleKeyRepeatableProcessing") (JR.run [ 
+                        JR.exec (JR.invoke "addGameKeyEvent_3" JR.this [ (JR.local "keyCode"), (JR.local "deviceId"), (JR.bool True) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addGameKeyEvent_3 : JR.Method
+jm_addGameKeyEvent_3 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ), ( "repeated", "Z" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "gameKey" "" (JR.invoke "getInstanceForCanvas_2" (JR.thisField "inputToGameKeyMapping") [ JR.this, (JR.local "keyCode") ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "gameKey") (JR.field "NONE" (JR.thisField "gameKeyFactory"))) (JR.run [ 
+                            JR.declare "gameKeyEvent" "" (JR.invoke "getInstanceForInput_2" (JR.thisField "gameKeyEventFactory") [ JR.this, (JR.local "gameKey") ]), 
+                            JR.exec (JR.invoke "fireEvent_1" (JR.thisField "downGameKeyEventHandler") [ (JR.local "gameKeyEvent") ]), 
+                            JR.exec (JR.invoke "fireEvent_1" (JR.invoke "getInstanceForDevice_1" (JR.thisField "downGameKeyEventHandler") [ (JR.local "deviceId") ]) [ (JR.local "gameKeyEvent") ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "NO_KEY" (JR.thisField "gameInputStrings")) ]) [ (JR.local "keyCode") ]) []), JR.this, (JR.field "ADD_KEY_EVENT" (JR.thisField "gameInputStrings")) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Key Event Error"), JR.this, (JR.field "ADD_KEY_EVENT" (JR.thisField "gameInputStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeGameKeyEvent_3 : JR.Method
+jm_removeGameKeyEvent_3 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ), ( "repeated", "Z" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "gameKey" "" (JR.invoke "getInstanceForCanvas_2" (JR.thisField "inputToGameKeyMapping") [ JR.this, (JR.local "keyCode") ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "gameKey") (JR.field "NONE" (JR.thisField "gameKeyFactory"))) (JR.run [ 
+                            JR.declare "gameKeyEvent" "" (JR.invoke "getInstanceForInput_2" (JR.thisField "gameKeyEventFactory") [ JR.this, (JR.local "gameKey") ]), 
+                            JR.exec (JR.invoke "fireEvent_1" (JR.thisField "upGameKeyEventHandler") [ (JR.local "gameKeyEvent") ]), 
+                            JR.exec (JR.invoke "fireEvent_1" (JR.invoke "getInstanceForDevice_1" (JR.thisField "upGameKeyEventHandler") [ (JR.local "deviceId") ]) [ (JR.local "gameKeyEvent") ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "NO_KEY" (JR.thisField "gameInputStrings")) ]) [ (JR.local "keyCode") ]) []), JR.this, (JR.field "REMOVE_KEY_EVENT" (JR.thisField "gameInputStrings")) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Key Event Error"), JR.this, (JR.field "REMOVE_KEY_EVENT" (JR.thisField "gameInputStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "menuPaintable") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "repaint_1" (JR.thisField "repaintBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMenuInputProcessor_1 : JR.Method
+jm_setMenuInputProcessor_1 jheap jthis jargs =
+    JR.method [ ( "menuInputProcessor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "menuInputProcessor" "" JR.this (JR.local "menuInputProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMenuInputProcessor_0 : JR.Method
+jm_getMenuInputProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "menuInputProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

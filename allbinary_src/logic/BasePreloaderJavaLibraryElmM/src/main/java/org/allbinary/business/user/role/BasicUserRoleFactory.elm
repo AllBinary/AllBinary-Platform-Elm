@@ -1,10 +1,10 @@
-module BasicUserRoleFactory exposing (..)
+module Org.Allbinary.Business.User.Role.BasicUserRoleFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.business.user.role
 -}
 
 import JR
-import BasicUserRole
+import Org.Allbinary.Business.User.Role.BasicUserRole as BasicUserRole
 
 
 jclass : String

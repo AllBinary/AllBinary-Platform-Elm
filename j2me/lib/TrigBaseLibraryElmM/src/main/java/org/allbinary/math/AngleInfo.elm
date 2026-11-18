@@ -1,14 +1,14 @@
-module AngleInfo exposing (..)
+module Org.Allbinary.Math.AngleInfo exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.math
 -}
 
 import JR
-import AngleIncrementInfoFactory
-import CommonSeps
-import FrameUtil
-import StringMaker
-import StringUtil
+import Org.Allbinary.Math.AngleIncrementInfoFactory as AngleIncrementInfoFactory
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Math.FrameUtil as FrameUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
 jclass : String

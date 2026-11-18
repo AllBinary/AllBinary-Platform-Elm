@@ -1,125 +1,124 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.crypt
-module DatabaseEncoder where
+module Org.Allbinary.Logic.System.Security.Crypt.DatabaseEncoder exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified Tokenizer -- org.allbinary.logic.string.tokens.Tokenizer
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.crypt
+-}
 
-data DatabaseEncoder = DatabaseEncoder
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull DatabaseEncoder where
-    javaNull = javaNullRecord "DatabaseEncoder"
-
-instance JavaEquals DatabaseEncoder where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DatabaseEncoder where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DatabaseEncoder where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DatabaseEncoder
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = DatabaseEncoder header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: DatabaseEncoder -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO DatabaseEncoder
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DatabaseEncoder -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JByte
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Logic.String.Tokens.Tokenizer as Tokenizer
 
 
-encode :: JavaArray (Int8) -> IO (String)
-encode value = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (PreLogUtil.putOE (jget (commonStrings).eXCEPTION) "DatabaseEncoder" "decode" e)
-            pure ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-            ) $ do
-            let array = value
-            stringBuffer <- (StringMaker.new_)
-            forM_ [0 .. (jlength array) - 1] $ \index -> javaIteration (pure ()) $ do
-                Control.Monad.void (StringMaker.append stringBuffer (javaToString (Prelude.fromIntegral ((jindex array (index))) :: Int8)))
-                when (index < ((jlength array) - 1)) $ do
-                    Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-            (StringMaker.toString stringBuffer)
+jclass : String
+jclass =
+    "DatabaseEncoder"
 
 
-decode :: String -> IO (JavaArray (Int8))
-decode value = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (PreLogUtil.putSE (jget (commonStrings).eXCEPTION) "DatabaseEncoder" "decode" e)
-            pure ((jget ((jio (NullUtil.getInstance))).nULL_BYTE_ARRAY))
-            ) $ do
-            tokenizer <- (Tokenizer.new_1 (jget ((jio (CommonSeps.getInstance))).sPACE))
-            vector <- (Tokenizer.getTokensFromString tokenizer value (jio (BasicArrayListD.new_)))
-            size <- (BasicArrayList.size vector)
-            let decode = (jnewArray (size) 0)
-            byteOfData <- newIORef ("")
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                jset byteOfData ((javaCast (jindex ((jget (vector).objectArray)) (index)) :: String))
-                assignedValue <- (jparseByte (jget byteOfData))
-                jsetIndex decode (index) (assignedValue)
-            pure (decode)
+jchain : List String
+jchain =
+    [ "DatabaseEncoder" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "encode_1", jm_encode_1 )
+        , ( "decode_1", jm_decode_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DatabaseEncoder"
+        [ ( "jm_encode_1", jm_encode_1 ), ( "jm_decode_1", jm_decode_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_encode_1 : JR.Method
+jm_encode_1 jheap jthis jargs =
+    JR.method [ ( "value", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "array" "" (JR.local "value"), 
+                        JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "array"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67300 -> (JR.setLocal "index" "I" (JR.lit jwN67300))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.cast "B" (JR.aget (JR.local "array") (JR.local "index"))) []) ]), 
+                            JR.ifElse (JR.map2 JR.less (JR.local "index") (JR.map2 JR.sub (JR.alength (JR.local "array")) (JR.int 1))) (JR.run [ 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) ]) identity ]) ], 
+                        JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.field "EXCEPTION" (JR.local "commonStrings")), (JR.str "DatabaseEncoder"), (JR.str "decode"), (JR.local "e") ]), 
+                        JR.return (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_decode_1 : JR.Method
+jm_decode_1 jheap jthis jargs =
+    JR.method [ ( "value", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "tokenizer" "" (JR.new Tokenizer.jnew_1 [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                        JR.declare "vector" "" (JR.invoke "getTokensFromString_2" (JR.local "tokenizer") [ (JR.local "value"), (JR.new BasicArrayListD.jnew_0 []) ]), 
+                        JR.declare "size" "I" (JR.invoke "size_0" (JR.local "vector") []), 
+                        JR.declare "decode" "" (JR.newArray "B" [ (JR.local "size") ]), 
+                        JR.declare "byteOfData" "" (JR.lit (JR.defaultOf "")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68026 -> (JR.setLocal "index" "I" (JR.lit jwN68026))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "byteOfData" "" (JR.aget (JR.field "objectArray" (JR.local "vector")) (JR.local "index"))), 
+                            JR.exec (JR.andThen (JR.local "decode") (\jaN67922 -> JR.andThen (JR.local "index") (\jiN67922 -> (JR.aset (JR.lit jaN67922) (JR.lit jiN67922) (JR.callStatic JByte.jm_parseByte_1 [ (JR.local "byteOfData") ]))))) ]) ], 
+                        JR.return (JR.local "decode") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_putSE_4 [ (JR.field "EXCEPTION" (JR.local "commonStrings")), (JR.str "DatabaseEncoder"), (JR.str "decode"), (JR.local "e") ]), 
+                        JR.return (JR.field "NULL_BYTE_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 [])) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

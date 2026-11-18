@@ -1,202 +1,174 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module HighScore where
+module Org.Allbinary.Game.Score.HighScore exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ByteArrayOutputStream -- java.io.ByteArrayOutputStream
-import qualified DataOutputStream -- java.io.DataOutputStream
-import qualified GameInfo -- org.allbinary.game.GameInfo
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
-data HighScore = HighScore
-    { header_ :: JavaHeader
-    , id :: IORef (Int)
-    , name :: IORef (String)
-    , gameInfo :: IORef (GameInfo.GameInfo)
-    , score :: IORef (Int64)
-    , scoreString :: IORef (String)
-    }
-
-instance JavaNull HighScore where
-    javaNull = javaNullRecord "HighScore"
-
-instance JavaEquals HighScore where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScore where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScore where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HighScore
-newRecord_ = do
-    header_ <- newJavaHeader
-    id <- newIORef 0
-    name <- newIORef ""
-    gameInfo <- newIORef javaNull
-    score <- newIORef 0
-    scoreString <- newIORef ""
-    let this = HighScore header_ id name gameInfo score scoreString
-    jregisterLevel header_ this
-    jregisterMethod header_ "getId" (\() -> getId_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "getScore" (\() -> getScore_impl this)
-    jregisterMethod header_ "getAsBytes" (\() -> getAsBytes_impl this)
-    jregisterMethod header_ "getGameInfo" (\() -> getGameInfo_impl this)
-    jregisterMethod header_ "getScoreString" (\() -> getScoreString_impl this)
-    jregisterMethod header_ "setName" (\() -> setName_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: HighScore -> IO ()
-initFields_ this = do
-    jset this.id (0)
-    jset this.name (javaNull)
-    jset this.gameInfo (javaNull)
-    jset this.score (0)
-    jset this.scoreString (javaNull)
-    pure ()
-
-new_4 :: Int -> String -> GameInfo.GameInfo -> Int64 -> IO HighScore
-new_4 id name gameInfo score = do
-    this <- newRecord_
-    init_4 this id name gameInfo score
-    pure this
-
-init_4 :: HighScore -> Int -> String -> GameInfo.GameInfo -> Int64 -> IO ()
-init_4 this id name gameInfo score = do
-        initFields_ this
-        jset (this).id (id)
-        jset (this).name (name)
-        jset (this).gameInfo (gameInfo)
-        jset (this).score (score)
-        jset (this).scoreString ((javaToString (jget (this).score)))
-        pure ()
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import JByteArrayOutputStream
+import JDataOutputStream
+import JLong
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getId :: (JavaObjectClass this_) => this_ -> IO (Int)
-getId object_ = jmethod object_ "getId" (\() -> (getId_impl (javaCast object_ :: HighScore))) ()
-
-getId_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getId_super object_ = (getId_impl (javaCast object_ :: HighScore))
-
-getId_impl :: HighScore -> IO (Int)
-getId_impl this = do
-        pure ((jget (this).id))
+jclass : String
+jclass =
+    "HighScore"
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: HighScore))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: HighScore))
-
-getName_impl :: HighScore -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jchain : List String
+jchain =
+    [ "HighScore" ]
 
 
-getScore :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getScore object_ = jmethod object_ "getScore" (\() -> (getScore_impl (javaCast object_ :: HighScore))) ()
-
-getScore_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getScore_super object_ = (getScore_impl (javaCast object_ :: HighScore))
-
-getScore_impl :: HighScore -> IO (Int64)
-getScore_impl this = do
-        pure ((jget (this).score))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "id", JR.defaultOf "I" ), ( "name", JR.defaultOf "" ), ( "gameInfo", JR.defaultOf "" ), ( "score", JR.defaultOf "J" ), ( "scoreString", JR.defaultOf "" ) ]
 
 
--- throws Exception
-getAsBytes :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int8))
-getAsBytes object_ = jmethod object_ "getAsBytes" (\() -> (getAsBytes_impl (javaCast object_ :: HighScore))) ()
-
-getAsBytes_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int8))
-getAsBytes_super object_ = (getAsBytes_impl (javaCast object_ :: HighScore))
-
-getAsBytes_impl :: HighScore -> IO (JavaArray (Int8))
-getAsBytes_impl this = do
-        byteArrayOutputStream <- (ByteArrayOutputStream.new_)
-        outputStream <- (DataOutputStream.new_1 byteArrayOutputStream)
-        Control.Monad.void (DataOutputStream.writeUTF outputStream (jio (HighScore.getName this)))
-        Control.Monad.void (DataOutputStream.writeLong outputStream (jio (HighScore.getScore this)))
-        (ByteArrayOutputStream.toByteArray byteArrayOutputStream)
+jvtable =
+    JR.vtable
+        [ ( "getId_0", jm_getId_0 )
+        , ( "getName_0", jm_getName_0 )
+        , ( "getScore_0", jm_getScore_0 )
+        , ( "getAsBytes_0", jm_getAsBytes_0 )
+        , ( "getGameInfo_0", jm_getGameInfo_0 )
+        , ( "getScoreString_0", jm_getScoreString_0 )
+        , ( "setName_1", jm_setName_1 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
 
-getGameInfo :: (JavaObjectClass this_) => this_ -> IO (GameInfo.GameInfo)
-getGameInfo object_ = jmethod object_ "getGameInfo" (\() -> (getGameInfo_impl (javaCast object_ :: HighScore))) ()
-
-getGameInfo_super :: (JavaObjectClass this_) => this_ -> IO (GameInfo.GameInfo)
-getGameInfo_super object_ = (getGameInfo_impl (javaCast object_ :: HighScore))
-
-getGameInfo_impl :: HighScore -> IO (GameInfo.GameInfo)
-getGameInfo_impl this = do
-        pure ((jget (this).gameInfo))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScore"
+        [ ( "jm_getId_0", jm_getId_0 ), ( "jm_getName_0", jm_getName_0 ), ( "jm_getScore_0", jm_getScore_0 ), ( "jm_getAsBytes_0", jm_getAsBytes_0 ), ( "jm_getGameInfo_0", jm_getGameInfo_0 ), ( "jm_getScoreString_0", jm_getScoreString_0 ), ( "jm_setName_1", jm_setName_1 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
 
 
-getScoreString :: (JavaObjectClass this_) => this_ -> IO (String)
-getScoreString object_ = jmethod object_ "getScoreString" (\() -> (getScoreString_impl (javaCast object_ :: HighScore))) ()
-
-getScoreString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getScoreString_super object_ = (getScoreString_impl (javaCast object_ :: HighScore))
-
-getScoreString_impl :: HighScore -> IO (String)
-getScoreString_impl this = do
-        pure ((jget (this).scoreString))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setName :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName object_ a1 = jmethod object_ "setName" (\() -> (setName_impl (javaCast object_ :: HighScore))) () a1
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "id", "I" ), ( "name", "" ), ( "gameInfo", "" ), ( "score", "J" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "id" "I" JR.this (JR.local "id")), 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "name")), 
+                    JR.exec (JR.setField "gameInfo" "" JR.this (JR.local "gameInfo")), 
+                    JR.exec (JR.setField "score" "J" JR.this (JR.local "score")), 
+                    JR.exec (JR.setField "scoreString" "" JR.this (JR.callStatic JLong.jm_toString_1 [ (JR.thisField "score") ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setName_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName_super object_ a1 = (setName_impl (javaCast object_ :: HighScore)) a1
 
-setName_impl :: HighScore -> String -> IO (())
-setName_impl this name = do
-        jset (this).name (name)
-        pure ()
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: HighScore))) ()
+jm_getId_0 : JR.Method
+jm_getId_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "id") ])
+        (jregister jheap)
+        jthis
+        jargs
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: HighScore))
 
-toString_impl :: HighScore -> IO (String)
-toString_impl this = do
-        commonSeps <- (CommonSeps.getInstance)
-        (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.appendlong ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (this).name)))) (jget (commonSeps).cOLON)))) (jget (this).score)))) (jget (commonSeps).fORWARD_SLASH)))) (jget (this).scoreString)))))
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_getScore_0 : JR.Method
+jm_getScore_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.thisField "score") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAsBytes_0 : JR.Method
+jm_getAsBytes_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "byteArrayOutputStream" "" (JR.new JByteArrayOutputStream.jnew_0 []), 
+                    JR.declare "outputStream" "" (JR.new JDataOutputStream.jnew_1 [ (JR.local "byteArrayOutputStream") ]), 
+                    JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.invoke "getName_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "writeLong_1" (JR.local "outputStream") [ (JR.invoke "getScore_0" JR.this []) ]), 
+                    JR.return (JR.invoke "toByteArray_0" (JR.local "byteArrayOutputStream") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameInfo_0 : JR.Method
+jm_getGameInfo_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameInfo") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getScoreString_0 : JR.Method
+jm_getScoreString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "scoreString") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setName_1 : JR.Method
+jm_setName_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "name")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                    JR.return (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "appendlong_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "name") ]) [ (JR.field "COLON" (JR.local "commonSeps")) ]) [ (JR.thisField "score") ]) [ (JR.field "FORWARD_SLASH" (JR.local "commonSeps")) ]) [ (JR.thisField "scoreString") ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

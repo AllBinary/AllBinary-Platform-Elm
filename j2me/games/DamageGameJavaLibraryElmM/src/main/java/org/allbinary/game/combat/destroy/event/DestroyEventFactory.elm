@@ -1,102 +1,86 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.destroy.event
-module DestroyEventFactory where
+module Org.Allbinary.Game.Combat.Destroy.Event.DestroyEventFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DestroyedEvent -- same package or java.lang
-import qualified AllBinaryGameCanvas -- org.allbinary.game.displayable.canvas.AllBinaryGameCanvas
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified AllBinaryEventObjectFactoryInterface -- org.allbinary.logic.util.event.AllBinaryEventObjectFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.combat.destroy.event
+-}
 
--- implements AllBinaryEventObjectFactoryInterface
-data DestroyEventFactory = DestroyEventFactory
-    { header_ :: JavaHeader
-    , combatGameCanvas :: IORef (AllBinaryGameCanvas.AllBinaryGameCanvas)
-    }
-
-instance JavaNull DestroyEventFactory where
-    javaNull = javaNullRecord "DestroyEventFactory"
-
-instance JavaEquals DestroyEventFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DestroyEventFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DestroyEventFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DestroyEventFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    combatGameCanvas <- newIORef javaNull
-    let this = DestroyEventFactory header_ combatGameCanvas
-    jregisterLevel header_ this
-    AllBinaryEventObjectFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    pure this
-
-initFields_ :: DestroyEventFactory -> IO ()
-initFields_ this = do
-    jset this.combatGameCanvas (javaNull)
-    pure ()
-
-new_1 :: AllBinaryGameCanvas.AllBinaryGameCanvas -> IO DestroyEventFactory
-new_1 combatGameCanvas = do
-    this <- newRecord_
-    init_1 this combatGameCanvas
-    pure this
-
-init_1 :: DestroyEventFactory -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO ()
-init_1 this combatGameCanvas = do
-        initFields_ this
-        jset (this).combatGameCanvas (combatGameCanvas)
-        pure ()
+import JR
+import Org.Allbinary.Logic.Util.Event.AllBinaryEventObjectFactoryInterface as AllBinaryEventObjectFactoryInterface
+import Org.Allbinary.Game.Combat.Destroy.Event.DestroyedEvent as DestroyedEvent
 
 
-getInstance :: (JavaObjectClass this_) => this_ -> IO (AllBinaryEventObject.AllBinaryEventObject)
-getInstance object_ = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: DestroyEventFactory))) ()
+jclass : String
+jclass =
+    "DestroyEventFactory"
 
-getInstance_super :: (JavaObjectClass this_) => this_ -> IO (AllBinaryEventObject.AllBinaryEventObject)
-getInstance_super object_ = (getInstance_impl (javaCast object_ :: DestroyEventFactory))
 
-getInstance_impl :: DestroyEventFactory -> IO (AllBinaryEventObject.AllBinaryEventObject)
-getInstance_impl this = do
-        (fmap (\value_ -> javaCast value_ :: AllBinaryEventObject.AllBinaryEventObject) (DestroyedEvent.new_1 (jget (this).combatGameCanvas)))
+jchain : List String
+jchain =
+    [ "DestroyEventFactory" ]
+        ++ AllBinaryEventObjectFactoryInterface.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "combatGameCanvas", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DestroyEventFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "combatGameCanvas", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "combatGameCanvas" "" JR.this (JR.local "combatGameCanvas")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.new DestroyedEvent.jnew_1 [ (JR.thisField "combatGameCanvas") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

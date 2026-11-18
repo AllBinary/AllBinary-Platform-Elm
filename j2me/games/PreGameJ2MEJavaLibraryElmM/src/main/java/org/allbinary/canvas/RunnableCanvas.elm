@@ -1,495 +1,391 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
-module RunnableCanvas (module RunnableCanvas, module MyCanvas) where
-
-import MyCanvas hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, initCommands, initCommands_super, initCommands_impl, isMainCanvas, isMainCanvas_super, isMainCanvas_impl, setThread, setThread_super, setThread_impl, setRunning, setRunning_super, setRunning_impl, isRunning, isRunning_super, isRunning_impl, getLoopTimeHelperP, getLoopTimeHelperP_super, getLoopTimeHelperP_impl, setWait, setWait_super, setWait_impl, getWait, getWait_super, getWait_impl, setCurrentThread, setCurrentThread_super, setCurrentThread_impl, setCurrentThreadFake, setCurrentThreadFake_super, setCurrentThreadFake_impl, showNotify, showNotify_super, showNotify_impl, stopWaiting, stopWaiting_super, stopWaiting_impl, waitOnNotify, waitOnNotify_super, waitOnNotify_impl, processSleep, processSleep_super, processSleep_impl, isPausable, isPausable_super, isPausable_impl, processGameSleep, processGameSleep_super, processGameSleep_impl, processLoopSleep, processLoopSleep_super, processLoopSleep_impl, isSingleThread, isSingleThread_super, isSingleThread_impl, run, run_super, run_impl, end2, end2_super, end2_impl, getType, getType_super, getType_impl, nullUtil, stdUtil, systemWrapper, tsUtil, thread, currentThread, running, loopTimeHelper, runnableCanvasRefreshHelper, commonLabels, threadObjectUtil, sET_RUNNING, iS_RUNNING, tHREAD, nOT_EQUAL, pAUSE_SLEEP, sTART_PAUSE, eND_PAUSE, pROCESS_LOOP_SLEEP, pauseWait, notified)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Thread -- same package or java.lang
-import qualified Processor -- same package or java.lang
-import qualified RunnableCanvasRefreshHelper -- same package or java.lang
-import qualified GameRunnable -- same package or java.lang
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified NullWaitGameRunnable -- org.allbinary.game.displayable.canvas.NullWaitGameRunnable
-import qualified MyCanvas -- org.allbinary.graphics.displayable.MyCanvas
-import qualified ABSystemWrapper -- org.allbinary.logic.ABSystemWrapper
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified NullThread -- org.allbinary.thread.NullThread
-import qualified RunnableInterface -- org.allbinary.thread.RunnableInterface
-import qualified ThreadObjectUtil -- org.allbinary.thread.ThreadObjectUtil
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-
--- implements RunnableInterface
-data RunnableCanvas = RunnableCanvas
-    { header_ :: JavaHeader
-    , base :: MyCanvas.MyCanvas
-    , nullUtil :: IORef (NullUtil.NullUtil)
-    , stdUtil :: IORef (StdUtil.StdUtil)
-    , systemWrapper :: IORef (ABSystemWrapper.ABSystemWrapper)
-    , tsUtil :: IORef (TsUtil.TsUtil)
-    , thread :: IORef (Thread.Thread)
-    , currentThread :: IORef (Thread.Thread)
-    , running :: IORef (Bool)
-    , loopTimeHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , runnableCanvasRefreshHelper :: IORef (Processor.Processor)
-    , commonLabels :: IORef (CommonLabels.CommonLabels)
-    , threadObjectUtil :: IORef (ThreadObjectUtil.ThreadObjectUtil)
-    , sET_RUNNING :: IORef (String)
-    , iS_RUNNING :: IORef (String)
-    , tHREAD :: IORef (String)
-    , nOT_EQUAL :: IORef (String)
-    , pAUSE_SLEEP :: IORef (String)
-    , sTART_PAUSE :: IORef (String)
-    , eND_PAUSE :: IORef (String)
-    , pROCESS_LOOP_SLEEP :: IORef (String)
-    , pauseWait :: IORef (Int64)
-    , notified :: IORef (Bool)
-    }
-
-instance JavaNull RunnableCanvas where
-    javaNull = javaNullRecord "RunnableCanvas"
-
-instance JavaEquals RunnableCanvas where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RunnableCanvas where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RunnableCanvas where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO RunnableCanvas
-newRecord_ = do
-    base <- MyCanvas.newRecord_
-    let header_ = base.header_
-    nullUtil <- newIORef javaNull
-    stdUtil <- newIORef javaNull
-    systemWrapper <- newIORef javaNull
-    tsUtil <- newIORef javaNull
-    thread <- newIORef javaNull
-    currentThread <- newIORef javaNull
-    running <- newIORef False
-    loopTimeHelper <- newIORef javaNull
-    runnableCanvasRefreshHelper <- newIORef javaNull
-    commonLabels <- newIORef javaNull
-    threadObjectUtil <- newIORef javaNull
-    sET_RUNNING <- newIORef ""
-    iS_RUNNING <- newIORef ""
-    tHREAD <- newIORef ""
-    nOT_EQUAL <- newIORef ""
-    pAUSE_SLEEP <- newIORef ""
-    sTART_PAUSE <- newIORef ""
-    eND_PAUSE <- newIORef ""
-    pROCESS_LOOP_SLEEP <- newIORef ""
-    pauseWait <- newIORef 0
-    notified <- newIORef False
-    let this = RunnableCanvas header_ base nullUtil stdUtil systemWrapper tsUtil thread currentThread running loopTimeHelper runnableCanvasRefreshHelper commonLabels threadObjectUtil sET_RUNNING iS_RUNNING tHREAD nOT_EQUAL pAUSE_SLEEP sTART_PAUSE eND_PAUSE pROCESS_LOOP_SLEEP pauseWait notified
-    jregisterLevel header_ this
-    RunnableInterface.registerInterface_ header_
-    jregisterMethod header_ "initCommands" (\() -> initCommands_impl this)
-    jregisterMethod header_ "isMainCanvas" (\() -> isMainCanvas_impl this)
-    jregisterMethod header_ "setThread" (\() -> setThread_impl this)
-    jregisterMethod header_ "setRunning" (\() -> setRunning_impl this)
-    jregisterMethod header_ "isRunning" (\() -> isRunning_impl this)
-    jregisterMethod header_ "getLoopTimeHelperP" (\() -> getLoopTimeHelperP_impl this)
-    jregisterMethod header_ "setWait" (\() -> setWait_impl this)
-    jregisterMethod header_ "getWait" (\() -> getWait_impl this)
-    jregisterMethod header_ "setCurrentThread" (\() -> setCurrentThread_impl this)
-    jregisterMethod header_ "setCurrentThreadFake" (\() -> setCurrentThreadFake_impl this)
-    jregisterMethod header_ "showNotify" (\() -> showNotify_impl this)
-    jregisterMethod header_ "stopWaiting" (\() -> stopWaiting_impl this)
-    jregisterMethod header_ "waitOnNotify" (\() -> waitOnNotify_impl this)
-    jregisterMethod header_ "processSleep" (\() -> processSleep_impl this)
-    jregisterMethod header_ "isPausable" (\() -> isPausable_impl this)
-    jregisterMethod header_ "processGameSleep" (\() -> processGameSleep_impl this)
-    jregisterMethod header_ "processLoopSleep" (\() -> processLoopSleep_impl this)
-    jregisterMethod header_ "isSingleThread" (\() -> isSingleThread_impl this)
-    jregisterMethod header_ "run" (\() -> run_impl this)
-    jregisterMethod header_ "end2" (\() -> end2_impl this)
-    jregisterMethod header_ "getType" (\() -> getType_impl this)
-    pure this
-
-initFields_ :: RunnableCanvas -> IO ()
-initFields_ this = do
-    jset this.nullUtil =<< (NullUtil.getInstance)
-    jset this.stdUtil =<< (StdUtil.getInstance)
-    jset this.systemWrapper =<< (ABSystemWrapper.getInstance)
-    jset this.tsUtil =<< (TsUtil.getInstance)
-    jset this.thread (NullThread.nULL_THREAD)
-    jset this.currentThread (NullThread.nULL_THREAD)
-    jset this.running (False)
-    jset this.loopTimeHelper =<< (TimeDelayHelper.new_1 (jget ((jio (NullWaitGameRunnable.getInstance))).wAIT))
-    jset this.runnableCanvasRefreshHelper =<< (Processor.getInstance)
-    jset this.commonLabels =<< (CommonLabels.getInstance)
-    jset this.threadObjectUtil =<< (ThreadObjectUtil.getInstance)
-    jset this.sET_RUNNING ("setRunning")
-    jset this.iS_RUNNING ("isRunning")
-    jset this.tHREAD ("Thread: ")
-    jset this.nOT_EQUAL (" != ")
-    jset this.pAUSE_SLEEP ("pause sleep")
-    jset this.sTART_PAUSE ("start pause - game thread sleep at: ")
-    jset this.eND_PAUSE ("end pause - game thread sleep at: ")
-    jset this.pROCESS_LOOP_SLEEP ("processLoopSleep")
-    jset this.pauseWait (0)
-    jset this.notified (False)
-    pure ()
-
-new_3 :: CommandListener.CommandListener -> BasicArrayList.BasicArrayList -> Bool -> IO RunnableCanvas
-new_3 commandListener childNameList hasParam = do
-    this <- newRecord_
-    init_3 this commandListener childNameList hasParam
-    pure this
-
-init_3 :: RunnableCanvas -> CommandListener.CommandListener -> BasicArrayList.BasicArrayList -> Bool -> IO ()
-init_3 this commandListener childNameList hasParam = do
-        MyCanvas.init_2 this.base (jget ((jio (CommonStrings.getInstance))).uNKNOWN) (childNameList)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "RunnableCanvas delay: "))) (Prelude.fromInteger (jnumericInteger (jget ((jget (this).loopTimeHelper)).delay)))))))) this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: Processor.Processor) (RunnableCanvasRefreshHelper.new_1 (javaCast this)))
-        jset (this).runnableCanvasRefreshHelper (assignedValue)
-        if (commandListener /= javaNull) then do
-            Control.Monad.void (RunnableCanvas.initCommands this commandListener)
-        else when hasParam $ do
-            Control.Monad.void (putF ((jget (this).base.logUtil)) "commandListener was null" this "initCommands")
-        pure ()
-
-
-initCommands :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands object_ a1 = jmethod object_ "initCommands" (\() -> (initCommands_impl (javaCast object_ :: RunnableCanvas))) () a1
-
-initCommands_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands_super object_ a1 = (initCommands_impl (javaCast object_ :: RunnableCanvas)) a1
-
-initCommands_impl :: RunnableCanvas -> CommandListener.CommandListener -> IO (())
-initCommands_impl this cmdListener = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).nOT_IMPLEMENTED) this "initCommands")
-        pure ()
-
-
-isMainCanvas :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isMainCanvas object_ = jmethod object_ "isMainCanvas" (\() -> (isMainCanvas_impl (javaCast object_ :: RunnableCanvas))) ()
-
-isMainCanvas_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isMainCanvas_super object_ = (isMainCanvas_impl (javaCast object_ :: RunnableCanvas))
-
-isMainCanvas_impl :: RunnableCanvas -> IO (Bool)
-isMainCanvas_impl this = do
-    javaCatchReturn $ do
-        if ((jio (MyCanvas.getCustomCommandListener this)) /= javaNull) then do
-            javaReturn (True)
-        else do
-            javaReturn (False)
-
-
-setThread :: (JavaObjectClass this_) => this_ -> Thread.Thread -> IO (())
-setThread object_ a1 = jmethod object_ "setThread" (\() -> (setThread_impl (javaCast object_ :: RunnableCanvas))) () a1
-
-setThread_super :: (JavaObjectClass this_) => this_ -> Thread.Thread -> IO (())
-setThread_super object_ a1 = (setThread_impl (javaCast object_ :: RunnableCanvas)) a1
-
-setThread_impl :: RunnableCanvas -> Thread.Thread -> IO (())
-setThread_impl this thread = do
-        jset (this).thread (thread)
-        pure ()
-
-
-setRunning :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setRunning object_ a1 = jmethod object_ "setRunning" (\() -> (setRunning_impl (javaCast object_ :: RunnableCanvas))) () a1
-
-setRunning_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setRunning_super object_ a1 = (setRunning_impl (javaCast object_ :: RunnableCanvas)) a1
-
-setRunning_impl :: RunnableCanvas -> Bool -> IO (())
-setRunning_impl this running = do
-        jset (this).running (running)
-        when (Prelude.not (jget (this).running)) $ do
-            jset (this).thread (NullThread.nULL_THREAD)
-            do -- synchronized
-                Control.Monad.void (ThreadObjectUtil.notifyObject ((jget (this).threadObjectUtil)) this)
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendboolean ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (this).iS_RUNNING)))) (jget (this).running)))))) this (jget (this).sET_RUNNING))
-        pure ()
-
-
-isRunning :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isRunning object_ = jmethod object_ "isRunning" (\() -> (isRunning_impl (javaCast object_ :: RunnableCanvas))) ()
-
-isRunning_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isRunning_super object_ = (isRunning_impl (javaCast object_ :: RunnableCanvas))
-
-isRunning_impl :: RunnableCanvas -> IO (Bool)
-isRunning_impl this = do
-    javaCatchReturn $ do
-        if ((jget (this).thread) == (jget (this).currentThread)) then do
-            javaReturn ((jget (this).running))
-        else do
-            stringBuffer <- (StringMaker.new_)
-            Control.Monad.void (StringMaker.append stringBuffer (jget (this).tHREAD))
-            when ((jget (this).thread) /= javaNull) $ do
-                Control.Monad.void (StringMaker.append stringBuffer (jio (Thread.toString ((jget (this).thread)))))
-            Control.Monad.void (StringMaker.append stringBuffer (jget (this).nOT_EQUAL))
-            when ((jget (this).currentThread) /= javaNull) $ do
-                Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString ((jio (StringUtil.getInstance))) (jget (this).currentThread))))
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString stringBuffer)) this (jget (this).iS_RUNNING))
-            javaReturn (False)
-
-
-getLoopTimeHelperP :: (JavaObjectClass this_) => this_ -> IO (TimeDelayHelper.TimeDelayHelper)
-getLoopTimeHelperP object_ = jmethod object_ "getLoopTimeHelperP" (\() -> (getLoopTimeHelperP_impl (javaCast object_ :: RunnableCanvas))) ()
-
-getLoopTimeHelperP_super :: (JavaObjectClass this_) => this_ -> IO (TimeDelayHelper.TimeDelayHelper)
-getLoopTimeHelperP_super object_ = (getLoopTimeHelperP_impl (javaCast object_ :: RunnableCanvas))
-
-getLoopTimeHelperP_impl :: RunnableCanvas -> IO (TimeDelayHelper.TimeDelayHelper)
-getLoopTimeHelperP_impl this = do
-        pure ((jget (this).loopTimeHelper))
-
-
-setWait :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setWait object_ a1 = jmethod object_ "setWait" (\() -> (setWait_impl (javaCast object_ :: RunnableCanvas))) () a1
-
-setWait_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setWait_super object_ a1 = (setWait_impl (javaCast object_ :: RunnableCanvas)) a1
-
-setWait_impl :: RunnableCanvas -> Int -> IO (())
-setWait_impl this wait = do
-        jset ((jget (this).loopTimeHelper)).delay (wait)
-        jset (this).pauseWait (((Prelude.fromIntegral wait) * 3))
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "setWait - delay: "))) (Prelude.fromInteger (jnumericInteger (jget ((jget (this).loopTimeHelper)).delay)))))))) this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-        pure ()
-
-
-getWait :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWait object_ = jmethod object_ "getWait" (\() -> (getWait_impl (javaCast object_ :: RunnableCanvas))) ()
-
-getWait_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWait_super object_ = (getWait_impl (javaCast object_ :: RunnableCanvas))
-
-getWait_impl :: RunnableCanvas -> IO (Int)
-getWait_impl this = do
-        pure ((jget ((jget (this).loopTimeHelper)).delay))
-
-
-setCurrentThread :: (JavaObjectClass this_) => this_ -> IO (())
-setCurrentThread object_ = jmethod object_ "setCurrentThread" (\() -> (setCurrentThread_impl (javaCast object_ :: RunnableCanvas))) ()
-
-setCurrentThread_super :: (JavaObjectClass this_) => this_ -> IO (())
-setCurrentThread_super object_ = (setCurrentThread_impl (javaCast object_ :: RunnableCanvas))
-
-setCurrentThread_impl :: RunnableCanvas -> IO (())
-setCurrentThread_impl this = do
-        assignedValue <- (Thread.currentThread)
-        jset (this).currentThread (assignedValue)
-        pure ()
-
-
-setCurrentThreadFake :: (JavaObjectClass this_) => this_ -> IO (())
-setCurrentThreadFake object_ = jmethod object_ "setCurrentThreadFake" (\() -> (setCurrentThreadFake_impl (javaCast object_ :: RunnableCanvas))) ()
-
-setCurrentThreadFake_super :: (JavaObjectClass this_) => this_ -> IO (())
-setCurrentThreadFake_super object_ = (setCurrentThreadFake_impl (javaCast object_ :: RunnableCanvas))
-
-setCurrentThreadFake_impl :: RunnableCanvas -> IO (())
-setCurrentThreadFake_impl this = do
-        jset (this).currentThread ((jget (this).thread))
-        pure ()
-
-
-showNotify :: (JavaObjectClass this_) => this_ -> IO (())
-showNotify object_ = jmethod object_ "showNotify" (\() -> (showNotify_impl (javaCast object_ :: RunnableCanvas))) ()
-
-showNotify_super :: (JavaObjectClass this_) => this_ -> IO (())
-showNotify_super object_ = (showNotify_impl (javaCast object_ :: RunnableCanvas))
-
-showNotify_impl :: RunnableCanvas -> IO (())
-showNotify_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this "showNotify" e)
-            ) $ do
-            Control.Monad.void (RunnableCanvas.stopWaiting this)
-        pure ()
-
-
--- throws Exception
-stopWaiting :: (JavaObjectClass this_) => this_ -> IO (())
-stopWaiting object_ = jmethod object_ "stopWaiting" (\() -> (stopWaiting_impl (javaCast object_ :: RunnableCanvas))) ()
-
-stopWaiting_super :: (JavaObjectClass this_) => this_ -> IO (())
-stopWaiting_super object_ = (stopWaiting_impl (javaCast object_ :: RunnableCanvas))
-
-stopWaiting_impl :: RunnableCanvas -> IO (())
-stopWaiting_impl this = do
-        jset (this).notified (True)
-        do -- synchronized
-            Control.Monad.void (ThreadObjectUtil.notifyObject ((jget (this).threadObjectUtil)) this)
-        Control.Monad.void (MyCanvas.repaint this)
-        pure ()
-
-
--- throws Exception
-waitOnNotify :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-waitOnNotify object_ a1 = jmethod object_ "waitOnNotify" (\() -> (waitOnNotify_impl (javaCast object_ :: RunnableCanvas))) () a1
-
-waitOnNotify_super :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-waitOnNotify_super object_ a1 = (waitOnNotify_impl (javaCast object_ :: RunnableCanvas)) a1
-
-waitOnNotify_impl :: RunnableCanvas -> Int64 -> IO (())
-waitOnNotify_impl this wait = do
-        when (Prelude.not (jget (this).notified)) $ do
-            if (wait > 0) then do
-                Control.Monad.void (ThreadObjectUtil.waitObjectFor ((jget (this).threadObjectUtil)) this (wait))
-            else do
-                Control.Monad.void (ThreadObjectUtil.waitObject ((jget (this).threadObjectUtil)) this)
-        pure ()
-
-
--- throws Exception
-processSleep :: (JavaObjectClass this_) => this_ -> IO (())
-processSleep object_ = jmethod object_ "processSleep" (\() -> (processSleep_impl (javaCast object_ :: RunnableCanvas))) ()
-
-processSleep_super :: (JavaObjectClass this_) => this_ -> IO (())
-processSleep_super object_ = (processSleep_impl (javaCast object_ :: RunnableCanvas))
-
-processSleep_impl :: RunnableCanvas -> IO (())
-processSleep_impl this = do
-        Control.Monad.void (threadDelay (Prelude.fromIntegral (jget (this).pauseWait) * 1000))
-        pure ()
-
-
-isPausable :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isPausable object_ = jmethod object_ "isPausable" (\() -> (isPausable_impl (javaCast object_ :: RunnableCanvas))) ()
-
-isPausable_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isPausable_super object_ = (isPausable_impl (javaCast object_ :: RunnableCanvas))
-
-isPausable_impl :: RunnableCanvas -> IO (Bool)
-isPausable_impl this = do
-        pure (False)
-
-
--- throws Exception
-processGameSleep :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-processGameSleep object_ a1 = jmethod object_ "processGameSleep" (\() -> (processGameSleep_impl (javaCast object_ :: RunnableCanvas))) () a1
-
-processGameSleep_super :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-processGameSleep_super object_ a1 = (processGameSleep_impl (javaCast object_ :: RunnableCanvas)) a1
-
-processGameSleep_impl :: RunnableCanvas -> Int64 -> IO (())
-processGameSleep_impl this sleep = do
-        Control.Monad.void (threadDelay (Prelude.fromIntegral sleep * 1000))
-        pure ()
-
-
--- throws Exception
-processLoopSleep :: (JavaObjectClass this_) => this_ -> IO (())
-processLoopSleep object_ = jmethod object_ "processLoopSleep" (\() -> (processLoopSleep_impl (javaCast object_ :: RunnableCanvas))) ()
-
-processLoopSleep_super :: (JavaObjectClass this_) => this_ -> IO (())
-processLoopSleep_super object_ = (processLoopSleep_impl (javaCast object_ :: RunnableCanvas))
-
-processLoopSleep_impl :: RunnableCanvas -> IO (())
-processLoopSleep_impl this = do
-    javaCatchReturn $ do
-        Control.Monad.void (Processor.process ((jget (this).runnableCanvasRefreshHelper)))
-        when (jio (MyCanvas.isPaused this)) $ do
-            stringMaker <- (StringMaker.new_)
-            when ((jio (RunnableCanvas.isRunning this)) && (Prelude.not (jio (RunnableCanvas.isSingleThread this)))) $ do
-                Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-                currentTimeMillis <- (ABSystemWrapper.currentTimeMillis ((jget (this).systemWrapper)))
-                Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendlong ((jio (StringMaker.append ((jio (StringMaker.appendlong ((jio (StringMaker.append stringMaker (jget (this).sTART_PAUSE)))) currentTimeMillis))) (jget (this).pAUSE_SLEEP)))) (jget (this).pauseWait)))))) this (jget (this).pROCESS_LOOP_SLEEP))
-                fix $ \loop -> when (((jio (MyCanvas.isPaused this)) && (jio (RunnableCanvas.isRunning this))) && (Prelude.not (jio (RunnableCanvas.isSingleThread this)))) $ javaIteration (loop) $ do
-                    Control.Monad.void (RunnableCanvas.processSleep this)
-                    when (Prelude.not (jio (RunnableCanvas.isPausable this))) $ do
-                        Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-                        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendlong ((jio (StringMaker.append stringMaker (jget (this).eND_PAUSE)))) currentTimeMillis))))) this (jget (this).pROCESS_LOOP_SLEEP))
-                        javaReturn (())
-        elapsedTime <- newIORef =<< (TimeDelayHelper.getElapsedTNT ((jget (this).loopTimeHelper)))
-        let wait = (Prelude.fromInteger (jnumericInteger (jget ((jget (this).loopTimeHelper)).delay)))
-        if ((jget elapsedTime) > wait) then do
-            jset elapsedTime (wait)
-        else do
-            Control.Monad.void (RunnableCanvas.processGameSleep this (wait - (jget elapsedTime)))
-    pure ()
-
-
-isSingleThread :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isSingleThread object_ = jmethod object_ "isSingleThread" (\() -> (isSingleThread_impl (javaCast object_ :: RunnableCanvas))) ()
-
-isSingleThread_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isSingleThread_super object_ = (isSingleThread_impl (javaCast object_ :: RunnableCanvas))
-
-isSingleThread_impl :: RunnableCanvas -> IO (Bool)
-isSingleThread_impl this = do
-        pure (False)
-
-
-run :: (JavaObjectClass this_) => this_ -> IO (())
-run object_ = jmethod object_ "run" (\() -> (run_impl (javaCast object_ :: RunnableCanvas))) ()
-
-run_super :: (JavaObjectClass this_) => this_ -> IO (())
-run_super object_ = (run_impl (javaCast object_ :: RunnableCanvas))
-
-run_impl :: RunnableCanvas -> IO (())
-run_impl this = do
-        Control.Monad.void (RunnableCanvas.setCurrentThread this)
-        pure ()
-
-
--- throws Exception
-end2 :: (JavaObjectClass this_) => this_ -> IO (())
-end2 object_ = jmethod object_ "end2" (\() -> (end2_impl (javaCast object_ :: RunnableCanvas))) ()
-
-end2_super :: (JavaObjectClass this_) => this_ -> IO (())
-end2_super object_ = (end2_impl (javaCast object_ :: RunnableCanvas))
-
-end2_impl :: RunnableCanvas -> IO (())
-end2_impl this = do
-        pure ()
-
-
-getType :: (JavaObjectClass this_) => this_ -> IO (Int)
-getType object_ = jmethod object_ "getType" (\() -> (getType_impl (javaCast object_ :: RunnableCanvas))) ()
-
-getType_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getType_super object_ = (getType_impl (javaCast object_ :: RunnableCanvas))
-
-getType_impl :: RunnableCanvas -> IO (Int)
-getType_impl this = do
-        pure ((Prelude.negate 1))
-
+module Org.Allbinary.Canvas.RunnableCanvas exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.canvas
+-}
+
+import JR
+import Org.Allbinary.Logic.ABSystemWrapper as ABSystemWrapper
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JThread
+import Org.Allbinary.Graphics.Displayable.MyCanvas as MyCanvas
+import Org.Allbinary.Thread.NullThread as NullThread
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Game.Displayable.Canvas.NullWaitGameRunnable as NullWaitGameRunnable
+import Org.Allbinary.Canvas.Processor as Processor
+import Org.Allbinary.Canvas.RunnableCanvasRefreshHelper as RunnableCanvasRefreshHelper
+import Org.Allbinary.Thread.RunnableInterface as RunnableInterface
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Thread.ThreadObjectUtil as ThreadObjectUtil
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
+import Org.Allbinary.TsUtil as TsUtil
+
+
+jclass : String
+jclass =
+    "RunnableCanvas"
+
+
+jchain : List String
+jchain =
+    [ "RunnableCanvas" ]
+        ++ MyCanvas.jchain
+        ++ RunnableInterface.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    MyCanvas.jfields ++ [ ( "nullUtil", JR.defaultOf "" ), ( "stdUtil", JR.defaultOf "" ), ( "systemWrapper", JR.defaultOf "" ), ( "tsUtil", JR.defaultOf "" ), ( "thread", JR.defaultOf "" ), ( "currentThread", JR.defaultOf "" ), ( "running", JR.defaultOf "Z" ), ( "loopTimeHelper", JR.defaultOf "" ), ( "runnableCanvasRefreshHelper", JR.defaultOf "" ), ( "commonLabels", JR.defaultOf "" ), ( "threadObjectUtil", JR.defaultOf "" ), ( "SET_RUNNING", JR.defaultOf "" ), ( "IS_RUNNING", JR.defaultOf "" ), ( "THREAD", JR.defaultOf "" ), ( "NOT_EQUAL", JR.defaultOf "" ), ( "PAUSE_SLEEP", JR.defaultOf "" ), ( "START_PAUSE", JR.defaultOf "" ), ( "END_PAUSE", JR.defaultOf "" ), ( "PROCESS_LOOP_SLEEP", JR.defaultOf "" ), ( "pauseWait", JR.defaultOf "J" ), ( "notified", JR.defaultOf "Z" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "initCommands_1", jm_initCommands_1 )
+        , ( "isMainCanvas_0", jm_isMainCanvas_0 )
+        , ( "setThread_1", jm_setThread_1 )
+        , ( "setRunning_1", jm_setRunning_1 )
+        , ( "isRunning_0", jm_isRunning_0 )
+        , ( "getLoopTimeHelperP_0", jm_getLoopTimeHelperP_0 )
+        , ( "setWait_1", jm_setWait_1 )
+        , ( "getWait_0", jm_getWait_0 )
+        , ( "setCurrentThread_0", jm_setCurrentThread_0 )
+        , ( "setCurrentThreadFake_0", jm_setCurrentThreadFake_0 )
+        , ( "showNotify_0", jm_showNotify_0 )
+        , ( "stopWaiting_0", jm_stopWaiting_0 )
+        , ( "waitOnNotify_1", jm_waitOnNotify_1 )
+        , ( "processSleep_0", jm_processSleep_0 )
+        , ( "isPausable_0", jm_isPausable_0 )
+        , ( "processGameSleep_1", jm_processGameSleep_1 )
+        , ( "processLoopSleep_0", jm_processLoopSleep_0 )
+        , ( "isSingleThread_0", jm_isSingleThread_0 )
+        , ( "run_0", jm_run_0 )
+        , ( "end2_0", jm_end2_0 )
+        , ( "getType_0", jm_getType_0 ) ]
+        MyCanvas.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RunnableCanvas"
+        [ ( "jm_initCommands_1", jm_initCommands_1 ), ( "jm_isMainCanvas_0", jm_isMainCanvas_0 ), ( "jm_setThread_1", jm_setThread_1 ), ( "jm_setRunning_1", jm_setRunning_1 ), ( "jm_isRunning_0", jm_isRunning_0 ), ( "jm_getLoopTimeHelperP_0", jm_getLoopTimeHelperP_0 ), ( "jm_setWait_1", jm_setWait_1 ), ( "jm_getWait_0", jm_getWait_0 ), ( "jm_setCurrentThread_0", jm_setCurrentThread_0 ), ( "jm_setCurrentThreadFake_0", jm_setCurrentThreadFake_0 ), ( "jm_showNotify_0", jm_showNotify_0 ), ( "jm_stopWaiting_0", jm_stopWaiting_0 ), ( "jm_waitOnNotify_1", jm_waitOnNotify_1 ), ( "jm_processSleep_0", jm_processSleep_0 ), ( "jm_isPausable_0", jm_isPausable_0 ), ( "jm_processGameSleep_1", jm_processGameSleep_1 ), ( "jm_processLoopSleep_0", jm_processLoopSleep_0 ), ( "jm_isSingleThread_0", jm_isSingleThread_0 ), ( "jm_run_0", jm_run_0 ), ( "jm_end2_0", jm_end2_0 ), ( "jm_getType_0", jm_getType_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "commandListener", "" ), ( "childNameList", "" ), ( "hasParam", "Z" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect MyCanvas.jinit_2 JR.this [ (JR.field "UNKNOWN" (JR.callStatic CommonStrings.jm_getInstance_0 [])), (JR.local "childNameList") ]),
+                JR.exec (JR.setField "nullUtil" "" JR.this (JR.callStatic NullUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "stdUtil" "" JR.this (JR.callStatic StdUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "systemWrapper" "" JR.this (JR.callStatic ABSystemWrapper.jm_getInstance_0 [])),
+                JR.exec (JR.setField "tsUtil" "" JR.this (JR.callStatic TsUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "thread" "" JR.this NullThread.jstatic_NULL_THREAD),
+                JR.exec (JR.setField "currentThread" "" JR.this NullThread.jstatic_NULL_THREAD),
+                JR.exec (JR.setField "loopTimeHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.field "WAIT" (JR.callStatic NullWaitGameRunnable.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "runnableCanvasRefreshHelper" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonLabels" "" JR.this (JR.callStatic CommonLabels.jm_getInstance_0 [])),
+                JR.exec (JR.setField "threadObjectUtil" "" JR.this (JR.callStatic ThreadObjectUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "SET_RUNNING" "" JR.this (JR.str "setRunning")),
+                JR.exec (JR.setField "IS_RUNNING" "" JR.this (JR.str "isRunning")),
+                JR.exec (JR.setField "THREAD" "" JR.this (JR.str "Thread: ")),
+                JR.exec (JR.setField "NOT_EQUAL" "" JR.this (JR.str " != ")),
+                JR.exec (JR.setField "PAUSE_SLEEP" "" JR.this (JR.str "pause sleep")),
+                JR.exec (JR.setField "START_PAUSE" "" JR.this (JR.str "start pause - game thread sleep at: ")),
+                JR.exec (JR.setField "END_PAUSE" "" JR.this (JR.str "end pause - game thread sleep at: ")),
+                JR.exec (JR.setField "PROCESS_LOOP_SLEEP" "" JR.this (JR.str "processLoopSleep")),
+                JR.exec (JR.setField "pauseWait" "J" JR.this (JR.long 0)),
+                JR.exec (JR.setField "notified" "Z" JR.this (JR.bool False)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "RunnableCanvas delay: ") ]) [ (JR.field "delay" (JR.thisField "loopTimeHelper")) ]) []), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.setField "runnableCanvasRefreshHelper" "" JR.this (JR.new RunnableCanvasRefreshHelper.jnew_1 [ JR.this ])), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "commandListener") JR.null) (JR.run [ 
+                        JR.exec (JR.invoke "initCommands_1" JR.this [ (JR.local "commandListener") ]) ]) (JR.run [ 
+                    JR.ifElse (JR.local "hasParam") (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "commandListener was null"), JR.this, (JR.str "initCommands") ]) ]) identity ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_initCommands_1 : JR.Method
+jm_initCommands_1 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")), JR.this, (JR.str "initCommands") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isMainCanvas_0 : JR.Method
+jm_isMainCanvas_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getCustomCommandListener_0" JR.this []) JR.null) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setThread_1 : JR.Method
+jm_setThread_1 jheap jthis jargs =
+    JR.method [ ( "thread", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "thread" "" JR.this (JR.local "thread")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setRunning_1 : JR.Method
+jm_setRunning_1 jheap jthis jargs =
+    JR.method [ ( "running", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "running" "Z" JR.this (JR.local "running")), 
+                    JR.ifElse (JR.map JR.not_ (JR.thisField "running")) (JR.run [ 
+                        JR.exec (JR.setField "thread" "" JR.this NullThread.jstatic_NULL_THREAD), 
+                        (JR.run [ 
+                            JR.exec (JR.invoke "notifyObject_1" (JR.thisField "threadObjectUtil") [ JR.this ]) ]) ]) identity, 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendboolean_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "IS_RUNNING") ]) [ (JR.thisField "running") ]) []), JR.this, (JR.thisField "SET_RUNNING") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isRunning_0 : JR.Method
+jm_isRunning_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "thread") (JR.thisField "currentThread")) (JR.run [ 
+                        JR.return (JR.thisField "running") ]) (JR.run [ 
+                        JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "THREAD") ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.thisField "thread") JR.null) (JR.run [ 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.thisField "thread") []) ]) ]) identity, 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "NOT_EQUAL") ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.thisField "currentThread") JR.null) (JR.run [ 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.thisField "currentThread") ]) ]) ]) identity, 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.thisField "IS_RUNNING") ]), 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLoopTimeHelperP_0 : JR.Method
+jm_getLoopTimeHelperP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "loopTimeHelper") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setWait_1 : JR.Method
+jm_setWait_1 jheap jthis jargs =
+    JR.method [ ( "wait", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.andThen (JR.thisField "loopTimeHelper") (\jtN70984 -> (JR.setField "delay" "I" (JR.lit jtN70984) (JR.local "wait")))), 
+                    JR.exec (JR.setField "pauseWait" "J" JR.this (JR.map2 JR.mul (JR.cast "J" (JR.local "wait")) (JR.long 3))), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "setWait - delay: ") ]) [ (JR.field "delay" (JR.thisField "loopTimeHelper")) ]) []), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getWait_0 : JR.Method
+jm_getWait_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.field "delay" (JR.thisField "loopTimeHelper")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setCurrentThread_0 : JR.Method
+jm_setCurrentThread_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "currentThread" "" JR.this (JR.callStatic JThread.jm_currentThread_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setCurrentThreadFake_0 : JR.Method
+jm_setCurrentThreadFake_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "currentThread" "" JR.this (JR.thisField "thread")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_showNotify_0 : JR.Method
+jm_showNotify_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "stopWaiting_0" JR.this []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "showNotify"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_stopWaiting_0 : JR.Method
+jm_stopWaiting_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "notified" "Z" JR.this (JR.bool True)), 
+                    (JR.run [ 
+                        JR.exec (JR.invoke "notifyObject_1" (JR.thisField "threadObjectUtil") [ JR.this ]) ]), 
+                    JR.exec (JR.invoke "repaint_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_waitOnNotify_1 : JR.Method
+jm_waitOnNotify_1 jheap jthis jargs =
+    JR.method [ ( "wait", "J" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.thisField "notified")) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.greater (JR.local "wait") (JR.long 0)) (JR.run [ 
+                            JR.exec (JR.invoke "waitObjectFor_2" (JR.thisField "threadObjectUtil") [ JR.this, (JR.local "wait") ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "waitObject_1" (JR.thisField "threadObjectUtil") [ JR.this ]) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processSleep_0 : JR.Method
+jm_processSleep_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic JThread.jm_sleep_1 [ (JR.thisField "pauseWait") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isPausable_0 : JR.Method
+jm_isPausable_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processGameSleep_1 : JR.Method
+jm_processGameSleep_1 jheap jthis jargs =
+    JR.method [ ( "sleep", "J" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic JThread.jm_sleep_1 [ (JR.local "sleep") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processLoopSleep_0 : JR.Method
+jm_processLoopSleep_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_0" (JR.thisField "runnableCanvasRefreshHelper") []), 
+                    JR.ifElse (JR.invoke "isPaused_0" JR.this []) (JR.run [ 
+                        JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.ifElse (JR.and (JR.invoke "isRunning_0" JR.this []) (JR.map JR.not_ (JR.invoke "isSingleThread_0" JR.this []))) (JR.run [ 
+                            JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                            JR.declare "currentTimeMillis" "J" (JR.invoke "currentTimeMillis_0" (JR.thisField "systemWrapper") []), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendlong_1" (JR.invoke "append_1" (JR.invoke "appendlong_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.thisField "START_PAUSE") ]) [ (JR.local "currentTimeMillis") ]) [ (JR.thisField "PAUSE_SLEEP") ]) [ (JR.thisField "pauseWait") ]) []), JR.this, (JR.thisField "PROCESS_LOOP_SLEEP") ]), 
+                            JR.while (JR.and (JR.and (JR.invoke "isPaused_0" JR.this []) (JR.invoke "isRunning_0" JR.this [])) (JR.map JR.not_ (JR.invoke "isSingleThread_0" JR.this []))) (JR.run [ 
+                                JR.exec (JR.invoke "processSleep_0" JR.this []), 
+                                JR.ifElse (JR.map JR.not_ (JR.invoke "isPausable_0" JR.this [])) (JR.run [ 
+                                    JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendlong_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.thisField "END_PAUSE") ]) [ (JR.local "currentTimeMillis") ]) []), JR.this, (JR.thisField "PROCESS_LOOP_SLEEP") ]), 
+                                    JR.returnVoid ]) identity ]) ]) identity ]) identity, 
+                    JR.declare "elapsedTime" "J" (JR.invoke "getElapsedTNT_0" (JR.thisField "loopTimeHelper") []), 
+                    JR.declare "wait" "J" (JR.cast "J" (JR.field "delay" (JR.thisField "loopTimeHelper"))), 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "elapsedTime") (JR.local "wait")) (JR.run [ 
+                        JR.exec (JR.setLocal "elapsedTime" "J" (JR.local "wait")) ]) (JR.run [ 
+                        JR.exec (JR.invoke "processGameSleep_1" JR.this [ (JR.map2 JR.sub (JR.local "wait") (JR.local "elapsedTime")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isSingleThread_0 : JR.Method
+jm_isSingleThread_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_run_0 : JR.Method
+jm_run_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setCurrentThread_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_end2_0 : JR.Method
+jm_end2_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getType_0 : JR.Method
+jm_getType_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.map JR.neg (JR.int 1)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,161 +1,128 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module VectorMirrorGenerator where
+module Org.Allbinary.Animation.VectorMirrorGenerator exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified VectorAnimationUtil -- same package or java.lang
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified BasicGraphicsPipeline -- org.allbinary.graphics.pipeline.BasicGraphicsPipeline
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListS -- org.allbinary.util.BasicArrayListS
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
-data VectorMirrorGenerator = VectorMirrorGenerator
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , vectorAnimationUtil :: IORef (VectorAnimationUtil.VectorAnimationUtil)
-    }
-
-instance JavaNull VectorMirrorGenerator where
-    javaNull = javaNullRecord "VectorMirrorGenerator"
-
-instance JavaEquals VectorMirrorGenerator where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq VectorMirrorGenerator where
-    (==) = jrecordEquals
-
-instance JavaObjectClass VectorMirrorGenerator where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: VectorMirrorGenerator
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO VectorMirrorGenerator
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    vectorAnimationUtil <- newIORef javaNull
-    let this = VectorMirrorGenerator header_ logUtil vectorAnimationUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstance_2_overload1" (\() -> getInstance_2_overload1_impl this)
-    jregisterMethod header_ "getInstance_2_overload2" (\() -> getInstance_2_overload2_impl this)
-    pure this
-
-initFields_ :: VectorMirrorGenerator -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.vectorAnimationUtil =<< (VectorAnimationUtil.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListS as BasicArrayListS
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Graphics.PointFactory as PointFactory
+import Org.Allbinary.Animation.VectorAnimationUtil as VectorAnimationUtil
 
 
-getInstance :: IO (VectorMirrorGenerator)
-getInstance = do
-        pure (VectorMirrorGenerator.instance_)
-
-new_ :: IO VectorMirrorGenerator
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: VectorMirrorGenerator -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "VectorMirrorGenerator"
 
 
--- Java overloads of getInstance: calls the overload for the types of the arguments
-getInstance_2 :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> Int -> IO (JavaObject)
-getInstance_2 this a1 a2
-    | jisInstanceOf a1 (javaNull :: JavaArray (JavaArray (JavaArray (Int)))) = fmap jtoObject (getInstance_2_overload1 this (javaCast a1 :: JavaArray (JavaArray (JavaArray (Int)))) a2)
-    | jisInstanceOf a1 (javaNull :: BasicArrayList.BasicArrayList) = fmap jtoObject (getInstance_2_overload2 this (javaCast a1 :: BasicArrayList.BasicArrayList) a2)
-    | otherwise = fmap jtoObject (getInstance_2_overload2 this (javaCast a1 :: BasicArrayList.BasicArrayList) a2)
-
-getInstance_2_overload1 :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (JavaArray (Int))) -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstance_2_overload1 object_ a1 a2 = jmethod object_ "getInstance_2_overload1" (\() -> (getInstance_2_overload1_impl (javaCast object_ :: VectorMirrorGenerator))) () a1 a2
-
-getInstance_2_overload1_super :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (JavaArray (Int))) -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstance_2_overload1_super object_ a1 a2 = (getInstance_2_overload1_impl (javaCast object_ :: VectorMirrorGenerator)) a1 a2
-
-getInstance_2_overload1_impl :: VectorMirrorGenerator -> JavaArray (JavaArray (JavaArray (Int))) -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstance_2_overload1_impl this points width = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).gET_INSTANCE) e)
-            pure ((jget ((jio (NullUtil.getInstance))).nULL_INT_ARRAY_ARRAY_ARRAY))
-            ) $ do
-            pointFactory <- (PointFactory.getInstance)
-            pointBasicArrayList <- newIORef (javaNull)
-            nextPoints <- newIORef (javaNull)
-            size2 <- newIORef (0 :: Int)
-            let size = (jlength points)
-            pointsBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListS.new_1 size))
-            forM_ [0 .. size - 1] $ \frame -> javaIteration (pure ()) $ do
-                jset nextPoints ((jindex points (frame)))
-                jset size2 ((jlength (jget nextPoints)))
-                assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListS.new_1 (jget size2)))
-                jset pointBasicArrayList (assignedValue)
-                forM_ [0 .. (jget size2) - 1] $ \index -> javaIteration (pure ()) $ do
-                    Control.Monad.void (BasicArrayList.add ((jget pointBasicArrayList)) (jio (PointFactory.createXY pointFactory (jindex ((jindex ((jget nextPoints)) (index))) (0)) (jindex ((jindex ((jget nextPoints)) (index))) (1)))))
-                Control.Monad.void (BasicArrayList.add pointsBasicArrayList (jget pointBasicArrayList))
-            forM_ [0 .. (jlength points) - 1] $ \index -> javaIteration (pure ()) $ do
-                Control.Monad.void (BasicArrayList.add pointsBasicArrayList (jio (VectorMirrorGenerator.getInstance_2 this (javaCast (jindex ((jget (pointsBasicArrayList).objectArray)) (index)) :: BasicArrayList.BasicArrayList) width)))
-            newPoints <- (VectorAnimationUtil.toAnimationArrayFromListOfPointList ((jget (this).vectorAnimationUtil)) pointsBasicArrayList)
-            pure (newPoints)
+jchain : List String
+jchain =
+    [ "VectorMirrorGenerator" ]
 
 
--- throws Exception
-getInstance_2_overload2 :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Int -> IO (BasicArrayList.BasicArrayList)
-getInstance_2_overload2 object_ a1 a2 = jmethod object_ "getInstance_2_overload2" (\() -> (getInstance_2_overload2_impl (javaCast object_ :: VectorMirrorGenerator))) () a1 a2
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "vectorAnimationUtil", JR.defaultOf "" ) ]
 
-getInstance_2_overload2_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Int -> IO (BasicArrayList.BasicArrayList)
-getInstance_2_overload2_super object_ a1 a2 = (getInstance_2_overload2_impl (javaCast object_ :: VectorMirrorGenerator)) a1 a2
 
-getInstance_2_overload2_impl :: VectorMirrorGenerator -> BasicArrayList.BasicArrayList -> Int -> IO (BasicArrayList.BasicArrayList)
-getInstance_2_overload2_impl this pointBasicArrayList width = do
-        graphicsPipe <- (BasicGraphicsPipeline.new_1 pointBasicArrayList)
-        Control.Monad.void (BasicGraphicsPipeline.createMatrix graphicsPipe)
-        Control.Monad.void (BasicGraphicsPipeline.mirror graphicsPipe width)
-        (BasicGraphicsPipeline.getMatrix graphicsPipe)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInstance_2", jm_getInstance_2 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "VectorMirrorGenerator"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInstance_2", jm_getInstance_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "VectorMirrorGenerator" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "vectorAnimationUtil" "" JR.this (JR.callStatic VectorAnimationUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_2 : JR.Method
+jm_getInstance_2 jheap jthis jargs =
+    JR.method [ ( "points", "" ), ( "width", "I" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
+                        JR.declare "pointBasicArrayList" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "nextPoints" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "size2" "I" (JR.lit (JR.defaultOf "I")), 
+                        JR.declare "size" "I" (JR.alength (JR.local "points")), 
+                        JR.declare "pointsBasicArrayList" "" (JR.new BasicArrayListS.jnew_1 [ (JR.local "size") ]), 
+                        JR.run [ JR.declare "frame" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "frame") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "frame") (\jwN67773 -> (JR.setLocal "frame" "I" (JR.lit jwN67773))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "nextPoints" "" (JR.aget (JR.local "points") (JR.local "frame"))), 
+                            JR.exec (JR.setLocal "size2" "I" (JR.alength (JR.local "nextPoints"))), 
+                            JR.exec (JR.setLocal "pointBasicArrayList" "" (JR.new BasicArrayListS.jnew_1 [ (JR.local "size2") ])), 
+                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67676 -> (JR.setLocal "index" "I" (JR.lit jwN67676))) JR.increment) ]) (JR.run [ 
+                                JR.exec (JR.invoke "add_1" (JR.local "pointBasicArrayList") [ (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.aget (JR.aget (JR.local "nextPoints") (JR.local "index")) (JR.int 0)), (JR.aget (JR.aget (JR.local "nextPoints") (JR.local "index")) (JR.int 1)) ]) ]) ]) ], 
+                            JR.exec (JR.invoke "add_1" (JR.local "pointsBasicArrayList") [ (JR.local "pointBasicArrayList") ]) ]) ], 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "points"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67940 -> (JR.setLocal "index" "I" (JR.lit jwN67940))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "pointsBasicArrayList") [ (JR.invoke "getInstance_2" JR.this [ (JR.aget (JR.field "objectArray" (JR.local "pointsBasicArrayList")) (JR.local "index")), (JR.local "width") ]) ]) ]) ], 
+                        JR.declare "newPoints" "" (JR.invoke "toAnimationArrayFromListOfPointList_1" (JR.thisField "vectorAnimationUtil") [ (JR.local "pointsBasicArrayList") ]), 
+                        JR.return (JR.local "newPoints") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "GET_INSTANCE" (JR.local "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.field "NULL_INT_ARRAY_ARRAY_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 [])) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

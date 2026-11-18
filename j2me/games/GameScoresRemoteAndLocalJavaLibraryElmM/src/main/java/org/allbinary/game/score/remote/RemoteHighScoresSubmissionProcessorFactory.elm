@@ -1,90 +1,89 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score.remote
-module RemoteHighScoresSubmissionProcessorFactory where
+module Org.Allbinary.Game.Score.Remote.RemoteHighScoresSubmissionProcessorFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified RemoteHighScoresSubmissionProcessor -- same package or java.lang
-import qualified RemoteHighScoresSubmissionProcessorInterface -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.game.score.remote
+-}
 
-data RemoteHighScoresSubmissionProcessorFactory = RemoteHighScoresSubmissionProcessorFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull RemoteHighScoresSubmissionProcessorFactory where
-    javaNull = javaNullRecord "RemoteHighScoresSubmissionProcessorFactory"
-
-instance JavaEquals RemoteHighScoresSubmissionProcessorFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RemoteHighScoresSubmissionProcessorFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RemoteHighScoresSubmissionProcessorFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: RemoteHighScoresSubmissionProcessorInterface.RemoteHighScoresSubmissionProcessorInterface
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((fmap (\value_ -> javaCast value_ :: RemoteHighScoresSubmissionProcessorInterface.RemoteHighScoresSubmissionProcessorInterface) (RemoteHighScoresSubmissionProcessor.new_)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO RemoteHighScoresSubmissionProcessorFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = RemoteHighScoresSubmissionProcessorFactory header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: RemoteHighScoresSubmissionProcessorFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO RemoteHighScoresSubmissionProcessorFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: RemoteHighScoresSubmissionProcessorFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Score.Remote.RemoteHighScoresSubmissionProcessor as RemoteHighScoresSubmissionProcessor
 
 
-getInstance :: IO (RemoteHighScoresSubmissionProcessorInterface.RemoteHighScoresSubmissionProcessorInterface)
-getInstance = do
-        pure (RemoteHighScoresSubmissionProcessorFactory.sINGLETON)
+jclass : String
+jclass =
+    "RemoteHighScoresSubmissionProcessorFactory"
 
+
+jchain : List String
+jchain =
+    [ "RemoteHighScoresSubmissionProcessorFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RemoteHighScoresSubmissionProcessorFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "RemoteHighScoresSubmissionProcessorFactory" jclinit "SINGLETON"
+        (JR.new RemoteHighScoresSubmissionProcessor.jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,127 +1,128 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
-module GameAdStateFactory where
+module Org.Allbinary.Business.Advertisement.GameAdStateFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AppNameLicensingAdConfiguration -- same package or java.lang
-import qualified GameAdStateBase -- same package or java.lang
-import qualified GameAdState -- org.allbinary.game.GameAdState
-import qualified SoftwareInformation -- org.allbinary.logic.system.SoftwareInformation
-import qualified GameAdStateFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.business.advertisement
+-}
 
--- implements GameAdStateFactoryInterface
-data GameAdStateFactory = GameAdStateFactory
-    { header_ :: JavaHeader
-    , gameAdStateArray :: IORef (JavaArray (GameAdState.GameAdState))
-    , gameAdState :: IORef (GameAdState.GameAdState)
-    }
-
-instance JavaNull GameAdStateFactory where
-    javaNull = javaNullRecord "GameAdStateFactory"
-
-instance JavaEquals GameAdStateFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameAdStateFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameAdStateFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameAdStateFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameAdStateFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    gameAdStateArray <- newIORef javaNull
-    gameAdState <- newIORef javaNull
-    let this = GameAdStateFactory header_ gameAdStateArray gameAdState
-    jregisterLevel header_ this
-    GameAdStateFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getCurrentInstance" (\() -> getCurrentInstance_impl this)
-    jregisterMethod header_ "getInstanceForApp" (\() -> getInstanceForApp_impl this)
-    jregisterMethod header_ "isEnabled" (\() -> isEnabled_impl this)
-    pure this
-
-initFields_ :: GameAdStateFactory -> IO ()
-initFields_ this = do
-    jset this.gameAdStateArray ((jarrayFromList [(jio (GameAdState.new_1 (javaCast (jio (AppNameLicensingAdConfiguration.new_)))))]))
-    jset this.gameAdState ((jindex ((jget (this).gameAdStateArray)) (0)))
-    pure ()
-
-new_ :: IO GameAdStateFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameAdStateFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Business.Advertisement.AppNameLicensingAdConfiguration as AppNameLicensingAdConfiguration
+import Org.Allbinary.Game.GameAdState as GameAdState
+import Org.Allbinary.Business.Advertisement.GameAdStateFactoryInterface as GameAdStateFactoryInterface
 
 
-getInstance :: IO (GameAdStateFactory)
-getInstance = do
-        pure (GameAdStateFactory.instance_)
+jclass : String
+jclass =
+    "GameAdStateFactory"
 
 
-getCurrentInstance :: (JavaObjectClass this_) => this_ -> IO (GameAdState.GameAdState)
-getCurrentInstance object_ = jmethod object_ "getCurrentInstance" (\() -> (getCurrentInstance_impl (javaCast object_ :: GameAdStateFactory))) ()
-
-getCurrentInstance_super :: (JavaObjectClass this_) => this_ -> IO (GameAdState.GameAdState)
-getCurrentInstance_super object_ = (getCurrentInstance_impl (javaCast object_ :: GameAdStateFactory))
-
-getCurrentInstance_impl :: GameAdStateFactory -> IO (GameAdState.GameAdState)
-getCurrentInstance_impl this = do
-        pure ((jget (this).gameAdState))
+jchain : List String
+jchain =
+    [ "GameAdStateFactory" ]
+        ++ GameAdStateFactoryInterface.jchain
 
 
--- throws Exception
-getInstanceForApp :: (JavaObjectClass this_) => this_ -> SoftwareInformation.SoftwareInformation -> IO (GameAdStateBase.GameAdStateBase)
-getInstanceForApp object_ a1 = jmethod object_ "getInstanceForApp" (\() -> (getInstanceForApp_impl (javaCast object_ :: GameAdStateFactory))) () a1
-
-getInstanceForApp_super :: (JavaObjectClass this_) => this_ -> SoftwareInformation.SoftwareInformation -> IO (GameAdStateBase.GameAdStateBase)
-getInstanceForApp_super object_ a1 = (getInstanceForApp_impl (javaCast object_ :: GameAdStateFactory)) a1
-
-getInstanceForApp_impl :: GameAdStateFactory -> SoftwareInformation.SoftwareInformation -> IO (GameAdStateBase.GameAdStateBase)
-getInstanceForApp_impl this softwareInformation = do
-        jset (this).gameAdState ((jindex ((jget (this).gameAdStateArray)) (0)))
-        pure ((javaCast (jindex ((jget (this).gameAdStateArray)) (0)) :: GameAdStateBase.GameAdStateBase))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "gameAdStateArray", JR.defaultOf "" ), ( "gameAdState", JR.defaultOf "" ) ]
 
 
-isEnabled :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isEnabled object_ = jmethod object_ "isEnabled" (\() -> (isEnabled_impl (javaCast object_ :: GameAdStateFactory))) ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getCurrentInstance_0", jm_getCurrentInstance_0 )
+        , ( "getInstanceForApp_1", jm_getInstanceForApp_1 )
+        , ( "isEnabled_0", jm_isEnabled_0 ) ]
+        JR.noMethods
 
-isEnabled_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isEnabled_super object_ = (isEnabled_impl (javaCast object_ :: GameAdStateFactory))
 
-isEnabled_impl :: GameAdStateFactory -> IO (Bool)
-isEnabled_impl this = do
-        pure (False)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameAdStateFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getCurrentInstance_0", jm_getCurrentInstance_0 ), ( "jm_getInstanceForApp_1", jm_getInstanceForApp_1 ), ( "jm_isEnabled_0", jm_isEnabled_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameAdStateFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "gameAdStateArray" "" JR.this (JR.arrayOf "" [ (JR.new GameAdState.jnew_1 [ (JR.new AppNameLicensingAdConfiguration.jnew_0 []) ]) ])),
+                JR.exec (JR.setField "gameAdState" "" JR.this (JR.aget (JR.thisField "gameAdStateArray") (JR.int 0))),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCurrentInstance_0 : JR.Method
+jm_getCurrentInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameAdState") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceForApp_1 : JR.Method
+jm_getInstanceForApp_1 jheap jthis jargs =
+    JR.method [ ( "softwareInformation", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "gameAdState" "" JR.this (JR.aget (JR.thisField "gameAdStateArray") (JR.int 0))), 
+                    JR.return (JR.aget (JR.thisField "gameAdStateArray") (JR.int 0)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isEnabled_0 : JR.Method
+jm_isEnabled_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,131 +1,122 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
-module LockedFeatureNotificationUtil where
+module Org.Allbinary.Logic.System.Security.Licensing.LockedFeatureNotificationUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LicenseStrings -- same package or java.lang
-import qualified GameNotificationEvent -- org.allbinary.game.layer.hud.event.GameNotificationEvent
-import qualified GameNotificationEventHandler -- org.allbinary.game.layer.hud.event.GameNotificationEventHandler
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified BooleanFactory -- org.allbinary.logic.java.bool.BooleanFactory
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified ErrorSound -- org.allbinary.media.audio.ErrorSound
-import qualified PrimaryPlayerQueueFactory -- org.allbinary.media.audio.PrimaryPlayerQueueFactory
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.licensing
+-}
 
-data LockedFeatureNotificationUtil = LockedFeatureNotificationUtil
-    { header_ :: JavaHeader
-    , gameNotificationEvent :: IORef (GameNotificationEvent.GameNotificationEvent)
-    }
-
-instance JavaNull LockedFeatureNotificationUtil where
-    javaNull = javaNullRecord "LockedFeatureNotificationUtil"
-
-instance JavaEquals LockedFeatureNotificationUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LockedFeatureNotificationUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LockedFeatureNotificationUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: LockedFeatureNotificationUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LockedFeatureNotificationUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    gameNotificationEvent <- newIORef javaNull
-    let this = LockedFeatureNotificationUtil header_ gameNotificationEvent
-    jregisterLevel header_ this
-    jregisterMethod header_ "fire" (\() -> fire_impl this)
-    jregisterMethod header_ "fireWithColor" (\() -> fireWithColor_impl this)
-    pure this
-
-initFields_ :: LockedFeatureNotificationUtil -> IO ()
-initFields_ this = do
-    jset this.gameNotificationEvent =<< (GameNotificationEvent.new_5 this (jget ((jio (LicenseStrings.getInstance))).lOCKED) (jio (SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 3)) (jget ((jio (BasicColorFactory.getInstance))).rED) (jget ((jio (BooleanFactory.getInstance))).fALSE))
-    pure ()
-
-new_ :: IO LockedFeatureNotificationUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LockedFeatureNotificationUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Logic.Java.Bool.BooleanFactory as BooleanFactory
+import Org.Allbinary.Media.Audio.ErrorSound as ErrorSound
+import Org.Allbinary.Game.Layer.Hud.Event.GameNotificationEvent as GameNotificationEvent
+import Org.Allbinary.Game.Layer.Hud.Event.GameNotificationEventHandler as GameNotificationEventHandler
+import Org.Allbinary.Logic.System.Security.Licensing.LicenseStrings as LicenseStrings
+import Org.Allbinary.Media.Audio.PrimaryPlayerQueueFactory as PrimaryPlayerQueueFactory
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
 
 
-getInstance :: IO (LockedFeatureNotificationUtil)
-getInstance = do
-        pure (LockedFeatureNotificationUtil.instance_)
+jclass : String
+jclass =
+    "LockedFeatureNotificationUtil"
 
 
--- throws Exception
-fire :: (JavaObjectClass this_) => this_ -> IO (())
-fire object_ = jmethod object_ "fire" (\() -> (fire_impl (javaCast object_ :: LockedFeatureNotificationUtil))) ()
-
-fire_super :: (JavaObjectClass this_) => this_ -> IO (())
-fire_super object_ = (fire_impl (javaCast object_ :: LockedFeatureNotificationUtil))
-
-fire_impl :: LockedFeatureNotificationUtil -> IO (())
-fire_impl this = do
-        Control.Monad.void (PrimaryPlayerQueueFactory.add ((jio (PrimaryPlayerQueueFactory.getInstance))) (jio (ErrorSound.getInstance)))
-        Control.Monad.void (GameNotificationEventHandler.fireEvent ((jio (GameNotificationEventHandler.getInstance))) (jget (this).gameNotificationEvent))
-        pure ()
+jchain : List String
+jchain =
+    [ "LockedFeatureNotificationUtil" ]
 
 
--- throws Exception
-fireWithColor :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-fireWithColor object_ a1 = jmethod object_ "fireWithColor" (\() -> (fireWithColor_impl (javaCast object_ :: LockedFeatureNotificationUtil))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "gameNotificationEvent", JR.defaultOf "" ) ]
 
-fireWithColor_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-fireWithColor_super object_ a1 = (fireWithColor_impl (javaCast object_ :: LockedFeatureNotificationUtil)) a1
 
-fireWithColor_impl :: LockedFeatureNotificationUtil -> BasicColor.BasicColor -> IO (())
-fireWithColor_impl this basicColor = do
-        Control.Monad.void (PrimaryPlayerQueueFactory.add ((jio (PrimaryPlayerQueueFactory.getInstance))) (jio (ErrorSound.getInstance)))
-        Control.Monad.void (GameNotificationEvent.setBasicColorP ((jget (this).gameNotificationEvent)) basicColor)
-        Control.Monad.void (GameNotificationEventHandler.fireEvent ((jio (GameNotificationEventHandler.getInstance))) (jget (this).gameNotificationEvent))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "fire_0", jm_fire_0 )
+        , ( "fireWithColor_1", jm_fireWithColor_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LockedFeatureNotificationUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_fire_0", jm_fire_0 ), ( "jm_fireWithColor_1", jm_fireWithColor_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LockedFeatureNotificationUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "gameNotificationEvent" "" JR.this (JR.new GameNotificationEvent.jnew_5 [ JR.this, (JR.field "LOCKED" (JR.callStatic LicenseStrings.jm_getInstance_0 [])), (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 3) ]), (JR.field "RED" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.field "FALSE" (JR.callStatic BooleanFactory.jm_getInstance_0 [])) ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fire_0 : JR.Method
+jm_fire_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.callStatic PrimaryPlayerQueueFactory.jm_getInstance_0 []) [ (JR.callStatic ErrorSound.jm_getInstance_0 []) ]), 
+                    JR.exec (JR.invoke "fireEvent_1" (JR.callStatic GameNotificationEventHandler.jm_getInstance_0 []) [ (JR.thisField "gameNotificationEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fireWithColor_1 : JR.Method
+jm_fireWithColor_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.callStatic PrimaryPlayerQueueFactory.jm_getInstance_0 []) [ (JR.callStatic ErrorSound.jm_getInstance_0 []) ]), 
+                    JR.exec (JR.invoke "setBasicColorP_1" (JR.thisField "gameNotificationEvent") [ (JR.local "basicColor") ]), 
+                    JR.exec (JR.invoke "fireEvent_1" (JR.callStatic GameNotificationEventHandler.jm_getInstance_0 []) [ (JR.thisField "gameNotificationEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

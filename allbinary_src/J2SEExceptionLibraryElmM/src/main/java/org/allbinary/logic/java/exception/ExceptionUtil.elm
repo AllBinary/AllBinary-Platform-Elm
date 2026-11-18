@@ -1,4 +1,4 @@
-module ExceptionUtil exposing (..)
+module Org.Allbinary.Logic.Java.Exception.ExceptionUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.java.exception
 -}

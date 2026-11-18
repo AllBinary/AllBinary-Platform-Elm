@@ -1,108 +1,107 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.init.db
-module InitDbHelperFactory where
+module Org.Allbinary.Business.Init.Db.InitDbHelperFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified DatabaseConnectionInfoInterface -- same package or java.lang
-import qualified AbeFactory -- org.allbinary.logic.system.loader.AbeFactory
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified LicensingException -- org.allbinary.logic.system.security.licensing.LicensingException
+{-| Generated Code Do Not Modify package org.allbinary.business.init.db
+-}
 
-data InitDbHelperFactory = InitDbHelperFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull InitDbHelperFactory where
-    javaNull = javaNullRecord "InitDbHelperFactory"
-
-instance JavaEquals InitDbHelperFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InitDbHelperFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InitDbHelperFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-cLASSNAME :: String
-cLASSNAME = "org.allbinary.business.installer.InitDbCrypted"
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO InitDbHelperFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = InitDbHelperFactory header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: InitDbHelperFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO InitDbHelperFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: InitDbHelperFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.System.Loader.AbeFactory as AbeFactory
 
 
--- throws LicensingException
-getInstance :: AbeClientInformationInterface.AbeClientInformationInterface -> DatabaseConnectionInfoInterface.DatabaseConnectionInfoInterface -> IO (Any.Any)
-getInstance abeClientInformation databaseConnectionInfoInterface = do
-        let params = (jnewArray (1) javaNull)
-        let classes = (jnewArray (1) javaNull)
-        jsetIndex classes (0) ((JavaClass "DatabaseConnectionInfoInterface"))
-        jsetIndex params (0) ((jtoObject (javaCast databaseConnectionInfoInterface :: Any.Any)))
-        anyType <- (AbeFactory.getInstance_4 ((jio (AbeFactory.getInstance))) abeClientInformation cLASSNAME classes params)
-        pure ((jtoObject anyType))
+jclass : String
+jclass =
+    "InitDbHelperFactory"
 
 
--- throws LicensingException
-getInstance_1 :: AbeClientInformationInterface.AbeClientInformationInterface -> IO (Any.Any)
-getInstance_1 abeClientInformation = do
-        anyType <- (AbeFactory.getInstance_4 ((jio (AbeFactory.getInstance))) abeClientInformation cLASSNAME javaNull javaNull)
-        pure ((jtoObject anyType))
+jchain : List String
+jchain =
+    [ "InitDbHelperFactory" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_2", jm_getInstance_2 )
+        , ( "getInstance_1", jm_getInstance_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InitDbHelperFactory"
+        [ ( "jm_getInstance_2", jm_getInstance_2 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_CLASSNAME", jstatic_CLASSNAME ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_CLASSNAME : JR.M
+jstatic_CLASSNAME s =
+    JR.static "InitDbHelperFactory" jclinit "CLASSNAME"
+        (JR.str "org.allbinary.business.installer.InitDbCrypted")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_2 : JR.Method
+jm_getInstance_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "databaseConnectionInfoInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "params" "" (JR.newArray "" [ (JR.int 1) ]), 
+                    JR.declare "classes" "" (JR.newArray "" [ (JR.int 1) ]), 
+                    JR.exec (JR.andThen (JR.local "classes") (\jaN66591 -> JR.andThen (JR.int 0) (\jiN66591 -> (JR.aset (JR.lit jaN66591) (JR.lit jiN66591) (JR.lit (JR.JClass "DatabaseConnectionInfoInterface")))))), 
+                    JR.exec (JR.andThen (JR.local "params") (\jaN66632 -> JR.andThen (JR.int 0) (\jiN66632 -> (JR.aset (JR.lit jaN66632) (JR.lit jiN66632) (JR.local "databaseConnectionInfoInterface"))))), 
+                    JR.declare "anyType" "" (JR.invoke "getInstance_4" (JR.callStatic AbeFactory.jm_getInstance_0 []) [ (JR.local "abeClientInformation"), jstatic_CLASSNAME, (JR.local "classes"), (JR.local "params") ]), 
+                    JR.return (JR.local "anyType") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "anyType" "" (JR.invoke "getInstance_4" (JR.callStatic AbeFactory.jm_getInstance_0 []) [ (JR.local "abeClientInformation"), jstatic_CLASSNAME, JR.null, JR.null ]), 
+                    JR.return (JR.local "anyType") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

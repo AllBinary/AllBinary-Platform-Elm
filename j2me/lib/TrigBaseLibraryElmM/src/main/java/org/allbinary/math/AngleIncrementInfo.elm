@@ -1,13 +1,13 @@
-module AngleIncrementInfo exposing (..)
+module Org.Allbinary.Math.AngleIncrementInfo exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.math
 -}
 
 import JR
-import AngleFactory
-import FrameUtil
-import SmallIntegerSingletonFactory
-import StringMaker
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Math.FrameUtil as FrameUtil
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

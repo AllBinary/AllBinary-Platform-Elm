@@ -1,167 +1,137 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement
-module AdConfiguration where
+module Org.Allbinary.Business.Advertisement.AdConfiguration exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Direction -- org.allbinary.direction.Direction
-import qualified GameState -- org.allbinary.game.state.GameState
+{-| Generated Code Do Not Modify package org.allbinary.business.advertisement
+-}
 
-data AdConfiguration = AdConfiguration
-    { header_ :: JavaHeader
-    , iNNERACTIVE :: IORef (String)
-    , lEADBOLT :: IORef (String)
-    , aDMOB :: IORef (String)
-    }
-
-instance JavaNull AdConfiguration where
-    javaNull = javaNullRecord "AdConfiguration"
-
-instance JavaEquals AdConfiguration where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AdConfiguration where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AdConfiguration where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AdConfiguration
-newRecord_ = do
-    header_ <- newJavaHeader
-    iNNERACTIVE <- newIORef ""
-    lEADBOLT <- newIORef ""
-    aDMOB <- newIORef ""
-    let this = AdConfiguration header_ iNNERACTIVE lEADBOLT aDMOB
-    jregisterLevel header_ this
-    jregisterMethod header_ "getValidAdSpots" (\() -> getValidAdSpots_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "processDemo" (\() -> processDemo_impl this)
-    jregisterMethod header_ "setShowAds" (\() -> setShowAds_impl this)
-    jregisterMethod header_ "setToggleAds" (\() -> setToggleAds_impl this)
-    jregisterMethod header_ "isShowAds" (\() -> isShowAds_impl this)
-    pure this
-
-initFields_ :: AdConfiguration -> IO ()
-initFields_ this = do
-    jset this.iNNERACTIVE (javaNull)
-    jset this.lEADBOLT (javaNull)
-    jset this.aDMOB (javaNull)
-    pure ()
-
-new_1 :: JavaArray (Any.Any) -> IO AdConfiguration
-new_1 advertIdArray = do
-    this <- newRecord_
-    init_1 this advertIdArray
-    pure this
-
-init_1 :: AdConfiguration -> JavaArray (Any.Any) -> IO ()
-init_1 this advertIdArray = do
-        initFields_ this
-        jset (this).iNNERACTIVE ((javaCast (jindex advertIdArray (0)) :: String))
-        jset (this).aDMOB ((javaCast (jindex advertIdArray (1)) :: String))
-        jset (this).lEADBOLT ((javaCast (jindex advertIdArray (2)) :: String))
-        pure ()
+import JR
 
 
-getValidAdSpots :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Direction.Direction))
-getValidAdSpots object_ = jmethod object_ "getValidAdSpots" (\() -> (getValidAdSpots_impl (javaCast object_ :: AdConfiguration))) ()
 
-getValidAdSpots_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Direction.Direction))
-getValidAdSpots_super object_ = (getValidAdSpots_impl (javaCast object_ :: AdConfiguration))
-
-getValidAdSpots_impl :: AdConfiguration -> IO (JavaArray (Direction.Direction))
-getValidAdSpots_impl this = do
-        pure ((jnewArray (0) javaNull))
+jclass : String
+jclass =
+    "AdConfiguration"
 
 
-process :: (JavaObjectClass this_) => this_ -> GameState.GameState -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: AdConfiguration))) () a1
-
-process_super :: (JavaObjectClass this_) => this_ -> GameState.GameState -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: AdConfiguration)) a1
-
-process_impl :: AdConfiguration -> GameState.GameState -> IO (())
-process_impl this gameState = do
-        pure ()
+jchain : List String
+jchain =
+    [ "AdConfiguration" ]
 
 
-processDemo :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-processDemo object_ a1 = jmethod object_ "processDemo" (\() -> (processDemo_impl (javaCast object_ :: AdConfiguration))) () a1
-
-processDemo_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-processDemo_super object_ a1 = (processDemo_impl (javaCast object_ :: AdConfiguration)) a1
-
-processDemo_impl :: AdConfiguration -> Int -> IO (())
-processDemo_impl this state = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "INNERACTIVE", JR.defaultOf "" ), ( "LEADBOLT", JR.defaultOf "" ), ( "ADMOB", JR.defaultOf "" ) ]
 
 
-setShowAds :: (JavaObjectClass this_) => this_ -> IO (())
-setShowAds object_ = jmethod object_ "setShowAds" (\() -> (setShowAds_impl (javaCast object_ :: AdConfiguration))) ()
-
-setShowAds_super :: (JavaObjectClass this_) => this_ -> IO (())
-setShowAds_super object_ = (setShowAds_impl (javaCast object_ :: AdConfiguration))
-
-setShowAds_impl :: AdConfiguration -> IO (())
-setShowAds_impl this = do
-        pure ()
-
-
-setToggleAds :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setToggleAds object_ a1 = jmethod object_ "setToggleAds" (\() -> (setToggleAds_impl (javaCast object_ :: AdConfiguration))) () a1
-
-setToggleAds_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setToggleAds_super object_ a1 = (setToggleAds_impl (javaCast object_ :: AdConfiguration)) a1
-
-setToggleAds_impl :: AdConfiguration -> Bool -> IO (())
-setToggleAds_impl this showAds = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getValidAdSpots_0", jm_getValidAdSpots_0 )
+        , ( "process_1", jm_process_1 )
+        , ( "processDemo_1", jm_processDemo_1 )
+        , ( "setShowAds_0", jm_setShowAds_0 )
+        , ( "setToggleAds_1", jm_setToggleAds_1 )
+        , ( "isShowAds_0", jm_isShowAds_0 ) ]
+        JR.noMethods
 
 
-isShowAds :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isShowAds object_ = jmethod object_ "isShowAds" (\() -> (isShowAds_impl (javaCast object_ :: AdConfiguration))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AdConfiguration"
+        [ ( "jm_getValidAdSpots_0", jm_getValidAdSpots_0 ), ( "jm_process_1", jm_process_1 ), ( "jm_processDemo_1", jm_processDemo_1 ), ( "jm_setShowAds_0", jm_setShowAds_0 ), ( "jm_setToggleAds_1", jm_setToggleAds_1 ), ( "jm_isShowAds_0", jm_isShowAds_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
-isShowAds_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isShowAds_super object_ = (isShowAds_impl (javaCast object_ :: AdConfiguration))
 
-isShowAds_impl :: AdConfiguration -> IO (Bool)
-isShowAds_impl this = do
-        pure (True)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "advertIdArray", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "INNERACTIVE" "" JR.this (JR.aget (JR.local "advertIdArray") (JR.int 0))), 
+                    JR.exec (JR.setField "ADMOB" "" JR.this (JR.aget (JR.local "advertIdArray") (JR.int 1))), 
+                    JR.exec (JR.setField "LEADBOLT" "" JR.this (JR.aget (JR.local "advertIdArray") (JR.int 2))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getValidAdSpots_0 : JR.Method
+jm_getValidAdSpots_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.newArray "" [ (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "gameState", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processDemo_1 : JR.Method
+jm_processDemo_1 jheap jthis jargs =
+    JR.method [ ( "state", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setShowAds_0 : JR.Method
+jm_setShowAds_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setToggleAds_1 : JR.Method
+jm_setToggleAds_1 jheap jthis jargs =
+    JR.method [ ( "showAds", "Z" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isShowAds_0 : JR.Method
+jm_isShowAds_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

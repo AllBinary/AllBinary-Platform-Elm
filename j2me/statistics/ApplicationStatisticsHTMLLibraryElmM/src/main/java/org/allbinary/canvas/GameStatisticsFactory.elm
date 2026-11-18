@@ -1,119 +1,118 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
-module GameStatisticsFactory (module GameStatisticsFactory, module BaseGameStatistics) where
+module Org.Allbinary.Canvas.GameStatisticsFactory exposing (..)
 
-import BaseGameStatistics hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, add, add_super, add_impl, toString, toString_super, toString_impl, instance_, stringBuffer)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified BaseGameStatistics
+{-| Generated Code Do Not Modify package org.allbinary.canvas
+-}
 
-data GameStatisticsFactory = GameStatisticsFactory
-    { header_ :: JavaHeader
-    , base :: BaseGameStatistics.BaseGameStatistics
-    , stringBuffer :: IORef (StringMaker.StringMaker)
-    }
-
-instance JavaNull GameStatisticsFactory where
-    javaNull = javaNullRecord "GameStatisticsFactory"
-
-instance JavaEquals GameStatisticsFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameStatisticsFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameStatisticsFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameStatisticsFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-newRecord_ :: IO GameStatisticsFactory
-newRecord_ = do
-    base <- BaseGameStatistics.newRecord_
-    let header_ = base.header_
-    stringBuffer <- newIORef javaNull
-    let this = GameStatisticsFactory header_ base stringBuffer
-    jregisterLevel header_ this
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: GameStatisticsFactory -> IO ()
-initFields_ this = do
-    jset this.stringBuffer =<< (StringMaker.new_)
-    pure ()
-
-new_ :: IO GameStatisticsFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameStatisticsFactory -> IO ()
-init_ this = do
-    BaseGameStatistics.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Canvas.BaseGameStatistics as BaseGameStatistics
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (GameStatisticsFactory)
-getInstance = do
-        pure (GameStatisticsFactory.instance_)
+jclass : String
+jclass =
+    "GameStatisticsFactory"
 
 
-add :: (JavaObjectClass this_) => this_ -> String -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: GameStatisticsFactory))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: GameStatisticsFactory)) a1
-
-add_impl :: GameStatisticsFactory -> String -> IO (())
-add_impl this string = do
-        when ((jio (StringMaker.length ((jget (this).stringBuffer)))) > 12000) $ do
-            Control.Monad.void (StringMaker.delete ((jget (this).stringBuffer)) 0 (jio (StringMaker.length ((jget (this).stringBuffer)))))
-            Control.Monad.void (StringMaker.append ((jget (this).stringBuffer)) "Old Stats Cleared")
-        Control.Monad.void (StringMaker.append ((jget (this).stringBuffer)) string)
-        pure ()
+jchain : List String
+jchain =
+    [ "GameStatisticsFactory" ]
+        ++ BaseGameStatistics.jchain
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: GameStatisticsFactory))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BaseGameStatistics.jfields ++ [ ( "stringBuffer", JR.defaultOf "" ) ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: GameStatisticsFactory))
 
-toString_impl :: GameStatisticsFactory -> IO (String)
-toString_impl this = do
-        (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jio (BaseGameStatistics.toString_super this.base))))) (jio (StringMaker.toString ((jget (this).stringBuffer))))))))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "add_1", jm_add_1 )
+        , ( "toString_0", jm_toString_0 ) ]
+        BaseGameStatistics.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameStatisticsFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_add_1", jm_add_1 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameStatisticsFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect BaseGameStatistics.jinit_0 JR.this []),
+            JR.exec (JR.setField "stringBuffer" "" JR.this (JR.new StringMaker.jnew_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "string", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "length_0" (JR.thisField "stringBuffer") []) (JR.int 12000)) (JR.run [ 
+                        JR.exec (JR.invoke "delete_2" (JR.thisField "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.thisField "stringBuffer") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.thisField "stringBuffer") [ (JR.str "Old Stats Cleared") ]) ]) identity, 
+                    JR.exec (JR.invoke "append_1" (JR.thisField "stringBuffer") [ (JR.local "string") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.callVia BaseGameStatistics.jvtable "toString_0" JR.this []) ]) [ (JR.invoke "toString_0" (JR.thisField "stringBuffer") []) ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

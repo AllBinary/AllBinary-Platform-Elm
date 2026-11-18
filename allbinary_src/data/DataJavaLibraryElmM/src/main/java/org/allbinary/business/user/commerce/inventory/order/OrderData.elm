@@ -1,100 +1,121 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.inventory.order
-module OrderData where
+module Org.Allbinary.Business.User.Commerce.Inventory.Order.OrderData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.inventory.order
+-}
 
-data OrderData = OrderData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull OrderData where
-    javaNull = javaNullRecord "OrderData"
 
-instance JavaEquals OrderData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq OrderData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "OrderData"
 
-instance JavaObjectClass OrderData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-oRDERS :: String
-oRDERS = "ORDERS"
+jchain : List String
+jchain =
+    [ "OrderData" ]
 
-oRDER :: String
-oRDER = "ORDER"
 
-iD :: String
-iD = "ORDER_ID"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-cUSTOMERCOMMENT :: String
-cUSTOMERCOMMENT = "ORDER_CUSTOMER_COMMENT"
 
-cUSTOMERCANCELCOMMENT :: String
-cUSTOMERCANCELCOMMENT = "ORDER_CUSTOMER_CANCEL_COMMENT"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-sTORECOMMENT :: String
-sTORECOMMENT = "ORDER_STORE_COMMENT"
 
-sTORECANCELCOMMENT :: String
-sTORECANCELCOMMENT = "ORDER_STORE_CANCEL_COMMENT"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OrderData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_ORDERS", jstatic_ORDERS ), ( "jstatic_ORDER", jstatic_ORDER ), ( "jstatic_ID", jstatic_ID ), ( "jstatic_CUSTOMERCOMMENT", jstatic_CUSTOMERCOMMENT ), ( "jstatic_CUSTOMERCANCELCOMMENT", jstatic_CUSTOMERCANCELCOMMENT ), ( "jstatic_STORECOMMENT", jstatic_STORECOMMENT ), ( "jstatic_STORECANCELCOMMENT", jstatic_STORECANCELCOMMENT ) ]
+        jheap
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-newRecord_ :: IO OrderData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = OrderData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: OrderData -> IO ()
-initFields_ this = do
-    pure ()
+jstatic_ORDERS : JR.M
+jstatic_ORDERS s =
+    JR.static "OrderData" jclinit "ORDERS"
+        (JR.str "ORDERS")
+        s
 
-new_ :: IO OrderData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: OrderData -> IO ()
-init_ this = do
-    initFields_ this
+jstatic_ORDER : JR.M
+jstatic_ORDER s =
+    JR.static "OrderData" jclinit "ORDER"
+        (JR.str "ORDER")
+        s
 
+
+jstatic_ID : JR.M
+jstatic_ID s =
+    JR.static "OrderData" jclinit "ID"
+        (JR.str "ORDER_ID")
+        s
+
+
+jstatic_CUSTOMERCOMMENT : JR.M
+jstatic_CUSTOMERCOMMENT s =
+    JR.static "OrderData" jclinit "CUSTOMERCOMMENT"
+        (JR.str "ORDER_CUSTOMER_COMMENT")
+        s
+
+
+jstatic_CUSTOMERCANCELCOMMENT : JR.M
+jstatic_CUSTOMERCANCELCOMMENT s =
+    JR.static "OrderData" jclinit "CUSTOMERCANCELCOMMENT"
+        (JR.str "ORDER_CUSTOMER_CANCEL_COMMENT")
+        s
+
+
+jstatic_STORECOMMENT : JR.M
+jstatic_STORECOMMENT s =
+    JR.static "OrderData" jclinit "STORECOMMENT"
+        (JR.str "ORDER_STORE_COMMENT")
+        s
+
+
+jstatic_STORECANCELCOMMENT : JR.M
+jstatic_STORECANCELCOMMENT s =
+    JR.static "OrderData" jclinit "STORECANCELCOMMENT"
+        (JR.str "ORDER_STORE_CANCEL_COMMENT")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

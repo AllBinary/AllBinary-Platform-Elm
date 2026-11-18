@@ -1,162 +1,148 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.drop
-module DropLayerFactory where
+module Org.Allbinary.Game.Layer.Drop.DropLayerFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified PickedUpLayerInterfaceFactoryInterface -- org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactoryInterface
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified BasicArrayListUtil -- org.allbinary.util.BasicArrayListUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.drop
+-}
 
-data DropLayerFactory = DropLayerFactory
-    { header_ :: JavaHeader
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    , basicArrayListUtil :: IORef (BasicArrayListUtil.BasicArrayListUtil)
-    }
-
-instance JavaNull DropLayerFactory where
-    javaNull = javaNullRecord "DropLayerFactory"
-
-instance JavaEquals DropLayerFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DropLayerFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DropLayerFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-dROP_LAYER_FACTORY :: DropLayerFactory
-{-# NOINLINE dROP_LAYER_FACTORY #-}
-dROP_LAYER_FACTORY = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DropLayerFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    list <- newIORef javaNull
-    basicArrayListUtil <- newIORef javaNull
-    let this = DropLayerFactory header_ list basicArrayListUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    jregisterMethod header_ "getSize" (\() -> getSize_impl this)
-    jregisterMethod header_ "getRandomInstance" (\() -> getRandomInstance_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "getList" (\() -> getList_impl this)
-    pure this
-
-initFields_ :: DropLayerFactory -> IO ()
-initFields_ this = do
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    jset this.basicArrayListUtil =<< (BasicArrayListUtil.getInstance)
-    pure ()
-
-new_ :: IO DropLayerFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DropLayerFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Util.BasicArrayListUtil as BasicArrayListUtil
 
 
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: DropLayerFactory))) ()
-
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: DropLayerFactory))
-
-clear_impl :: DropLayerFactory -> IO (())
-clear_impl this = do
-        Control.Monad.void (BasicArrayList.clear ((jget (this).list)))
-        pure ()
+jclass : String
+jclass =
+    "DropLayerFactory"
 
 
-getInstance :: IO (DropLayerFactory)
-getInstance = do
-        pure (DropLayerFactory.dROP_LAYER_FACTORY)
+jchain : List String
+jchain =
+    [ "DropLayerFactory" ]
 
 
-getSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize object_ = jmethod object_ "getSize" (\() -> (getSize_impl (javaCast object_ :: DropLayerFactory))) ()
-
-getSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize_super object_ = (getSize_impl (javaCast object_ :: DropLayerFactory))
-
-getSize_impl :: DropLayerFactory -> IO (Int)
-getSize_impl this = do
-        (BasicArrayList.size ((jget (this).list)))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "list", JR.defaultOf "" ), ( "basicArrayListUtil", JR.defaultOf "" ) ]
 
 
-getRandomInstance :: (JavaObjectClass this_) => this_ -> IO (PickedUpLayerInterfaceFactoryInterface.PickedUpLayerInterfaceFactoryInterface)
-getRandomInstance object_ = jmethod object_ "getRandomInstance" (\() -> (getRandomInstance_impl (javaCast object_ :: DropLayerFactory))) ()
-
-getRandomInstance_super :: (JavaObjectClass this_) => this_ -> IO (PickedUpLayerInterfaceFactoryInterface.PickedUpLayerInterfaceFactoryInterface)
-getRandomInstance_super object_ = (getRandomInstance_impl (javaCast object_ :: DropLayerFactory))
-
-getRandomInstance_impl :: DropLayerFactory -> IO (PickedUpLayerInterfaceFactoryInterface.PickedUpLayerInterfaceFactoryInterface)
-getRandomInstance_impl this = do
-        pure ((javaCast (jio (BasicArrayListUtil.getRandom ((jget (this).basicArrayListUtil)) (jget (this).list))) :: PickedUpLayerInterfaceFactoryInterface.PickedUpLayerInterfaceFactoryInterface))
-
-
-add :: (JavaObjectClass this_) => this_ -> PickedUpLayerInterfaceFactoryInterface.PickedUpLayerInterfaceFactoryInterface -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: DropLayerFactory))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> PickedUpLayerInterfaceFactoryInterface.PickedUpLayerInterfaceFactoryInterface -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: DropLayerFactory)) a1
-
-add_impl :: DropLayerFactory -> PickedUpLayerInterfaceFactoryInterface.PickedUpLayerInterfaceFactoryInterface -> IO (())
-add_impl this layerInterfaceFactoryInterface = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) layerInterfaceFactoryInterface)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "clear_0", jm_clear_0 )
+        , ( "getInstance_0", jm_getInstance_0 )
+        , ( "getSize_0", jm_getSize_0 )
+        , ( "getRandomInstance_0", jm_getRandomInstance_0 )
+        , ( "add_1", jm_add_1 )
+        , ( "getList_0", jm_getList_0 ) ]
+        JR.noMethods
 
 
-getList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList object_ = jmethod object_ "getList" (\() -> (getList_impl (javaCast object_ :: DropLayerFactory))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DropLayerFactory"
+        [ ( "jm_clear_0", jm_clear_0 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getSize_0", jm_getSize_0 ), ( "jm_getRandomInstance_0", jm_getRandomInstance_0 ), ( "jm_add_1", jm_add_1 ), ( "jm_getList_0", jm_getList_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_DROP_LAYER_FACTORY", jstatic_DROP_LAYER_FACTORY ) ]
+        jheap
 
-getList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList_super object_ = (getList_impl (javaCast object_ :: DropLayerFactory))
 
-getList_impl :: DropLayerFactory -> IO (BasicArrayList.BasicArrayList)
-getList_impl this = do
-        pure ((jget (this).list))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_DROP_LAYER_FACTORY : JR.M
+jstatic_DROP_LAYER_FACTORY s =
+    JR.static "DropLayerFactory" jclinit "DROP_LAYER_FACTORY"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                JR.exec (JR.setField "basicArrayListUtil" "" JR.this (JR.callStatic BasicArrayListUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "list") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_DROP_LAYER_FACTORY ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSize_0 : JR.Method
+jm_getSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "size_0" (JR.thisField "list") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRandomInstance_0 : JR.Method
+jm_getRandomInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getRandom_1" (JR.thisField "basicArrayListUtil") [ (JR.thisField "list") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "layerInterfaceFactoryInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "layerInterfaceFactoryInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getList_0 : JR.Method
+jm_getList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "list") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

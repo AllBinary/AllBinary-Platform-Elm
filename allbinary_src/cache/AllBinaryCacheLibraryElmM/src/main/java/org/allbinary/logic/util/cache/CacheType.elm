@@ -1,124 +1,112 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2007 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
-module CacheType where
+module Org.Allbinary.Logic.Util.Cache.CacheType exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
+{-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
+-}
 
-data CacheType = CacheType
-    { header_ :: JavaHeader
-    , vendor :: IORef (String)
-    , type_ :: IORef (String)
-    }
-
-instance JavaNull CacheType where
-    javaNull = javaNullRecord "CacheType"
-
-instance JavaEquals CacheType where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CacheType where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CacheType where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO CacheType
-newRecord_ = do
-    header_ <- newJavaHeader
-    vendor <- newIORef ""
-    type_ <- newIORef ""
-    let this = CacheType header_ vendor type_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getVendor" (\() -> getVendor_impl this)
-    jregisterMethod header_ "getType" (\() -> getType_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: CacheType -> IO ()
-initFields_ this = do
-    jset this.vendor (javaNull)
-    jset this.type_ (javaNull)
-    pure ()
-
-new_2 :: String -> String -> IO CacheType
-new_2 vendor type_ = do
-    this <- newRecord_
-    init_2 this vendor type_
-    pure this
-
-init_2 :: CacheType -> String -> String -> IO ()
-init_2 this vendor type_ = do
-        initFields_ this
-        jset (this).vendor (vendor)
-        jset (this).type_ (type_)
-        pure ()
+import JR
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getVendor :: (JavaObjectClass this_) => this_ -> IO (String)
-getVendor object_ = jmethod object_ "getVendor" (\() -> (getVendor_impl (javaCast object_ :: CacheType))) ()
-
-getVendor_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getVendor_super object_ = (getVendor_impl (javaCast object_ :: CacheType))
-
-getVendor_impl :: CacheType -> IO (String)
-getVendor_impl this = do
-        pure ((jget (this).vendor))
+jclass : String
+jclass =
+    "CacheType"
 
 
-getType :: (JavaObjectClass this_) => this_ -> IO (String)
-getType object_ = jmethod object_ "getType" (\() -> (getType_impl (javaCast object_ :: CacheType))) ()
-
-getType_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getType_super object_ = (getType_impl (javaCast object_ :: CacheType))
-
-getType_impl :: CacheType -> IO (String)
-getType_impl this = do
-        pure ((jget (this).type_))
+jchain : List String
+jchain =
+    [ "CacheType" ]
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: CacheType))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "vendor", JR.defaultOf "" ), ( "type", JR.defaultOf "" ) ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: CacheType))
 
-toString_impl :: CacheType -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "CacheType: Vendor: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (CacheType.getVendor this)))
-        Control.Monad.void (StringMaker.append stringBuffer " Type: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (CacheType.getType this)))
-        (StringMaker.toString stringBuffer)
+jvtable =
+    JR.vtable
+        [ ( "getVendor_0", jm_getVendor_0 )
+        , ( "getType_0", jm_getType_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CacheType"
+        [ ( "jm_getVendor_0", jm_getVendor_0 ), ( "jm_getType_0", jm_getType_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "vendor", "" ), ( "type", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "vendor" "" JR.this (JR.local "vendor")), 
+                    JR.exec (JR.setField "type" "" JR.this (JR.local "type")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getVendor_0 : JR.Method
+jm_getVendor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "vendor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getType_0 : JR.Method
+jm_getType_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "type") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "CacheType: Vendor: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getVendor_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Type: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getType_0" JR.this []) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

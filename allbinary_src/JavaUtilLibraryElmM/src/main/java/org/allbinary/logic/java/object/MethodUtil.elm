@@ -1,102 +1,96 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.java.anyType
-module MethodUtil where
+module Org.Allbinary.Logic.Java.AnyType.MethodUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ParamsUtil -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified Method -- java.lang.reflect.Method
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
+{-| Generated Code Do Not Modify package org.allbinary.logic.java.anyType
+-}
 
-data MethodUtil = MethodUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull MethodUtil where
-    javaNull = javaNullRecord "MethodUtil"
-
-instance JavaEquals MethodUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MethodUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MethodUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MethodUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = MethodUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: MethodUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO MethodUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: MethodUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.Java.AnyType.ParamsUtil as ParamsUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-viewAll :: Class.Class -> String -> IO (String)
-viewAll myClass lineBreak = do
-        stringBuffer <- (StringMaker.new_)
-        method <- (Class.getMethods myClass)
-        Control.Monad.void (StringMaker.append stringBuffer "Methods: ")
-        Control.Monad.void (StringMaker.append stringBuffer lineBreak)
-        forM_ [0 .. (jlength method) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Method.getName ((jio (Method.getReturnType ((jindex method (index)))))))))
-            Control.Monad.void (StringMaker.append stringBuffer " ")
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Method.getName ((jindex method (index))))))
-            Control.Monad.void (StringMaker.append stringBuffer "(")
-            Control.Monad.void (ParamsUtil.viewParams (jio (Method.getParameterTypes ((jindex method (index))))))
-            Control.Monad.void (StringMaker.append stringBuffer ")")
-            Control.Monad.void (StringMaker.append stringBuffer lineBreak)
-        (StringMaker.toString stringBuffer)
+jclass : String
+jclass =
+    "MethodUtil"
 
+
+jchain : List String
+jchain =
+    [ "MethodUtil" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "viewAll_2", jm_viewAll_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MethodUtil"
+        [ ( "jm_viewAll_2", jm_viewAll_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_viewAll_2 : JR.Method
+jm_viewAll_2 jheap jthis jargs =
+    JR.method [ ( "myClass", "" ), ( "lineBreak", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "method" "" (JR.invoke "getMethods_0" (JR.local "myClass") []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Methods: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "lineBreak") ]), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "method"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66295 -> (JR.setLocal "index" "I" (JR.lit jwN66295))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.invoke "getReturnType_0" (JR.aget (JR.local "method") (JR.local "index")) []) []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.aget (JR.local "method") (JR.local "index")) []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "(") ]), 
+                        JR.exec (JR.callStatic ParamsUtil.jm_viewParams_1 [ (JR.invoke "getParameterTypes_0" (JR.aget (JR.local "method") (JR.local "index")) []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str ")") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "lineBreak") ]) ]) ], 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

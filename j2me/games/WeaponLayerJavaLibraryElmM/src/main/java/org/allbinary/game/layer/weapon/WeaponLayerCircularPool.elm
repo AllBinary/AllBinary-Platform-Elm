@@ -1,100 +1,88 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.weapon
-module WeaponLayerCircularPool (module WeaponLayerCircularPool, module AllBinaryLayerCircularPool) where
+module Org.Allbinary.Game.Layer.Weapon.WeaponLayerCircularPool exposing (..)
 
-import AllBinaryLayerCircularPool hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstanceWeaponLayer, getInstanceWeaponLayer_super, getInstanceWeaponLayer_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified WeaponLayer -- same package or java.lang
-import qualified WeaponProperties -- org.allbinary.game.combat.weapon.WeaponProperties
-import qualified ScoreableInterface -- org.allbinary.game.score.ScoreableInterface
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerCircularPool -- org.allbinary.layer.AllBinaryLayerCircularPool
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.weapon
+-}
 
-data WeaponLayerCircularPool = WeaponLayerCircularPool
-    { header_ :: JavaHeader
-    , base :: AllBinaryLayerCircularPool.AllBinaryLayerCircularPool
-    }
-
-instance JavaNull WeaponLayerCircularPool where
-    javaNull = javaNullRecord "WeaponLayerCircularPool"
-
-instance JavaEquals WeaponLayerCircularPool where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq WeaponLayerCircularPool where
-    (==) = jrecordEquals
-
-instance JavaObjectClass WeaponLayerCircularPool where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO WeaponLayerCircularPool
-newRecord_ = do
-    base <- AllBinaryLayerCircularPool.newRecord_
-    let header_ = base.header_
-    let this = WeaponLayerCircularPool header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstanceWeaponLayer" (\() -> getInstanceWeaponLayer_impl this)
-    pure this
-
-initFields_ :: WeaponLayerCircularPool -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO WeaponLayerCircularPool
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: WeaponLayerCircularPool -> IO ()
-init_ this = do
-        AllBinaryLayerCircularPool.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Layer.AllBinaryLayerCircularPool as AllBinaryLayerCircularPool
 
 
--- throws Exception
-getInstanceWeaponLayer :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int -> Int -> Int -> Int -> Int -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> IO (WeaponLayer.WeaponLayer)
-getInstanceWeaponLayer object_ a1 a2 a3 a4 a5 a6 a7 a8 = jmethod object_ "getInstanceWeaponLayer" (\() -> (getInstanceWeaponLayer_impl (javaCast object_ :: WeaponLayerCircularPool))) () a1 a2 a3 a4 a5 a6 a7 a8
+jclass : String
+jclass =
+    "WeaponLayerCircularPool"
 
-getInstanceWeaponLayer_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int -> Int -> Int -> Int -> Int -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> IO (WeaponLayer.WeaponLayer)
-getInstanceWeaponLayer_super object_ a1 a2 a3 a4 a5 a6 a7 a8 = (getInstanceWeaponLayer_impl (javaCast object_ :: WeaponLayerCircularPool)) a1 a2 a3 a4 a5 a6 a7 a8
 
-getInstanceWeaponLayer_impl :: WeaponLayerCircularPool -> AllBinaryLayer.AllBinaryLayer -> Int -> Int -> Int -> Int -> Int -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> IO (WeaponLayer.WeaponLayer)
-getInstanceWeaponLayer_impl this sourceLayerInterface x y z angle otherAngle weaponProperties scoreable = do
-        let weaponLayer = (javaCast (jio (AllBinaryLayerCircularPool.getNextInstance_super this.base)) :: WeaponLayer.WeaponLayer)
-        Control.Monad.void (WeaponLayer.initXYZ weaponLayer x y z)
-        Control.Monad.void (WeaponLayer.init weaponLayer sourceLayerInterface angle otherAngle weaponProperties scoreable)
-        pure (weaponLayer)
+jchain : List String
+jchain =
+    [ "WeaponLayerCircularPool" ]
+        ++ AllBinaryLayerCircularPool.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinaryLayerCircularPool.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstanceWeaponLayer_8", jm_getInstanceWeaponLayer_8 ) ]
+        AllBinaryLayerCircularPool.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "WeaponLayerCircularPool"
+        [ ( "jm_getInstanceWeaponLayer_8", jm_getInstanceWeaponLayer_8 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinaryLayerCircularPool.jinit_0 JR.this []),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstanceWeaponLayer_8 : JR.Method
+jm_getInstanceWeaponLayer_8 jheap jthis jargs =
+    JR.method [ ( "sourceLayerInterface", "" ), ( "x", "I" ), ( "y", "I" ), ( "z", "I" ), ( "angle", "I" ), ( "otherAngle", "I" ), ( "weaponProperties", "" ), ( "scoreable", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "weaponLayer" "" (JR.callVia AllBinaryLayerCircularPool.jvtable "getNextInstance_0" JR.this []), 
+                    JR.exec (JR.invoke "initXYZ_3" (JR.local "weaponLayer") [ (JR.local "x"), (JR.local "y"), (JR.local "z") ]), 
+                    JR.exec (JR.invoke "init_5" (JR.local "weaponLayer") [ (JR.local "sourceLayerInterface"), (JR.local "angle"), (JR.local "otherAngle"), (JR.local "weaponProperties"), (JR.local "scoreable") ]), 
+                    JR.return (JR.local "weaponLayer") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

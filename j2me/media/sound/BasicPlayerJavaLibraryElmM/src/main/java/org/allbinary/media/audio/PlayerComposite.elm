@@ -1,355 +1,296 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
-module PlayerComposite where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Controllable2 -- same package or java.lang
-import qualified Control -- javax.microedition.media.Control
-import qualified Controllable -- javax.microedition.media.Controllable
-import qualified Player -- javax.microedition.media.Player
-import qualified PlayerListener -- javax.microedition.media.PlayerListener
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified GameTickTimeDelayHelper -- org.allbinary.time.GameTickTimeDelayHelper
-import qualified GameTickTimeDelayHelperFactory -- org.allbinary.time.GameTickTimeDelayHelperFactory
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-
--- implements Controllable
--- implements Player
-data PlayerComposite = PlayerComposite
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , player :: IORef (Player.Player)
-    , timeElapsedHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , gameTickTimeDelayHelper :: IORef (GameTickTimeDelayHelper.GameTickTimeDelayHelper)
-    }
-
-instance JavaNull PlayerComposite where
-    javaNull = javaNullRecord "PlayerComposite"
-
-instance JavaEquals PlayerComposite where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlayerComposite where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlayerComposite where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PlayerComposite
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    player <- newIORef javaNull
-    timeElapsedHelper <- newIORef javaNull
-    gameTickTimeDelayHelper <- newIORef javaNull
-    let this = PlayerComposite header_ logUtil commonStrings player timeElapsedHelper gameTickTimeDelayHelper
-    jregisterLevel header_ this
-    Controllable.registerInterface_ header_
-    Player.registerInterface_ header_
-    jregisterMethod header_ "addPlayerListener" (\() -> addPlayerListener_impl this)
-    jregisterMethod header_ "removePlayerListener" (\() -> removePlayerListener_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    jregisterMethod header_ "deallocate" (\() -> deallocate_impl this)
-    jregisterMethod header_ "getContentType" (\() -> getContentType_impl this)
-    jregisterMethod header_ "getDuration" (\() -> getDuration_impl this)
-    jregisterMethod header_ "getMediaTime" (\() -> getMediaTime_impl this)
-    jregisterMethod header_ "prefetch" (\() -> prefetch_impl this)
-    jregisterMethod header_ "realize" (\() -> realize_impl this)
-    jregisterMethod header_ "getState" (\() -> getState_impl this)
-    jregisterMethod header_ "setLoopCount" (\() -> setLoopCount_impl this)
-    jregisterMethod header_ "setMediaTime" (\() -> setMediaTime_impl this)
-    jregisterMethod header_ "start" (\() -> start_impl this)
-    jregisterMethod header_ "stop" (\() -> stop_impl this)
-    jregisterMethod header_ "getControl" (\() -> getControl_impl this)
-    jregisterMethod header_ "getControls" (\() -> getControls_impl this)
-    jregisterMethod header_ "setVolume" (\() -> setVolume_impl this)
-    jregisterMethod header_ "getPlayerP" (\() -> getPlayerP_impl this)
-    pure this
-
-initFields_ :: PlayerComposite -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.player (javaNull)
-    jset this.timeElapsedHelper =<< (TimeDelayHelper.new_1 0)
-    jset this.gameTickTimeDelayHelper =<< (GameTickTimeDelayHelperFactory.getInstance)
-    pure ()
-
-new_2 :: Player.Player -> Int -> IO PlayerComposite
-new_2 player repeatTime = do
-    this <- newRecord_
-    init_2 this player repeatTime
-    pure this
-
-init_2 :: PlayerComposite -> Player.Player -> Int -> IO ()
-init_2 this player repeatTime = do
-        initFields_ this
-        jset (this).player (player)
-        jset ((jget (this).timeElapsedHelper)).delay (repeatTime)
-        pure ()
-
-
-addPlayerListener :: (JavaObjectClass this_) => this_ -> PlayerListener.PlayerListener -> IO (())
-addPlayerListener object_ a1 = jmethod object_ "addPlayerListener" (\() -> (addPlayerListener_impl (javaCast object_ :: PlayerComposite))) () a1
-
-addPlayerListener_super :: (JavaObjectClass this_) => this_ -> PlayerListener.PlayerListener -> IO (())
-addPlayerListener_super object_ a1 = (addPlayerListener_impl (javaCast object_ :: PlayerComposite)) a1
-
-addPlayerListener_impl :: PlayerComposite -> PlayerListener.PlayerListener -> IO (())
-addPlayerListener_impl this playerListener = do
-        Control.Monad.void (Player.addPlayerListener ((jget (this).player)) playerListener)
-        pure ()
-
-
-removePlayerListener :: (JavaObjectClass this_) => this_ -> PlayerListener.PlayerListener -> IO (())
-removePlayerListener object_ a1 = jmethod object_ "removePlayerListener" (\() -> (removePlayerListener_impl (javaCast object_ :: PlayerComposite))) () a1
-
-removePlayerListener_super :: (JavaObjectClass this_) => this_ -> PlayerListener.PlayerListener -> IO (())
-removePlayerListener_super object_ a1 = (removePlayerListener_impl (javaCast object_ :: PlayerComposite)) a1
-
-removePlayerListener_impl :: PlayerComposite -> PlayerListener.PlayerListener -> IO (())
-removePlayerListener_impl this playerListener = do
-        Control.Monad.void (Player.removePlayerListener ((jget (this).player)) playerListener)
-        pure ()
-
-
-close :: (JavaObjectClass this_) => this_ -> IO (())
-close object_ = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: PlayerComposite))) ()
-
-close_super :: (JavaObjectClass this_) => this_ -> IO (())
-close_super object_ = (close_impl (javaCast object_ :: PlayerComposite))
-
-close_impl :: PlayerComposite -> IO (())
-close_impl this = do
-        Control.Monad.void (Player.close ((jget (this).player)))
-        pure ()
-
-
-deallocate :: (JavaObjectClass this_) => this_ -> IO (())
-deallocate object_ = jmethod object_ "deallocate" (\() -> (deallocate_impl (javaCast object_ :: PlayerComposite))) ()
-
-deallocate_super :: (JavaObjectClass this_) => this_ -> IO (())
-deallocate_super object_ = (deallocate_impl (javaCast object_ :: PlayerComposite))
-
-deallocate_impl :: PlayerComposite -> IO (())
-deallocate_impl this = do
-        Control.Monad.void (Player.deallocate ((jget (this).player)))
-        pure ()
-
-
-getContentType :: (JavaObjectClass this_) => this_ -> IO (String)
-getContentType object_ = jmethod object_ "getContentType" (\() -> (getContentType_impl (javaCast object_ :: PlayerComposite))) ()
-
-getContentType_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getContentType_super object_ = (getContentType_impl (javaCast object_ :: PlayerComposite))
-
-getContentType_impl :: PlayerComposite -> IO (String)
-getContentType_impl this = do
-        (Player.getContentType ((jget (this).player)))
-
-
-getDuration :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getDuration object_ = jmethod object_ "getDuration" (\() -> (getDuration_impl (javaCast object_ :: PlayerComposite))) ()
-
-getDuration_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getDuration_super object_ = (getDuration_impl (javaCast object_ :: PlayerComposite))
-
-getDuration_impl :: PlayerComposite -> IO (Int64)
-getDuration_impl this = do
-        (Player.getDuration ((jget (this).player)))
-
-
-getMediaTime :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getMediaTime object_ = jmethod object_ "getMediaTime" (\() -> (getMediaTime_impl (javaCast object_ :: PlayerComposite))) ()
-
-getMediaTime_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getMediaTime_super object_ = (getMediaTime_impl (javaCast object_ :: PlayerComposite))
-
-getMediaTime_impl :: PlayerComposite -> IO (Int64)
-getMediaTime_impl this = do
-        (Player.getMediaTime ((jget (this).player)))
-
-
-prefetch :: (JavaObjectClass this_) => this_ -> IO (())
-prefetch object_ = jmethod object_ "prefetch" (\() -> (prefetch_impl (javaCast object_ :: PlayerComposite))) ()
-
-prefetch_super :: (JavaObjectClass this_) => this_ -> IO (())
-prefetch_super object_ = (prefetch_impl (javaCast object_ :: PlayerComposite))
-
-prefetch_impl :: PlayerComposite -> IO (())
-prefetch_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "prefetch" e)
-            ) $ do
-            Control.Monad.void (Player.prefetch ((jget (this).player)))
-        pure ()
-
-
-realize :: (JavaObjectClass this_) => this_ -> IO (())
-realize object_ = jmethod object_ "realize" (\() -> (realize_impl (javaCast object_ :: PlayerComposite))) ()
-
-realize_super :: (JavaObjectClass this_) => this_ -> IO (())
-realize_super object_ = (realize_impl (javaCast object_ :: PlayerComposite))
-
-realize_impl :: PlayerComposite -> IO (())
-realize_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "realize" e)
-            ) $ do
-            Control.Monad.void (Player.realize ((jget (this).player)))
-        pure ()
-
-
-getState :: (JavaObjectClass this_) => this_ -> IO (Int)
-getState object_ = jmethod object_ "getState" (\() -> (getState_impl (javaCast object_ :: PlayerComposite))) ()
-
-getState_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getState_super object_ = (getState_impl (javaCast object_ :: PlayerComposite))
-
-getState_impl :: PlayerComposite -> IO (Int)
-getState_impl this = do
-        (Player.getState ((jget (this).player)))
-
-
-setLoopCount :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLoopCount object_ a1 = jmethod object_ "setLoopCount" (\() -> (setLoopCount_impl (javaCast object_ :: PlayerComposite))) () a1
-
-setLoopCount_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLoopCount_super object_ a1 = (setLoopCount_impl (javaCast object_ :: PlayerComposite)) a1
-
-setLoopCount_impl :: PlayerComposite -> Int -> IO (())
-setLoopCount_impl this count = do
-        Control.Monad.void (Player.setLoopCount ((jget (this).player)) count)
-        pure ()
-
-
-setMediaTime :: (JavaObjectClass this_) => this_ -> Int64 -> IO (Int64)
-setMediaTime object_ a1 = jmethod object_ "setMediaTime" (\() -> (setMediaTime_impl (javaCast object_ :: PlayerComposite))) () a1
-
-setMediaTime_super :: (JavaObjectClass this_) => this_ -> Int64 -> IO (Int64)
-setMediaTime_super object_ a1 = (setMediaTime_impl (javaCast object_ :: PlayerComposite)) a1
-
-setMediaTime_impl :: PlayerComposite -> Int64 -> IO (Int64)
-setMediaTime_impl this now = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "setMediaTime" e)
-            pure ((Prelude.fromIntegral ((Prelude.negate 1) :: Int)))
-            ) $ do
-            (Player.setMediaTime ((jget (this).player)) now)
-
-
-start :: (JavaObjectClass this_) => this_ -> IO (())
-start object_ = jmethod object_ "start" (\() -> (start_impl (javaCast object_ :: PlayerComposite))) ()
-
-start_super :: (JavaObjectClass this_) => this_ -> IO (())
-start_super object_ = (start_impl (javaCast object_ :: PlayerComposite))
-
-start_impl :: PlayerComposite -> IO (())
-start_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).sTART_METHOD_NAME) e)
-            ) $ do
-            when (jio (TimeDelayHelper.isTime ((jget (this).timeElapsedHelper)) (jget ((jget (this).gameTickTimeDelayHelper)).startTime))) $ do
-                Control.Monad.void (Player.start ((jget (this).player)))
-        pure ()
-
-
-stop :: (JavaObjectClass this_) => this_ -> IO (())
-stop object_ = jmethod object_ "stop" (\() -> (stop_impl (javaCast object_ :: PlayerComposite))) ()
-
-stop_super :: (JavaObjectClass this_) => this_ -> IO (())
-stop_super object_ = (stop_impl (javaCast object_ :: PlayerComposite))
-
-stop_impl :: PlayerComposite -> IO (())
-stop_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "stop" e)
-            ) $ do
-            Control.Monad.void (Player.stop ((jget (this).player)))
-        pure ()
-
-
-getControl :: (JavaObjectClass this_) => this_ -> String -> IO (Control.Control)
-getControl object_ a1 = jmethod object_ "getControl" (\() -> (getControl_impl (javaCast object_ :: PlayerComposite))) () a1
-
-getControl_super :: (JavaObjectClass this_) => this_ -> String -> IO (Control.Control)
-getControl_super object_ a1 = (getControl_impl (javaCast object_ :: PlayerComposite)) a1
-
-getControl_impl :: PlayerComposite -> String -> IO (Control.Control)
-getControl_impl this controlType = do
-        (Player.getControl ((jget (this).player)) controlType)
-
-
-getControls :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Control.Control))
-getControls object_ = jmethod object_ "getControls" (\() -> (getControls_impl (javaCast object_ :: PlayerComposite))) ()
-
-getControls_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Control.Control))
-getControls_super object_ = (getControls_impl (javaCast object_ :: PlayerComposite))
-
-getControls_impl :: PlayerComposite -> IO (JavaArray (Control.Control))
-getControls_impl this = do
-        javaThrow ((JavaException "RuntimeException" ""))
-
-
-setVolume :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-setVolume object_ a1 a2 = jmethod object_ "setVolume" (\() -> (setVolume_impl (javaCast object_ :: PlayerComposite))) () a1 a2
-
-setVolume_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-setVolume_super object_ a1 a2 = (setVolume_impl (javaCast object_ :: PlayerComposite)) a1 a2
-
-setVolume_impl :: PlayerComposite -> Int -> Int -> IO (())
-setVolume_impl this leftVolume rightVolume = do
-        let controllable2 = ((javaCast (jget (this).player) :: Controllable2.Controllable2))
-        Control.Monad.void (Controllable2.setVolume controllable2 leftVolume rightVolume)
-        pure ()
-
-
-getPlayerP :: (JavaObjectClass this_) => this_ -> IO (Player.Player)
-getPlayerP object_ = jmethod object_ "getPlayerP" (\() -> (getPlayerP_impl (javaCast object_ :: PlayerComposite))) ()
-
-getPlayerP_super :: (JavaObjectClass this_) => this_ -> IO (Player.Player)
-getPlayerP_super object_ = (getPlayerP_impl (javaCast object_ :: PlayerComposite))
-
-getPlayerP_impl :: PlayerComposite -> IO (Player.Player)
-getPlayerP_impl this = do
-        pure ((jget (this).player))
-
+module Org.Allbinary.Media.Audio.PlayerComposite exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.media.audio
+-}
+
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Javax.Microedition.Media.Controllable as Controllable
+import Org.Allbinary.Time.GameTickTimeDelayHelperFactory as GameTickTimeDelayHelperFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Javax.Microedition.Media.Player as Player
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
+
+
+jclass : String
+jclass =
+    "PlayerComposite"
+
+
+jchain : List String
+jchain =
+    [ "PlayerComposite" ]
+        ++ Controllable.jchain
+        ++ Player.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "player", JR.defaultOf "" ), ( "timeElapsedHelper", JR.defaultOf "" ), ( "gameTickTimeDelayHelper", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "addPlayerListener_1", jm_addPlayerListener_1 )
+        , ( "removePlayerListener_1", jm_removePlayerListener_1 )
+        , ( "close_0", jm_close_0 )
+        , ( "deallocate_0", jm_deallocate_0 )
+        , ( "getContentType_0", jm_getContentType_0 )
+        , ( "getDuration_0", jm_getDuration_0 )
+        , ( "getMediaTime_0", jm_getMediaTime_0 )
+        , ( "prefetch_0", jm_prefetch_0 )
+        , ( "realize_0", jm_realize_0 )
+        , ( "getState_0", jm_getState_0 )
+        , ( "setLoopCount_1", jm_setLoopCount_1 )
+        , ( "setMediaTime_1", jm_setMediaTime_1 )
+        , ( "start_0", jm_start_0 )
+        , ( "stop_0", jm_stop_0 )
+        , ( "getControl_1", jm_getControl_1 )
+        , ( "getControls_0", jm_getControls_0 )
+        , ( "setVolume_2", jm_setVolume_2 )
+        , ( "getPlayerP_0", jm_getPlayerP_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlayerComposite"
+        [ ( "jm_addPlayerListener_1", jm_addPlayerListener_1 ), ( "jm_removePlayerListener_1", jm_removePlayerListener_1 ), ( "jm_close_0", jm_close_0 ), ( "jm_deallocate_0", jm_deallocate_0 ), ( "jm_getContentType_0", jm_getContentType_0 ), ( "jm_getDuration_0", jm_getDuration_0 ), ( "jm_getMediaTime_0", jm_getMediaTime_0 ), ( "jm_prefetch_0", jm_prefetch_0 ), ( "jm_realize_0", jm_realize_0 ), ( "jm_getState_0", jm_getState_0 ), ( "jm_setLoopCount_1", jm_setLoopCount_1 ), ( "jm_setMediaTime_1", jm_setMediaTime_1 ), ( "jm_start_0", jm_start_0 ), ( "jm_stop_0", jm_stop_0 ), ( "jm_getControl_1", jm_getControl_1 ), ( "jm_getControls_0", jm_getControls_0 ), ( "jm_setVolume_2", jm_setVolume_2 ), ( "jm_getPlayerP_0", jm_getPlayerP_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "player", "" ), ( "repeatTime", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "timeElapsedHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 0) ])),
+                JR.exec (JR.setField "gameTickTimeDelayHelper" "" JR.this (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "player" "" JR.this (JR.local "player")), 
+                    JR.exec (JR.andThen (JR.thisField "timeElapsedHelper") (\jtN66862 -> (JR.setField "delay" "I" (JR.lit jtN66862) (JR.local "repeatTime")))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_addPlayerListener_1 : JR.Method
+jm_addPlayerListener_1 jheap jthis jargs =
+    JR.method [ ( "playerListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "addPlayerListener_1" (JR.thisField "player") [ (JR.local "playerListener") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removePlayerListener_1 : JR.Method
+jm_removePlayerListener_1 jheap jthis jargs =
+    JR.method [ ( "playerListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removePlayerListener_1" (JR.thisField "player") [ (JR.local "playerListener") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_close_0 : JR.Method
+jm_close_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "close_0" (JR.thisField "player") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_deallocate_0 : JR.Method
+jm_deallocate_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "deallocate_0" (JR.thisField "player") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getContentType_0 : JR.Method
+jm_getContentType_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getContentType_0" (JR.thisField "player") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDuration_0 : JR.Method
+jm_getDuration_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.invoke "getDuration_0" (JR.thisField "player") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMediaTime_0 : JR.Method
+jm_getMediaTime_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.invoke "getMediaTime_0" (JR.thisField "player") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_prefetch_0 : JR.Method
+jm_prefetch_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "prefetch_0" (JR.thisField "player") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "prefetch"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_realize_0 : JR.Method
+jm_realize_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "realize_0" (JR.thisField "player") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "realize"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getState_0 : JR.Method
+jm_getState_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getState_0" (JR.thisField "player") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLoopCount_1 : JR.Method
+jm_setLoopCount_1 jheap jthis jargs =
+    JR.method [ ( "count", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setLoopCount_1" (JR.thisField "player") [ (JR.local "count") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMediaTime_1 : JR.Method
+jm_setMediaTime_1 jheap jthis jargs =
+    JR.method [ ( "now", "J" ) ] "J"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.return (JR.invoke "setMediaTime_1" (JR.thisField "player") [ (JR.local "now") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "setMediaTime"), (JR.local "e") ]), 
+                        JR.return (JR.cast "J" (JR.map JR.neg (JR.int 1))) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_start_0 : JR.Method
+jm_start_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.invoke "isTime_1" (JR.thisField "timeElapsedHelper") [ (JR.field "startTime" (JR.thisField "gameTickTimeDelayHelper")) ]) (JR.run [ 
+                            JR.exec (JR.invoke "start_0" (JR.thisField "player") []) ]) identity ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "START_METHOD_NAME" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_stop_0 : JR.Method
+jm_stop_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "stop_0" (JR.thisField "player") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "stop"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getControl_1 : JR.Method
+jm_getControl_1 jheap jthis jargs =
+    JR.method [ ( "controlType", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getControl_1" (JR.thisField "player") [ (JR.local "controlType") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getControls_0 : JR.Method
+jm_getControls_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setVolume_2 : JR.Method
+jm_setVolume_2 jheap jthis jargs =
+    JR.method [ ( "leftVolume", "I" ), ( "rightVolume", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "controllable2" "" ((JR.thisField "player")), 
+                    JR.exec (JR.invoke "setVolume_2" (JR.local "controllable2") [ (JR.local "leftVolume"), (JR.local "rightVolume") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPlayerP_0 : JR.Method
+jm_getPlayerP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "player") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

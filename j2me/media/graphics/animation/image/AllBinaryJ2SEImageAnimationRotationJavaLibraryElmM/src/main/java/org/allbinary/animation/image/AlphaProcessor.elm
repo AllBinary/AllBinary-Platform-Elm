@@ -1,102 +1,102 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module AlphaProcessor (module AlphaProcessor, module ModifierBaseProcessor) where
+module Org.Allbinary.Animation.Image.AlphaProcessor exposing (..)
 
-import ModifierBaseProcessor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, updateAlpha, updateAlpha_super, updateAlpha_impl, instanceC)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified ImageModifierUtil -- org.allbinary.media.image.ImageModifierUtil
-import qualified ModifierBaseProcessor
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
-data AlphaProcessor = AlphaProcessor
-    { header_ :: JavaHeader
-    , base :: ModifierBaseProcessor.ModifierBaseProcessor
-    }
-
-instance JavaNull AlphaProcessor where
-    javaNull = javaNullRecord "AlphaProcessor"
-
-instance JavaEquals AlphaProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AlphaProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AlphaProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instanceC :: AlphaProcessor
-{-# NOINLINE instanceC #-}
-instanceC = unsafePerformIO ((new_))
-
-newRecord_ :: IO AlphaProcessor
-newRecord_ = do
-    base <- ModifierBaseProcessor.newRecord_
-    let header_ = base.header_
-    let this = AlphaProcessor header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "updateAlpha" (\() -> updateAlpha_impl this)
-    pure this
-
-initFields_ :: AlphaProcessor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AlphaProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AlphaProcessor -> IO ()
-init_ this = do
-    ModifierBaseProcessor.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Animation.Image.ModifierBaseProcessor as ModifierBaseProcessor
 
 
-getInstance :: IO (AlphaProcessor)
-getInstance = do
-        pure (AlphaProcessor.instanceC)
+jclass : String
+jclass =
+    "AlphaProcessor"
 
 
-updateAlpha :: (JavaObjectClass this_) => this_ -> ImageModifierUtil.ImageModifierUtil -> Image.Image -> Image.Image -> Int -> Int -> IO (())
-updateAlpha object_ a1 a2 a3 a4 a5 = jmethod object_ "updateAlpha" (\() -> (updateAlpha_impl (javaCast object_ :: AlphaProcessor))) () a1 a2 a3 a4 a5
+jchain : List String
+jchain =
+    [ "AlphaProcessor" ]
+        ++ ModifierBaseProcessor.jchain
 
-updateAlpha_super :: (JavaObjectClass this_) => this_ -> ImageModifierUtil.ImageModifierUtil -> Image.Image -> Image.Image -> Int -> Int -> IO (())
-updateAlpha_super object_ a1 a2 a3 a4 a5 = (updateAlpha_impl (javaCast object_ :: AlphaProcessor)) a1 a2 a3 a4 a5
 
-updateAlpha_impl :: AlphaProcessor -> ImageModifierUtil.ImageModifierUtil -> Image.Image -> Image.Image -> Int -> Int -> IO (())
-updateAlpha_impl this imageModifierUtil originalImage imageToShow index alpha = do
-        Control.Monad.void (ImageModifierUtil.setAlpha imageModifierUtil originalImage imageToShow index alpha)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    ModifierBaseProcessor.jfields ++ []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "updateAlpha_5", jm_updateAlpha_5 ) ]
+        ModifierBaseProcessor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AlphaProcessor"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_updateAlpha_5", jm_updateAlpha_5 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instanceC", jstatic_instanceC ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instanceC : JR.M
+jstatic_instanceC s =
+    JR.static "AlphaProcessor" jclinit "instanceC"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect ModifierBaseProcessor.jinit_0 JR.this []),
+            identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instanceC ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateAlpha_5 : JR.Method
+jm_updateAlpha_5 jheap jthis jargs =
+    JR.method [ ( "imageModifierUtil", "" ), ( "originalImage", "" ), ( "imageToShow", "" ), ( "index", "I" ), ( "alpha", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setAlpha_4" (JR.local "imageModifierUtil") [ (JR.local "originalImage"), (JR.local "imageToShow"), (JR.local "index"), (JR.local "alpha") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

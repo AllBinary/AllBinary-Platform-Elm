@@ -1,10 +1,10 @@
-module PreLogUtil exposing (..)
+module Org.Allbinary.Logic.Communication.Log.PreLogUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.log
 -}
 
 import JR
-import NullUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
 jclass : String

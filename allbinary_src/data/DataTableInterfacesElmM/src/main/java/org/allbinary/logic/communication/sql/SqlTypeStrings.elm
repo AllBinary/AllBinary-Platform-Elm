@@ -1,171 +1,121 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.sql
-module SqlTypeStrings where
+module Org.Allbinary.Logic.Communication.Sql.SqlTypeStrings exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.sql
+-}
 
-data SqlTypeStrings = SqlTypeStrings
-    { header_ :: JavaHeader
-    , cHAR_COLUMN :: IORef (String)
-    , iNT_COLUMN :: IORef (String)
-    , mAX_SIZE :: IORef (String)
-    , sIXTY_SIZE :: IORef (String)
-    , nOT_NULL :: IORef (String)
-    , oNE_SIZE :: IORef (String)
-    , tWO_SIZE :: IORef (String)
-    , tHREE_SIZE :: IORef (String)
-    , sIX_SIZE :: IORef (String)
-    , eLEVEN_SIZE :: IORef (String)
-    , tWELVE_SIZE :: IORef (String)
-    , oNE_KB_CHAR_COLUMN :: IORef (String)
-    , mAX_CHAR_COLUMN :: IORef (String)
-    , mAX_CHAR_COLUMN_NOT_NULL :: IORef (String)
-    , sIXTY_CHAR_COLUMN_NOT_NULL :: IORef (String)
-    , oNE_CHAR_COLUMN_NOT_NULL :: IORef (String)
-    , sIX_CHAR_COLUMN_NOT_NULL :: IORef (String)
-    , tWELVE_CHAR_COLUMN_NOT_NULL :: IORef (String)
-    , tWO_INT_NOT_NULL :: IORef (String)
-    , tHREE_INT_NOT_NULL :: IORef (String)
-    , fOUR_INT_NOT_NULL :: IORef (String)
-    , mAX_INT_NOT_NULL :: IORef (String)
-    , mAX_INT_UNSIGNED :: IORef (String)
-    , mAX_INT_UNSIGNED_NOT_NULL :: IORef (String)
-    , mAX_BIG_INT_NOT_NULL :: IORef (String)
-    , mAX_BIG_INT_UNSIGNED :: IORef (String)
-    , mAX_BIG_INT_UNSIGNED_NOT_NULL :: IORef (String)
-    , mAX_BIG_INT_UNSIGNED_AUTO_INCREMENT_NOT_NULL :: IORef (String)
-    , lONG_BLOB :: IORef (String)
-    , bLOB :: IORef (String)
-    , bLOB_NOT_NULL :: IORef (String)
-    }
-
-instance JavaNull SqlTypeStrings where
-    javaNull = javaNullRecord "SqlTypeStrings"
-
-instance JavaEquals SqlTypeStrings where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SqlTypeStrings where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SqlTypeStrings where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: SqlTypeStrings
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO SqlTypeStrings
-newRecord_ = do
-    header_ <- newJavaHeader
-    cHAR_COLUMN <- newIORef ""
-    iNT_COLUMN <- newIORef ""
-    mAX_SIZE <- newIORef ""
-    sIXTY_SIZE <- newIORef ""
-    nOT_NULL <- newIORef ""
-    oNE_SIZE <- newIORef ""
-    tWO_SIZE <- newIORef ""
-    tHREE_SIZE <- newIORef ""
-    sIX_SIZE <- newIORef ""
-    eLEVEN_SIZE <- newIORef ""
-    tWELVE_SIZE <- newIORef ""
-    oNE_KB_CHAR_COLUMN <- newIORef ""
-    mAX_CHAR_COLUMN <- newIORef ""
-    mAX_CHAR_COLUMN_NOT_NULL <- newIORef ""
-    sIXTY_CHAR_COLUMN_NOT_NULL <- newIORef ""
-    oNE_CHAR_COLUMN_NOT_NULL <- newIORef ""
-    sIX_CHAR_COLUMN_NOT_NULL <- newIORef ""
-    tWELVE_CHAR_COLUMN_NOT_NULL <- newIORef ""
-    tWO_INT_NOT_NULL <- newIORef ""
-    tHREE_INT_NOT_NULL <- newIORef ""
-    fOUR_INT_NOT_NULL <- newIORef ""
-    mAX_INT_NOT_NULL <- newIORef ""
-    mAX_INT_UNSIGNED <- newIORef ""
-    mAX_INT_UNSIGNED_NOT_NULL <- newIORef ""
-    mAX_BIG_INT_NOT_NULL <- newIORef ""
-    mAX_BIG_INT_UNSIGNED <- newIORef ""
-    mAX_BIG_INT_UNSIGNED_NOT_NULL <- newIORef ""
-    mAX_BIG_INT_UNSIGNED_AUTO_INCREMENT_NOT_NULL <- newIORef ""
-    lONG_BLOB <- newIORef ""
-    bLOB <- newIORef ""
-    bLOB_NOT_NULL <- newIORef ""
-    let this = SqlTypeStrings header_ cHAR_COLUMN iNT_COLUMN mAX_SIZE sIXTY_SIZE nOT_NULL oNE_SIZE tWO_SIZE tHREE_SIZE sIX_SIZE eLEVEN_SIZE tWELVE_SIZE oNE_KB_CHAR_COLUMN mAX_CHAR_COLUMN mAX_CHAR_COLUMN_NOT_NULL sIXTY_CHAR_COLUMN_NOT_NULL oNE_CHAR_COLUMN_NOT_NULL sIX_CHAR_COLUMN_NOT_NULL tWELVE_CHAR_COLUMN_NOT_NULL tWO_INT_NOT_NULL tHREE_INT_NOT_NULL fOUR_INT_NOT_NULL mAX_INT_NOT_NULL mAX_INT_UNSIGNED mAX_INT_UNSIGNED_NOT_NULL mAX_BIG_INT_NOT_NULL mAX_BIG_INT_UNSIGNED mAX_BIG_INT_UNSIGNED_NOT_NULL mAX_BIG_INT_UNSIGNED_AUTO_INCREMENT_NOT_NULL lONG_BLOB bLOB bLOB_NOT_NULL
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: SqlTypeStrings -> IO ()
-initFields_ this = do
-    jset this.cHAR_COLUMN ("VARCHAR")
-    jset this.iNT_COLUMN ("VARCHAR")
-    jset this.mAX_SIZE ("(255)")
-    jset this.sIXTY_SIZE ("(60)")
-    jset this.nOT_NULL ("NOT NULL")
-    jset this.oNE_SIZE ("(1)")
-    jset this.tWO_SIZE ("(2)")
-    jset this.tHREE_SIZE ("(3)")
-    jset this.sIX_SIZE ("(6)")
-    jset this.eLEVEN_SIZE ("(11)")
-    jset this.tWELVE_SIZE ("(12)")
-    jset this.oNE_KB_CHAR_COLUMN =<< (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonSeps.getInstance))).sPACE)))) (jget this.cHAR_COLUMN)))) "(1024)"))) (jget ((jio (CommonSeps.getInstance))).cOMMA_SEP)))))
-    jset this.mAX_CHAR_COLUMN =<< (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonSeps.getInstance))).sPACE)))) (jget this.cHAR_COLUMN)))) (jget this.mAX_SIZE)))) (jget ((jio (CommonSeps.getInstance))).cOMMA_SEP)))))
-    jset this.mAX_CHAR_COLUMN_NOT_NULL =<< (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonSeps.getInstance))).sPACE)))) (jget this.cHAR_COLUMN)))) (jget this.mAX_SIZE)))) (jget ((jio (CommonSeps.getInstance))).sPACE)))) (jget this.nOT_NULL)))) (jget ((jio (CommonSeps.getInstance))).cOMMA_SEP)))))
-    jset this.sIXTY_CHAR_COLUMN_NOT_NULL =<< (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonSeps.getInstance))).sPACE)))) (jget this.cHAR_COLUMN)))) (jget this.sIXTY_SIZE)))) (jget this.nOT_NULL)))) (jget ((jio (CommonSeps.getInstance))).cOMMA_SEP)))))
-    jset this.oNE_CHAR_COLUMN_NOT_NULL =<< (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonSeps.getInstance))).sPACE)))) (jget this.cHAR_COLUMN)))) (jget this.oNE_SIZE)))) (jget this.nOT_NULL)))) (jget ((jio (CommonSeps.getInstance))).cOMMA_SEP)))))
-    jset this.sIX_CHAR_COLUMN_NOT_NULL =<< (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonSeps.getInstance))).sPACE)))) (jget this.cHAR_COLUMN)))) (jget this.sIX_SIZE)))) (jget this.nOT_NULL)))) (jget ((jio (CommonSeps.getInstance))).cOMMA_SEP)))))
-    jset this.tWELVE_CHAR_COLUMN_NOT_NULL =<< (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonSeps.getInstance))).sPACE)))) (jget this.cHAR_COLUMN)))) (jget (this).tWELVE_SIZE)))) (jget this.nOT_NULL)))) (jget ((jio (CommonSeps.getInstance))).cOMMA_SEP)))))
-    jset this.tWO_INT_NOT_NULL (" INT(2) NOT NULL, ")
-    jset this.tHREE_INT_NOT_NULL (" INT(3) NOT NULL, ")
-    jset this.fOUR_INT_NOT_NULL (" INT(4) NOT NULL, ")
-    jset this.mAX_INT_NOT_NULL (" INT(11) NOT NULL, ")
-    jset this.mAX_INT_UNSIGNED (" INT(11) UNSIGNED, ")
-    jset this.mAX_INT_UNSIGNED_NOT_NULL (" INT(11) UNSIGNED NOT NULL, ")
-    jset this.mAX_BIG_INT_NOT_NULL (" BIGINT(19) NOT NULL, ")
-    jset this.mAX_BIG_INT_UNSIGNED (" BIGINT(19) UNSIGNED, ")
-    jset this.mAX_BIG_INT_UNSIGNED_NOT_NULL (" BIGINT(19) UNSIGNED NOT NULL, ")
-    jset this.mAX_BIG_INT_UNSIGNED_AUTO_INCREMENT_NOT_NULL (" BIGINT(19) UNSIGNED AUTO_INCREMENT NOT NULL,")
-    jset this.lONG_BLOB (" LONGBLOB, ")
-    jset this.bLOB (" BLOB, ")
-    jset this.bLOB_NOT_NULL (" BLOB NOT NULL, ")
-    pure ()
-
-new_ :: IO SqlTypeStrings
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: SqlTypeStrings -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (SqlTypeStrings)
-getInstance = do
-        pure (SqlTypeStrings.instance_)
+jclass : String
+jclass =
+    "SqlTypeStrings"
 
+
+jchain : List String
+jchain =
+    [ "SqlTypeStrings" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "CHAR_COLUMN", JR.defaultOf "" ), ( "INT_COLUMN", JR.defaultOf "" ), ( "MAX_SIZE", JR.defaultOf "" ), ( "SIXTY_SIZE", JR.defaultOf "" ), ( "NOT_NULL", JR.defaultOf "" ), ( "ONE_SIZE", JR.defaultOf "" ), ( "TWO_SIZE", JR.defaultOf "" ), ( "THREE_SIZE", JR.defaultOf "" ), ( "SIX_SIZE", JR.defaultOf "" ), ( "ELEVEN_SIZE", JR.defaultOf "" ), ( "TWELVE_SIZE", JR.defaultOf "" ), ( "ONE_KB_CHAR_COLUMN", JR.defaultOf "" ), ( "MAX_CHAR_COLUMN", JR.defaultOf "" ), ( "MAX_CHAR_COLUMN_NOT_NULL", JR.defaultOf "" ), ( "SIXTY_CHAR_COLUMN_NOT_NULL", JR.defaultOf "" ), ( "ONE_CHAR_COLUMN_NOT_NULL", JR.defaultOf "" ), ( "SIX_CHAR_COLUMN_NOT_NULL", JR.defaultOf "" ), ( "TWELVE_CHAR_COLUMN_NOT_NULL", JR.defaultOf "" ), ( "TWO_INT_NOT_NULL", JR.defaultOf "" ), ( "THREE_INT_NOT_NULL", JR.defaultOf "" ), ( "FOUR_INT_NOT_NULL", JR.defaultOf "" ), ( "MAX_INT_NOT_NULL", JR.defaultOf "" ), ( "MAX_INT_UNSIGNED", JR.defaultOf "" ), ( "MAX_INT_UNSIGNED_NOT_NULL", JR.defaultOf "" ), ( "MAX_BIG_INT_NOT_NULL", JR.defaultOf "" ), ( "MAX_BIG_INT_UNSIGNED", JR.defaultOf "" ), ( "MAX_BIG_INT_UNSIGNED_NOT_NULL", JR.defaultOf "" ), ( "MAX_BIG_INT_UNSIGNED_AUTO_INCREMENT_NOT_NULL", JR.defaultOf "" ), ( "LONG_BLOB", JR.defaultOf "" ), ( "BLOB", JR.defaultOf "" ), ( "BLOB_NOT_NULL", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SqlTypeStrings"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "SqlTypeStrings" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "CHAR_COLUMN" "" JR.this (JR.str "VARCHAR")),
+                JR.exec (JR.setField "INT_COLUMN" "" JR.this (JR.str "VARCHAR")),
+                JR.exec (JR.setField "MAX_SIZE" "" JR.this (JR.str "(255)")),
+                JR.exec (JR.setField "SIXTY_SIZE" "" JR.this (JR.str "(60)")),
+                JR.exec (JR.setField "NOT_NULL" "" JR.this (JR.str "NOT NULL")),
+                JR.exec (JR.setField "ONE_SIZE" "" JR.this (JR.str "(1)")),
+                JR.exec (JR.setField "TWO_SIZE" "" JR.this (JR.str "(2)")),
+                JR.exec (JR.setField "THREE_SIZE" "" JR.this (JR.str "(3)")),
+                JR.exec (JR.setField "SIX_SIZE" "" JR.this (JR.str "(6)")),
+                JR.exec (JR.setField "ELEVEN_SIZE" "" JR.this (JR.str "(11)")),
+                JR.exec (JR.setField "TWELVE_SIZE" "" JR.this (JR.str "(12)")),
+                JR.exec (JR.setField "ONE_KB_CHAR_COLUMN" "" JR.this (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.thisField "CHAR_COLUMN") ]) [ (JR.str "(1024)") ]) [ (JR.field "COMMA_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [])),
+                JR.exec (JR.setField "MAX_CHAR_COLUMN" "" JR.this (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.thisField "CHAR_COLUMN") ]) [ (JR.thisField "MAX_SIZE") ]) [ (JR.field "COMMA_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [])),
+                JR.exec (JR.setField "MAX_CHAR_COLUMN_NOT_NULL" "" JR.this (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.thisField "CHAR_COLUMN") ]) [ (JR.thisField "MAX_SIZE") ]) [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.thisField "NOT_NULL") ]) [ (JR.field "COMMA_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [])),
+                JR.exec (JR.setField "SIXTY_CHAR_COLUMN_NOT_NULL" "" JR.this (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.thisField "CHAR_COLUMN") ]) [ (JR.thisField "SIXTY_SIZE") ]) [ (JR.thisField "NOT_NULL") ]) [ (JR.field "COMMA_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [])),
+                JR.exec (JR.setField "ONE_CHAR_COLUMN_NOT_NULL" "" JR.this (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.thisField "CHAR_COLUMN") ]) [ (JR.thisField "ONE_SIZE") ]) [ (JR.thisField "NOT_NULL") ]) [ (JR.field "COMMA_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [])),
+                JR.exec (JR.setField "SIX_CHAR_COLUMN_NOT_NULL" "" JR.this (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.thisField "CHAR_COLUMN") ]) [ (JR.thisField "SIX_SIZE") ]) [ (JR.thisField "NOT_NULL") ]) [ (JR.field "COMMA_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [])),
+                JR.exec (JR.setField "TWELVE_CHAR_COLUMN_NOT_NULL" "" JR.this (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.thisField "CHAR_COLUMN") ]) [ (JR.thisField "TWELVE_SIZE") ]) [ (JR.thisField "NOT_NULL") ]) [ (JR.field "COMMA_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [])),
+                JR.exec (JR.setField "TWO_INT_NOT_NULL" "" JR.this (JR.str " INT(2) NOT NULL, ")),
+                JR.exec (JR.setField "THREE_INT_NOT_NULL" "" JR.this (JR.str " INT(3) NOT NULL, ")),
+                JR.exec (JR.setField "FOUR_INT_NOT_NULL" "" JR.this (JR.str " INT(4) NOT NULL, ")),
+                JR.exec (JR.setField "MAX_INT_NOT_NULL" "" JR.this (JR.str " INT(11) NOT NULL, ")),
+                JR.exec (JR.setField "MAX_INT_UNSIGNED" "" JR.this (JR.str " INT(11) UNSIGNED, ")),
+                JR.exec (JR.setField "MAX_INT_UNSIGNED_NOT_NULL" "" JR.this (JR.str " INT(11) UNSIGNED NOT NULL, ")),
+                JR.exec (JR.setField "MAX_BIG_INT_NOT_NULL" "" JR.this (JR.str " BIGINT(19) NOT NULL, ")),
+                JR.exec (JR.setField "MAX_BIG_INT_UNSIGNED" "" JR.this (JR.str " BIGINT(19) UNSIGNED, ")),
+                JR.exec (JR.setField "MAX_BIG_INT_UNSIGNED_NOT_NULL" "" JR.this (JR.str " BIGINT(19) UNSIGNED NOT NULL, ")),
+                JR.exec (JR.setField "MAX_BIG_INT_UNSIGNED_AUTO_INCREMENT_NOT_NULL" "" JR.this (JR.str " BIGINT(19) UNSIGNED AUTO_INCREMENT NOT NULL,")),
+                JR.exec (JR.setField "LONG_BLOB" "" JR.this (JR.str " LONGBLOB, ")),
+                JR.exec (JR.setField "BLOB" "" JR.this (JR.str " BLOB, ")),
+                JR.exec (JR.setField "BLOB_NOT_NULL" "" JR.this (JR.str " BLOB NOT NULL, ")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

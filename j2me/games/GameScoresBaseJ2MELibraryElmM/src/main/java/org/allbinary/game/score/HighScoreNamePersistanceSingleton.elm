@@ -1,290 +1,243 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module HighScoreNamePersistanceSingleton where
+module Org.Allbinary.Game.Score.HighScoreNamePersistanceSingleton exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ByteArrayInputStream -- java.io.ByteArrayInputStream
-import qualified ByteArrayOutputStream -- java.io.ByteArrayOutputStream
-import qualified DataInputStream -- java.io.DataInputStream
-import qualified DataOutputStream -- java.io.DataOutputStream
-import qualified RecordEnumeration -- javax.microedition.rms.RecordEnumeration
-import qualified RecordStore -- javax.microedition.rms.RecordStore
-import qualified RecordStoreException -- javax.microedition.rms.RecordStoreException
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified GameInfo -- org.allbinary.game.GameInfo
-import qualified NullRecordComparator -- org.allbinary.game.configuration.persistance.NullRecordComparator
-import qualified NullRecordFilter -- org.allbinary.game.configuration.persistance.NullRecordFilter
-import qualified NullRecordStore -- org.allbinary.game.configuration.persistance.NullRecordStore
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified ExceptionUtil -- org.allbinary.logic.java.exception.ExceptionUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified PlatformRecordIdUtil -- org.allbinary.persistance.PlatformRecordIdUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
-data HighScoreNamePersistanceSingleton = HighScoreNamePersistanceSingleton
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , tsUtil :: IORef (TsUtil.TsUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , platformRecordIdUtil :: IORef (PlatformRecordIdUtil.PlatformRecordIdUtil)
-    , rECORD_ID :: IORef (String)
-    , name :: IORef (String)
-    , nameBasicArrayList :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull HighScoreNamePersistanceSingleton where
-    javaNull = javaNullRecord "HighScoreNamePersistanceSingleton"
-
-instance JavaEquals HighScoreNamePersistanceSingleton where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoreNamePersistanceSingleton where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoreNamePersistanceSingleton where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: IORef (HighScoreNamePersistanceSingleton)
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO HighScoreNamePersistanceSingleton
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    tsUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    platformRecordIdUtil <- newIORef javaNull
-    rECORD_ID <- newIORef ""
-    name <- newIORef ""
-    nameBasicArrayList <- newIORef javaNull
-    let this = HighScoreNamePersistanceSingleton header_ logUtil tsUtil commonStrings platformRecordIdUtil rECORD_ID name nameBasicArrayList
-    jregisterLevel header_ this
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    jregisterMethod header_ "deleteAll" (\() -> deleteAll_impl this)
-    jregisterMethod header_ "getRecordId" (\() -> getRecordId_impl this)
-    jregisterMethod header_ "delete" (\() -> delete_impl this)
-    jregisterMethod header_ "getIds" (\() -> getIds_impl this)
-    jregisterMethod header_ "load" (\() -> load_impl this)
-    jregisterMethod header_ "save" (\() -> save_impl this)
-    pure this
-
-initFields_ :: HighScoreNamePersistanceSingleton -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.tsUtil =<< (TsUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.platformRecordIdUtil =<< (PlatformRecordIdUtil.getInstance)
-    jset this.rECORD_ID ("_SN")
-    jset this.name ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.nameBasicArrayList =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
-
-new_ :: IO HighScoreNamePersistanceSingleton
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: HighScoreNamePersistanceSingleton -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Java.Exception.ExceptionUtil as ExceptionUtil
+import JByteArrayInputStream
+import JByteArrayOutputStream
+import JDataInputStream
+import JDataOutputStream
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Configuration.Persistance.NullRecordComparator as NullRecordComparator
+import Org.Allbinary.Game.Configuration.Persistance.NullRecordFilter as NullRecordFilter
+import Org.Allbinary.Game.Configuration.Persistance.NullRecordStore as NullRecordStore
+import Org.Allbinary.Persistance.PlatformRecordIdUtil as PlatformRecordIdUtil
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Javax.Microedition.Rms.RecordStore as RecordStore
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.TsUtil as TsUtil
 
 
-getInstance :: IO (HighScoreNamePersistanceSingleton)
-getInstance = do
-        pure ((jget HighScoreNamePersistanceSingleton.sINGLETON))
+jclass : String
+jclass =
+    "HighScoreNamePersistanceSingleton"
 
 
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: HighScoreNamePersistanceSingleton))) ()
-
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: HighScoreNamePersistanceSingleton))
-
-clear_impl :: HighScoreNamePersistanceSingleton -> IO (())
-clear_impl this = do
-        jset (this).name ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-        pure ()
+jchain : List String
+jchain =
+    [ "HighScoreNamePersistanceSingleton" ]
 
 
--- throws Exception
-deleteAll :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> IO (())
-deleteAll object_ a1 a2 = jmethod object_ "deleteAll" (\() -> (deleteAll_impl (javaCast object_ :: HighScoreNamePersistanceSingleton))) () a1 a2
-
-deleteAll_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> IO (())
-deleteAll_super object_ a1 a2 = (deleteAll_impl (javaCast object_ :: HighScoreNamePersistanceSingleton)) a1 a2
-
-deleteAll_impl :: HighScoreNamePersistanceSingleton -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> IO (())
-deleteAll_impl this abeClientInformation gameInfo = do
-        size <- (BasicArrayList.size ((jget (this).nameBasicArrayList)))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let integer = (javaCast (jindex ((jget ((jget (this).nameBasicArrayList)).objectArray)) (index)) :: Int)
-            Control.Monad.void (HighScoreNamePersistanceSingleton.delete this abeClientInformation gameInfo (integer))
-        Control.Monad.void (HighScoreNamePersistanceSingleton.clear this)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "tsUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "platformRecordIdUtil", JR.defaultOf "" ), ( "RECORD_ID", JR.defaultOf "" ), ( "name", JR.defaultOf "" ), ( "nameBasicArrayList", JR.defaultOf "" ) ]
 
 
-getRecordId :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (String)
-getRecordId object_ a1 = jmethod object_ "getRecordId" (\() -> (getRecordId_impl (javaCast object_ :: HighScoreNamePersistanceSingleton))) () a1
-
-getRecordId_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (String)
-getRecordId_super object_ a1 = (getRecordId_impl (javaCast object_ :: HighScoreNamePersistanceSingleton)) a1
-
-getRecordId_impl :: HighScoreNamePersistanceSingleton -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (String)
-getRecordId_impl this abeClientInformation = do
-        (PlatformRecordIdUtil.getRecordId ((jget (this).platformRecordIdUtil)) abeClientInformation (jget (this).rECORD_ID))
-
-
--- throws Exception
-delete :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> Int -> IO (())
-delete object_ a1 a2 a3 = jmethod object_ "delete" (\() -> (delete_impl (javaCast object_ :: HighScoreNamePersistanceSingleton))) () a1 a2 a3
-
-delete_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> Int -> IO (())
-delete_super object_ a1 a2 a3 = (delete_impl (javaCast object_ :: HighScoreNamePersistanceSingleton)) a1 a2 a3
-
-delete_impl :: HighScoreNamePersistanceSingleton -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> Int -> IO (())
-delete_impl this abeClientInformation gameInfo deleteId = do
-        recordStore <- newIORef (NullRecordStore.nULL_RECORD_STORE)
-        flip finally (do
-            when ((jget recordStore) /= javaNull) $ do
-                Control.Monad.void (PreLogUtil.put "Closing RecordStore" this (jget ((jget (this).commonStrings)).delete))
-                Control.Monad.void (RecordStore.closeRecordStore ((jget recordStore)))
-            ) $ handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "Deleting: "))) deleteId))))) this (jget ((jget (this).commonStrings)).delete))
-            assignedValue <- (RecordStore.openRecordStore (jio (HighScoreNamePersistanceSingleton.getRecordId this abeClientInformation)) True)
-            jset recordStore (assignedValue)
-            Control.Monad.void (RecordStore.deleteRecord ((jget recordStore)) deleteId)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "clear_0", jm_clear_0 )
+        , ( "deleteAll_2", jm_deleteAll_2 )
+        , ( "getRecordId_1", jm_getRecordId_1 )
+        , ( "delete_3", jm_delete_3 )
+        , ( "getIds_0", jm_getIds_0 )
+        , ( "load_2", jm_load_2 )
+        , ( "save_3", jm_save_3 ) ]
+        JR.noMethods
 
 
-getIds :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getIds object_ = jmethod object_ "getIds" (\() -> (getIds_impl (javaCast object_ :: HighScoreNamePersistanceSingleton))) ()
-
-getIds_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getIds_super object_ = (getIds_impl (javaCast object_ :: HighScoreNamePersistanceSingleton))
-
-getIds_impl :: HighScoreNamePersistanceSingleton -> IO (BasicArrayList.BasicArrayList)
-getIds_impl this = do
-        pure ((jget (this).nameBasicArrayList))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoreNamePersistanceSingleton"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_clear_0", jm_clear_0 ), ( "jm_deleteAll_2", jm_deleteAll_2 ), ( "jm_getRecordId_1", jm_getRecordId_1 ), ( "jm_delete_3", jm_delete_3 ), ( "jm_getIds_0", jm_getIds_0 ), ( "jm_load_2", jm_load_2 ), ( "jm_save_3", jm_save_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
 
 
-load :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> IO (String)
-load object_ a1 a2 = jmethod object_ "load" (\() -> (load_impl (javaCast object_ :: HighScoreNamePersistanceSingleton))) () a1 a2
-
-load_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> IO (String)
-load_super object_ a1 a2 = (load_impl (javaCast object_ :: HighScoreNamePersistanceSingleton)) a1 a2
-
-load_impl :: HighScoreNamePersistanceSingleton -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> IO (String)
-load_impl this abeClientInformation gameInfo = do
-        recordStore <- newIORef (NullRecordStore.nULL_RECORD_STORE)
-        flip finally (do
-            handle (\(e :: JavaException) -> do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).lOAD) e)
-                ) $ do
-                when ((jget recordStore) /= javaNull) $ do
-                    Control.Monad.void (PreLogUtil.put "Closing RecordStore" this (jget ((jget (this).commonStrings)).lOAD))
-                    Control.Monad.void (RecordStore.closeRecordStore ((jget recordStore)))
-            ) $ handle (\(e :: JavaException) -> do
-            Control.Monad.void (HighScoreNamePersistanceSingleton.save this abeClientInformation gameInfo (jget (this).name))
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).commonStrings)).eXCEPTION_LABEL)))) (jio (ExceptionUtil.getStackTrace ((jio (ExceptionUtil.getInstance))) e))))))) this (jget ((jget (this).commonStrings)).lOAD))
-            ) $ do
-            when ((jget (this).name) == (jget ((jio (StringUtil.getInstance))).eMPTY_STRING)) $ do
-                let lOADING_ID = "Loading id: "
-                assignedValue <- (RecordStore.openRecordStore (jio (HighScoreNamePersistanceSingleton.getRecordId this abeClientInformation)) True)
-                jset recordStore (assignedValue)
-                recordEnum <- (RecordStore.enumerateRecords ((jget recordStore)) (NullRecordFilter.nULL_RECORD_FILTER) (NullRecordComparator.nULL_RECORD_COMPARATOR) True)
-                smallIntegerSingletonFactory <- (SmallIntegerSingletonFactory.getInstance)
-                recordAsBytes <- newIORef (javaNull)
-                byteArrayInputStream <- newIORef (javaNull)
-                inputStream <- newIORef (javaNull)
-                fix $ \loop -> when (jio (RecordEnumeration.hasNextElement recordEnum)) $ javaIteration (loop) $ do
-                    id <- (RecordEnumeration.nextRecordId recordEnum)
-                    Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) lOADING_ID))) id))))) this (jget ((jget (this).commonStrings)).lOAD))
-                    assignedValue <- (TsUtil.getRecord ((jget (this).tsUtil)) (jget recordStore) id)
-                    jset recordAsBytes (assignedValue)
-                    assignedValue <- (ByteArrayInputStream.new_1 (jget recordAsBytes))
-                    jset byteArrayInputStream (assignedValue)
-                    assignedValue <- (DataInputStream.new_1 (jget byteArrayInputStream))
-                    jset inputStream (assignedValue)
-                    fix $ \loop -> when ((jio (DataInputStream.available ((jget inputStream)))) > 0) $ javaIteration (loop) $ do
-                        assignedValue <- (DataInputStream.readUTF ((jget inputStream)))
-                        jset (this).name (assignedValue)
-                    Control.Monad.void (BasicArrayList.add ((jget (this).nameBasicArrayList)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory id)))
-        pure ((jget (this).name))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-save :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> String -> IO (())
-save object_ a1 a2 a3 = jmethod object_ "save" (\() -> (save_impl (javaCast object_ :: HighScoreNamePersistanceSingleton))) () a1 a2 a3
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "HighScoreNamePersistanceSingleton" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
 
-save_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> String -> IO (())
-save_super object_ a1 a2 a3 = (save_impl (javaCast object_ :: HighScoreNamePersistanceSingleton)) a1 a2 a3
 
-save_impl :: HighScoreNamePersistanceSingleton -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> String -> IO (())
-save_impl this abeClientInformation gameInfo name = do
-        recordStore <- newIORef (NullRecordStore.nULL_RECORD_STORE)
-        flip finally (do
-            handle (\(e :: JavaException) -> do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).sAVE) e)
-                ) $ do
-                when ((jget recordStore) /= javaNull) $ do
-                    Control.Monad.void (PreLogUtil.put "Closing RecordStore" this (jget ((jget (this).commonStrings)).sAVE))
-                    Control.Monad.void (RecordStore.closeRecordStore ((jget recordStore)))
-            ) $ handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).sAVE) e)
-            ) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "Saving: "))) name))))) this (jget ((jget (this).commonStrings)).sAVE))
-            assignedValue <- (RecordStore.openRecordStore (jio (HighScoreNamePersistanceSingleton.getRecordId this abeClientInformation)) True)
-            jset recordStore (assignedValue)
-            byteArrayOutputStream <- (ByteArrayOutputStream.new_)
-            outputStream <- (DataOutputStream.new_1 byteArrayOutputStream)
-            Control.Monad.void (DataOutputStream.writeUTF outputStream name)
-            savedGameBytes <- (ByteArrayOutputStream.toByteArray byteArrayOutputStream)
-            Control.Monad.void (RecordStore.addRecord ((jget recordStore)) savedGameBytes 0 (jlength savedGameBytes))
-            jset (this).name (name)
-        pure ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "tsUtil" "" JR.this (JR.callStatic TsUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "platformRecordIdUtil" "" JR.this (JR.callStatic PlatformRecordIdUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "RECORD_ID" "" JR.this (JR.str "_SN")),
+                JR.exec (JR.setField "name" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "nameBasicArrayList" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_deleteAll_2 : JR.Method
+jm_deleteAll_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "gameInfo", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "nameBasicArrayList") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68936 -> (JR.setLocal "index" "I" (JR.lit jwN68936))) JR.increment) ]) (JR.run [ 
+                        JR.declare "integer" "" (JR.aget (JR.field "objectArray" (JR.thisField "nameBasicArrayList")) (JR.local "index")), 
+                        JR.exec (JR.invoke "delete_3" JR.this [ (JR.local "abeClientInformation"), (JR.local "gameInfo"), (JR.invoke "intValue_0" (JR.local "integer") []) ]) ]) ], 
+                    JR.exec (JR.invoke "clear_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRecordId_1 : JR.Method
+jm_getRecordId_1 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getRecordId_2" (JR.thisField "platformRecordIdUtil") [ (JR.local "abeClientInformation"), (JR.thisField "RECORD_ID") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_delete_3 : JR.Method
+jm_delete_3 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "gameInfo", "" ), ( "deleteId", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "recordStore" "" NullRecordStore.jstatic_NULL_RECORD_STORE, 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Deleting: ") ]) [ (JR.local "deleteId") ]) []), JR.this, (JR.field "delete" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.setLocal "recordStore" "" (JR.callStatic RecordStore.jm_openRecordStore_2 [ (JR.invoke "getRecordId_1" JR.this [ (JR.local "abeClientInformation") ]), (JR.bool True) ])), 
+                        JR.exec (JR.invoke "deleteRecord_1" (JR.local "recordStore") [ (JR.local "deleteId") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "recordStore") JR.null) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.str "Closing RecordStore"), JR.this, (JR.field "delete" (JR.thisField "commonStrings")) ]), 
+                            JR.exec (JR.invoke "closeRecordStore_0" (JR.local "recordStore") []) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getIds_0 : JR.Method
+jm_getIds_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "nameBasicArrayList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_load_2 : JR.Method
+jm_load_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "gameInfo", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "recordStore" "" NullRecordStore.jstatic_NULL_RECORD_STORE, 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.thisField "name") (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))) (JR.run [ 
+                            JR.declare "LOADING_ID" "" (JR.str "Loading id: "), 
+                            JR.exec (JR.setLocal "recordStore" "" (JR.callStatic RecordStore.jm_openRecordStore_2 [ (JR.invoke "getRecordId_1" JR.this [ (JR.local "abeClientInformation") ]), (JR.bool True) ])), 
+                            JR.declare "recordEnum" "" (JR.invoke "enumerateRecords_3" (JR.local "recordStore") [ NullRecordFilter.jstatic_NULL_RECORD_FILTER, NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR, (JR.bool True) ]), 
+                            JR.declare "smallIntegerSingletonFactory" "" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []), 
+                            JR.declare "recordAsBytes" "" (JR.lit (JR.defaultOf "")), 
+                            JR.declare "byteArrayInputStream" "" (JR.lit (JR.defaultOf "")), 
+                            JR.declare "inputStream" "" (JR.lit (JR.defaultOf "")), 
+                            JR.while (JR.invoke "hasNextElement_0" (JR.local "recordEnum") []) (JR.run [ 
+                                JR.declare "id" "I" (JR.invoke "nextRecordId_0" (JR.local "recordEnum") []), 
+                                JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.local "LOADING_ID") ]) [ (JR.local "id") ]) []), JR.this, (JR.field "LOAD" (JR.thisField "commonStrings")) ]), 
+                                JR.exec (JR.setLocal "recordAsBytes" "" (JR.invoke "getRecord_2" (JR.thisField "tsUtil") [ (JR.local "recordStore"), (JR.local "id") ])), 
+                                JR.exec (JR.setLocal "byteArrayInputStream" "" (JR.new JByteArrayInputStream.jnew_1 [ (JR.local "recordAsBytes") ])), 
+                                JR.exec (JR.setLocal "inputStream" "" (JR.new JDataInputStream.jnew_1 [ (JR.local "byteArrayInputStream") ])), 
+                                JR.while (JR.map2 JR.greater (JR.invoke "available_0" (JR.local "inputStream") []) (JR.int 0)) (JR.run [ 
+                                    JR.exec (JR.setField "name" "" JR.this (JR.invoke "readUTF_0" (JR.local "inputStream") [])) ]), 
+                                JR.exec (JR.invoke "add_1" (JR.thisField "nameBasicArrayList") [ (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.local "id") ]) ]) ]) ]) identity ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "save_3" JR.this [ (JR.local "abeClientInformation"), (JR.local "gameInfo"), (JR.thisField "name") ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "EXCEPTION_LABEL" (JR.thisField "commonStrings")) ]) [ (JR.invoke "getStackTrace_1" (JR.callStatic ExceptionUtil.jm_getInstance_0 []) [ (JR.local "e") ]) ]) []), JR.this, (JR.field "LOAD" (JR.thisField "commonStrings")) ]) ]) ) ] (JR.run [ 
+                        JR.try (JR.run [ 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "recordStore") JR.null) (JR.run [ 
+                                JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.str "Closing RecordStore"), JR.this, (JR.field "LOAD" (JR.thisField "commonStrings")) ]), 
+                                JR.exec (JR.invoke "closeRecordStore_0" (JR.local "recordStore") []) ]) identity ]) [ ( [ "RecordStoreException" ], "e", (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "LOAD" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ]), 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_save_3 : JR.Method
+jm_save_3 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "gameInfo", "" ), ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "recordStore" "" NullRecordStore.jstatic_NULL_RECORD_STORE, 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Saving: ") ]) [ (JR.local "name") ]) []), JR.this, (JR.field "SAVE" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.setLocal "recordStore" "" (JR.callStatic RecordStore.jm_openRecordStore_2 [ (JR.invoke "getRecordId_1" JR.this [ (JR.local "abeClientInformation") ]), (JR.bool True) ])), 
+                        JR.declare "byteArrayOutputStream" "" (JR.new JByteArrayOutputStream.jnew_0 []), 
+                        JR.declare "outputStream" "" (JR.new JDataOutputStream.jnew_1 [ (JR.local "byteArrayOutputStream") ]), 
+                        JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.local "name") ]), 
+                        JR.declare "savedGameBytes" "" (JR.invoke "toByteArray_0" (JR.local "byteArrayOutputStream") []), 
+                        JR.exec (JR.invoke "addRecord_3" (JR.local "recordStore") [ (JR.local "savedGameBytes"), (JR.int 0), (JR.alength (JR.local "savedGameBytes")) ]), 
+                        JR.exec (JR.setField "name" "" JR.this (JR.local "name")) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "SAVE" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] (JR.run [ 
+                        JR.try (JR.run [ 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "recordStore") JR.null) (JR.run [ 
+                                JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.str "Closing RecordStore"), JR.this, (JR.field "SAVE" (JR.thisField "commonStrings")) ]), 
+                                JR.exec (JR.invoke "closeRecordStore_0" (JR.local "recordStore") []) ]) identity ]) [ ( [ "RecordStoreException" ], "e", (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "SAVE" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,325 +1,270 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.configuration
-module MotionGestureConfiguration where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CompleteMotionGestureInputEvent -- org.allbinary.game.input.CompleteMotionGestureInputEvent
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified MotionGestureToMotionGestureActionAssociation -- org.allbinary.input.motion.gesture.MotionGestureToMotionGestureActionAssociation
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-
-data MotionGestureConfiguration = MotionGestureConfiguration
-    { header_ :: JavaHeader
-    , diagonalMotionGestureAllowed :: IORef (Bool)
-    , diagonalTolerance :: IORef (Int)
-    , minimumMotionGesture :: IORef (Int)
-    , button :: IORef (String)
-    , color :: IORef (BasicColor.BasicColor)
-    , executingActions :: IORef (Bool)
-    , mouseButtonMask :: IORef (Int)
-    , activeCommands :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull MotionGestureConfiguration where
-    javaNull = javaNullRecord "MotionGestureConfiguration"
-
-instance JavaEquals MotionGestureConfiguration where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MotionGestureConfiguration where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MotionGestureConfiguration where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MotionGestureConfiguration
-newRecord_ = do
-    header_ <- newJavaHeader
-    diagonalMotionGestureAllowed <- newIORef False
-    diagonalTolerance <- newIORef 0
-    minimumMotionGesture <- newIORef 0
-    button <- newIORef ""
-    color <- newIORef javaNull
-    executingActions <- newIORef False
-    mouseButtonMask <- newIORef 0
-    activeCommands <- newIORef javaNull
-    let this = MotionGestureConfiguration header_ diagonalMotionGestureAllowed diagonalTolerance minimumMotionGesture button color executingActions mouseButtonMask activeCommands
-    jregisterLevel header_ this
-    jregisterMethod header_ "addMotionGestureAction" (\() -> addMotionGestureAction_impl this)
-    jregisterMethod header_ "clearMotionGestureAction" (\() -> clearMotionGestureAction_impl this)
-    jregisterMethod header_ "getAssociateCommandActionsList" (\() -> getAssociateCommandActionsList_impl this)
-    jregisterMethod header_ "isDiagonalMotionGestureAllowed" (\() -> isDiagonalMotionGestureAllowed_impl this)
-    jregisterMethod header_ "isExecutingActionsAllowed" (\() -> isExecutingActionsAllowed_impl this)
-    jregisterMethod header_ "setExecutingActionsAllowed" (\() -> setExecutingActionsAllowed_impl this)
-    jregisterMethod header_ "setDiagonalMotionGestureAllowed" (\() -> setDiagonalMotionGestureAllowed_impl this)
-    jregisterMethod header_ "getDiagonalTolerance" (\() -> getDiagonalTolerance_impl this)
-    jregisterMethod header_ "setDiagonalTolerance" (\() -> setDiagonalTolerance_impl this)
-    jregisterMethod header_ "getMinimumMotionGesture" (\() -> getMinimumMotionGesture_impl this)
-    jregisterMethod header_ "setMinimumMotionGesture" (\() -> setMinimumMotionGesture_impl this)
-    jregisterMethod header_ "getButton" (\() -> getButton_impl this)
-    jregisterMethod header_ "setButton" (\() -> setButton_impl this)
-    jregisterMethod header_ "getColor" (\() -> getColor_impl this)
-    jregisterMethod header_ "setColor" (\() -> setColor_impl this)
-    jregisterMethod header_ "getMouseButtonMask" (\() -> getMouseButtonMask_impl this)
-    jregisterMethod header_ "setMouseButtonMask" (\() -> setMouseButtonMask_impl this)
-    pure this
-
-initFields_ :: MotionGestureConfiguration -> IO ()
-initFields_ this = do
-    jset this.diagonalMotionGestureAllowed (True)
-    jset this.diagonalTolerance (7)
-    jset this.minimumMotionGesture (9)
-    jset this.button ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.color ((jget ((jio (BasicColorFactory.getInstance))).bLUE))
-    jset this.executingActions (True)
-    jset this.mouseButtonMask (0)
-    jset this.activeCommands =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
-
-new_ :: IO MotionGestureConfiguration
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: MotionGestureConfiguration -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
-
-
-addMotionGestureAction :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-addMotionGestureAction object_ a1 a2 = jmethod object_ "addMotionGestureAction" (\() -> (addMotionGestureAction_impl (javaCast object_ :: MotionGestureConfiguration))) () a1 a2
-
-addMotionGestureAction_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-addMotionGestureAction_super object_ a1 a2 = (addMotionGestureAction_impl (javaCast object_ :: MotionGestureConfiguration)) a1 a2
-
-addMotionGestureAction_impl :: MotionGestureConfiguration -> BasicArrayList.BasicArrayList -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-addMotionGestureAction_impl this list commandAction = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).activeCommands)) (jio (MotionGestureToMotionGestureActionAssociation.new_2 list commandAction)))
-        pure ()
-
-
-clearMotionGestureAction :: (JavaObjectClass this_) => this_ -> IO (())
-clearMotionGestureAction object_ = jmethod object_ "clearMotionGestureAction" (\() -> (clearMotionGestureAction_impl (javaCast object_ :: MotionGestureConfiguration))) ()
-
-clearMotionGestureAction_super :: (JavaObjectClass this_) => this_ -> IO (())
-clearMotionGestureAction_super object_ = (clearMotionGestureAction_impl (javaCast object_ :: MotionGestureConfiguration))
-
-clearMotionGestureAction_impl :: MotionGestureConfiguration -> IO (())
-clearMotionGestureAction_impl this = do
-        Control.Monad.void (BasicArrayList.clear ((jget (this).activeCommands)))
-        pure ()
-
-
-getAssociateCommandActionsList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getAssociateCommandActionsList object_ = jmethod object_ "getAssociateCommandActionsList" (\() -> (getAssociateCommandActionsList_impl (javaCast object_ :: MotionGestureConfiguration))) ()
-
-getAssociateCommandActionsList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getAssociateCommandActionsList_super object_ = (getAssociateCommandActionsList_impl (javaCast object_ :: MotionGestureConfiguration))
-
-getAssociateCommandActionsList_impl :: MotionGestureConfiguration -> IO (BasicArrayList.BasicArrayList)
-getAssociateCommandActionsList_impl this = do
-        pure ((jget (this).activeCommands))
-
-
-isDiagonalMotionGestureAllowed :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isDiagonalMotionGestureAllowed object_ = jmethod object_ "isDiagonalMotionGestureAllowed" (\() -> (isDiagonalMotionGestureAllowed_impl (javaCast object_ :: MotionGestureConfiguration))) ()
-
-isDiagonalMotionGestureAllowed_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isDiagonalMotionGestureAllowed_super object_ = (isDiagonalMotionGestureAllowed_impl (javaCast object_ :: MotionGestureConfiguration))
-
-isDiagonalMotionGestureAllowed_impl :: MotionGestureConfiguration -> IO (Bool)
-isDiagonalMotionGestureAllowed_impl this = do
-        pure ((jget (this).diagonalMotionGestureAllowed))
-
-
-isExecutingActionsAllowed :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isExecutingActionsAllowed object_ = jmethod object_ "isExecutingActionsAllowed" (\() -> (isExecutingActionsAllowed_impl (javaCast object_ :: MotionGestureConfiguration))) ()
-
-isExecutingActionsAllowed_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isExecutingActionsAllowed_super object_ = (isExecutingActionsAllowed_impl (javaCast object_ :: MotionGestureConfiguration))
-
-isExecutingActionsAllowed_impl :: MotionGestureConfiguration -> IO (Bool)
-isExecutingActionsAllowed_impl this = do
-        pure ((jget (this).executingActions))
-
-
-setExecutingActionsAllowed :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setExecutingActionsAllowed object_ a1 = jmethod object_ "setExecutingActionsAllowed" (\() -> (setExecutingActionsAllowed_impl (javaCast object_ :: MotionGestureConfiguration))) () a1
-
-setExecutingActionsAllowed_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setExecutingActionsAllowed_super object_ a1 = (setExecutingActionsAllowed_impl (javaCast object_ :: MotionGestureConfiguration)) a1
-
-setExecutingActionsAllowed_impl :: MotionGestureConfiguration -> Bool -> IO (())
-setExecutingActionsAllowed_impl this executingActionAllowed = do
-        jset (this).executingActions (executingActionAllowed)
-        pure ()
-
-
-setDiagonalMotionGestureAllowed :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setDiagonalMotionGestureAllowed object_ a1 = jmethod object_ "setDiagonalMotionGestureAllowed" (\() -> (setDiagonalMotionGestureAllowed_impl (javaCast object_ :: MotionGestureConfiguration))) () a1
-
-setDiagonalMotionGestureAllowed_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setDiagonalMotionGestureAllowed_super object_ a1 = (setDiagonalMotionGestureAllowed_impl (javaCast object_ :: MotionGestureConfiguration)) a1
-
-setDiagonalMotionGestureAllowed_impl :: MotionGestureConfiguration -> Bool -> IO (())
-setDiagonalMotionGestureAllowed_impl this diagonalMotionGestureAllowed = do
-        jset (this).diagonalMotionGestureAllowed (diagonalMotionGestureAllowed)
-        pure ()
-
-
-getDiagonalTolerance :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDiagonalTolerance object_ = jmethod object_ "getDiagonalTolerance" (\() -> (getDiagonalTolerance_impl (javaCast object_ :: MotionGestureConfiguration))) ()
-
-getDiagonalTolerance_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDiagonalTolerance_super object_ = (getDiagonalTolerance_impl (javaCast object_ :: MotionGestureConfiguration))
-
-getDiagonalTolerance_impl :: MotionGestureConfiguration -> IO (Int)
-getDiagonalTolerance_impl this = do
-        pure ((jget (this).diagonalTolerance))
-
-
-setDiagonalTolerance :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setDiagonalTolerance object_ a1 = jmethod object_ "setDiagonalTolerance" (\() -> (setDiagonalTolerance_impl (javaCast object_ :: MotionGestureConfiguration))) () a1
-
-setDiagonalTolerance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setDiagonalTolerance_super object_ a1 = (setDiagonalTolerance_impl (javaCast object_ :: MotionGestureConfiguration)) a1
-
-setDiagonalTolerance_impl :: MotionGestureConfiguration -> Int -> IO (())
-setDiagonalTolerance_impl this diagonalTolerance = do
-        jset (this).diagonalTolerance (diagonalTolerance)
-        pure ()
-
-
-getMinimumMotionGesture :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinimumMotionGesture object_ = jmethod object_ "getMinimumMotionGesture" (\() -> (getMinimumMotionGesture_impl (javaCast object_ :: MotionGestureConfiguration))) ()
-
-getMinimumMotionGesture_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinimumMotionGesture_super object_ = (getMinimumMotionGesture_impl (javaCast object_ :: MotionGestureConfiguration))
-
-getMinimumMotionGesture_impl :: MotionGestureConfiguration -> IO (Int)
-getMinimumMotionGesture_impl this = do
-        pure ((jget (this).minimumMotionGesture))
-
-
-setMinimumMotionGesture :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setMinimumMotionGesture object_ a1 = jmethod object_ "setMinimumMotionGesture" (\() -> (setMinimumMotionGesture_impl (javaCast object_ :: MotionGestureConfiguration))) () a1
-
-setMinimumMotionGesture_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setMinimumMotionGesture_super object_ a1 = (setMinimumMotionGesture_impl (javaCast object_ :: MotionGestureConfiguration)) a1
-
-setMinimumMotionGesture_impl :: MotionGestureConfiguration -> Int -> IO (())
-setMinimumMotionGesture_impl this minimumMotionGesture = do
-        jset (this).minimumMotionGesture (minimumMotionGesture)
-        pure ()
-
-
-getButton :: (JavaObjectClass this_) => this_ -> IO (String)
-getButton object_ = jmethod object_ "getButton" (\() -> (getButton_impl (javaCast object_ :: MotionGestureConfiguration))) ()
-
-getButton_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getButton_super object_ = (getButton_impl (javaCast object_ :: MotionGestureConfiguration))
-
-getButton_impl :: MotionGestureConfiguration -> IO (String)
-getButton_impl this = do
-        pure ((jget (this).button))
-
-
-setButton :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setButton object_ a1 = jmethod object_ "setButton" (\() -> (setButton_impl (javaCast object_ :: MotionGestureConfiguration))) () a1
-
-setButton_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setButton_super object_ a1 = (setButton_impl (javaCast object_ :: MotionGestureConfiguration)) a1
-
-setButton_impl :: MotionGestureConfiguration -> String -> IO (())
-setButton_impl this button = do
-        jset (this).button (button)
-        pure ()
-
-
-getColor :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getColor object_ = jmethod object_ "getColor" (\() -> (getColor_impl (javaCast object_ :: MotionGestureConfiguration))) ()
-
-getColor_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getColor_super object_ = (getColor_impl (javaCast object_ :: MotionGestureConfiguration))
-
-getColor_impl :: MotionGestureConfiguration -> IO (BasicColor.BasicColor)
-getColor_impl this = do
-        pure ((jget (this).color))
-
-
-setColor :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setColor object_ a1 = jmethod object_ "setColor" (\() -> (setColor_impl (javaCast object_ :: MotionGestureConfiguration))) () a1
-
-setColor_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setColor_super object_ a1 = (setColor_impl (javaCast object_ :: MotionGestureConfiguration)) a1
-
-setColor_impl :: MotionGestureConfiguration -> BasicColor.BasicColor -> IO (())
-setColor_impl this color = do
-        jset (this).color (color)
-        pure ()
-
-
-getMouseButtonMask :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMouseButtonMask object_ = jmethod object_ "getMouseButtonMask" (\() -> (getMouseButtonMask_impl (javaCast object_ :: MotionGestureConfiguration))) ()
-
-getMouseButtonMask_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMouseButtonMask_super object_ = (getMouseButtonMask_impl (javaCast object_ :: MotionGestureConfiguration))
-
-getMouseButtonMask_impl :: MotionGestureConfiguration -> IO (Int)
-getMouseButtonMask_impl this = do
-        pure ((jget (this).mouseButtonMask))
-
-
-setMouseButtonMask :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setMouseButtonMask object_ a1 = jmethod object_ "setMouseButtonMask" (\() -> (setMouseButtonMask_impl (javaCast object_ :: MotionGestureConfiguration))) () a1
-
-setMouseButtonMask_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setMouseButtonMask_super object_ a1 = (setMouseButtonMask_impl (javaCast object_ :: MotionGestureConfiguration)) a1
-
-setMouseButtonMask_impl :: MotionGestureConfiguration -> Int -> IO (())
-setMouseButtonMask_impl this mouseButtonMask = do
-        jset (this).mouseButtonMask (mouseButtonMask)
-        pure ()
-
+module Org.Allbinary.Input.Motion.Gesture.Configuration.MotionGestureConfiguration exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.gesture.configuration
+-}
+
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Input.Motion.Gesture.MotionGestureToMotionGestureActionAssociation as MotionGestureToMotionGestureActionAssociation
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+
+
+jclass : String
+jclass =
+    "MotionGestureConfiguration"
+
+
+jchain : List String
+jchain =
+    [ "MotionGestureConfiguration" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "diagonalMotionGestureAllowed", JR.defaultOf "Z" ), ( "diagonalTolerance", JR.defaultOf "I" ), ( "minimumMotionGesture", JR.defaultOf "I" ), ( "button", JR.defaultOf "" ), ( "color", JR.defaultOf "" ), ( "executingActions", JR.defaultOf "Z" ), ( "mouseButtonMask", JR.defaultOf "I" ), ( "activeCommands", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "addMotionGestureAction_2", jm_addMotionGestureAction_2 )
+        , ( "clearMotionGestureAction_0", jm_clearMotionGestureAction_0 )
+        , ( "getAssociateCommandActionsList_0", jm_getAssociateCommandActionsList_0 )
+        , ( "isDiagonalMotionGestureAllowed_0", jm_isDiagonalMotionGestureAllowed_0 )
+        , ( "isExecutingActionsAllowed_0", jm_isExecutingActionsAllowed_0 )
+        , ( "setExecutingActionsAllowed_1", jm_setExecutingActionsAllowed_1 )
+        , ( "setDiagonalMotionGestureAllowed_1", jm_setDiagonalMotionGestureAllowed_1 )
+        , ( "getDiagonalTolerance_0", jm_getDiagonalTolerance_0 )
+        , ( "setDiagonalTolerance_1", jm_setDiagonalTolerance_1 )
+        , ( "getMinimumMotionGesture_0", jm_getMinimumMotionGesture_0 )
+        , ( "setMinimumMotionGesture_1", jm_setMinimumMotionGesture_1 )
+        , ( "getButton_0", jm_getButton_0 )
+        , ( "setButton_1", jm_setButton_1 )
+        , ( "getColor_0", jm_getColor_0 )
+        , ( "setColor_1", jm_setColor_1 )
+        , ( "getMouseButtonMask_0", jm_getMouseButtonMask_0 )
+        , ( "setMouseButtonMask_1", jm_setMouseButtonMask_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MotionGestureConfiguration"
+        [ ( "jm_addMotionGestureAction_2", jm_addMotionGestureAction_2 ), ( "jm_clearMotionGestureAction_0", jm_clearMotionGestureAction_0 ), ( "jm_getAssociateCommandActionsList_0", jm_getAssociateCommandActionsList_0 ), ( "jm_isDiagonalMotionGestureAllowed_0", jm_isDiagonalMotionGestureAllowed_0 ), ( "jm_isExecutingActionsAllowed_0", jm_isExecutingActionsAllowed_0 ), ( "jm_setExecutingActionsAllowed_1", jm_setExecutingActionsAllowed_1 ), ( "jm_setDiagonalMotionGestureAllowed_1", jm_setDiagonalMotionGestureAllowed_1 ), ( "jm_getDiagonalTolerance_0", jm_getDiagonalTolerance_0 ), ( "jm_setDiagonalTolerance_1", jm_setDiagonalTolerance_1 ), ( "jm_getMinimumMotionGesture_0", jm_getMinimumMotionGesture_0 ), ( "jm_setMinimumMotionGesture_1", jm_setMinimumMotionGesture_1 ), ( "jm_getButton_0", jm_getButton_0 ), ( "jm_setButton_1", jm_setButton_1 ), ( "jm_getColor_0", jm_getColor_0 ), ( "jm_setColor_1", jm_setColor_1 ), ( "jm_getMouseButtonMask_0", jm_getMouseButtonMask_0 ), ( "jm_setMouseButtonMask_1", jm_setMouseButtonMask_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "diagonalMotionGestureAllowed" "Z" JR.this (JR.bool True)),
+                JR.exec (JR.setField "diagonalTolerance" "I" JR.this (JR.int 7)),
+                JR.exec (JR.setField "minimumMotionGesture" "I" JR.this (JR.int 9)),
+                JR.exec (JR.setField "button" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "color" "" JR.this (JR.field "BLUE" (JR.callStatic BasicColorFactory.jm_getInstance_0 []))),
+                JR.exec (JR.setField "executingActions" "Z" JR.this (JR.bool True)),
+                JR.exec (JR.setField "mouseButtonMask" "I" JR.this (JR.int 0)),
+                JR.exec (JR.setField "activeCommands" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_addMotionGestureAction_2 : JR.Method
+jm_addMotionGestureAction_2 jheap jthis jargs =
+    JR.method [ ( "list", "" ), ( "commandAction", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "activeCommands") [ (JR.new MotionGestureToMotionGestureActionAssociation.jnew_2 [ (JR.local "list"), (JR.local "commandAction") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clearMotionGestureAction_0 : JR.Method
+jm_clearMotionGestureAction_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "activeCommands") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAssociateCommandActionsList_0 : JR.Method
+jm_getAssociateCommandActionsList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "activeCommands") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isDiagonalMotionGestureAllowed_0 : JR.Method
+jm_isDiagonalMotionGestureAllowed_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "diagonalMotionGestureAllowed") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isExecutingActionsAllowed_0 : JR.Method
+jm_isExecutingActionsAllowed_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "executingActions") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setExecutingActionsAllowed_1 : JR.Method
+jm_setExecutingActionsAllowed_1 jheap jthis jargs =
+    JR.method [ ( "executingActionAllowed", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "executingActions" "Z" JR.this (JR.local "executingActionAllowed")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDiagonalMotionGestureAllowed_1 : JR.Method
+jm_setDiagonalMotionGestureAllowed_1 jheap jthis jargs =
+    JR.method [ ( "diagonalMotionGestureAllowed", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "diagonalMotionGestureAllowed" "Z" JR.this (JR.local "diagonalMotionGestureAllowed")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDiagonalTolerance_0 : JR.Method
+jm_getDiagonalTolerance_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "diagonalTolerance") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDiagonalTolerance_1 : JR.Method
+jm_setDiagonalTolerance_1 jheap jthis jargs =
+    JR.method [ ( "diagonalTolerance", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "diagonalTolerance" "I" JR.this (JR.local "diagonalTolerance")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMinimumMotionGesture_0 : JR.Method
+jm_getMinimumMotionGesture_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "minimumMotionGesture") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMinimumMotionGesture_1 : JR.Method
+jm_setMinimumMotionGesture_1 jheap jthis jargs =
+    JR.method [ ( "minimumMotionGesture", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "minimumMotionGesture" "I" JR.this (JR.local "minimumMotionGesture")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getButton_0 : JR.Method
+jm_getButton_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "button") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setButton_1 : JR.Method
+jm_setButton_1 jheap jthis jargs =
+    JR.method [ ( "button", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "button" "" JR.this (JR.local "button")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getColor_0 : JR.Method
+jm_getColor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "color") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setColor_1 : JR.Method
+jm_setColor_1 jheap jthis jargs =
+    JR.method [ ( "color", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "color" "" JR.this (JR.local "color")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMouseButtonMask_0 : JR.Method
+jm_getMouseButtonMask_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "mouseButtonMask") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMouseButtonMask_1 : JR.Method
+jm_setMouseButtonMask_1 jheap jthis jargs =
+    JR.method [ ( "mouseButtonMask", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "mouseButtonMask" "I" JR.this (JR.local "mouseButtonMask")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

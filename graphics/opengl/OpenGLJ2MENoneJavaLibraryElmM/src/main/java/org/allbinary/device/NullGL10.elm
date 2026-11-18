@@ -1,86 +1,80 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.device
-module NullGL10 where
+module Org.Allbinary.Device.NullGL10 exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GL10 -- javax.microedition.khronos.opengles.GL10
+{-| Generated Code Do Not Modify package org.allbinary.device
+-}
 
--- implements GL10
-data NullGL10 = NullGL10
-    { header_ :: JavaHeader
-    }
+import JR
+import Javax.Microedition.Khronos.Opengles.GL10 as GL10
 
-instance JavaNull NullGL10 where
-    javaNull = javaNullRecord "NullGL10"
 
-instance JavaEquals NullGL10 where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "NullGL10"
 
-instance Eq NullGL10 where
-    (==) = jrecordEquals
 
-instance JavaObjectClass NullGL10 where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "NullGL10" ]
+        ++ GL10.jchain
 
-nULL_GL10 :: NullGL10
-{-# NOINLINE nULL_GL10 #-}
-nULL_GL10 = unsafePerformIO ((new_))
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO NullGL10
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = NullGL10 header_
-    jregisterLevel header_ this
-    GL10.registerInterface_ header_
-    pure this
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-initFields_ :: NullGL10 -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO NullGL10
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullGL10"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_GL10", jstatic_NULL_GL10 ) ]
+        jheap
 
-init_ :: NullGL10 -> IO ()
-init_ this = do
-    initFields_ this
 
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_GL10 : JR.M
+jstatic_NULL_GL10 s =
+    JR.static "NullGL10" jclinit "NULL_GL10"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

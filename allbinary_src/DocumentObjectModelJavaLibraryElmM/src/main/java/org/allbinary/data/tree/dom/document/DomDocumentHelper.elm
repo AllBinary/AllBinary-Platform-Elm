@@ -1,141 +1,122 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.data.tree.dom.document
-module DomDocumentHelper where
+module Org.Allbinary.Data.Tree.Dom.Document.DomDocumentHelper exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified InputStream -- java.io.InputStream
-import qualified StringBufferInputStream -- java.io.StringBufferInputStream
-import qualified DocumentBuilder -- javax.xml.parsers.DocumentBuilder
-import qualified DocumentBuilderFactory -- javax.xml.parsers.DocumentBuilderFactory
-import qualified CommonPhoneStrings -- org.allbinary.string.CommonPhoneStrings
-import qualified Document -- org.w3c.dom.Document
+{-| Generated Code Do Not Modify package org.allbinary.data.tree.dom.document
+-}
 
-data DomDocumentHelper = DomDocumentHelper
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull DomDocumentHelper where
-    javaNull = javaNullRecord "DomDocumentHelper"
-
-instance JavaEquals DomDocumentHelper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DomDocumentHelper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DomDocumentHelper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DomDocumentHelper
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = DomDocumentHelper header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: DomDocumentHelper -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO DomDocumentHelper
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DomDocumentHelper -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.String.CommonPhoneStrings as CommonPhoneStrings
+import JSystem
 
 
-init :: IO (())
-init = do
-        commonPhoneStrings <- (CommonPhoneStrings.getInstance)
-        Control.Monad.void (System.setProperty "jdk.xml.maxElementDepth" (jget (commonPhoneStrings).zERO))
-        Control.Monad.void (System.setProperty "jdk.xml.xpathExprOpLimit" (jget (commonPhoneStrings).zERO))
-        Control.Monad.void (System.setProperty "jdk.xml.xpathTotalOpLimit" (jget (commonPhoneStrings).zERO))
-        let lIMIT = "500000"
-        Control.Monad.void (System.setProperty "jdk.xml.maxGeneralEntitySizeLimit" lIMIT)
-        Control.Monad.void (System.setProperty "jdk.xml.totalEntitySizeLimit" lIMIT)
-        pure ()
+jclass : String
+jclass =
+    "DomDocumentHelper"
 
 
-create :: IO (Document.Document)
-create = do
-        handle (\(e :: JavaException) -> do
-            pure (javaNull)
-            ) $ do
-            factory <- (DocumentBuilderFactory.newInstance)
-            builder <- (DocumentBuilderFactory.newDocumentBuilder factory)
-            document <- (DocumentBuilder.newDocument builder)
-            pure (document)
+jchain : List String
+jchain =
+    [ "DomDocumentHelper" ]
 
 
--- Java overloads of create: calls the overload for the types of the arguments
-create_1 :: (JavaObjectClass o1) => o1 -> IO (Document.Document)
-create_1 a1
-    | jisInstanceOf a1 (javaNull :: InputStream.InputStream) = create_1_overload1 (javaCast a1 :: InputStream.InputStream)
-    | jisInstanceOf a1 (javaNull :: String) = create_1_overload2 (javaCast a1 :: String)
-    | otherwise = create_1_overload2 (javaCast a1 :: String)
-
--- throws Exception
-create_1_overload1 :: InputStream.InputStream -> IO (Document.Document)
-create_1_overload1 inputStream = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            factory <- (DocumentBuilderFactory.newInstance)
-            builder <- (DocumentBuilderFactory.newDocumentBuilder factory)
-            document <- (DocumentBuilder.parse builder inputStream)
-            pure (document)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
--- throws Exception
-create_1_overload2 :: String -> IO (Document.Document)
-create_1_overload2 xmlString = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            factory <- (DocumentBuilderFactory.newInstance)
-            builder <- (DocumentBuilderFactory.newDocumentBuilder factory)
-            document <- (DocumentBuilder.parse builder (jio (StringBufferInputStream.new_1 xmlString)))
-            pure (document)
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 )
+        , ( "create_0", jm_create_0 )
+        , ( "create_1", jm_create_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DomDocumentHelper"
+        [ ( "jm_init_0", jm_init_0 ), ( "jm_create_0", jm_create_0 ), ( "jm_create_1", jm_create_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "commonPhoneStrings" "" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 []), 
+                    JR.exec (JR.callStatic JSystem.jm_setProperty_2 [ (JR.str "jdk.xml.maxElementDepth"), (JR.field "ZERO" (JR.local "commonPhoneStrings")) ]), 
+                    JR.exec (JR.callStatic JSystem.jm_setProperty_2 [ (JR.str "jdk.xml.xpathExprOpLimit"), (JR.field "ZERO" (JR.local "commonPhoneStrings")) ]), 
+                    JR.exec (JR.callStatic JSystem.jm_setProperty_2 [ (JR.str "jdk.xml.xpathTotalOpLimit"), (JR.field "ZERO" (JR.local "commonPhoneStrings")) ]), 
+                    JR.declare "LIMIT" "" (JR.str "500000"), 
+                    JR.exec (JR.callStatic JSystem.jm_setProperty_2 [ (JR.str "jdk.xml.maxGeneralEntitySizeLimit"), (JR.local "LIMIT") ]), 
+                    JR.exec (JR.callStatic JSystem.jm_setProperty_2 [ (JR.str "jdk.xml.totalEntitySizeLimit"), (JR.local "LIMIT") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_create_0 : JR.Method
+jm_create_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "factory" "" (JR.callStatic (JR.namedMethod "DocumentBuilderFactory.jm_newInstance_0") []), 
+                        JR.declare "builder" "" (JR.invoke "newDocumentBuilder_0" (JR.local "factory") []), 
+                        JR.declare "document" "" (JR.invoke "newDocument_0" (JR.local "builder") []), 
+                        JR.return (JR.local "document") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.return JR.null ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_create_1 : JR.Method
+jm_create_1 jheap jthis jargs =
+    JR.method [ ( "inputStream", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "factory" "" (JR.callStatic (JR.namedMethod "DocumentBuilderFactory.jm_newInstance_0") []), 
+                        JR.declare "builder" "" (JR.invoke "newDocumentBuilder_0" (JR.local "factory") []), 
+                        JR.declare "document" "" (JR.invoke "parse_1" (JR.local "builder") [ (JR.local "inputStream") ]), 
+                        JR.return (JR.local "document") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

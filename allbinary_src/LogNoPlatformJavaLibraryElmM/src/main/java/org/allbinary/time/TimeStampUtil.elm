@@ -1,4 +1,4 @@
-module TimeStampUtil exposing (..)
+module Org.Allbinary.Time.TimeStampUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.time
 -}

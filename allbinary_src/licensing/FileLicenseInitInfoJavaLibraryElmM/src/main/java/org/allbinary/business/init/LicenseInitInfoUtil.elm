@@ -1,235 +1,203 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.init
-module LicenseInitInfoUtil where
+module Org.Allbinary.Business.Init.LicenseInitInfoUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LicenseInitInfo -- same package or java.lang
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified PATH_GLOBALS -- org.allbinary.globals.PATH_GLOBALS
-import qualified URLGLOBALS -- org.allbinary.globals.URLGLOBALS
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified AbDataInputStream -- org.allbinary.logic.io.AbDataInputStream
-import qualified AbDataOutputStream -- org.allbinary.logic.io.AbDataOutputStream
-import qualified AbFileInputStream -- org.allbinary.logic.io.AbFileInputStream
-import qualified DataOutputStreamFactory -- org.allbinary.logic.io.DataOutputStreamFactory
-import qualified FileStreamFactory -- org.allbinary.logic.io.FileStreamFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified DatabaseEncoder -- org.allbinary.logic.system.security.crypt.DatabaseEncoder
-import qualified WeakCrypt -- org.allbinary.logic.system.security.crypt.WeakCrypt
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
+{-| Generated Code Do Not Modify package org.allbinary.business.init
+-}
 
-data LicenseInitInfoUtil = LicenseInitInfoUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , stringUtil :: IORef (StringUtil.StringUtil)
-    , iNITFILENAME :: IORef (String)
-    , aBOUT :: IORef (String)
-    , pRIVACY_POLICY :: IORef (String)
-    , filePath :: IORef (String)
-    }
-
-instance JavaNull LicenseInitInfoUtil where
-    javaNull = javaNullRecord "LicenseInitInfoUtil"
-
-instance JavaEquals LicenseInitInfoUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LicenseInitInfoUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LicenseInitInfoUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: LicenseInitInfoUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LicenseInitInfoUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    stringUtil <- newIORef javaNull
-    iNITFILENAME <- newIORef ""
-    aBOUT <- newIORef ""
-    pRIVACY_POLICY <- newIORef ""
-    filePath <- newIORef ""
-    let this = LicenseInitInfoUtil header_ logUtil stringUtil iNITFILENAME aBOUT pRIVACY_POLICY filePath
-    jregisterLevel header_ this
-    jregisterMethod header_ "setFilePath" (\() -> setFilePath_impl this)
-    jregisterMethod header_ "write" (\() -> write_impl this)
-    jregisterMethod header_ "read" (\() -> read_impl this)
-    jregisterMethod header_ "readAgain" (\() -> readAgain_impl this)
-    jregisterMethod header_ "getFilePath" (\() -> getFilePath_impl this)
-    pure this
-
-initFields_ :: LicenseInitInfoUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.stringUtil =<< (StringUtil.getInstance)
-    jset this.iNITFILENAME ("licenseinitdata.dat")
-    jset this.aBOUT ("about")
-    jset this.pRIVACY_POLICY ("privacy_policy")
-    jset this.filePath ((jget ((jget (this).stringUtil)).eMPTY_STRING))
-    pure ()
-
-new_ :: IO LicenseInitInfoUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LicenseInitInfoUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.Io.AbDataInputStream as AbDataInputStream
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.Logic.Io.DataOutputStreamFactory as DataOutputStreamFactory
+import Org.Allbinary.Logic.System.Security.Crypt.DatabaseEncoder as DatabaseEncoder
+import Org.Allbinary.Logic.Io.FileStreamFactory as FileStreamFactory
+import Org.Allbinary.Business.Init.LicenseInitInfo as LicenseInitInfo
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Globals.PATH_GLOBALS as PATH_GLOBALS
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.TsUtil as TsUtil
+import Org.Allbinary.Globals.URLGLOBALS as URLGLOBALS
+import Org.Allbinary.Logic.System.Security.Crypt.WeakCrypt as WeakCrypt
 
 
-getInstance :: IO (LicenseInitInfoUtil)
-getInstance = do
-        pure (LicenseInitInfoUtil.instance_)
+jclass : String
+jclass =
+    "LicenseInitInfoUtil"
 
 
-setFilePath :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setFilePath object_ a1 = jmethod object_ "setFilePath" (\() -> (setFilePath_impl (javaCast object_ :: LicenseInitInfoUtil))) () a1
-
-setFilePath_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setFilePath_super object_ a1 = (setFilePath_impl (javaCast object_ :: LicenseInitInfoUtil)) a1
-
-setFilePath_impl :: LicenseInitInfoUtil -> String -> IO (())
-setFilePath_impl this filePath = do
-        jset (this).filePath (filePath)
-        pure ()
+jchain : List String
+jchain =
+    [ "LicenseInitInfoUtil" ]
 
 
--- throws Exception
-write :: (JavaObjectClass this_) => this_ -> LicenseInitInfo.LicenseInitInfo -> IO (())
-write object_ a1 = jmethod object_ "write" (\() -> (write_impl (javaCast object_ :: LicenseInitInfoUtil))) () a1
-
-write_super :: (JavaObjectClass this_) => this_ -> LicenseInitInfo.LicenseInitInfo -> IO (())
-write_super object_ a1 = (write_impl (javaCast object_ :: LicenseInitInfoUtil)) a1
-
-write_impl :: LicenseInitInfoUtil -> LicenseInitInfo.LicenseInitInfo -> IO (())
-write_impl this initData = do
-        when ((jget (this).filePath) == (jget ((jget (this).stringUtil)).eMPTY_STRING)) $ do
-            jset (this).filePath (((jio (URLGLOBALS.getMainPath)) + (jget ((jio (PATH_GLOBALS.getInstance))).iNIT_PATH)))
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) ("Command Failed: " ++ (jget (this).iNITFILENAME)) this "write" e)
-            Control.Monad.void (FileStreamFactory.delete ((jio (FileStreamFactory.getInstance))) (jget (this).filePath) (jget (this).iNITFILENAME))
-            javaThrow (e)
-            ) $ do
-            tsUtil <- (TsUtil.getInstance)
-            dataOutputStream <- (DataOutputStreamFactory.getInstance ((jio (DataOutputStreamFactory.getInstance))) (jget (this).filePath) (jget (this).iNITFILENAME))
-            licenseIdCrypted <- (TsUtil.getByteArray tsUtil (jio (WeakCrypt.encrypt ((jio (WeakCrypt.new_1 1))) (jio (LicenseInitInfo.getLicenseId initData)))))
-            Control.Monad.void (AbDataOutputStream.writeUTF dataOutputStream (jio (DatabaseEncoder.encode licenseIdCrypted)))
-            numberOfLicenseServers <- (LicenseInitInfo.getNumberOfServers initData)
-            Control.Monad.void (AbDataOutputStream.writeInt dataOutputStream numberOfLicenseServers)
-            licenseServerCrypted <- newIORef (javaNull)
-            forM_ [0 .. numberOfLicenseServers - 1] $ \index -> javaIteration (pure ()) $ do
-                assignedValue <- (TsUtil.getByteArray tsUtil (jio (WeakCrypt.encrypt ((jio (WeakCrypt.new_1 3))) (jio (LicenseInitInfo.getServer initData index)))))
-                jset licenseServerCrypted (assignedValue)
-                Control.Monad.void (AbDataOutputStream.writeUTF dataOutputStream (jio (DatabaseEncoder.encode (jget licenseServerCrypted))))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "stringUtil", JR.defaultOf "" ), ( "INITFILENAME", JR.defaultOf "" ), ( "ABOUT", JR.defaultOf "" ), ( "PRIVACY_POLICY", JR.defaultOf "" ), ( "filePath", JR.defaultOf "" ) ]
 
 
--- throws Exception
-read :: (JavaObjectClass this_) => this_ -> IO (LicenseInitInfo.LicenseInitInfo)
-read object_ = jmethod object_ "read" (\() -> (read_impl (javaCast object_ :: LicenseInitInfoUtil))) ()
-
-read_super :: (JavaObjectClass this_) => this_ -> IO (LicenseInitInfo.LicenseInitInfo)
-read_super object_ = (read_impl (javaCast object_ :: LicenseInitInfoUtil))
-
-read_impl :: LicenseInitInfoUtil -> IO (LicenseInitInfo.LicenseInitInfo)
-read_impl this = do
-        (LicenseInitInfoUtil.readAgain this 0)
-
-
--- throws Exception
-readAgain :: (JavaObjectClass this_) => this_ -> Int -> IO (LicenseInitInfo.LicenseInitInfo)
-readAgain object_ a1 = jmethod object_ "readAgain" (\() -> (readAgain_impl (javaCast object_ :: LicenseInitInfoUtil))) () a1
-
-readAgain_super :: (JavaObjectClass this_) => this_ -> Int -> IO (LicenseInitInfo.LicenseInitInfo)
-readAgain_super object_ a1 = (readAgain_impl (javaCast object_ :: LicenseInitInfoUtil)) a1
-
-readAgain_impl :: LicenseInitInfoUtil -> Int -> IO (LicenseInitInfo.LicenseInitInfo)
-readAgain_impl this initializeCounter = do
-    javaCatchReturn $ do
-        let mETHOD_NAME = "readAgain"
-        when ((jget (this).filePath) == (jget ((jget (this).stringUtil)).eMPTY_STRING)) $ do
-            jset (this).filePath (((jio (URLGLOBALS.getMainPath)) + (jget ((jio (PATH_GLOBALS.getInstance))).iNIT_PATH)))
-        handle (\(e :: JavaException) -> do
-            handle (\(e2 :: JavaException) -> do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) ("LicenseInitInfo Read Retry: " ++ (jget (this).iNITFILENAME)) this "readAgain()" e2)
-                ) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) ("Command Failed: " ++ (jget (this).iNITFILENAME)) this mETHOD_NAME e)
-            javaThrow ((JavaException "Exception" ("LicenseInitInfo Read Error: " ++ (jget (this).iNITFILENAME))))
-            ) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ("LicenseInitInfo File: " ++ (jget (this).iNITFILENAME)) this mETHOD_NAME)
-            fileStreamFactory <- (FileStreamFactory.getInstance)
-            iFile <- (FileStreamFactory.getFileInputStreamInstance fileStreamFactory (jget (this).filePath) (jget (this).iNITFILENAME))
-            if (iFile /= javaNull) then do
-                iData <- (AbDataInputStream.new_1 iFile)
-                initInfo <- (LicenseInitInfo.new_)
-                decodedByteArray <- newIORef =<< (DatabaseEncoder.decode (jio (AbDataInputStream.readUTF iData)))
-                licenseIdDecoded <- (jnewString (jget decodedByteArray))
-                Control.Monad.void (LicenseInitInfo.setLicenseId initInfo (jio (WeakCrypt.decrypt ((jio (WeakCrypt.new_1 1))) licenseIdDecoded)))
-                numberOfLicenseServers <- (AbDataInputStream.readInt iData)
-                nEXT_FILE <- (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonLabels.getInstance))).nEXT)))) " License Server From File: "))))
-                licenseServerDecoded <- newIORef ("")
-                forM_ [0 .. numberOfLicenseServers - 1] $ \index -> javaIteration (pure ()) $ do
-                    assignedValue <- (DatabaseEncoder.decode (jio (AbDataInputStream.readUTF iData)))
-                    jset decodedByteArray (assignedValue)
-                    assignedValue <- (jnewString (jget decodedByteArray))
-                    jset licenseServerDecoded (assignedValue)
-                    Control.Monad.void (LicenseInitInfo.setServer initInfo (jio (WeakCrypt.decrypt ((jio (WeakCrypt.new_1 3))) (jget licenseServerDecoded))) index)
-                    Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (nEXT_FILE ++ (jio (LicenseInitInfo.getServer initInfo index))) this mETHOD_NAME)
-                javaReturn (initInfo)
-            else do
-                javaThrow ((JavaException "Exception" ("Could Not Load License InitInfo: " ++ (jget (this).iNITFILENAME))))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "setFilePath_1", jm_setFilePath_1 )
+        , ( "write_1", jm_write_1 )
+        , ( "read_0", jm_read_0 )
+        , ( "readAgain_1", jm_readAgain_1 )
+        , ( "getFilePath_0", jm_getFilePath_0 ) ]
+        JR.noMethods
 
 
-getFilePath :: (JavaObjectClass this_) => this_ -> IO (String)
-getFilePath object_ = jmethod object_ "getFilePath" (\() -> (getFilePath_impl (javaCast object_ :: LicenseInitInfoUtil))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LicenseInitInfoUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_setFilePath_1", jm_setFilePath_1 ), ( "jm_write_1", jm_write_1 ), ( "jm_read_0", jm_read_0 ), ( "jm_readAgain_1", jm_readAgain_1 ), ( "jm_getFilePath_0", jm_getFilePath_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
-getFilePath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getFilePath_super object_ = (getFilePath_impl (javaCast object_ :: LicenseInitInfoUtil))
 
-getFilePath_impl :: LicenseInitInfoUtil -> IO (String)
-getFilePath_impl this = do
-        pure ((jget (this).filePath))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LicenseInitInfoUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "stringUtil" "" JR.this (JR.callStatic StringUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "INITFILENAME" "" JR.this (JR.str "licenseinitdata.dat")),
+                JR.exec (JR.setField "ABOUT" "" JR.this (JR.str "about")),
+                JR.exec (JR.setField "PRIVACY_POLICY" "" JR.this (JR.str "privacy_policy")),
+                JR.exec (JR.setField "filePath" "" JR.this (JR.field "EMPTY_STRING" (JR.thisField "stringUtil"))),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFilePath_1 : JR.Method
+jm_setFilePath_1 jheap jthis jargs =
+    JR.method [ ( "filePath", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "filePath" "" JR.this (JR.local "filePath")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_write_1 : JR.Method
+jm_write_1 jheap jthis jargs =
+    JR.method [ ( "initData", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "filePath") (JR.field "EMPTY_STRING" (JR.thisField "stringUtil"))) (JR.run [ 
+                        JR.exec (JR.setField "filePath" "" JR.this (JR.concat (JR.callStatic URLGLOBALS.jm_getMainPath_0 []) (JR.field "INIT_PATH" (JR.callStatic PATH_GLOBALS.jm_getInstance_0 [])))) ]) identity, 
+                    JR.try (JR.run [ 
+                        JR.declare "tsUtil" "" (JR.callStatic TsUtil.jm_getInstance_0 []), 
+                        JR.declare "dataOutputStream" "" (JR.invoke "getInstance_2" (JR.callStatic DataOutputStreamFactory.jm_getInstance_0 []) [ (JR.thisField "filePath"), (JR.thisField "INITFILENAME") ]), 
+                        JR.declare "licenseIdCrypted" "" (JR.invoke "getByteArray_1" (JR.local "tsUtil") [ (JR.invoke "encrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 1) ]) [ (JR.invoke "getLicenseId_0" (JR.local "initData") []) ]) ]), 
+                        JR.exec (JR.invoke "writeUTF_1" (JR.local "dataOutputStream") [ (JR.callStatic DatabaseEncoder.jm_encode_1 [ (JR.local "licenseIdCrypted") ]) ]), 
+                        JR.declare "numberOfLicenseServers" "I" (JR.invoke "getNumberOfServers_0" (JR.local "initData") []), 
+                        JR.exec (JR.invoke "writeInt_1" (JR.local "dataOutputStream") [ (JR.local "numberOfLicenseServers") ]), 
+                        JR.declare "licenseServerCrypted" "" (JR.lit (JR.defaultOf "")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfLicenseServers")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68443 -> (JR.setLocal "index" "I" (JR.lit jwN68443))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "licenseServerCrypted" "" (JR.invoke "getByteArray_1" (JR.local "tsUtil") [ (JR.invoke "encrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 3) ]) [ (JR.invoke "getServer_1" (JR.local "initData") [ (JR.local "index") ]) ]) ])), 
+                            JR.exec (JR.invoke "writeUTF_1" (JR.local "dataOutputStream") [ (JR.callStatic DatabaseEncoder.jm_encode_1 [ (JR.local "licenseServerCrypted") ]) ]) ]) ] ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.str "Command Failed: ") (JR.thisField "INITFILENAME")), JR.this, (JR.str "write"), (JR.local "e") ]), 
+                        JR.exec (JR.invoke "delete_2" (JR.callStatic FileStreamFactory.jm_getInstance_0 []) [ (JR.thisField "filePath"), (JR.thisField "INITFILENAME") ]), 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_read_0 : JR.Method
+jm_read_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "readAgain_1" JR.this [ (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_readAgain_1 : JR.Method
+jm_readAgain_1 jheap jthis jargs =
+    JR.method [ ( "initializeCounter", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "METHOD_NAME" "" (JR.str "readAgain"), 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "filePath") (JR.field "EMPTY_STRING" (JR.thisField "stringUtil"))) (JR.run [ 
+                        JR.exec (JR.setField "filePath" "" JR.this (JR.concat (JR.callStatic URLGLOBALS.jm_getMainPath_0 []) (JR.field "INIT_PATH" (JR.callStatic PATH_GLOBALS.jm_getInstance_0 [])))) ]) identity, 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "LicenseInitInfo File: ") (JR.thisField "INITFILENAME")), JR.this, (JR.local "METHOD_NAME") ]), 
+                        JR.declare "fileStreamFactory" "" (JR.callStatic FileStreamFactory.jm_getInstance_0 []), 
+                        JR.declare "iFile" "" (JR.invoke "getFileInputStreamInstance_2" (JR.local "fileStreamFactory") [ (JR.thisField "filePath"), (JR.thisField "INITFILENAME") ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "iFile") JR.null) (JR.run [ 
+                            JR.declare "iData" "" (JR.new AbDataInputStream.jnew_1 [ (JR.local "iFile") ]), 
+                            JR.declare "initInfo" "" (JR.new LicenseInitInfo.jnew_0 []), 
+                            JR.declare "decodedByteArray" "" (JR.callStatic DatabaseEncoder.jm_decode_1 [ (JR.invoke "readUTF_0" (JR.local "iData") []) ]), 
+                            JR.declare "licenseIdDecoded" "" (JR.withState JR.newString [ (JR.local "decodedByteArray") ]), 
+                            JR.exec (JR.invoke "setLicenseId_1" (JR.local "initInfo") [ (JR.invoke "decrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 1) ]) [ (JR.local "licenseIdDecoded") ]) ]), 
+                            JR.declare "numberOfLicenseServers" "I" (JR.invoke "readInt_0" (JR.local "iData") []), 
+                            JR.declare "NEXT_FILE" "" (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "NEXT" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.str " License Server From File: ") ]) []), 
+                            JR.declare "licenseServerDecoded" "" (JR.lit (JR.defaultOf "")), 
+                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfLicenseServers")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69925 -> (JR.setLocal "index" "I" (JR.lit jwN69925))) JR.increment) ]) (JR.run [ 
+                                JR.exec (JR.setLocal "decodedByteArray" "" (JR.callStatic DatabaseEncoder.jm_decode_1 [ (JR.invoke "readUTF_0" (JR.local "iData") []) ])), 
+                                JR.exec (JR.setLocal "licenseServerDecoded" "" (JR.withState JR.newString [ (JR.local "decodedByteArray") ])), 
+                                JR.exec (JR.invoke "setServer_2" (JR.local "initInfo") [ (JR.invoke "decrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 3) ]) [ (JR.local "licenseServerDecoded") ]), (JR.local "index") ]), 
+                                JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.local "NEXT_FILE") (JR.invoke "getServer_1" (JR.local "initInfo") [ (JR.local "index") ])), JR.this, (JR.local "METHOD_NAME") ]) ]) ], 
+                            JR.return (JR.local "initInfo") ]) (JR.run [ 
+                            JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.concat (JR.str "Could Not Load License InitInfo: ") (JR.thisField "INITFILENAME")) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.try (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.str "Command Failed: ") (JR.thisField "INITFILENAME")), JR.this, (JR.local "METHOD_NAME"), (JR.local "e") ]) ]) [ ( [ "Exception" ], "e2", (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.str "LicenseInitInfo Read Retry: ") (JR.thisField "INITFILENAME")), JR.this, (JR.str "readAgain()"), (JR.local "e2") ]) ]) ) ] identity, 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.concat (JR.str "LicenseInitInfo Read Error: ") (JR.thisField "INITFILENAME")) ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFilePath_0 : JR.Method
+jm_getFilePath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "filePath") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

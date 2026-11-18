@@ -1,10 +1,10 @@
-module PrimitiveLongSingleton exposing (..)
+module Org.Allbinary.Logic.Math.PrimitiveLongSingleton exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.math
 -}
 
 import JR
-import StringMaker
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

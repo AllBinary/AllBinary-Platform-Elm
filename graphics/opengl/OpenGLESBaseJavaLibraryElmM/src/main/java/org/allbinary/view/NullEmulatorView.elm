@@ -1,126 +1,109 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.view
-module NullEmulatorView where
+module Org.Allbinary.View.NullEmulatorView exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Displayable -- javax.microedition.lcdui.Displayable
-import qualified MIDlet -- javax.microedition.midlet.MIDlet
-import qualified EmulatorViewInterface
+{-| Generated Code Do Not Modify package org.allbinary.view
+-}
 
--- implements EmulatorViewInterface
-data NullEmulatorView = NullEmulatorView
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull NullEmulatorView where
-    javaNull = javaNullRecord "NullEmulatorView"
-
-instance JavaEquals NullEmulatorView where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NullEmulatorView where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NullEmulatorView where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_EMULATOR_VIEW :: NullEmulatorView
-{-# NOINLINE nULL_EMULATOR_VIEW #-}
-nULL_EMULATOR_VIEW = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NullEmulatorView
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = NullEmulatorView header_
-    jregisterLevel header_ this
-    EmulatorViewInterface.registerInterface_ header_
-    jregisterMethod header_ "setMidlet" (\() -> setMidlet_impl this)
-    jregisterMethod header_ "onEmulatorInitComplete" (\() -> onEmulatorInitComplete_impl this)
-    jregisterMethod header_ "onSetDisplayable" (\() -> onSetDisplayable_impl this)
-    pure this
-
-initFields_ :: NullEmulatorView -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO NullEmulatorView
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NullEmulatorView -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.View.EmulatorViewInterface as EmulatorViewInterface
 
 
-setMidlet :: (JavaObjectClass this_) => this_ -> MIDlet.MIDlet -> IO (())
-setMidlet object_ a1 = jmethod object_ "setMidlet" (\() -> (setMidlet_impl (javaCast object_ :: NullEmulatorView))) () a1
-
-setMidlet_super :: (JavaObjectClass this_) => this_ -> MIDlet.MIDlet -> IO (())
-setMidlet_super object_ a1 = (setMidlet_impl (javaCast object_ :: NullEmulatorView)) a1
-
-setMidlet_impl :: NullEmulatorView -> MIDlet.MIDlet -> IO (())
-setMidlet_impl this midlet = do
-        pure ()
+jclass : String
+jclass =
+    "NullEmulatorView"
 
 
-onEmulatorInitComplete :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-onEmulatorInitComplete object_ a1 = jmethod object_ "onEmulatorInitComplete" (\() -> (onEmulatorInitComplete_impl (javaCast object_ :: NullEmulatorView))) () (jtoObject a1)
-
-onEmulatorInitComplete_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-onEmulatorInitComplete_super object_ a1 = (onEmulatorInitComplete_impl (javaCast object_ :: NullEmulatorView)) (jtoObject a1)
-
-onEmulatorInitComplete_impl :: NullEmulatorView -> JavaObject -> IO (())
-onEmulatorInitComplete_impl this midletActivityObject_ = do
-        let midletActivity = jtoObject midletActivityObject_
-        pure ()
+jchain : List String
+jchain =
+    [ "NullEmulatorView" ]
+        ++ EmulatorViewInterface.jchain
 
 
-onSetDisplayable :: (JavaObjectClass this_) => this_ -> Displayable.Displayable -> IO (())
-onSetDisplayable object_ a1 = jmethod object_ "onSetDisplayable" (\() -> (onSetDisplayable_impl (javaCast object_ :: NullEmulatorView))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-onSetDisplayable_super :: (JavaObjectClass this_) => this_ -> Displayable.Displayable -> IO (())
-onSetDisplayable_super object_ a1 = (onSetDisplayable_impl (javaCast object_ :: NullEmulatorView)) a1
 
-onSetDisplayable_impl :: NullEmulatorView -> Displayable.Displayable -> IO (())
-onSetDisplayable_impl this displayable = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "setMidlet_1", jm_setMidlet_1 )
+        , ( "onEmulatorInitComplete_1", jm_onEmulatorInitComplete_1 )
+        , ( "onSetDisplayable_1", jm_onSetDisplayable_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullEmulatorView"
+        [ ( "jm_setMidlet_1", jm_setMidlet_1 ), ( "jm_onEmulatorInitComplete_1", jm_onEmulatorInitComplete_1 ), ( "jm_onSetDisplayable_1", jm_onSetDisplayable_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_EMULATOR_VIEW", jstatic_NULL_EMULATOR_VIEW ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_EMULATOR_VIEW : JR.M
+jstatic_NULL_EMULATOR_VIEW s =
+    JR.static "NullEmulatorView" jclinit "NULL_EMULATOR_VIEW"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_setMidlet_1 : JR.Method
+jm_setMidlet_1 jheap jthis jargs =
+    JR.method [ ( "midlet", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onEmulatorInitComplete_1 : JR.Method
+jm_onEmulatorInitComplete_1 jheap jthis jargs =
+    JR.method [ ( "midletActivity", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onSetDisplayable_1 : JR.Method
+jm_onSetDisplayable_1 jheap jthis jargs =
+    JR.method [ ( "displayable", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

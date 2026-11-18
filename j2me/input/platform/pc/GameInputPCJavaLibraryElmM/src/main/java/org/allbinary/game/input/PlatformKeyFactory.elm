@@ -1,203 +1,192 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module PlatformKeyFactory where
+module Org.Allbinary.Game.Input.PlatformKeyFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified PCGameKey -- same package or java.lang
-import qualified PCKeyFactory -- same package or java.lang
-import qualified Input -- same package or java.lang
-import qualified NullUtil -- org.allbinary.logic.NullUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data PlatformKeyFactory = PlatformKeyFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull PlatformKeyFactory where
-    javaNull = javaNullRecord "PlatformKeyFactory"
-
-instance JavaEquals PlatformKeyFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlatformKeyFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlatformKeyFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PlatformKeyFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = PlatformKeyFactory header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getString" (\() -> getString_impl this)
-    jregisterMethod header_ "isSubmission" (\() -> isSubmission_impl this)
-    jregisterMethod header_ "isDelete" (\() -> isDelete_impl this)
-    jregisterMethod header_ "isBackSpace" (\() -> isBackSpace_impl this)
-    jregisterMethod header_ "isUp" (\() -> isUp_impl this)
-    jregisterMethod header_ "isDown" (\() -> isDown_impl this)
-    jregisterMethod header_ "isEnter" (\() -> isEnter_impl this)
-    jregisterMethod header_ "isLeft" (\() -> isLeft_impl this)
-    jregisterMethod header_ "isRight" (\() -> isRight_impl this)
-    pure this
-
-initFields_ :: PlatformKeyFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO PlatformKeyFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PlatformKeyFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Game.Input.PCGameKey as PCGameKey
+import Org.Allbinary.Game.Input.PCKeyFactory as PCKeyFactory
 
 
-getInstance :: IO (PlatformKeyFactory)
-getInstance = do
-        when ((jget PlatformKeyFactory.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset PlatformKeyFactory.instance_ (assignedValue)
-        pure ((javaCast (jget PlatformKeyFactory.instance_) :: PlatformKeyFactory))
+jclass : String
+jclass =
+    "PlatformKeyFactory"
 
 
-getString :: (JavaObjectClass this_) => this_ -> Int -> IO (String)
-getString object_ a1 = jmethod object_ "getString" (\() -> (getString_impl (javaCast object_ :: PlatformKeyFactory))) () a1
-
-getString_super :: (JavaObjectClass this_) => this_ -> Int -> IO (String)
-getString_super object_ a1 = (getString_impl (javaCast object_ :: PlatformKeyFactory)) a1
-
-getString_impl :: PlatformKeyFactory -> Int -> IO (String)
-getString_impl this keyCode = do
-        (PCGameKey.getString keyCode)
+jchain : List String
+jchain =
+    [ "PlatformKeyFactory" ]
 
 
-isSubmission :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isSubmission object_ a1 = jmethod object_ "isSubmission" (\() -> (isSubmission_impl (javaCast object_ :: PlatformKeyFactory))) () a1
-
-isSubmission_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isSubmission_super object_ a1 = (isSubmission_impl (javaCast object_ :: PlatformKeyFactory)) a1
-
-isSubmission_impl :: PlatformKeyFactory -> Input.Input -> IO (Bool)
-isSubmission_impl this input = do
-        (PCKeyFactory.isSubmission ((jio (PCKeyFactory.getInstance))) input)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-isDelete :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isDelete object_ a1 = jmethod object_ "isDelete" (\() -> (isDelete_impl (javaCast object_ :: PlatformKeyFactory))) () a1
-
-isDelete_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isDelete_super object_ a1 = (isDelete_impl (javaCast object_ :: PlatformKeyFactory)) a1
-
-isDelete_impl :: PlatformKeyFactory -> Input.Input -> IO (Bool)
-isDelete_impl this input = do
-        (PCKeyFactory.isDelete ((jio (PCKeyFactory.getInstance))) input)
-
-
-isBackSpace :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isBackSpace object_ a1 = jmethod object_ "isBackSpace" (\() -> (isBackSpace_impl (javaCast object_ :: PlatformKeyFactory))) () a1
-
-isBackSpace_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isBackSpace_super object_ a1 = (isBackSpace_impl (javaCast object_ :: PlatformKeyFactory)) a1
-
-isBackSpace_impl :: PlatformKeyFactory -> Input.Input -> IO (Bool)
-isBackSpace_impl this input = do
-        (PCKeyFactory.isBackSpace ((jio (PCKeyFactory.getInstance))) input)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getString_1", jm_getString_1 )
+        , ( "isSubmission_1", jm_isSubmission_1 )
+        , ( "isDelete_1", jm_isDelete_1 )
+        , ( "isBackSpace_1", jm_isBackSpace_1 )
+        , ( "isUp_1", jm_isUp_1 )
+        , ( "isDown_1", jm_isDown_1 )
+        , ( "isEnter_1", jm_isEnter_1 )
+        , ( "isLeft_1", jm_isLeft_1 )
+        , ( "isRight_1", jm_isRight_1 ) ]
+        JR.noMethods
 
 
-isUp :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isUp object_ a1 = jmethod object_ "isUp" (\() -> (isUp_impl (javaCast object_ :: PlatformKeyFactory))) () a1
-
-isUp_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isUp_super object_ a1 = (isUp_impl (javaCast object_ :: PlatformKeyFactory)) a1
-
-isUp_impl :: PlatformKeyFactory -> Input.Input -> IO (Bool)
-isUp_impl this input = do
-        (PCKeyFactory.isUp ((jio (PCKeyFactory.getInstance))) input)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlatformKeyFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getString_1", jm_getString_1 ), ( "jm_isSubmission_1", jm_isSubmission_1 ), ( "jm_isDelete_1", jm_isDelete_1 ), ( "jm_isBackSpace_1", jm_isBackSpace_1 ), ( "jm_isUp_1", jm_isUp_1 ), ( "jm_isDown_1", jm_isDown_1 ), ( "jm_isEnter_1", jm_isEnter_1 ), ( "jm_isLeft_1", jm_isLeft_1 ), ( "jm_isRight_1", jm_isRight_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-isDown :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isDown object_ a1 = jmethod object_ "isDown" (\() -> (isDown_impl (javaCast object_ :: PlatformKeyFactory))) () a1
-
-isDown_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isDown_super object_ a1 = (isDown_impl (javaCast object_ :: PlatformKeyFactory)) a1
-
-isDown_impl :: PlatformKeyFactory -> Input.Input -> IO (Bool)
-isDown_impl this input = do
-        (PCKeyFactory.isDown ((jio (PCKeyFactory.getInstance))) input)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-isEnter :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isEnter object_ a1 = jmethod object_ "isEnter" (\() -> (isEnter_impl (javaCast object_ :: PlatformKeyFactory))) () a1
-
-isEnter_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isEnter_super object_ a1 = (isEnter_impl (javaCast object_ :: PlatformKeyFactory)) a1
-
-isEnter_impl :: PlatformKeyFactory -> Input.Input -> IO (Bool)
-isEnter_impl this input = do
-        (PCKeyFactory.isEnter ((jio (PCKeyFactory.getInstance))) input)
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "PlatformKeyFactory" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
 
 
-isLeft :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isLeft object_ a1 = jmethod object_ "isLeft" (\() -> (isLeft_impl (javaCast object_ :: PlatformKeyFactory))) () a1
-
-isLeft_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isLeft_super object_ a1 = (isLeft_impl (javaCast object_ :: PlatformKeyFactory)) a1
-
-isLeft_impl :: PlatformKeyFactory -> Input.Input -> IO (Bool)
-isLeft_impl this input = do
-        (PCKeyFactory.isLeft ((jio (PCKeyFactory.getInstance))) input)
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-isRight :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isRight object_ a1 = jmethod object_ "isRight" (\() -> (isRight_impl (javaCast object_ :: PlatformKeyFactory))) () a1
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
-isRight_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isRight_super object_ a1 = (isRight_impl (javaCast object_ :: PlatformKeyFactory)) a1
 
-isRight_impl :: PlatformKeyFactory -> Input.Input -> IO (Bool)
-isRight_impl this input = do
-        (PCKeyFactory.isRight ((jio (PCKeyFactory.getInstance))) input)
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "PlatformKeyFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_getString_1 : JR.Method
+jm_getString_1 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic PCGameKey.jm_getString_1 [ (JR.local "keyCode") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isSubmission_1 : JR.Method
+jm_isSubmission_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isSubmission_1" (JR.callStatic PCKeyFactory.jm_getInstance_0 []) [ (JR.local "input") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isDelete_1 : JR.Method
+jm_isDelete_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isDelete_1" (JR.callStatic PCKeyFactory.jm_getInstance_0 []) [ (JR.local "input") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isBackSpace_1 : JR.Method
+jm_isBackSpace_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isBackSpace_1" (JR.callStatic PCKeyFactory.jm_getInstance_0 []) [ (JR.local "input") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isUp_1 : JR.Method
+jm_isUp_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isUp_1" (JR.callStatic PCKeyFactory.jm_getInstance_0 []) [ (JR.local "input") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isDown_1 : JR.Method
+jm_isDown_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isDown_1" (JR.callStatic PCKeyFactory.jm_getInstance_0 []) [ (JR.local "input") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isEnter_1 : JR.Method
+jm_isEnter_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isEnter_1" (JR.callStatic PCKeyFactory.jm_getInstance_0 []) [ (JR.local "input") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isLeft_1 : JR.Method
+jm_isLeft_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isLeft_1" (JR.callStatic PCKeyFactory.jm_getInstance_0 []) [ (JR.local "input") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isRight_1 : JR.Method
+jm_isRight_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isRight_1" (JR.callStatic PCKeyFactory.jm_getInstance_0 []) [ (JR.local "input") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,172 +1,143 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.loader
-module NativeLibraryHelperWrapper where
+module Org.Allbinary.Logic.System.Loader.NativeLibraryHelperWrapper exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ClassLoader -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified NativeLibraryClassLoader -- same package or java.lang
-import qualified Constructor -- java.lang.reflect.Constructor
-import qualified Method -- java.lang.reflect.Method
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.loader
+-}
 
-data NativeLibraryHelperWrapper = NativeLibraryHelperWrapper
-    { header_ :: JavaHeader
-    , libraryName :: IORef (String)
-    , loader :: IORef (ClassLoader.ClassLoader)
-    , anyType :: IORef (Any.Any)
-    }
-
-instance JavaNull NativeLibraryHelperWrapper where
-    javaNull = javaNullRecord "NativeLibraryHelperWrapper"
-
-instance JavaEquals NativeLibraryHelperWrapper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NativeLibraryHelperWrapper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NativeLibraryHelperWrapper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO NativeLibraryHelperWrapper
-newRecord_ = do
-    header_ <- newJavaHeader
-    libraryName <- newIORef ""
-    loader <- newIORef javaNull
-    anyType <- newIORef javaNull
-    let this = NativeLibraryHelperWrapper header_ libraryName loader anyType
-    jregisterLevel header_ this
-    jregisterMethod header_ "load" (\() -> load_impl this)
-    jregisterMethod header_ "unload" (\() -> unload_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    jregisterMethod header_ "getLibraryName" (\() -> getLibraryName_impl this)
-    jregisterMethod header_ "setLibraryName" (\() -> setLibraryName_impl this)
-    pure this
-
-initFields_ :: NativeLibraryHelperWrapper -> IO ()
-initFields_ this = do
-    jset this.libraryName ("")
-    jset this.loader (javaNull)
-    jset this.anyType (javaNull)
-    pure ()
-
-new_1 :: String -> IO NativeLibraryHelperWrapper
-new_1 libraryName = do
-    this <- newRecord_
-    init_1 this libraryName
-    pure this
-
-init_1 :: NativeLibraryHelperWrapper -> String -> IO ()
-init_1 this libraryName = do
-        initFields_ this
-        Control.Monad.void (NativeLibraryHelperWrapper.setLibraryName this libraryName)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JSystem
+import Org.Allbinary.Logic.System.Loader.NativeLibraryClassLoader as NativeLibraryClassLoader
 
 
--- throws Exception
-load :: (JavaObjectClass this_) => this_ -> IO (())
-load object_ = jmethod object_ "load" (\() -> (load_impl (javaCast object_ :: NativeLibraryHelperWrapper))) ()
-
-load_super :: (JavaObjectClass this_) => this_ -> IO (())
-load_super object_ = (load_impl (javaCast object_ :: NativeLibraryHelperWrapper))
-
-load_impl :: NativeLibraryHelperWrapper -> IO (())
-load_impl this = do
-        let params = (jnewArray (1) javaNull)
-        assignedValue <- (fmap jtoObject (NativeLibraryHelperWrapper.getLibraryName this))
-        jsetIndex params (0) (assignedValue)
-        let classes = (jnewArray (1) javaNull)
-        assignedValue <- (jobjectGetClass (jio (NativeLibraryHelperWrapper.getLibraryName this)))
-        jsetIndex classes (0) (assignedValue)
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: ClassLoader.ClassLoader) (NativeLibraryClassLoader.new_1 (jio (Class.getClassLoader ((jio (jobjectGetClass this)))))))
-        jset (this).loader (assignedValue)
-        myClass <- (ClassLoader.loadClass ((jget (this).loader)) "dynamic.NativeLibraryHelper")
-        constructor <- (Class.getConstructor myClass classes)
-        assignedValue <- (Constructor.newInstance constructor params)
-        jset (this).anyType (assignedValue)
-        commonStrings <- (CommonStrings.getInstance)
-        method <- (Class.getMethod ((jio (jobjectGetClass (jget (this).anyType)))) (jget (commonStrings).lOAD) javaNull)
-        Control.Monad.void (Method.invoke method (jget (this).anyType) javaNull)
-        pure ()
+jclass : String
+jclass =
+    "NativeLibraryHelperWrapper"
 
 
-unload :: (JavaObjectClass this_) => this_ -> IO (())
-unload object_ = jmethod object_ "unload" (\() -> (unload_impl (javaCast object_ :: NativeLibraryHelperWrapper))) ()
-
-unload_super :: (JavaObjectClass this_) => this_ -> IO (())
-unload_super object_ = (unload_impl (javaCast object_ :: NativeLibraryHelperWrapper))
-
-unload_impl :: NativeLibraryHelperWrapper -> IO (())
-unload_impl this = do
-        jset (this).anyType (javaNull)
-        jset (this).loader (javaNull)
-        Control.Monad.void (pure ())
-        Control.Monad.void (pure ())
-        pure ()
+jchain : List String
+jchain =
+    [ "NativeLibraryHelperWrapper" ]
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: NativeLibraryHelperWrapper))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: NativeLibraryHelperWrapper))
-
-toString_impl :: NativeLibraryHelperWrapper -> IO (String)
-toString_impl this = do
-        pure (("Library: " ++ (jio (NativeLibraryHelperWrapper.getLibraryName this))))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "libraryName", JR.defaultOf "" ), ( "loader", JR.defaultOf "" ), ( "anyType", JR.defaultOf "" ) ]
 
 
-getLibraryName :: (JavaObjectClass this_) => this_ -> IO (String)
-getLibraryName object_ = jmethod object_ "getLibraryName" (\() -> (getLibraryName_impl (javaCast object_ :: NativeLibraryHelperWrapper))) ()
+jvtable =
+    JR.vtable
+        [ ( "load_0", jm_load_0 )
+        , ( "unload_0", jm_unload_0 )
+        , ( "toString_0", jm_toString_0 )
+        , ( "getLibraryName_0", jm_getLibraryName_0 )
+        , ( "setLibraryName_1", jm_setLibraryName_1 ) ]
+        JR.noMethods
 
-getLibraryName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getLibraryName_super object_ = (getLibraryName_impl (javaCast object_ :: NativeLibraryHelperWrapper))
 
-getLibraryName_impl :: NativeLibraryHelperWrapper -> IO (String)
-getLibraryName_impl this = do
-        pure ((jget (this).libraryName))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NativeLibraryHelperWrapper"
+        [ ( "jm_load_0", jm_load_0 ), ( "jm_unload_0", jm_unload_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jm_getLibraryName_0", jm_getLibraryName_0 ), ( "jm_setLibraryName_1", jm_setLibraryName_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
 
-setLibraryName :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setLibraryName object_ a1 = jmethod object_ "setLibraryName" (\() -> (setLibraryName_impl (javaCast object_ :: NativeLibraryHelperWrapper))) () a1
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-setLibraryName_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setLibraryName_super object_ a1 = (setLibraryName_impl (javaCast object_ :: NativeLibraryHelperWrapper)) a1
 
-setLibraryName_impl :: NativeLibraryHelperWrapper -> String -> IO (())
-setLibraryName_impl this libraryName = do
-        jset (this).libraryName (libraryName)
-        pure ()
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "libraryName", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setLibraryName_1" JR.this [ (JR.local "libraryName") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_load_0 : JR.Method
+jm_load_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "params" "" (JR.newArray "" [ (JR.int 1) ]), 
+                    JR.exec (JR.andThen (JR.local "params") (\jaN66240 -> JR.andThen (JR.int 0) (\jiN66240 -> (JR.aset (JR.lit jaN66240) (JR.lit jiN66240) (JR.invoke "getLibraryName_0" JR.this []))))), 
+                    JR.declare "classes" "" (JR.newArray "" [ (JR.int 1) ]), 
+                    JR.exec (JR.andThen (JR.local "classes") (\jaN66331 -> JR.andThen (JR.int 0) (\jiN66331 -> (JR.aset (JR.lit jaN66331) (JR.lit jiN66331) (JR.getClass (JR.invoke "getLibraryName_0" JR.this [])))))), 
+                    JR.exec (JR.setField "loader" "" JR.this (JR.new NativeLibraryClassLoader.jnew_1 [ (JR.invoke "getClassLoader_0" (JR.getClass JR.this) []) ])), 
+                    JR.declare "myClass" "" (JR.invoke "loadClass_1" (JR.thisField "loader") [ (JR.str "dynamic.NativeLibraryHelper") ]), 
+                    JR.declare "constructor" "" (JR.invoke "getConstructor_1" (JR.local "myClass") [ (JR.local "classes") ]), 
+                    JR.exec (JR.setField "anyType" "" JR.this (JR.invoke "newInstance_1" (JR.local "constructor") [ (JR.local "params") ])), 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.declare "method" "" (JR.invoke "getMethod_2" (JR.getClass (JR.thisField "anyType")) [ (JR.field "LOAD" (JR.local "commonStrings")), JR.null ]), 
+                    JR.exec (JR.invoke "invoke_2" (JR.local "method") [ (JR.thisField "anyType"), JR.null ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_unload_0 : JR.Method
+jm_unload_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "anyType" "" JR.this JR.null), 
+                    JR.exec (JR.setField "loader" "" JR.this JR.null), 
+                    JR.exec (JR.callStatic JSystem.jm_gc_0 []), 
+                    JR.exec (JR.callStatic JSystem.jm_gc_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.concat (JR.str "Library: ") (JR.invoke "getLibraryName_0" JR.this [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLibraryName_0 : JR.Method
+jm_getLibraryName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "libraryName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLibraryName_1 : JR.Method
+jm_setLibraryName_1 jheap jthis jargs =
+    JR.method [ ( "libraryName", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "libraryName" "" JR.this (JR.local "libraryName")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

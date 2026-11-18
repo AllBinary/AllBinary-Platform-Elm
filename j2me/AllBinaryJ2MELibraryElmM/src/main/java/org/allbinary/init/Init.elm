@@ -1,99 +1,84 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.init
-module Init where
+module Org.Allbinary.Init.Init exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified InitInterface
+{-| Generated Code Do Not Modify package org.allbinary.init
+-}
 
--- implements InitInterface
-data Init = Init
-    { header_ :: JavaHeader
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    }
-
-instance JavaNull Init where
-    javaNull = javaNullRecord "Init"
-
-instance JavaEquals Init where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Init where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Init where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO Init
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonStrings <- newIORef javaNull
-    let this = Init header_ commonStrings
-    jregisterLevel header_ this
-    InitInterface.registerInterface_ header_
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    pure this
-
-initFields_ :: Init -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    pure ()
-
-new_ :: IO Init
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: Init -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Init.InitInterface as InitInterface
 
 
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: Init))) ()
+jclass : String
+jclass =
+    "Init"
 
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: Init))
 
-init_impl :: Init -> IO (())
-init_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "Init" ]
+        ++ InitInterface.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonStrings", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Init"
+        [ ( "jm_init_0", jm_init_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

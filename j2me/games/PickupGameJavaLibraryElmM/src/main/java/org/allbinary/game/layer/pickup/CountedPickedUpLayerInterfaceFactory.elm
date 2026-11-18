@@ -1,142 +1,124 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
-module CountedPickedUpLayerInterfaceFactory (module CountedPickedUpLayerInterfaceFactory, module PickedUpLayerInterfaceFactory) where
+module Org.Allbinary.Game.Layer.Pickup.CountedPickedUpLayerInterfaceFactory exposing (..)
 
-import PickedUpLayerInterfaceFactory hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getNextInstance, getNextInstance_super, getNextInstance_impl, getTotal, getTotal_super, getTotal_impl, getId, getId_super, getId_impl, nULL_COUNTED_PICKUP_LAYER_FACTORY, id)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified PickedUpLayerTypeFactory -- same package or java.lang
-import qualified IconLayer -- same package or java.lang
-import qualified CountedPickedUpLayerInterfaceFactoryPool -- same package or java.lang
-import qualified PickedUpLayerType -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified NullAnimationFactory -- org.allbinary.animation.NullAnimationFactory
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified PickedUpLayerInterfaceFactory
-import qualified CountedPickedUpLayerInterfaceFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.pickup
+-}
 
--- implements CountedPickedUpLayerInterfaceFactoryInterface
-data CountedPickedUpLayerInterfaceFactory = CountedPickedUpLayerInterfaceFactory
-    { header_ :: JavaHeader
-    , base :: PickedUpLayerInterfaceFactory.PickedUpLayerInterfaceFactory
-    , id :: IORef (Int)
-    }
-
-instance JavaNull CountedPickedUpLayerInterfaceFactory where
-    javaNull = javaNullRecord "CountedPickedUpLayerInterfaceFactory"
-
-instance JavaEquals CountedPickedUpLayerInterfaceFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CountedPickedUpLayerInterfaceFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CountedPickedUpLayerInterfaceFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_COUNTED_PICKUP_LAYER_FACTORY :: CountedPickedUpLayerInterfaceFactory
-{-# NOINLINE nULL_COUNTED_PICKUP_LAYER_FACTORY #-}
-nULL_COUNTED_PICKUP_LAYER_FACTORY = unsafePerformIO ((new_3 (jget ((jio (PickedUpLayerTypeFactory.getInstance))).nONE) (IconLayer.nULL_ICON_LAYER) (jio (NullAnimationFactory.getInstance ((jio (NullAnimationFactory.getFactoryInstance))) 0))))
-
-newRecord_ :: IO CountedPickedUpLayerInterfaceFactory
-newRecord_ = do
-    base <- PickedUpLayerInterfaceFactory.newRecord_
-    let header_ = base.header_
-    id <- newIORef 0
-    let this = CountedPickedUpLayerInterfaceFactory header_ base id
-    jregisterLevel header_ this
-    CountedPickedUpLayerInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getNextInstance" (\() -> getNextInstance_impl this)
-    jregisterMethod header_ "getTotal" (\() -> getTotal_impl this)
-    jregisterMethod header_ "getId" (\() -> getId_impl this)
-    pure this
-
-initFields_ :: CountedPickedUpLayerInterfaceFactory -> IO ()
-initFields_ this = do
-    jset this.id (0)
-    pure ()
-
-new_3 :: PickedUpLayerType.PickedUpLayerType -> IconLayer.IconLayer -> Animation.Animation -> IO CountedPickedUpLayerInterfaceFactory
-new_3 pickeUpLayerType iconLayer animationInterface = do
-    this <- newRecord_
-    init_3 this pickeUpLayerType iconLayer animationInterface
-    pure this
-
-init_3 :: CountedPickedUpLayerInterfaceFactory -> PickedUpLayerType.PickedUpLayerType -> IconLayer.IconLayer -> Animation.Animation -> IO ()
-init_3 this pickeUpLayerType iconLayer animationInterface = do
-        PickedUpLayerInterfaceFactory.init_3 this.base (pickeUpLayerType) (iconLayer) (animationInterface)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        list <- (CountedPickedUpLayerInterfaceFactoryPool.getList ((jio (CountedPickedUpLayerInterfaceFactoryPool.getInstance))))
-        assignedValue <- (BasicArrayList.size list)
-        jset (this).id (assignedValue)
-        Control.Monad.void (BasicArrayList.add list this)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Layer.Pickup.CountedPickedUpLayerInterfaceFactoryInterface as CountedPickedUpLayerInterfaceFactoryInterface
+import Org.Allbinary.Game.Layer.Pickup.CountedPickedUpLayerInterfaceFactoryPool as CountedPickedUpLayerInterfaceFactoryPool
+import Org.Allbinary.Game.Layer.Pickup.IconLayer as IconLayer
+import Org.Allbinary.Animation.NullAnimationFactory as NullAnimationFactory
+import Org.Allbinary.Game.Layer.Pickup.PickedUpLayerInterfaceFactory as PickedUpLayerInterfaceFactory
+import Org.Allbinary.Game.Layer.Pickup.PickedUpLayerTypeFactory as PickedUpLayerTypeFactory
 
 
--- throws Exception
-getNextInstance :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> Int -> Int -> Int -> IO (AllBinaryLayer.AllBinaryLayer)
-getNextInstance object_ a1 a2 a3 a4 = jmethod object_ "getNextInstance" (\() -> (getNextInstance_impl (javaCast object_ :: CountedPickedUpLayerInterfaceFactory))) () a1 a2 a3 a4
-
-getNextInstance_super :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> Int -> Int -> Int -> IO (AllBinaryLayer.AllBinaryLayer)
-getNextInstance_super object_ a1 a2 a3 a4 = (getNextInstance_impl (javaCast object_ :: CountedPickedUpLayerInterfaceFactory)) a1 a2 a3 a4
-
-getNextInstance_impl :: CountedPickedUpLayerInterfaceFactory -> ABHashtable.ABHashtable -> Int -> Int -> Int -> IO (AllBinaryLayer.AllBinaryLayer)
-getNextInstance_impl this hashtable x y z = do
-        javaThrow ((JavaException "Exception" (jget ((jio (CommonStrings.getInstance))).nOT_IMPLEMENTED)))
+jclass : String
+jclass =
+    "CountedPickedUpLayerInterfaceFactory"
 
 
-getTotal :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotal object_ = jmethod object_ "getTotal" (\() -> (getTotal_impl (javaCast object_ :: CountedPickedUpLayerInterfaceFactory))) ()
-
-getTotal_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotal_super object_ = (getTotal_impl (javaCast object_ :: CountedPickedUpLayerInterfaceFactory))
-
-getTotal_impl :: CountedPickedUpLayerInterfaceFactory -> IO (Int)
-getTotal_impl this = do
-        pure ((Prelude.negate 1))
+jchain : List String
+jchain =
+    [ "CountedPickedUpLayerInterfaceFactory" ]
+        ++ PickedUpLayerInterfaceFactory.jchain
+        ++ CountedPickedUpLayerInterfaceFactoryInterface.jchain
 
 
-getId :: (JavaObjectClass this_) => this_ -> IO (Int)
-getId object_ = jmethod object_ "getId" (\() -> (getId_impl (javaCast object_ :: CountedPickedUpLayerInterfaceFactory))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    PickedUpLayerInterfaceFactory.jfields ++ [ ( "id", JR.defaultOf "I" ) ]
 
-getId_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getId_super object_ = (getId_impl (javaCast object_ :: CountedPickedUpLayerInterfaceFactory))
 
-getId_impl :: CountedPickedUpLayerInterfaceFactory -> IO (Int)
-getId_impl this = do
-        pure ((jget (this).id))
+jvtable =
+    JR.vtable
+        [ ( "getNextInstance_4", jm_getNextInstance_4 )
+        , ( "getTotal_0", jm_getTotal_0 )
+        , ( "getId_0", jm_getId_0 ) ]
+        PickedUpLayerInterfaceFactory.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CountedPickedUpLayerInterfaceFactory"
+        [ ( "jm_getNextInstance_4", jm_getNextInstance_4 ), ( "jm_getTotal_0", jm_getTotal_0 ), ( "jm_getId_0", jm_getId_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        [ ( "jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY", jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY : JR.M
+jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY s =
+    JR.static "CountedPickedUpLayerInterfaceFactory" jclinit "NULL_COUNTED_PICKUP_LAYER_FACTORY"
+        (JR.new jnew_3 [ (JR.field "NONE" (JR.callStatic PickedUpLayerTypeFactory.jm_getInstance_0 [])), IconLayer.jstatic_NULL_ICON_LAYER, (JR.invoke "getInstance_1" (JR.callStatic NullAnimationFactory.jm_getFactoryInstance_0 []) [ (JR.int 0) ]) ])
+        s
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "pickeUpLayerType", "" ), ( "iconLayer", "" ), ( "animationInterface", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect PickedUpLayerInterfaceFactory.jinit_3 JR.this [ (JR.local "pickeUpLayerType"), (JR.local "iconLayer"), (JR.local "animationInterface") ]),
+                identity,
+                (JR.run [ 
+                    JR.declare "list" "" (JR.invoke "getList_0" (JR.callStatic CountedPickedUpLayerInterfaceFactoryPool.jm_getInstance_0 []) []), 
+                    JR.exec (JR.setField "id" "I" JR.this (JR.invoke "size_0" (JR.local "list") [])), 
+                    JR.exec (JR.invoke "add_1" (JR.local "list") [ JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_getNextInstance_4 : JR.Method
+jm_getNextInstance_4 jheap jthis jargs =
+    JR.method [ ( "hashtable", "" ), ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.callStatic CommonStrings.jm_getInstance_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTotal_0 : JR.Method
+jm_getTotal_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.map JR.neg (JR.int 1)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getId_0 : JR.Method
+jm_getId_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "id") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

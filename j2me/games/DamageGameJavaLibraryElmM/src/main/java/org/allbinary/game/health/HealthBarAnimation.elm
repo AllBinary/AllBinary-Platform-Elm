@@ -1,156 +1,126 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.health
-module HealthBarAnimation (module HealthBarAnimation, module Animation) where
+module Org.Allbinary.Game.Health.HealthBarAnimation exposing (..)
 
-import Animation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, onHealthChange, onHealthChange_super, onHealthChange_impl, getY, getY_super, getY_impl, basicColorFactory, x2, thickness, location, allbinaryLayer)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified BasicHudFactory -- org.allbinary.game.graphics.hud.BasicHudFactory
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
+{-| Generated Code Do Not Modify package org.allbinary.game.health
+-}
 
-data HealthBarAnimation = HealthBarAnimation
-    { header_ :: JavaHeader
-    , base :: Animation.Animation
-    , basicColorFactory :: IORef (BasicColorFactory.BasicColorFactory)
-    , x2 :: IORef (Int)
-    , thickness :: IORef (Int)
-    , location :: IORef (Int)
-    , allbinaryLayer :: IORef (AllBinaryLayer.AllBinaryLayer)
-    }
-
-instance JavaNull HealthBarAnimation where
-    javaNull = javaNullRecord "HealthBarAnimation"
-
-instance JavaEquals HealthBarAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HealthBarAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HealthBarAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HealthBarAnimation
-newRecord_ = do
-    base <- Animation.newRecord_
-    let header_ = base.header_
-    basicColorFactory <- newIORef javaNull
-    x2 <- newIORef 0
-    thickness <- newIORef 0
-    location <- newIORef 0
-    allbinaryLayer <- newIORef javaNull
-    let this = HealthBarAnimation header_ base basicColorFactory x2 thickness location allbinaryLayer
-    jregisterLevel header_ this
-    jregisterMethod header_ "onHealthChange" (\() -> onHealthChange_impl this)
-    jregisterMethod header_ "getY" (\() -> getY_impl this)
-    pure this
-
-initFields_ :: HealthBarAnimation -> IO ()
-initFields_ this = do
-    jset this.basicColorFactory =<< (BasicColorFactory.getInstance)
-    jset this.x2 (0)
-    jset this.thickness (0)
-    jset this.location (0)
-    jset this.allbinaryLayer (javaNull)
-    pure ()
-
-new_2 :: AllBinaryLayer.AllBinaryLayer -> Int -> IO HealthBarAnimation
-new_2 layerInterface location = do
-    this <- newRecord_
-    init_2 this layerInterface location
-    pure this
-
-init_2 :: HealthBarAnimation -> AllBinaryLayer.AllBinaryLayer -> Int -> IO ()
-init_2 this layerInterface location = do
-        Animation.init_ this.base
-        initFields_ this
-        jset (this).allbinaryLayer (layerInterface)
-        jset (this).location (location)
-        basicHudFactory <- (BasicHudFactory.getInstance)
-        when (((jget (this).location) /= (jget (basicHudFactory).tOPLEFT)) && ((jget (this).location) /= (jget (basicHudFactory).bOTTOMLEFT))) $ do
-            javaThrow ((JavaException "Exception" "Location Not Valid"))
-        if ((jio (AllBinaryLayer.getWidth layerInterface)) > 40) then do
-            jset (this).thickness (3)
-        else if ((jio (AllBinaryLayer.getWidth layerInterface)) > 20) then do
-            jset (this).thickness (2)
-        else do
-            jset (this).thickness (1)
-        pure ()
+import JR
+import Org.Allbinary.Animation.Animation as Animation
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Game.Graphics.Hud.BasicHudFactory as BasicHudFactory
 
 
-onHealthChange :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-onHealthChange object_ a1 = jmethod object_ "onHealthChange" (\() -> (onHealthChange_impl (javaCast object_ :: HealthBarAnimation))) () a1
-
-onHealthChange_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-onHealthChange_super object_ a1 = (onHealthChange_impl (javaCast object_ :: HealthBarAnimation)) a1
-
-onHealthChange_impl :: HealthBarAnimation -> Int -> IO (())
-onHealthChange_impl this newX2 = do
-        jset (this).x2 (newX2)
-        let quarter = (((jio (AllBinaryLayer.getWidth ((jget (this).allbinaryLayer)))) `Data.Bits.shiftR` 2))
-        if ((jget (this).x2) > (quarter * 3)) then do
-            jset (this).base.basicColor ((jget ((jget (this).basicColorFactory)).gREEN))
-            assignedValue <- (intValue ((jget (this).base.basicColor)))
-            jset (this).base.colorP (assignedValue)
-        else if ((jget (this).x2) > (quarter * 2)) then do
-            jset (this).base.basicColor ((jget ((jget (this).basicColorFactory)).yELLOW))
-            assignedValue <- (intValue ((jget (this).base.basicColor)))
-            jset (this).base.colorP (assignedValue)
-        else if ((jget (this).x2) > quarter) then do
-            jset (this).base.basicColor ((jget ((jget (this).basicColorFactory)).oRANGE))
-            assignedValue <- (intValue ((jget (this).base.basicColor)))
-            jset (this).base.colorP (assignedValue)
-        else do
-            jset (this).base.basicColor ((jget ((jget (this).basicColorFactory)).rED))
-            assignedValue <- (intValue ((jget (this).base.basicColor)))
-            jset (this).base.colorP (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "HealthBarAnimation"
 
 
-getY :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY object_ = jmethod object_ "getY" (\() -> (getY_impl (javaCast object_ :: HealthBarAnimation))) ()
+jchain : List String
+jchain =
+    [ "HealthBarAnimation" ]
+        ++ Animation.jchain
 
-getY_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY_super object_ = (getY_impl (javaCast object_ :: HealthBarAnimation))
 
-getY_impl :: HealthBarAnimation -> IO (Int)
-getY_impl this = do
-    javaCatchReturn $ do
-        basicHudFactory <- (BasicHudFactory.getInstance)
-        if ((jget (this).location) == (jget (basicHudFactory).tOPLEFT)) then do
-            javaReturn (((jio (AllBinaryLayer.getY ((jio (AllBinaryLayer.getViewPosition ((jget (this).allbinaryLayer))))))) - 4))
-        else when ((jget (this).location) == (jget (basicHudFactory).bOTTOMLEFT)) $ do
-            javaReturn (((jio (AllBinaryLayer.getY2 ((jio (AllBinaryLayer.getViewPosition ((jget (this).allbinaryLayer))))))) + 4))
-        pure ((Prelude.negate 1))
+jfields : List ( String, JR.JValue )
+jfields =
+    Animation.jfields ++ [ ( "basicColorFactory", JR.defaultOf "" ), ( "x2", JR.defaultOf "I" ), ( "thickness", JR.defaultOf "I" ), ( "location", JR.defaultOf "I" ), ( "allbinaryLayer", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "onHealthChange_1", jm_onHealthChange_1 )
+        , ( "getY_0", jm_getY_0 ) ]
+        Animation.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HealthBarAnimation"
+        [ ( "jm_onHealthChange_1", jm_onHealthChange_1 ), ( "jm_getY_0", jm_getY_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ), ( "location", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Animation.jinit_0 JR.this []),
+                JR.exec (JR.setField "basicColorFactory" "" JR.this (JR.callStatic BasicColorFactory.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "allbinaryLayer" "" JR.this (JR.local "layerInterface")), 
+                    JR.exec (JR.setField "location" "I" JR.this (JR.local "location")), 
+                    JR.declare "basicHudFactory" "" (JR.callStatic BasicHudFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.and (JR.map2 JR.notEquals (JR.thisField "location") (JR.field "TOPLEFT" (JR.local "basicHudFactory"))) (JR.map2 JR.notEquals (JR.thisField "location") (JR.field "BOTTOMLEFT" (JR.local "basicHudFactory")))) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Location Not Valid") ]) ]) identity, 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "getWidth_0" (JR.local "layerInterface") []) (JR.int 40)) (JR.run [ 
+                        JR.exec (JR.setField "thickness" "I" JR.this (JR.int 3)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "getWidth_0" (JR.local "layerInterface") []) (JR.int 20)) (JR.run [ 
+                        JR.exec (JR.setField "thickness" "I" JR.this (JR.int 2)) ]) (JR.run [ 
+                        JR.exec (JR.setField "thickness" "I" JR.this (JR.int 1)) ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_onHealthChange_1 : JR.Method
+jm_onHealthChange_1 jheap jthis jargs =
+    JR.method [ ( "newX2", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "x2" "I" JR.this (JR.local "newX2")), 
+                    JR.declare "quarter" "I" ((JR.map2 JR.shr (JR.invoke "getWidth_0" (JR.thisField "allbinaryLayer") []) (JR.int 2))), 
+                    JR.ifElse (JR.map2 JR.greater (JR.thisField "x2") (JR.map2 JR.mul (JR.local "quarter") (JR.int 3))) (JR.run [ 
+                        JR.exec (JR.setField "basicColor" "" JR.this (JR.field "GREEN" (JR.thisField "basicColorFactory"))), 
+                        JR.exec (JR.setField "colorP" "" JR.this (JR.invoke "intValue_0" (JR.thisField "basicColor") [])) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.thisField "x2") (JR.map2 JR.mul (JR.local "quarter") (JR.int 2))) (JR.run [ 
+                        JR.exec (JR.setField "basicColor" "" JR.this (JR.field "YELLOW" (JR.thisField "basicColorFactory"))), 
+                        JR.exec (JR.setField "colorP" "" JR.this (JR.invoke "intValue_0" (JR.thisField "basicColor") [])) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.thisField "x2") (JR.local "quarter")) (JR.run [ 
+                        JR.exec (JR.setField "basicColor" "" JR.this (JR.field "ORANGE" (JR.thisField "basicColorFactory"))), 
+                        JR.exec (JR.setField "colorP" "" JR.this (JR.invoke "intValue_0" (JR.thisField "basicColor") [])) ]) (JR.run [ 
+                        JR.exec (JR.setField "basicColor" "" JR.this (JR.field "RED" (JR.thisField "basicColorFactory"))), 
+                        JR.exec (JR.setField "colorP" "" JR.this (JR.invoke "intValue_0" (JR.thisField "basicColor") [])) ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getY_0 : JR.Method
+jm_getY_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.declare "basicHudFactory" "" (JR.callStatic BasicHudFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "location") (JR.field "TOPLEFT" (JR.local "basicHudFactory"))) (JR.run [ 
+                        JR.return (JR.map2 JR.sub (JR.invoke "getY_0" (JR.invoke "getViewPosition_0" (JR.thisField "allbinaryLayer") []) []) (JR.int 4)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "location") (JR.field "BOTTOMLEFT" (JR.local "basicHudFactory"))) (JR.run [ 
+                        JR.return (JR.map2 JR.add (JR.invoke "getY2_0" (JR.invoke "getViewPosition_0" (JR.thisField "allbinaryLayer") []) []) (JR.int 4)) ]) identity ]), 
+                    JR.return (JR.map JR.neg (JR.int 1)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

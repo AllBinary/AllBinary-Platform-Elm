@@ -1,117 +1,97 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.renderer
-module AllBinaryRendererBase3 where
+module Org.Allbinary.Graphics.Opengles.Renderer.AllBinaryRendererBase3 exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GL10 -- javax.microedition.khronos.opengles.GL10
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified OpenGLESImage -- org.allbinary.image.opengles.OpenGLESImage
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.graphics.opengles.renderer
+-}
 
-data AllBinaryRendererBase3 = AllBinaryRendererBase3
-    { header_ :: JavaHeader
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull AllBinaryRendererBase3 where
-    javaNull = javaNullRecord "AllBinaryRendererBase3"
-
-instance JavaEquals AllBinaryRendererBase3 where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryRendererBase3 where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryRendererBase3 where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AllBinaryRendererBase3
-newRecord_ = do
-    header_ <- newJavaHeader
-    list <- newIORef javaNull
-    let this = AllBinaryRendererBase3 header_ list
-    jregisterLevel header_ this
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    pure this
-
-initFields_ :: AllBinaryRendererBase3 -> IO ()
-initFields_ this = do
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
-
-new_ :: IO AllBinaryRendererBase3
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllBinaryRendererBase3 -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
 
 
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> IO (())
-update object_ a1 = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: AllBinaryRendererBase3))) () a1
-
-update_super :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> IO (())
-update_super object_ a1 = (update_impl (javaCast object_ :: AllBinaryRendererBase3)) a1
-
-update_impl :: AllBinaryRendererBase3 -> GL10.GL10 -> IO (())
-update_impl this gl = do
-        fix $ \loop -> when ((jio (BasicArrayList.size ((jget (this).list)))) > 0) $ javaIteration (loop) $ do
-            let openGLESImage = (javaCast (jio (BasicArrayList.removeAt ((jget (this).list)) 0)) :: OpenGLESImage.OpenGLESImage)
-            when (openGLESImage /= javaNull) $ do
-                Control.Monad.void (OpenGLESImage.set openGLESImage (javaCast gl))
-        pure ()
+jclass : String
+jclass =
+    "AllBinaryRendererBase3"
 
 
-add :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: AllBinaryRendererBase3))) () a1
+jchain : List String
+jchain =
+    [ "AllBinaryRendererBase3" ]
 
-add_super :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: AllBinaryRendererBase3)) a1
 
-add_impl :: AllBinaryRendererBase3 -> Image.Image -> IO (())
-add_impl this image = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) image)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "list", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "update_1", jm_update_1 )
+        , ( "add_1", jm_add_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryRendererBase3"
+        [ ( "jm_update_1", jm_update_1 ), ( "jm_add_1", jm_add_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_update_1 : JR.Method
+jm_update_1 jheap jthis jargs =
+    JR.method [ ( "gl", "" ) ] ""
+        (JR.run [ 
+                    JR.while (JR.map2 JR.greater (JR.invoke "size_0" (JR.thisField "list") []) (JR.int 0)) (JR.run [ 
+                        JR.declare "openGLESImage" "" (JR.invoke "removeAt_1" (JR.thisField "list") [ (JR.int 0) ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "openGLESImage") JR.null) (JR.run [ 
+                            JR.exec (JR.invoke "set_1" (JR.local "openGLESImage") [ (JR.local "gl") ]) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "image", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "image") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

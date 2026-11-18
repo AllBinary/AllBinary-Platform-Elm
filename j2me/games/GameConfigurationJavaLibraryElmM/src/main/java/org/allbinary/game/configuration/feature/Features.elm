@@ -1,271 +1,233 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
-module Features where
+module Org.Allbinary.Game.Configuration.Feature.Features exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Feature -- same package or java.lang
-import qualified GameFeatureFactory -- same package or java.lang
-import qualified InputFeatureFactory -- same package or java.lang
-import qualified SensorFeatureFactory -- same package or java.lang
-import qualified TouchFeatureFactory -- same package or java.lang
-import qualified MainFeatureFactory -- same package or java.lang
-import qualified GameFeatureEvent -- org.allbinary.game.configuration.event.GameFeatureEvent
-import qualified GameFeatureEventHandler -- org.allbinary.game.configuration.event.GameFeatureEventHandler
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified GenericOperatingSystem -- org.allbinary.logic.system.os.GenericOperatingSystem
-import qualified OperatingSystemFactory -- org.allbinary.logic.system.os.OperatingSystemFactory
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.feature
+-}
 
-data Features = Features
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    , defaultList :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull Features where
-    javaNull = javaNullRecord "Features"
-
-instance JavaEquals Features where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Features where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Features where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO Features
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    list <- newIORef javaNull
-    defaultList <- newIORef javaNull
-    let this = Features header_ logUtil commonStrings list defaultList
-    jregisterLevel header_ this
-    jregisterMethod header_ "addDefault" (\() -> addDefault_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "removeDefault" (\() -> removeDefault_impl this)
-    jregisterMethod header_ "remove" (\() -> remove_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "isDefault" (\() -> isDefault_impl this)
-    jregisterMethod header_ "isFeature" (\() -> isFeature_impl this)
-    jregisterMethod header_ "toggle" (\() -> toggle_impl this)
-    pure this
-
-initFields_ :: Features -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.list (javaNull)
-    jset this.defaultList (javaNull)
-    pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.Event.GameFeatureEvent as GameFeatureEvent
+import Org.Allbinary.Game.Configuration.Event.GameFeatureEventHandler as GameFeatureEventHandler
+import Org.Allbinary.Game.Configuration.Feature.GameFeatureFactory as GameFeatureFactory
+import Org.Allbinary.Game.Configuration.Feature.InputFeatureFactory as InputFeatureFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Configuration.Feature.MainFeatureFactory as MainFeatureFactory
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.System.Os.OperatingSystemFactory as OperatingSystemFactory
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Game.Configuration.Feature.SensorFeatureFactory as SensorFeatureFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Game.Configuration.Feature.TouchFeatureFactory as TouchFeatureFactory
 
 
-getInstance :: IO (Features)
-getInstance = do
-        when ((jget Features.sINGLETON) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset Features.sINGLETON (assignedValue)
-        pure ((javaCast (jget Features.sINGLETON) :: Features))
-
-new_ :: IO Features
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: Features -> IO ()
-init_ this = do
-        initFields_ this
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        jset (this).list (assignedValue)
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        jset (this).defaultList (assignedValue)
-        Control.Monad.void (Features.init this)
-        pure ()
+jclass : String
+jclass =
+    "Features"
 
 
--- throws Exception
-addDefault :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-addDefault object_ a1 = jmethod object_ "addDefault" (\() -> (addDefault_impl (javaCast object_ :: Features))) () a1
-
-addDefault_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-addDefault_super object_ a1 = (addDefault_impl (javaCast object_ :: Features)) a1
-
-addDefault_impl :: Features -> Feature.Feature -> IO (())
-addDefault_impl this gameFeature = do
-        Control.Monad.void (Features.add this gameFeature)
-        when (Prelude.not (jio (BasicArrayList.contains ((jget (this).defaultList)) gameFeature))) $ do
-            Control.Monad.void (BasicArrayList.add ((jget (this).defaultList)) gameFeature)
-        pure ()
+jchain : List String
+jchain =
+    [ "Features" ]
 
 
--- throws Exception
-add :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: Features))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: Features)) a1
-
-add_impl :: Features -> Feature.Feature -> IO (())
-add_impl this gameFeature = do
-        when (Prelude.not (jio (BasicArrayList.contains ((jget (this).list)) gameFeature))) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonLabels.getInstance))).sTART_LABEL)))) (jio (Feature.toString gameFeature))))))) this (jget ((jget (this).commonStrings)).aDD))
-            Control.Monad.void (BasicArrayList.add ((jget (this).list)) gameFeature)
-            Control.Monad.void (GameFeatureEventHandler.fireEvent ((jio (GameFeatureEventHandler.getInstance))) (jio (GameFeatureEvent.new_2 gameFeature (jio (Feature.toString gameFeature)))))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "list", JR.defaultOf "" ), ( "defaultList", JR.defaultOf "" ) ]
 
 
--- throws Exception
-removeDefault :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-removeDefault object_ a1 = jmethod object_ "removeDefault" (\() -> (removeDefault_impl (javaCast object_ :: Features))) () a1
-
-removeDefault_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-removeDefault_super object_ a1 = (removeDefault_impl (javaCast object_ :: Features)) a1
-
-removeDefault_impl :: Features -> Feature.Feature -> IO (())
-removeDefault_impl this gameFeature = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonLabels.getInstance))).sTART_LABEL)))) (jio (Feature.toString gameFeature))))))) this "removeDefault")
-        Control.Monad.void (Features.remove this gameFeature)
-        Control.Monad.void (BasicArrayList.remove ((jget (this).defaultList)) gameFeature)
-        pure ()
-
-
--- throws Exception
-remove :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-remove object_ a1 = jmethod object_ "remove" (\() -> (remove_impl (javaCast object_ :: Features))) () a1
-
-remove_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-remove_super object_ a1 = (remove_impl (javaCast object_ :: Features)) a1
-
-remove_impl :: Features -> Feature.Feature -> IO (())
-remove_impl this gameFeature = do
-        when (jio (BasicArrayList.contains ((jget (this).list)) gameFeature)) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).sTART) this (jget ((jget (this).commonStrings)).rEMOVE))
-            Control.Monad.void (BasicArrayList.remove ((jget (this).list)) gameFeature)
-            Control.Monad.void (GameFeatureEventHandler.fireEvent ((jio (GameFeatureEventHandler.getInstance))) (jio (GameFeatureEvent.new_2 gameFeature (jio (Feature.toString gameFeature)))))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "addDefault_1", jm_addDefault_1 )
+        , ( "add_1", jm_add_1 )
+        , ( "removeDefault_1", jm_removeDefault_1 )
+        , ( "remove_1", jm_remove_1 )
+        , ( "init_0", jm_init_0 )
+        , ( "isDefault_1", jm_isDefault_1 )
+        , ( "isFeature_1", jm_isFeature_1 )
+        , ( "toggle_1", jm_toggle_1 ) ]
+        JR.noMethods
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: Features))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: Features))
-
-init_impl :: Features -> IO (())
-init_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (PreLogUtil.putOE (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).iNIT) e)
-            ) $ do
-            gameFeatureFactory <- (GameFeatureFactory.getInstance)
-            inputFeatureFactory <- (InputFeatureFactory.getInstance)
-            sensorFeatureFactory <- (SensorFeatureFactory.getInstance)
-            touchFeatureFactory <- (TouchFeatureFactory.getInstance)
-            Control.Monad.void (Features.addDefault this (javaCast (jget (gameFeatureFactory).aRTIFICIAL_INTELLEGENCE_PROCESSOR)))
-            Control.Monad.void (Features.addDefault this (javaCast (jget (gameFeatureFactory).cOLLIDABLE_INTERFACE_LAYER_PROCESSOR)))
-            Control.Monad.void (Features.addDefault this (javaCast (jget (gameFeatureFactory).gAME_INPUT_LAYER_PROCESSOR)))
-            Control.Monad.void (Features.addDefault this (javaCast (jget (gameFeatureFactory).tICKABLE_LAYER_PROCESSOR)))
-            Control.Monad.void (Features.addDefault this (javaCast (jget (inputFeatureFactory).mULTI_KEY_PRESS)))
-            Control.Monad.void (Features.addDefault this (javaCast (jget (inputFeatureFactory).rEMOVE_DUPLICATE_KEY_PRESSES)))
-            Control.Monad.void (Features.addDefault this (jget (gameFeatureFactory).sCREEN_SHAKE))
-            Control.Monad.void (Features.addDefault this (jget (gameFeatureFactory).pOST_IMAGE_LOADING_MODIFICATION))
-            operatingSystemInterface <- (OperatingSystemFactory.getOperatingSystemInstance ((jio (OperatingSystemFactory.getInstance))))
-            if (jio (GenericOperatingSystem.isOverScan operatingSystemInterface)) then do
-                Control.Monad.void (Features.addDefault this (javaCast (jget (sensorFeatureFactory).nO_ORIENTATION)))
-                Control.Monad.void (Features.addDefault this (javaCast (jget (touchFeatureFactory).hIDE_SCREEN_BUTTONS)))
-            else do
-                Control.Monad.void (Features.addDefault this (javaCast (jget (sensorFeatureFactory).oRIENTATION_SENSORS)))
-                Control.Monad.void (Features.addDefault this (javaCast (jget (touchFeatureFactory).aUTO_HIDE_SHOW_SCREEN_BUTTONS)))
-            Control.Monad.void (Features.addDefault this (javaCast (jget (touchFeatureFactory).tOUCH_ENABLED)))
-            Control.Monad.void (Features.addDefault this (jget ((jio (MainFeatureFactory.getInstance))).fULL_SCREEN))
-            Control.Monad.void (Features.addDefault this (jget ((jio (MainFeatureFactory.getInstance))).lOAD_ONDEMAND))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Features"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_addDefault_1", jm_addDefault_1 ), ( "jm_add_1", jm_add_1 ), ( "jm_removeDefault_1", jm_removeDefault_1 ), ( "jm_remove_1", jm_remove_1 ), ( "jm_init_0", jm_init_0 ), ( "jm_isDefault_1", jm_isDefault_1 ), ( "jm_isFeature_1", jm_isFeature_1 ), ( "jm_toggle_1", jm_toggle_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
 
 
-isDefault :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (Bool)
-isDefault object_ a1 = jmethod object_ "isDefault" (\() -> (isDefault_impl (javaCast object_ :: Features))) () a1
-
-isDefault_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (Bool)
-isDefault_super object_ a1 = (isDefault_impl (javaCast object_ :: Features)) a1
-
-isDefault_impl :: Features -> Feature.Feature -> IO (Bool)
-isDefault_impl this gameFeature = do
-        (BasicArrayList.contains ((jget (this).defaultList)) gameFeature)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-isFeature :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (Bool)
-isFeature object_ a1 = jmethod object_ "isFeature" (\() -> (isFeature_impl (javaCast object_ :: Features))) () a1
-
-isFeature_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (Bool)
-isFeature_super object_ a1 = (isFeature_impl (javaCast object_ :: Features)) a1
-
-isFeature_impl :: Features -> Feature.Feature -> IO (Bool)
-isFeature_impl this gameFeature = do
-        (BasicArrayList.contains ((jget (this).list)) gameFeature)
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "Features" jclinit "SINGLETON"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
 
 
--- throws Exception
-toggle :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-toggle object_ a1 = jmethod object_ "toggle" (\() -> (toggle_impl (javaCast object_ :: Features))) () a1
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])), 
+                    JR.exec (JR.setField "defaultList" "" JR.this (JR.new BasicArrayListD.jnew_0 [])), 
+                    JR.exec (JR.invoke "init_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-toggle_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-toggle_super object_ a1 = (toggle_impl (javaCast object_ :: Features)) a1
 
-toggle_impl :: Features -> Feature.Feature -> IO (())
-toggle_impl this gameFeature = do
-        if (jio (Features.isFeature this gameFeature)) then do
-            Control.Monad.void (Features.remove this gameFeature)
-        else do
-            Control.Monad.void (Features.add this gameFeature)
-        pure ()
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_SINGLETON (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "Features.SINGLETON" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addDefault_1 : JR.Method
+jm_addDefault_1 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" JR.this [ (JR.local "gameFeature") ]), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "contains_1" (JR.thisField "defaultList") [ (JR.local "gameFeature") ])) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "defaultList") [ (JR.local "gameFeature") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "contains_1" (JR.thisField "list") [ (JR.local "gameFeature") ])) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.invoke "toString_0" (JR.local "gameFeature") []) ]) []), JR.this, (JR.field "ADD" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "gameFeature") ]), 
+                        JR.exec (JR.invoke "fireEvent_1" (JR.callStatic GameFeatureEventHandler.jm_getInstance_0 []) [ (JR.new GameFeatureEvent.jnew_2 [ (JR.local "gameFeature"), (JR.invoke "toString_0" (JR.local "gameFeature") []) ]) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeDefault_1 : JR.Method
+jm_removeDefault_1 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.invoke "toString_0" (JR.local "gameFeature") []) ]) []), JR.this, (JR.str "removeDefault") ]), 
+                    JR.exec (JR.invoke "remove_1" JR.this [ (JR.local "gameFeature") ]), 
+                    JR.exec (JR.invoke "remove_1" (JR.thisField "defaultList") [ (JR.local "gameFeature") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_remove_1 : JR.Method
+jm_remove_1 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "contains_1" (JR.thisField "list") [ (JR.local "gameFeature") ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "REMOVE" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.invoke "remove_1" (JR.thisField "list") [ (JR.local "gameFeature") ]), 
+                        JR.exec (JR.invoke "fireEvent_1" (JR.callStatic GameFeatureEventHandler.jm_getInstance_0 []) [ (JR.new GameFeatureEvent.jnew_2 [ (JR.local "gameFeature"), (JR.invoke "toString_0" (JR.local "gameFeature") []) ]) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "gameFeatureFactory" "" (JR.callStatic GameFeatureFactory.jm_getInstance_0 []), 
+                        JR.declare "inputFeatureFactory" "" (JR.callStatic InputFeatureFactory.jm_getInstance_0 []), 
+                        JR.declare "sensorFeatureFactory" "" (JR.callStatic SensorFeatureFactory.jm_getInstance_0 []), 
+                        JR.declare "touchFeatureFactory" "" (JR.callStatic TouchFeatureFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "ARTIFICIAL_INTELLEGENCE_PROCESSOR" (JR.local "gameFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "COLLIDABLE_INTERFACE_LAYER_PROCESSOR" (JR.local "gameFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "GAME_INPUT_LAYER_PROCESSOR" (JR.local "gameFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "TICKABLE_LAYER_PROCESSOR" (JR.local "gameFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "MULTI_KEY_PRESS" (JR.local "inputFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "REMOVE_DUPLICATE_KEY_PRESSES" (JR.local "inputFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "SCREEN_SHAKE" (JR.local "gameFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "POST_IMAGE_LOADING_MODIFICATION" (JR.local "gameFeatureFactory")) ]), 
+                        JR.declare "operatingSystemInterface" "" (JR.invoke "getOperatingSystemInstance_0" (JR.callStatic OperatingSystemFactory.jm_getInstance_0 []) []), 
+                        JR.ifElse (JR.invoke "isOverScan_0" (JR.local "operatingSystemInterface") []) (JR.run [ 
+                            JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "NO_ORIENTATION" (JR.local "sensorFeatureFactory")) ]), 
+                            JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "HIDE_SCREEN_BUTTONS" (JR.local "touchFeatureFactory")) ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "ORIENTATION_SENSORS" (JR.local "sensorFeatureFactory")) ]), 
+                            JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "AUTO_HIDE_SHOW_SCREEN_BUTTONS" (JR.local "touchFeatureFactory")) ]) ]), 
+                        JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "TOUCH_ENABLED" (JR.local "touchFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "FULL_SCREEN" (JR.callStatic MainFeatureFactory.jm_getInstance_0 [])) ]), 
+                        JR.exec (JR.invoke "addDefault_1" JR.this [ (JR.field "LOAD_ONDEMAND" (JR.callStatic MainFeatureFactory.jm_getInstance_0 [])) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isDefault_1 : JR.Method
+jm_isDefault_1 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "contains_1" (JR.thisField "defaultList") [ (JR.local "gameFeature") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isFeature_1 : JR.Method
+jm_isFeature_1 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "contains_1" (JR.thisField "list") [ (JR.local "gameFeature") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toggle_1 : JR.Method
+jm_toggle_1 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" JR.this [ (JR.local "gameFeature") ]) (JR.run [ 
+                        JR.exec (JR.invoke "remove_1" JR.this [ (JR.local "gameFeature") ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" JR.this [ (JR.local "gameFeature") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

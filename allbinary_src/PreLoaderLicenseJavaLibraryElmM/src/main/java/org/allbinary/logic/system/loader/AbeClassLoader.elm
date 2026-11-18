@@ -1,252 +1,230 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.loader
-module AbeClassLoader (module AbeClassLoader, module ClassLoader) where
+module Org.Allbinary.Logic.System.Loader.AbeClassLoader exposing (..)
 
-import ClassLoader hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, findLoadedClass1, findLoadedClass1_super, findLoadedClass1_impl, loadClass, loadClass_super, loadClass_impl, loadClass_2, loadClass_2_super, loadClass_2_impl, loadClass, loadClassBytesFromFile, loadClassBytesFromFile_super, loadClassBytesFromFile_impl, oldLoadClass, oldLoadClass_super, oldLoadClass_impl, logUtil, abCryptUtil, lOAD_CLASS, classes, eNCRYPTED_EXTENSION, pATH, key)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Class -- same package or java.lang
-import qualified NoClassDefFoundError -- same package or java.lang
-import qualified FileInputStream -- java.io.FileInputStream
-import qualified IOException -- java.io.IOException
-import qualified Map -- java.util.Map
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified LogBuffer -- org.allbinary.logic.communication.log.LogBuffer
-import qualified LogFactory -- org.allbinary.logic.communication.log.LogFactory
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StreamUtil -- org.allbinary.logic.io.StreamUtil
-import qualified AbPathData -- org.allbinary.logic.io.path.AbPathData
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified AbCryptUtil -- org.allbinary.logic.system.security.AbCryptUtil
-import qualified ClassLoader
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.loader
+-}
 
-data AbeClassLoader = AbeClassLoader
-    { header_ :: JavaHeader
-    , base :: ClassLoader.ClassLoader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , abCryptUtil :: IORef (AbCryptUtil.AbCryptUtil)
-    , lOAD_CLASS :: IORef (String)
-    , eNCRYPTED_EXTENSION :: IORef (String)
-    , key :: IORef (String)
-    }
-
-instance JavaNull AbeClassLoader where
-    javaNull = javaNullRecord "AbeClassLoader"
-
-instance JavaEquals AbeClassLoader where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AbeClassLoader where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AbeClassLoader where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-classes :: IORef (Map.Map)
-{-# NOINLINE classes #-}
-classes = unsafePerformIO ((StdUtil.createHashMap ((jio (StdUtil.getInstance)))) >>= newIORef)
-
-pATH :: IORef (String)
-{-# NOINLINE pATH #-}
-pATH = unsafePerformIO (newIORef (javaNull))
-
-newRecord_ :: IO AbeClassLoader
-newRecord_ = do
-    base <- ClassLoader.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    abCryptUtil <- newIORef javaNull
-    lOAD_CLASS <- newIORef ""
-    eNCRYPTED_EXTENSION <- newIORef ""
-    key <- newIORef ""
-    let this = AbeClassLoader header_ base logUtil abCryptUtil lOAD_CLASS eNCRYPTED_EXTENSION key
-    jregisterLevel header_ this
-    jregisterMethod header_ "findLoadedClass1" (\() -> findLoadedClass1_impl this)
-    jregisterMethod header_ "loadClass" (\() -> loadClass_impl this)
-    jregisterMethod header_ "loadClass_2" (\() -> loadClass_2_impl this)
-    jregisterMethod header_ "loadClassBytesFromFile" (\() -> loadClassBytesFromFile_impl this)
-    jregisterMethod header_ "oldLoadClass" (\() -> oldLoadClass_impl this)
-    pure this
-
-initFields_ :: AbeClassLoader -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.abCryptUtil =<< (AbCryptUtil.getInstance)
-    jset this.lOAD_CLASS ("loadClass")
-    jset this.eNCRYPTED_EXTENSION ((javaToString (jget ((jio (AbPathData.getInstance))).eXTENSION_SEP) ++ "abc"))
-    jset this.key (javaNull)
-    pure ()
-
-new_2 :: ClassLoader.ClassLoader -> String -> IO AbeClassLoader
-new_2 parent key = do
-    this <- newRecord_
-    init_2 this parent key
-    pure this
-
-init_2 :: AbeClassLoader -> ClassLoader.ClassLoader -> String -> IO ()
-init_2 this parent key = do
-        ClassLoader.init_1 this.base (parent)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).key (key)
-        jset AbeClassLoader.pATH ((javaToString (jio (getWebappPath ((jget ((jget (org.allbinary).globals)).uRLGLOBALS)))) ++ "WEB-INF/classes/"))
-        pure ()
+import JR
+import Org.Allbinary.Logic.System.Security.AbCryptUtil as AbCryptUtil
+import Org.Allbinary.Logic.Io.Path.AbPathData as AbPathData
+import Org.Allbinary.Logic.Communication.Log.LogBuffer as LogBuffer
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogFactory as LogFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.Io.StreamUtil as StreamUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Globals.URLGLOBALS as URLGLOBALS
 
 
-findLoadedClass1 :: (JavaObjectClass this_) => this_ -> String -> IO (Class.Class)
-findLoadedClass1 object_ a1 = jmethod object_ "findLoadedClass1" (\() -> (findLoadedClass1_impl (javaCast object_ :: AbeClassLoader))) () a1
-
-findLoadedClass1_super :: (JavaObjectClass this_) => this_ -> String -> IO (Class.Class)
-findLoadedClass1_super object_ a1 = (findLoadedClass1_impl (javaCast object_ :: AbeClassLoader)) a1
-
-findLoadedClass1_impl :: AbeClassLoader -> String -> IO (Class.Class)
-findLoadedClass1_impl this name = do
-        pure ((javaCast (jio (Map.get ((jget AbeClassLoader.classes)) name)) :: Class.Class))
+jclass : String
+jclass =
+    "AbeClassLoader"
 
 
--- throws ClassNotFoundException
-loadClass :: (JavaObjectClass this_) => this_ -> String -> IO (Class.Class)
-loadClass object_ a1 = jmethod object_ "loadClass" (\() -> (loadClass_impl (javaCast object_ :: AbeClassLoader))) () a1
-
-loadClass_super :: (JavaObjectClass this_) => this_ -> String -> IO (Class.Class)
-loadClass_super object_ a1 = (loadClass_impl (javaCast object_ :: AbeClassLoader)) a1
-
-loadClass_impl :: AbeClassLoader -> String -> IO (Class.Class)
-loadClass_impl this name = do
-        (AbeClassLoader.loadClass_2 this name False)
+jchain : List String
+jchain =
+    [ "AbeClassLoader" ]
+        ++ [ "ClassLoader" ]
 
 
--- throws ClassNotFoundException
-loadClass_2 :: (JavaObjectClass this_) => this_ -> String -> Bool -> IO (Class.Class)
-loadClass_2 object_ a1 a2 = jmethod object_ "loadClass_2" (\() -> (loadClass_2_impl (javaCast object_ :: AbeClassLoader))) () a1 a2
-
-loadClass_2_super :: (JavaObjectClass this_) => this_ -> String -> Bool -> IO (Class.Class)
-loadClass_2_super object_ a1 a2 = (loadClass_2_impl (javaCast object_ :: AbeClassLoader)) a1 a2
-
-loadClass_2_impl :: AbeClassLoader -> String -> Bool -> IO (Class.Class)
-loadClass_2_impl this name resolve = do
-    javaCatchReturn $ do
-        loadedWith <- newIORef ("findLoadedClass1")
-        logBuffer <- (LogBuffer.new_)
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).lOADERERROR))) $ do
-                Control.Monad.void (LogBuffer.logAll logBuffer)
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) ((("Failure loading: " ++ name) ++ "\nwith: ") ++ (jget loadedWith)) this (jget (this).lOAD_CLASS) e)
-            pure (javaNull)
-            ) $ do
-            myClass <- newIORef =<< (AbeClassLoader.findLoadedClass1 this name)
-            if ((jget myClass) == javaNull) then do
-                handle (\(e :: JavaException) -> do
-                    Control.Monad.void (LogBuffer.add logBuffer (jio (LogFactory.getInstance ((("Failed to Load Class: " ++ name) ++ "\nwith: ") ++ (jget loadedWith)) this (jget (this).lOAD_CLASS) e)))
-                    ) $ do
-                    jset loadedWith ("super.loadClass")
-                    normalClass <- (ClassLoader.loadClass_2_super this.base name resolve)
-                    when (normalClass /= javaNull) $ do
-                        javaReturn (normalClass)
-                classBytes <- (AbeClassLoader.loadClassBytesFromFile this name)
-                when (classBytes == javaNull) $ do
-                    javaThrow ((JavaException "ClassNotFoundException" ((("My Bytes not loaded for: " ++ name) ++ "\nwith: ") ++ "loadClassBytes")))
-                assignedValue <- (ClassLoader.defineClass this name classBytes 0 (jlength classBytes))
-                jset myClass (assignedValue)
-                when ((jget myClass) == javaNull) $ do
-                    javaThrow ((JavaException "ClassNotFoundException" ((("My Class Not Defineable for: " ++ name) ++ "\nwith: ") ++ "loadClassBytes")))
-                Control.Monad.void (Map.put ((jget AbeClassLoader.classes)) name (jget myClass))
-            else do
-                Control.Monad.void (LogBuffer.add logBuffer (jio (LogFactory.getInstanceF ((("Already Loaded: " ++ name) ++ "\nwith: ") ++ (jget loadedWith)) this (jget (this).lOAD_CLASS))))
-            Control.Monad.void (ClassLoader.resolveClass this (jget myClass))
-            pure ((jget myClass))
+jfields : List ( String, JR.JValue )
+jfields =
+    [] ++ [ ( "logUtil", JR.defaultOf "" ), ( "abCryptUtil", JR.defaultOf "" ), ( "LOAD_CLASS", JR.defaultOf "" ), ( "ENCRYPTED_EXTENSION", JR.defaultOf "" ), ( "key", JR.defaultOf "" ) ]
 
 
-loadClassBytesFromFile :: (JavaObjectClass this_) => this_ -> String -> IO (JavaArray (Int8))
-loadClassBytesFromFile object_ a1 = jmethod object_ "loadClassBytesFromFile" (\() -> (loadClassBytesFromFile_impl (javaCast object_ :: AbeClassLoader))) () a1
-
-loadClassBytesFromFile_super :: (JavaObjectClass this_) => this_ -> String -> IO (JavaArray (Int8))
-loadClassBytesFromFile_super object_ a1 = (loadClassBytesFromFile_impl (javaCast object_ :: AbeClassLoader)) a1
-
-loadClassBytesFromFile_impl :: AbeClassLoader -> String -> IO (JavaArray (Int8))
-loadClassBytesFromFile_impl this name = do
-        in_ <- newIORef (javaNull)
-        cname <- newIORef ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).lOADERERROR))) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) ((("(Before LogBuffer Output) Failure loading Encrypted: " ++ name) ++ " File: ") ++ (jget cname)) "AbeClassLoader" "loadClassBytes" e)
-            Control.Monad.void (StreamUtil.close ((jio (StreamUtil.getInstance))) (jget in_))
-            ) $ do
-            jset cname ((((jget AbeClassLoader.pATH) ++ (jstringReplace name '.' (jget ((jio (AbPathData.getInstance))).sEPARATORCHAR))) ++ (jget (this).eNCRYPTED_EXTENSION)))
-            assignedValue <- (FileInputStream.new_1 (jget cname))
-            jset in_ (assignedValue)
-            decrypted <- (AbCryptUtil.decrypt ((jget (this).abCryptUtil)) (jget in_) (jget (this).key))
-            pure (decrypted)
-        pure (javaNull)
+jvtable =
+    JR.vtable
+        [ ( "findLoadedClass1_1", jm_findLoadedClass1_1 )
+        , ( "loadClass_1", jm_loadClass_1 )
+        , ( "loadClass_2", jm_loadClass_2 )
+        , ( "loadClassBytesFromFile_1", jm_loadClassBytesFromFile_1 )
+        , ( "oldLoadClass_2", jm_oldLoadClass_2 ) ]
+        JR.noMethods
 
 
--- throws ClassNotFoundException
-oldLoadClass :: (JavaObjectClass this_) => this_ -> String -> Bool -> IO (Class.Class)
-oldLoadClass object_ a1 a2 = jmethod object_ "oldLoadClass" (\() -> (oldLoadClass_impl (javaCast object_ :: AbeClassLoader))) () a1 a2
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbeClassLoader"
+        [ ( "jm_findLoadedClass1_1", jm_findLoadedClass1_1 ), ( "jm_loadClass_1", jm_loadClass_1 ), ( "jm_loadClass_2", jm_loadClass_2 ), ( "jm_loadClassBytesFromFile_1", jm_loadClassBytesFromFile_1 ), ( "jm_oldLoadClass_2", jm_oldLoadClass_2 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_classes", jstatic_classes ), ( "jstatic_PATH", jstatic_PATH ) ]
+        jheap
 
-oldLoadClass_super :: (JavaObjectClass this_) => this_ -> String -> Bool -> IO (Class.Class)
-oldLoadClass_super object_ a1 a2 = (oldLoadClass_impl (javaCast object_ :: AbeClassLoader)) a1 a2
 
-oldLoadClass_impl :: AbeClassLoader -> String -> Bool -> IO (Class.Class)
-oldLoadClass_impl this name resolve = do
-    javaCatchReturn $ do
-        loadedWith <- newIORef ("findLoadedClass1")
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).lOADERERROR))) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) ("Failure loading: " ++ name) "AbeClassLoader" (jget (this).lOAD_CLASS) e)
-            pure (javaNull)
-            ) $ do
-            myClass <- newIORef =<< (AbeClassLoader.findLoadedClass1 this name)
-            if ((jget myClass) == javaNull) then do
-                handle (\(e :: JavaException) -> do
-                    when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).lOADER))) $ do
-                        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ((("Failed Loaded Class: " ++ name) ++ " with: ") ++ (jget loadedWith)) this (jget (this).lOAD_CLASS))
-                    ) $ do
-                    jset loadedWith ("super.loadClass")
-                    normalClass <- (ClassLoader.loadClass_2_super this.base name resolve)
-                    when (normalClass /= javaNull) $ do
-                        javaReturn (normalClass)
-                jset loadedWith ("loadClassBytes")
-                classBytes <- (AbeClassLoader.loadClassBytesFromFile this name)
-                when (classBytes == javaNull) $ do
-                    javaThrow ((JavaException "ClassNotFoundException" ("Bytes not loaded for: " ++ name)))
-                assignedValue <- (ClassLoader.defineClass this name classBytes 0 (jlength classBytes))
-                jset myClass (assignedValue)
-                when ((jget myClass) == javaNull) $ do
-                    javaThrow ((JavaException "ClassNotFoundException" ("Class Not Defineable for: " ++ name)))
-                Control.Monad.void (Map.put ((jget AbeClassLoader.classes)) name (jget myClass))
-            else do
-                when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).lOADER))) $ do
-                    Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ((("Already Loaded: " ++ name) ++ " with: ") ++ (jget loadedWith)) this (jget (this).lOAD_CLASS))
-            Control.Monad.void (ClassLoader.resolveClass this (jget myClass))
-            pure ((jget myClass))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_classes : JR.M
+jstatic_classes s =
+    JR.static "AbeClassLoader" jclinit "classes"
+        (JR.invoke "createHashMap_0" (JR.callStatic StdUtil.jm_getInstance_0 []) [])
+        s
+
+
+jstatic_PATH : JR.M
+jstatic_PATH s =
+    JR.static "AbeClassLoader" jclinit "PATH"
+        (JR.lit (JR.defaultOf ""))
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "parent", "" ), ( "key", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect (JR.namedMethod "ClassLoader.jinit_1") JR.this [ (JR.local "parent") ]),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "abCryptUtil" "" JR.this (JR.callStatic AbCryptUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "LOAD_CLASS" "" JR.this (JR.str "loadClass")),
+                JR.exec (JR.setField "ENCRYPTED_EXTENSION" "" JR.this (JR.concat (JR.field "EXTENSION_SEP" (JR.callStatic AbPathData.jm_getInstance_0 [])) (JR.str "abc"))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "key" "" JR.this (JR.local "key")), 
+                    JR.exec (JR.setStatic "AbeClassLoader.PATH" "" (JR.concat (JR.callStatic URLGLOBALS.jm_getWebappPath_0 []) (JR.str "WEB-INF/classes/"))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_findLoadedClass1_1 : JR.Method
+jm_findLoadedClass1_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "get_1" jstatic_classes [ (JR.local "name") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_loadClass_1 : JR.Method
+jm_loadClass_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "loadClass_2" JR.this [ (JR.local "name"), (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_loadClass_2 : JR.Method
+jm_loadClass_2 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "resolve", "Z" ) ] ""
+        (JR.run [ 
+                    JR.declare "loadedWith" "" (JR.str "findLoadedClass1"), 
+                    JR.declare "logBuffer" "" (JR.new LogBuffer.jnew_0 []), 
+                    JR.try (JR.run [ 
+                        JR.declare "myClass" "" (JR.invoke "findLoadedClass1_1" JR.this [ (JR.local "name") ]), 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "myClass") JR.null) (JR.run [ 
+                            JR.try (JR.run [ 
+                                JR.exec (JR.setLocal "loadedWith" "" (JR.str "super.loadClass")), 
+                                JR.declare "normalClass" "" (JR.callVia JR.noMethods "loadClass_2" JR.this [ (JR.local "name"), (JR.local "resolve") ]), 
+                                JR.ifElse (JR.map2 JR.notEquals (JR.local "normalClass") JR.null) (JR.run [ 
+                                    JR.return (JR.local "normalClass") ]) identity ]) [ ( [ "ClassNotFoundException" ], "e", (JR.run [ 
+                                JR.exec (JR.invoke "add_1" (JR.local "logBuffer") [ (JR.callStatic LogFactory.jm_getInstance_4 [ (JR.concat (JR.concat (JR.concat (JR.str "Failed to Load Class: ") (JR.local "name")) (JR.str "\nwith: ")) (JR.local "loadedWith")), JR.this, (JR.thisField "LOAD_CLASS"), (JR.local "e") ]) ]) ]) ), ( [ "Exception" ], "e", (JR.run [ 
+                                JR.exec (JR.invoke "add_1" (JR.local "logBuffer") [ (JR.callStatic LogFactory.jm_getInstance_4 [ (JR.concat (JR.concat (JR.concat (JR.str "Failed to Load Class: ") (JR.local "name")) (JR.str "\nwith: ")) (JR.local "loadedWith")), JR.this, (JR.thisField "LOAD_CLASS"), (JR.local "e") ]) ]) ]) ), ( [ "NoClassDefFoundError" ], "e", (JR.run [ 
+                                JR.exec (JR.invoke "add_1" (JR.local "logBuffer") [ (JR.callStatic LogFactory.jm_getInstanceF_3 [ (JR.concat (JR.concat (JR.concat (JR.str "NoClassDefFoundError Failed Loaded Class: ") (JR.local "name")) (JR.str "\nwith: ")) (JR.local "loadedWith")), JR.this, (JR.thisField "LOAD_CLASS") ]) ]) ]) ) ] identity, 
+                            JR.declare "classBytes" "" (JR.invoke "loadClassBytesFromFile_1" JR.this [ (JR.local "name") ]), 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "classBytes") JR.null) (JR.run [ 
+                                JR.throw (JR.new (JR.newThrowable "ClassNotFoundException" [ "Exception" ]) [ (JR.concat (JR.concat (JR.concat (JR.str "My Bytes not loaded for: ") (JR.local "name")) (JR.str "\nwith: ")) (JR.str "loadClassBytes")) ]) ]) identity, 
+                            JR.exec (JR.setLocal "myClass" "" (JR.invoke "defineClass_4" JR.this [ (JR.local "name"), (JR.local "classBytes"), (JR.int 0), (JR.alength (JR.local "classBytes")) ])), 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "myClass") JR.null) (JR.run [ 
+                                JR.throw (JR.new (JR.newThrowable "ClassNotFoundException" [ "Exception" ]) [ (JR.concat (JR.concat (JR.concat (JR.str "My Class Not Defineable for: ") (JR.local "name")) (JR.str "\nwith: ")) (JR.str "loadClassBytes")) ]) ]) identity, 
+                            JR.exec (JR.invoke "put_2" jstatic_classes [ (JR.local "name"), (JR.local "myClass") ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "logBuffer") [ (JR.callStatic LogFactory.jm_getInstanceF_3 [ (JR.concat (JR.concat (JR.concat (JR.str "Already Loaded: ") (JR.local "name")) (JR.str "\nwith: ")) (JR.local "loadedWith")), JR.this, (JR.thisField "LOAD_CLASS") ]) ]) ]), 
+                        JR.exec (JR.invoke "resolveClass_1" JR.this [ (JR.local "myClass") ]), 
+                        JR.return (JR.local "myClass") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "logAll_0" (JR.local "logBuffer") []), 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.concat (JR.concat (JR.str "Failure loading: ") (JR.local "name")) (JR.str "\nwith: ")) (JR.local "loadedWith")), JR.this, (JR.thisField "LOAD_CLASS"), (JR.local "e") ]) ]) identity, 
+                        JR.return JR.null ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_loadClassBytesFromFile_1 : JR.Method
+jm_loadClassBytesFromFile_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "in" "" JR.null, 
+                    JR.declare "cname" "" (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.setLocal "cname" "" (JR.concat (JR.concat jstatic_PATH (JR.invoke "replace_2" (JR.local "name") [ (JR.char 46), (JR.field "SEPARATORCHAR" (JR.callStatic AbPathData.jm_getInstance_0 [])) ])) (JR.thisField "ENCRYPTED_EXTENSION"))), 
+                        JR.exec (JR.setLocal "in" "" (JR.new (JR.namedMethod "FileInputStream.jnew_1") [ (JR.local "cname") ])), 
+                        JR.declare "decrypted" "" (JR.invoke "decrypt_2" (JR.thisField "abCryptUtil") [ (JR.local "in"), (JR.thisField "key") ]), 
+                        JR.return (JR.local "decrypted") ]) [ ( [ "IOException" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.concat (JR.concat (JR.str "(Before LogBuffer Output) Failure loading Encrypted: ") (JR.local "name")) (JR.str " File: ")) (JR.local "cname")), (JR.str "AbeClassLoader"), (JR.str "loadClassBytes"), (JR.local "e") ]) ]) identity, 
+                        JR.exec (JR.invoke "close_1" (JR.callStatic StreamUtil.jm_getInstance_0 []) [ (JR.local "in") ]) ]) ), ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "loadedWith" "" (JR.str "loadClassBytes"), 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "(Before LogBuffer Output) Failed to Loaded Class: ") (JR.local "name")) (JR.str " File: ")) (JR.local "cname")) (JR.str "\nwith: ")) (JR.local "loadedWith")), JR.this, (JR.str "loadClassBytes"), (JR.local "e") ]) ]) identity ]) ), ( [ "NoClassDefFoundError" ], "e", (JR.run [ 
+                        JR.declare "loadedWith" "" (JR.str "loadClassBytes"), 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "(Before LogBuffer Output) NoClassDefFoundError Failed Loaded Class: ") (JR.local "name")) (JR.str " File: ")) (JR.local "cname")) (JR.str "\nwith: ")) (JR.local "loadedWith")), JR.this, (JR.str "loadClassBytes") ]) ]) identity ]) ) ] identity, 
+                    JR.return JR.null ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_oldLoadClass_2 : JR.Method
+jm_oldLoadClass_2 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "resolve", "Z" ) ] ""
+        (JR.run [ 
+                    JR.declare "loadedWith" "" (JR.str "findLoadedClass1"), 
+                    JR.try (JR.run [ 
+                        JR.declare "myClass" "" (JR.invoke "findLoadedClass1_1" JR.this [ (JR.local "name") ]), 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "myClass") JR.null) (JR.run [ 
+                            JR.try (JR.run [ 
+                                JR.exec (JR.setLocal "loadedWith" "" (JR.str "super.loadClass")), 
+                                JR.declare "normalClass" "" (JR.callVia JR.noMethods "loadClass_2" JR.this [ (JR.local "name"), (JR.local "resolve") ]), 
+                                JR.ifElse (JR.map2 JR.notEquals (JR.local "normalClass") JR.null) (JR.run [ 
+                                    JR.return (JR.local "normalClass") ]) identity ]) [ ( [ "ClassNotFoundException" ], "e", (JR.run [ 
+                                JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADER" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.concat (JR.concat (JR.str "Failed Loaded Class: ") (JR.local "name")) (JR.str " with: ")) (JR.local "loadedWith")), JR.this, (JR.thisField "LOAD_CLASS") ]) ]) identity ]) ), ( [ "Exception" ], "e", (JR.run [ 
+                                JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADER" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.concat (JR.concat (JR.str "Failed Loaded Class: ") (JR.local "name")) (JR.str " with: ")) (JR.local "loadedWith")), JR.this, (JR.thisField "LOAD_CLASS") ]) ]) identity ]) ), ( [ "NoClassDefFoundError" ], "e", (JR.run [ 
+                                JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADER" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.concat (JR.concat (JR.str "Failed Loaded Class: ") (JR.local "name")) (JR.str " with: ")) (JR.local "loadedWith")), JR.this, (JR.thisField "LOAD_CLASS") ]) ]) identity ]) ) ] identity, 
+                            JR.exec (JR.setLocal "loadedWith" "" (JR.str "loadClassBytes")), 
+                            JR.declare "classBytes" "" (JR.invoke "loadClassBytesFromFile_1" JR.this [ (JR.local "name") ]), 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "classBytes") JR.null) (JR.run [ 
+                                JR.throw (JR.new (JR.newThrowable "ClassNotFoundException" [ "Exception" ]) [ (JR.concat (JR.str "Bytes not loaded for: ") (JR.local "name")) ]) ]) identity, 
+                            JR.exec (JR.setLocal "myClass" "" (JR.invoke "defineClass_4" JR.this [ (JR.local "name"), (JR.local "classBytes"), (JR.int 0), (JR.alength (JR.local "classBytes")) ])), 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "myClass") JR.null) (JR.run [ 
+                                JR.throw (JR.new (JR.newThrowable "ClassNotFoundException" [ "Exception" ]) [ (JR.concat (JR.str "Class Not Defineable for: ") (JR.local "name")) ]) ]) identity, 
+                            JR.exec (JR.invoke "put_2" jstatic_classes [ (JR.local "name"), (JR.local "myClass") ]) ]) (JR.run [ 
+                            JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADER" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                                JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.concat (JR.concat (JR.str "Already Loaded: ") (JR.local "name")) (JR.str " with: ")) (JR.local "loadedWith")), JR.this, (JR.thisField "LOAD_CLASS") ]) ]) identity ]), 
+                        JR.exec (JR.invoke "resolveClass_1" JR.this [ (JR.local "myClass") ]), 
+                        JR.return (JR.local "myClass") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "LOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.str "Failure loading: ") (JR.local "name")), (JR.str "AbeClassLoader"), (JR.thisField "LOAD_CLASS"), (JR.local "e") ]) ]) identity, 
+                        JR.return JR.null ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

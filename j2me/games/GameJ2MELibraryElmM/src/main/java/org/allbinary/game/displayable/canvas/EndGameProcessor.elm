@@ -1,123 +1,103 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module EndGameProcessor (module EndGameProcessor, module Processor) where
+module Org.Allbinary.Game.Displayable.Canvas.EndGameProcessor exposing (..)
 
-import Processor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, process, process_super, process_impl, gameStateFactory, gameCanvas, wAIT)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameCanvas -- same package or java.lang
-import qualified TimeDelayHelper -- same package or java.lang
-import qualified HighScoresPaintable -- same package or java.lang
-import qualified Processor -- org.allbinary.canvas.Processor
-import qualified HighScores -- org.allbinary.game.score.HighScores
-import qualified HighScoresHelperBase -- org.allbinary.game.score.HighScoresHelperBase
-import qualified NullHighScoresSingletonFactory -- org.allbinary.game.score.NullHighScoresSingletonFactory
-import qualified GameStateFactory -- org.allbinary.game.state.GameStateFactory
-import qualified NullPaintable -- org.allbinary.graphics.paint.NullPaintable
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data EndGameProcessor = EndGameProcessor
-    { header_ :: JavaHeader
-    , base :: Processor.Processor
-    , gameStateFactory :: IORef (GameStateFactory.GameStateFactory)
-    , gameCanvas :: IORef (AllBinaryGameCanvas.AllBinaryGameCanvas)
-    , wAIT :: IORef (Int64)
-    }
-
-instance JavaNull EndGameProcessor where
-    javaNull = javaNullRecord "EndGameProcessor"
-
-instance JavaEquals EndGameProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq EndGameProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass EndGameProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO EndGameProcessor
-newRecord_ = do
-    base <- Processor.newRecord_
-    let header_ = base.header_
-    gameStateFactory <- newIORef javaNull
-    gameCanvas <- newIORef javaNull
-    wAIT <- newIORef 0
-    let this = EndGameProcessor header_ base gameStateFactory gameCanvas wAIT
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: EndGameProcessor -> IO ()
-initFields_ this = do
-    jset this.gameStateFactory =<< (GameStateFactory.getInstance)
-    jset this.gameCanvas (javaNull)
-    jset this.wAIT (5000)
-    pure ()
-
-new_1 :: AllBinaryGameCanvas.AllBinaryGameCanvas -> IO EndGameProcessor
-new_1 gameCanvas = do
-    this <- newRecord_
-    init_1 this gameCanvas
-    pure this
-
-init_1 :: EndGameProcessor -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO ()
-init_1 this gameCanvas = do
-        Processor.init_ this.base
-        initFields_ this
-        jset (this).gameCanvas (gameCanvas)
-        pure ()
+import JR
+import Org.Allbinary.Game.State.GameStateFactory as GameStateFactory
+import Org.Allbinary.Game.Score.NullHighScoresSingletonFactory as NullHighScoresSingletonFactory
+import Org.Allbinary.Graphics.Paint.NullPaintable as NullPaintable
+import Org.Allbinary.Canvas.Processor as Processor
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> IO (())
-process object_ = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: EndGameProcessor))) ()
+jclass : String
+jclass =
+    "EndGameProcessor"
 
-process_super :: (JavaObjectClass this_) => this_ -> IO (())
-process_super object_ = (process_impl (javaCast object_ :: EndGameProcessor))
 
-process_impl :: EndGameProcessor -> IO (())
-process_impl this = do
-        when (jio (AllBinaryGameCanvas.isHighScoreSubmitted ((jget (this).gameCanvas)))) $ do
-            when (jio (TimeDelayHelper.isElapsedTNT ((jio (AllBinaryGameCanvas.getGameStateTimeHelper ((jget (this).gameCanvas))))) (jget (this).wAIT))) $ do
-                if ((jio (AllBinaryGameCanvas.getGameState ((jget (this).gameCanvas)))) == (jget ((jget (this).gameStateFactory)).sHOW_END_RESULT_GAME_STATE)) then do
-                    let highScoresBase = (javaCast (jget ((jget (this).gameCanvas)).highScoresHelper) :: HighScoresHelperBase.HighScoresHelperBase)
-                    highScores <- (HighScoresHelperBase.getSelectedHighScores highScoresBase)
-                    when (highScores /= (jio (NullHighScoresSingletonFactory.getInstance))) $ do
-                        Control.Monad.void (HighScoresHelperBase.selectHighScores highScoresBase)
-                        Control.Monad.void (HighScoresPaintable.setHighScores ((jio (AllBinaryGameCanvas.getRealHighScoresPaintable ((jget (this).gameCanvas))))) highScores)
-                        Control.Monad.void (AllBinaryGameCanvas.setGameState ((jget (this).gameCanvas)) (jget ((jget (this).gameStateFactory)).sHOW_HIGH_SCORE_GAME_STATE))
-                        Control.Monad.void (AllBinaryGameCanvas.setHighScoresPaintable ((jget (this).gameCanvas)) (javaCast (jio (AllBinaryGameCanvas.getRealHighScoresPaintable ((jget (this).gameCanvas))))))
-                else when ((jio (AllBinaryGameCanvas.getGameState ((jget (this).gameCanvas)))) == (jget ((jget (this).gameStateFactory)).sHOW_HIGH_SCORE_GAME_STATE)) $ do
-                    Control.Monad.void (AllBinaryGameCanvas.setGameState ((jget (this).gameCanvas)) (jget ((jget (this).gameStateFactory)).sHOW_END_RESULT_GAME_STATE))
-                    Control.Monad.void (AllBinaryGameCanvas.setHighScoresPaintable ((jget (this).gameCanvas)) (jio (NullPaintable.getInstance)))
-        pure ()
+jchain : List String
+jchain =
+    [ "EndGameProcessor" ]
+        ++ Processor.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    Processor.jfields ++ [ ( "gameStateFactory", JR.defaultOf "" ), ( "gameCanvas", JR.defaultOf "" ), ( "WAIT", JR.defaultOf "J" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "process_0", jm_process_0 ) ]
+        Processor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "EndGameProcessor"
+        [ ( "jm_process_0", jm_process_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "gameCanvas", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Processor.jinit_0 JR.this []),
+                JR.exec (JR.setField "gameStateFactory" "" JR.this (JR.callStatic GameStateFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "WAIT" "J" JR.this (JR.long 5000)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "gameCanvas" "" JR.this (JR.local "gameCanvas")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_process_0 : JR.Method
+jm_process_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isHighScoreSubmitted_0" (JR.thisField "gameCanvas") []) (JR.run [ 
+                        JR.ifElse (JR.invoke "isElapsedTNT_1" (JR.invoke "getGameStateTimeHelper_0" (JR.thisField "gameCanvas") []) [ (JR.thisField "WAIT") ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.invoke "getGameState_0" (JR.thisField "gameCanvas") []) (JR.field "SHOW_END_RESULT_GAME_STATE" (JR.thisField "gameStateFactory"))) (JR.run [ 
+                                JR.declare "highScoresBase" "" (JR.field "highScoresHelper" (JR.thisField "gameCanvas")), 
+                                JR.declare "highScores" "" (JR.invoke "getSelectedHighScores_0" (JR.local "highScoresBase") []), 
+                                JR.ifElse (JR.map2 JR.notEquals (JR.local "highScores") (JR.callStatic NullHighScoresSingletonFactory.jm_getInstance_0 [])) (JR.run [ 
+                                    JR.exec (JR.invoke "selectHighScores_0" (JR.local "highScoresBase") []), 
+                                    JR.exec (JR.invoke "setHighScores_1" (JR.invoke "getRealHighScoresPaintable_0" (JR.thisField "gameCanvas") []) [ (JR.local "highScores") ]), 
+                                    JR.exec (JR.invoke "setGameState_1" (JR.thisField "gameCanvas") [ (JR.field "SHOW_HIGH_SCORE_GAME_STATE" (JR.thisField "gameStateFactory")) ]), 
+                                    JR.exec (JR.invoke "setHighScoresPaintable_1" (JR.thisField "gameCanvas") [ (JR.invoke "getRealHighScoresPaintable_0" (JR.thisField "gameCanvas") []) ]) ]) identity ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.invoke "getGameState_0" (JR.thisField "gameCanvas") []) (JR.field "SHOW_HIGH_SCORE_GAME_STATE" (JR.thisField "gameStateFactory"))) (JR.run [ 
+                                JR.exec (JR.invoke "setGameState_1" (JR.thisField "gameCanvas") [ (JR.field "SHOW_END_RESULT_GAME_STATE" (JR.thisField "gameStateFactory")) ]), 
+                                JR.exec (JR.invoke "setHighScoresPaintable_1" (JR.thisField "gameCanvas") [ (JR.callStatic NullPaintable.jm_getInstance_0 []) ]) ]) identity ]) ]) identity ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

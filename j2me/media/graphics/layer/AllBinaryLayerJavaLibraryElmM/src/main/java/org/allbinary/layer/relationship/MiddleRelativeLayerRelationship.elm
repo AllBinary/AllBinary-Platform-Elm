@@ -1,83 +1,77 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer.relationship
-module MiddleRelativeLayerRelationship (module MiddleRelativeLayerRelationship, module RelativeLayerRelationship) where
+module Org.Allbinary.Layer.Relationship.MiddleRelativeLayerRelationship exposing (..)
 
-import RelativeLayerRelationship hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified BasicArrayListUtil -- org.allbinary.util.BasicArrayListUtil
-import qualified RelativeLayerRelationship
+{-| Generated Code Do Not Modify package org.allbinary.layer.relationship
+-}
 
-data MiddleRelativeLayerRelationship = MiddleRelativeLayerRelationship
-    { header_ :: JavaHeader
-    , base :: RelativeLayerRelationship.RelativeLayerRelationship
-    }
+import JR
+import Org.Allbinary.Util.BasicArrayListUtil as BasicArrayListUtil
+import Org.Allbinary.Graphics.PointFactory as PointFactory
+import Org.Allbinary.Layer.Relationship.RelativeLayerRelationship as RelativeLayerRelationship
 
-instance JavaNull MiddleRelativeLayerRelationship where
-    javaNull = javaNullRecord "MiddleRelativeLayerRelationship"
 
-instance JavaEquals MiddleRelativeLayerRelationship where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "MiddleRelativeLayerRelationship"
 
-instance Eq MiddleRelativeLayerRelationship where
-    (==) = jrecordEquals
 
-instance JavaObjectClass MiddleRelativeLayerRelationship where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "MiddleRelativeLayerRelationship" ]
+        ++ RelativeLayerRelationship.jchain
 
-newRecord_ :: IO MiddleRelativeLayerRelationship
-newRecord_ = do
-    base <- RelativeLayerRelationship.newRecord_
-    let header_ = base.header_
-    let this = MiddleRelativeLayerRelationship header_ base
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: MiddleRelativeLayerRelationship -> IO ()
-initFields_ this = do
-    pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    RelativeLayerRelationship.jfields ++ []
 
-new_1 :: AllBinaryLayer.AllBinaryLayer -> IO MiddleRelativeLayerRelationship
-new_1 layer = do
-    this <- newRecord_
-    init_1 this layer
-    pure this
 
-init_1 :: MiddleRelativeLayerRelationship -> AllBinaryLayer.AllBinaryLayer -> IO ()
-init_1 this layer = do
-        RelativeLayerRelationship.init_3 this.base (layer) (jio (PointFactory.createXY ((jio (PointFactory.getInstance))) (jio (AllBinaryLayer.getHalfWidth layer)) (jio (AllBinaryLayer.getHalfHeight layer)))) (jio (BasicArrayListUtil.getImmutableInstance ((jio (BasicArrayListUtil.getInstance)))))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+jvtable =
+    JR.vtable
+        []
+        RelativeLayerRelationship.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MiddleRelativeLayerRelationship"
+        [ ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "layer", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect RelativeLayerRelationship.jinit_3 JR.this [ (JR.local "layer"), (JR.invoke "createXY_2" (JR.callStatic PointFactory.jm_getInstance_0 []) [ (JR.invoke "getHalfWidth_0" (JR.local "layer") []), (JR.invoke "getHalfHeight_0" (JR.local "layer") []) ]), (JR.invoke "getImmutableInstance_0" (JR.callStatic BasicArrayListUtil.jm_getInstance_0 []) []) ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

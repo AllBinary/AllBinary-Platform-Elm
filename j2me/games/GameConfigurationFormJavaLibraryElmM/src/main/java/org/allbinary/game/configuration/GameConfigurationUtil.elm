@@ -1,246 +1,215 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
-module GameConfigurationUtil where
+module Org.Allbinary.Game.Configuration.GameConfigurationUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameConfigurationSingleton -- same package or java.lang
-import qualified GameConfiguration -- same package or java.lang
-import qualified GameOptionsForm -- same package or java.lang
-import qualified GameConfigurationGauge -- same package or java.lang
-import qualified GameConfigurationCentral -- same package or java.lang
-import qualified LcduiItem -- javax.microedition.lcdui.LcduiItem
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration
+-}
 
-data GameConfigurationUtil = GameConfigurationUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , gAUGE_UPDATE :: IORef (String)
-    , fROM :: IORef (String)
-    , tO :: IORef (String)
-    , cOMPETITION_VALUE :: IORef (Int)
-    }
-
-instance JavaNull GameConfigurationUtil where
-    javaNull = javaNullRecord "GameConfigurationUtil"
-
-instance JavaEquals GameConfigurationUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameConfigurationUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameConfigurationUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameConfigurationUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameConfigurationUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    gAUGE_UPDATE <- newIORef ""
-    fROM <- newIORef ""
-    tO <- newIORef ""
-    cOMPETITION_VALUE <- newIORef 0
-    let this = GameConfigurationUtil header_ logUtil commonStrings gAUGE_UPDATE fROM tO cOMPETITION_VALUE
-    jregisterLevel header_ this
-    jregisterMethod header_ "change" (\() -> change_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "setDefault" (\() -> setDefault_impl this)
-    jregisterMethod header_ "updateChallange" (\() -> updateChallange_impl this)
-    jregisterMethod header_ "updateCompetitionValue" (\() -> updateCompetitionValue_impl this)
-    jregisterMethod header_ "getCompetitionValue" (\() -> getCompetitionValue_impl this)
-    pure this
-
-initFields_ :: GameConfigurationUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.gAUGE_UPDATE ("Gauge Update: ")
-    jset this.fROM (" from: ")
-    jset this.tO (" to: ")
-    jset this.cOMPETITION_VALUE (1)
-    pure ()
-
-new_ :: IO GameConfigurationUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameConfigurationUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.GameConfigurationCentral as GameConfigurationCentral
+import Org.Allbinary.Game.Configuration.GameConfigurationSingleton as GameConfigurationSingleton
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (GameConfigurationUtil)
-getInstance = do
-        pure (GameConfigurationUtil.instance_)
+jclass : String
+jclass =
+    "GameConfigurationUtil"
 
 
--- throws Exception
-change :: (JavaObjectClass this_) => this_ -> GameOptionsForm.GameOptionsForm -> GameConfigurationGauge.GameConfigurationGauge -> IO (())
-change object_ a1 a2 = jmethod object_ "change" (\() -> (change_impl (javaCast object_ :: GameConfigurationUtil))) () a1 a2
-
-change_super :: (JavaObjectClass this_) => this_ -> GameOptionsForm.GameOptionsForm -> GameConfigurationGauge.GameConfigurationGauge -> IO (())
-change_super object_ a1 a2 = (change_impl (javaCast object_ :: GameConfigurationUtil)) a1 a2
-
-change_impl :: GameConfigurationUtil -> GameOptionsForm.GameOptionsForm -> GameConfigurationGauge.GameConfigurationGauge -> IO (())
-change_impl this gameOptionsForm gauge = do
-        Control.Monad.void (GameConfigurationUtil.update this gauge)
-        gameConfigurationSingleton <- (GameConfigurationSingleton.getInstance)
-        gameConfiguration <- (GameConfigurationSingleton.getInstanceByName gameConfigurationSingleton (jio (GameConfigurationGauge.getLabel gauge)))
-        Control.Monad.void (GameConfigurationUtil.updateChallange this gameOptionsForm gameConfiguration)
-        pure ()
+jchain : List String
+jchain =
+    [ "GameConfigurationUtil" ]
 
 
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> GameConfigurationGauge.GameConfigurationGauge -> IO (())
-update object_ a1 = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: GameConfigurationUtil))) () a1
-
-update_super :: (JavaObjectClass this_) => this_ -> GameConfigurationGauge.GameConfigurationGauge -> IO (())
-update_super object_ a1 = (update_impl (javaCast object_ :: GameConfigurationUtil)) a1
-
-update_impl :: GameConfigurationUtil -> GameConfigurationGauge.GameConfigurationGauge -> IO (())
-update_impl this gauge = do
-        gameConfigurationSingleton <- (GameConfigurationSingleton.getInstance)
-        gameConfiguration <- (GameConfigurationSingleton.getInstanceByName gameConfigurationSingleton (jio (GameConfigurationGauge.getLabel gauge)))
-        smallIntegerSingletonFactory <- (SmallIntegerSingletonFactory.getInstance)
-        value <- (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory ((jio (GameConfigurationGauge.getValue gauge)) + (jio (GameConfiguration.intValue ((jio (GameConfiguration.getMinValue gameConfiguration)))))))
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer (jget (this).gAUGE_UPDATE))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName gameConfiguration)))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (this).fROM))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.intValue ((jio (GameConfiguration.getValue gameConfiguration))))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (this).tO))
-        Control.Monad.void (StringMaker.appendint stringBuffer (value))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this (jget ((jget (this).commonStrings)).uPDATE))
-        Control.Monad.void (GameConfiguration.setValue gameConfiguration value)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "GAUGE_UPDATE", JR.defaultOf "" ), ( "FROM", JR.defaultOf "" ), ( "TO", JR.defaultOf "" ), ( "COMPETITION_VALUE", JR.defaultOf "I" ) ]
 
 
--- throws Exception
-setDefault :: (JavaObjectClass this_) => this_ -> GameConfigurationGauge.GameConfigurationGauge -> IO (())
-setDefault object_ a1 = jmethod object_ "setDefault" (\() -> (setDefault_impl (javaCast object_ :: GameConfigurationUtil))) () a1
-
-setDefault_super :: (JavaObjectClass this_) => this_ -> GameConfigurationGauge.GameConfigurationGauge -> IO (())
-setDefault_super object_ a1 = (setDefault_impl (javaCast object_ :: GameConfigurationUtil)) a1
-
-setDefault_impl :: GameConfigurationUtil -> GameConfigurationGauge.GameConfigurationGauge -> IO (())
-setDefault_impl this gauge = do
-        gameConfigurationSingleton <- (GameConfigurationSingleton.getInstance)
-        gameConfiguration <- (GameConfigurationSingleton.getInstanceByName gameConfigurationSingleton (jio (GameConfigurationGauge.getLabel gauge)))
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "Gauge Default: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName gameConfiguration)))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (this).tO))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.intValue ((jio (GameConfiguration.getDefaultValue gameConfiguration))))))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this "setDefault")
-        Control.Monad.void (GameConfigurationGauge.setValue gauge ((jio (GameConfiguration.intValue ((jio (GameConfiguration.getDefaultValue gameConfiguration))))) - (jio (GameConfiguration.intValue ((jio (GameConfiguration.getMinValue gameConfiguration)))))))
-        Control.Monad.void (GameConfiguration.setValue gameConfiguration (jio (GameConfiguration.getDefaultValue gameConfiguration)))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "change_2", jm_change_2 )
+        , ( "update_1", jm_update_1 )
+        , ( "setDefault_1", jm_setDefault_1 )
+        , ( "updateChallange_2", jm_updateChallange_2 )
+        , ( "updateCompetitionValue_0", jm_updateCompetitionValue_0 )
+        , ( "getCompetitionValue_0", jm_getCompetitionValue_0 ) ]
+        JR.noMethods
 
 
--- throws Exception
-updateChallange :: (JavaObjectClass this_) => this_ -> GameOptionsForm.GameOptionsForm -> GameConfiguration.GameConfiguration -> IO (())
-updateChallange object_ a1 a2 = jmethod object_ "updateChallange" (\() -> (updateChallange_impl (javaCast object_ :: GameConfigurationUtil))) () a1 a2
-
-updateChallange_super :: (JavaObjectClass this_) => this_ -> GameOptionsForm.GameOptionsForm -> GameConfiguration.GameConfiguration -> IO (())
-updateChallange_super object_ a1 a2 = (updateChallange_impl (javaCast object_ :: GameConfigurationUtil)) a1 a2
-
-updateChallange_impl :: GameConfigurationUtil -> GameOptionsForm.GameOptionsForm -> GameConfiguration.GameConfiguration -> IO (())
-updateChallange_impl this gameOptionsForm gameConfiguration = do
-        gameConfigurationSingleton <- (GameConfigurationSingleton.getInstance)
-        gameConfigurationCentral <- (GameConfigurationCentral.getInstance)
-        when (gameConfiguration == (jget (gameConfigurationCentral).cHALLENGE_LEVEL)) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).sTART) this "updateChallange")
-            Control.Monad.void (setValue ((jget (gameConfigurationCentral).cOLLIDE_DAMAGE)) (jio (GameConfiguration.getValue gameConfiguration)))
-            Control.Monad.void (setValue ((jget (gameConfigurationCentral).aTTACK_CHALLENGE_LEVEL)) (jio (GameConfiguration.getValue gameConfiguration)))
-            Control.Monad.void (setValue ((jget (gameConfigurationCentral).dURABILITY_CHALLENGE_LEVEL)) (jio (GameConfiguration.getValue gameConfiguration)))
-            Control.Monad.void (setValue ((jget (gameConfigurationCentral).sPEED_CHALLENGE_LEVEL)) (jio (GameConfiguration.getValue gameConfiguration)))
-            size <- (GameOptionsForm.size gameOptionsForm)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                item <- (GameOptionsForm.get gameOptionsForm index)
-                when (javaInstanceOf item "GameConfigurationGauge") $ do
-                    let gauge = (javaCast item :: GameConfigurationGauge.GameConfigurationGauge)
-                    name <- (LcduiItem.getLabel item)
-                    nextGameConfiguration <- (GameConfigurationSingleton.getInstanceByName gameConfigurationSingleton name)
-                    if (nextGameConfiguration == (jget (gameConfigurationCentral).cOLLIDE_DAMAGE)) then do
-                        Control.Monad.void (GameConfigurationGauge.setValue gauge ((jio (intValue ((jio (getValue ((jget (gameConfigurationCentral).cOLLIDE_DAMAGE))))))) - (jio (GameConfiguration.intValue ((jio (GameConfiguration.getMinValue gameConfiguration)))))))
-                    else if (nextGameConfiguration == (jget (gameConfigurationCentral).dURABILITY_CHALLENGE_LEVEL)) then do
-                        Control.Monad.void (GameConfigurationGauge.setValue gauge ((jio (intValue ((jio (getValue ((jget (gameConfigurationCentral).dURABILITY_CHALLENGE_LEVEL))))))) - (jio (GameConfiguration.intValue ((jio (GameConfiguration.getMinValue gameConfiguration)))))))
-                    else if (nextGameConfiguration == (jget (gameConfigurationCentral).aTTACK_CHALLENGE_LEVEL)) then do
-                        Control.Monad.void (GameConfigurationGauge.setValue gauge ((jio (intValue ((jio (getValue ((jget (gameConfigurationCentral).aTTACK_CHALLENGE_LEVEL))))))) - (jio (GameConfiguration.intValue ((jio (GameConfiguration.getMinValue gameConfiguration)))))))
-                    else when (nextGameConfiguration == (jget (gameConfigurationCentral).sPEED_CHALLENGE_LEVEL)) $ do
-                        Control.Monad.void (GameConfigurationGauge.setValue gauge ((jio (intValue ((jio (getValue ((jget (gameConfigurationCentral).sPEED_CHALLENGE_LEVEL))))))) - (jio (GameConfiguration.intValue ((jio (GameConfiguration.getMinValue gameConfiguration)))))))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameConfigurationUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_change_2", jm_change_2 ), ( "jm_update_1", jm_update_1 ), ( "jm_setDefault_1", jm_setDefault_1 ), ( "jm_updateChallange_2", jm_updateChallange_2 ), ( "jm_updateCompetitionValue_0", jm_updateCompetitionValue_0 ), ( "jm_getCompetitionValue_0", jm_getCompetitionValue_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-updateCompetitionValue :: (JavaObjectClass this_) => this_ -> IO (())
-updateCompetitionValue object_ = jmethod object_ "updateCompetitionValue" (\() -> (updateCompetitionValue_impl (javaCast object_ :: GameConfigurationUtil))) ()
-
-updateCompetitionValue_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateCompetitionValue_super object_ = (updateCompetitionValue_impl (javaCast object_ :: GameConfigurationUtil))
-
-updateCompetitionValue_impl :: GameConfigurationUtil -> IO (())
-updateCompetitionValue_impl this = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).sTART) this "updateCompetitionValue")
-        gameConfigurationCentral <- (GameConfigurationCentral.getInstance)
-        jset (this).cOMPETITION_VALUE (((((jio (intValue ((jio (getValue ((jget (gameConfigurationCentral).cOLLIDE_DAMAGE))))))) + (jio (intValue ((jio (getValue ((jget (gameConfigurationCentral).aTTACK_CHALLENGE_LEVEL)))))))) + (jio (intValue ((jio (getValue ((jget (gameConfigurationCentral).dURABILITY_CHALLENGE_LEVEL)))))))) + (jio (intValue ((jio (getValue ((jget (gameConfigurationCentral).sPEED_CHALLENGE_LEVEL)))))))))
-        jset (this).cOMPETITION_VALUE ((((jget (this).cOMPETITION_VALUE) `Data.Bits.shiftR` 2)))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getCompetitionValue :: (JavaObjectClass this_) => this_ -> IO (Int)
-getCompetitionValue object_ = jmethod object_ "getCompetitionValue" (\() -> (getCompetitionValue_impl (javaCast object_ :: GameConfigurationUtil))) ()
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameConfigurationUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
-getCompetitionValue_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getCompetitionValue_super object_ = (getCompetitionValue_impl (javaCast object_ :: GameConfigurationUtil))
 
-getCompetitionValue_impl :: GameConfigurationUtil -> IO (Int)
-getCompetitionValue_impl this = do
-        pure ((jget (this).cOMPETITION_VALUE))
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "GAUGE_UPDATE" "" JR.this (JR.str "Gauge Update: ")),
+                JR.exec (JR.setField "FROM" "" JR.this (JR.str " from: ")),
+                JR.exec (JR.setField "TO" "" JR.this (JR.str " to: ")),
+                JR.exec (JR.setField "COMPETITION_VALUE" "I" JR.this (JR.int 1)),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_change_2 : JR.Method
+jm_change_2 jheap jthis jargs =
+    JR.method [ ( "gameOptionsForm", "" ), ( "gauge", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "update_1" JR.this [ (JR.local "gauge") ]), 
+                    JR.declare "gameConfigurationSingleton" "" (JR.callStatic GameConfigurationSingleton.jm_getInstance_0 []), 
+                    JR.declare "gameConfiguration" "" (JR.invoke "getInstanceByName_1" (JR.local "gameConfigurationSingleton") [ (JR.invoke "getLabel_0" (JR.local "gauge") []) ]), 
+                    JR.exec (JR.invoke "updateChallange_2" JR.this [ (JR.local "gameOptionsForm"), (JR.local "gameConfiguration") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_1 : JR.Method
+jm_update_1 jheap jthis jargs =
+    JR.method [ ( "gauge", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameConfigurationSingleton" "" (JR.callStatic GameConfigurationSingleton.jm_getInstance_0 []), 
+                    JR.declare "gameConfiguration" "" (JR.invoke "getInstanceByName_1" (JR.local "gameConfigurationSingleton") [ (JR.invoke "getLabel_0" (JR.local "gauge") []) ]), 
+                    JR.declare "smallIntegerSingletonFactory" "" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []), 
+                    JR.declare "value" "" (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.plus (JR.invoke "getValue_0" (JR.local "gauge") []) (JR.invoke "intValue_0" (JR.invoke "getMinValue_0" (JR.local "gameConfiguration") []) [])) ]), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "GAUGE_UPDATE") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.local "gameConfiguration") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "FROM") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.local "gameConfiguration") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "TO") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.local "value") [])) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.invoke "setValue_1" (JR.local "gameConfiguration") [ (JR.local "value") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDefault_1 : JR.Method
+jm_setDefault_1 jheap jthis jargs =
+    JR.method [ ( "gauge", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameConfigurationSingleton" "" (JR.callStatic GameConfigurationSingleton.jm_getInstance_0 []), 
+                    JR.declare "gameConfiguration" "" (JR.invoke "getInstanceByName_1" (JR.local "gameConfigurationSingleton") [ (JR.invoke "getLabel_0" (JR.local "gauge") []) ]), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Gauge Default: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.local "gameConfiguration") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "TO") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getDefaultValue_0" (JR.local "gameConfiguration") []) [])) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "setDefault") ]), 
+                    JR.exec (JR.invoke "setValue_1" (JR.local "gauge") [ (JR.map2 JR.sub (JR.invoke "intValue_0" (JR.invoke "getDefaultValue_0" (JR.local "gameConfiguration") []) []) (JR.invoke "intValue_0" (JR.invoke "getMinValue_0" (JR.local "gameConfiguration") []) [])) ]), 
+                    JR.exec (JR.invoke "setValue_1" (JR.local "gameConfiguration") [ (JR.invoke "getDefaultValue_0" (JR.local "gameConfiguration") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateChallange_2 : JR.Method
+jm_updateChallange_2 jheap jthis jargs =
+    JR.method [ ( "gameOptionsForm", "" ), ( "gameConfiguration", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameConfigurationSingleton" "" (JR.callStatic GameConfigurationSingleton.jm_getInstance_0 []), 
+                    JR.declare "gameConfigurationCentral" "" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "gameConfiguration") (JR.field "CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral"))) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.str "updateChallange") ]), 
+                        JR.exec (JR.invoke "setValue_1" (JR.field "COLLIDE_DAMAGE" (JR.local "gameConfigurationCentral")) [ (JR.invoke "getValue_0" (JR.local "gameConfiguration") []) ]), 
+                        JR.exec (JR.invoke "setValue_1" (JR.field "ATTACK_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral")) [ (JR.invoke "getValue_0" (JR.local "gameConfiguration") []) ]), 
+                        JR.exec (JR.invoke "setValue_1" (JR.field "DURABILITY_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral")) [ (JR.invoke "getValue_0" (JR.local "gameConfiguration") []) ]), 
+                        JR.exec (JR.invoke "setValue_1" (JR.field "SPEED_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral")) [ (JR.invoke "getValue_0" (JR.local "gameConfiguration") []) ]), 
+                        JR.declare "size" "I" (JR.invoke "size_0" (JR.local "gameOptionsForm") []), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70174 -> (JR.setLocal "index" "I" (JR.lit jwN70174))) JR.increment) ]) (JR.run [ 
+                            JR.declare "item" "" (JR.invoke "get_1" (JR.local "gameOptionsForm") [ (JR.local "index") ]), 
+                            JR.ifElse (JR.instanceOf "GameConfigurationGauge" (JR.local "item")) (JR.run [ 
+                                JR.declare "gauge" "" (JR.local "item"), 
+                                JR.declare "name" "" (JR.invoke "getLabel_0" (JR.local "item") []), 
+                                JR.declare "nextGameConfiguration" "" (JR.invoke "getInstanceByName_1" (JR.local "gameConfigurationSingleton") [ (JR.local "name") ]), 
+                                JR.ifElse (JR.map2 JR.equals (JR.local "nextGameConfiguration") (JR.field "COLLIDE_DAMAGE" (JR.local "gameConfigurationCentral"))) (JR.run [ 
+                                    JR.exec (JR.invoke "setValue_1" (JR.local "gauge") [ (JR.map2 JR.sub (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.field "COLLIDE_DAMAGE" (JR.local "gameConfigurationCentral")) []) []) (JR.invoke "intValue_0" (JR.invoke "getMinValue_0" (JR.local "gameConfiguration") []) [])) ]) ]) (JR.run [ 
+                                JR.ifElse (JR.map2 JR.equals (JR.local "nextGameConfiguration") (JR.field "DURABILITY_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral"))) (JR.run [ 
+                                    JR.exec (JR.invoke "setValue_1" (JR.local "gauge") [ (JR.map2 JR.sub (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.field "DURABILITY_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral")) []) []) (JR.invoke "intValue_0" (JR.invoke "getMinValue_0" (JR.local "gameConfiguration") []) [])) ]) ]) (JR.run [ 
+                                JR.ifElse (JR.map2 JR.equals (JR.local "nextGameConfiguration") (JR.field "ATTACK_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral"))) (JR.run [ 
+                                    JR.exec (JR.invoke "setValue_1" (JR.local "gauge") [ (JR.map2 JR.sub (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.field "ATTACK_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral")) []) []) (JR.invoke "intValue_0" (JR.invoke "getMinValue_0" (JR.local "gameConfiguration") []) [])) ]) ]) (JR.run [ 
+                                JR.ifElse (JR.map2 JR.equals (JR.local "nextGameConfiguration") (JR.field "SPEED_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral"))) (JR.run [ 
+                                    JR.exec (JR.invoke "setValue_1" (JR.local "gauge") [ (JR.map2 JR.sub (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.field "SPEED_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral")) []) []) (JR.invoke "intValue_0" (JR.invoke "getMinValue_0" (JR.local "gameConfiguration") []) [])) ]) ]) identity ]) ]) ]) ]) identity ]) ] ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateCompetitionValue_0 : JR.Method
+jm_updateCompetitionValue_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.str "updateCompetitionValue") ]), 
+                    JR.declare "gameConfigurationCentral" "" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 []), 
+                    JR.exec (JR.setField "COMPETITION_VALUE" "I" JR.this (JR.plus (JR.plus (JR.plus (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.field "COLLIDE_DAMAGE" (JR.local "gameConfigurationCentral")) []) []) (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.field "ATTACK_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral")) []) [])) (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.field "DURABILITY_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral")) []) [])) (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.field "SPEED_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral")) []) []))), 
+                    JR.exec (JR.setField "COMPETITION_VALUE" "I" JR.this ((JR.map2 JR.shr (JR.thisField "COMPETITION_VALUE") (JR.int 2)))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCompetitionValue_0 : JR.Method
+jm_getCompetitionValue_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "COMPETITION_VALUE") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

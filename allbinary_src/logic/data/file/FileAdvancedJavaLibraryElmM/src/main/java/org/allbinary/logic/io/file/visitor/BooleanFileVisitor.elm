@@ -1,172 +1,122 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file.visitor
-module BooleanFileVisitor where
+module Org.Allbinary.Logic.Io.File.Visitor.BooleanFileVisitor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified VisitorInterface -- org.allbinary.logic.util.visitor.VisitorInterface
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file.visitor
+-}
 
--- implements VisitorInterface
-data BooleanFileVisitor = BooleanFileVisitor
-    { header_ :: JavaHeader
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , filterStringBasicArrayList :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull BooleanFileVisitor where
-    javaNull = javaNullRecord "BooleanFileVisitor"
-
-instance JavaEquals BooleanFileVisitor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BooleanFileVisitor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BooleanFileVisitor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BooleanFileVisitor
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonStrings <- newIORef javaNull
-    filterStringBasicArrayList <- newIORef javaNull
-    let this = BooleanFileVisitor header_ commonStrings filterStringBasicArrayList
-    jregisterLevel header_ this
-    VisitorInterface.registerInterface_ header_
-    jregisterMethod header_ "visit_overload1" (\() -> visit_overload1_impl this)
-    jregisterMethod header_ "visit_overload2" (\() -> visit_overload2_impl this)
-    jregisterMethod header_ "getFilterStringBasicArrayList" (\() -> getFilterStringBasicArrayList_impl this)
-    jregisterMethod header_ "setFilterStringBasicArrayList" (\() -> setFilterStringBasicArrayList_impl this)
-    jregisterMethod header_ "visit_2" (\() -> visit_2_impl this)
-    pure this
-
-initFields_ :: BooleanFileVisitor -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.filterStringBasicArrayList (javaNull)
-    pure ()
-
-new_1 :: BasicArrayList.BasicArrayList -> IO BooleanFileVisitor
-new_1 filterStringBasicArrayList = do
-    this <- newRecord_
-    init_1 this filterStringBasicArrayList
-    pure this
-
-init_1 :: BooleanFileVisitor -> BasicArrayList.BasicArrayList -> IO ()
-init_1 this filterStringBasicArrayList = do
-        initFields_ this
-        Control.Monad.void (BooleanFileVisitor.setFilterStringBasicArrayList this filterStringBasicArrayList)
-        Control.Monad.void (PreLogUtil.put ("Filter BasicArrayList: " ++ (jio (BasicArrayList.toString ((jio (BooleanFileVisitor.getFilterStringBasicArrayList this)))))) this (jget ((jget (this).commonStrings)).cONSTRUCTOR))
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Logic.Util.Visitor.VisitorInterface as VisitorInterface
 
 
--- Java overloads of visit: calls the overload for the types of the arguments
-visit :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (JavaObject)
-visit this a1
-    | jisInstanceOf a1 (javaNull :: AbFile.AbFile) = fmap jtoObject (visit_overload2 this (javaCast a1 :: AbFile.AbFile))
-    | otherwise = fmap jtoObject (visit_overload1 this a1)
-
-visit_overload1 :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Any.Any)
-visit_overload1 object_ a1 = jmethod object_ "visit_overload1" (\() -> (visit_overload1_impl (javaCast object_ :: BooleanFileVisitor))) () (jtoObject a1)
-
-visit_overload1_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Any.Any)
-visit_overload1_super object_ a1 = (visit_overload1_impl (javaCast object_ :: BooleanFileVisitor)) (jtoObject a1)
-
-visit_overload1_impl :: BooleanFileVisitor -> JavaObject -> IO (Any.Any)
-visit_overload1_impl this anyTypeObject_ = do
-        let anyType = jtoObject anyTypeObject_
-        pure ((jtoObject (javaCast (jio (BooleanFileVisitor.visit this (javaCast anyType :: AbFile.AbFile))) :: Any.Any)))
+jclass : String
+jclass =
+    "BooleanFileVisitor"
 
 
-visit_overload2 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (Bool)
-visit_overload2 object_ a1 = jmethod object_ "visit_overload2" (\() -> (visit_overload2_impl (javaCast object_ :: BooleanFileVisitor))) () a1
-
-visit_overload2_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (Bool)
-visit_overload2_super object_ a1 = (visit_overload2_impl (javaCast object_ :: BooleanFileVisitor)) a1
-
-visit_overload2_impl :: BooleanFileVisitor -> AbFile.AbFile -> IO (Bool)
-visit_overload2_impl this file = do
-    javaCatchReturn $ do
-        list <- (BooleanFileVisitor.getFilterStringBasicArrayList this)
-        size <- (BasicArrayList.size list)
-        nextFileFilterString <- newIORef ("")
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset nextFileFilterString ((javaCast (jio (BasicArrayList.get list index)) :: String))
-            when (jio (Any.booleanValue ((jio (BooleanFileVisitor.visit_2 this file (jget nextFileFilterString)))))) $ do
-                javaReturn (True)
-        pure (False)
+jchain : List String
+jchain =
+    [ "BooleanFileVisitor" ]
+        ++ VisitorInterface.jchain
 
 
-getFilterStringBasicArrayList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getFilterStringBasicArrayList object_ = jmethod object_ "getFilterStringBasicArrayList" (\() -> (getFilterStringBasicArrayList_impl (javaCast object_ :: BooleanFileVisitor))) ()
-
-getFilterStringBasicArrayList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getFilterStringBasicArrayList_super object_ = (getFilterStringBasicArrayList_impl (javaCast object_ :: BooleanFileVisitor))
-
-getFilterStringBasicArrayList_impl :: BooleanFileVisitor -> IO (BasicArrayList.BasicArrayList)
-getFilterStringBasicArrayList_impl this = do
-        pure ((jget (this).filterStringBasicArrayList))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonStrings", JR.defaultOf "" ), ( "filterStringBasicArrayList", JR.defaultOf "" ) ]
 
 
-setFilterStringBasicArrayList :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setFilterStringBasicArrayList object_ a1 = jmethod object_ "setFilterStringBasicArrayList" (\() -> (setFilterStringBasicArrayList_impl (javaCast object_ :: BooleanFileVisitor))) () a1
-
-setFilterStringBasicArrayList_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setFilterStringBasicArrayList_super object_ a1 = (setFilterStringBasicArrayList_impl (javaCast object_ :: BooleanFileVisitor)) a1
-
-setFilterStringBasicArrayList_impl :: BooleanFileVisitor -> BasicArrayList.BasicArrayList -> IO (())
-setFilterStringBasicArrayList_impl this filterStringBasicArrayList = do
-        jset (this).filterStringBasicArrayList (filterStringBasicArrayList)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "visit_1", jm_visit_1 )
+        , ( "getFilterStringBasicArrayList_0", jm_getFilterStringBasicArrayList_0 )
+        , ( "setFilterStringBasicArrayList_1", jm_setFilterStringBasicArrayList_1 )
+        , ( "visit_2", jm_visit_2 ) ]
+        JR.noMethods
 
 
-visit_2 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> String -> IO (Bool)
-visit_2 object_ a1 a2 = jmethod object_ "visit_2" (\() -> (visit_2_impl (javaCast object_ :: BooleanFileVisitor))) () a1 a2
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BooleanFileVisitor"
+        [ ( "jm_visit_1", jm_visit_1 ), ( "jm_getFilterStringBasicArrayList_0", jm_getFilterStringBasicArrayList_0 ), ( "jm_setFilterStringBasicArrayList_1", jm_setFilterStringBasicArrayList_1 ), ( "jm_visit_2", jm_visit_2 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
-visit_2_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> String -> IO (Bool)
-visit_2_super object_ a1 a2 = (visit_2_impl (javaCast object_ :: BooleanFileVisitor)) a1 a2
 
-visit_2_impl :: BooleanFileVisitor -> AbFile.AbFile -> String -> IO (Bool)
-visit_2_impl this file fileNameString = do
-        pure (False)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "filterStringBasicArrayList", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setFilterStringBasicArrayList_1" JR.this [ (JR.local "filterStringBasicArrayList") ]), 
+                    JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.concat (JR.str "Filter BasicArrayList: ") (JR.invoke "toString_0" (JR.invoke "getFilterStringBasicArrayList_0" JR.this []) [])), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_visit_1 : JR.Method
+jm_visit_1 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "visit_1" JR.this [ (JR.local "anyType") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFilterStringBasicArrayList_0 : JR.Method
+jm_getFilterStringBasicArrayList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "filterStringBasicArrayList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFilterStringBasicArrayList_1 : JR.Method
+jm_setFilterStringBasicArrayList_1 jheap jthis jargs =
+    JR.method [ ( "filterStringBasicArrayList", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "filterStringBasicArrayList" "" JR.this (JR.local "filterStringBasicArrayList")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_visit_2 : JR.Method
+jm_visit_2 jheap jthis jargs =
+    JR.method [ ( "file", "" ), ( "fileNameString", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

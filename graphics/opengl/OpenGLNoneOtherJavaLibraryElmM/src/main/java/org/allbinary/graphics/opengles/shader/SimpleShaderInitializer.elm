@@ -1,87 +1,91 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
-module SimpleShaderInitializer (module SimpleShaderInitializer, module ShaderInitializer) where
+module Org.Allbinary.Graphics.Opengles.Shader.SimpleShaderInitializer exposing (..)
 
-import ShaderInitializer hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, instanceC)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ShaderInitializer
+{-| Generated Code Do Not Modify package org.allbinary.graphics.opengles.shader
+-}
 
-data SimpleShaderInitializer = SimpleShaderInitializer
-    { header_ :: JavaHeader
-    , base :: ShaderInitializer.ShaderInitializer
-    }
-
-instance JavaNull SimpleShaderInitializer where
-    javaNull = javaNullRecord "SimpleShaderInitializer"
-
-instance JavaEquals SimpleShaderInitializer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SimpleShaderInitializer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SimpleShaderInitializer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instanceC :: SimpleShaderInitializer
-{-# NOINLINE instanceC #-}
-instanceC = unsafePerformIO ((new_))
-
-newRecord_ :: IO SimpleShaderInitializer
-newRecord_ = do
-    base <- ShaderInitializer.newRecord_
-    let header_ = base.header_
-    let this = SimpleShaderInitializer header_ base
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: SimpleShaderInitializer -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO SimpleShaderInitializer
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: SimpleShaderInitializer -> IO ()
-init_ this = do
-    ShaderInitializer.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Opengles.Shader.ShaderInitializer as ShaderInitializer
 
 
-getInstance :: IO (SimpleShaderInitializer)
-getInstance = do
-        pure (SimpleShaderInitializer.instanceC)
+jclass : String
+jclass =
+    "SimpleShaderInitializer"
 
+
+jchain : List String
+jchain =
+    [ "SimpleShaderInitializer" ]
+        ++ ShaderInitializer.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    ShaderInitializer.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        ShaderInitializer.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SimpleShaderInitializer"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instanceC", jstatic_instanceC ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instanceC : JR.M
+jstatic_instanceC s =
+    JR.static "SimpleShaderInitializer" jclinit "instanceC"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect ShaderInitializer.jinit_0 JR.this []),
+            identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instanceC ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

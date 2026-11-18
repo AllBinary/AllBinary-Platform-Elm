@@ -1,229 +1,191 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion
-module AllMotionRecognizer (module AllMotionRecognizer, module MotionRecognizer) where
+module Org.Allbinary.Input.Motion.AllMotionRecognizer exposing (..)
 
-import MotionRecognizer hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, processStartMotionEvent, processStartMotionEvent_super, processStartMotionEvent_impl, processEndMotionEvent, processEndMotionEvent_super, processEndMotionEvent_impl, processDraggedMotionEvent, processDraggedMotionEvent_super, processDraggedMotionEvent_impl, processMovedMotionEvent, processMovedMotionEvent_super, processMovedMotionEvent_impl, processScrolledMotionEvent, processScrolledMotionEvent_super, processScrolledMotionEvent_impl, getMotionGestureRecognizer, getMotionGestureRecognizer_super, getMotionGestureRecognizer_impl, logUtil, motionGestureRecognizer, touchButtonProcessing, touchButtonRecognizer, id, index, pointCircularPool, lastX, lastY)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CustomGPoint -- org.allbinary.graphics.CustomGPoint
-import qualified GPointCircularPool -- org.allbinary.graphics.GPointCircularPool
-import qualified TouchButtonRecognizer -- org.allbinary.input.motion.button.TouchButtonRecognizer
-import qualified MotionGestureRecognizer -- org.allbinary.input.motion.gesture.MotionGestureRecognizer
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified MotionRecognizer
+{-| Generated Code Do Not Modify package org.allbinary.input.motion
+-}
 
-data AllMotionRecognizer = AllMotionRecognizer
-    { header_ :: JavaHeader
-    , base :: MotionRecognizer.MotionRecognizer
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , motionGestureRecognizer :: IORef (MotionGestureRecognizer.MotionGestureRecognizer)
-    , touchButtonProcessing :: IORef (Bool)
-    , touchButtonRecognizer :: IORef (TouchButtonRecognizer.TouchButtonRecognizer)
-    , id :: IORef (Int)
-    , lastX :: IORef (Int)
-    , lastY :: IORef (Int)
-    }
-
-instance JavaNull AllMotionRecognizer where
-    javaNull = javaNullRecord "AllMotionRecognizer"
-
-instance JavaEquals AllMotionRecognizer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllMotionRecognizer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllMotionRecognizer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-index :: IORef (Int)
-{-# NOINLINE index #-}
-index = unsafePerformIO (newIORef (0))
-
-pointCircularPool :: GPointCircularPool.GPointCircularPool
-{-# NOINLINE pointCircularPool #-}
-pointCircularPool = unsafePerformIO ((GPointCircularPool.new_1 40))
-
-newRecord_ :: IO AllMotionRecognizer
-newRecord_ = do
-    base <- MotionRecognizer.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    motionGestureRecognizer <- newIORef javaNull
-    touchButtonProcessing <- newIORef False
-    touchButtonRecognizer <- newIORef javaNull
-    id <- newIORef 0
-    lastX <- newIORef 0
-    lastY <- newIORef 0
-    let this = AllMotionRecognizer header_ base logUtil motionGestureRecognizer touchButtonProcessing touchButtonRecognizer id lastX lastY
-    jregisterLevel header_ this
-    jregisterMethod header_ "processStartMotionEvent" (\() -> processStartMotionEvent_impl this)
-    jregisterMethod header_ "processEndMotionEvent" (\() -> processEndMotionEvent_impl this)
-    jregisterMethod header_ "processDraggedMotionEvent" (\() -> processDraggedMotionEvent_impl this)
-    jregisterMethod header_ "processMovedMotionEvent" (\() -> processMovedMotionEvent_impl this)
-    jregisterMethod header_ "processScrolledMotionEvent" (\() -> processScrolledMotionEvent_impl this)
-    jregisterMethod header_ "getMotionGestureRecognizer" (\() -> getMotionGestureRecognizer_impl this)
-    pure this
-
-initFields_ :: AllMotionRecognizer -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.motionGestureRecognizer (javaNull)
-    jset this.touchButtonProcessing (False)
-    jset this.touchButtonRecognizer (javaNull)
-    jset this.id (0)
-    jset this.lastX (0)
-    jset this.lastY (0)
-    pure ()
-
-new_ :: IO AllMotionRecognizer
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllMotionRecognizer -> IO ()
-init_ this = do
-        MotionRecognizer.init_ this.base
-        initFields_ this
-        jset (this).id ((jpostIncrement AllMotionRecognizer.index (+ 1)))
-        assignedValue <- (MotionGestureRecognizer.new_1 (jget (this).id))
-        jset (this).motionGestureRecognizer (assignedValue)
-        assignedValue <- (TouchButtonRecognizer.new_)
-        jset (this).touchButtonRecognizer (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.GPointCircularPool as GPointCircularPool
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Input.Motion.Gesture.MotionGestureRecognizer as MotionGestureRecognizer
+import Org.Allbinary.Input.Motion.MotionRecognizer as MotionRecognizer
+import Org.Allbinary.Input.Motion.Button.TouchButtonRecognizer as TouchButtonRecognizer
 
 
--- throws Exception
-processStartMotionEvent :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-processStartMotionEvent object_ a1 a2 a3 a4 = jmethod object_ "processStartMotionEvent" (\() -> (processStartMotionEvent_impl (javaCast object_ :: AllMotionRecognizer))) () a1 a2 a3 a4
-
-processStartMotionEvent_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-processStartMotionEvent_super object_ a1 a2 a3 a4 = (processStartMotionEvent_impl (javaCast object_ :: AllMotionRecognizer)) a1 a2 a3 a4
-
-processStartMotionEvent_impl :: AllMotionRecognizer -> Int -> Int -> Int -> Int -> IO (())
-processStartMotionEvent_impl this x y deviceId modifiers = do
-        when (jio (TouchButtonRecognizer.pressTouchButtonInput ((jget (this).touchButtonRecognizer)) x y deviceId)) $ do
-            jset (this).touchButtonProcessing (True)
-        when (Prelude.not (jget (this).touchButtonProcessing)) $ do
-            let point = (javaCast (jio (GPointCircularPool.getNextInstance AllMotionRecognizer.pointCircularPool)) :: CustomGPoint.CustomGPoint)
-            Control.Monad.void (CustomGPoint.setX point x)
-            Control.Monad.void (CustomGPoint.setY point y)
-            Control.Monad.void (MotionGestureRecognizer.processPressedMotionEvent ((jget (this).motionGestureRecognizer)) point deviceId modifiers)
-        pure ()
+jclass : String
+jclass =
+    "AllMotionRecognizer"
 
 
--- throws Exception
-processEndMotionEvent :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-processEndMotionEvent object_ a1 a2 a3 a4 = jmethod object_ "processEndMotionEvent" (\() -> (processEndMotionEvent_impl (javaCast object_ :: AllMotionRecognizer))) () a1 a2 a3 a4
-
-processEndMotionEvent_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-processEndMotionEvent_super object_ a1 a2 a3 a4 = (processEndMotionEvent_impl (javaCast object_ :: AllMotionRecognizer)) a1 a2 a3 a4
-
-processEndMotionEvent_impl :: AllMotionRecognizer -> Int -> Int -> Int -> Int -> IO (())
-processEndMotionEvent_impl this x y deviceId modifiers = do
-        when (jio (TouchButtonRecognizer.releaseTouchButtonInput ((jget (this).touchButtonRecognizer)) x y deviceId)) $ do
-            pure ()
-        when (Prelude.not (jget (this).touchButtonProcessing)) $ do
-            let point = (javaCast (jio (GPointCircularPool.getNextInstance AllMotionRecognizer.pointCircularPool)) :: CustomGPoint.CustomGPoint)
-            Control.Monad.void (CustomGPoint.setX point x)
-            Control.Monad.void (CustomGPoint.setY point y)
-            Control.Monad.void (MotionGestureRecognizer.processReleasedMotionEvent ((jget (this).motionGestureRecognizer)) point deviceId modifiers)
-        when (jget (this).touchButtonProcessing) $ do
-            jset (this).touchButtonProcessing (False)
-        pure ()
+jchain : List String
+jchain =
+    [ "AllMotionRecognizer" ]
+        ++ MotionRecognizer.jchain
 
 
--- throws Exception
-processDraggedMotionEvent :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-processDraggedMotionEvent object_ a1 a2 a3 a4 = jmethod object_ "processDraggedMotionEvent" (\() -> (processDraggedMotionEvent_impl (javaCast object_ :: AllMotionRecognizer))) () a1 a2 a3 a4
-
-processDraggedMotionEvent_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-processDraggedMotionEvent_super object_ a1 a2 a3 a4 = (processDraggedMotionEvent_impl (javaCast object_ :: AllMotionRecognizer)) a1 a2 a3 a4
-
-processDraggedMotionEvent_impl :: AllMotionRecognizer -> Int -> Int -> Int -> Int -> IO (())
-processDraggedMotionEvent_impl this x y deviceId modifiers = do
-        when (jget (this).touchButtonProcessing) $ do
-            Control.Monad.void (TouchButtonRecognizer.pressTouchButtonInput ((jget (this).touchButtonRecognizer)) x y deviceId)
-        when (Prelude.not (jget (this).touchButtonProcessing)) $ do
-            let point = (javaCast (jio (GPointCircularPool.getNextInstance AllMotionRecognizer.pointCircularPool)) :: CustomGPoint.CustomGPoint)
-            Control.Monad.void (CustomGPoint.setX point x)
-            Control.Monad.void (CustomGPoint.setY point y)
-            Control.Monad.void (MotionGestureRecognizer.processDraggedMotionEvent ((jget (this).motionGestureRecognizer)) point deviceId modifiers)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    MotionRecognizer.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "motionGestureRecognizer", JR.defaultOf "" ), ( "touchButtonProcessing", JR.defaultOf "Z" ), ( "touchButtonRecognizer", JR.defaultOf "" ), ( "id", JR.defaultOf "I" ), ( "lastX", JR.defaultOf "I" ), ( "lastY", JR.defaultOf "I" ) ]
 
 
--- throws Exception
-processMovedMotionEvent :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-processMovedMotionEvent object_ a1 a2 a3 a4 = jmethod object_ "processMovedMotionEvent" (\() -> (processMovedMotionEvent_impl (javaCast object_ :: AllMotionRecognizer))) () a1 a2 a3 a4
-
-processMovedMotionEvent_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-processMovedMotionEvent_super object_ a1 a2 a3 a4 = (processMovedMotionEvent_impl (javaCast object_ :: AllMotionRecognizer)) a1 a2 a3 a4
-
-processMovedMotionEvent_impl :: AllMotionRecognizer -> Int -> Int -> Int -> Int -> IO (())
-processMovedMotionEvent_impl this x y deviceId modifiers = do
-        when ((x /= (jget (this).lastX)) || (y /= (jget (this).lastY))) $ do
-            jset (this).lastX (x)
-            jset (this).lastY (y)
-            let point = (javaCast (jio (GPointCircularPool.getNextInstance AllMotionRecognizer.pointCircularPool)) :: CustomGPoint.CustomGPoint)
-            Control.Monad.void (CustomGPoint.setX point x)
-            Control.Monad.void (CustomGPoint.setY point y)
-            Control.Monad.void (MotionGestureRecognizer.processMovedMotionEvent ((jget (this).motionGestureRecognizer)) point deviceId modifiers)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "processStartMotionEvent_4", jm_processStartMotionEvent_4 )
+        , ( "processEndMotionEvent_4", jm_processEndMotionEvent_4 )
+        , ( "processDraggedMotionEvent_4", jm_processDraggedMotionEvent_4 )
+        , ( "processMovedMotionEvent_4", jm_processMovedMotionEvent_4 )
+        , ( "processScrolledMotionEvent_4", jm_processScrolledMotionEvent_4 )
+        , ( "getMotionGestureRecognizer_0", jm_getMotionGestureRecognizer_0 ) ]
+        MotionRecognizer.jvtable
 
 
--- throws Exception
-processScrolledMotionEvent :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-processScrolledMotionEvent object_ a1 a2 a3 a4 = jmethod object_ "processScrolledMotionEvent" (\() -> (processScrolledMotionEvent_impl (javaCast object_ :: AllMotionRecognizer))) () a1 a2 a3 a4
-
-processScrolledMotionEvent_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-processScrolledMotionEvent_super object_ a1 a2 a3 a4 = (processScrolledMotionEvent_impl (javaCast object_ :: AllMotionRecognizer)) a1 a2 a3 a4
-
-processScrolledMotionEvent_impl :: AllMotionRecognizer -> Int -> Int -> Int -> Int -> IO (())
-processScrolledMotionEvent_impl this x y deviceId modifiers = do
-        let point = (javaCast (jio (GPointCircularPool.getNextInstance AllMotionRecognizer.pointCircularPool)) :: CustomGPoint.CustomGPoint)
-        Control.Monad.void (CustomGPoint.setX point x)
-        Control.Monad.void (CustomGPoint.setY point y)
-        Control.Monad.void (MotionGestureRecognizer.processScrolledMotionEvent ((jget (this).motionGestureRecognizer)) point deviceId modifiers)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllMotionRecognizer"
+        [ ( "jm_processStartMotionEvent_4", jm_processStartMotionEvent_4 ), ( "jm_processEndMotionEvent_4", jm_processEndMotionEvent_4 ), ( "jm_processDraggedMotionEvent_4", jm_processDraggedMotionEvent_4 ), ( "jm_processMovedMotionEvent_4", jm_processMovedMotionEvent_4 ), ( "jm_processScrolledMotionEvent_4", jm_processScrolledMotionEvent_4 ), ( "jm_getMotionGestureRecognizer_0", jm_getMotionGestureRecognizer_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_index", jstatic_index ), ( "jstatic_pointCircularPool", jstatic_pointCircularPool ) ]
+        jheap
 
 
-getMotionGestureRecognizer :: (JavaObjectClass this_) => this_ -> IO (MotionGestureRecognizer.MotionGestureRecognizer)
-getMotionGestureRecognizer object_ = jmethod object_ "getMotionGestureRecognizer" (\() -> (getMotionGestureRecognizer_impl (javaCast object_ :: AllMotionRecognizer))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-getMotionGestureRecognizer_super :: (JavaObjectClass this_) => this_ -> IO (MotionGestureRecognizer.MotionGestureRecognizer)
-getMotionGestureRecognizer_super object_ = (getMotionGestureRecognizer_impl (javaCast object_ :: AllMotionRecognizer))
 
-getMotionGestureRecognizer_impl :: AllMotionRecognizer -> IO (MotionGestureRecognizer.MotionGestureRecognizer)
-getMotionGestureRecognizer_impl this = do
-        pure ((jget (this).motionGestureRecognizer))
+jstatic_index : JR.M
+jstatic_index s =
+    JR.static "AllMotionRecognizer" jclinit "index"
+        (JR.int 0)
+        s
 
+
+jstatic_pointCircularPool : JR.M
+jstatic_pointCircularPool s =
+    JR.static "AllMotionRecognizer" jclinit "pointCircularPool"
+        (JR.new GPointCircularPool.jnew_1 [ (JR.int 40) ])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect MotionRecognizer.jinit_0 JR.this []),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "touchButtonProcessing" "Z" JR.this (JR.bool False)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "id" "I" JR.this (JR.postUpdate jstatic_index (\jwN67585 -> (JR.setStatic "AllMotionRecognizer.index" "I" (JR.lit jwN67585))) JR.increment)), 
+                    JR.exec (JR.setField "motionGestureRecognizer" "" JR.this (JR.new MotionGestureRecognizer.jnew_1 [ (JR.thisField "id") ])), 
+                    JR.exec (JR.setField "touchButtonRecognizer" "" JR.this (JR.new TouchButtonRecognizer.jnew_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_processStartMotionEvent_4 : JR.Method
+jm_processStartMotionEvent_4 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ), ( "deviceId", "I" ), ( "modifiers", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "pressTouchButtonInput_3" (JR.thisField "touchButtonRecognizer") [ (JR.local "x"), (JR.local "y"), (JR.local "deviceId") ]) (JR.run [ 
+                        JR.exec (JR.setField "touchButtonProcessing" "Z" JR.this (JR.bool True)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.thisField "touchButtonProcessing")) (JR.run [ 
+                        JR.declare "point" "" (JR.invoke "getNextInstance_0" jstatic_pointCircularPool []), 
+                        JR.exec (JR.invoke "setX_1" (JR.local "point") [ (JR.local "x") ]), 
+                        JR.exec (JR.invoke "setY_1" (JR.local "point") [ (JR.local "y") ]), 
+                        JR.exec (JR.invoke "processPressedMotionEvent_3" (JR.thisField "motionGestureRecognizer") [ (JR.local "point"), (JR.local "deviceId"), (JR.local "modifiers") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processEndMotionEvent_4 : JR.Method
+jm_processEndMotionEvent_4 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ), ( "deviceId", "I" ), ( "modifiers", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "releaseTouchButtonInput_3" (JR.thisField "touchButtonRecognizer") [ (JR.local "x"), (JR.local "y"), (JR.local "deviceId") ]) identity identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.thisField "touchButtonProcessing")) (JR.run [ 
+                        JR.declare "point" "" (JR.invoke "getNextInstance_0" jstatic_pointCircularPool []), 
+                        JR.exec (JR.invoke "setX_1" (JR.local "point") [ (JR.local "x") ]), 
+                        JR.exec (JR.invoke "setY_1" (JR.local "point") [ (JR.local "y") ]), 
+                        JR.exec (JR.invoke "processReleasedMotionEvent_3" (JR.thisField "motionGestureRecognizer") [ (JR.local "point"), (JR.local "deviceId"), (JR.local "modifiers") ]) ]) identity, 
+                    JR.ifElse (JR.thisField "touchButtonProcessing") (JR.run [ 
+                        JR.exec (JR.setField "touchButtonProcessing" "Z" JR.this (JR.bool False)) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processDraggedMotionEvent_4 : JR.Method
+jm_processDraggedMotionEvent_4 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ), ( "deviceId", "I" ), ( "modifiers", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.thisField "touchButtonProcessing") (JR.run [ 
+                        JR.exec (JR.invoke "pressTouchButtonInput_3" (JR.thisField "touchButtonRecognizer") [ (JR.local "x"), (JR.local "y"), (JR.local "deviceId") ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.thisField "touchButtonProcessing")) (JR.run [ 
+                        JR.declare "point" "" (JR.invoke "getNextInstance_0" jstatic_pointCircularPool []), 
+                        JR.exec (JR.invoke "setX_1" (JR.local "point") [ (JR.local "x") ]), 
+                        JR.exec (JR.invoke "setY_1" (JR.local "point") [ (JR.local "y") ]), 
+                        JR.exec (JR.invoke "processDraggedMotionEvent_3" (JR.thisField "motionGestureRecognizer") [ (JR.local "point"), (JR.local "deviceId"), (JR.local "modifiers") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processMovedMotionEvent_4 : JR.Method
+jm_processMovedMotionEvent_4 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ), ( "deviceId", "I" ), ( "modifiers", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.or (JR.map2 JR.notEquals (JR.local "x") (JR.thisField "lastX")) (JR.map2 JR.notEquals (JR.local "y") (JR.thisField "lastY"))) (JR.run [ 
+                        JR.exec (JR.setField "lastX" "I" JR.this (JR.local "x")), 
+                        JR.exec (JR.setField "lastY" "I" JR.this (JR.local "y")), 
+                        JR.declare "point" "" (JR.invoke "getNextInstance_0" jstatic_pointCircularPool []), 
+                        JR.exec (JR.invoke "setX_1" (JR.local "point") [ (JR.local "x") ]), 
+                        JR.exec (JR.invoke "setY_1" (JR.local "point") [ (JR.local "y") ]), 
+                        JR.exec (JR.invoke "processMovedMotionEvent_3" (JR.thisField "motionGestureRecognizer") [ (JR.local "point"), (JR.local "deviceId"), (JR.local "modifiers") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processScrolledMotionEvent_4 : JR.Method
+jm_processScrolledMotionEvent_4 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ), ( "deviceId", "I" ), ( "modifiers", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "point" "" (JR.invoke "getNextInstance_0" jstatic_pointCircularPool []), 
+                    JR.exec (JR.invoke "setX_1" (JR.local "point") [ (JR.local "x") ]), 
+                    JR.exec (JR.invoke "setY_1" (JR.local "point") [ (JR.local "y") ]), 
+                    JR.exec (JR.invoke "processScrolledMotionEvent_3" (JR.thisField "motionGestureRecognizer") [ (JR.local "point"), (JR.local "deviceId"), (JR.local "modifiers") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMotionGestureRecognizer_0 : JR.Method
+jm_getMotionGestureRecognizer_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "motionGestureRecognizer") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

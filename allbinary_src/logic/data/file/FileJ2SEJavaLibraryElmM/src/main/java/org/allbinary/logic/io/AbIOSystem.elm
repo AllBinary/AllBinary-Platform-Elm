@@ -1,119 +1,114 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
-module AbIOSystem where
+module Org.Allbinary.Logic.Io.AbIOSystem exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.io
+-}
 
-data AbIOSystem = AbIOSystem
-    { header_ :: JavaHeader
-    , type_ :: IORef (String)
-    }
-
-instance JavaNull AbIOSystem where
-    javaNull = javaNullRecord "AbIOSystem"
-
-instance JavaEquals AbIOSystem where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AbIOSystem where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AbIOSystem where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AbIOSystem
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AbIOSystem
-newRecord_ = do
-    header_ <- newJavaHeader
-    type_ <- newIORef ""
-    let this = AbIOSystem header_ type_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getType" (\() -> getType_impl this)
-    jregisterMethod header_ "isType" (\() -> isType_impl this)
-    pure this
-
-initFields_ :: AbIOSystem -> IO ()
-initFields_ this = do
-    jset this.type_ ("java.io")
-    pure ()
-
-new_ :: IO AbIOSystem
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AbIOSystem -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (AbIOSystem)
-getInstance = do
-        pure (AbIOSystem.instance_)
+
+jclass : String
+jclass =
+    "AbIOSystem"
 
 
-getType :: (JavaObjectClass this_) => this_ -> IO (String)
-getType object_ = jmethod object_ "getType" (\() -> (getType_impl (javaCast object_ :: AbIOSystem))) ()
-
-getType_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getType_super object_ = (getType_impl (javaCast object_ :: AbIOSystem))
-
-getType_impl :: AbIOSystem -> IO (String)
-getType_impl this = do
-        pure ((jget (this).type_))
+jchain : List String
+jchain =
+    [ "AbIOSystem" ]
 
 
-isType :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isType object_ a1 = jmethod object_ "isType" (\() -> (isType_impl (javaCast object_ :: AbIOSystem))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "type", JR.defaultOf "" ) ]
 
-isType_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isType_super object_ a1 = (isType_impl (javaCast object_ :: AbIOSystem)) a1
 
-isType_impl :: AbIOSystem -> String -> IO (Bool)
-isType_impl this type_ = do
-    javaCatchReturn $ do
-        if ((Prelude.fromEnum (Prelude.compare (jget (this).type_) type_) - 1) == 0) then do
-            javaReturn (True)
-        else do
-            javaReturn (False)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getType_0", jm_getType_0 )
+        , ( "isType_1", jm_isType_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbIOSystem"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getType_0", jm_getType_0 ), ( "jm_isType_1", jm_isType_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AbIOSystem" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "type" "" JR.this (JR.str "java.io")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getType_0 : JR.Method
+jm_getType_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "type") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isType_1 : JR.Method
+jm_isType_1 jheap jthis jargs =
+    JR.method [ ( "type", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.thisField "type") [ (JR.local "type") ]) (JR.int 0)) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

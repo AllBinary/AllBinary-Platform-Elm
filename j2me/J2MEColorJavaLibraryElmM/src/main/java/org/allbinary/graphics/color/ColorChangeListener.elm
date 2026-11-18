@@ -1,10 +1,10 @@
-module ColorChangeListener exposing (..)
+module Org.Allbinary.Graphics.Color.ColorChangeListener exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics.color
 -}
 
 import JR
-import EventListenerInterface
+import Org.Allbinary.Logic.Util.Event.EventListenerInterface as EventListenerInterface
 
 
 jclass : String

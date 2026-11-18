@@ -1,131 +1,131 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
-module GameFeatureChoiceGroups where
+module Org.Allbinary.Game.Configuration.Feature.GameFeatureChoiceGroups exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.feature
+-}
 
-data GameFeatureChoiceGroups = GameFeatureChoiceGroups
-    { header_ :: JavaHeader
-    , hashtable :: IORef (ABHashtable.ABHashtable)
-    }
-
-instance JavaNull GameFeatureChoiceGroups where
-    javaNull = javaNullRecord "GameFeatureChoiceGroups"
-
-instance JavaEquals GameFeatureChoiceGroups where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameFeatureChoiceGroups where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameFeatureChoiceGroups where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-gameFeatureChoiceGroupsExclusive :: IORef (GameFeatureChoiceGroups)
-{-# NOINLINE gameFeatureChoiceGroupsExclusive #-}
-gameFeatureChoiceGroupsExclusive = unsafePerformIO ((new_) >>= newIORef)
-
-gameFeatureChoiceGroupsMultiple :: IORef (GameFeatureChoiceGroups)
-{-# NOINLINE gameFeatureChoiceGroupsMultiple #-}
-gameFeatureChoiceGroupsMultiple = unsafePerformIO ((new_) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameFeatureChoiceGroups
-newRecord_ = do
-    header_ <- newJavaHeader
-    hashtable <- newIORef javaNull
-    let this = GameFeatureChoiceGroups header_ hashtable
-    jregisterLevel header_ this
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    pure this
-
-initFields_ :: GameFeatureChoiceGroups -> IO ()
-initFields_ this = do
-    jset this.hashtable =<< (StdUtil.createHashtable ((jio (StdUtil.getInstance))))
-    pure ()
-
-new_ :: IO GameFeatureChoiceGroups
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameFeatureChoiceGroups -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.StdUtil as StdUtil
 
 
-getExclusiveInstance :: IO (GameFeatureChoiceGroups)
-getExclusiveInstance = do
-        pure ((jget GameFeatureChoiceGroups.gameFeatureChoiceGroupsExclusive))
+jclass : String
+jclass =
+    "GameFeatureChoiceGroups"
 
 
-getMultipleInstance :: IO (GameFeatureChoiceGroups)
-getMultipleInstance = do
-        pure ((jget GameFeatureChoiceGroups.gameFeatureChoiceGroupsMultiple))
+jchain : List String
+jchain =
+    [ "GameFeatureChoiceGroups" ]
 
 
-get :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-get object_ = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: GameFeatureChoiceGroups))) ()
-
-get_super :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-get_super object_ = (get_impl (javaCast object_ :: GameFeatureChoiceGroups))
-
-get_impl :: GameFeatureChoiceGroups -> IO (ABHashtable.ABHashtable)
-get_impl this = do
-        pure ((jget (this).hashtable))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "hashtable", JR.defaultOf "" ) ]
 
 
-add :: (JavaObjectClass this_) => this_ -> String -> BasicArrayList.BasicArrayList -> IO (())
-add object_ a1 a2 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: GameFeatureChoiceGroups))) () a1 a2
+jvtable =
+    JR.vtable
+        [ ( "getExclusiveInstance_0", jm_getExclusiveInstance_0 )
+        , ( "getMultipleInstance_0", jm_getMultipleInstance_0 )
+        , ( "get_0", jm_get_0 )
+        , ( "add_2", jm_add_2 ) ]
+        JR.noMethods
 
-add_super :: (JavaObjectClass this_) => this_ -> String -> BasicArrayList.BasicArrayList -> IO (())
-add_super object_ a1 a2 = (add_impl (javaCast object_ :: GameFeatureChoiceGroups)) a1 a2
 
-add_impl :: GameFeatureChoiceGroups -> String -> BasicArrayList.BasicArrayList -> IO (())
-add_impl this name list = do
-        Control.Monad.void (ABHashtable.put ((jget (this).hashtable)) name list)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameFeatureChoiceGroups"
+        [ ( "jm_getExclusiveInstance_0", jm_getExclusiveInstance_0 ), ( "jm_getMultipleInstance_0", jm_getMultipleInstance_0 ), ( "jm_get_0", jm_get_0 ), ( "jm_add_2", jm_add_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_gameFeatureChoiceGroupsExclusive", jstatic_gameFeatureChoiceGroupsExclusive ), ( "jstatic_gameFeatureChoiceGroupsMultiple", jstatic_gameFeatureChoiceGroupsMultiple ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_gameFeatureChoiceGroupsExclusive : JR.M
+jstatic_gameFeatureChoiceGroupsExclusive s =
+    JR.static "GameFeatureChoiceGroups" jclinit "gameFeatureChoiceGroupsExclusive"
+        (JR.new jnew_0 [])
+        s
+
+
+jstatic_gameFeatureChoiceGroupsMultiple : JR.M
+jstatic_gameFeatureChoiceGroupsMultiple s =
+    JR.static "GameFeatureChoiceGroups" jclinit "gameFeatureChoiceGroupsMultiple"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "hashtable" "" JR.this (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getExclusiveInstance_0 : JR.Method
+jm_getExclusiveInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_gameFeatureChoiceGroupsExclusive ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMultipleInstance_0 : JR.Method
+jm_getMultipleInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_gameFeatureChoiceGroupsMultiple ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_get_0 : JR.Method
+jm_get_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "hashtable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_2 : JR.Method
+jm_add_2 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "list", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "put_2" (JR.thisField "hashtable") [ (JR.local "name"), (JR.local "list") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

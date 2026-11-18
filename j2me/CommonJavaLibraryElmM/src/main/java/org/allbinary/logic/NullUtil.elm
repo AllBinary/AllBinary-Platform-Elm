@@ -1,4 +1,4 @@
-module NullUtil exposing (..)
+module Org.Allbinary.Logic.NullUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic
 -}

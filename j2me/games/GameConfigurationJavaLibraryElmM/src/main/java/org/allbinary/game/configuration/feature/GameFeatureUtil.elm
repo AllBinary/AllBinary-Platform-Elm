@@ -1,291 +1,257 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
-module GameFeatureUtil where
+module Org.Allbinary.Game.Configuration.Feature.GameFeatureUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Features -- same package or java.lang
-import qualified Feature -- same package or java.lang
-import qualified GameFeatureChoiceGroups -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified Enumeration -- java.util.Enumeration
-import qualified ChoiceGroup -- javax.microedition.lcdui.ChoiceGroup
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified EnumerationUtil -- org.allbinary.util.EnumerationUtil
-import qualified HashtableUtil -- org.allbinary.util.HashtableUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.feature
+-}
 
-data GameFeatureUtil = GameFeatureUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , tsUtil :: IORef (TsUtil.TsUtil)
-    , enumerationUtil :: IORef (EnumerationUtil.EnumerationUtil)
-    , oN_GAME_FEATURE_CHANGE :: IORef (String)
-    , gAME_FEATURE_CHANGED :: IORef (String)
-    }
-
-instance JavaNull GameFeatureUtil where
-    javaNull = javaNullRecord "GameFeatureUtil"
-
-instance JavaEquals GameFeatureUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameFeatureUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameFeatureUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameFeatureUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameFeatureUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    tsUtil <- newIORef javaNull
-    enumerationUtil <- newIORef javaNull
-    oN_GAME_FEATURE_CHANGE <- newIORef ""
-    gAME_FEATURE_CHANGED <- newIORef ""
-    let this = GameFeatureUtil header_ logUtil tsUtil enumerationUtil oN_GAME_FEATURE_CHANGE gAME_FEATURE_CHANGED
-    jregisterLevel header_ this
-    jregisterMethod header_ "setDefault" (\() -> setDefault_impl this)
-    jregisterMethod header_ "updateMultiple" (\() -> updateMultiple_impl this)
-    jregisterMethod header_ "updateExclusiveForChoiceGroup" (\() -> updateExclusiveForChoiceGroup_impl this)
-    jregisterMethod header_ "isExclusive" (\() -> isExclusive_impl this)
-    jregisterMethod header_ "updateExclusive" (\() -> updateExclusive_impl this)
-    jregisterMethod header_ "updateExclusiveList" (\() -> updateExclusiveList_impl this)
-    pure this
-
-initFields_ :: GameFeatureUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.tsUtil =<< (TsUtil.getInstance)
-    jset this.enumerationUtil =<< (EnumerationUtil.getInstance)
-    jset this.oN_GAME_FEATURE_CHANGE ("onGameFeatureChange")
-    jset this.gAME_FEATURE_CHANGED ("Game Feature Changed: ")
-    pure ()
-
-new_ :: IO GameFeatureUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameFeatureUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.Util.EnumerationUtil as EnumerationUtil
+import Org.Allbinary.Game.Configuration.Feature.Feature as Feature
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Configuration.Feature.GameFeatureChoiceGroups as GameFeatureChoiceGroups
+import Org.Allbinary.Util.HashtableUtil as HashtableUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.TsUtil as TsUtil
 
 
-getInstance :: IO (GameFeatureUtil)
-getInstance = do
-        pure (GameFeatureUtil.instance_)
+jclass : String
+jclass =
+    "GameFeatureUtil"
 
 
--- throws Exception
-setDefault :: (JavaObjectClass this_) => this_ -> ChoiceGroup.ChoiceGroup -> IO (())
-setDefault object_ a1 = jmethod object_ "setDefault" (\() -> (setDefault_impl (javaCast object_ :: GameFeatureUtil))) () a1
-
-setDefault_super :: (JavaObjectClass this_) => this_ -> ChoiceGroup.ChoiceGroup -> IO (())
-setDefault_super object_ a1 = (setDefault_impl (javaCast object_ :: GameFeatureUtil)) a1
-
-setDefault_impl :: GameFeatureUtil -> ChoiceGroup.ChoiceGroup -> IO (())
-setDefault_impl this choiceGroup = do
-        stringBuffer <- (StringMaker.new_)
-        let mETHOD_NAME = "setDefault"
-        let sELECTED_ARRAY_RETURN = "selectedArray_return["
-        let sELECTED_SEP = "] = "
-        let selectedArray_return = (jnewArray ((jio (ChoiceGroup.size choiceGroup))) False)
-        total <- (ChoiceGroup.getSelectedFlags choiceGroup selectedArray_return)
-        Control.Monad.void (StringMaker.append stringBuffer "Multiple Total Choices: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer total)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this mETHOD_NAME)
-        features <- (Features.getInstance)
-        forM_ [0 .. (jlength selectedArray_return) - 1] $ \index -> javaIteration (pure ()) $ do
-            let isSelected = (jindex selectedArray_return (index))
-            Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-            Control.Monad.void (StringMaker.append stringBuffer sELECTED_ARRAY_RETURN)
-            Control.Monad.void (StringMaker.appendint stringBuffer index)
-            Control.Monad.void (StringMaker.append stringBuffer sELECTED_SEP)
-            Control.Monad.void (StringMaker.appendboolean stringBuffer isSelected)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this mETHOD_NAME)
-            selectedChoiceLabel <- (ChoiceGroup.getString choiceGroup index)
-            gameFeature <- (Feature.getInstance selectedChoiceLabel)
-            if (jio (Features.isDefault features gameFeature)) then do
-                Control.Monad.void (Features.add features gameFeature)
-                Control.Monad.void (ChoiceGroup.setSelectedIndex choiceGroup index True)
-            else do
-                Control.Monad.void (Features.remove features gameFeature)
-                Control.Monad.void (ChoiceGroup.setSelectedIndex choiceGroup index False)
-        pure ()
+jchain : List String
+jchain =
+    [ "GameFeatureUtil" ]
 
 
--- throws Exception
-updateMultiple :: (JavaObjectClass this_) => this_ -> ChoiceGroup.ChoiceGroup -> IO (())
-updateMultiple object_ a1 = jmethod object_ "updateMultiple" (\() -> (updateMultiple_impl (javaCast object_ :: GameFeatureUtil))) () a1
-
-updateMultiple_super :: (JavaObjectClass this_) => this_ -> ChoiceGroup.ChoiceGroup -> IO (())
-updateMultiple_super object_ a1 = (updateMultiple_impl (javaCast object_ :: GameFeatureUtil)) a1
-
-updateMultiple_impl :: GameFeatureUtil -> ChoiceGroup.ChoiceGroup -> IO (())
-updateMultiple_impl this choiceGroup = do
-        stringBuffer <- (StringMaker.new_)
-        let mETHOD_NAME = "updateMultiple"
-        let sELECTED_ARRAY_RETURN = "selectedArray_return["
-        let sELECTED_SEP = "] = "
-        let selectedArray_return = (jnewArray ((jio (ChoiceGroup.size choiceGroup))) False)
-        total <- (ChoiceGroup.getSelectedFlags choiceGroup selectedArray_return)
-        Control.Monad.void (StringMaker.append stringBuffer "Multiple Total Choices: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer total)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this mETHOD_NAME)
-        features <- (Features.getInstance)
-        forM_ [0 .. (jlength selectedArray_return) - 1] $ \index -> javaIteration (pure ()) $ do
-            let isSelected = (jindex selectedArray_return (index))
-            Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-            Control.Monad.void (StringMaker.append stringBuffer sELECTED_ARRAY_RETURN)
-            Control.Monad.void (StringMaker.appendint stringBuffer index)
-            Control.Monad.void (StringMaker.append stringBuffer sELECTED_SEP)
-            Control.Monad.void (StringMaker.appendboolean stringBuffer isSelected)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this mETHOD_NAME)
-            selectedChoiceLabel <- (ChoiceGroup.getString choiceGroup index)
-            gameFeature <- (Feature.getInstance selectedChoiceLabel)
-            if ((Prelude.not isSelected) && (jio (Features.isFeature features gameFeature))) then do
-                Control.Monad.void (Features.remove features gameFeature)
-            else when (isSelected && (Prelude.not (jio (Features.isFeature features gameFeature)))) $ do
-                Control.Monad.void (Features.add features gameFeature)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "tsUtil", JR.defaultOf "" ), ( "enumerationUtil", JR.defaultOf "" ), ( "ON_GAME_FEATURE_CHANGE", JR.defaultOf "" ), ( "GAME_FEATURE_CHANGED", JR.defaultOf "" ) ]
 
 
--- throws Exception
-updateExclusiveForChoiceGroup :: (JavaObjectClass this_) => this_ -> ChoiceGroup.ChoiceGroup -> IO (())
-updateExclusiveForChoiceGroup object_ a1 = jmethod object_ "updateExclusiveForChoiceGroup" (\() -> (updateExclusiveForChoiceGroup_impl (javaCast object_ :: GameFeatureUtil))) () a1
-
-updateExclusiveForChoiceGroup_super :: (JavaObjectClass this_) => this_ -> ChoiceGroup.ChoiceGroup -> IO (())
-updateExclusiveForChoiceGroup_super object_ a1 = (updateExclusiveForChoiceGroup_impl (javaCast object_ :: GameFeatureUtil)) a1
-
-updateExclusiveForChoiceGroup_impl :: GameFeatureUtil -> ChoiceGroup.ChoiceGroup -> IO (())
-updateExclusiveForChoiceGroup_impl this choiceGroup = do
-        stringBuffer <- (StringMaker.new_)
-        let mETHOD_NAME = "updateExclusive"
-        let sELECTED_ARRAY_RETURN = "selectedArray_return["
-        let sELECTED_SEP = "] = "
-        let selectedArray_return = (jnewArray ((jio (ChoiceGroup.size choiceGroup))) False)
-        total <- (ChoiceGroup.getSelectedFlags choiceGroup selectedArray_return)
-        Control.Monad.void (StringMaker.append stringBuffer "Exclusive Total Choices: 1==")
-        Control.Monad.void (StringMaker.appendint stringBuffer total)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this mETHOD_NAME)
-        forM_ [0 .. (jlength selectedArray_return) - 1] $ \index -> javaIteration (pure ()) $ do
-            let isSelected = (jindex selectedArray_return (index))
-            Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-            Control.Monad.void (StringMaker.append stringBuffer sELECTED_ARRAY_RETURN)
-            Control.Monad.void (StringMaker.appendint stringBuffer index)
-            Control.Monad.void (StringMaker.append stringBuffer sELECTED_SEP)
-            Control.Monad.void (StringMaker.appendboolean stringBuffer isSelected)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this mETHOD_NAME)
-            when isSelected $ do
-                selectedChoiceLabel <- (ChoiceGroup.getString choiceGroup index)
-                Control.Monad.void (GameFeatureUtil.updateExclusive this selectedChoiceLabel)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "setDefault_1", jm_setDefault_1 )
+        , ( "updateMultiple_1", jm_updateMultiple_1 )
+        , ( "updateExclusiveForChoiceGroup_1", jm_updateExclusiveForChoiceGroup_1 )
+        , ( "isExclusive_1", jm_isExclusive_1 )
+        , ( "updateExclusive_1", jm_updateExclusive_1 )
+        , ( "updateExclusiveList_2", jm_updateExclusiveList_2 ) ]
+        JR.noMethods
 
 
-isExclusive :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isExclusive object_ a1 = jmethod object_ "isExclusive" (\() -> (isExclusive_impl (javaCast object_ :: GameFeatureUtil))) () a1
-
-isExclusive_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isExclusive_super object_ a1 = (isExclusive_impl (javaCast object_ :: GameFeatureUtil)) a1
-
-isExclusive_impl :: GameFeatureUtil -> String -> IO (Bool)
-isExclusive_impl this itemLabel = do
-    javaCatchReturn $ do
-        enumeration <- (ABHashtable.keys ((jio (GameFeatureChoiceGroups.get ((jio (GameFeatureChoiceGroups.getExclusiveInstance)))))))
-        name <- newIORef ("")
-        fix $ \loop -> when (jio (EnumerationUtil.hasMoreElements ((jget (this).enumerationUtil)) enumeration)) $ javaIteration (loop) $ do
-            jset name ((javaCast (jio (EnumerationUtil.nextElement ((jget (this).enumerationUtil)) enumeration)) :: String))
-            when ((jio (TsUtil.compareTo ((jget (this).tsUtil)) itemLabel (jget name))) == 0) $ do
-                javaReturn (True)
-        pure (False)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameFeatureUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_setDefault_1", jm_setDefault_1 ), ( "jm_updateMultiple_1", jm_updateMultiple_1 ), ( "jm_updateExclusiveForChoiceGroup_1", jm_updateExclusiveForChoiceGroup_1 ), ( "jm_isExclusive_1", jm_isExclusive_1 ), ( "jm_updateExclusive_1", jm_updateExclusive_1 ), ( "jm_updateExclusiveList_2", jm_updateExclusiveList_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
--- throws Exception
-updateExclusive :: (JavaObjectClass this_) => this_ -> String -> IO (())
-updateExclusive object_ a1 = jmethod object_ "updateExclusive" (\() -> (updateExclusive_impl (javaCast object_ :: GameFeatureUtil))) () a1
-
-updateExclusive_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-updateExclusive_super object_ a1 = (updateExclusive_impl (javaCast object_ :: GameFeatureUtil)) a1
-
-updateExclusive_impl :: GameFeatureUtil -> String -> IO (())
-updateExclusive_impl this selectedChoiceLabel = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonLabels.getInstance))).iTEM_LABEL)))) selectedChoiceLabel))))) this "updateExclusive")
-        gameFeature <- (Feature.getInstance selectedChoiceLabel)
-        hashtable <- (GameFeatureChoiceGroups.get ((jio (GameFeatureChoiceGroups.getExclusiveInstance))))
-        objectArray <- (HashtableUtil.getKeysAsArray ((jio (HashtableUtil.getInstance))) hashtable)
-        basicArrayList <- newIORef (javaNull)
-        anyType <- newIORef (javaNull)
-        let size = (jlength objectArray)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset anyType ((javaCast (jindex objectArray (index)) :: Any.Any))
-            jset basicArrayList ((javaCast (jio (ABHashtable.get hashtable (jget anyType))) :: BasicArrayList.BasicArrayList))
-            Control.Monad.void (GameFeatureUtil.updateExclusiveList this gameFeature (jget basicArrayList))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
--- throws Exception
-updateExclusiveList :: (JavaObjectClass this_) => this_ -> Feature.Feature -> BasicArrayList.BasicArrayList -> IO (())
-updateExclusiveList object_ a1 a2 = jmethod object_ "updateExclusiveList" (\() -> (updateExclusiveList_impl (javaCast object_ :: GameFeatureUtil))) () a1 a2
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameFeatureUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
-updateExclusiveList_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> BasicArrayList.BasicArrayList -> IO (())
-updateExclusiveList_super object_ a1 a2 = (updateExclusiveList_impl (javaCast object_ :: GameFeatureUtil)) a1 a2
 
-updateExclusiveList_impl :: GameFeatureUtil -> Feature.Feature -> BasicArrayList.BasicArrayList -> IO (())
-updateExclusiveList_impl this gameFeature list = do
-        when (jio (BasicArrayList.contains list gameFeature)) $ do
-            features <- (Features.getInstance)
-            addIndex <- (BasicArrayList.indexOf list gameFeature)
-            size <- (BasicArrayList.size list)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                if (addIndex /= index) then do
-                    Control.Monad.void (Features.remove features (javaCast (jindex ((jget (list).objectArray)) (index)) :: Feature.Feature))
-                else do
-                    Control.Monad.void (Features.add features (javaCast (jindex ((jget (list).objectArray)) (index)) :: Feature.Feature))
-        pure ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "tsUtil" "" JR.this (JR.callStatic TsUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "enumerationUtil" "" JR.this (JR.callStatic EnumerationUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "ON_GAME_FEATURE_CHANGE" "" JR.this (JR.str "onGameFeatureChange")),
+                JR.exec (JR.setField "GAME_FEATURE_CHANGED" "" JR.this (JR.str "Game Feature Changed: ")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDefault_1 : JR.Method
+jm_setDefault_1 jheap jthis jargs =
+    JR.method [ ( "choiceGroup", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "METHOD_NAME" "" (JR.str "setDefault"), 
+                    JR.declare "SELECTED_ARRAY_RETURN" "" (JR.str "selectedArray_return["), 
+                    JR.declare "SELECTED_SEP" "" (JR.str "] = "), 
+                    JR.declare "selectedArray_return" "" (JR.newArray "Z" [ (JR.invoke "size_0" (JR.local "choiceGroup") []) ]), 
+                    JR.declare "total" "I" (JR.invoke "getSelectedFlags_1" (JR.local "choiceGroup") [ (JR.local "selectedArray_return") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Multiple Total Choices: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "total") ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.local "METHOD_NAME") ]), 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "selectedArray_return"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68603 -> (JR.setLocal "index" "I" (JR.lit jwN68603))) JR.increment) ]) (JR.run [ 
+                        JR.declare "isSelected" "Z" (JR.aget (JR.local "selectedArray_return") (JR.local "index")), 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "SELECTED_ARRAY_RETURN") ]), 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "index") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "SELECTED_SEP") ]), 
+                        JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.local "isSelected") ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.local "METHOD_NAME") ]), 
+                        JR.declare "selectedChoiceLabel" "" (JR.invoke "getString_1" (JR.local "choiceGroup") [ (JR.local "index") ]), 
+                        JR.declare "gameFeature" "" (JR.callStatic Feature.jm_getInstance_1 [ (JR.local "selectedChoiceLabel") ]), 
+                        JR.ifElse (JR.invoke "isDefault_1" (JR.local "features") [ (JR.local "gameFeature") ]) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "features") [ (JR.local "gameFeature") ]), 
+                            JR.exec (JR.invoke "setSelectedIndex_2" (JR.local "choiceGroup") [ (JR.local "index"), (JR.bool True) ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "remove_1" (JR.local "features") [ (JR.local "gameFeature") ]), 
+                            JR.exec (JR.invoke "setSelectedIndex_2" (JR.local "choiceGroup") [ (JR.local "index"), (JR.bool False) ]) ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateMultiple_1 : JR.Method
+jm_updateMultiple_1 jheap jthis jargs =
+    JR.method [ ( "choiceGroup", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "METHOD_NAME" "" (JR.str "updateMultiple"), 
+                    JR.declare "SELECTED_ARRAY_RETURN" "" (JR.str "selectedArray_return["), 
+                    JR.declare "SELECTED_SEP" "" (JR.str "] = "), 
+                    JR.declare "selectedArray_return" "" (JR.newArray "Z" [ (JR.invoke "size_0" (JR.local "choiceGroup") []) ]), 
+                    JR.declare "total" "I" (JR.invoke "getSelectedFlags_1" (JR.local "choiceGroup") [ (JR.local "selectedArray_return") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Multiple Total Choices: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "total") ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.local "METHOD_NAME") ]), 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "selectedArray_return"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69702 -> (JR.setLocal "index" "I" (JR.lit jwN69702))) JR.increment) ]) (JR.run [ 
+                        JR.declare "isSelected" "Z" (JR.aget (JR.local "selectedArray_return") (JR.local "index")), 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "SELECTED_ARRAY_RETURN") ]), 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "index") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "SELECTED_SEP") ]), 
+                        JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.local "isSelected") ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.local "METHOD_NAME") ]), 
+                        JR.declare "selectedChoiceLabel" "" (JR.invoke "getString_1" (JR.local "choiceGroup") [ (JR.local "index") ]), 
+                        JR.declare "gameFeature" "" (JR.callStatic Feature.jm_getInstance_1 [ (JR.local "selectedChoiceLabel") ]), 
+                        JR.ifElse (JR.and (JR.map JR.not_ (JR.local "isSelected")) (JR.invoke "isFeature_1" (JR.local "features") [ (JR.local "gameFeature") ])) (JR.run [ 
+                            JR.exec (JR.invoke "remove_1" (JR.local "features") [ (JR.local "gameFeature") ]) ]) (JR.run [ 
+                        JR.ifElse (JR.and (JR.local "isSelected") (JR.map JR.not_ (JR.invoke "isFeature_1" (JR.local "features") [ (JR.local "gameFeature") ]))) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "features") [ (JR.local "gameFeature") ]) ]) identity ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateExclusiveForChoiceGroup_1 : JR.Method
+jm_updateExclusiveForChoiceGroup_1 jheap jthis jargs =
+    JR.method [ ( "choiceGroup", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "METHOD_NAME" "" (JR.str "updateExclusive"), 
+                    JR.declare "SELECTED_ARRAY_RETURN" "" (JR.str "selectedArray_return["), 
+                    JR.declare "SELECTED_SEP" "" (JR.str "] = "), 
+                    JR.declare "selectedArray_return" "" (JR.newArray "Z" [ (JR.invoke "size_0" (JR.local "choiceGroup") []) ]), 
+                    JR.declare "total" "I" (JR.invoke "getSelectedFlags_1" (JR.local "choiceGroup") [ (JR.local "selectedArray_return") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Exclusive Total Choices: 1==") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "total") ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.local "METHOD_NAME") ]), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "selectedArray_return"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70575 -> (JR.setLocal "index" "I" (JR.lit jwN70575))) JR.increment) ]) (JR.run [ 
+                        JR.declare "isSelected" "Z" (JR.aget (JR.local "selectedArray_return") (JR.local "index")), 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "SELECTED_ARRAY_RETURN") ]), 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "index") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "SELECTED_SEP") ]), 
+                        JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.local "isSelected") ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.local "METHOD_NAME") ]), 
+                        JR.ifElse (JR.local "isSelected") (JR.run [ 
+                            JR.declare "selectedChoiceLabel" "" (JR.invoke "getString_1" (JR.local "choiceGroup") [ (JR.local "index") ]), 
+                            JR.exec (JR.invoke "updateExclusive_1" JR.this [ (JR.local "selectedChoiceLabel") ]) ]) identity ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isExclusive_1 : JR.Method
+jm_isExclusive_1 jheap jthis jargs =
+    JR.method [ ( "itemLabel", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "enumeration" "" (JR.invoke "keys_0" (JR.invoke "get_0" (JR.callStatic GameFeatureChoiceGroups.jm_getExclusiveInstance_0 []) []) []), 
+                    JR.declare "name" "" (JR.lit (JR.defaultOf "")), 
+                    JR.while (JR.invoke "hasMoreElements_1" (JR.thisField "enumerationUtil") [ (JR.local "enumeration") ]) (JR.run [ 
+                        JR.exec (JR.setLocal "name" "" (JR.invoke "nextElement_1" (JR.thisField "enumerationUtil") [ (JR.local "enumeration") ])), 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_2" (JR.thisField "tsUtil") [ (JR.local "itemLabel"), (JR.local "name") ]) (JR.int 0)) (JR.run [ 
+                            JR.return (JR.bool True) ]) identity ]), 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateExclusive_1 : JR.Method
+jm_updateExclusive_1 jheap jthis jargs =
+    JR.method [ ( "selectedChoiceLabel", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "ITEM_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.local "selectedChoiceLabel") ]) []), JR.this, (JR.str "updateExclusive") ]), 
+                    JR.declare "gameFeature" "" (JR.callStatic Feature.jm_getInstance_1 [ (JR.local "selectedChoiceLabel") ]), 
+                    JR.declare "hashtable" "" (JR.invoke "get_0" (JR.callStatic GameFeatureChoiceGroups.jm_getExclusiveInstance_0 []) []), 
+                    JR.declare "objectArray" "" (JR.invoke "getKeysAsArray_1" (JR.callStatic HashtableUtil.jm_getInstance_0 []) [ (JR.local "hashtable") ]), 
+                    JR.declare "basicArrayList" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "anyType" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.alength (JR.local "objectArray")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71569 -> (JR.setLocal "index" "I" (JR.lit jwN71569))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "anyType" "" (JR.aget (JR.local "objectArray") (JR.local "index"))), 
+                        JR.exec (JR.setLocal "basicArrayList" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.local "anyType") ])), 
+                        JR.exec (JR.invoke "updateExclusiveList_2" JR.this [ (JR.local "gameFeature"), (JR.local "basicArrayList") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateExclusiveList_2 : JR.Method
+jm_updateExclusiveList_2 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ), ( "list", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "contains_1" (JR.local "list") [ (JR.local "gameFeature") ]) (JR.run [ 
+                        JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                        JR.declare "addIndex" "I" (JR.invoke "indexOf_1" (JR.local "list") [ (JR.local "gameFeature") ]), 
+                        JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72038 -> (JR.setLocal "index" "I" (JR.lit jwN72038))) JR.increment) ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "addIndex") (JR.local "index")) (JR.run [ 
+                                JR.exec (JR.invoke "remove_1" (JR.local "features") [ (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")) ]) ]) (JR.run [ 
+                                JR.exec (JR.invoke "add_1" (JR.local "features") [ (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")) ]) ]) ]) ] ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,118 +1,112 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.color
-module BasicColorSetUtil where
+module Org.Allbinary.Graphics.Color.BasicColorSetUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicColor -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
+{-| Generated Code Do Not Modify package org.allbinary.graphics.color
+-}
 
-data BasicColorSetUtil = BasicColorSetUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull BasicColorSetUtil where
-    javaNull = javaNullRecord "BasicColorSetUtil"
-
-instance JavaEquals BasicColorSetUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicColorSetUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicColorSetUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: BasicColorSetUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BasicColorSetUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = BasicColorSetUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "setBasicColorP" (\() -> setBasicColorP_impl this)
-    jregisterMethod header_ "setBasicColorP3" (\() -> setBasicColorP3_impl this)
-    pure this
-
-initFields_ :: BasicColorSetUtil -> IO ()
-initFields_ this = do
-    pure ()
+import JR
 
 
-getInstance :: IO (BasicColorSetUtil)
-getInstance = do
-        pure (BasicColorSetUtil.instance_)
 
-new_ :: IO BasicColorSetUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BasicColorSetUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "BasicColorSetUtil"
 
 
-setBasicColorP :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> BasicColor.BasicColor -> IO (())
-setBasicColorP object_ a1 a2 = jmethod object_ "setBasicColorP" (\() -> (setBasicColorP_impl (javaCast object_ :: BasicColorSetUtil))) () a1 a2
-
-setBasicColorP_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> BasicColor.BasicColor -> IO (())
-setBasicColorP_super object_ a1 a2 = (setBasicColorP_impl (javaCast object_ :: BasicColorSetUtil)) a1 a2
-
-setBasicColorP_impl :: BasicColorSetUtil -> Graphics.Graphics -> BasicColor.BasicColor -> IO (())
-setBasicColorP_impl this graphics basicColor = do
-        Control.Monad.void (Graphics.setColor graphics (jio (BasicColor.intValue basicColor)))
-        pure ()
+jchain : List String
+jchain =
+    [ "BasicColorSetUtil" ]
 
 
-setBasicColorP3 :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> BasicColor.BasicColor -> Int -> IO (())
-setBasicColorP3 object_ a1 a2 a3 = jmethod object_ "setBasicColorP3" (\() -> (setBasicColorP3_impl (javaCast object_ :: BasicColorSetUtil))) () a1 a2 a3
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-setBasicColorP3_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> BasicColor.BasicColor -> Int -> IO (())
-setBasicColorP3_super object_ a1 a2 a3 = (setBasicColorP3_impl (javaCast object_ :: BasicColorSetUtil)) a1 a2 a3
 
-setBasicColorP3_impl :: BasicColorSetUtil -> Graphics.Graphics -> BasicColor.BasicColor -> Int -> IO (())
-setBasicColorP3_impl this graphics basicColor value = do
-        Control.Monad.void (Graphics.setColor graphics value)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "setBasicColorP_2", jm_setBasicColorP_2 )
+        , ( "setBasicColorP3_3", jm_setBasicColorP3_3 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicColorSetUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_setBasicColorP_2", jm_setBasicColorP_2 ), ( "jm_setBasicColorP3_3", jm_setBasicColorP3_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "BasicColorSetUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setBasicColorP_2 : JR.Method
+jm_setBasicColorP_2 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.invoke "intValue_0" (JR.local "basicColor") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setBasicColorP3_3 : JR.Method
+jm_setBasicColorP3_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "basicColor", "" ), ( "value", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.local "value") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,11 +1,11 @@
-module ImmutableBasicArrayList exposing (..)
+module Org.Allbinary.Util.ImmutableBasicArrayList exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}
 
 import JR
-import BasicArrayListS
-import ForcedLogUtil
+import Org.Allbinary.Util.BasicArrayListS as BasicArrayListS
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
 
 
 jclass : String

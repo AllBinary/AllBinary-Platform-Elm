@@ -1,217 +1,187 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer.event
-module LayerManagerEventHandler (module LayerManagerEventHandler, module BasicEventHandler) where
+module Org.Allbinary.Layer.Event.LayerManagerEventHandler exposing (..)
 
-import BasicEventHandler hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, addListener, addListener_super, addListener_impl, removeAllListeners, removeAllListeners_super, removeAllListeners_impl, removeListener, removeListener_super, removeListener_impl, fireEvent, fireEvent_super, fireEvent_impl, fireDeleteEvent, fireDeleteEvent_super, fireDeleteEvent_impl, process, process_super, process_impl, instance_, list, cREATE, dELETE)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LayerManagerEventListener -- same package or java.lang
-import qualified LayerManagerEvent -- same package or java.lang
-import qualified LayerManagerEventListenerInterface -- same package or java.lang
-import qualified LogUtil -- same package or java.lang
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventListenerInterface -- org.allbinary.logic.util.event.EventListenerInterface
-import qualified EventStrings -- org.allbinary.logic.util.event.EventStrings
-import qualified BasicEventHandler -- org.allbinary.logic.util.event.handler.BasicEventHandler
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.layer.event
+-}
 
-data LayerManagerEventHandler = LayerManagerEventHandler
-    { header_ :: JavaHeader
-    , base :: BasicEventHandler.BasicEventHandler
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    , cREATE :: IORef (String)
-    , dELETE :: IORef (String)
-    }
-
-instance JavaNull LayerManagerEventHandler where
-    javaNull = javaNullRecord "LayerManagerEventHandler"
-
-instance JavaEquals LayerManagerEventHandler where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LayerManagerEventHandler where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LayerManagerEventHandler where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: IORef (LayerManagerEventHandler)
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_) >>= newIORef)
-
-newRecord_ :: IO LayerManagerEventHandler
-newRecord_ = do
-    base <- BasicEventHandler.newRecord_
-    let header_ = base.header_
-    list <- newIORef javaNull
-    cREATE <- newIORef ""
-    dELETE <- newIORef ""
-    let this = LayerManagerEventHandler header_ base list cREATE dELETE
-    jregisterLevel header_ this
-    jregisterMethod header_ "addListener" (\() -> addListener_impl this)
-    jregisterMethod header_ "removeAllListeners" (\() -> removeAllListeners_impl this)
-    jregisterMethod header_ "removeListener" (\() -> removeListener_impl this)
-    jregisterMethod header_ "fireEvent" (\() -> fireEvent_impl this)
-    jregisterMethod header_ "fireDeleteEvent" (\() -> fireDeleteEvent_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: LayerManagerEventHandler -> IO ()
-initFields_ this = do
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    jset this.cREATE ("Create")
-    jset this.dELETE ("Delete")
-    pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Util.Event.Handler.BasicEventHandler as BasicEventHandler
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
 
 
-getInstance :: IO (LayerManagerEventHandler)
-getInstance = do
-        pure ((jget LayerManagerEventHandler.instance_))
-
-new_ :: IO LayerManagerEventHandler
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LayerManagerEventHandler -> IO ()
-init_ this = do
-        BasicEventHandler.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "LayerManagerEventHandler"
 
 
-addListener :: (JavaObjectClass this_) => this_ -> LayerManagerEventListener.LayerManagerEventListener -> IO (())
-addListener object_ a1 = jmethod object_ "addListener" (\() -> (addListener_impl (javaCast object_ :: LayerManagerEventHandler))) () a1
-
-addListener_super :: (JavaObjectClass this_) => this_ -> LayerManagerEventListener.LayerManagerEventListener -> IO (())
-addListener_super object_ a1 = (addListener_impl (javaCast object_ :: LayerManagerEventHandler)) a1
-
-addListener_impl :: LayerManagerEventHandler -> LayerManagerEventListener.LayerManagerEventListener -> IO (())
-addListener_impl this layerManagerEventListener = do
-        when (Prelude.not (jio (BasicArrayList.contains ((jget (this).list)) layerManagerEventListener))) $ do
-            Control.Monad.void (BasicArrayList.add ((jget (this).list)) layerManagerEventListener)
-        pure ()
+jchain : List String
+jchain =
+    [ "LayerManagerEventHandler" ]
+        ++ BasicEventHandler.jchain
 
 
-removeAllListeners :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllListeners object_ = jmethod object_ "removeAllListeners" (\() -> (removeAllListeners_impl (javaCast object_ :: LayerManagerEventHandler))) ()
-
-removeAllListeners_super :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllListeners_super object_ = (removeAllListeners_impl (javaCast object_ :: LayerManagerEventHandler))
-
-removeAllListeners_impl :: LayerManagerEventHandler -> IO (())
-removeAllListeners_impl this = do
-        Control.Monad.void (BasicArrayList.clear ((jget (this).list)))
-        Control.Monad.void (BasicEventHandler.removeAllListeners_super this.base)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicEventHandler.jfields ++ [ ( "list", JR.defaultOf "" ), ( "CREATE", JR.defaultOf "" ), ( "DELETE", JR.defaultOf "" ) ]
 
 
-removeListener :: (JavaObjectClass this_) => this_ -> EventListenerInterface.EventListenerInterface -> IO (())
-removeListener object_ a1 = jmethod object_ "removeListener" (\() -> (removeListener_impl (javaCast object_ :: LayerManagerEventHandler))) () a1
-
-removeListener_super :: (JavaObjectClass this_) => this_ -> EventListenerInterface.EventListenerInterface -> IO (())
-removeListener_super object_ a1 = (removeListener_impl (javaCast object_ :: LayerManagerEventHandler)) a1
-
-removeListener_impl :: LayerManagerEventHandler -> EventListenerInterface.EventListenerInterface -> IO (())
-removeListener_impl this eventListenerInterface = do
-        Control.Monad.void (BasicArrayList.remove ((jget (this).list)) eventListenerInterface)
-        Control.Monad.void (BasicEventHandler.removeListener_super this.base eventListenerInterface)
-        pure ()
-
-
--- throws Exception
-fireEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-fireEvent object_ a1 = jmethod object_ "fireEvent" (\() -> (fireEvent_impl (javaCast object_ :: LayerManagerEventHandler))) () a1
-
-fireEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-fireEvent_super object_ a1 = (fireEvent_impl (javaCast object_ :: LayerManagerEventHandler)) a1
-
-fireEvent_impl :: LayerManagerEventHandler -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-fireEvent_impl this eventObject = do
-        index <- newIORef =<< (BasicArrayList.size ((jget (this).list)))
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            handle (\(e :: JavaException) -> do
-                Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jio (EventStrings.getInstance))).fIRE_EVENT) e)
-                ) $ do
-                let layerManagerEventListener = (javaCast (jindex ((jget ((jget (this).list)).objectArray)) ((jget index))) :: LayerManagerEventListener.LayerManagerEventListener)
-                Control.Monad.void (LayerManagerEventListener.onCreateLayerManagerEvent layerManagerEventListener (javaCast eventObject :: LayerManagerEvent.LayerManagerEvent))
-        Control.Monad.void (BasicEventHandler.fireEvent_super this.base eventObject)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "addListener_1", jm_addListener_1 )
+        , ( "removeAllListeners_0", jm_removeAllListeners_0 )
+        , ( "removeListener_1", jm_removeListener_1 )
+        , ( "fireEvent_1", jm_fireEvent_1 )
+        , ( "fireDeleteEvent_1", jm_fireDeleteEvent_1 )
+        , ( "process_2", jm_process_2 ) ]
+        BasicEventHandler.jvtable
 
 
--- throws Exception
-fireDeleteEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-fireDeleteEvent object_ a1 = jmethod object_ "fireDeleteEvent" (\() -> (fireDeleteEvent_impl (javaCast object_ :: LayerManagerEventHandler))) () a1
-
-fireDeleteEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-fireDeleteEvent_super object_ a1 = (fireDeleteEvent_impl (javaCast object_ :: LayerManagerEventHandler)) a1
-
-fireDeleteEvent_impl :: LayerManagerEventHandler -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-fireDeleteEvent_impl this eventObject = do
-        index <- newIORef =<< (BasicArrayList.size ((jget (this).list)))
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            handle (\(e :: JavaException) -> do
-                Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jio (EventStrings.getInstance))).fIRE_EVENT) e)
-                ) $ do
-                let layerManagerEventListener = (javaCast (jindex ((jget ((jget (this).list)).objectArray)) ((jget index))) :: LayerManagerEventListener.LayerManagerEventListener)
-                Control.Monad.void (LayerManagerEventListener.onDeleteLayerManagerEvent layerManagerEventListener (javaCast eventObject :: LayerManagerEvent.LayerManagerEvent))
-        let eventListenerInterfaceList = (jget (this).base.eventListenerInterfaceList)
-        eventListenerInterface <- newIORef (javaNull)
-        layerManagerEventListenerInterface <- newIORef (javaNull)
-        listenerIndex <- newIORef (0 :: Int)
-        fix $ \loop -> when ((jget listenerIndex) < (jio (BasicArrayList.size eventListenerInterfaceList))) $ javaIteration (loop) $ do
-            handle (\(e :: JavaException) -> do
-                Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jio (EventStrings.getInstance))).fIRE_EVENT) e)
-                ) $ do
-                jset eventListenerInterface ((javaCast (jindex ((jget (eventListenerInterfaceList).objectArray)) ((jget listenerIndex))) :: EventListenerInterface.EventListenerInterface))
-                jset layerManagerEventListenerInterface (((javaCast (jget eventListenerInterface) :: LayerManagerEventListenerInterface.LayerManagerEventListenerInterface)))
-                Control.Monad.void (LayerManagerEventListenerInterface.onDeleteLayerManagerEvent ((jget layerManagerEventListenerInterface)) (javaCast eventObject :: LayerManagerEvent.LayerManagerEvent))
-            jset listenerIndex ((jget listenerIndex) + 1)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LayerManagerEventHandler"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_addListener_1", jm_addListener_1 ), ( "jm_removeAllListeners_0", jm_removeAllListeners_0 ), ( "jm_removeListener_1", jm_removeListener_1 ), ( "jm_fireEvent_1", jm_fireEvent_1 ), ( "jm_fireDeleteEvent_1", jm_fireDeleteEvent_1 ), ( "jm_process_2", jm_process_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> EventListenerInterface.EventListenerInterface -> IO (())
-process object_ a1 a2 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: LayerManagerEventHandler))) () a1 a2
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> EventListenerInterface.EventListenerInterface -> IO (())
-process_super object_ a1 a2 = (process_impl (javaCast object_ :: LayerManagerEventHandler)) a1 a2
 
-process_impl :: LayerManagerEventHandler -> AllBinaryEventObject.AllBinaryEventObject -> EventListenerInterface.EventListenerInterface -> IO (())
-process_impl this eventObject eventListenerInterface = do
-        let layerManagerEventListenerInterface = ((javaCast eventListenerInterface :: LayerManagerEventListenerInterface.LayerManagerEventListenerInterface))
-        Control.Monad.void (LayerManagerEventListenerInterface.onCreateLayerManagerEvent layerManagerEventListenerInterface (javaCast eventObject :: LayerManagerEvent.LayerManagerEvent))
-        pure ()
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LayerManagerEventHandler" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect BasicEventHandler.jinit_0 JR.this []),
+                JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                JR.exec (JR.setField "CREATE" "" JR.this (JR.str "Create")),
+                JR.exec (JR.setField "DELETE" "" JR.this (JR.str "Delete")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addListener_1 : JR.Method
+jm_addListener_1 jheap jthis jargs =
+    JR.method [ ( "layerManagerEventListener", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "contains_1" (JR.thisField "list") [ (JR.local "layerManagerEventListener") ])) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "layerManagerEventListener") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeAllListeners_0 : JR.Method
+jm_removeAllListeners_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "list") []), 
+                    JR.exec (JR.callVia BasicEventHandler.jvtable "removeAllListeners_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeListener_1 : JR.Method
+jm_removeListener_1 jheap jthis jargs =
+    JR.method [ ( "eventListenerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "remove_1" (JR.thisField "list") [ (JR.local "eventListenerInterface") ]), 
+                    JR.exec (JR.callVia BasicEventHandler.jvtable "removeListener_1" JR.this [ (JR.local "eventListenerInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fireEvent_1 : JR.Method
+jm_fireEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68111 -> (JR.setLocal "index" "I" (JR.lit jwN68111))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.try (JR.run [ 
+                            JR.declare "layerManagerEventListener" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")), 
+                            JR.exec (JR.invoke "onCreateLayerManagerEvent_1" (JR.local "layerManagerEventListener") [ (JR.local "eventObject") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "FIRE_EVENT" (JR.callStatic EventStrings.jm_getInstance_0 [])), (JR.local "e") ]) ]) ) ] identity ]) ], 
+                    JR.exec (JR.callVia BasicEventHandler.jvtable "fireEvent_1" JR.this [ (JR.local "eventObject") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fireDeleteEvent_1 : JR.Method
+jm_fireDeleteEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68603 -> (JR.setLocal "index" "I" (JR.lit jwN68603))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.try (JR.run [ 
+                            JR.declare "layerManagerEventListener" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")), 
+                            JR.exec (JR.invoke "onDeleteLayerManagerEvent_1" (JR.local "layerManagerEventListener") [ (JR.local "eventObject") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "FIRE_EVENT" (JR.callStatic EventStrings.jm_getInstance_0 [])), (JR.local "e") ]) ]) ) ] identity ]) ], 
+                    JR.declare "eventListenerInterfaceList" "" (JR.thisField "eventListenerInterfaceList"), 
+                    JR.declare "eventListenerInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "layerManagerEventListenerInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "listenerIndex" "I" (JR.int 0), 
+                    JR.while (JR.map2 JR.less (JR.local "listenerIndex") (JR.invoke "size_0" (JR.local "eventListenerInterfaceList") [])) (JR.run [ 
+                        JR.try (JR.run [ 
+                            JR.exec (JR.setLocal "eventListenerInterface" "" (JR.aget (JR.field "objectArray" (JR.local "eventListenerInterfaceList")) (JR.local "listenerIndex"))), 
+                            JR.exec (JR.setLocal "layerManagerEventListenerInterface" "" ((JR.local "eventListenerInterface"))), 
+                            JR.exec (JR.invoke "onDeleteLayerManagerEvent_1" (JR.local "layerManagerEventListenerInterface") [ (JR.local "eventObject") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "FIRE_EVENT" (JR.callStatic EventStrings.jm_getInstance_0 [])), (JR.local "e") ]) ]) ) ] identity, 
+                        JR.exec (JR.postUpdate (JR.local "listenerIndex") (\jwN69063 -> (JR.setLocal "listenerIndex" "I" (JR.lit jwN69063))) JR.increment) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_2 : JR.Method
+jm_process_2 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ), ( "eventListenerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "layerManagerEventListenerInterface" "" ((JR.local "eventListenerInterface")), 
+                    JR.exec (JR.invoke "onCreateLayerManagerEvent_1" (JR.local "layerManagerEventListenerInterface") [ (JR.local "eventObject") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

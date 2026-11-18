@@ -1,163 +1,159 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.time
-module TimeUtil where
+module Org.Allbinary.Time.TimeUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Calendar -- java.util.Calendar
+{-| Generated Code Do Not Modify package org.allbinary.time
+-}
 
-data TimeUtil = TimeUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull TimeUtil where
-    javaNull = javaNullRecord "TimeUtil"
-
-instance JavaEquals TimeUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TimeUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TimeUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: TimeUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-calendar :: Calendar.Calendar
-{-# NOINLINE calendar #-}
-calendar = unsafePerformIO ((Calendar.getInstance))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TimeUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = TimeUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "setCalendar" (\() -> setCalendar_impl this)
-    jregisterMethod header_ "setCalendarWithTime" (\() -> setCalendarWithTime_impl this)
-    jregisterMethod header_ "setExpirationCalendar" (\() -> setExpirationCalendar_impl this)
-    jregisterMethod header_ "getTotalTime" (\() -> getTotalTime_impl this)
-    pure this
-
-initFields_ :: TimeUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO TimeUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TimeUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import JCalendar
 
 
-getInstance :: IO (TimeUtil)
-getInstance = do
-        pure (TimeUtil.instance_)
+jclass : String
+jclass =
+    "TimeUtil"
 
 
-setCalendar :: (JavaObjectClass this_) => this_ -> Calendar.Calendar -> String -> String -> String -> String -> IO (())
-setCalendar object_ a1 a2 a3 a4 a5 = jmethod object_ "setCalendar" (\() -> (setCalendar_impl (javaCast object_ :: TimeUtil))) () a1 a2 a3 a4 a5
-
-setCalendar_super :: (JavaObjectClass this_) => this_ -> Calendar.Calendar -> String -> String -> String -> String -> IO (())
-setCalendar_super object_ a1 a2 a3 a4 a5 = (setCalendar_impl (javaCast object_ :: TimeUtil)) a1 a2 a3 a4 a5
-
-setCalendar_impl :: TimeUtil -> Calendar.Calendar -> String -> String -> String -> String -> IO (())
-setCalendar_impl this calendar yearString monthString dayString hourString = do
-        let year = (jio (jparseInt yearString))
-        let month = (jio (jparseInt monthString))
-        let day = (jio (jparseInt dayString))
-        let hour = (jio (jparseInt hourString))
-        Control.Monad.void (Calendar.set calendar year month day hour 0)
-        pure ()
+jchain : List String
+jchain =
+    [ "TimeUtil" ]
 
 
-setCalendarWithTime :: (JavaObjectClass this_) => this_ -> Calendar.Calendar -> String -> String -> String -> String -> String -> String -> IO (())
-setCalendarWithTime object_ a1 a2 a3 a4 a5 a6 a7 = jmethod object_ "setCalendarWithTime" (\() -> (setCalendarWithTime_impl (javaCast object_ :: TimeUtil))) () a1 a2 a3 a4 a5 a6 a7
-
-setCalendarWithTime_super :: (JavaObjectClass this_) => this_ -> Calendar.Calendar -> String -> String -> String -> String -> String -> String -> IO (())
-setCalendarWithTime_super object_ a1 a2 a3 a4 a5 a6 a7 = (setCalendarWithTime_impl (javaCast object_ :: TimeUtil)) a1 a2 a3 a4 a5 a6 a7
-
-setCalendarWithTime_impl :: TimeUtil -> Calendar.Calendar -> String -> String -> String -> String -> String -> String -> IO (())
-setCalendarWithTime_impl this calendar yearString monthString dayString hourString minuteString secondString = do
-        let year = (jio (jparseInt yearString))
-        let month = (jio (jparseInt monthString))
-        let day = (jio (jparseInt dayString))
-        let hour = (jio (jparseInt hourString))
-        let minute = (jio (jparseInt minuteString))
-        let second = (jio (jparseInt secondString))
-        Control.Monad.void (Calendar.set calendar year month day hour minute second)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-setExpirationCalendar :: (JavaObjectClass this_) => this_ -> Calendar.Calendar -> String -> String -> String -> String -> String -> String -> IO (())
-setExpirationCalendar object_ a1 a2 a3 a4 a5 a6 a7 = jmethod object_ "setExpirationCalendar" (\() -> (setExpirationCalendar_impl (javaCast object_ :: TimeUtil))) () a1 a2 a3 a4 a5 a6 a7
-
-setExpirationCalendar_super :: (JavaObjectClass this_) => this_ -> Calendar.Calendar -> String -> String -> String -> String -> String -> String -> IO (())
-setExpirationCalendar_super object_ a1 a2 a3 a4 a5 a6 a7 = (setExpirationCalendar_impl (javaCast object_ :: TimeUtil)) a1 a2 a3 a4 a5 a6 a7
-
-setExpirationCalendar_impl :: TimeUtil -> Calendar.Calendar -> String -> String -> String -> String -> String -> String -> IO (())
-setExpirationCalendar_impl this calendar yearsString monthsString daysString hoursString minutesString secondsString = do
-        let year = ((jio (Calendar.get calendar (Calendar.yEAR))) + (jio (jparseInt yearsString)))
-        let month = ((jio (Calendar.get calendar (Calendar.mONTH))) + (jio (jparseInt monthsString)))
-        let day = ((jio (Calendar.get calendar (Calendar.dAY_OF_MONTH))) + (jio (jparseInt daysString)))
-        let hour = ((jio (Calendar.get calendar (Calendar.hOUR))) + (jio (jparseInt hoursString)))
-        let minute = ((jio (Calendar.get calendar (Calendar.mINUTE))) + (jio (jparseInt minutesString)))
-        let second = ((jio (Calendar.get calendar (Calendar.sECOND))) + (jio (jparseInt secondsString)))
-        Control.Monad.void (Calendar.set calendar year month day hour minute second)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "setCalendar_5", jm_setCalendar_5 )
+        , ( "setCalendarWithTime_7", jm_setCalendarWithTime_7 )
+        , ( "setExpirationCalendar_7", jm_setExpirationCalendar_7 )
+        , ( "getTotalTime_6", jm_getTotalTime_6 ) ]
+        JR.noMethods
 
 
-getTotalTime :: (JavaObjectClass this_) => this_ -> String -> String -> String -> String -> String -> String -> IO (Int64)
-getTotalTime object_ a1 a2 a3 a4 a5 a6 = jmethod object_ "getTotalTime" (\() -> (getTotalTime_impl (javaCast object_ :: TimeUtil))) () a1 a2 a3 a4 a5 a6
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TimeUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_setCalendar_5", jm_setCalendar_5 ), ( "jm_setCalendarWithTime_7", jm_setCalendarWithTime_7 ), ( "jm_setExpirationCalendar_7", jm_setExpirationCalendar_7 ), ( "jm_getTotalTime_6", jm_getTotalTime_6 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ), ( "jstatic_calendar", jstatic_calendar ) ]
+        jheap
 
-getTotalTime_super :: (JavaObjectClass this_) => this_ -> String -> String -> String -> String -> String -> String -> IO (Int64)
-getTotalTime_super object_ a1 a2 a3 a4 a5 a6 = (getTotalTime_impl (javaCast object_ :: TimeUtil)) a1 a2 a3 a4 a5 a6
 
-getTotalTime_impl :: TimeUtil -> String -> String -> String -> String -> String -> String -> IO (Int64)
-getTotalTime_impl this yearString monthString dayString hourString minuteString secondString = do
-        time <- (Calendar.getTimeInMillis TimeUtil.calendar)
-        Control.Monad.void (TimeUtil.setExpirationCalendar this (TimeUtil.calendar) yearString monthString dayString hourString minuteString secondString)
-        timeDelta <- (Calendar.getTimeInMillis TimeUtil.calendar)
-        pure ((timeDelta - time))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "TimeUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jstatic_calendar : JR.M
+jstatic_calendar s =
+    JR.static "TimeUtil" jclinit "calendar"
+        (JR.callStatic JCalendar.jm_getInstance_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setCalendar_5 : JR.Method
+jm_setCalendar_5 jheap jthis jargs =
+    JR.method [ ( "calendar", "" ), ( "yearString", "" ), ( "monthString", "" ), ( "dayString", "" ), ( "hourString", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "year" "I" (JR.invoke "intValue_0" (JR.cast "I" (JR.local "yearString")) []), 
+                    JR.declare "month" "I" (JR.invoke "intValue_0" (JR.cast "I" (JR.local "monthString")) []), 
+                    JR.declare "day" "I" (JR.invoke "intValue_0" (JR.cast "I" (JR.local "dayString")) []), 
+                    JR.declare "hour" "I" (JR.invoke "intValue_0" (JR.cast "I" (JR.local "hourString")) []), 
+                    JR.exec (JR.invoke "set_5" (JR.local "calendar") [ (JR.local "year"), (JR.local "month"), (JR.local "day"), (JR.local "hour"), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setCalendarWithTime_7 : JR.Method
+jm_setCalendarWithTime_7 jheap jthis jargs =
+    JR.method [ ( "calendar", "" ), ( "yearString", "" ), ( "monthString", "" ), ( "dayString", "" ), ( "hourString", "" ), ( "minuteString", "" ), ( "secondString", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "year" "I" (JR.invoke "intValue_0" (JR.cast "I" (JR.local "yearString")) []), 
+                    JR.declare "month" "I" (JR.invoke "intValue_0" (JR.cast "I" (JR.local "monthString")) []), 
+                    JR.declare "day" "I" (JR.invoke "intValue_0" (JR.cast "I" (JR.local "dayString")) []), 
+                    JR.declare "hour" "I" (JR.invoke "intValue_0" (JR.cast "I" (JR.local "hourString")) []), 
+                    JR.declare "minute" "I" (JR.invoke "intValue_0" (JR.cast "I" (JR.local "minuteString")) []), 
+                    JR.declare "second" "I" (JR.invoke "intValue_0" (JR.cast "I" (JR.local "secondString")) []), 
+                    JR.exec (JR.invoke "set_6" (JR.local "calendar") [ (JR.local "year"), (JR.local "month"), (JR.local "day"), (JR.local "hour"), (JR.local "minute"), (JR.local "second") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setExpirationCalendar_7 : JR.Method
+jm_setExpirationCalendar_7 jheap jthis jargs =
+    JR.method [ ( "calendar", "" ), ( "yearsString", "" ), ( "monthsString", "" ), ( "daysString", "" ), ( "hoursString", "" ), ( "minutesString", "" ), ( "secondsString", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "year" "I" (JR.plus (JR.invoke "get_1" (JR.local "calendar") [ JCalendar.jstatic_YEAR ]) (JR.invoke "intValue_0" (JR.cast "I" (JR.local "yearsString")) [])), 
+                    JR.declare "month" "I" (JR.plus (JR.invoke "get_1" (JR.local "calendar") [ JCalendar.jstatic_MONTH ]) (JR.invoke "intValue_0" (JR.cast "I" (JR.local "monthsString")) [])), 
+                    JR.declare "day" "I" (JR.plus (JR.invoke "get_1" (JR.local "calendar") [ JCalendar.jstatic_DAY_OF_MONTH ]) (JR.invoke "intValue_0" (JR.cast "I" (JR.local "daysString")) [])), 
+                    JR.declare "hour" "I" (JR.plus (JR.invoke "get_1" (JR.local "calendar") [ JCalendar.jstatic_HOUR ]) (JR.invoke "intValue_0" (JR.cast "I" (JR.local "hoursString")) [])), 
+                    JR.declare "minute" "I" (JR.plus (JR.invoke "get_1" (JR.local "calendar") [ JCalendar.jstatic_MINUTE ]) (JR.invoke "intValue_0" (JR.cast "I" (JR.local "minutesString")) [])), 
+                    JR.declare "second" "I" (JR.plus (JR.invoke "get_1" (JR.local "calendar") [ JCalendar.jstatic_SECOND ]) (JR.invoke "intValue_0" (JR.cast "I" (JR.local "secondsString")) [])), 
+                    JR.exec (JR.invoke "set_6" (JR.local "calendar") [ (JR.local "year"), (JR.local "month"), (JR.local "day"), (JR.local "hour"), (JR.local "minute"), (JR.local "second") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTotalTime_6 : JR.Method
+jm_getTotalTime_6 jheap jthis jargs =
+    JR.method [ ( "yearString", "" ), ( "monthString", "" ), ( "dayString", "" ), ( "hourString", "" ), ( "minuteString", "" ), ( "secondString", "" ) ] "J"
+        (JR.run [ 
+                    JR.declare "time" "J" (JR.invoke "getTimeInMillis_0" jstatic_calendar []), 
+                    JR.exec (JR.invoke "setExpirationCalendar_7" JR.this [ jstatic_calendar, (JR.local "yearString"), (JR.local "monthString"), (JR.local "dayString"), (JR.local "hourString"), (JR.local "minuteString"), (JR.local "secondString") ]), 
+                    JR.declare "timeDelta" "J" (JR.invoke "getTimeInMillis_0" jstatic_calendar []), 
+                    JR.return (JR.map2 JR.sub (JR.local "timeDelta") (JR.local "time")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

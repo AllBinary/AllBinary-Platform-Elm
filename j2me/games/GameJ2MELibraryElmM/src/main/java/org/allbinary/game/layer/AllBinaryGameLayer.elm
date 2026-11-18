@@ -1,297 +1,245 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
-module AllBinaryGameLayer (module AllBinaryGameLayer, module AllBinaryLayer) where
+module Org.Allbinary.Game.Layer.AllBinaryGameLayer exposing (..)
 
-import AllBinaryLayer hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createPaintable, createPaintable_super, createPaintable_impl, set, set_super, set_impl, move, move_super, move_impl, getGameKeyEventList, getGameKeyEventList_super, getGameKeyEventList_impl, processInput, processInput_super, processInput_impl, processTick, processTick_super, processTick_impl, onEvent, onEvent_super, onEvent_impl, onViewPositionChangeEvent, onViewPositionChangeEvent_super, onViewPositionChangeEvent_impl, onChangeEvent, onChangeEvent_super, onChangeEvent_impl, paintFirst, paintFirst_super, paintFirst_impl, paintDebug, paintDebug_super, paintDebug_impl, setWidth, setWidth_super, setWidth_impl, setHeight, setHeight_super, setHeight_impl, commonStrings, basicSetColorUtil, rED, paintable, gameKeyEventList)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified SWTUtil -- same package or java.lang
-import qualified SWTBlackPaintable -- same package or java.lang
-import qualified GameLayerUtil -- same package or java.lang
-import qualified GL -- javax.microedition.khronos.opengles.GL
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified BasicColorSetUtil -- org.allbinary.graphics.color.BasicColorSetUtil
-import qualified NullPaintable -- org.allbinary.graphics.paint.NullPaintable
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified OpenGLSurfaceChangedInterface -- org.allbinary.image.opengles.OpenGLSurfaceChangedInterface
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventStrings -- org.allbinary.logic.util.event.EventStrings
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified ViewPositionBase -- org.allbinary.view.ViewPositionBase
-import qualified ViewPositionEvent -- org.allbinary.view.event.ViewPositionEvent
-import qualified ViewPositionEventListenerInterface -- org.allbinary.view.event.ViewPositionEventListenerInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.layer
+-}
 
--- implements ViewPositionEventListenerInterface
--- implements OpenGLSurfaceChangedInterface
-data AllBinaryGameLayer = AllBinaryGameLayer
-    { header_ :: JavaHeader
-    , base :: AllBinaryLayer.AllBinaryLayer
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , basicSetColorUtil :: IORef (BasicColorSetUtil.BasicColorSetUtil)
-    , rED :: IORef (BasicColor.BasicColor)
-    , paintable :: IORef (Paintable.Paintable)
-    , gameKeyEventList :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull AllBinaryGameLayer where
-    javaNull = javaNullRecord "AllBinaryGameLayer"
-
-instance JavaEquals AllBinaryGameLayer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryGameLayer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryGameLayer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AllBinaryGameLayer
-newRecord_ = do
-    base <- AllBinaryLayer.newRecord_
-    let header_ = base.header_
-    commonStrings <- newIORef javaNull
-    basicSetColorUtil <- newIORef javaNull
-    rED <- newIORef javaNull
-    paintable <- newIORef javaNull
-    gameKeyEventList <- newIORef javaNull
-    let this = AllBinaryGameLayer header_ base commonStrings basicSetColorUtil rED paintable gameKeyEventList
-    jregisterLevel header_ this
-    ViewPositionEventListenerInterface.registerInterface_ header_
-    OpenGLSurfaceChangedInterface.registerInterface_ header_
-    jregisterMethod header_ "set" (\() -> set_impl this)
-    jregisterMethod header_ "move" (\() -> move_impl this)
-    jregisterMethod header_ "getGameKeyEventList" (\() -> getGameKeyEventList_impl this)
-    jregisterMethod header_ "processInput" (\() -> processInput_impl this)
-    jregisterMethod header_ "processTick" (\() -> processTick_impl this)
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "onViewPositionChangeEvent" (\() -> onViewPositionChangeEvent_impl this)
-    jregisterMethod header_ "onChangeEvent" (\() -> onChangeEvent_impl this)
-    jregisterMethod header_ "paintFirst" (\() -> paintFirst_impl this)
-    jregisterMethod header_ "paintDebug" (\() -> paintDebug_impl this)
-    jregisterMethod header_ "setWidth" (\() -> setWidth_impl this)
-    jregisterMethod header_ "setHeight" (\() -> setHeight_impl this)
-    pure this
-
-initFields_ :: AllBinaryGameLayer -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.basicSetColorUtil =<< (BasicColorSetUtil.getInstance)
-    jset this.rED ((jget ((jio (BasicColorFactory.getInstance))).rED))
-    jset this.paintable =<< (AllBinaryGameLayer.createPaintable)
-    jset this.gameKeyEventList =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
+import JR
+import Org.Allbinary.Layer.AllBinaryLayer as AllBinaryLayer
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Graphics.Color.BasicColorSetUtil as BasicColorSetUtil
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Game.Layer.GameLayerUtil as GameLayerUtil
+import Org.Allbinary.Graphics.Paint.NullPaintable as NullPaintable
+import Org.Allbinary.Image.Opengles.OpenGLSurfaceChangedInterface as OpenGLSurfaceChangedInterface
+import Org.Allbinary.Game.Layer.SWTBlackPaintable as SWTBlackPaintable
+import Org.Allbinary.Game.Layer.SWTUtil as SWTUtil
+import Org.Allbinary.View.Event.ViewPositionEventListenerInterface as ViewPositionEventListenerInterface
 
 
-createPaintable :: IO (Paintable.Paintable)
-createPaintable = do
-    javaCatchReturn $ do
-        when SWTUtil.isSWT $ do
-            javaReturn =<< (fmap (\value_ -> javaCast value_ :: Paintable.Paintable) (SWTBlackPaintable.new_))
-        (NullPaintable.getInstance)
-
-new_3 :: String -> Rectangle.Rectangle -> ViewPositionBase.ViewPositionBase -> IO AllBinaryGameLayer
-new_3 name layerInfo viewPosition = do
-    this <- newRecord_
-    init_3 this name layerInfo viewPosition
-    pure this
-
-init_3 :: AllBinaryGameLayer -> String -> Rectangle.Rectangle -> ViewPositionBase.ViewPositionBase -> IO ()
-init_3 this name layerInfo viewPosition = do
-        AllBinaryLayer.init_3 this.base (name) (layerInfo) (viewPosition)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+jclass : String
+jclass =
+    "AllBinaryGameLayer"
 
 
--- throws Exception
-set :: (JavaObjectClass this_) => this_ -> GL.GL -> IO (())
-set object_ a1 = jmethod object_ "set" (\() -> (set_impl (javaCast object_ :: AllBinaryGameLayer))) () a1
-
-set_super :: (JavaObjectClass this_) => this_ -> GL.GL -> IO (())
-set_super object_ a1 = (set_impl (javaCast object_ :: AllBinaryGameLayer)) a1
-
-set_impl :: AllBinaryGameLayer -> GL.GL -> IO (())
-set_impl this gl = do
-        javaThrow ((JavaException "Exception" (jget ((jget (this).commonStrings)).nOT_IMPLEMENTED)))
-        pure ()
+jchain : List String
+jchain =
+    [ "AllBinaryGameLayer" ]
+        ++ AllBinaryLayer.jchain
+        ++ ViewPositionEventListenerInterface.jchain
+        ++ OpenGLSurfaceChangedInterface.jchain
 
 
-move :: (JavaObjectClass this_) => this_ -> IO (())
-move object_ = jmethod object_ "move" (\() -> (move_impl (javaCast object_ :: AllBinaryGameLayer))) ()
-
-move_super :: (JavaObjectClass this_) => this_ -> IO (())
-move_super object_ = (move_impl (javaCast object_ :: AllBinaryGameLayer))
-
-move_impl :: AllBinaryGameLayer -> IO (())
-move_impl this = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinaryLayer.jfields ++ [ ( "commonStrings", JR.defaultOf "" ), ( "basicSetColorUtil", JR.defaultOf "" ), ( "RED", JR.defaultOf "" ), ( "paintable", JR.defaultOf "" ), ( "gameKeyEventList", JR.defaultOf "" ) ]
 
 
-getGameKeyEventList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getGameKeyEventList object_ = jmethod object_ "getGameKeyEventList" (\() -> (getGameKeyEventList_impl (javaCast object_ :: AllBinaryGameLayer))) ()
-
-getGameKeyEventList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getGameKeyEventList_super object_ = (getGameKeyEventList_impl (javaCast object_ :: AllBinaryGameLayer))
-
-getGameKeyEventList_impl :: AllBinaryGameLayer -> IO (BasicArrayList.BasicArrayList)
-getGameKeyEventList_impl this = do
-        pure ((jget (this).gameKeyEventList))
-
-
--- throws Exception
-processInput :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processInput object_ a1 = jmethod object_ "processInput" (\() -> (processInput_impl (javaCast object_ :: AllBinaryGameLayer))) () a1
-
-processInput_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processInput_super object_ a1 = (processInput_impl (javaCast object_ :: AllBinaryGameLayer)) a1
-
-processInput_impl :: AllBinaryGameLayer -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processInput_impl this allBinaryLayerManager = do
-        javaThrow ((JavaException "Exception" (jget ((jget (this).commonStrings)).nOT_IMPLEMENTED)))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "createPaintable_0", jm_createPaintable_0 )
+        , ( "set_1", jm_set_1 )
+        , ( "move_0", jm_move_0 )
+        , ( "getGameKeyEventList_0", jm_getGameKeyEventList_0 )
+        , ( "processInput_1", jm_processInput_1 )
+        , ( "processTick_1", jm_processTick_1 )
+        , ( "onEvent_1", jm_onEvent_1 )
+        , ( "onViewPositionChangeEvent_0", jm_onViewPositionChangeEvent_0 )
+        , ( "onChangeEvent_1", jm_onChangeEvent_1 )
+        , ( "paintFirst_1", jm_paintFirst_1 )
+        , ( "paintDebug_1", jm_paintDebug_1 )
+        , ( "setWidth_1", jm_setWidth_1 )
+        , ( "setHeight_1", jm_setHeight_1 ) ]
+        AllBinaryLayer.jvtable
 
 
--- throws Exception
-processTick :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processTick object_ a1 = jmethod object_ "processTick" (\() -> (processTick_impl (javaCast object_ :: AllBinaryGameLayer))) () a1
-
-processTick_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processTick_super object_ a1 = (processTick_impl (javaCast object_ :: AllBinaryGameLayer)) a1
-
-processTick_impl :: AllBinaryGameLayer -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processTick_impl this allBinaryLayerManager = do
-        javaThrow ((JavaException "Exception" (jget ((jget (this).commonStrings)).nOT_IMPLEMENTED)))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryGameLayer"
+        [ ( "jm_createPaintable_0", jm_createPaintable_0 ), ( "jm_set_1", jm_set_1 ), ( "jm_move_0", jm_move_0 ), ( "jm_getGameKeyEventList_0", jm_getGameKeyEventList_0 ), ( "jm_processInput_1", jm_processInput_1 ), ( "jm_processTick_1", jm_processTick_1 ), ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_onViewPositionChangeEvent_0", jm_onViewPositionChangeEvent_0 ), ( "jm_onChangeEvent_1", jm_onChangeEvent_1 ), ( "jm_paintFirst_1", jm_paintFirst_1 ), ( "jm_paintDebug_1", jm_paintDebug_1 ), ( "jm_setWidth_1", jm_setWidth_1 ), ( "jm_setHeight_1", jm_setHeight_1 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: AllBinaryGameLayer))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: AllBinaryGameLayer)) a1
-
-onEvent_impl :: AllBinaryGameLayer -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jio (EventStrings.getInstance))).pERFORMANCE_MESSAGE) this)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
--- throws Exception
-onViewPositionChangeEvent :: (JavaObjectClass this_) => this_ -> IO (())
-onViewPositionChangeEvent object_ = jmethod object_ "onViewPositionChangeEvent" (\() -> (onViewPositionChangeEvent_impl (javaCast object_ :: AllBinaryGameLayer))) ()
-
-onViewPositionChangeEvent_super :: (JavaObjectClass this_) => this_ -> IO (())
-onViewPositionChangeEvent_super object_ = (onViewPositionChangeEvent_impl (javaCast object_ :: AllBinaryGameLayer))
-
-onViewPositionChangeEvent_impl :: AllBinaryGameLayer -> IO (())
-onViewPositionChangeEvent_impl this = do
-        Control.Monad.void (AllBinaryGameLayer.onChangeEvent this (jget (this).base.viewPositionEvent))
-        pure ()
-
-
--- throws Exception
-onChangeEvent :: (JavaObjectClass this_) => this_ -> ViewPositionEvent.ViewPositionEvent -> IO (())
-onChangeEvent object_ a1 = jmethod object_ "onChangeEvent" (\() -> (onChangeEvent_impl (javaCast object_ :: AllBinaryGameLayer))) () a1
-
-onChangeEvent_super :: (JavaObjectClass this_) => this_ -> ViewPositionEvent.ViewPositionEvent -> IO (())
-onChangeEvent_super object_ a1 = (onChangeEvent_impl (javaCast object_ :: AllBinaryGameLayer)) a1
-
-onChangeEvent_impl :: AllBinaryGameLayer -> ViewPositionEvent.ViewPositionEvent -> IO (())
-onChangeEvent_impl this layerManagerEvent = do
-        if (jio (GameLayerUtil.isOnScreen (javaCast this))) then do
-            Control.Monad.void (AllBinaryLayer.setVisible this True)
-        else do
-            Control.Monad.void (AllBinaryLayer.setVisible this False)
-        pure ()
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "layerInfo", "" ), ( "viewPosition", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinaryLayer.jinit_3 JR.this [ (JR.local "name"), (JR.local "layerInfo"), (JR.local "viewPosition") ]),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "basicSetColorUtil" "" JR.this (JR.callStatic BasicColorSetUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "RED" "" JR.this (JR.field "RED" (JR.callStatic BasicColorFactory.jm_getInstance_0 []))),
+                JR.exec (JR.setField "paintable" "" JR.this (JR.callStatic jm_createPaintable_0 [])),
+                JR.exec (JR.setField "gameKeyEventList" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-paintFirst :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintFirst object_ a1 = jmethod object_ "paintFirst" (\() -> (paintFirst_impl (javaCast object_ :: AllBinaryGameLayer))) () a1
-
-paintFirst_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintFirst_super object_ a1 = (paintFirst_impl (javaCast object_ :: AllBinaryGameLayer)) a1
-
-paintFirst_impl :: AllBinaryGameLayer -> Graphics.Graphics -> IO (())
-paintFirst_impl this graphics = do
-        Control.Monad.void (Paintable.paint ((jget (this).paintable)) graphics)
-        pure ()
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
 
 
-paintDebug :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintDebug object_ a1 = jmethod object_ "paintDebug" (\() -> (paintDebug_impl (javaCast object_ :: AllBinaryGameLayer))) () a1
-
-paintDebug_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintDebug_super object_ a1 = (paintDebug_impl (javaCast object_ :: AllBinaryGameLayer)) a1
-
-paintDebug_impl :: AllBinaryGameLayer -> Graphics.Graphics -> IO (())
-paintDebug_impl this graphics = do
-        viewPosition <- (AllBinaryLayer.getViewPosition this)
-        viewX <- (ViewPositionBase.getX viewPosition)
-        viewY <- (ViewPositionBase.getY viewPosition)
-        Control.Monad.void (BasicColorSetUtil.setBasicColorP ((jget (this).basicSetColorUtil)) graphics (jget (this).rED))
-        Control.Monad.void (Graphics.drawRect graphics viewX viewY (jio (AllBinaryLayer.getWidth this)) (jio (AllBinaryLayer.getHeight this)))
-        pure ()
+jm_createPaintable_0 : JR.Method
+jm_createPaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse SWTUtil.jstatic_isSWT (JR.run [ 
+                        JR.return (JR.new SWTBlackPaintable.jnew_0 []) ]) identity, 
+                    JR.return (JR.callStatic NullPaintable.jm_getInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-setWidth :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setWidth object_ a1 = jmethod object_ "setWidth" (\() -> (setWidth_impl (javaCast object_ :: AllBinaryGameLayer))) () a1
-
-setWidth_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setWidth_super object_ a1 = (setWidth_impl (javaCast object_ :: AllBinaryGameLayer)) a1
-
-setWidth_impl :: AllBinaryGameLayer -> Int -> IO (())
-setWidth_impl this width = do
-        Control.Monad.void (AllBinaryLayer.setLayerWidth_super this.base width)
-        Control.Monad.void (AllBinaryLayer.setHalfWidth this (width `Data.Bits.shiftR` 1))
-        pure ()
+jm_set_1 : JR.Method
+jm_set_1 jheap jthis jargs =
+    JR.method [ ( "gl", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-setHeight :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setHeight object_ a1 = jmethod object_ "setHeight" (\() -> (setHeight_impl (javaCast object_ :: AllBinaryGameLayer))) () a1
+jm_move_0 : JR.Method
+jm_move_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
 
-setHeight_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setHeight_super object_ a1 = (setHeight_impl (javaCast object_ :: AllBinaryGameLayer)) a1
 
-setHeight_impl :: AllBinaryGameLayer -> Int -> IO (())
-setHeight_impl this height = do
-        Control.Monad.void (AllBinaryLayer.setLayerHeight_super this.base height)
-        Control.Monad.void (AllBinaryLayer.setHalfHeight this (height `Data.Bits.shiftR` 1))
-        pure ()
+jm_getGameKeyEventList_0 : JR.Method
+jm_getGameKeyEventList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameKeyEventList") ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_processInput_1 : JR.Method
+jm_processInput_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processTick_1 : JR.Method
+jm_processTick_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "PERFORMANCE_MESSAGE" (JR.callStatic EventStrings.jm_getInstance_0 [])), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onViewPositionChangeEvent_0 : JR.Method
+jm_onViewPositionChangeEvent_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "onChangeEvent_1" JR.this [ (JR.thisField "viewPositionEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onChangeEvent_1 : JR.Method
+jm_onChangeEvent_1 jheap jthis jargs =
+    JR.method [ ( "layerManagerEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.callStatic GameLayerUtil.jm_isOnScreen_1 [ JR.this ]) (JR.run [ 
+                        JR.exec (JR.invoke "setVisible_1" JR.this [ (JR.bool True) ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setVisible_1" JR.this [ (JR.bool False) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintFirst_1 : JR.Method
+jm_paintFirst_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "paintable") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintDebug_1 : JR.Method
+jm_paintDebug_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "viewPosition" "" (JR.invoke "getViewPosition_0" JR.this []), 
+                    JR.declare "viewX" "I" (JR.invoke "getX_0" (JR.local "viewPosition") []), 
+                    JR.declare "viewY" "I" (JR.invoke "getY_0" (JR.local "viewPosition") []), 
+                    JR.exec (JR.invoke "setBasicColorP_2" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.thisField "RED") ]), 
+                    JR.exec (JR.invoke "drawRect_4" (JR.local "graphics") [ (JR.local "viewX"), (JR.local "viewY"), (JR.invoke "getWidth_0" JR.this []), (JR.invoke "getHeight_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setWidth_1 : JR.Method
+jm_setWidth_1 jheap jthis jargs =
+    JR.method [ ( "width", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia AllBinaryLayer.jvtable "setLayerWidth_1" JR.this [ (JR.local "width") ]), 
+                    JR.exec (JR.invoke "setHalfWidth_1" JR.this [ (JR.map2 JR.shr (JR.local "width") (JR.int 1)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHeight_1 : JR.Method
+jm_setHeight_1 jheap jthis jargs =
+    JR.method [ ( "height", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia AllBinaryLayer.jvtable "setLayerHeight_1" JR.this [ (JR.local "height") ]), 
+                    JR.exec (JR.invoke "setHalfHeight_1" JR.this [ (JR.map2 JR.shr (JR.local "height") (JR.int 1)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,17 +1,17 @@
-module LinuxOperatingSystemFactory exposing (..)
+module Org.Allbinary.Logic.System.Os.Linux.LinuxOperatingSystemFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.os.linux
 -}
 
 import JR
-import CommonStrings
-import LinuxOS
-import LogConfigTypeFactory
-import LogConfigTypes
-import LogUtil
-import NoOperatingSystem
-import OperatingSystems
-import SystemProperties
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.System.Os.Linux.LinuxOS as LinuxOS
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.System.Os.NoOperatingSystem as NoOperatingSystem
+import Org.Allbinary.Logic.System.Os.OperatingSystems as OperatingSystems
+import Org.Allbinary.Logic.System.Os.SystemProperties as SystemProperties
 
 
 jclass : String

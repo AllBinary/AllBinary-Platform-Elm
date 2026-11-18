@@ -1,15 +1,15 @@
-module ThreadPool exposing (..)
+module Org.Allbinary.Thread.ThreadPool exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}
 
 import JR
-import BasicArrayListD
-import CommonStrings
-import LogUtil
-import NullRunnable
-import ThreadObjectUtil
-import ThreadPoolStrings
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Thread.NullRunnable as NullRunnable
+import Org.Allbinary.Thread.ThreadObjectUtil as ThreadObjectUtil
+import Org.Allbinary.Thread.ThreadPoolStrings as ThreadPoolStrings
 
 
 jclass : String

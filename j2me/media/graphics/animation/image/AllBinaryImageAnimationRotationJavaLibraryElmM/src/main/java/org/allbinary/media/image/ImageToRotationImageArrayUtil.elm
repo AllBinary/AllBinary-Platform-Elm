@@ -1,112 +1,107 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
-module ImageToRotationImageArrayUtil where
+module Org.Allbinary.Media.Image.ImageToRotationImageArrayUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ImageRotationUtil -- same package or java.lang
-import qualified Image -- javax.microedition.lcdui.Image
+{-| Generated Code Do Not Modify package org.allbinary.media.image
+-}
 
-data ImageToRotationImageArrayUtil = ImageToRotationImageArrayUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ImageToRotationImageArrayUtil where
-    javaNull = javaNullRecord "ImageToRotationImageArrayUtil"
-
-instance JavaEquals ImageToRotationImageArrayUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageToRotationImageArrayUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageToRotationImageArrayUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ImageToRotationImageArrayUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ImageToRotationImageArrayUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ImageToRotationImageArrayUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "generate" (\() -> generate_impl this)
-    pure this
-
-initFields_ :: ImageToRotationImageArrayUtil -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Media.Image.ImageRotationUtil as ImageRotationUtil
 
 
-getInstance :: IO (ImageToRotationImageArrayUtil)
-getInstance = do
-        pure (ImageToRotationImageArrayUtil.instance_)
-
-new_ :: IO ImageToRotationImageArrayUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ImageToRotationImageArrayUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "ImageToRotationImageArrayUtil"
 
 
--- throws Exception
-generate :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> Int -> IO (JavaArray (Image.Image))
-generate object_ a1 a2 a3 = jmethod object_ "generate" (\() -> (generate_impl (javaCast object_ :: ImageToRotationImageArrayUtil))) () a1 a2 a3
+jchain : List String
+jchain =
+    [ "ImageToRotationImageArrayUtil" ]
 
-generate_super :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> Int -> IO (JavaArray (Image.Image))
-generate_super object_ a1 a2 a3 = (generate_impl (javaCast object_ :: ImageToRotationImageArrayUtil)) a1 a2 a3
 
-generate_impl :: ImageToRotationImageArrayUtil -> Image.Image -> Int -> Int -> IO (JavaArray (Image.Image))
-generate_impl this image angleIncrement totalAngle = do
-        imageRotationUtil <- (ImageRotationUtil.getInstance)
-        let totalFrames = (totalAngle `quot` angleIncrement)
-        let imageArray = (jnewArray (totalFrames) javaNull)
-        jsetIndex imageArray (0) (image)
-        forM_ [1 .. totalFrames - 1] $ \index -> javaIteration (pure ()) $ do
-            assignedValue <- (ImageRotationUtil.createRotatedImage imageRotationUtil image (index * angleIncrement))
-            jsetIndex imageArray (index) (assignedValue)
-        pure (imageArray)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "generate_3", jm_generate_3 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageToRotationImageArrayUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_generate_3", jm_generate_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ImageToRotationImageArrayUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_generate_3 : JR.Method
+jm_generate_3 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "angleIncrement", "I" ), ( "totalAngle", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "imageRotationUtil" "" (JR.callStatic ImageRotationUtil.jm_getInstance_0 []), 
+                    JR.declare "totalFrames" "I" (JR.map2 JR.div (JR.local "totalAngle") (JR.local "angleIncrement")), 
+                    JR.declare "imageArray" "" (JR.newArray "" [ (JR.local "totalFrames") ]), 
+                    JR.exec (JR.andThen (JR.local "imageArray") (\jaN66065 -> JR.andThen (JR.int 0) (\jiN66065 -> (JR.aset (JR.lit jaN66065) (JR.lit jiN66065) (JR.local "image"))))), 
+                    JR.run [ JR.declare "index" "I" (JR.int 1), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "totalFrames")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66235 -> (JR.setLocal "index" "I" (JR.lit jwN66235))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "imageArray") (\jaN66106 -> JR.andThen (JR.local "index") (\jiN66106 -> (JR.aset (JR.lit jaN66106) (JR.lit jiN66106) (JR.invoke "createRotatedImage_2" (JR.local "imageRotationUtil") [ (JR.local "image"), (JR.map2 JR.mul (JR.local "index") (JR.local "angleIncrement")) ]))))) ]) ], 
+                    JR.return (JR.local "imageArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

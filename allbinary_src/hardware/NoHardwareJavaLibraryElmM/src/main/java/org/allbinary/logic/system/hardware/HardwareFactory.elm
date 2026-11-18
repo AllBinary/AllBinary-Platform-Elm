@@ -1,10 +1,10 @@
-module HardwareFactory exposing (..)
+module Org.Allbinary.Logic.System.Hardware.HardwareFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.hardware
 -}
 
 import JR
-import NoHardware
+import Org.Allbinary.Logic.System.Hardware.NoHardware as NoHardware
 
 
 jclass : String

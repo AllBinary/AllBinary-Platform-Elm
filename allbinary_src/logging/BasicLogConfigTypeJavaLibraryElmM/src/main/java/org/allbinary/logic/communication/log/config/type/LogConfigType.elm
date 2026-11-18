@@ -1,4 +1,4 @@
-module LogConfigType exposing (..)
+module Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigType exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.log.config.type
 -}

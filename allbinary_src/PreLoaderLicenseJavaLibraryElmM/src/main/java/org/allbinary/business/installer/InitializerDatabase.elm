@@ -1,488 +1,408 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.installer
-module InitializerDatabase where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DynamicInitDb -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified InitializerData -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified HashMap -- java.util.HashMap
-import qualified Map -- java.util.Map
-import qualified Set -- java.util.Set
-import qualified DatabaseConnectionInfoInterface -- org.allbinary.business.init.db.DatabaseConnectionInfoInterface
-import qualified DbConnectionInfo -- org.allbinary.business.init.db.DbConnectionInfo
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified StringValidationUtil -- org.allbinary.logic.string.StringValidationUtil
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-
-data InitializerDatabase = InitializerDatabase
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , adminDbUserName :: IORef (String)
-    , adminDbPassword :: IORef (String)
-    , adminJdbcDriver :: IORef (String)
-    , adminSchema :: IORef (String)
-    , adminServer :: IORef (String)
-    , adminPort :: IORef (String)
-    , initDb :: IORef (DynamicInitDb.DynamicInitDb)
-    }
-
-instance JavaNull InitializerDatabase where
-    javaNull = javaNullRecord "InitializerDatabase"
-
-instance JavaEquals InitializerDatabase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InitializerDatabase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InitializerDatabase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-mAXDB :: Int
-mAXDB = 30
-
-mAX :: Int
-mAX = 16
-
-mIN :: Int
-mIN = 4
-
-mINPASSWORD :: Int
-mINPASSWORD = 0
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO InitializerDatabase
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    adminDbUserName <- newIORef ""
-    adminDbPassword <- newIORef ""
-    adminJdbcDriver <- newIORef ""
-    adminSchema <- newIORef ""
-    adminServer <- newIORef ""
-    adminPort <- newIORef ""
-    initDb <- newIORef javaNull
-    let this = InitializerDatabase header_ logUtil adminDbUserName adminDbPassword adminJdbcDriver adminSchema adminServer adminPort initDb
-    jregisterLevel header_ this
-    jregisterMethod header_ "getFormData" (\() -> getFormData_impl this)
-    jregisterMethod header_ "isJdbcDriverValid" (\() -> isJdbcDriverValid_impl this)
-    jregisterMethod header_ "isValid" (\() -> isValid_impl this)
-    jregisterMethod header_ "getJdbcDriverValidationInfo" (\() -> getJdbcDriverValidationInfo_impl this)
-    jregisterMethod header_ "getInvalidInfo" (\() -> getInvalidInfo_impl this)
-    jregisterMethod header_ "createUsers" (\() -> createUsers_impl this)
-    jregisterMethod header_ "createDatabases" (\() -> createDatabases_impl this)
-    jregisterMethod header_ "createTables" (\() -> createTables_impl this)
-    jregisterMethod header_ "getAdminDbUserName" (\() -> getAdminDbUserName_impl this)
-    jregisterMethod header_ "setAdminDbUserName" (\() -> setAdminDbUserName_impl this)
-    jregisterMethod header_ "getAdminDbPassword" (\() -> getAdminDbPassword_impl this)
-    jregisterMethod header_ "setAdminDbPassword" (\() -> setAdminDbPassword_impl this)
-    jregisterMethod header_ "getAdminJdbcDriver" (\() -> getAdminJdbcDriver_impl this)
-    jregisterMethod header_ "setAdminJdbcDriver" (\() -> setAdminJdbcDriver_impl this)
-    jregisterMethod header_ "getAdminSchema" (\() -> getAdminSchema_impl this)
-    jregisterMethod header_ "setAdminSchema" (\() -> setAdminSchema_impl this)
-    jregisterMethod header_ "getAdminServer" (\() -> getAdminServer_impl this)
-    jregisterMethod header_ "setAdminServer" (\() -> setAdminServer_impl this)
-    jregisterMethod header_ "getAdminPort" (\() -> getAdminPort_impl this)
-    jregisterMethod header_ "setAdminPort" (\() -> setAdminPort_impl this)
-    pure this
-
-initFields_ :: InitializerDatabase -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.adminDbUserName ("")
-    jset this.adminDbPassword ("")
-    jset this.adminJdbcDriver ("")
-    jset this.adminSchema ("")
-    jset this.adminServer ("")
-    jset this.adminPort ("")
-    jset this.initDb (javaNull)
-    pure ()
-
--- Java overloaded constructors with 2 parameters: call the overload for the types of the arguments
-new_2 :: (JavaObjectClass o2) => AbeClientInformationInterface.AbeClientInformationInterface -> o2 -> IO InitializerDatabase
-new_2 a1 a2
-    | jisInstanceOf a2 (javaNull :: Map.Map) = new_2_overload1 a1 (javaCast a2 :: Map.Map)
-    | jisInstanceOf a2 (javaNull :: HashMap.HashMap) = new_2_overload2 a1 (javaCast a2 :: HashMap.HashMap)
-    | otherwise = new_2_overload2 a1 (javaCast a2 :: HashMap.HashMap)
-
-init_2 :: (JavaObjectClass o2) => InitializerDatabase -> AbeClientInformationInterface.AbeClientInformationInterface -> o2 -> IO ()
-init_2 this a1 a2
-    | jisInstanceOf a2 (javaNull :: Map.Map) = init_2_overload1 this a1 (javaCast a2 :: Map.Map)
-    | jisInstanceOf a2 (javaNull :: HashMap.HashMap) = init_2_overload2 this a1 (javaCast a2 :: HashMap.HashMap)
-    | otherwise = init_2_overload2 this a1 (javaCast a2 :: HashMap.HashMap)
-
-
-new_2_overload1 :: AbeClientInformationInterface.AbeClientInformationInterface -> Map.Map -> IO InitializerDatabase
-new_2_overload1 abeClientInformation map = do
-    this <- newRecord_
-    init_2_overload1 this abeClientInformation map
-    pure this
-
-init_2_overload1 :: InitializerDatabase -> AbeClientInformationInterface.AbeClientInformationInterface -> Map.Map -> IO ()
-init_2_overload1 this abeClientInformation map = do
-        initFields_ this
-        stringBuffer <- (StringMaker.new_)
-        hashMap <- (StdUtil.createHashMap ((jio (StdUtil.getInstance))))
-        keys <- (Map.keySet map)
-        keyArray <- (Set.toArray keys)
-        let size = (jlength keyArray)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let key = (javaCast (jindex keyArray (index)) :: String)
-            let values = (javaCast (jio (Map.get map key)) :: JavaArray (String))
-            Control.Monad.void (HashMap.put hashMap (jio (jnewString key)) (jio (jnewString (jindex values (0)))))
-            Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-            Control.Monad.void (StringMaker.append stringBuffer "key: ")
-            Control.Monad.void (StringMaker.append stringBuffer key)
-            Control.Monad.void (StringMaker.append stringBuffer " Value: ")
-            Control.Monad.void (StringMaker.append stringBuffer (jindex values (0)))
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this "getFormData()")
-        Control.Monad.void (InitializerDatabase.getFormData this abeClientInformation hashMap)
-        pure ()
-
-new_2_overload2 :: AbeClientInformationInterface.AbeClientInformationInterface -> HashMap.HashMap -> IO InitializerDatabase
-new_2_overload2 abeClientInformation initHashMap = do
-    this <- newRecord_
-    init_2_overload2 this abeClientInformation initHashMap
-    pure this
-
-init_2_overload2 :: InitializerDatabase -> AbeClientInformationInterface.AbeClientInformationInterface -> HashMap.HashMap -> IO ()
-init_2_overload2 this abeClientInformation initHashMap = do
-        initFields_ this
-        Control.Monad.void (InitializerDatabase.getFormData this abeClientInformation initHashMap)
-        pure ()
-
-
-getFormData :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> HashMap.HashMap -> IO (())
-getFormData object_ a1 a2 = jmethod object_ "getFormData" (\() -> (getFormData_impl (javaCast object_ :: InitializerDatabase))) () a1 a2
-
-getFormData_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> HashMap.HashMap -> IO (())
-getFormData_super object_ a1 a2 = (getFormData_impl (javaCast object_ :: InitializerDatabase)) a1 a2
-
-getFormData_impl :: InitializerDatabase -> AbeClientInformationInterface.AbeClientInformationInterface -> HashMap.HashMap -> IO (())
-getFormData_impl this abeClientInformation hashMap = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) "Unable to get form data" this "getFormData()" e)
-            ) $ do
-            initializerData <- (InitializerData.getInstance)
-            Control.Monad.void (InitializerDatabase.setAdminDbUserName this (javaCast (jio (HashMap.get hashMap (jget (initializerData).dBUSER))) :: String))
-            Control.Monad.void (InitializerDatabase.setAdminDbPassword this (javaCast (jio (HashMap.get hashMap (jget (initializerData).dBPASSWORD))) :: String))
-            Control.Monad.void (InitializerDatabase.setAdminJdbcDriver this (javaCast (jio (HashMap.get hashMap (jget (initializerData).aDMINJDBCDRIVER))) :: String))
-            Control.Monad.void (InitializerDatabase.setAdminSchema this (javaCast (jio (HashMap.get hashMap (jget (initializerData).aDMINSCHEMA))) :: String))
-            Control.Monad.void (InitializerDatabase.setAdminServer this (javaCast (jio (HashMap.get hashMap (jget (initializerData).aDMINSERVER))) :: String))
-            Control.Monad.void (InitializerDatabase.setAdminPort this (javaCast (jio (HashMap.get hashMap (jget (initializerData).aDMINPORT))) :: String))
-            dbConnectionInfo <- (DbConnectionInfo.new_)
-            let adminDbName = (jget ((jio (StringUtil.getInstance))).eMPTY_STRING)
-            Control.Monad.void (DbConnectionInfo.setJdbcDriver dbConnectionInfo (jio (InitializerDatabase.getAdminJdbcDriver this)))
-            Control.Monad.void (DbConnectionInfo.setName dbConnectionInfo adminDbName)
-            Control.Monad.void (DbConnectionInfo.setUserName dbConnectionInfo (jio (InitializerDatabase.getAdminDbUserName this)))
-            Control.Monad.void (DbConnectionInfo.setPassword dbConnectionInfo (jio (InitializerDatabase.getAdminDbPassword this)))
-            Control.Monad.void (DbConnectionInfo.setSchema dbConnectionInfo (jio (InitializerDatabase.getAdminSchema this)))
-            Control.Monad.void (DbConnectionInfo.setServer dbConnectionInfo (jio (InitializerDatabase.getAdminServer this)))
-            Control.Monad.void (DbConnectionInfo.setPort dbConnectionInfo (jio (InitializerDatabase.getAdminPort this)))
-            assignedValue <- (DynamicInitDb.new_2 abeClientInformation (javaCast dbConnectionInfo :: DatabaseConnectionInfoInterface.DatabaseConnectionInfoInterface))
-            jset (this).initDb (assignedValue)
-        pure ()
-
-
-isJdbcDriverValid :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isJdbcDriverValid object_ a1 = jmethod object_ "isJdbcDriverValid" (\() -> (isJdbcDriverValid_impl (javaCast object_ :: InitializerDatabase))) () a1
-
-isJdbcDriverValid_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isJdbcDriverValid_super object_ a1 = (isJdbcDriverValid_impl (javaCast object_ :: InitializerDatabase)) a1
-
-isJdbcDriverValid_impl :: InitializerDatabase -> String -> IO (Bool)
-isJdbcDriverValid_impl this jdbcDriverClassPathString = do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).pRELOADERERROR))) $ do
-                commonStrings <- (CommonStrings.getInstance)
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).iS_VALID) e)
-            pure (False)
-            ) $ do
-            Control.Monad.void (Class.newInstance ((jio (Class.forName jdbcDriverClassPathString))))
-            pure (True)
-
-
-isValid :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isValid object_ = jmethod object_ "isValid" (\() -> (isValid_impl (javaCast object_ :: InitializerDatabase))) ()
-
-isValid_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isValid_super object_ = (isValid_impl (javaCast object_ :: InitializerDatabase))
-
-isValid_impl :: InitializerDatabase -> IO (Bool)
-isValid_impl this = do
-        isValid <- newIORef (True :: Bool)
-        when (Prelude.not (jio (InitializerDatabase.isJdbcDriverValid this (jget (this).adminJdbcDriver)))) $ do
-            jset isValid (False)
-        stringValidationUtil <- (StringValidationUtil.getInstance)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).adminDbUserName) (InitializerDatabase.mIN) (InitializerDatabase.mAX)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).adminDbPassword) (InitializerDatabase.mINPASSWORD) (InitializerDatabase.mAX)))) $ do
-            jset isValid (False)
-        pure ((jget isValid))
-
-
-getJdbcDriverValidationInfo :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-getJdbcDriverValidationInfo object_ a1 = jmethod object_ "getJdbcDriverValidationInfo" (\() -> (getJdbcDriverValidationInfo_impl (javaCast object_ :: InitializerDatabase))) () a1
-
-getJdbcDriverValidationInfo_super :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-getJdbcDriverValidationInfo_super object_ a1 = (getJdbcDriverValidationInfo_impl (javaCast object_ :: InitializerDatabase)) a1
-
-getJdbcDriverValidationInfo_impl :: InitializerDatabase -> String -> IO (String)
-getJdbcDriverValidationInfo_impl this jdbcDriver = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "The JDBC driver (")
-        Control.Monad.void (StringMaker.append stringBuffer jdbcDriver)
-        Control.Monad.void (StringMaker.append stringBuffer ") you have provided is not valid.<br/>")
-        (StringMaker.toString stringBuffer)
-
-
-getInvalidInfo :: (JavaObjectClass this_) => this_ -> IO (String)
-getInvalidInfo object_ = jmethod object_ "getInvalidInfo" (\() -> (getInvalidInfo_impl (javaCast object_ :: InitializerDatabase))) ()
-
-getInvalidInfo_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getInvalidInfo_super object_ = (getInvalidInfo_impl (javaCast object_ :: InitializerDatabase))
-
-getInvalidInfo_impl :: InitializerDatabase -> IO (String)
-getInvalidInfo_impl this = do
-        let isValid = True
-        isJdbcDriversValid <- newIORef (True :: Bool)
-        stringBuffer <- (StringMaker.new_)
-        when (Prelude.not (jio (InitializerDatabase.isJdbcDriverValid this (jget (this).adminJdbcDriver)))) $ do
-            jset isJdbcDriversValid (False)
-            Control.Monad.void (StringMaker.append stringBuffer (jio (InitializerDatabase.getJdbcDriverValidationInfo this (jio (InitializerDatabase.getAdminJdbcDriver this)))))
-        stringValidationUtil <- (StringValidationUtil.getInstance)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).adminDbUserName) (InitializerDatabase.mIN) (InitializerDatabase.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("Admin username should be < " ++ javaToString InitializerDatabase.mAX) ++ " and > ") ++ javaToString InitializerDatabase.mIN) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).adminDbPassword) (InitializerDatabase.mINPASSWORD) (InitializerDatabase.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("Admin password should be < " ++ javaToString InitializerDatabase.mAX) ++ " and > ") ++ javaToString InitializerDatabase.mINPASSWORD) ++ " characters in length.<br />"))
-        when (Prelude.not (jget isJdbcDriversValid)) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (jio (InitializerData.getJdbcDriverSolutionInfo ((jio (InitializerData.getInstance))))))
-        (StringMaker.toString stringBuffer)
-
-
-createUsers :: (JavaObjectClass this_) => this_ -> IO (Bool)
-createUsers object_ = jmethod object_ "createUsers" (\() -> (createUsers_impl (javaCast object_ :: InitializerDatabase))) ()
-
-createUsers_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-createUsers_super object_ = (createUsers_impl (javaCast object_ :: InitializerDatabase))
-
-createUsers_impl :: InitializerDatabase -> IO (Bool)
-createUsers_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) "Unable to Create Users" this "createUsers()" e)
-            pure (False)
-            ) $ do
-            Control.Monad.void (DynamicInitDb.addUsers ((jget (this).initDb)))
-            pure (True)
-
-
-createDatabases :: (JavaObjectClass this_) => this_ -> IO (Bool)
-createDatabases object_ = jmethod object_ "createDatabases" (\() -> (createDatabases_impl (javaCast object_ :: InitializerDatabase))) ()
-
-createDatabases_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-createDatabases_super object_ = (createDatabases_impl (javaCast object_ :: InitializerDatabase))
-
-createDatabases_impl :: InitializerDatabase -> IO (Bool)
-createDatabases_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) "Unable to Create Databases" this "createDatabases()" e)
-            pure (False)
-            ) $ do
-            Control.Monad.void (DynamicInitDb.addDatabases ((jget (this).initDb)))
-            pure (True)
-
-
-createTables :: (JavaObjectClass this_) => this_ -> IO (Bool)
-createTables object_ = jmethod object_ "createTables" (\() -> (createTables_impl (javaCast object_ :: InitializerDatabase))) ()
-
-createTables_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-createTables_super object_ = (createTables_impl (javaCast object_ :: InitializerDatabase))
-
-createTables_impl :: InitializerDatabase -> IO (Bool)
-createTables_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) "Unable to Create Tables" this "createTables()" e)
-            pure (False)
-            ) $ do
-            Control.Monad.void (DynamicInitDb.addTables ((jget (this).initDb)))
-            pure (True)
-
-
-getAdminDbUserName :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminDbUserName object_ = jmethod object_ "getAdminDbUserName" (\() -> (getAdminDbUserName_impl (javaCast object_ :: InitializerDatabase))) ()
-
-getAdminDbUserName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminDbUserName_super object_ = (getAdminDbUserName_impl (javaCast object_ :: InitializerDatabase))
-
-getAdminDbUserName_impl :: InitializerDatabase -> IO (String)
-getAdminDbUserName_impl this = do
-        pure ((jget (this).adminDbUserName))
-
-
-setAdminDbUserName :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminDbUserName object_ a1 = jmethod object_ "setAdminDbUserName" (\() -> (setAdminDbUserName_impl (javaCast object_ :: InitializerDatabase))) () a1
-
-setAdminDbUserName_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminDbUserName_super object_ a1 = (setAdminDbUserName_impl (javaCast object_ :: InitializerDatabase)) a1
-
-setAdminDbUserName_impl :: InitializerDatabase -> String -> IO (())
-setAdminDbUserName_impl this adminDbUserName = do
-        jset (this).adminDbUserName (adminDbUserName)
-        pure ()
-
-
-getAdminDbPassword :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminDbPassword object_ = jmethod object_ "getAdminDbPassword" (\() -> (getAdminDbPassword_impl (javaCast object_ :: InitializerDatabase))) ()
-
-getAdminDbPassword_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminDbPassword_super object_ = (getAdminDbPassword_impl (javaCast object_ :: InitializerDatabase))
-
-getAdminDbPassword_impl :: InitializerDatabase -> IO (String)
-getAdminDbPassword_impl this = do
-        pure ((jget (this).adminDbPassword))
-
-
-setAdminDbPassword :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminDbPassword object_ a1 = jmethod object_ "setAdminDbPassword" (\() -> (setAdminDbPassword_impl (javaCast object_ :: InitializerDatabase))) () a1
-
-setAdminDbPassword_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminDbPassword_super object_ a1 = (setAdminDbPassword_impl (javaCast object_ :: InitializerDatabase)) a1
-
-setAdminDbPassword_impl :: InitializerDatabase -> String -> IO (())
-setAdminDbPassword_impl this adminDbPassword = do
-        jset (this).adminDbPassword (adminDbPassword)
-        pure ()
-
-
-getAdminJdbcDriver :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminJdbcDriver object_ = jmethod object_ "getAdminJdbcDriver" (\() -> (getAdminJdbcDriver_impl (javaCast object_ :: InitializerDatabase))) ()
-
-getAdminJdbcDriver_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminJdbcDriver_super object_ = (getAdminJdbcDriver_impl (javaCast object_ :: InitializerDatabase))
-
-getAdminJdbcDriver_impl :: InitializerDatabase -> IO (String)
-getAdminJdbcDriver_impl this = do
-        pure ((jget (this).adminJdbcDriver))
-
-
-setAdminJdbcDriver :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminJdbcDriver object_ a1 = jmethod object_ "setAdminJdbcDriver" (\() -> (setAdminJdbcDriver_impl (javaCast object_ :: InitializerDatabase))) () a1
-
-setAdminJdbcDriver_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminJdbcDriver_super object_ a1 = (setAdminJdbcDriver_impl (javaCast object_ :: InitializerDatabase)) a1
-
-setAdminJdbcDriver_impl :: InitializerDatabase -> String -> IO (())
-setAdminJdbcDriver_impl this adminJdbcDriver = do
-        jset (this).adminJdbcDriver (adminJdbcDriver)
-        pure ()
-
-
-getAdminSchema :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminSchema object_ = jmethod object_ "getAdminSchema" (\() -> (getAdminSchema_impl (javaCast object_ :: InitializerDatabase))) ()
-
-getAdminSchema_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminSchema_super object_ = (getAdminSchema_impl (javaCast object_ :: InitializerDatabase))
-
-getAdminSchema_impl :: InitializerDatabase -> IO (String)
-getAdminSchema_impl this = do
-        pure ((jget (this).adminSchema))
-
-
-setAdminSchema :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminSchema object_ a1 = jmethod object_ "setAdminSchema" (\() -> (setAdminSchema_impl (javaCast object_ :: InitializerDatabase))) () a1
-
-setAdminSchema_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminSchema_super object_ a1 = (setAdminSchema_impl (javaCast object_ :: InitializerDatabase)) a1
-
-setAdminSchema_impl :: InitializerDatabase -> String -> IO (())
-setAdminSchema_impl this adminSchema = do
-        jset (this).adminSchema (adminSchema)
-        pure ()
-
-
-getAdminServer :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminServer object_ = jmethod object_ "getAdminServer" (\() -> (getAdminServer_impl (javaCast object_ :: InitializerDatabase))) ()
-
-getAdminServer_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminServer_super object_ = (getAdminServer_impl (javaCast object_ :: InitializerDatabase))
-
-getAdminServer_impl :: InitializerDatabase -> IO (String)
-getAdminServer_impl this = do
-        pure ((jget (this).adminServer))
-
-
-setAdminServer :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminServer object_ a1 = jmethod object_ "setAdminServer" (\() -> (setAdminServer_impl (javaCast object_ :: InitializerDatabase))) () a1
-
-setAdminServer_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminServer_super object_ a1 = (setAdminServer_impl (javaCast object_ :: InitializerDatabase)) a1
-
-setAdminServer_impl :: InitializerDatabase -> String -> IO (())
-setAdminServer_impl this adminServer = do
-        jset (this).adminServer (adminServer)
-        pure ()
-
-
-getAdminPort :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminPort object_ = jmethod object_ "getAdminPort" (\() -> (getAdminPort_impl (javaCast object_ :: InitializerDatabase))) ()
-
-getAdminPort_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getAdminPort_super object_ = (getAdminPort_impl (javaCast object_ :: InitializerDatabase))
-
-getAdminPort_impl :: InitializerDatabase -> IO (String)
-getAdminPort_impl this = do
-        pure ((jget (this).adminPort))
-
-
-setAdminPort :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminPort object_ a1 = jmethod object_ "setAdminPort" (\() -> (setAdminPort_impl (javaCast object_ :: InitializerDatabase))) () a1
-
-setAdminPort_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setAdminPort_super object_ a1 = (setAdminPort_impl (javaCast object_ :: InitializerDatabase)) a1
-
-setAdminPort_impl :: InitializerDatabase -> String -> IO (())
-setAdminPort_impl this adminPort = do
-        jset (this).adminPort (adminPort)
-        pure ()
-
+module Org.Allbinary.Business.Installer.InitializerDatabase exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.business.installer
+-}
+
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Business.Init.Db.DbConnectionInfo as DbConnectionInfo
+import Org.Allbinary.Business.Installer.DynamicInitDb as DynamicInitDb
+import Org.Allbinary.Business.Installer.InitializerData as InitializerData
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
+
+
+jclass : String
+jclass =
+    "InitializerDatabase"
+
+
+jchain : List String
+jchain =
+    [ "InitializerDatabase" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "adminDbUserName", JR.defaultOf "" ), ( "adminDbPassword", JR.defaultOf "" ), ( "adminJdbcDriver", JR.defaultOf "" ), ( "adminSchema", JR.defaultOf "" ), ( "adminServer", JR.defaultOf "" ), ( "adminPort", JR.defaultOf "" ), ( "initDb", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getFormData_2", jm_getFormData_2 )
+        , ( "isJdbcDriverValid_1", jm_isJdbcDriverValid_1 )
+        , ( "isValid_0", jm_isValid_0 )
+        , ( "getJdbcDriverValidationInfo_1", jm_getJdbcDriverValidationInfo_1 )
+        , ( "getInvalidInfo_0", jm_getInvalidInfo_0 )
+        , ( "createUsers_0", jm_createUsers_0 )
+        , ( "createDatabases_0", jm_createDatabases_0 )
+        , ( "createTables_0", jm_createTables_0 )
+        , ( "getAdminDbUserName_0", jm_getAdminDbUserName_0 )
+        , ( "setAdminDbUserName_1", jm_setAdminDbUserName_1 )
+        , ( "getAdminDbPassword_0", jm_getAdminDbPassword_0 )
+        , ( "setAdminDbPassword_1", jm_setAdminDbPassword_1 )
+        , ( "getAdminJdbcDriver_0", jm_getAdminJdbcDriver_0 )
+        , ( "setAdminJdbcDriver_1", jm_setAdminJdbcDriver_1 )
+        , ( "getAdminSchema_0", jm_getAdminSchema_0 )
+        , ( "setAdminSchema_1", jm_setAdminSchema_1 )
+        , ( "getAdminServer_0", jm_getAdminServer_0 )
+        , ( "setAdminServer_1", jm_setAdminServer_1 )
+        , ( "getAdminPort_0", jm_getAdminPort_0 )
+        , ( "setAdminPort_1", jm_setAdminPort_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InitializerDatabase"
+        [ ( "jm_getFormData_2", jm_getFormData_2 ), ( "jm_isJdbcDriverValid_1", jm_isJdbcDriverValid_1 ), ( "jm_isValid_0", jm_isValid_0 ), ( "jm_getJdbcDriverValidationInfo_1", jm_getJdbcDriverValidationInfo_1 ), ( "jm_getInvalidInfo_0", jm_getInvalidInfo_0 ), ( "jm_createUsers_0", jm_createUsers_0 ), ( "jm_createDatabases_0", jm_createDatabases_0 ), ( "jm_createTables_0", jm_createTables_0 ), ( "jm_getAdminDbUserName_0", jm_getAdminDbUserName_0 ), ( "jm_setAdminDbUserName_1", jm_setAdminDbUserName_1 ), ( "jm_getAdminDbPassword_0", jm_getAdminDbPassword_0 ), ( "jm_setAdminDbPassword_1", jm_setAdminDbPassword_1 ), ( "jm_getAdminJdbcDriver_0", jm_getAdminJdbcDriver_0 ), ( "jm_setAdminJdbcDriver_1", jm_setAdminJdbcDriver_1 ), ( "jm_getAdminSchema_0", jm_getAdminSchema_0 ), ( "jm_setAdminSchema_1", jm_setAdminSchema_1 ), ( "jm_getAdminServer_0", jm_getAdminServer_0 ), ( "jm_setAdminServer_1", jm_setAdminServer_1 ), ( "jm_getAdminPort_0", jm_getAdminPort_0 ), ( "jm_setAdminPort_1", jm_setAdminPort_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_MAXDB", jstatic_MAXDB ), ( "jstatic_MAX", jstatic_MAX ), ( "jstatic_MIN", jstatic_MIN ), ( "jstatic_MINPASSWORD", jstatic_MINPASSWORD ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_MAXDB : JR.M
+jstatic_MAXDB s =
+    JR.static "InitializerDatabase" jclinit "MAXDB"
+        (JR.int 30)
+        s
+
+
+jstatic_MAX : JR.M
+jstatic_MAX s =
+    JR.static "InitializerDatabase" jclinit "MAX"
+        (JR.int 16)
+        s
+
+
+jstatic_MIN : JR.M
+jstatic_MIN s =
+    JR.static "InitializerDatabase" jclinit "MIN"
+        (JR.int 4)
+        s
+
+
+jstatic_MINPASSWORD : JR.M
+jstatic_MINPASSWORD s =
+    JR.static "InitializerDatabase" jclinit "MINPASSWORD"
+        (JR.int 0)
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "map", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "hashMap" "" (JR.invoke "createHashMap_0" (JR.callStatic StdUtil.jm_getInstance_0 []) []), 
+                    JR.declare "keys" "" (JR.invoke "keySet_0" (JR.local "map") []), 
+                    JR.declare "keyArray" "" (JR.invoke "toArray_0" (JR.local "keys") []), 
+                    JR.declare "size" "I" (JR.alength (JR.local "keyArray")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69732 -> (JR.setLocal "index" "I" (JR.lit jwN69732))) JR.increment) ]) (JR.run [ 
+                        JR.declare "key" "" (JR.aget (JR.local "keyArray") (JR.local "index")), 
+                        JR.declare "values" "" (JR.invoke "get_1" (JR.local "map") [ (JR.local "key") ]), 
+                        JR.exec (JR.invoke "put_2" (JR.local "hashMap") [ (JR.withState JR.newString [ (JR.local "key") ]), (JR.withState JR.newString [ (JR.aget (JR.local "values") (JR.int 0)) ]) ]), 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "key: ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "key") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Value: ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.aget (JR.local "values") (JR.int 0)) ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "getFormData()") ]) ]) ], 
+                    JR.exec (JR.invoke "getFormData_2" JR.this [ (JR.local "abeClientInformation"), (JR.local "hashMap") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getFormData_2 : JR.Method
+jm_getFormData_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "hashMap", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "initializerData" "" (JR.callStatic InitializerData.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "setAdminDbUserName_1" JR.this [ (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "DBUSER" (JR.local "initializerData")) ]) ]), 
+                        JR.exec (JR.invoke "setAdminDbPassword_1" JR.this [ (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "DBPASSWORD" (JR.local "initializerData")) ]) ]), 
+                        JR.exec (JR.invoke "setAdminJdbcDriver_1" JR.this [ (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "ADMINJDBCDRIVER" (JR.local "initializerData")) ]) ]), 
+                        JR.exec (JR.invoke "setAdminSchema_1" JR.this [ (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "ADMINSCHEMA" (JR.local "initializerData")) ]) ]), 
+                        JR.exec (JR.invoke "setAdminServer_1" JR.this [ (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "ADMINSERVER" (JR.local "initializerData")) ]) ]), 
+                        JR.exec (JR.invoke "setAdminPort_1" JR.this [ (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "ADMINPORT" (JR.local "initializerData")) ]) ]), 
+                        JR.declare "dbConnectionInfo" "" (JR.new DbConnectionInfo.jnew_0 []), 
+                        JR.declare "adminDbName" "" (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), 
+                        JR.exec (JR.invoke "setJdbcDriver_1" (JR.local "dbConnectionInfo") [ (JR.invoke "getAdminJdbcDriver_0" JR.this []) ]), 
+                        JR.exec (JR.invoke "setName_1" (JR.local "dbConnectionInfo") [ (JR.local "adminDbName") ]), 
+                        JR.exec (JR.invoke "setUserName_1" (JR.local "dbConnectionInfo") [ (JR.invoke "getAdminDbUserName_0" JR.this []) ]), 
+                        JR.exec (JR.invoke "setPassword_1" (JR.local "dbConnectionInfo") [ (JR.invoke "getAdminDbPassword_0" JR.this []) ]), 
+                        JR.exec (JR.invoke "setSchema_1" (JR.local "dbConnectionInfo") [ (JR.invoke "getAdminSchema_0" JR.this []) ]), 
+                        JR.exec (JR.invoke "setServer_1" (JR.local "dbConnectionInfo") [ (JR.invoke "getAdminServer_0" JR.this []) ]), 
+                        JR.exec (JR.invoke "setPort_1" (JR.local "dbConnectionInfo") [ (JR.invoke "getAdminPort_0" JR.this []) ]), 
+                        JR.exec (JR.setField "initDb" "" JR.this (JR.new DynamicInitDb.jnew_2 [ (JR.local "abeClientInformation"), (JR.local "dbConnectionInfo") ])) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Unable to get form data"), JR.this, (JR.str "getFormData()"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isJdbcDriverValid_1 : JR.Method
+jm_isJdbcDriverValid_1 jheap jthis jargs =
+    JR.method [ ( "jdbcDriverClassPathString", "" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "newInstance_0" (JR.callStatic (JR.namedMethod "Class.jm_forName_1") [ (JR.local "jdbcDriverClassPathString") ]) []), 
+                        JR.return (JR.bool True) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "PRELOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "IS_VALID" (JR.local "commonStrings")), (JR.local "e") ]) ]) identity, 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isValid_0 : JR.Method
+jm_isValid_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.declare "isValid" "Z" (JR.bool True), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "adminJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.declare "stringValidationUtil" "" (JR.callStatic StringValidationUtil.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "adminDbUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "adminDbPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.return (JR.local "isValid") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getJdbcDriverValidationInfo_1 : JR.Method
+jm_getJdbcDriverValidationInfo_1 jheap jthis jargs =
+    JR.method [ ( "jdbcDriver", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "The JDBC driver (") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "jdbcDriver") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str ") you have provided is not valid.<br/>") ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInvalidInfo_0 : JR.Method
+jm_getInvalidInfo_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "isValid" "Z" (JR.bool True), 
+                    JR.declare "isJdbcDriversValid" "Z" (JR.bool True), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "adminJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isJdbcDriversValid" "Z" (JR.bool False)), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getJdbcDriverValidationInfo_1" JR.this [ (JR.invoke "getAdminJdbcDriver_0" JR.this []) ]) ]) ]) identity, 
+                    JR.declare "stringValidationUtil" "" (JR.callStatic StringValidationUtil.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "adminDbUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "Admin username should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MIN) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "adminDbPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "Admin password should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MINPASSWORD) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.local "isJdbcDriversValid")) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getJdbcDriverSolutionInfo_0" (JR.callStatic InitializerData.jm_getInstance_0 []) []) ]) ]) identity, 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createUsers_0 : JR.Method
+jm_createUsers_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "addUsers_0" (JR.thisField "initDb") []), 
+                        JR.return (JR.bool True) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Unable to Create Users"), JR.this, (JR.str "createUsers()"), (JR.local "e") ]), 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createDatabases_0 : JR.Method
+jm_createDatabases_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "addDatabases_0" (JR.thisField "initDb") []), 
+                        JR.return (JR.bool True) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Unable to Create Databases"), JR.this, (JR.str "createDatabases()"), (JR.local "e") ]), 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createTables_0 : JR.Method
+jm_createTables_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "addTables_0" (JR.thisField "initDb") []), 
+                        JR.return (JR.bool True) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Unable to Create Tables"), JR.this, (JR.str "createTables()"), (JR.local "e") ]), 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAdminDbUserName_0 : JR.Method
+jm_getAdminDbUserName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "adminDbUserName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAdminDbUserName_1 : JR.Method
+jm_setAdminDbUserName_1 jheap jthis jargs =
+    JR.method [ ( "adminDbUserName", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "adminDbUserName" "" JR.this (JR.local "adminDbUserName")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAdminDbPassword_0 : JR.Method
+jm_getAdminDbPassword_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "adminDbPassword") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAdminDbPassword_1 : JR.Method
+jm_setAdminDbPassword_1 jheap jthis jargs =
+    JR.method [ ( "adminDbPassword", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "adminDbPassword" "" JR.this (JR.local "adminDbPassword")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAdminJdbcDriver_0 : JR.Method
+jm_getAdminJdbcDriver_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "adminJdbcDriver") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAdminJdbcDriver_1 : JR.Method
+jm_setAdminJdbcDriver_1 jheap jthis jargs =
+    JR.method [ ( "adminJdbcDriver", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "adminJdbcDriver" "" JR.this (JR.local "adminJdbcDriver")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAdminSchema_0 : JR.Method
+jm_getAdminSchema_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "adminSchema") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAdminSchema_1 : JR.Method
+jm_setAdminSchema_1 jheap jthis jargs =
+    JR.method [ ( "adminSchema", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "adminSchema" "" JR.this (JR.local "adminSchema")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAdminServer_0 : JR.Method
+jm_getAdminServer_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "adminServer") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAdminServer_1 : JR.Method
+jm_setAdminServer_1 jheap jthis jargs =
+    JR.method [ ( "adminServer", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "adminServer" "" JR.this (JR.local "adminServer")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAdminPort_0 : JR.Method
+jm_getAdminPort_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "adminPort") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAdminPort_1 : JR.Method
+jm_setAdminPort_1 jheap jthis jargs =
+    JR.method [ ( "adminPort", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "adminPort" "" JR.this (JR.local "adminPort")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

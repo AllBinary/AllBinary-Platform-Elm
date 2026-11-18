@@ -1,4 +1,4 @@
-module FileExtensionData exposing (..)
+module Org.Allbinary.Logic.Java.FileExtensionData exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.java
 -}

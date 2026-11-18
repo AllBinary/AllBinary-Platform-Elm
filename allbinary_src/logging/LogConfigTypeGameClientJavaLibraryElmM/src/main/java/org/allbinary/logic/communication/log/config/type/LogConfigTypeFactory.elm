@@ -1,11 +1,11 @@
-module LogConfigTypeFactory exposing (..)
+module Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.log.config.type
 -}
 
 import JR
-import LogConfigType
-import LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigType as LogConfigType
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
 
 
 jclass : String

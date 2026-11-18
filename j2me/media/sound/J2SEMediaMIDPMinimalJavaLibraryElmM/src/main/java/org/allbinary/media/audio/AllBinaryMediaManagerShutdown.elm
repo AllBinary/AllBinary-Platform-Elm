@@ -1,97 +1,94 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
-module AllBinaryMediaManagerShutdown where
+module Org.Allbinary.Media.Audio.AllBinaryMediaManagerShutdown exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryMediaManager -- same package or java.lang
-import qualified SoundsFactoryInterface -- same package or java.lang
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.media.audio
+-}
 
-data AllBinaryMediaManagerShutdown = AllBinaryMediaManagerShutdown
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull AllBinaryMediaManagerShutdown where
-    javaNull = javaNullRecord "AllBinaryMediaManagerShutdown"
-
-instance JavaEquals AllBinaryMediaManagerShutdown where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryMediaManagerShutdown where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryMediaManagerShutdown where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AllBinaryMediaManagerShutdown
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AllBinaryMediaManagerShutdown
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = AllBinaryMediaManagerShutdown header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: AllBinaryMediaManagerShutdown -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AllBinaryMediaManagerShutdown
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllBinaryMediaManagerShutdown -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Media.Audio.AllBinaryMediaManager as AllBinaryMediaManager
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
--- throws Exception
-shutdown :: SoundsFactoryInterface.SoundsFactoryInterface -> IO (())
-shutdown soundsFactoryInterface = do
-        logUtil <- (LogUtil.getInstance)
-        commonStrings <- (CommonStrings.getInstance)
-        Control.Monad.void (LogUtil.putF logUtil (jget (commonStrings).sTART) instance_ "shutdown")
-        Control.Monad.void (AllBinaryMediaManager.shutdown soundsFactoryInterface)
-        pure ()
+jclass : String
+jclass =
+    "AllBinaryMediaManagerShutdown"
 
+
+jchain : List String
+jchain =
+    [ "AllBinaryMediaManagerShutdown" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "shutdown_1", jm_shutdown_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryMediaManagerShutdown"
+        [ ( "jm_shutdown_1", jm_shutdown_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AllBinaryMediaManagerShutdown" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_shutdown_1 : JR.Method
+jm_shutdown_1 jheap jthis jargs =
+    JR.method [ ( "soundsFactoryInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "logUtil" "" (JR.callStatic LogUtil.jm_getInstance_0 []), 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "putF_3" (JR.local "logUtil") [ (JR.field "START" (JR.local "commonStrings")), jstatic_instance, (JR.str "shutdown") ]), 
+                    JR.exec (JR.callStatic AllBinaryMediaManager.jm_shutdown_1 [ (JR.local "soundsFactoryInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

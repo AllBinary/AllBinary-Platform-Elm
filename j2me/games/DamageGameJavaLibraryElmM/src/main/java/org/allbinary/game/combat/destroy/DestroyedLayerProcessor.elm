@@ -1,137 +1,131 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.destroy
-module DestroyedLayerProcessor (module DestroyedLayerProcessor, module BasicLayerProcessor) where
+module Org.Allbinary.Game.Combat.Destroy.DestroyedLayerProcessor exposing (..)
 
-import BasicLayerProcessor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, init, init_super, init_impl, getInstance, getInstance_super, getInstance_impl, process, process_super, process_impl, dESTROYED_LAYER_PROCESSOR)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified DestroyEventCircularStaticPool -- org.allbinary.game.combat.destroy.event.DestroyEventCircularStaticPool
-import qualified DestroyedEvent -- org.allbinary.game.combat.destroy.event.DestroyedEvent
-import qualified DestroyedEventHandler -- org.allbinary.game.combat.destroy.event.DestroyedEventHandler
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified BasicLayerProcessor -- org.allbinary.layer.BasicLayerProcessor
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.game.combat.destroy
+-}
 
-data DestroyedLayerProcessor = DestroyedLayerProcessor
-    { header_ :: JavaHeader
-    , base :: BasicLayerProcessor.BasicLayerProcessor
-    }
-
-instance JavaNull DestroyedLayerProcessor where
-    javaNull = javaNullRecord "DestroyedLayerProcessor"
-
-instance JavaEquals DestroyedLayerProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DestroyedLayerProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DestroyedLayerProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-dESTROYED_LAYER_PROCESSOR :: IORef (BasicLayerProcessor.BasicLayerProcessor)
-{-# NOINLINE dESTROYED_LAYER_PROCESSOR #-}
-dESTROYED_LAYER_PROCESSOR = unsafePerformIO (newIORef (BasicLayerProcessor.nULL_LAYER_PROCESSOR))
-
-newRecord_ :: IO DestroyedLayerProcessor
-newRecord_ = do
-    base <- BasicLayerProcessor.newRecord_
-    let header_ = base.header_
-    let this = DestroyedLayerProcessor header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: DestroyedLayerProcessor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO DestroyedLayerProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DestroyedLayerProcessor -> IO ()
-init_ this = do
-        BasicLayerProcessor.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Layer.BasicLayerProcessor as BasicLayerProcessor
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Combat.Destroy.Event.DestroyEventCircularStaticPool as DestroyEventCircularStaticPool
+import Org.Allbinary.Game.Combat.Destroy.Event.DestroyedEventHandler as DestroyedEventHandler
 
 
-init :: IO (())
-init = do
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicLayerProcessor.BasicLayerProcessor) (new_))
-        jset DestroyedLayerProcessor.dESTROYED_LAYER_PROCESSOR (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "DestroyedLayerProcessor"
 
 
-getInstance :: IO (BasicLayerProcessor.BasicLayerProcessor)
-getInstance = do
-        pure ((jget DestroyedLayerProcessor.dESTROYED_LAYER_PROCESSOR))
+jchain : List String
+jchain =
+    [ "DestroyedLayerProcessor" ]
+        ++ BasicLayerProcessor.jchain
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: DestroyedLayerProcessor))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicLayerProcessor.jfields ++ []
 
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: DestroyedLayerProcessor)) a1
 
-process_impl :: DestroyedLayerProcessor -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-process_impl this allBinaryLayerManager = do
-        list <- (BasicLayerProcessor.getList this)
-        size <- (BasicArrayList.size list)
-        destroyedEventHandler <- (DestroyedEventHandler.getInstance)
-        destroyEventCircularStaticPool <- (DestroyEventCircularStaticPool.getInstance)
-        destroyedEvent <- newIORef (javaNull)
-        layerInterface <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let layerInterfaceCanBeNull = (jindex ((jget (list).objectArray)) (index))
-            if (layerInterfaceCanBeNull /= javaNull) then do
-                jset layerInterface ((javaCast layerInterfaceCanBeNull :: AllBinaryLayer.AllBinaryLayer))
-                Control.Monad.void (AllBinaryLayerManager.remove allBinaryLayerManager (jget layerInterface))
-                assignedValue <- (DestroyEventCircularStaticPool.getInstanceForLayer destroyEventCircularStaticPool (jget layerInterface))
-                jset destroyedEvent (assignedValue)
-                Control.Monad.void (DestroyedEventHandler.fireEvent destroyedEventHandler (javaCast (jget destroyedEvent)))
-            else do
-                commonStrings <- (CommonStrings.getInstance)
-                pure ()
-        Control.Monad.void (BasicArrayList.clear list)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 )
+        , ( "getInstance_0", jm_getInstance_0 )
+        , ( "process_1", jm_process_1 ) ]
+        BasicLayerProcessor.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DestroyedLayerProcessor"
+        [ ( "jm_init_0", jm_init_0 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_process_1", jm_process_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_DESTROYED_LAYER_PROCESSOR", jstatic_DESTROYED_LAYER_PROCESSOR ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_DESTROYED_LAYER_PROCESSOR : JR.M
+jstatic_DESTROYED_LAYER_PROCESSOR s =
+    JR.static "DestroyedLayerProcessor" jclinit "DESTROYED_LAYER_PROCESSOR"
+        BasicLayerProcessor.jstatic_NULL_LAYER_PROCESSOR
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect BasicLayerProcessor.jinit_0 JR.this []),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setStatic "DestroyedLayerProcessor.DESTROYED_LAYER_PROCESSOR" "" (JR.new jnew_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_DESTROYED_LAYER_PROCESSOR ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "list" "" (JR.invoke "getList_0" JR.this []), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                    JR.declare "destroyedEventHandler" "" (JR.callStatic DestroyedEventHandler.jm_getInstance_0 []), 
+                    JR.declare "destroyEventCircularStaticPool" "" (JR.callStatic DestroyEventCircularStaticPool.jm_getInstance_0 []), 
+                    JR.declare "destroyedEvent" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "layerInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71477 -> (JR.setLocal "index" "I" (JR.lit jwN71477))) JR.increment) ]) (JR.run [ 
+                        JR.declare "layerInterfaceCanBeNull" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "layerInterfaceCanBeNull") JR.null) (JR.run [ 
+                            JR.exec (JR.setLocal "layerInterface" "" (JR.local "layerInterfaceCanBeNull")), 
+                            JR.exec (JR.invoke "remove_1" (JR.local "allBinaryLayerManager") [ (JR.local "layerInterface") ]), 
+                            JR.exec (JR.setLocal "destroyedEvent" "" (JR.invoke "getInstanceForLayer_1" (JR.local "destroyEventCircularStaticPool") [ (JR.local "layerInterface") ])), 
+                            JR.exec (JR.invoke "fireEvent_1" (JR.local "destroyedEventHandler") [ (JR.local "destroyedEvent") ]) ]) (JR.run [ 
+                            JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []) ]) ]) ], 
+                    JR.exec (JR.invoke "clear_0" (JR.local "list") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

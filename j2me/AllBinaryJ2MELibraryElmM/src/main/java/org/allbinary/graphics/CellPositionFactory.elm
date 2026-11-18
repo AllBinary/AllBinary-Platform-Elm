@@ -1,192 +1,171 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
-module CellPositionFactory where
+module Org.Allbinary.Graphics.CellPositionFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CellPosition -- same package or java.lang
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.graphics
+-}
 
-data CellPositionFactory = CellPositionFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , nONE :: IORef (CellPosition.CellPosition)
-    , cellPositionArray :: IORef (JavaArray (JavaArray (CellPosition.CellPosition)))
-    , columns :: IORef (Int)
-    , rows :: IORef (Int)
-    }
-
-instance JavaNull CellPositionFactory where
-    javaNull = javaNullRecord "CellPositionFactory"
-
-instance JavaEquals CellPositionFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CellPositionFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CellPositionFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: IORef (CellPositionFactory)
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CellPositionFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    nONE <- newIORef javaNull
-    cellPositionArray <- newIORef javaNull
-    columns <- newIORef 0
-    rows <- newIORef 0
-    let this = CellPositionFactory header_ logUtil nONE cellPositionArray columns rows
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "getInstanceColRow" (\() -> getInstanceColRow_impl this)
-    jregisterMethod header_ "createInstance" (\() -> createInstance_impl this)
-    jregisterMethod header_ "getColumns" (\() -> getColumns_impl this)
-    jregisterMethod header_ "getRows" (\() -> getRows_impl this)
-    pure this
-
-initFields_ :: CellPositionFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.nONE =<< (CellPosition.new_4 (Prelude.negate 1) (Prelude.negate 1) (Prelude.negate 1) (Prelude.negate 1))
-    jset this.cellPositionArray ((jnewArray2 (0) (0) javaNull))
-    jset this.columns (0)
-    jset this.rows (0)
-    pure ()
+import JR
+import Org.Allbinary.Graphics.CellPosition as CellPosition
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (CellPositionFactory)
-getInstance = do
-        pure ((jget CellPositionFactory.sINGLETON))
-
-new_ :: IO CellPositionFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CellPositionFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "CellPositionFactory"
 
 
-init :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-init object_ a1 a2 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: CellPositionFactory))) () a1 a2
-
-init_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-init_super object_ a1 a2 = (init_impl (javaCast object_ :: CellPositionFactory)) a1 a2
-
-init_impl :: CellPositionFactory -> Int -> Int -> IO (())
-init_impl this columns rows = do
-        commonStrings <- (CommonStrings.getInstance)
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "Init: columns: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer columns)
-        Control.Monad.void (StringMaker.append stringBuffer " rows: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer rows)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this (jget (commonStrings).iNIT))
-        jset (this).cellPositionArray ((jnewArray2 (columns) (rows) javaNull))
-        jset (this).columns (columns)
-        jset (this).rows (rows)
-        forM_ [0 .. columns - 1] $ \column -> javaIteration (pure ()) $ do
-            forM_ [0 .. rows - 1] $ \row -> javaIteration (pure ()) $ do
-                Control.Monad.void (CellPositionFactory.createInstance this column row)
-        pure ()
+jchain : List String
+jchain =
+    [ "CellPositionFactory" ]
 
 
-getInstanceColRow :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (CellPosition.CellPosition)
-getInstanceColRow object_ a1 a2 = jmethod object_ "getInstanceColRow" (\() -> (getInstanceColRow_impl (javaCast object_ :: CellPositionFactory))) () a1 a2
-
-getInstanceColRow_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (CellPosition.CellPosition)
-getInstanceColRow_super object_ a1 a2 = (getInstanceColRow_impl (javaCast object_ :: CellPositionFactory)) a1 a2
-
-getInstanceColRow_impl :: CellPositionFactory -> Int -> Int -> IO (CellPosition.CellPosition)
-getInstanceColRow_impl this i_column i_row = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "columns: "))) (jio (CellPositionFactory.getColumns this))))) " rows: "))) (jio (CellPositionFactory.getRows this))))) " col: "))) i_column))) " row: "))) i_row))))) this (jget (commonStrings).gET_INSTANCE) e)
-            pure ((jget (this).nONE))
-            ) $ do
-            pure ((jindex ((jindex ((jget (this).cellPositionArray)) (i_column))) (i_row)))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "NONE", JR.defaultOf "" ), ( "cellPositionArray", JR.defaultOf "" ), ( "columns", JR.defaultOf "I" ), ( "rows", JR.defaultOf "I" ) ]
 
 
-createInstance :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (CellPosition.CellPosition)
-createInstance object_ a1 a2 = jmethod object_ "createInstance" (\() -> (createInstance_impl (javaCast object_ :: CellPositionFactory))) () a1 a2
-
-createInstance_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (CellPosition.CellPosition)
-createInstance_super object_ a1 a2 = (createInstance_impl (javaCast object_ :: CellPositionFactory)) a1 a2
-
-createInstance_impl :: CellPositionFactory -> Int -> Int -> IO (CellPosition.CellPosition)
-createInstance_impl this i_column i_row = do
-        cellPositionCanBeNull <- newIORef ((jindex ((jindex ((jget (this).cellPositionArray)) (i_column))) (i_row)))
-        when ((jget cellPositionCanBeNull) == javaNull) $ do
-            assignedValue <- (CellPosition.new_4 i_column i_row (jget (this).columns) (jget (this).rows))
-            jset cellPositionCanBeNull (assignedValue)
-            jsetIndex ((jindex ((jget (this).cellPositionArray)) (i_column))) (i_row) ((jget cellPositionCanBeNull))
-        pure ((jget cellPositionCanBeNull))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_2", jm_init_2 )
+        , ( "getInstanceColRow_2", jm_getInstanceColRow_2 )
+        , ( "createInstance_2", jm_createInstance_2 )
+        , ( "getColumns_0", jm_getColumns_0 )
+        , ( "getRows_0", jm_getRows_0 ) ]
+        JR.noMethods
 
 
-getColumns :: (JavaObjectClass this_) => this_ -> IO (Int)
-getColumns object_ = jmethod object_ "getColumns" (\() -> (getColumns_impl (javaCast object_ :: CellPositionFactory))) ()
-
-getColumns_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getColumns_super object_ = (getColumns_impl (javaCast object_ :: CellPositionFactory))
-
-getColumns_impl :: CellPositionFactory -> IO (Int)
-getColumns_impl this = do
-        pure ((jget (this).columns))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CellPositionFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_2", jm_init_2 ), ( "jm_getInstanceColRow_2", jm_getInstanceColRow_2 ), ( "jm_createInstance_2", jm_createInstance_2 ), ( "jm_getColumns_0", jm_getColumns_0 ), ( "jm_getRows_0", jm_getRows_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
 
 
-getRows :: (JavaObjectClass this_) => this_ -> IO (Int)
-getRows object_ = jmethod object_ "getRows" (\() -> (getRows_impl (javaCast object_ :: CellPositionFactory))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-getRows_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getRows_super object_ = (getRows_impl (javaCast object_ :: CellPositionFactory))
 
-getRows_impl :: CellPositionFactory -> IO (Int)
-getRows_impl this = do
-        pure ((jget (this).rows))
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "CellPositionFactory" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "NONE" "" JR.this (JR.new CellPosition.jnew_4 [ (JR.map JR.neg (JR.int 1)), (JR.map JR.neg (JR.int 1)), (JR.map JR.neg (JR.int 1)), (JR.map JR.neg (JR.int 1)) ])),
+                JR.exec (JR.setField "cellPositionArray" "" JR.this (JR.newArray "" [ (JR.int 0), (JR.int 0) ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_2 : JR.Method
+jm_init_2 jheap jthis jargs =
+    JR.method [ ( "columns", "I" ), ( "rows", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Init: columns: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "columns") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " rows: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "rows") ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "INIT" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.setField "cellPositionArray" "" JR.this (JR.newArray "" [ (JR.local "columns"), (JR.local "rows") ])), 
+                    JR.exec (JR.setField "columns" "I" JR.this (JR.local "columns")), 
+                    JR.exec (JR.setField "rows" "I" JR.this (JR.local "rows")), 
+                    JR.run [ JR.declare "column" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "column") (JR.local "columns")) (JR.run [ JR.exec (JR.postUpdate (JR.local "column") (\jwN67323 -> (JR.setLocal "column" "I" (JR.lit jwN67323))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "row" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "row") (JR.local "rows")) (JR.run [ JR.exec (JR.postUpdate (JR.local "row") (\jwN67257 -> (JR.setLocal "row" "I" (JR.lit jwN67257))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.invoke "createInstance_2" JR.this [ (JR.local "column"), (JR.local "row") ]) ]) ] ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceColRow_2 : JR.Method
+jm_getInstanceColRow_2 jheap jthis jargs =
+    JR.method [ ( "i_column", "I" ), ( "i_row", "I" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.return (JR.aget (JR.aget (JR.thisField "cellPositionArray") (JR.local "i_column")) (JR.local "i_row")) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "columns: ") ]) [ (JR.invoke "getColumns_0" JR.this []) ]) [ (JR.str " rows: ") ]) [ (JR.invoke "getRows_0" JR.this []) ]) [ (JR.str " col: ") ]) [ (JR.local "i_column") ]) [ (JR.str " row: ") ]) [ (JR.local "i_row") ]) []), JR.this, (JR.field "GET_INSTANCE" (JR.local "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.thisField "NONE") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createInstance_2 : JR.Method
+jm_createInstance_2 jheap jthis jargs =
+    JR.method [ ( "i_column", "I" ), ( "i_row", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "cellPositionCanBeNull" "" (JR.aget (JR.aget (JR.thisField "cellPositionArray") (JR.local "i_column")) (JR.local "i_row")), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "cellPositionCanBeNull") JR.null) (JR.run [ 
+                        JR.exec (JR.setLocal "cellPositionCanBeNull" "" (JR.new CellPosition.jnew_4 [ (JR.local "i_column"), (JR.local "i_row"), (JR.thisField "columns"), (JR.thisField "rows") ])), 
+                        JR.exec (JR.andThen (JR.aget (JR.thisField "cellPositionArray") (JR.local "i_column")) (\jaN67971 -> JR.andThen (JR.local "i_row") (\jiN67971 -> (JR.aset (JR.lit jaN67971) (JR.lit jiN67971) (JR.local "cellPositionCanBeNull"))))) ]) identity, 
+                    JR.return (JR.local "cellPositionCanBeNull") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getColumns_0 : JR.Method
+jm_getColumns_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "columns") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRows_0 : JR.Method
+jm_getRows_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "rows") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,115 +1,113 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
-module CountedPickedUpLayerInterfaceFactoryPool where
+module Org.Allbinary.Game.Layer.Pickup.CountedPickedUpLayerInterfaceFactoryPool exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.pickup
+-}
 
-data CountedPickedUpLayerInterfaceFactoryPool = CountedPickedUpLayerInterfaceFactoryPool
-    { header_ :: JavaHeader
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull CountedPickedUpLayerInterfaceFactoryPool where
-    javaNull = javaNullRecord "CountedPickedUpLayerInterfaceFactoryPool"
-
-instance JavaEquals CountedPickedUpLayerInterfaceFactoryPool where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CountedPickedUpLayerInterfaceFactoryPool where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CountedPickedUpLayerInterfaceFactoryPool where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: IORef (CountedPickedUpLayerInterfaceFactoryPool)
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CountedPickedUpLayerInterfaceFactoryPool
-newRecord_ = do
-    header_ <- newJavaHeader
-    list <- newIORef javaNull
-    let this = CountedPickedUpLayerInterfaceFactoryPool header_ list
-    jregisterLevel header_ this
-    jregisterMethod header_ "getList" (\() -> getList_impl this)
-    pure this
-
-initFields_ :: CountedPickedUpLayerInterfaceFactoryPool -> IO ()
-initFields_ this = do
-    jset this.list (javaNull)
-    pure ()
-
-new_ :: IO CountedPickedUpLayerInterfaceFactoryPool
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CountedPickedUpLayerInterfaceFactoryPool -> IO ()
-init_ this = do
-        initFields_ this
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        jset (this).list (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
 
 
-getList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList object_ = jmethod object_ "getList" (\() -> (getList_impl (javaCast object_ :: CountedPickedUpLayerInterfaceFactoryPool))) ()
-
-getList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList_super object_ = (getList_impl (javaCast object_ :: CountedPickedUpLayerInterfaceFactoryPool))
-
-getList_impl :: CountedPickedUpLayerInterfaceFactoryPool -> IO (BasicArrayList.BasicArrayList)
-getList_impl this = do
-        pure ((jget (this).list))
+jclass : String
+jclass =
+    "CountedPickedUpLayerInterfaceFactoryPool"
 
 
-getInstance :: IO (CountedPickedUpLayerInterfaceFactoryPool)
-getInstance = do
-        pure ((jget CountedPickedUpLayerInterfaceFactoryPool.sINGLETON))
+jchain : List String
+jchain =
+    [ "CountedPickedUpLayerInterfaceFactoryPool" ]
 
 
-init :: IO (())
-init = do
-        assignedValue <- (new_)
-        jset CountedPickedUpLayerInterfaceFactoryPool.sINGLETON (assignedValue)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "list", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getList_0", jm_getList_0 )
+        , ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CountedPickedUpLayerInterfaceFactoryPool"
+        [ ( "jm_getList_0", jm_getList_0 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "CountedPickedUpLayerInterfaceFactoryPool" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getList_0 : JR.Method
+jm_getList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "list") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setStatic "CountedPickedUpLayerInterfaceFactoryPool.SINGLETON" "" (JR.new jnew_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

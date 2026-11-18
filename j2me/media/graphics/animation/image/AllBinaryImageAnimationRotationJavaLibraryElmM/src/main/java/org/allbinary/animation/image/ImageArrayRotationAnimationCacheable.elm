@@ -1,113 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module ImageArrayRotationAnimationCacheable (module ImageArrayRotationAnimationCacheable, module AdjustedImageArrayRotationAnimation) where
+module Org.Allbinary.Animation.Image.ImageArrayRotationAnimationCacheable exposing (..)
 
-import AdjustedImageArrayRotationAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getKey, getKey_super, getKey_impl, toString, toString_super, toString_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ImageArrayRotationAnimationInfo -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified AnimationBehavior -- org.allbinary.animation.AnimationBehavior
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CacheableInterface -- org.allbinary.logic.util.cache.CacheableInterface
-import qualified AdjustedImageArrayRotationAnimation
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
--- implements CacheableInterface
-data ImageArrayRotationAnimationCacheable = ImageArrayRotationAnimationCacheable
-    { header_ :: JavaHeader
-    , base :: AdjustedImageArrayRotationAnimation.AdjustedImageArrayRotationAnimation
-    }
-
-instance JavaNull ImageArrayRotationAnimationCacheable where
-    javaNull = javaNullRecord "ImageArrayRotationAnimationCacheable"
-
-instance JavaEquals ImageArrayRotationAnimationCacheable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageArrayRotationAnimationCacheable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageArrayRotationAnimationCacheable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ImageArrayRotationAnimationCacheable
-newRecord_ = do
-    base <- AdjustedImageArrayRotationAnimation.newRecord_
-    let header_ = base.header_
-    let this = ImageArrayRotationAnimationCacheable header_ base
-    jregisterLevel header_ this
-    CacheableInterface.registerInterface_ header_
-    jregisterMethod header_ "getKey" (\() -> getKey_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: ImageArrayRotationAnimationCacheable -> IO ()
-initFields_ this = do
-    pure ()
-
-new_2 :: (JavaObjectClass o1) => o1 -> AnimationBehavior.AnimationBehavior -> IO ImageArrayRotationAnimationCacheable
-new_2 anyTypeObject_ animationBehavior = do
-    this <- newRecord_
-    init_2 this anyTypeObject_ animationBehavior
-    pure this
-
-init_2 :: (JavaObjectClass o1) => ImageArrayRotationAnimationCacheable -> o1 -> AnimationBehavior.AnimationBehavior -> IO ()
-init_2 this anyTypeObject_ animationBehavior = do
-        let anyType = jtoObject anyTypeObject_
-        AdjustedImageArrayRotationAnimation.init_6 this.base (jio (ImageArrayRotationAnimationInfo.getImageArray (((javaCast anyType :: ImageArrayRotationAnimationInfo.ImageArrayRotationAnimationInfo))))) (jio (ImageArrayRotationAnimationInfo.getAngleInfoP (((javaCast anyType :: ImageArrayRotationAnimationInfo.ImageArrayRotationAnimationInfo))))) (jio (ImageArrayRotationAnimationInfo.getTotalAngle (((javaCast anyType :: ImageArrayRotationAnimationInfo.ImageArrayRotationAnimationInfo))))) (jio (ImageArrayRotationAnimationInfo.getDx (((javaCast anyType :: ImageArrayRotationAnimationInfo.ImageArrayRotationAnimationInfo))))) (jio (ImageArrayRotationAnimationInfo.getDy (((javaCast anyType :: ImageArrayRotationAnimationInfo.ImageArrayRotationAnimationInfo))))) (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Animation.Image.AdjustedImageArrayRotationAnimation as AdjustedImageArrayRotationAnimation
+import Org.Allbinary.Logic.Util.Cache.CacheableInterface as CacheableInterface
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getKey :: (JavaObjectClass this_) => this_ -> IO (Any.Any)
-getKey object_ = jmethod object_ "getKey" (\() -> (getKey_impl (javaCast object_ :: ImageArrayRotationAnimationCacheable))) ()
-
-getKey_super :: (JavaObjectClass this_) => this_ -> IO (Any.Any)
-getKey_super object_ = (getKey_impl (javaCast object_ :: ImageArrayRotationAnimationCacheable))
-
-getKey_impl :: ImageArrayRotationAnimationCacheable -> IO (Any.Any)
-getKey_impl this = do
-        pure ((jtoObject (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
+jclass : String
+jclass =
+    "ImageArrayRotationAnimationCacheable"
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: ImageArrayRotationAnimationCacheable))) ()
+jchain : List String
+jchain =
+    [ "ImageArrayRotationAnimationCacheable" ]
+        ++ AdjustedImageArrayRotationAnimation.jchain
+        ++ CacheableInterface.jchain
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: ImageArrayRotationAnimationCacheable))
 
-toString_impl :: ImageArrayRotationAnimationCacheable -> IO (String)
-toString_impl this = do
-        pure ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
+jfields : List ( String, JR.JValue )
+jfields =
+    AdjustedImageArrayRotationAnimation.jfields ++ []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getKey_0", jm_getKey_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        AdjustedImageArrayRotationAnimation.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageArrayRotationAnimationCacheable"
+        [ ( "jm_getKey_0", jm_getKey_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect AdjustedImageArrayRotationAnimation.jinit_6 JR.this [ (JR.invoke "getImageArray_0" ((JR.local "anyType")) []), (JR.invoke "getAngleInfoP_0" ((JR.local "anyType")) []), (JR.invoke "getTotalAngle_0" ((JR.local "anyType")) []), (JR.invoke "getDx_0" ((JR.local "anyType")) []), (JR.invoke "getDy_0" ((JR.local "anyType")) []), (JR.local "animationBehavior") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getKey_0 : JR.Method
+jm_getKey_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

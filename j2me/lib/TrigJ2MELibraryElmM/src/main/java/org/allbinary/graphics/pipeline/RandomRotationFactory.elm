@@ -1,126 +1,118 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.pipeline
-module RandomRotationFactory where
+module Org.Allbinary.Graphics.Pipeline.RandomRotationFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicGraphicsPipeline -- same package or java.lang
-import qualified MyRandomFactory -- org.allbinary.game.rand.MyRandomFactory
-import qualified AngleFactory -- org.allbinary.math.AngleFactory
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.graphics.pipeline
+-}
 
-data RandomRotationFactory = RandomRotationFactory
-    { header_ :: JavaHeader
-    , myRandomFactory :: IORef (MyRandomFactory.MyRandomFactory)
-    , angleFactory :: IORef (AngleFactory.AngleFactory)
-    }
-
-instance JavaNull RandomRotationFactory where
-    javaNull = javaNullRecord "RandomRotationFactory"
-
-instance JavaEquals RandomRotationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RandomRotationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RandomRotationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: RandomRotationFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO RandomRotationFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    myRandomFactory <- newIORef javaNull
-    angleFactory <- newIORef javaNull
-    let this = RandomRotationFactory header_ myRandomFactory angleFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstanceList" (\() -> getInstanceList_impl this)
-    jregisterMethod header_ "getNextRandomAngle" (\() -> getNextRandomAngle_impl this)
-    pure this
-
-initFields_ :: RandomRotationFactory -> IO ()
-initFields_ this = do
-    jset this.myRandomFactory =<< (MyRandomFactory.getInstance)
-    jset this.angleFactory =<< (AngleFactory.getInstance)
-    pure ()
-
-new_ :: IO RandomRotationFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: RandomRotationFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Graphics.Pipeline.BasicGraphicsPipeline as BasicGraphicsPipeline
+import Org.Allbinary.Game.Rand.MyRandomFactory as MyRandomFactory
 
 
-getInstance :: IO (RandomRotationFactory)
-getInstance = do
-        pure (RandomRotationFactory.instance_)
+jclass : String
+jclass =
+    "RandomRotationFactory"
 
 
--- throws Exception
-getInstanceList :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Int -> IO (BasicArrayList.BasicArrayList)
-getInstanceList object_ a1 a2 = jmethod object_ "getInstanceList" (\() -> (getInstanceList_impl (javaCast object_ :: RandomRotationFactory))) () a1 a2
-
-getInstanceList_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Int -> IO (BasicArrayList.BasicArrayList)
-getInstanceList_super object_ a1 a2 = (getInstanceList_impl (javaCast object_ :: RandomRotationFactory)) a1 a2
-
-getInstanceList_impl :: RandomRotationFactory -> BasicArrayList.BasicArrayList -> Int -> IO (BasicArrayList.BasicArrayList)
-getInstanceList_impl this vector howMuch = do
-        graphicsPipe <- (BasicGraphicsPipeline.new_1 vector)
-        Control.Monad.void (BasicGraphicsPipeline.createMatrix graphicsPipe)
-        Control.Monad.void (BasicGraphicsPipeline.rotateToAngle graphicsPipe (jio (AngleFactory.getAt ((jget (this).angleFactory)) (jio (RandomRotationFactory.getNextRandomAngle this howMuch)))))
-        (BasicGraphicsPipeline.getMatrix graphicsPipe)
+jchain : List String
+jchain =
+    [ "RandomRotationFactory" ]
 
 
-getNextRandomAngle :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getNextRandomAngle object_ a1 = jmethod object_ "getNextRandomAngle" (\() -> (getNextRandomAngle_impl (javaCast object_ :: RandomRotationFactory))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "myRandomFactory", JR.defaultOf "" ), ( "angleFactory", JR.defaultOf "" ) ]
 
-getNextRandomAngle_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getNextRandomAngle_super object_ a1 = (getNextRandomAngle_impl (javaCast object_ :: RandomRotationFactory)) a1
 
-getNextRandomAngle_impl :: RandomRotationFactory -> Int -> IO (Int)
-getNextRandomAngle_impl this howMuch = do
-        (MyRandomFactory.getNextInt ((jget (this).myRandomFactory)) (howMuch * 10))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInstanceList_2", jm_getInstanceList_2 )
+        , ( "getNextRandomAngle_1", jm_getNextRandomAngle_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RandomRotationFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInstanceList_2", jm_getInstanceList_2 ), ( "jm_getNextRandomAngle_1", jm_getNextRandomAngle_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "RandomRotationFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "myRandomFactory" "" JR.this (JR.callStatic MyRandomFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "angleFactory" "" JR.this (JR.callStatic AngleFactory.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceList_2 : JR.Method
+jm_getInstanceList_2 jheap jthis jargs =
+    JR.method [ ( "vector", "" ), ( "howMuch", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "graphicsPipe" "" (JR.new BasicGraphicsPipeline.jnew_1 [ (JR.local "vector") ]), 
+                    JR.exec (JR.invoke "createMatrix_0" (JR.local "graphicsPipe") []), 
+                    JR.exec (JR.invoke "rotateToAngle_1" (JR.local "graphicsPipe") [ (JR.invoke "getAt_1" (JR.thisField "angleFactory") [ (JR.invoke "getNextRandomAngle_1" JR.this [ (JR.local "howMuch") ]) ]) ]), 
+                    JR.return (JR.invoke "getMatrix_0" (JR.local "graphicsPipe") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNextRandomAngle_1 : JR.Method
+jm_getNextRandomAngle_1 jheap jthis jargs =
+    JR.method [ ( "howMuch", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getNextInt_1" (JR.thisField "myRandomFactory") [ (JR.map2 JR.mul (JR.local "howMuch") (JR.int 10)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,196 +1,176 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai.scroller
-module BasePatrolAI (module BasePatrolAI, module BasicAI) where
+module Org.Allbinary.Game.Ag.Ai.Scroller.BasePatrolAI exposing (..)
 
-import BasicAI hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, update, update_super, update_impl, updateTotalDistance, updateTotalDistance_super, updateTotalDistance_impl, changeDirectionIfReachedPacingAreaMax, changeDirectionIfReachedPacingAreaMax_super, changeDirectionIfReachedPacingAreaMax_impl, nextDirection, nextDirection_super, nextDirection_impl, disable, disable_super, disable_impl, mAX_DISTANCE, dIRECTION_ARRAY, fIRING_DISTANCE, sPEED, maxDistance, currentDistance, xTotalDistance, lastKeyDirection, keyDirection)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified BasicAI -- org.allbinary.game.ai.BasicAI
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified BasicVelocityProperties -- org.allbinary.game.physics.velocity.BasicVelocityProperties
-import qualified VelocityInterfaceCompositeInterface -- org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified MathUtil -- org.allbinary.logic.math.MathUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai.scroller
+-}
 
-data BasePatrolAI = BasePatrolAI
-    { header_ :: JavaHeader
-    , base :: BasicAI.BasicAI
-    , maxDistance :: IORef (Int)
-    , currentDistance :: IORef (Int)
-    , xTotalDistance :: IORef (Int)
-    , lastKeyDirection :: IORef (Int)
-    , keyDirection :: IORef (Int)
-    }
-
-instance JavaNull BasePatrolAI where
-    javaNull = javaNullRecord "BasePatrolAI"
-
-instance JavaEquals BasePatrolAI where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasePatrolAI where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasePatrolAI where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE mAX_DISTANCE #-}
-mAX_DISTANCE = unsafePerformIO ((SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 2))
-
-{-# NOINLINE dIRECTION_ARRAY #-}
-dIRECTION_ARRAY = unsafePerformIO ((SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 3))
-
-{-# NOINLINE fIRING_DISTANCE #-}
-fIRING_DISTANCE = unsafePerformIO ((SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 4))
-
-{-# NOINLINE sPEED #-}
-sPEED = unsafePerformIO ((SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 5) >>= newIORef)
-
-newRecord_ :: IO BasePatrolAI
-newRecord_ = do
-    base <- BasicAI.newRecord_
-    let header_ = base.header_
-    maxDistance <- newIORef javaNull
-    currentDistance <- newIORef 0
-    xTotalDistance <- newIORef 0
-    lastKeyDirection <- newIORef 0
-    keyDirection <- newIORef 0
-    let this = BasePatrolAI header_ base maxDistance currentDistance xTotalDistance lastKeyDirection keyDirection
-    jregisterLevel header_ this
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "updateTotalDistance" (\() -> updateTotalDistance_impl this)
-    jregisterMethod header_ "changeDirectionIfReachedPacingAreaMax" (\() -> changeDirectionIfReachedPacingAreaMax_impl this)
-    jregisterMethod header_ "nextDirection" (\() -> nextDirection_impl this)
-    jregisterMethod header_ "disable" (\() -> disable_impl this)
-    pure this
-
-initFields_ :: BasePatrolAI -> IO ()
-initFields_ this = do
-    jset this.maxDistance (javaNull)
-    jset this.currentDistance (0)
-    jset this.xTotalDistance (0)
-    jset this.lastKeyDirection (Canvas.rIGHT)
-    jset this.keyDirection (Canvas.rIGHT)
-    pure ()
-
-new_3 :: ABHashtable.ABHashtable -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO BasePatrolAI
-new_3 hashtable ownerLayerInterface gameInput = do
-    this <- newRecord_
-    init_3 this hashtable ownerLayerInterface gameInput
-    pure this
-
-init_3 :: BasePatrolAI -> ABHashtable.ABHashtable -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO ()
-init_3 this hashtable ownerLayerInterface gameInput = do
-        BasicAI.init_2 this.base (ownerLayerInterface) (gameInput)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).maxDistance ((javaCast (jio (ABHashtable.get hashtable (BasePatrolAI.mAX_DISTANCE))) :: Int))
-        jset (this).currentDistance ((jget (this).maxDistance))
-        pure ()
+import JR
+import Org.Allbinary.Game.Ai.BasicAI as BasicAI
+import Javax.Microedition.Lcdui.Canvas as Canvas
+import Org.Allbinary.Logic.Math.MathUtil as MathUtil
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: BasePatrolAI))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: BasePatrolAI))
-
-update_impl :: BasePatrolAI -> IO (())
-update_impl this = do
-        Control.Monad.void (BasePatrolAI.updateTotalDistance this)
-        Control.Monad.void (BasePatrolAI.changeDirectionIfReachedPacingAreaMax this)
-        pure ()
+jclass : String
+jclass =
+    "BasePatrolAI"
 
 
-updateTotalDistance :: (JavaObjectClass this_) => this_ -> IO (())
-updateTotalDistance object_ = jmethod object_ "updateTotalDistance" (\() -> (updateTotalDistance_impl (javaCast object_ :: BasePatrolAI))) ()
-
-updateTotalDistance_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateTotalDistance_super object_ = (updateTotalDistance_impl (javaCast object_ :: BasePatrolAI))
-
-updateTotalDistance_impl :: BasePatrolAI -> IO (())
-updateTotalDistance_impl this = do
-        let velocityInterfaceCompositeInterface = (javaCast (jio (BasicAI.getOwnerLayerInterface this)) :: VelocityInterfaceCompositeInterface.VelocityInterfaceCompositeInterface)
-        velocityProperties <- (VelocityInterfaceCompositeInterface.getVelocityProperties velocityInterfaceCompositeInterface)
-        assignedValue <- (BasicVelocityProperties.getScaled ((jio (BasicVelocityProperties.getVelocityXBasicDecimalP velocityProperties))))
-        jset (this).xTotalDistance (((jget (this).xTotalDistance) + assignedValue))
-        pure ()
+jchain : List String
+jchain =
+    [ "BasePatrolAI" ]
+        ++ BasicAI.jchain
 
 
-changeDirectionIfReachedPacingAreaMax :: (JavaObjectClass this_) => this_ -> IO (())
-changeDirectionIfReachedPacingAreaMax object_ = jmethod object_ "changeDirectionIfReachedPacingAreaMax" (\() -> (changeDirectionIfReachedPacingAreaMax_impl (javaCast object_ :: BasePatrolAI))) ()
-
-changeDirectionIfReachedPacingAreaMax_super :: (JavaObjectClass this_) => this_ -> IO (())
-changeDirectionIfReachedPacingAreaMax_super object_ = (changeDirectionIfReachedPacingAreaMax_impl (javaCast object_ :: BasePatrolAI))
-
-changeDirectionIfReachedPacingAreaMax_impl :: BasePatrolAI -> IO (())
-changeDirectionIfReachedPacingAreaMax_impl this = do
-        mathUtil <- (MathUtil.getInstance)
-        totalDistance <- (MathUtil.abs mathUtil (jget (this).xTotalDistance))
-        when (totalDistance > (jget (this).currentDistance)) $ do
-            Control.Monad.void (BasePatrolAI.nextDirection this)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicAI.jfields ++ [ ( "maxDistance", JR.defaultOf "" ), ( "currentDistance", JR.defaultOf "I" ), ( "xTotalDistance", JR.defaultOf "I" ), ( "lastKeyDirection", JR.defaultOf "I" ), ( "keyDirection", JR.defaultOf "I" ) ]
 
 
-nextDirection :: (JavaObjectClass this_) => this_ -> IO (())
-nextDirection object_ = jmethod object_ "nextDirection" (\() -> (nextDirection_impl (javaCast object_ :: BasePatrolAI))) ()
-
-nextDirection_super :: (JavaObjectClass this_) => this_ -> IO (())
-nextDirection_super object_ = (nextDirection_impl (javaCast object_ :: BasePatrolAI))
-
-nextDirection_impl :: BasePatrolAI -> IO (())
-nextDirection_impl this = do
-        if ((jget (this).lastKeyDirection) == Canvas.lEFT) then do
-            jset (this).keyDirection (Canvas.rIGHT)
-            jset (this).lastKeyDirection ((jget (this).keyDirection))
-            jset (this).xTotalDistance (0)
-        else when ((jget (this).lastKeyDirection) == Canvas.rIGHT) $ do
-            jset (this).keyDirection (Canvas.lEFT)
-            jset (this).lastKeyDirection ((jget (this).keyDirection))
-            jset (this).xTotalDistance (0)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "update_0", jm_update_0 )
+        , ( "updateTotalDistance_0", jm_updateTotalDistance_0 )
+        , ( "changeDirectionIfReachedPacingAreaMax_0", jm_changeDirectionIfReachedPacingAreaMax_0 )
+        , ( "nextDirection_0", jm_nextDirection_0 )
+        , ( "disable_0", jm_disable_0 ) ]
+        BasicAI.jvtable
 
 
-disable :: (JavaObjectClass this_) => this_ -> IO (())
-disable object_ = jmethod object_ "disable" (\() -> (disable_impl (javaCast object_ :: BasePatrolAI))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasePatrolAI"
+        [ ( "jm_update_0", jm_update_0 ), ( "jm_updateTotalDistance_0", jm_updateTotalDistance_0 ), ( "jm_changeDirectionIfReachedPacingAreaMax_0", jm_changeDirectionIfReachedPacingAreaMax_0 ), ( "jm_nextDirection_0", jm_nextDirection_0 ), ( "jm_disable_0", jm_disable_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        [ ( "jstatic_MAX_DISTANCE", jstatic_MAX_DISTANCE ), ( "jstatic_DIRECTION_ARRAY", jstatic_DIRECTION_ARRAY ), ( "jstatic_FIRING_DISTANCE", jstatic_FIRING_DISTANCE ), ( "jstatic_SPEED", jstatic_SPEED ) ]
+        jheap
 
-disable_super :: (JavaObjectClass this_) => this_ -> IO (())
-disable_super object_ = (disable_impl (javaCast object_ :: BasePatrolAI))
 
-disable_impl :: BasePatrolAI -> IO (())
-disable_impl this = do
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_MAX_DISTANCE : JR.M
+jstatic_MAX_DISTANCE s =
+    JR.static "BasePatrolAI" jclinit "MAX_DISTANCE"
+        (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 2) ])
+        s
+
+
+jstatic_DIRECTION_ARRAY : JR.M
+jstatic_DIRECTION_ARRAY s =
+    JR.static "BasePatrolAI" jclinit "DIRECTION_ARRAY"
+        (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 3) ])
+        s
+
+
+jstatic_FIRING_DISTANCE : JR.M
+jstatic_FIRING_DISTANCE s =
+    JR.static "BasePatrolAI" jclinit "FIRING_DISTANCE"
+        (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 4) ])
+        s
+
+
+jstatic_SPEED : JR.M
+jstatic_SPEED s =
+    JR.static "BasePatrolAI" jclinit "SPEED"
+        (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 5) ])
+        s
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "hashtable", "" ), ( "ownerLayerInterface", "" ), ( "gameInput", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicAI.jinit_2 JR.this [ (JR.local "ownerLayerInterface"), (JR.local "gameInput") ]),
+                JR.exec (JR.setField "lastKeyDirection" "I" JR.this Canvas.jstatic_RIGHT),
+                JR.exec (JR.setField "keyDirection" "I" JR.this Canvas.jstatic_RIGHT),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "maxDistance" "" JR.this (JR.invoke "get_1" (JR.local "hashtable") [ jstatic_MAX_DISTANCE ])), 
+                    JR.exec (JR.setField "currentDistance" "I" JR.this (JR.invoke "intValue_0" (JR.thisField "maxDistance") [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "updateTotalDistance_0" JR.this []), 
+                    JR.exec (JR.invoke "changeDirectionIfReachedPacingAreaMax_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateTotalDistance_0 : JR.Method
+jm_updateTotalDistance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "velocityInterfaceCompositeInterface" "" (JR.invoke "getOwnerLayerInterface_0" JR.this []), 
+                    JR.declare "velocityProperties" "" (JR.invoke "getVelocityProperties_0" (JR.local "velocityInterfaceCompositeInterface") []), 
+                    JR.exec (JR.setField "xTotalDistance" "I" JR.this (JR.map2 JR.add (JR.thisField "xTotalDistance") (JR.invoke "getScaled_0" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.local "velocityProperties") []) []))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_changeDirectionIfReachedPacingAreaMax_0 : JR.Method
+jm_changeDirectionIfReachedPacingAreaMax_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "mathUtil" "" (JR.callStatic MathUtil.jm_getInstance_0 []), 
+                    JR.declare "totalDistance" "I" (JR.invoke "abs_1" (JR.local "mathUtil") [ (JR.thisField "xTotalDistance") ]), 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "totalDistance") (JR.thisField "currentDistance")) (JR.run [ 
+                        JR.exec (JR.invoke "nextDirection_0" JR.this []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_nextDirection_0 : JR.Method
+jm_nextDirection_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "lastKeyDirection") Canvas.jstatic_LEFT) (JR.run [ 
+                        JR.exec (JR.setField "keyDirection" "I" JR.this Canvas.jstatic_RIGHT), 
+                        JR.exec (JR.setField "lastKeyDirection" "I" JR.this (JR.thisField "keyDirection")), 
+                        JR.exec (JR.setField "xTotalDistance" "I" JR.this (JR.int 0)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "lastKeyDirection") Canvas.jstatic_RIGHT) (JR.run [ 
+                        JR.exec (JR.setField "keyDirection" "I" JR.this Canvas.jstatic_LEFT), 
+                        JR.exec (JR.setField "lastKeyDirection" "I" JR.this (JR.thisField "keyDirection")), 
+                        JR.exec (JR.setField "xTotalDistance" "I" JR.this (JR.int 0)) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_disable_0 : JR.Method
+jm_disable_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

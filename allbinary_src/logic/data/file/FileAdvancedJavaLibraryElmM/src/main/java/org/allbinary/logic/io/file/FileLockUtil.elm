@@ -1,228 +1,155 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
-module FileLockUtil where
+module Org.Allbinary.Logic.Io.File.FileLockUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AbFile -- same package or java.lang
-import qualified FileChannel -- java.nio.channels.FileChannel
-import qualified FileLock -- java.nio.channels.FileLock
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified AbFileOutputStream -- org.allbinary.logic.io.AbFileOutputStream
-import qualified StreamUtil -- org.allbinary.logic.io.StreamUtil
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file
+-}
 
-data FileLockUtil = FileLockUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull FileLockUtil where
-    javaNull = javaNullRecord "FileLockUtil"
-
-instance JavaEquals FileLockUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FileLockUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FileLockUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: FileLockUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO FileLockUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = FileLockUtil header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "getAll" (\() -> getAll_impl this)
-    jregisterMethod header_ "getAllPossible" (\() -> getAllPossible_impl this)
-    jregisterMethod header_ "getAllOrNone" (\() -> getAllOrNone_impl this)
-    jregisterMethod header_ "getLock_overload1" (\() -> getLock_overload1_impl this)
-    jregisterMethod header_ "getLock_overload2" (\() -> getLock_overload2_impl this)
-    jregisterMethod header_ "getLock_overload3" (\() -> getLock_overload3_impl this)
-    pure this
-
-initFields_ :: FileLockUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Logic.Io.AbFileOutputStream as AbFileOutputStream
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getInstance :: IO (FileLockUtil)
-getInstance = do
-        pure (FileLockUtil.instance_)
-
-new_ :: IO FileLockUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: FileLockUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "FileLockUtil"
 
 
--- throws Exception
-getAll :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Bool -> IO (BasicArrayList.BasicArrayList)
-getAll object_ a1 a2 = jmethod object_ "getAll" (\() -> (getAll_impl (javaCast object_ :: FileLockUtil))) () a1 a2
-
-getAll_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Bool -> IO (BasicArrayList.BasicArrayList)
-getAll_super object_ a1 a2 = (getAll_impl (javaCast object_ :: FileLockUtil)) a1 a2
-
-getAll_impl :: FileLockUtil -> BasicArrayList.BasicArrayList -> Bool -> IO (BasicArrayList.BasicArrayList)
-getAll_impl this vector isReturnOnFailure = do
-    javaCatchReturn $ do
-        fileLockVector <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        size <- (BasicArrayList.size vector)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let file = (javaCast (jio (BasicArrayList.get vector index)) :: AbFile.AbFile)
-            fileLock <- (FileLockUtil.getLock this file)
-            if (fileLock /= javaNull) then do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ("File Lock Obtained: " ++ javaToString (jio (AbFile.getAbsolutePath file))) this "getAll")
-                Control.Monad.void (BasicArrayList.add fileLockVector fileLock)
-            else when isReturnOnFailure $ do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ("Total Locks Obtained: " ++ javaToString (jio (BasicArrayList.size fileLockVector))) this "getAll")
-                javaReturn (fileLockVector)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ("Total Locks Obtained: " ++ javaToString (jio (BasicArrayList.size fileLockVector))) this "getAll")
-        pure (fileLockVector)
+jchain : List String
+jchain =
+    [ "FileLockUtil" ]
 
 
--- throws Exception
-getAllPossible :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (BasicArrayList.BasicArrayList)
-getAllPossible object_ a1 = jmethod object_ "getAllPossible" (\() -> (getAllPossible_impl (javaCast object_ :: FileLockUtil))) () a1
-
-getAllPossible_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (BasicArrayList.BasicArrayList)
-getAllPossible_super object_ a1 = (getAllPossible_impl (javaCast object_ :: FileLockUtil)) a1
-
-getAllPossible_impl :: FileLockUtil -> BasicArrayList.BasicArrayList -> IO (BasicArrayList.BasicArrayList)
-getAllPossible_impl this vector = do
-        (FileLockUtil.getAll this vector False)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
 
--- throws Exception
-getAllOrNone :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (BasicArrayList.BasicArrayList)
-getAllOrNone object_ a1 = jmethod object_ "getAllOrNone" (\() -> (getAllOrNone_impl (javaCast object_ :: FileLockUtil))) () a1
-
-getAllOrNone_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (BasicArrayList.BasicArrayList)
-getAllOrNone_super object_ a1 = (getAllOrNone_impl (javaCast object_ :: FileLockUtil)) a1
-
-getAllOrNone_impl :: FileLockUtil -> BasicArrayList.BasicArrayList -> IO (BasicArrayList.BasicArrayList)
-getAllOrNone_impl this vector = do
-    javaCatchReturn $ do
-        fileLockVector <- (FileLockUtil.getAll this vector True)
-        if ((jio (BasicArrayList.size vector)) /= (jio (BasicArrayList.size fileLockVector))) then do
-            javaReturn =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        else do
-            javaReturn (fileLockVector)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getAll_2", jm_getAll_2 )
+        , ( "getAllPossible_1", jm_getAllPossible_1 )
+        , ( "getAllOrNone_1", jm_getAllOrNone_1 )
+        , ( "getLock_1", jm_getLock_1 ) ]
+        JR.noMethods
 
 
--- Java overloads of getLock: calls the overload for the types of the arguments
-getLock :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (FileLock.FileLock)
-getLock this a1
-    | jisInstanceOf a1 (javaNull :: AbFile.AbFile) = getLock_overload1 this (javaCast a1 :: AbFile.AbFile)
-    | jisInstanceOf a1 (javaNull :: AbFileOutputStream.AbFileOutputStream) = getLock_overload2 this (javaCast a1 :: AbFileOutputStream.AbFileOutputStream)
-    | jisInstanceOf a1 (javaNull :: FileChannel.FileChannel) = getLock_overload3 this (javaCast a1 :: FileChannel.FileChannel)
-    | otherwise = getLock_overload3 this (javaCast a1 :: FileChannel.FileChannel)
-
--- throws Exception
-getLock_overload1 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (FileLock.FileLock)
-getLock_overload1 object_ a1 = jmethod object_ "getLock_overload1" (\() -> (getLock_overload1_impl (javaCast object_ :: FileLockUtil))) () a1
-
-getLock_overload1_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (FileLock.FileLock)
-getLock_overload1_super object_ a1 = (getLock_overload1_impl (javaCast object_ :: FileLockUtil)) a1
-
-getLock_overload1_impl :: FileLockUtil -> AbFile.AbFile -> IO (FileLock.FileLock)
-getLock_overload1_impl this file = do
-        flip finally (do
-            pure ()
-            ) $ handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) "Exception returns null" this "getLock" e)
-            pure (javaNull)
-            ) $ do
-            (FileLockUtil.getLock this (jio (AbFileOutputStream.createFromAbFileAppend file True)))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FileLockUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getAll_2", jm_getAll_2 ), ( "jm_getAllPossible_1", jm_getAllPossible_1 ), ( "jm_getAllOrNone_1", jm_getAllOrNone_1 ), ( "jm_getLock_1", jm_getLock_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
--- throws Exception
-getLock_overload2 :: (JavaObjectClass this_) => this_ -> AbFileOutputStream.AbFileOutputStream -> IO (FileLock.FileLock)
-getLock_overload2 object_ a1 = jmethod object_ "getLock_overload2" (\() -> (getLock_overload2_impl (javaCast object_ :: FileLockUtil))) () a1
-
-getLock_overload2_super :: (JavaObjectClass this_) => this_ -> AbFileOutputStream.AbFileOutputStream -> IO (FileLock.FileLock)
-getLock_overload2_super object_ a1 = (getLock_overload2_impl (javaCast object_ :: FileLockUtil)) a1
-
-getLock_overload2_impl :: FileLockUtil -> AbFileOutputStream.AbFileOutputStream -> IO (FileLock.FileLock)
-getLock_overload2_impl this fileOutputStream = do
-        flip finally (do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Finally - Closing FileOutputStream" this "getLock")
-            Control.Monad.void (StreamUtil.close ((jio (StreamUtil.getInstance))) fileOutputStream)
-            ) $ handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) "Exception returns null" this "getLock" e)
-            pure (javaNull)
-            ) $ do
-            fileLock <- (FileLockUtil.getLock this (jio (AbFileOutputStream.getChannel fileOutputStream)))
-            pure (fileLock)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
--- throws Exception
-getLock_overload3 :: (JavaObjectClass this_) => this_ -> FileChannel.FileChannel -> IO (FileLock.FileLock)
-getLock_overload3 object_ a1 = jmethod object_ "getLock_overload3" (\() -> (getLock_overload3_impl (javaCast object_ :: FileLockUtil))) () a1
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "FileLockUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
-getLock_overload3_super :: (JavaObjectClass this_) => this_ -> FileChannel.FileChannel -> IO (FileLock.FileLock)
-getLock_overload3_super object_ a1 = (getLock_overload3_impl (javaCast object_ :: FileLockUtil)) a1
 
-getLock_overload3_impl :: FileLockUtil -> FileChannel.FileChannel -> IO (FileLock.FileLock)
-getLock_overload3_impl this fileChannel = do
-        flip finally (do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Finally - Closing FileChannel" this "getLock")
-            Control.Monad.void (FileChannel.close fileChannel)
-            ) $ handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) "Exception returns null" this "getLock" e)
-            pure (javaNull)
-            ) $ do
-            fileLock <- (FileChannel.tryLock fileChannel)
-            pure (fileLock)
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAll_2 : JR.Method
+jm_getAll_2 jheap jthis jargs =
+    JR.method [ ( "vector", "" ), ( "isReturnOnFailure", "Z" ) ] ""
+        (JR.run [ 
+                    JR.declare "fileLockVector" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "vector") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67631 -> (JR.setLocal "index" "I" (JR.lit jwN67631))) JR.increment) ]) (JR.run [ 
+                        JR.declare "file" "" (JR.invoke "get_1" (JR.local "vector") [ (JR.local "index") ]), 
+                        JR.declare "fileLock" "" (JR.invoke "getLock_1" JR.this [ (JR.local "file") ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "fileLock") JR.null) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "File Lock Obtained: ") (JR.invoke "getAbsolutePath_0" (JR.local "file") [])), JR.this, (JR.str "getAll") ]), 
+                            JR.exec (JR.invoke "add_1" (JR.local "fileLockVector") [ (JR.local "fileLock") ]) ]) (JR.run [ 
+                        JR.ifElse (JR.local "isReturnOnFailure") (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "Total Locks Obtained: ") (JR.invoke "size_0" (JR.local "fileLockVector") [])), JR.this, (JR.str "getAll") ]), 
+                            JR.return (JR.local "fileLockVector") ]) identity ]) ]) ], 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "Total Locks Obtained: ") (JR.invoke "size_0" (JR.local "fileLockVector") [])), JR.this, (JR.str "getAll") ]), 
+                    JR.return (JR.local "fileLockVector") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAllPossible_1 : JR.Method
+jm_getAllPossible_1 jheap jthis jargs =
+    JR.method [ ( "vector", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getAll_2" JR.this [ (JR.local "vector"), (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAllOrNone_1 : JR.Method
+jm_getAllOrNone_1 jheap jthis jargs =
+    JR.method [ ( "vector", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "fileLockVector" "" (JR.invoke "getAll_2" JR.this [ (JR.local "vector"), (JR.bool True) ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.invoke "size_0" (JR.local "vector") []) (JR.invoke "size_0" (JR.local "fileLockVector") [])) (JR.run [ 
+                        JR.return (JR.new BasicArrayListD.jnew_0 []) ]) (JR.run [ 
+                        JR.return (JR.local "fileLockVector") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLock_1 : JR.Method
+jm_getLock_1 jheap jthis jargs =
+    JR.method [ ( "file", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.return (JR.invoke "getLock_1" JR.this [ (JR.callStatic AbFileOutputStream.jm_createFromAbFileAppend_2 [ (JR.local "file"), (JR.bool True) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Exception returns null"), JR.this, (JR.str "getLock"), (JR.local "e") ]), 
+                        JR.return JR.null ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

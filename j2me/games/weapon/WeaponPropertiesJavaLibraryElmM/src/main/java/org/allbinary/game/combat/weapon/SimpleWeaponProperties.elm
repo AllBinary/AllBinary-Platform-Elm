@@ -1,178 +1,150 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.weapon
-module SimpleWeaponProperties where
+module Org.Allbinary.Game.Combat.Weapon.SimpleWeaponProperties exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.game.combat.weapon
+-}
 
-data SimpleWeaponProperties = SimpleWeaponProperties
-    { header_ :: JavaHeader
-    , damage :: IORef (Int)
-    , dissipation :: IORef (Int16)
-    , range :: IORef (Int)
-    }
-
-instance JavaNull SimpleWeaponProperties where
-    javaNull = javaNullRecord "SimpleWeaponProperties"
-
-instance JavaEquals SimpleWeaponProperties where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SimpleWeaponProperties where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SimpleWeaponProperties where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO SimpleWeaponProperties
-newRecord_ = do
-    header_ <- newJavaHeader
-    damage <- newIORef 0
-    dissipation <- newIORef 0
-    range <- newIORef 0
-    let this = SimpleWeaponProperties header_ damage dissipation range
-    jregisterLevel header_ this
-    jregisterMethod header_ "set" (\() -> set_impl this)
-    jregisterMethod header_ "setDamage" (\() -> setDamage_impl this)
-    jregisterMethod header_ "getDamage" (\() -> getDamage_impl this)
-    jregisterMethod header_ "setDissipation" (\() -> setDissipation_impl this)
-    jregisterMethod header_ "getDissipation" (\() -> getDissipation_impl this)
-    jregisterMethod header_ "getRange" (\() -> getRange_impl this)
-    jregisterMethod header_ "setRange" (\() -> setRange_impl this)
-    pure this
-
-initFields_ :: SimpleWeaponProperties -> IO ()
-initFields_ this = do
-    jset this.damage (0)
-    jset this.dissipation (0)
-    jset this.range (0)
-    pure ()
-
-new_ :: IO SimpleWeaponProperties
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: SimpleWeaponProperties -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-set :: (JavaObjectClass this_) => this_ -> SimpleWeaponProperties -> IO (())
-set object_ a1 = jmethod object_ "set" (\() -> (set_impl (javaCast object_ :: SimpleWeaponProperties))) () a1
 
-set_super :: (JavaObjectClass this_) => this_ -> SimpleWeaponProperties -> IO (())
-set_super object_ a1 = (set_impl (javaCast object_ :: SimpleWeaponProperties)) a1
-
-set_impl :: SimpleWeaponProperties -> SimpleWeaponProperties -> IO (())
-set_impl this simpleWeaponProperties = do
-        Control.Monad.void (SimpleWeaponProperties.setDamage this (jio (SimpleWeaponProperties.getDamage simpleWeaponProperties)))
-        Control.Monad.void (SimpleWeaponProperties.setDissipation this (jio (SimpleWeaponProperties.getDissipation simpleWeaponProperties)))
-        Control.Monad.void (SimpleWeaponProperties.setRange this (jio (SimpleWeaponProperties.getRange simpleWeaponProperties)))
-        pure ()
+jclass : String
+jclass =
+    "SimpleWeaponProperties"
 
 
-setDamage :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setDamage object_ a1 = jmethod object_ "setDamage" (\() -> (setDamage_impl (javaCast object_ :: SimpleWeaponProperties))) () a1
-
-setDamage_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setDamage_super object_ a1 = (setDamage_impl (javaCast object_ :: SimpleWeaponProperties)) a1
-
-setDamage_impl :: SimpleWeaponProperties -> Int -> IO (())
-setDamage_impl this damage = do
-        jset (this).damage (damage)
-        pure ()
+jchain : List String
+jchain =
+    [ "SimpleWeaponProperties" ]
 
 
-getDamage :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDamage object_ = jmethod object_ "getDamage" (\() -> (getDamage_impl (javaCast object_ :: SimpleWeaponProperties))) ()
-
-getDamage_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDamage_super object_ = (getDamage_impl (javaCast object_ :: SimpleWeaponProperties))
-
-getDamage_impl :: SimpleWeaponProperties -> IO (Int)
-getDamage_impl this = do
-        pure ((jget (this).damage))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "damage", JR.defaultOf "I" ), ( "dissipation", JR.defaultOf "S" ), ( "range", JR.defaultOf "I" ) ]
 
 
-setDissipation :: (JavaObjectClass this_) => this_ -> Int16 -> IO (())
-setDissipation object_ a1 = jmethod object_ "setDissipation" (\() -> (setDissipation_impl (javaCast object_ :: SimpleWeaponProperties))) () a1
-
-setDissipation_super :: (JavaObjectClass this_) => this_ -> Int16 -> IO (())
-setDissipation_super object_ a1 = (setDissipation_impl (javaCast object_ :: SimpleWeaponProperties)) a1
-
-setDissipation_impl :: SimpleWeaponProperties -> Int16 -> IO (())
-setDissipation_impl this dissipation = do
-        jset (this).dissipation (dissipation)
-        pure ()
-
-
-getDissipation :: (JavaObjectClass this_) => this_ -> IO (Int16)
-getDissipation object_ = jmethod object_ "getDissipation" (\() -> (getDissipation_impl (javaCast object_ :: SimpleWeaponProperties))) ()
-
-getDissipation_super :: (JavaObjectClass this_) => this_ -> IO (Int16)
-getDissipation_super object_ = (getDissipation_impl (javaCast object_ :: SimpleWeaponProperties))
-
-getDissipation_impl :: SimpleWeaponProperties -> IO (Int16)
-getDissipation_impl this = do
-        pure ((jget (this).dissipation))
+jvtable =
+    JR.vtable
+        [ ( "set_1", jm_set_1 )
+        , ( "setDamage_1", jm_setDamage_1 )
+        , ( "getDamage_0", jm_getDamage_0 )
+        , ( "setDissipation_1", jm_setDissipation_1 )
+        , ( "getDissipation_0", jm_getDissipation_0 )
+        , ( "getRange_0", jm_getRange_0 )
+        , ( "setRange_1", jm_setRange_1 ) ]
+        JR.noMethods
 
 
-getRange :: (JavaObjectClass this_) => this_ -> IO (Int)
-getRange object_ = jmethod object_ "getRange" (\() -> (getRange_impl (javaCast object_ :: SimpleWeaponProperties))) ()
-
-getRange_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getRange_super object_ = (getRange_impl (javaCast object_ :: SimpleWeaponProperties))
-
-getRange_impl :: SimpleWeaponProperties -> IO (Int)
-getRange_impl this = do
-        pure ((jget (this).range))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SimpleWeaponProperties"
+        [ ( "jm_set_1", jm_set_1 ), ( "jm_setDamage_1", jm_setDamage_1 ), ( "jm_getDamage_0", jm_getDamage_0 ), ( "jm_setDissipation_1", jm_setDissipation_1 ), ( "jm_getDissipation_0", jm_getDissipation_0 ), ( "jm_getRange_0", jm_getRange_0 ), ( "jm_setRange_1", jm_setRange_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
 
-setRange :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setRange object_ a1 = jmethod object_ "setRange" (\() -> (setRange_impl (javaCast object_ :: SimpleWeaponProperties))) () a1
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-setRange_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setRange_super object_ a1 = (setRange_impl (javaCast object_ :: SimpleWeaponProperties)) a1
 
-setRange_impl :: SimpleWeaponProperties -> Int -> IO (())
-setRange_impl this range = do
-        jset (this).range (range)
-        pure ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_set_1 : JR.Method
+jm_set_1 jheap jthis jargs =
+    JR.method [ ( "simpleWeaponProperties", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setDamage_1" JR.this [ (JR.invoke "getDamage_0" (JR.local "simpleWeaponProperties") []) ]), 
+                    JR.exec (JR.invoke "setDissipation_1" JR.this [ (JR.invoke "getDissipation_0" (JR.local "simpleWeaponProperties") []) ]), 
+                    JR.exec (JR.invoke "setRange_1" JR.this [ (JR.invoke "getRange_0" (JR.local "simpleWeaponProperties") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDamage_1 : JR.Method
+jm_setDamage_1 jheap jthis jargs =
+    JR.method [ ( "damage", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "damage" "I" JR.this (JR.local "damage")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDamage_0 : JR.Method
+jm_getDamage_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "damage") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDissipation_1 : JR.Method
+jm_setDissipation_1 jheap jthis jargs =
+    JR.method [ ( "dissipation", "S" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "dissipation" "S" JR.this (JR.local "dissipation")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDissipation_0 : JR.Method
+jm_getDissipation_0 jheap jthis jargs =
+    JR.method [] "S"
+        (JR.run [ 
+                    JR.return (JR.thisField "dissipation") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRange_0 : JR.Method
+jm_getRange_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "range") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setRange_1 : JR.Method
+jm_setRange_1 jheap jthis jargs =
+    JR.method [ ( "range", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "range" "I" JR.this (JR.local "range")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

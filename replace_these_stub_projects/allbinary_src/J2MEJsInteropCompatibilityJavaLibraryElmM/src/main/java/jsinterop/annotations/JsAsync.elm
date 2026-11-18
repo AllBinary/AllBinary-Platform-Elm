@@ -1,4 +1,4 @@
-module JsAsync exposing (..)
+module Jsinterop.Annotations.JsAsync exposing (..)
 
 {-| Generated Code Do Not Modify package jsinterop.annotations
 -}

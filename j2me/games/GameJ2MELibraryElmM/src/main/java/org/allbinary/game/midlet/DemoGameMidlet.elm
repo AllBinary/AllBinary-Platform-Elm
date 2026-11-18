@@ -1,238 +1,202 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
-module DemoGameMidlet (module DemoGameMidlet, module GameMidlet) where
+module Org.Allbinary.Game.Midlet.DemoGameMidlet exposing (..)
 
-import GameMidlet hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, isContinue, isContinue_super, isContinue_impl, getHighestLevel, getHighestLevel_super, getHighestLevel_impl, createDemoGameCanvasRunnableInterface, createDemoGameCanvasRunnableInterface_super, createDemoGameCanvasRunnableInterface_impl, createGameCanvasRunnable, createGameCanvasRunnable_super, createGameCanvasRunnable_impl, createGameCanvasRunnableInterface, createGameCanvasRunnableInterface_super, createGameCanvasRunnableInterface_impl, demoSetup, demoSetup_super, demoSetup_impl, postDemoSetup, postDemoSetup_super, postDemoSetup_impl, setDemo, setDemo_super, setDemo_impl, createGame, createGame_super, createGame_impl, isReady, isReady_super, isReady_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified DemoRunnable -- same package or java.lang
-import qualified CreateGameRunnable -- same package or java.lang
-import qualified LogUtil -- same package or java.lang
-import qualified CommonStrings -- same package or java.lang
-import qualified GameCanvasRunnableInterface -- org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface
-import qualified AllBinaryGameLayerManager -- org.allbinary.game.layer.AllBinaryGameLayerManager
-import qualified ProgressCanvas -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvas
-import qualified ProgressCanvasFactory -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified ClientInformationFactory -- org.allbinary.logic.system.security.licensing.ClientInformationFactory
-import qualified PrimaryThreadPool -- org.allbinary.thread.PrimaryThreadPool
-import qualified NullGameCanvasRunnable -- org.allbinary.game.displayable.canvas.NullGameCanvasRunnable
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified GameMidlet
+{-| Generated Code Do Not Modify package org.allbinary.game.midlet
+-}
 
-data DemoGameMidlet = DemoGameMidlet
-    { header_ :: JavaHeader
-    , base :: GameMidlet.GameMidlet
-    }
-
-instance JavaNull DemoGameMidlet where
-    javaNull = javaNullRecord "DemoGameMidlet"
-
-instance JavaEquals DemoGameMidlet where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DemoGameMidlet where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DemoGameMidlet where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO DemoGameMidlet
-newRecord_ = do
-    base <- GameMidlet.newRecord_
-    let header_ = base.header_
-    let this = DemoGameMidlet header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "isContinue" (\() -> isContinue_impl this)
-    jregisterMethod header_ "getHighestLevel" (\() -> getHighestLevel_impl this)
-    jregisterMethod header_ "createDemoGameCanvasRunnableInterface" (\() -> createDemoGameCanvasRunnableInterface_impl this)
-    jregisterMethod header_ "createGameCanvasRunnable" (\() -> createGameCanvasRunnable_impl this)
-    jregisterMethod header_ "createGameCanvasRunnableInterface" (\() -> createGameCanvasRunnableInterface_impl this)
-    jregisterMethod header_ "demoSetup" (\() -> demoSetup_impl this)
-    jregisterMethod header_ "postDemoSetup" (\() -> postDemoSetup_impl this)
-    jregisterMethod header_ "setDemo" (\() -> setDemo_impl this)
-    jregisterMethod header_ "createGame" (\() -> createGame_impl this)
-    jregisterMethod header_ "isReady" (\() -> isReady_impl this)
-    pure this
-
-initFields_ :: DemoGameMidlet -> IO ()
-initFields_ this = do
-    pure ()
-
-new_1 :: ClientInformationFactory.ClientInformationFactory -> IO DemoGameMidlet
-new_1 clientInformationFactory = do
-    this <- newRecord_
-    init_1 this clientInformationFactory
-    pure this
-
-init_1 :: DemoGameMidlet -> ClientInformationFactory.ClientInformationFactory -> IO ()
-init_1 this clientInformationFactory = do
-        GameMidlet.init_1 this.base (clientInformationFactory)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Game.Midlet.CreateGameRunnable as CreateGameRunnable
+import Org.Allbinary.Game.Midlet.DemoRunnable as DemoRunnable
+import Org.Allbinary.Game.Midlet.GameMidlet as GameMidlet
+import Org.Allbinary.Game.Displayable.Canvas.NullGameCanvasRunnable as NullGameCanvasRunnable
+import Org.Allbinary.Thread.PrimaryThreadPool as PrimaryThreadPool
+import Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressCanvasFactory as ProgressCanvasFactory
+import Org.Allbinary.Logic.StdUtil as StdUtil
 
 
--- throws Exception
-isContinue :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isContinue object_ = jmethod object_ "isContinue" (\() -> (isContinue_impl (javaCast object_ :: DemoGameMidlet))) ()
-
-isContinue_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isContinue_super object_ = (isContinue_impl (javaCast object_ :: DemoGameMidlet))
-
-isContinue_impl :: DemoGameMidlet -> IO (Bool)
-isContinue_impl this = do
-    javaCatchReturn $ do
-        hashtable <- (GameMidlet.getStartStateHashtable this)
-        if ((hashtable /= javaNull) && ((jio (ABHashtable.size hashtable)) > 0)) then do
-            javaReturn (True)
-        else do
-            javaReturn (False)
+jclass : String
+jclass =
+    "DemoGameMidlet"
 
 
-getHighestLevel :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHighestLevel object_ = jmethod object_ "getHighestLevel" (\() -> (getHighestLevel_impl (javaCast object_ :: DemoGameMidlet))) ()
-
-getHighestLevel_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHighestLevel_super object_ = (getHighestLevel_impl (javaCast object_ :: DemoGameMidlet))
-
-getHighestLevel_impl :: DemoGameMidlet -> IO (Int)
-getHighestLevel_impl this = do
-        pure (1)
+jchain : List String
+jchain =
+    [ "DemoGameMidlet" ]
+        ++ GameMidlet.jchain
 
 
--- throws Exception
-createDemoGameCanvasRunnableInterface :: (JavaObjectClass this_) => this_ -> IO (GameCanvasRunnableInterface.GameCanvasRunnableInterface)
-createDemoGameCanvasRunnableInterface object_ = jmethod object_ "createDemoGameCanvasRunnableInterface" (\() -> (createDemoGameCanvasRunnableInterface_impl (javaCast object_ :: DemoGameMidlet))) ()
-
-createDemoGameCanvasRunnableInterface_super :: (JavaObjectClass this_) => this_ -> IO (GameCanvasRunnableInterface.GameCanvasRunnableInterface)
-createDemoGameCanvasRunnableInterface_super object_ = (createDemoGameCanvasRunnableInterface_impl (javaCast object_ :: DemoGameMidlet))
-
-createDemoGameCanvasRunnableInterface_impl :: DemoGameMidlet -> IO (GameCanvasRunnableInterface.GameCanvasRunnableInterface)
-createDemoGameCanvasRunnableInterface_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).nOT_IMPLEMENTED) this (jget ((jget (this).base.commonStrings)).cREATE))
-        pure ((javaCast NullGameCanvasRunnable.nULL_GAME_CANVAS_RUNNABLE :: GameCanvasRunnableInterface.GameCanvasRunnableInterface))
+jfields : List ( String, JR.JValue )
+jfields =
+    GameMidlet.jfields ++ []
 
 
--- throws Exception
-createGameCanvasRunnable :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> IO (GameCanvasRunnableInterface.GameCanvasRunnableInterface)
-createGameCanvasRunnable object_ a1 = jmethod object_ "createGameCanvasRunnable" (\() -> (createGameCanvasRunnable_impl (javaCast object_ :: DemoGameMidlet))) () a1
-
-createGameCanvasRunnable_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> IO (GameCanvasRunnableInterface.GameCanvasRunnableInterface)
-createGameCanvasRunnable_super object_ a1 = (createGameCanvasRunnable_impl (javaCast object_ :: DemoGameMidlet)) a1
-
-createGameCanvasRunnable_impl :: DemoGameMidlet -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> IO (GameCanvasRunnableInterface.GameCanvasRunnableInterface)
-createGameCanvasRunnable_impl this allBinaryGameLayerManager = do
-        javaThrow ((JavaException "Exception" (jget ((jget (this).base.commonStrings)).nOT_IMPLEMENTED)))
-
-
--- throws Exception
-createGameCanvasRunnableInterface :: (JavaObjectClass this_) => this_ -> IO (GameCanvasRunnableInterface.GameCanvasRunnableInterface)
-createGameCanvasRunnableInterface object_ = jmethod object_ "createGameCanvasRunnableInterface" (\() -> (createGameCanvasRunnableInterface_impl (javaCast object_ :: DemoGameMidlet))) ()
-
-createGameCanvasRunnableInterface_super :: (JavaObjectClass this_) => this_ -> IO (GameCanvasRunnableInterface.GameCanvasRunnableInterface)
-createGameCanvasRunnableInterface_super object_ = (createGameCanvasRunnableInterface_impl (javaCast object_ :: DemoGameMidlet))
-
-createGameCanvasRunnableInterface_impl :: DemoGameMidlet -> IO (GameCanvasRunnableInterface.GameCanvasRunnableInterface)
-createGameCanvasRunnableInterface_impl this = do
-        (DemoGameMidlet.createGameCanvasRunnable this (jio (GameMidlet.createGameLayerManager this)))
+jvtable =
+    JR.vtable
+        [ ( "isContinue_0", jm_isContinue_0 )
+        , ( "getHighestLevel_0", jm_getHighestLevel_0 )
+        , ( "createDemoGameCanvasRunnableInterface_0", jm_createDemoGameCanvasRunnableInterface_0 )
+        , ( "createGameCanvasRunnable_1", jm_createGameCanvasRunnable_1 )
+        , ( "createGameCanvasRunnableInterface_0", jm_createGameCanvasRunnableInterface_0 )
+        , ( "demoSetup_0", jm_demoSetup_0 )
+        , ( "postDemoSetup_0", jm_postDemoSetup_0 )
+        , ( "setDemo_0", jm_setDemo_0 )
+        , ( "createGame_0", jm_createGame_0 )
+        , ( "isReady_0", jm_isReady_0 ) ]
+        GameMidlet.jvtable
 
 
-demoSetup :: (JavaObjectClass this_) => this_ -> IO (())
-demoSetup object_ = jmethod object_ "demoSetup" (\() -> (demoSetup_impl (javaCast object_ :: DemoGameMidlet))) ()
-
-demoSetup_super :: (JavaObjectClass this_) => this_ -> IO (())
-demoSetup_super object_ = (demoSetup_impl (javaCast object_ :: DemoGameMidlet))
-
-demoSetup_impl :: DemoGameMidlet -> IO (())
-demoSetup_impl this = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DemoGameMidlet"
+        [ ( "jm_isContinue_0", jm_isContinue_0 ), ( "jm_getHighestLevel_0", jm_getHighestLevel_0 ), ( "jm_createDemoGameCanvasRunnableInterface_0", jm_createDemoGameCanvasRunnableInterface_0 ), ( "jm_createGameCanvasRunnable_1", jm_createGameCanvasRunnable_1 ), ( "jm_createGameCanvasRunnableInterface_0", jm_createGameCanvasRunnableInterface_0 ), ( "jm_demoSetup_0", jm_demoSetup_0 ), ( "jm_postDemoSetup_0", jm_postDemoSetup_0 ), ( "jm_setDemo_0", jm_setDemo_0 ), ( "jm_createGame_0", jm_createGame_0 ), ( "jm_isReady_0", jm_isReady_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
 
-postDemoSetup :: (JavaObjectClass this_) => this_ -> IO (())
-postDemoSetup object_ = jmethod object_ "postDemoSetup" (\() -> (postDemoSetup_impl (javaCast object_ :: DemoGameMidlet))) ()
-
-postDemoSetup_super :: (JavaObjectClass this_) => this_ -> IO (())
-postDemoSetup_super object_ = (postDemoSetup_impl (javaCast object_ :: DemoGameMidlet))
-
-postDemoSetup_impl :: DemoGameMidlet -> IO (())
-postDemoSetup_impl this = do
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
--- throws Exception
-setDemo :: (JavaObjectClass this_) => this_ -> IO (())
-setDemo object_ = jmethod object_ "setDemo" (\() -> (setDemo_impl (javaCast object_ :: DemoGameMidlet))) ()
-
-setDemo_super :: (JavaObjectClass this_) => this_ -> IO (())
-setDemo_super object_ = (setDemo_impl (javaCast object_ :: DemoGameMidlet))
-
-setDemo_impl :: DemoGameMidlet -> IO (())
-setDemo_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this "setDemo")
-        progressCanvas <- (ProgressCanvasFactory.getInstance)
-        Control.Monad.void (ProgressCanvas.start progressCanvas)
-        Control.Monad.void (PrimaryThreadPool.runTask ((jio (PrimaryThreadPool.getInstance))) (jio (DemoRunnable.new_1 this)))
-        pure ()
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "clientInformationFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect GameMidlet.jinit_1 JR.this [ (JR.local "clientInformationFactory") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
--- throws Exception
-createGame :: (JavaObjectClass this_) => this_ -> IO (())
-createGame object_ = jmethod object_ "createGame" (\() -> (createGame_impl (javaCast object_ :: DemoGameMidlet))) ()
-
-createGame_super :: (JavaObjectClass this_) => this_ -> IO (())
-createGame_super object_ = (createGame_impl (javaCast object_ :: DemoGameMidlet))
-
-createGame_impl :: DemoGameMidlet -> IO (())
-createGame_impl this = do
-        let cREATE_GAME = "createGame"
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this cREATE_GAME)
-        progressCanvas <- (ProgressCanvasFactory.getInstance)
-        Control.Monad.void (ProgressCanvas.start progressCanvas)
-        hashtable <- (GameMidlet.getStartStateHashtable this)
-        Control.Monad.void (GameMidlet.setStartStateHashtable this (jget ((jio (StdUtil.getInstance))).nULL_TABLE))
-        Control.Monad.void (PrimaryThreadPool.runTask ((jio (PrimaryThreadPool.getInstance))) (jio (CreateGameRunnable.new_2 this hashtable)))
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eND) this cREATE_GAME)
-        pure ()
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
 
 
-isReady :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isReady object_ = jmethod object_ "isReady" (\() -> (isReady_impl (javaCast object_ :: DemoGameMidlet))) ()
+jm_isContinue_0 : JR.Method
+jm_isContinue_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.declare "hashtable" "" (JR.invoke "getStartStateHashtable_0" JR.this []), 
+                    JR.ifElse (JR.and (JR.map2 JR.notEquals (JR.local "hashtable") JR.null) (JR.map2 JR.greater (JR.invoke "size_0" (JR.local "hashtable") []) (JR.int 0))) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-isReady_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isReady_super object_ = (isReady_impl (javaCast object_ :: DemoGameMidlet))
 
-isReady_impl :: DemoGameMidlet -> IO (Bool)
-isReady_impl this = do
-        pure (True)
+jm_getHighestLevel_0 : JR.Method
+jm_getHighestLevel_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 1) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_createDemoGameCanvasRunnableInterface_0 : JR.Method
+jm_createDemoGameCanvasRunnableInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")), JR.this, (JR.field "CREATE" (JR.thisField "commonStrings")) ]), 
+                    JR.return NullGameCanvasRunnable.jstatic_NULL_GAME_CANVAS_RUNNABLE ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createGameCanvasRunnable_1 : JR.Method
+jm_createGameCanvasRunnable_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createGameCanvasRunnableInterface_0 : JR.Method
+jm_createGameCanvasRunnableInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "createGameCanvasRunnable_1" JR.this [ (JR.invoke "createGameLayerManager_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_demoSetup_0 : JR.Method
+jm_demoSetup_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_postDemoSetup_0 : JR.Method
+jm_postDemoSetup_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDemo_0 : JR.Method
+jm_setDemo_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.str "setDemo") ]), 
+                    JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "start_0" (JR.local "progressCanvas") []), 
+                    JR.exec (JR.invoke "runTask_1" (JR.callStatic PrimaryThreadPool.jm_getInstance_0 []) [ (JR.new DemoRunnable.jnew_1 [ JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createGame_0 : JR.Method
+jm_createGame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "CREATE_GAME" "" (JR.str "createGame"), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.local "CREATE_GAME") ]), 
+                    JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "start_0" (JR.local "progressCanvas") []), 
+                    JR.declare "hashtable" "" (JR.invoke "getStartStateHashtable_0" JR.this []), 
+                    JR.exec (JR.invoke "setStartStateHashtable_1" JR.this [ (JR.field "NULL_TABLE" (JR.callStatic StdUtil.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "runTask_1" (JR.callStatic PrimaryThreadPool.jm_getInstance_0 []) [ (JR.new CreateGameRunnable.jnew_2 [ JR.this, (JR.local "hashtable") ]) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "END" (JR.thisField "commonStrings")), JR.this, (JR.local "CREATE_GAME") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isReady_0 : JR.Method
+jm_isReady_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

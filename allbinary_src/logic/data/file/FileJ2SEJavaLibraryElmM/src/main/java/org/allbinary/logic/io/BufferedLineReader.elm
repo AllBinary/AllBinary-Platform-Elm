@@ -1,151 +1,127 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
-module BufferedLineReader where
+module Org.Allbinary.Logic.Io.BufferedLineReader exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BufferedReader -- java.io.BufferedReader
-import qualified FileReader -- java.io.FileReader
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified AbFileNativeUtil -- org.allbinary.logic.io.file.AbFileNativeUtil
+{-| Generated Code Do Not Modify package org.allbinary.logic.io
+-}
 
-data BufferedLineReader = BufferedLineReader
-    { header_ :: JavaHeader
-    , tmpIn :: IORef (BufferedReader.BufferedReader)
-    }
-
-instance JavaNull BufferedLineReader where
-    javaNull = javaNullRecord "BufferedLineReader"
-
-instance JavaEquals BufferedLineReader where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BufferedLineReader where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BufferedLineReader where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BufferedLineReader
-newRecord_ = do
-    header_ <- newJavaHeader
-    tmpIn <- newIORef javaNull
-    let this = BufferedLineReader header_ tmpIn
-    jregisterLevel header_ this
-    jregisterMethod header_ "readUpToLines" (\() -> readUpToLines_impl this)
-    jregisterMethod header_ "readLine" (\() -> readLine_impl this)
-    jregisterMethod header_ "ready" (\() -> ready_impl this)
-    jregisterMethod header_ "getSize" (\() -> getSize_impl this)
-    jregisterMethod header_ "getCurrent" (\() -> getCurrent_impl this)
-    pure this
-
-initFields_ :: BufferedLineReader -> IO ()
-initFields_ this = do
-    jset this.tmpIn (javaNull)
-    pure ()
-
-new_1 :: AbFile.AbFile -> IO BufferedLineReader
-new_1 file = do
-    this <- newRecord_
-    init_1 this file
-    pure this
-
-init_1 :: BufferedLineReader -> AbFile.AbFile -> IO ()
-init_1 this file = do
-        initFields_ this
-        assignedValue <- (BufferedReader.new_1 (jio (FileReader.new_1 (jio (AbFileNativeUtil.get file)))))
-        jset (this).tmpIn (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Logic.Io.File.AbFileNativeUtil as AbFileNativeUtil
 
 
-readUpToLines :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-readUpToLines object_ a1 = jmethod object_ "readUpToLines" (\() -> (readUpToLines_impl (javaCast object_ :: BufferedLineReader))) () a1
-
-readUpToLines_super :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-readUpToLines_super object_ a1 = (readUpToLines_impl (javaCast object_ :: BufferedLineReader)) a1
-
-readUpToLines_impl :: BufferedLineReader -> Int64 -> IO (())
-readUpToLines_impl this readAheadIndex = do
-        pure ()
+jclass : String
+jclass =
+    "BufferedLineReader"
 
 
--- throws Exception
-readLine :: (JavaObjectClass this_) => this_ -> IO (String)
-readLine object_ = jmethod object_ "readLine" (\() -> (readLine_impl (javaCast object_ :: BufferedLineReader))) ()
-
-readLine_super :: (JavaObjectClass this_) => this_ -> IO (String)
-readLine_super object_ = (readLine_impl (javaCast object_ :: BufferedLineReader))
-
-readLine_impl :: BufferedLineReader -> IO (String)
-readLine_impl this = do
-        (BufferedReader.readLine ((jget (this).tmpIn)))
+jchain : List String
+jchain =
+    [ "BufferedLineReader" ]
 
 
--- throws Exception
-ready :: (JavaObjectClass this_) => this_ -> IO (Bool)
-ready object_ = jmethod object_ "ready" (\() -> (ready_impl (javaCast object_ :: BufferedLineReader))) ()
-
-ready_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-ready_super object_ = (ready_impl (javaCast object_ :: BufferedLineReader))
-
-ready_impl :: BufferedLineReader -> IO (Bool)
-ready_impl this = do
-        (BufferedReader.ready ((jget (this).tmpIn)))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "tmpIn", JR.defaultOf "" ) ]
 
 
-getSize :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getSize object_ = jmethod object_ "getSize" (\() -> (getSize_impl (javaCast object_ :: BufferedLineReader))) ()
+jvtable =
+    JR.vtable
+        [ ( "readUpToLines_1", jm_readUpToLines_1 )
+        , ( "readLine_0", jm_readLine_0 )
+        , ( "ready_0", jm_ready_0 )
+        , ( "getSize_0", jm_getSize_0 )
+        , ( "getCurrent_0", jm_getCurrent_0 ) ]
+        JR.noMethods
 
-getSize_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getSize_super object_ = (getSize_impl (javaCast object_ :: BufferedLineReader))
 
-getSize_impl :: BufferedLineReader -> IO (Int64)
-getSize_impl this = do
-        pure (0)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BufferedLineReader"
+        [ ( "jm_readUpToLines_1", jm_readUpToLines_1 ), ( "jm_readLine_0", jm_readLine_0 ), ( "jm_ready_0", jm_ready_0 ), ( "jm_getSize_0", jm_getSize_0 ), ( "jm_getCurrent_0", jm_getCurrent_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
 
-getCurrent :: (JavaObjectClass this_) => this_ -> IO (Int)
-getCurrent object_ = jmethod object_ "getCurrent" (\() -> (getCurrent_impl (javaCast object_ :: BufferedLineReader))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-getCurrent_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getCurrent_super object_ = (getCurrent_impl (javaCast object_ :: BufferedLineReader))
 
-getCurrent_impl :: BufferedLineReader -> IO (Int)
-getCurrent_impl this = do
-        pure (0)
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "file", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "tmpIn" "" JR.this (JR.new (JR.namedMethod "BufferedReader.jnew_1") [ (JR.new (JR.namedMethod "FileReader.jnew_1") [ (JR.callStatic AbFileNativeUtil.jm_get_1 [ (JR.local "file") ]) ]) ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_readUpToLines_1 : JR.Method
+jm_readUpToLines_1 jheap jthis jargs =
+    JR.method [ ( "readAheadIndex", "J" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_readLine_0 : JR.Method
+jm_readLine_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "readLine_0" (JR.thisField "tmpIn") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_ready_0 : JR.Method
+jm_ready_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "ready_0" (JR.thisField "tmpIn") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSize_0 : JR.Method
+jm_getSize_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.long 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCurrent_0 : JR.Method
+jm_getCurrent_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

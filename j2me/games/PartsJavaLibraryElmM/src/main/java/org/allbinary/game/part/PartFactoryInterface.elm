@@ -1,77 +1,58 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part
-module PartFactoryInterface where
+module Org.Allbinary.Game.Part.PartFactoryInterface exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified PartInterface -- same package or java.lang
-import qualified RelativeRelationship -- org.allbinary.graphics.RelativeRelationship
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
+{-| Generated Code Do Not Modify package org.allbinary.game.part
+-}
 
--- Java interface: the classes that implement it have these functions
-data PartFactoryInterface = PartFactoryInterface
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull PartFactoryInterface where
-    javaNull = javaNullRecord "PartFactoryInterface"
-
-instance JavaEquals PartFactoryInterface where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PartFactoryInterface where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PartFactoryInterface where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-fromHeader_ :: JavaHeader -> PartFactoryInterface
-fromHeader_ header = PartFactoryInterface header
-
-registerInterface_ :: JavaHeader -> IO ()
-registerInterface_ header = do
-    jregisterLevel header (PartFactoryInterface header)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+import JR
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> RelativeRelationship.RelativeRelationship -> IO (PartInterface.PartInterface)
-getInstance object_ a1 a2 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: PartFactoryInterface))) () a1 a2
 
-getInstance_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> RelativeRelationship.RelativeRelationship -> IO (PartInterface.PartInterface)
-getInstance_super object_ a1 a2 = (getInstance_impl (javaCast object_ :: PartFactoryInterface)) a1 a2
+jclass : String
+jclass =
+    "PartFactoryInterface"
 
-getInstance_impl :: PartFactoryInterface -> AllBinaryLayer.AllBinaryLayer -> RelativeRelationship.RelativeRelationship -> IO (PartInterface.PartInterface)
-getInstance_impl this sourceLayerInterface relativeRelationship = javaAbstractMethod "getInstance"
 
+jchain : List String
+jchain =
+    [ "PartFactoryInterface" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PartFactoryInterface"
+        []
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

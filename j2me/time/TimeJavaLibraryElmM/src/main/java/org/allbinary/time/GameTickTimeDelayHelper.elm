@@ -1,4 +1,4 @@
-module GameTickTimeDelayHelper exposing (..)
+module Org.Allbinary.Time.GameTickTimeDelayHelper exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.time
 -}

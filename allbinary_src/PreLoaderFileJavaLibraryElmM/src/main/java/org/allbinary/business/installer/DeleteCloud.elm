@@ -1,142 +1,125 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.installer
-module DeleteCloud where
+module Org.Allbinary.Business.Installer.DeleteCloud exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified URLGLOBALS -- org.allbinary.globals.URLGLOBALS
-import qualified FileUploadData -- org.allbinary.logic.communication.http.file.upload.FileUploadData
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified AbIOSystem -- org.allbinary.logic.io.AbIOSystem
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified Directory -- org.allbinary.logic.io.file.directory.Directory
-import qualified AbPath -- org.allbinary.logic.io.path.AbPath
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.business.installer
+-}
 
-data DeleteCloud = DeleteCloud
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull DeleteCloud where
-    javaNull = javaNullRecord "DeleteCloud"
-
-instance JavaEquals DeleteCloud where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DeleteCloud where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DeleteCloud where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DeleteCloud
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = DeleteCloud header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "delete" (\() -> delete_impl this)
-    pure this
-
-initFields_ :: DeleteCloud -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_ :: IO DeleteCloud
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DeleteCloud -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.Io.File.AbFile as AbFile
+import Org.Allbinary.Logic.Io.AbIOSystem as AbIOSystem
+import Org.Allbinary.Logic.Io.Path.AbPath as AbPath
+import Org.Allbinary.Logic.Io.File.Directory.Directory as Directory
+import Org.Allbinary.Logic.Communication.Http.File.Upload.FileUploadData as FileUploadData
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Globals.URLGLOBALS as URLGLOBALS
 
 
-delete :: (JavaObjectClass this_) => this_ -> String -> Int -> Int -> IO (Bool)
-delete object_ a1 a2 a3 = jmethod object_ "delete" (\() -> (delete_impl (javaCast object_ :: DeleteCloud))) () a1 a2 a3
+jclass : String
+jclass =
+    "DeleteCloud"
 
-delete_super :: (JavaObjectClass this_) => this_ -> String -> Int -> Int -> IO (Bool)
-delete_super object_ a1 a2 a3 = (delete_impl (javaCast object_ :: DeleteCloud)) a1 a2 a3
 
-delete_impl :: DeleteCloud -> String -> Int -> Int -> IO (Bool)
-delete_impl this prePath current total = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) "Unable to copy installer files into cloud" this "initialize()" e)
-            pure (False)
-            ) $ do
-            when (jio (AbIOSystem.isType ((jio (AbIOSystem.getInstance))) "com.vobject.appengine.java.io")) $ do
-                stringBuffer <- (StringMaker.new_)
-                Control.Monad.void (StringMaker.append stringBuffer (jio (URLGLOBALS.getWebappPath)))
-                Control.Monad.void (StringMaker.append stringBuffer prePath)
-                path <- (AbPath.new_2 (jio (StringMaker.toString stringBuffer)) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-                file <- (AbFile.createAbFileFromAbPath path)
-                fileBasicArrayList <- (Directory.search ((jio (Directory.getInstance))) file True)
-                size <- (BasicArrayList.size fileBasicArrayList)
-                Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-                Control.Monad.void (StringMaker.append stringBuffer "Searched: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbPath.toFileSystemString path)))
-                Control.Monad.void (StringMaker.append stringBuffer " BasicArrayList: ")
-                Control.Monad.void (StringMaker.appendint stringBuffer size)
-                let portion = ((size `quot` total) + 1)
-                let start = (portion * current)
-                end <- newIORef ((start + portion) :: Int)
-                when ((jget end) > size) $ do
-                    jset end (size)
-                Control.Monad.void (StringMaker.append stringBuffer " Section: ")
-                Control.Monad.void (StringMaker.appendint stringBuffer start)
-                Control.Monad.void (StringMaker.append stringBuffer " - ")
-                Control.Monad.void (StringMaker.appendint stringBuffer (jget end))
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this "initialize()")
-                nextFile <- newIORef (javaNull)
-                forM_ [start .. (jget end) - 1] $ \index -> javaIteration (pure ()) $ do
-                    jset nextFile ((javaCast (jio (BasicArrayList.get fileBasicArrayList index)) :: AbFile.AbFile))
-                    handle (\(e :: JavaException) -> do
-                        pure ()
-                        ) $ do
-                        when ((jio (AbFile.indexOf ((jio (AbFile.getPath ((jget nextFile))))) (jget ((jio (FileUploadData.getInstance))).fILE))) < 0) $ do
-                            Control.Monad.void (AbFile.delete ((jget nextFile)))
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Deleted Files From Cloud" this "initialize()")
-            pure (True)
+jchain : List String
+jchain =
+    [ "DeleteCloud" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "delete_3", jm_delete_3 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DeleteCloud"
+        [ ( "jm_delete_3", jm_delete_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_delete_3 : JR.Method
+jm_delete_3 jheap jthis jargs =
+    JR.method [ ( "prePath", "" ), ( "current", "I" ), ( "total", "I" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.invoke "isType_1" (JR.callStatic AbIOSystem.jm_getInstance_0 []) [ (JR.str "com.vobject.appengine.java.io") ]) (JR.run [ 
+                            JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.callStatic URLGLOBALS.jm_getWebappPath_0 []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "prePath") ]), 
+                            JR.declare "path" "" (JR.new AbPath.jnew_2 [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]), 
+                            JR.declare "file" "" (JR.callStatic AbFile.jm_createAbFileFromAbPath_1 [ (JR.local "path") ]), 
+                            JR.declare "fileBasicArrayList" "" (JR.invoke "search_2" (JR.callStatic Directory.jm_getInstance_0 []) [ (JR.local "file"), (JR.bool True) ]), 
+                            JR.declare "size" "I" (JR.invoke "size_0" (JR.local "fileBasicArrayList") []), 
+                            JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Searched: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toFileSystemString_0" (JR.local "path") []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " BasicArrayList: ") ]), 
+                            JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "size") ]), 
+                            JR.declare "portion" "I" (JR.map2 JR.add (JR.map2 JR.div (JR.local "size") (JR.local "total")) (JR.int 1)), 
+                            JR.declare "start" "I" (JR.map2 JR.mul (JR.local "portion") (JR.local "current")), 
+                            JR.declare "end" "I" (JR.map2 JR.add (JR.local "start") (JR.local "portion")), 
+                            JR.ifElse (JR.map2 JR.greater (JR.local "end") (JR.local "size")) (JR.run [ 
+                                JR.exec (JR.setLocal "end" "I" (JR.local "size")) ]) identity, 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Section: ") ]), 
+                            JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "start") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " - ") ]), 
+                            JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "end") ]), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "initialize()") ]), 
+                            JR.declare "nextFile" "" (JR.lit (JR.defaultOf "")), 
+                            JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "end")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69032 -> (JR.setLocal "index" "I" (JR.lit jwN69032))) JR.increment) ]) (JR.run [ 
+                                JR.exec (JR.setLocal "nextFile" "" (JR.invoke "get_1" (JR.local "fileBasicArrayList") [ (JR.local "index") ])), 
+                                JR.try (JR.run [ 
+                                    JR.ifElse (JR.map2 JR.less (JR.invoke "indexOf_1" (JR.invoke "getPath_0" (JR.local "nextFile") []) [ (JR.field "FILE" (JR.callStatic FileUploadData.jm_getInstance_0 [])) ]) (JR.int 0)) (JR.run [ 
+                                        JR.exec (JR.invoke "delete_0" (JR.local "nextFile") []) ]) identity ]) [ ( [ "Exception" ], "e", identity ) ] identity ]) ], 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Deleted Files From Cloud"), JR.this, (JR.str "initialize()") ]) ]) identity, 
+                        JR.return (JR.bool True) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Unable to copy installer files into cloud"), JR.this, (JR.str "initialize()"), (JR.local "e") ]), 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

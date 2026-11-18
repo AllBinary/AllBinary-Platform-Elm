@@ -1,125 +1,113 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image
-module ImageTypeUtil where
+module Org.Allbinary.Image.ImageTypeUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.image
+-}
 
-data ImageTypeUtil = ImageTypeUtil
-    { header_ :: JavaHeader
-    , pNG :: IORef (String)
-    , jPG :: IORef (String)
-    , gIF :: IORef (String)
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull ImageTypeUtil where
-    javaNull = javaNullRecord "ImageTypeUtil"
-
-instance JavaEquals ImageTypeUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageTypeUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageTypeUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: IORef (ImageTypeUtil)
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ImageTypeUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    pNG <- newIORef ""
-    jPG <- newIORef ""
-    gIF <- newIORef ""
-    list <- newIORef javaNull
-    let this = ImageTypeUtil header_ pNG jPG gIF list
-    jregisterLevel header_ this
-    jregisterMethod header_ "isSupported" (\() -> isSupported_impl this)
-    pure this
-
-initFields_ :: ImageTypeUtil -> IO ()
-initFields_ this = do
-    jset this.pNG ("png")
-    jset this.jPG ("jpg")
-    jset this.gIF ("gif")
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
-
-new_ :: IO ImageTypeUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ImageTypeUtil -> IO ()
-init_ this = do
-        initFields_ this
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) (jget this.jPG))
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) (jget this.gIF))
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) (jget this.pNG))
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
 
 
-isSupported :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isSupported object_ a1 = jmethod object_ "isSupported" (\() -> (isSupported_impl (javaCast object_ :: ImageTypeUtil))) () a1
-
-isSupported_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isSupported_super object_ a1 = (isSupported_impl (javaCast object_ :: ImageTypeUtil)) a1
-
-isSupported_impl :: ImageTypeUtil -> String -> IO (Bool)
-isSupported_impl this mediaFileType = do
-    mediaFileType <- newIORef mediaFileType
-    javaCatchReturn $ do
-        jset mediaFileType ((Prelude.map Data.Char.toLower (jget mediaFileType)))
-        forM_ [((jio (BasicArrayList.size ((jget (this).list)))) - 1), ((jio (BasicArrayList.size ((jget (this).list)))) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            let name = (javaCast (jio (BasicArrayList.get ((jget (this).list)) index)) :: String)
-            when ((Prelude.fromEnum (Prelude.compare (jget mediaFileType) name) - 1) == 0) $ do
-                javaReturn (True)
-        pure (False)
+jclass : String
+jclass =
+    "ImageTypeUtil"
 
 
-getInstance :: IO (ImageTypeUtil)
-getInstance = do
-        pure ((jget ImageTypeUtil.sINGLETON))
+jchain : List String
+jchain =
+    [ "ImageTypeUtil" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "PNG", JR.defaultOf "" ), ( "JPG", JR.defaultOf "" ), ( "GIF", JR.defaultOf "" ), ( "list", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "isSupported_1", jm_isSupported_1 )
+        , ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageTypeUtil"
+        [ ( "jm_isSupported_1", jm_isSupported_1 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "ImageTypeUtil" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "PNG" "" JR.this (JR.str "png")),
+                JR.exec (JR.setField "JPG" "" JR.this (JR.str "jpg")),
+                JR.exec (JR.setField "GIF" "" JR.this (JR.str "gif")),
+                JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.thisField "JPG") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.thisField "GIF") ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.thisField "PNG") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_isSupported_1 : JR.Method
+jm_isSupported_1 jheap jthis jargs =
+    JR.method [ ( "mediaFileType", "" ) ] "Z"
+        (JR.run [ 
+                    JR.exec (JR.setLocal "mediaFileType" "" (JR.invoke "toLowerCase_0" (JR.local "mediaFileType") [])), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66549 -> (JR.setLocal "index" "I" (JR.lit jwN66549))) JR.decrement) ]) (JR.run [ 
+                        JR.declare "name" "" (JR.invoke "get_1" (JR.thisField "list") [ (JR.local "index") ]), 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.local "mediaFileType") [ (JR.local "name") ]) (JR.int 0)) (JR.run [ 
+                            JR.return (JR.bool True) ]) identity ]) ], 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

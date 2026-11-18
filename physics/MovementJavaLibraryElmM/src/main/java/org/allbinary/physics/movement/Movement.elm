@@ -1,123 +1,103 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
-module Movement where
+module Org.Allbinary.Physics.Movement.Movement exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameLayer -- org.allbinary.game.layer.AllBinaryGameLayer
-import qualified BasicDecimal -- org.allbinary.logic.math.BasicDecimal
-import qualified MovementInterface
+{-| Generated Code Do Not Modify package org.allbinary.physics.movement
+-}
 
--- implements MovementInterface
-data Movement = Movement
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull Movement where
-    javaNull = javaNullRecord "Movement"
-
-instance JavaEquals Movement where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Movement where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Movement where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO Movement
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = Movement header_
-    jregisterLevel header_ this
-    MovementInterface.registerInterface_ header_
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "stop" (\() -> stop_impl this)
-    pure this
-
-initFields_ :: Movement -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO Movement
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: Movement -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Physics.Movement.MovementInterface as MovementInterface
 
 
-init :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Int -> Int -> IO (())
-init object_ a1 a2 a3 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: Movement))) () a1 a2 a3
-
-init_super :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Int -> Int -> IO (())
-init_super object_ a1 a2 a3 = (init_impl (javaCast object_ :: Movement)) a1 a2 a3
-
-init_impl :: Movement -> BasicDecimal.BasicDecimal -> Int -> Int -> IO (())
-init_impl this speedBasicDecimal angle otherAngle = do
-        pure ()
+jclass : String
+jclass =
+    "Movement"
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: Movement))) () a1
-
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: Movement)) a1
-
-process_impl :: Movement -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_impl this layer = do
-        pure ()
+jchain : List String
+jchain =
+    [ "Movement" ]
+        ++ MovementInterface.jchain
 
 
-stop :: (JavaObjectClass this_) => this_ -> IO (())
-stop object_ = jmethod object_ "stop" (\() -> (stop_impl (javaCast object_ :: Movement))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-stop_super :: (JavaObjectClass this_) => this_ -> IO (())
-stop_super object_ = (stop_impl (javaCast object_ :: Movement))
 
-stop_impl :: Movement -> IO (())
-stop_impl this = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "init_3", jm_init_3 )
+        , ( "process_1", jm_process_1 )
+        , ( "stop_0", jm_stop_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Movement"
+        [ ( "jm_init_3", jm_init_3 ), ( "jm_process_1", jm_process_1 ), ( "jm_stop_0", jm_stop_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_3 : JR.Method
+jm_init_3 jheap jthis jargs =
+    JR.method [ ( "speedBasicDecimal", "" ), ( "angle", "I" ), ( "otherAngle", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "layer", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_stop_0 : JR.Method
+jm_stop_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

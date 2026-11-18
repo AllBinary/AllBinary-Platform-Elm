@@ -1,106 +1,95 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score.remote
-module RemoteHighScoresData where
+module Org.Allbinary.Game.Score.Remote.RemoteHighScoresData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.game.score.remote
+-}
 
-data RemoteHighScoresData = RemoteHighScoresData
-    { header_ :: JavaHeader
-    , hIGH_SCORES :: IORef (String)
-    , cUSTOMER_USER_NAME :: IORef (String)
-    , dISPLAY_NAME :: IORef (String)
-    , sCORE :: IORef (String)
-    , gAME_INFO :: IORef (String)
-    , gAME_CONFIGURATION :: IORef (String)
-    }
-
-instance JavaNull RemoteHighScoresData where
-    javaNull = javaNullRecord "RemoteHighScoresData"
-
-instance JavaEquals RemoteHighScoresData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RemoteHighScoresData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RemoteHighScoresData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: RemoteHighScoresData
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO RemoteHighScoresData
-newRecord_ = do
-    header_ <- newJavaHeader
-    hIGH_SCORES <- newIORef ""
-    cUSTOMER_USER_NAME <- newIORef ""
-    dISPLAY_NAME <- newIORef ""
-    sCORE <- newIORef ""
-    gAME_INFO <- newIORef ""
-    gAME_CONFIGURATION <- newIORef ""
-    let this = RemoteHighScoresData header_ hIGH_SCORES cUSTOMER_USER_NAME dISPLAY_NAME sCORE gAME_INFO gAME_CONFIGURATION
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: RemoteHighScoresData -> IO ()
-initFields_ this = do
-    jset this.hIGH_SCORES ("HIGH_SCORES")
-    jset this.cUSTOMER_USER_NAME ("CUSTOMER_USER_NAME")
-    jset this.dISPLAY_NAME ("DISPLAY_NAME")
-    jset this.sCORE ("SCORE")
-    jset this.gAME_INFO ("GAME_INFO")
-    jset this.gAME_CONFIGURATION ("GAME_CONFIGURATION")
-    pure ()
-
-new_ :: IO RemoteHighScoresData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: RemoteHighScoresData -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (RemoteHighScoresData)
-getInstance = do
-        pure (RemoteHighScoresData.sINGLETON)
 
+jclass : String
+jclass =
+    "RemoteHighScoresData"
+
+
+jchain : List String
+jchain =
+    [ "RemoteHighScoresData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "HIGH_SCORES", JR.defaultOf "" ), ( "CUSTOMER_USER_NAME", JR.defaultOf "" ), ( "DISPLAY_NAME", JR.defaultOf "" ), ( "SCORE", JR.defaultOf "" ), ( "GAME_INFO", JR.defaultOf "" ), ( "GAME_CONFIGURATION", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RemoteHighScoresData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "RemoteHighScoresData" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "HIGH_SCORES" "" JR.this (JR.str "HIGH_SCORES")),
+                JR.exec (JR.setField "CUSTOMER_USER_NAME" "" JR.this (JR.str "CUSTOMER_USER_NAME")),
+                JR.exec (JR.setField "DISPLAY_NAME" "" JR.this (JR.str "DISPLAY_NAME")),
+                JR.exec (JR.setField "SCORE" "" JR.this (JR.str "SCORE")),
+                JR.exec (JR.setField "GAME_INFO" "" JR.this (JR.str "GAME_INFO")),
+                JR.exec (JR.setField "GAME_CONFIGURATION" "" JR.this (JR.str "GAME_CONFIGURATION")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

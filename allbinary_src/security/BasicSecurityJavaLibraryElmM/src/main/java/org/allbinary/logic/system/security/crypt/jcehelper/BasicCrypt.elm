@@ -1,152 +1,128 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.crypt.jcehelper
-module BasicCrypt where
+module Org.Allbinary.Logic.System.Security.Crypt.Jcehelper.BasicCrypt exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified CryptInterface -- org.allbinary.init.crypt.jcehelper.CryptInterface
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified ByteUtil -- org.allbinary.logic.java.byteutil.ByteUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.crypt.jcehelper
+-}
 
--- implements CryptInterface
-data BasicCrypt = BasicCrypt
-    { header_ :: JavaHeader
-    , byteUtil :: IORef (ByteUtil.ByteUtil)
-    , key :: IORef (JavaArray (Int8))
-    }
-
-instance JavaNull BasicCrypt where
-    javaNull = javaNullRecord "BasicCrypt"
-
-instance JavaEquals BasicCrypt where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicCrypt where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicCrypt where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BasicCrypt
-newRecord_ = do
-    header_ <- newJavaHeader
-    byteUtil <- newIORef javaNull
-    key <- newIORef javaNull
-    let this = BasicCrypt header_ byteUtil key
-    jregisterLevel header_ this
-    CryptInterface.registerInterface_ header_
-    jregisterMethod header_ "encrypt" (\() -> encrypt_impl this)
-    jregisterMethod header_ "decrypt" (\() -> decrypt_impl this)
-    jregisterMethod header_ "mutilate" (\() -> mutilate_impl this)
-    pure this
-
-initFields_ :: BasicCrypt -> IO ()
-initFields_ this = do
-    jset this.byteUtil =<< (ByteUtil.getInstance)
-    jset this.key (javaNull)
-    pure ()
-
-new_1 :: String -> IO BasicCrypt
-new_1 keyAsString = do
-    this <- newRecord_
-    init_1 this keyAsString
-    pure this
-
-init_1 :: BasicCrypt -> String -> IO ()
-init_1 this keyAsString = do
-        initFields_ this
-        key <- newIORef ((jget ((jio (NullUtil.getInstance))).nULL_BYTE_ARRAY))
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (PreLogUtil.putOE (jget (commonStrings).eXCEPTION) this "AbCrypt(alg,key)" e)
-            ) $ do
-            assignedValue <- (TsUtil.getByteArray ((jio (TsUtil.getInstance))) keyAsString)
-            jset key (assignedValue)
-        jset (this).key ((jget key))
-        pure ()
+import JR
+import Org.Allbinary.Logic.Java.Byteutil.ByteUtil as ByteUtil
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Init.Crypt.Jcehelper.CryptInterface as CryptInterface
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.TsUtil as TsUtil
 
 
-encrypt :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (JavaArray (Int8))
-encrypt object_ a1 = jmethod object_ "encrypt" (\() -> (encrypt_impl (javaCast object_ :: BasicCrypt))) () a1
-
-encrypt_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (JavaArray (Int8))
-encrypt_super object_ a1 = (encrypt_impl (javaCast object_ :: BasicCrypt)) a1
-
-encrypt_impl :: BasicCrypt -> JavaArray (Int8) -> IO (JavaArray (Int8))
-encrypt_impl this array = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (PreLogUtil.putOE "Encrypt Failed" this "encrypt" e)
-            pure ((jget ((jio (NullUtil.getInstance))).nULL_BYTE_ARRAY))
-            ) $ do
-            (BasicCrypt.mutilate this array)
+jclass : String
+jclass =
+    "BasicCrypt"
 
 
-decrypt :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (JavaArray (Int8))
-decrypt object_ a1 = jmethod object_ "decrypt" (\() -> (decrypt_impl (javaCast object_ :: BasicCrypt))) () a1
-
-decrypt_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (JavaArray (Int8))
-decrypt_super object_ a1 = (decrypt_impl (javaCast object_ :: BasicCrypt)) a1
-
-decrypt_impl :: BasicCrypt -> JavaArray (Int8) -> IO (JavaArray (Int8))
-decrypt_impl this array = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (PreLogUtil.putOE "decrypt Failed" this "decrypt" e)
-            pure ((jget ((jio (NullUtil.getInstance))).nULL_BYTE_ARRAY))
-            ) $ do
-            (BasicCrypt.mutilate this array)
+jchain : List String
+jchain =
+    [ "BasicCrypt" ]
+        ++ CryptInterface.jchain
 
 
-mutilate :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (JavaArray (Int8))
-mutilate object_ a1 = jmethod object_ "mutilate" (\() -> (mutilate_impl (javaCast object_ :: BasicCrypt))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "byteUtil", JR.defaultOf "" ), ( "key", JR.defaultOf "" ) ]
 
-mutilate_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (JavaArray (Int8))
-mutilate_super object_ a1 = (mutilate_impl (javaCast object_ :: BasicCrypt)) a1
 
-mutilate_impl :: BasicCrypt -> JavaArray (Int8) -> IO (JavaArray (Int8))
-mutilate_impl this array = do
-        array <- newIORef array
-        value <- newIORef (0 :: Int8)
-        forM_ [0 .. (jlength (jget (this).key)) - 1] $ \index -> javaIteration (pure ()) $ do
-            jset value ((jindex ((jget (this).key)) (index)))
-            assignedValue <- (ByteUtil.xor ((jget (this).byteUtil)) (jget array) (jget value))
-            jset array (assignedValue)
-        pure ((jget array))
+jvtable =
+    JR.vtable
+        [ ( "encrypt_1", jm_encrypt_1 )
+        , ( "decrypt_1", jm_decrypt_1 )
+        , ( "mutilate_1", jm_mutilate_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicCrypt"
+        [ ( "jm_encrypt_1", jm_encrypt_1 ), ( "jm_decrypt_1", jm_decrypt_1 ), ( "jm_mutilate_1", jm_mutilate_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "keyAsString", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "byteUtil" "" JR.this (JR.callStatic ByteUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.declare "key" "" (JR.field "NULL_BYTE_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 [])), 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.setLocal "key" "" (JR.invoke "getByteArray_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ (JR.local "keyAsString") ])) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.str "AbCrypt(alg,key)"), (JR.local "e") ]) ]) ) ] identity, 
+                    JR.exec (JR.setField "key" "" JR.this (JR.local "key")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_encrypt_1 : JR.Method
+jm_encrypt_1 jheap jthis jargs =
+    JR.method [ ( "array", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.return (JR.invoke "mutilate_1" JR.this [ (JR.local "array") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.str "Encrypt Failed"), JR.this, (JR.str "encrypt"), (JR.local "e") ]), 
+                        JR.return (JR.field "NULL_BYTE_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 [])) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_decrypt_1 : JR.Method
+jm_decrypt_1 jheap jthis jargs =
+    JR.method [ ( "array", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.return (JR.invoke "mutilate_1" JR.this [ (JR.local "array") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.str "decrypt Failed"), JR.this, (JR.str "decrypt"), (JR.local "e") ]), 
+                        JR.return (JR.field "NULL_BYTE_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 [])) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_mutilate_1 : JR.Method
+jm_mutilate_1 jheap jthis jargs =
+    JR.method [ ( "array", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "value" "B" (JR.lit (JR.defaultOf "B")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "key"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67447 -> (JR.setLocal "index" "I" (JR.lit jwN67447))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "value" "B" (JR.aget (JR.thisField "key") (JR.local "index"))), 
+                        JR.exec (JR.setLocal "array" "" (JR.invoke "xor_2" (JR.thisField "byteUtil") [ (JR.local "array"), (JR.local "value") ])) ]) ], 
+                    JR.return (JR.local "array") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

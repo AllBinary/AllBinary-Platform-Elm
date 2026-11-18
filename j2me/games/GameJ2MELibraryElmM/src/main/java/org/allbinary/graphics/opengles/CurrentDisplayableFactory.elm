@@ -1,317 +1,263 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
-module CurrentDisplayableFactory where
+module Org.Allbinary.Graphics.Opengles.CurrentDisplayableFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified OpenGLFeatureFactory -- same package or java.lang
-import qualified Displayable -- javax.microedition.lcdui.Displayable
-import qualified J2MEUtil -- org.allbinary.J2MEUtil
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified AllBinaryGameCanvas -- org.allbinary.game.displayable.canvas.AllBinaryGameCanvas
-import qualified DemoCanvas -- org.allbinary.game.displayable.canvas.DemoCanvas
-import qualified GameInputMappingCanvas -- org.allbinary.game.displayable.canvas.GameInputMappingCanvas
-import qualified GameInputMappingInstructionsCanvas -- org.allbinary.game.displayable.canvas.GameInputMappingInstructionsCanvas
-import qualified GameRunnable -- org.allbinary.game.displayable.canvas.GameRunnable
-import qualified NullDisplayable -- org.allbinary.game.displayable.canvas.NullDisplayable
-import qualified NullWaitGameRunnable -- org.allbinary.game.displayable.canvas.NullWaitGameRunnable
-import qualified SWTUtil -- org.allbinary.game.layer.SWTUtil
-import qualified HighScoresCanvas -- org.allbinary.game.score.displayable.HighScoresCanvas
-import qualified GraphicsStrings -- org.allbinary.graphics.GraphicsStrings
-import qualified CanvasStrings -- org.allbinary.graphics.displayable.CanvasStrings
-import qualified MyCanvas -- org.allbinary.graphics.displayable.MyCanvas
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified NullRunnable -- org.allbinary.thread.NullRunnable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.graphics.opengles
+-}
 
-data CurrentDisplayableFactory = CurrentDisplayableFactory
-    { header_ :: JavaHeader
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , canvasStrings :: IORef (CanvasStrings.CanvasStrings)
-    , stringUtil :: IORef (StringUtil.StringUtil)
-    , sET_DISPLAYABLE :: IORef (String)
-    , sET_RUNNABLE :: IORef (String)
-    , cLEAR_RUNNABLE :: IORef (String)
-    , sET_USED_RUNNABLE :: IORef (String)
-    , rUNNABLE :: IORef (String)
-    , rUNNABLE_WAS_ALREADY_IN_USE :: IORef (String)
-    , dEFAULT_CHILD_NAME_LIST :: IORef (BasicArrayList.BasicArrayList)
-    , displayable :: IORef (Displayable.Displayable)
-    , openGlReadydisplayable :: IORef (Displayable.Displayable)
-    , runnable :: IORef (GameRunnable.GameRunnable)
-    , usedRunnable :: IORef (GameRunnable.GameRunnable)
-    }
-
-instance JavaNull CurrentDisplayableFactory where
-    javaNull = javaNullRecord "CurrentDisplayableFactory"
-
-instance JavaEquals CurrentDisplayableFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CurrentDisplayableFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CurrentDisplayableFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: CurrentDisplayableFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CurrentDisplayableFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonStrings <- newIORef javaNull
-    canvasStrings <- newIORef javaNull
-    stringUtil <- newIORef javaNull
-    sET_DISPLAYABLE <- newIORef ""
-    sET_RUNNABLE <- newIORef ""
-    cLEAR_RUNNABLE <- newIORef ""
-    sET_USED_RUNNABLE <- newIORef ""
-    rUNNABLE <- newIORef ""
-    rUNNABLE_WAS_ALREADY_IN_USE <- newIORef ""
-    dEFAULT_CHILD_NAME_LIST <- newIORef javaNull
-    displayable <- newIORef javaNull
-    openGlReadydisplayable <- newIORef javaNull
-    runnable <- newIORef javaNull
-    usedRunnable <- newIORef javaNull
-    let this = CurrentDisplayableFactory header_ commonStrings canvasStrings stringUtil sET_DISPLAYABLE sET_RUNNABLE cLEAR_RUNNABLE sET_USED_RUNNABLE rUNNABLE rUNNABLE_WAS_ALREADY_IN_USE dEFAULT_CHILD_NAME_LIST displayable openGlReadydisplayable runnable usedRunnable
-    jregisterLevel header_ this
-    jregisterMethod header_ "setMyCanvas" (\() -> setMyCanvas_impl this)
-    jregisterMethod header_ "setDisplayable" (\() -> setDisplayable_impl this)
-    jregisterMethod header_ "setOpenGlReadydisplayable" (\() -> setOpenGlReadydisplayable_impl this)
-    jregisterMethod header_ "getOpenGlReadydisplayable" (\() -> getOpenGlReadydisplayable_impl this)
-    jregisterMethod header_ "setRunnable" (\() -> setRunnable_impl this)
-    jregisterMethod header_ "clearRunnable" (\() -> clearRunnable_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "getDisplayable" (\() -> getDisplayable_impl this)
-    jregisterMethod header_ "getUsedRunnable" (\() -> getUsedRunnable_impl this)
-    jregisterMethod header_ "setUsedRunnable" (\() -> setUsedRunnable_impl this)
-    pure this
-
-initFields_ :: CurrentDisplayableFactory -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.canvasStrings =<< (CanvasStrings.getInstance)
-    jset this.stringUtil =<< (StringUtil.getInstance)
-    jset this.sET_DISPLAYABLE ("setDisplayable")
-    jset this.sET_RUNNABLE ("setRunnable")
-    jset this.cLEAR_RUNNABLE ("clearRunnable")
-    jset this.sET_USED_RUNNABLE ("setUsedRunnable")
-    jset this.rUNNABLE ("Runnable: ")
-    jset this.rUNNABLE_WAS_ALREADY_IN_USE ("Runnable was already in use: ")
-    jset this.dEFAULT_CHILD_NAME_LIST =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    jset this.displayable =<< (NullDisplayable.getInstance)
-    jset this.openGlReadydisplayable =<< (NullDisplayable.getInstance)
-    jset this.runnable =<< (NullWaitGameRunnable.getInstance)
-    jset this.usedRunnable =<< (NullWaitGameRunnable.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Graphics.Displayable.CanvasStrings as CanvasStrings
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Displayable.Canvas.GameInputMappingCanvas as GameInputMappingCanvas
+import Org.Allbinary.Game.Displayable.Canvas.GameInputMappingInstructionsCanvas as GameInputMappingInstructionsCanvas
+import Org.Allbinary.Graphics.GraphicsStrings as GraphicsStrings
+import Org.Allbinary.Game.Score.Displayable.HighScoresCanvas as HighScoresCanvas
+import Org.Allbinary.J2MEUtil as J2MEUtil
+import Org.Allbinary.Game.Displayable.Canvas.NullDisplayable as NullDisplayable
+import Org.Allbinary.Thread.NullRunnable as NullRunnable
+import Org.Allbinary.Game.Displayable.Canvas.NullWaitGameRunnable as NullWaitGameRunnable
+import Org.Allbinary.Graphics.Opengles.OpenGLFeatureFactory as OpenGLFeatureFactory
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Game.Layer.SWTUtil as SWTUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (CurrentDisplayableFactory)
-getInstance = do
-        pure (CurrentDisplayableFactory.instance_)
-
-new_ :: IO CurrentDisplayableFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CurrentDisplayableFactory -> IO ()
-init_ this = do
-        initFields_ this
-        Control.Monad.void (BasicArrayList.add ((jget (this).dEFAULT_CHILD_NAME_LIST)) (jget ((jget (this).canvasStrings)).aBOUT))
-        Control.Monad.void (BasicArrayList.add ((jget (this).dEFAULT_CHILD_NAME_LIST)) (jget ((jget (this).canvasStrings)).oPTIONS))
-        Control.Monad.void (BasicArrayList.add ((jget (this).dEFAULT_CHILD_NAME_LIST)) (GameInputMappingCanvas.nAME))
-        Control.Monad.void (BasicArrayList.add ((jget (this).dEFAULT_CHILD_NAME_LIST)) (GameInputMappingInstructionsCanvas.nAME))
-        Control.Monad.void (BasicArrayList.add ((jget (this).dEFAULT_CHILD_NAME_LIST)) (HighScoresCanvas.nAME))
-        pure ()
+jclass : String
+jclass =
+    "CurrentDisplayableFactory"
 
 
-setMyCanvas :: (JavaObjectClass this_) => this_ -> MyCanvas.MyCanvas -> IO (())
-setMyCanvas object_ a1 = jmethod object_ "setMyCanvas" (\() -> (setMyCanvas_impl (javaCast object_ :: CurrentDisplayableFactory))) () a1
-
-setMyCanvas_super :: (JavaObjectClass this_) => this_ -> MyCanvas.MyCanvas -> IO (())
-setMyCanvas_super object_ a1 = (setMyCanvas_impl (javaCast object_ :: CurrentDisplayableFactory)) a1
-
-setMyCanvas_impl :: CurrentDisplayableFactory -> MyCanvas.MyCanvas -> IO (())
-setMyCanvas_impl this displayable = do
-    javaCatchReturn $ do
-        when (javaInstanceOf (jget (this).displayable) "MyCanvas") $ do
-            when (jio (MyCanvas.hasChild displayable (javaCast (jget (this).displayable) :: MyCanvas.MyCanvas))) $ do
-                Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "Child Displayable is already set for: "))) (jio (StringUtil.toString ((jget (this).stringUtil)) displayable))))))) this (jget (this).sET_DISPLAYABLE))
-                javaReturn (())
-        Control.Monad.void (CurrentDisplayableFactory.setDisplayable this (javaCast displayable))
-    pure ()
+jchain : List String
+jchain =
+    [ "CurrentDisplayableFactory" ]
 
 
-setDisplayable :: (JavaObjectClass this_) => this_ -> Displayable.Displayable -> IO (())
-setDisplayable object_ a1 = jmethod object_ "setDisplayable" (\() -> (setDisplayable_impl (javaCast object_ :: CurrentDisplayableFactory))) () a1
-
-setDisplayable_super :: (JavaObjectClass this_) => this_ -> Displayable.Displayable -> IO (())
-setDisplayable_super object_ a1 = (setDisplayable_impl (javaCast object_ :: CurrentDisplayableFactory)) a1
-
-setDisplayable_impl :: CurrentDisplayableFactory -> Displayable.Displayable -> IO (())
-setDisplayable_impl this displayable = do
-        jset (this).displayable (displayable)
-        Control.Monad.void (CurrentDisplayableFactory.setOpenGlReadydisplayable this displayable)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonStrings", JR.defaultOf "" ), ( "canvasStrings", JR.defaultOf "" ), ( "stringUtil", JR.defaultOf "" ), ( "SET_DISPLAYABLE", JR.defaultOf "" ), ( "SET_RUNNABLE", JR.defaultOf "" ), ( "CLEAR_RUNNABLE", JR.defaultOf "" ), ( "SET_USED_RUNNABLE", JR.defaultOf "" ), ( "RUNNABLE", JR.defaultOf "" ), ( "RUNNABLE_WAS_ALREADY_IN_USE", JR.defaultOf "" ), ( "DEFAULT_CHILD_NAME_LIST", JR.defaultOf "" ), ( "displayable", JR.defaultOf "" ), ( "openGlReadydisplayable", JR.defaultOf "" ), ( "runnable", JR.defaultOf "" ), ( "usedRunnable", JR.defaultOf "" ) ]
 
 
-setOpenGlReadydisplayable :: (JavaObjectClass this_) => this_ -> Displayable.Displayable -> IO (())
-setOpenGlReadydisplayable object_ a1 = jmethod object_ "setOpenGlReadydisplayable" (\() -> (setOpenGlReadydisplayable_impl (javaCast object_ :: CurrentDisplayableFactory))) () a1
-
-setOpenGlReadydisplayable_super :: (JavaObjectClass this_) => this_ -> Displayable.Displayable -> IO (())
-setOpenGlReadydisplayable_super object_ a1 = (setOpenGlReadydisplayable_impl (javaCast object_ :: CurrentDisplayableFactory)) a1
-
-setOpenGlReadydisplayable_impl :: CurrentDisplayableFactory -> Displayable.Displayable -> IO (())
-setOpenGlReadydisplayable_impl this openGlReadydisplayable = do
-        jset (this).openGlReadydisplayable (openGlReadydisplayable)
-        Control.Monad.void (CurrentDisplayableFactory.update this)
-        pure ()
-
-
-getOpenGlReadydisplayable :: (JavaObjectClass this_) => this_ -> IO (Displayable.Displayable)
-getOpenGlReadydisplayable object_ = jmethod object_ "getOpenGlReadydisplayable" (\() -> (getOpenGlReadydisplayable_impl (javaCast object_ :: CurrentDisplayableFactory))) ()
-
-getOpenGlReadydisplayable_super :: (JavaObjectClass this_) => this_ -> IO (Displayable.Displayable)
-getOpenGlReadydisplayable_super object_ = (getOpenGlReadydisplayable_impl (javaCast object_ :: CurrentDisplayableFactory))
-
-getOpenGlReadydisplayable_impl :: CurrentDisplayableFactory -> IO (Displayable.Displayable)
-getOpenGlReadydisplayable_impl this = do
-        pure ((jget (this).openGlReadydisplayable))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "setMyCanvas_1", jm_setMyCanvas_1 )
+        , ( "setDisplayable_1", jm_setDisplayable_1 )
+        , ( "setOpenGlReadydisplayable_1", jm_setOpenGlReadydisplayable_1 )
+        , ( "getOpenGlReadydisplayable_0", jm_getOpenGlReadydisplayable_0 )
+        , ( "setRunnable_1", jm_setRunnable_1 )
+        , ( "clearRunnable_0", jm_clearRunnable_0 )
+        , ( "update_0", jm_update_0 )
+        , ( "getDisplayable_0", jm_getDisplayable_0 )
+        , ( "getUsedRunnable_0", jm_getUsedRunnable_0 )
+        , ( "setUsedRunnable_1", jm_setUsedRunnable_1 ) ]
+        JR.noMethods
 
 
-setRunnable :: (JavaObjectClass this_) => this_ -> GameRunnable.GameRunnable -> IO (())
-setRunnable object_ a1 = jmethod object_ "setRunnable" (\() -> (setRunnable_impl (javaCast object_ :: CurrentDisplayableFactory))) () a1
-
-setRunnable_super :: (JavaObjectClass this_) => this_ -> GameRunnable.GameRunnable -> IO (())
-setRunnable_super object_ a1 = (setRunnable_impl (javaCast object_ :: CurrentDisplayableFactory)) a1
-
-setRunnable_impl :: CurrentDisplayableFactory -> GameRunnable.GameRunnable -> IO (())
-setRunnable_impl this runnable = do
-        Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (this).rUNNABLE)))) (jio (StringUtil.toString ((jget (this).stringUtil)) runnable))))))) this (jget (this).sET_RUNNABLE))
-        jset (this).runnable (runnable)
-        if ((jget (this).usedRunnable) /= (jget (this).runnable)) then do
-            Control.Monad.void (CurrentDisplayableFactory.update this)
-        else do
-            Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (this).rUNNABLE_WAS_ALREADY_IN_USE)))) (jio (StringUtil.toString ((jget (this).stringUtil)) runnable))))))) this (jget (this).sET_RUNNABLE))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CurrentDisplayableFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_setMyCanvas_1", jm_setMyCanvas_1 ), ( "jm_setDisplayable_1", jm_setDisplayable_1 ), ( "jm_setOpenGlReadydisplayable_1", jm_setOpenGlReadydisplayable_1 ), ( "jm_getOpenGlReadydisplayable_0", jm_getOpenGlReadydisplayable_0 ), ( "jm_setRunnable_1", jm_setRunnable_1 ), ( "jm_clearRunnable_0", jm_clearRunnable_0 ), ( "jm_update_0", jm_update_0 ), ( "jm_getDisplayable_0", jm_getDisplayable_0 ), ( "jm_getUsedRunnable_0", jm_getUsedRunnable_0 ), ( "jm_setUsedRunnable_1", jm_setUsedRunnable_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-clearRunnable :: (JavaObjectClass this_) => this_ -> IO (())
-clearRunnable object_ = jmethod object_ "clearRunnable" (\() -> (clearRunnable_impl (javaCast object_ :: CurrentDisplayableFactory))) ()
-
-clearRunnable_super :: (JavaObjectClass this_) => this_ -> IO (())
-clearRunnable_super object_ = (clearRunnable_impl (javaCast object_ :: CurrentDisplayableFactory))
-
-clearRunnable_impl :: CurrentDisplayableFactory -> IO (())
-clearRunnable_impl this = do
-        Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (this).rUNNABLE)))) (jio (StringUtil.toString ((jget (this).stringUtil)) (jio (NullRunnable.getInstance))))))))) this (jget (this).cLEAR_RUNNABLE))
-        Control.Monad.void (CurrentDisplayableFactory.setUsedRunnable this (jio (NullWaitGameRunnable.getInstance)))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: CurrentDisplayableFactory))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: CurrentDisplayableFactory))
-
-update_impl :: CurrentDisplayableFactory -> IO (())
-update_impl this = do
-        do -- synchronized
-            commonSeps <- (CommonSeps.getInstance)
-            features <- (Features.getInstance)
-            stringMaker <- (StringMaker.new_)
-            Control.Monad.void (StringMaker.append stringMaker (jio (StringUtil.toString ((jget (this).stringUtil)) (jget (this).openGlReadydisplayable))))
-            if (SWTUtil.isSWT && (Prelude.not (jio (Features.isDefault features (jget ((jio (OpenGLFeatureFactory.getInstance))).oPENGL))))) then do
-                Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append stringMaker (jget (commonSeps).sPACE)))) (SWTUtil.sWT)))) (jget (commonSeps).sPACE)))) (jget (this).rUNNABLE)))) (jio (StringUtil.toString ((jget (this).stringUtil)) (jio (NullRunnable.getInstance))))))))) this (jget ((jget (this).commonStrings)).uPDATE))
-                Control.Monad.void (CurrentDisplayableFactory.setUsedRunnable this (jio (NullWaitGameRunnable.getInstance)))
-            else if (jio (J2MEUtil.isHTML)) then do
-                Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append stringMaker (jget (commonSeps).sPACE)))) (jget ((jio (GraphicsStrings.getInstance))).hTML)))) (jget (commonSeps).sPACE)))) (jget (this).rUNNABLE)))) (jio (StringUtil.toString ((jget (this).stringUtil)) (jget (this).runnable)))))))) this (jget ((jget (this).commonStrings)).uPDATE))
-                Control.Monad.void (CurrentDisplayableFactory.setUsedRunnable this (jget (this).runnable))
-            else if (((javaInstanceOf (jget (this).openGlReadydisplayable) "DemoCanvas") || (javaInstanceOf (jget (this).openGlReadydisplayable) "AllBinaryGameCanvas")) || (jio (Features.isDefault features (jget ((jio (OpenGLFeatureFactory.getInstance))).oPENGL)))) then do
-                Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append stringMaker (jget (commonSeps).sPACE)))) (jio (toString ((jget ((jio (OpenGLFeatureFactory.getInstance))).oPENGL))))))) (jget (commonSeps).sPACE)))) (jget (this).rUNNABLE)))) (jio (StringUtil.toString ((jget (this).stringUtil)) (jget (this).runnable)))))))) this (jget ((jget (this).commonStrings)).uPDATE))
-                Control.Monad.void (CurrentDisplayableFactory.setUsedRunnable this (jget (this).runnable))
-            else do
-                Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append stringMaker (jget (this).rUNNABLE)))) (jio (StringUtil.toString ((jget (this).stringUtil)) (jio (NullRunnable.getInstance))))))))) this (jget ((jget (this).commonStrings)).uPDATE))
-                Control.Monad.void (CurrentDisplayableFactory.setUsedRunnable this (jio (NullWaitGameRunnable.getInstance)))
-        pure ()
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "CurrentDisplayableFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
 
-getDisplayable :: (JavaObjectClass this_) => this_ -> IO (Displayable.Displayable)
-getDisplayable object_ = jmethod object_ "getDisplayable" (\() -> (getDisplayable_impl (javaCast object_ :: CurrentDisplayableFactory))) ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "canvasStrings" "" JR.this (JR.callStatic CanvasStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "stringUtil" "" JR.this (JR.callStatic StringUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "SET_DISPLAYABLE" "" JR.this (JR.str "setDisplayable")),
+                JR.exec (JR.setField "SET_RUNNABLE" "" JR.this (JR.str "setRunnable")),
+                JR.exec (JR.setField "CLEAR_RUNNABLE" "" JR.this (JR.str "clearRunnable")),
+                JR.exec (JR.setField "SET_USED_RUNNABLE" "" JR.this (JR.str "setUsedRunnable")),
+                JR.exec (JR.setField "RUNNABLE" "" JR.this (JR.str "Runnable: ")),
+                JR.exec (JR.setField "RUNNABLE_WAS_ALREADY_IN_USE" "" JR.this (JR.str "Runnable was already in use: ")),
+                JR.exec (JR.setField "DEFAULT_CHILD_NAME_LIST" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                JR.exec (JR.setField "displayable" "" JR.this (JR.callStatic NullDisplayable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "openGlReadydisplayable" "" JR.this (JR.callStatic NullDisplayable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "runnable" "" JR.this (JR.callStatic NullWaitGameRunnable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "usedRunnable" "" JR.this (JR.callStatic NullWaitGameRunnable.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "DEFAULT_CHILD_NAME_LIST") [ (JR.field "ABOUT" (JR.thisField "canvasStrings")) ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "DEFAULT_CHILD_NAME_LIST") [ (JR.field "OPTIONS" (JR.thisField "canvasStrings")) ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "DEFAULT_CHILD_NAME_LIST") [ GameInputMappingCanvas.jstatic_NAME ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "DEFAULT_CHILD_NAME_LIST") [ GameInputMappingInstructionsCanvas.jstatic_NAME ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "DEFAULT_CHILD_NAME_LIST") [ HighScoresCanvas.jstatic_NAME ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getDisplayable_super :: (JavaObjectClass this_) => this_ -> IO (Displayable.Displayable)
-getDisplayable_super object_ = (getDisplayable_impl (javaCast object_ :: CurrentDisplayableFactory))
 
-getDisplayable_impl :: CurrentDisplayableFactory -> IO (Displayable.Displayable)
-getDisplayable_impl this = do
-        pure ((jget (this).displayable))
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
 
-getUsedRunnable :: (JavaObjectClass this_) => this_ -> IO (GameRunnable.GameRunnable)
-getUsedRunnable object_ = jmethod object_ "getUsedRunnable" (\() -> (getUsedRunnable_impl (javaCast object_ :: CurrentDisplayableFactory))) ()
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getUsedRunnable_super :: (JavaObjectClass this_) => this_ -> IO (GameRunnable.GameRunnable)
-getUsedRunnable_super object_ = (getUsedRunnable_impl (javaCast object_ :: CurrentDisplayableFactory))
 
-getUsedRunnable_impl :: CurrentDisplayableFactory -> IO (GameRunnable.GameRunnable)
-getUsedRunnable_impl this = do
-        pure ((jget (this).usedRunnable))
+jm_setMyCanvas_1 : JR.Method
+jm_setMyCanvas_1 jheap jthis jargs =
+    JR.method [ ( "displayable", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.instanceOf "MyCanvas" (JR.thisField "displayable")) (JR.run [ 
+                        JR.ifElse (JR.invoke "hasChild_1" (JR.local "displayable") [ (JR.thisField "displayable") ]) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Child Displayable is already set for: ") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "displayable") ]) ]) []), JR.this, (JR.thisField "SET_DISPLAYABLE") ]), 
+                            JR.returnVoid ]) identity ]) identity, 
+                    JR.exec (JR.invoke "setDisplayable_1" JR.this [ (JR.local "displayable") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-setUsedRunnable :: (JavaObjectClass this_) => this_ -> GameRunnable.GameRunnable -> IO (())
-setUsedRunnable object_ a1 = jmethod object_ "setUsedRunnable" (\() -> (setUsedRunnable_impl (javaCast object_ :: CurrentDisplayableFactory))) () a1
+jm_setDisplayable_1 : JR.Method
+jm_setDisplayable_1 jheap jthis jargs =
+    JR.method [ ( "displayable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "displayable" "" JR.this (JR.local "displayable")), 
+                    JR.exec (JR.invoke "setOpenGlReadydisplayable_1" JR.this [ (JR.local "displayable") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setUsedRunnable_super :: (JavaObjectClass this_) => this_ -> GameRunnable.GameRunnable -> IO (())
-setUsedRunnable_super object_ a1 = (setUsedRunnable_impl (javaCast object_ :: CurrentDisplayableFactory)) a1
 
-setUsedRunnable_impl :: CurrentDisplayableFactory -> GameRunnable.GameRunnable -> IO (())
-setUsedRunnable_impl this usedRunnable = do
-        Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (this).rUNNABLE)))) (jio (StringUtil.toString ((jget (this).stringUtil)) (jget (this).runnable)))))) (jget ((jio (CommonSeps.getInstance))).cOLON_SEP)))) (jio (StringUtil.toString ((jget (this).stringUtil)) usedRunnable))))))) this (jget (this).sET_USED_RUNNABLE))
-        jset (this).usedRunnable (usedRunnable)
-        pure ()
+jm_setOpenGlReadydisplayable_1 : JR.Method
+jm_setOpenGlReadydisplayable_1 jheap jthis jargs =
+    JR.method [ ( "openGlReadydisplayable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "openGlReadydisplayable" "" JR.this (JR.local "openGlReadydisplayable")), 
+                    JR.exec (JR.invoke "update_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_getOpenGlReadydisplayable_0 : JR.Method
+jm_getOpenGlReadydisplayable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "openGlReadydisplayable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setRunnable_1 : JR.Method
+jm_setRunnable_1 jheap jthis jargs =
+    JR.method [ ( "runnable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "RUNNABLE") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "runnable") ]) ]) []), JR.this, (JR.thisField "SET_RUNNABLE") ]), 
+                    JR.exec (JR.setField "runnable" "" JR.this (JR.local "runnable")), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.thisField "usedRunnable") (JR.thisField "runnable")) (JR.run [ 
+                        JR.exec (JR.invoke "update_0" JR.this []) ]) (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "RUNNABLE_WAS_ALREADY_IN_USE") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "runnable") ]) ]) []), JR.this, (JR.thisField "SET_RUNNABLE") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clearRunnable_0 : JR.Method
+jm_clearRunnable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "RUNNABLE") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.callStatic NullRunnable.jm_getInstance_0 []) ]) ]) []), JR.this, (JR.thisField "CLEAR_RUNNABLE") ]), 
+                    JR.exec (JR.invoke "setUsedRunnable_1" JR.this [ (JR.callStatic NullWaitGameRunnable.jm_getInstance_0 []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    (JR.run [ 
+                        JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                        JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                        JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.thisField "openGlReadydisplayable") ]) ]), 
+                        JR.ifElse (JR.and SWTUtil.jstatic_isSWT (JR.map JR.not_ (JR.invoke "isDefault_1" (JR.local "features") [ (JR.field "OPENGL" (JR.callStatic OpenGLFeatureFactory.jm_getInstance_0 [])) ]))) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.field "SPACE" (JR.local "commonSeps")) ]) [ SWTUtil.jstatic_SWT ]) [ (JR.field "SPACE" (JR.local "commonSeps")) ]) [ (JR.thisField "RUNNABLE") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.callStatic NullRunnable.jm_getInstance_0 []) ]) ]) []), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")) ]), 
+                            JR.exec (JR.invoke "setUsedRunnable_1" JR.this [ (JR.callStatic NullWaitGameRunnable.jm_getInstance_0 []) ]) ]) (JR.run [ 
+                        JR.ifElse (JR.callStatic J2MEUtil.jm_isHTML_0 []) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.field "SPACE" (JR.local "commonSeps")) ]) [ (JR.field "HTML" (JR.callStatic GraphicsStrings.jm_getInstance_0 [])) ]) [ (JR.field "SPACE" (JR.local "commonSeps")) ]) [ (JR.thisField "RUNNABLE") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.thisField "runnable") ]) ]) []), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")) ]), 
+                            JR.exec (JR.invoke "setUsedRunnable_1" JR.this [ (JR.thisField "runnable") ]) ]) (JR.run [ 
+                        JR.ifElse (JR.or (JR.or (JR.instanceOf "DemoCanvas" (JR.thisField "openGlReadydisplayable")) (JR.instanceOf "AllBinaryGameCanvas" (JR.thisField "openGlReadydisplayable"))) (JR.invoke "isDefault_1" (JR.local "features") [ (JR.field "OPENGL" (JR.callStatic OpenGLFeatureFactory.jm_getInstance_0 [])) ])) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.field "SPACE" (JR.local "commonSeps")) ]) [ (JR.invoke "toString_0" (JR.field "OPENGL" (JR.callStatic OpenGLFeatureFactory.jm_getInstance_0 [])) []) ]) [ (JR.field "SPACE" (JR.local "commonSeps")) ]) [ (JR.thisField "RUNNABLE") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.thisField "runnable") ]) ]) []), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")) ]), 
+                            JR.exec (JR.invoke "setUsedRunnable_1" JR.this [ (JR.thisField "runnable") ]) ]) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.thisField "RUNNABLE") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.callStatic NullRunnable.jm_getInstance_0 []) ]) ]) []), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")) ]), 
+                            JR.exec (JR.invoke "setUsedRunnable_1" JR.this [ (JR.callStatic NullWaitGameRunnable.jm_getInstance_0 []) ]) ]) ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDisplayable_0 : JR.Method
+jm_getDisplayable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "displayable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getUsedRunnable_0 : JR.Method
+jm_getUsedRunnable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "usedRunnable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setUsedRunnable_1 : JR.Method
+jm_setUsedRunnable_1 jheap jthis jargs =
+    JR.method [ ( "usedRunnable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "RUNNABLE") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.thisField "runnable") ]) ]) [ (JR.field "COLON_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "usedRunnable") ]) ]) []), JR.this, (JR.thisField "SET_USED_RUNNABLE") ]), 
+                    JR.exec (JR.setField "usedRunnable" "" JR.this (JR.local "usedRunnable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

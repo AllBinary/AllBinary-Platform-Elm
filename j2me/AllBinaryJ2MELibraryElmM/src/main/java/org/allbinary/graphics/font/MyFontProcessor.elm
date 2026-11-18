@@ -1,112 +1,121 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.font
-module MyFontProcessor where
+module Org.Allbinary.Graphics.Font.MyFontProcessor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
+{-| Generated Code Do Not Modify package org.allbinary.graphics.font
+-}
 
-data MyFontProcessor = MyFontProcessor
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull MyFontProcessor where
-    javaNull = javaNullRecord "MyFontProcessor"
-
-instance JavaEquals MyFontProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MyFontProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MyFontProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: MyFontProcessor
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MyFontProcessor
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = MyFontProcessor header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: MyFontProcessor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO MyFontProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: MyFontProcessor -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-defaultCharWidth :: Font.Font -> IO (Int)
-defaultCharWidth font = do
-        (Font.charWidth font 'C')
+
+jclass : String
+jclass =
+    "MyFontProcessor"
 
 
-defaultStringWidth :: Font.Font -> Int -> IO (Int)
-defaultStringWidth font size = do
-        pure (((jio (MyFontProcessor.defaultCharWidth font)) * size))
+jchain : List String
+jchain =
+    [ "MyFontProcessor" ]
 
 
-getInstance :: IO (MyFontProcessor)
-getInstance = do
-        pure (MyFontProcessor.instance_)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-process :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: MyFontProcessor))) () a1
+jvtable =
+    JR.vtable
+        [ ( "defaultCharWidth_1", jm_defaultCharWidth_1 )
+        , ( "defaultStringWidth_2", jm_defaultStringWidth_2 )
+        , ( "getInstance_0", jm_getInstance_0 )
+        , ( "process_1", jm_process_1 ) ]
+        JR.noMethods
 
-process_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: MyFontProcessor)) a1
 
-process_impl :: MyFontProcessor -> Graphics.Graphics -> IO (())
-process_impl this graphics = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MyFontProcessor"
+        [ ( "jm_defaultCharWidth_1", jm_defaultCharWidth_1 ), ( "jm_defaultStringWidth_2", jm_defaultStringWidth_2 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_process_1", jm_process_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "MyFontProcessor" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_defaultCharWidth_1 : JR.Method
+jm_defaultCharWidth_1 jheap jthis jargs =
+    JR.method [ ( "font", "" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "charWidth_1" (JR.local "font") [ (JR.char 67) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_defaultStringWidth_2 : JR.Method
+jm_defaultStringWidth_2 jheap jthis jargs =
+    JR.method [ ( "font", "" ), ( "size", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.map2 JR.mul (JR.callStatic jm_defaultCharWidth_1 [ (JR.local "font") ]) (JR.local "size")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

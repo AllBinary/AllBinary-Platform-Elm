@@ -1,190 +1,136 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
-module BufferedWriterUtil where
+module Org.Allbinary.Logic.Io.BufferedWriterUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BufferedWriter -- java.io.BufferedWriter
-import qualified FileWriter -- java.io.FileWriter
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified AbFileNativeUtil -- org.allbinary.logic.io.file.AbFileNativeUtil
-import qualified AbPathData -- org.allbinary.logic.io.path.AbPathData
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.logic.io
+-}
 
-data BufferedWriterUtil = BufferedWriterUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , commonLabels :: IORef (CommonLabels.CommonLabels)
-    , rEMOVING_OLD :: IORef (String)
-    }
-
-instance JavaNull BufferedWriterUtil where
-    javaNull = javaNullRecord "BufferedWriterUtil"
-
-instance JavaEquals BufferedWriterUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BufferedWriterUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BufferedWriterUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: BufferedWriterUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BufferedWriterUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    commonLabels <- newIORef javaNull
-    rEMOVING_OLD <- newIORef ""
-    let this = BufferedWriterUtil header_ logUtil commonStrings commonLabels rEMOVING_OLD
-    jregisterLevel header_ this
-    jregisterMethod header_ "overwrite_overload1" (\() -> overwrite_overload1_impl this)
-    jregisterMethod header_ "overwrite_overload2" (\() -> overwrite_overload2_impl this)
-    jregisterMethod header_ "write" (\() -> write_impl this)
-    pure this
-
-initFields_ :: BufferedWriterUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.commonLabels =<< (CommonLabels.getInstance)
-    jset this.rEMOVING_OLD ("Remove old for overwriting: ")
-    pure ()
-
-new_ :: IO BufferedWriterUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BufferedWriterUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.Io.File.AbFile as AbFile
+import Org.Allbinary.Logic.Io.File.AbFileNativeUtil as AbFileNativeUtil
+import Org.Allbinary.Logic.Io.Path.AbPathData as AbPathData
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (BufferedWriterUtil)
-getInstance = do
-        pure (BufferedWriterUtil.instance_)
+jclass : String
+jclass =
+    "BufferedWriterUtil"
 
 
--- Java overloads of overwrite: calls the overload for the types of the arguments
-overwrite :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> String -> IO (())
-overwrite this a1 a2
-    | jisInstanceOf a1 (javaNull :: String) = overwrite_overload1 this (javaCast a1 :: String) a2
-    | jisInstanceOf a1 (javaNull :: AbFile.AbFile) = overwrite_overload2 this (javaCast a1 :: AbFile.AbFile) a2
-    | otherwise = overwrite_overload2 this (javaCast a1 :: AbFile.AbFile) a2
-
--- throws Exception
-overwrite_overload1 :: (JavaObjectClass this_) => this_ -> String -> String -> IO (())
-overwrite_overload1 object_ a1 a2 = jmethod object_ "overwrite_overload1" (\() -> (overwrite_overload1_impl (javaCast object_ :: BufferedWriterUtil))) () a1 a2
-
-overwrite_overload1_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (())
-overwrite_overload1_super object_ a1 a2 = (overwrite_overload1_impl (javaCast object_ :: BufferedWriterUtil)) a1 a2
-
-overwrite_overload1_impl :: BufferedWriterUtil -> String -> String -> IO (())
-overwrite_overload1_impl this path data_ = do
-        abFile <- (AbFile.createAbFile path)
-        if (jio (AbFile.exists abFile)) then do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ((jget (this).rEMOVING_OLD) ++ path) this (jget ((jget (this).commonStrings)).cREATE))
-            Control.Monad.void (AbFile.delete abFile)
-        else do
-            name <- (AbPathData.removeNameFromPath ((jio (AbPathData.getInstance))) path)
-            abFileDirectory <- (AbFile.createAbFile name)
-            if (jio (AbFile.exists abFileDirectory)) then do
-                pure ()
-            else do
-                stringBuilder <- (StringMaker.new_)
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append stringBuilder (jget ((jget (this).commonStrings)).cREATE)))) (jget ((jget (this).commonLabels)).cOLON_SEP)))) name))))) this (jget ((jget (this).commonStrings)).cREATE))
-                result <- (AbFile.mkdirs abFileDirectory)
-                Control.Monad.void (StringMaker.delete stringBuilder 0 (jio (StringMaker.length stringBuilder)))
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendboolean ((jio (StringMaker.append stringBuilder (jget ((jget (this).commonLabels)).rESULT_)))) result))))) this (jget ((jget (this).commonStrings)).cREATE))
-        Control.Monad.void (BufferedWriterUtil.write this abFile data_)
-        pure ()
+jchain : List String
+jchain =
+    [ "BufferedWriterUtil" ]
 
 
--- throws Exception
-overwrite_overload2 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> String -> IO (())
-overwrite_overload2 object_ a1 a2 = jmethod object_ "overwrite_overload2" (\() -> (overwrite_overload2_impl (javaCast object_ :: BufferedWriterUtil))) () a1 a2
-
-overwrite_overload2_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> String -> IO (())
-overwrite_overload2_super object_ a1 a2 = (overwrite_overload2_impl (javaCast object_ :: BufferedWriterUtil)) a1 a2
-
-overwrite_overload2_impl :: BufferedWriterUtil -> AbFile.AbFile -> String -> IO (())
-overwrite_overload2_impl this abFile data_ = do
-        if (jio (AbFile.exists abFile)) then do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ((jget (this).rEMOVING_OLD) ++ (jio (AbFile.getPath abFile))) this (jget ((jget (this).commonStrings)).cREATE))
-            Control.Monad.void (AbFile.delete abFile)
-        else do
-            name <- (AbPathData.removeNameFromPath ((jio (AbPathData.getInstance))) (jio (AbFile.getAbsolutePath abFile)))
-            abFileDirectory <- (AbFile.createAbFile name)
-            if (jio (AbFile.exists abFileDirectory)) then do
-                pure ()
-            else do
-                stringBuilder <- (StringMaker.new_)
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append stringBuilder (jget ((jget (this).commonStrings)).cREATE)))) (jget ((jget (this).commonLabels)).cOLON_SEP)))) name))))) this (jget ((jget (this).commonStrings)).cREATE))
-                result <- (AbFile.mkdirs abFileDirectory)
-                Control.Monad.void (StringMaker.delete stringBuilder 0 (jio (StringMaker.length stringBuilder)))
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendboolean ((jio (StringMaker.append stringBuilder (jget ((jget (this).commonLabels)).rESULT_)))) result))))) this (jget ((jget (this).commonStrings)).cREATE))
-        Control.Monad.void (BufferedWriterUtil.write this abFile data_)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "commonLabels", JR.defaultOf "" ), ( "REMOVING_OLD", JR.defaultOf "" ) ]
 
 
--- throws Exception
-write :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> String -> IO (())
-write object_ a1 a2 = jmethod object_ "write" (\() -> (write_impl (javaCast object_ :: BufferedWriterUtil))) () a1 a2
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "overwrite_2", jm_overwrite_2 )
+        , ( "write_2", jm_write_2 ) ]
+        JR.noMethods
 
-write_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> String -> IO (())
-write_super object_ a1 a2 = (write_impl (javaCast object_ :: BufferedWriterUtil)) a1 a2
 
-write_impl :: BufferedWriterUtil -> AbFile.AbFile -> String -> IO (())
-write_impl this abFile data_ = do
-        fileOut <- (BufferedWriter.new_1 (jio (FileWriter.new_1 (jio (AbFileNativeUtil.get abFile)))))
-        Control.Monad.void (BufferedWriter.write fileOut data_ 0 (Prelude.length data_))
-        Control.Monad.void (BufferedWriter.newLine fileOut)
-        Control.Monad.void (BufferedWriter.flush fileOut)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BufferedWriterUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_overwrite_2", jm_overwrite_2 ), ( "jm_write_2", jm_write_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "BufferedWriterUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonLabels" "" JR.this (JR.callStatic CommonLabels.jm_getInstance_0 [])),
+                JR.exec (JR.setField "REMOVING_OLD" "" JR.this (JR.str "Remove old for overwriting: ")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_overwrite_2 : JR.Method
+jm_overwrite_2 jheap jthis jargs =
+    JR.method [ ( "path", "" ), ( "data", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "abFile" "" (JR.callStatic AbFile.jm_createAbFile_1 [ (JR.local "path") ]), 
+                    JR.ifElse (JR.invoke "exists_0" (JR.local "abFile") []) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.thisField "REMOVING_OLD") (JR.local "path")), JR.this, (JR.field "CREATE" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.invoke "delete_0" (JR.local "abFile") []) ]) (JR.run [ 
+                        JR.declare "name" "" (JR.invoke "removeNameFromPath_1" (JR.callStatic AbPathData.jm_getInstance_0 []) [ (JR.local "path") ]), 
+                        JR.declare "abFileDirectory" "" (JR.callStatic AbFile.jm_createAbFile_1 [ (JR.local "name") ]), 
+                        JR.ifElse (JR.invoke "exists_0" (JR.local "abFileDirectory") []) identity (JR.run [ 
+                            JR.declare "stringBuilder" "" (JR.new StringMaker.jnew_0 []), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringBuilder") [ (JR.field "CREATE" (JR.thisField "commonStrings")) ]) [ (JR.field "COLON_SEP" (JR.thisField "commonLabels")) ]) [ (JR.local "name") ]) []), JR.this, (JR.field "CREATE" (JR.thisField "commonStrings")) ]), 
+                            JR.declare "result" "Z" (JR.invoke "mkdirs_0" (JR.local "abFileDirectory") []), 
+                            JR.exec (JR.invoke "delete_2" (JR.local "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuilder") []) ]), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendboolean_1" (JR.invoke "append_1" (JR.local "stringBuilder") [ (JR.field "RESULT_" (JR.thisField "commonLabels")) ]) [ (JR.local "result") ]) []), JR.this, (JR.field "CREATE" (JR.thisField "commonStrings")) ]) ]) ]), 
+                    JR.exec (JR.invoke "write_2" JR.this [ (JR.local "abFile"), (JR.local "data") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_write_2 : JR.Method
+jm_write_2 jheap jthis jargs =
+    JR.method [ ( "abFile", "" ), ( "data", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "fileOut" "" (JR.new (JR.namedMethod "BufferedWriter.jnew_1") [ (JR.new (JR.namedMethod "FileWriter.jnew_1") [ (JR.callStatic AbFileNativeUtil.jm_get_1 [ (JR.local "abFile") ]) ]) ]), 
+                    JR.exec (JR.invoke "write_3" (JR.local "fileOut") [ (JR.local "data"), (JR.int 0), (JR.invoke "length_0" (JR.local "data") []) ]), 
+                    JR.exec (JR.invoke "newLine_0" (JR.local "fileOut") []), 
+                    JR.exec (JR.invoke "flush_0" (JR.local "fileOut") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

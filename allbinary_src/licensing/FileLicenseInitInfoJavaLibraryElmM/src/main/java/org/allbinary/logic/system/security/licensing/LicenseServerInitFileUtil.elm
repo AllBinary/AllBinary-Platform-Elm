@@ -1,156 +1,129 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
-module LicenseServerInitFileUtil where
+module Org.Allbinary.Logic.System.Security.Licensing.LicenseServerInitFileUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified InputStream -- java.io.InputStream
-import qualified OutputStream -- java.io.OutputStream
-import qualified LicenseInitInfoUtil -- org.allbinary.business.init.LicenseInitInfoUtil
-import qualified ResourceUtil -- org.allbinary.data.resource.ResourceUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified FileStreamFactory -- org.allbinary.logic.io.FileStreamFactory
-import qualified StreamUtil -- org.allbinary.logic.io.StreamUtil
-import qualified FileFactory -- org.allbinary.logic.io.file.FileFactory
-import qualified SimpleFileUtil -- org.allbinary.logic.io.file.SimpleFileUtil
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.licensing
+-}
 
-data LicenseServerInitFileUtil = LicenseServerInitFileUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , nULL_OUTPUT_STREAM :: IORef (OutputStream.OutputStream)
-    }
-
-instance JavaNull LicenseServerInitFileUtil where
-    javaNull = javaNullRecord "LicenseServerInitFileUtil"
-
-instance JavaEquals LicenseServerInitFileUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LicenseServerInitFileUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LicenseServerInitFileUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LicenseServerInitFileUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    nULL_OUTPUT_STREAM <- newIORef javaNull
-    let this = LicenseServerInitFileUtil header_ logUtil commonStrings nULL_OUTPUT_STREAM
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "write" (\() -> write_impl this)
-    pure this
-
-initFields_ :: LicenseServerInitFileUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.nULL_OUTPUT_STREAM =<< (SimpleFileUtil.nullOutputStream)
-    pure ()
-
-new_ :: IO LicenseServerInitFileUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LicenseServerInitFileUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Io.File.FileFactory as FileFactory
+import Org.Allbinary.Logic.Io.FileStreamFactory as FileStreamFactory
+import Org.Allbinary.Business.Init.LicenseInitInfoUtil as LicenseInitInfoUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Data.Resource.ResourceUtil as ResourceUtil
+import Org.Allbinary.Logic.Io.File.SimpleFileUtil as SimpleFileUtil
+import Org.Allbinary.Logic.Io.StreamUtil as StreamUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: LicenseServerInitFileUtil))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: LicenseServerInitFileUtil))
-
-init_impl :: LicenseServerInitFileUtil -> IO (())
-init_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).iNIT) e)
-            ) $ do
-            let filePath = (jget ((jio (LicenseInitInfoUtil.getInstance))).iNITFILENAME)
-            Control.Monad.void (LicenseInitInfoUtil.setFilePath ((jio (LicenseInitInfoUtil.getInstance))) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-            if (jio (FileFactory.isFile ((jio (FileFactory.getInstance))) filePath)) then do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Using Existing License File" this (jget ((jget (this).commonStrings)).iNIT))
-            else do
-                Control.Monad.void (LicenseServerInitFileUtil.write this)
-        pure ()
+jclass : String
+jclass =
+    "LicenseServerInitFileUtil"
 
 
-write :: (JavaObjectClass this_) => this_ -> IO (())
-write object_ = jmethod object_ "write" (\() -> (write_impl (javaCast object_ :: LicenseServerInitFileUtil))) ()
+jchain : List String
+jchain =
+    [ "LicenseServerInitFileUtil" ]
 
-write_super :: (JavaObjectClass this_) => this_ -> IO (())
-write_super object_ = (write_impl (javaCast object_ :: LicenseServerInitFileUtil))
 
-write_impl :: LicenseServerInitFileUtil -> IO (())
-write_impl this = do
-        fileOutputStream <- newIORef ((jget (this).nULL_OUTPUT_STREAM))
-        flip finally (do
-            Control.Monad.void (StreamUtil.close ((jio (StreamUtil.getInstance))) (jget fileOutputStream))
-            ) $ handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).iNIT) e)
-            ) $ do
-            resourceUtil <- (ResourceUtil.getInstance)
-            let filePath = (jget ((jio (LicenseInitInfoUtil.getInstance))).iNITFILENAME)
-            inputStream <- (ResourceUtil.getResourceAsStream resourceUtil filePath)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Writing Default License File" this (jget ((jget (this).commonStrings)).iNIT))
-            fileStreamFactory <- (FileStreamFactory.getInstance)
-            assignedValue <- (FileStreamFactory.getFileOutputStreamInstance fileStreamFactory (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) filePath)
-            jset fileOutputStream (assignedValue)
-            b <- newIORef (0 :: Int)
-            index <- newIORef (0 :: Int)
-            fix $ \loop -> when True $ javaIteration (loop) $ do
-                assignedValue <- (InputStream.read inputStream)
-                jset b (assignedValue)
-                when ((jget b) == (Prelude.negate 1)) $ do
-                    throwIO JavaBreak
-                Control.Monad.void (OutputStream.write ((jget fileOutputStream)) (jget b))
-                jset index ((jget index) + 1)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ("Wrote Bytes: " ++ javaToString (jget index)) this (jget ((jget (this).commonStrings)).iNIT))
-            Control.Monad.void (OutputStream.flush ((jget fileOutputStream)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "NULL_OUTPUT_STREAM", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 )
+        , ( "write_0", jm_write_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LicenseServerInitFileUtil"
+        [ ( "jm_init_0", jm_init_0 ), ( "jm_write_0", jm_write_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "NULL_OUTPUT_STREAM" "" JR.this (JR.callStatic SimpleFileUtil.jm_nullOutputStream_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "filePath" "" (JR.field "INITFILENAME" (JR.callStatic LicenseInitInfoUtil.jm_getInstance_0 [])), 
+                        JR.exec (JR.invoke "setFilePath_1" (JR.callStatic LicenseInitInfoUtil.jm_getInstance_0 []) [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]), 
+                        JR.ifElse (JR.invoke "isFile_1" (JR.callStatic FileFactory.jm_getInstance_0 []) [ (JR.local "filePath") ]) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Using Existing License File"), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")) ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "write_0" JR.this []) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_write_0 : JR.Method
+jm_write_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "fileOutputStream" "" (JR.thisField "NULL_OUTPUT_STREAM"), 
+                    JR.try (JR.run [ 
+                        JR.declare "resourceUtil" "" (JR.callStatic ResourceUtil.jm_getInstance_0 []), 
+                        JR.declare "filePath" "" (JR.field "INITFILENAME" (JR.callStatic LicenseInitInfoUtil.jm_getInstance_0 [])), 
+                        JR.declare "inputStream" "" (JR.invoke "getResourceAsStream_1" (JR.local "resourceUtil") [ (JR.local "filePath") ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Writing Default License File"), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")) ]), 
+                        JR.declare "fileStreamFactory" "" (JR.callStatic FileStreamFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.setLocal "fileOutputStream" "" (JR.invoke "getFileOutputStreamInstance_2" (JR.local "fileStreamFactory") [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.local "filePath") ])), 
+                        JR.declare "b" "I" (JR.lit (JR.defaultOf "I")), 
+                        JR.declare "index" "I" (JR.int 0), 
+                        JR.while (JR.bool True) (JR.run [ 
+                            JR.exec (JR.setLocal "b" "I" (JR.invoke "read_0" (JR.local "inputStream") [])), 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "b") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                                JR.break ]) identity, 
+                            JR.exec (JR.invoke "write_1" (JR.local "fileOutputStream") [ (JR.local "b") ]), 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN68338 -> (JR.setLocal "index" "I" (JR.lit jwN68338))) JR.increment) ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "Wrote Bytes: ") (JR.local "index")), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.invoke "flush_0" (JR.local "fileOutputStream") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] (JR.run [ 
+                        JR.exec (JR.invoke "close_1" (JR.callStatic StreamUtil.jm_getInstance_0 []) [ (JR.local "fileOutputStream") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

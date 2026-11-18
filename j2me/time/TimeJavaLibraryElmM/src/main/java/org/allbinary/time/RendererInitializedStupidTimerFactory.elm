@@ -1,10 +1,10 @@
-module RendererInitializedStupidTimerFactory exposing (..)
+module Org.Allbinary.Time.RendererInitializedStupidTimerFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.time
 -}
 
 import JR
-import StupidTimer
+import Org.Allbinary.Time.StupidTimer as StupidTimer
 
 
 jclass : String

@@ -1,96 +1,108 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.shipping
-module ShippingMethodData where
+module Org.Allbinary.Business.User.Commerce.Shipping.ShippingMethodData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.shipping
+-}
 
-data ShippingMethodData = ShippingMethodData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull ShippingMethodData where
-    javaNull = javaNullRecord "ShippingMethodData"
 
-instance JavaEquals ShippingMethodData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq ShippingMethodData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "ShippingMethodData"
 
-instance JavaObjectClass ShippingMethodData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-dESCRIPTION :: String
-dESCRIPTION = "SHIPPINGMETHOD_DESCRIPTION"
+jchain : List String
+jchain =
+    [ "ShippingMethodData" ]
 
-dEFAULT :: String
-dEFAULT = "SHIPPINGMETHOD_DEFAULT"
 
-nAME :: String
-nAME = "SHIPPINGMETHOD_NAME"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-gROUP :: String
-gROUP = "SHIPPINGMETHOD_GROUP"
 
-cOST :: String
-cOST = "SHIPPINGMETHOD_COST"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ShippingMethodData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_DESCRIPTION", jstatic_DESCRIPTION ), ( "jstatic_DEFAULT", jstatic_DEFAULT ), ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_GROUP", jstatic_GROUP ), ( "jstatic_COST", jstatic_COST ) ]
+        jheap
 
-newRecord_ :: IO ShippingMethodData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ShippingMethodData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: ShippingMethodData -> IO ()
-initFields_ this = do
-    pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-new_ :: IO ShippingMethodData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: ShippingMethodData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jstatic_DESCRIPTION : JR.M
+jstatic_DESCRIPTION s =
+    JR.static "ShippingMethodData" jclinit "DESCRIPTION"
+        (JR.str "SHIPPINGMETHOD_DESCRIPTION")
+        s
 
+
+jstatic_DEFAULT : JR.M
+jstatic_DEFAULT s =
+    JR.static "ShippingMethodData" jclinit "DEFAULT"
+        (JR.str "SHIPPINGMETHOD_DEFAULT")
+        s
+
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "ShippingMethodData" jclinit "NAME"
+        (JR.str "SHIPPINGMETHOD_NAME")
+        s
+
+
+jstatic_GROUP : JR.M
+jstatic_GROUP s =
+    JR.static "ShippingMethodData" jclinit "GROUP"
+        (JR.str "SHIPPINGMETHOD_GROUP")
+        s
+
+
+jstatic_COST : JR.M
+jstatic_COST s =
+    JR.static "ShippingMethodData" jclinit "COST"
+        (JR.str "SHIPPINGMETHOD_COST")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

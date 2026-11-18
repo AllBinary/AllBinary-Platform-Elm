@@ -1,93 +1,82 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.platform.graphics
-module PlatformBitmapBase where
+module Org.Allbinary.Platform.Graphics.PlatformBitmapBase exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified NullImage -- javax.microedition.lcdui.NullImage
+{-| Generated Code Do Not Modify package org.allbinary.platform.graphics
+-}
 
-data PlatformBitmapBase = PlatformBitmapBase
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull PlatformBitmapBase where
-    javaNull = javaNullRecord "PlatformBitmapBase"
-
-instance JavaEquals PlatformBitmapBase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlatformBitmapBase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlatformBitmapBase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PlatformBitmapBase
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = PlatformBitmapBase header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getImage" (\() -> getImage_impl this)
-    pure this
-
-initFields_ :: PlatformBitmapBase -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO PlatformBitmapBase
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PlatformBitmapBase -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Javax.Microedition.Lcdui.NullImage as NullImage
 
 
-getImage :: (JavaObjectClass this_) => this_ -> IO (Image.Image)
-getImage object_ = jmethod object_ "getImage" (\() -> (getImage_impl (javaCast object_ :: PlatformBitmapBase))) ()
+jclass : String
+jclass =
+    "PlatformBitmapBase"
 
-getImage_super :: (JavaObjectClass this_) => this_ -> IO (Image.Image)
-getImage_super object_ = (getImage_impl (javaCast object_ :: PlatformBitmapBase))
 
-getImage_impl :: PlatformBitmapBase -> IO (Image.Image)
-getImage_impl this = do
-        pure (NullImage.nULL_IMAGE)
+jchain : List String
+jchain =
+    [ "PlatformBitmapBase" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getImage_0", jm_getImage_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlatformBitmapBase"
+        [ ( "jm_getImage_0", jm_getImage_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getImage_0 : JR.Method
+jm_getImage_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return NullImage.jstatic_NULL_IMAGE ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

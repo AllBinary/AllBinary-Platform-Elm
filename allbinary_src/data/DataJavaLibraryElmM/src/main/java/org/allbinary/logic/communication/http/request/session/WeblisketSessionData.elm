@@ -1,105 +1,129 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.http.request.session
-module WeblisketSessionData where
+module Org.Allbinary.Logic.Communication.Http.Request.Session.WeblisketSessionData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.http.request.session
+-}
 
-data WeblisketSessionData = WeblisketSessionData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull WeblisketSessionData where
-    javaNull = javaNullRecord "WeblisketSessionData"
 
-instance JavaEquals WeblisketSessionData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq WeblisketSessionData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "WeblisketSessionData"
 
-instance JavaObjectClass WeblisketSessionData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-iNVALIDATESESSION :: String
-iNVALIDATESESSION = "SESSION_INVALIDATE_SESSION"
+jchain : List String
+jchain =
+    [ "WeblisketSessionData" ]
 
-aTTEMPTS :: String
-aTTEMPTS = "SESSION_ATTEMPTS"
 
-tIMEOUT :: String
-tIMEOUT = "SESSION_TIMEOUT"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-rEMOVABLEUSERNAME :: String
-rEMOVABLEUSERNAME = "SESSION_REMOVABLE_USER_NAME"
 
-rEMOVABLEPASSWORD :: String
-rEMOVABLEPASSWORD = "SESSION_REMOVABLE_PASSWORD"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-rEMOVABLENEWPASSWORD :: String
-rEMOVABLENEWPASSWORD = "SESSION_REMOVABLE_NEW_PASSWORD"
 
-rEMOVABLEREENTERNEWPASSWORD :: String
-rEMOVABLEREENTERNEWPASSWORD = "SESSION_REMOVABLE_REENTER_NEW_PASSWORD"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "WeblisketSessionData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_INVALIDATESESSION", jstatic_INVALIDATESESSION ), ( "jstatic_ATTEMPTS", jstatic_ATTEMPTS ), ( "jstatic_TIMEOUT", jstatic_TIMEOUT ), ( "jstatic_REMOVABLEUSERNAME", jstatic_REMOVABLEUSERNAME ), ( "jstatic_REMOVABLEPASSWORD", jstatic_REMOVABLEPASSWORD ), ( "jstatic_REMOVABLENEWPASSWORD", jstatic_REMOVABLENEWPASSWORD ), ( "jstatic_REMOVABLEREENTERNEWPASSWORD", jstatic_REMOVABLEREENTERNEWPASSWORD ), ( "jstatic_AUTHENTICATED", jstatic_AUTHENTICATED ) ]
+        jheap
 
-aUTHENTICATED :: String
-aUTHENTICATED = "SESSION_AUTHENTICATED"
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO WeblisketSessionData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = WeblisketSessionData header_
-    jregisterLevel header_ this
-    pure this
+jstatic_INVALIDATESESSION : JR.M
+jstatic_INVALIDATESESSION s =
+    JR.static "WeblisketSessionData" jclinit "INVALIDATESESSION"
+        (JR.str "SESSION_INVALIDATE_SESSION")
+        s
 
-initFields_ :: WeblisketSessionData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO WeblisketSessionData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jstatic_ATTEMPTS : JR.M
+jstatic_ATTEMPTS s =
+    JR.static "WeblisketSessionData" jclinit "ATTEMPTS"
+        (JR.str "SESSION_ATTEMPTS")
+        s
 
-init_ :: WeblisketSessionData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jstatic_TIMEOUT : JR.M
+jstatic_TIMEOUT s =
+    JR.static "WeblisketSessionData" jclinit "TIMEOUT"
+        (JR.str "SESSION_TIMEOUT")
+        s
+
+
+jstatic_REMOVABLEUSERNAME : JR.M
+jstatic_REMOVABLEUSERNAME s =
+    JR.static "WeblisketSessionData" jclinit "REMOVABLEUSERNAME"
+        (JR.str "SESSION_REMOVABLE_USER_NAME")
+        s
+
+
+jstatic_REMOVABLEPASSWORD : JR.M
+jstatic_REMOVABLEPASSWORD s =
+    JR.static "WeblisketSessionData" jclinit "REMOVABLEPASSWORD"
+        (JR.str "SESSION_REMOVABLE_PASSWORD")
+        s
+
+
+jstatic_REMOVABLENEWPASSWORD : JR.M
+jstatic_REMOVABLENEWPASSWORD s =
+    JR.static "WeblisketSessionData" jclinit "REMOVABLENEWPASSWORD"
+        (JR.str "SESSION_REMOVABLE_NEW_PASSWORD")
+        s
+
+
+jstatic_REMOVABLEREENTERNEWPASSWORD : JR.M
+jstatic_REMOVABLEREENTERNEWPASSWORD s =
+    JR.static "WeblisketSessionData" jclinit "REMOVABLEREENTERNEWPASSWORD"
+        (JR.str "SESSION_REMOVABLE_REENTER_NEW_PASSWORD")
+        s
+
+
+jstatic_AUTHENTICATED : JR.M
+jstatic_AUTHENTICATED s =
+    JR.static "WeblisketSessionData" jclinit "AUTHENTICATED"
+        (JR.str "SESSION_AUTHENTICATED")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

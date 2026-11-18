@@ -1,264 +1,247 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
-module RawKeyEventHandler where
+module Org.Allbinary.Game.Input.Event.RawKeyEventHandler exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified RawKeyEventListener -- same package or java.lang
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified EventStrings -- org.allbinary.logic.util.event.EventStrings
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.game.input.event
+-}
 
-data RawKeyEventHandler = RawKeyEventHandler
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , eventListenerInterfaceList :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull RawKeyEventHandler where
-    javaNull = javaNullRecord "RawKeyEventHandler"
-
-instance JavaEquals RawKeyEventHandler where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RawKeyEventHandler where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RawKeyEventHandler where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: RawKeyEventHandler
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-tOTAL_LISTENERS :: String
-tOTAL_LISTENERS = "Total Listeners: "
-
-lISTENER_LABEL :: String
-lISTENER_LABEL = " Listener: "
-
-newRecord_ :: IO RawKeyEventHandler
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    eventListenerInterfaceList <- newIORef javaNull
-    let this = RawKeyEventHandler header_ logUtil eventListenerInterfaceList
-    jregisterLevel header_ this
-    jregisterMethod header_ "removeAllListeners" (\() -> removeAllListeners_impl this)
-    jregisterMethod header_ "addListeners" (\() -> addListeners_impl this)
-    jregisterMethod header_ "addListenerSingleThreaded" (\() -> addListenerSingleThreaded_impl this)
-    jregisterMethod header_ "addListener" (\() -> addListener_impl this)
-    jregisterMethod header_ "removeListenerSingleThreaded" (\() -> removeListenerSingleThreaded_impl this)
-    jregisterMethod header_ "removeListener" (\() -> removeListener_impl this)
-    jregisterMethod header_ "fireEvent" (\() -> fireEvent_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "getEventListenerInterfaceListP" (\() -> getEventListenerInterfaceListP_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: RawKeyEventHandler -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.eventListenerInterfaceList (javaNull)
-    pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (RawKeyEventHandler)
-getInstance = do
-        pure (RawKeyEventHandler.instance_)
-
-new_ :: IO RawKeyEventHandler
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: RawKeyEventHandler -> IO ()
-init_ this = do
-        initFields_ this
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        jset (this).eventListenerInterfaceList (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "RawKeyEventHandler"
 
 
-removeAllListeners :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllListeners object_ = jmethod object_ "removeAllListeners" (\() -> (removeAllListeners_impl (javaCast object_ :: RawKeyEventHandler))) ()
-
-removeAllListeners_super :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllListeners_super object_ = (removeAllListeners_impl (javaCast object_ :: RawKeyEventHandler))
-
-removeAllListeners_impl :: RawKeyEventHandler -> IO (())
-removeAllListeners_impl this = do
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        jset (this).eventListenerInterfaceList (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "RawKeyEventHandler" ]
 
 
-addListeners :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-addListeners object_ a1 = jmethod object_ "addListeners" (\() -> (addListeners_impl (javaCast object_ :: RawKeyEventHandler))) () a1
-
-addListeners_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-addListeners_super object_ a1 = (addListeners_impl (javaCast object_ :: RawKeyEventHandler)) a1
-
-addListeners_impl :: RawKeyEventHandler -> BasicArrayList.BasicArrayList -> IO (())
-addListeners_impl this vector = do
-        eventListenerInterface <- newIORef (javaNull)
-        size <- (BasicArrayList.size vector)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset eventListenerInterface ((javaCast (jio (BasicArrayList.get vector index)) :: RawKeyEventListener.RawKeyEventListener))
-            Control.Monad.void (RawKeyEventHandler.addListener this (jget eventListenerInterface))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "eventListenerInterfaceList", JR.defaultOf "" ) ]
 
 
-addListenerSingleThreaded :: (JavaObjectClass this_) => this_ -> RawKeyEventListener.RawKeyEventListener -> IO (())
-addListenerSingleThreaded object_ a1 = jmethod object_ "addListenerSingleThreaded" (\() -> (addListenerSingleThreaded_impl (javaCast object_ :: RawKeyEventHandler))) () a1
-
-addListenerSingleThreaded_super :: (JavaObjectClass this_) => this_ -> RawKeyEventListener.RawKeyEventListener -> IO (())
-addListenerSingleThreaded_super object_ a1 = (addListenerSingleThreaded_impl (javaCast object_ :: RawKeyEventHandler)) a1
-
-addListenerSingleThreaded_impl :: RawKeyEventHandler -> RawKeyEventListener.RawKeyEventListener -> IO (())
-addListenerSingleThreaded_impl this eventListenerInterface = do
-        when (Prelude.not (jio (BasicArrayList.contains ((jget (this).eventListenerInterfaceList)) eventListenerInterface))) $ do
-            Control.Monad.void (BasicArrayList.add ((jget (this).eventListenerInterfaceList)) eventListenerInterface)
-        pure ()
-
-
-addListener :: (JavaObjectClass this_) => this_ -> RawKeyEventListener.RawKeyEventListener -> IO (())
-addListener object_ a1 = jmethod object_ "addListener" (\() -> (addListener_impl (javaCast object_ :: RawKeyEventHandler))) () a1
-
-addListener_super :: (JavaObjectClass this_) => this_ -> RawKeyEventListener.RawKeyEventListener -> IO (())
-addListener_super object_ a1 = (addListener_impl (javaCast object_ :: RawKeyEventHandler)) a1
-
-addListener_impl :: RawKeyEventHandler -> RawKeyEventListener.RawKeyEventListener -> IO (())
-addListener_impl this eventListenerInterface = do
-        when (Prelude.not (jio (BasicArrayList.contains ((jget (this).eventListenerInterfaceList)) eventListenerInterface))) $ do
-            Control.Monad.void (BasicArrayList.add ((jget (this).eventListenerInterfaceList)) eventListenerInterface)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "removeAllListeners_0", jm_removeAllListeners_0 )
+        , ( "addListeners_1", jm_addListeners_1 )
+        , ( "addListenerSingleThreaded_1", jm_addListenerSingleThreaded_1 )
+        , ( "addListener_1", jm_addListener_1 )
+        , ( "removeListenerSingleThreaded_1", jm_removeListenerSingleThreaded_1 )
+        , ( "removeListener_1", jm_removeListener_1 )
+        , ( "fireEvent_3", jm_fireEvent_3 )
+        , ( "process_4", jm_process_4 )
+        , ( "getEventListenerInterfaceListP_0", jm_getEventListenerInterfaceListP_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
 
-removeListenerSingleThreaded :: (JavaObjectClass this_) => this_ -> RawKeyEventListener.RawKeyEventListener -> IO (())
-removeListenerSingleThreaded object_ a1 = jmethod object_ "removeListenerSingleThreaded" (\() -> (removeListenerSingleThreaded_impl (javaCast object_ :: RawKeyEventHandler))) () a1
-
-removeListenerSingleThreaded_super :: (JavaObjectClass this_) => this_ -> RawKeyEventListener.RawKeyEventListener -> IO (())
-removeListenerSingleThreaded_super object_ a1 = (removeListenerSingleThreaded_impl (javaCast object_ :: RawKeyEventHandler)) a1
-
-removeListenerSingleThreaded_impl :: RawKeyEventHandler -> RawKeyEventListener.RawKeyEventListener -> IO (())
-removeListenerSingleThreaded_impl this eventListenerInterface = do
-        Control.Monad.void (BasicArrayList.remove ((jget (this).eventListenerInterfaceList)) eventListenerInterface)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RawKeyEventHandler"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_removeAllListeners_0", jm_removeAllListeners_0 ), ( "jm_addListeners_1", jm_addListeners_1 ), ( "jm_addListenerSingleThreaded_1", jm_addListenerSingleThreaded_1 ), ( "jm_addListener_1", jm_addListener_1 ), ( "jm_removeListenerSingleThreaded_1", jm_removeListenerSingleThreaded_1 ), ( "jm_removeListener_1", jm_removeListener_1 ), ( "jm_fireEvent_3", jm_fireEvent_3 ), ( "jm_process_4", jm_process_4 ), ( "jm_getEventListenerInterfaceListP_0", jm_getEventListenerInterfaceListP_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ), ( "jstatic_TOTAL_LISTENERS", jstatic_TOTAL_LISTENERS ), ( "jstatic_LISTENER_LABEL", jstatic_LISTENER_LABEL ) ]
+        jheap
 
 
-removeListener :: (JavaObjectClass this_) => this_ -> RawKeyEventListener.RawKeyEventListener -> IO (())
-removeListener object_ a1 = jmethod object_ "removeListener" (\() -> (removeListener_impl (javaCast object_ :: RawKeyEventHandler))) () a1
-
-removeListener_super :: (JavaObjectClass this_) => this_ -> RawKeyEventListener.RawKeyEventListener -> IO (())
-removeListener_super object_ a1 = (removeListener_impl (javaCast object_ :: RawKeyEventHandler)) a1
-
-removeListener_impl :: RawKeyEventHandler -> RawKeyEventListener.RawKeyEventListener -> IO (())
-removeListener_impl this eventListenerInterface = do
-        Control.Monad.void (BasicArrayList.remove ((jget (this).eventListenerInterfaceList)) eventListenerInterface)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
--- throws Exception
-fireEvent :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> IO (())
-fireEvent object_ a1 a2 a3 = jmethod object_ "fireEvent" (\() -> (fireEvent_impl (javaCast object_ :: RawKeyEventHandler))) () a1 a2 a3
-
-fireEvent_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> IO (())
-fireEvent_super object_ a1 a2 a3 = (fireEvent_impl (javaCast object_ :: RawKeyEventHandler)) a1 a2 a3
-
-fireEvent_impl :: RawKeyEventHandler -> Int -> Int -> Bool -> IO (())
-fireEvent_impl this keyCode deviceId repeated = do
-        eventListenerInterface <- newIORef (javaNull)
-        index <- newIORef (0 :: Int)
-        fix $ \loop -> when ((jget index) < (jio (BasicArrayList.size ((jget (this).eventListenerInterfaceList))))) $ javaIteration (loop) $ do
-            handle (\(e :: JavaException) -> do
-                commonStrings <- (CommonStrings.getInstance)
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget ((jio (EventStrings.getInstance))).fIRE_EVENT) e)
-                ) $ do
-                jset eventListenerInterface ((javaCast (jio (BasicArrayList.get ((jget (this).eventListenerInterfaceList)) (jget index))) :: RawKeyEventListener.RawKeyEventListener))
-                Control.Monad.void (RawKeyEventHandler.process this keyCode deviceId repeated (jget eventListenerInterface))
-            jset index ((jget index) + 1)
-        pure ()
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "RawKeyEventHandler" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> RawKeyEventListener.RawKeyEventListener -> IO (())
-process object_ a1 a2 a3 a4 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: RawKeyEventHandler))) () a1 a2 a3 a4
-
-process_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> RawKeyEventListener.RawKeyEventListener -> IO (())
-process_super object_ a1 a2 a3 a4 = (process_impl (javaCast object_ :: RawKeyEventHandler)) a1 a2 a3 a4
-
-process_impl :: RawKeyEventHandler -> Int -> Int -> Bool -> RawKeyEventListener.RawKeyEventListener -> IO (())
-process_impl this keyCode deviceId repeated eventListenerInterface = do
-        Control.Monad.void (RawKeyEventListener.onEventRaw eventListenerInterface keyCode deviceId repeated)
-        pure ()
+jstatic_TOTAL_LISTENERS : JR.M
+jstatic_TOTAL_LISTENERS s =
+    JR.static "RawKeyEventHandler" jclinit "TOTAL_LISTENERS"
+        (JR.str "Total Listeners: ")
+        s
 
 
-getEventListenerInterfaceListP :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getEventListenerInterfaceListP object_ = jmethod object_ "getEventListenerInterfaceListP" (\() -> (getEventListenerInterfaceListP_impl (javaCast object_ :: RawKeyEventHandler))) ()
-
-getEventListenerInterfaceListP_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getEventListenerInterfaceListP_super object_ = (getEventListenerInterfaceListP_impl (javaCast object_ :: RawKeyEventHandler))
-
-getEventListenerInterfaceListP_impl :: RawKeyEventHandler -> IO (BasicArrayList.BasicArrayList)
-getEventListenerInterfaceListP_impl this = do
-        pure ((jget (this).eventListenerInterfaceList))
+jstatic_LISTENER_LABEL : JR.M
+jstatic_LISTENER_LABEL s =
+    JR.static "RawKeyEventHandler" jclinit "LISTENER_LABEL"
+        (JR.str " Listener: ")
+        s
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: RawKeyEventHandler))) ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "eventListenerInterfaceList" "" JR.this (JR.new BasicArrayListD.jnew_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: RawKeyEventHandler))
 
-toString_impl :: RawKeyEventHandler -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer (RawKeyEventHandler.tOTAL_LISTENERS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (BasicArrayList.size ((jget (this).eventListenerInterfaceList)))))
-        eventListenerInterface <- newIORef (javaNull)
-        index <- newIORef (0 :: Int)
-        fix $ \loop -> when ((jget index) < (jio (BasicArrayList.size ((jget (this).eventListenerInterfaceList))))) $ javaIteration (loop) $ do
-            handle (\(e :: JavaException) -> do
-                commonStrings <- (CommonStrings.getInstance)
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).tOSTRING) e)
-                ) $ do
-                jset eventListenerInterface ((javaCast (jio (BasicArrayList.get ((jget (this).eventListenerInterfaceList)) (jget index))) :: RawKeyEventListener.RawKeyEventListener))
-                Control.Monad.void (StringMaker.append stringBuffer (RawKeyEventHandler.lISTENER_LABEL))
-                Control.Monad.void (StringMaker.append stringBuffer (jio (RawKeyEventListener.toString ((jget eventListenerInterface)))))
-            jset index ((jget index) + 1)
-        (StringMaker.toString stringBuffer)
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeAllListeners_0 : JR.Method
+jm_removeAllListeners_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "eventListenerInterfaceList" "" JR.this (JR.new BasicArrayListD.jnew_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addListeners_1 : JR.Method
+jm_addListeners_1 jheap jthis jargs =
+    JR.method [ ( "vector", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "eventListenerInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "vector") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67293 -> (JR.setLocal "index" "I" (JR.lit jwN67293))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "eventListenerInterface" "" (JR.invoke "get_1" (JR.local "vector") [ (JR.local "index") ])), 
+                        JR.exec (JR.invoke "addListener_1" JR.this [ (JR.local "eventListenerInterface") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addListenerSingleThreaded_1 : JR.Method
+jm_addListenerSingleThreaded_1 jheap jthis jargs =
+    JR.method [ ( "eventListenerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "contains_1" (JR.thisField "eventListenerInterfaceList") [ (JR.local "eventListenerInterface") ])) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "eventListenerInterfaceList") [ (JR.local "eventListenerInterface") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addListener_1 : JR.Method
+jm_addListener_1 jheap jthis jargs =
+    JR.method [ ( "eventListenerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "contains_1" (JR.thisField "eventListenerInterfaceList") [ (JR.local "eventListenerInterface") ])) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "eventListenerInterfaceList") [ (JR.local "eventListenerInterface") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeListenerSingleThreaded_1 : JR.Method
+jm_removeListenerSingleThreaded_1 jheap jthis jargs =
+    JR.method [ ( "eventListenerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "remove_1" (JR.thisField "eventListenerInterfaceList") [ (JR.local "eventListenerInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeListener_1 : JR.Method
+jm_removeListener_1 jheap jthis jargs =
+    JR.method [ ( "eventListenerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "remove_1" (JR.thisField "eventListenerInterfaceList") [ (JR.local "eventListenerInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fireEvent_3 : JR.Method
+jm_fireEvent_3 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ), ( "repeated", "Z" ) ] ""
+        (JR.run [ 
+                    JR.declare "eventListenerInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "index" "I" (JR.int 0), 
+                    JR.while (JR.map2 JR.less (JR.local "index") (JR.invoke "size_0" (JR.thisField "eventListenerInterfaceList") [])) (JR.run [ 
+                        JR.try (JR.run [ 
+                            JR.exec (JR.setLocal "eventListenerInterface" "" (JR.invoke "get_1" (JR.thisField "eventListenerInterfaceList") [ (JR.local "index") ])), 
+                            JR.exec (JR.invoke "process_4" JR.this [ (JR.local "keyCode"), (JR.local "deviceId"), (JR.local "repeated"), (JR.local "eventListenerInterface") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                            JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "FIRE_EVENT" (JR.callStatic EventStrings.jm_getInstance_0 [])), (JR.local "e") ]) ]) ) ] identity, 
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN68151 -> (JR.setLocal "index" "I" (JR.lit jwN68151))) JR.increment) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_4 : JR.Method
+jm_process_4 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ), ( "repeated", "Z" ), ( "eventListenerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "onEventRaw_3" (JR.local "eventListenerInterface") [ (JR.local "keyCode"), (JR.local "deviceId"), (JR.local "repeated") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getEventListenerInterfaceListP_0 : JR.Method
+jm_getEventListenerInterfaceListP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "eventListenerInterfaceList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_TOTAL_LISTENERS ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "size_0" (JR.thisField "eventListenerInterfaceList") []) ]), 
+                    JR.declare "eventListenerInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "index" "I" (JR.int 0), 
+                    JR.while (JR.map2 JR.less (JR.local "index") (JR.invoke "size_0" (JR.thisField "eventListenerInterfaceList") [])) (JR.run [ 
+                        JR.try (JR.run [ 
+                            JR.exec (JR.setLocal "eventListenerInterface" "" (JR.invoke "get_1" (JR.thisField "eventListenerInterfaceList") [ (JR.local "index") ])), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_LISTENER_LABEL ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.local "eventListenerInterface") []) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                            JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "TOSTRING" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity, 
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN69088 -> (JR.setLocal "index" "I" (JR.lit jwN69088))) JR.increment) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

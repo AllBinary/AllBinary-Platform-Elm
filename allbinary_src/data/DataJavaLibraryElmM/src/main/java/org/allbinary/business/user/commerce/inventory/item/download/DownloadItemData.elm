@@ -1,136 +1,205 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.inventory.item.download
-module DownloadItemData where
+module Org.Allbinary.Business.User.Commerce.Inventory.Item.Download.DownloadItemData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.inventory.item.download
+-}
 
-data DownloadItemData = DownloadItemData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull DownloadItemData where
-    javaNull = javaNullRecord "DownloadItemData"
 
-instance JavaEquals DownloadItemData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq DownloadItemData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "DownloadItemData"
 
-instance JavaObjectClass DownloadItemData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-nAME :: String
-nAME = "DOWNLOADITEM_NAME"
+jchain : List String
+jchain =
+    [ "DownloadItemData" ]
 
-iD :: String
-iD = "DOWNLOADITEM_ID"
 
-sYSTEM :: String
-sYSTEM = "DOWNLOADITEM_SYSTEM"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-pLATFORM :: String
-pLATFORM = "DOWNLOADITEM_PLATFORM"
 
-sPECIAL_NAME :: String
-sPECIAL_NAME = "DOWNLOADITEM_SPECIAL_NAME"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-vERSION :: String
-vERSION = "DOWNLOADITEM_VERSION"
 
-cHANGES :: String
-cHANGES = "DOWNLOADITEM_CHANGES"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DownloadItemData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_ID", jstatic_ID ), ( "jstatic_SYSTEM", jstatic_SYSTEM ), ( "jstatic_PLATFORM", jstatic_PLATFORM ), ( "jstatic_SPECIAL_NAME", jstatic_SPECIAL_NAME ), ( "jstatic_VERSION", jstatic_VERSION ), ( "jstatic_CHANGES", jstatic_CHANGES ), ( "jstatic_LICENSE_FILE", jstatic_LICENSE_FILE ), ( "jstatic_FILE", jstatic_FILE ), ( "jstatic_EXTRA_FILES", jstatic_EXTRA_FILES ), ( "jstatic_SIZE", jstatic_SIZE ), ( "jstatic_VALID_TIME", jstatic_VALID_TIME ), ( "jstatic_VALID_TIME_YEARS", jstatic_VALID_TIME_YEARS ), ( "jstatic_VALID_TIME_MONTHS", jstatic_VALID_TIME_MONTHS ), ( "jstatic_VALID_TIME_DAYS", jstatic_VALID_TIME_DAYS ), ( "jstatic_VALID_TIME_HOURS", jstatic_VALID_TIME_HOURS ), ( "jstatic_VALID_TIME_MINUTES", jstatic_VALID_TIME_MINUTES ), ( "jstatic_VALID_TIME_SECONDS", jstatic_VALID_TIME_SECONDS ), ( "jstatic_RETRIES", jstatic_RETRIES ) ]
+        jheap
 
-lICENSE_FILE :: String
-lICENSE_FILE = "DOWNLOADITEM_LICENSE_FILE"
 
-fILE :: String
-fILE = "DOWNLOADITEM_FILE"
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-eXTRA_FILES :: String
-eXTRA_FILES = "DOWNLOADITEM_EXTRA_FILES"
 
-sIZE :: String
-sIZE = "DOWNLOADITEM_SIZE"
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "DownloadItemData" jclinit "NAME"
+        (JR.str "DOWNLOADITEM_NAME")
+        s
 
-vALID_TIME :: String
-vALID_TIME = "DOWNLOADITEM_VALID_TIME"
 
-vALID_TIME_YEARS :: String
-vALID_TIME_YEARS = "DOWNLOADITEM_VALID_TIME_YEAR"
+jstatic_ID : JR.M
+jstatic_ID s =
+    JR.static "DownloadItemData" jclinit "ID"
+        (JR.str "DOWNLOADITEM_ID")
+        s
 
-vALID_TIME_MONTHS :: String
-vALID_TIME_MONTHS = "DOWNLOADITEM_VALID_TIME_MONTH"
 
-vALID_TIME_DAYS :: String
-vALID_TIME_DAYS = "DOWNLOADITEM_VALID_TIME_DAY"
+jstatic_SYSTEM : JR.M
+jstatic_SYSTEM s =
+    JR.static "DownloadItemData" jclinit "SYSTEM"
+        (JR.str "DOWNLOADITEM_SYSTEM")
+        s
 
-vALID_TIME_HOURS :: String
-vALID_TIME_HOURS = "DOWNLOADITEM_VALID_TIME_HOUR"
 
-vALID_TIME_MINUTES :: String
-vALID_TIME_MINUTES = "DOWNLOADITEM_VALID_TIME_MINUTES"
+jstatic_PLATFORM : JR.M
+jstatic_PLATFORM s =
+    JR.static "DownloadItemData" jclinit "PLATFORM"
+        (JR.str "DOWNLOADITEM_PLATFORM")
+        s
 
-vALID_TIME_SECONDS :: String
-vALID_TIME_SECONDS = "DOWNLOADITEM_VALID_TIME_SECONDS"
 
-rETRIES :: String
-rETRIES = "DOWNLOADITEM_RETRIES"
+jstatic_SPECIAL_NAME : JR.M
+jstatic_SPECIAL_NAME s =
+    JR.static "DownloadItemData" jclinit "SPECIAL_NAME"
+        (JR.str "DOWNLOADITEM_SPECIAL_NAME")
+        s
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jstatic_VERSION : JR.M
+jstatic_VERSION s =
+    JR.static "DownloadItemData" jclinit "VERSION"
+        (JR.str "DOWNLOADITEM_VERSION")
+        s
 
-newRecord_ :: IO DownloadItemData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = DownloadItemData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: DownloadItemData -> IO ()
-initFields_ this = do
-    pure ()
+jstatic_CHANGES : JR.M
+jstatic_CHANGES s =
+    JR.static "DownloadItemData" jclinit "CHANGES"
+        (JR.str "DOWNLOADITEM_CHANGES")
+        s
 
-new_ :: IO DownloadItemData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: DownloadItemData -> IO ()
-init_ this = do
-    initFields_ this
+jstatic_LICENSE_FILE : JR.M
+jstatic_LICENSE_FILE s =
+    JR.static "DownloadItemData" jclinit "LICENSE_FILE"
+        (JR.str "DOWNLOADITEM_LICENSE_FILE")
+        s
 
+
+jstatic_FILE : JR.M
+jstatic_FILE s =
+    JR.static "DownloadItemData" jclinit "FILE"
+        (JR.str "DOWNLOADITEM_FILE")
+        s
+
+
+jstatic_EXTRA_FILES : JR.M
+jstatic_EXTRA_FILES s =
+    JR.static "DownloadItemData" jclinit "EXTRA_FILES"
+        (JR.str "DOWNLOADITEM_EXTRA_FILES")
+        s
+
+
+jstatic_SIZE : JR.M
+jstatic_SIZE s =
+    JR.static "DownloadItemData" jclinit "SIZE"
+        (JR.str "DOWNLOADITEM_SIZE")
+        s
+
+
+jstatic_VALID_TIME : JR.M
+jstatic_VALID_TIME s =
+    JR.static "DownloadItemData" jclinit "VALID_TIME"
+        (JR.str "DOWNLOADITEM_VALID_TIME")
+        s
+
+
+jstatic_VALID_TIME_YEARS : JR.M
+jstatic_VALID_TIME_YEARS s =
+    JR.static "DownloadItemData" jclinit "VALID_TIME_YEARS"
+        (JR.str "DOWNLOADITEM_VALID_TIME_YEAR")
+        s
+
+
+jstatic_VALID_TIME_MONTHS : JR.M
+jstatic_VALID_TIME_MONTHS s =
+    JR.static "DownloadItemData" jclinit "VALID_TIME_MONTHS"
+        (JR.str "DOWNLOADITEM_VALID_TIME_MONTH")
+        s
+
+
+jstatic_VALID_TIME_DAYS : JR.M
+jstatic_VALID_TIME_DAYS s =
+    JR.static "DownloadItemData" jclinit "VALID_TIME_DAYS"
+        (JR.str "DOWNLOADITEM_VALID_TIME_DAY")
+        s
+
+
+jstatic_VALID_TIME_HOURS : JR.M
+jstatic_VALID_TIME_HOURS s =
+    JR.static "DownloadItemData" jclinit "VALID_TIME_HOURS"
+        (JR.str "DOWNLOADITEM_VALID_TIME_HOUR")
+        s
+
+
+jstatic_VALID_TIME_MINUTES : JR.M
+jstatic_VALID_TIME_MINUTES s =
+    JR.static "DownloadItemData" jclinit "VALID_TIME_MINUTES"
+        (JR.str "DOWNLOADITEM_VALID_TIME_MINUTES")
+        s
+
+
+jstatic_VALID_TIME_SECONDS : JR.M
+jstatic_VALID_TIME_SECONDS s =
+    JR.static "DownloadItemData" jclinit "VALID_TIME_SECONDS"
+        (JR.str "DOWNLOADITEM_VALID_TIME_SECONDS")
+        s
+
+
+jstatic_RETRIES : JR.M
+jstatic_RETRIES s =
+    JR.static "DownloadItemData" jclinit "RETRIES"
+        (JR.str "DOWNLOADITEM_RETRIES")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,123 +1,127 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
-module Feature where
+module Org.Allbinary.Game.Configuration.Feature.Feature exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified ChangedGameFeatureListener -- org.allbinary.game.configuration.event.ChangedGameFeatureListener
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.feature
+-}
 
-data Feature = Feature
-    { header_ :: JavaHeader
-    , name :: IORef (String)
-    }
-
-instance JavaNull Feature where
-    javaNull = javaNullRecord "Feature"
-
-instance JavaEquals Feature where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Feature where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Feature where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-hashtable :: IORef (ABHashtable.ABHashtable)
-{-# NOINLINE hashtable #-}
-hashtable = unsafePerformIO ((StdUtil.createHashtable ((jio (StdUtil.getInstance)))) >>= newIORef)
-
-newRecord_ :: IO Feature
-newRecord_ = do
-    header_ <- newJavaHeader
-    name <- newIORef ""
-    let this = Feature header_ name
-    jregisterLevel header_ this
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    pure this
-
-initFields_ :: Feature -> IO ()
-initFields_ this = do
-    jset this.name (javaNull)
-    pure ()
-
-new_1 :: String -> IO Feature
-new_1 name = do
-    this <- newRecord_
-    init_1 this name
-    pure this
-
-init_1 :: Feature -> String -> IO ()
-init_1 this name = do
-        initFields_ this
-        jset (this).name (name)
-        Control.Monad.void (Feature.add name this)
-        Control.Monad.void (ChangedGameFeatureListener.add ((jio (ChangedGameFeatureListener.getInstance))) this)
-        pure ()
+import JR
+import Org.Allbinary.Game.Configuration.Event.ChangedGameFeatureListener as ChangedGameFeatureListener
+import Org.Allbinary.Logic.StdUtil as StdUtil
 
 
-getInstance :: String -> IO (Feature)
-getInstance name = do
-        pure ((javaCast (jio (ABHashtable.get ((jget Feature.hashtable)) name)) :: Feature))
+jclass : String
+jclass =
+    "Feature"
 
 
-add :: String -> Feature -> IO (())
-add name gameFeature = do
-        Control.Monad.void (ABHashtable.put ((jget Feature.hashtable)) name gameFeature)
-        pure ()
+jchain : List String
+jchain =
+    [ "Feature" ]
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: Feature))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: Feature))
-
-toString_impl :: Feature -> IO (String)
-toString_impl this = do
-        (Feature.getName this)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "name", JR.defaultOf "" ) ]
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: Feature))) ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_1", jm_getInstance_1 )
+        , ( "add_2", jm_add_2 )
+        , ( "toString_0", jm_toString_0 )
+        , ( "getName_0", jm_getName_0 ) ]
+        JR.noMethods
 
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: Feature))
 
-getName_impl :: Feature -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Feature"
+        [ ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_add_2", jm_add_2 ), ( "jm_toString_0", jm_toString_0 ), ( "jm_getName_0", jm_getName_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_hashtable", jstatic_hashtable ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_hashtable : JR.M
+jstatic_hashtable s =
+    JR.static "Feature" jclinit "hashtable"
+        (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) [])
+        s
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "name")), 
+                    JR.exec (JR.callStatic jm_add_2 [ (JR.local "name"), JR.this ]), 
+                    JR.exec (JR.invoke "add_1" (JR.callStatic ChangedGameFeatureListener.jm_getInstance_0 []) [ JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "get_1" jstatic_hashtable [ (JR.local "name") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_2 : JR.Method
+jm_add_2 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "gameFeature", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "put_2" jstatic_hashtable [ (JR.local "name"), (JR.local "gameFeature") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getName_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

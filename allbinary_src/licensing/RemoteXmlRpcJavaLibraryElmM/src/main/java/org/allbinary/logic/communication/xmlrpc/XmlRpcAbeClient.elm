@@ -1,366 +1,280 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.xmlrpc
-module XmlRpcAbeClient where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified MyRandomFactory -- org.allbinary.game.rand.MyRandomFactory
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified NullXmlRpcHandler -- org.apache.xmlrpc.NullXmlRpcHandler
-import qualified XmlRpcClient -- org.apache.xmlrpc.XmlRpcClient
-import qualified XmlRpcHandler -- org.apache.xmlrpc.XmlRpcHandler
-
-data XmlRpcAbeClient = XmlRpcAbeClient
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , remoteMethod :: IORef (String)
-    , clientInfo :: IORef (AbeClientInformationInterface.AbeClientInformationInterface)
-    , client :: IORef (XmlRpcHandler.XmlRpcHandler)
-    , server :: IORef (Int)
-    , start :: IORef (Int)
-    , maxServers :: IORef (Int)
-    , isDone :: IORef (Bool)
-    , sTART_SERVER :: IORef (String)
-    , tRYING :: IORef (String)
-    , sEP :: IORef (String)
-    , cLIENT_INFO :: IORef (String)
-    , rESULT :: IORef (String)
-    , iNVALID :: IORef (String)
-    , eXCEPTION_IN_CLIENT :: IORef (String)
-    , sERVER_REPORTED_ERROR :: IORef (String)
-    , uNKNOWN_ERROR :: IORef (String)
-    , tRYING_OTHER_SERVERS :: IORef (String)
-    , hOST_NOT_RESOLVED_MSG :: IORef (String)
-    , hOST_NOT_RESOLVED :: IORef (String)
-    , myRandomFactory :: IORef (MyRandomFactory.MyRandomFactory)
-    }
-
-instance JavaNull XmlRpcAbeClient where
-    javaNull = javaNullRecord "XmlRpcAbeClient"
-
-instance JavaEquals XmlRpcAbeClient where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq XmlRpcAbeClient where
-    (==) = jrecordEquals
-
-instance JavaObjectClass XmlRpcAbeClient where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-isOnline :: IORef (Bool)
-{-# NOINLINE isOnline #-}
-isOnline = unsafePerformIO (newIORef (True))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO XmlRpcAbeClient
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    remoteMethod <- newIORef ""
-    clientInfo <- newIORef javaNull
-    client <- newIORef javaNull
-    server <- newIORef 0
-    start <- newIORef 0
-    maxServers <- newIORef 0
-    isDone <- newIORef False
-    sTART_SERVER <- newIORef ""
-    tRYING <- newIORef ""
-    sEP <- newIORef ""
-    cLIENT_INFO <- newIORef ""
-    rESULT <- newIORef ""
-    iNVALID <- newIORef ""
-    eXCEPTION_IN_CLIENT <- newIORef ""
-    sERVER_REPORTED_ERROR <- newIORef ""
-    uNKNOWN_ERROR <- newIORef ""
-    tRYING_OTHER_SERVERS <- newIORef ""
-    hOST_NOT_RESOLVED_MSG <- newIORef ""
-    hOST_NOT_RESOLVED <- newIORef ""
-    myRandomFactory <- newIORef javaNull
-    let this = XmlRpcAbeClient header_ logUtil commonStrings remoteMethod clientInfo client server start maxServers isDone sTART_SERVER tRYING sEP cLIENT_INFO rESULT iNVALID eXCEPTION_IN_CLIENT sERVER_REPORTED_ERROR uNKNOWN_ERROR tRYING_OTHER_SERVERS hOST_NOT_RESOLVED_MSG hOST_NOT_RESOLVED myRandomFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    jregisterMethod header_ "tryAnother" (\() -> tryAnother_impl this)
-    jregisterMethod header_ "getClientInfo" (\() -> getClientInfo_impl this)
-    jregisterMethod header_ "getClient" (\() -> getClient_impl this)
-    jregisterMethod header_ "setClient" (\() -> setClient_impl this)
-    jregisterMethod header_ "getServer" (\() -> getServer_impl this)
-    jregisterMethod header_ "setServer" (\() -> setServer_impl this)
-    jregisterMethod header_ "getStart" (\() -> getStart_impl this)
-    jregisterMethod header_ "setStart" (\() -> setStart_impl this)
-    jregisterMethod header_ "getMaxServers" (\() -> getMaxServers_impl this)
-    jregisterMethod header_ "setMaxServers" (\() -> setMaxServers_impl this)
-    jregisterMethod header_ "isIsDone" (\() -> isIsDone_impl this)
-    jregisterMethod header_ "setIsDone" (\() -> setIsDone_impl this)
-    jregisterMethod header_ "getRemoteMethod" (\() -> getRemoteMethod_impl this)
-    pure this
-
-initFields_ :: XmlRpcAbeClient -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.remoteMethod (javaNull)
-    jset this.clientInfo (javaNull)
-    jset this.client (NullXmlRpcHandler.nULL_XML_RPC_HANDLER)
-    jset this.server (0)
-    jset this.start (0)
-    jset this.maxServers (0)
-    jset this.isDone (False)
-    jset this.sTART_SERVER ("Start With Server #")
-    jset this.tRYING ("Trying Server #")
-    jset this.sEP ((jget ((jio (CommonLabels.getInstance))).cOLON_SEP))
-    jset this.cLIENT_INFO ("Client Info: \n")
-    jset this.rESULT (((jget ((jio (CommonLabels.getInstance))).rESULT_) + (jget ((jio (CommonSeps.getInstance))).nEW_LINE)))
-    jset this.iNVALID ("License data is Invalid Trying Other Servers")
-    jset this.eXCEPTION_IN_CLIENT ("Exception in client")
-    jset this.sERVER_REPORTED_ERROR ("Server reported error")
-    jset this.uNKNOWN_ERROR ("Unknown License Retrieval Failure")
-    jset this.tRYING_OTHER_SERVERS ("IOException Trying Other Servers")
-    jset this.hOST_NOT_RESOLVED_MSG ("Not Trying Again Since Host Unresolved")
-    jset this.hOST_NOT_RESOLVED ("Host is unresolved")
-    jset this.myRandomFactory =<< (MyRandomFactory.getInstance)
-    pure ()
-
-new_2 :: AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO XmlRpcAbeClient
-new_2 clientInfo remoteMethod = do
-    this <- newRecord_
-    init_2 this clientInfo remoteMethod
-    pure this
-
-init_2 :: XmlRpcAbeClient -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> IO ()
-init_2 this clientInfo remoteMethod = do
-        initFields_ this
-        jset (this).remoteMethod (remoteMethod)
-        jset (this).clientInfo (clientInfo)
-        if ((jio (AbeClientInformationInterface.getNumberOfLicenseServers clientInfo)) > 1) then do
-            jset (this).maxServers (((jio (AbeClientInformationInterface.getNumberOfLicenseServers clientInfo)) - 2))
-            jset (this).start (((jio (MyRandomFactory.getAbsoluteNextInt ((jget (this).myRandomFactory)) (jget (this).maxServers))) + 1))
-        else when ((jio (AbeClientInformationInterface.getNumberOfLicenseServers clientInfo)) == 1) $ do
-            jset (this).maxServers (0)
-            jset (this).start (0)
-        jset (this).isDone (False)
-        jset (this).server ((jget (this).start))
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer (jget (this).sTART_SERVER))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (XmlRpcAbeClient.getServer this)))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (this).sEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (AbeClientInformationInterface.getLicenseServer clientInfo (jio (XmlRpcAbeClient.getServer this)))))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this (jget ((jget (this).commonStrings)).cONSTRUCTOR))
-        pure ()
-
-
--- throws Exception
-get :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Any.Any)
-get object_ a1 = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: XmlRpcAbeClient))) () (jtoObject a1)
-
-get_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Any.Any)
-get_super object_ a1 = (get_impl (javaCast object_ :: XmlRpcAbeClient)) (jtoObject a1)
-
-get_impl :: XmlRpcAbeClient -> JavaObject -> IO (Any.Any)
-get_impl this anyTypeObject_ = do
-        let anyType = jtoObject anyTypeObject_
-        Control.Monad.void (ForcedLogUtil.log (jget ((jget (this).commonStrings)).nOT_IMPLEMENTED) this)
-        pure ((jtoObject (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-
--- throws Exception
-tryAnother :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Any.Any)
-tryAnother object_ a1 = jmethod object_ "tryAnother" (\() -> (tryAnother_impl (javaCast object_ :: XmlRpcAbeClient))) () (jtoObject a1)
-
-tryAnother_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Any.Any)
-tryAnother_super object_ a1 = (tryAnother_impl (javaCast object_ :: XmlRpcAbeClient)) (jtoObject a1)
-
-tryAnother_impl :: XmlRpcAbeClient -> JavaObject -> IO (Any.Any)
-tryAnother_impl this anyTypeObject_ = do
-    let anyType = jtoObject anyTypeObject_
-    javaCatchReturn $ do
-        if ((jio (XmlRpcAbeClient.getServer this)) < (jio (XmlRpcAbeClient.getMaxServers this))) then do
-            Control.Monad.void (XmlRpcAbeClient.setServer this ((jio (XmlRpcAbeClient.getServer this)) + 1))
-        else do
-            Control.Monad.void (XmlRpcAbeClient.setServer this 0)
-        if (((jio (XmlRpcAbeClient.getServer this)) /= (jio (XmlRpcAbeClient.getStart this))) && (Prelude.not (jio (XmlRpcAbeClient.isIsDone this)))) then do
-            javaReturn =<< (fmap jtoObject (XmlRpcAbeClient.get this anyType))
-        else do
-            Control.Monad.void (XmlRpcAbeClient.setIsDone this True)
-        javaThrow ((JavaException "Exception" "Tried All Servers But Still Failed"))
-
-
-getClientInfo :: (JavaObjectClass this_) => this_ -> IO (AbeClientInformationInterface.AbeClientInformationInterface)
-getClientInfo object_ = jmethod object_ "getClientInfo" (\() -> (getClientInfo_impl (javaCast object_ :: XmlRpcAbeClient))) ()
-
-getClientInfo_super :: (JavaObjectClass this_) => this_ -> IO (AbeClientInformationInterface.AbeClientInformationInterface)
-getClientInfo_super object_ = (getClientInfo_impl (javaCast object_ :: XmlRpcAbeClient))
-
-getClientInfo_impl :: XmlRpcAbeClient -> IO (AbeClientInformationInterface.AbeClientInformationInterface)
-getClientInfo_impl this = do
-        pure ((jget (this).clientInfo))
-
-
-getClient :: (JavaObjectClass this_) => this_ -> IO (XmlRpcHandler.XmlRpcHandler)
-getClient object_ = jmethod object_ "getClient" (\() -> (getClient_impl (javaCast object_ :: XmlRpcAbeClient))) ()
-
-getClient_super :: (JavaObjectClass this_) => this_ -> IO (XmlRpcHandler.XmlRpcHandler)
-getClient_super object_ = (getClient_impl (javaCast object_ :: XmlRpcAbeClient))
-
-getClient_impl :: XmlRpcAbeClient -> IO (XmlRpcHandler.XmlRpcHandler)
-getClient_impl this = do
-        pure ((jget (this).client))
-
-
-setClient :: (JavaObjectClass this_) => this_ -> XmlRpcClient.XmlRpcClient -> IO (())
-setClient object_ a1 = jmethod object_ "setClient" (\() -> (setClient_impl (javaCast object_ :: XmlRpcAbeClient))) () a1
-
-setClient_super :: (JavaObjectClass this_) => this_ -> XmlRpcClient.XmlRpcClient -> IO (())
-setClient_super object_ a1 = (setClient_impl (javaCast object_ :: XmlRpcAbeClient)) a1
-
-setClient_impl :: XmlRpcAbeClient -> XmlRpcClient.XmlRpcClient -> IO (())
-setClient_impl this client = do
-        jset (this).client ((javaCast client :: XmlRpcHandler.XmlRpcHandler))
-        pure ()
-
-
-getServer :: (JavaObjectClass this_) => this_ -> IO (Int)
-getServer object_ = jmethod object_ "getServer" (\() -> (getServer_impl (javaCast object_ :: XmlRpcAbeClient))) ()
-
-getServer_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getServer_super object_ = (getServer_impl (javaCast object_ :: XmlRpcAbeClient))
-
-getServer_impl :: XmlRpcAbeClient -> IO (Int)
-getServer_impl this = do
-        pure ((jget (this).server))
-
-
-setServer :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setServer object_ a1 = jmethod object_ "setServer" (\() -> (setServer_impl (javaCast object_ :: XmlRpcAbeClient))) () a1
-
-setServer_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setServer_super object_ a1 = (setServer_impl (javaCast object_ :: XmlRpcAbeClient)) a1
-
-setServer_impl :: XmlRpcAbeClient -> Int -> IO (())
-setServer_impl this server = do
-        jset (this).server (server)
-        pure ()
-
-
-getStart :: (JavaObjectClass this_) => this_ -> IO (Int)
-getStart object_ = jmethod object_ "getStart" (\() -> (getStart_impl (javaCast object_ :: XmlRpcAbeClient))) ()
-
-getStart_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getStart_super object_ = (getStart_impl (javaCast object_ :: XmlRpcAbeClient))
-
-getStart_impl :: XmlRpcAbeClient -> IO (Int)
-getStart_impl this = do
-        pure ((jget (this).start))
-
-
-setStart :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setStart object_ a1 = jmethod object_ "setStart" (\() -> (setStart_impl (javaCast object_ :: XmlRpcAbeClient))) () a1
-
-setStart_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setStart_super object_ a1 = (setStart_impl (javaCast object_ :: XmlRpcAbeClient)) a1
-
-setStart_impl :: XmlRpcAbeClient -> Int -> IO (())
-setStart_impl this start = do
-        jset (this).start (start)
-        pure ()
-
-
-getMaxServers :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMaxServers object_ = jmethod object_ "getMaxServers" (\() -> (getMaxServers_impl (javaCast object_ :: XmlRpcAbeClient))) ()
-
-getMaxServers_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMaxServers_super object_ = (getMaxServers_impl (javaCast object_ :: XmlRpcAbeClient))
-
-getMaxServers_impl :: XmlRpcAbeClient -> IO (Int)
-getMaxServers_impl this = do
-        pure ((jget (this).maxServers))
-
-
-setMaxServers :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setMaxServers object_ a1 = jmethod object_ "setMaxServers" (\() -> (setMaxServers_impl (javaCast object_ :: XmlRpcAbeClient))) () a1
-
-setMaxServers_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setMaxServers_super object_ a1 = (setMaxServers_impl (javaCast object_ :: XmlRpcAbeClient)) a1
-
-setMaxServers_impl :: XmlRpcAbeClient -> Int -> IO (())
-setMaxServers_impl this maxServers = do
-        jset (this).maxServers (maxServers)
-        pure ()
-
-
-isIsDone :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isIsDone object_ = jmethod object_ "isIsDone" (\() -> (isIsDone_impl (javaCast object_ :: XmlRpcAbeClient))) ()
-
-isIsDone_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isIsDone_super object_ = (isIsDone_impl (javaCast object_ :: XmlRpcAbeClient))
-
-isIsDone_impl :: XmlRpcAbeClient -> IO (Bool)
-isIsDone_impl this = do
-        pure ((jget (this).isDone))
-
-
-setIsDone :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setIsDone object_ a1 = jmethod object_ "setIsDone" (\() -> (setIsDone_impl (javaCast object_ :: XmlRpcAbeClient))) () a1
-
-setIsDone_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setIsDone_super object_ a1 = (setIsDone_impl (javaCast object_ :: XmlRpcAbeClient)) a1
-
-setIsDone_impl :: XmlRpcAbeClient -> Bool -> IO (())
-setIsDone_impl this isDone = do
-        jset (this).isDone (isDone)
-        pure ()
-
-
-getRemoteMethod :: (JavaObjectClass this_) => this_ -> IO (String)
-getRemoteMethod object_ = jmethod object_ "getRemoteMethod" (\() -> (getRemoteMethod_impl (javaCast object_ :: XmlRpcAbeClient))) ()
-
-getRemoteMethod_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getRemoteMethod_super object_ = (getRemoteMethod_impl (javaCast object_ :: XmlRpcAbeClient))
-
-getRemoteMethod_impl :: XmlRpcAbeClient -> IO (String)
-getRemoteMethod_impl this = do
-        pure ((jget (this).remoteMethod))
-
+module Org.Allbinary.Logic.Communication.Xmlrpc.XmlRpcAbeClient exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.xmlrpc
+-}
+
+import JR
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Rand.MyRandomFactory as MyRandomFactory
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Apache.Xmlrpc.NullXmlRpcHandler as NullXmlRpcHandler
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+
+
+jclass : String
+jclass =
+    "XmlRpcAbeClient"
+
+
+jchain : List String
+jchain =
+    [ "XmlRpcAbeClient" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "remoteMethod", JR.defaultOf "" ), ( "clientInfo", JR.defaultOf "" ), ( "client", JR.defaultOf "" ), ( "server", JR.defaultOf "I" ), ( "start", JR.defaultOf "I" ), ( "maxServers", JR.defaultOf "I" ), ( "isDone", JR.defaultOf "Z" ), ( "START_SERVER", JR.defaultOf "" ), ( "TRYING", JR.defaultOf "" ), ( "SEP", JR.defaultOf "" ), ( "CLIENT_INFO", JR.defaultOf "" ), ( "RESULT", JR.defaultOf "" ), ( "INVALID", JR.defaultOf "" ), ( "EXCEPTION_IN_CLIENT", JR.defaultOf "" ), ( "SERVER_REPORTED_ERROR", JR.defaultOf "" ), ( "UNKNOWN_ERROR", JR.defaultOf "" ), ( "TRYING_OTHER_SERVERS", JR.defaultOf "" ), ( "HOST_NOT_RESOLVED_MSG", JR.defaultOf "" ), ( "HOST_NOT_RESOLVED", JR.defaultOf "" ), ( "myRandomFactory", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "get_1", jm_get_1 )
+        , ( "tryAnother_1", jm_tryAnother_1 )
+        , ( "getClientInfo_0", jm_getClientInfo_0 )
+        , ( "getClient_0", jm_getClient_0 )
+        , ( "setClient_1", jm_setClient_1 )
+        , ( "getServer_0", jm_getServer_0 )
+        , ( "setServer_1", jm_setServer_1 )
+        , ( "getStart_0", jm_getStart_0 )
+        , ( "setStart_1", jm_setStart_1 )
+        , ( "getMaxServers_0", jm_getMaxServers_0 )
+        , ( "setMaxServers_1", jm_setMaxServers_1 )
+        , ( "isIsDone_0", jm_isIsDone_0 )
+        , ( "setIsDone_1", jm_setIsDone_1 )
+        , ( "getRemoteMethod_0", jm_getRemoteMethod_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "XmlRpcAbeClient"
+        [ ( "jm_get_1", jm_get_1 ), ( "jm_tryAnother_1", jm_tryAnother_1 ), ( "jm_getClientInfo_0", jm_getClientInfo_0 ), ( "jm_getClient_0", jm_getClient_0 ), ( "jm_setClient_1", jm_setClient_1 ), ( "jm_getServer_0", jm_getServer_0 ), ( "jm_setServer_1", jm_setServer_1 ), ( "jm_getStart_0", jm_getStart_0 ), ( "jm_setStart_1", jm_setStart_1 ), ( "jm_getMaxServers_0", jm_getMaxServers_0 ), ( "jm_setMaxServers_1", jm_setMaxServers_1 ), ( "jm_isIsDone_0", jm_isIsDone_0 ), ( "jm_setIsDone_1", jm_setIsDone_1 ), ( "jm_getRemoteMethod_0", jm_getRemoteMethod_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_isOnline", jstatic_isOnline ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_isOnline : JR.M
+jstatic_isOnline s =
+    JR.static "XmlRpcAbeClient" jclinit "isOnline"
+        (JR.bool True)
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "clientInfo", "" ), ( "remoteMethod", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "client" "" JR.this NullXmlRpcHandler.jstatic_NULL_XML_RPC_HANDLER),
+                JR.exec (JR.setField "START_SERVER" "" JR.this (JR.str "Start With Server #")),
+                JR.exec (JR.setField "TRYING" "" JR.this (JR.str "Trying Server #")),
+                JR.exec (JR.setField "SEP" "" JR.this (JR.field "COLON_SEP" (JR.callStatic CommonLabels.jm_getInstance_0 []))),
+                JR.exec (JR.setField "CLIENT_INFO" "" JR.this (JR.str "Client Info: \n")),
+                JR.exec (JR.setField "RESULT" "" JR.this (JR.concat (JR.field "RESULT_" (JR.callStatic CommonLabels.jm_getInstance_0 [])) (JR.field "NEW_LINE" (JR.callStatic CommonSeps.jm_getInstance_0 [])))),
+                JR.exec (JR.setField "INVALID" "" JR.this (JR.str "License data is Invalid Trying Other Servers")),
+                JR.exec (JR.setField "EXCEPTION_IN_CLIENT" "" JR.this (JR.str "Exception in client")),
+                JR.exec (JR.setField "SERVER_REPORTED_ERROR" "" JR.this (JR.str "Server reported error")),
+                JR.exec (JR.setField "UNKNOWN_ERROR" "" JR.this (JR.str "Unknown License Retrieval Failure")),
+                JR.exec (JR.setField "TRYING_OTHER_SERVERS" "" JR.this (JR.str "IOException Trying Other Servers")),
+                JR.exec (JR.setField "HOST_NOT_RESOLVED_MSG" "" JR.this (JR.str "Not Trying Again Since Host Unresolved")),
+                JR.exec (JR.setField "HOST_NOT_RESOLVED" "" JR.this (JR.str "Host is unresolved")),
+                JR.exec (JR.setField "myRandomFactory" "" JR.this (JR.callStatic MyRandomFactory.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "remoteMethod" "" JR.this (JR.local "remoteMethod")), 
+                    JR.exec (JR.setField "clientInfo" "" JR.this (JR.local "clientInfo")), 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "getNumberOfLicenseServers_0" (JR.local "clientInfo") []) (JR.int 1)) (JR.run [ 
+                        JR.exec (JR.setField "maxServers" "I" JR.this (JR.map2 JR.sub (JR.invoke "getNumberOfLicenseServers_0" (JR.local "clientInfo") []) (JR.int 2))), 
+                        JR.exec (JR.setField "start" "I" JR.this (JR.map2 JR.add (JR.invoke "getAbsoluteNextInt_1" (JR.thisField "myRandomFactory") [ (JR.thisField "maxServers") ]) (JR.int 1))) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "getNumberOfLicenseServers_0" (JR.local "clientInfo") []) (JR.int 1)) (JR.run [ 
+                        JR.exec (JR.setField "maxServers" "I" JR.this (JR.int 0)), 
+                        JR.exec (JR.setField "start" "I" JR.this (JR.int 0)) ]) identity ]), 
+                    JR.exec (JR.setField "isDone" "Z" JR.this (JR.bool False)), 
+                    JR.exec (JR.setField "server" "I" JR.this (JR.thisField "start")), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "START_SERVER") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "getServer_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "SEP") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getLicenseServer_1" (JR.local "clientInfo") [ (JR.invoke "getServer_0" JR.this []) ]) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_get_1 : JR.Method
+jm_get_1 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")), JR.this ]), 
+                    JR.return (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_tryAnother_1 : JR.Method
+jm_tryAnother_1 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.less (JR.invoke "getServer_0" JR.this []) (JR.invoke "getMaxServers_0" JR.this [])) (JR.run [ 
+                        JR.exec (JR.invoke "setServer_1" JR.this [ (JR.map2 JR.add (JR.invoke "getServer_0" JR.this []) (JR.int 1)) ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setServer_1" JR.this [ (JR.int 0) ]) ]), 
+                    JR.ifElse (JR.and (JR.map2 JR.notEquals (JR.invoke "getServer_0" JR.this []) (JR.invoke "getStart_0" JR.this [])) (JR.map JR.not_ (JR.invoke "isIsDone_0" JR.this []))) (JR.run [ 
+                        JR.return (JR.invoke "get_1" JR.this [ (JR.local "anyType") ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setIsDone_1" JR.this [ (JR.bool True) ]) ]), 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Tried All Servers But Still Failed") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getClientInfo_0 : JR.Method
+jm_getClientInfo_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "clientInfo") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getClient_0 : JR.Method
+jm_getClient_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "client") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setClient_1 : JR.Method
+jm_setClient_1 jheap jthis jargs =
+    JR.method [ ( "client", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "client" "" JR.this (JR.local "client")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getServer_0 : JR.Method
+jm_getServer_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "server") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setServer_1 : JR.Method
+jm_setServer_1 jheap jthis jargs =
+    JR.method [ ( "server", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "server" "I" JR.this (JR.local "server")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getStart_0 : JR.Method
+jm_getStart_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "start") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setStart_1 : JR.Method
+jm_setStart_1 jheap jthis jargs =
+    JR.method [ ( "start", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "start" "I" JR.this (JR.local "start")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMaxServers_0 : JR.Method
+jm_getMaxServers_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "maxServers") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMaxServers_1 : JR.Method
+jm_setMaxServers_1 jheap jthis jargs =
+    JR.method [ ( "maxServers", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "maxServers" "I" JR.this (JR.local "maxServers")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isIsDone_0 : JR.Method
+jm_isIsDone_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "isDone") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setIsDone_1 : JR.Method
+jm_setIsDone_1 jheap jthis jargs =
+    JR.method [ ( "isDone", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "isDone" "Z" JR.this (JR.local "isDone")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRemoteMethod_0 : JR.Method
+jm_getRemoteMethod_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "remoteMethod") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

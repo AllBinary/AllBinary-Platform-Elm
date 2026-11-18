@@ -1,337 +1,287 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.velocity
-module BasicVelocityProperties where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Direction -- org.allbinary.direction.Direction
-import qualified DirectionUtil -- org.allbinary.direction.DirectionUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified BasicDecimal -- org.allbinary.logic.math.BasicDecimal
-import qualified AxisMathVectorUtil -- org.allbinary.logic.math.vector.AxisMathVectorUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified Angle -- org.allbinary.math.Angle
-import qualified PositionStrings -- org.allbinary.math.PositionStrings
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified BasicVelocityInterface
-
--- implements BasicVelocityInterface
-data BasicVelocityProperties = BasicVelocityProperties
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , velocityXBasicDecimal :: IORef (BasicDecimal.BasicDecimal)
-    , velocityYBasicDecimal :: IORef (BasicDecimal.BasicDecimal)
-    , velocityZBasicDecimal :: IORef (BasicDecimal.BasicDecimal)
-    , axisMathVectorUtil :: IORef (AxisMathVectorUtil.AxisMathVectorUtil)
-    , directionUtil :: IORef (DirectionUtil.DirectionUtil)
-    }
-
-instance JavaNull BasicVelocityProperties where
-    javaNull = javaNullRecord "BasicVelocityProperties"
-
-instance JavaEquals BasicVelocityProperties where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicVelocityProperties where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicVelocityProperties where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO BasicVelocityProperties
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    velocityXBasicDecimal <- newIORef javaNull
-    velocityYBasicDecimal <- newIORef javaNull
-    velocityZBasicDecimal <- newIORef javaNull
-    axisMathVectorUtil <- newIORef javaNull
-    directionUtil <- newIORef javaNull
-    let this = BasicVelocityProperties header_ logUtil velocityXBasicDecimal velocityYBasicDecimal velocityZBasicDecimal axisMathVectorUtil directionUtil
-    jregisterLevel header_ this
-    BasicVelocityInterface.registerInterface_ header_
-    jregisterMethod header_ "zero" (\() -> zero_impl this)
-    jregisterMethod header_ "getVelocityXBasicDecimalP" (\() -> getVelocityXBasicDecimalP_impl this)
-    jregisterMethod header_ "getVelocityYBasicDecimalP" (\() -> getVelocityYBasicDecimalP_impl this)
-    jregisterMethod header_ "getVelocityZBasicDecimalP" (\() -> getVelocityZBasicDecimalP_impl this)
-    jregisterMethod header_ "setVelocityWithBigDecimalAndDirection" (\() -> setVelocityWithBigDecimalAndDirection_impl this)
-    jregisterMethod header_ "setVelocityWithDirection" (\() -> setVelocityWithDirection_impl this)
-    jregisterMethod header_ "addVelocityWithBigDecimalAndDirection" (\() -> addVelocityWithBigDecimalAndDirection_impl this)
-    jregisterMethod header_ "addVelocityWithDirection" (\() -> addVelocityWithDirection_impl this)
-    jregisterMethod header_ "setVelocityWithBigDecimal" (\() -> setVelocityWithBigDecimal_impl this)
-    jregisterMethod header_ "addVelocityWithBigDecimal" (\() -> addVelocityWithBigDecimal_impl this)
-    jregisterMethod header_ "setVelocity" (\() -> setVelocity_impl this)
-    jregisterMethod header_ "addVelocity" (\() -> addVelocity_impl this)
-    jregisterMethod header_ "setVelocityi" (\() -> setVelocityi_impl this)
-    jregisterMethod header_ "addVelocityi" (\() -> addVelocityi_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: BasicVelocityProperties -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.velocityXBasicDecimal (javaNull)
-    jset this.velocityYBasicDecimal (javaNull)
-    jset this.velocityZBasicDecimal (javaNull)
-    jset this.axisMathVectorUtil =<< (AxisMathVectorUtil.getInstance)
-    jset this.directionUtil =<< (DirectionUtil.getInstance)
-    pure ()
-
-new_ :: IO BasicVelocityProperties
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BasicVelocityProperties -> IO ()
-init_ this = do
-        initFields_ this
-        assignedValue <- (BasicDecimal.new_1 0)
-        jset (this).velocityXBasicDecimal (assignedValue)
-        assignedValue <- (BasicDecimal.new_1 0)
-        jset (this).velocityYBasicDecimal (assignedValue)
-        assignedValue <- (BasicDecimal.new_1 0)
-        jset (this).velocityZBasicDecimal (assignedValue)
-        pure ()
-
-
-zero :: (JavaObjectClass this_) => this_ -> IO (())
-zero object_ = jmethod object_ "zero" (\() -> (zero_impl (javaCast object_ :: BasicVelocityProperties))) ()
-
-zero_super :: (JavaObjectClass this_) => this_ -> IO (())
-zero_super object_ = (zero_impl (javaCast object_ :: BasicVelocityProperties))
-
-zero_impl :: BasicVelocityProperties -> IO (())
-zero_impl this = do
-        Control.Monad.void (BasicDecimal.setint ((jget (this).velocityXBasicDecimal)) 0)
-        Control.Monad.void (BasicDecimal.setint ((jget (this).velocityYBasicDecimal)) 0)
-        Control.Monad.void (BasicDecimal.setint ((jget (this).velocityZBasicDecimal)) 0)
-        pure ()
-
-
-getVelocityXBasicDecimalP :: (JavaObjectClass this_) => this_ -> IO (BasicDecimal.BasicDecimal)
-getVelocityXBasicDecimalP object_ = jmethod object_ "getVelocityXBasicDecimalP" (\() -> (getVelocityXBasicDecimalP_impl (javaCast object_ :: BasicVelocityProperties))) ()
-
-getVelocityXBasicDecimalP_super :: (JavaObjectClass this_) => this_ -> IO (BasicDecimal.BasicDecimal)
-getVelocityXBasicDecimalP_super object_ = (getVelocityXBasicDecimalP_impl (javaCast object_ :: BasicVelocityProperties))
-
-getVelocityXBasicDecimalP_impl :: BasicVelocityProperties -> IO (BasicDecimal.BasicDecimal)
-getVelocityXBasicDecimalP_impl this = do
-        pure ((jget (this).velocityXBasicDecimal))
-
-
-getVelocityYBasicDecimalP :: (JavaObjectClass this_) => this_ -> IO (BasicDecimal.BasicDecimal)
-getVelocityYBasicDecimalP object_ = jmethod object_ "getVelocityYBasicDecimalP" (\() -> (getVelocityYBasicDecimalP_impl (javaCast object_ :: BasicVelocityProperties))) ()
-
-getVelocityYBasicDecimalP_super :: (JavaObjectClass this_) => this_ -> IO (BasicDecimal.BasicDecimal)
-getVelocityYBasicDecimalP_super object_ = (getVelocityYBasicDecimalP_impl (javaCast object_ :: BasicVelocityProperties))
-
-getVelocityYBasicDecimalP_impl :: BasicVelocityProperties -> IO (BasicDecimal.BasicDecimal)
-getVelocityYBasicDecimalP_impl this = do
-        pure ((jget (this).velocityYBasicDecimal))
-
-
-getVelocityZBasicDecimalP :: (JavaObjectClass this_) => this_ -> IO (BasicDecimal.BasicDecimal)
-getVelocityZBasicDecimalP object_ = jmethod object_ "getVelocityZBasicDecimalP" (\() -> (getVelocityZBasicDecimalP_impl (javaCast object_ :: BasicVelocityProperties))) ()
-
-getVelocityZBasicDecimalP_super :: (JavaObjectClass this_) => this_ -> IO (BasicDecimal.BasicDecimal)
-getVelocityZBasicDecimalP_super object_ = (getVelocityZBasicDecimalP_impl (javaCast object_ :: BasicVelocityProperties))
-
-getVelocityZBasicDecimalP_impl :: BasicVelocityProperties -> IO (BasicDecimal.BasicDecimal)
-getVelocityZBasicDecimalP_impl this = do
-        pure ((jget (this).velocityZBasicDecimal))
-
-
-setVelocityWithBigDecimalAndDirection :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Direction.Direction -> Direction.Direction -> IO (())
-setVelocityWithBigDecimalAndDirection object_ a1 a2 a3 = jmethod object_ "setVelocityWithBigDecimalAndDirection" (\() -> (setVelocityWithBigDecimalAndDirection_impl (javaCast object_ :: BasicVelocityProperties))) () a1 a2 a3
-
-setVelocityWithBigDecimalAndDirection_super :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Direction.Direction -> Direction.Direction -> IO (())
-setVelocityWithBigDecimalAndDirection_super object_ a1 a2 a3 = (setVelocityWithBigDecimalAndDirection_impl (javaCast object_ :: BasicVelocityProperties)) a1 a2 a3
-
-setVelocityWithBigDecimalAndDirection_impl :: BasicVelocityProperties -> BasicDecimal.BasicDecimal -> Direction.Direction -> Direction.Direction -> IO (())
-setVelocityWithBigDecimalAndDirection_impl this magnitudeBasicDecimal direction otherDirection = do
-        angle <- (DirectionUtil.getAngle ((jget (this).directionUtil)) direction)
-        otherAngle <- (DirectionUtil.getAngle ((jget (this).directionUtil)) otherDirection)
-        Control.Monad.void (BasicVelocityProperties.setVelocityWithBigDecimal this magnitudeBasicDecimal angle otherAngle)
-        pure ()
-
-
-setVelocityWithDirection :: (JavaObjectClass this_) => this_ -> Int64 -> Direction.Direction -> Direction.Direction -> IO (())
-setVelocityWithDirection object_ a1 a2 a3 = jmethod object_ "setVelocityWithDirection" (\() -> (setVelocityWithDirection_impl (javaCast object_ :: BasicVelocityProperties))) () a1 a2 a3
-
-setVelocityWithDirection_super :: (JavaObjectClass this_) => this_ -> Int64 -> Direction.Direction -> Direction.Direction -> IO (())
-setVelocityWithDirection_super object_ a1 a2 a3 = (setVelocityWithDirection_impl (javaCast object_ :: BasicVelocityProperties)) a1 a2 a3
-
-setVelocityWithDirection_impl :: BasicVelocityProperties -> Int64 -> Direction.Direction -> Direction.Direction -> IO (())
-setVelocityWithDirection_impl this magnitude direction otherDirection = do
-        angle <- (DirectionUtil.getAngle ((jget (this).directionUtil)) direction)
-        otherAngle <- (DirectionUtil.getAngle ((jget (this).directionUtil)) otherDirection)
-        Control.Monad.void (BasicVelocityProperties.setVelocity this magnitude angle otherAngle)
-        pure ()
-
-
-addVelocityWithBigDecimalAndDirection :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Direction.Direction -> Direction.Direction -> IO (())
-addVelocityWithBigDecimalAndDirection object_ a1 a2 a3 = jmethod object_ "addVelocityWithBigDecimalAndDirection" (\() -> (addVelocityWithBigDecimalAndDirection_impl (javaCast object_ :: BasicVelocityProperties))) () a1 a2 a3
-
-addVelocityWithBigDecimalAndDirection_super :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Direction.Direction -> Direction.Direction -> IO (())
-addVelocityWithBigDecimalAndDirection_super object_ a1 a2 a3 = (addVelocityWithBigDecimalAndDirection_impl (javaCast object_ :: BasicVelocityProperties)) a1 a2 a3
-
-addVelocityWithBigDecimalAndDirection_impl :: BasicVelocityProperties -> BasicDecimal.BasicDecimal -> Direction.Direction -> Direction.Direction -> IO (())
-addVelocityWithBigDecimalAndDirection_impl this magnitudeBasicDecimal direction otherDirection = do
-        angle <- (DirectionUtil.getAngle ((jget (this).directionUtil)) direction)
-        otherAngle <- (DirectionUtil.getAngle ((jget (this).directionUtil)) otherDirection)
-        Control.Monad.void (BasicVelocityProperties.addVelocityWithBigDecimal this magnitudeBasicDecimal angle otherAngle)
-        pure ()
-
-
-addVelocityWithDirection :: (JavaObjectClass this_) => this_ -> Int64 -> Direction.Direction -> Direction.Direction -> IO (())
-addVelocityWithDirection object_ a1 a2 a3 = jmethod object_ "addVelocityWithDirection" (\() -> (addVelocityWithDirection_impl (javaCast object_ :: BasicVelocityProperties))) () a1 a2 a3
-
-addVelocityWithDirection_super :: (JavaObjectClass this_) => this_ -> Int64 -> Direction.Direction -> Direction.Direction -> IO (())
-addVelocityWithDirection_super object_ a1 a2 a3 = (addVelocityWithDirection_impl (javaCast object_ :: BasicVelocityProperties)) a1 a2 a3
-
-addVelocityWithDirection_impl :: BasicVelocityProperties -> Int64 -> Direction.Direction -> Direction.Direction -> IO (())
-addVelocityWithDirection_impl this magnitude direction otherDirection = do
-        angle <- (DirectionUtil.getAngle ((jget (this).directionUtil)) direction)
-        otherAngle <- (DirectionUtil.getAngle ((jget (this).directionUtil)) otherDirection)
-        Control.Monad.void (BasicVelocityProperties.addVelocity this magnitude angle otherAngle)
-        pure ()
-
-
-setVelocityWithBigDecimal :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Angle.Angle -> Angle.Angle -> IO (())
-setVelocityWithBigDecimal object_ a1 a2 a3 = jmethod object_ "setVelocityWithBigDecimal" (\() -> (setVelocityWithBigDecimal_impl (javaCast object_ :: BasicVelocityProperties))) () a1 a2 a3
-
-setVelocityWithBigDecimal_super :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Angle.Angle -> Angle.Angle -> IO (())
-setVelocityWithBigDecimal_super object_ a1 a2 a3 = (setVelocityWithBigDecimal_impl (javaCast object_ :: BasicVelocityProperties)) a1 a2 a3
-
-setVelocityWithBigDecimal_impl :: BasicVelocityProperties -> BasicDecimal.BasicDecimal -> Angle.Angle -> Angle.Angle -> IO (())
-setVelocityWithBigDecimal_impl this magnitudeBasicDecimal angle otherAngle = do
-        magnitude <- (BasicDecimal.getUnscaled magnitudeBasicDecimal)
-        Control.Monad.void (BasicVelocityProperties.setVelocity this magnitude angle otherAngle)
-        pure ()
-
-
-addVelocityWithBigDecimal :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Angle.Angle -> Angle.Angle -> IO (())
-addVelocityWithBigDecimal object_ a1 a2 a3 = jmethod object_ "addVelocityWithBigDecimal" (\() -> (addVelocityWithBigDecimal_impl (javaCast object_ :: BasicVelocityProperties))) () a1 a2 a3
-
-addVelocityWithBigDecimal_super :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Angle.Angle -> Angle.Angle -> IO (())
-addVelocityWithBigDecimal_super object_ a1 a2 a3 = (addVelocityWithBigDecimal_impl (javaCast object_ :: BasicVelocityProperties)) a1 a2 a3
-
-addVelocityWithBigDecimal_impl :: BasicVelocityProperties -> BasicDecimal.BasicDecimal -> Angle.Angle -> Angle.Angle -> IO (())
-addVelocityWithBigDecimal_impl this magnitudeBasicDecimal angle otherAngle = do
-        magnitude <- (BasicDecimal.getUnscaled magnitudeBasicDecimal)
-        Control.Monad.void (BasicVelocityProperties.addVelocity this magnitude angle otherAngle)
-        pure ()
-
-
-setVelocity :: (JavaObjectClass this_) => this_ -> Int64 -> Angle.Angle -> Angle.Angle -> IO (())
-setVelocity object_ a1 a2 a3 = jmethod object_ "setVelocity" (\() -> (setVelocity_impl (javaCast object_ :: BasicVelocityProperties))) () a1 a2 a3
-
-setVelocity_super :: (JavaObjectClass this_) => this_ -> Int64 -> Angle.Angle -> Angle.Angle -> IO (())
-setVelocity_super object_ a1 a2 a3 = (setVelocity_impl (javaCast object_ :: BasicVelocityProperties)) a1 a2 a3
-
-setVelocity_impl :: BasicVelocityProperties -> Int64 -> Angle.Angle -> Angle.Angle -> IO (())
-setVelocity_impl this magnitude angle otherAngle = do
-        Control.Monad.void (BasicVelocityProperties.setVelocityi this magnitude (Prelude.fromInteger (jnumericInteger (jio (Angle.getValue angle)))) (Prelude.fromInteger (jnumericInteger (jio (Angle.getValue otherAngle)))))
-        pure ()
-
-
-addVelocity :: (JavaObjectClass this_) => this_ -> Int64 -> Angle.Angle -> Angle.Angle -> IO (())
-addVelocity object_ a1 a2 a3 = jmethod object_ "addVelocity" (\() -> (addVelocity_impl (javaCast object_ :: BasicVelocityProperties))) () a1 a2 a3
-
-addVelocity_super :: (JavaObjectClass this_) => this_ -> Int64 -> Angle.Angle -> Angle.Angle -> IO (())
-addVelocity_super object_ a1 a2 a3 = (addVelocity_impl (javaCast object_ :: BasicVelocityProperties)) a1 a2 a3
-
-addVelocity_impl :: BasicVelocityProperties -> Int64 -> Angle.Angle -> Angle.Angle -> IO (())
-addVelocity_impl this magnitude angle otherAngle = do
-        Control.Monad.void (BasicVelocityProperties.addVelocityi this magnitude (Prelude.fromInteger (jnumericInteger (jio (Angle.getValue angle)))) (Prelude.fromInteger (jnumericInteger (jio (Angle.getValue otherAngle)))))
-        pure ()
-
-
-setVelocityi :: (JavaObjectClass this_) => this_ -> Int64 -> Int -> Int -> IO (())
-setVelocityi object_ a1 a2 a3 = jmethod object_ "setVelocityi" (\() -> (setVelocityi_impl (javaCast object_ :: BasicVelocityProperties))) () a1 a2 a3
-
-setVelocityi_super :: (JavaObjectClass this_) => this_ -> Int64 -> Int -> Int -> IO (())
-setVelocityi_super object_ a1 a2 a3 = (setVelocityi_impl (javaCast object_ :: BasicVelocityProperties)) a1 a2 a3
-
-setVelocityi_impl :: BasicVelocityProperties -> Int64 -> Int -> Int -> IO (())
-setVelocityi_impl this magnitude angle otherAngle = do
-        let xVector = (((jio (AxisMathVectorUtil.calculateX ((jget (this).axisMathVectorUtil)) magnitude angle)) / (jio (BasicDecimal.getScaledFactorValue ((jget (this).velocityXBasicDecimal))))))
-        let yVector = (((jio (AxisMathVectorUtil.calculateY ((jget (this).axisMathVectorUtil)) magnitude angle)) / (jio (BasicDecimal.getScaledFactorValue ((jget (this).velocityYBasicDecimal))))))
-        let zVector = (((jio (AxisMathVectorUtil.calculateZ ((jget (this).axisMathVectorUtil)) magnitude otherAngle)) / (jio (BasicDecimal.getScaledFactorValue ((jget (this).velocityZBasicDecimal))))))
-        Control.Monad.void (BasicDecimal.setlong ((jget (this).velocityXBasicDecimal)) xVector)
-        Control.Monad.void (BasicDecimal.setlong ((jget (this).velocityYBasicDecimal)) yVector)
-        Control.Monad.void (BasicDecimal.setlong ((jget (this).velocityZBasicDecimal)) zVector)
-        pure ()
-
-
-addVelocityi :: (JavaObjectClass this_) => this_ -> Int64 -> Int -> Int -> IO (())
-addVelocityi object_ a1 a2 a3 = jmethod object_ "addVelocityi" (\() -> (addVelocityi_impl (javaCast object_ :: BasicVelocityProperties))) () a1 a2 a3
-
-addVelocityi_super :: (JavaObjectClass this_) => this_ -> Int64 -> Int -> Int -> IO (())
-addVelocityi_super object_ a1 a2 a3 = (addVelocityi_impl (javaCast object_ :: BasicVelocityProperties)) a1 a2 a3
-
-addVelocityi_impl :: BasicVelocityProperties -> Int64 -> Int -> Int -> IO (())
-addVelocityi_impl this magnitude angle otherAngle = do
-        let xVector = (((jio (AxisMathVectorUtil.calculateX ((jget (this).axisMathVectorUtil)) magnitude angle)) / (jio (BasicDecimal.getScaledFactorValue ((jget (this).velocityXBasicDecimal))))))
-        let yVector = (((jio (AxisMathVectorUtil.calculateY ((jget (this).axisMathVectorUtil)) magnitude angle)) / (jio (BasicDecimal.getScaledFactorValue ((jget (this).velocityYBasicDecimal))))))
-        let zVector = (((jio (AxisMathVectorUtil.calculateZ ((jget (this).axisMathVectorUtil)) magnitude otherAngle)) / (jio (BasicDecimal.getScaledFactorValue ((jget (this).velocityZBasicDecimal))))))
-        Control.Monad.void (BasicDecimal.addlong ((jget (this).velocityXBasicDecimal)) xVector)
-        Control.Monad.void (BasicDecimal.addlong ((jget (this).velocityYBasicDecimal)) yVector)
-        Control.Monad.void (BasicDecimal.addlong ((jget (this).velocityZBasicDecimal)) zVector)
-        pure ()
-
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: BasicVelocityProperties))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: BasicVelocityProperties))
-
-toString_impl :: BasicVelocityProperties -> IO (String)
-toString_impl this = do
-        commonSeps <- (CommonSeps.getInstance)
-        positionStrings <- (PositionStrings.getInstance)
-        stringBuffer <- (StringMaker.new_)
-        stringUtil <- (StringUtil.getInstance)
-        Control.Monad.void (StringMaker.append stringBuffer "Velocity ")
-        Control.Monad.void (StringMaker.append stringBuffer (jget (positionStrings).x_LABEL))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString stringUtil (jget (this).velocityXBasicDecimal))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonSeps).sPACE))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (positionStrings).y_LABEL))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString stringUtil (jget (this).velocityYBasicDecimal))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonSeps).sPACE))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (positionStrings).z_LABEL))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString stringUtil (jget (this).velocityZBasicDecimal))))
-        (StringMaker.toString stringBuffer)
-
+module Org.Allbinary.Game.Physics.Velocity.BasicVelocityProperties exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.game.physics.velocity
+-}
+
+import JR
+import Org.Allbinary.Logic.Math.Vector.AxisMathVectorUtil as AxisMathVectorUtil
+import Org.Allbinary.Logic.Math.BasicDecimal as BasicDecimal
+import Org.Allbinary.Game.Physics.Velocity.BasicVelocityInterface as BasicVelocityInterface
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Direction.DirectionUtil as DirectionUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Math.PositionStrings as PositionStrings
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+
+
+jclass : String
+jclass =
+    "BasicVelocityProperties"
+
+
+jchain : List String
+jchain =
+    [ "BasicVelocityProperties" ]
+        ++ BasicVelocityInterface.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "velocityXBasicDecimal", JR.defaultOf "" ), ( "velocityYBasicDecimal", JR.defaultOf "" ), ( "velocityZBasicDecimal", JR.defaultOf "" ), ( "axisMathVectorUtil", JR.defaultOf "" ), ( "directionUtil", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "zero_0", jm_zero_0 )
+        , ( "getVelocityXBasicDecimalP_0", jm_getVelocityXBasicDecimalP_0 )
+        , ( "getVelocityYBasicDecimalP_0", jm_getVelocityYBasicDecimalP_0 )
+        , ( "getVelocityZBasicDecimalP_0", jm_getVelocityZBasicDecimalP_0 )
+        , ( "setVelocityWithBigDecimalAndDirection_3", jm_setVelocityWithBigDecimalAndDirection_3 )
+        , ( "setVelocityWithDirection_3", jm_setVelocityWithDirection_3 )
+        , ( "addVelocityWithBigDecimalAndDirection_3", jm_addVelocityWithBigDecimalAndDirection_3 )
+        , ( "addVelocityWithDirection_3", jm_addVelocityWithDirection_3 )
+        , ( "setVelocityWithBigDecimal_3", jm_setVelocityWithBigDecimal_3 )
+        , ( "addVelocityWithBigDecimal_3", jm_addVelocityWithBigDecimal_3 )
+        , ( "setVelocity_3", jm_setVelocity_3 )
+        , ( "addVelocity_3", jm_addVelocity_3 )
+        , ( "setVelocityi_3", jm_setVelocityi_3 )
+        , ( "addVelocityi_3", jm_addVelocityi_3 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicVelocityProperties"
+        [ ( "jm_zero_0", jm_zero_0 ), ( "jm_getVelocityXBasicDecimalP_0", jm_getVelocityXBasicDecimalP_0 ), ( "jm_getVelocityYBasicDecimalP_0", jm_getVelocityYBasicDecimalP_0 ), ( "jm_getVelocityZBasicDecimalP_0", jm_getVelocityZBasicDecimalP_0 ), ( "jm_setVelocityWithBigDecimalAndDirection_3", jm_setVelocityWithBigDecimalAndDirection_3 ), ( "jm_setVelocityWithDirection_3", jm_setVelocityWithDirection_3 ), ( "jm_addVelocityWithBigDecimalAndDirection_3", jm_addVelocityWithBigDecimalAndDirection_3 ), ( "jm_addVelocityWithDirection_3", jm_addVelocityWithDirection_3 ), ( "jm_setVelocityWithBigDecimal_3", jm_setVelocityWithBigDecimal_3 ), ( "jm_addVelocityWithBigDecimal_3", jm_addVelocityWithBigDecimal_3 ), ( "jm_setVelocity_3", jm_setVelocity_3 ), ( "jm_addVelocity_3", jm_addVelocity_3 ), ( "jm_setVelocityi_3", jm_setVelocityi_3 ), ( "jm_addVelocityi_3", jm_addVelocityi_3 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "axisMathVectorUtil" "" JR.this (JR.callStatic AxisMathVectorUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "directionUtil" "" JR.this (JR.callStatic DirectionUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "velocityXBasicDecimal" "" JR.this (JR.new BasicDecimal.jnew_1 [ (JR.int 0) ])), 
+                    JR.exec (JR.setField "velocityYBasicDecimal" "" JR.this (JR.new BasicDecimal.jnew_1 [ (JR.int 0) ])), 
+                    JR.exec (JR.setField "velocityZBasicDecimal" "" JR.this (JR.new BasicDecimal.jnew_1 [ (JR.int 0) ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_zero_0 : JR.Method
+jm_zero_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setint_1" (JR.thisField "velocityXBasicDecimal") [ (JR.int 0) ]), 
+                    JR.exec (JR.invoke "setint_1" (JR.thisField "velocityYBasicDecimal") [ (JR.int 0) ]), 
+                    JR.exec (JR.invoke "setint_1" (JR.thisField "velocityZBasicDecimal") [ (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getVelocityXBasicDecimalP_0 : JR.Method
+jm_getVelocityXBasicDecimalP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "velocityXBasicDecimal") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getVelocityYBasicDecimalP_0 : JR.Method
+jm_getVelocityYBasicDecimalP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "velocityYBasicDecimal") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getVelocityZBasicDecimalP_0 : JR.Method
+jm_getVelocityZBasicDecimalP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "velocityZBasicDecimal") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setVelocityWithBigDecimalAndDirection_3 : JR.Method
+jm_setVelocityWithBigDecimalAndDirection_3 jheap jthis jargs =
+    JR.method [ ( "magnitudeBasicDecimal", "" ), ( "direction", "" ), ( "otherDirection", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "angle" "" (JR.invoke "getAngle_1" (JR.thisField "directionUtil") [ (JR.local "direction") ]), 
+                    JR.declare "otherAngle" "" (JR.invoke "getAngle_1" (JR.thisField "directionUtil") [ (JR.local "otherDirection") ]), 
+                    JR.exec (JR.invoke "setVelocityWithBigDecimal_3" JR.this [ (JR.local "magnitudeBasicDecimal"), (JR.local "angle"), (JR.local "otherAngle") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setVelocityWithDirection_3 : JR.Method
+jm_setVelocityWithDirection_3 jheap jthis jargs =
+    JR.method [ ( "magnitude", "J" ), ( "direction", "" ), ( "otherDirection", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "angle" "" (JR.invoke "getAngle_1" (JR.thisField "directionUtil") [ (JR.local "direction") ]), 
+                    JR.declare "otherAngle" "" (JR.invoke "getAngle_1" (JR.thisField "directionUtil") [ (JR.local "otherDirection") ]), 
+                    JR.exec (JR.invoke "setVelocity_3" JR.this [ (JR.local "magnitude"), (JR.local "angle"), (JR.local "otherAngle") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addVelocityWithBigDecimalAndDirection_3 : JR.Method
+jm_addVelocityWithBigDecimalAndDirection_3 jheap jthis jargs =
+    JR.method [ ( "magnitudeBasicDecimal", "" ), ( "direction", "" ), ( "otherDirection", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "angle" "" (JR.invoke "getAngle_1" (JR.thisField "directionUtil") [ (JR.local "direction") ]), 
+                    JR.declare "otherAngle" "" (JR.invoke "getAngle_1" (JR.thisField "directionUtil") [ (JR.local "otherDirection") ]), 
+                    JR.exec (JR.invoke "addVelocityWithBigDecimal_3" JR.this [ (JR.local "magnitudeBasicDecimal"), (JR.local "angle"), (JR.local "otherAngle") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addVelocityWithDirection_3 : JR.Method
+jm_addVelocityWithDirection_3 jheap jthis jargs =
+    JR.method [ ( "magnitude", "J" ), ( "direction", "" ), ( "otherDirection", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "angle" "" (JR.invoke "getAngle_1" (JR.thisField "directionUtil") [ (JR.local "direction") ]), 
+                    JR.declare "otherAngle" "" (JR.invoke "getAngle_1" (JR.thisField "directionUtil") [ (JR.local "otherDirection") ]), 
+                    JR.exec (JR.invoke "addVelocity_3" JR.this [ (JR.local "magnitude"), (JR.local "angle"), (JR.local "otherAngle") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setVelocityWithBigDecimal_3 : JR.Method
+jm_setVelocityWithBigDecimal_3 jheap jthis jargs =
+    JR.method [ ( "magnitudeBasicDecimal", "" ), ( "angle", "" ), ( "otherAngle", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "magnitude" "J" (JR.invoke "getUnscaled_0" (JR.local "magnitudeBasicDecimal") []), 
+                    JR.exec (JR.invoke "setVelocity_3" JR.this [ (JR.local "magnitude"), (JR.local "angle"), (JR.local "otherAngle") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addVelocityWithBigDecimal_3 : JR.Method
+jm_addVelocityWithBigDecimal_3 jheap jthis jargs =
+    JR.method [ ( "magnitudeBasicDecimal", "" ), ( "angle", "" ), ( "otherAngle", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "magnitude" "J" (JR.invoke "getUnscaled_0" (JR.local "magnitudeBasicDecimal") []), 
+                    JR.exec (JR.invoke "addVelocity_3" JR.this [ (JR.local "magnitude"), (JR.local "angle"), (JR.local "otherAngle") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setVelocity_3 : JR.Method
+jm_setVelocity_3 jheap jthis jargs =
+    JR.method [ ( "magnitude", "J" ), ( "angle", "" ), ( "otherAngle", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setVelocityi_3" JR.this [ (JR.local "magnitude"), (JR.cast "I" (JR.invoke "getValue_0" (JR.local "angle") [])), (JR.cast "I" (JR.invoke "getValue_0" (JR.local "otherAngle") [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addVelocity_3 : JR.Method
+jm_addVelocity_3 jheap jthis jargs =
+    JR.method [ ( "magnitude", "J" ), ( "angle", "" ), ( "otherAngle", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "addVelocityi_3" JR.this [ (JR.local "magnitude"), (JR.cast "I" (JR.invoke "getValue_0" (JR.local "angle") [])), (JR.cast "I" (JR.invoke "getValue_0" (JR.local "otherAngle") [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setVelocityi_3 : JR.Method
+jm_setVelocityi_3 jheap jthis jargs =
+    JR.method [ ( "magnitude", "J" ), ( "angle", "I" ), ( "otherAngle", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "xVector" "J" ((JR.map2 JR.div (JR.invoke "calculateX_2" (JR.thisField "axisMathVectorUtil") [ (JR.local "magnitude"), (JR.local "angle") ]) (JR.cast "J" (JR.invoke "getScaledFactorValue_0" (JR.thisField "velocityXBasicDecimal") [])))), 
+                    JR.declare "yVector" "J" ((JR.map2 JR.div (JR.invoke "calculateY_2" (JR.thisField "axisMathVectorUtil") [ (JR.local "magnitude"), (JR.local "angle") ]) (JR.cast "J" (JR.invoke "getScaledFactorValue_0" (JR.thisField "velocityYBasicDecimal") [])))), 
+                    JR.declare "zVector" "J" ((JR.map2 JR.div (JR.invoke "calculateZ_2" (JR.thisField "axisMathVectorUtil") [ (JR.local "magnitude"), (JR.local "otherAngle") ]) (JR.cast "J" (JR.invoke "getScaledFactorValue_0" (JR.thisField "velocityZBasicDecimal") [])))), 
+                    JR.exec (JR.invoke "setlong_1" (JR.thisField "velocityXBasicDecimal") [ (JR.local "xVector") ]), 
+                    JR.exec (JR.invoke "setlong_1" (JR.thisField "velocityYBasicDecimal") [ (JR.local "yVector") ]), 
+                    JR.exec (JR.invoke "setlong_1" (JR.thisField "velocityZBasicDecimal") [ (JR.local "zVector") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addVelocityi_3 : JR.Method
+jm_addVelocityi_3 jheap jthis jargs =
+    JR.method [ ( "magnitude", "J" ), ( "angle", "I" ), ( "otherAngle", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "xVector" "J" ((JR.map2 JR.div (JR.invoke "calculateX_2" (JR.thisField "axisMathVectorUtil") [ (JR.local "magnitude"), (JR.local "angle") ]) (JR.cast "J" (JR.invoke "getScaledFactorValue_0" (JR.thisField "velocityXBasicDecimal") [])))), 
+                    JR.declare "yVector" "J" ((JR.map2 JR.div (JR.invoke "calculateY_2" (JR.thisField "axisMathVectorUtil") [ (JR.local "magnitude"), (JR.local "angle") ]) (JR.cast "J" (JR.invoke "getScaledFactorValue_0" (JR.thisField "velocityYBasicDecimal") [])))), 
+                    JR.declare "zVector" "J" ((JR.map2 JR.div (JR.invoke "calculateZ_2" (JR.thisField "axisMathVectorUtil") [ (JR.local "magnitude"), (JR.local "otherAngle") ]) (JR.cast "J" (JR.invoke "getScaledFactorValue_0" (JR.thisField "velocityZBasicDecimal") [])))), 
+                    JR.exec (JR.invoke "addlong_1" (JR.thisField "velocityXBasicDecimal") [ (JR.local "xVector") ]), 
+                    JR.exec (JR.invoke "addlong_1" (JR.thisField "velocityYBasicDecimal") [ (JR.local "yVector") ]), 
+                    JR.exec (JR.invoke "addlong_1" (JR.thisField "velocityZBasicDecimal") [ (JR.local "zVector") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                    JR.declare "positionStrings" "" (JR.callStatic PositionStrings.jm_getInstance_0 []), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "stringUtil" "" (JR.callStatic StringUtil.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Velocity ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "X_LABEL" (JR.local "positionStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.local "stringUtil") [ (JR.thisField "velocityXBasicDecimal") ]) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.local "commonSeps")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "Y_LABEL" (JR.local "positionStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.local "stringUtil") [ (JR.thisField "velocityYBasicDecimal") ]) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.local "commonSeps")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "Z_LABEL" (JR.local "positionStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.local "stringUtil") [ (JR.thisField "velocityZBasicDecimal") ]) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,4 +1,4 @@
-module CacheableInterface exposing (..)
+module Org.Allbinary.Logic.Util.Cache.CacheableInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
 -}

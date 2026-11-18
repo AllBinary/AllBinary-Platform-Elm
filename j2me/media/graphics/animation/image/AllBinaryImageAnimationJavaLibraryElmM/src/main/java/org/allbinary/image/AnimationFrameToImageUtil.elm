@@ -1,129 +1,121 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image
-module AnimationFrameToImageUtil where
+module Org.Allbinary.Image.AnimationFrameToImageUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameFeatureImageCacheFactory -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Animation -- org.allbinary.animation.Animation
+{-| Generated Code Do Not Modify package org.allbinary.image
+-}
 
-data AnimationFrameToImageUtil = AnimationFrameToImageUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull AnimationFrameToImageUtil where
-    javaNull = javaNullRecord "AnimationFrameToImageUtil"
-
-instance JavaEquals AnimationFrameToImageUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AnimationFrameToImageUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AnimationFrameToImageUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AnimationFrameToImageUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AnimationFrameToImageUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = AnimationFrameToImageUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstanceTranslate" (\() -> getInstanceTranslate_impl this)
-    jregisterMethod header_ "getInstanceWH" (\() -> getInstanceWH_impl this)
-    pure this
-
-initFields_ :: AnimationFrameToImageUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AnimationFrameToImageUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AnimationFrameToImageUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Image.GameFeatureImageCacheFactory as GameFeatureImageCacheFactory
 
 
-getInstance :: IO (AnimationFrameToImageUtil)
-getInstance = do
-        pure (AnimationFrameToImageUtil.instance_)
+jclass : String
+jclass =
+    "AnimationFrameToImageUtil"
 
 
--- throws Exception
-getInstanceTranslate :: (JavaObjectClass this_) => this_ -> Int -> Int -> Animation.Animation -> IO (Image.Image)
-getInstanceTranslate object_ a1 a2 a3 = jmethod object_ "getInstanceTranslate" (\() -> (getInstanceTranslate_impl (javaCast object_ :: AnimationFrameToImageUtil))) () a1 a2 a3
-
-getInstanceTranslate_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Animation.Animation -> IO (Image.Image)
-getInstanceTranslate_super object_ a1 a2 a3 = (getInstanceTranslate_impl (javaCast object_ :: AnimationFrameToImageUtil)) a1 a2 a3
-
-getInstanceTranslate_impl :: AnimationFrameToImageUtil -> Int -> Int -> Animation.Animation -> IO (Image.Image)
-getInstanceTranslate_impl this width height animationInterface = do
-        image <- (GameFeatureImageCacheFactory.get ((jio (GameFeatureImageCacheFactory.getInstance))) (jio (Class.getName ((jio (jobjectGetClass AnimationFrameToImageUtil.instance_))))) ((((width * 3)) `Data.Bits.shiftR` 1)) ((((height * 3)) `Data.Bits.shiftR` 1)))
-        graphics <- (Image.getGraphics image)
-        let tranlateX = ((width `Data.Bits.shiftR` 2))
-        let tranlateY = ((height `Data.Bits.shiftR` 2))
-        Control.Monad.void (Graphics.translate graphics tranlateX tranlateY)
-        Control.Monad.void (Animation.paintXY animationInterface graphics 0 0)
-        Control.Monad.void (Graphics.translate graphics (Prelude.negate tranlateX) (Prelude.negate tranlateY))
-        pure (image)
+jchain : List String
+jchain =
+    [ "AnimationFrameToImageUtil" ]
 
 
--- throws Exception
-getInstanceWH :: (JavaObjectClass this_) => this_ -> Int -> Int -> Animation.Animation -> IO (Image.Image)
-getInstanceWH object_ a1 a2 a3 = jmethod object_ "getInstanceWH" (\() -> (getInstanceWH_impl (javaCast object_ :: AnimationFrameToImageUtil))) () a1 a2 a3
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-getInstanceWH_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Animation.Animation -> IO (Image.Image)
-getInstanceWH_super object_ a1 a2 a3 = (getInstanceWH_impl (javaCast object_ :: AnimationFrameToImageUtil)) a1 a2 a3
 
-getInstanceWH_impl :: AnimationFrameToImageUtil -> Int -> Int -> Animation.Animation -> IO (Image.Image)
-getInstanceWH_impl this width height animationInterface = do
-        image <- (GameFeatureImageCacheFactory.get ((jio (GameFeatureImageCacheFactory.getInstance))) (jio (Class.getName ((jio (jobjectGetClass AnimationFrameToImageUtil.instance_))))) width height)
-        graphics <- (Image.getGraphics image)
-        Control.Monad.void (Animation.paintXY animationInterface graphics 0 0)
-        pure (image)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInstanceTranslate_3", jm_getInstanceTranslate_3 )
+        , ( "getInstanceWH_3", jm_getInstanceWH_3 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AnimationFrameToImageUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInstanceTranslate_3", jm_getInstanceTranslate_3 ), ( "jm_getInstanceWH_3", jm_getInstanceWH_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AnimationFrameToImageUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceTranslate_3 : JR.Method
+jm_getInstanceTranslate_3 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ), ( "animationInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "image" "" (JR.invoke "get_3" (JR.callStatic GameFeatureImageCacheFactory.jm_getInstance_0 []) [ (JR.invoke "getName_0" (JR.getClass jstatic_instance) []), ((JR.map2 JR.shr ((JR.map2 JR.mul (JR.local "width") (JR.int 3))) (JR.int 1))), ((JR.map2 JR.shr ((JR.map2 JR.mul (JR.local "height") (JR.int 3))) (JR.int 1))) ]), 
+                    JR.declare "graphics" "" (JR.invoke "getGraphics_0" (JR.local "image") []), 
+                    JR.declare "tranlateX" "I" ((JR.map2 JR.shr (JR.local "width") (JR.int 2))), 
+                    JR.declare "tranlateY" "I" ((JR.map2 JR.shr (JR.local "height") (JR.int 2))), 
+                    JR.exec (JR.invoke "translate_2" (JR.local "graphics") [ (JR.local "tranlateX"), (JR.local "tranlateY") ]), 
+                    JR.exec (JR.invoke "paintXY_3" (JR.local "animationInterface") [ (JR.local "graphics"), (JR.int 0), (JR.int 0) ]), 
+                    JR.exec (JR.invoke "translate_2" (JR.local "graphics") [ (JR.map JR.neg (JR.local "tranlateX")), (JR.map JR.neg (JR.local "tranlateY")) ]), 
+                    JR.return (JR.local "image") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceWH_3 : JR.Method
+jm_getInstanceWH_3 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ), ( "animationInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "image" "" (JR.invoke "get_3" (JR.callStatic GameFeatureImageCacheFactory.jm_getInstance_0 []) [ (JR.invoke "getName_0" (JR.getClass jstatic_instance) []), (JR.local "width"), (JR.local "height") ]), 
+                    JR.declare "graphics" "" (JR.invoke "getGraphics_0" (JR.local "image") []), 
+                    JR.exec (JR.invoke "paintXY_3" (JR.local "animationInterface") [ (JR.local "graphics"), (JR.int 0), (JR.int 0) ]), 
+                    JR.return (JR.local "image") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

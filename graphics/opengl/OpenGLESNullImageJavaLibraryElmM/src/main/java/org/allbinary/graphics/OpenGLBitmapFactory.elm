@@ -1,122 +1,128 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
-module OpenGLBitmapFactory (module OpenGLBitmapFactory, module PlatformBitmapBaseFactory) where
+module Org.Allbinary.Graphics.OpenGLBitmapFactory exposing (..)
 
-import PlatformBitmapBaseFactory hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, createBitmap, createBitmap_super, createBitmap_impl, decodeStream, decodeStream_super, decodeStream_impl, createBitmap_1, createBitmap_1_super, createBitmap_1_impl, createBitmap, instance_, aRGB_8888)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified OpenGLBitmapConfig -- same package or java.lang
-import qualified OpenGLBitmap -- same package or java.lang
-import qualified IOException -- java.io.IOException
-import qualified InputStream -- java.io.InputStream
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified PlatformBitmapBase -- org.allbinary.platform.graphics.PlatformBitmapBase
-import qualified PlatformBitmapBaseFactory -- org.allbinary.platform.graphics.PlatformBitmapBaseFactory
+{-| Generated Code Do Not Modify package org.allbinary.graphics
+-}
 
-data OpenGLBitmapFactory = OpenGLBitmapFactory
-    { header_ :: JavaHeader
-    , base :: PlatformBitmapBaseFactory.PlatformBitmapBaseFactory
-    , aRGB_8888 :: IORef (OpenGLBitmapConfig.OpenGLBitmapConfig)
-    }
-
-instance JavaNull OpenGLBitmapFactory where
-    javaNull = javaNullRecord "OpenGLBitmapFactory"
-
-instance JavaEquals OpenGLBitmapFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLBitmapFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLBitmapFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: OpenGLBitmapFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-newRecord_ :: IO OpenGLBitmapFactory
-newRecord_ = do
-    base <- PlatformBitmapBaseFactory.newRecord_
-    let header_ = base.header_
-    aRGB_8888 <- newIORef javaNull
-    let this = OpenGLBitmapFactory header_ base aRGB_8888
-    jregisterLevel header_ this
-    jregisterMethod header_ "createBitmap" (\() -> createBitmap_impl this)
-    jregisterMethod header_ "decodeStream" (\() -> decodeStream_impl this)
-    jregisterMethod header_ "createBitmap_1" (\() -> createBitmap_1_impl this)
-    pure this
-
-initFields_ :: OpenGLBitmapFactory -> IO ()
-initFields_ this = do
-    jset this.aRGB_8888 =<< (OpenGLBitmapConfig.new_1 (jget ((jio (NullUtil.getInstance))).nULL_OBJECT))
-    pure ()
-
-new_ :: IO OpenGLBitmapFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLBitmapFactory -> IO ()
-init_ this = do
-    PlatformBitmapBaseFactory.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Graphics.OpenGLBitmap as OpenGLBitmap
+import Org.Allbinary.Graphics.OpenGLBitmapConfig as OpenGLBitmapConfig
+import Org.Allbinary.Platform.Graphics.PlatformBitmapBaseFactory as PlatformBitmapBaseFactory
 
 
-getInstance :: IO (OpenGLBitmapFactory)
-getInstance = do
-        pure (OpenGLBitmapFactory.instance_)
+jclass : String
+jclass =
+    "OpenGLBitmapFactory"
 
 
-createBitmap :: (JavaObjectClass this_) => this_ -> Int -> Int -> OpenGLBitmapConfig.OpenGLBitmapConfig -> IO (OpenGLBitmap.OpenGLBitmap)
-createBitmap object_ a1 a2 a3 = jmethod object_ "createBitmap" (\() -> (createBitmap_impl (javaCast object_ :: OpenGLBitmapFactory))) () a1 a2 a3
-
-createBitmap_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> OpenGLBitmapConfig.OpenGLBitmapConfig -> IO (OpenGLBitmap.OpenGLBitmap)
-createBitmap_super object_ a1 a2 a3 = (createBitmap_impl (javaCast object_ :: OpenGLBitmapFactory)) a1 a2 a3
-
-createBitmap_impl :: OpenGLBitmapFactory -> Int -> Int -> OpenGLBitmapConfig.OpenGLBitmapConfig -> IO (OpenGLBitmap.OpenGLBitmap)
-createBitmap_impl this width height config = do
-        (OpenGLBitmap.new_1 (jget ((jio (NullUtil.getInstance))).nULL_OBJECT))
+jchain : List String
+jchain =
+    [ "OpenGLBitmapFactory" ]
+        ++ PlatformBitmapBaseFactory.jchain
 
 
--- throws IOException
-decodeStream :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> IO (OpenGLBitmap.OpenGLBitmap)
-decodeStream object_ a1 = jmethod object_ "decodeStream" (\() -> (decodeStream_impl (javaCast object_ :: OpenGLBitmapFactory))) () a1
-
-decodeStream_super :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> IO (OpenGLBitmap.OpenGLBitmap)
-decodeStream_super object_ a1 = (decodeStream_impl (javaCast object_ :: OpenGLBitmapFactory)) a1
-
-decodeStream_impl :: OpenGLBitmapFactory -> InputStream.InputStream -> IO (OpenGLBitmap.OpenGLBitmap)
-decodeStream_impl this inputStream = do
-        (OpenGLBitmap.new_1 (jget ((jio (NullUtil.getInstance))).nULL_OBJECT))
+jfields : List ( String, JR.JValue )
+jfields =
+    PlatformBitmapBaseFactory.jfields ++ [ ( "ARGB_8888", JR.defaultOf "" ) ]
 
 
-createBitmap_1 :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (PlatformBitmapBase.PlatformBitmapBase)
-createBitmap_1 object_ a1 = jmethod object_ "createBitmap_1" (\() -> (createBitmap_1_impl (javaCast object_ :: OpenGLBitmapFactory))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "createBitmap_3", jm_createBitmap_3 )
+        , ( "decodeStream_1", jm_decodeStream_1 )
+        , ( "createBitmap_1", jm_createBitmap_1 ) ]
+        PlatformBitmapBaseFactory.jvtable
 
-createBitmap_1_super :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (PlatformBitmapBase.PlatformBitmapBase)
-createBitmap_1_super object_ a1 = (createBitmap_1_impl (javaCast object_ :: OpenGLBitmapFactory)) a1
 
-createBitmap_1_impl :: OpenGLBitmapFactory -> Image.Image -> IO (PlatformBitmapBase.PlatformBitmapBase)
-createBitmap_1_impl this image = do
-        (fmap (\value_ -> javaCast value_ :: PlatformBitmapBase.PlatformBitmapBase) (OpenGLBitmap.new_1 (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLBitmapFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_createBitmap_3", jm_createBitmap_3 ), ( "jm_decodeStream_1", jm_decodeStream_1 ), ( "jm_createBitmap_1", jm_createBitmap_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "OpenGLBitmapFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect PlatformBitmapBaseFactory.jinit_0 JR.this []),
+            JR.exec (JR.setField "ARGB_8888" "" JR.this (JR.new OpenGLBitmapConfig.jnew_1 [ (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 [])) ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createBitmap_3 : JR.Method
+jm_createBitmap_3 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ), ( "config", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new OpenGLBitmap.jnew_1 [ (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_decodeStream_1 : JR.Method
+jm_decodeStream_1 jheap jthis jargs =
+    JR.method [ ( "inputStream", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new OpenGLBitmap.jnew_1 [ (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createBitmap_1 : JR.Method
+jm_createBitmap_1 jheap jthis jargs =
+    JR.method [ ( "image", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new OpenGLBitmap.jnew_1 [ (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

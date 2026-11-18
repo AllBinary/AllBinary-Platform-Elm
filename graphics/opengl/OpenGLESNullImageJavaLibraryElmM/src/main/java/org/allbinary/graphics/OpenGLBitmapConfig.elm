@@ -1,86 +1,74 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
--- 
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
--- 
--- Created By: Travis Berthelot 
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
-module OpenGLBitmapConfig where
+module Org.Allbinary.Graphics.OpenGLBitmapConfig exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.graphics
+-}
 
-data OpenGLBitmapConfig = OpenGLBitmapConfig
-    { header_ :: JavaHeader
-    , bitmapConfig :: IORef (Any.Any)
-    }
+import JR
 
-instance JavaNull OpenGLBitmapConfig where
-    javaNull = javaNullRecord "OpenGLBitmapConfig"
 
-instance JavaEquals OpenGLBitmapConfig where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq OpenGLBitmapConfig where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "OpenGLBitmapConfig"
 
-instance JavaObjectClass OpenGLBitmapConfig where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jchain : List String
+jchain =
+    [ "OpenGLBitmapConfig" ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO OpenGLBitmapConfig
-newRecord_ = do
-    header_ <- newJavaHeader
-    bitmapConfig <- newIORef javaNull
-    let this = OpenGLBitmapConfig header_ bitmapConfig
-    jregisterLevel header_ this
-    pure this
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "bitmapConfig", JR.defaultOf "" ) ]
 
-initFields_ :: OpenGLBitmapConfig -> IO ()
-initFields_ this = do
-    jset this.bitmapConfig (javaNull)
-    pure ()
 
-new_1 :: (JavaObjectClass o1) => o1 -> IO OpenGLBitmapConfig
-new_1 bitmapConfigObject_ = do
-    this <- newRecord_
-    init_1 this bitmapConfigObject_
-    pure this
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-init_1 :: (JavaObjectClass o1) => OpenGLBitmapConfig -> o1 -> IO ()
-init_1 this bitmapConfigObject_ = do
-        let bitmapConfig = jtoObject bitmapConfigObject_
-        initFields_ this
-        jset (this).bitmapConfig (bitmapConfig)
-        pure ()
 
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLBitmapConfig"
+        [ ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "bitmapConfig", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "bitmapConfig" "" JR.this (JR.local "bitmapConfig")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

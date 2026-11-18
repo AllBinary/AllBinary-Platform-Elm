@@ -1,11 +1,11 @@
-module MathData exposing (..)
+module Org.Allbinary.Logic.Math.MathData exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.math
 -}
 
 import JR
-import CommonPhoneStrings
-import CommonSeps
+import Org.Allbinary.String.CommonPhoneStrings as CommonPhoneStrings
+import Org.Allbinary.String.CommonSeps as CommonSeps
 
 
 jclass : String

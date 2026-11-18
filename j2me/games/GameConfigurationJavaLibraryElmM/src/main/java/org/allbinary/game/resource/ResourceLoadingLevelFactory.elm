@@ -1,126 +1,111 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.resource
-module ResourceLoadingLevelFactory where
+module Org.Allbinary.Game.Resource.ResourceLoadingLevelFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ResourceLoadingLevel -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.game.resource
+-}
 
-data ResourceLoadingLevelFactory = ResourceLoadingLevelFactory
-    { header_ :: JavaHeader
-    , lOAD_EARLY :: IORef (ResourceLoadingLevel.ResourceLoadingLevel)
-    , lOAD_TOUCH :: IORef (ResourceLoadingLevel.ResourceLoadingLevel)
-    , lOAD_GAME :: IORef (ResourceLoadingLevel.ResourceLoadingLevel)
-    , lEVEL :: IORef (ResourceLoadingLevel.ResourceLoadingLevel)
-    , mAX_LEVEL :: IORef (ResourceLoadingLevel.ResourceLoadingLevel)
-    , lOAD_ALL :: IORef (ResourceLoadingLevel.ResourceLoadingLevel)
-    , rESOURCE_LOADING_LEVEL_ARRAY :: IORef (JavaArray (ResourceLoadingLevel.ResourceLoadingLevel))
-    }
-
-instance JavaNull ResourceLoadingLevelFactory where
-    javaNull = javaNullRecord "ResourceLoadingLevelFactory"
-
-instance JavaEquals ResourceLoadingLevelFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ResourceLoadingLevelFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ResourceLoadingLevelFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ResourceLoadingLevelFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ResourceLoadingLevelFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    lOAD_EARLY <- newIORef javaNull
-    lOAD_TOUCH <- newIORef javaNull
-    lOAD_GAME <- newIORef javaNull
-    lEVEL <- newIORef javaNull
-    mAX_LEVEL <- newIORef javaNull
-    lOAD_ALL <- newIORef javaNull
-    rESOURCE_LOADING_LEVEL_ARRAY <- newIORef javaNull
-    let this = ResourceLoadingLevelFactory header_ lOAD_EARLY lOAD_TOUCH lOAD_GAME lEVEL mAX_LEVEL lOAD_ALL rESOURCE_LOADING_LEVEL_ARRAY
-    jregisterLevel header_ this
-    jregisterMethod header_ "getLevelString" (\() -> getLevelString_impl this)
-    pure this
-
-initFields_ :: ResourceLoadingLevelFactory -> IO ()
-initFields_ this = do
-    jset this.lOAD_EARLY =<< (ResourceLoadingLevel.new_2 "Load Early" (2147483647 :: Int))
-    jset this.lOAD_TOUCH =<< (ResourceLoadingLevel.new_2 "Load Touch" ((2147483647 :: Int) - 1))
-    jset this.lOAD_GAME =<< (ResourceLoadingLevel.new_2 "Load Game" ((2147483647 :: Int) - 2))
-    jset this.lEVEL =<< (ResourceLoadingLevel.new_2 "Level" ((2147483647 :: Int) - 99))
-    jset this.mAX_LEVEL =<< (ResourceLoadingLevel.new_2 "Max Level" ((2147483647 :: Int) - 100))
-    jset this.lOAD_ALL =<< (ResourceLoadingLevel.new_2 "Load All" (Prelude.negate 1))
-    jset this.rESOURCE_LOADING_LEVEL_ARRAY ((jarrayFromList [(jget (this).lOAD_ALL), (jget (this).mAX_LEVEL), (jget (this).lEVEL), (jget (this).lOAD_GAME), (jget (this).lOAD_TOUCH), (jget (this).lOAD_EARLY)]))
-    pure ()
-
-new_ :: IO ResourceLoadingLevelFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ResourceLoadingLevelFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import JInteger
+import Org.Allbinary.Game.Resource.ResourceLoadingLevel as ResourceLoadingLevel
 
 
-getInstance :: IO (ResourceLoadingLevelFactory)
-getInstance = do
-        pure (ResourceLoadingLevelFactory.instance_)
+jclass : String
+jclass =
+    "ResourceLoadingLevelFactory"
 
 
-getLevelString :: (JavaObjectClass this_) => this_ -> Int -> IO (String)
-getLevelString object_ a1 = jmethod object_ "getLevelString" (\() -> (getLevelString_impl (javaCast object_ :: ResourceLoadingLevelFactory))) () a1
+jchain : List String
+jchain =
+    [ "ResourceLoadingLevelFactory" ]
 
-getLevelString_super :: (JavaObjectClass this_) => this_ -> Int -> IO (String)
-getLevelString_super object_ a1 = (getLevelString_impl (javaCast object_ :: ResourceLoadingLevelFactory)) a1
 
-getLevelString_impl :: ResourceLoadingLevelFactory -> Int -> IO (String)
-getLevelString_impl this level = do
-    javaCatchReturn $ do
-        forM_ [0 .. (jlength (jget (this).rESOURCE_LOADING_LEVEL_ARRAY)) - 1] $ \index -> javaIteration (pure ()) $ do
-            when (level == (jio (ResourceLoadingLevel.getLevel ((jindex ((jget (this).rESOURCE_LOADING_LEVEL_ARRAY)) (index)))))) $ do
-                javaReturn =<< (ResourceLoadingLevel.getName ((jindex ((jget (this).rESOURCE_LOADING_LEVEL_ARRAY)) (index))))
-        pure ((javaToString level))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "LOAD_EARLY", JR.defaultOf "" ), ( "LOAD_TOUCH", JR.defaultOf "" ), ( "LOAD_GAME", JR.defaultOf "" ), ( "LEVEL", JR.defaultOf "" ), ( "MAX_LEVEL", JR.defaultOf "" ), ( "LOAD_ALL", JR.defaultOf "" ), ( "RESOURCE_LOADING_LEVEL_ARRAY", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getLevelString_1", jm_getLevelString_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ResourceLoadingLevelFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getLevelString_1", jm_getLevelString_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ResourceLoadingLevelFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "LOAD_EARLY" "" JR.this (JR.new ResourceLoadingLevel.jnew_2 [ (JR.str "Load Early"), JInteger.jstatic_MAX_VALUE ])),
+                JR.exec (JR.setField "LOAD_TOUCH" "" JR.this (JR.new ResourceLoadingLevel.jnew_2 [ (JR.str "Load Touch"), (JR.map2 JR.sub JInteger.jstatic_MAX_VALUE (JR.int 1)) ])),
+                JR.exec (JR.setField "LOAD_GAME" "" JR.this (JR.new ResourceLoadingLevel.jnew_2 [ (JR.str "Load Game"), (JR.map2 JR.sub JInteger.jstatic_MAX_VALUE (JR.int 2)) ])),
+                JR.exec (JR.setField "LEVEL" "" JR.this (JR.new ResourceLoadingLevel.jnew_2 [ (JR.str "Level"), (JR.map2 JR.sub JInteger.jstatic_MAX_VALUE (JR.int 99)) ])),
+                JR.exec (JR.setField "MAX_LEVEL" "" JR.this (JR.new ResourceLoadingLevel.jnew_2 [ (JR.str "Max Level"), (JR.map2 JR.sub JInteger.jstatic_MAX_VALUE (JR.int 100)) ])),
+                JR.exec (JR.setField "LOAD_ALL" "" JR.this (JR.new ResourceLoadingLevel.jnew_2 [ (JR.str "Load All"), (JR.map JR.neg (JR.int 1)) ])),
+                JR.exec (JR.setField "RESOURCE_LOADING_LEVEL_ARRAY" "" JR.this (JR.arrayOf "" [ (JR.thisField "LOAD_ALL"), (JR.thisField "MAX_LEVEL"), (JR.thisField "LEVEL"), (JR.thisField "LOAD_GAME"), (JR.thisField "LOAD_TOUCH"), (JR.thisField "LOAD_EARLY") ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLevelString_1 : JR.Method
+jm_getLevelString_1 jheap jthis jargs =
+    JR.method [ ( "level", "I" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "RESOURCE_LOADING_LEVEL_ARRAY"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66507 -> (JR.setLocal "index" "I" (JR.lit jwN66507))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "level") (JR.invoke "getLevel_0" (JR.aget (JR.thisField "RESOURCE_LOADING_LEVEL_ARRAY") (JR.local "index")) [])) (JR.run [ 
+                            JR.return (JR.invoke "getName_0" (JR.aget (JR.thisField "RESOURCE_LOADING_LEVEL_ARRAY") (JR.local "index")) []) ]) identity ]) ], 
+                    JR.return (JR.callStatic JInteger.jm_toString_1 [ (JR.local "level") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

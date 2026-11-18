@@ -1,148 +1,138 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.canvas
-module FullScreenUtil where
+module Org.Allbinary.Canvas.FullScreenUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified MainFeatureFactory -- org.allbinary.game.configuration.feature.MainFeatureFactory
+{-| Generated Code Do Not Modify package org.allbinary.canvas
+-}
 
-data FullScreenUtil = FullScreenUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull FullScreenUtil where
-    javaNull = javaNullRecord "FullScreenUtil"
-
-instance JavaEquals FullScreenUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FullScreenUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FullScreenUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: FullScreenUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO FullScreenUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = FullScreenUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "initOnRun" (\() -> initOnRun_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "isScreenChange" (\() -> isScreenChange_impl this)
-    jregisterMethod header_ "isScreenChangeCanvas" (\() -> isScreenChangeCanvas_impl this)
-    pure this
-
-initFields_ :: FullScreenUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO FullScreenUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: FullScreenUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Configuration.Feature.MainFeatureFactory as MainFeatureFactory
 
 
-getInstance :: IO (FullScreenUtil)
-getInstance = do
-        pure (FullScreenUtil.instance_)
+jclass : String
+jclass =
+    "FullScreenUtil"
 
 
--- throws Exception
-initOnRun :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> CommandListener.CommandListener -> IO (())
-initOnRun object_ a1 a2 = jmethod object_ "initOnRun" (\() -> (initOnRun_impl (javaCast object_ :: FullScreenUtil))) () a1 a2
-
-initOnRun_super :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> CommandListener.CommandListener -> IO (())
-initOnRun_super object_ a1 a2 = (initOnRun_impl (javaCast object_ :: FullScreenUtil)) a1 a2
-
-initOnRun_impl :: FullScreenUtil -> Canvas.Canvas -> CommandListener.CommandListener -> IO (())
-initOnRun_impl this fullScreenInterface commandListener = do
-        when (commandListener /= javaNull) $ do
-            Control.Monad.void (FullScreenUtil.init this fullScreenInterface)
-        pure ()
+jchain : List String
+jchain =
+    [ "FullScreenUtil" ]
 
 
-init :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (())
-init object_ a1 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: FullScreenUtil))) () a1
-
-init_super :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (())
-init_super object_ a1 = (init_impl (javaCast object_ :: FullScreenUtil)) a1
-
-init_impl :: FullScreenUtil -> Canvas.Canvas -> IO (())
-init_impl this fullScreenInterface = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-isScreenChange :: (JavaObjectClass this_) => this_ -> Bool -> IO (Bool)
-isScreenChange object_ a1 = jmethod object_ "isScreenChange" (\() -> (isScreenChange_impl (javaCast object_ :: FullScreenUtil))) () a1
-
-isScreenChange_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (Bool)
-isScreenChange_super object_ a1 = (isScreenChange_impl (javaCast object_ :: FullScreenUtil)) a1
-
-isScreenChange_impl :: FullScreenUtil -> Bool -> IO (Bool)
-isScreenChange_impl this isFullScreen = do
-    javaCatchReturn $ do
-        mainFeatureFactory <- (MainFeatureFactory.getInstance)
-        features <- (Features.getInstance)
-        when ((jio (Features.isFeature features (jget (mainFeatureFactory).fULL_SCREEN))) /= isFullScreen) $ do
-            javaReturn (True)
-        pure (False)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "initOnRun_2", jm_initOnRun_2 )
+        , ( "init_1", jm_init_1 )
+        , ( "isScreenChange_1", jm_isScreenChange_1 )
+        , ( "isScreenChangeCanvas_1", jm_isScreenChangeCanvas_1 ) ]
+        JR.noMethods
 
 
-isScreenChangeCanvas :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (Bool)
-isScreenChangeCanvas object_ a1 = jmethod object_ "isScreenChangeCanvas" (\() -> (isScreenChangeCanvas_impl (javaCast object_ :: FullScreenUtil))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FullScreenUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_initOnRun_2", jm_initOnRun_2 ), ( "jm_init_1", jm_init_1 ), ( "jm_isScreenChange_1", jm_isScreenChange_1 ), ( "jm_isScreenChangeCanvas_1", jm_isScreenChangeCanvas_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
-isScreenChangeCanvas_super :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (Bool)
-isScreenChangeCanvas_super object_ a1 = (isScreenChangeCanvas_impl (javaCast object_ :: FullScreenUtil)) a1
 
-isScreenChangeCanvas_impl :: FullScreenUtil -> Canvas.Canvas -> IO (Bool)
-isScreenChangeCanvas_impl this fullScreenInterface = do
-        (FullScreenUtil.isScreenChange this False)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "FullScreenUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initOnRun_2 : JR.Method
+jm_initOnRun_2 jheap jthis jargs =
+    JR.method [ ( "fullScreenInterface", "" ), ( "commandListener", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "commandListener") JR.null) (JR.run [ 
+                        JR.exec (JR.invoke "init_1" JR.this [ (JR.local "fullScreenInterface") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "fullScreenInterface", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isScreenChange_1 : JR.Method
+jm_isScreenChange_1 jheap jthis jargs =
+    JR.method [ ( "isFullScreen", "Z" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "mainFeatureFactory" "" (JR.callStatic MainFeatureFactory.jm_getInstance_0 []), 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "FULL_SCREEN" (JR.local "mainFeatureFactory")) ]) (JR.local "isFullScreen")) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isScreenChangeCanvas_1 : JR.Method
+jm_isScreenChangeCanvas_1 jheap jthis jargs =
+    JR.method [ ( "fullScreenInterface", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isScreenChange_1" JR.this [ (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

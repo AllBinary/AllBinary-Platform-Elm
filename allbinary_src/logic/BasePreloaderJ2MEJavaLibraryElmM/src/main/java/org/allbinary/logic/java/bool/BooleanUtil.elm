@@ -1,13 +1,13 @@
-module BooleanUtil exposing (..)
+module Org.Allbinary.Logic.Java.Bool.BooleanUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.java.bool
 -}
 
 import JR
-import BooleanFactory
-import StringMaker
-import StringValidationUtil
-import TsUtil
+import Org.Allbinary.Logic.Java.Bool.BooleanFactory as BooleanFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
+import Org.Allbinary.TsUtil as TsUtil
 
 
 jclass : String

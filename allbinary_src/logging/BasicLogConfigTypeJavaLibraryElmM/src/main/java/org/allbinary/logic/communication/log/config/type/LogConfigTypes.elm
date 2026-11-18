@@ -1,10 +1,10 @@
-module LogConfigTypes exposing (..)
+module Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.log.config.type
 -}
 
 import JR
-import BasicArrayListD
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
 
 
 jclass : String

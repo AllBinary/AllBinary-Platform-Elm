@@ -1,96 +1,92 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module CompleteMotionGestureInputEventListener where
+module Org.Allbinary.Game.Input.CompleteMotionGestureInputEventListener exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CompleteMotionGestureInputEvent -- same package or java.lang
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified CompleteMotionGestureInputEventListenerInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
--- implements CompleteMotionGestureInputEventListenerInterface
-data CompleteMotionGestureInputEventListener = CompleteMotionGestureInputEventListener
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull CompleteMotionGestureInputEventListener where
-    javaNull = javaNullRecord "CompleteMotionGestureInputEventListener"
-
-instance JavaEquals CompleteMotionGestureInputEventListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CompleteMotionGestureInputEventListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CompleteMotionGestureInputEventListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CompleteMotionGestureInputEventListener
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = CompleteMotionGestureInputEventListener header_
-    jregisterLevel header_ this
-    CompleteMotionGestureInputEventListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "onCompleteMotionGestureInputEvent" (\() -> onCompleteMotionGestureInputEvent_impl this)
-    pure this
-
-initFields_ :: CompleteMotionGestureInputEventListener -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO CompleteMotionGestureInputEventListener
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CompleteMotionGestureInputEventListener -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Input.CompleteMotionGestureInputEventListenerInterface as CompleteMotionGestureInputEventListenerInterface
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: CompleteMotionGestureInputEventListener))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: CompleteMotionGestureInputEventListener)) a1
-
-onEvent_impl :: CompleteMotionGestureInputEventListener -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        pure ()
+jclass : String
+jclass =
+    "CompleteMotionGestureInputEventListener"
 
 
-onCompleteMotionGestureInputEvent :: (JavaObjectClass this_) => this_ -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-onCompleteMotionGestureInputEvent object_ a1 = jmethod object_ "onCompleteMotionGestureInputEvent" (\() -> (onCompleteMotionGestureInputEvent_impl (javaCast object_ :: CompleteMotionGestureInputEventListener))) () a1
+jchain : List String
+jchain =
+    [ "CompleteMotionGestureInputEventListener" ]
+        ++ CompleteMotionGestureInputEventListenerInterface.jchain
 
-onCompleteMotionGestureInputEvent_super :: (JavaObjectClass this_) => this_ -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-onCompleteMotionGestureInputEvent_super object_ a1 = (onCompleteMotionGestureInputEvent_impl (javaCast object_ :: CompleteMotionGestureInputEventListener)) a1
 
-onCompleteMotionGestureInputEvent_impl :: CompleteMotionGestureInputEventListener -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-onCompleteMotionGestureInputEvent_impl this completeMotionGestureInputEvent = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "onEvent_1", jm_onEvent_1 )
+        , ( "onCompleteMotionGestureInputEvent_1", jm_onCompleteMotionGestureInputEvent_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CompleteMotionGestureInputEventListener"
+        [ ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_onCompleteMotionGestureInputEvent_1", jm_onCompleteMotionGestureInputEvent_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onCompleteMotionGestureInputEvent_1 : JR.Method
+jm_onCompleteMotionGestureInputEvent_1 jheap jthis jargs =
+    JR.method [ ( "completeMotionGestureInputEvent", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

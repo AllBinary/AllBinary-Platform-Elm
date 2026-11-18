@@ -1,114 +1,150 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.inventory.basket
-module BasketData where
+module Org.Allbinary.Business.User.Commerce.Inventory.Basket.BasketData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.inventory.basket
+-}
 
-data BasketData = BasketData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull BasketData where
-    javaNull = javaNullRecord "BasketData"
 
-instance JavaEquals BasketData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq BasketData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "BasketData"
 
-instance JavaObjectClass BasketData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-bASKET :: String
-bASKET = "BASKET"
+jchain : List String
+jchain =
+    [ "BasketData" ]
 
-nAME :: String
-nAME = "NAME"
 
-bASKETREVIEW :: String
-bASKETREVIEW = "BASKET_REVIEW"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-tOTALWEIGHT :: String
-tOTALWEIGHT = "BASKET_TOTALWEIGTH"
 
-iTEMTOTAL :: String
-iTEMTOTAL = "BASKET_ITEMTOTAL"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-iTEMTOTALINBASKET :: String
-iTEMTOTALINBASKET = "BASKET_ITEMTOTALINBASKET"
 
-sUBTOTAL :: String
-sUBTOTAL = "BASKET_SUBTOTAL"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasketData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_BASKET", jstatic_BASKET ), ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_BASKETREVIEW", jstatic_BASKETREVIEW ), ( "jstatic_TOTALWEIGHT", jstatic_TOTALWEIGHT ), ( "jstatic_ITEMTOTAL", jstatic_ITEMTOTAL ), ( "jstatic_ITEMTOTALINBASKET", jstatic_ITEMTOTALINBASKET ), ( "jstatic_SUBTOTAL", jstatic_SUBTOTAL ), ( "jstatic_ISEMPTY", jstatic_ISEMPTY ), ( "jstatic_INSERT", jstatic_INSERT ), ( "jstatic_DELETE", jstatic_DELETE ), ( "jstatic_ADJUST", jstatic_ADJUST ) ]
+        jheap
 
-iSEMPTY :: String
-iSEMPTY = "BASKET_ISEMPTY"
 
-iNSERT :: String
-iNSERT = "BASKET_INSERT"
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-dELETE :: String
-dELETE = "BASKET_DELETE"
 
-aDJUST :: String
-aDJUST = "BASKET_ADJUST"
+jstatic_BASKET : JR.M
+jstatic_BASKET s =
+    JR.static "BasketData" jclinit "BASKET"
+        (JR.str "BASKET")
+        s
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "BasketData" jclinit "NAME"
+        (JR.str "NAME")
+        s
 
-newRecord_ :: IO BasketData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = BasketData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: BasketData -> IO ()
-initFields_ this = do
-    pure ()
+jstatic_BASKETREVIEW : JR.M
+jstatic_BASKETREVIEW s =
+    JR.static "BasketData" jclinit "BASKETREVIEW"
+        (JR.str "BASKET_REVIEW")
+        s
 
-new_ :: IO BasketData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: BasketData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jstatic_TOTALWEIGHT : JR.M
+jstatic_TOTALWEIGHT s =
+    JR.static "BasketData" jclinit "TOTALWEIGHT"
+        (JR.str "BASKET_TOTALWEIGTH")
+        s
 
+
+jstatic_ITEMTOTAL : JR.M
+jstatic_ITEMTOTAL s =
+    JR.static "BasketData" jclinit "ITEMTOTAL"
+        (JR.str "BASKET_ITEMTOTAL")
+        s
+
+
+jstatic_ITEMTOTALINBASKET : JR.M
+jstatic_ITEMTOTALINBASKET s =
+    JR.static "BasketData" jclinit "ITEMTOTALINBASKET"
+        (JR.str "BASKET_ITEMTOTALINBASKET")
+        s
+
+
+jstatic_SUBTOTAL : JR.M
+jstatic_SUBTOTAL s =
+    JR.static "BasketData" jclinit "SUBTOTAL"
+        (JR.str "BASKET_SUBTOTAL")
+        s
+
+
+jstatic_ISEMPTY : JR.M
+jstatic_ISEMPTY s =
+    JR.static "BasketData" jclinit "ISEMPTY"
+        (JR.str "BASKET_ISEMPTY")
+        s
+
+
+jstatic_INSERT : JR.M
+jstatic_INSERT s =
+    JR.static "BasketData" jclinit "INSERT"
+        (JR.str "BASKET_INSERT")
+        s
+
+
+jstatic_DELETE : JR.M
+jstatic_DELETE s =
+    JR.static "BasketData" jclinit "DELETE"
+        (JR.str "BASKET_DELETE")
+        s
+
+
+jstatic_ADJUST : JR.M
+jstatic_ADJUST s =
+    JR.static "BasketData" jclinit "ADJUST"
+        (JR.str "BASKET_ADJUST")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

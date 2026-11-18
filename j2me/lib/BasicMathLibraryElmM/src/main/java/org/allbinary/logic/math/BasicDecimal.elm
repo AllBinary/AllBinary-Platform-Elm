@@ -1,11 +1,11 @@
-module BasicDecimal exposing (..)
+module Org.Allbinary.Logic.Math.BasicDecimal exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.math
 -}
 
 import JR
 import JLong
-import ScaleFactorFactory
+import Org.Allbinary.Logic.Math.ScaleFactorFactory as ScaleFactorFactory
 
 
 jclass : String

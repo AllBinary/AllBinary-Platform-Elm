@@ -1,104 +1,96 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2007 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
-module PoolType where
+module Org.Allbinary.Logic.Util.Cache.PoolType exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CacheType -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
+-}
 
-data PoolType = PoolType
-    { header_ :: JavaHeader
-    , cacheType :: IORef (CacheType.CacheType)
-    }
-
-instance JavaNull PoolType where
-    javaNull = javaNullRecord "PoolType"
-
-instance JavaEquals PoolType where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PoolType where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PoolType where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO PoolType
-newRecord_ = do
-    header_ <- newJavaHeader
-    cacheType <- newIORef javaNull
-    let this = PoolType header_ cacheType
-    jregisterLevel header_ this
-    jregisterMethod header_ "getCacheType" (\() -> getCacheType_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: PoolType -> IO ()
-initFields_ this = do
-    jset this.cacheType (javaNull)
-    pure ()
-
-new_1 :: CacheType.CacheType -> IO PoolType
-new_1 cacheType = do
-    this <- newRecord_
-    init_1 this cacheType
-    pure this
-
-init_1 :: PoolType -> CacheType.CacheType -> IO ()
-init_1 this cacheType = do
-        initFields_ this
-        jset (this).cacheType (cacheType)
-        pure ()
+import JR
 
 
-getCacheType :: (JavaObjectClass this_) => this_ -> IO (CacheType.CacheType)
-getCacheType object_ = jmethod object_ "getCacheType" (\() -> (getCacheType_impl (javaCast object_ :: PoolType))) ()
 
-getCacheType_super :: (JavaObjectClass this_) => this_ -> IO (CacheType.CacheType)
-getCacheType_super object_ = (getCacheType_impl (javaCast object_ :: PoolType))
-
-getCacheType_impl :: PoolType -> IO (CacheType.CacheType)
-getCacheType_impl this = do
-        pure ((jget (this).cacheType))
+jclass : String
+jclass =
+    "PoolType"
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: PoolType))) ()
+jchain : List String
+jchain =
+    [ "PoolType" ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: PoolType))
 
-toString_impl :: PoolType -> IO (String)
-toString_impl this = do
-        let pOOL_TYPE = "PoolType: "
-        pure ((pOOL_TYPE ++ (jio (CacheType.toString ((jio (PoolType.getCacheType this)))))))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "cacheType", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getCacheType_0", jm_getCacheType_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PoolType"
+        [ ( "jm_getCacheType_0", jm_getCacheType_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "cacheType", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "cacheType" "" JR.this (JR.local "cacheType")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getCacheType_0 : JR.Method
+jm_getCacheType_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "cacheType") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "POOL_TYPE" "" (JR.str "PoolType: "), 
+                    JR.return (JR.concat (JR.local "POOL_TYPE") (JR.invoke "toString_0" (JR.invoke "getCacheType_0" JR.this []) [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

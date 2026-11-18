@@ -1,230 +1,198 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module HighScores where
+module Org.Allbinary.Game.Score.HighScores exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HighScore -- same package or java.lang
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified HighScoresInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
--- implements HighScoresInterface
-data HighScores = HighScores
-    { header_ :: JavaHeader
-    , orderedHighScoresList :: IORef (BasicArrayList.BasicArrayList)
-    , name :: IORef (String)
-    , heading :: IORef (String)
-    , columnOneHeading :: IORef (String)
-    , columnTwoHeading :: IORef (String)
-    }
-
-instance JavaNull HighScores where
-    javaNull = javaNullRecord "HighScores"
-
-instance JavaEquals HighScores where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScores where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScores where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HighScores
-newRecord_ = do
-    header_ <- newJavaHeader
-    orderedHighScoresList <- newIORef javaNull
-    name <- newIORef ""
-    heading <- newIORef ""
-    columnOneHeading <- newIORef ""
-    columnTwoHeading <- newIORef ""
-    let this = HighScores header_ orderedHighScoresList name heading columnOneHeading columnTwoHeading
-    jregisterLevel header_ this
-    HighScoresInterface.registerInterface_ header_
-    jregisterMethod header_ "setList" (\() -> setList_impl this)
-    jregisterMethod header_ "getList" (\() -> getList_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "getTotal" (\() -> getTotal_impl this)
-    jregisterMethod header_ "addHighScore" (\() -> addHighScore_impl this)
-    jregisterMethod header_ "getHeading" (\() -> getHeading_impl this)
-    jregisterMethod header_ "getColumnOneHeading" (\() -> getColumnOneHeading_impl this)
-    jregisterMethod header_ "getColumnTwoHeading" (\() -> getColumnTwoHeading_impl this)
-    jregisterMethod header_ "isBestScore" (\() -> isBestScore_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: HighScores -> IO ()
-initFields_ this = do
-    jset this.orderedHighScoresList =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    jset this.name (javaNull)
-    jset this.heading (javaNull)
-    jset this.columnOneHeading ("Name")
-    jset this.columnTwoHeading (javaNull)
-    pure ()
-
-new_3 :: String -> String -> String -> IO HighScores
-new_3 name heading columnTwoHeading = do
-    this <- newRecord_
-    init_3 this name heading columnTwoHeading
-    pure this
-
-init_3 :: HighScores -> String -> String -> String -> IO ()
-init_3 this name heading columnTwoHeading = do
-        initFields_ this
-        jset (this).name (name)
-        jset (this).heading (heading)
-        jset (this).columnTwoHeading (columnTwoHeading)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Game.Score.HighScoresInterface as HighScoresInterface
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-setList :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setList object_ a1 = jmethod object_ "setList" (\() -> (setList_impl (javaCast object_ :: HighScores))) () a1
-
-setList_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setList_super object_ a1 = (setList_impl (javaCast object_ :: HighScores)) a1
-
-setList_impl :: HighScores -> BasicArrayList.BasicArrayList -> IO (())
-setList_impl this orderedHighScoresList = do
-        jset (this).orderedHighScoresList (orderedHighScoresList)
-        pure ()
+jclass : String
+jclass =
+    "HighScores"
 
 
-getList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList object_ = jmethod object_ "getList" (\() -> (getList_impl (javaCast object_ :: HighScores))) ()
-
-getList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList_super object_ = (getList_impl (javaCast object_ :: HighScores))
-
-getList_impl :: HighScores -> IO (BasicArrayList.BasicArrayList)
-getList_impl this = do
-        pure ((jget (this).orderedHighScoresList))
+jchain : List String
+jchain =
+    [ "HighScores" ]
+        ++ HighScoresInterface.jchain
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: HighScores))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: HighScores))
-
-getName_impl :: HighScores -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "orderedHighScoresList", JR.defaultOf "" ), ( "name", JR.defaultOf "" ), ( "heading", JR.defaultOf "" ), ( "columnOneHeading", JR.defaultOf "" ), ( "columnTwoHeading", JR.defaultOf "" ) ]
 
 
-getTotal :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotal object_ = jmethod object_ "getTotal" (\() -> (getTotal_impl (javaCast object_ :: HighScores))) ()
-
-getTotal_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotal_super object_ = (getTotal_impl (javaCast object_ :: HighScores))
-
-getTotal_impl :: HighScores -> IO (Int)
-getTotal_impl this = do
-        (BasicArrayList.size ((jio (HighScores.getList this))))
-
-
-addHighScore :: (JavaObjectClass this_) => this_ -> HighScore.HighScore -> IO (())
-addHighScore object_ a1 = jmethod object_ "addHighScore" (\() -> (addHighScore_impl (javaCast object_ :: HighScores))) () a1
-
-addHighScore_super :: (JavaObjectClass this_) => this_ -> HighScore.HighScore -> IO (())
-addHighScore_super object_ a1 = (addHighScore_impl (javaCast object_ :: HighScores)) a1
-
-addHighScore_impl :: HighScores -> HighScore.HighScore -> IO (())
-addHighScore_impl this newHighScore = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).orderedHighScoresList)) newHighScore)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "setList_1", jm_setList_1 )
+        , ( "getList_0", jm_getList_0 )
+        , ( "getName_0", jm_getName_0 )
+        , ( "getTotal_0", jm_getTotal_0 )
+        , ( "addHighScore_1", jm_addHighScore_1 )
+        , ( "getHeading_0", jm_getHeading_0 )
+        , ( "getColumnOneHeading_0", jm_getColumnOneHeading_0 )
+        , ( "getColumnTwoHeading_0", jm_getColumnTwoHeading_0 )
+        , ( "isBestScore_1", jm_isBestScore_1 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
 
-getHeading :: (JavaObjectClass this_) => this_ -> IO (String)
-getHeading object_ = jmethod object_ "getHeading" (\() -> (getHeading_impl (javaCast object_ :: HighScores))) ()
-
-getHeading_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getHeading_super object_ = (getHeading_impl (javaCast object_ :: HighScores))
-
-getHeading_impl :: HighScores -> IO (String)
-getHeading_impl this = do
-        pure ((jget (this).heading))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScores"
+        [ ( "jm_setList_1", jm_setList_1 ), ( "jm_getList_0", jm_getList_0 ), ( "jm_getName_0", jm_getName_0 ), ( "jm_getTotal_0", jm_getTotal_0 ), ( "jm_addHighScore_1", jm_addHighScore_1 ), ( "jm_getHeading_0", jm_getHeading_0 ), ( "jm_getColumnOneHeading_0", jm_getColumnOneHeading_0 ), ( "jm_getColumnTwoHeading_0", jm_getColumnTwoHeading_0 ), ( "jm_isBestScore_1", jm_isBestScore_1 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
 
 
-getColumnOneHeading :: (JavaObjectClass this_) => this_ -> IO (String)
-getColumnOneHeading object_ = jmethod object_ "getColumnOneHeading" (\() -> (getColumnOneHeading_impl (javaCast object_ :: HighScores))) ()
-
-getColumnOneHeading_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getColumnOneHeading_super object_ = (getColumnOneHeading_impl (javaCast object_ :: HighScores))
-
-getColumnOneHeading_impl :: HighScores -> IO (String)
-getColumnOneHeading_impl this = do
-        pure ((jget (this).columnOneHeading))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getColumnTwoHeading :: (JavaObjectClass this_) => this_ -> IO (String)
-getColumnTwoHeading object_ = jmethod object_ "getColumnTwoHeading" (\() -> (getColumnTwoHeading_impl (javaCast object_ :: HighScores))) ()
-
-getColumnTwoHeading_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getColumnTwoHeading_super object_ = (getColumnTwoHeading_impl (javaCast object_ :: HighScores))
-
-getColumnTwoHeading_impl :: HighScores -> IO (String)
-getColumnTwoHeading_impl this = do
-        pure ((jget (this).columnTwoHeading))
-
-
--- throws Exception
-isBestScore :: (JavaObjectClass this_) => this_ -> HighScore.HighScore -> IO (Bool)
-isBestScore object_ a1 = jmethod object_ "isBestScore" (\() -> (isBestScore_impl (javaCast object_ :: HighScores))) () a1
-
-isBestScore_super :: (JavaObjectClass this_) => this_ -> HighScore.HighScore -> IO (Bool)
-isBestScore_super object_ a1 = (isBestScore_impl (javaCast object_ :: HighScores)) a1
-
-isBestScore_impl :: HighScores -> HighScore.HighScore -> IO (Bool)
-isBestScore_impl this newHighScore = do
-        pure (False)
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "heading", "" ), ( "columnTwoHeading", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "orderedHighScoresList" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                JR.exec (JR.setField "columnOneHeading" "" JR.this (JR.str "Name")),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "name")), 
+                    JR.exec (JR.setField "heading" "" JR.this (JR.local "heading")), 
+                    JR.exec (JR.setField "columnTwoHeading" "" JR.this (JR.local "columnTwoHeading")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: HighScores))) ()
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: HighScores))
 
-toString_impl :: HighScores -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "HighScores: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jget (this).heading))
-        Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-        Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonLabels.getInstance))).tOTAL_LABEL))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (BasicArrayList.size ((jget (this).orderedHighScoresList)))))
-        (StringMaker.toString stringBuffer)
+jm_setList_1 : JR.Method
+jm_setList_1 jheap jthis jargs =
+    JR.method [ ( "orderedHighScoresList", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "orderedHighScoresList" "" JR.this (JR.local "orderedHighScoresList")) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_getList_0 : JR.Method
+jm_getList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "orderedHighScoresList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTotal_0 : JR.Method
+jm_getTotal_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "size_0" (JR.invoke "getList_0" JR.this []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addHighScore_1 : JR.Method
+jm_addHighScore_1 jheap jthis jargs =
+    JR.method [ ( "newHighScore", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "orderedHighScoresList") [ (JR.local "newHighScore") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHeading_0 : JR.Method
+jm_getHeading_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "heading") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getColumnOneHeading_0 : JR.Method
+jm_getColumnOneHeading_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "columnOneHeading") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getColumnTwoHeading_0 : JR.Method
+jm_getColumnTwoHeading_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "columnTwoHeading") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isBestScore_1 : JR.Method
+jm_isBestScore_1 jheap jthis jargs =
+    JR.method [ ( "newHighScore", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "HighScores: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "heading") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "TOTAL_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "size_0" (JR.thisField "orderedHighScoresList") []) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

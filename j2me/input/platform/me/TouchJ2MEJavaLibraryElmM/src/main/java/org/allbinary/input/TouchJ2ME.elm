@@ -1,148 +1,123 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input
-module TouchJ2ME where
+module Org.Allbinary.Input.TouchJ2ME exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllMotionRecognizer -- org.allbinary.input.motion.AllMotionRecognizer
-import qualified BasicMotionGesturesHandler -- org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler
-import qualified GameMotionGestureListener -- org.allbinary.input.motion.gesture.observer.GameMotionGestureListener
-import qualified MotionGestureReceiveInterfaceFactory -- org.allbinary.input.motion.gesture.observer.MotionGestureReceiveInterfaceFactory
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.input
+-}
 
-data TouchJ2ME = TouchJ2ME
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , dEVICE_ID :: IORef (Int)
-    , motionRecognizer :: IORef (AllMotionRecognizer.AllMotionRecognizer)
-    }
-
-instance JavaNull TouchJ2ME where
-    javaNull = javaNullRecord "TouchJ2ME"
-
-instance JavaEquals TouchJ2ME where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TouchJ2ME where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TouchJ2ME where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TouchJ2ME
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    dEVICE_ID <- newIORef 0
-    motionRecognizer <- newIORef javaNull
-    let this = TouchJ2ME header_ logUtil dEVICE_ID motionRecognizer
-    jregisterLevel header_ this
-    jregisterMethod header_ "pointerDragged" (\() -> pointerDragged_impl this)
-    jregisterMethod header_ "pointerPressed" (\() -> pointerPressed_impl this)
-    jregisterMethod header_ "pointerReleased" (\() -> pointerReleased_impl this)
-    pure this
-
-initFields_ :: TouchJ2ME -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.dEVICE_ID (0)
-    jset this.motionRecognizer =<< (AllMotionRecognizer.new_)
-    pure ()
-
-new_ :: IO TouchJ2ME
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TouchJ2ME -> IO ()
-init_ this = do
-        initFields_ this
-        motionGesturesHandler <- (AllMotionRecognizer.getMotionGesturesHandler ((jio (AllMotionRecognizer.getMotionGestureRecognizer ((jget (this).motionRecognizer))))))
-        Control.Monad.void (BasicMotionGesturesHandler.addListenerInterface motionGesturesHandler (jio (GameMotionGestureListener.new_1 (jio (MotionGestureReceiveInterfaceFactory.getInstance)))))
-        pure ()
+import JR
+import Org.Allbinary.Input.Motion.AllMotionRecognizer as AllMotionRecognizer
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Input.Motion.Gesture.Observer.GameMotionGestureListener as GameMotionGestureListener
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Input.Motion.Gesture.Observer.MotionGestureReceiveInterfaceFactory as MotionGestureReceiveInterfaceFactory
 
 
-pointerDragged :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-pointerDragged object_ a1 a2 = jmethod object_ "pointerDragged" (\() -> (pointerDragged_impl (javaCast object_ :: TouchJ2ME))) () a1 a2
-
-pointerDragged_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-pointerDragged_super object_ a1 a2 = (pointerDragged_impl (javaCast object_ :: TouchJ2ME)) a1 a2
-
-pointerDragged_impl :: TouchJ2ME -> Int -> Int -> IO (())
-pointerDragged_impl this x y = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this "pointerDragged" e)
-            ) $ do
-            Control.Monad.void (AllMotionRecognizer.processDraggedMotionEvent ((jget (this).motionRecognizer)) x y (jget this.dEVICE_ID) 0)
-        pure ()
+jclass : String
+jclass =
+    "TouchJ2ME"
 
 
-pointerPressed :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-pointerPressed object_ a1 a2 = jmethod object_ "pointerPressed" (\() -> (pointerPressed_impl (javaCast object_ :: TouchJ2ME))) () a1 a2
-
-pointerPressed_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-pointerPressed_super object_ a1 a2 = (pointerPressed_impl (javaCast object_ :: TouchJ2ME)) a1 a2
-
-pointerPressed_impl :: TouchJ2ME -> Int -> Int -> IO (())
-pointerPressed_impl this x y = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this "pointerPressed" e)
-            ) $ do
-            Control.Monad.void (AllMotionRecognizer.processStartMotionEvent ((jget (this).motionRecognizer)) x y (jget this.dEVICE_ID) 0)
-        pure ()
+jchain : List String
+jchain =
+    [ "TouchJ2ME" ]
 
 
-pointerReleased :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-pointerReleased object_ a1 a2 = jmethod object_ "pointerReleased" (\() -> (pointerReleased_impl (javaCast object_ :: TouchJ2ME))) () a1 a2
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "DEVICE_ID", JR.defaultOf "I" ), ( "motionRecognizer", JR.defaultOf "" ) ]
 
-pointerReleased_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-pointerReleased_super object_ a1 a2 = (pointerReleased_impl (javaCast object_ :: TouchJ2ME)) a1 a2
 
-pointerReleased_impl :: TouchJ2ME -> Int -> Int -> IO (())
-pointerReleased_impl this x y = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this "pointerReleased" e)
-            ) $ do
-            Control.Monad.void (AllMotionRecognizer.processEndMotionEvent ((jget (this).motionRecognizer)) x y (jget this.dEVICE_ID) 0)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "pointerDragged_2", jm_pointerDragged_2 )
+        , ( "pointerPressed_2", jm_pointerPressed_2 )
+        , ( "pointerReleased_2", jm_pointerReleased_2 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TouchJ2ME"
+        [ ( "jm_pointerDragged_2", jm_pointerDragged_2 ), ( "jm_pointerPressed_2", jm_pointerPressed_2 ), ( "jm_pointerReleased_2", jm_pointerReleased_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "DEVICE_ID" "I" JR.this (JR.int 0)),
+                JR.exec (JR.setField "motionRecognizer" "" JR.this (JR.new AllMotionRecognizer.jnew_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.declare "motionGesturesHandler" "" (JR.invoke "getMotionGesturesHandler_0" (JR.invoke "getMotionGestureRecognizer_0" (JR.thisField "motionRecognizer") []) []), 
+                    JR.exec (JR.invoke "addListenerInterface_1" (JR.local "motionGesturesHandler") [ (JR.new GameMotionGestureListener.jnew_1 [ (JR.callStatic MotionGestureReceiveInterfaceFactory.jm_getInstance_0 []) ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_pointerDragged_2 : JR.Method
+jm_pointerDragged_2 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "processDraggedMotionEvent_4" (JR.thisField "motionRecognizer") [ (JR.local "x"), (JR.local "y"), (JR.thisField "DEVICE_ID"), (JR.int 0) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.str "pointerDragged"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_pointerPressed_2 : JR.Method
+jm_pointerPressed_2 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "processStartMotionEvent_4" (JR.thisField "motionRecognizer") [ (JR.local "x"), (JR.local "y"), (JR.thisField "DEVICE_ID"), (JR.int 0) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.str "pointerPressed"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_pointerReleased_2 : JR.Method
+jm_pointerReleased_2 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "processEndMotionEvent_4" (JR.thisField "motionRecognizer") [ (JR.local "x"), (JR.local "y"), (JR.thisField "DEVICE_ID"), (JR.int 0) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.str "pointerReleased"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

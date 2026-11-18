@@ -1,129 +1,115 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.crypt.jcehelper
-module KeySpecFactory where
+module Org.Allbinary.Logic.System.Security.Crypt.Jcehelper.KeySpecFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified KeySpec -- java.security.spec.KeySpec
-import qualified DESKeySpec -- javax.crypto.spec.DESKeySpec
-import qualified DESedeKeySpec -- javax.crypto.spec.DESedeKeySpec
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.crypt.jcehelper
+-}
 
-data KeySpecFactory = KeySpecFactory
-    { header_ :: JavaHeader
-    , dES :: IORef (String)
-    , dESEDE :: IORef (String)
-    , bLOWFISH :: IORef (String)
-    }
-
-instance JavaNull KeySpecFactory where
-    javaNull = javaNullRecord "KeySpecFactory"
-
-instance JavaEquals KeySpecFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq KeySpecFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass KeySpecFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: KeySpecFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO KeySpecFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    dES <- newIORef ""
-    dESEDE <- newIORef ""
-    bLOWFISH <- newIORef ""
-    let this = KeySpecFactory header_ dES dESEDE bLOWFISH
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstance_2" (\() -> getInstance_2_impl this)
-    pure this
-
-initFields_ :: KeySpecFactory -> IO ()
-initFields_ this = do
-    jset this.dES ("DES")
-    jset this.dESEDE ("DESede")
-    jset this.bLOWFISH ("Blowfish")
-    pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.TsUtil as TsUtil
 
 
-getInstance :: IO (KeySpecFactory)
-getInstance = do
-        pure (KeySpecFactory.instance_)
-
-new_ :: IO KeySpecFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: KeySpecFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "KeySpecFactory"
 
 
-getInstance_2 :: (JavaObjectClass this_) => this_ -> String -> JavaArray (Int8) -> IO (KeySpec.KeySpec)
-getInstance_2 object_ a1 a2 = jmethod object_ "getInstance_2" (\() -> (getInstance_2_impl (javaCast object_ :: KeySpecFactory))) () a1 a2
+jchain : List String
+jchain =
+    [ "KeySpecFactory" ]
 
-getInstance_2_super :: (JavaObjectClass this_) => this_ -> String -> JavaArray (Int8) -> IO (KeySpec.KeySpec)
-getInstance_2_super object_ a1 a2 = (getInstance_2_impl (javaCast object_ :: KeySpecFactory)) a1 a2
 
-getInstance_2_impl :: KeySpecFactory -> String -> JavaArray (Int8) -> IO (KeySpec.KeySpec)
-getInstance_2_impl this algorithm keyData = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (PreLogUtil.putOE (jget (commonStrings).eXCEPTION) this (jget (commonStrings).gET_INSTANCE) e)
-            javaThrow ((JavaException "RuntimeException" ""))
-            ) $ do
-            tsUtil <- (TsUtil.getInstance)
-            if ((jio (TsUtil.compareTo tsUtil algorithm (jget (this).dES))) == 0) then do
-                javaReturn =<< (fmap (\value_ -> javaCast value_ :: KeySpec.KeySpec) (DESKeySpec.new_1 keyData))
-            else if ((jio (TsUtil.compareTo tsUtil algorithm (jget (this).dESEDE))) == 0) then do
-                javaReturn =<< (fmap (\value_ -> javaCast value_ :: KeySpec.KeySpec) (DESedeKeySpec.new_1 keyData))
-            else do
-                javaThrow ((JavaException "RuntimeException" ""))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "DES", JR.defaultOf "" ), ( "DESEDE", JR.defaultOf "" ), ( "BLOWFISH", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInstance_2", jm_getInstance_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "KeySpecFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInstance_2", jm_getInstance_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "KeySpecFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "DES" "" JR.this (JR.str "DES")),
+                JR.exec (JR.setField "DESEDE" "" JR.this (JR.str "DESede")),
+                JR.exec (JR.setField "BLOWFISH" "" JR.this (JR.str "Blowfish")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_2 : JR.Method
+jm_getInstance_2 jheap jthis jargs =
+    JR.method [ ( "algorithm", "" ), ( "keyData", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "tsUtil" "" (JR.callStatic TsUtil.jm_getInstance_0 []), 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_2" (JR.local "tsUtil") [ (JR.local "algorithm"), (JR.thisField "DES") ]) (JR.int 0)) (JR.run [ 
+                            JR.return (JR.new (JR.namedMethod "DESKeySpec.jnew_1") [ (JR.local "keyData") ]) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_2" (JR.local "tsUtil") [ (JR.local "algorithm"), (JR.thisField "DESEDE") ]) (JR.int 0)) (JR.run [ 
+                            JR.return (JR.new (JR.namedMethod "DESedeKeySpec.jnew_1") [ (JR.local "keyData") ]) ]) (JR.run [ 
+                            JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "GET_INSTANCE" (JR.local "commonStrings")), (JR.local "e") ]), 
+                        JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

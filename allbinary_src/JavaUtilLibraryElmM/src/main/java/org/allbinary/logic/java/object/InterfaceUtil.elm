@@ -1,153 +1,143 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.java.anyType
-module InterfaceUtil where
+module Org.Allbinary.Logic.Java.AnyType.InterfaceUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Class -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
+{-| Generated Code Do Not Modify package org.allbinary.logic.java.anyType
+-}
 
-data InterfaceUtil = InterfaceUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull InterfaceUtil where
-    javaNull = javaNullRecord "InterfaceUtil"
-
-instance JavaEquals InterfaceUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InterfaceUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InterfaceUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO InterfaceUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = InterfaceUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: InterfaceUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO InterfaceUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: InterfaceUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-viewAll :: Class.Class -> String -> IO (String)
-viewAll myClass lineBreak = do
-        stringBuffer <- (StringMaker.new_)
-        interfaces <- (Class.getInterfaces myClass)
-        Control.Monad.void (StringMaker.append stringBuffer lineBreak)
-        Control.Monad.void (StringMaker.append stringBuffer "Interfaces: ")
-        Control.Monad.void (StringMaker.append stringBuffer lineBreak)
-        forM_ [0 .. (jlength interfaces) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (StringMaker.append stringBuffer "Interface: ")
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Class.getName ((jindex interfaces (index))))))
-            Control.Monad.void (StringMaker.append stringBuffer lineBreak)
-        (StringMaker.toString stringBuffer)
+jclass : String
+jclass =
+    "InterfaceUtil"
 
 
-getClass :: String -> JavaArray (Class.Class) -> IO (Class.Class)
-getClass interfaceName interfaces = do
-    javaCatchReturn $ do
-        when (((interfaceName /= javaNull) && (interfaces /= javaNull)) && ((jlength interfaces) > 0)) $ do
-            forM_ [0 .. (jlength interfaces) - 1] $ \index -> javaIteration (pure ()) $ do
-                when ((jio (Class.indexOf ((jio (Class.getName ((jindex interfaces (index)))))) interfaceName)) >= 0) $ do
-                    javaReturn ((jindex interfaces (index)))
-        pure (javaNull)
+jchain : List String
+jchain =
+    [ "InterfaceUtil" ]
 
 
--- Java overloads of isImplemented: calls the overload for the types of the arguments
-isImplemented :: (JavaObjectClass o1, JavaObjectClass o2) => o1 -> o2 -> IO (Bool)
-isImplemented a1 a2
-    | jisInstanceOf a1 (javaNull :: Class.Class) = isImplemented_overload1 (javaCast a1 :: Class.Class) a2
-    | jisInstanceOf a1 (javaNull :: String) = isImplemented_overload2 (javaCast a1 :: String) a2
-    | otherwise = isImplemented_overload2 (javaCast a1 :: String) a2
-
-isImplemented_overload1 :: (JavaObjectClass o2) => Class.Class -> o2 -> IO (Bool)
-isImplemented_overload1 clazz anyTypeObject_ = do
-    let anyType = jtoObject anyTypeObject_
-    javaCatchReturn $ do
-        classes <- (Class.getInterfaces ((jio (jobjectGetClass anyType))))
-        forM_ [0 .. (jlength classes) - 1] $ \index -> javaIteration (pure ()) $ do
-            when ((jio (Class.compareTo ((jio (Class.getName clazz))) (jio (Class.getName ((jindex classes (index))))))) == 0) $ do
-                javaReturn (True)
-        pure (False)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-isImplemented_overload2 :: (JavaObjectClass o2) => String -> o2 -> IO (Bool)
-isImplemented_overload2 className anyTypeObject_ = do
-    let anyType = jtoObject anyTypeObject_
-    javaCatchReturn $ do
-        classes <- (Class.getInterfaces ((jio (jobjectGetClass anyType))))
-        forM_ [0 .. (jlength classes) - 1] $ \index -> javaIteration (pure ()) $ do
-            when ((jio (Class.indexOf ((jio (Class.getName ((jindex classes (index)))))) className)) == 0) $ do
-                javaReturn (True)
-        pure (False)
+jvtable =
+    JR.vtable
+        [ ( "viewAll_2", jm_viewAll_2 )
+        , ( "getClass_2", jm_getClass_2 )
+        , ( "isImplemented_2", jm_isImplemented_2 )
+        , ( "isImplementedView_2", jm_isImplementedView_2 ) ]
+        JR.noMethods
 
 
-isImplementedView :: (JavaObjectClass o2) => Class.Class -> o2 -> IO (String)
-isImplementedView clazz anyTypeObject_ = do
-        let anyType = jtoObject anyTypeObject_
-        stringBuffer <- (StringMaker.new_)
-        classes <- (Class.getInterfaces ((jio (jobjectGetClass anyType))))
-        Control.Monad.void (StringMaker.append stringBuffer "isImplementedView: \n")
-        forM_ [0 .. (jlength classes) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Class.getName clazz)))
-            Control.Monad.void (StringMaker.append stringBuffer " should be = ")
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Class.getName ((jindex classes (index))))))
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Class.getName ((jindex classes (index))))))
-            Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).nEW_LINE))
-        (StringMaker.toString stringBuffer)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InterfaceUtil"
+        [ ( "jm_viewAll_2", jm_viewAll_2 ), ( "jm_getClass_2", jm_getClass_2 ), ( "jm_isImplemented_2", jm_isImplemented_2 ), ( "jm_isImplementedView_2", jm_isImplementedView_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_viewAll_2 : JR.Method
+jm_viewAll_2 jheap jthis jargs =
+    JR.method [ ( "myClass", "" ), ( "lineBreak", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "interfaces" "" (JR.invoke "getInterfaces_0" (JR.local "myClass") []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "lineBreak") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Interfaces: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "lineBreak") ]), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "interfaces"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66332 -> (JR.setLocal "index" "I" (JR.lit jwN66332))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Interface: ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.aget (JR.local "interfaces") (JR.local "index")) []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "lineBreak") ]) ]) ], 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getClass_2 : JR.Method
+jm_getClass_2 jheap jthis jargs =
+    JR.method [ ( "interfaceName", "" ), ( "interfaces", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.and (JR.and (JR.map2 JR.notEquals (JR.local "interfaceName") JR.null) (JR.map2 JR.notEquals (JR.local "interfaces") JR.null)) (JR.map2 JR.greater (JR.alength (JR.local "interfaces")) (JR.int 0))) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "interfaces"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66685 -> (JR.setLocal "index" "I" (JR.lit jwN66685))) JR.increment) ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.greaterEquals (JR.invoke "indexOf_1" (JR.invoke "getName_0" (JR.aget (JR.local "interfaces") (JR.local "index")) []) [ (JR.local "interfaceName") ]) (JR.int 0)) (JR.run [ 
+                                JR.return (JR.aget (JR.local "interfaces") (JR.local "index")) ]) identity ]) ] ]) identity, 
+                    JR.return JR.null ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isImplemented_2 : JR.Method
+jm_isImplemented_2 jheap jthis jargs =
+    JR.method [ ( "clazz", "" ), ( "anyType", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "classes" "" (JR.invoke "getInterfaces_0" (JR.getClass (JR.local "anyType")) []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "classes"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66999 -> (JR.setLocal "index" "I" (JR.lit jwN66999))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getName_0" (JR.local "clazz") []) [ (JR.invoke "getName_0" (JR.aget (JR.local "classes") (JR.local "index")) []) ]) (JR.int 0)) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity ]) ], 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isImplementedView_2 : JR.Method
+jm_isImplementedView_2 jheap jthis jargs =
+    JR.method [ ( "clazz", "" ), ( "anyType", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "classes" "" (JR.invoke "getInterfaces_0" (JR.getClass (JR.local "anyType")) []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "isImplementedView: \n") ]), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "classes"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67781 -> (JR.setLocal "index" "I" (JR.lit jwN67781))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.local "clazz") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " should be = ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.aget (JR.local "classes") (JR.local "index")) []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.aget (JR.local "classes") (JR.local "index")) []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "NEW_LINE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) ]) ], 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

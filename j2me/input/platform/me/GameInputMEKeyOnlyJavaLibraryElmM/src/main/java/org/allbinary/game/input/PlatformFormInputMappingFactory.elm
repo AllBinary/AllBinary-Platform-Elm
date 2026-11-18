@@ -1,127 +1,120 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module PlatformFormInputMappingFactory where
+module Org.Allbinary.Game.Input.PlatformFormInputMappingFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified GameKeyFactory -- same package or java.lang
-import qualified InputToGameKeyMapping -- org.allbinary.game.input.mapping.InputToGameKeyMapping
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data PlatformFormInputMappingFactory = PlatformFormInputMappingFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , inputToGameKeyMapping :: IORef (InputToGameKeyMapping.InputToGameKeyMapping)
-    }
-
-instance JavaNull PlatformFormInputMappingFactory where
-    javaNull = javaNullRecord "PlatformFormInputMappingFactory"
-
-instance JavaEquals PlatformFormInputMappingFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlatformFormInputMappingFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlatformFormInputMappingFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PlatformFormInputMappingFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    inputToGameKeyMapping <- newIORef javaNull
-    let this = PlatformFormInputMappingFactory header_ logUtil inputToGameKeyMapping
-    jregisterLevel header_ this
-    jregisterMethod header_ "getOrCreate" (\() -> getOrCreate_impl this)
-    pure this
-
-initFields_ :: PlatformFormInputMappingFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.inputToGameKeyMapping =<< (InputToGameKeyMapping.getNullInstance)
-    pure ()
-
-new_ :: IO PlatformFormInputMappingFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PlatformFormInputMappingFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Input.GameKeyFactory as GameKeyFactory
+import Org.Allbinary.Game.Input.Mapping.InputToGameKeyMapping as InputToGameKeyMapping
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
-getInstance :: IO (PlatformFormInputMappingFactory)
-getInstance = do
-        when ((jget PlatformFormInputMappingFactory.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset PlatformFormInputMappingFactory.instance_ (assignedValue)
-        pure ((javaCast (jget PlatformFormInputMappingFactory.instance_) :: PlatformFormInputMappingFactory))
+jclass : String
+jclass =
+    "PlatformFormInputMappingFactory"
 
 
-getOrCreate :: (JavaObjectClass this_) => this_ -> IO (InputToGameKeyMapping.InputToGameKeyMapping)
-getOrCreate object_ = jmethod object_ "getOrCreate" (\() -> (getOrCreate_impl (javaCast object_ :: PlatformFormInputMappingFactory))) ()
+jchain : List String
+jchain =
+    [ "PlatformFormInputMappingFactory" ]
 
-getOrCreate_super :: (JavaObjectClass this_) => this_ -> IO (InputToGameKeyMapping.InputToGameKeyMapping)
-getOrCreate_super object_ = (getOrCreate_impl (javaCast object_ :: PlatformFormInputMappingFactory))
 
-getOrCreate_impl :: PlatformFormInputMappingFactory -> IO (InputToGameKeyMapping.InputToGameKeyMapping)
-getOrCreate_impl this = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).gET_INSTANCE) e)
-            ) $ do
-            when ((jget (this).inputToGameKeyMapping) == (jio (InputToGameKeyMapping.getNullInstance))) $ do
-                inputToGameKeyMapping <- (InputToGameKeyMapping.new_)
-                gameKeyFactory <- (GameKeyFactory.getInstance)
-                Control.Monad.void (InputToGameKeyMapping.add inputToGameKeyMapping (jget (gameKeyFactory).uP) (jget (gameKeyFactory).uP))
-                Control.Monad.void (InputToGameKeyMapping.add inputToGameKeyMapping (jget (gameKeyFactory).dOWN) (jget (gameKeyFactory).dOWN))
-                Control.Monad.void (InputToGameKeyMapping.add inputToGameKeyMapping (jget (gameKeyFactory).lEFT) (jget (gameKeyFactory).lEFT))
-                Control.Monad.void (InputToGameKeyMapping.add inputToGameKeyMapping (jget (gameKeyFactory).rIGHT) (jget (gameKeyFactory).rIGHT))
-                Control.Monad.void (InputToGameKeyMapping.add inputToGameKeyMapping (jget (gameKeyFactory).kEY_NUM1) (jget (gameKeyFactory).gAME_A))
-                jset (this).inputToGameKeyMapping (inputToGameKeyMapping)
-        pure ((jget (this).inputToGameKeyMapping))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "inputToGameKeyMapping", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getOrCreate_0", jm_getOrCreate_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlatformFormInputMappingFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getOrCreate_0", jm_getOrCreate_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "PlatformFormInputMappingFactory" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "inputToGameKeyMapping" "" JR.this (JR.callStatic InputToGameKeyMapping.jm_getNullInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "PlatformFormInputMappingFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getOrCreate_0 : JR.Method
+jm_getOrCreate_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.thisField "inputToGameKeyMapping") (JR.callStatic InputToGameKeyMapping.jm_getNullInstance_0 [])) (JR.run [ 
+                            JR.declare "inputToGameKeyMapping" "" (JR.new InputToGameKeyMapping.jnew_0 []), 
+                            JR.declare "gameKeyFactory" "" (JR.callStatic GameKeyFactory.jm_getInstance_0 []), 
+                            JR.exec (JR.invoke "add_2" (JR.local "inputToGameKeyMapping") [ (JR.field "UP" (JR.local "gameKeyFactory")), (JR.field "UP" (JR.local "gameKeyFactory")) ]), 
+                            JR.exec (JR.invoke "add_2" (JR.local "inputToGameKeyMapping") [ (JR.field "DOWN" (JR.local "gameKeyFactory")), (JR.field "DOWN" (JR.local "gameKeyFactory")) ]), 
+                            JR.exec (JR.invoke "add_2" (JR.local "inputToGameKeyMapping") [ (JR.field "LEFT" (JR.local "gameKeyFactory")), (JR.field "LEFT" (JR.local "gameKeyFactory")) ]), 
+                            JR.exec (JR.invoke "add_2" (JR.local "inputToGameKeyMapping") [ (JR.field "RIGHT" (JR.local "gameKeyFactory")), (JR.field "RIGHT" (JR.local "gameKeyFactory")) ]), 
+                            JR.exec (JR.invoke "add_2" (JR.local "inputToGameKeyMapping") [ (JR.field "KEY_NUM1" (JR.local "gameKeyFactory")), (JR.field "GAME_A" (JR.local "gameKeyFactory")) ]), 
+                            JR.exec (JR.setField "inputToGameKeyMapping" "" JR.this (JR.local "inputToGameKeyMapping")) ]) identity ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "GET_INSTANCE" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity, 
+                    JR.return (JR.thisField "inputToGameKeyMapping") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

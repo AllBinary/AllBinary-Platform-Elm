@@ -1,166 +1,149 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
-module PlayerQueue where
+module Org.Allbinary.Media.Audio.PlayerQueue exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Sound -- same package or java.lang
-import qualified NoSound -- same package or java.lang
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.media.audio
+-}
 
-data PlayerQueue = PlayerQueue
-    { header_ :: JavaHeader
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    , max :: IORef (Int)
-    }
-
-instance JavaNull PlayerQueue where
-    javaNull = javaNullRecord "PlayerQueue"
-
-instance JavaEquals PlayerQueue where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlayerQueue where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlayerQueue where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-tOTAL :: String
-tOTAL = "Sounds In Queue: "
-
-newRecord_ :: IO PlayerQueue
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonStrings <- newIORef javaNull
-    list <- newIORef javaNull
-    max <- newIORef 0
-    let this = PlayerQueue header_ commonStrings list max
-    jregisterLevel header_ this
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: PlayerQueue -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    jset this.max (0)
-    pure ()
-
-new_1 :: Int -> IO PlayerQueue
-new_1 max = do
-    this <- newRecord_
-    init_1 this max
-    pure this
-
-init_1 :: PlayerQueue -> Int -> IO ()
-init_1 this max = do
-        initFields_ this
-        jset (this).max (max)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Media.Audio.NoSound as NoSound
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-add :: (JavaObjectClass this_) => this_ -> Sound.Sound -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: PlayerQueue))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> Sound.Sound -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: PlayerQueue)) a1
-
-add_impl :: PlayerQueue -> Sound.Sound -> IO (())
-add_impl this sound = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (PreLogUtil.put (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).aDD))
-            ) $ do
-            when (Prelude.not (jio (BasicArrayList.contains ((jget (this).list)) sound))) $ do
-                Control.Monad.void (BasicArrayList.add ((jget (this).list)) sound)
-        pure ()
+jclass : String
+jclass =
+    "PlayerQueue"
 
 
-process :: (JavaObjectClass this_) => this_ -> IO (Bool)
-process object_ = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: PlayerQueue))) ()
-
-process_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-process_super object_ = (process_impl (javaCast object_ :: PlayerQueue))
-
-process_impl :: PlayerQueue -> IO (Bool)
-process_impl this = do
-        sound <- newIORef =<< (NoSound.getInstance)
-        handle (\(e :: JavaException) -> do
-            resource <- newIORef ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-            when ((jget sound) /= javaNull) $ do
-                assignedValue <- (Sound.getResource ((jget sound)))
-                jset resource (assignedValue)
-            Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).commonStrings)).eXCEPTION_LABEL)))) (jget resource)))))) this (jget ((jget (this).commonStrings)).pROCESS))
-            pure (False)
-            ) $ do
-            played <- newIORef (False :: Bool)
-            when ((jio (BasicArrayList.size ((jget (this).list)))) > 0) $ do
-                jset sound ((javaCast (jio (BasicArrayList.removeAt ((jget (this).list)) 0)) :: Sound.Sound))
-                when ((jget sound) /= javaNull) $ do
-                    Control.Monad.void (Sound.start ((jio (Sound.getPlayerP ((jget sound))))))
-                fix $ \loop -> when ((jio (BasicArrayList.size ((jget (this).list)))) > (jget (this).max)) $ javaIteration (loop) $ do
-                    Control.Monad.void (BasicArrayList.removeAt ((jget (this).list)) 0)
-                jset played (True)
-            pure ((jget played))
+jchain : List String
+jchain =
+    [ "PlayerQueue" ]
 
 
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: PlayerQueue))) ()
-
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: PlayerQueue))
-
-clear_impl :: PlayerQueue -> IO (())
-clear_impl this = do
-        Control.Monad.void (BasicArrayList.clear ((jget (this).list)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonStrings", JR.defaultOf "" ), ( "list", JR.defaultOf "" ), ( "max", JR.defaultOf "I" ) ]
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: PlayerQueue))) ()
+jvtable =
+    JR.vtable
+        [ ( "add_1", jm_add_1 )
+        , ( "process_0", jm_process_0 )
+        , ( "clear_0", jm_clear_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: PlayerQueue))
 
-toString_impl :: PlayerQueue -> IO (String)
-toString_impl this = do
-        (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) (PlayerQueue.tOTAL)))) (jio (BasicArrayList.size ((jget (this).list))))))))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlayerQueue"
+        [ ( "jm_add_1", jm_add_1 ), ( "jm_process_0", jm_process_0 ), ( "jm_clear_0", jm_clear_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_TOTAL", jstatic_TOTAL ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_TOTAL : JR.M
+jstatic_TOTAL s =
+    JR.static "PlayerQueue" jclinit "TOTAL"
+        (JR.str "Sounds In Queue: ")
+        s
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "max", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "max" "I" JR.this (JR.local "max")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "sound", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "contains_1" (JR.thisField "list") [ (JR.local "sound") ])) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "sound") ]) ]) identity ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "ADD" (JR.thisField "commonStrings")) ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_0 : JR.Method
+jm_process_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.declare "sound" "" (JR.callStatic NoSound.jm_getInstance_0 []), 
+                    JR.try (JR.run [ 
+                        JR.declare "played" "Z" (JR.bool False), 
+                        JR.ifElse (JR.map2 JR.greater (JR.invoke "size_0" (JR.thisField "list") []) (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.setLocal "sound" "" (JR.invoke "removeAt_1" (JR.thisField "list") [ (JR.int 0) ])), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "sound") JR.null) (JR.run [ 
+                                JR.exec (JR.invoke "start_0" (JR.invoke "getPlayerP_0" (JR.local "sound") []) []) ]) identity, 
+                            JR.while (JR.map2 JR.greater (JR.invoke "size_0" (JR.thisField "list") []) (JR.thisField "max")) (JR.run [ 
+                                JR.exec (JR.invoke "removeAt_1" (JR.thisField "list") [ (JR.int 0) ]) ]), 
+                            JR.exec (JR.setLocal "played" "Z" (JR.bool True)) ]) identity, 
+                        JR.return (JR.local "played") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "resource" "" (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "sound") JR.null) (JR.run [ 
+                            JR.exec (JR.setLocal "resource" "" (JR.invoke "getResource_0" (JR.local "sound") [])) ]) identity, 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "EXCEPTION_LABEL" (JR.thisField "commonStrings")) ]) [ (JR.local "resource") ]) []), JR.this, (JR.field "PROCESS" (JR.thisField "commonStrings")) ]), 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "list") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ jstatic_TOTAL ]) [ (JR.invoke "size_0" (JR.thisField "list") []) ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

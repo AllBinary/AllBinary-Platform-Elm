@@ -1,714 +1,458 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
-module FileUtil where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AbFile -- same package or java.lang
-import qualified FilePathData -- same package or java.lang
-import qualified FileWrapperUtil -- same package or java.lang
-import qualified FileUtil2 -- same package or java.lang
-import qualified InputStream -- java.io.InputStream
-import qualified OutputStream -- java.io.OutputStream
-import qualified URLGLOBALS -- org.allbinary.globals.URLGLOBALS
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified LogConfigTypeFactory -- org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory
-import qualified AbDataOutputStream -- org.allbinary.logic.io.AbDataOutputStream
-import qualified AbFileInputStream -- org.allbinary.logic.io.AbFileInputStream
-import qualified AbFileLocalInputStream -- org.allbinary.logic.io.AbFileLocalInputStream
-import qualified AbIOSystem -- org.allbinary.logic.io.AbIOSystem
-import qualified DataOutputStreamFactory -- org.allbinary.logic.io.DataOutputStreamFactory
-import qualified FileStreamFactory -- org.allbinary.logic.io.FileStreamFactory
-import qualified StreamUtil -- org.allbinary.logic.io.StreamUtil
-import qualified Directory -- org.allbinary.logic.io.file.directory.Directory
-import qualified AbPath -- org.allbinary.logic.io.path.AbPath
-import qualified AbPathData -- org.allbinary.logic.io.path.AbPathData
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-
-data FileUtil = FileUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , directory :: IORef (Directory.Directory)
-    , logConfigTypeFactory :: IORef (LogConfigTypeFactory.LogConfigTypeFactory)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , streamUtil :: IORef (StreamUtil.StreamUtil)
-    , wRITE_LABEL :: IORef (String)
-    , dATA_LABEL :: IORef (String)
-    , wRITE_METHOD :: IORef (String)
-    }
-
-instance JavaNull FileUtil where
-    javaNull = javaNullRecord "FileUtil"
-
-instance JavaEquals FileUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FileUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FileUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: FileUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO FileUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    directory <- newIORef javaNull
-    logConfigTypeFactory <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    streamUtil <- newIORef javaNull
-    wRITE_LABEL <- newIORef ""
-    dATA_LABEL <- newIORef ""
-    wRITE_METHOD <- newIORef ""
-    let this = FileUtil header_ logUtil directory logConfigTypeFactory commonStrings streamUtil wRITE_LABEL dATA_LABEL wRITE_METHOD
-    jregisterLevel header_ this
-    jregisterMethod header_ "write_overload1" (\() -> write_overload1_impl this)
-    jregisterMethod header_ "write_overload2" (\() -> write_overload2_impl this)
-    jregisterMethod header_ "write_3" (\() -> write_3_impl this)
-    jregisterMethod header_ "copy_overload1" (\() -> copy_overload1_impl this)
-    jregisterMethod header_ "fixPath" (\() -> fixPath_impl this)
-    jregisterMethod header_ "copyToCloud_overload1" (\() -> copyToCloud_overload1_impl this)
-    jregisterMethod header_ "copyToCloud_6" (\() -> copyToCloud_6_impl this)
-    jregisterMethod header_ "copyToCloud_2" (\() -> copyToCloud_2_impl this)
-    jregisterMethod header_ "copyToCloud_overload2" (\() -> copyToCloud_overload2_impl this)
-    jregisterMethod header_ "copyPrepare" (\() -> copyPrepare_impl this)
-    jregisterMethod header_ "copyFile" (\() -> copyFile_impl this)
-    jregisterMethod header_ "copyFile_4" (\() -> copyFile_4_impl this)
-    jregisterMethod header_ "copyDirectoryPortion" (\() -> copyDirectoryPortion_impl this)
-    jregisterMethod header_ "copyDirectory" (\() -> copyDirectory_impl this)
-    jregisterMethod header_ "copy_overload2" (\() -> copy_overload2_impl this)
-    jregisterMethod header_ "shouldSkip" (\() -> shouldSkip_impl this)
-    jregisterMethod header_ "write_overload3" (\() -> write_overload3_impl this)
-    jregisterMethod header_ "loadFileAsList" (\() -> loadFileAsList_impl this)
-    pure this
-
-initFields_ :: FileUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.directory =<< (Directory.getInstance)
-    jset this.logConfigTypeFactory =<< (LogConfigTypeFactory.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.streamUtil =<< (StreamUtil.getInstance)
-    jset this.wRITE_LABEL ("Write file: ")
-    jset this.dATA_LABEL (" data: ")
-    jset this.wRITE_METHOD ("write")
-    pure ()
-
-
-getInstance :: IO (FileUtil)
-getInstance = do
-        pure (FileUtil.instance_)
-
-new_ :: IO FileUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: FileUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
-
-
--- Java overloads of write: calls the overload for the types of the arguments
-write :: (JavaObjectClass this_, JavaObjectClass o1, JavaObjectClass o2) => this_ -> o1 -> o2 -> IO (())
-write this a1 a2
-    | jisInstanceOf a1 (javaNull :: InputStream.InputStream) && jisInstanceOf a2 (javaNull :: AbFile.AbFile) = write_overload1 this (javaCast a1 :: InputStream.InputStream) (javaCast a2 :: AbFile.AbFile)
-    | jisInstanceOf a1 (javaNull :: InputStream.InputStream) && jisInstanceOf a2 (javaNull :: AbDataOutputStream.AbDataOutputStream) = write_overload2 this (javaCast a1 :: InputStream.InputStream) (javaCast a2 :: AbDataOutputStream.AbDataOutputStream)
-    | jisInstanceOf a1 (javaNull :: String) && jisInstanceOf a2 (javaNull :: String) = write_overload3 this (javaCast a1 :: String) (javaCast a2 :: String)
-    | otherwise = write_overload3 this (javaCast a1 :: String) (javaCast a2 :: String)
-
--- throws Exception
-write_overload1 :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> AbFile.AbFile -> IO (())
-write_overload1 object_ a1 a2 = jmethod object_ "write_overload1" (\() -> (write_overload1_impl (javaCast object_ :: FileUtil))) () a1 a2
-
-write_overload1_super :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> AbFile.AbFile -> IO (())
-write_overload1_super object_ a1 a2 = (write_overload1_impl (javaCast object_ :: FileUtil)) a1 a2
-
-write_overload1_impl :: FileUtil -> InputStream.InputStream -> AbFile.AbFile -> IO (())
-write_overload1_impl this inputStream file = do
-        dataOutputStream <- (DataOutputStreamFactory.getInstanceForAbFile ((jio (DataOutputStreamFactory.getInstance))) file)
-        Control.Monad.void (FileUtil.write this inputStream dataOutputStream)
-        pure ()
-
-
--- throws Exception
-write_overload2 :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> AbDataOutputStream.AbDataOutputStream -> IO (())
-write_overload2 object_ a1 a2 = jmethod object_ "write_overload2" (\() -> (write_overload2_impl (javaCast object_ :: FileUtil))) () a1 a2
-
-write_overload2_super :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> AbDataOutputStream.AbDataOutputStream -> IO (())
-write_overload2_super object_ a1 a2 = (write_overload2_impl (javaCast object_ :: FileUtil)) a1 a2
-
-write_overload2_impl :: FileUtil -> InputStream.InputStream -> AbDataOutputStream.AbDataOutputStream -> IO (())
-write_overload2_impl this inputStream dataOutputStream = do
-        dataOutputStream <- newIORef dataOutputStream
-        flip finally (do
-            Control.Monad.void (StreamUtil.close ((jio (StreamUtil.getInstance))) (jget dataOutputStream))
-            ) $ do
-            jset dataOutputStream ((javaCast (jio (StreamUtil.get ((jio (StreamUtil.getInstance))) inputStream (jget dataOutputStream) (jnewArray (16384) 0))) :: AbDataOutputStream.AbDataOutputStream))
-            Control.Monad.void (AbDataOutputStream.flush ((jget dataOutputStream)))
-        pure ()
-
-
--- throws Exception
-write_3 :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> AbDataOutputStream.AbDataOutputStream -> JavaArray (Int8) -> IO (())
-write_3 object_ a1 a2 a3 = jmethod object_ "write_3" (\() -> (write_3_impl (javaCast object_ :: FileUtil))) () a1 a2 a3
-
-write_3_super :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> AbDataOutputStream.AbDataOutputStream -> JavaArray (Int8) -> IO (())
-write_3_super object_ a1 a2 a3 = (write_3_impl (javaCast object_ :: FileUtil)) a1 a2 a3
-
-write_3_impl :: FileUtil -> InputStream.InputStream -> AbDataOutputStream.AbDataOutputStream -> JavaArray (Int8) -> IO (())
-write_3_impl this inputStream dataOutputStream buffer = do
-        dataOutputStream <- newIORef dataOutputStream
-        flip finally (do
-            Control.Monad.void (StreamUtil.close ((jio (StreamUtil.getInstance))) (jget dataOutputStream))
-            ) $ do
-            jset dataOutputStream ((javaCast (jio (StreamUtil.get ((jio (StreamUtil.getInstance))) inputStream (jget dataOutputStream) buffer)) :: AbDataOutputStream.AbDataOutputStream))
-            Control.Monad.void (AbDataOutputStream.flush ((jget dataOutputStream)))
-        pure ()
-
-
--- Java overloads of copy: calls the overload for the types of the arguments
-copy :: (JavaObjectClass this_, JavaObjectClass o1, JavaObjectClass o2) => this_ -> o1 -> o2 -> IO (JavaObject)
-copy this a1 a2
-    | jisInstanceOf a1 (javaNull :: AbFileInputStream.AbFileInputStream) && jisInstanceOf a2 (javaNull :: AbDataOutputStream.AbDataOutputStream) = fmap jtoObject (copy_overload1 this (javaCast a1 :: AbFileInputStream.AbFileInputStream) (javaCast a2 :: AbDataOutputStream.AbDataOutputStream))
-    | jisInstanceOf a1 (javaNull :: AbPath.AbPath) && jisInstanceOf a2 (javaNull :: AbPath.AbPath) = fmap jtoObject (copy_overload2 this (javaCast a1 :: AbPath.AbPath) (javaCast a2 :: AbPath.AbPath))
-    | otherwise = fmap jtoObject (copy_overload2 this (javaCast a1 :: AbPath.AbPath) (javaCast a2 :: AbPath.AbPath))
-
--- throws Exception
-copy_overload1 :: (JavaObjectClass this_) => this_ -> AbFileInputStream.AbFileInputStream -> AbDataOutputStream.AbDataOutputStream -> IO (())
-copy_overload1 object_ a1 a2 = jmethod object_ "copy_overload1" (\() -> (copy_overload1_impl (javaCast object_ :: FileUtil))) () a1 a2
-
-copy_overload1_super :: (JavaObjectClass this_) => this_ -> AbFileInputStream.AbFileInputStream -> AbDataOutputStream.AbDataOutputStream -> IO (())
-copy_overload1_super object_ a1 a2 = (copy_overload1_impl (javaCast object_ :: FileUtil)) a1 a2
-
-copy_overload1_impl :: FileUtil -> AbFileInputStream.AbFileInputStream -> AbDataOutputStream.AbDataOutputStream -> IO (())
-copy_overload1_impl this dataInputStream dataOutputStream = do
-        dataOutputStream <- newIORef dataOutputStream
-        flip finally (do
-            Control.Monad.void (StreamUtil.close ((jio (StreamUtil.getInstance))) (jget dataOutputStream))
-            Control.Monad.void (StreamUtil.close ((jio (StreamUtil.getInstance))) dataInputStream)
-            ) $ do
-            jset dataOutputStream ((javaCast (jio (StreamUtil.get ((jio (StreamUtil.getInstance))) dataInputStream (jget dataOutputStream) (jnewArray (16384) 0))) :: AbDataOutputStream.AbDataOutputStream))
-            Control.Monad.void (AbDataOutputStream.flush ((jget dataOutputStream)))
-        pure ()
-
-
--- throws Exception
-fixPath :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbPath.AbPath -> AbPath.AbPath -> String -> IO (AbPath.AbPath)
-fixPath object_ a1 a2 a3 a4 = jmethod object_ "fixPath" (\() -> (fixPath_impl (javaCast object_ :: FileUtil))) () a1 a2 a3 a4
-
-fixPath_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbPath.AbPath -> AbPath.AbPath -> String -> IO (AbPath.AbPath)
-fixPath_super object_ a1 a2 a3 a4 = (fixPath_impl (javaCast object_ :: FileUtil)) a1 a2 a3 a4
-
-fixPath_impl :: FileUtil -> AbFile.AbFile -> AbPath.AbPath -> AbPath.AbPath -> String -> IO (AbPath.AbPath)
-fixPath_impl this file path realPath cloud = do
-        let beginIndex = ((jio (AbFile.indexOf ((jio (AbFile.getPath file))) cloud)) + (Prelude.length cloud))
-        endIndex <- (AbFile.indexOf ((jio (AbFile.getPath file))) (jio (AbFile.getName file)))
-        let fixedPathString = (javaToString (jio (AbPath.toFileSystemString realPath)) ++ (jio (AbFile.substring ((jio (AbFile.getPath file))) beginIndex endIndex)))
-        fixedPath <- (AbPath.new_2 fixedPathString (jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-        Control.Monad.void (Directory.create ((jget (this).directory)) fixedPath)
-        string <- (AbPath.toFileSystemString fixedPath)
-        when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) string this "fixPath")
-        outPath <- (AbPath.new_2 string (jio (AbFile.getName file)))
-        pure (outPath)
-
-
--- Java overloads of copyToCloud: calls the overload for the types of the arguments
-copyToCloud :: (JavaObjectClass this_, JavaObjectClass o2, JavaObjectClass o3, JavaObjectClass o4) => this_ -> AbFile.AbFile -> o2 -> o3 -> o4 -> IO (())
-copyToCloud this a1 a2 a3 a4
-    | jisInstanceOf a2 (javaNull :: AbPath.AbPath) && jisInstanceOf a3 (javaNull :: AbPath.AbPath) && jisInstanceOf a4 (javaNull :: String) = copyToCloud_overload1 this a1 (javaCast a2 :: AbPath.AbPath) (javaCast a3 :: AbPath.AbPath) (javaCast a4 :: String)
-    | jisInstanceOf a2 (javaNull :: AbFile.AbFile) && jisInstanceOf a3 (javaNull :: Bool) && jisInstanceOf a4 (javaNull :: Bool) = copyToCloud_overload2 this a1 (javaCast a2 :: AbFile.AbFile) (javaCast a3 :: Bool) (javaCast a4 :: Bool)
-    | otherwise = copyToCloud_overload2 this a1 (javaCast a2 :: AbFile.AbFile) (javaCast a3 :: Bool) (javaCast a4 :: Bool)
-
--- throws Exception
-copyToCloud_overload1 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbPath.AbPath -> AbPath.AbPath -> String -> IO (())
-copyToCloud_overload1 object_ a1 a2 a3 a4 = jmethod object_ "copyToCloud_overload1" (\() -> (copyToCloud_overload1_impl (javaCast object_ :: FileUtil))) () a1 a2 a3 a4
-
-copyToCloud_overload1_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbPath.AbPath -> AbPath.AbPath -> String -> IO (())
-copyToCloud_overload1_super object_ a1 a2 a3 a4 = (copyToCloud_overload1_impl (javaCast object_ :: FileUtil)) a1 a2 a3 a4
-
-copyToCloud_overload1_impl :: FileUtil -> AbFile.AbFile -> AbPath.AbPath -> AbPath.AbPath -> String -> IO (())
-copyToCloud_overload1_impl this file path realPath cloud = do
-        Control.Monad.void (FileUtil.copyToCloud_6 this file path realPath cloud False False)
-        pure ()
-
-
--- throws Exception
-copyToCloud_6 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbPath.AbPath -> AbPath.AbPath -> String -> Bool -> Bool -> IO (())
-copyToCloud_6 object_ a1 a2 a3 a4 a5 a6 = jmethod object_ "copyToCloud_6" (\() -> (copyToCloud_6_impl (javaCast object_ :: FileUtil))) () a1 a2 a3 a4 a5 a6
-
-copyToCloud_6_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbPath.AbPath -> AbPath.AbPath -> String -> Bool -> Bool -> IO (())
-copyToCloud_6_super object_ a1 a2 a3 a4 a5 a6 = (copyToCloud_6_impl (javaCast object_ :: FileUtil)) a1 a2 a3 a4 a5 a6
-
-copyToCloud_6_impl :: FileUtil -> AbFile.AbFile -> AbPath.AbPath -> AbPath.AbPath -> String -> Bool -> Bool -> IO (())
-copyToCloud_6_impl this file path realPath cloud overwriteNewer overwriteAll = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILEERROR))) $ do
-                stringBuffer <- (StringMaker.new_)
-                Control.Monad.void (StringMaker.append stringBuffer "Error Copying File File: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.toString file)))
-                Control.Monad.void (StringMaker.append stringBuffer " to cloud.")
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyToCloud" e)
-            javaThrow (e)
-            ) $ do
-            outPath <- (FileUtil.fixPath this file path realPath cloud)
-            outFile <- (AbFile.createAbFileFromAbPath outPath)
-            if (Prelude.not (jio (FileUtil.copyPrepare this file outFile overwriteNewer overwriteAll))) then do
-                javaReturn (())
-            else do
-                when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                    stringBuffer <- (StringMaker.new_)
-                    Control.Monad.void (StringMaker.append stringBuffer "Out File: ")
-                    Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath outFile)))
-                    Control.Monad.void (StringMaker.append stringBuffer " In File: ")
-                    Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath file)))
-                    Control.Monad.void (StringMaker.append stringBuffer " to cloud.")
-                    Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyToCloud")
-            dataOutputStream <- (DataOutputStreamFactory.getInstanceForAbFile ((jio (DataOutputStreamFactory.getInstance))) outFile)
-            fileInputStream <- (fmap (\value_ -> javaCast value_ :: AbFileInputStream.AbFileInputStream) (AbFileLocalInputStream.new_1 file))
-            Control.Monad.void (FileUtil.copy this fileInputStream dataOutputStream)
-    pure ()
-
-
--- throws Exception
-copyToCloud_2 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> IO (())
-copyToCloud_2 object_ a1 a2 = jmethod object_ "copyToCloud_2" (\() -> (copyToCloud_2_impl (javaCast object_ :: FileUtil))) () a1 a2
-
-copyToCloud_2_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> IO (())
-copyToCloud_2_super object_ a1 a2 = (copyToCloud_2_impl (javaCast object_ :: FileUtil)) a1 a2
-
-copyToCloud_2_impl :: FileUtil -> AbFile.AbFile -> AbFile.AbFile -> IO (())
-copyToCloud_2_impl this file outFile = do
-        Control.Monad.void (FileUtil.copyToCloud this file outFile False False)
-        pure ()
-
-
--- throws Exception
-copyToCloud_overload2 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> Bool -> Bool -> IO (())
-copyToCloud_overload2 object_ a1 a2 a3 a4 = jmethod object_ "copyToCloud_overload2" (\() -> (copyToCloud_overload2_impl (javaCast object_ :: FileUtil))) () a1 a2 a3 a4
-
-copyToCloud_overload2_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> Bool -> Bool -> IO (())
-copyToCloud_overload2_super object_ a1 a2 a3 a4 = (copyToCloud_overload2_impl (javaCast object_ :: FileUtil)) a1 a2 a3 a4
-
-copyToCloud_overload2_impl :: FileUtil -> AbFile.AbFile -> AbFile.AbFile -> Bool -> Bool -> IO (())
-copyToCloud_overload2_impl this file outFile overwriteNewer overwriteAll = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILEERROR))) $ do
-                stringBuffer <- (StringMaker.new_)
-                Control.Monad.void (StringMaker.append stringBuffer "Error Copying File File: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.toString file)))
-                Control.Monad.void (StringMaker.append stringBuffer " to cloud.")
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyToCloud" e)
-            javaThrow (e)
-            ) $ do
-            stringBuffer <- (StringMaker.new_)
-            if (Prelude.not (jio (FileUtil.copyPrepare this file outFile overwriteNewer overwriteAll))) then do
-                javaReturn (())
-            else do
-                when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                    Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-                    Control.Monad.void (StringMaker.append stringBuffer "Out File: ")
-                    Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath outFile)))
-                    Control.Monad.void (StringMaker.append stringBuffer " In File: ")
-                    Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath file)))
-                    Control.Monad.void (StringMaker.append stringBuffer " to cloud.")
-                    Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyToCloud")
-            dataOutputStream <- (DataOutputStreamFactory.getInstanceForAbFile ((jio (DataOutputStreamFactory.getInstance))) outFile)
-            fileInputStream <- (fmap (\value_ -> javaCast value_ :: AbFileInputStream.AbFileInputStream) (AbFileLocalInputStream.new_1 file))
-            Control.Monad.void (FileUtil.copy this fileInputStream dataOutputStream)
-    pure ()
-
-
--- throws Exception
-copyPrepare :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> Bool -> Bool -> IO (Bool)
-copyPrepare object_ a1 a2 a3 a4 = jmethod object_ "copyPrepare" (\() -> (copyPrepare_impl (javaCast object_ :: FileUtil))) () a1 a2 a3 a4
-
-copyPrepare_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> Bool -> Bool -> IO (Bool)
-copyPrepare_super object_ a1 a2 a3 a4 = (copyPrepare_impl (javaCast object_ :: FileUtil)) a1 a2 a3 a4
-
-copyPrepare_impl :: FileUtil -> AbFile.AbFile -> AbFile.AbFile -> Bool -> Bool -> IO (Bool)
-copyPrepare_impl this fromFile toFile overwriteNewer overwriteAll = do
-    javaCatchReturn $ do
-        if (jio (AbFile.exists toFile)) then do
-            stringBuffer <- (StringMaker.new_)
-            if overwriteAll then do
-                when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                    Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-                    Control.Monad.void (StringMaker.append stringBuffer "Overwriting File: ")
-                    Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath toFile)))
-                    Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyFile")
-                Control.Monad.void (AbFile.delete toFile)
-                Control.Monad.void (AbFile.createNewFile toFile)
-            else if (((jio (AbFile.lastModified toFile)) < (jio (AbFile.lastModified fromFile))) && overwriteNewer) then do
-                when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                    Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-                    Control.Monad.void (StringMaker.append stringBuffer "Newer by: ")
-                    Control.Monad.void (StringMaker.appendlong stringBuffer (Prelude.fromInteger (jnumericInteger ((jio (AbFile.lastModified fromFile)) - (jio (AbFile.lastModified toFile))))))
-                    Control.Monad.void (StringMaker.append stringBuffer "ms ")
-                    Control.Monad.void (StringMaker.append stringBuffer "Copying File: ")
-                    Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath toFile)))
-                    Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyFile")
-                Control.Monad.void (AbFile.delete toFile)
-                Control.Monad.void (AbFile.createNewFile toFile)
-            else do
-                when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                    Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-                    Control.Monad.void (StringMaker.append stringBuffer "File Already Exists")
-                    if overwriteNewer then do
-                        Control.Monad.void (StringMaker.append stringBuffer " And Is Not Older")
-                    else do
-                        Control.Monad.void (StringMaker.append stringBuffer " And Not A In Overwrite Mode")
-                    Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonLabels.getInstance))).cOLON_SEP))
-                    Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath toFile)))
-                    Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyFile")
-                javaReturn (False)
-        else do
-            Control.Monad.void (AbFile.createNewFile toFile)
-        pure (True)
-
-
--- throws Exception
-copyFile :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> IO (())
-copyFile object_ a1 a2 = jmethod object_ "copyFile" (\() -> (copyFile_impl (javaCast object_ :: FileUtil))) () a1 a2
-
-copyFile_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> IO (())
-copyFile_super object_ a1 a2 = (copyFile_impl (javaCast object_ :: FileUtil)) a1 a2
-
-copyFile_impl :: FileUtil -> AbFile.AbFile -> AbFile.AbFile -> IO (())
-copyFile_impl this fromFile toFile = do
-        Control.Monad.void (FileUtil.copyFile_4 this fromFile toFile False False)
-        pure ()
-
-
--- throws Exception
-copyFile_4 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> Bool -> Bool -> IO (())
-copyFile_4 object_ a1 a2 a3 a4 = jmethod object_ "copyFile_4" (\() -> (copyFile_4_impl (javaCast object_ :: FileUtil))) () a1 a2 a3 a4
-
-copyFile_4_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> Bool -> Bool -> IO (())
-copyFile_4_super object_ a1 a2 a3 a4 = (copyFile_4_impl (javaCast object_ :: FileUtil)) a1 a2 a3 a4
-
-copyFile_4_impl :: FileUtil -> AbFile.AbFile -> AbFile.AbFile -> Bool -> Bool -> IO (())
-copyFile_4_impl this fromFile toFile overwriteNewer overwriteAll = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILEERROR))) $ do
-                stringBuffer <- (StringMaker.new_)
-                Control.Monad.void (StringMaker.append stringBuffer "Error Copying File fromFile: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.toString fromFile)))
-                Control.Monad.void (StringMaker.append stringBuffer " to: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.toString toFile)))
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyFile" e)
-            javaThrow (e)
-            ) $ do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                stringBuffer <- (StringMaker.new_)
-                Control.Monad.void (StringMaker.append stringBuffer "Copying ")
-                Control.Monad.void (StringMaker.appendlong stringBuffer (Prelude.fromIntegral (jio (AbFile.length fromFile))))
-                Control.Monad.void (StringMaker.append stringBuffer " bytes from File: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath fromFile)))
-                Control.Monad.void (StringMaker.append stringBuffer " to: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath toFile)))
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyFile")
-            when (Prelude.not (jio (FileUtil.copyPrepare this fromFile toFile overwriteNewer overwriteAll))) $ do
-                javaReturn (())
-            dataOutputStream <- (DataOutputStreamFactory.getInstanceForAbFile ((jio (DataOutputStreamFactory.getInstance))) toFile)
-            fileInputStream <- (AbFileInputStream.createFromAbFile fromFile)
-            Control.Monad.void (FileUtil.copy this fileInputStream dataOutputStream)
-    pure ()
-
-
-getNewDirectory :: AbFile.AbFile -> IO (String)
-getNewDirectory fromFile = do
-        newDirectory <- newIORef =<< (AbFile.getPath fromFile)
-        separatorChar <- newIORef ((jget ((jio (FilePathData.getInstance))).pATH_START))
-        when (jio (AbIOSystem.isType ((jio (AbIOSystem.getInstance))) "com.vobject.appengine.java.io")) $ do
-            jset separatorChar ((jget ((jio (AbPathData.getInstance))).sEPARATOR))
-        lastIndex <- newIORef ((jstringLastIndexOf (jget newDirectory) (jget separatorChar)) :: Int)
-        when ((jget lastIndex) >= (Prelude.length (jget newDirectory))) $ do
-            jset newDirectory ((Prelude.take ((((Prelude.length (jget newDirectory)) - 1)) - (0)) (Prelude.drop (0) (jget newDirectory))))
-            jset lastIndex ((jstringLastIndexOf (jget newDirectory) (jget separatorChar)))
-        pure ((Prelude.take (((Prelude.length (jget newDirectory))) - ((jget lastIndex))) (Prelude.drop ((jget lastIndex)) (jget newDirectory))))
-
-
--- throws Exception
-copyDirectoryPortion :: (JavaObjectClass this_) => this_ -> AbPath.AbPath -> AbPath.AbPath -> Bool -> Bool -> Int -> Int -> IO (())
-copyDirectoryPortion object_ a1 a2 a3 a4 a5 a6 = jmethod object_ "copyDirectoryPortion" (\() -> (copyDirectoryPortion_impl (javaCast object_ :: FileUtil))) () a1 a2 a3 a4 a5 a6
-
-copyDirectoryPortion_super :: (JavaObjectClass this_) => this_ -> AbPath.AbPath -> AbPath.AbPath -> Bool -> Bool -> Int -> Int -> IO (())
-copyDirectoryPortion_super object_ a1 a2 a3 a4 a5 a6 = (copyDirectoryPortion_impl (javaCast object_ :: FileUtil)) a1 a2 a3 a4 a5 a6
-
-copyDirectoryPortion_impl :: FileUtil -> AbPath.AbPath -> AbPath.AbPath -> Bool -> Bool -> Int -> Int -> IO (())
-copyDirectoryPortion_impl this fromDirectoryAbPath toDirectoryAbPath overwriteNewer overwriteAll current total = do
-        file <- (AbFile.createAbFileFromAbPath fromDirectoryAbPath)
-        when (Prelude.not (jio (AbFile.isDirectory file))) $ do
-            javaThrow ((JavaException "Exception" ("Not a directory: " ++ javaToString (jio (AbFile.getPath file)))))
-        fileList <- (Directory.search ((jget (this).directory)) file True)
-        size <- (BasicArrayList.size fileList)
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "Searched: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath file)))
-        Control.Monad.void (StringMaker.append stringBuffer " Total: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer size)
-        let portion = ((size `quot` total) + 1)
-        let start = (portion * current)
-        end <- newIORef ((start + portion) :: Int)
-        when ((jget end) > size) $ do
-            jset end (size)
-        Control.Monad.void (StringMaker.append stringBuffer " Section: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer start)
-        Control.Monad.void (StringMaker.append stringBuffer " - ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jget end))
-        when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copySomeFilesToDirectory()")
-        nextFile <- newIORef (javaNull)
-        forM_ [start .. (jget end) - 1] $ \index -> javaIteration (pure ()) $ do
-            jset nextFile ((javaCast (jio (BasicArrayList.get fileList index)) :: AbFile.AbFile))
-            if (jio (AbFile.isDirectory ((jget nextFile)))) then do
-                pure ()
-            else do
-                path <- (AbPath.getPath ((jio (AbPath.new_2 (jio (AbFile.getPath ((jget nextFile)))) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING)))))
-                beginIndex <- newIORef =<< (AbPath.length ((jio (AbPath.getPath fromDirectoryAbPath))))
-                when ((jstringIndexOf path (jio (URLGLOBALS.getWebappPath)) 0) < 0) $ do
-                    assignedValue <- (AbPath.length ((jio (AbPath.getPath ((jio (AbPath.new_2 (jio (URLGLOBALS.getWebappPath)) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING))))))))
-                    jset beginIndex (((jget beginIndex) - assignedValue))
-                let newPath = (javaToString (jio (AbPath.toFileSystemString toDirectoryAbPath)) ++ (Prelude.drop (jget beginIndex) path))
-                toFile <- (AbFile.createAbFileFromAbPath (jio (AbPath.new_2 newPath (jget ((jio (StringUtil.getInstance))).eMPTY_STRING))))
-                Control.Monad.void (FileUtil.copyFile_4 this (jget nextFile) toFile overwriteNewer overwriteAll)
-        pure ()
-
-
--- throws Exception
-copyDirectory :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> IO (())
-copyDirectory object_ a1 a2 = jmethod object_ "copyDirectory" (\() -> (copyDirectory_impl (javaCast object_ :: FileUtil))) () a1 a2
-
-copyDirectory_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> AbFile.AbFile -> IO (())
-copyDirectory_super object_ a1 a2 = (copyDirectory_impl (javaCast object_ :: FileUtil)) a1 a2
-
-copyDirectory_impl :: FileUtil -> AbFile.AbFile -> AbFile.AbFile -> IO (())
-copyDirectory_impl this fromFile to = do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILEERROR))) $ do
-                stringBuffer <- (StringMaker.new_)
-                Control.Monad.void (StringMaker.append stringBuffer "Error Copying Directory fromFile: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.toString fromFile)))
-                Control.Monad.void (StringMaker.append stringBuffer " to: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.toString to)))
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyDirectory" e)
-            javaThrow (e)
-            ) $ do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                stringBuffer <- (StringMaker.new_)
-                Control.Monad.void (StringMaker.append stringBuffer "Copying Directory from: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath fromFile)))
-                Control.Monad.void (StringMaker.append stringBuffer " to: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath to)))
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyDirectory")
-            newDirectory <- (FileUtil.getNewDirectory fromFile)
-            newDirectoryAbPath <- (AbPath.new_2 (javaToString ((jio (AbFile.getPath to)) + (jget ((jio (AbPathData.getInstance))).sEPARATOR)) ++ newDirectory) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-            when (Prelude.not (jio (Directory.create ((jget (this).directory)) newDirectoryAbPath))) $ do
-                javaThrow ((JavaException "Exception" ("Failed to create directory: " ++ jconcatObject AbPath.toString newDirectoryAbPath)))
-            fileArray <- (FileWrapperUtil.wrapFiles (jio (AbFile.listFiles fromFile)))
-            let size = (jlength fileArray)
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                stringBuffer <- (StringMaker.new_)
-                Control.Monad.void (StringMaker.append stringBuffer "Copying ")
-                Control.Monad.void (StringMaker.appendint stringBuffer size)
-                Control.Monad.void (StringMaker.append stringBuffer " files from: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath fromFile)))
-                Control.Monad.void (StringMaker.append stringBuffer " to: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath to)))
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) "copyDirectory")
-            file <- newIORef (javaNull)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                jset file ((jindex fileArray (index)))
-                if (jio (AbFile.isFile ((jget file)))) then do
-                    Control.Monad.void (FileUtil.copyFile this (jget file) (jio (AbFile.createAbFilePathAndName (jio (AbPath.toString newDirectoryAbPath)) (jio (AbFile.getName ((jget file)))))))
-                else if (jio (AbFile.isDirectory ((jget file)))) then do
-                    Control.Monad.void (FileUtil.copyDirectory this (jget file) (jio (AbFile.createAbFileFromAbPath newDirectoryAbPath)))
-                else do
-                    javaThrow ((JavaException "Exception" "File Copy Error"))
-        pure ()
-
-
--- throws Exception
-copy_overload2 :: (JavaObjectClass this_) => this_ -> AbPath.AbPath -> AbPath.AbPath -> IO (Bool)
-copy_overload2 object_ a1 a2 = jmethod object_ "copy_overload2" (\() -> (copy_overload2_impl (javaCast object_ :: FileUtil))) () a1 a2
-
-copy_overload2_super :: (JavaObjectClass this_) => this_ -> AbPath.AbPath -> AbPath.AbPath -> IO (Bool)
-copy_overload2_super object_ a1 a2 = (copy_overload2_impl (javaCast object_ :: FileUtil)) a1 a2
-
-copy_overload2_impl :: FileUtil -> AbPath.AbPath -> AbPath.AbPath -> IO (Bool)
-copy_overload2_impl this fromAbPath to = do
-        let cOPY = "copy"
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILEERROR))) $ do
-                stringBuffer <- (StringMaker.new_)
-                Control.Monad.void (StringMaker.append stringBuffer "Error Copying fromAbPath: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbPath.toString fromAbPath)))
-                Control.Monad.void (StringMaker.append stringBuffer " to: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbPath.toString to)))
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) cOPY e)
-            javaThrow (e)
-            ) $ do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                stringBuffer <- (StringMaker.new_)
-                Control.Monad.void (StringMaker.append stringBuffer "Copying AbPaths from: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbPath.toString fromAbPath)))
-                Control.Monad.void (StringMaker.append stringBuffer " to: ")
-                Control.Monad.void (StringMaker.append stringBuffer (jio (AbPath.toString to)))
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) cOPY)
-            when (fromAbPath == javaNull) $ do
-                javaThrow ((JavaException "Exception" "Cannot Copy From A Null Location"))
-            when (to == javaNull) $ do
-                javaThrow ((JavaException "Exception" "Cannot Copy To A Null Location"))
-            fromLocationFile <- (AbFile.createAbFileFromAbPath fromAbPath)
-            toLocationFile <- (AbFile.createAbFileFromAbPath to)
-            if (jio (AbFile.isFile fromLocationFile)) then do
-                if (jio (AbFile.isDirectory toLocationFile)) then do
-                    file <- (AbFile.createAbFileWithChild toLocationFile (jio (AbFile.getName fromLocationFile)))
-                    Control.Monad.void (FileUtil.copyFile this fromLocationFile file)
-                    when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                        stringBuffer <- (StringMaker.new_)
-                        Control.Monad.void (StringMaker.append stringBuffer "Copied file=")
-                        Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getName fromLocationFile)))
-                        Control.Monad.void (StringMaker.append stringBuffer " from: ")
-                        Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath fromLocationFile)))
-                        Control.Monad.void (StringMaker.append stringBuffer " to: ")
-                        Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath toLocationFile)))
-                        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) cOPY)
-                else do
-                    Control.Monad.void (FileUtil.copyFile this fromLocationFile toLocationFile)
-                    when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                        stringBuffer <- (StringMaker.new_)
-                        Control.Monad.void (StringMaker.append stringBuffer "Copied file with new name ")
-                        Control.Monad.void (StringMaker.append stringBuffer " from: ")
-                        Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath fromLocationFile)))
-                        Control.Monad.void (StringMaker.append stringBuffer " to: ")
-                        Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath toLocationFile)))
-                        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) (jio (FileUtil.getInstance)) cOPY)
-            else when ((jio (AbFile.isDirectory fromLocationFile)) && (jio (AbFile.isDirectory toLocationFile))) $ do
-                if ((jio (AbPath.charAt ((jio (AbPath.toFileSystemString fromAbPath))) ((jio (AbPath.length ((jio (AbPath.toFileSystemString fromAbPath))))) - 1))) == (jget ((jget (java.io).file)).separatorChar)) then do
-                    when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Copying subdirectories" (jio (FileUtil.getInstance)) cOPY)
-                    fileArray <- (FileWrapperUtil.wrapFiles (jio (AbFile.listFiles fromLocationFile)))
-                    forM_ [0 .. (jlength fileArray) - 1] $ \index -> javaIteration (pure ()) $ do
-                        let file = (jindex fileArray (index))
-                        if (jio (AbFile.isFile file)) then do
-                            aFile <- (AbFile.createAbFileWithChild toLocationFile (jio (AbFile.getName file)))
-                            Control.Monad.void (FileUtil.copyFile this file aFile)
-                        else if (jio (AbFile.isDirectory file)) then do
-                            Control.Monad.void (FileUtil.copyDirectory this file toLocationFile)
-                        else do
-                            javaThrow ((JavaException "Exception" "File Copy Error"))
-                    when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Copied subdirectories" (jio (FileUtil.getInstance)) cOPY)
-                else do
-                    when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Copyinhg directory" (jio (FileUtil.getInstance)) cOPY)
-                    Control.Monad.void (FileUtil.copyDirectory this fromLocationFile toLocationFile)
-                    when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jget (this).logConfigTypeFactory)).fILE))) $ do
-                        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Copied directory" (jio (FileUtil.getInstance)) cOPY)
-            pure (True)
-
-
-shouldSkip :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> JavaArray (String) -> IO (Bool)
-shouldSkip object_ a1 a2 = jmethod object_ "shouldSkip" (\() -> (shouldSkip_impl (javaCast object_ :: FileUtil))) () a1 a2
-
-shouldSkip_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> JavaArray (String) -> IO (Bool)
-shouldSkip_super object_ a1 a2 = (shouldSkip_impl (javaCast object_ :: FileUtil)) a1 a2
-
-shouldSkip_impl :: FileUtil -> AbFile.AbFile -> JavaArray (String) -> IO (Bool)
-shouldSkip_impl this file skipFiles = do
-    javaCatchReturn $ do
-        let size = (jlength skipFiles)
-        skipFile <- newIORef ("")
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset skipFile ((jindex skipFiles (index)))
-            when ((jio (AbFile.compareTo ((jio (AbFile.getPath file))) (jget skipFile))) == 0) $ do
-                javaReturn (True)
-        pure (False)
-
-
--- throws Exception
-write_overload3 :: (JavaObjectClass this_) => this_ -> String -> String -> IO (())
-write_overload3 object_ a1 a2 = jmethod object_ "write_overload3" (\() -> (write_overload3_impl (javaCast object_ :: FileUtil))) () a1 a2
-
-write_overload3_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (())
-write_overload3_super object_ a1 a2 = (write_overload3_impl (javaCast object_ :: FileUtil)) a1 a2
-
-write_overload3_impl :: FileUtil -> String -> String -> IO (())
-write_overload3_impl this filePath string = do
-        dataOutputStream <- newIORef (javaNull)
-        flip finally (do
-            Control.Monad.void (StreamUtil.close ((jio (StreamUtil.getInstance))) (jget dataOutputStream))
-            ) $ do
-            Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (this).wRITE_LABEL)))) filePath))) (jget (this).dATA_LABEL)))) string))))) this (jget (this).wRITE_METHOD))
-            fileInputStreamFactory <- (FileStreamFactory.getInstance)
-            fileOutputStream <- (FileStreamFactory.getFileOutputStreamInstance fileInputStreamFactory (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) filePath)
-            assignedValue <- (AbDataOutputStream.new_1 fileOutputStream)
-            jset dataOutputStream (assignedValue)
-            Control.Monad.void (AbDataOutputStream.write ((jget dataOutputStream)) (jgetBytes string) 0 (Prelude.length string))
-            Control.Monad.void (AbDataOutputStream.flush ((jget dataOutputStream)))
-        pure ()
-
-
-loadFileAsList :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> Int -> JavaArray (Int8) -> IO (BasicArrayList.BasicArrayList)
-loadFileAsList object_ a1 a2 a3 = jmethod object_ "loadFileAsList" (\() -> (loadFileAsList_impl (javaCast object_ :: FileUtil))) () a1 a2 a3
-
-loadFileAsList_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> Int -> JavaArray (Int8) -> IO (BasicArrayList.BasicArrayList)
-loadFileAsList_super object_ a1 a2 a3 = (loadFileAsList_impl (javaCast object_ :: FileUtil)) a1 a2 a3
-
-loadFileAsList_impl :: FileUtil -> AbFile.AbFile -> Int -> JavaArray (Int8) -> IO (BasicArrayList.BasicArrayList)
-loadFileAsList_impl this file max byteArray1 = do
-        (FileUtil2.loadFileAsList ((jio (FileUtil2.getInstance))) file max byteArray1)
+module Org.Allbinary.Logic.Io.File.FileUtil exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file
+-}
+
+import JR
+import Org.Allbinary.Logic.Io.File.AbFile as AbFile
+import Org.Allbinary.Logic.Io.AbFileInputStream as AbFileInputStream
+import Org.Allbinary.Logic.Io.AbFileLocalInputStream as AbFileLocalInputStream
+import Org.Allbinary.Logic.Io.AbIOSystem as AbIOSystem
+import Org.Allbinary.Logic.Io.Path.AbPath as AbPath
+import Org.Allbinary.Logic.Io.Path.AbPathData as AbPathData
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Io.DataOutputStreamFactory as DataOutputStreamFactory
+import Org.Allbinary.Logic.Io.File.Directory.Directory as Directory
+import Org.Allbinary.Logic.Io.File.FilePathData as FilePathData
+import Org.Allbinary.Logic.Io.File.FileUtil2 as FileUtil2
+import Org.Allbinary.Logic.Io.File.FileWrapperUtil as FileWrapperUtil
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.Io.StreamUtil as StreamUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Globals.URLGLOBALS as URLGLOBALS
+
+
+jclass : String
+jclass =
+    "FileUtil"
+
+
+jchain : List String
+jchain =
+    [ "FileUtil" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "directory", JR.defaultOf "" ), ( "logConfigTypeFactory", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "streamUtil", JR.defaultOf "" ), ( "WRITE_LABEL", JR.defaultOf "" ), ( "DATA_LABEL", JR.defaultOf "" ), ( "WRITE_METHOD", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "write_2", jm_write_2 )
+        , ( "write_3", jm_write_3 )
+        , ( "copy_2", jm_copy_2 )
+        , ( "fixPath_4", jm_fixPath_4 )
+        , ( "copyToCloud_4", jm_copyToCloud_4 )
+        , ( "copyToCloud_6", jm_copyToCloud_6 )
+        , ( "copyToCloud_2", jm_copyToCloud_2 )
+        , ( "copyPrepare_4", jm_copyPrepare_4 )
+        , ( "copyFile_2", jm_copyFile_2 )
+        , ( "copyFile_4", jm_copyFile_4 )
+        , ( "getNewDirectory_1", jm_getNewDirectory_1 )
+        , ( "copyDirectoryPortion_6", jm_copyDirectoryPortion_6 )
+        , ( "copyDirectory_2", jm_copyDirectory_2 )
+        , ( "shouldSkip_2", jm_shouldSkip_2 )
+        , ( "loadFileAsList_3", jm_loadFileAsList_3 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FileUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_write_2", jm_write_2 ), ( "jm_write_3", jm_write_3 ), ( "jm_copy_2", jm_copy_2 ), ( "jm_fixPath_4", jm_fixPath_4 ), ( "jm_copyToCloud_4", jm_copyToCloud_4 ), ( "jm_copyToCloud_6", jm_copyToCloud_6 ), ( "jm_copyToCloud_2", jm_copyToCloud_2 ), ( "jm_copyPrepare_4", jm_copyPrepare_4 ), ( "jm_copyFile_2", jm_copyFile_2 ), ( "jm_copyFile_4", jm_copyFile_4 ), ( "jm_getNewDirectory_1", jm_getNewDirectory_1 ), ( "jm_copyDirectoryPortion_6", jm_copyDirectoryPortion_6 ), ( "jm_copyDirectory_2", jm_copyDirectory_2 ), ( "jm_shouldSkip_2", jm_shouldSkip_2 ), ( "jm_loadFileAsList_3", jm_loadFileAsList_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "FileUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "directory" "" JR.this (JR.callStatic Directory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "logConfigTypeFactory" "" JR.this (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "streamUtil" "" JR.this (JR.callStatic StreamUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "WRITE_LABEL" "" JR.this (JR.str "Write file: ")),
+                JR.exec (JR.setField "DATA_LABEL" "" JR.this (JR.str " data: ")),
+                JR.exec (JR.setField "WRITE_METHOD" "" JR.this (JR.str "write")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
 
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_write_2 : JR.Method
+jm_write_2 jheap jthis jargs =
+    JR.method [ ( "inputStream", "" ), ( "file", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "dataOutputStream" "" (JR.invoke "getInstanceForAbFile_1" (JR.callStatic DataOutputStreamFactory.jm_getInstance_0 []) [ (JR.local "file") ]), 
+                    JR.exec (JR.invoke "write_2" JR.this [ (JR.local "inputStream"), (JR.local "dataOutputStream") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_write_3 : JR.Method
+jm_write_3 jheap jthis jargs =
+    JR.method [ ( "inputStream", "" ), ( "dataOutputStream", "" ), ( "buffer", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.setLocal "dataOutputStream" "" (JR.invoke "get_3" (JR.callStatic StreamUtil.jm_getInstance_0 []) [ (JR.local "inputStream"), (JR.local "dataOutputStream"), (JR.local "buffer") ])), 
+                        JR.exec (JR.invoke "flush_0" (JR.local "dataOutputStream") []) ]) [  ] (JR.run [ 
+                        JR.exec (JR.invoke "close_1" (JR.callStatic StreamUtil.jm_getInstance_0 []) [ (JR.local "dataOutputStream") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_copy_2 : JR.Method
+jm_copy_2 jheap jthis jargs =
+    JR.method [ ( "dataInputStream", "" ), ( "dataOutputStream", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.setLocal "dataOutputStream" "" (JR.invoke "get_3" (JR.callStatic StreamUtil.jm_getInstance_0 []) [ (JR.local "dataInputStream"), (JR.local "dataOutputStream"), (JR.newArray "B" [ (JR.int 16384) ]) ])), 
+                        JR.exec (JR.invoke "flush_0" (JR.local "dataOutputStream") []) ]) [  ] (JR.run [ 
+                        JR.exec (JR.invoke "close_1" (JR.callStatic StreamUtil.jm_getInstance_0 []) [ (JR.local "dataOutputStream") ]), 
+                        JR.exec (JR.invoke "close_1" (JR.callStatic StreamUtil.jm_getInstance_0 []) [ (JR.local "dataInputStream") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fixPath_4 : JR.Method
+jm_fixPath_4 jheap jthis jargs =
+    JR.method [ ( "file", "" ), ( "path", "" ), ( "realPath", "" ), ( "cloud", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "beginIndex" "I" (JR.map2 JR.add (JR.invoke "indexOf_1" (JR.invoke "getPath_0" (JR.local "file") []) [ (JR.local "cloud") ]) (JR.invoke "length_0" (JR.local "cloud") [])), 
+                    JR.declare "endIndex" "I" (JR.invoke "indexOf_1" (JR.invoke "getPath_0" (JR.local "file") []) [ (JR.invoke "getName_0" (JR.local "file") []) ]), 
+                    JR.declare "fixedPathString" "" (JR.concat (JR.invoke "toFileSystemString_0" (JR.local "realPath") []) (JR.invoke "substring_2" (JR.invoke "getPath_0" (JR.local "file") []) [ (JR.local "beginIndex"), (JR.local "endIndex") ])), 
+                    JR.declare "fixedPath" "" (JR.new AbPath.jnew_2 [ (JR.local "fixedPathString"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "create_1" (JR.thisField "directory") [ (JR.local "fixedPath") ]), 
+                    JR.declare "string" "" (JR.invoke "toFileSystemString_0" (JR.local "fixedPath") []), 
+                    JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILE" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.local "string"), JR.this, (JR.str "fixPath") ]) ]) identity, 
+                    JR.declare "outPath" "" (JR.new AbPath.jnew_2 [ (JR.local "string"), (JR.invoke "getName_0" (JR.local "file") []) ]), 
+                    JR.return (JR.local "outPath") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_copyToCloud_4 : JR.Method
+jm_copyToCloud_4 jheap jthis jargs =
+    JR.method [ ( "file", "" ), ( "path", "" ), ( "realPath", "" ), ( "cloud", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "copyToCloud_6" JR.this [ (JR.local "file"), (JR.local "path"), (JR.local "realPath"), (JR.local "cloud"), (JR.bool False), (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_copyToCloud_6 : JR.Method
+jm_copyToCloud_6 jheap jthis jargs =
+    JR.method [ ( "file", "" ), ( "path", "" ), ( "realPath", "" ), ( "cloud", "" ), ( "overwriteNewer", "Z" ), ( "overwriteAll", "Z" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "outPath" "" (JR.invoke "fixPath_4" JR.this [ (JR.local "file"), (JR.local "path"), (JR.local "realPath"), (JR.local "cloud") ]), 
+                        JR.declare "outFile" "" (JR.callStatic AbFile.jm_createAbFileFromAbPath_1 [ (JR.local "outPath") ]), 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "copyPrepare_4" JR.this [ (JR.local "file"), (JR.local "outFile"), (JR.local "overwriteNewer"), (JR.local "overwriteAll") ])) (JR.run [ 
+                            JR.returnVoid ]) (JR.run [ 
+                            JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILE" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                                JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Out File: ") ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "outFile") []) ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " In File: ") ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "file") []) ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " to cloud.") ]), 
+                                JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copyToCloud") ]) ]) identity ]), 
+                        JR.declare "dataOutputStream" "" (JR.invoke "getInstanceForAbFile_1" (JR.callStatic DataOutputStreamFactory.jm_getInstance_0 []) [ (JR.local "outFile") ]), 
+                        JR.declare "fileInputStream" "" (JR.new AbFileLocalInputStream.jnew_1 [ (JR.local "file") ]), 
+                        JR.exec (JR.invoke "copy_2" JR.this [ (JR.local "fileInputStream"), (JR.local "dataOutputStream") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILEERROR" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                            JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Error Copying File File: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.local "file") []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " to cloud.") ]), 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copyToCloud"), (JR.local "e") ]) ]) identity, 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_copyToCloud_2 : JR.Method
+jm_copyToCloud_2 jheap jthis jargs =
+    JR.method [ ( "file", "" ), ( "outFile", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "copyToCloud_4" JR.this [ (JR.local "file"), (JR.local "outFile"), (JR.bool False), (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_copyPrepare_4 : JR.Method
+jm_copyPrepare_4 jheap jthis jargs =
+    JR.method [ ( "fromFile", "" ), ( "toFile", "" ), ( "overwriteNewer", "Z" ), ( "overwriteAll", "Z" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "exists_0" (JR.local "toFile") []) (JR.run [ 
+                        JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.ifElse (JR.local "overwriteAll") (JR.run [ 
+                            JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILE" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                                JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Overwriting File: ") ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "toFile") []) ]), 
+                                JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copyFile") ]) ]) identity, 
+                            JR.exec (JR.invoke "delete_0" (JR.local "toFile") []), 
+                            JR.exec (JR.invoke "createNewFile_0" (JR.local "toFile") []) ]) (JR.run [ 
+                        JR.ifElse (JR.and (JR.map2 JR.less (JR.invoke "lastModified_0" (JR.local "toFile") []) (JR.invoke "lastModified_0" (JR.local "fromFile") [])) (JR.local "overwriteNewer")) (JR.run [ 
+                            JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILE" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                                JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Newer by: ") ]), 
+                                JR.exec (JR.invoke "appendlong_1" (JR.local "stringBuffer") [ (JR.map2 JR.sub (JR.invoke "lastModified_0" (JR.local "fromFile") []) (JR.invoke "lastModified_0" (JR.local "toFile") [])) ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "ms ") ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Copying File: ") ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "toFile") []) ]), 
+                                JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copyFile") ]) ]) identity, 
+                            JR.exec (JR.invoke "delete_0" (JR.local "toFile") []), 
+                            JR.exec (JR.invoke "createNewFile_0" (JR.local "toFile") []) ]) (JR.run [ 
+                            JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILE" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                                JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "File Already Exists") ]), 
+                                JR.ifElse (JR.local "overwriteNewer") (JR.run [ 
+                                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " And Is Not Older") ]) ]) (JR.run [ 
+                                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " And Not A In Overwrite Mode") ]) ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COLON_SEP" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "toFile") []) ]), 
+                                JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copyFile") ]) ]) identity, 
+                            JR.return (JR.bool False) ]) ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "createNewFile_0" (JR.local "toFile") []) ]), 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_copyFile_2 : JR.Method
+jm_copyFile_2 jheap jthis jargs =
+    JR.method [ ( "fromFile", "" ), ( "toFile", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "copyFile_4" JR.this [ (JR.local "fromFile"), (JR.local "toFile"), (JR.bool False), (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_copyFile_4 : JR.Method
+jm_copyFile_4 jheap jthis jargs =
+    JR.method [ ( "fromFile", "" ), ( "toFile", "" ), ( "overwriteNewer", "Z" ), ( "overwriteAll", "Z" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILE" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                            JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Copying ") ]), 
+                            JR.exec (JR.invoke "appendlong_1" (JR.local "stringBuffer") [ (JR.cast "J" (JR.invoke "length_0" (JR.local "fromFile") [])) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " bytes from File: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "fromFile") []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " to: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "toFile") []) ]), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copyFile") ]) ]) identity, 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "copyPrepare_4" JR.this [ (JR.local "fromFile"), (JR.local "toFile"), (JR.local "overwriteNewer"), (JR.local "overwriteAll") ])) (JR.run [ 
+                            JR.returnVoid ]) identity, 
+                        JR.declare "dataOutputStream" "" (JR.invoke "getInstanceForAbFile_1" (JR.callStatic DataOutputStreamFactory.jm_getInstance_0 []) [ (JR.local "toFile") ]), 
+                        JR.declare "fileInputStream" "" (JR.callStatic AbFileInputStream.jm_createFromAbFile_1 [ (JR.local "fromFile") ]), 
+                        JR.exec (JR.invoke "copy_2" JR.this [ (JR.local "fileInputStream"), (JR.local "dataOutputStream") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILEERROR" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                            JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Error Copying File fromFile: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.local "fromFile") []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " to: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.local "toFile") []) ]), 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copyFile"), (JR.local "e") ]) ]) identity, 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNewDirectory_1 : JR.Method
+jm_getNewDirectory_1 jheap jthis jargs =
+    JR.method [ ( "fromFile", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "newDirectory" "" (JR.invoke "getPath_0" (JR.local "fromFile") []), 
+                    JR.declare "separatorChar" "" (JR.field "PATH_START" (JR.callStatic FilePathData.jm_getInstance_0 [])), 
+                    JR.ifElse (JR.invoke "isType_1" (JR.callStatic AbIOSystem.jm_getInstance_0 []) [ (JR.str "com.vobject.appengine.java.io") ]) (JR.run [ 
+                        JR.exec (JR.setLocal "separatorChar" "" (JR.field "SEPARATOR" (JR.callStatic AbPathData.jm_getInstance_0 []))) ]) identity, 
+                    JR.declare "lastIndex" "I" (JR.invoke "lastIndexOf_1" (JR.local "newDirectory") [ (JR.local "separatorChar") ]), 
+                    JR.ifElse (JR.map2 JR.greaterEquals (JR.local "lastIndex") (JR.invoke "length_0" (JR.local "newDirectory") [])) (JR.run [ 
+                        JR.exec (JR.setLocal "newDirectory" "" (JR.invoke "substring_2" (JR.local "newDirectory") [ (JR.int 0), (JR.map2 JR.sub (JR.invoke "length_0" (JR.local "newDirectory") []) (JR.int 1)) ])), 
+                        JR.exec (JR.setLocal "lastIndex" "I" (JR.invoke "lastIndexOf_1" (JR.local "newDirectory") [ (JR.local "separatorChar") ])) ]) identity, 
+                    JR.return (JR.invoke "substring_2" (JR.local "newDirectory") [ (JR.local "lastIndex"), (JR.invoke "length_0" (JR.local "newDirectory") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_copyDirectoryPortion_6 : JR.Method
+jm_copyDirectoryPortion_6 jheap jthis jargs =
+    JR.method [ ( "fromDirectoryAbPath", "" ), ( "toDirectoryAbPath", "" ), ( "overwriteNewer", "Z" ), ( "overwriteAll", "Z" ), ( "current", "I" ), ( "total", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "file" "" (JR.callStatic AbFile.jm_createAbFileFromAbPath_1 [ (JR.local "fromDirectoryAbPath") ]), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isDirectory_0" (JR.local "file") [])) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.concat (JR.str "Not a directory: ") (JR.invoke "getPath_0" (JR.local "file") [])) ]) ]) identity, 
+                    JR.declare "fileList" "" (JR.invoke "search_2" (JR.thisField "directory") [ (JR.local "file"), (JR.bool True) ]), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "fileList") []), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Searched: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "file") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Total: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "size") ]), 
+                    JR.declare "portion" "I" (JR.map2 JR.add (JR.map2 JR.div (JR.local "size") (JR.local "total")) (JR.int 1)), 
+                    JR.declare "start" "I" (JR.map2 JR.mul (JR.local "portion") (JR.local "current")), 
+                    JR.declare "end" "I" (JR.map2 JR.add (JR.local "start") (JR.local "portion")), 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "end") (JR.local "size")) (JR.run [ 
+                        JR.exec (JR.setLocal "end" "I" (JR.local "size")) ]) identity, 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Section: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "start") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " - ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "end") ]), 
+                    JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILE" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copySomeFilesToDirectory()") ]) ]) identity, 
+                    JR.declare "nextFile" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "end")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN78752 -> (JR.setLocal "index" "I" (JR.lit jwN78752))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "nextFile" "" (JR.invoke "get_1" (JR.local "fileList") [ (JR.local "index") ])), 
+                        JR.ifElse (JR.invoke "isDirectory_0" (JR.local "nextFile") []) identity (JR.run [ 
+                            JR.declare "path" "" (JR.invoke "getPath_0" (JR.new AbPath.jnew_2 [ (JR.invoke "getPath_0" (JR.local "nextFile") []), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]) []), 
+                            JR.declare "beginIndex" "I" (JR.invoke "length_0" (JR.invoke "getPath_0" (JR.local "fromDirectoryAbPath") []) []), 
+                            JR.ifElse (JR.map2 JR.less (JR.invoke "indexOf_1" (JR.local "path") [ (JR.callStatic URLGLOBALS.jm_getWebappPath_0 []) ]) (JR.int 0)) (JR.run [ 
+                                JR.exec (JR.setLocal "beginIndex" "I" (JR.map2 JR.sub (JR.local "beginIndex") (JR.invoke "length_0" (JR.invoke "getPath_0" (JR.new AbPath.jnew_2 [ (JR.callStatic URLGLOBALS.jm_getWebappPath_0 []), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]) []) []))) ]) identity, 
+                            JR.declare "newPath" "" (JR.concat (JR.invoke "toFileSystemString_0" (JR.local "toDirectoryAbPath") []) (JR.invoke "substring_1" (JR.local "path") [ (JR.local "beginIndex") ])), 
+                            JR.declare "toFile" "" (JR.callStatic AbFile.jm_createAbFileFromAbPath_1 [ (JR.new AbPath.jnew_2 [ (JR.local "newPath"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]) ]), 
+                            JR.exec (JR.invoke "copyFile_4" JR.this [ (JR.local "nextFile"), (JR.local "toFile"), (JR.local "overwriteNewer"), (JR.local "overwriteAll") ]) ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_copyDirectory_2 : JR.Method
+jm_copyDirectory_2 jheap jthis jargs =
+    JR.method [ ( "fromFile", "" ), ( "to", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILE" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                            JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Copying Directory from: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "fromFile") []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " to: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "to") []) ]), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copyDirectory") ]) ]) identity, 
+                        JR.declare "newDirectory" "" (JR.callStatic jm_getNewDirectory_1 [ (JR.local "fromFile") ]), 
+                        JR.declare "newDirectoryAbPath" "" (JR.new AbPath.jnew_2 [ (JR.concat (JR.concat (JR.invoke "getPath_0" (JR.local "to") []) (JR.field "SEPARATOR" (JR.callStatic AbPathData.jm_getInstance_0 []))) (JR.local "newDirectory")), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]), 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "create_1" (JR.thisField "directory") [ (JR.local "newDirectoryAbPath") ])) (JR.run [ 
+                            JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.concat (JR.str "Failed to create directory: ") (JR.local "newDirectoryAbPath")) ]) ]) identity, 
+                        JR.declare "fileArray" "" (JR.callStatic FileWrapperUtil.jm_wrapFiles_1 [ (JR.invoke "listFiles_0" (JR.local "fromFile") []) ]), 
+                        JR.declare "size" "I" (JR.alength (JR.local "fileArray")), 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILE" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                            JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Copying ") ]), 
+                            JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "size") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " files from: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "fromFile") []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " to: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "to") []) ]), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copyDirectory") ]) ]) identity, 
+                        JR.declare "file" "" (JR.lit (JR.defaultOf "")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN80429 -> (JR.setLocal "index" "I" (JR.lit jwN80429))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "file" "" (JR.aget (JR.local "fileArray") (JR.local "index"))), 
+                            JR.ifElse (JR.invoke "isFile_0" (JR.local "file") []) (JR.run [ 
+                                JR.exec (JR.invoke "copyFile_2" JR.this [ (JR.local "file"), (JR.callStatic AbFile.jm_createAbFilePathAndName_2 [ (JR.invoke "toString_0" (JR.local "newDirectoryAbPath") []), (JR.invoke "getName_0" (JR.local "file") []) ]) ]) ]) (JR.run [ 
+                            JR.ifElse (JR.invoke "isDirectory_0" (JR.local "file") []) (JR.run [ 
+                                JR.exec (JR.invoke "copyDirectory_2" JR.this [ (JR.local "file"), (JR.callStatic AbFile.jm_createAbFileFromAbPath_1 [ (JR.local "newDirectoryAbPath") ]) ]) ]) (JR.run [ 
+                                JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "File Copy Error") ]) ]) ]) ]) ] ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILEERROR" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
+                            JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Error Copying Directory fromFile: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.local "fromFile") []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " to: ") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.local "to") []) ]), 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copyDirectory"), (JR.local "e") ]) ]) identity, 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_shouldSkip_2 : JR.Method
+jm_shouldSkip_2 jheap jthis jargs =
+    JR.method [ ( "file", "" ), ( "skipFiles", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.alength (JR.local "skipFiles")), 
+                    JR.declare "skipFile" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN84537 -> (JR.setLocal "index" "I" (JR.lit jwN84537))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "skipFile" "" (JR.aget (JR.local "skipFiles") (JR.local "index"))), 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getPath_0" (JR.local "file") []) [ (JR.local "skipFile") ]) (JR.int 0)) (JR.run [ 
+                            JR.return (JR.bool True) ]) identity ]) ], 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_loadFileAsList_3 : JR.Method
+jm_loadFileAsList_3 jheap jthis jargs =
+    JR.method [ ( "file", "" ), ( "max", "I" ), ( "byteArray1", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "loadFileAsList_3" (JR.callStatic FileUtil2.jm_getInstance_0 []) [ (JR.local "file"), (JR.local "max"), (JR.local "byteArray1") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

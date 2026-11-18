@@ -1,296 +1,262 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.path
-module AbPath where
+module Org.Allbinary.Logic.Io.Path.AbPath exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AbPathData -- same package or java.lang
-import qualified PathUtil -- same package or java.lang
-import qualified FilePathData -- org.allbinary.logic.io.file.FilePathData
-import qualified FilePathUtil -- org.allbinary.logic.io.file.FilePathUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified StringValidationUtil -- org.allbinary.logic.string.StringValidationUtil
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.path
+-}
 
-data AbPath = AbPath
-    { header_ :: JavaHeader
-    , commonSeps :: IORef (CommonSeps.CommonSeps)
-    , abPathData :: IORef (AbPathData.AbPathData)
-    , abPathUtil :: IORef (PathUtil.PathUtil)
-    , eMPTY_STRING :: IORef (String)
-    , schema :: IORef (String)
-    , path :: IORef (String)
-    , nameP :: IORef (String)
-    , hasSchemaP :: IORef (Bool)
-    , numberOfSeps :: IORef (Int)
-    }
-
-instance JavaNull AbPath where
-    javaNull = javaNullRecord "AbPath"
-
-instance JavaEquals AbPath where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AbPath where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AbPath where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nETWORK_SEP :: String
-nETWORK_SEP = ":/"
-
-newRecord_ :: IO AbPath
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonSeps <- newIORef javaNull
-    abPathData <- newIORef javaNull
-    abPathUtil <- newIORef javaNull
-    eMPTY_STRING <- newIORef ""
-    schema <- newIORef ""
-    path <- newIORef ""
-    nameP <- newIORef ""
-    hasSchemaP <- newIORef False
-    numberOfSeps <- newIORef 0
-    let this = AbPath header_ commonSeps abPathData abPathUtil eMPTY_STRING schema path nameP hasSchemaP numberOfSeps
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "getSchema" (\() -> getSchema_impl this)
-    jregisterMethod header_ "hasSchema" (\() -> hasSchema_impl this)
-    jregisterMethod header_ "getPathFromPath" (\() -> getPathFromPath_impl this)
-    jregisterMethod header_ "setName" (\() -> setName_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    jregisterMethod header_ "toFileSystemString" (\() -> toFileSystemString_impl this)
-    jregisterMethod header_ "getPath" (\() -> getPath_impl this)
-    jregisterMethod header_ "setPath" (\() -> setPath_impl this)
-    pure this
-
-initFields_ :: AbPath -> IO ()
-initFields_ this = do
-    jset this.commonSeps =<< (CommonSeps.getInstance)
-    jset this.abPathData =<< (AbPathData.getInstance)
-    jset this.abPathUtil =<< (PathUtil.getInstance)
-    jset this.eMPTY_STRING ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.schema ((jget (this).eMPTY_STRING))
-    jset this.path ((jget (this).eMPTY_STRING))
-    jset this.nameP ((jget (this).eMPTY_STRING))
-    jset this.hasSchemaP (False)
-    jset this.numberOfSeps (0)
-    pure ()
+import JR
+import Org.Allbinary.Logic.Io.Path.AbPathData as AbPathData
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.Io.File.FilePathData as FilePathData
+import Org.Allbinary.Logic.Io.File.FilePathUtil as FilePathUtil
+import Org.Allbinary.Logic.Io.Path.PathUtil as PathUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
 
 
-createAbPath :: IO (AbPath)
-createAbPath = do
-        handle (\(ex :: JavaException) -> do
-            javaThrow ((JavaException "RuntimeException" ""))
-            ) $ do
-            let eMPTY_STRING = (jget ((jio (StringUtil.getInstance))).eMPTY_STRING)
-            (new_2 eMPTY_STRING eMPTY_STRING)
-
-new_2 :: String -> String -> IO AbPath
-new_2 aPath name = do
-    this <- newRecord_
-    init_2 this aPath name
-    pure this
-
-init_2 :: AbPath -> String -> String -> IO ()
-init_2 this aPath name = do
-        initFields_ this
-        stringValidationUtil <- (StringValidationUtil.getInstance)
-        if (Prelude.not (jio (StringValidationUtil.isEmpty stringValidationUtil aPath))) then do
-            assignedValue <- (AbPath.getSchema this aPath)
-            jset (this).schema (assignedValue)
-            jset (this).nameP (name)
-            assignedValue <- (PathUtil.adjustEnd ((jget (this).abPathUtil)) (jio (PathUtil.adjust ((jget (this).abPathUtil)) (jio (AbPath.getPathFromPath this aPath)))))
-            jset (this).path (assignedValue)
-        else do
-            Control.Monad.void (AbPath.init this)
-            when (Prelude.not (jio (StringValidationUtil.isEmpty stringValidationUtil name))) $ do
-                jset (this).nameP (name)
-        pure ()
+jclass : String
+jclass =
+    "AbPath"
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: AbPath))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: AbPath))
-
-init_impl :: AbPath -> IO (())
-init_impl this = do
-        jset (this).schema ((jget (this).eMPTY_STRING))
-        Control.Monad.void (AbPath.setPath this (jget ((jget (this).abPathData)).sEPARATOR))
-        jset (this).nameP ((jget (this).eMPTY_STRING))
-        pure ()
+jchain : List String
+jchain =
+    [ "AbPath" ]
 
 
-getSchema :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-getSchema object_ a1 = jmethod object_ "getSchema" (\() -> (getSchema_impl (javaCast object_ :: AbPath))) () a1
-
-getSchema_super :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-getSchema_super object_ a1 = (getSchema_impl (javaCast object_ :: AbPath)) a1
-
-getSchema_impl :: AbPath -> String -> IO (String)
-getSchema_impl this aPath = do
-    javaCatchReturn $ do
-        let beginIndex = (jstringIndexOf aPath (jget ((jget (this).commonSeps)).cOLON) 0)
-        when (beginIndex >= 0) $ do
-            jset (this).hasSchemaP (True)
-            javaReturn ((Prelude.take ((beginIndex) - (0)) (Prelude.drop (0) aPath)))
-        jset (this).hasSchemaP (False)
-        pure ((jget (this).eMPTY_STRING))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonSeps", JR.defaultOf "" ), ( "abPathData", JR.defaultOf "" ), ( "abPathUtil", JR.defaultOf "" ), ( "EMPTY_STRING", JR.defaultOf "" ), ( "schema", JR.defaultOf "" ), ( "path", JR.defaultOf "" ), ( "nameP", JR.defaultOf "" ), ( "hasSchemaP", JR.defaultOf "Z" ), ( "numberOfSeps", JR.defaultOf "I" ) ]
 
 
-hasSchema :: (JavaObjectClass this_) => this_ -> IO (Bool)
-hasSchema object_ = jmethod object_ "hasSchema" (\() -> (hasSchema_impl (javaCast object_ :: AbPath))) ()
-
-hasSchema_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-hasSchema_super object_ = (hasSchema_impl (javaCast object_ :: AbPath))
-
-hasSchema_impl :: AbPath -> IO (Bool)
-hasSchema_impl this = do
-        pure ((jget (this).hasSchemaP))
-
-
--- throws Exception
-getPathFromPath :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-getPathFromPath object_ a1 = jmethod object_ "getPathFromPath" (\() -> (getPathFromPath_impl (javaCast object_ :: AbPath))) () a1
-
-getPathFromPath_super :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-getPathFromPath_super object_ a1 = (getPathFromPath_impl (javaCast object_ :: AbPath)) a1
-
-getPathFromPath_impl :: AbPath -> String -> IO (String)
-getPathFromPath_impl this aPath = do
-        filePathData <- (FilePathData.getInstance)
-        tempPath <- newIORef (aPath)
-        if (Prelude.not (jio (AbPath.hasSchema this))) then do
-            assignedValue <- (PathUtil.adjustStart ((jget (this).abPathUtil)) (jget tempPath))
-            jset tempPath (assignedValue)
-        else do
-            beginIndex <- newIORef ((jstringIndexOf (jget tempPath) (jget ((jget (this).commonSeps)).cOLON) 0) :: Int)
-            when ((jget beginIndex) >= 0) $ do
-                jset beginIndex ((jget beginIndex) + 1)
-                fix $ \loop -> when ((((jget tempPath) Prelude.!! (jget beginIndex)) == (jget ((jget (this).abPathData)).sEPARATORCHAR)) || (((jget tempPath) Prelude.!! (jget beginIndex)) == (jget (filePathData).sEPARATORCHAR))) $ javaIteration (loop) $ do
-                    jset beginIndex ((jget beginIndex) + 1)
-                    jset (this).numberOfSeps ((jget (this).numberOfSeps) + 1)
-                    when ((jget (this).numberOfSeps) > 2) $ do
-                        javaThrow ((JavaException "Exception" "Should Not Have More Than Two Seps"))
-                jset tempPath ((Prelude.take (((Prelude.length (jget tempPath))) - ((jget beginIndex))) (Prelude.drop ((jget beginIndex)) (jget tempPath))))
-        pure ((jget tempPath))
+jvtable =
+    JR.vtable
+        [ ( "createAbPath_0", jm_createAbPath_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "getSchema_1", jm_getSchema_1 )
+        , ( "hasSchema_0", jm_hasSchema_0 )
+        , ( "getPathFromPath_1", jm_getPathFromPath_1 )
+        , ( "setName_1", jm_setName_1 )
+        , ( "getName_0", jm_getName_0 )
+        , ( "toString_0", jm_toString_0 )
+        , ( "toFileSystemString_0", jm_toFileSystemString_0 )
+        , ( "getPath_0", jm_getPath_0 )
+        , ( "setPath_1", jm_setPath_1 ) ]
+        JR.noMethods
 
 
-setName :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName object_ a1 = jmethod object_ "setName" (\() -> (setName_impl (javaCast object_ :: AbPath))) () a1
-
-setName_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName_super object_ a1 = (setName_impl (javaCast object_ :: AbPath)) a1
-
-setName_impl :: AbPath -> String -> IO (())
-setName_impl this name = do
-        jset (this).nameP (name)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbPath"
+        [ ( "jm_createAbPath_0", jm_createAbPath_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_getSchema_1", jm_getSchema_1 ), ( "jm_hasSchema_0", jm_hasSchema_0 ), ( "jm_getPathFromPath_1", jm_getPathFromPath_1 ), ( "jm_setName_1", jm_setName_1 ), ( "jm_getName_0", jm_getName_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jm_toFileSystemString_0", jm_toFileSystemString_0 ), ( "jm_getPath_0", jm_getPath_0 ), ( "jm_setPath_1", jm_setPath_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_NETWORK_SEP", jstatic_NETWORK_SEP ) ]
+        jheap
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: AbPath))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: AbPath))
-
-getName_impl :: AbPath -> IO (String)
-getName_impl this = do
-        pure ((jget (this).nameP))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: AbPath))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: AbPath))
-
-toString_impl :: AbPath -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        when (jio (AbPath.hasSchema this)) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (jget (this).schema))
-            Control.Monad.void (StringMaker.append stringBuffer (AbPath.nETWORK_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (AbPath.getPath this)))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (this).nameP))
-        (StringMaker.toString stringBuffer)
+jstatic_NETWORK_SEP : JR.M
+jstatic_NETWORK_SEP s =
+    JR.static "AbPath" jclinit "NETWORK_SEP"
+        (JR.str ":/")
+        s
 
 
-toFileSystemString :: (JavaObjectClass this_) => this_ -> IO (String)
-toFileSystemString object_ = jmethod object_ "toFileSystemString" (\() -> (toFileSystemString_impl (javaCast object_ :: AbPath))) ()
-
-toFileSystemString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toFileSystemString_super object_ = (toFileSystemString_impl (javaCast object_ :: AbPath))
-
-toFileSystemString_impl :: AbPath -> IO (String)
-toFileSystemString_impl this = do
-    javaCatchReturn $ do
-        if (jio (AbPath.hasSchema this)) then do
-            filePathData <- (FilePathData.getInstance)
-            stringBuffer <- (StringMaker.new_)
-            Control.Monad.void (StringMaker.append stringBuffer (jget (this).schema))
-            Control.Monad.void (StringMaker.append stringBuffer (jget ((jget (this).commonSeps)).cOLON))
-            Control.Monad.void (StringMaker.append stringBuffer (jget (filePathData).pATH_START))
-            Control.Monad.void (StringMaker.append stringBuffer (jio (FilePathUtil.adjust (jio (AbPath.getPath this)))))
-            Control.Monad.void (StringMaker.append stringBuffer (jget (this).nameP))
-            javaReturn =<< (StringMaker.toString stringBuffer)
-        else do
-            javaReturn (((jio (FilePathUtil.adjust (jio (AbPath.getPath this)))) ++ (jget (this).nameP)))
-
-
-getPath :: (JavaObjectClass this_) => this_ -> IO (String)
-getPath object_ = jmethod object_ "getPath" (\() -> (getPath_impl (javaCast object_ :: AbPath))) ()
-
-getPath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getPath_super object_ = (getPath_impl (javaCast object_ :: AbPath))
-
-getPath_impl :: AbPath -> IO (String)
-getPath_impl this = do
-        pure ((jget (this).path))
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "aPath", "" ), ( "name", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "commonSeps" "" JR.this (JR.callStatic CommonSeps.jm_getInstance_0 [])),
+                JR.exec (JR.setField "abPathData" "" JR.this (JR.callStatic AbPathData.jm_getInstance_0 [])),
+                JR.exec (JR.setField "abPathUtil" "" JR.this (JR.callStatic PathUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "EMPTY_STRING" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "schema" "" JR.this (JR.thisField "EMPTY_STRING")),
+                JR.exec (JR.setField "path" "" JR.this (JR.thisField "EMPTY_STRING")),
+                JR.exec (JR.setField "nameP" "" JR.this (JR.thisField "EMPTY_STRING")),
+                JR.exec (JR.setField "hasSchemaP" "Z" JR.this (JR.bool False)),
+                JR.exec (JR.setField "numberOfSeps" "I" JR.this (JR.int 0)),
+                identity,
+                (JR.run [ 
+                    JR.declare "stringValidationUtil" "" (JR.callStatic StringValidationUtil.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isEmpty_1" (JR.local "stringValidationUtil") [ (JR.local "aPath") ])) (JR.run [ 
+                        JR.exec (JR.setField "schema" "" JR.this (JR.invoke "getSchema_1" JR.this [ (JR.local "aPath") ])), 
+                        JR.exec (JR.setField "nameP" "" JR.this (JR.local "name")), 
+                        JR.exec (JR.setField "path" "" JR.this (JR.invoke "adjustEnd_1" (JR.thisField "abPathUtil") [ (JR.invoke "adjust_1" (JR.thisField "abPathUtil") [ (JR.invoke "getPathFromPath_1" JR.this [ (JR.local "aPath") ]) ]) ])) ]) (JR.run [ 
+                        JR.exec (JR.invoke "init_0" JR.this []), 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "isEmpty_1" (JR.local "stringValidationUtil") [ (JR.local "name") ])) (JR.run [ 
+                            JR.exec (JR.setField "nameP" "" JR.this (JR.local "name")) ]) identity ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-setPath :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setPath object_ a1 = jmethod object_ "setPath" (\() -> (setPath_impl (javaCast object_ :: AbPath))) () a1
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
 
-setPath_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setPath_super object_ a1 = (setPath_impl (javaCast object_ :: AbPath)) a1
 
-setPath_impl :: AbPath -> String -> IO (())
-setPath_impl this path = do
-        jset (this).path (path)
-        pure ()
+jm_createAbPath_0 : JR.Method
+jm_createAbPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "EMPTY_STRING" "" (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), 
+                        JR.return (JR.new jnew_2 [ (JR.local "EMPTY_STRING"), (JR.local "EMPTY_STRING") ]) ]) [ ( [ "Exception" ], "ex", (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "schema" "" JR.this (JR.thisField "EMPTY_STRING")), 
+                    JR.exec (JR.invoke "setPath_1" JR.this [ (JR.field "SEPARATOR" (JR.thisField "abPathData")) ]), 
+                    JR.exec (JR.setField "nameP" "" JR.this (JR.thisField "EMPTY_STRING")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSchema_1 : JR.Method
+jm_getSchema_1 jheap jthis jargs =
+    JR.method [ ( "aPath", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "beginIndex" "I" (JR.invoke "indexOf_1" (JR.local "aPath") [ (JR.field "COLON" (JR.thisField "commonSeps")) ]), 
+                    JR.ifElse (JR.map2 JR.greaterEquals (JR.local "beginIndex") (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.setField "hasSchemaP" "Z" JR.this (JR.bool True)), 
+                        JR.return (JR.invoke "substring_2" (JR.local "aPath") [ (JR.int 0), (JR.local "beginIndex") ]) ]) identity, 
+                    JR.exec (JR.setField "hasSchemaP" "Z" JR.this (JR.bool False)), 
+                    JR.return (JR.thisField "EMPTY_STRING") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_hasSchema_0 : JR.Method
+jm_hasSchema_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "hasSchemaP") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPathFromPath_1 : JR.Method
+jm_getPathFromPath_1 jheap jthis jargs =
+    JR.method [ ( "aPath", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "filePathData" "" (JR.callStatic FilePathData.jm_getInstance_0 []), 
+                    JR.declare "tempPath" "" (JR.local "aPath"), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "hasSchema_0" JR.this [])) (JR.run [ 
+                        JR.exec (JR.setLocal "tempPath" "" (JR.invoke "adjustStart_1" (JR.thisField "abPathUtil") [ (JR.local "tempPath") ])) ]) (JR.run [ 
+                        JR.declare "beginIndex" "I" (JR.invoke "indexOf_1" (JR.local "tempPath") [ (JR.field "COLON" (JR.thisField "commonSeps")) ]), 
+                        JR.ifElse (JR.map2 JR.greaterEquals (JR.local "beginIndex") (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.postUpdate (JR.local "beginIndex") (\jwN68252 -> (JR.setLocal "beginIndex" "I" (JR.lit jwN68252))) JR.increment), 
+                            JR.while (JR.or (JR.map2 JR.equals (JR.invoke "charAt_1" (JR.local "tempPath") [ (JR.local "beginIndex") ]) (JR.field "SEPARATORCHAR" (JR.thisField "abPathData"))) (JR.map2 JR.equals (JR.invoke "charAt_1" (JR.local "tempPath") [ (JR.local "beginIndex") ]) (JR.field "SEPARATORCHAR" (JR.local "filePathData")))) (JR.run [ 
+                                JR.exec (JR.postUpdate (JR.local "beginIndex") (\jwN68277 -> (JR.setLocal "beginIndex" "I" (JR.lit jwN68277))) JR.increment), 
+                                JR.exec (JR.postUpdate (JR.thisField "numberOfSeps") (\jwN68294 -> (JR.setField "numberOfSeps" "I" JR.this (JR.lit jwN68294))) JR.increment), 
+                                JR.ifElse (JR.map2 JR.greater (JR.thisField "numberOfSeps") (JR.int 2)) (JR.run [ 
+                                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Should Not Have More Than Two Seps") ]) ]) identity ]), 
+                            JR.exec (JR.setLocal "tempPath" "" (JR.invoke "substring_2" (JR.local "tempPath") [ (JR.local "beginIndex"), (JR.invoke "length_0" (JR.local "tempPath") []) ])) ]) identity ]), 
+                    JR.return (JR.local "tempPath") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setName_1 : JR.Method
+jm_setName_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "nameP" "" JR.this (JR.local "name")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "nameP") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.ifElse (JR.invoke "hasSchema_0" JR.this []) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "schema") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_NETWORK_SEP ]) ]) identity, 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "nameP") ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toFileSystemString_0 : JR.Method
+jm_toFileSystemString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "hasSchema_0" JR.this []) (JR.run [ 
+                        JR.declare "filePathData" "" (JR.callStatic FilePathData.jm_getInstance_0 []), 
+                        JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "schema") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COLON" (JR.thisField "commonSeps")) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "PATH_START" (JR.local "filePathData")) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.callStatic FilePathUtil.jm_adjust_1 [ (JR.invoke "getPath_0" JR.this []) ]) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "nameP") ]), 
+                        JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ]) (JR.run [ 
+                        JR.return (JR.concat (JR.callStatic FilePathUtil.jm_adjust_1 [ (JR.invoke "getPath_0" JR.this []) ]) (JR.thisField "nameP")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPath_0 : JR.Method
+jm_getPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "path") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPath_1 : JR.Method
+jm_setPath_1 jheap jthis jargs =
+    JR.method [ ( "path", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "path" "" JR.this (JR.local "path")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

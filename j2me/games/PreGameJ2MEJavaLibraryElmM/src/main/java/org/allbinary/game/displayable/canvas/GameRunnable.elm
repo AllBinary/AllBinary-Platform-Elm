@@ -1,122 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module GameRunnable where
+module Org.Allbinary.Game.Displayable.Canvas.GameRunnable exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Thread -- same package or java.lang
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified Runnable
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
--- implements Runnable
-data GameRunnable = GameRunnable
-    { header_ :: JavaHeader
-    , wAIT :: IORef (Int)
-    , fAST :: IORef (Int)
-    , waitInMillis :: IORef (Int64)
-    }
-
-instance JavaNull GameRunnable where
-    javaNull = javaNullRecord "GameRunnable"
-
-instance JavaEquals GameRunnable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameRunnable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameRunnable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameRunnable
-newRecord_ = do
-    header_ <- newJavaHeader
-    wAIT <- newIORef 0
-    fAST <- newIORef 0
-    waitInMillis <- newIORef 0
-    let this = GameRunnable header_ wAIT fAST waitInMillis
-    jregisterLevel header_ this
-    Runnable.registerInterface_ header_
-    jregisterMethod header_ "run" (\() -> run_impl this)
-    jregisterMethod header_ "processLoopSleep" (\() -> processLoopSleep_impl this)
-    pure this
-
-initFields_ :: GameRunnable -> IO ()
-initFields_ this = do
-    jset this.wAIT (240)
-    jset this.fAST (60)
-    jset this.waitInMillis ((Prelude.fromIntegral (jget (this).wAIT)))
-    pure ()
-
-new_ :: IO GameRunnable
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameRunnable -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import JRunnable
+import JThread
 
 
-run :: (JavaObjectClass this_) => this_ -> IO (())
-run object_ = jmethod object_ "run" (\() -> (run_impl (javaCast object_ :: GameRunnable))) ()
-
-run_super :: (JavaObjectClass this_) => this_ -> IO (())
-run_super object_ = (run_impl (javaCast object_ :: GameRunnable))
-
-run_impl :: GameRunnable -> IO (())
-run_impl this = do
-        Control.Monad.void (DisplayInfoSingleton.process ((jio (DisplayInfoSingleton.getInstance))))
-        pure ()
+jclass : String
+jclass =
+    "GameRunnable"
 
 
--- throws Exception
-processLoopSleep :: (JavaObjectClass this_) => this_ -> IO (())
-processLoopSleep object_ = jmethod object_ "processLoopSleep" (\() -> (processLoopSleep_impl (javaCast object_ :: GameRunnable))) ()
+jchain : List String
+jchain =
+    [ "GameRunnable" ]
+        ++ JRunnable.jchain
 
-processLoopSleep_super :: (JavaObjectClass this_) => this_ -> IO (())
-processLoopSleep_super object_ = (processLoopSleep_impl (javaCast object_ :: GameRunnable))
 
-processLoopSleep_impl :: GameRunnable -> IO (())
-processLoopSleep_impl this = do
-        Control.Monad.void (threadDelay (Prelude.fromIntegral (jget (this).waitInMillis) * 1000))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "WAIT", JR.defaultOf "I" ), ( "FAST", JR.defaultOf "I" ), ( "waitInMillis", JR.defaultOf "J" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "run_0", jm_run_0 )
+        , ( "processLoopSleep_0", jm_processLoopSleep_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameRunnable"
+        [ ( "jm_run_0", jm_run_0 ), ( "jm_processLoopSleep_0", jm_processLoopSleep_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "WAIT" "I" JR.this (JR.int 240)),
+                JR.exec (JR.setField "FAST" "I" JR.this (JR.int 60)),
+                JR.exec (JR.setField "waitInMillis" "J" JR.this (JR.cast "J" (JR.thisField "WAIT"))),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_run_0 : JR.Method
+jm_run_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_0" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processLoopSleep_0 : JR.Method
+jm_processLoopSleep_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic JThread.jm_sleep_1 [ (JR.thisField "waitInMillis") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

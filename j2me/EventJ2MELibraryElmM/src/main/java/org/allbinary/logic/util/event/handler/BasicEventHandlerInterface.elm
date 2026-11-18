@@ -1,4 +1,4 @@
-module BasicEventHandlerInterface exposing (..)
+module Org.Allbinary.Logic.Util.Event.Handler.BasicEventHandlerInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.event.handler
 -}

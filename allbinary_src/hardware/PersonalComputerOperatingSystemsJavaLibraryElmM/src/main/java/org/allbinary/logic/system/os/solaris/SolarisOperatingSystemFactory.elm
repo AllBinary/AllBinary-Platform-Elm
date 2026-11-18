@@ -1,17 +1,17 @@
-module SolarisOperatingSystemFactory exposing (..)
+module Org.Allbinary.Logic.System.Os.Solaris.SolarisOperatingSystemFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.os.solaris
 -}
 
 import JR
-import CommonStrings
-import LogConfigTypeFactory
-import LogConfigTypes
-import LogUtil
-import NoOperatingSystem
-import OperatingSystems
-import SolarisOS
-import SystemProperties
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.System.Os.NoOperatingSystem as NoOperatingSystem
+import Org.Allbinary.Logic.System.Os.OperatingSystems as OperatingSystems
+import Org.Allbinary.Logic.System.Os.Solaris.SolarisOS as SolarisOS
+import Org.Allbinary.Logic.System.Os.SystemProperties as SystemProperties
 
 
 jclass : String

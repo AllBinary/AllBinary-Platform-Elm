@@ -1,100 +1,93 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
-module GamePersistanceStrings where
+module Org.Allbinary.Game.Configuration.Persistance.GamePersistanceStrings exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.persistance
+-}
 
-data GamePersistanceStrings = GamePersistanceStrings
-    { header_ :: JavaHeader
-    , sAVED_GAME_RECORD_ID :: IORef (String)
-    , sAVED_GAME_CONFIGURATION_RECORD_ID :: IORef (String)
-    , dEFAULT_INPUT_MAPPING_RECORD_ID :: IORef (String)
-    , sAVED_INPUT_CONFIGURATION_RECORD_ID :: IORef (String)
-    }
-
-instance JavaNull GamePersistanceStrings where
-    javaNull = javaNullRecord "GamePersistanceStrings"
-
-instance JavaEquals GamePersistanceStrings where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GamePersistanceStrings where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GamePersistanceStrings where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GamePersistanceStrings
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GamePersistanceStrings
-newRecord_ = do
-    header_ <- newJavaHeader
-    sAVED_GAME_RECORD_ID <- newIORef ""
-    sAVED_GAME_CONFIGURATION_RECORD_ID <- newIORef ""
-    dEFAULT_INPUT_MAPPING_RECORD_ID <- newIORef ""
-    sAVED_INPUT_CONFIGURATION_RECORD_ID <- newIORef ""
-    let this = GamePersistanceStrings header_ sAVED_GAME_RECORD_ID sAVED_GAME_CONFIGURATION_RECORD_ID dEFAULT_INPUT_MAPPING_RECORD_ID sAVED_INPUT_CONFIGURATION_RECORD_ID
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: GamePersistanceStrings -> IO ()
-initFields_ this = do
-    jset this.sAVED_GAME_RECORD_ID ("_SG")
-    jset this.sAVED_GAME_CONFIGURATION_RECORD_ID ("_SGC")
-    jset this.dEFAULT_INPUT_MAPPING_RECORD_ID ("_DIM")
-    jset this.sAVED_INPUT_CONFIGURATION_RECORD_ID ("_SIC")
-    pure ()
-
-new_ :: IO GamePersistanceStrings
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GamePersistanceStrings -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (GamePersistanceStrings)
-getInstance = do
-        pure (GamePersistanceStrings.instance_)
 
+jclass : String
+jclass =
+    "GamePersistanceStrings"
+
+
+jchain : List String
+jchain =
+    [ "GamePersistanceStrings" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "SAVED_GAME_RECORD_ID", JR.defaultOf "" ), ( "SAVED_GAME_CONFIGURATION_RECORD_ID", JR.defaultOf "" ), ( "DEFAULT_INPUT_MAPPING_RECORD_ID", JR.defaultOf "" ), ( "SAVED_INPUT_CONFIGURATION_RECORD_ID", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GamePersistanceStrings"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GamePersistanceStrings" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "SAVED_GAME_RECORD_ID" "" JR.this (JR.str "_SG")),
+                JR.exec (JR.setField "SAVED_GAME_CONFIGURATION_RECORD_ID" "" JR.this (JR.str "_SGC")),
+                JR.exec (JR.setField "DEFAULT_INPUT_MAPPING_RECORD_ID" "" JR.this (JR.str "_DIM")),
+                JR.exec (JR.setField "SAVED_INPUT_CONFIGURATION_RECORD_ID" "" JR.this (JR.str "_SIC")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

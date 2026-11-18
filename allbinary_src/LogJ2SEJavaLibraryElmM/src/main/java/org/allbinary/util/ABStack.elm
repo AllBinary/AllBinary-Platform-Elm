@@ -1,4 +1,4 @@
-module ABStack exposing (..)
+module Org.Allbinary.Util.ABStack exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}

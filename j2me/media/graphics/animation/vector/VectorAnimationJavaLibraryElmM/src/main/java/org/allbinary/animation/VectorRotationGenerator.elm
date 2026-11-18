@@ -1,170 +1,155 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module VectorRotationGenerator where
+module Org.Allbinary.Animation.VectorRotationGenerator exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified VectorAnimationUtil -- same package or java.lang
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified BasicGraphicsPipeline -- org.allbinary.graphics.pipeline.BasicGraphicsPipeline
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified Angle -- org.allbinary.math.Angle
-import qualified AngleFactory -- org.allbinary.math.AngleFactory
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListS -- org.allbinary.util.BasicArrayListS
-import qualified VectorInfo -- org.allbinary.vector.VectorInfo
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
-data VectorRotationGenerator = VectorRotationGenerator
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , vectorAnimationUtil :: IORef (VectorAnimationUtil.VectorAnimationUtil)
-    , angleFactory :: IORef (AngleFactory.AngleFactory)
-    }
-
-instance JavaNull VectorRotationGenerator where
-    javaNull = javaNullRecord "VectorRotationGenerator"
-
-instance JavaEquals VectorRotationGenerator where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq VectorRotationGenerator where
-    (==) = jrecordEquals
-
-instance JavaObjectClass VectorRotationGenerator where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: VectorRotationGenerator
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO VectorRotationGenerator
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    vectorAnimationUtil <- newIORef javaNull
-    angleFactory <- newIORef javaNull
-    let this = VectorRotationGenerator header_ logUtil vectorAnimationUtil angleFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstance_1" (\() -> getInstance_1_impl this)
-    jregisterMethod header_ "getInstanceFrames" (\() -> getInstanceFrames_impl this)
-    jregisterMethod header_ "getListAtAngle" (\() -> getListAtAngle_impl this)
-    pure this
-
-initFields_ :: VectorRotationGenerator -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.vectorAnimationUtil =<< (VectorAnimationUtil.getInstance)
-    jset this.angleFactory =<< (AngleFactory.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Util.BasicArrayListS as BasicArrayListS
+import Org.Allbinary.Graphics.Pipeline.BasicGraphicsPipeline as BasicGraphicsPipeline
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Graphics.PointFactory as PointFactory
+import Org.Allbinary.Animation.VectorAnimationUtil as VectorAnimationUtil
 
 
-getInstance :: IO (VectorRotationGenerator)
-getInstance = do
-        pure (VectorRotationGenerator.instance_)
-
-new_ :: IO VectorRotationGenerator
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: VectorRotationGenerator -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "VectorRotationGenerator"
 
 
-getInstance_1 :: (JavaObjectClass this_) => this_ -> VectorInfo.VectorInfo -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstance_1 object_ a1 = jmethod object_ "getInstance_1" (\() -> (getInstance_1_impl (javaCast object_ :: VectorRotationGenerator))) () a1
-
-getInstance_1_super :: (JavaObjectClass this_) => this_ -> VectorInfo.VectorInfo -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstance_1_super object_ a1 = (getInstance_1_impl (javaCast object_ :: VectorRotationGenerator)) a1
-
-getInstance_1_impl :: VectorRotationGenerator -> VectorInfo.VectorInfo -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstance_1_impl this vectorRotationInfo = do
-        (VectorRotationGenerator.getInstanceFrames this (jio (VectorInfo.getWidth vectorRotationInfo)) (jio (VectorInfo.getHeight vectorRotationInfo)) (jio (VectorInfo.getPoints vectorRotationInfo)) (jio (VectorInfo.getTotalFrames vectorRotationInfo)))
+jchain : List String
+jchain =
+    [ "VectorRotationGenerator" ]
 
 
-getInstanceFrames :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (JavaArray (Int)) -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstanceFrames object_ a1 a2 a3 a4 = jmethod object_ "getInstanceFrames" (\() -> (getInstanceFrames_impl (javaCast object_ :: VectorRotationGenerator))) () a1 a2 a3 a4
-
-getInstanceFrames_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (JavaArray (Int)) -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstanceFrames_super object_ a1 a2 a3 a4 = (getInstanceFrames_impl (javaCast object_ :: VectorRotationGenerator)) a1 a2 a3 a4
-
-getInstanceFrames_impl :: VectorRotationGenerator -> Int -> Int -> JavaArray (JavaArray (Int)) -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstanceFrames_impl this width height points frames = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).gET_INSTANCE) e)
-            pure ((jget ((jio (NullUtil.getInstance))).nULL_INT_ARRAY_ARRAY_ARRAY))
-            ) $ do
-            let totalAngle = (jget ((jget (this).angleFactory)).tOTAL_ANGLE)
-            let angleIncrement = ((Prelude.fromIntegral totalAngle) `quot` frames)
-            pointsBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListS.new_1 ((Prelude.fromIntegral totalAngle) `quot` angleIncrement)))
-            pointBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListS.new_1 (jlength points)))
-            pointFactory <- (PointFactory.getInstance)
-            let size = (jlength points)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                Control.Monad.void (BasicArrayList.add pointBasicArrayList (jio (PointFactory.createXY pointFactory (jindex ((jindex points (index))) (0)) (jindex ((jindex points (index))) (1)))))
-            index <- newIORef (0 :: Int)
-            fix $ \loop -> when ((jget index) < (Prelude.fromIntegral totalAngle)) $ javaIteration (loop) $ do
-                Control.Monad.void (BasicArrayList.add pointsBasicArrayList (jio (VectorRotationGenerator.getListAtAngle this width height pointBasicArrayList (jio (AngleFactory.getAt ((jget (this).angleFactory)) (jget index))))))
-                jset index (((jget index) + angleIncrement))
-            newPoints <- (VectorAnimationUtil.toAnimationArrayFromListOfPointListWithPointsPerFrame ((jget (this).vectorAnimationUtil)) pointsBasicArrayList (jio (BasicArrayList.size pointBasicArrayList)))
-            pure (newPoints)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "vectorAnimationUtil", JR.defaultOf "" ), ( "angleFactory", JR.defaultOf "" ) ]
 
 
--- throws Exception
-getListAtAngle :: (JavaObjectClass this_) => this_ -> Int -> Int -> BasicArrayList.BasicArrayList -> Angle.Angle -> IO (BasicArrayList.BasicArrayList)
-getListAtAngle object_ a1 a2 a3 a4 = jmethod object_ "getListAtAngle" (\() -> (getListAtAngle_impl (javaCast object_ :: VectorRotationGenerator))) () a1 a2 a3 a4
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInstance_1", jm_getInstance_1 )
+        , ( "getInstanceFrames_4", jm_getInstanceFrames_4 )
+        , ( "getListAtAngle_4", jm_getListAtAngle_4 ) ]
+        JR.noMethods
 
-getListAtAngle_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> BasicArrayList.BasicArrayList -> Angle.Angle -> IO (BasicArrayList.BasicArrayList)
-getListAtAngle_super object_ a1 a2 a3 a4 = (getListAtAngle_impl (javaCast object_ :: VectorRotationGenerator)) a1 a2 a3 a4
 
-getListAtAngle_impl :: VectorRotationGenerator -> Int -> Int -> BasicArrayList.BasicArrayList -> Angle.Angle -> IO (BasicArrayList.BasicArrayList)
-getListAtAngle_impl this width height pointBasicArrayList angle = do
-        graphicsPipe <- (BasicGraphicsPipeline.new_1 pointBasicArrayList)
-        Control.Monad.void (BasicGraphicsPipeline.createMatrix graphicsPipe)
-        Control.Monad.void (BasicGraphicsPipeline.translate graphicsPipe (Prelude.negate ((width `Data.Bits.shiftR` 1))) (Prelude.negate ((height `Data.Bits.shiftR` 1))))
-        Control.Monad.void (BasicGraphicsPipeline.rotateToAngle graphicsPipe angle)
-        Control.Monad.void (BasicGraphicsPipeline.translate graphicsPipe ((width `Data.Bits.shiftR` 1)) ((height `Data.Bits.shiftR` 1)))
-        (BasicGraphicsPipeline.getMatrix graphicsPipe)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "VectorRotationGenerator"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_getInstanceFrames_4", jm_getInstanceFrames_4 ), ( "jm_getListAtAngle_4", jm_getListAtAngle_4 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "VectorRotationGenerator" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "vectorAnimationUtil" "" JR.this (JR.callStatic VectorAnimationUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "angleFactory" "" JR.this (JR.callStatic AngleFactory.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "vectorRotationInfo", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getInstanceFrames_4" JR.this [ (JR.invoke "getWidth_0" (JR.local "vectorRotationInfo") []), (JR.invoke "getHeight_0" (JR.local "vectorRotationInfo") []), (JR.invoke "getPoints_0" (JR.local "vectorRotationInfo") []), (JR.invoke "getTotalFrames_0" (JR.local "vectorRotationInfo") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceFrames_4 : JR.Method
+jm_getInstanceFrames_4 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ), ( "points", "" ), ( "frames", "I" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "totalAngle" "S" (JR.field "TOTAL_ANGLE" (JR.thisField "angleFactory")), 
+                        JR.declare "angleIncrement" "I" (JR.map2 JR.div (JR.cast "I" (JR.local "totalAngle")) (JR.local "frames")), 
+                        JR.declare "pointsBasicArrayList" "" (JR.new BasicArrayListS.jnew_1 [ (JR.map2 JR.div (JR.cast "I" (JR.local "totalAngle")) (JR.local "angleIncrement")) ]), 
+                        JR.declare "pointBasicArrayList" "" (JR.new BasicArrayListS.jnew_1 [ (JR.alength (JR.local "points")) ]), 
+                        JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
+                        JR.declare "size" "I" (JR.alength (JR.local "points")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68154 -> (JR.setLocal "index" "I" (JR.lit jwN68154))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "pointBasicArrayList") [ (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.int 0)), (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.int 1)) ]) ]) ]) ], 
+                        JR.declare "index" "I" (JR.int 0), 
+                        JR.while (JR.map2 JR.less (JR.local "index") (JR.cast "I" (JR.local "totalAngle"))) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "pointsBasicArrayList") [ (JR.invoke "getListAtAngle_4" JR.this [ (JR.local "width"), (JR.local "height"), (JR.local "pointBasicArrayList"), (JR.invoke "getAt_1" (JR.thisField "angleFactory") [ (JR.local "index") ]) ]) ]), 
+                            JR.exec (JR.setLocal "index" "I" (JR.map2 JR.add (JR.local "index") (JR.local "angleIncrement"))) ]), 
+                        JR.declare "newPoints" "" (JR.invoke "toAnimationArrayFromListOfPointListWithPointsPerFrame_2" (JR.thisField "vectorAnimationUtil") [ (JR.local "pointsBasicArrayList"), (JR.invoke "size_0" (JR.local "pointBasicArrayList") []) ]), 
+                        JR.return (JR.local "newPoints") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "GET_INSTANCE" (JR.local "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.field "NULL_INT_ARRAY_ARRAY_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 [])) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getListAtAngle_4 : JR.Method
+jm_getListAtAngle_4 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ), ( "pointBasicArrayList", "" ), ( "angle", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "graphicsPipe" "" (JR.new BasicGraphicsPipeline.jnew_1 [ (JR.local "pointBasicArrayList") ]), 
+                    JR.exec (JR.invoke "createMatrix_0" (JR.local "graphicsPipe") []), 
+                    JR.exec (JR.invoke "translate_2" (JR.local "graphicsPipe") [ (JR.map JR.neg ((JR.map2 JR.shr (JR.local "width") (JR.int 1)))), (JR.map JR.neg ((JR.map2 JR.shr (JR.local "height") (JR.int 1)))) ]), 
+                    JR.exec (JR.invoke "rotateToAngle_1" (JR.local "graphicsPipe") [ (JR.local "angle") ]), 
+                    JR.exec (JR.invoke "translate_2" (JR.local "graphicsPipe") [ ((JR.map2 JR.shr (JR.local "width") (JR.int 1))), ((JR.map2 JR.shr (JR.local "height") (JR.int 1))) ]), 
+                    JR.return (JR.invoke "getMatrix_0" (JR.local "graphicsPipe") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

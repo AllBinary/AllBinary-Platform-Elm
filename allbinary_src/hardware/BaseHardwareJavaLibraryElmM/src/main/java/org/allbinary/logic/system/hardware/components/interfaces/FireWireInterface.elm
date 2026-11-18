@@ -1,4 +1,4 @@
-module FireWireInterface exposing (..)
+module Org.Allbinary.Logic.System.Hardware.Components.Interfaces.FireWireInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.hardware.components.interfaces
 -}

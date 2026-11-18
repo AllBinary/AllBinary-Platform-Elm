@@ -1,241 +1,188 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic
-module NumberStringHud (module NumberStringHud, module BasicHud) where
+module Org.Allbinary.Game.Ag.Layer.Hud.Basic.NumberStringHud exposing (..)
 
-import BasicHud hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, get, get_super, get_impl, add, add_super, add_impl, set, set_super, set_impl, reduce, reduce_super, reduce_impl, paint, paint_super, paint_impl, paintXY, paintXY_super, paintXY_impl, paintThreed, paintThreed_super, paintThreed_impl, primitiveLongUtil, prependString, pREPEND_STRING, value, max, offset, valueString, valueTotalDigits)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified BasicHud -- org.allbinary.game.graphics.hud.BasicHud
-import qualified BasicHudFactory -- org.allbinary.game.graphics.hud.BasicHudFactory
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified PaintableInterface -- org.allbinary.graphics.paint.PaintableInterface
-import qualified PrimitiveLongSingleton -- org.allbinary.logic.math.PrimitiveLongSingleton
-import qualified PrimitiveLongUtil -- org.allbinary.logic.math.PrimitiveLongUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.hud.basic
+-}
 
--- implements PaintableInterface
-data NumberStringHud = NumberStringHud
-    { header_ :: JavaHeader
-    , base :: BasicHud.BasicHud
-    , primitiveLongUtil :: IORef (PrimitiveLongUtil.PrimitiveLongUtil)
-    , prependString :: IORef (String)
-    , pREPEND_STRING :: IORef (JavaArray (Char))
-    , value :: IORef (Int)
-    , max :: IORef (Int)
-    , offset :: IORef (Int)
-    , valueString :: IORef (JavaArray (Char))
-    , valueTotalDigits :: IORef (Int)
-    }
-
-instance JavaNull NumberStringHud where
-    javaNull = javaNullRecord "NumberStringHud"
-
-instance JavaEquals NumberStringHud where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NumberStringHud where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NumberStringHud where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO NumberStringHud
-newRecord_ = do
-    base <- BasicHud.newRecord_
-    let header_ = base.header_
-    primitiveLongUtil <- newIORef javaNull
-    prependString <- newIORef ""
-    pREPEND_STRING <- newIORef javaNull
-    value <- newIORef 0
-    max <- newIORef 0
-    offset <- newIORef 0
-    valueString <- newIORef javaNull
-    valueTotalDigits <- newIORef 0
-    let this = NumberStringHud header_ base primitiveLongUtil prependString pREPEND_STRING value max offset valueString valueTotalDigits
-    jregisterLevel header_ this
-    PaintableInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "set" (\() -> set_impl this)
-    jregisterMethod header_ "reduce" (\() -> reduce_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    jregisterMethod header_ "paintThreed" (\() -> paintThreed_impl this)
-    pure this
-
-initFields_ :: NumberStringHud -> IO ()
-initFields_ this = do
-    jset this.primitiveLongUtil (javaNull)
-    jset this.prependString (javaNull)
-    jset this.pREPEND_STRING (javaNull)
-    jset this.value (0)
-    jset this.max (0)
-    jset this.offset (0)
-    jset this.valueString (javaNull)
-    jset this.valueTotalDigits (0)
-    pure ()
-
-new_6 :: String -> Int -> Int -> Int -> Int -> BasicColor.BasicColor -> IO NumberStringHud
-new_6 prependString max location direction bufferZone basicColor = do
-    this <- newRecord_
-    init_6 this prependString max location direction bufferZone basicColor
-    pure this
-
-init_6 :: NumberStringHud -> String -> Int -> Int -> Int -> Int -> BasicColor.BasicColor -> IO ()
-init_6 this prependString max location direction bufferZone basicColor = do
-        BasicHud.init_4 this.base (location) (direction) (bufferZone) (basicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).prependString (prependString)
-        assignedValue <- (jtoCharArray prependString)
-        jset (this).pREPEND_STRING (assignedValue)
-        jset (this).valueString ((jindex ((jget ((jio (PrimitiveLongSingleton.getInstance))).nUMBER_CHAR_ARRAYS)) (0)))
-        assignedValue <- (PrimitiveLongUtil.createPowerOfTen (max + 1))
-        jset (this).primitiveLongUtil (assignedValue)
-        jset (this).max (max)
-        jset (this).value (0)
-        when (direction == 0) $ do
-            javaThrow ((JavaException "RuntimeException" (jget ((jio (BasicHudFactory.getInstance))).dIRECTION_EXCEPTION)))
-        pure ()
+import JR
+import Org.Allbinary.Game.Graphics.Hud.BasicHud as BasicHud
+import Org.Allbinary.Game.Graphics.Hud.BasicHudFactory as BasicHudFactory
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Graphics.Paint.PaintableInterface as PaintableInterface
+import Org.Allbinary.Logic.Math.PrimitiveLongSingleton as PrimitiveLongSingleton
+import Org.Allbinary.Logic.Math.PrimitiveLongUtil as PrimitiveLongUtil
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: NumberStringHud))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: NumberStringHud)) a1
-
-updateMeasurement_impl :: NumberStringHud -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        jset (this).offset (((jio (Font.stringWidth font (jget (this).prependString))) + (jio (MyFontProcessor.defaultCharWidth font))))
-        Control.Monad.void (BasicHud.updateMeasurement_super this.base graphics)
-        pure ()
+jclass : String
+jclass =
+    "NumberStringHud"
 
 
-get :: (JavaObjectClass this_) => this_ -> IO (Int)
-get object_ = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: NumberStringHud))) ()
-
-get_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-get_super object_ = (get_impl (javaCast object_ :: NumberStringHud))
-
-get_impl :: NumberStringHud -> IO (Int)
-get_impl this = do
-        pure ((jget (this).value))
+jchain : List String
+jchain =
+    [ "NumberStringHud" ]
+        ++ BasicHud.jchain
+        ++ PaintableInterface.jchain
 
 
-add :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: NumberStringHud))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: NumberStringHud)) a1
-
-add_impl :: NumberStringHud -> Int -> IO (())
-add_impl this value = do
-        Control.Monad.void (NumberStringHud.set this ((jget (this).value) + value))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicHud.jfields ++ [ ( "primitiveLongUtil", JR.defaultOf "" ), ( "prependString", JR.defaultOf "" ), ( "PREPEND_STRING", JR.defaultOf "" ), ( "value", JR.defaultOf "I" ), ( "max", JR.defaultOf "I" ), ( "offset", JR.defaultOf "I" ), ( "valueString", JR.defaultOf "" ), ( "valueTotalDigits", JR.defaultOf "I" ) ]
 
 
-set :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-set object_ a1 = jmethod object_ "set" (\() -> (set_impl (javaCast object_ :: NumberStringHud))) () a1
-
-set_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-set_super object_ a1 = (set_impl (javaCast object_ :: NumberStringHud)) a1
-
-set_impl :: NumberStringHud -> Int -> IO (())
-set_impl this value = do
-        jset (this).value (value)
-        when ((jget (this).value) > (jget (this).max)) $ do
-            jset (this).value (0)
-        assignedValue <- (PrimitiveLongUtil.getCharArray ((jget (this).primitiveLongUtil)) (jget (this).value))
-        jset (this).valueString (assignedValue)
-        assignedValue <- (PrimitiveLongUtil.getCurrentTotalDigits ((jget (this).primitiveLongUtil)))
-        jset (this).valueTotalDigits (assignedValue)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "get_0", jm_get_0 )
+        , ( "add_1", jm_add_1 )
+        , ( "set_1", jm_set_1 )
+        , ( "reduce_1", jm_reduce_1 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "paintXY_3", jm_paintXY_3 )
+        , ( "paintThreed_1", jm_paintThreed_1 ) ]
+        BasicHud.jvtable
 
 
-reduce :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-reduce object_ a1 = jmethod object_ "reduce" (\() -> (reduce_impl (javaCast object_ :: NumberStringHud))) () a1
-
-reduce_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-reduce_super object_ a1 = (reduce_impl (javaCast object_ :: NumberStringHud)) a1
-
-reduce_impl :: NumberStringHud -> Int -> IO (())
-reduce_impl this value = do
-        Control.Monad.void (NumberStringHud.set this ((jget (this).value) - value))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NumberStringHud"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_get_0", jm_get_0 ), ( "jm_add_1", jm_add_1 ), ( "jm_set_1", jm_set_1 ), ( "jm_reduce_1", jm_reduce_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jm_paintThreed_1", jm_paintThreed_1 ), ( "jnew_6", jnew_6 ), ( "jinit_6", jinit_6 ) ]
+        []
+        jheap
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: NumberStringHud))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: NumberStringHud)) a1
-
-paint_impl :: NumberStringHud -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (BasicHud.paintDX_super this.base graphics (jget (this).pREPEND_STRING) 0 (jlength (jget (this).pREPEND_STRING)) (jget (this).valueString) 0 (jget (this).valueTotalDigits) (jget (this).offset))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: NumberStringHud))) () a1 a2 a3
+jinit_6 : JR.Method
+jinit_6 jheap jthis jargs =
+    JR.method [ ( "prependString", "" ), ( "max", "I" ), ( "location", "I" ), ( "direction", "I" ), ( "bufferZone", "I" ), ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicHud.jinit_4 JR.this [ (JR.local "location"), (JR.local "direction"), (JR.local "bufferZone"), (JR.local "basicColor") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "prependString" "" JR.this (JR.local "prependString")), 
+                    JR.exec (JR.setField "PREPEND_STRING" "" JR.this (JR.invoke "toCharArray_0" (JR.local "prependString") [])), 
+                    JR.exec (JR.setField "valueString" "" JR.this (JR.aget (JR.field "NUMBER_CHAR_ARRAYS" (JR.callStatic PrimitiveLongSingleton.jm_getInstance_0 [])) (JR.int 0))), 
+                    JR.exec (JR.setField "primitiveLongUtil" "" JR.this (JR.callStatic PrimitiveLongUtil.jm_createPowerOfTen_1 [ (JR.map2 JR.add (JR.local "max") (JR.int 1)) ])), 
+                    JR.exec (JR.setField "max" "I" JR.this (JR.local "max")), 
+                    JR.exec (JR.setField "value" "I" JR.this (JR.int 0)), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "direction") (JR.int 0)) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) [ (JR.field "DIRECTION_EXCEPTION" (JR.callStatic BasicHudFactory.jm_getInstance_0 [])) ]) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: NumberStringHud)) a1 a2 a3
 
-paintXY_impl :: NumberStringHud -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        Control.Monad.void (process ((jget (this).base.myFontProcessor)) graphics)
-        let charArray = (jget (this).pREPEND_STRING)
-        let len = (jlength (jget (this).pREPEND_STRING))
-        let charArray2 = (jget (this).valueString)
-        let len2 = (jget (this).valueTotalDigits)
-        Control.Monad.void (setBasicColorP ((jget (this).base.basicSetColorUtil)) graphics (jio (BasicHud.getBasicColorP this)))
-        Control.Monad.void (Graphics.drawChars graphics charArray 0 len x y 0)
-        Control.Monad.void (Graphics.drawChars graphics charArray2 0 len2 (x - (jget (this).offset)) y 0)
-        pure ()
+jnew_6 : JR.Method
+jnew_6 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_6 jheap jthis jargs
 
 
-paintThreed :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed object_ a1 = jmethod object_ "paintThreed" (\() -> (paintThreed_impl (javaCast object_ :: NumberStringHud))) () a1
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "offset" "I" JR.this (JR.plus (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.thisField "prependString") ]) (JR.callStatic MyFontProcessor.jm_defaultCharWidth_1 [ (JR.local "font") ]))), 
+                    JR.exec (JR.callVia BasicHud.jvtable "updateMeasurement_1" JR.this [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-paintThreed_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed_super object_ a1 = (paintThreed_impl (javaCast object_ :: NumberStringHud)) a1
 
-paintThreed_impl :: NumberStringHud -> Graphics.Graphics -> IO (())
-paintThreed_impl this graphics = do
-        pure ()
+jm_get_0 : JR.Method
+jm_get_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "value") ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "value", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "set_1" JR.this [ (JR.map2 JR.add (JR.thisField "value") (JR.local "value")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_set_1 : JR.Method
+jm_set_1 jheap jthis jargs =
+    JR.method [ ( "value", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "value" "I" JR.this (JR.local "value")), 
+                    JR.ifElse (JR.map2 JR.greater (JR.thisField "value") (JR.thisField "max")) (JR.run [ 
+                        JR.exec (JR.setField "value" "I" JR.this (JR.int 0)) ]) identity, 
+                    JR.exec (JR.setField "valueString" "" JR.this (JR.invoke "getCharArray_1" (JR.thisField "primitiveLongUtil") [ (JR.thisField "value") ])), 
+                    JR.exec (JR.setField "valueTotalDigits" "I" JR.this (JR.invoke "getCurrentTotalDigits_0" (JR.thisField "primitiveLongUtil") [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_reduce_1 : JR.Method
+jm_reduce_1 jheap jthis jargs =
+    JR.method [ ( "value", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "set_1" JR.this [ (JR.map2 JR.sub (JR.thisField "value") (JR.local "value")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia BasicHud.jvtable "paintDX_8" JR.this [ (JR.local "graphics"), (JR.thisField "PREPEND_STRING"), (JR.int 0), (JR.alength (JR.thisField "PREPEND_STRING")), (JR.thisField "valueString"), (JR.int 0), (JR.thisField "valueTotalDigits"), (JR.thisField "offset") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.declare "charArray" "" (JR.thisField "PREPEND_STRING"), 
+                    JR.declare "len" "I" (JR.alength (JR.thisField "PREPEND_STRING")), 
+                    JR.declare "charArray2" "" (JR.thisField "valueString"), 
+                    JR.declare "len2" "I" (JR.thisField "valueTotalDigits"), 
+                    JR.exec (JR.invoke "setBasicColorP_2" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.invoke "getBasicColorP_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "drawChars_6" (JR.local "graphics") [ (JR.local "charArray"), (JR.int 0), (JR.local "len"), (JR.local "x"), (JR.local "y"), (JR.int 0) ]), 
+                    JR.exec (JR.invoke "drawChars_6" (JR.local "graphics") [ (JR.local "charArray2"), (JR.int 0), (JR.local "len2"), (JR.map2 JR.sub (JR.local "x") (JR.thisField "offset")), (JR.local "y"), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintThreed_1 : JR.Method
+jm_paintThreed_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

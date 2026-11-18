@@ -1,205 +1,174 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.canvas
-module CombatGameCanvas (module CombatGameCanvas, module AllBinaryGameCanvas) where
+module Org.Allbinary.Game.Combat.Canvas.CombatGameCanvas exposing (..)
 
-import AllBinaryGameCanvas hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, combatGameCanvas_init, combatGameCanvas_init_super, combatGameCanvas_init_impl, initApp, initApp_super, initApp_impl, initConfigurablePortion, initConfigurablePortion_super, initConfigurablePortion_impl, processPlayingGame, processPlayingGame_super, processPlayingGame_impl, cleanupGame, cleanupGame_super, cleanupGame_impl, cleanupManager, cleanupManager_super, cleanupManager_impl, basicLayerProcessor)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified DestroyedLayerProcessor -- org.allbinary.game.combat.destroy.DestroyedLayerProcessor
-import qualified DestroyEventCircularStaticPool -- org.allbinary.game.combat.destroy.event.DestroyEventCircularStaticPool
-import qualified DestroyedEventHandler -- org.allbinary.game.combat.destroy.event.DestroyedEventHandler
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified GameFeatureFactory -- org.allbinary.game.configuration.feature.GameFeatureFactory
-import qualified AllBinaryGameCanvas -- org.allbinary.game.displayable.canvas.AllBinaryGameCanvas
-import qualified BasicBuildGameInitializerFactory -- org.allbinary.game.init.BasicBuildGameInitializerFactory
-import qualified AllBinaryGameLayerManager -- org.allbinary.game.layer.AllBinaryGameLayerManager
-import qualified DropLayerProcessor -- org.allbinary.game.layer.drop.DropLayerProcessor
-import qualified GroupLayerManagerListener -- org.allbinary.game.layer.identification.GroupLayerManagerListener
-import qualified HighScoresFactoryInterface -- org.allbinary.game.score.HighScoresFactoryInterface
-import qualified ProgressCanvasFactory -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
-import qualified BasicLayerProcessor -- org.allbinary.layer.BasicLayerProcessor
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.combat.canvas
+-}
 
-data CombatGameCanvas = CombatGameCanvas
-    { header_ :: JavaHeader
-    , base :: AllBinaryGameCanvas.AllBinaryGameCanvas
-    }
-
-instance JavaNull CombatGameCanvas where
-    javaNull = javaNullRecord "CombatGameCanvas"
-
-instance JavaEquals CombatGameCanvas where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CombatGameCanvas where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CombatGameCanvas where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-basicLayerProcessor :: IORef (JavaArray (BasicLayerProcessor.BasicLayerProcessor))
-{-# NOINLINE basicLayerProcessor #-}
-basicLayerProcessor = unsafePerformIO (newIORef ((jnewArray (0) javaNull)))
-
-newRecord_ :: IO CombatGameCanvas
-newRecord_ = do
-    base <- AllBinaryGameCanvas.newRecord_
-    let header_ = base.header_
-    let this = CombatGameCanvas header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "combatGameCanvas_init" (\() -> combatGameCanvas_init_impl this)
-    jregisterMethod header_ "initApp" (\() -> initApp_impl this)
-    jregisterMethod header_ "initConfigurablePortion" (\() -> initConfigurablePortion_impl this)
-    jregisterMethod header_ "processPlayingGame" (\() -> processPlayingGame_impl this)
-    jregisterMethod header_ "cleanupGame" (\() -> cleanupGame_impl this)
-    jregisterMethod header_ "cleanupManager" (\() -> cleanupManager_impl this)
-    pure this
-
-initFields_ :: CombatGameCanvas -> IO ()
-initFields_ this = do
-    pure ()
-
-new_5 :: CommandListener.CommandListener -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> HighScoresFactoryInterface.HighScoresFactoryInterface -> BasicBuildGameInitializerFactory.BasicBuildGameInitializerFactory -> Bool -> IO CombatGameCanvas
-new_5 cmdListener gameLayerManager highScoresFactoryInterface gameInitializationInterfaceFactoryInterface buffered = do
-    this <- newRecord_
-    init_5 this cmdListener gameLayerManager highScoresFactoryInterface gameInitializationInterfaceFactoryInterface buffered
-    pure this
-
-init_5 :: CombatGameCanvas -> CommandListener.CommandListener -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> HighScoresFactoryInterface.HighScoresFactoryInterface -> BasicBuildGameInitializerFactory.BasicBuildGameInitializerFactory -> Bool -> IO ()
-init_5 this cmdListener gameLayerManager highScoresFactoryInterface gameInitializationInterfaceFactoryInterface buffered = do
-        AllBinaryGameCanvas.init_5 this.base (cmdListener) (gameLayerManager) (highScoresFactoryInterface) (gameInitializationInterfaceFactoryInterface) (buffered)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Game.Displayable.Canvas.AllBinaryGameCanvas as AllBinaryGameCanvas
+import Org.Allbinary.Game.Combat.Destroy.Event.DestroyEventCircularStaticPool as DestroyEventCircularStaticPool
+import Org.Allbinary.Game.Combat.Destroy.Event.DestroyedEventHandler as DestroyedEventHandler
+import Org.Allbinary.Game.Combat.Destroy.DestroyedLayerProcessor as DestroyedLayerProcessor
+import Org.Allbinary.Game.Layer.Drop.DropLayerProcessor as DropLayerProcessor
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Configuration.Feature.GameFeatureFactory as GameFeatureFactory
+import Org.Allbinary.Game.Layer.Identification.GroupLayerManagerListener as GroupLayerManagerListener
+import Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressCanvasFactory as ProgressCanvasFactory
 
 
-combatGameCanvas_init :: (JavaObjectClass this_) => this_ -> IO (())
-combatGameCanvas_init object_ = jmethod object_ "combatGameCanvas_init" (\() -> (combatGameCanvas_init_impl (javaCast object_ :: CombatGameCanvas))) ()
-
-combatGameCanvas_init_super :: (JavaObjectClass this_) => this_ -> IO (())
-combatGameCanvas_init_super object_ = (combatGameCanvas_init_impl (javaCast object_ :: CombatGameCanvas))
-
-combatGameCanvas_init_impl :: CombatGameCanvas -> IO (())
-combatGameCanvas_init_impl this = do
-        Control.Monad.void (DestroyEventCircularStaticPool.init ((jio (DestroyEventCircularStaticPool.getInstance))) this)
-        Control.Monad.void (ProgressCanvasFactory.addNormalPortion ((jio (ProgressCanvasFactory.getInstance))) 50 "Destroy Events")
-        pure ()
+jclass : String
+jclass =
+    "CombatGameCanvas"
 
 
--- throws Exception
-initApp :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-initApp object_ a1 = jmethod object_ "initApp" (\() -> (initApp_impl (javaCast object_ :: CombatGameCanvas))) () a1
-
-initApp_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-initApp_super object_ a1 = (initApp_impl (javaCast object_ :: CombatGameCanvas)) a1
-
-initApp_impl :: CombatGameCanvas -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-initApp_impl this abeClientInformation = do
-        Control.Monad.void (CombatGameCanvas.combatGameCanvas_init this)
-        Control.Monad.void (AllBinaryGameCanvas.initApp_super this.base abeClientInformation)
-        pure ()
+jchain : List String
+jchain =
+    [ "CombatGameCanvas" ]
+        ++ AllBinaryGameCanvas.jchain
 
 
-initConfigurablePortion :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-initConfigurablePortion object_ a1 = jmethod object_ "initConfigurablePortion" (\() -> (initConfigurablePortion_impl (javaCast object_ :: CombatGameCanvas))) () a1
-
-initConfigurablePortion_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-initConfigurablePortion_super object_ a1 = (initConfigurablePortion_impl (javaCast object_ :: CombatGameCanvas)) a1
-
-initConfigurablePortion_impl :: CombatGameCanvas -> Int -> IO (())
-initConfigurablePortion_impl this portion = do
-        Control.Monad.void (DestroyedLayerProcessor.init)
-        Control.Monad.void (ProgressCanvasFactory.addNormalPortion ((jio (ProgressCanvasFactory.getInstance))) portion "Basic Processors")
-        features <- (Features.getInstance)
-        gameFeatureFactory <- (GameFeatureFactory.getInstance)
-        if ((jio (Features.isFeature features (jget (gameFeatureFactory).dROPPED_ITEMS))) && (jio (Features.isFeature features (jget (gameFeatureFactory).dROPPED_ITEMS_FROM_DEATH)))) then do
-            jset CombatGameCanvas.basicLayerProcessor ((jnewArray (2) javaNull))
-            assignedValue <- (DestroyedLayerProcessor.getInstance)
-            jsetIndex ((jget CombatGameCanvas.basicLayerProcessor)) (0) (assignedValue)
-            assignedValue <- (DropLayerProcessor.getInstance)
-            jsetIndex ((jget CombatGameCanvas.basicLayerProcessor)) (1) (assignedValue)
-        else do
-            jset CombatGameCanvas.basicLayerProcessor ((jnewArray (1) javaNull))
-            assignedValue <- (DestroyedLayerProcessor.getInstance)
-            jsetIndex ((jget CombatGameCanvas.basicLayerProcessor)) (0) (assignedValue)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinaryGameCanvas.jfields ++ []
 
 
--- throws Exception
-processPlayingGame :: (JavaObjectClass this_) => this_ -> IO (())
-processPlayingGame object_ = jmethod object_ "processPlayingGame" (\() -> (processPlayingGame_impl (javaCast object_ :: CombatGameCanvas))) ()
-
-processPlayingGame_super :: (JavaObjectClass this_) => this_ -> IO (())
-processPlayingGame_super object_ = (processPlayingGame_impl (javaCast object_ :: CombatGameCanvas))
-
-processPlayingGame_impl :: CombatGameCanvas -> IO (())
-processPlayingGame_impl this = do
-        Control.Monad.void (AllBinaryGameCanvas.processPlayingGame_super this.base)
-        index <- newIORef ((jlength (jget CombatGameCanvas.basicLayerProcessor)) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            Control.Monad.void (BasicLayerProcessor.process ((jindex ((jget CombatGameCanvas.basicLayerProcessor)) ((jget index)))) (jget (this).base.gameLayerManager))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "CombatGameCanvas_init_0", jm_CombatGameCanvas_init_0 )
+        , ( "initApp_1", jm_initApp_1 )
+        , ( "initConfigurablePortion_1", jm_initConfigurablePortion_1 )
+        , ( "processPlayingGame_0", jm_processPlayingGame_0 )
+        , ( "cleanupGame_0", jm_cleanupGame_0 )
+        , ( "cleanupManager_0", jm_cleanupManager_0 ) ]
+        AllBinaryGameCanvas.jvtable
 
 
--- throws Exception
-cleanupGame :: (JavaObjectClass this_) => this_ -> IO (())
-cleanupGame object_ = jmethod object_ "cleanupGame" (\() -> (cleanupGame_impl (javaCast object_ :: CombatGameCanvas))) ()
-
-cleanupGame_super :: (JavaObjectClass this_) => this_ -> IO (())
-cleanupGame_super object_ = (cleanupGame_impl (javaCast object_ :: CombatGameCanvas))
-
-cleanupGame_impl :: CombatGameCanvas -> IO (())
-cleanupGame_impl this = do
-        Control.Monad.void (AllBinaryGameCanvas.cleanupGame_super this.base)
-        index <- newIORef ((jlength (jget CombatGameCanvas.basicLayerProcessor)) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            Control.Monad.void (BasicLayerProcessor.clear ((jio (BasicLayerProcessor.getList ((jindex ((jget CombatGameCanvas.basicLayerProcessor)) ((jget index))))))))
-        Control.Monad.void (GroupLayerManagerListener.clear ((jio (GroupLayerManagerListener.getInstance))))
-        Control.Monad.void (GroupLayerManagerListener.log ((jio (GroupLayerManagerListener.getInstance))))
-        Control.Monad.void (DestroyedEventHandler.removeAllListeners ((jio (DestroyedEventHandler.getInstance))))
-        Control.Monad.void (CombatGameCanvas.cleanupManager this)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CombatGameCanvas"
+        [ ( "jm_CombatGameCanvas_init_0", jm_CombatGameCanvas_init_0 ), ( "jm_initApp_1", jm_initApp_1 ), ( "jm_initConfigurablePortion_1", jm_initConfigurablePortion_1 ), ( "jm_processPlayingGame_0", jm_processPlayingGame_0 ), ( "jm_cleanupGame_0", jm_cleanupGame_0 ), ( "jm_cleanupManager_0", jm_cleanupManager_0 ), ( "jnew_5", jnew_5 ), ( "jinit_5", jinit_5 ) ]
+        [ ( "jstatic_basicLayerProcessor", jstatic_basicLayerProcessor ) ]
+        jheap
 
 
--- throws Exception
-cleanupManager :: (JavaObjectClass this_) => this_ -> IO (())
-cleanupManager object_ = jmethod object_ "cleanupManager" (\() -> (cleanupManager_impl (javaCast object_ :: CombatGameCanvas))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-cleanupManager_super :: (JavaObjectClass this_) => this_ -> IO (())
-cleanupManager_super object_ = (cleanupManager_impl (javaCast object_ :: CombatGameCanvas))
 
-cleanupManager_impl :: CombatGameCanvas -> IO (())
-cleanupManager_impl this = do
-        Control.Monad.void (AllBinaryGameLayerManager.cleanup ((jget (this).base.gameLayerManager)))
-        pure ()
+jstatic_basicLayerProcessor : JR.M
+jstatic_basicLayerProcessor s =
+    JR.static "CombatGameCanvas" jclinit "basicLayerProcessor"
+        (JR.newArray "" [ (JR.int 0) ])
+        s
 
+
+jinit_5 : JR.Method
+jinit_5 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ), ( "gameLayerManager", "" ), ( "highScoresFactoryInterface", "" ), ( "gameInitializationInterfaceFactoryInterface", "" ), ( "buffered", "Z" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinaryGameCanvas.jinit_5 JR.this [ (JR.local "cmdListener"), (JR.local "gameLayerManager"), (JR.local "highScoresFactoryInterface"), (JR.local "gameInitializationInterfaceFactoryInterface"), (JR.local "buffered") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_5 : JR.Method
+jnew_5 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_5 jheap jthis jargs
+
+
+jm_CombatGameCanvas_init_0 : JR.Method
+jm_CombatGameCanvas_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "init_1" (JR.callStatic DestroyEventCircularStaticPool.jm_getInstance_0 []) [ JR.this ]), 
+                    JR.exec (JR.invoke "addNormalPortion_2" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []) [ (JR.int 50), (JR.str "Destroy Events") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initApp_1 : JR.Method
+jm_initApp_1 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "CombatGameCanvas_init_0" JR.this []), 
+                    JR.exec (JR.callVia AllBinaryGameCanvas.jvtable "initApp_1" JR.this [ (JR.local "abeClientInformation") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initConfigurablePortion_1 : JR.Method
+jm_initConfigurablePortion_1 jheap jthis jargs =
+    JR.method [ ( "portion", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic DestroyedLayerProcessor.jm_init_0 []), 
+                    JR.exec (JR.invoke "addNormalPortion_2" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []) [ (JR.local "portion"), (JR.str "Basic Processors") ]), 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.declare "gameFeatureFactory" "" (JR.callStatic GameFeatureFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.and (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "DROPPED_ITEMS" (JR.local "gameFeatureFactory")) ]) (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "DROPPED_ITEMS_FROM_DEATH" (JR.local "gameFeatureFactory")) ])) (JR.run [ 
+                        JR.exec (JR.setStatic "CombatGameCanvas.basicLayerProcessor" "" (JR.newArray "" [ (JR.int 2) ])), 
+                        JR.exec (JR.andThen jstatic_basicLayerProcessor (\jaN76289 -> JR.andThen (JR.int 0) (\jiN76289 -> (JR.aset (JR.lit jaN76289) (JR.lit jiN76289) (JR.callStatic DestroyedLayerProcessor.jm_getInstance_0 []))))), 
+                        JR.exec (JR.andThen jstatic_basicLayerProcessor (\jaN76338 -> JR.andThen (JR.int 1) (\jiN76338 -> (JR.aset (JR.lit jaN76338) (JR.lit jiN76338) (JR.callStatic DropLayerProcessor.jm_getInstance_0 []))))) ]) (JR.run [ 
+                        JR.exec (JR.setStatic "CombatGameCanvas.basicLayerProcessor" "" (JR.newArray "" [ (JR.int 1) ])), 
+                        JR.exec (JR.andThen jstatic_basicLayerProcessor (\jaN76185 -> JR.andThen (JR.int 0) (\jiN76185 -> (JR.aset (JR.lit jaN76185) (JR.lit jiN76185) (JR.callStatic DestroyedLayerProcessor.jm_getInstance_0 []))))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processPlayingGame_0 : JR.Method
+jm_processPlayingGame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia AllBinaryGameCanvas.jvtable "processPlayingGame_0" JR.this []), 
+                    JR.run [ JR.declare "index" "I" (JR.alength jstatic_basicLayerProcessor), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN76518 -> (JR.setLocal "index" "I" (JR.lit jwN76518))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.invoke "process_1" (JR.aget jstatic_basicLayerProcessor (JR.local "index")) [ (JR.thisField "gameLayerManager") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_cleanupGame_0 : JR.Method
+jm_cleanupGame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia AllBinaryGameCanvas.jvtable "cleanupGame_0" JR.this []), 
+                    JR.run [ JR.declare "index" "I" (JR.alength jstatic_basicLayerProcessor), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN76707 -> (JR.setLocal "index" "I" (JR.lit jwN76707))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.invoke "clear_0" (JR.invoke "getList_0" (JR.aget jstatic_basicLayerProcessor (JR.local "index")) []) []) ]) ], 
+                    JR.exec (JR.invoke "clear_0" (JR.callStatic GroupLayerManagerListener.jm_getInstance_0 []) []), 
+                    JR.exec (JR.invoke "log_0" (JR.callStatic GroupLayerManagerListener.jm_getInstance_0 []) []), 
+                    JR.exec (JR.invoke "removeAllListeners_0" (JR.callStatic DestroyedEventHandler.jm_getInstance_0 []) []), 
+                    JR.exec (JR.invoke "cleanupManager_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_cleanupManager_0 : JR.Method
+jm_cleanupManager_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "cleanup_0" (JR.thisField "gameLayerManager") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

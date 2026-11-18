@@ -1,117 +1,111 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
-module PartnerIdentifierFileUtil where
+module Org.Allbinary.Logic.System.Security.Licensing.PartnerIdentifierFileUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ResourceUtil -- org.allbinary.data.resource.ResourceUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.licensing
+-}
 
-data PartnerIdentifierFileUtil = PartnerIdentifierFileUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , fILE_NAME :: IORef (String)
-    }
-
-instance JavaNull PartnerIdentifierFileUtil where
-    javaNull = javaNullRecord "PartnerIdentifierFileUtil"
-
-instance JavaEquals PartnerIdentifierFileUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PartnerIdentifierFileUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PartnerIdentifierFileUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: PartnerIdentifierFileUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PartnerIdentifierFileUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    fILE_NAME <- newIORef ""
-    let this = PartnerIdentifierFileUtil header_ logUtil fILE_NAME
-    jregisterLevel header_ this
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    pure this
-
-initFields_ :: PartnerIdentifierFileUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.fILE_NAME ("partner.txt")
-    pure ()
-
-new_ :: IO PartnerIdentifierFileUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PartnerIdentifierFileUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Data.Resource.ResourceUtil as ResourceUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (PartnerIdentifierFileUtil)
-getInstance = do
-        pure (PartnerIdentifierFileUtil.instance_)
+jclass : String
+jclass =
+    "PartnerIdentifierFileUtil"
 
 
-get :: (JavaObjectClass this_) => this_ -> IO (String)
-get object_ = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: PartnerIdentifierFileUtil))) ()
+jchain : List String
+jchain =
+    [ "PartnerIdentifierFileUtil" ]
 
-get_super :: (JavaObjectClass this_) => this_ -> IO (String)
-get_super object_ = (get_impl (javaCast object_ :: PartnerIdentifierFileUtil))
 
-get_impl :: PartnerIdentifierFileUtil -> IO (String)
-get_impl this = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).gET) e)
-            pure ((jget ((jio (StringUtil.getInstance))).nULL_STRING))
-            ) $ do
-            resourceUtil <- (ResourceUtil.getInstance)
-            let partnerString = (jget ((jio (StringUtil.getInstance))).eMPTY_STRING)
-            pure (partnerString)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "FILE_NAME", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "get_0", jm_get_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PartnerIdentifierFileUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_get_0", jm_get_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "PartnerIdentifierFileUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "FILE_NAME" "" JR.this (JR.str "partner.txt")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_get_0 : JR.Method
+jm_get_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "resourceUtil" "" (JR.callStatic ResourceUtil.jm_getInstance_0 []), 
+                        JR.declare "partnerString" "" (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), 
+                        JR.return (JR.local "partnerString") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "GET" (JR.local "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.field "NULL_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

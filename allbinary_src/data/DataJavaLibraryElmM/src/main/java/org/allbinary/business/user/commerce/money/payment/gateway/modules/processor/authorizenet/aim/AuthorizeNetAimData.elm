@@ -1,105 +1,129 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.money.payment.gateway.modules.processor.authorizenet.aim
-module AuthorizeNetAimData where
+module Org.Allbinary.Business.User.Commerce.Money.Payment.Gateway.Modules.Processor.Authorizenet.Aim.AuthorizeNetAimData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.money.payment.gateway.modules.processor.authorizenet.aim
+-}
 
-data AuthorizeNetAimData = AuthorizeNetAimData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull AuthorizeNetAimData where
-    javaNull = javaNullRecord "AuthorizeNetAimData"
 
-instance JavaEquals AuthorizeNetAimData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq AuthorizeNetAimData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "AuthorizeNetAimData"
 
-instance JavaObjectClass AuthorizeNetAimData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-x_DELIM_DATA :: String
-x_DELIM_DATA = "x_delim_data"
+jchain : List String
+jchain =
+    [ "AuthorizeNetAimData" ]
 
-x_DELIM_CHAR :: String
-x_DELIM_CHAR = "x_delim_char"
 
-x_ENCAP_CHAR :: String
-x_ENCAP_CHAR = "x_encap_char"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-x_AUTHENTICATION_INDICATOR :: String
-x_AUTHENTICATION_INDICATOR = "x_authentication_indicator"
 
-x_CARDHOLDER_AUTHENTICATION_VALUE :: String
-x_CARDHOLDER_AUTHENTICATION_VALUE = "x_cardholder_authentication_value"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-x_DRIVERS_LICENSE_NUM :: String
-x_DRIVERS_LICENSE_NUM = "x_drivers_license_num"
 
-x_DRIVERS_LICENSE_STATE :: String
-x_DRIVERS_LICENSE_STATE = "x_drivers_license_state"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AuthorizeNetAimData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_X_DELIM_DATA", jstatic_X_DELIM_DATA ), ( "jstatic_X_DELIM_CHAR", jstatic_X_DELIM_CHAR ), ( "jstatic_X_ENCAP_CHAR", jstatic_X_ENCAP_CHAR ), ( "jstatic_X_AUTHENTICATION_INDICATOR", jstatic_X_AUTHENTICATION_INDICATOR ), ( "jstatic_X_CARDHOLDER_AUTHENTICATION_VALUE", jstatic_X_CARDHOLDER_AUTHENTICATION_VALUE ), ( "jstatic_X_DRIVERS_LICENSE_NUM", jstatic_X_DRIVERS_LICENSE_NUM ), ( "jstatic_X_DRIVERS_LICENSE_STATE", jstatic_X_DRIVERS_LICENSE_STATE ), ( "jstatic_X_DRIVERS_LICENSE_DOB", jstatic_X_DRIVERS_LICENSE_DOB ) ]
+        jheap
 
-x_DRIVERS_LICENSE_DOB :: String
-x_DRIVERS_LICENSE_DOB = "x_drivers_license_dob"
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO AuthorizeNetAimData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = AuthorizeNetAimData header_
-    jregisterLevel header_ this
-    pure this
+jstatic_X_DELIM_DATA : JR.M
+jstatic_X_DELIM_DATA s =
+    JR.static "AuthorizeNetAimData" jclinit "X_DELIM_DATA"
+        (JR.str "x_delim_data")
+        s
 
-initFields_ :: AuthorizeNetAimData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO AuthorizeNetAimData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jstatic_X_DELIM_CHAR : JR.M
+jstatic_X_DELIM_CHAR s =
+    JR.static "AuthorizeNetAimData" jclinit "X_DELIM_CHAR"
+        (JR.str "x_delim_char")
+        s
 
-init_ :: AuthorizeNetAimData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jstatic_X_ENCAP_CHAR : JR.M
+jstatic_X_ENCAP_CHAR s =
+    JR.static "AuthorizeNetAimData" jclinit "X_ENCAP_CHAR"
+        (JR.str "x_encap_char")
+        s
+
+
+jstatic_X_AUTHENTICATION_INDICATOR : JR.M
+jstatic_X_AUTHENTICATION_INDICATOR s =
+    JR.static "AuthorizeNetAimData" jclinit "X_AUTHENTICATION_INDICATOR"
+        (JR.str "x_authentication_indicator")
+        s
+
+
+jstatic_X_CARDHOLDER_AUTHENTICATION_VALUE : JR.M
+jstatic_X_CARDHOLDER_AUTHENTICATION_VALUE s =
+    JR.static "AuthorizeNetAimData" jclinit "X_CARDHOLDER_AUTHENTICATION_VALUE"
+        (JR.str "x_cardholder_authentication_value")
+        s
+
+
+jstatic_X_DRIVERS_LICENSE_NUM : JR.M
+jstatic_X_DRIVERS_LICENSE_NUM s =
+    JR.static "AuthorizeNetAimData" jclinit "X_DRIVERS_LICENSE_NUM"
+        (JR.str "x_drivers_license_num")
+        s
+
+
+jstatic_X_DRIVERS_LICENSE_STATE : JR.M
+jstatic_X_DRIVERS_LICENSE_STATE s =
+    JR.static "AuthorizeNetAimData" jclinit "X_DRIVERS_LICENSE_STATE"
+        (JR.str "x_drivers_license_state")
+        s
+
+
+jstatic_X_DRIVERS_LICENSE_DOB : JR.M
+jstatic_X_DRIVERS_LICENSE_DOB s =
+    JR.static "AuthorizeNetAimData" jclinit "X_DRIVERS_LICENSE_DOB"
+        (JR.str "x_drivers_license_dob")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

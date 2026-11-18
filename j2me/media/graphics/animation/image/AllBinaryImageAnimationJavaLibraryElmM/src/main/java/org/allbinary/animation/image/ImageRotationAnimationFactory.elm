@@ -1,127 +1,107 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module ImageRotationAnimationFactory (module ImageRotationAnimationFactory, module BaseImageAnimationFactory) where
+module Org.Allbinary.Animation.Image.ImageRotationAnimationFactory exposing (..)
 
-import BaseImageAnimationFactory hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, getAngleIncrementP, getAngleIncrementP_super, getAngleIncrementP_impl, angleIncrement)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ImageBaseRotationAnimation -- same package or java.lang
-import qualified AdjustedImageBaseRotationAnimation -- same package or java.lang
-import qualified AnimationFactoryImageScaleUtil -- same package or java.lang
-import qualified AnimationFactoryInitializationVisitor -- same package or java.lang
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified AnimationBehaviorFactory -- org.allbinary.animation.AnimationBehaviorFactory
-import qualified GameConfigurationCentral -- org.allbinary.game.configuration.GameConfigurationCentral
-import qualified PrimitiveIntUtil -- org.allbinary.logic.math.PrimitiveIntUtil
-import qualified AngleFactory -- org.allbinary.math.AngleFactory
-import qualified AngleInfo -- org.allbinary.math.AngleInfo
-import qualified BaseImageAnimationFactory
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
-data ImageRotationAnimationFactory = ImageRotationAnimationFactory
-    { header_ :: JavaHeader
-    , base :: BaseImageAnimationFactory.BaseImageAnimationFactory
-    , angleIncrement :: IORef (Int16)
-    }
-
-instance JavaNull ImageRotationAnimationFactory where
-    javaNull = javaNullRecord "ImageRotationAnimationFactory"
-
-instance JavaEquals ImageRotationAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageRotationAnimationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageRotationAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ImageRotationAnimationFactory
-newRecord_ = do
-    base <- BaseImageAnimationFactory.newRecord_
-    let header_ = base.header_
-    angleIncrement <- newIORef 0
-    let this = ImageRotationAnimationFactory header_ base angleIncrement
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    jregisterMethod header_ "getAngleIncrementP" (\() -> getAngleIncrementP_impl this)
-    pure this
-
-initFields_ :: ImageRotationAnimationFactory -> IO ()
-initFields_ this = do
-    jset this.angleIncrement (0)
-    pure ()
-
-new_7 :: Image.Image -> Int -> Int -> Int -> Int -> Int16 -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ImageRotationAnimationFactory
-new_7 image width height dx dy angleIncrement animationBehaviorFactory = do
-    this <- newRecord_
-    init_7 this image width height dx dy angleIncrement animationBehaviorFactory
-    pure this
-
-init_7 :: ImageRotationAnimationFactory -> Image.Image -> Int -> Int -> Int -> Int -> Int16 -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ()
-init_7 this image width height dx dy angleIncrement animationBehaviorFactory = do
-        BaseImageAnimationFactory.init_7 this.base (image) (jio (PrimitiveIntUtil.getArrayInstance)) (width) (height) (0) (0) (animationBehaviorFactory)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).angleIncrement (angleIncrement)
-        jset ((jget (this).base.animationFactoryInitializationVisitor)).dx (dx)
-        jset ((jget (this).base.animationFactoryInitializationVisitor)).dy (dy)
-        pure ()
+import JR
+import Org.Allbinary.Animation.Image.AdjustedImageBaseRotationAnimation as AdjustedImageBaseRotationAnimation
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Math.AngleInfo as AngleInfo
+import Org.Allbinary.Animation.Image.BaseImageAnimationFactory as BaseImageAnimationFactory
+import Org.Allbinary.Animation.Image.ImageBaseRotationAnimation as ImageBaseRotationAnimation
+import Org.Allbinary.Logic.Math.PrimitiveIntUtil as PrimitiveIntUtil
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: ImageRotationAnimationFactory))) () a1
-
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: ImageRotationAnimationFactory)) a1
-
-getInstance_impl :: ImageRotationAnimationFactory -> Int -> IO (Animation.Animation)
-getInstance_impl this instanceId = do
-    javaCatchReturn $ do
-        if (((jget ((jget (this).base.animationFactoryInitializationVisitor)).dx) /= 0) || ((jget ((jget (this).base.animationFactoryInitializationVisitor)).dy) /= 0)) then do
-            Control.Monad.void (AnimationFactoryImageScaleUtil.processAdjust ((jget (this).base.animationFactoryImageScaleUtil)) (javaCast this))
-            javaReturn =<< (fmap (\value_ -> javaCast value_ :: Animation.Animation) (AdjustedImageBaseRotationAnimation.new_6 (jio (BaseImageAnimationFactory.getImage this)) (jio (AngleInfo.getInstance (jget (this).angleIncrement))) (jget ((jio (AngleFactory.getInstance))).tOTAL_ANGLE) (jget ((jget (this).base.animationFactoryInitializationVisitor)).dx) (jget ((jget (this).base.animationFactoryInitializationVisitor)).dy) (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).base.animationBehaviorFactory))))))
-        else do
-            javaReturn =<< (fmap (\value_ -> javaCast value_ :: Animation.Animation) (ImageBaseRotationAnimation.new_4 (jio (BaseImageAnimationFactory.getImage this)) (jio (AngleInfo.getInstance (jget (this).angleIncrement))) (jget ((jio (AngleFactory.getInstance))).tOTAL_ANGLE) (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).base.animationBehaviorFactory))))))
+jclass : String
+jclass =
+    "ImageRotationAnimationFactory"
 
 
-getAngleIncrementP :: (JavaObjectClass this_) => this_ -> IO (Int16)
-getAngleIncrementP object_ = jmethod object_ "getAngleIncrementP" (\() -> (getAngleIncrementP_impl (javaCast object_ :: ImageRotationAnimationFactory))) ()
+jchain : List String
+jchain =
+    [ "ImageRotationAnimationFactory" ]
+        ++ BaseImageAnimationFactory.jchain
 
-getAngleIncrementP_super :: (JavaObjectClass this_) => this_ -> IO (Int16)
-getAngleIncrementP_super object_ = (getAngleIncrementP_impl (javaCast object_ :: ImageRotationAnimationFactory))
 
-getAngleIncrementP_impl :: ImageRotationAnimationFactory -> IO (Int16)
-getAngleIncrementP_impl this = do
-        pure ((jget (this).angleIncrement))
+jfields : List ( String, JR.JValue )
+jfields =
+    BaseImageAnimationFactory.jfields ++ [ ( "angleIncrement", JR.defaultOf "S" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_1", jm_getInstance_1 )
+        , ( "getAngleIncrementP_0", jm_getAngleIncrementP_0 ) ]
+        BaseImageAnimationFactory.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageRotationAnimationFactory"
+        [ ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_getAngleIncrementP_0", jm_getAngleIncrementP_0 ), ( "jnew_7", jnew_7 ), ( "jinit_7", jinit_7 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_7 : JR.Method
+jinit_7 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "width", "I" ), ( "height", "I" ), ( "dx", "I" ), ( "dy", "I" ), ( "angleIncrement", "S" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BaseImageAnimationFactory.jinit_7 JR.this [ (JR.local "image"), (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []), (JR.local "width"), (JR.local "height"), (JR.int 0), (JR.int 0), (JR.local "animationBehaviorFactory") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "angleIncrement" "S" JR.this (JR.local "angleIncrement")), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN68078 -> (JR.setField "dx" "I" (JR.lit jtN68078) (JR.local "dx")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN68118 -> (JR.setField "dy" "I" (JR.lit jtN68118) (JR.local "dy")))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_7 : JR.Method
+jnew_7 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_7 jheap jthis jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "instanceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.or (JR.map2 JR.notEquals (JR.field "dx" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 0)) (JR.map2 JR.notEquals (JR.field "dy" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 0))) (JR.run [ 
+                        JR.exec (JR.invoke "processAdjust_1" (JR.thisField "animationFactoryImageScaleUtil") [ JR.this ]), 
+                        JR.return (JR.new AdjustedImageBaseRotationAnimation.jnew_6 [ (JR.invoke "getImage_0" JR.this []), (JR.callStatic AngleInfo.jm_getInstance_1 [ (JR.thisField "angleIncrement") ]), (JR.field "TOTAL_ANGLE" (JR.callStatic AngleFactory.jm_getInstance_0 [])), (JR.field "dx" (JR.thisField "animationFactoryInitializationVisitor")), (JR.field "dy" (JR.thisField "animationFactoryInitializationVisitor")), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]) ]) (JR.run [ 
+                        JR.return (JR.new ImageBaseRotationAnimation.jnew_4 [ (JR.invoke "getImage_0" JR.this []), (JR.callStatic AngleInfo.jm_getInstance_1 [ (JR.thisField "angleIncrement") ]), (JR.field "TOTAL_ANGLE" (JR.callStatic AngleFactory.jm_getInstance_0 [])), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAngleIncrementP_0 : JR.Method
+jm_getAngleIncrementP_0 jheap jthis jargs =
+    JR.method [] "S"
+        (JR.run [ 
+                    JR.return (JR.thisField "angleIncrement") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

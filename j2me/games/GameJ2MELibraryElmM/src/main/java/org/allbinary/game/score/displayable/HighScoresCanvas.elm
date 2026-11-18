@@ -1,334 +1,263 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score.displayable
-module HighScoresCanvas (module HighScoresCanvas, module GameCommandCanvas) where
+module Org.Allbinary.Game.Score.Displayable.HighScoresCanvas exposing (..)
 
-import GameCommandCanvas hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, initCommands, initCommands_super, initCommands_impl, open, open_super, open_impl, close, close_super, close_impl, paint, paint_super, paint_impl, executeUpdate, executeUpdate_super, executeUpdate_impl, getHighScoresPaintable, getHighScoresPaintable_super, getHighScoresPaintable_impl, setHighScoresArray, setHighScoresArray_super, setHighScoresArray_impl, updateCommand, updateCommand_super, updateCommand_impl, getGameInfo, getGameInfo_super, getGameInfo_impl, setPaintable, setPaintable_super, setPaintable_impl, nAME, paintable, highScoreCommandsFactory, waitPaintable, highScoresPaintable, highScoresFactoryInterface, colorFillPaintable, highScoresHelper, gameInfo, highScoresCanvasInputProcessor, currentCommand, hasPainted)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HighScoreRunnable -- same package or java.lang
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified GameInfo -- org.allbinary.game.GameInfo
-import qualified GameCommandsFactory -- org.allbinary.game.commands.GameCommandsFactory
-import qualified GameCommandCanvas -- org.allbinary.game.displayable.canvas.GameCommandCanvas
-import qualified AllBinaryGameLayerManager -- org.allbinary.game.layer.AllBinaryGameLayerManager
-import qualified ColorFillBasePaintable -- org.allbinary.game.paint.ColorFillBasePaintable
-import qualified ColorFillPaintableFactory -- org.allbinary.game.paint.ColorFillPaintableFactory
-import qualified HighScoreCommandsFactory -- org.allbinary.game.score.HighScoreCommandsFactory
-import qualified HighScores -- org.allbinary.game.score.HighScores
-import qualified HighScoresCanvasInputProcessor -- org.allbinary.game.score.HighScoresCanvasInputProcessor
-import qualified HighScoresCanvasInputProcessorFactoryInterface -- org.allbinary.game.score.HighScoresCanvasInputProcessorFactoryInterface
-import qualified HighScoresFactoryInterface -- org.allbinary.game.score.HighScoresFactoryInterface
-import qualified HighScoresHelperBase -- org.allbinary.game.score.HighScoresHelperBase
-import qualified HighScoresPaintable -- org.allbinary.game.score.HighScoresPaintable
-import qualified HighScoresResultsListener -- org.allbinary.game.score.HighScoresResultsListener
-import qualified NoHighScoresFactory -- org.allbinary.game.score.NoHighScoresFactory
-import qualified NullHighScoresSingletonFactory -- org.allbinary.game.score.NullHighScoresSingletonFactory
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified NullPaintable -- org.allbinary.graphics.paint.NullPaintable
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified SimpleTextPaintable -- org.allbinary.graphics.paint.SimpleTextPaintable
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified SecondaryThreadPool -- org.allbinary.thread.SecondaryThreadPool
+{-| Generated Code Do Not Modify package org.allbinary.game.score.displayable
+-}
 
--- implements HighScoresResultsListener
-data HighScoresCanvas = HighScoresCanvas
-    { header_ :: JavaHeader
-    , base :: GameCommandCanvas.GameCommandCanvas
-    , paintable :: IORef (Paintable.Paintable)
-    , highScoreCommandsFactory :: IORef (HighScoreCommandsFactory.HighScoreCommandsFactory)
-    , waitPaintable :: IORef (SimpleTextPaintable.SimpleTextPaintable)
-    , highScoresPaintable :: IORef (HighScoresPaintable.HighScoresPaintable)
-    , highScoresFactoryInterface :: IORef (HighScoresFactoryInterface.HighScoresFactoryInterface)
-    , colorFillPaintable :: IORef (ColorFillBasePaintable.ColorFillBasePaintable)
-    , highScoresHelper :: IORef (HighScoresHelperBase.HighScoresHelperBase)
-    , gameInfo :: IORef (GameInfo.GameInfo)
-    , highScoresCanvasInputProcessor :: IORef (HighScoresCanvasInputProcessor.HighScoresCanvasInputProcessor)
-    , currentCommand :: IORef (Command.Command)
-    , hasPainted :: IORef (Bool)
-    }
-
-instance JavaNull HighScoresCanvas where
-    javaNull = javaNullRecord "HighScoresCanvas"
-
-instance JavaEquals HighScoresCanvas where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoresCanvas where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoresCanvas where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nAME :: String
-nAME = "HighScoresCanvas"
-
-newRecord_ :: IO HighScoresCanvas
-newRecord_ = do
-    base <- GameCommandCanvas.newRecord_
-    let header_ = base.header_
-    paintable <- newIORef javaNull
-    highScoreCommandsFactory <- newIORef javaNull
-    waitPaintable <- newIORef javaNull
-    highScoresPaintable <- newIORef javaNull
-    highScoresFactoryInterface <- newIORef javaNull
-    colorFillPaintable <- newIORef javaNull
-    highScoresHelper <- newIORef javaNull
-    gameInfo <- newIORef javaNull
-    highScoresCanvasInputProcessor <- newIORef javaNull
-    currentCommand <- newIORef javaNull
-    hasPainted <- newIORef False
-    let this = HighScoresCanvas header_ base paintable highScoreCommandsFactory waitPaintable highScoresPaintable highScoresFactoryInterface colorFillPaintable highScoresHelper gameInfo highScoresCanvasInputProcessor currentCommand hasPainted
-    jregisterLevel header_ this
-    HighScoresResultsListener.registerInterface_ header_
-    jregisterMethod header_ "initCommands" (\() -> initCommands_impl this)
-    jregisterMethod header_ "open" (\() -> open_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "executeUpdate" (\() -> executeUpdate_impl this)
-    jregisterMethod header_ "getHighScoresPaintable" (\() -> getHighScoresPaintable_impl this)
-    jregisterMethod header_ "setHighScoresArray" (\() -> setHighScoresArray_impl this)
-    jregisterMethod header_ "updateCommand" (\() -> updateCommand_impl this)
-    jregisterMethod header_ "getGameInfo" (\() -> getGameInfo_impl this)
-    jregisterMethod header_ "setPaintable" (\() -> setPaintable_impl this)
-    pure this
-
-initFields_ :: HighScoresCanvas -> IO ()
-initFields_ this = do
-    jset this.paintable =<< (NullPaintable.getInstance)
-    jset this.highScoreCommandsFactory =<< (HighScoreCommandsFactory.getInstance)
-    jset this.waitPaintable =<< (SimpleTextPaintable.new_2 (jget ((jget (this).base.commonStrings)).pLEASE_WAIT_FOR_SERVER) (jget ((jio (BasicColorFactory.getInstance))).wHITE))
-    jset this.highScoresPaintable (javaNull)
-    jset this.highScoresFactoryInterface (javaNull)
-    jset this.colorFillPaintable (javaNull)
-    jset this.highScoresHelper =<< (HighScoresHelperBase.new_)
-    jset this.gameInfo (javaNull)
-    jset this.highScoresCanvasInputProcessor (javaNull)
-    jset this.currentCommand ((jindex ((jget ((jget (this).highScoreCommandsFactory)).base.hIGH_SCORE_COMMANDS)) (0)))
-    jset this.hasPainted (False)
-    pure ()
-
-new_6 :: CommandListener.CommandListener -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> GameInfo.GameInfo -> HighScoresPaintable.HighScoresPaintable -> HighScoresFactoryInterface.HighScoresFactoryInterface -> HighScoresCanvasInputProcessorFactoryInterface.HighScoresCanvasInputProcessorFactoryInterface -> IO HighScoresCanvas
-new_6 commandListener allBinaryGameLayerManager gameInfo paintable highScoresFactoryInterface highScoresCanvasInputProcessorFactoryInterface = do
-    this <- newRecord_
-    init_6 this commandListener allBinaryGameLayerManager gameInfo paintable highScoresFactoryInterface highScoresCanvasInputProcessorFactoryInterface
-    pure this
-
-init_6 :: HighScoresCanvas -> CommandListener.CommandListener -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> GameInfo.GameInfo -> HighScoresPaintable.HighScoresPaintable -> HighScoresFactoryInterface.HighScoresFactoryInterface -> HighScoresCanvasInputProcessorFactoryInterface.HighScoresCanvasInputProcessorFactoryInterface -> IO ()
-init_6 this commandListener allBinaryGameLayerManager gameInfo paintable highScoresFactoryInterface highScoresCanvasInputProcessorFactoryInterface = do
-        GameCommandCanvas.init_4 this.base (commandListener) (HighScoresCanvas.nAME) (jio (AllBinaryGameLayerManager.getBackgroundBasicColor allBinaryGameLayerManager)) (jio (AllBinaryGameLayerManager.getForegroundBasicColor allBinaryGameLayerManager))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-        jset (this).highScoresPaintable (paintable)
-        jset (this).highScoresFactoryInterface (highScoresFactoryInterface)
-        assignedValue <- (HighScoresCanvasInputProcessorFactoryInterface.getInstance highScoresCanvasInputProcessorFactoryInterface this)
-        jset (this).highScoresCanvasInputProcessor (assignedValue)
-        jset (this).gameInfo (gameInfo)
-        Control.Monad.void (SimpleTextPaintable.setBasicColorP ((jget (this).waitPaintable)) (jio (AllBinaryGameLayerManager.getForegroundBasicColor allBinaryGameLayerManager)))
-        Control.Monad.void (HighScoresPaintable.setBasicColorP ((jio (HighScoresCanvas.getHighScoresPaintable this))) (jio (AllBinaryGameLayerManager.getForegroundBasicColor allBinaryGameLayerManager)))
-        assignedValue <- (ColorFillPaintableFactory.getInstance ((jio (ColorFillPaintableFactory.getInstance))) (jio (AllBinaryGameLayerManager.getBackgroundBasicColor allBinaryGameLayerManager)) False)
-        jset (this).colorFillPaintable (assignedValue)
-        if ((jlength (jio (HighScoresHelperBase.getHighScoresArray ((jget (this).highScoresHelper))))) == (jlength (jget ((jio (NoHighScoresFactory.getInstance))).nO_HIGH_SCORES))) then do
-            Control.Monad.void (HighScoresCanvas.setPaintable this (javaCast (jget (this).waitPaintable)))
-        else do
-            Control.Monad.void (putF ((jget (this).base.logUtil)) "Show HighScores that are already loaded" this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-            Control.Monad.void (HighScoresCanvas.updateCommand this (jget (this).currentCommand))
-            Control.Monad.void (HighScoresCanvas.setPaintable this (javaCast (jio (HighScoresCanvas.getHighScoresPaintable this))))
-        Control.Monad.void (SecondaryThreadPool.runTask ((jio (SecondaryThreadPool.getInstance))) (jio (HighScoreRunnable.new_1 this)))
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Game.Paint.ColorFillPaintableFactory as ColorFillPaintableFactory
+import Org.Allbinary.Game.Displayable.Canvas.GameCommandCanvas as GameCommandCanvas
+import Org.Allbinary.Game.Commands.GameCommandsFactory as GameCommandsFactory
+import Org.Allbinary.Game.Score.HighScoreCommandsFactory as HighScoreCommandsFactory
+import Org.Allbinary.Game.Score.Displayable.HighScoreRunnable as HighScoreRunnable
+import Org.Allbinary.Game.Score.HighScoresHelperBase as HighScoresHelperBase
+import Org.Allbinary.Game.Score.HighScoresResultsListener as HighScoresResultsListener
+import Org.Allbinary.Game.Score.NoHighScoresFactory as NoHighScoresFactory
+import Org.Allbinary.Game.Score.NullHighScoresSingletonFactory as NullHighScoresSingletonFactory
+import Org.Allbinary.Graphics.Paint.NullPaintable as NullPaintable
+import Org.Allbinary.Thread.SecondaryThreadPool as SecondaryThreadPool
+import Org.Allbinary.Graphics.Paint.SimpleTextPaintable as SimpleTextPaintable
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-initCommands :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands object_ a1 = jmethod object_ "initCommands" (\() -> (initCommands_impl (javaCast object_ :: HighScoresCanvas))) () a1
-
-initCommands_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands_super object_ a1 = (initCommands_impl (javaCast object_ :: HighScoresCanvas)) a1
-
-initCommands_impl :: HighScoresCanvas -> CommandListener.CommandListener -> IO (())
-initCommands_impl this cmdListener = do
-        Control.Monad.void (GameCommandCanvas.removeAllCommands this)
-        Control.Monad.void (GameCommandCanvas.addCommand this (jget ((jio (GameCommandsFactory.getInstance))).cLOSE_AND_SHOW_GAME_CANVAS))
-        Control.Monad.void (GameCommandCanvas.setCommandListener this cmdListener)
-        pure ()
+jclass : String
+jclass =
+    "HighScoresCanvas"
 
 
-open :: (JavaObjectClass this_) => this_ -> IO (())
-open object_ = jmethod object_ "open" (\() -> (open_impl (javaCast object_ :: HighScoresCanvas))) ()
-
-open_super :: (JavaObjectClass this_) => this_ -> IO (())
-open_super object_ = (open_impl (javaCast object_ :: HighScoresCanvas))
-
-open_impl :: HighScoresCanvas -> IO (())
-open_impl this = do
-        Control.Monad.void (GameCommandCanvas.open_super this.base)
-        Control.Monad.void (HighScoresCanvasInputProcessor.open ((jget (this).highScoresCanvasInputProcessor)))
-        pure ()
+jchain : List String
+jchain =
+    [ "HighScoresCanvas" ]
+        ++ GameCommandCanvas.jchain
+        ++ HighScoresResultsListener.jchain
 
 
--- throws Exception
-close :: (JavaObjectClass this_) => this_ -> IO (())
-close object_ = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: HighScoresCanvas))) ()
-
-close_super :: (JavaObjectClass this_) => this_ -> IO (())
-close_super object_ = (close_impl (javaCast object_ :: HighScoresCanvas))
-
-close_impl :: HighScoresCanvas -> IO (())
-close_impl this = do
-        Control.Monad.void (GameCommandCanvas.close_super this.base)
-        Control.Monad.void (HighScoresCanvasInputProcessor.close ((jget (this).highScoresCanvasInputProcessor)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    GameCommandCanvas.jfields ++ [ ( "paintable", JR.defaultOf "" ), ( "highScoreCommandsFactory", JR.defaultOf "" ), ( "waitPaintable", JR.defaultOf "" ), ( "highScoresPaintable", JR.defaultOf "" ), ( "highScoresFactoryInterface", JR.defaultOf "" ), ( "colorFillPaintable", JR.defaultOf "" ), ( "highScoresHelper", JR.defaultOf "" ), ( "gameInfo", JR.defaultOf "" ), ( "highScoresCanvasInputProcessor", JR.defaultOf "" ), ( "currentCommand", JR.defaultOf "" ), ( "hasPainted", JR.defaultOf "Z" ) ]
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: HighScoresCanvas))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: HighScoresCanvas)) a1
-
-paint_impl :: HighScoresCanvas -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (ColorFillBasePaintable.paint ((jget (this).colorFillPaintable)) graphics)
-        Control.Monad.void (Paintable.paint ((jget (this).paintable)) graphics)
-        when ((jtoObject (jget (this).waitPaintable)) /= (jtoObject (jget (this).paintable))) $ do
-            Control.Monad.void (HighScoresCanvasInputProcessor.paint ((jget (this).highScoresCanvasInputProcessor)) graphics)
-        Control.Monad.void (GameCommandCanvas.paint_super this.base graphics)
-        jset (this).hasPainted (True)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "initCommands_1", jm_initCommands_1 )
+        , ( "open_0", jm_open_0 )
+        , ( "close_0", jm_close_0 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "executeUpdate_0", jm_executeUpdate_0 )
+        , ( "getHighScoresPaintable_0", jm_getHighScoresPaintable_0 )
+        , ( "setHighScoresArray_1", jm_setHighScoresArray_1 )
+        , ( "updateCommand_1", jm_updateCommand_1 )
+        , ( "getGameInfo_0", jm_getGameInfo_0 )
+        , ( "setPaintable_1", jm_setPaintable_1 ) ]
+        GameCommandCanvas.jvtable
 
 
-executeUpdate :: (JavaObjectClass this_) => this_ -> IO (())
-executeUpdate object_ = jmethod object_ "executeUpdate" (\() -> (executeUpdate_impl (javaCast object_ :: HighScoresCanvas))) ()
-
-executeUpdate_super :: (JavaObjectClass this_) => this_ -> IO (())
-executeUpdate_super object_ = (executeUpdate_impl (javaCast object_ :: HighScoresCanvas))
-
-executeUpdate_impl :: HighScoresCanvas -> IO (())
-executeUpdate_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.commonStrings)).uPDATE) e)
-            ) $ do
-            Control.Monad.void (HighScoresFactoryInterface.fetchHighScores ((jget (this).highScoresFactoryInterface)) (jio (HighScoresCanvas.getGameInfo this)) this)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoresCanvas"
+        [ ( "jm_initCommands_1", jm_initCommands_1 ), ( "jm_open_0", jm_open_0 ), ( "jm_close_0", jm_close_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_executeUpdate_0", jm_executeUpdate_0 ), ( "jm_getHighScoresPaintable_0", jm_getHighScoresPaintable_0 ), ( "jm_setHighScoresArray_1", jm_setHighScoresArray_1 ), ( "jm_updateCommand_1", jm_updateCommand_1 ), ( "jm_getGameInfo_0", jm_getGameInfo_0 ), ( "jm_setPaintable_1", jm_setPaintable_1 ), ( "jnew_6", jnew_6 ), ( "jinit_6", jinit_6 ) ]
+        [ ( "jstatic_NAME", jstatic_NAME ) ]
+        jheap
 
 
-getHighScoresPaintable :: (JavaObjectClass this_) => this_ -> IO (HighScoresPaintable.HighScoresPaintable)
-getHighScoresPaintable object_ = jmethod object_ "getHighScoresPaintable" (\() -> (getHighScoresPaintable_impl (javaCast object_ :: HighScoresCanvas))) ()
-
-getHighScoresPaintable_super :: (JavaObjectClass this_) => this_ -> IO (HighScoresPaintable.HighScoresPaintable)
-getHighScoresPaintable_super object_ = (getHighScoresPaintable_impl (javaCast object_ :: HighScoresCanvas))
-
-getHighScoresPaintable_impl :: HighScoresCanvas -> IO (HighScoresPaintable.HighScoresPaintable)
-getHighScoresPaintable_impl this = do
-        pure ((jget (this).highScoresPaintable))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setHighScoresArray :: (JavaObjectClass this_) => this_ -> JavaArray (HighScores.HighScores) -> IO (())
-setHighScoresArray object_ a1 = jmethod object_ "setHighScoresArray" (\() -> (setHighScoresArray_impl (javaCast object_ :: HighScoresCanvas))) () a1
-
-setHighScoresArray_super :: (JavaObjectClass this_) => this_ -> JavaArray (HighScores.HighScores) -> IO (())
-setHighScoresArray_super object_ a1 = (setHighScoresArray_impl (javaCast object_ :: HighScoresCanvas)) a1
-
-setHighScoresArray_impl :: HighScoresCanvas -> JavaArray (HighScores.HighScores) -> IO (())
-setHighScoresArray_impl this highScoresArray = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.commonStrings)).uPDATE) e)
-            ) $ do
-            if (highScoresArray /= javaNull) then do
-                Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.commonStrings)).sTART)))) (jlength highScoresArray)))))) this "setHighScoresArray")
-            else do
-                Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this "setHighScoresArray")
-            Control.Monad.void (HighScoresHelperBase.setHighScoresArray ((jget (this).highScoresHelper)) highScoresArray)
-            Control.Monad.void (HighScoresCanvas.updateCommand this (jget (this).currentCommand))
-            Control.Monad.void (HighScoresCanvas.setPaintable this (javaCast (jio (HighScoresCanvas.getHighScoresPaintable this))))
-        pure ()
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "HighScoresCanvas" jclinit "NAME"
+        (JR.str "HighScoresCanvas")
+        s
 
 
--- throws Exception
-updateCommand :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (())
-updateCommand object_ a1 = jmethod object_ "updateCommand" (\() -> (updateCommand_impl (javaCast object_ :: HighScoresCanvas))) () a1
-
-updateCommand_super :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (())
-updateCommand_super object_ a1 = (updateCommand_impl (javaCast object_ :: HighScoresCanvas)) a1
-
-updateCommand_impl :: HighScoresCanvas -> Command.Command -> IO (())
-updateCommand_impl this command = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.commonStrings)).sTART)))) (jio (toString ((jget (this).base.stringUtil)) command))))))) this (jget ((jget (this).base.commonStrings)).uPDATE))
-        gameCommandsFactory <- (GameCommandsFactory.getInstance)
-        when (jio (HighScoreCommandsFactory.isHighScoreCommand ((jget (this).highScoreCommandsFactory)) command)) $ do
-            index <- (HighScoreCommandsFactory.getIndex ((jget (this).highScoreCommandsFactory)) command)
-            nextIndex <- newIORef ((index + 1) :: Int)
-            highScoresArray <- (HighScoresHelperBase.getHighScoresArray ((jget (this).highScoresHelper)))
-            when ((jget nextIndex) >= (jlength highScoresArray)) $ do
-                jset nextIndex (0)
-            if ((jlength highScoresArray) > 0) then do
-                Control.Monad.void (HighScoresPaintable.setHighScores ((jio (HighScoresCanvas.getHighScoresPaintable this))) (jindex highScoresArray (index)))
-            else do
-                Control.Monad.void (HighScoresPaintable.setHighScores ((jio (HighScoresCanvas.getHighScoresPaintable this))) (jio (NullHighScoresSingletonFactory.getInstance)))
-            when (index /= (jget nextIndex)) $ do
-                Control.Monad.void (GameCommandCanvas.removeAllCommands this)
-                Control.Monad.void (GameCommandCanvas.addCommand this (jget (gameCommandsFactory).cLOSE_AND_SHOW_GAME_CANVAS))
-                Control.Monad.void (GameCommandCanvas.addCommand this (jindex ((jget ((jget (this).highScoreCommandsFactory)).base.hIGH_SCORE_COMMANDS)) ((jget nextIndex))))
-        jset (this).currentCommand (command)
-        Control.Monad.void (HighScoresCanvas.close this)
-        Control.Monad.void (GameCommandCanvas.initMenu_super this.base)
-        Control.Monad.void (HighScoresCanvas.open this)
-        Control.Monad.void (onChangeRepaint ((jget (this).base.repaintBehavior)) this)
-        pure ()
+jinit_6 : JR.Method
+jinit_6 jheap jthis jargs =
+    JR.method [ ( "commandListener", "" ), ( "allBinaryGameLayerManager", "" ), ( "gameInfo", "" ), ( "paintable", "" ), ( "highScoresFactoryInterface", "" ), ( "highScoresCanvasInputProcessorFactoryInterface", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect GameCommandCanvas.jinit_4 JR.this [ (JR.local "commandListener"), jstatic_NAME, (JR.invoke "getBackgroundBasicColor_0" (JR.local "allBinaryGameLayerManager") []), (JR.invoke "getForegroundBasicColor_0" (JR.local "allBinaryGameLayerManager") []) ]),
+                JR.exec (JR.setField "paintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "highScoreCommandsFactory" "" JR.this (JR.callStatic HighScoreCommandsFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "waitPaintable" "" JR.this (JR.new SimpleTextPaintable.jnew_2 [ (JR.field "PLEASE_WAIT_FOR_SERVER" (JR.thisField "commonStrings")), (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "highScoresHelper" "" JR.this (JR.new HighScoresHelperBase.jnew_0 [])),
+                JR.exec (JR.setField "currentCommand" "" JR.this (JR.aget (JR.field "HIGH_SCORE_COMMANDS" (JR.thisField "highScoreCommandsFactory")) (JR.int 0))),
+                JR.exec (JR.setField "hasPainted" "Z" JR.this (JR.bool False)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.setField "highScoresPaintable" "" JR.this (JR.local "paintable")), 
+                    JR.exec (JR.setField "highScoresFactoryInterface" "" JR.this (JR.local "highScoresFactoryInterface")), 
+                    JR.exec (JR.setField "highScoresCanvasInputProcessor" "" JR.this (JR.invoke "getInstance_1" (JR.local "highScoresCanvasInputProcessorFactoryInterface") [ JR.this ])), 
+                    JR.exec (JR.setField "gameInfo" "" JR.this (JR.local "gameInfo")), 
+                    JR.exec (JR.invoke "setBasicColorP_1" (JR.thisField "waitPaintable") [ (JR.invoke "getForegroundBasicColor_0" (JR.local "allBinaryGameLayerManager") []) ]), 
+                    JR.exec (JR.invoke "setBasicColorP_1" (JR.invoke "getHighScoresPaintable_0" JR.this []) [ (JR.invoke "getForegroundBasicColor_0" (JR.local "allBinaryGameLayerManager") []) ]), 
+                    JR.exec (JR.setField "colorFillPaintable" "" JR.this (JR.invoke "getInstance_2" (JR.callStatic ColorFillPaintableFactory.jm_getInstance_0 []) [ (JR.invoke "getBackgroundBasicColor_0" (JR.local "allBinaryGameLayerManager") []), (JR.bool False) ])), 
+                    JR.ifElse (JR.map2 JR.equals (JR.alength (JR.invoke "getHighScoresArray_0" (JR.thisField "highScoresHelper") [])) (JR.alength (JR.field "NO_HIGH_SCORES" (JR.callStatic NoHighScoresFactory.jm_getInstance_0 [])))) (JR.run [ 
+                        JR.exec (JR.invoke "setPaintable_1" JR.this [ (JR.thisField "waitPaintable") ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Show HighScores that are already loaded"), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.invoke "updateCommand_1" JR.this [ (JR.thisField "currentCommand") ]), 
+                        JR.exec (JR.invoke "setPaintable_1" JR.this [ (JR.invoke "getHighScoresPaintable_0" JR.this []) ]) ]), 
+                    JR.exec (JR.invoke "runTask_1" (JR.callStatic SecondaryThreadPool.jm_getInstance_0 []) [ (JR.new HighScoreRunnable.jnew_1 [ JR.this ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getGameInfo :: (JavaObjectClass this_) => this_ -> IO (GameInfo.GameInfo)
-getGameInfo object_ = jmethod object_ "getGameInfo" (\() -> (getGameInfo_impl (javaCast object_ :: HighScoresCanvas))) ()
-
-getGameInfo_super :: (JavaObjectClass this_) => this_ -> IO (GameInfo.GameInfo)
-getGameInfo_super object_ = (getGameInfo_impl (javaCast object_ :: HighScoresCanvas))
-
-getGameInfo_impl :: HighScoresCanvas -> IO (GameInfo.GameInfo)
-getGameInfo_impl this = do
-        pure ((jget (this).gameInfo))
+jnew_6 : JR.Method
+jnew_6 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_6 jheap jthis jargs
 
 
-setPaintable :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setPaintable object_ a1 = jmethod object_ "setPaintable" (\() -> (setPaintable_impl (javaCast object_ :: HighScoresCanvas))) () a1
+jm_initCommands_1 : JR.Method
+jm_initCommands_1 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeAllCommands_0" JR.this []), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "CLOSE_AND_SHOW_GAME_CANVAS" (JR.callStatic GameCommandsFactory.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "setCommandListener_1" JR.this [ (JR.local "cmdListener") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setPaintable_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setPaintable_super object_ a1 = (setPaintable_impl (javaCast object_ :: HighScoresCanvas)) a1
 
-setPaintable_impl :: HighScoresCanvas -> Paintable.Paintable -> IO (())
-setPaintable_impl this paintable = do
-        jset (this).paintable (paintable)
-        Control.Monad.void (onChangeRepaint ((jget (this).base.repaintBehavior)) this)
-        pure ()
+jm_open_0 : JR.Method
+jm_open_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia GameCommandCanvas.jvtable "open_0" JR.this []), 
+                    JR.exec (JR.invoke "open_0" (JR.thisField "highScoresCanvasInputProcessor") []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_close_0 : JR.Method
+jm_close_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia GameCommandCanvas.jvtable "close_0" JR.this []), 
+                    JR.exec (JR.invoke "close_0" (JR.thisField "highScoresCanvasInputProcessor") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "colorFillPaintable") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "paintable") [ (JR.local "graphics") ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.thisField "waitPaintable") (JR.thisField "paintable")) (JR.run [ 
+                        JR.exec (JR.invoke "paint_1" (JR.thisField "highScoresCanvasInputProcessor") [ (JR.local "graphics") ]) ]) identity, 
+                    JR.exec (JR.callVia GameCommandCanvas.jvtable "paint_1" JR.this [ (JR.local "graphics") ]), 
+                    JR.exec (JR.setField "hasPainted" "Z" JR.this (JR.bool True)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_executeUpdate_0 : JR.Method
+jm_executeUpdate_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "fetchHighScores_2" (JR.thisField "highScoresFactoryInterface") [ (JR.invoke "getGameInfo_0" JR.this []), JR.this ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHighScoresPaintable_0 : JR.Method
+jm_getHighScoresPaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "highScoresPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHighScoresArray_1 : JR.Method
+jm_setHighScoresArray_1 jheap jthis jargs =
+    JR.method [ ( "highScoresArray", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "highScoresArray") JR.null) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START" (JR.thisField "commonStrings")) ]) [ (JR.alength (JR.local "highScoresArray")) ]) []), JR.this, (JR.str "setHighScoresArray") ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.str "setHighScoresArray") ]) ]), 
+                        JR.exec (JR.invoke "setHighScoresArray_1" (JR.thisField "highScoresHelper") [ (JR.local "highScoresArray") ]), 
+                        JR.exec (JR.invoke "updateCommand_1" JR.this [ (JR.thisField "currentCommand") ]), 
+                        JR.exec (JR.invoke "setPaintable_1" JR.this [ (JR.invoke "getHighScoresPaintable_0" JR.this []) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateCommand_1 : JR.Method
+jm_updateCommand_1 jheap jthis jargs =
+    JR.method [ ( "command", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START" (JR.thisField "commonStrings")) ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "command") ]) ]) []), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")) ]), 
+                    JR.declare "gameCommandsFactory" "" (JR.callStatic GameCommandsFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isHighScoreCommand_1" (JR.thisField "highScoreCommandsFactory") [ (JR.local "command") ]) (JR.run [ 
+                        JR.declare "index" "I" (JR.invoke "getIndex_1" (JR.thisField "highScoreCommandsFactory") [ (JR.local "command") ]), 
+                        JR.declare "nextIndex" "I" (JR.map2 JR.add (JR.local "index") (JR.int 1)), 
+                        JR.declare "highScoresArray" "" (JR.invoke "getHighScoresArray_0" (JR.thisField "highScoresHelper") []), 
+                        JR.ifElse (JR.map2 JR.greaterEquals (JR.local "nextIndex") (JR.alength (JR.local "highScoresArray"))) (JR.run [ 
+                            JR.exec (JR.setLocal "nextIndex" "I" (JR.int 0)) ]) identity, 
+                        JR.ifElse (JR.map2 JR.greater (JR.alength (JR.local "highScoresArray")) (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.invoke "setHighScores_1" (JR.invoke "getHighScoresPaintable_0" JR.this []) [ (JR.aget (JR.local "highScoresArray") (JR.local "index")) ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "setHighScores_1" (JR.invoke "getHighScoresPaintable_0" JR.this []) [ (JR.callStatic NullHighScoresSingletonFactory.jm_getInstance_0 []) ]) ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "index") (JR.local "nextIndex")) (JR.run [ 
+                            JR.exec (JR.invoke "removeAllCommands_0" JR.this []), 
+                            JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "CLOSE_AND_SHOW_GAME_CANVAS" (JR.local "gameCommandsFactory")) ]), 
+                            JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.aget (JR.field "HIGH_SCORE_COMMANDS" (JR.thisField "highScoreCommandsFactory")) (JR.local "nextIndex")) ]) ]) identity ]) identity, 
+                    JR.exec (JR.setField "currentCommand" "" JR.this (JR.local "command")), 
+                    JR.exec (JR.invoke "close_0" JR.this []), 
+                    JR.exec (JR.callVia GameCommandCanvas.jvtable "initMenu_0" JR.this []), 
+                    JR.exec (JR.invoke "open_0" JR.this []), 
+                    JR.exec (JR.invoke "onChangeRepaint_1" (JR.thisField "repaintBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameInfo_0 : JR.Method
+jm_getGameInfo_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameInfo") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPaintable_1 : JR.Method
+jm_setPaintable_1 jheap jthis jargs =
+    JR.method [ ( "paintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "paintable" "" JR.this (JR.local "paintable")), 
+                    JR.exec (JR.invoke "onChangeRepaint_1" (JR.thisField "repaintBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

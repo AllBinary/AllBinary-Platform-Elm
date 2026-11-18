@@ -1,135 +1,109 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score.remote
-module RemoteHighScoresProcessor where
+module Org.Allbinary.Game.Score.Remote.RemoteHighScoresProcessor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified RemoteHighScoresData -- same package or java.lang
-import qualified XmlRpcRemoteHighScoresClient -- same package or java.lang
-import qualified RemoteHighScores -- same package or java.lang
-import qualified SoftwareInformation -- same package or java.lang
-import qualified GameInfo -- org.allbinary.game.GameInfo
-import qualified GameInfoData -- org.allbinary.game.GameInfoData
-import qualified GameConfigurationCentral -- org.allbinary.game.configuration.GameConfigurationCentral
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified XmlRpcAbeClient -- org.allbinary.logic.communication.xmlrpc.XmlRpcAbeClient
-import qualified BooleanFactory -- org.allbinary.logic.java.bool.BooleanFactory
-import qualified NoCrypt -- org.allbinary.logic.system.security.crypt.jcehelper.NoCrypt
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified HashtableUtil -- org.allbinary.util.HashtableUtil
-import qualified RemoteHighScoresProcessorInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.score.remote
+-}
 
--- implements RemoteHighScoresProcessorInterface
-data RemoteHighScoresProcessor = RemoteHighScoresProcessor
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , noCrypt :: IORef (NoCrypt.NoCrypt)
-    }
-
-instance JavaNull RemoteHighScoresProcessor where
-    javaNull = javaNullRecord "RemoteHighScoresProcessor"
-
-instance JavaEquals RemoteHighScoresProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RemoteHighScoresProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RemoteHighScoresProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO RemoteHighScoresProcessor
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    noCrypt <- newIORef javaNull
-    let this = RemoteHighScoresProcessor header_ logUtil commonStrings noCrypt
-    jregisterLevel header_ this
-    RemoteHighScoresProcessorInterface.registerInterface_ header_
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: RemoteHighScoresProcessor -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.noCrypt =<< (NoCrypt.new_)
-    pure ()
-
-new_ :: IO RemoteHighScoresProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: RemoteHighScoresProcessor -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.Java.Bool.BooleanFactory as BooleanFactory
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Game.Configuration.GameConfigurationCentral as GameConfigurationCentral
+import Org.Allbinary.Game.GameInfoData as GameInfoData
+import Org.Allbinary.Util.HashtableUtil as HashtableUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.System.Security.Crypt.Jcehelper.NoCrypt as NoCrypt
+import Org.Allbinary.Game.Score.Remote.RemoteHighScoresData as RemoteHighScoresData
+import Org.Allbinary.Game.Score.Remote.RemoteHighScoresProcessorInterface as RemoteHighScoresProcessorInterface
+import Org.Allbinary.Logic.Communication.Xmlrpc.XmlRpcAbeClient as XmlRpcAbeClient
+import Org.Allbinary.Game.Score.Remote.XmlRpcRemoteHighScoresClient as XmlRpcRemoteHighScoresClient
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> RemoteHighScores.RemoteHighScores -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> IO (())
-process object_ a1 a2 a3 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: RemoteHighScoresProcessor))) () a1 a2 a3
+jclass : String
+jclass =
+    "RemoteHighScoresProcessor"
 
-process_super :: (JavaObjectClass this_) => this_ -> RemoteHighScores.RemoteHighScores -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> IO (())
-process_super object_ a1 a2 a3 = (process_impl (javaCast object_ :: RemoteHighScoresProcessor)) a1 a2 a3
 
-process_impl :: RemoteHighScoresProcessor -> RemoteHighScores.RemoteHighScores -> AbeClientInformationInterface.AbeClientInformationInterface -> GameInfo.GameInfo -> IO (())
-process_impl this remoteHighScores abeClientInformation gameInfo = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Begin Remote HighScores Retrieval" this (jget ((jget (this).commonStrings)).pROCESS))
-        gameInfoData <- (GameInfoData.getInstance)
-        hashtable <- (AbeClientInformationInterface.toHashtable abeClientInformation)
-        Control.Monad.void (HashtableUtil.putAll ((jio (HashtableUtil.getInstance))) (jio (GameInfo.toHashtable gameInfo)) hashtable)
-        Control.Monad.void (ABHashtable.put hashtable (jget (gameInfoData).sOFTWARE_INFORMATION) (jio (SoftwareInformation.toString ((jio (RemoteHighScores.getSoftwareInformation remoteHighScores))))))
-        Control.Monad.void (ABHashtable.put hashtable (jget (remoteHighScores).aSCENDING) (javaToString (jio (RemoteHighScores.getAscending remoteHighScores))))
-        displayInfoSingleton <- (DisplayInfoSingleton.getInstance)
-        Control.Monad.void (ABHashtable.put hashtable (jget (displayInfoSingleton).oRIENTATION) (jio (BooleanFactory.toStringb ((jio (BooleanFactory.getInstance))) (jio (DisplayInfoSingleton.isPortrait displayInfoSingleton)))))
-        Control.Monad.void (ABHashtable.put hashtable (jget ((jio (RemoteHighScoresData.getInstance))).gAME_CONFIGURATION) (jio (GameConfigurationCentral.toString ((jio (GameConfigurationCentral.getInstance))))))
-        when XmlRpcAbeClient.isOnline $ do
-            let resultHashtable = (javaCast (jio (XmlRpcRemoteHighScoresClient.get ((jio (XmlRpcRemoteHighScoresClient.new_3 abeClientInformation "highscoresservicessl.php" "HighScoresService.process"))) hashtable (javaCast (jget (this).noCrypt)))) :: ABHashtable.ABHashtable)
-            Control.Monad.void (RemoteHighScores.update remoteHighScores resultHashtable)
-        pure ()
+jchain : List String
+jchain =
+    [ "RemoteHighScoresProcessor" ]
+        ++ RemoteHighScoresProcessorInterface.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "noCrypt", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "process_3", jm_process_3 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RemoteHighScoresProcessor"
+        [ ( "jm_process_3", jm_process_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "noCrypt" "" JR.this (JR.new NoCrypt.jnew_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_process_3 : JR.Method
+jm_process_3 jheap jthis jargs =
+    JR.method [ ( "remoteHighScores", "" ), ( "abeClientInformation", "" ), ( "gameInfo", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Begin Remote HighScores Retrieval"), JR.this, (JR.field "PROCESS" (JR.thisField "commonStrings")) ]), 
+                    JR.declare "gameInfoData" "" (JR.callStatic GameInfoData.jm_getInstance_0 []), 
+                    JR.declare "hashtable" "" (JR.invoke "toHashtable_0" (JR.local "abeClientInformation") []), 
+                    JR.exec (JR.invoke "putAll_2" (JR.callStatic HashtableUtil.jm_getInstance_0 []) [ (JR.invoke "toHashtable_0" (JR.local "gameInfo") []), (JR.local "hashtable") ]), 
+                    JR.exec (JR.invoke "put_2" (JR.local "hashtable") [ (JR.field "SOFTWARE_INFORMATION" (JR.local "gameInfoData")), (JR.invoke "toString_0" (JR.invoke "getSoftwareInformation_0" (JR.local "remoteHighScores") []) []) ]), 
+                    JR.exec (JR.invoke "put_2" (JR.local "hashtable") [ (JR.field "ASCENDING" (JR.local "remoteHighScores")), (JR.invoke "toString_0" (JR.invoke "getAscending_0" (JR.local "remoteHighScores") []) []) ]), 
+                    JR.declare "displayInfoSingleton" "" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "put_2" (JR.local "hashtable") [ (JR.field "ORIENTATION" (JR.local "displayInfoSingleton")), (JR.invoke "toStringb_1" (JR.callStatic BooleanFactory.jm_getInstance_0 []) [ (JR.invoke "isPortrait_0" (JR.local "displayInfoSingleton") []) ]) ]), 
+                    JR.exec (JR.invoke "put_2" (JR.local "hashtable") [ (JR.field "GAME_CONFIGURATION" (JR.callStatic RemoteHighScoresData.jm_getInstance_0 [])), (JR.invoke "toString_0" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 []) []) ]), 
+                    JR.ifElse XmlRpcAbeClient.jstatic_isOnline (JR.run [ 
+                        JR.declare "resultHashtable" "" (JR.invoke "get_2" (JR.new XmlRpcRemoteHighScoresClient.jnew_3 [ (JR.local "abeClientInformation"), (JR.str "highscoresservicessl.php"), (JR.str "HighScoresService.process") ]) [ (JR.local "hashtable"), (JR.thisField "noCrypt") ]), 
+                        JR.exec (JR.invoke "update_1" (JR.local "remoteHighScores") [ (JR.local "resultHashtable") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

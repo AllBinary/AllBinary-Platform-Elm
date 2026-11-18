@@ -1,104 +1,88 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture.observer
-module NullCompleteMotionGestureReceiver where
+module Org.Allbinary.Input.Motion.Gesture.Observer.NullCompleteMotionGestureReceiver exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified CompleteMotionGestureListenerInterface
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.gesture.observer
+-}
 
--- implements CompleteMotionGestureListenerInterface
-data NullCompleteMotionGestureReceiver = NullCompleteMotionGestureReceiver
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull NullCompleteMotionGestureReceiver where
-    javaNull = javaNullRecord "NullCompleteMotionGestureReceiver"
-
-instance JavaEquals NullCompleteMotionGestureReceiver where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NullCompleteMotionGestureReceiver where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NullCompleteMotionGestureReceiver where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NullCompleteMotionGestureReceiver
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = NullCompleteMotionGestureReceiver header_ logUtil
-    jregisterLevel header_ this
-    CompleteMotionGestureListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "onMotionGestureCompleted" (\() -> onMotionGestureCompleted_impl this)
-    pure this
-
-initFields_ :: NullCompleteMotionGestureReceiver -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_ :: IO NullCompleteMotionGestureReceiver
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NullCompleteMotionGestureReceiver -> IO ()
-init_ this = do
-        initFields_ this
-        commonStrings <- (CommonStrings.getInstance)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Null Gesture Reciever" this (jget (commonStrings).cONSTRUCTOR))
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Input.Motion.Gesture.Observer.CompleteMotionGestureListenerInterface as CompleteMotionGestureListenerInterface
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
--- throws Exception
-onMotionGestureCompleted :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-onMotionGestureCompleted object_ a1 = jmethod object_ "onMotionGestureCompleted" (\() -> (onMotionGestureCompleted_impl (javaCast object_ :: NullCompleteMotionGestureReceiver))) () a1
+jclass : String
+jclass =
+    "NullCompleteMotionGestureReceiver"
 
-onMotionGestureCompleted_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-onMotionGestureCompleted_super object_ a1 = (onMotionGestureCompleted_impl (javaCast object_ :: NullCompleteMotionGestureReceiver)) a1
 
-onMotionGestureCompleted_impl :: NullCompleteMotionGestureReceiver -> BasicArrayList.BasicArrayList -> IO (())
-onMotionGestureCompleted_impl this list = do
-        pure ()
+jchain : List String
+jchain =
+    [ "NullCompleteMotionGestureReceiver" ]
+        ++ CompleteMotionGestureListenerInterface.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "onMotionGestureCompleted_1", jm_onMotionGestureCompleted_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullCompleteMotionGestureReceiver"
+        [ ( "jm_onMotionGestureCompleted_1", jm_onMotionGestureCompleted_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Null Gesture Reciever"), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_onMotionGestureCompleted_1 : JR.Method
+jm_onMotionGestureCompleted_1 jheap jthis jargs =
+    JR.method [ ( "list", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

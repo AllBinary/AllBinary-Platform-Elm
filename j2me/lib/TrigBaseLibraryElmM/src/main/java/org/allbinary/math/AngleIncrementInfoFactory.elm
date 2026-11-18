@@ -1,11 +1,11 @@
-module AngleIncrementInfoFactory exposing (..)
+module Org.Allbinary.Math.AngleIncrementInfoFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.math
 -}
 
 import JR
-import AngleFactory
-import AngleIncrementInfo
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Math.AngleIncrementInfo as AngleIncrementInfo
 
 
 jclass : String

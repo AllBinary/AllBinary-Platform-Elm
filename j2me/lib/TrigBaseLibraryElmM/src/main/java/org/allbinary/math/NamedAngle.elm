@@ -1,10 +1,10 @@
-module NamedAngle exposing (..)
+module Org.Allbinary.Math.NamedAngle exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.math
 -}
 
 import JR
-import Angle
+import Org.Allbinary.Math.Angle as Angle
 
 
 jclass : String

@@ -1,100 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.text
-module TextChangeListener where
+module Org.Allbinary.Animation.Text.TextChangeListener exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.animation.text
+-}
 
-data TextChangeListener = TextChangeListener
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull TextChangeListener where
-    javaNull = javaNullRecord "TextChangeListener"
-
-instance JavaEquals TextChangeListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TextChangeListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TextChangeListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: TextChangeListener
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TextChangeListener
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = TextChangeListener header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "onMeasure" (\() -> onMeasure_impl this)
-    pure this
-
-initFields_ :: TextChangeListener -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO TextChangeListener
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TextChangeListener -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (TextChangeListener)
-getInstance = do
-        pure (TextChangeListener.instance_)
+
+jclass : String
+jclass =
+    "TextChangeListener"
 
 
-onMeasure :: (JavaObjectClass this_) => this_ -> IO (())
-onMeasure object_ = jmethod object_ "onMeasure" (\() -> (onMeasure_impl (javaCast object_ :: TextChangeListener))) ()
+jchain : List String
+jchain =
+    [ "TextChangeListener" ]
 
-onMeasure_super :: (JavaObjectClass this_) => this_ -> IO (())
-onMeasure_super object_ = (onMeasure_impl (javaCast object_ :: TextChangeListener))
 
-onMeasure_impl :: TextChangeListener -> IO (())
-onMeasure_impl this = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "onMeasure_0", jm_onMeasure_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TextChangeListener"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_onMeasure_0", jm_onMeasure_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "TextChangeListener" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onMeasure_0 : JR.Method
+jm_onMeasure_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

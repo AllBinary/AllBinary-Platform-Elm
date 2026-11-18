@@ -1,116 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
-module ArrayAI (module ArrayAI, module BasicAI) where
+module Org.Allbinary.Game.Ag.Ai.ArrayAI exposing (..)
 
-import BasicAI hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, processAI, processAI_super, processAI_impl, getArtificialIntelligenceInterface, getArtificialIntelligenceInterface_super, getArtificialIntelligenceInterface_impl, artificialIntelligenceInterfaceArray)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ArtificialIntelligenceInterface -- org.allbinary.ai.ArtificialIntelligenceInterface
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified BasicAI -- org.allbinary.game.ai.BasicAI
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai
+-}
 
-data ArrayAI = ArrayAI
-    { header_ :: JavaHeader
-    , base :: BasicAI.BasicAI
-    , artificialIntelligenceInterfaceArray :: IORef (JavaArray (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface))
-    }
-
-instance JavaNull ArrayAI where
-    javaNull = javaNullRecord "ArrayAI"
-
-instance JavaEquals ArrayAI where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ArrayAI where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ArrayAI where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ArrayAI
-newRecord_ = do
-    base <- BasicAI.newRecord_
-    let header_ = base.header_
-    artificialIntelligenceInterfaceArray <- newIORef javaNull
-    let this = ArrayAI header_ base artificialIntelligenceInterfaceArray
-    jregisterLevel header_ this
-    jregisterMethod header_ "processAI" (\() -> processAI_impl this)
-    jregisterMethod header_ "getArtificialIntelligenceInterface" (\() -> getArtificialIntelligenceInterface_impl this)
-    pure this
-
-initFields_ :: ArrayAI -> IO ()
-initFields_ this = do
-    jset this.artificialIntelligenceInterfaceArray (javaNull)
-    pure ()
-
-new_3 :: JavaArray (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface) -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO ArrayAI
-new_3 artificialIntelligenceInterface ownerLayerInterface gameInput = do
-    this <- newRecord_
-    init_3 this artificialIntelligenceInterface ownerLayerInterface gameInput
-    pure this
-
-init_3 :: ArrayAI -> JavaArray (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface) -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO ()
-init_3 this artificialIntelligenceInterface ownerLayerInterface gameInput = do
-        BasicAI.init_2 this.base (ownerLayerInterface) (gameInput)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).artificialIntelligenceInterfaceArray (artificialIntelligenceInterface)
-        pure ()
+import JR
+import Org.Allbinary.Game.Ai.BasicAI as BasicAI
 
 
--- throws Exception
-processAI :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI object_ a1 = jmethod object_ "processAI" (\() -> (processAI_impl (javaCast object_ :: ArrayAI))) () a1
-
-processAI_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_super object_ a1 = (processAI_impl (javaCast object_ :: ArrayAI)) a1
-
-processAI_impl :: ArrayAI -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_impl this allBinaryLayerManager = do
-        let size = (jlength (jget (this).artificialIntelligenceInterfaceArray))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (ArtificialIntelligenceInterface.processAI ((jindex ((jget (this).artificialIntelligenceInterfaceArray)) (index))) allBinaryLayerManager)
-        pure ()
+jclass : String
+jclass =
+    "ArrayAI"
 
 
-getArtificialIntelligenceInterface :: (JavaObjectClass this_) => this_ -> IO (JavaArray (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface))
-getArtificialIntelligenceInterface object_ = jmethod object_ "getArtificialIntelligenceInterface" (\() -> (getArtificialIntelligenceInterface_impl (javaCast object_ :: ArrayAI))) ()
+jchain : List String
+jchain =
+    [ "ArrayAI" ]
+        ++ BasicAI.jchain
 
-getArtificialIntelligenceInterface_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface))
-getArtificialIntelligenceInterface_super object_ = (getArtificialIntelligenceInterface_impl (javaCast object_ :: ArrayAI))
 
-getArtificialIntelligenceInterface_impl :: ArrayAI -> IO (JavaArray (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface))
-getArtificialIntelligenceInterface_impl this = do
-        pure ((jget (this).artificialIntelligenceInterfaceArray))
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicAI.jfields ++ [ ( "artificialIntelligenceInterfaceArray", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "processAI_1", jm_processAI_1 )
+        , ( "getArtificialIntelligenceInterface_0", jm_getArtificialIntelligenceInterface_0 ) ]
+        BasicAI.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ArrayAI"
+        [ ( "jm_processAI_1", jm_processAI_1 ), ( "jm_getArtificialIntelligenceInterface_0", jm_getArtificialIntelligenceInterface_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "artificialIntelligenceInterface", "" ), ( "ownerLayerInterface", "" ), ( "gameInput", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicAI.jinit_2 JR.this [ (JR.local "ownerLayerInterface"), (JR.local "gameInput") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "artificialIntelligenceInterfaceArray" "" JR.this (JR.local "artificialIntelligenceInterface")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_processAI_1 : JR.Method
+jm_processAI_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.alength (JR.thisField "artificialIntelligenceInterfaceArray")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68413 -> (JR.setLocal "index" "I" (JR.lit jwN68413))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "processAI_1" (JR.aget (JR.thisField "artificialIntelligenceInterfaceArray") (JR.local "index")) [ (JR.local "allBinaryLayerManager") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getArtificialIntelligenceInterface_0 : JR.Method
+jm_getArtificialIntelligenceInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "artificialIntelligenceInterfaceArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

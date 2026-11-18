@@ -1,12 +1,12 @@
-module SoftwareInformation exposing (..)
+module Org.Allbinary.Logic.System.SoftwareInformation exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system
 -}
 
 import JR
-import CommonSeps
-import KotlinUtil
-import StringMaker
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.KotlinUtil as KotlinUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

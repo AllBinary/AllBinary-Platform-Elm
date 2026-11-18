@@ -1,4 +1,4 @@
-module ABCharacter exposing (..)
+module Org.Allbinary.Util.ABCharacter exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}

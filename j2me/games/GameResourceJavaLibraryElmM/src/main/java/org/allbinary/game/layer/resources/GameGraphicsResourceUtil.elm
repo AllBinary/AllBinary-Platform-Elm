@@ -1,189 +1,168 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.resources
-module GameGraphicsResourceUtil where
+module Org.Allbinary.Game.Layer.Resources.GameGraphicsResourceUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified GraphicsFeature -- org.allbinary.game.configuration.feature.GraphicsFeature
-import qualified GraphicsFeatureFactory -- org.allbinary.game.configuration.feature.GraphicsFeatureFactory
-import qualified CanvasStrings -- org.allbinary.graphics.displayable.CanvasStrings
-import qualified OpenGLFeatureUtil -- org.allbinary.graphics.opengles.OpenGLFeatureUtil
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.resources
+-}
 
-data GameGraphicsResourceUtil = GameGraphicsResourceUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , sPRITE :: IORef (String)
-    , qUARTER :: IORef (String)
-    , name :: IORef (String)
-    }
-
-instance JavaNull GameGraphicsResourceUtil where
-    javaNull = javaNullRecord "GameGraphicsResourceUtil"
-
-instance JavaEquals GameGraphicsResourceUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameGraphicsResourceUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameGraphicsResourceUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameGraphicsResourceUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    sPRITE <- newIORef ""
-    qUARTER <- newIORef ""
-    name <- newIORef ""
-    let this = GameGraphicsResourceUtil header_ logUtil sPRITE qUARTER name
-    jregisterLevel header_ this
-    jregisterMethod header_ "getString" (\() -> getString_impl this)
-    jregisterMethod header_ "getStringForFeature" (\() -> getStringForFeature_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    pure this
-
-initFields_ :: GameGraphicsResourceUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.sPRITE ("_sprite")
-    jset this.qUARTER ("_quarter")
-    jset this.name ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    pure ()
+import JR
+import Org.Allbinary.Graphics.Displayable.CanvasStrings as CanvasStrings
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Configuration.Feature.GraphicsFeatureFactory as GraphicsFeatureFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Graphics.Opengles.OpenGLFeatureUtil as OpenGLFeatureUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (GameGraphicsResourceUtil)
-getInstance = do
-        when ((jget GameGraphicsResourceUtil.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset GameGraphicsResourceUtil.instance_ (assignedValue)
-        pure ((javaCast (jget GameGraphicsResourceUtil.instance_) :: GameGraphicsResourceUtil))
-
-new_ :: IO GameGraphicsResourceUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameGraphicsResourceUtil -> IO ()
-init_ this = do
-        initFields_ this
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).cONSTRUCTOR) e)
-            ) $ do
-            assignedValue <- (GameGraphicsResourceUtil.getString this)
-            jset (this).name (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "GameGraphicsResourceUtil"
 
 
--- throws Exception
-getString :: (JavaObjectClass this_) => this_ -> IO (String)
-getString object_ = jmethod object_ "getString" (\() -> (getString_impl (javaCast object_ :: GameGraphicsResourceUtil))) ()
-
-getString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getString_super object_ = (getString_impl (javaCast object_ :: GameGraphicsResourceUtil))
-
-getString_impl :: GameGraphicsResourceUtil -> IO (String)
-getString_impl this = do
-        graphicsFeatureFactory <- (GraphicsFeatureFactory.getInstance)
-        graphicsFeature <- newIORef ((jget (graphicsFeatureFactory).nONE))
-        features <- (Features.getInstance)
-        if (jio (Features.isFeature features (jget (graphicsFeatureFactory).iMAGE_TO_ARRAY_GRAPHICS))) then do
-            jset graphicsFeature ((jget (graphicsFeatureFactory).iMAGE_TO_ARRAY_GRAPHICS))
-        else if (jio (Features.isFeature features (jget (graphicsFeatureFactory).sPRITE_FULL_GRAPHICS))) then do
-            jset graphicsFeature ((jget (graphicsFeatureFactory).sPRITE_FULL_GRAPHICS))
-        else if (jio (Features.isFeature features (jget (graphicsFeatureFactory).sPRITE_QUARTER_ROTATION_GRAPHICS))) then do
-            jset graphicsFeature ((jget (graphicsFeatureFactory).sPRITE_QUARTER_ROTATION_GRAPHICS))
-        else when (jio (Features.isFeature features (jget (graphicsFeatureFactory).iMAGE_ROTATION_ON_THE_FLY))) $ do
-            jset graphicsFeature ((jget (graphicsFeatureFactory).iMAGE_ROTATION_ON_THE_FLY))
-        (GameGraphicsResourceUtil.getStringForFeature this (jget graphicsFeature))
+jchain : List String
+jchain =
+    [ "GameGraphicsResourceUtil" ]
 
 
--- throws Exception
-getStringForFeature :: (JavaObjectClass this_) => this_ -> GraphicsFeature.GraphicsFeature -> IO (String)
-getStringForFeature object_ a1 = jmethod object_ "getStringForFeature" (\() -> (getStringForFeature_impl (javaCast object_ :: GameGraphicsResourceUtil))) () a1
-
-getStringForFeature_super :: (JavaObjectClass this_) => this_ -> GraphicsFeature.GraphicsFeature -> IO (String)
-getStringForFeature_super object_ a1 = (getStringForFeature_impl (javaCast object_ :: GameGraphicsResourceUtil)) a1
-
-getStringForFeature_impl :: GameGraphicsResourceUtil -> GraphicsFeature.GraphicsFeature -> IO (String)
-getStringForFeature_impl this graphicsFeature = do
-        stringBuffer <- (StringMaker.new_)
-        graphicsFeatureFactory <- (GraphicsFeatureFactory.getInstance)
-        Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-        features <- (Features.getInstance)
-        if (jio (Features.isFeature features (jget (graphicsFeatureFactory).vECTOR_GRAPHICS))) then do
-            pure ()
-        else if (jio (Features.isFeature features (jget (graphicsFeatureFactory).iMAGE_GRAPHICS))) then do
-            if ((graphicsFeature == (jget (graphicsFeatureFactory).iMAGE_TO_ARRAY_GRAPHICS)) || (graphicsFeature == (jget (graphicsFeatureFactory).iMAGE_ROTATION_ON_THE_FLY))) then do
-                pure ()
-            else if (graphicsFeature == (jget (graphicsFeatureFactory).sPRITE_FULL_GRAPHICS)) then do
-                Control.Monad.void (StringMaker.append stringBuffer (jget (this).sPRITE))
-            else if (graphicsFeature == (jget (graphicsFeatureFactory).sPRITE_QUARTER_ROTATION_GRAPHICS)) then do
-                Control.Monad.void (StringMaker.append stringBuffer (jget (this).qUARTER))
-                Control.Monad.void (StringMaker.append stringBuffer (jget (this).sPRITE))
-            else do
-                javaThrow ((JavaException "Exception" "None/Unknown Sub Image Resource Type Specified"))
-        else if (jio (OpenGLFeatureUtil.isAnyThreed ((jio (OpenGLFeatureUtil.getInstance))))) then do
-            Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CanvasStrings.getInstance))).oBJ_MODEL))
-        else do
-            javaThrow ((JavaException "Exception" "None/Unknown Main Image Resource Type Specified"))
-        (StringMaker.toString stringBuffer)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "SPRITE", JR.defaultOf "" ), ( "QUARTER", JR.defaultOf "" ), ( "name", JR.defaultOf "" ) ]
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: GameGraphicsResourceUtil))) ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getString_0", jm_getString_0 )
+        , ( "getStringForFeature_1", jm_getStringForFeature_1 )
+        , ( "getName_0", jm_getName_0 ) ]
+        JR.noMethods
 
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: GameGraphicsResourceUtil))
 
-getName_impl :: GameGraphicsResourceUtil -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameGraphicsResourceUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getString_0", jm_getString_0 ), ( "jm_getStringForFeature_1", jm_getStringForFeature_1 ), ( "jm_getName_0", jm_getName_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameGraphicsResourceUtil" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "SPRITE" "" JR.this (JR.str "_sprite")),
+                JR.exec (JR.setField "QUARTER" "" JR.this (JR.str "_quarter")),
+                JR.exec (JR.setField "name" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.setField "name" "" JR.this (JR.invoke "getString_0" JR.this [])) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "GameGraphicsResourceUtil.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getString_0 : JR.Method
+jm_getString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "graphicsFeatureFactory" "" (JR.callStatic GraphicsFeatureFactory.jm_getInstance_0 []), 
+                    JR.declare "graphicsFeature" "" (JR.field "NONE" (JR.local "graphicsFeatureFactory")), 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "IMAGE_TO_ARRAY_GRAPHICS" (JR.local "graphicsFeatureFactory")) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "graphicsFeature" "" (JR.field "IMAGE_TO_ARRAY_GRAPHICS" (JR.local "graphicsFeatureFactory"))) ]) (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "SPRITE_FULL_GRAPHICS" (JR.local "graphicsFeatureFactory")) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "graphicsFeature" "" (JR.field "SPRITE_FULL_GRAPHICS" (JR.local "graphicsFeatureFactory"))) ]) (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "SPRITE_QUARTER_ROTATION_GRAPHICS" (JR.local "graphicsFeatureFactory")) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "graphicsFeature" "" (JR.field "SPRITE_QUARTER_ROTATION_GRAPHICS" (JR.local "graphicsFeatureFactory"))) ]) (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "IMAGE_ROTATION_ON_THE_FLY" (JR.local "graphicsFeatureFactory")) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "graphicsFeature" "" (JR.field "IMAGE_ROTATION_ON_THE_FLY" (JR.local "graphicsFeatureFactory"))) ]) identity ]) ]) ]), 
+                    JR.return (JR.invoke "getStringForFeature_1" JR.this [ (JR.local "graphicsFeature") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getStringForFeature_1 : JR.Method
+jm_getStringForFeature_1 jheap jthis jargs =
+    JR.method [ ( "graphicsFeature", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "graphicsFeatureFactory" "" (JR.callStatic GraphicsFeatureFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "VECTOR_GRAPHICS" (JR.local "graphicsFeatureFactory")) ]) identity (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "IMAGE_GRAPHICS" (JR.local "graphicsFeatureFactory")) ]) (JR.run [ 
+                        JR.ifElse (JR.or (JR.map2 JR.equals (JR.local "graphicsFeature") (JR.field "IMAGE_TO_ARRAY_GRAPHICS" (JR.local "graphicsFeatureFactory"))) (JR.map2 JR.equals (JR.local "graphicsFeature") (JR.field "IMAGE_ROTATION_ON_THE_FLY" (JR.local "graphicsFeatureFactory")))) identity (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "graphicsFeature") (JR.field "SPRITE_FULL_GRAPHICS" (JR.local "graphicsFeatureFactory"))) (JR.run [ 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "SPRITE") ]) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "graphicsFeature") (JR.field "SPRITE_QUARTER_ROTATION_GRAPHICS" (JR.local "graphicsFeatureFactory"))) (JR.run [ 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "QUARTER") ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "SPRITE") ]) ]) (JR.run [ 
+                            JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "None/Unknown Sub Image Resource Type Specified") ]) ]) ]) ]) ]) (JR.run [ 
+                    JR.ifElse (JR.invoke "isAnyThreed_0" (JR.callStatic OpenGLFeatureUtil.jm_getInstance_0 []) []) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "OBJ_MODEL" (JR.callStatic CanvasStrings.jm_getInstance_0 [])) ]) ]) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "None/Unknown Main Image Resource Type Specified") ]) ]) ]) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,4 +1,4 @@
-module AndroidInfoFactory exposing (..)
+module Org.Allbinary.Android.AndroidInfoFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.android
 -}

@@ -1,10 +1,10 @@
-module SoundThreadPool exposing (..)
+module Org.Allbinary.Thread.SoundThreadPool exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}
 
 import JR
-import ThreadPool
+import Org.Allbinary.Thread.ThreadPool as ThreadPool
 
 
 jclass : String

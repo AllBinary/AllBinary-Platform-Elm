@@ -1,184 +1,158 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
-module ImageScaleUtil where
+module Org.Allbinary.Media.Image.ImageScaleUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ImageUtil -- same package or java.lang
-import qualified ImageJ2SEUtil -- same package or java.lang
-import qualified ImageCreationUtil -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified Graphics2D -- java.awt.Graphics2D
-import qualified AffineTransform -- java.awt.geom.AffineTransform
-import qualified BufferedImage -- java.awt.image.BufferedImage
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified ImageCache -- org.allbinary.image.ImageCache
+{-| Generated Code Do Not Modify package org.allbinary.media.image
+-}
 
-data ImageScaleUtil = ImageScaleUtil
-    { header_ :: JavaHeader
-    , imageUtil :: IORef (ImageUtil.ImageUtil)
-    , imageJ2SEUtil :: IORef (ImageJ2SEUtil.ImageJ2SEUtil)
-    , imageCreationUtil :: IORef (ImageCreationUtil.ImageCreationUtil)
-    }
-
-instance JavaNull ImageScaleUtil where
-    javaNull = javaNullRecord "ImageScaleUtil"
-
-instance JavaEquals ImageScaleUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageScaleUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageScaleUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ImageScaleUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ImageScaleUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    imageUtil <- newIORef javaNull
-    imageJ2SEUtil <- newIORef javaNull
-    imageCreationUtil <- newIORef javaNull
-    let this = ImageScaleUtil header_ imageUtil imageJ2SEUtil imageCreationUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "createImage2" (\() -> createImage2_impl this)
-    jregisterMethod header_ "createImage3" (\() -> createImage3_impl this)
-    jregisterMethod header_ "scale2" (\() -> scale2_impl this)
-    jregisterMethod header_ "scale" (\() -> scale_impl this)
-    pure this
-
-initFields_ :: ImageScaleUtil -> IO ()
-initFields_ this = do
-    jset this.imageUtil =<< (ImageUtil.getInstance)
-    jset this.imageJ2SEUtil =<< (ImageJ2SEUtil.getInstance)
-    jset this.imageCreationUtil =<< (ImageCreationUtil.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Media.Image.ImageCreationUtil as ImageCreationUtil
+import Org.Allbinary.Media.Image.ImageJ2SEUtil as ImageJ2SEUtil
+import Org.Allbinary.Media.Image.ImageUtil as ImageUtil
 
 
-getInstance :: IO (ImageScaleUtil)
-getInstance = do
-        pure (ImageScaleUtil.instance_)
-
-new_ :: IO ImageScaleUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ImageScaleUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "ImageScaleUtil"
 
 
--- throws Exception
-createImage2 :: (JavaObjectClass this_) => this_ -> ImageCache.ImageCache -> Image.Image -> Float -> Float -> Float -> Float -> Bool -> IO (Image.Image)
-createImage2 object_ a1 a2 a3 a4 a5 a6 a7 = jmethod object_ "createImage2" (\() -> (createImage2_impl (javaCast object_ :: ImageScaleUtil))) () a1 a2 a3 a4 a5 a6 a7
-
-createImage2_super :: (JavaObjectClass this_) => this_ -> ImageCache.ImageCache -> Image.Image -> Float -> Float -> Float -> Float -> Bool -> IO (Image.Image)
-createImage2_super object_ a1 a2 a3 a4 a5 a6 a7 = (createImage2_impl (javaCast object_ :: ImageScaleUtil)) a1 a2 a3 a4 a5 a6 a7
-
-createImage2_impl :: ImageScaleUtil -> ImageCache.ImageCache -> Image.Image -> Float -> Float -> Float -> Float -> Bool -> IO (Image.Image)
-createImage2_impl this imageCache originalImage scaleNominatorX scaleDenominatorX scaleNominatorY scaleDenominatorY cached = do
-        (ImageScaleUtil.createImage3 this imageCache originalImage scaleNominatorX scaleDenominatorX scaleNominatorY scaleDenominatorY cached True)
+jchain : List String
+jchain =
+    [ "ImageScaleUtil" ]
 
 
--- throws Exception
-createImage3 :: (JavaObjectClass this_) => this_ -> ImageCache.ImageCache -> Image.Image -> Float -> Float -> Float -> Float -> Bool -> Bool -> IO (Image.Image)
-createImage3 object_ a1 a2 a3 a4 a5 a6 a7 a8 = jmethod object_ "createImage3" (\() -> (createImage3_impl (javaCast object_ :: ImageScaleUtil))) () a1 a2 a3 a4 a5 a6 a7 a8
-
-createImage3_super :: (JavaObjectClass this_) => this_ -> ImageCache.ImageCache -> Image.Image -> Float -> Float -> Float -> Float -> Bool -> Bool -> IO (Image.Image)
-createImage3_super object_ a1 a2 a3 a4 a5 a6 a7 a8 = (createImage3_impl (javaCast object_ :: ImageScaleUtil)) a1 a2 a3 a4 a5 a6 a7 a8
-
-createImage3_impl :: ImageScaleUtil -> ImageCache.ImageCache -> Image.Image -> Float -> Float -> Float -> Float -> Bool -> Bool -> IO (Image.Image)
-createImage3_impl this imageCache originalImage scaleNominatorX scaleDenominatorX scaleNominatorY scaleDenominatorY cached mutable = do
-        width <- (Image.getWidth originalImage)
-        height <- (Image.getHeight originalImage)
-        let scaleX = (scaleNominatorX / scaleDenominatorX)
-        let scaleY = (scaleNominatorY / scaleDenominatorY)
-        image <- newIORef (javaNull)
-        if cached then do
-            assignedValue <- (ImageCache.get imageCache (jio (Class.getName ((jio (jobjectGetClass this))))) (Prelude.truncate (((Prelude.fromIntegral width) * scaleX))) (Prelude.truncate (((Prelude.fromIntegral height) * scaleY))))
-            jset image (assignedValue)
-        else do
-            assignedValue <- (ImageCache.get imageCache "createImage" (Prelude.truncate (((Prelude.fromIntegral width) * scaleX))) (Prelude.truncate (((Prelude.fromIntegral height) * scaleY))))
-            jset image (assignedValue)
-        Control.Monad.void (ImageScaleUtil.scale this originalImage (jget image) scaleX scaleY True)
-        pure ((jget image))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "imageUtil", JR.defaultOf "" ), ( "imageJ2SEUtil", JR.defaultOf "" ), ( "imageCreationUtil", JR.defaultOf "" ) ]
 
 
--- throws Exception
-scale2 :: (JavaObjectClass this_) => this_ -> Image.Image -> JavaArray (Image.Image) -> JavaArray (Image.Image) -> Int -> Float -> Float -> Float -> Float -> IO (())
-scale2 object_ a1 a2 a3 a4 a5 a6 a7 a8 = jmethod object_ "scale2" (\() -> (scale2_impl (javaCast object_ :: ImageScaleUtil))) () a1 a2 a3 a4 a5 a6 a7 a8
-
-scale2_super :: (JavaObjectClass this_) => this_ -> Image.Image -> JavaArray (Image.Image) -> JavaArray (Image.Image) -> Int -> Float -> Float -> Float -> Float -> IO (())
-scale2_super object_ a1 a2 a3 a4 a5 a6 a7 a8 = (scale2_impl (javaCast object_ :: ImageScaleUtil)) a1 a2 a3 a4 a5 a6 a7 a8
-
-scale2_impl :: ImageScaleUtil -> Image.Image -> JavaArray (Image.Image) -> JavaArray (Image.Image) -> Int -> Float -> Float -> Float -> Float -> IO (())
-scale2_impl this originalImage originalImageArray ximageToShowArray unused scaleX scaleY maxScaleX maxScaleY = do
-        when (((maxScaleX * (jio (Image.getWidth originalImage))) > (jio (Image.getWidth ((jindex originalImageArray (0)))))) || ((maxScaleY * (jio (Image.getHeight originalImage))) > (jio (Image.getHeight ((jindex originalImageArray (0))))))) $ do
-            assignedValue <- (ImageCreationUtil.createImage ((jget (this).imageCreationUtil)) (jio (Image.getWidth originalImage)) (jio (Image.getHeight originalImage)) maxScaleX maxScaleY)
-            jsetIndex originalImageArray (0) (assignedValue)
-        Control.Monad.void (ImageScaleUtil.scale this originalImage (jindex originalImageArray (0)) scaleX scaleY False)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "createImage2_7", jm_createImage2_7 )
+        , ( "createImage3_8", jm_createImage3_8 )
+        , ( "scale2_8", jm_scale2_8 )
+        , ( "scale_5", jm_scale_5 ) ]
+        JR.noMethods
 
 
-scale :: (JavaObjectClass this_) => this_ -> Image.Image -> Image.Image -> Float -> Float -> Bool -> IO (())
-scale object_ a1 a2 a3 a4 a5 = jmethod object_ "scale" (\() -> (scale_impl (javaCast object_ :: ImageScaleUtil))) () a1 a2 a3 a4 a5
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageScaleUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_createImage2_7", jm_createImage2_7 ), ( "jm_createImage3_8", jm_createImage3_8 ), ( "jm_scale2_8", jm_scale2_8 ), ( "jm_scale_5", jm_scale_5 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
-scale_super :: (JavaObjectClass this_) => this_ -> Image.Image -> Image.Image -> Float -> Float -> Bool -> IO (())
-scale_super object_ a1 a2 a3 a4 a5 = (scale_impl (javaCast object_ :: ImageScaleUtil)) a1 a2 a3 a4 a5
 
-scale_impl :: ImageScaleUtil -> Image.Image -> Image.Image -> Float -> Float -> Bool -> IO (())
-scale_impl this originalImage newMaxSizeImage scaleX scaleY clear = do
-        bufferedImage <- (ImageUtil.getBufferedImage ((jget (this).imageUtil)) originalImage)
-        newBufferedImage <- (ImageUtil.getBufferedImage ((jget (this).imageUtil)) newMaxSizeImage)
-        at <- (AffineTransform.getScaleInstance scaleX scaleY)
-        g <- (BufferedImage.createGraphics newBufferedImage)
-        when clear $ do
-            Control.Monad.void (Graphics2D.setBackground g (jget ((jget (this).imageJ2SEUtil)).tRANSPARENT_COLOR))
-            Control.Monad.void (Graphics2D.clearRect g 0 0 (jio (BufferedImage.getWidth newBufferedImage)) (jio (BufferedImage.getHeight newBufferedImage)))
-        Control.Monad.void (Graphics2D.drawRenderedImage g bufferedImage at)
-        Control.Monad.void (Graphics2D.dispose g)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ImageScaleUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "imageUtil" "" JR.this (JR.callStatic ImageUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "imageJ2SEUtil" "" JR.this (JR.callStatic ImageJ2SEUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "imageCreationUtil" "" JR.this (JR.callStatic ImageCreationUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImage2_7 : JR.Method
+jm_createImage2_7 jheap jthis jargs =
+    JR.method [ ( "imageCache", "" ), ( "originalImage", "" ), ( "scaleNominatorX", "F" ), ( "scaleDenominatorX", "F" ), ( "scaleNominatorY", "F" ), ( "scaleDenominatorY", "F" ), ( "cached", "Z" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "createImage3_8" JR.this [ (JR.local "imageCache"), (JR.local "originalImage"), (JR.local "scaleNominatorX"), (JR.local "scaleDenominatorX"), (JR.local "scaleNominatorY"), (JR.local "scaleDenominatorY"), (JR.local "cached"), (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImage3_8 : JR.Method
+jm_createImage3_8 jheap jthis jargs =
+    JR.method [ ( "imageCache", "" ), ( "originalImage", "" ), ( "scaleNominatorX", "F" ), ( "scaleDenominatorX", "F" ), ( "scaleNominatorY", "F" ), ( "scaleDenominatorY", "F" ), ( "cached", "Z" ), ( "mutable", "Z" ) ] ""
+        (JR.run [ 
+                    JR.declare "width" "I" (JR.invoke "getWidth_0" (JR.local "originalImage") []), 
+                    JR.declare "height" "I" (JR.invoke "getHeight_0" (JR.local "originalImage") []), 
+                    JR.declare "scaleX" "F" (JR.map2 JR.div (JR.local "scaleNominatorX") (JR.local "scaleDenominatorX")), 
+                    JR.declare "scaleY" "F" (JR.map2 JR.div (JR.local "scaleNominatorY") (JR.local "scaleDenominatorY")), 
+                    JR.declare "image" "" (JR.lit (JR.defaultOf "")), 
+                    JR.ifElse (JR.local "cached") (JR.run [ 
+                        JR.exec (JR.setLocal "image" "" (JR.invoke "get_3" (JR.local "imageCache") [ (JR.invoke "getName_0" (JR.getClass JR.this) []), (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.local "width")) (JR.local "scaleX")))), (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.local "height")) (JR.local "scaleY")))) ])) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "image" "" (JR.invoke "get_3" (JR.local "imageCache") [ (JR.str "createImage"), (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.local "width")) (JR.local "scaleX")))), (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.local "height")) (JR.local "scaleY")))) ])) ]), 
+                    JR.exec (JR.invoke "scale_5" JR.this [ (JR.local "originalImage"), (JR.local "image"), (JR.local "scaleX"), (JR.local "scaleY"), (JR.bool True) ]), 
+                    JR.return (JR.local "image") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_scale2_8 : JR.Method
+jm_scale2_8 jheap jthis jargs =
+    JR.method [ ( "originalImage", "" ), ( "originalImageArray", "" ), ( "ximageToShowArray", "" ), ( "unused", "I" ), ( "scaleX", "F" ), ( "scaleY", "F" ), ( "maxScaleX", "F" ), ( "maxScaleY", "F" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.or (JR.map2 JR.greater (JR.map2 JR.mul (JR.local "maxScaleX") (JR.invoke "getWidth_0" (JR.local "originalImage") [])) (JR.invoke "getWidth_0" (JR.aget (JR.local "originalImageArray") (JR.int 0)) [])) (JR.map2 JR.greater (JR.map2 JR.mul (JR.local "maxScaleY") (JR.invoke "getHeight_0" (JR.local "originalImage") [])) (JR.invoke "getHeight_0" (JR.aget (JR.local "originalImageArray") (JR.int 0)) []))) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "originalImageArray") (\jaN68410 -> JR.andThen (JR.int 0) (\jiN68410 -> (JR.aset (JR.lit jaN68410) (JR.lit jiN68410) (JR.invoke "createImage_4" (JR.thisField "imageCreationUtil") [ (JR.invoke "getWidth_0" (JR.local "originalImage") []), (JR.invoke "getHeight_0" (JR.local "originalImage") []), (JR.local "maxScaleX"), (JR.local "maxScaleY") ]))))) ]) identity, 
+                    JR.exec (JR.invoke "scale_5" JR.this [ (JR.local "originalImage"), (JR.aget (JR.local "originalImageArray") (JR.int 0)), (JR.local "scaleX"), (JR.local "scaleY"), (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_scale_5 : JR.Method
+jm_scale_5 jheap jthis jargs =
+    JR.method [ ( "originalImage", "" ), ( "newMaxSizeImage", "" ), ( "scaleX", "F" ), ( "scaleY", "F" ), ( "clear", "Z" ) ] ""
+        (JR.run [ 
+                    JR.declare "bufferedImage" "" (JR.invoke "getBufferedImage_1" (JR.thisField "imageUtil") [ (JR.local "originalImage") ]), 
+                    JR.declare "newBufferedImage" "" (JR.invoke "getBufferedImage_1" (JR.thisField "imageUtil") [ (JR.local "newMaxSizeImage") ]), 
+                    JR.declare "at" "" (JR.callStatic (JR.namedMethod "AffineTransform.jm_getScaleInstance_2") [ (JR.local "scaleX"), (JR.local "scaleY") ]), 
+                    JR.declare "g" "" (JR.invoke "createGraphics_0" (JR.local "newBufferedImage") []), 
+                    JR.ifElse (JR.local "clear") (JR.run [ 
+                        JR.exec (JR.invoke "setBackground_1" (JR.local "g") [ (JR.field "TRANSPARENT_COLOR" (JR.thisField "imageJ2SEUtil")) ]), 
+                        JR.exec (JR.invoke "clearRect_4" (JR.local "g") [ (JR.int 0), (JR.int 0), (JR.invoke "getWidth_0" (JR.local "newBufferedImage") []), (JR.invoke "getHeight_0" (JR.local "newBufferedImage") []) ]) ]) identity, 
+                    JR.exec (JR.invoke "drawRenderedImage_2" (JR.local "g") [ (JR.local "bufferedImage"), (JR.local "at") ]), 
+                    JR.exec (JR.invoke "dispose_0" (JR.local "g") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

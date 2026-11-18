@@ -1,4 +1,4 @@
-module ErrorData exposing (..)
+module Org.Allbinary.Business.Error.ErrorData exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.business.error
 -}

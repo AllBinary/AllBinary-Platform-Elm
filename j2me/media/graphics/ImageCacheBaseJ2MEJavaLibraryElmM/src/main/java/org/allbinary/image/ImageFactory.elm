@@ -1,146 +1,135 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image
-module ImageFactory where
+module Org.Allbinary.Image.ImageFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified InputStream -- java.io.InputStream
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified MIDPUtil -- org.allbinary.MIDPUtil
+{-| Generated Code Do Not Modify package org.allbinary.image
+-}
 
-data ImageFactory = ImageFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ImageFactory where
-    javaNull = javaNullRecord "ImageFactory"
-
-instance JavaEquals ImageFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ImageFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ImageFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ImageFactory header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "createImageUrl" (\() -> createImageUrl_impl this)
-    jregisterMethod header_ "createImage" (\() -> createImage_impl this)
-    jregisterMethod header_ "createImageFromInputStream" (\() -> createImageFromInputStream_impl this)
-    jregisterMethod header_ "createImageFromInputStream_1" (\() -> createImageFromInputStream_1_impl this)
-    pure this
-
-initFields_ :: ImageFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO ImageFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ImageFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Javax.Microedition.Lcdui.Image as Image
+import Org.Allbinary.MIDPUtil as MIDPUtil
 
 
-getInstance :: IO (ImageFactory)
-getInstance = do
-        pure (ImageFactory.instance_)
+jclass : String
+jclass =
+    "ImageFactory"
 
 
--- throws Exception
-createImageUrl :: (JavaObjectClass this_) => this_ -> String -> IO (Image.Image)
-createImageUrl object_ a1 = jmethod object_ "createImageUrl" (\() -> (createImageUrl_impl (javaCast object_ :: ImageFactory))) () a1
-
-createImageUrl_super :: (JavaObjectClass this_) => this_ -> String -> IO (Image.Image)
-createImageUrl_super object_ a1 = (createImageUrl_impl (javaCast object_ :: ImageFactory)) a1
-
-createImageUrl_impl :: ImageFactory -> String -> IO (Image.Image)
-createImageUrl_impl this url = do
-        (Image.createImage url)
+jchain : List String
+jchain =
+    [ "ImageFactory" ]
 
 
--- throws Exception
-createImage :: (JavaObjectClass this_) => this_ -> String -> Int -> Int -> IO (Image.Image)
-createImage object_ a1 a2 a3 = jmethod object_ "createImage" (\() -> (createImage_impl (javaCast object_ :: ImageFactory))) () a1 a2 a3
-
-createImage_super :: (JavaObjectClass this_) => this_ -> String -> Int -> Int -> IO (Image.Image)
-createImage_super object_ a1 a2 a3 = (createImage_impl (javaCast object_ :: ImageFactory)) a1 a2 a3
-
-createImage_impl :: ImageFactory -> String -> Int -> Int -> IO (Image.Image)
-createImage_impl this caller width height = do
-        (MIDPUtil.createImageWH ((jio (MIDPUtil.getInstance))) width height)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
--- throws Exception
-createImageFromInputStream :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> InputStream.InputStream -> IO (Image.Image)
-createImageFromInputStream object_ a1 a2 = jmethod object_ "createImageFromInputStream" (\() -> (createImageFromInputStream_impl (javaCast object_ :: ImageFactory))) () (jtoObject a1) a2
-
-createImageFromInputStream_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> InputStream.InputStream -> IO (Image.Image)
-createImageFromInputStream_super object_ a1 a2 = (createImageFromInputStream_impl (javaCast object_ :: ImageFactory)) (jtoObject a1) a2
-
-createImageFromInputStream_impl :: ImageFactory -> JavaObject -> InputStream.InputStream -> IO (Image.Image)
-createImageFromInputStream_impl this keyObject_ inputStream = do
-        let key = jtoObject keyObject_
-        image <- (MIDPUtil.createImageFromInputStream ((jio (MIDPUtil.getInstance))) inputStream)
-        pure (image)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "createImageUrl_1", jm_createImageUrl_1 )
+        , ( "createImage_3", jm_createImage_3 )
+        , ( "createImageFromInputStream_2", jm_createImageFromInputStream_2 )
+        , ( "createImageFromInputStream_1", jm_createImageFromInputStream_1 ) ]
+        JR.noMethods
 
 
--- throws Exception
-createImageFromInputStream_1 :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> IO (Image.Image)
-createImageFromInputStream_1 object_ a1 = jmethod object_ "createImageFromInputStream_1" (\() -> (createImageFromInputStream_1_impl (javaCast object_ :: ImageFactory))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_createImageUrl_1", jm_createImageUrl_1 ), ( "jm_createImage_3", jm_createImage_3 ), ( "jm_createImageFromInputStream_2", jm_createImageFromInputStream_2 ), ( "jm_createImageFromInputStream_1", jm_createImageFromInputStream_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
-createImageFromInputStream_1_super :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> IO (Image.Image)
-createImageFromInputStream_1_super object_ a1 = (createImageFromInputStream_1_impl (javaCast object_ :: ImageFactory)) a1
 
-createImageFromInputStream_1_impl :: ImageFactory -> InputStream.InputStream -> IO (Image.Image)
-createImageFromInputStream_1_impl this inputStream = do
-        (MIDPUtil.createImageFromInputStream ((jio (MIDPUtil.getInstance))) inputStream)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ImageFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImageUrl_1 : JR.Method
+jm_createImageUrl_1 jheap jthis jargs =
+    JR.method [ ( "url", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic Image.jm_createImage_1 [ (JR.local "url") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImage_3 : JR.Method
+jm_createImage_3 jheap jthis jargs =
+    JR.method [ ( "caller", "" ), ( "width", "I" ), ( "height", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "createImageWH_2" (JR.callStatic MIDPUtil.jm_getInstance_0 []) [ (JR.local "width"), (JR.local "height") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImageFromInputStream_2 : JR.Method
+jm_createImageFromInputStream_2 jheap jthis jargs =
+    JR.method [ ( "key", "" ), ( "inputStream", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "image" "" (JR.invoke "createImageFromInputStream_1" (JR.callStatic MIDPUtil.jm_getInstance_0 []) [ (JR.local "inputStream") ]), 
+                    JR.return (JR.local "image") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImageFromInputStream_1 : JR.Method
+jm_createImageFromInputStream_1 jheap jthis jargs =
+    JR.method [ ( "inputStream", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "createImageFromInputStream_1" (JR.callStatic MIDPUtil.jm_getInstance_0 []) [ (JR.local "inputStream") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,124 +1,122 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math
-module J2SEMath where
+module Org.Allbinary.Logic.Math.J2SEMath exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.math
+-}
 
-data J2SEMath = J2SEMath
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull J2SEMath where
-    javaNull = javaNullRecord "J2SEMath"
-
-instance JavaEquals J2SEMath where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq J2SEMath where
-    (==) = jrecordEquals
-
-instance JavaObjectClass J2SEMath where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: J2SEMath
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO J2SEMath
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = J2SEMath header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "round" (\() -> round_impl this)
-    jregisterMethod header_ "abs" (\() -> abs_impl this)
-    jregisterMethod header_ "absdouble" (\() -> absdouble_impl this)
-    pure this
-
-initFields_ :: J2SEMath -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO J2SEMath
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: J2SEMath -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (J2SEMath)
-getInstance = do
-        pure (J2SEMath.instance_)
+
+jclass : String
+jclass =
+    "J2SEMath"
 
 
-round :: (JavaObjectClass this_) => this_ -> Float -> IO (Int)
-round object_ a1 = jmethod object_ "round" (\() -> (round_impl (javaCast object_ :: J2SEMath))) () a1
-
-round_super :: (JavaObjectClass this_) => this_ -> Float -> IO (Int)
-round_super object_ a1 = (round_impl (javaCast object_ :: J2SEMath)) a1
-
-round_impl :: J2SEMath -> Float -> IO (Int)
-round_impl this value = do
-        pure ((Prelude.round value))
+jchain : List String
+jchain =
+    [ "J2SEMath" ]
 
 
-abs :: (JavaObjectClass this_) => this_ -> Float -> IO (Float)
-abs object_ a1 = jmethod object_ "abs" (\() -> (abs_impl (javaCast object_ :: J2SEMath))) () a1
-
-abs_super :: (JavaObjectClass this_) => this_ -> Float -> IO (Float)
-abs_super object_ a1 = (abs_impl (javaCast object_ :: J2SEMath)) a1
-
-abs_impl :: J2SEMath -> Float -> IO (Float)
-abs_impl this value = do
-        pure ((if ((value < 0.0)) then (Prelude.negate value) else value))
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-absdouble :: (JavaObjectClass this_) => this_ -> Double -> IO (Double)
-absdouble object_ a1 = jmethod object_ "absdouble" (\() -> (absdouble_impl (javaCast object_ :: J2SEMath))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "round_1", jm_round_1 )
+        , ( "abs_1", jm_abs_1 )
+        , ( "absdouble_1", jm_absdouble_1 ) ]
+        JR.noMethods
 
-absdouble_super :: (JavaObjectClass this_) => this_ -> Double -> IO (Double)
-absdouble_super object_ a1 = (absdouble_impl (javaCast object_ :: J2SEMath)) a1
 
-absdouble_impl :: J2SEMath -> Double -> IO (Double)
-absdouble_impl this value = do
-        pure ((if ((value < 0.0)) then (Prelude.negate value) else value))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "J2SEMath"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_round_1", jm_round_1 ), ( "jm_abs_1", jm_abs_1 ), ( "jm_absdouble_1", jm_absdouble_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "J2SEMath" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_round_1 : JR.Method
+jm_round_1 jheap jthis jargs =
+    JR.method [ ( "value", "F" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.math "round" [ (JR.local "value") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_abs_1 : JR.Method
+jm_abs_1 jheap jthis jargs =
+    JR.method [ ( "value", "F" ) ] "F"
+        (JR.run [ 
+                    JR.return (JR.cond ((JR.map2 JR.less (JR.local "value") (JR.float 0.0))) (JR.map JR.neg (JR.local "value")) (JR.local "value")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_absdouble_1 : JR.Method
+jm_absdouble_1 jheap jthis jargs =
+    JR.method [ ( "value", "D" ) ] "D"
+        (JR.run [ 
+                    JR.return (JR.cond ((JR.map2 JR.less (JR.local "value") (JR.float 0.0))) (JR.map JR.neg (JR.local "value")) (JR.local "value")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

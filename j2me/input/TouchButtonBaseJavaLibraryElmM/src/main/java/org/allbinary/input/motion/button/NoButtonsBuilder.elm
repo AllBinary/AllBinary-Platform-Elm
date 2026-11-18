@@ -1,103 +1,92 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
-module NoButtonsBuilder (module NoButtonsBuilder, module BaseTouchInput) where
+module Org.Allbinary.Input.Motion.Button.NoButtonsBuilder exposing (..)
 
-import BaseTouchInput hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getList, getList_super, getList_impl, logUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommonStrings -- same package or java.lang
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListUtil -- org.allbinary.util.BasicArrayListUtil
-import qualified BaseTouchInput
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.button
+-}
 
-data NoButtonsBuilder = NoButtonsBuilder
-    { header_ :: JavaHeader
-    , base :: BaseTouchInput.BaseTouchInput
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull NoButtonsBuilder where
-    javaNull = javaNullRecord "NoButtonsBuilder"
-
-instance JavaEquals NoButtonsBuilder where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NoButtonsBuilder where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NoButtonsBuilder where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO NoButtonsBuilder
-newRecord_ = do
-    base <- BaseTouchInput.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    let this = NoButtonsBuilder header_ base logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "getList" (\() -> getList_impl this)
-    pure this
-
-initFields_ :: NoButtonsBuilder -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_ :: IO NoButtonsBuilder
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NoButtonsBuilder -> IO ()
-init_ this = do
-    BaseTouchInput.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Input.Motion.Button.BaseTouchInput as BaseTouchInput
+import Org.Allbinary.Util.BasicArrayListUtil as BasicArrayListUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList object_ = jmethod object_ "getList" (\() -> (getList_impl (javaCast object_ :: NoButtonsBuilder))) ()
+jclass : String
+jclass =
+    "NoButtonsBuilder"
 
-getList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList_super object_ = (getList_impl (javaCast object_ :: NoButtonsBuilder))
 
-getList_impl :: NoButtonsBuilder -> IO (BasicArrayList.BasicArrayList)
-getList_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.commonStrings)).gET_LIST) e)
-            (BasicArrayListUtil.getImmutableInstance ((jio (BasicArrayListUtil.getInstance))))
-            ) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-            list <- (BasicArrayListUtil.getImmutableInstance ((jio (BasicArrayListUtil.getInstance))))
-            pure (list)
+jchain : List String
+jchain =
+    [ "NoButtonsBuilder" ]
+        ++ BaseTouchInput.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BaseTouchInput.jfields ++ [ ( "logUtil", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getList_0", jm_getList_0 ) ]
+        BaseTouchInput.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NoButtonsBuilder"
+        [ ( "jm_getList_0", jm_getList_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect BaseTouchInput.jinit_0 JR.this []),
+            JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getList_0 : JR.Method
+jm_getList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]), 
+                        JR.declare "list" "" (JR.invoke "getImmutableInstance_0" (JR.callStatic BasicArrayListUtil.jm_getInstance_0 []) []), 
+                        JR.return (JR.local "list") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "GET_LIST" (JR.thisField "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.invoke "getImmutableInstance_0" (JR.callStatic BasicArrayListUtil.jm_getInstance_0 []) []) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

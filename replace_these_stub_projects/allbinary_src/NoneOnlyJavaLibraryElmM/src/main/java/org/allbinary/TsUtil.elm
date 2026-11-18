@@ -1,4 +1,4 @@
-module TsUtil exposing (..)
+module Org.Allbinary.TsUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary
 -}

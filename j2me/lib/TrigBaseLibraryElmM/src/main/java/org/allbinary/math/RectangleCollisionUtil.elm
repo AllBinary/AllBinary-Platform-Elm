@@ -1,4 +1,4 @@
-module RectangleCollisionUtil exposing (..)
+module Org.Allbinary.Math.RectangleCollisionUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.math
 -}

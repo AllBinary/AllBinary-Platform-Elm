@@ -1,130 +1,127 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.game
-module BasicGameInfoFactory where
+module Org.Allbinary.Game.BasicGameInfoFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.game
+-}
 
-data BasicGameInfoFactory = BasicGameInfoFactory
-    { header_ :: JavaHeader
-    , currentReleaseIndex :: IORef (Int)
-    , currentDestroyIndex :: IORef (Int)
-    , total :: IORef (Int)
-    }
-
-instance JavaNull BasicGameInfoFactory where
-    javaNull = javaNullRecord "BasicGameInfoFactory"
-
-instance JavaEquals BasicGameInfoFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicGameInfoFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicGameInfoFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: BasicGameInfoFactory
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BasicGameInfoFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    currentReleaseIndex <- newIORef 0
-    currentDestroyIndex <- newIORef 0
-    total <- newIORef 0
-    let this = BasicGameInfoFactory header_ currentReleaseIndex currentDestroyIndex total
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "isPeaked" (\() -> isPeaked_impl this)
-    jregisterMethod header_ "howManyLeft" (\() -> howManyLeft_impl this)
-    pure this
-
-initFields_ :: BasicGameInfoFactory -> IO ()
-initFields_ this = do
-    jset this.currentReleaseIndex (0)
-    jset this.currentDestroyIndex (0)
-    jset this.total (0)
-    pure ()
+import JR
 
 
-getInstance :: IO (BasicGameInfoFactory)
-getInstance = do
-        pure (BasicGameInfoFactory.sINGLETON)
 
-new_ :: IO BasicGameInfoFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BasicGameInfoFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "BasicGameInfoFactory"
 
 
-init :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-init object_ a1 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: BasicGameInfoFactory))) () a1
-
-init_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-init_super object_ a1 = (init_impl (javaCast object_ :: BasicGameInfoFactory)) a1
-
-init_impl :: BasicGameInfoFactory -> Int -> IO (())
-init_impl this total = do
-        jset (this).currentReleaseIndex (0)
-        jset (this).currentDestroyIndex (0)
-        jset (this).total (total)
-        pure ()
+jchain : List String
+jchain =
+    [ "BasicGameInfoFactory" ]
 
 
-isPeaked :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isPeaked object_ = jmethod object_ "isPeaked" (\() -> (isPeaked_impl (javaCast object_ :: BasicGameInfoFactory))) ()
-
-isPeaked_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isPeaked_super object_ = (isPeaked_impl (javaCast object_ :: BasicGameInfoFactory))
-
-isPeaked_impl :: BasicGameInfoFactory -> IO (Bool)
-isPeaked_impl this = do
-    javaCatchReturn $ do
-        if ((jget (this).currentDestroyIndex) >= (jget (this).total)) then do
-            javaReturn (True)
-        else do
-            javaReturn (False)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "currentReleaseIndex", JR.defaultOf "I" ), ( "currentDestroyIndex", JR.defaultOf "I" ), ( "total", JR.defaultOf "I" ) ]
 
 
-howManyLeft :: (JavaObjectClass this_) => this_ -> IO (Int)
-howManyLeft object_ = jmethod object_ "howManyLeft" (\() -> (howManyLeft_impl (javaCast object_ :: BasicGameInfoFactory))) ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_1", jm_init_1 )
+        , ( "isPeaked_0", jm_isPeaked_0 )
+        , ( "howManyLeft_0", jm_howManyLeft_0 ) ]
+        JR.noMethods
 
-howManyLeft_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-howManyLeft_super object_ = (howManyLeft_impl (javaCast object_ :: BasicGameInfoFactory))
 
-howManyLeft_impl :: BasicGameInfoFactory -> IO (Int)
-howManyLeft_impl this = do
-        pure (((jget (this).total) - (jget (this).currentDestroyIndex)))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicGameInfoFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_1", jm_init_1 ), ( "jm_isPeaked_0", jm_isPeaked_0 ), ( "jm_howManyLeft_0", jm_howManyLeft_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "BasicGameInfoFactory" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "total", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "currentReleaseIndex" "I" JR.this (JR.int 0)), 
+                    JR.exec (JR.setField "currentDestroyIndex" "I" JR.this (JR.int 0)), 
+                    JR.exec (JR.setField "total" "I" JR.this (JR.local "total")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isPeaked_0 : JR.Method
+jm_isPeaked_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greaterEquals (JR.thisField "currentDestroyIndex") (JR.thisField "total")) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_howManyLeft_0 : JR.Method
+jm_howManyLeft_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.map2 JR.sub (JR.thisField "total") (JR.thisField "currentDestroyIndex")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

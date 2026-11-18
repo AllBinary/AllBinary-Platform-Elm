@@ -1,106 +1,135 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.shipping
-module ShippingMethodsData where
+module Org.Allbinary.Business.User.Commerce.Shipping.ShippingMethodsData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.shipping
+-}
 
-data ShippingMethodsData = ShippingMethodsData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull ShippingMethodsData where
-    javaNull = javaNullRecord "ShippingMethodsData"
 
-instance JavaEquals ShippingMethodsData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq ShippingMethodsData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "ShippingMethodsData"
 
-instance JavaObjectClass ShippingMethodsData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-sHIPPINGMETHODSORDERSUMMARIES :: String
-sHIPPINGMETHODSORDERSUMMARIES = "SHIPPINGMETHODS_ORDERSUMMARIES"
+jchain : List String
+jchain =
+    [ "ShippingMethodsData" ]
 
-sHIPPINGMETHODORDERSUMMARY :: String
-sHIPPINGMETHODORDERSUMMARY = "SHIPPINGMETHOD_ORDERSUMMARY"
 
-sHIPPINGMETHODS :: String
-sHIPPINGMETHODS = "SHIPPINGMETHODS"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-nAME :: String
-nAME = "SHIPPINGMETHODS_NAME"
 
-sHIPPINGCOST :: String
-sHIPPINGCOST = "SHIPPINGMETHOD_SHIPPINGCOST"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-tAXRATE :: String
-tAXRATE = "SHIPPINGMETHOD_TAXRATE"
 
-sUBTOTAL :: String
-sUBTOTAL = "SHIPPINGMETHOD_SUBTOTAL"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ShippingMethodsData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SHIPPINGMETHODSORDERSUMMARIES", jstatic_SHIPPINGMETHODSORDERSUMMARIES ), ( "jstatic_SHIPPINGMETHODORDERSUMMARY", jstatic_SHIPPINGMETHODORDERSUMMARY ), ( "jstatic_SHIPPINGMETHODS", jstatic_SHIPPINGMETHODS ), ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_SHIPPINGCOST", jstatic_SHIPPINGCOST ), ( "jstatic_TAXRATE", jstatic_TAXRATE ), ( "jstatic_SUBTOTAL", jstatic_SUBTOTAL ), ( "jstatic_TAX", jstatic_TAX ), ( "jstatic_TOTAL", jstatic_TOTAL ) ]
+        jheap
 
-tAX :: String
-tAX = "SHIPPINGMETHOD_TAX"
 
-tOTAL :: String
-tOTAL = "SHIPPINGMETHOD_TOTAL"
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jstatic_SHIPPINGMETHODSORDERSUMMARIES : JR.M
+jstatic_SHIPPINGMETHODSORDERSUMMARIES s =
+    JR.static "ShippingMethodsData" jclinit "SHIPPINGMETHODSORDERSUMMARIES"
+        (JR.str "SHIPPINGMETHODS_ORDERSUMMARIES")
+        s
 
-newRecord_ :: IO ShippingMethodsData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ShippingMethodsData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: ShippingMethodsData -> IO ()
-initFields_ this = do
-    pure ()
+jstatic_SHIPPINGMETHODORDERSUMMARY : JR.M
+jstatic_SHIPPINGMETHODORDERSUMMARY s =
+    JR.static "ShippingMethodsData" jclinit "SHIPPINGMETHODORDERSUMMARY"
+        (JR.str "SHIPPINGMETHOD_ORDERSUMMARY")
+        s
 
-new_ :: IO ShippingMethodsData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: ShippingMethodsData -> IO ()
-init_ this = do
-    initFields_ this
+jstatic_SHIPPINGMETHODS : JR.M
+jstatic_SHIPPINGMETHODS s =
+    JR.static "ShippingMethodsData" jclinit "SHIPPINGMETHODS"
+        (JR.str "SHIPPINGMETHODS")
+        s
 
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "ShippingMethodsData" jclinit "NAME"
+        (JR.str "SHIPPINGMETHODS_NAME")
+        s
+
+
+jstatic_SHIPPINGCOST : JR.M
+jstatic_SHIPPINGCOST s =
+    JR.static "ShippingMethodsData" jclinit "SHIPPINGCOST"
+        (JR.str "SHIPPINGMETHOD_SHIPPINGCOST")
+        s
+
+
+jstatic_TAXRATE : JR.M
+jstatic_TAXRATE s =
+    JR.static "ShippingMethodsData" jclinit "TAXRATE"
+        (JR.str "SHIPPINGMETHOD_TAXRATE")
+        s
+
+
+jstatic_SUBTOTAL : JR.M
+jstatic_SUBTOTAL s =
+    JR.static "ShippingMethodsData" jclinit "SUBTOTAL"
+        (JR.str "SHIPPINGMETHOD_SUBTOTAL")
+        s
+
+
+jstatic_TAX : JR.M
+jstatic_TAX s =
+    JR.static "ShippingMethodsData" jclinit "TAX"
+        (JR.str "SHIPPINGMETHOD_TAX")
+        s
+
+
+jstatic_TOTAL : JR.M
+jstatic_TOTAL s =
+    JR.static "ShippingMethodsData" jclinit "TOTAL"
+        (JR.str "SHIPPINGMETHOD_TOTAL")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

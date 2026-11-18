@@ -1,121 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.business.category
-module CategoryData where
+module Org.Allbinary.Business.Category.CategoryData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommonDataFileStrings -- org.allbinary.logic.io.file.CommonDataFileStrings
+{-| Generated Code Do Not Modify package org.allbinary.business.category
+-}
 
-data CategoryData = CategoryData
-    { header_ :: JavaHeader
-    , pARENT :: IORef (String)
-    , nAME :: IORef (String)
-    , pATH :: IORef (String)
-    , lABEL :: IORef (String)
-    , vIEW :: IORef (String)
-    , lEVEL :: IORef (String)
-    , rEQUEST :: IORef (String)
-    , rOOTCATEGORY :: IORef (String)
-    , uNCRYPTED_EXTENSION :: IORef (String)
-    , eNCRYPTED_EXTENSION :: IORef (String)
-    }
-
-instance JavaNull CategoryData where
-    javaNull = javaNullRecord "CategoryData"
-
-instance JavaEquals CategoryData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CategoryData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CategoryData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: CategoryData
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CategoryData
-newRecord_ = do
-    header_ <- newJavaHeader
-    pARENT <- newIORef ""
-    nAME <- newIORef ""
-    pATH <- newIORef ""
-    lABEL <- newIORef ""
-    vIEW <- newIORef ""
-    lEVEL <- newIORef ""
-    rEQUEST <- newIORef ""
-    rOOTCATEGORY <- newIORef ""
-    uNCRYPTED_EXTENSION <- newIORef ""
-    eNCRYPTED_EXTENSION <- newIORef ""
-    let this = CategoryData header_ pARENT nAME pATH lABEL vIEW lEVEL rEQUEST rOOTCATEGORY uNCRYPTED_EXTENSION eNCRYPTED_EXTENSION
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: CategoryData -> IO ()
-initFields_ this = do
-    jset this.pARENT ("CATEGORY_PARENT")
-    jset this.nAME ("CATEGORY_NAME")
-    jset this.pATH ("CATEGORY_PATH")
-    jset this.lABEL ("CATEGORY_LABEL")
-    jset this.vIEW ("CATEGORY_VIEW_CATEGORY")
-    jset this.lEVEL ("CATEGORY_LEVEL")
-    jset this.rEQUEST ("request")
-    jset this.rOOTCATEGORY ("Category")
-    jset this.uNCRYPTED_EXTENSION ((jget ((jio (CommonDataFileStrings.getInstance))).uNCRYPTED_EXTENSION))
-    jset this.eNCRYPTED_EXTENSION ((jget ((jio (CommonDataFileStrings.getInstance))).eNCRYPTED_EXTENSION))
-    pure ()
+import JR
+import Org.Allbinary.Logic.Io.File.CommonDataFileStrings as CommonDataFileStrings
 
 
-getInstance :: IO (CategoryData)
-getInstance = do
-        pure (CategoryData.instance_)
+jclass : String
+jclass =
+    "CategoryData"
 
-new_ :: IO CategoryData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: CategoryData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jchain : List String
+jchain =
+    [ "CategoryData" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "PARENT", JR.defaultOf "" ), ( "NAME", JR.defaultOf "" ), ( "PATH", JR.defaultOf "" ), ( "LABEL", JR.defaultOf "" ), ( "VIEW", JR.defaultOf "" ), ( "LEVEL", JR.defaultOf "" ), ( "REQUEST", JR.defaultOf "" ), ( "ROOTCATEGORY", JR.defaultOf "" ), ( "UNCRYPTED_EXTENSION", JR.defaultOf "" ), ( "ENCRYPTED_EXTENSION", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CategoryData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "CategoryData" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "PARENT" "" JR.this (JR.str "CATEGORY_PARENT")),
+                JR.exec (JR.setField "NAME" "" JR.this (JR.str "CATEGORY_NAME")),
+                JR.exec (JR.setField "PATH" "" JR.this (JR.str "CATEGORY_PATH")),
+                JR.exec (JR.setField "LABEL" "" JR.this (JR.str "CATEGORY_LABEL")),
+                JR.exec (JR.setField "VIEW" "" JR.this (JR.str "CATEGORY_VIEW_CATEGORY")),
+                JR.exec (JR.setField "LEVEL" "" JR.this (JR.str "CATEGORY_LEVEL")),
+                JR.exec (JR.setField "REQUEST" "" JR.this (JR.str "request")),
+                JR.exec (JR.setField "ROOTCATEGORY" "" JR.this (JR.str "Category")),
+                JR.exec (JR.setField "UNCRYPTED_EXTENSION" "" JR.this (JR.field "UNCRYPTED_EXTENSION" (JR.callStatic CommonDataFileStrings.jm_getInstance_0 []))),
+                JR.exec (JR.setField "ENCRYPTED_EXTENSION" "" JR.this (JR.field "ENCRYPTED_EXTENSION" (JR.callStatic CommonDataFileStrings.jm_getInstance_0 []))),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

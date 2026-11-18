@@ -1,131 +1,117 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
-module PlayerStateUtil where
+module Org.Allbinary.Media.Audio.PlayerStateUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Player -- javax.microedition.media.Player
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.media.audio
+-}
 
-data PlayerStateUtil = PlayerStateUtil
-    { header_ :: JavaHeader
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , uNREALIZED :: IORef (String)
-    , rEALIZED :: IORef (String)
-    , pREFETCHED :: IORef (String)
-    , sTARTED :: IORef (String)
-    , cLOSED :: IORef (String)
-    }
-
-instance JavaNull PlayerStateUtil where
-    javaNull = javaNullRecord "PlayerStateUtil"
-
-instance JavaEquals PlayerStateUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlayerStateUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlayerStateUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: PlayerStateUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PlayerStateUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonStrings <- newIORef javaNull
-    uNREALIZED <- newIORef ""
-    rEALIZED <- newIORef ""
-    pREFETCHED <- newIORef ""
-    sTARTED <- newIORef ""
-    cLOSED <- newIORef ""
-    let this = PlayerStateUtil header_ commonStrings uNREALIZED rEALIZED pREFETCHED sTARTED cLOSED
-    jregisterLevel header_ this
-    jregisterMethod header_ "convert" (\() -> convert_impl this)
-    pure this
-
-initFields_ :: PlayerStateUtil -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.uNREALIZED ("UNREALIZED")
-    jset this.rEALIZED ("REALIZED")
-    jset this.pREFETCHED ("PREFETCHED")
-    jset this.sTARTED ("STARTED")
-    jset this.cLOSED ("CLOSED")
-    pure ()
-
-new_ :: IO PlayerStateUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PlayerStateUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Javax.Microedition.Media.Player as Player
 
 
-getInstance :: IO (PlayerStateUtil)
-getInstance = do
-        pure (PlayerStateUtil.instance_)
+jclass : String
+jclass =
+    "PlayerStateUtil"
 
 
-convert :: (JavaObjectClass this_) => this_ -> Int -> IO (String)
-convert object_ a1 = jmethod object_ "convert" (\() -> (convert_impl (javaCast object_ :: PlayerStateUtil))) () a1
+jchain : List String
+jchain =
+    [ "PlayerStateUtil" ]
 
-convert_super :: (JavaObjectClass this_) => this_ -> Int -> IO (String)
-convert_super object_ a1 = (convert_impl (javaCast object_ :: PlayerStateUtil)) a1
 
-convert_impl :: PlayerStateUtil -> Int -> IO (String)
-convert_impl this state = do
-    javaCatchReturn $ do
-        if (state == Player.uNREALIZED) then do
-            javaReturn ((jget (this).uNREALIZED))
-        else if (state == Player.rEALIZED) then do
-            javaReturn ((jget (this).rEALIZED))
-        else if (state == Player.pREFETCHED) then do
-            javaReturn ((jget (this).pREFETCHED))
-        else if (state == Player.sTARTED) then do
-            javaReturn ((jget (this).sTARTED))
-        else when (state == Player.cLOSED) $ do
-            javaReturn ((jget (this).cLOSED))
-        pure ((jget ((jget (this).commonStrings)).uNKNOWN))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonStrings", JR.defaultOf "" ), ( "UNREALIZED", JR.defaultOf "" ), ( "REALIZED", JR.defaultOf "" ), ( "PREFETCHED", JR.defaultOf "" ), ( "STARTED", JR.defaultOf "" ), ( "CLOSED", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "convert_1", jm_convert_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlayerStateUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_convert_1", jm_convert_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "PlayerStateUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "UNREALIZED" "" JR.this (JR.str "UNREALIZED")),
+                JR.exec (JR.setField "REALIZED" "" JR.this (JR.str "REALIZED")),
+                JR.exec (JR.setField "PREFETCHED" "" JR.this (JR.str "PREFETCHED")),
+                JR.exec (JR.setField "STARTED" "" JR.this (JR.str "STARTED")),
+                JR.exec (JR.setField "CLOSED" "" JR.this (JR.str "CLOSED")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_convert_1 : JR.Method
+jm_convert_1 jheap jthis jargs =
+    JR.method [ ( "state", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "state") Player.jstatic_UNREALIZED) (JR.run [ 
+                        JR.return (JR.thisField "UNREALIZED") ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "state") Player.jstatic_REALIZED) (JR.run [ 
+                        JR.return (JR.thisField "REALIZED") ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "state") Player.jstatic_PREFETCHED) (JR.run [ 
+                        JR.return (JR.thisField "PREFETCHED") ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "state") Player.jstatic_STARTED) (JR.run [ 
+                        JR.return (JR.thisField "STARTED") ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "state") Player.jstatic_CLOSED) (JR.run [ 
+                        JR.return (JR.thisField "CLOSED") ]) identity ]) ]) ]) ]), 
+                    JR.return (JR.field "UNKNOWN" (JR.thisField "commonStrings")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

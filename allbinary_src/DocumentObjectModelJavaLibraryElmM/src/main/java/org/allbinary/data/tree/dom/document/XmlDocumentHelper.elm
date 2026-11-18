@@ -1,209 +1,187 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.data.tree.dom.document
-module XmlDocumentHelper where
+module Org.Allbinary.Data.Tree.Dom.Document.XmlDocumentHelper exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ByteArrayOutputStream -- java.io.ByteArrayOutputStream
-import qualified StringReader -- java.io.StringReader
-import qualified StringWriter -- java.io.StringWriter
-import qualified Writer -- java.io.Writer
-import qualified DocumentBuilderFactory -- javax.xml.parsers.DocumentBuilderFactory
-import qualified OutputKeys -- javax.xml.transform.OutputKeys
-import qualified Transformer -- javax.xml.transform.Transformer
-import qualified TransformerConfigurationException -- javax.xml.transform.TransformerConfigurationException
-import qualified TransformerFactory -- javax.xml.transform.TransformerFactory
-import qualified DOMSource -- javax.xml.transform.dom.DOMSource
-import qualified StreamResult -- javax.xml.transform.stream.StreamResult
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified BooleanFactory -- org.allbinary.logic.java.bool.BooleanFactory
-import qualified CharacterSetData -- org.allbinary.logic.java.characters.CharacterSetData
-import qualified Document -- org.w3c.dom.Document
-import qualified InputSource -- org.xml.sax.InputSource
+{-| Generated Code Do Not Modify package org.allbinary.data.tree.dom.document
+-}
 
-data XmlDocumentHelper = XmlDocumentHelper
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , iNDENT_NUMBER :: IORef (String)
-    , indent :: IORef (Int)
-    , ignoreDeclaration :: IORef (Bool)
-    }
-
-instance JavaNull XmlDocumentHelper where
-    javaNull = javaNullRecord "XmlDocumentHelper"
-
-instance JavaEquals XmlDocumentHelper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq XmlDocumentHelper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass XmlDocumentHelper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: XmlDocumentHelper
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-newRecord_ :: IO XmlDocumentHelper
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    iNDENT_NUMBER <- newIORef ""
-    indent <- newIORef 0
-    ignoreDeclaration <- newIORef False
-    let this = XmlDocumentHelper header_ logUtil iNDENT_NUMBER indent ignoreDeclaration
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "createTransformer" (\() -> createTransformer_impl this)
-    jregisterMethod header_ "createTransformer_0" (\() -> createTransformer_0_impl this)
-    jregisterMethod header_ "format" (\() -> format_impl this)
-    jregisterMethod header_ "formatWithTransformer" (\() -> formatWithTransformer_impl this)
-    pure this
-
-initFields_ :: XmlDocumentHelper -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.iNDENT_NUMBER ("indent-number")
-    jset this.indent (0)
-    jset this.ignoreDeclaration (False)
-    pure ()
+import JR
+import Org.Allbinary.Logic.Java.Bool.BooleanFactory as BooleanFactory
+import Org.Allbinary.Logic.Java.Characters.CharacterSetData as CharacterSetData
+import JByteArrayOutputStream
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getInstance :: IO (XmlDocumentHelper)
-getInstance = do
-        pure (XmlDocumentHelper.instance_)
-
-new_ :: IO XmlDocumentHelper
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: XmlDocumentHelper -> IO ()
-init_ this = do
-        initFields_ this
-        Control.Monad.void (XmlDocumentHelper.init this 4 True)
-        pure ()
+jclass : String
+jclass =
+    "XmlDocumentHelper"
 
 
-init :: (JavaObjectClass this_) => this_ -> Int -> Bool -> IO (())
-init object_ a1 a2 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: XmlDocumentHelper))) () a1 a2
-
-init_super :: (JavaObjectClass this_) => this_ -> Int -> Bool -> IO (())
-init_super object_ a1 a2 = (init_impl (javaCast object_ :: XmlDocumentHelper)) a1 a2
-
-init_impl :: XmlDocumentHelper -> Int -> Bool -> IO (())
-init_impl this indent ignoreDeclaration = do
-        jset (this).indent (indent)
-        jset (this).ignoreDeclaration (ignoreDeclaration)
-        pure ()
+jchain : List String
+jchain =
+    [ "XmlDocumentHelper" ]
 
 
--- throws TransformerConfigurationException
-createTransformer :: (JavaObjectClass this_) => this_ -> Int -> Bool -> IO (Transformer.Transformer)
-createTransformer object_ a1 a2 = jmethod object_ "createTransformer" (\() -> (createTransformer_impl (javaCast object_ :: XmlDocumentHelper))) () a1 a2
-
-createTransformer_super :: (JavaObjectClass this_) => this_ -> Int -> Bool -> IO (Transformer.Transformer)
-createTransformer_super object_ a1 a2 = (createTransformer_impl (javaCast object_ :: XmlDocumentHelper)) a1 a2
-
-createTransformer_impl :: XmlDocumentHelper -> Int -> Bool -> IO (Transformer.Transformer)
-createTransformer_impl this indent ignoreDeclaration = do
-        booleanFactory <- (BooleanFactory.getInstance)
-        transformerFactory <- (TransformerFactory.newInstance)
-        Control.Monad.void (TransformerFactory.setAttribute transformerFactory (jget (this).iNDENT_NUMBER) indent)
-        transformer <- (TransformerFactory.newTransformer transformerFactory)
-        Control.Monad.void (Transformer.setOutputProperty transformer (OutputKeys.eNCODING) (jget ((jio (CharacterSetData.getInstance))).uTF_8))
-        Control.Monad.void (Transformer.setOutputProperty transformer (OutputKeys.oMIT_XML_DECLARATION) (if ignoreDeclaration then (jget (booleanFactory).yES) else (jget (booleanFactory).nO)))
-        Control.Monad.void (Transformer.setOutputProperty transformer (OutputKeys.iNDENT) (jget (booleanFactory).yES))
-        pure (transformer)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "INDENT_NUMBER", JR.defaultOf "" ), ( "indent", JR.defaultOf "I" ), ( "ignoreDeclaration", JR.defaultOf "Z" ) ]
 
 
--- throws TransformerConfigurationException
-createTransformer_0 :: (JavaObjectClass this_) => this_ -> IO (Transformer.Transformer)
-createTransformer_0 object_ = jmethod object_ "createTransformer_0" (\() -> (createTransformer_0_impl (javaCast object_ :: XmlDocumentHelper))) ()
-
-createTransformer_0_super :: (JavaObjectClass this_) => this_ -> IO (Transformer.Transformer)
-createTransformer_0_super object_ = (createTransformer_0_impl (javaCast object_ :: XmlDocumentHelper))
-
-createTransformer_0_impl :: XmlDocumentHelper -> IO (Transformer.Transformer)
-createTransformer_0_impl this = do
-        currentIndent <- newIORef (0 :: Int)
-        currentIgnoreDeclaration <- newIORef (False :: Bool)
-        do -- synchronized
-            jset currentIndent ((jget (this).indent))
-            jset currentIgnoreDeclaration ((jget (this).ignoreDeclaration))
-        (XmlDocumentHelper.createTransformer this (jget currentIndent) (jget currentIgnoreDeclaration))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_2", jm_init_2 )
+        , ( "createTransformer_2", jm_createTransformer_2 )
+        , ( "createTransformer_0", jm_createTransformer_0 )
+        , ( "format_1", jm_format_1 )
+        , ( "formatWithTransformer_2", jm_formatWithTransformer_2 )
+        , ( "toString_1", jm_toString_1 ) ]
+        JR.noMethods
 
 
--- throws Exception
-format :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-format object_ a1 = jmethod object_ "format" (\() -> (format_impl (javaCast object_ :: XmlDocumentHelper))) () a1
-
-format_super :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-format_super object_ a1 = (format_impl (javaCast object_ :: XmlDocumentHelper)) a1
-
-format_impl :: XmlDocumentHelper -> String -> IO (String)
-format_impl this xmlString = do
-        (XmlDocumentHelper.formatWithTransformer this xmlString (jio (XmlDocumentHelper.createTransformer_0 this)))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "XmlDocumentHelper"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_2", jm_init_2 ), ( "jm_createTransformer_2", jm_createTransformer_2 ), ( "jm_createTransformer_0", jm_createTransformer_0 ), ( "jm_format_1", jm_format_1 ), ( "jm_formatWithTransformer_2", jm_formatWithTransformer_2 ), ( "jm_toString_1", jm_toString_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
--- throws Exception
-formatWithTransformer :: (JavaObjectClass this_) => this_ -> String -> Transformer.Transformer -> IO (String)
-formatWithTransformer object_ a1 a2 = jmethod object_ "formatWithTransformer" (\() -> (formatWithTransformer_impl (javaCast object_ :: XmlDocumentHelper))) () a1 a2
-
-formatWithTransformer_super :: (JavaObjectClass this_) => this_ -> String -> Transformer.Transformer -> IO (String)
-formatWithTransformer_super object_ a1 a2 = (formatWithTransformer_impl (javaCast object_ :: XmlDocumentHelper)) a1 a2
-
-formatWithTransformer_impl :: XmlDocumentHelper -> String -> Transformer.Transformer -> IO (String)
-formatWithTransformer_impl this xmlString transformer = do
-        src <- (InputSource.new_1 (jio (StringReader.new_1 xmlString)))
-        document <- (DocumentBuilderFactory.parse ((jio (DocumentBuilderFactory.newDocumentBuilder ((jio (DocumentBuilderFactory.newInstance)))))) src)
-        out <- (fmap (\value_ -> javaCast value_ :: Writer.Writer) (StringWriter.new_))
-        Control.Monad.void (Transformer.transform transformer (jio (DOMSource.new_1 document)) (jio (StreamResult.new_1 out)))
-        (Writer.toString out)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
--- throws Exception
-toString :: Document.Document -> IO (String)
-toString document = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            domSource <- (DOMSource.new_1 document)
-            byteArrayOutputStream <- (ByteArrayOutputStream.new_)
-            streamResult <- (StreamResult.new_1 byteArrayOutputStream)
-            copyTransformerFactory <- (TransformerFactory.newInstance)
-            copyTransformer <- (TransformerFactory.newTransformer copyTransformerFactory)
-            Control.Monad.void (Transformer.transform copyTransformer domSource streamResult)
-            (ByteArrayOutputStream.toString byteArrayOutputStream)
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "XmlDocumentHelper" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "INDENT_NUMBER" "" JR.this (JR.str "indent-number")),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "init_2" JR.this [ (JR.int 4), (JR.bool True) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_2 : JR.Method
+jm_init_2 jheap jthis jargs =
+    JR.method [ ( "indent", "I" ), ( "ignoreDeclaration", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "indent" "I" JR.this (JR.local "indent")), 
+                    JR.exec (JR.setField "ignoreDeclaration" "Z" JR.this (JR.local "ignoreDeclaration")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createTransformer_2 : JR.Method
+jm_createTransformer_2 jheap jthis jargs =
+    JR.method [ ( "indent", "I" ), ( "ignoreDeclaration", "Z" ) ] ""
+        (JR.run [ 
+                    JR.declare "booleanFactory" "" (JR.callStatic BooleanFactory.jm_getInstance_0 []), 
+                    JR.declare "transformerFactory" "" (JR.callStatic (JR.namedMethod "TransformerFactory.jm_newInstance_0") []), 
+                    JR.exec (JR.invoke "setAttribute_2" (JR.local "transformerFactory") [ (JR.thisField "INDENT_NUMBER"), (JR.local "indent") ]), 
+                    JR.declare "transformer" "" (JR.invoke "newTransformer_0" (JR.local "transformerFactory") []), 
+                    JR.exec (JR.invoke "setOutputProperty_2" (JR.local "transformer") [ (JR.namedStatic "OutputKeys.jstatic_ENCODING"), (JR.field "UTF_8" (JR.callStatic CharacterSetData.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "setOutputProperty_2" (JR.local "transformer") [ (JR.namedStatic "OutputKeys.jstatic_OMIT_XML_DECLARATION"), (JR.cond (JR.local "ignoreDeclaration") (JR.field "YES" (JR.local "booleanFactory")) (JR.field "NO" (JR.local "booleanFactory"))) ]), 
+                    JR.exec (JR.invoke "setOutputProperty_2" (JR.local "transformer") [ (JR.namedStatic "OutputKeys.jstatic_INDENT"), (JR.field "YES" (JR.local "booleanFactory")) ]), 
+                    JR.return (JR.local "transformer") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createTransformer_0 : JR.Method
+jm_createTransformer_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "currentIndent" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "currentIgnoreDeclaration" "Z" (JR.lit (JR.defaultOf "Z")), 
+                    (JR.run [ 
+                        JR.exec (JR.setLocal "currentIndent" "I" (JR.thisField "indent")), 
+                        JR.exec (JR.setLocal "currentIgnoreDeclaration" "Z" (JR.thisField "ignoreDeclaration")) ]), 
+                    JR.return (JR.invoke "createTransformer_2" JR.this [ (JR.local "currentIndent"), (JR.local "currentIgnoreDeclaration") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_format_1 : JR.Method
+jm_format_1 jheap jthis jargs =
+    JR.method [ ( "xmlString", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "formatWithTransformer_2" JR.this [ (JR.local "xmlString"), (JR.invoke "createTransformer_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_formatWithTransformer_2 : JR.Method
+jm_formatWithTransformer_2 jheap jthis jargs =
+    JR.method [ ( "xmlString", "" ), ( "transformer", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "src" "" (JR.new (JR.namedMethod "InputSource.jnew_1") [ (JR.new (JR.namedMethod "StringReader.jnew_1") [ (JR.local "xmlString") ]) ]), 
+                    JR.declare "document" "" (JR.invoke "parse_1" (JR.invoke "newDocumentBuilder_0" (JR.callStatic (JR.namedMethod "DocumentBuilderFactory.jm_newInstance_0") []) []) [ (JR.local "src") ]), 
+                    JR.declare "out" "" (JR.new (JR.namedMethod "StringWriter.jnew_0") []), 
+                    JR.exec (JR.invoke "transform_2" (JR.local "transformer") [ (JR.new (JR.namedMethod "DOMSource.jnew_1") [ (JR.local "document") ]), (JR.new (JR.namedMethod "StreamResult.jnew_1") [ (JR.local "out") ]) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "out") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_1 : JR.Method
+jm_toString_1 jheap jthis jargs =
+    JR.method [ ( "document", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "domSource" "" (JR.new (JR.namedMethod "DOMSource.jnew_1") [ (JR.local "document") ]), 
+                        JR.declare "byteArrayOutputStream" "" (JR.new JByteArrayOutputStream.jnew_0 []), 
+                        JR.declare "streamResult" "" (JR.new (JR.namedMethod "StreamResult.jnew_1") [ (JR.local "byteArrayOutputStream") ]), 
+                        JR.declare "copyTransformerFactory" "" (JR.callStatic (JR.namedMethod "TransformerFactory.jm_newInstance_0") []), 
+                        JR.declare "copyTransformer" "" (JR.invoke "newTransformer_0" (JR.local "copyTransformerFactory") []), 
+                        JR.exec (JR.invoke "transform_2" (JR.local "copyTransformer") [ (JR.local "domSource"), (JR.local "streamResult") ]), 
+                        JR.return (JR.invoke "toString_0" (JR.local "byteArrayOutputStream") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,162 +1,150 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
-module ImageModifierUtil where
+module Org.Allbinary.Media.Image.ImageModifierUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
+{-| Generated Code Do Not Modify package org.allbinary.media.image
+-}
 
-data ImageModifierUtil = ImageModifierUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ImageModifierUtil where
-    javaNull = javaNullRecord "ImageModifierUtil"
-
-instance JavaEquals ImageModifierUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageModifierUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageModifierUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ImageModifierUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ImageModifierUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ImageModifierUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "setColor" (\() -> setColor_impl this)
-    jregisterMethod header_ "changeColor" (\() -> changeColor_impl this)
-    jregisterMethod header_ "setAlpha" (\() -> setAlpha_impl this)
-    jregisterMethod header_ "getImageArray" (\() -> getImageArray_impl this)
-    jregisterMethod header_ "handleImage" (\() -> handleImage_impl this)
-    jregisterMethod header_ "reset" (\() -> reset_impl this)
-    pure this
-
-initFields_ :: ImageModifierUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO ImageModifierUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ImageModifierUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstanceOrCreate :: IO (ImageModifierUtil)
-getInstanceOrCreate = do
-        pure (ImageModifierUtil.instance_)
+
+jclass : String
+jclass =
+    "ImageModifierUtil"
 
 
-setColor :: (JavaObjectClass this_) => this_ -> Image.Image -> Image.Image -> Int -> BasicColor.BasicColor -> IO (())
-setColor object_ a1 a2 a3 a4 = jmethod object_ "setColor" (\() -> (setColor_impl (javaCast object_ :: ImageModifierUtil))) () a1 a2 a3 a4
-
-setColor_super :: (JavaObjectClass this_) => this_ -> Image.Image -> Image.Image -> Int -> BasicColor.BasicColor -> IO (())
-setColor_super object_ a1 a2 a3 a4 = (setColor_impl (javaCast object_ :: ImageModifierUtil)) a1 a2 a3 a4
-
-setColor_impl :: ImageModifierUtil -> Image.Image -> Image.Image -> Int -> BasicColor.BasicColor -> IO (())
-setColor_impl this unusedOriginalImage image imageIndex basicColor = do
-        pure ()
+jchain : List String
+jchain =
+    [ "ImageModifierUtil" ]
 
 
-changeColor :: (JavaObjectClass this_) => this_ -> Image.Image -> Image.Image -> Int -> BasicColor.BasicColor -> IO (())
-changeColor object_ a1 a2 a3 a4 = jmethod object_ "changeColor" (\() -> (changeColor_impl (javaCast object_ :: ImageModifierUtil))) () a1 a2 a3 a4
-
-changeColor_super :: (JavaObjectClass this_) => this_ -> Image.Image -> Image.Image -> Int -> BasicColor.BasicColor -> IO (())
-changeColor_super object_ a1 a2 a3 a4 = (changeColor_impl (javaCast object_ :: ImageModifierUtil)) a1 a2 a3 a4
-
-changeColor_impl :: ImageModifierUtil -> Image.Image -> Image.Image -> Int -> BasicColor.BasicColor -> IO (())
-changeColor_impl this unusedOriginalImage image imageIndex basicColor = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-setAlpha :: (JavaObjectClass this_) => this_ -> Image.Image -> Image.Image -> Int -> Int -> IO (())
-setAlpha object_ a1 a2 a3 a4 = jmethod object_ "setAlpha" (\() -> (setAlpha_impl (javaCast object_ :: ImageModifierUtil))) () a1 a2 a3 a4
-
-setAlpha_super :: (JavaObjectClass this_) => this_ -> Image.Image -> Image.Image -> Int -> Int -> IO (())
-setAlpha_super object_ a1 a2 a3 a4 = (setAlpha_impl (javaCast object_ :: ImageModifierUtil)) a1 a2 a3 a4
-
-setAlpha_impl :: ImageModifierUtil -> Image.Image -> Image.Image -> Int -> Int -> IO (())
-setAlpha_impl this originalImage image imageIndex alphaInt = do
-        pure ()
-
-
-getImageArray :: (JavaObjectClass this_) => this_ -> JavaArray (Image.Image) -> IO (JavaArray (Image.Image))
-getImageArray object_ a1 = jmethod object_ "getImageArray" (\() -> (getImageArray_impl (javaCast object_ :: ImageModifierUtil))) () a1
-
-getImageArray_super :: (JavaObjectClass this_) => this_ -> JavaArray (Image.Image) -> IO (JavaArray (Image.Image))
-getImageArray_super object_ a1 = (getImageArray_impl (javaCast object_ :: ImageModifierUtil)) a1
-
-getImageArray_impl :: ImageModifierUtil -> JavaArray (Image.Image) -> IO (JavaArray (Image.Image))
-getImageArray_impl this originalImageArray = do
-        pure (originalImageArray)
+jvtable =
+    JR.vtable
+        [ ( "getInstanceOrCreate_0", jm_getInstanceOrCreate_0 )
+        , ( "setColor_4", jm_setColor_4 )
+        , ( "changeColor_4", jm_changeColor_4 )
+        , ( "setAlpha_4", jm_setAlpha_4 )
+        , ( "getImageArray_1", jm_getImageArray_1 )
+        , ( "handleImage_3", jm_handleImage_3 )
+        , ( "reset_0", jm_reset_0 ) ]
+        JR.noMethods
 
 
-handleImage :: (JavaObjectClass this_) => this_ -> JavaArray (Image.Image) -> Int -> Image.Image -> IO (())
-handleImage object_ a1 a2 a3 = jmethod object_ "handleImage" (\() -> (handleImage_impl (javaCast object_ :: ImageModifierUtil))) () a1 a2 a3
-
-handleImage_super :: (JavaObjectClass this_) => this_ -> JavaArray (Image.Image) -> Int -> Image.Image -> IO (())
-handleImage_super object_ a1 a2 a3 = (handleImage_impl (javaCast object_ :: ImageModifierUtil)) a1 a2 a3
-
-handleImage_impl :: ImageModifierUtil -> JavaArray (Image.Image) -> Int -> Image.Image -> IO (())
-handleImage_impl this imageArray index image = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageModifierUtil"
+        [ ( "jm_getInstanceOrCreate_0", jm_getInstanceOrCreate_0 ), ( "jm_setColor_4", jm_setColor_4 ), ( "jm_changeColor_4", jm_changeColor_4 ), ( "jm_setAlpha_4", jm_setAlpha_4 ), ( "jm_getImageArray_1", jm_getImageArray_1 ), ( "jm_handleImage_3", jm_handleImage_3 ), ( "jm_reset_0", jm_reset_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-reset :: (JavaObjectClass this_) => this_ -> IO (())
-reset object_ = jmethod object_ "reset" (\() -> (reset_impl (javaCast object_ :: ImageModifierUtil))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-reset_super :: (JavaObjectClass this_) => this_ -> IO (())
-reset_super object_ = (reset_impl (javaCast object_ :: ImageModifierUtil))
 
-reset_impl :: ImageModifierUtil -> IO (())
-reset_impl this = do
-        pure ()
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ImageModifierUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstanceOrCreate_0 : JR.Method
+jm_getInstanceOrCreate_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setColor_4 : JR.Method
+jm_setColor_4 jheap jthis jargs =
+    JR.method [ ( "unusedOriginalImage", "" ), ( "image", "" ), ( "imageIndex", "I" ), ( "basicColor", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_changeColor_4 : JR.Method
+jm_changeColor_4 jheap jthis jargs =
+    JR.method [ ( "unusedOriginalImage", "" ), ( "image", "" ), ( "imageIndex", "I" ), ( "basicColor", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAlpha_4 : JR.Method
+jm_setAlpha_4 jheap jthis jargs =
+    JR.method [ ( "originalImage", "" ), ( "image", "" ), ( "imageIndex", "I" ), ( "alphaInt", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getImageArray_1 : JR.Method
+jm_getImageArray_1 jheap jthis jargs =
+    JR.method [ ( "originalImageArray", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.local "originalImageArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_handleImage_3 : JR.Method
+jm_handleImage_3 jheap jthis jargs =
+    JR.method [ ( "imageArray", "" ), ( "index", "I" ), ( "image", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_reset_0 : JR.Method
+jm_reset_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

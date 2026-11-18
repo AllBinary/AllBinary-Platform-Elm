@@ -1,110 +1,102 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
-module ShaderUpdater where
+module Org.Allbinary.Graphics.Opengles.Shader.ShaderUpdater exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified EGLConfig -- javax.microedition.khronos.egl.EGLConfig
-import qualified GL10 -- javax.microedition.khronos.opengles.GL10
-import qualified RendererStrings -- org.allbinary.graphics.opengles.renderer.RendererStrings
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.graphics.opengles.shader
+-}
 
-data ShaderUpdater = ShaderUpdater
-    { header_ :: JavaHeader
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , rendererStrings :: IORef (RendererStrings.RendererStrings)
-    }
-
-instance JavaNull ShaderUpdater where
-    javaNull = javaNullRecord "ShaderUpdater"
-
-instance JavaEquals ShaderUpdater where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ShaderUpdater where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ShaderUpdater where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ShaderUpdater
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ShaderUpdater
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonStrings <- newIORef javaNull
-    rendererStrings <- newIORef javaNull
-    let this = ShaderUpdater header_ commonStrings rendererStrings
-    jregisterLevel header_ this
-    jregisterMethod header_ "onSurfaceCreated" (\() -> onSurfaceCreated_impl this)
-    pure this
-
-initFields_ :: ShaderUpdater -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.rendererStrings =<< (RendererStrings.getInstance)
-    pure ()
-
-new_ :: IO ShaderUpdater
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ShaderUpdater -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Graphics.Opengles.Renderer.RendererStrings as RendererStrings
 
 
-getInstance :: IO (ShaderUpdater)
-getInstance = do
-        pure (ShaderUpdater.instance_)
+jclass : String
+jclass =
+    "ShaderUpdater"
 
 
-onSurfaceCreated :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> EGLConfig.EGLConfig -> IO (())
-onSurfaceCreated object_ a1 a2 = jmethod object_ "onSurfaceCreated" (\() -> (onSurfaceCreated_impl (javaCast object_ :: ShaderUpdater))) () a1 a2
+jchain : List String
+jchain =
+    [ "ShaderUpdater" ]
 
-onSurfaceCreated_super :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> EGLConfig.EGLConfig -> IO (())
-onSurfaceCreated_super object_ a1 a2 = (onSurfaceCreated_impl (javaCast object_ :: ShaderUpdater)) a1 a2
 
-onSurfaceCreated_impl :: ShaderUpdater -> GL10.GL10 -> EGLConfig.EGLConfig -> IO (())
-onSurfaceCreated_impl this gl eglConfig = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonStrings", JR.defaultOf "" ), ( "rendererStrings", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "onSurfaceCreated_2", jm_onSurfaceCreated_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ShaderUpdater"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_onSurfaceCreated_2", jm_onSurfaceCreated_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ShaderUpdater" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "rendererStrings" "" JR.this (JR.callStatic RendererStrings.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onSurfaceCreated_2 : JR.Method
+jm_onSurfaceCreated_2 jheap jthis jargs =
+    JR.method [ ( "gl", "" ), ( "eglConfig", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

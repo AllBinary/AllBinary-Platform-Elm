@@ -1,12 +1,12 @@
-module PATH_GLOBALS exposing (..)
+module Org.Allbinary.Globals.PATH_GLOBALS exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.globals
 -}
 
 import JR
-import AbPathData
-import CommonStrings
-import StringMaker
+import Org.Allbinary.Logic.Io.Path.AbPathData as AbPathData
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

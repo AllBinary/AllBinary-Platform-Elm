@@ -1,175 +1,167 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input
-module AllBinarySensor where
+module Org.Allbinary.Input.AllBinarySensor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified AllBinarySensorListener
+{-| Generated Code Do Not Modify package org.allbinary.input
+-}
 
--- implements AllBinarySensorListener
-data AllBinarySensor = AllBinarySensor
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    }
-
-instance JavaNull AllBinarySensor where
-    javaNull = javaNullRecord "AllBinarySensor"
-
-instance JavaEquals AllBinarySensor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinarySensor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinarySensor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_ALLBINARY_SENSOR :: AllBinarySensor
-{-# NOINLINE nULL_ALLBINARY_SENSOR #-}
-nULL_ALLBINARY_SENSOR = unsafePerformIO ((new_))
-
-max :: IORef (Int)
-{-# NOINLINE max #-}
-max = unsafePerformIO (newIORef (100))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AllBinarySensor
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    let this = AllBinarySensor header_ logUtil commonStrings
-    jregisterLevel header_ this
-    AllBinarySensorListener.registerInterface_ header_
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "getId" (\() -> getId_impl this)
-    jregisterMethod header_ "shutdown" (\() -> shutdown_impl this)
-    jregisterMethod header_ "onSensorChange" (\() -> onSensorChange_impl this)
-    pure this
-
-initFields_ :: AllBinarySensor -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    pure ()
-
-new_ :: IO AllBinarySensor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllBinarySensor -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Input.AllBinarySensorListener as AllBinarySensorListener
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: AllBinarySensor))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: AllBinarySensor))
-
-init_impl :: AllBinarySensor -> IO (())
-init_impl this = do
-        pure ()
+jclass : String
+jclass =
+    "AllBinarySensor"
 
 
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: AllBinarySensor))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: AllBinarySensor))
-
-update_impl :: AllBinarySensor -> IO (())
-update_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "AllBinarySensor" ]
+        ++ AllBinarySensorListener.jchain
 
 
-setMax :: Int -> IO (())
-setMax max = do
-        jset AllBinarySensor.max (max)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ) ]
 
 
-getMax :: IO (Int)
-getMax = do
-        pure ((jget AllBinarySensor.max))
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 )
+        , ( "update_0", jm_update_0 )
+        , ( "setMax_1", jm_setMax_1 )
+        , ( "getMax_0", jm_getMax_0 )
+        , ( "getId_0", jm_getId_0 )
+        , ( "shutdown_0", jm_shutdown_0 )
+        , ( "onSensorChange_0", jm_onSensorChange_0 ) ]
+        JR.noMethods
 
 
-getId :: (JavaObjectClass this_) => this_ -> IO (Int)
-getId object_ = jmethod object_ "getId" (\() -> (getId_impl (javaCast object_ :: AllBinarySensor))) ()
-
-getId_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getId_super object_ = (getId_impl (javaCast object_ :: AllBinarySensor))
-
-getId_impl :: AllBinarySensor -> IO (Int)
-getId_impl this = do
-        (AllBinarySensor.getMax)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinarySensor"
+        [ ( "jm_init_0", jm_init_0 ), ( "jm_update_0", jm_update_0 ), ( "jm_setMax_1", jm_setMax_1 ), ( "jm_getMax_0", jm_getMax_0 ), ( "jm_getId_0", jm_getId_0 ), ( "jm_shutdown_0", jm_shutdown_0 ), ( "jm_onSensorChange_0", jm_onSensorChange_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_ALLBINARY_SENSOR", jstatic_NULL_ALLBINARY_SENSOR ), ( "jstatic_max", jstatic_max ) ]
+        jheap
 
 
-shutdown :: (JavaObjectClass this_) => this_ -> IO (())
-shutdown object_ = jmethod object_ "shutdown" (\() -> (shutdown_impl (javaCast object_ :: AllBinarySensor))) ()
-
-shutdown_super :: (JavaObjectClass this_) => this_ -> IO (())
-shutdown_super object_ = (shutdown_impl (javaCast object_ :: AllBinarySensor))
-
-shutdown_impl :: AllBinarySensor -> IO (())
-shutdown_impl this = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).sTART) this "shutdown")
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-onSensorChange :: (JavaObjectClass this_) => this_ -> IO (())
-onSensorChange object_ = jmethod object_ "onSensorChange" (\() -> (onSensorChange_impl (javaCast object_ :: AllBinarySensor))) ()
+jstatic_NULL_ALLBINARY_SENSOR : JR.M
+jstatic_NULL_ALLBINARY_SENSOR s =
+    JR.static "AllBinarySensor" jclinit "NULL_ALLBINARY_SENSOR"
+        (JR.new jnew_0 [])
+        s
 
-onSensorChange_super :: (JavaObjectClass this_) => this_ -> IO (())
-onSensorChange_super object_ = (onSensorChange_impl (javaCast object_ :: AllBinarySensor))
 
-onSensorChange_impl :: AllBinarySensor -> IO (())
-onSensorChange_impl this = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jget (this).commonStrings)).nOT_IMPLEMENTED) this)
-        pure ()
+jstatic_max : JR.M
+jstatic_max s =
+    JR.static "AllBinarySensor" jclinit "max"
+        (JR.int 100)
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMax_1 : JR.Method
+jm_setMax_1 jheap jthis jargs =
+    JR.method [ ( "max", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setStatic "AllBinarySensor.max" "I" (JR.local "max")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMax_0 : JR.Method
+jm_getMax_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return jstatic_max ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getId_0 : JR.Method
+jm_getId_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.callStatic jm_getMax_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_shutdown_0 : JR.Method
+jm_shutdown_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.str "shutdown") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onSensorChange_0 : JR.Method
+jm_onSensorChange_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

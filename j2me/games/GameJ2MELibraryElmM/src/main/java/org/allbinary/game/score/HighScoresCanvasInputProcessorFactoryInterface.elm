@@ -1,75 +1,58 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module HighScoresCanvasInputProcessorFactoryInterface where
+module Org.Allbinary.Game.Score.HighScoresCanvasInputProcessorFactoryInterface exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HighScoresCanvasInputProcessor -- same package or java.lang
-import qualified HighScoresCanvas -- org.allbinary.game.score.displayable.HighScoresCanvas
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
--- Java interface: the classes that implement it have these functions
-data HighScoresCanvasInputProcessorFactoryInterface = HighScoresCanvasInputProcessorFactoryInterface
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull HighScoresCanvasInputProcessorFactoryInterface where
-    javaNull = javaNullRecord "HighScoresCanvasInputProcessorFactoryInterface"
-
-instance JavaEquals HighScoresCanvasInputProcessorFactoryInterface where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoresCanvasInputProcessorFactoryInterface where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoresCanvasInputProcessorFactoryInterface where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-fromHeader_ :: JavaHeader -> HighScoresCanvasInputProcessorFactoryInterface
-fromHeader_ header = HighScoresCanvasInputProcessorFactoryInterface header
-
-registerInterface_ :: JavaHeader -> IO ()
-registerInterface_ header = do
-    jregisterLevel header (HighScoresCanvasInputProcessorFactoryInterface header)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+import JR
 
 
-getInstance :: (JavaObjectClass this_) => this_ -> HighScoresCanvas.HighScoresCanvas -> IO (HighScoresCanvasInputProcessor.HighScoresCanvasInputProcessor)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: HighScoresCanvasInputProcessorFactoryInterface))) () a1
 
-getInstance_super :: (JavaObjectClass this_) => this_ -> HighScoresCanvas.HighScoresCanvas -> IO (HighScoresCanvasInputProcessor.HighScoresCanvasInputProcessor)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: HighScoresCanvasInputProcessorFactoryInterface)) a1
+jclass : String
+jclass =
+    "HighScoresCanvasInputProcessorFactoryInterface"
 
-getInstance_impl :: HighScoresCanvasInputProcessorFactoryInterface -> HighScoresCanvas.HighScoresCanvas -> IO (HighScoresCanvasInputProcessor.HighScoresCanvasInputProcessor)
-getInstance_impl this highScoresCanvas = javaAbstractMethod "getInstance"
 
+jchain : List String
+jchain =
+    [ "HighScoresCanvasInputProcessorFactoryInterface" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoresCanvasInputProcessorFactoryInterface"
+        []
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

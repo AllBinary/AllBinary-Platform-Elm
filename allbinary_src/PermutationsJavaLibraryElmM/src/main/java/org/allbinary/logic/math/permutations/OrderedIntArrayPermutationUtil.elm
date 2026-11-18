@@ -1,189 +1,182 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math.permutations
-module OrderedIntArrayPermutationUtil where
+module Org.Allbinary.Logic.Math.Permutations.OrderedIntArrayPermutationUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified IntPermutationVisitor -- same package or java.lang
-import qualified Visitor -- org.allbinary.logic.util.visitor.Visitor
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
+{-| Generated Code Do Not Modify package org.allbinary.logic.math.permutations
+-}
 
-data OrderedIntArrayPermutationUtil = OrderedIntArrayPermutationUtil
-    { header_ :: JavaHeader
-    , tOTAL_ITERATIONS_TABLE :: IORef (String)
-    , fINISHED :: IORef (String)
-    }
-
-instance JavaNull OrderedIntArrayPermutationUtil where
-    javaNull = javaNullRecord "OrderedIntArrayPermutationUtil"
-
-instance JavaEquals OrderedIntArrayPermutationUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OrderedIntArrayPermutationUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OrderedIntArrayPermutationUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: OrderedIntArrayPermutationUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OrderedIntArrayPermutationUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    tOTAL_ITERATIONS_TABLE <- newIORef ""
-    fINISHED <- newIORef ""
-    let this = OrderedIntArrayPermutationUtil header_ tOTAL_ITERATIONS_TABLE fINISHED
-    jregisterLevel header_ this
-    jregisterMethod header_ "getNext" (\() -> getNext_impl this)
-    jregisterMethod header_ "swap" (\() -> swap_impl this)
-    jregisterMethod header_ "factorial" (\() -> factorial_impl this)
-    jregisterMethod header_ "generate" (\() -> generate_impl this)
-    pure this
-
-initFields_ :: OrderedIntArrayPermutationUtil -> IO ()
-initFields_ this = do
-    jset this.tOTAL_ITERATIONS_TABLE ("Total Iterations: ")
-    jset this.fINISHED ("\nFINISHED")
-    pure ()
+import JR
+import Org.Allbinary.Logic.Math.Permutations.IntPermutationVisitor as IntPermutationVisitor
+import JSystem
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (OrderedIntArrayPermutationUtil)
-getInstance = do
-        pure (OrderedIntArrayPermutationUtil.instance_)
-
-new_ :: IO OrderedIntArrayPermutationUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OrderedIntArrayPermutationUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "OrderedIntArrayPermutationUtil"
 
 
-getNext :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-getNext object_ a1 = jmethod object_ "getNext" (\() -> (getNext_impl (javaCast object_ :: OrderedIntArrayPermutationUtil))) () a1
-
-getNext_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-getNext_super object_ a1 = (getNext_impl (javaCast object_ :: OrderedIntArrayPermutationUtil)) a1
-
-getNext_impl :: OrderedIntArrayPermutationUtil -> JavaArray (Int) -> IO (())
-getNext_impl this data_ = do
-        let length = (jlength data_)
-        i <- newIORef ((length - 1) :: Int)
-        fix $ \loop -> when ((jindex data_ (((jget i) - 1))) >= (jindex data_ ((jget i)))) $ javaIteration (loop) $ do
-            jset i (((jget i) - 1))
-        j <- newIORef (length :: Int)
-        fix $ \loop -> when ((jindex data_ (((jget j) - 1))) <= (jindex data_ (((jget i) - 1)))) $ javaIteration (loop) $ do
-            jset j (((jget j) - 1))
-        Control.Monad.void (OrderedIntArrayPermutationUtil.swap this data_ ((jget i) - 1) ((jget j) - 1))
-        jset i ((jget i) + 1)
-        jset j (length)
-        fix $ \loop -> when ((jget i) < (jget j)) $ javaIteration (loop) $ do
-            Control.Monad.void (OrderedIntArrayPermutationUtil.swap this data_ ((jget i) - 1) ((jget j) - 1))
-            jset i ((jget i) + 1)
-            jset j ((jget j) - 1)
-        pure ()
+jchain : List String
+jchain =
+    [ "OrderedIntArrayPermutationUtil" ]
 
 
-swap :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Int -> Int -> IO (())
-swap object_ a1 a2 a3 = jmethod object_ "swap" (\() -> (swap_impl (javaCast object_ :: OrderedIntArrayPermutationUtil))) () a1 a2 a3
-
-swap_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Int -> Int -> IO (())
-swap_super object_ a1 a2 a3 = (swap_impl (javaCast object_ :: OrderedIntArrayPermutationUtil)) a1 a2 a3
-
-swap_impl :: OrderedIntArrayPermutationUtil -> JavaArray (Int) -> Int -> Int -> IO (())
-swap_impl this data_ a b = do
-        let temp = (jindex data_ (a))
-        jsetIndex data_ (a) ((jindex data_ (b)))
-        jsetIndex data_ (b) (temp)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "TOTAL_ITERATIONS_TABLE", JR.defaultOf "" ), ( "FINISHED", JR.defaultOf "" ) ]
 
 
-factorial :: (JavaObjectClass this_) => this_ -> Int -> IO (Int64)
-factorial object_ a1 = jmethod object_ "factorial" (\() -> (factorial_impl (javaCast object_ :: OrderedIntArrayPermutationUtil))) () a1
-
-factorial_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int64)
-factorial_super object_ a1 = (factorial_impl (javaCast object_ :: OrderedIntArrayPermutationUtil)) a1
-
-factorial_impl :: OrderedIntArrayPermutationUtil -> Int -> IO (Int64)
-factorial_impl this dataLength = do
-        temp <- newIORef (1 :: Int64)
-        when (dataLength > 1) $ do
-            forM_ [1 .. dataLength] $ \i -> javaIteration (pure ()) $ do
-                jset temp (((jget temp) * (Prelude.fromIntegral i)))
-        pure ((jget temp))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getNext_1", jm_getNext_1 )
+        , ( "swap_3", jm_swap_3 )
+        , ( "factorial_1", jm_factorial_1 )
+        , ( "generate_2", jm_generate_2 )
+        , ( "main_1", jm_main_1 ) ]
+        JR.noMethods
 
 
-generate :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Visitor.Visitor -> IO (())
-generate object_ a1 a2 = jmethod object_ "generate" (\() -> (generate_impl (javaCast object_ :: OrderedIntArrayPermutationUtil))) () a1 a2
-
-generate_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> Visitor.Visitor -> IO (())
-generate_super object_ a1 a2 = (generate_impl (javaCast object_ :: OrderedIntArrayPermutationUtil)) a1 a2
-
-generate_impl :: OrderedIntArrayPermutationUtil -> JavaArray (Int) -> Visitor.Visitor -> IO (())
-generate_impl this data_ visitor = do
-        iterations <- (OrderedIntArrayPermutationUtil.factorial this (jlength data_))
-        Control.Monad.void (putStr (javaToString (jget (this).tOTAL_ITERATIONS_TABLE)))
-        Control.Monad.void (putStrLn (javaToString iterations))
-        forM_ [0 .. (iterations - 1) - 1] $ \count -> javaIteration (pure ()) $ do
-            Control.Monad.void (OrderedIntArrayPermutationUtil.getNext this data_)
-            Control.Monad.void (Visitor.visit visitor this)
-        Control.Monad.void (putStrLn (javaToString (jget (this).fINISHED)))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OrderedIntArrayPermutationUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getNext_1", jm_getNext_1 ), ( "jm_swap_3", jm_swap_3 ), ( "jm_factorial_1", jm_factorial_1 ), ( "jm_generate_2", jm_generate_2 ), ( "jm_main_1", jm_main_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-main :: JavaArray (String) -> IO (())
-main args = do
-        let tOTAL = 3
-        let data_ = (jnewArray (tOTAL) 0)
-        forM_ [0 .. tOTAL - 1] $ \i -> javaIteration (pure ()) $ do
-            jsetIndex data_ (i) (i)
-        permutationVisitor <- (IntPermutationVisitor.new_1 data_)
-        let oRIGINAL_DATA_LABEL = "Original Data: "
-        Control.Monad.void (putStr (javaToString oRIGINAL_DATA_LABEL))
-        Control.Monad.void (IntPermutationVisitor.print_2 permutationVisitor data_ (jio (StringMaker.new_)))
-        Control.Monad.void (OrderedIntArrayPermutationUtil.generate ((jio (OrderedIntArrayPermutationUtil.getInstance))) data_ (javaCast permutationVisitor))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "OrderedIntArrayPermutationUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "TOTAL_ITERATIONS_TABLE" "" JR.this (JR.str "Total Iterations: ")),
+                JR.exec (JR.setField "FINISHED" "" JR.this (JR.str "\nFINISHED")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNext_1 : JR.Method
+jm_getNext_1 jheap jthis jargs =
+    JR.method [ ( "data", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "length" "I" (JR.alength (JR.local "data")), 
+                    JR.declare "i" "I" (JR.map2 JR.sub (JR.local "length") (JR.int 1)), 
+                    JR.while (JR.map2 JR.greaterEquals (JR.aget (JR.local "data") (JR.map2 JR.sub (JR.local "i") (JR.int 1))) (JR.aget (JR.local "data") (JR.local "i"))) (JR.run [ 
+                        JR.exec (JR.setLocal "i" "I" (JR.map2 JR.sub (JR.local "i") (JR.int 1))) ]), 
+                    JR.declare "j" "I" (JR.local "length"), 
+                    JR.while (JR.map2 JR.lessEquals (JR.aget (JR.local "data") (JR.map2 JR.sub (JR.local "j") (JR.int 1))) (JR.aget (JR.local "data") (JR.map2 JR.sub (JR.local "i") (JR.int 1)))) (JR.run [ 
+                        JR.exec (JR.setLocal "j" "I" (JR.map2 JR.sub (JR.local "j") (JR.int 1))) ]), 
+                    JR.exec (JR.invoke "swap_3" JR.this [ (JR.local "data"), (JR.map2 JR.sub (JR.local "i") (JR.int 1)), (JR.map2 JR.sub (JR.local "j") (JR.int 1)) ]), 
+                    JR.exec (JR.postUpdate (JR.local "i") (\jwN66561 -> (JR.setLocal "i" "I" (JR.lit jwN66561))) JR.increment), 
+                    JR.exec (JR.setLocal "j" "I" (JR.local "length")), 
+                    JR.while (JR.map2 JR.less (JR.local "i") (JR.local "j")) (JR.run [ 
+                        JR.exec (JR.invoke "swap_3" JR.this [ (JR.local "data"), (JR.map2 JR.sub (JR.local "i") (JR.int 1)), (JR.map2 JR.sub (JR.local "j") (JR.int 1)) ]), 
+                        JR.exec (JR.postUpdate (JR.local "i") (\jwN66671 -> (JR.setLocal "i" "I" (JR.lit jwN66671))) JR.increment), 
+                        JR.exec (JR.postUpdate (JR.local "j") (\jwN66688 -> (JR.setLocal "j" "I" (JR.lit jwN66688))) JR.decrement) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_swap_3 : JR.Method
+jm_swap_3 jheap jthis jargs =
+    JR.method [ ( "data", "" ), ( "a", "I" ), ( "b", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "temp" "I" (JR.aget (JR.local "data") (JR.local "a")), 
+                    JR.exec (JR.andThen (JR.local "data") (\jaN66818 -> JR.andThen (JR.local "a") (\jiN66818 -> (JR.aset (JR.lit jaN66818) (JR.lit jiN66818) (JR.aget (JR.local "data") (JR.local "b")))))), 
+                    JR.exec (JR.andThen (JR.local "data") (\jaN66867 -> JR.andThen (JR.local "b") (\jiN66867 -> (JR.aset (JR.lit jaN66867) (JR.lit jiN66867) (JR.local "temp"))))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_factorial_1 : JR.Method
+jm_factorial_1 jheap jthis jargs =
+    JR.method [ ( "dataLength", "I" ) ] "J"
+        (JR.run [ 
+                    JR.declare "temp" "J" (JR.long 1), 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "dataLength") (JR.int 1)) (JR.run [ 
+                        JR.run [ JR.declare "i" "I" (JR.int 1), JR.for (JR.map2 JR.lessEquals (JR.local "i") (JR.local "dataLength")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN67109 -> (JR.setLocal "i" "I" (JR.lit jwN67109))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "temp" "J" (JR.map2 JR.mul (JR.local "temp") (JR.local "i"))) ]) ] ]) identity, 
+                    JR.return (JR.local "temp") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_generate_2 : JR.Method
+jm_generate_2 jheap jthis jargs =
+    JR.method [ ( "data", "" ), ( "visitor", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "iterations" "J" (JR.invoke "factorial_1" JR.this [ (JR.alength (JR.local "data")) ]), 
+                    JR.exec (JR.invoke "print_1" JSystem.jstatic_out [ (JR.thisField "TOTAL_ITERATIONS_TABLE") ]), 
+                    JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.local "iterations") ]), 
+                    JR.run [ JR.declare "count" "J" (JR.long 0), JR.for (JR.map2 JR.less (JR.local "count") (JR.map2 JR.sub (JR.local "iterations") (JR.long 1))) (JR.run [ JR.exec (JR.postUpdate (JR.local "count") (\jwN67435 -> (JR.setLocal "count" "J" (JR.lit jwN67435))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "getNext_1" JR.this [ (JR.local "data") ]), 
+                        JR.exec (JR.invoke "visit_1" (JR.local "visitor") [ JR.this ]) ]) ], 
+                    JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.thisField "FINISHED") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_main_1 : JR.Method
+jm_main_1 jheap jthis jargs =
+    JR.method [ ( "args", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "TOTAL" "I" (JR.int 3), 
+                    JR.declare "data" "" (JR.newArray "I" [ (JR.local "TOTAL") ]), 
+                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "TOTAL")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN67747 -> (JR.setLocal "i" "I" (JR.lit jwN67747))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "data") (\jaN67662 -> JR.andThen (JR.local "i") (\jiN67662 -> (JR.aset (JR.lit jaN67662) (JR.lit jiN67662) (JR.local "i"))))) ]) ], 
+                    JR.declare "permutationVisitor" "" (JR.new IntPermutationVisitor.jnew_1 [ (JR.local "data") ]), 
+                    JR.declare "ORIGINAL_DATA_LABEL" "" (JR.str "Original Data: "), 
+                    JR.exec (JR.invoke "print_1" JSystem.jstatic_out [ (JR.local "ORIGINAL_DATA_LABEL") ]), 
+                    JR.exec (JR.invoke "print_2" (JR.local "permutationVisitor") [ (JR.local "data"), (JR.new StringMaker.jnew_0 []) ]), 
+                    JR.exec (JR.invoke "generate_2" (JR.callStatic jm_getInstance_0 []) [ (JR.local "data"), (JR.local "permutationVisitor") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

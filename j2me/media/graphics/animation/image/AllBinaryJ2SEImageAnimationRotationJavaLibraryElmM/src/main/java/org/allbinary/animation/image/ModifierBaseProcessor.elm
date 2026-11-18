@@ -1,115 +1,109 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module ModifierBaseProcessor where
+module Org.Allbinary.Animation.Image.ModifierBaseProcessor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified ImageModifierUtil -- org.allbinary.media.image.ImageModifierUtil
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
-data ModifierBaseProcessor = ModifierBaseProcessor
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ModifierBaseProcessor where
-    javaNull = javaNullRecord "ModifierBaseProcessor"
-
-instance JavaEquals ModifierBaseProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ModifierBaseProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ModifierBaseProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ModifierBaseProcessor
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ModifierBaseProcessor
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ModifierBaseProcessor header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "updateColor" (\() -> updateColor_impl this)
-    jregisterMethod header_ "updateAlpha" (\() -> updateAlpha_impl this)
-    pure this
-
-initFields_ :: ModifierBaseProcessor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO ModifierBaseProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ModifierBaseProcessor -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (ModifierBaseProcessor)
-getInstance = do
-        pure (ModifierBaseProcessor.instance_)
+
+jclass : String
+jclass =
+    "ModifierBaseProcessor"
 
 
-updateColor :: (JavaObjectClass this_) => this_ -> ImageModifierUtil.ImageModifierUtil -> Image.Image -> Image.Image -> Int -> BasicColor.BasicColor -> IO (())
-updateColor object_ a1 a2 a3 a4 a5 = jmethod object_ "updateColor" (\() -> (updateColor_impl (javaCast object_ :: ModifierBaseProcessor))) () a1 a2 a3 a4 a5
-
-updateColor_super :: (JavaObjectClass this_) => this_ -> ImageModifierUtil.ImageModifierUtil -> Image.Image -> Image.Image -> Int -> BasicColor.BasicColor -> IO (())
-updateColor_super object_ a1 a2 a3 a4 a5 = (updateColor_impl (javaCast object_ :: ModifierBaseProcessor)) a1 a2 a3 a4 a5
-
-updateColor_impl :: ModifierBaseProcessor -> ImageModifierUtil.ImageModifierUtil -> Image.Image -> Image.Image -> Int -> BasicColor.BasicColor -> IO (())
-updateColor_impl this imageModifierUtil originalImage imageToShow index basicColor = do
-        pure ()
+jchain : List String
+jchain =
+    [ "ModifierBaseProcessor" ]
 
 
-updateAlpha :: (JavaObjectClass this_) => this_ -> ImageModifierUtil.ImageModifierUtil -> Image.Image -> Image.Image -> Int -> Int -> IO (())
-updateAlpha object_ a1 a2 a3 a4 a5 = jmethod object_ "updateAlpha" (\() -> (updateAlpha_impl (javaCast object_ :: ModifierBaseProcessor))) () a1 a2 a3 a4 a5
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-updateAlpha_super :: (JavaObjectClass this_) => this_ -> ImageModifierUtil.ImageModifierUtil -> Image.Image -> Image.Image -> Int -> Int -> IO (())
-updateAlpha_super object_ a1 a2 a3 a4 a5 = (updateAlpha_impl (javaCast object_ :: ModifierBaseProcessor)) a1 a2 a3 a4 a5
 
-updateAlpha_impl :: ModifierBaseProcessor -> ImageModifierUtil.ImageModifierUtil -> Image.Image -> Image.Image -> Int -> Int -> IO (())
-updateAlpha_impl this imageModifierUtil originalImage imageToShow index alpha = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "updateColor_5", jm_updateColor_5 )
+        , ( "updateAlpha_5", jm_updateAlpha_5 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ModifierBaseProcessor"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_updateColor_5", jm_updateColor_5 ), ( "jm_updateAlpha_5", jm_updateAlpha_5 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ModifierBaseProcessor" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateColor_5 : JR.Method
+jm_updateColor_5 jheap jthis jargs =
+    JR.method [ ( "imageModifierUtil", "" ), ( "originalImage", "" ), ( "imageToShow", "" ), ( "index", "I" ), ( "basicColor", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateAlpha_5 : JR.Method
+jm_updateAlpha_5 jheap jthis jargs =
+    JR.method [ ( "imageModifierUtil", "" ), ( "originalImage", "" ), ( "imageToShow", "" ), ( "index", "I" ), ( "alpha", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

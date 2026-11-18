@@ -1,253 +1,217 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.installer
-module InitDb where
+module Org.Allbinary.Business.Installer.InitDb exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified Method -- java.lang.reflect.Method
-import qualified DbConnectionInfo -- org.allbinary.business.init.db.DbConnectionInfo
-import qualified LicensingException -- org.allbinary.logic.system.security.licensing.LicensingException
+{-| Generated Code Do Not Modify package org.allbinary.business.installer
+-}
 
-data InitDb = InitDb
-    { header_ :: JavaHeader
-    , anyType :: IORef (Any.Any)
-    , mETHOD_CALL_GET_HOST_NAME :: IORef (String)
-    , mETHOD_CALL_ADD_USERS :: IORef (String)
-    , mETHOD_CALL_ADD_DATABASES :: IORef (String)
-    , mETHOD_CALL_ADD_TABLES :: IORef (String)
-    , mETHOD_CALL_TEMP_MAIN_PATH :: IORef (String)
-    , mETHOD_CALL_MAIN_PATH :: IORef (String)
-    }
-
-instance JavaNull InitDb where
-    javaNull = javaNullRecord "InitDb"
-
-instance JavaEquals InitDb where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InitDb where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InitDb where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO InitDb
-newRecord_ = do
-    header_ <- newJavaHeader
-    anyType <- newIORef javaNull
-    mETHOD_CALL_GET_HOST_NAME <- newIORef ""
-    mETHOD_CALL_ADD_USERS <- newIORef ""
-    mETHOD_CALL_ADD_DATABASES <- newIORef ""
-    mETHOD_CALL_ADD_TABLES <- newIORef ""
-    mETHOD_CALL_TEMP_MAIN_PATH <- newIORef ""
-    mETHOD_CALL_MAIN_PATH <- newIORef ""
-    let this = InitDb header_ anyType mETHOD_CALL_GET_HOST_NAME mETHOD_CALL_ADD_USERS mETHOD_CALL_ADD_DATABASES mETHOD_CALL_ADD_TABLES mETHOD_CALL_TEMP_MAIN_PATH mETHOD_CALL_MAIN_PATH
-    jregisterLevel header_ this
-    jregisterMethod header_ "setHelper" (\() -> setHelper_impl this)
-    jregisterMethod header_ "getHelper" (\() -> getHelper_impl this)
-    jregisterMethod header_ "getHostName" (\() -> getHostName_impl this)
-    jregisterMethod header_ "addUsers" (\() -> addUsers_impl this)
-    jregisterMethod header_ "addDatabases" (\() -> addDatabases_impl this)
-    jregisterMethod header_ "addTables" (\() -> addTables_impl this)
-    jregisterMethod header_ "useTemporaryMainPath" (\() -> useTemporaryMainPath_impl this)
-    jregisterMethod header_ "useNormalMainPath" (\() -> useNormalMainPath_impl this)
-    pure this
-
-initFields_ :: InitDb -> IO ()
-initFields_ this = do
-    jset this.anyType (javaNull)
-    jset this.mETHOD_CALL_GET_HOST_NAME ("getHostName")
-    jset this.mETHOD_CALL_ADD_USERS ("addUsers")
-    jset this.mETHOD_CALL_ADD_DATABASES ("addDatabases")
-    jset this.mETHOD_CALL_ADD_TABLES ("addTables")
-    jset this.mETHOD_CALL_TEMP_MAIN_PATH ("useTemporaryMainPath")
-    jset this.mETHOD_CALL_MAIN_PATH ("useNormalMainPath")
-    pure ()
-
-new_ :: IO InitDb
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: InitDb -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
-
-new_1 :: DbConnectionInfo.DbConnectionInfo -> IO InitDb
-new_1 dbConnectionInfo = do
-    this <- newRecord_
-    init_1 this dbConnectionInfo
-    pure this
-
-init_1 :: InitDb -> DbConnectionInfo.DbConnectionInfo -> IO ()
-init_1 this dbConnectionInfo = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
 
 
-setHelper :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-setHelper object_ a1 = jmethod object_ "setHelper" (\() -> (setHelper_impl (javaCast object_ :: InitDb))) () (jtoObject a1)
 
-setHelper_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-setHelper_super object_ a1 = (setHelper_impl (javaCast object_ :: InitDb)) (jtoObject a1)
-
-setHelper_impl :: InitDb -> JavaObject -> IO (())
-setHelper_impl this anyTypeObject_ = do
-        let anyType = jtoObject anyTypeObject_
-        jset (this).anyType (anyType)
-        pure ()
+jclass : String
+jclass =
+    "InitDb"
 
 
-getHelper :: (JavaObjectClass this_) => this_ -> IO (Any.Any)
-getHelper object_ = jmethod object_ "getHelper" (\() -> (getHelper_impl (javaCast object_ :: InitDb))) ()
-
-getHelper_super :: (JavaObjectClass this_) => this_ -> IO (Any.Any)
-getHelper_super object_ = (getHelper_impl (javaCast object_ :: InitDb))
-
-getHelper_impl :: InitDb -> IO (Any.Any)
-getHelper_impl this = do
-        pure ((jtoObject (jget (this).anyType)))
+jchain : List String
+jchain =
+    [ "InitDb" ]
 
 
-getHostName :: (JavaObjectClass this_) => this_ -> IO (String)
-getHostName object_ = jmethod object_ "getHostName" (\() -> (getHostName_impl (javaCast object_ :: InitDb))) ()
-
-getHostName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getHostName_super object_ = (getHostName_impl (javaCast object_ :: InitDb))
-
-getHostName_impl :: InitDb -> IO (String)
-getHostName_impl this = do
-        handle (\(e :: JavaException) -> do
-            pure (javaNull)
-            ) $ do
-            dynamicClass <- (jobjectGetClass (jget (this).anyType))
-            method <- (Class.getMethod dynamicClass (jget (this).mETHOD_CALL_GET_HOST_NAME) javaNull)
-            let result = (javaCast (jio (Method.invoke method (jget (this).anyType) javaNull)) :: String)
-            pure (result)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "anyType", JR.defaultOf "" ), ( "METHOD_CALL_GET_HOST_NAME", JR.defaultOf "" ), ( "METHOD_CALL_ADD_USERS", JR.defaultOf "" ), ( "METHOD_CALL_ADD_DATABASES", JR.defaultOf "" ), ( "METHOD_CALL_ADD_TABLES", JR.defaultOf "" ), ( "METHOD_CALL_TEMP_MAIN_PATH", JR.defaultOf "" ), ( "METHOD_CALL_MAIN_PATH", JR.defaultOf "" ) ]
 
 
-addUsers :: (JavaObjectClass this_) => this_ -> IO (Bool)
-addUsers object_ = jmethod object_ "addUsers" (\() -> (addUsers_impl (javaCast object_ :: InitDb))) ()
-
-addUsers_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-addUsers_super object_ = (addUsers_impl (javaCast object_ :: InitDb))
-
-addUsers_impl :: InitDb -> IO (Bool)
-addUsers_impl this = do
-        handle (\(e :: JavaException) -> do
-            pure (False)
-            ) $ do
-            dynamicClass <- (jobjectGetClass (jget (this).anyType))
-            method <- (Class.getMethod dynamicClass (jget (this).mETHOD_CALL_ADD_USERS) javaNull)
-            let result = (javaCast (jio (Method.invoke method (jget (this).anyType) javaNull)) :: Bool)
-            pure (result)
+jvtable =
+    JR.vtable
+        [ ( "setHelper_1", jm_setHelper_1 )
+        , ( "getHelper_0", jm_getHelper_0 )
+        , ( "getHostName_0", jm_getHostName_0 )
+        , ( "addUsers_0", jm_addUsers_0 )
+        , ( "addDatabases_0", jm_addDatabases_0 )
+        , ( "addTables_0", jm_addTables_0 )
+        , ( "useTemporaryMainPath_0", jm_useTemporaryMainPath_0 )
+        , ( "useNormalMainPath_0", jm_useNormalMainPath_0 ) ]
+        JR.noMethods
 
 
-addDatabases :: (JavaObjectClass this_) => this_ -> IO (Bool)
-addDatabases object_ = jmethod object_ "addDatabases" (\() -> (addDatabases_impl (javaCast object_ :: InitDb))) ()
-
-addDatabases_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-addDatabases_super object_ = (addDatabases_impl (javaCast object_ :: InitDb))
-
-addDatabases_impl :: InitDb -> IO (Bool)
-addDatabases_impl this = do
-        handle (\(e :: JavaException) -> do
-            pure (False)
-            ) $ do
-            dynamicClass <- (jobjectGetClass (jget (this).anyType))
-            method <- (Class.getMethod dynamicClass (jget (this).mETHOD_CALL_ADD_DATABASES) javaNull)
-            let result = (javaCast (jio (Method.invoke method (jget (this).anyType) javaNull)) :: Bool)
-            pure (result)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InitDb"
+        [ ( "jm_setHelper_1", jm_setHelper_1 ), ( "jm_getHelper_0", jm_getHelper_0 ), ( "jm_getHostName_0", jm_getHostName_0 ), ( "jm_addUsers_0", jm_addUsers_0 ), ( "jm_addDatabases_0", jm_addDatabases_0 ), ( "jm_addTables_0", jm_addTables_0 ), ( "jm_useTemporaryMainPath_0", jm_useTemporaryMainPath_0 ), ( "jm_useNormalMainPath_0", jm_useNormalMainPath_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
 
-addTables :: (JavaObjectClass this_) => this_ -> IO (Bool)
-addTables object_ = jmethod object_ "addTables" (\() -> (addTables_impl (javaCast object_ :: InitDb))) ()
-
-addTables_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-addTables_super object_ = (addTables_impl (javaCast object_ :: InitDb))
-
-addTables_impl :: InitDb -> IO (Bool)
-addTables_impl this = do
-        handle (\(e :: JavaException) -> do
-            pure (False)
-            ) $ do
-            dynamicClass <- (jobjectGetClass (jget (this).anyType))
-            method <- (Class.getMethod dynamicClass (jget (this).mETHOD_CALL_ADD_TABLES) javaNull)
-            let result = (javaCast (jio (Method.invoke method (jget (this).anyType) javaNull)) :: Bool)
-            pure (result)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-useTemporaryMainPath :: (JavaObjectClass this_) => this_ -> IO (Bool)
-useTemporaryMainPath object_ = jmethod object_ "useTemporaryMainPath" (\() -> (useTemporaryMainPath_impl (javaCast object_ :: InitDb))) ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "METHOD_CALL_GET_HOST_NAME" "" JR.this (JR.str "getHostName")),
+                JR.exec (JR.setField "METHOD_CALL_ADD_USERS" "" JR.this (JR.str "addUsers")),
+                JR.exec (JR.setField "METHOD_CALL_ADD_DATABASES" "" JR.this (JR.str "addDatabases")),
+                JR.exec (JR.setField "METHOD_CALL_ADD_TABLES" "" JR.this (JR.str "addTables")),
+                JR.exec (JR.setField "METHOD_CALL_TEMP_MAIN_PATH" "" JR.this (JR.str "useTemporaryMainPath")),
+                JR.exec (JR.setField "METHOD_CALL_MAIN_PATH" "" JR.this (JR.str "useNormalMainPath")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
-useTemporaryMainPath_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-useTemporaryMainPath_super object_ = (useTemporaryMainPath_impl (javaCast object_ :: InitDb))
 
-useTemporaryMainPath_impl :: InitDb -> IO (Bool)
-useTemporaryMainPath_impl this = do
-        handle (\(e :: JavaException) -> do
-            pure (False)
-            ) $ do
-            dynamicClass <- (jobjectGetClass (jget (this).anyType))
-            method <- (Class.getMethod dynamicClass (jget (this).mETHOD_CALL_TEMP_MAIN_PATH) javaNull)
-            let result = (javaCast (jio (Method.invoke method (jget (this).anyType) javaNull)) :: Bool)
-            pure (result)
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
 
-useNormalMainPath :: (JavaObjectClass this_) => this_ -> IO (Bool)
-useNormalMainPath object_ = jmethod object_ "useNormalMainPath" (\() -> (useNormalMainPath_impl (javaCast object_ :: InitDb))) ()
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "dbConnectionInfo", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "METHOD_CALL_GET_HOST_NAME" "" JR.this (JR.str "getHostName")),
+                JR.exec (JR.setField "METHOD_CALL_ADD_USERS" "" JR.this (JR.str "addUsers")),
+                JR.exec (JR.setField "METHOD_CALL_ADD_DATABASES" "" JR.this (JR.str "addDatabases")),
+                JR.exec (JR.setField "METHOD_CALL_ADD_TABLES" "" JR.this (JR.str "addTables")),
+                JR.exec (JR.setField "METHOD_CALL_TEMP_MAIN_PATH" "" JR.this (JR.str "useTemporaryMainPath")),
+                JR.exec (JR.setField "METHOD_CALL_MAIN_PATH" "" JR.this (JR.str "useNormalMainPath")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
-useNormalMainPath_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-useNormalMainPath_super object_ = (useNormalMainPath_impl (javaCast object_ :: InitDb))
 
-useNormalMainPath_impl :: InitDb -> IO (Bool)
-useNormalMainPath_impl this = do
-        handle (\(e :: JavaException) -> do
-            pure (False)
-            ) $ do
-            dynamicClass <- (jobjectGetClass (jget (this).anyType))
-            method <- (Class.getMethod dynamicClass (jget (this).mETHOD_CALL_MAIN_PATH) javaNull)
-            let result = (javaCast (jio (Method.invoke method (jget (this).anyType) javaNull)) :: Bool)
-            pure (result)
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
 
+
+jm_setHelper_1 : JR.Method
+jm_setHelper_1 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "anyType" "" JR.this (JR.local "anyType")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHelper_0 : JR.Method
+jm_getHelper_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "anyType") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHostName_0 : JR.Method
+jm_getHostName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "dynamicClass" "" (JR.getClass (JR.thisField "anyType")), 
+                        JR.declare "method" "" (JR.invoke "getMethod_2" (JR.local "dynamicClass") [ (JR.thisField "METHOD_CALL_GET_HOST_NAME"), JR.null ]), 
+                        JR.declare "result" "" (JR.invoke "invoke_2" (JR.local "method") [ (JR.thisField "anyType"), JR.null ]), 
+                        JR.return (JR.local "result") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.return JR.null ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addUsers_0 : JR.Method
+jm_addUsers_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "dynamicClass" "" (JR.getClass (JR.thisField "anyType")), 
+                        JR.declare "method" "" (JR.invoke "getMethod_2" (JR.local "dynamicClass") [ (JR.thisField "METHOD_CALL_ADD_USERS"), JR.null ]), 
+                        JR.declare "result" "" (JR.invoke "invoke_2" (JR.local "method") [ (JR.thisField "anyType"), JR.null ]), 
+                        JR.return (JR.invoke "booleanValue_0" (JR.local "result") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addDatabases_0 : JR.Method
+jm_addDatabases_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "dynamicClass" "" (JR.getClass (JR.thisField "anyType")), 
+                        JR.declare "method" "" (JR.invoke "getMethod_2" (JR.local "dynamicClass") [ (JR.thisField "METHOD_CALL_ADD_DATABASES"), JR.null ]), 
+                        JR.declare "result" "" (JR.invoke "invoke_2" (JR.local "method") [ (JR.thisField "anyType"), JR.null ]), 
+                        JR.return (JR.invoke "booleanValue_0" (JR.local "result") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addTables_0 : JR.Method
+jm_addTables_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "dynamicClass" "" (JR.getClass (JR.thisField "anyType")), 
+                        JR.declare "method" "" (JR.invoke "getMethod_2" (JR.local "dynamicClass") [ (JR.thisField "METHOD_CALL_ADD_TABLES"), JR.null ]), 
+                        JR.declare "result" "" (JR.invoke "invoke_2" (JR.local "method") [ (JR.thisField "anyType"), JR.null ]), 
+                        JR.return (JR.invoke "booleanValue_0" (JR.local "result") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_useTemporaryMainPath_0 : JR.Method
+jm_useTemporaryMainPath_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "dynamicClass" "" (JR.getClass (JR.thisField "anyType")), 
+                        JR.declare "method" "" (JR.invoke "getMethod_2" (JR.local "dynamicClass") [ (JR.thisField "METHOD_CALL_TEMP_MAIN_PATH"), JR.null ]), 
+                        JR.declare "result" "" (JR.invoke "invoke_2" (JR.local "method") [ (JR.thisField "anyType"), JR.null ]), 
+                        JR.return (JR.invoke "booleanValue_0" (JR.local "result") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_useNormalMainPath_0 : JR.Method
+jm_useNormalMainPath_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "dynamicClass" "" (JR.getClass (JR.thisField "anyType")), 
+                        JR.declare "method" "" (JR.invoke "getMethod_2" (JR.local "dynamicClass") [ (JR.thisField "METHOD_CALL_MAIN_PATH"), JR.null ]), 
+                        JR.declare "result" "" (JR.invoke "invoke_2" (JR.local "method") [ (JR.thisField "anyType"), JR.null ]), 
+                        JR.return (JR.invoke "booleanValue_0" (JR.local "result") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

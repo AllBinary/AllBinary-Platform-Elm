@@ -1,238 +1,208 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ai
-module BasicAI (module BasicAI, module ArtificialIntelligence) where
+module Org.Allbinary.Game.Ai.BasicAI exposing (..)
 
-import ArtificialIntelligence hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, processAI, processAI_super, processAI_impl, processKeyAI, processKeyAI_super, processKeyAI_impl, setLastKey, setLastKey_super, setLastKey_impl, getLastKey, getLastKey_super, getLastKey_impl, getOwnerLayerInterface, getOwnerLayerInterface_super, getOwnerLayerInterface_impl, getGameInput, getGameInput_super, getGameInput_impl, getName, getName_super, getName_impl, toString, toString_super, toString_impl, getSourceId, getSourceId_super, getSourceId_impl, aI_VISITOR, iD, logUtil, commonStrings, gameKeyEventFactory, ownerLayerInterface, gameInput, lastKey)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Class -- same package or java.lang
-import qualified ArtificialIntelligence -- org.allbinary.ai.ArtificialIntelligence
-import qualified CanvasUtil -- org.allbinary.game.displayable.canvas.CanvasUtil
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified GameKeyEventSourceInterface -- org.allbinary.game.input.GameKeyEventSourceInterface
-import qualified GameKeyEventFactory -- org.allbinary.game.input.event.GameKeyEventFactory
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.ai
+-}
 
--- implements GameKeyEventSourceInterface
-data BasicAI = BasicAI
-    { header_ :: JavaHeader
-    , base :: ArtificialIntelligence.ArtificialIntelligence
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , gameKeyEventFactory :: IORef (GameKeyEventFactory.GameKeyEventFactory)
-    , ownerLayerInterface :: IORef (AllBinaryLayer.AllBinaryLayer)
-    , gameInput :: IORef (GameInput.GameInput)
-    , lastKey :: IORef (Int)
-    }
-
-instance JavaNull BasicAI where
-    javaNull = javaNullRecord "BasicAI"
-
-instance JavaEquals BasicAI where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicAI where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicAI where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE aI_VISITOR #-}
-aI_VISITOR = unsafePerformIO ((SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 2))
-
-{-# NOINLINE iD #-}
-iD = unsafePerformIO ((SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 1))
-
-newRecord_ :: IO BasicAI
-newRecord_ = do
-    base <- ArtificialIntelligence.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    gameKeyEventFactory <- newIORef javaNull
-    ownerLayerInterface <- newIORef javaNull
-    gameInput <- newIORef javaNull
-    lastKey <- newIORef 0
-    let this = BasicAI header_ base logUtil commonStrings gameKeyEventFactory ownerLayerInterface gameInput lastKey
-    jregisterLevel header_ this
-    GameKeyEventSourceInterface.registerInterface_ header_
-    jregisterMethod header_ "processAI" (\() -> processAI_impl this)
-    jregisterMethod header_ "processKeyAI" (\() -> processKeyAI_impl this)
-    jregisterMethod header_ "setLastKey" (\() -> setLastKey_impl this)
-    jregisterMethod header_ "getLastKey" (\() -> getLastKey_impl this)
-    jregisterMethod header_ "getOwnerLayerInterface" (\() -> getOwnerLayerInterface_impl this)
-    jregisterMethod header_ "getGameInput" (\() -> getGameInput_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    jregisterMethod header_ "getSourceId" (\() -> getSourceId_impl this)
-    pure this
-
-initFields_ :: BasicAI -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.gameKeyEventFactory =<< (GameKeyEventFactory.getInstance)
-    jset this.ownerLayerInterface (javaNull)
-    jset this.gameInput (javaNull)
-    jset this.lastKey ((Prelude.negate 1))
-    pure ()
-
-new_2 :: AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO BasicAI
-new_2 ownerLayerInterface gameInput = do
-    this <- newRecord_
-    init_2 this ownerLayerInterface gameInput
-    pure this
-
-init_2 :: BasicAI -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO ()
-init_2 this ownerLayerInterface gameInput = do
-        ArtificialIntelligence.init_ this.base
-        initFields_ this
-        jset (this).ownerLayerInterface (ownerLayerInterface)
-        jset (this).gameInput (gameInput)
-        pure ()
+import JR
+import Org.Allbinary.Ai.ArtificialIntelligence as ArtificialIntelligence
+import Org.Allbinary.Game.Displayable.Canvas.CanvasUtil as CanvasUtil
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Input.Event.GameKeyEventFactory as GameKeyEventFactory
+import Org.Allbinary.Game.Input.GameKeyEventSourceInterface as GameKeyEventSourceInterface
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
--- throws Exception
-processAI :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI object_ a1 = jmethod object_ "processAI" (\() -> (processAI_impl (javaCast object_ :: BasicAI))) () a1
-
-processAI_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_super object_ a1 = (processAI_impl (javaCast object_ :: BasicAI)) a1
-
-processAI_impl :: BasicAI -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_impl this allBinaryLayerManager = do
-        javaThrow ((JavaException "Exception" (jget ((jget (this).commonStrings)).nOT_IMPLEMENTED)))
-        pure ()
+jclass : String
+jclass =
+    "BasicAI"
 
 
--- throws Exception
-processKeyAI :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-processKeyAI object_ a1 = jmethod object_ "processKeyAI" (\() -> (processKeyAI_impl (javaCast object_ :: BasicAI))) () a1
-
-processKeyAI_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-processKeyAI_super object_ a1 = (processKeyAI_impl (javaCast object_ :: BasicAI)) a1
-
-processKeyAI_impl :: BasicAI -> Int -> IO (())
-processKeyAI_impl this key = do
-        when (key /= (Prelude.negate 1)) $ do
-            Control.Monad.void (GameInput.add ((jget (this).gameInput)) (jio (GameKeyEventFactory.getInstanceForKey ((jget (this).gameKeyEventFactory)) this key)))
-        pure ()
+jchain : List String
+jchain =
+    [ "BasicAI" ]
+        ++ ArtificialIntelligence.jchain
+        ++ GameKeyEventSourceInterface.jchain
 
 
-setLastKey :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLastKey object_ a1 = jmethod object_ "setLastKey" (\() -> (setLastKey_impl (javaCast object_ :: BasicAI))) () a1
-
-setLastKey_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLastKey_super object_ a1 = (setLastKey_impl (javaCast object_ :: BasicAI)) a1
-
-setLastKey_impl :: BasicAI -> Int -> IO (())
-setLastKey_impl this lastKey = do
-        jset (this).lastKey (lastKey)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    ArtificialIntelligence.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "gameKeyEventFactory", JR.defaultOf "" ), ( "ownerLayerInterface", JR.defaultOf "" ), ( "gameInput", JR.defaultOf "" ), ( "lastKey", JR.defaultOf "I" ) ]
 
 
-getLastKey :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastKey object_ = jmethod object_ "getLastKey" (\() -> (getLastKey_impl (javaCast object_ :: BasicAI))) ()
-
-getLastKey_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastKey_super object_ = (getLastKey_impl (javaCast object_ :: BasicAI))
-
-getLastKey_impl :: BasicAI -> IO (Int)
-getLastKey_impl this = do
-        pure ((jget (this).lastKey))
-
-
-getOwnerLayerInterface :: (JavaObjectClass this_) => this_ -> IO (AllBinaryLayer.AllBinaryLayer)
-getOwnerLayerInterface object_ = jmethod object_ "getOwnerLayerInterface" (\() -> (getOwnerLayerInterface_impl (javaCast object_ :: BasicAI))) ()
-
-getOwnerLayerInterface_super :: (JavaObjectClass this_) => this_ -> IO (AllBinaryLayer.AllBinaryLayer)
-getOwnerLayerInterface_super object_ = (getOwnerLayerInterface_impl (javaCast object_ :: BasicAI))
-
-getOwnerLayerInterface_impl :: BasicAI -> IO (AllBinaryLayer.AllBinaryLayer)
-getOwnerLayerInterface_impl this = do
-        pure ((jget (this).ownerLayerInterface))
+jvtable =
+    JR.vtable
+        [ ( "processAI_1", jm_processAI_1 )
+        , ( "processKeyAI_1", jm_processKeyAI_1 )
+        , ( "setLastKey_1", jm_setLastKey_1 )
+        , ( "getLastKey_0", jm_getLastKey_0 )
+        , ( "getOwnerLayerInterface_0", jm_getOwnerLayerInterface_0 )
+        , ( "getGameInput_0", jm_getGameInput_0 )
+        , ( "getName_0", jm_getName_0 )
+        , ( "toString_0", jm_toString_0 )
+        , ( "getSourceId_0", jm_getSourceId_0 ) ]
+        ArtificialIntelligence.jvtable
 
 
-getGameInput :: (JavaObjectClass this_) => this_ -> IO (GameInput.GameInput)
-getGameInput object_ = jmethod object_ "getGameInput" (\() -> (getGameInput_impl (javaCast object_ :: BasicAI))) ()
-
-getGameInput_super :: (JavaObjectClass this_) => this_ -> IO (GameInput.GameInput)
-getGameInput_super object_ = (getGameInput_impl (javaCast object_ :: BasicAI))
-
-getGameInput_impl :: BasicAI -> IO (GameInput.GameInput)
-getGameInput_impl this = do
-        pure ((jget (this).gameInput))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicAI"
+        [ ( "jm_processAI_1", jm_processAI_1 ), ( "jm_processKeyAI_1", jm_processKeyAI_1 ), ( "jm_setLastKey_1", jm_setLastKey_1 ), ( "jm_getLastKey_0", jm_getLastKey_0 ), ( "jm_getOwnerLayerInterface_0", jm_getOwnerLayerInterface_0 ), ( "jm_getGameInput_0", jm_getGameInput_0 ), ( "jm_getName_0", jm_getName_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jm_getSourceId_0", jm_getSourceId_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_AI_VISITOR", jstatic_AI_VISITOR ), ( "jstatic_ID", jstatic_ID ) ]
+        jheap
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: BasicAI))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: BasicAI))
-
-getName_impl :: BasicAI -> IO (String)
-getName_impl this = do
-        (Class.getName ((jio (jobjectGetClass this))))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: BasicAI))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: BasicAI))
-
-toString_impl :: BasicAI -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).nEW_LINE))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (BasicAI.getName this)))
-        Control.Monad.void (StringMaker.append stringBuffer " LastKey: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (CanvasUtil.getKeyName (jio (BasicAI.getLastKey this)))))
-        (StringMaker.toString stringBuffer)
+jstatic_AI_VISITOR : JR.M
+jstatic_AI_VISITOR s =
+    JR.static "BasicAI" jclinit "AI_VISITOR"
+        (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 2) ])
+        s
 
 
-getSourceId :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSourceId object_ = jmethod object_ "getSourceId" (\() -> (getSourceId_impl (javaCast object_ :: BasicAI))) ()
+jstatic_ID : JR.M
+jstatic_ID s =
+    JR.static "BasicAI" jclinit "ID"
+        (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 1) ])
+        s
 
-getSourceId_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSourceId_super object_ = (getSourceId_impl (javaCast object_ :: BasicAI))
 
-getSourceId_impl :: BasicAI -> IO (Int)
-getSourceId_impl this = do
-        pure (1)
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "ownerLayerInterface", "" ), ( "gameInput", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ArtificialIntelligence.jinit_0 JR.this []),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameKeyEventFactory" "" JR.this (JR.callStatic GameKeyEventFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "lastKey" "I" JR.this (JR.map JR.neg (JR.int 1))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "ownerLayerInterface" "" JR.this (JR.local "ownerLayerInterface")), 
+                    JR.exec (JR.setField "gameInput" "" JR.this (JR.local "gameInput")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_processAI_1 : JR.Method
+jm_processAI_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processKeyAI_1 : JR.Method
+jm_processKeyAI_1 jheap jthis jargs =
+    JR.method [ ( "key", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "key") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "gameInput") [ (JR.invoke "getInstanceForKey_2" (JR.thisField "gameKeyEventFactory") [ JR.this, (JR.local "key") ]) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLastKey_1 : JR.Method
+jm_setLastKey_1 jheap jthis jargs =
+    JR.method [ ( "lastKey", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "lastKey" "I" JR.this (JR.local "lastKey")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLastKey_0 : JR.Method
+jm_getLastKey_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "lastKey") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getOwnerLayerInterface_0 : JR.Method
+jm_getOwnerLayerInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "ownerLayerInterface") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameInput_0 : JR.Method
+jm_getGameInput_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameInput") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getName_0" (JR.getClass JR.this) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "NEW_LINE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " LastKey: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.callStatic CanvasUtil.jm_getKeyName_1 [ (JR.invoke "getLastKey_0" JR.this []) ]) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSourceId_0 : JR.Method
+jm_getSourceId_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 1) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

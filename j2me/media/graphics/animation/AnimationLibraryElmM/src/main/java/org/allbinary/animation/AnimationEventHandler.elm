@@ -1,89 +1,92 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module AnimationEventHandler (module AnimationEventHandler, module BasicEventHandler) where
+module Org.Allbinary.Animation.AnimationEventHandler exposing (..)
 
-import BasicEventHandler hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, eventHandler)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicEventHandler -- org.allbinary.logic.util.event.handler.BasicEventHandler
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
-data AnimationEventHandler = AnimationEventHandler
-    { header_ :: JavaHeader
-    , base :: BasicEventHandler.BasicEventHandler
-    }
-
-instance JavaNull AnimationEventHandler where
-    javaNull = javaNullRecord "AnimationEventHandler"
-
-instance JavaEquals AnimationEventHandler where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AnimationEventHandler where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AnimationEventHandler where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-eventHandler :: AnimationEventHandler
-{-# NOINLINE eventHandler #-}
-eventHandler = unsafePerformIO ((new_))
-
-newRecord_ :: IO AnimationEventHandler
-newRecord_ = do
-    base <- BasicEventHandler.newRecord_
-    let header_ = base.header_
-    let this = AnimationEventHandler header_ base
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: AnimationEventHandler -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AnimationEventHandler
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AnimationEventHandler -> IO ()
-init_ this = do
-        BasicEventHandler.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.Util.Event.Handler.BasicEventHandler as BasicEventHandler
 
 
-getInstance :: IO (AnimationEventHandler)
-getInstance = do
-        pure (AnimationEventHandler.eventHandler)
+jclass : String
+jclass =
+    "AnimationEventHandler"
 
+
+jchain : List String
+jchain =
+    [ "AnimationEventHandler" ]
+        ++ BasicEventHandler.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicEventHandler.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        BasicEventHandler.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AnimationEventHandler"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_eventHandler", jstatic_eventHandler ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_eventHandler : JR.M
+jstatic_eventHandler s =
+    JR.static "AnimationEventHandler" jclinit "eventHandler"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect BasicEventHandler.jinit_0 JR.this []),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_eventHandler ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

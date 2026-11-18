@@ -1,120 +1,112 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.tick
-module NullTickable where
+module Org.Allbinary.Game.Tick.NullTickable exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified TickableInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.tick
+-}
 
--- implements TickableInterface
-data NullTickable = NullTickable
-    { header_ :: JavaHeader
-    , nAME :: IORef (String)
-    }
-
-instance JavaNull NullTickable where
-    javaNull = javaNullRecord "NullTickable"
-
-instance JavaEquals NullTickable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NullTickable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NullTickable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: NullTickable
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NullTickable
-newRecord_ = do
-    header_ <- newJavaHeader
-    nAME <- newIORef ""
-    let this = NullTickable header_ nAME
-    jregisterLevel header_ this
-    TickableInterface.registerInterface_ header_
-    jregisterMethod header_ "processTick" (\() -> processTick_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    pure this
-
-initFields_ :: NullTickable -> IO ()
-initFields_ this = do
-    jset this.nAME ("NulLTickable")
-    pure ()
-
-new_ :: IO NullTickable
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NullTickable -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Tick.TickableInterface as TickableInterface
 
 
-getInstance :: IO (NullTickable)
-getInstance = do
-        pure (NullTickable.sINGLETON)
+jclass : String
+jclass =
+    "NullTickable"
 
 
--- throws Exception
-processTick :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processTick object_ a1 = jmethod object_ "processTick" (\() -> (processTick_impl (javaCast object_ :: NullTickable))) () a1
-
-processTick_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processTick_super object_ a1 = (processTick_impl (javaCast object_ :: NullTickable)) a1
-
-processTick_impl :: NullTickable -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processTick_impl this allBinaryLayerManager = do
-        pure ()
+jchain : List String
+jchain =
+    [ "NullTickable" ]
+        ++ TickableInterface.jchain
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: NullTickable))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "NAME", JR.defaultOf "" ) ]
 
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: NullTickable))
 
-getName_impl :: NullTickable -> IO (String)
-getName_impl this = do
-        pure ((jget (this).nAME))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "processTick_1", jm_processTick_1 )
+        , ( "getName_0", jm_getName_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullTickable"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_processTick_1", jm_processTick_1 ), ( "jm_getName_0", jm_getName_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "NullTickable" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "NAME" "" JR.this (JR.str "NulLTickable")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processTick_1 : JR.Method
+jm_processTick_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "NAME") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

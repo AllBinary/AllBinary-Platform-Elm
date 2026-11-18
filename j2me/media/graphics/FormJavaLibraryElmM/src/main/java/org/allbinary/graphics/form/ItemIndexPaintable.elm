@@ -1,103 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
-module ItemIndexPaintable where
+module Org.Allbinary.Graphics.Form.ItemIndexPaintable exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified ABCustomItem -- org.allbinary.graphics.form.item.ABCustomItem
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form
+-}
 
-data ItemIndexPaintable = ItemIndexPaintable
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ItemIndexPaintable where
-    javaNull = javaNullRecord "ItemIndexPaintable"
-
-instance JavaEquals ItemIndexPaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ItemIndexPaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ItemIndexPaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ItemIndexPaintable
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ItemIndexPaintable
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ItemIndexPaintable header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: ItemIndexPaintable -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO ItemIndexPaintable
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ItemIndexPaintable -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (ItemIndexPaintable)
-getInstance = do
-        pure (ItemIndexPaintable.instance_)
+
+jclass : String
+jclass =
+    "ItemIndexPaintable"
 
 
--- throws Exception
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paint object_ a1 a2 a3 a4 a5 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: ItemIndexPaintable))) () a1 a2 a3 a4 a5
+jchain : List String
+jchain =
+    [ "ItemIndexPaintable" ]
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paint_super object_ a1 a2 a3 a4 a5 = (paint_impl (javaCast object_ :: ItemIndexPaintable)) a1 a2 a3 a4 a5
 
-paint_impl :: ItemIndexPaintable -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paint_impl this graphics index item dx dy = do
-        pure (0)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "paint_5", jm_paint_5 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ItemIndexPaintable"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_paint_5", jm_paint_5 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ItemIndexPaintable" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_5 : JR.Method
+jm_paint_5 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "index", "I" ), ( "item", "" ), ( "dx", "I" ), ( "dy", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

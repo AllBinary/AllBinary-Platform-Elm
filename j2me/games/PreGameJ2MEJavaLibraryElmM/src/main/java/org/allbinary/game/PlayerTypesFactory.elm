@@ -1,98 +1,92 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
-module PlayerTypesFactory where
+module Org.Allbinary.Game.PlayerTypesFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified PlayerType -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.game
+-}
 
-data PlayerTypesFactory = PlayerTypesFactory
-    { header_ :: JavaHeader
-    , pLAYER_TYPE_ONE :: IORef (PlayerType.PlayerType)
-    , pLAYER_TYPE_TWO :: IORef (PlayerType.PlayerType)
-    , pLAYER_TYPE_THREE :: IORef (PlayerType.PlayerType)
-    }
-
-instance JavaNull PlayerTypesFactory where
-    javaNull = javaNullRecord "PlayerTypesFactory"
-
-instance JavaEquals PlayerTypesFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlayerTypesFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlayerTypesFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: PlayerTypesFactory
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PlayerTypesFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    pLAYER_TYPE_ONE <- newIORef javaNull
-    pLAYER_TYPE_TWO <- newIORef javaNull
-    pLAYER_TYPE_THREE <- newIORef javaNull
-    let this = PlayerTypesFactory header_ pLAYER_TYPE_ONE pLAYER_TYPE_TWO pLAYER_TYPE_THREE
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: PlayerTypesFactory -> IO ()
-initFields_ this = do
-    jset this.pLAYER_TYPE_ONE =<< (PlayerType.new_2 "Player Type One" 0)
-    jset this.pLAYER_TYPE_TWO =<< (PlayerType.new_2 "Player Type Two" 1)
-    jset this.pLAYER_TYPE_THREE =<< (PlayerType.new_2 "Player Type Three" 2)
-    pure ()
-
-new_ :: IO PlayerTypesFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PlayerTypesFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.PlayerType as PlayerType
 
 
-getInstance :: IO (PlayerTypesFactory)
-getInstance = do
-        pure (PlayerTypesFactory.sINGLETON)
+jclass : String
+jclass =
+    "PlayerTypesFactory"
 
+
+jchain : List String
+jchain =
+    [ "PlayerTypesFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "PLAYER_TYPE_ONE", JR.defaultOf "" ), ( "PLAYER_TYPE_TWO", JR.defaultOf "" ), ( "PLAYER_TYPE_THREE", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlayerTypesFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "PlayerTypesFactory" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "PLAYER_TYPE_ONE" "" JR.this (JR.new PlayerType.jnew_2 [ (JR.str "Player Type One"), (JR.int 0) ])),
+                JR.exec (JR.setField "PLAYER_TYPE_TWO" "" JR.this (JR.new PlayerType.jnew_2 [ (JR.str "Player Type Two"), (JR.int 1) ])),
+                JR.exec (JR.setField "PLAYER_TYPE_THREE" "" JR.this (JR.new PlayerType.jnew_2 [ (JR.str "Player Type Three"), (JR.int 2) ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

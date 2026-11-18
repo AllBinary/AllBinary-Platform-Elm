@@ -1,129 +1,109 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
-module LurchRotationAI (module LurchRotationAI, module LurchAI) where
+module Org.Allbinary.Game.Ag.Ai.LurchRotationAI exposing (..)
 
-import LurchAI hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, reverse, reverse_super, reverse_impl, update, update_super, update_impl, rotationAnimationInterface)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified IndexedAnimation -- org.allbinary.animation.IndexedAnimation
-import qualified RotationAnimationInterface -- org.allbinary.animation.RotationAnimationInterface
-import qualified RotationAnimationInterfaceCompositeInterface -- org.allbinary.animation.RotationAnimationInterfaceCompositeInterface
-import qualified LurchAI -- org.allbinary.game.ag.ai.tactical.LurchAI
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AngleIncrementInfo -- org.allbinary.math.AngleIncrementInfo
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai
+-}
 
-data LurchRotationAI = LurchRotationAI
-    { header_ :: JavaHeader
-    , base :: LurchAI.LurchAI
-    , rotationAnimationInterface :: IORef (IndexedAnimation.IndexedAnimation)
-    }
-
-instance JavaNull LurchRotationAI where
-    javaNull = javaNullRecord "LurchRotationAI"
-
-instance JavaEquals LurchRotationAI where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LurchRotationAI where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LurchRotationAI where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO LurchRotationAI
-newRecord_ = do
-    base <- LurchAI.newRecord_
-    let header_ = base.header_
-    rotationAnimationInterface <- newIORef javaNull
-    let this = LurchRotationAI header_ base rotationAnimationInterface
-    jregisterLevel header_ this
-    jregisterMethod header_ "reverse" (\() -> reverse_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    pure this
-
-initFields_ :: LurchRotationAI -> IO ()
-initFields_ this = do
-    jset this.rotationAnimationInterface (javaNull)
-    pure ()
-
-new_2 :: AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO LurchRotationAI
-new_2 ownerLayerInterface gameInput = do
-    this <- newRecord_
-    init_2 this ownerLayerInterface gameInput
-    pure this
-
-init_2 :: LurchRotationAI -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO ()
-init_2 this ownerLayerInterface gameInput = do
-        LurchAI.init_2 this.base (ownerLayerInterface) (gameInput)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        let rotationAnimationInterfaceCompositeInterface = (javaCast (jio (LurchAI.getOwnerLayerInterface this)) :: RotationAnimationInterfaceCompositeInterface.RotationAnimationInterfaceCompositeInterface)
-        assignedValue <- (RotationAnimationInterfaceCompositeInterface.getRotationAnimationInterface rotationAnimationInterfaceCompositeInterface)
-        jset (this).rotationAnimationInterface (assignedValue)
-        Control.Monad.void (LurchRotationAI.update this)
-        pure ()
+import JR
+import Org.Allbinary.Game.Ag.Ai.Tactical.LurchAI as LurchAI
 
 
-reverse :: (JavaObjectClass this_) => this_ -> IO (())
-reverse object_ = jmethod object_ "reverse" (\() -> (reverse_impl (javaCast object_ :: LurchRotationAI))) ()
-
-reverse_super :: (JavaObjectClass this_) => this_ -> IO (())
-reverse_super object_ = (reverse_impl (javaCast object_ :: LurchRotationAI))
-
-reverse_impl :: LurchRotationAI -> IO (())
-reverse_impl this = do
-        Control.Monad.void (LurchAI.reverse_super this.base)
-        Control.Monad.void (LurchRotationAI.update this)
-        pure ()
+jclass : String
+jclass =
+    "LurchRotationAI"
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: LurchRotationAI))) ()
+jchain : List String
+jchain =
+    [ "LurchRotationAI" ]
+        ++ LurchAI.jchain
 
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: LurchRotationAI))
 
-update_impl :: LurchRotationAI -> IO (())
-update_impl this = do
-        if ((jget (this).base.currentRelativeAngle) == 0) then do
-            let rotationAnimationInterface = (javaCast (jget (this).rotationAnimationInterface) :: RotationAnimationInterface.RotationAnimationInterface)
-            angleIncrementInfo <- (RotationAnimationInterface.getAngleIncrementInfo ((jio (RotationAnimationInterface.getAngleInfoP rotationAnimationInterface))))
-            let rotationAnimationInterfaceCompositeInterface = (javaCast (jio (LurchAI.getOwnerLayerInterface this)) :: RotationAnimationInterfaceCompositeInterface.RotationAnimationInterfaceCompositeInterface)
-            Control.Monad.void (RotationAnimationInterfaceCompositeInterface.setFrame rotationAnimationInterfaceCompositeInterface (jio (intValue ((jget (angleIncrementInfo).rIGHT_FRAME)))))
-        else when ((jget (this).base.currentRelativeAngle) == 180) $ do
-            let rotationAnimationInterface = (javaCast (jget (this).rotationAnimationInterface) :: RotationAnimationInterface.RotationAnimationInterface)
-            angleIncrementInfo <- (RotationAnimationInterface.getAngleIncrementInfo ((jio (RotationAnimationInterface.getAngleInfoP rotationAnimationInterface))))
-            let rotationAnimationInterfaceCompositeInterface = (javaCast (jio (LurchAI.getOwnerLayerInterface this)) :: RotationAnimationInterfaceCompositeInterface.RotationAnimationInterfaceCompositeInterface)
-            Control.Monad.void (RotationAnimationInterfaceCompositeInterface.setFrame rotationAnimationInterfaceCompositeInterface (jio (intValue ((jget (angleIncrementInfo).lEFT_FRAME)))))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    LurchAI.jfields ++ [ ( "rotationAnimationInterface", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "reverse_0", jm_reverse_0 )
+        , ( "update_0", jm_update_0 ) ]
+        LurchAI.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LurchRotationAI"
+        [ ( "jm_reverse_0", jm_reverse_0 ), ( "jm_update_0", jm_update_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "ownerLayerInterface", "" ), ( "gameInput", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect LurchAI.jinit_2 JR.this [ (JR.local "ownerLayerInterface"), (JR.local "gameInput") ]),
+                identity,
+                (JR.run [ 
+                    JR.declare "rotationAnimationInterfaceCompositeInterface" "" (JR.invoke "getOwnerLayerInterface_0" JR.this []), 
+                    JR.exec (JR.setField "rotationAnimationInterface" "" JR.this (JR.invoke "getRotationAnimationInterface_0" (JR.local "rotationAnimationInterfaceCompositeInterface") [])), 
+                    JR.exec (JR.invoke "update_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_reverse_0 : JR.Method
+jm_reverse_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia LurchAI.jvtable "reverse_0" JR.this []), 
+                    JR.exec (JR.invoke "update_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "currentRelativeAngle") (JR.int 0)) (JR.run [ 
+                        JR.declare "rotationAnimationInterface" "" (JR.thisField "rotationAnimationInterface"), 
+                        JR.declare "angleIncrementInfo" "" (JR.invoke "getAngleIncrementInfo_0" (JR.invoke "getAngleInfoP_0" (JR.local "rotationAnimationInterface") []) []), 
+                        JR.declare "rotationAnimationInterfaceCompositeInterface" "" (JR.invoke "getOwnerLayerInterface_0" JR.this []), 
+                        JR.exec (JR.invoke "setFrame_1" (JR.local "rotationAnimationInterfaceCompositeInterface") [ (JR.invoke "intValue_0" (JR.field "RIGHT_FRAME" (JR.local "angleIncrementInfo")) []) ]) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "currentRelativeAngle") (JR.int 180)) (JR.run [ 
+                        JR.declare "rotationAnimationInterface" "" (JR.thisField "rotationAnimationInterface"), 
+                        JR.declare "angleIncrementInfo" "" (JR.invoke "getAngleIncrementInfo_0" (JR.invoke "getAngleInfoP_0" (JR.local "rotationAnimationInterface") []) []), 
+                        JR.declare "rotationAnimationInterfaceCompositeInterface" "" (JR.invoke "getOwnerLayerInterface_0" JR.this []), 
+                        JR.exec (JR.invoke "setFrame_1" (JR.local "rotationAnimationInterfaceCompositeInterface") [ (JR.invoke "intValue_0" (JR.field "LEFT_FRAME" (JR.local "angleIncrementInfo")) []) ]) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

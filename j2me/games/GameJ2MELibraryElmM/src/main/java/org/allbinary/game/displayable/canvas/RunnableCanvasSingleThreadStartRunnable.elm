@@ -1,120 +1,103 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module RunnableCanvasSingleThreadStartRunnable (module RunnableCanvasSingleThreadStartRunnable, module GameRunnable) where
+module Org.Allbinary.Game.Displayable.Canvas.RunnableCanvasSingleThreadStartRunnable exposing (..)
 
-import GameRunnable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, run, run_super, run_impl, processLoopSleep, processLoopSleep_super, processLoopSleep_impl, logUtil, runnableCanvas)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified RunnableCanvas -- org.allbinary.canvas.RunnableCanvas
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified GameRunnable
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data RunnableCanvasSingleThreadStartRunnable = RunnableCanvasSingleThreadStartRunnable
-    { header_ :: JavaHeader
-    , base :: GameRunnable.GameRunnable
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , runnableCanvas :: IORef (RunnableCanvas.RunnableCanvas)
-    }
-
-instance JavaNull RunnableCanvasSingleThreadStartRunnable where
-    javaNull = javaNullRecord "RunnableCanvasSingleThreadStartRunnable"
-
-instance JavaEquals RunnableCanvasSingleThreadStartRunnable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RunnableCanvasSingleThreadStartRunnable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RunnableCanvasSingleThreadStartRunnable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO RunnableCanvasSingleThreadStartRunnable
-newRecord_ = do
-    base <- GameRunnable.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    runnableCanvas <- newIORef javaNull
-    let this = RunnableCanvasSingleThreadStartRunnable header_ base logUtil runnableCanvas
-    jregisterLevel header_ this
-    jregisterMethod header_ "run" (\() -> run_impl this)
-    jregisterMethod header_ "processLoopSleep" (\() -> processLoopSleep_impl this)
-    pure this
-
-initFields_ :: RunnableCanvasSingleThreadStartRunnable -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.runnableCanvas (javaNull)
-    pure ()
-
-new_1 :: RunnableCanvas.RunnableCanvas -> IO RunnableCanvasSingleThreadStartRunnable
-new_1 demoCanvas = do
-    this <- newRecord_
-    init_1 this demoCanvas
-    pure this
-
-init_1 :: RunnableCanvasSingleThreadStartRunnable -> RunnableCanvas.RunnableCanvas -> IO ()
-init_1 this demoCanvas = do
-        GameRunnable.init_ this.base
-        initFields_ this
-        jset (this).runnableCanvas (demoCanvas)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Displayable.Canvas.GameRunnable as GameRunnable
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-run :: (JavaObjectClass this_) => this_ -> IO (())
-run object_ = jmethod object_ "run" (\() -> (run_impl (javaCast object_ :: RunnableCanvasSingleThreadStartRunnable))) ()
-
-run_super :: (JavaObjectClass this_) => this_ -> IO (())
-run_super object_ = (run_impl (javaCast object_ :: RunnableCanvasSingleThreadStartRunnable))
-
-run_impl :: RunnableCanvasSingleThreadStartRunnable -> IO (())
-run_impl this = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).rUN) e)
-            ) $ do
-            Control.Monad.void (RunnableCanvas.run ((jget (this).runnableCanvas)))
-        pure ()
+jclass : String
+jclass =
+    "RunnableCanvasSingleThreadStartRunnable"
 
 
--- throws Exception
-processLoopSleep :: (JavaObjectClass this_) => this_ -> IO (())
-processLoopSleep object_ = jmethod object_ "processLoopSleep" (\() -> (processLoopSleep_impl (javaCast object_ :: RunnableCanvasSingleThreadStartRunnable))) ()
+jchain : List String
+jchain =
+    [ "RunnableCanvasSingleThreadStartRunnable" ]
+        ++ GameRunnable.jchain
 
-processLoopSleep_super :: (JavaObjectClass this_) => this_ -> IO (())
-processLoopSleep_super object_ = (processLoopSleep_impl (javaCast object_ :: RunnableCanvasSingleThreadStartRunnable))
 
-processLoopSleep_impl :: RunnableCanvasSingleThreadStartRunnable -> IO (())
-processLoopSleep_impl this = do
-        Control.Monad.void (RunnableCanvas.processLoopSleep ((jget (this).runnableCanvas)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    GameRunnable.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "runnableCanvas", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "run_0", jm_run_0 )
+        , ( "processLoopSleep_0", jm_processLoopSleep_0 ) ]
+        GameRunnable.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RunnableCanvasSingleThreadStartRunnable"
+        [ ( "jm_run_0", jm_run_0 ), ( "jm_processLoopSleep_0", jm_processLoopSleep_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "demoCanvas", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect GameRunnable.jinit_0 JR.this []),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "runnableCanvas" "" JR.this (JR.local "demoCanvas")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_run_0 : JR.Method
+jm_run_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "run_0" (JR.thisField "runnableCanvas") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "RUN" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processLoopSleep_0 : JR.Method
+jm_processLoopSleep_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "processLoopSleep_0" (JR.thisField "runnableCanvas") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

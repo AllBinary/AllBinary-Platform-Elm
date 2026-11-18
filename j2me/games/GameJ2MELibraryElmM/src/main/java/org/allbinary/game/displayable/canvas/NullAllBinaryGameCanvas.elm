@@ -1,164 +1,145 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module NullAllBinaryGameCanvas where
+module Org.Allbinary.Game.Displayable.Canvas.NullAllBinaryGameCanvas exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified AllBinaryGameLayerManager -- org.allbinary.game.layer.AllBinaryGameLayerManager
-import qualified AllBinaryGameCanvasInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
--- implements AllBinaryGameCanvasInterface
-data NullAllBinaryGameCanvas = NullAllBinaryGameCanvas
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull NullAllBinaryGameCanvas where
-    javaNull = javaNullRecord "NullAllBinaryGameCanvas"
-
-instance JavaEquals NullAllBinaryGameCanvas where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NullAllBinaryGameCanvas where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NullAllBinaryGameCanvas where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_ALLBINARY_GAME_CANVAS :: NullAllBinaryGameCanvas
-{-# NOINLINE nULL_ALLBINARY_GAME_CANVAS #-}
-nULL_ALLBINARY_GAME_CANVAS = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NullAllBinaryGameCanvas
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = NullAllBinaryGameCanvas header_
-    jregisterLevel header_ this
-    AllBinaryGameCanvasInterface.registerInterface_ header_
-    jregisterMethod header_ "getLayerManager" (\() -> getLayerManager_impl this)
-    jregisterMethod header_ "addCommand" (\() -> addCommand_impl this)
-    jregisterMethod header_ "getHeight" (\() -> getHeight_impl this)
-    jregisterMethod header_ "getWidth" (\() -> getWidth_impl this)
-    jregisterMethod header_ "removeCommand" (\() -> removeCommand_impl this)
-    jregisterMethod header_ "setCommandListener" (\() -> setCommandListener_impl this)
-    pure this
-
-initFields_ :: NullAllBinaryGameCanvas -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO NullAllBinaryGameCanvas
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NullAllBinaryGameCanvas -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Displayable.Canvas.AllBinaryGameCanvasInterface as AllBinaryGameCanvasInterface
 
 
-getLayerManager :: (JavaObjectClass this_) => this_ -> IO (AllBinaryGameLayerManager.AllBinaryGameLayerManager)
-getLayerManager object_ = jmethod object_ "getLayerManager" (\() -> (getLayerManager_impl (javaCast object_ :: NullAllBinaryGameCanvas))) ()
-
-getLayerManager_super :: (JavaObjectClass this_) => this_ -> IO (AllBinaryGameLayerManager.AllBinaryGameLayerManager)
-getLayerManager_super object_ = (getLayerManager_impl (javaCast object_ :: NullAllBinaryGameCanvas))
-
-getLayerManager_impl :: NullAllBinaryGameCanvas -> IO (AllBinaryGameLayerManager.AllBinaryGameLayerManager)
-getLayerManager_impl this = do
-        javaThrow ((JavaException "RuntimeException" ""))
+jclass : String
+jclass =
+    "NullAllBinaryGameCanvas"
 
 
-addCommand :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (())
-addCommand object_ a1 = jmethod object_ "addCommand" (\() -> (addCommand_impl (javaCast object_ :: NullAllBinaryGameCanvas))) () a1
-
-addCommand_super :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (())
-addCommand_super object_ a1 = (addCommand_impl (javaCast object_ :: NullAllBinaryGameCanvas)) a1
-
-addCommand_impl :: NullAllBinaryGameCanvas -> Command.Command -> IO (())
-addCommand_impl this cmd = do
-        javaThrow ((JavaException "RuntimeException" ""))
-        pure ()
+jchain : List String
+jchain =
+    [ "NullAllBinaryGameCanvas" ]
+        ++ AllBinaryGameCanvasInterface.jchain
 
 
-getHeight :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight object_ = jmethod object_ "getHeight" (\() -> (getHeight_impl (javaCast object_ :: NullAllBinaryGameCanvas))) ()
-
-getHeight_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight_super object_ = (getHeight_impl (javaCast object_ :: NullAllBinaryGameCanvas))
-
-getHeight_impl :: NullAllBinaryGameCanvas -> IO (Int)
-getHeight_impl this = do
-        javaThrow ((JavaException "RuntimeException" ""))
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-getWidth :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth object_ = jmethod object_ "getWidth" (\() -> (getWidth_impl (javaCast object_ :: NullAllBinaryGameCanvas))) ()
-
-getWidth_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth_super object_ = (getWidth_impl (javaCast object_ :: NullAllBinaryGameCanvas))
-
-getWidth_impl :: NullAllBinaryGameCanvas -> IO (Int)
-getWidth_impl this = do
-        javaThrow ((JavaException "RuntimeException" ""))
-
-
-removeCommand :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (())
-removeCommand object_ a1 = jmethod object_ "removeCommand" (\() -> (removeCommand_impl (javaCast object_ :: NullAllBinaryGameCanvas))) () a1
-
-removeCommand_super :: (JavaObjectClass this_) => this_ -> Command.Command -> IO (())
-removeCommand_super object_ a1 = (removeCommand_impl (javaCast object_ :: NullAllBinaryGameCanvas)) a1
-
-removeCommand_impl :: NullAllBinaryGameCanvas -> Command.Command -> IO (())
-removeCommand_impl this cmd = do
-        javaThrow ((JavaException "RuntimeException" ""))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getLayerManager_0", jm_getLayerManager_0 )
+        , ( "addCommand_1", jm_addCommand_1 )
+        , ( "getHeight_0", jm_getHeight_0 )
+        , ( "getWidth_0", jm_getWidth_0 )
+        , ( "removeCommand_1", jm_removeCommand_1 )
+        , ( "setCommandListener_1", jm_setCommandListener_1 ) ]
+        JR.noMethods
 
 
-setCommandListener :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-setCommandListener object_ a1 = jmethod object_ "setCommandListener" (\() -> (setCommandListener_impl (javaCast object_ :: NullAllBinaryGameCanvas))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullAllBinaryGameCanvas"
+        [ ( "jm_getLayerManager_0", jm_getLayerManager_0 ), ( "jm_addCommand_1", jm_addCommand_1 ), ( "jm_getHeight_0", jm_getHeight_0 ), ( "jm_getWidth_0", jm_getWidth_0 ), ( "jm_removeCommand_1", jm_removeCommand_1 ), ( "jm_setCommandListener_1", jm_setCommandListener_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_ALLBINARY_GAME_CANVAS", jstatic_NULL_ALLBINARY_GAME_CANVAS ) ]
+        jheap
 
-setCommandListener_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-setCommandListener_super object_ a1 = (setCommandListener_impl (javaCast object_ :: NullAllBinaryGameCanvas)) a1
 
-setCommandListener_impl :: NullAllBinaryGameCanvas -> CommandListener.CommandListener -> IO (())
-setCommandListener_impl this l = do
-        javaThrow ((JavaException "RuntimeException" ""))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_NULL_ALLBINARY_GAME_CANVAS : JR.M
+jstatic_NULL_ALLBINARY_GAME_CANVAS s =
+    JR.static "NullAllBinaryGameCanvas" jclinit "NULL_ALLBINARY_GAME_CANVAS"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getLayerManager_0 : JR.Method
+jm_getLayerManager_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addCommand_1 : JR.Method
+jm_addCommand_1 jheap jthis jargs =
+    JR.method [ ( "cmd", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHeight_0 : JR.Method
+jm_getHeight_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getWidth_0 : JR.Method
+jm_getWidth_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeCommand_1 : JR.Method
+jm_removeCommand_1 jheap jthis jargs =
+    JR.method [ ( "cmd", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setCommandListener_1 : JR.Method
+jm_setCommandListener_1 jheap jthis jargs =
+    JR.method [ ( "l", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

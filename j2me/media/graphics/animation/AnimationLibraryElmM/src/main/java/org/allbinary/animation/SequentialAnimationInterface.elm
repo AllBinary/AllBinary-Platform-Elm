@@ -1,89 +1,61 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module SequentialAnimationInterface (module SequentialAnimationInterface, module AnimationInterface, module SequenceInterface) where
+module Org.Allbinary.Animation.SequentialAnimationInterface exposing (..)
 
-import AnimationInterface hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getSize, getSize_super, getSize_impl, previousFrame, previousFrame_super, previousFrame_impl, toString)
-import SequenceInterface hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getSize, getSize_super, getSize_impl, previousFrame, previousFrame_super, previousFrame_impl, toString)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnimationInterface
-import qualified SequenceInterface
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
--- Java interface: the classes that implement it have these functions
-data SequentialAnimationInterface = SequentialAnimationInterface
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull SequentialAnimationInterface where
-    javaNull = javaNullRecord "SequentialAnimationInterface"
-
-instance JavaEquals SequentialAnimationInterface where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SequentialAnimationInterface where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SequentialAnimationInterface where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-fromHeader_ :: JavaHeader -> SequentialAnimationInterface
-fromHeader_ header = SequentialAnimationInterface header
-
-registerInterface_ :: JavaHeader -> IO ()
-registerInterface_ header = do
-    jregisterLevel header (SequentialAnimationInterface header)
-    AnimationInterface.registerInterface_ header
-    SequenceInterface.registerInterface_ header
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+import JR
+import Org.Allbinary.Animation.AnimationInterface as AnimationInterface
+import Org.Allbinary.Animation.SequenceInterface as SequenceInterface
 
 
-getSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize object_ = jmethod object_ "getSize" (\() -> (getSize_impl (javaCast object_ :: SequentialAnimationInterface))) ()
-
-getSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize_super object_ = (getSize_impl (javaCast object_ :: SequentialAnimationInterface))
-
-getSize_impl :: SequentialAnimationInterface -> IO (Int)
-getSize_impl this = javaAbstractMethod "getSize"
+jclass : String
+jclass =
+    "SequentialAnimationInterface"
 
 
-previousFrame :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame object_ = jmethod object_ "previousFrame" (\() -> (previousFrame_impl (javaCast object_ :: SequentialAnimationInterface))) ()
+jchain : List String
+jchain =
+    [ "SequentialAnimationInterface" ]
+        ++ AnimationInterface.jchain
+        ++ SequenceInterface.jchain
 
-previousFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame_super object_ = (previousFrame_impl (javaCast object_ :: SequentialAnimationInterface))
 
-previousFrame_impl :: SequentialAnimationInterface -> IO (())
-previousFrame_impl this = javaAbstractMethod "previousFrame"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SequentialAnimationInterface"
+        []
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

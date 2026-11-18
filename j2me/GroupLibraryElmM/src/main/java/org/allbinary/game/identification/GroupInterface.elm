@@ -1,83 +1,58 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.identification
-module GroupInterface where
+module Org.Allbinary.Game.Identification.GroupInterface exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.game.identification
+-}
 
--- Java interface: the classes that implement it have these functions
-data GroupInterface = GroupInterface
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull GroupInterface where
-    javaNull = javaNullRecord "GroupInterface"
-
-instance JavaEquals GroupInterface where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GroupInterface where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GroupInterface where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-fromHeader_ :: JavaHeader -> GroupInterface
-fromHeader_ header = GroupInterface header
-
-registerInterface_ :: JavaHeader -> IO ()
-registerInterface_ header = do
-    jregisterLevel header (GroupInterface header)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+import JR
 
 
-getGroupName :: (JavaObjectClass this_) => this_ -> IO (String)
-getGroupName object_ = jmethod object_ "getGroupName" (\() -> (getGroupName_impl (javaCast object_ :: GroupInterface))) ()
 
-getGroupName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getGroupName_super object_ = (getGroupName_impl (javaCast object_ :: GroupInterface))
-
-getGroupName_impl :: GroupInterface -> IO (String)
-getGroupName_impl this = javaAbstractMethod "getGroupName"
+jclass : String
+jclass =
+    "GroupInterface"
 
 
-getGroupId :: (JavaObjectClass this_) => this_ -> IO (Int16)
-getGroupId object_ = jmethod object_ "getGroupId" (\() -> (getGroupId_impl (javaCast object_ :: GroupInterface))) ()
+jchain : List String
+jchain =
+    [ "GroupInterface" ]
 
-getGroupId_super :: (JavaObjectClass this_) => this_ -> IO (Int16)
-getGroupId_super object_ = (getGroupId_impl (javaCast object_ :: GroupInterface))
 
-getGroupId_impl :: GroupInterface -> IO (Int16)
-getGroupId_impl this = javaAbstractMethod "getGroupId"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GroupInterface"
+        []
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

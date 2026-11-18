@@ -1,129 +1,114 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.platform.graphics
-module PlatformBitmapBase where
+module Org.Allbinary.Platform.Graphics.PlatformBitmapBase exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified NullImage -- javax.microedition.lcdui.NullImage
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
+{-| Generated Code Do Not Modify package org.allbinary.platform.graphics
+-}
 
-data PlatformBitmapBase = PlatformBitmapBase
-    { header_ :: JavaHeader
-    , alpha :: IORef (Int)
-    , basicColor :: IORef (BasicColor.BasicColor)
-    }
-
-instance JavaNull PlatformBitmapBase where
-    javaNull = javaNullRecord "PlatformBitmapBase"
-
-instance JavaEquals PlatformBitmapBase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PlatformBitmapBase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PlatformBitmapBase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_PLATFORM_BITMAP_BASE :: PlatformBitmapBase
-{-# NOINLINE nULL_PLATFORM_BITMAP_BASE #-}
-nULL_PLATFORM_BITMAP_BASE = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PlatformBitmapBase
-newRecord_ = do
-    header_ <- newJavaHeader
-    alpha <- newIORef 0
-    basicColor <- newIORef javaNull
-    let this = PlatformBitmapBase header_ alpha basicColor
-    jregisterLevel header_ this
-    jregisterMethod header_ "getWidth" (\() -> getWidth_impl this)
-    jregisterMethod header_ "getHeight" (\() -> getHeight_impl this)
-    jregisterMethod header_ "getImage" (\() -> getImage_impl this)
-    pure this
-
-initFields_ :: PlatformBitmapBase -> IO ()
-initFields_ this = do
-    jset this.alpha (255)
-    jset this.basicColor ((jget ((jio (BasicColorFactory.getInstance))).nULL_COLOR))
-    pure ()
-
-new_ :: IO PlatformBitmapBase
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PlatformBitmapBase -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Javax.Microedition.Lcdui.NullImage as NullImage
 
 
-getWidth :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth object_ = jmethod object_ "getWidth" (\() -> (getWidth_impl (javaCast object_ :: PlatformBitmapBase))) ()
-
-getWidth_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth_super object_ = (getWidth_impl (javaCast object_ :: PlatformBitmapBase))
-
-getWidth_impl :: PlatformBitmapBase -> IO (Int)
-getWidth_impl this = do
-        pure (0)
+jclass : String
+jclass =
+    "PlatformBitmapBase"
 
 
-getHeight :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight object_ = jmethod object_ "getHeight" (\() -> (getHeight_impl (javaCast object_ :: PlatformBitmapBase))) ()
-
-getHeight_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight_super object_ = (getHeight_impl (javaCast object_ :: PlatformBitmapBase))
-
-getHeight_impl :: PlatformBitmapBase -> IO (Int)
-getHeight_impl this = do
-        pure (0)
+jchain : List String
+jchain =
+    [ "PlatformBitmapBase" ]
 
 
-getImage :: (JavaObjectClass this_) => this_ -> IO (Image.Image)
-getImage object_ = jmethod object_ "getImage" (\() -> (getImage_impl (javaCast object_ :: PlatformBitmapBase))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "alpha", JR.defaultOf "I" ), ( "basicColor", JR.defaultOf "" ) ]
 
-getImage_super :: (JavaObjectClass this_) => this_ -> IO (Image.Image)
-getImage_super object_ = (getImage_impl (javaCast object_ :: PlatformBitmapBase))
 
-getImage_impl :: PlatformBitmapBase -> IO (Image.Image)
-getImage_impl this = do
-        pure (NullImage.nULL_IMAGE)
+jvtable =
+    JR.vtable
+        [ ( "getWidth_0", jm_getWidth_0 )
+        , ( "getHeight_0", jm_getHeight_0 )
+        , ( "getImage_0", jm_getImage_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PlatformBitmapBase"
+        [ ( "jm_getWidth_0", jm_getWidth_0 ), ( "jm_getHeight_0", jm_getHeight_0 ), ( "jm_getImage_0", jm_getImage_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_PLATFORM_BITMAP_BASE", jstatic_NULL_PLATFORM_BITMAP_BASE ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_PLATFORM_BITMAP_BASE : JR.M
+jstatic_NULL_PLATFORM_BITMAP_BASE s =
+    JR.static "PlatformBitmapBase" jclinit "NULL_PLATFORM_BITMAP_BASE"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "alpha" "I" JR.this (JR.int 255)),
+                JR.exec (JR.setField "basicColor" "" JR.this (JR.field "NULL_COLOR" (JR.callStatic BasicColorFactory.jm_getInstance_0 []))),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getWidth_0 : JR.Method
+jm_getWidth_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHeight_0 : JR.Method
+jm_getHeight_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getImage_0 : JR.Method
+jm_getImage_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return NullImage.jstatic_NULL_IMAGE ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

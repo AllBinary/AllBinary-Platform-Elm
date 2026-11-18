@@ -1,90 +1,93 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
-module GameConfigurationPersistanceSingleton (module GameConfigurationPersistanceSingleton, module KeyValuePersistance) where
+module Org.Allbinary.Game.Configuration.Persistance.GameConfigurationPersistanceSingleton exposing (..)
 
-import KeyValuePersistance hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, gAME_PERSISTANCE)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GamePersistanceStrings -- same package or java.lang
-import qualified KeyValuePersistance
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.persistance
+-}
 
-data GameConfigurationPersistanceSingleton = GameConfigurationPersistanceSingleton
-    { header_ :: JavaHeader
-    , base :: KeyValuePersistance.KeyValuePersistance
-    }
-
-instance JavaNull GameConfigurationPersistanceSingleton where
-    javaNull = javaNullRecord "GameConfigurationPersistanceSingleton"
-
-instance JavaEquals GameConfigurationPersistanceSingleton where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameConfigurationPersistanceSingleton where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameConfigurationPersistanceSingleton where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-gAME_PERSISTANCE :: IORef (GameConfigurationPersistanceSingleton)
-{-# NOINLINE gAME_PERSISTANCE #-}
-gAME_PERSISTANCE = unsafePerformIO ((new_) >>= newIORef)
-
-newRecord_ :: IO GameConfigurationPersistanceSingleton
-newRecord_ = do
-    base <- KeyValuePersistance.newRecord_
-    let header_ = base.header_
-    let this = GameConfigurationPersistanceSingleton header_ base
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: GameConfigurationPersistanceSingleton -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Game.Configuration.Persistance.GamePersistanceStrings as GamePersistanceStrings
+import Org.Allbinary.Game.Configuration.Persistance.KeyValuePersistance as KeyValuePersistance
 
 
-getInstance :: IO (GameConfigurationPersistanceSingleton)
-getInstance = do
-        pure ((jget GameConfigurationPersistanceSingleton.gAME_PERSISTANCE))
+jclass : String
+jclass =
+    "GameConfigurationPersistanceSingleton"
 
-new_ :: IO GameConfigurationPersistanceSingleton
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: GameConfigurationPersistanceSingleton -> IO ()
-init_ this = do
-        KeyValuePersistance.init_1 this.base (jget ((jio (GamePersistanceStrings.getInstance))).sAVED_GAME_CONFIGURATION_RECORD_ID)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+jchain : List String
+jchain =
+    [ "GameConfigurationPersistanceSingleton" ]
+        ++ KeyValuePersistance.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    KeyValuePersistance.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        KeyValuePersistance.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameConfigurationPersistanceSingleton"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_GAME_PERSISTANCE", jstatic_GAME_PERSISTANCE ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_GAME_PERSISTANCE : JR.M
+jstatic_GAME_PERSISTANCE s =
+    JR.static "GameConfigurationPersistanceSingleton" jclinit "GAME_PERSISTANCE"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect KeyValuePersistance.jinit_1 JR.this [ (JR.field "SAVED_GAME_CONFIGURATION_RECORD_ID" (JR.callStatic GamePersistanceStrings.jm_getInstance_0 [])) ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_GAME_PERSISTANCE ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

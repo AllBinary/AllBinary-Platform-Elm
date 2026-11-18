@@ -1,126 +1,122 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math.permutations
-module ObjectPermutationVisitor (module ObjectPermutationVisitor, module Visitor) where
+module Org.Allbinary.Logic.Math.Permutations.ObjectPermutationVisitor exposing (..)
 
-import Visitor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, visit, visit_super, visit_impl, print, print_super, print_impl, print_2, print_2_super, print_2_impl, print, data_, stringBuilder)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified Visitor -- org.allbinary.logic.util.visitor.Visitor
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
+{-| Generated Code Do Not Modify package org.allbinary.logic.math.permutations
+-}
 
-data ObjectPermutationVisitor = ObjectPermutationVisitor
-    { header_ :: JavaHeader
-    , base :: Visitor.Visitor
-    , data_ :: IORef (JavaArray (Any.Any))
-    , stringBuilder :: IORef (StringMaker.StringMaker)
-    }
-
-instance JavaNull ObjectPermutationVisitor where
-    javaNull = javaNullRecord "ObjectPermutationVisitor"
-
-instance JavaEquals ObjectPermutationVisitor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ObjectPermutationVisitor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ObjectPermutationVisitor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ObjectPermutationVisitor
-newRecord_ = do
-    base <- Visitor.newRecord_
-    let header_ = base.header_
-    data_ <- newIORef javaNull
-    stringBuilder <- newIORef javaNull
-    let this = ObjectPermutationVisitor header_ base data_ stringBuilder
-    jregisterLevel header_ this
-    jregisterMethod header_ "visit" (\() -> visit_impl this)
-    jregisterMethod header_ "print" (\() -> print_impl this)
-    jregisterMethod header_ "print_2" (\() -> print_2_impl this)
-    pure this
-
-initFields_ :: ObjectPermutationVisitor -> IO ()
-initFields_ this = do
-    jset this.data_ (javaNull)
-    jset this.stringBuilder =<< (StringMaker.new_)
-    pure ()
-
-new_1 :: JavaArray (Any.Any) -> IO ObjectPermutationVisitor
-new_1 data_ = do
-    this <- newRecord_
-    init_1 this data_
-    pure this
-
-init_1 :: ObjectPermutationVisitor -> JavaArray (Any.Any) -> IO ()
-init_1 this data_ = do
-        Visitor.init_ this.base
-        initFields_ this
-        jset (this).data_ (data_)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import JSystem
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.TsUtil as TsUtil
+import Org.Allbinary.Logic.Util.Visitor.Visitor as Visitor
 
 
-visit :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Any.Any)
-visit object_ a1 = jmethod object_ "visit" (\() -> (visit_impl (javaCast object_ :: ObjectPermutationVisitor))) () (jtoObject a1)
-
-visit_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Any.Any)
-visit_super object_ a1 = (visit_impl (javaCast object_ :: ObjectPermutationVisitor)) (jtoObject a1)
-
-visit_impl :: ObjectPermutationVisitor -> JavaObject -> IO (Any.Any)
-visit_impl this anyTypeObject_ = do
-        let anyType = jtoObject anyTypeObject_
-        Control.Monad.void (StringMaker.delete ((jget (this).stringBuilder)) 0 (jio (StringMaker.length ((jget this.stringBuilder)))))
-        Control.Monad.void (ObjectPermutationVisitor.print_2 this (jget (this).data_) (jget this.stringBuilder))
-        pure ((jtoObject (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
+jclass : String
+jclass =
+    "ObjectPermutationVisitor"
 
 
-print :: (JavaObjectClass this_) => this_ -> JavaArray (Any.Any) -> IO (())
-print object_ a1 = jmethod object_ "print" (\() -> (print_impl (javaCast object_ :: ObjectPermutationVisitor))) () a1
-
-print_super :: (JavaObjectClass this_) => this_ -> JavaArray (Any.Any) -> IO (())
-print_super object_ a1 = (print_impl (javaCast object_ :: ObjectPermutationVisitor)) a1
-
-print_impl :: ObjectPermutationVisitor -> JavaArray (Any.Any) -> IO (())
-print_impl this data_ = do
-        stringBuilder <- (StringMaker.new_)
-        Control.Monad.void (ObjectPermutationVisitor.print_2 this data_ stringBuilder)
-        pure ()
+jchain : List String
+jchain =
+    [ "ObjectPermutationVisitor" ]
+        ++ Visitor.jchain
 
 
-print_2 :: (JavaObjectClass this_) => this_ -> JavaArray (Any.Any) -> StringMaker.StringMaker -> IO (())
-print_2 object_ a1 a2 = jmethod object_ "print_2" (\() -> (print_2_impl (javaCast object_ :: ObjectPermutationVisitor))) () a1 a2
+jfields : List ( String, JR.JValue )
+jfields =
+    Visitor.jfields ++ [ ( "data", JR.defaultOf "" ), ( "stringBuilder", JR.defaultOf "" ) ]
 
-print_2_super :: (JavaObjectClass this_) => this_ -> JavaArray (Any.Any) -> StringMaker.StringMaker -> IO (())
-print_2_super object_ a1 a2 = (print_2_impl (javaCast object_ :: ObjectPermutationVisitor)) a1 a2
 
-print_2_impl :: ObjectPermutationVisitor -> JavaArray (Any.Any) -> StringMaker.StringMaker -> IO (())
-print_2_impl this data_ stringBuilder = do
-        tsUtil <- (TsUtil.getInstance)
-        let size = (jlength data_)
-        forM_ [0 .. size - 1] $ \i -> javaIteration (pure ()) $ do
-            Control.Monad.void (StringMaker.appendint stringBuilder (Prelude.fromInteger (jnumericInteger (jio (TsUtil.hashCode tsUtil (jindex data_ (i)))))))
-            Control.Monad.void (StringMaker.append stringBuilder (jget ((jio (CommonSeps.getInstance))).sPACE))
-        Control.Monad.void (putStrLn (javaToString (jio (StringMaker.toString stringBuilder))))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "visit_1", jm_visit_1 )
+        , ( "print_1", jm_print_1 )
+        , ( "print_2", jm_print_2 ) ]
+        Visitor.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ObjectPermutationVisitor"
+        [ ( "jm_visit_1", jm_visit_1 ), ( "jm_print_1", jm_print_1 ), ( "jm_print_2", jm_print_2 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "data", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Visitor.jinit_0 JR.this []),
+                JR.exec (JR.setField "stringBuilder" "" JR.this (JR.new StringMaker.jnew_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "data" "" JR.this (JR.local "data")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_visit_1 : JR.Method
+jm_visit_1 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "delete_2" (JR.thisField "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.thisField "stringBuilder") []) ]), 
+                    JR.exec (JR.invoke "print_2" JR.this [ (JR.thisField "data"), (JR.thisField "stringBuilder") ]), 
+                    JR.return (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_print_1 : JR.Method
+jm_print_1 jheap jthis jargs =
+    JR.method [ ( "data", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuilder" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "print_2" JR.this [ (JR.local "data"), (JR.local "stringBuilder") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_print_2 : JR.Method
+jm_print_2 jheap jthis jargs =
+    JR.method [ ( "data", "" ), ( "stringBuilder", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "tsUtil" "" (JR.callStatic TsUtil.jm_getInstance_0 []), 
+                    JR.declare "size" "I" (JR.alength (JR.local "data")), 
+                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN67000 -> (JR.setLocal "i" "I" (JR.lit jwN67000))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuilder") [ (JR.invoke "hashCode_1" (JR.local "tsUtil") [ (JR.aget (JR.local "data") (JR.local "i")) ]) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuilder") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) ]) ], 
+                    JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.invoke "toString_0" (JR.local "stringBuilder") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

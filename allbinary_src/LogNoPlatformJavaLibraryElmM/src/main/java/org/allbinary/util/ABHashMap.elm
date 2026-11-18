@@ -1,4 +1,4 @@
-module ABHashMap exposing (..)
+module Org.Allbinary.Util.ABHashMap exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}

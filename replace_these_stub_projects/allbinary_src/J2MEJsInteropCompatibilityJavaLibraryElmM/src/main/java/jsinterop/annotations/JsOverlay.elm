@@ -1,4 +1,4 @@
-module JsOverlay exposing (..)
+module Jsinterop.Annotations.JsOverlay exposing (..)
 
 {-| Generated Code Do Not Modify package jsinterop.annotations
 -}

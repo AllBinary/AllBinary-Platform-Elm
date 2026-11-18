@@ -1,309 +1,254 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image
-module ImageCacheBase where
+module Org.Allbinary.Image.ImageCacheBase exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ImageFactory -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified InputStream -- java.io.InputStream
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified NullImage -- javax.microedition.lcdui.NullImage
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.image
+-}
 
-data ImageCacheBase = ImageCacheBase
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , imageFactory :: IORef (ImageFactory.ImageFactory)
-    , hashtable :: IORef (ABHashtable.ABHashtable)
-    , sIZE :: IORef (Int)
-    , widths :: IORef (JavaArray (Int))
-    , heights :: IORef (JavaArray (Int))
-    , listOfList :: IORef (JavaArray (BasicArrayList.BasicArrayList))
-    , availableListOfList :: IORef (JavaArray (BasicArrayList.BasicArrayList))
-    , volume :: IORef (Int)
-    , nextIndex :: IORef (Int)
-    }
-
-instance JavaNull ImageCacheBase where
-    javaNull = javaNullRecord "ImageCacheBase"
-
-instance JavaEquals ImageCacheBase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageCacheBase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageCacheBase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ImageCacheBase
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    imageFactory <- newIORef javaNull
-    hashtable <- newIORef javaNull
-    sIZE <- newIORef 0
-    widths <- newIORef javaNull
-    heights <- newIORef javaNull
-    listOfList <- newIORef javaNull
-    availableListOfList <- newIORef javaNull
-    volume <- newIORef 0
-    nextIndex <- newIORef 0
-    let this = ImageCacheBase header_ logUtil imageFactory hashtable sIZE widths heights listOfList availableListOfList volume nextIndex
-    jregisterLevel header_ this
-    jregisterMethod header_ "getImage" (\() -> getImage_impl this)
-    jregisterMethod header_ "releaseAll" (\() -> releaseAll_impl this)
-    jregisterMethod header_ "getIndexWH" (\() -> getIndexWH_impl this)
-    jregisterMethod header_ "getFromAvailable" (\() -> getFromAvailable_impl this)
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    jregisterMethod header_ "getWithKey" (\() -> getWithKey_impl this)
-    jregisterMethod header_ "createImage" (\() -> createImage_impl this)
-    jregisterMethod header_ "createImageFromInputStream" (\() -> createImageFromInputStream_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    jregisterMethod header_ "getHashtableP" (\() -> getHashtableP_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "initProgress" (\() -> initProgress_impl this)
-    pure this
-
-initFields_ :: ImageCacheBase -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.imageFactory =<< (ImageFactory.getInstance)
-    jset this.hashtable =<< (StdUtil.createHashtable ((jio (StdUtil.getInstance))))
-    jset this.sIZE (128)
-    jset this.widths ((jnewArray ((jget (this).sIZE)) 0))
-    jset this.heights ((jnewArray ((jget (this).sIZE)) 0))
-    jset this.listOfList ((jnewArray ((jget (this).sIZE)) javaNull))
-    jset this.availableListOfList ((jnewArray ((jget (this).sIZE)) javaNull))
-    jset this.volume (0)
-    jset this.nextIndex (0)
-    pure ()
-
-new_ :: IO ImageCacheBase
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ImageCacheBase -> IO ()
-init_ this = do
-        initFields_ this
-        forM_ [((jlength (jget (this).listOfList)) - 1), ((jlength (jget (this).listOfList)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            jsetIndex ((jget (this).listOfList)) (index) (assignedValue)
-        forM_ [((jlength (jget (this).availableListOfList)) - 1), ((jlength (jget (this).availableListOfList)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            jsetIndex ((jget (this).availableListOfList)) (index) (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Image.ImageFactory as ImageFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Javax.Microedition.Lcdui.NullImage as NullImage
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getImage :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Image.Image)
-getImage object_ a1 = jmethod object_ "getImage" (\() -> (getImage_impl (javaCast object_ :: ImageCacheBase))) () (jtoObject a1)
-
-getImage_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Image.Image)
-getImage_super object_ a1 = (getImage_impl (javaCast object_ :: ImageCacheBase)) (jtoObject a1)
-
-getImage_impl :: ImageCacheBase -> JavaObject -> IO (Image.Image)
-getImage_impl this resourceIdObject_ = do
-    let resourceId = jtoObject resourceIdObject_
-    javaCatchReturn $ do
-        imageCanBeNull <- (ABHashtable.get ((jget (this).hashtable)) resourceId)
-        when (imageCanBeNull == javaNull) $ do
-            javaReturn (NullImage.nULL_IMAGE)
-        pure ((javaCast imageCanBeNull :: Image.Image))
+jclass : String
+jclass =
+    "ImageCacheBase"
 
 
-releaseAll :: (JavaObjectClass this_) => this_ -> IO (())
-releaseAll object_ = jmethod object_ "releaseAll" (\() -> (releaseAll_impl (javaCast object_ :: ImageCacheBase))) ()
-
-releaseAll_super :: (JavaObjectClass this_) => this_ -> IO (())
-releaseAll_super object_ = (releaseAll_impl (javaCast object_ :: ImageCacheBase))
-
-releaseAll_impl :: ImageCacheBase -> IO (())
-releaseAll_impl this = do
-        forM_ [((jlength (jget (this).listOfList)) - 1), ((jlength (jget (this).listOfList)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (BasicArrayList.clear ((jindex ((jget (this).availableListOfList)) (index))))
-            Control.Monad.void (BasicArrayList.addAllList ((jindex ((jget (this).availableListOfList)) (index))) (jindex ((jget (this).listOfList)) (index)))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "ImageCache: "))) (jio (ImageCacheBase.toString this))))))) this "releaseAll")
-        pure ()
+jchain : List String
+jchain =
+    [ "ImageCacheBase" ]
 
 
-getIndexWH :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (Int)
-getIndexWH object_ a1 a2 = jmethod object_ "getIndexWH" (\() -> (getIndexWH_impl (javaCast object_ :: ImageCacheBase))) () a1 a2
-
-getIndexWH_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (Int)
-getIndexWH_super object_ a1 a2 = (getIndexWH_impl (javaCast object_ :: ImageCacheBase)) a1 a2
-
-getIndexWH_impl :: ImageCacheBase -> Int -> Int -> IO (Int)
-getIndexWH_impl this width height = do
-    javaCatchReturn $ do
-        foundIndex <- newIORef ((Prelude.negate 1) :: Int)
-        let size = (jlength (jget (this).widths))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            when (((jindex ((jget (this).widths)) (index)) == width) && ((jindex ((jget (this).heights)) (index)) == height)) $ do
-                jset foundIndex (index)
-                javaReturn ((jget foundIndex))
-        pure ((jget foundIndex))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "imageFactory", JR.defaultOf "" ), ( "hashtable", JR.defaultOf "" ), ( "SIZE", JR.defaultOf "I" ), ( "widths", JR.defaultOf "" ), ( "heights", JR.defaultOf "" ), ( "listOfList", JR.defaultOf "" ), ( "availableListOfList", JR.defaultOf "" ), ( "volume", JR.defaultOf "I" ), ( "nextIndex", JR.defaultOf "I" ) ]
 
 
-getFromAvailable :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (Image.Image)
-getFromAvailable object_ a1 a2 a3 = jmethod object_ "getFromAvailable" (\() -> (getFromAvailable_impl (javaCast object_ :: ImageCacheBase))) () a1 a2 a3
-
-getFromAvailable_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (Image.Image)
-getFromAvailable_super object_ a1 a2 a3 = (getFromAvailable_impl (javaCast object_ :: ImageCacheBase)) a1 a2 a3
-
-getFromAvailable_impl :: ImageCacheBase -> Int -> Int -> Int -> IO (Image.Image)
-getFromAvailable_impl this foundIndex width height = do
-    javaCatchReturn $ do
-        when (foundIndex /= (Prelude.negate 1)) $ do
-            when ((jio (BasicArrayList.size ((jindex ((jget (this).availableListOfList)) (foundIndex))))) > 0) $ do
-                let list = (jindex ((jget (this).availableListOfList)) (foundIndex))
-                javaReturn ((javaCast (jio (BasicArrayList.removeAt list ((jio (BasicArrayList.size list)) - 1))) :: Image.Image))
-        pure (NullImage.nULL_IMAGE)
-
-
--- throws Exception
-get :: (JavaObjectClass this_) => this_ -> String -> Int -> Int -> IO (Image.Image)
-get object_ a1 a2 a3 = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: ImageCacheBase))) () a1 a2 a3
-
-get_super :: (JavaObjectClass this_) => this_ -> String -> Int -> Int -> IO (Image.Image)
-get_super object_ a1 a2 a3 = (get_impl (javaCast object_ :: ImageCacheBase)) a1 a2 a3
-
-get_impl :: ImageCacheBase -> String -> Int -> Int -> IO (Image.Image)
-get_impl this caller width height = do
-        javaThrow ((JavaException "RuntimeException" ""))
+jvtable =
+    JR.vtable
+        [ ( "getImage_1", jm_getImage_1 )
+        , ( "releaseAll_0", jm_releaseAll_0 )
+        , ( "getIndexWH_2", jm_getIndexWH_2 )
+        , ( "getFromAvailable_3", jm_getFromAvailable_3 )
+        , ( "get_3", jm_get_3 )
+        , ( "getWithKey_1", jm_getWithKey_1 )
+        , ( "createImage_3", jm_createImage_3 )
+        , ( "createImageFromInputStream_2", jm_createImageFromInputStream_2 )
+        , ( "toString_0", jm_toString_0 )
+        , ( "getHashtableP_0", jm_getHashtableP_0 )
+        , ( "init_1", jm_init_1 )
+        , ( "initProgress_0", jm_initProgress_0 ) ]
+        JR.noMethods
 
 
--- throws Exception
-getWithKey :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Image.Image)
-getWithKey object_ a1 = jmethod object_ "getWithKey" (\() -> (getWithKey_impl (javaCast object_ :: ImageCacheBase))) () (jtoObject a1)
-
-getWithKey_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Image.Image)
-getWithKey_super object_ a1 = (getWithKey_impl (javaCast object_ :: ImageCacheBase)) (jtoObject a1)
-
-getWithKey_impl :: ImageCacheBase -> JavaObject -> IO (Image.Image)
-getWithKey_impl this keyObject_ = do
-        let key = jtoObject keyObject_
-        javaThrow ((JavaException "RuntimeException" ""))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageCacheBase"
+        [ ( "jm_getImage_1", jm_getImage_1 ), ( "jm_releaseAll_0", jm_releaseAll_0 ), ( "jm_getIndexWH_2", jm_getIndexWH_2 ), ( "jm_getFromAvailable_3", jm_getFromAvailable_3 ), ( "jm_get_3", jm_get_3 ), ( "jm_getWithKey_1", jm_getWithKey_1 ), ( "jm_createImage_3", jm_createImage_3 ), ( "jm_createImageFromInputStream_2", jm_createImageFromInputStream_2 ), ( "jm_toString_0", jm_toString_0 ), ( "jm_getHashtableP_0", jm_getHashtableP_0 ), ( "jm_init_1", jm_init_1 ), ( "jm_initProgress_0", jm_initProgress_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
 
--- throws Exception
-createImage :: (JavaObjectClass this_) => this_ -> String -> Int -> Int -> IO (Image.Image)
-createImage object_ a1 a2 a3 = jmethod object_ "createImage" (\() -> (createImage_impl (javaCast object_ :: ImageCacheBase))) () a1 a2 a3
-
-createImage_super :: (JavaObjectClass this_) => this_ -> String -> Int -> Int -> IO (Image.Image)
-createImage_super object_ a1 a2 a3 = (createImage_impl (javaCast object_ :: ImageCacheBase)) a1 a2 a3
-
-createImage_impl :: ImageCacheBase -> String -> Int -> Int -> IO (Image.Image)
-createImage_impl this caller width height = do
-        (ImageFactory.createImage ((jget (this).imageFactory)) caller width height)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
--- throws Exception
-createImageFromInputStream :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> InputStream.InputStream -> IO (Image.Image)
-createImageFromInputStream object_ a1 a2 = jmethod object_ "createImageFromInputStream" (\() -> (createImageFromInputStream_impl (javaCast object_ :: ImageCacheBase))) () (jtoObject a1) a2
-
-createImageFromInputStream_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> InputStream.InputStream -> IO (Image.Image)
-createImageFromInputStream_super object_ a1 a2 = (createImageFromInputStream_impl (javaCast object_ :: ImageCacheBase)) (jtoObject a1) a2
-
-createImageFromInputStream_impl :: ImageCacheBase -> JavaObject -> InputStream.InputStream -> IO (Image.Image)
-createImageFromInputStream_impl this keyObject_ inputStream = do
-        let key = jtoObject keyObject_
-        (ImageFactory.createImageFromInputStream ((jget (this).imageFactory)) key inputStream)
-
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: ImageCacheBase))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: ImageCacheBase))
-
-toString_impl :: ImageCacheBase -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        forM_ [((jget (this).nextIndex) - 1), ((jget (this).nextIndex) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            let width = (jindex ((jget (this).widths)) (index))
-            let height = (jindex ((jget (this).heights)) (index))
-            total <- (BasicArrayList.size ((jindex ((jget (this).listOfList)) (index))))
-            totalAvailable <- (BasicArrayList.size ((jindex ((jget (this).availableListOfList)) (index))))
-            Control.Monad.void (StringMaker.append stringBuffer " w: ")
-            Control.Monad.void (StringMaker.appendint stringBuffer width)
-            Control.Monad.void (StringMaker.append stringBuffer " h: ")
-            Control.Monad.void (StringMaker.appendint stringBuffer height)
-            Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-            Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonLabels.getInstance))).tOTAL_LABEL))
-            Control.Monad.void (StringMaker.appendint stringBuffer total)
-            Control.Monad.void (StringMaker.append stringBuffer " available: ")
-            Control.Monad.void (StringMaker.appendint stringBuffer totalAvailable)
-        (StringMaker.toString stringBuffer)
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "imageFactory" "" JR.this (JR.callStatic ImageFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "hashtable" "" JR.this (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) [])),
+                JR.exec (JR.setField "SIZE" "I" JR.this (JR.int 128)),
+                JR.exec (JR.setField "widths" "" JR.this (JR.newArray "I" [ (JR.thisField "SIZE") ])),
+                JR.exec (JR.setField "heights" "" JR.this (JR.newArray "I" [ (JR.thisField "SIZE") ])),
+                JR.exec (JR.setField "listOfList" "" JR.this (JR.newArray "" [ (JR.thisField "SIZE") ])),
+                JR.exec (JR.setField "availableListOfList" "" JR.this (JR.newArray "" [ (JR.thisField "SIZE") ])),
+                JR.exec (JR.setField "volume" "I" JR.this (JR.int 0)),
+                JR.exec (JR.setField "nextIndex" "I" JR.this (JR.int 0)),
+                identity,
+                (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "listOfList")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67631 -> (JR.setLocal "index" "I" (JR.lit jwN67631))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "listOfList") (\jaN67515 -> JR.andThen (JR.local "index") (\jiN67515 -> (JR.aset (JR.lit jaN67515) (JR.lit jiN67515) (JR.new BasicArrayListD.jnew_0 []))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "availableListOfList")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67769 -> (JR.setLocal "index" "I" (JR.lit jwN67769))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "availableListOfList") (\jaN67657 -> JR.andThen (JR.local "index") (\jiN67657 -> (JR.aset (JR.lit jaN67657) (JR.lit jiN67657) (JR.new BasicArrayListD.jnew_0 []))))) ]) ] ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getHashtableP :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-getHashtableP object_ = jmethod object_ "getHashtableP" (\() -> (getHashtableP_impl (javaCast object_ :: ImageCacheBase))) ()
-
-getHashtableP_super :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-getHashtableP_super object_ = (getHashtableP_impl (javaCast object_ :: ImageCacheBase))
-
-getHashtableP_impl :: ImageCacheBase -> IO (ABHashtable.ABHashtable)
-getHashtableP_impl this = do
-        pure ((jget (this).hashtable))
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
 
-init :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (())
-init object_ a1 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: ImageCacheBase))) () a1
+jm_getImage_1 : JR.Method
+jm_getImage_1 jheap jthis jargs =
+    JR.method [ ( "resourceId", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "imageCanBeNull" "" (JR.invoke "get_1" (JR.thisField "hashtable") [ (JR.local "resourceId") ]), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "imageCanBeNull") JR.null) (JR.run [ 
+                        JR.return NullImage.jstatic_NULL_IMAGE ]) identity, 
+                    JR.return (JR.local "imageCanBeNull") ])
+        (jregister jheap)
+        jthis
+        jargs
 
-init_super :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (())
-init_super object_ a1 = (init_impl (javaCast object_ :: ImageCacheBase)) a1
 
-init_impl :: ImageCacheBase -> Image.Image -> IO (())
-init_impl this image = do
-        pure ()
+jm_releaseAll_0 : JR.Method
+jm_releaseAll_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "listOfList")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68177 -> (JR.setLocal "index" "I" (JR.lit jwN68177))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.invoke "clear_0" (JR.aget (JR.thisField "availableListOfList") (JR.local "index")) []), 
+                        JR.exec (JR.invoke "addAllList_1" (JR.aget (JR.thisField "availableListOfList") (JR.local "index")) [ (JR.aget (JR.thisField "listOfList") (JR.local "index")) ]) ]) ], 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "ImageCache: ") ]) [ (JR.invoke "toString_0" JR.this []) ]) []), JR.this, (JR.str "releaseAll") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-initProgress :: (JavaObjectClass this_) => this_ -> IO (())
-initProgress object_ = jmethod object_ "initProgress" (\() -> (initProgress_impl (javaCast object_ :: ImageCacheBase))) ()
+jm_getIndexWH_2 : JR.Method
+jm_getIndexWH_2 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ) ] "I"
+        (JR.run [ 
+                    JR.declare "foundIndex" "I" (JR.map JR.neg (JR.int 1)), 
+                    JR.declare "size" "I" (JR.alength (JR.thisField "widths")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68565 -> (JR.setLocal "index" "I" (JR.lit jwN68565))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.and (JR.map2 JR.equals (JR.aget (JR.thisField "widths") (JR.local "index")) (JR.local "width")) (JR.map2 JR.equals (JR.aget (JR.thisField "heights") (JR.local "index")) (JR.local "height"))) (JR.run [ 
+                            JR.exec (JR.setLocal "foundIndex" "I" (JR.local "index")), 
+                            JR.return (JR.local "foundIndex") ]) identity ]) ], 
+                    JR.return (JR.local "foundIndex") ])
+        (jregister jheap)
+        jthis
+        jargs
 
-initProgress_super :: (JavaObjectClass this_) => this_ -> IO (())
-initProgress_super object_ = (initProgress_impl (javaCast object_ :: ImageCacheBase))
 
-initProgress_impl :: ImageCacheBase -> IO (())
-initProgress_impl this = do
-        pure ()
+jm_getFromAvailable_3 : JR.Method
+jm_getFromAvailable_3 jheap jthis jargs =
+    JR.method [ ( "foundIndex", "I" ), ( "width", "I" ), ( "height", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "foundIndex") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.greater (JR.invoke "size_0" (JR.aget (JR.thisField "availableListOfList") (JR.local "foundIndex")) []) (JR.int 0)) (JR.run [ 
+                            JR.declare "list" "" (JR.aget (JR.thisField "availableListOfList") (JR.local "foundIndex")), 
+                            JR.return (JR.invoke "removeAt_1" (JR.local "list") [ (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "list") []) (JR.int 1)) ]) ]) identity ]) identity, 
+                    JR.return NullImage.jstatic_NULL_IMAGE ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_get_3 : JR.Method
+jm_get_3 jheap jthis jargs =
+    JR.method [ ( "caller", "" ), ( "width", "I" ), ( "height", "I" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getWithKey_1 : JR.Method
+jm_getWithKey_1 jheap jthis jargs =
+    JR.method [ ( "key", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImage_3 : JR.Method
+jm_createImage_3 jheap jthis jargs =
+    JR.method [ ( "caller", "" ), ( "width", "I" ), ( "height", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "createImage_3" (JR.thisField "imageFactory") [ (JR.local "caller"), (JR.local "width"), (JR.local "height") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImageFromInputStream_2 : JR.Method
+jm_createImageFromInputStream_2 jheap jthis jargs =
+    JR.method [ ( "key", "" ), ( "inputStream", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "createImageFromInputStream_2" (JR.thisField "imageFactory") [ (JR.local "key"), (JR.local "inputStream") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.thisField "nextIndex") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70120 -> (JR.setLocal "index" "I" (JR.lit jwN70120))) JR.decrement) ]) (JR.run [ 
+                        JR.declare "width" "I" (JR.aget (JR.thisField "widths") (JR.local "index")), 
+                        JR.declare "height" "I" (JR.aget (JR.thisField "heights") (JR.local "index")), 
+                        JR.declare "total" "I" (JR.invoke "size_0" (JR.aget (JR.thisField "listOfList") (JR.local "index")) []), 
+                        JR.declare "totalAvailable" "I" (JR.invoke "size_0" (JR.aget (JR.thisField "availableListOfList") (JR.local "index")) []), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " w: ") ]), 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "width") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " h: ") ]), 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "height") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "TOTAL_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]), 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "total") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " available: ") ]), 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "totalAvailable") ]) ]) ], 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHashtableP_0 : JR.Method
+jm_getHashtableP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "hashtable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "image", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initProgress_0 : JR.Method
+jm_initProgress_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

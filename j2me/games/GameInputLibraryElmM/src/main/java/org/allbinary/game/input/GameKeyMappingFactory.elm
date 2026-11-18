@@ -1,149 +1,142 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module GameKeyMappingFactory where
+module Org.Allbinary.Game.Input.GameKeyMappingFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified GameKey -- same package or java.lang
-import qualified InputFactory -- same package or java.lang
-import qualified GameKeyFactory -- same package or java.lang
-import qualified NullUtil -- org.allbinary.logic.NullUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data GameKeyMappingFactory = GameKeyMappingFactory
-    { header_ :: JavaHeader
-    , intKeyToGameKey :: IORef (JavaArray (GameKey.GameKey))
-    }
-
-instance JavaNull GameKeyMappingFactory where
-    javaNull = javaNullRecord "GameKeyMappingFactory"
-
-instance JavaEquals GameKeyMappingFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameKeyMappingFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameKeyMappingFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameKeyMappingFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    intKeyToGameKey <- newIORef javaNull
-    let this = GameKeyMappingFactory header_ intKeyToGameKey
-    jregisterLevel header_ this
-    jregisterMethod header_ "getGameKey" (\() -> getGameKey_impl this)
-    jregisterMethod header_ "setGameKey" (\() -> setGameKey_impl this)
-    pure this
-
-initFields_ :: GameKeyMappingFactory -> IO ()
-initFields_ this = do
-    jset this.intKeyToGameKey ((jnewArray ((jget ((jio (InputFactory.getInstance))).mAX)) javaNull))
-    pure ()
+import JR
+import Org.Allbinary.Game.Input.GameKeyFactory as GameKeyFactory
+import Org.Allbinary.Game.Input.InputFactory as InputFactory
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
-getInstance :: IO (GameKeyMappingFactory)
-getInstance = do
-        when ((jget GameKeyMappingFactory.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset GameKeyMappingFactory.instance_ (assignedValue)
-        pure ((javaCast (jget GameKeyMappingFactory.instance_) :: GameKeyMappingFactory))
-
-new_ :: IO GameKeyMappingFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameKeyMappingFactory -> IO ()
-init_ this = do
-        initFields_ this
-        gameKeyFactory <- (GameKeyFactory.getInstance)
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).nONE))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).uP))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).dOWN))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).lEFT))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).rIGHT))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_POUND))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_STAR))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_NUM0))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_NUM1))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_NUM2))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_NUM3))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_NUM4))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_NUM5))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_NUM6))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_NUM7))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_NUM8))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).kEY_NUM9))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).gAME_A))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).gAME_B))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).gAME_C))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).gAME_D))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).fIRE))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).lEVEL_DOWN))
-        Control.Monad.void (GameKeyMappingFactory.setGameKey this (jget (gameKeyFactory).lEVEL_UP))
-        pure ()
+jclass : String
+jclass =
+    "GameKeyMappingFactory"
 
 
-getGameKey :: (JavaObjectClass this_) => this_ -> Int -> IO (GameKey.GameKey)
-getGameKey object_ a1 = jmethod object_ "getGameKey" (\() -> (getGameKey_impl (javaCast object_ :: GameKeyMappingFactory))) () a1
-
-getGameKey_super :: (JavaObjectClass this_) => this_ -> Int -> IO (GameKey.GameKey)
-getGameKey_super object_ a1 = (getGameKey_impl (javaCast object_ :: GameKeyMappingFactory)) a1
-
-getGameKey_impl :: GameKeyMappingFactory -> Int -> IO (GameKey.GameKey)
-getGameKey_impl this key = do
-        pure ((jindex ((jget (this).intKeyToGameKey)) (key)))
+jchain : List String
+jchain =
+    [ "GameKeyMappingFactory" ]
 
 
-setGameKey :: (JavaObjectClass this_) => this_ -> GameKey.GameKey -> IO (())
-setGameKey object_ a1 = jmethod object_ "setGameKey" (\() -> (setGameKey_impl (javaCast object_ :: GameKeyMappingFactory))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "intKeyToGameKey", JR.defaultOf "" ) ]
 
-setGameKey_super :: (JavaObjectClass this_) => this_ -> GameKey.GameKey -> IO (())
-setGameKey_super object_ a1 = (setGameKey_impl (javaCast object_ :: GameKeyMappingFactory)) a1
 
-setGameKey_impl :: GameKeyMappingFactory -> GameKey.GameKey -> IO (())
-setGameKey_impl this gameKey = do
-        jsetIndex ((jget (this).intKeyToGameKey)) ((jio (GameKey.getId gameKey))) (gameKey)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getGameKey_1", jm_getGameKey_1 )
+        , ( "setGameKey_1", jm_setGameKey_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameKeyMappingFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getGameKey_1", jm_getGameKey_1 ), ( "jm_setGameKey_1", jm_setGameKey_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameKeyMappingFactory" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "intKeyToGameKey" "" JR.this (JR.newArray "" [ (JR.field "MAX" (JR.callStatic InputFactory.jm_getInstance_0 [])) ])),
+                identity,
+                (JR.run [ 
+                    JR.declare "gameKeyFactory" "" (JR.callStatic GameKeyFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "NONE" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "UP" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "DOWN" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "LEFT" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "RIGHT" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_POUND" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_STAR" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_NUM0" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_NUM1" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_NUM2" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_NUM3" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_NUM4" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_NUM5" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_NUM6" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_NUM7" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_NUM8" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "KEY_NUM9" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "GAME_A" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "GAME_B" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "GAME_C" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "GAME_D" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "FIRE" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "LEVEL_DOWN" (JR.local "gameKeyFactory")) ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.field "LEVEL_UP" (JR.local "gameKeyFactory")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "GameKeyMappingFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameKey_1 : JR.Method
+jm_getGameKey_1 jheap jthis jargs =
+    JR.method [ ( "key", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.aget (JR.thisField "intKeyToGameKey") (JR.local "key")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setGameKey_1 : JR.Method
+jm_setGameKey_1 jheap jthis jargs =
+    JR.method [ ( "gameKey", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.andThen (JR.thisField "intKeyToGameKey") (\jaN67610 -> JR.andThen (JR.invoke "getId_0" (JR.local "gameKey") []) (\jiN67610 -> (JR.aset (JR.lit jaN67610) (JR.lit jiN67610) (JR.local "gameKey"))))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

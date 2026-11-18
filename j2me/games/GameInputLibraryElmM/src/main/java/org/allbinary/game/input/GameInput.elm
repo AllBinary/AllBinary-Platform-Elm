@@ -1,228 +1,185 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module GameInput where
+module Org.Allbinary.Game.Input.GameInput exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified InputFeatureFactory -- org.allbinary.game.configuration.feature.InputFeatureFactory
-import qualified GameKeyEvent -- org.allbinary.game.input.event.GameKeyEvent
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data GameInput = GameInput
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , gameKeyEventList :: IORef (BasicArrayList.BasicArrayList)
-    , removalGameKeyEventList :: IORef (BasicArrayList.BasicArrayList)
-    , isRemoveDuplicateKeyPresses :: IORef (Bool)
-    }
-
-instance JavaNull GameInput where
-    javaNull = javaNullRecord "GameInput"
-
-instance JavaEquals GameInput where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameInput where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameInput where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameInput
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    gameKeyEventList <- newIORef javaNull
-    removalGameKeyEventList <- newIORef javaNull
-    isRemoveDuplicateKeyPresses <- newIORef False
-    let this = GameInput header_ logUtil commonStrings gameKeyEventList removalGameKeyEventList isRemoveDuplicateKeyPresses
-    jregisterLevel header_ this
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "addForRemoval" (\() -> addForRemoval_impl this)
-    jregisterMethod header_ "isForRemoval" (\() -> isForRemoval_impl this)
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    jregisterMethod header_ "removeNonAIInputGameKeyEvents" (\() -> removeNonAIInputGameKeyEvents_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "getRemovalGameKeyEventList" (\() -> getRemovalGameKeyEventList_impl this)
-    jregisterMethod header_ "getGameKeyEventList" (\() -> getGameKeyEventList_impl this)
-    pure this
-
-initFields_ :: GameInput -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.gameKeyEventList (javaNull)
-    jset this.removalGameKeyEventList (javaNull)
-    jset this.isRemoveDuplicateKeyPresses (False)
-    pure ()
-
-new_2 :: BasicArrayList.BasicArrayList -> BasicArrayList.BasicArrayList -> IO GameInput
-new_2 gameKeyEventList removalGameKeyEventList = do
-    this <- newRecord_
-    init_2 this gameKeyEventList removalGameKeyEventList
-    pure this
-
-init_2 :: GameInput -> BasicArrayList.BasicArrayList -> BasicArrayList.BasicArrayList -> IO ()
-init_2 this gameKeyEventList removalGameKeyEventList = do
-        initFields_ this
-        jset (this).gameKeyEventList (gameKeyEventList)
-        jset (this).removalGameKeyEventList (removalGameKeyEventList)
-        assignedValue <- (Features.isFeature ((jio (Features.getInstance))) (jget ((jio (InputFeatureFactory.getInstance))).rEMOVE_DUPLICATE_KEY_PRESSES))
-        jset (this).isRemoveDuplicateKeyPresses (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Configuration.Feature.InputFeatureFactory as InputFeatureFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-add :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: GameInput))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: GameInput)) a1
-
-add_impl :: GameInput -> GameKeyEvent.GameKeyEvent -> IO (())
-add_impl this gameKeyEvent = do
-    javaCatchReturn $ do
-        when ((jget (this).isRemoveDuplicateKeyPresses) && (jio (BasicArrayList.contains ((jget (this).gameKeyEventList)) gameKeyEvent))) $ do
-            javaReturn (())
-        if (gameKeyEvent /= javaNull) then do
-            Control.Monad.void (BasicArrayList.add ((jget (this).gameKeyEventList)) gameKeyEvent)
-        else do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Danger Passed Null GameKeyEvent" this (jget ((jget (this).commonStrings)).aDD))
-    pure ()
+jclass : String
+jclass =
+    "GameInput"
 
 
-addForRemoval :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-addForRemoval object_ a1 = jmethod object_ "addForRemoval" (\() -> (addForRemoval_impl (javaCast object_ :: GameInput))) () a1
-
-addForRemoval_super :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (())
-addForRemoval_super object_ a1 = (addForRemoval_impl (javaCast object_ :: GameInput)) a1
-
-addForRemoval_impl :: GameInput -> GameKeyEvent.GameKeyEvent -> IO (())
-addForRemoval_impl this gameKeyEvent = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).removalGameKeyEventList)) gameKeyEvent)
-        pure ()
+jchain : List String
+jchain =
+    [ "GameInput" ]
 
 
-isForRemoval :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (Bool)
-isForRemoval object_ a1 = jmethod object_ "isForRemoval" (\() -> (isForRemoval_impl (javaCast object_ :: GameInput))) () a1
-
-isForRemoval_super :: (JavaObjectClass this_) => this_ -> GameKeyEvent.GameKeyEvent -> IO (Bool)
-isForRemoval_super object_ a1 = (isForRemoval_impl (javaCast object_ :: GameInput)) a1
-
-isForRemoval_impl :: GameInput -> GameKeyEvent.GameKeyEvent -> IO (Bool)
-isForRemoval_impl this gameKeyEvent = do
-        (BasicArrayList.contains ((jget (this).removalGameKeyEventList)) gameKeyEvent)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "gameKeyEventList", JR.defaultOf "" ), ( "removalGameKeyEventList", JR.defaultOf "" ), ( "isRemoveDuplicateKeyPresses", JR.defaultOf "Z" ) ]
 
 
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: GameInput))) ()
-
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: GameInput))
-
-clear_impl :: GameInput -> IO (())
-clear_impl this = do
-        Control.Monad.void (BasicArrayList.clear ((jget (this).gameKeyEventList)))
-        pure ()
-
-
-removeNonAIInputGameKeyEvents :: (JavaObjectClass this_) => this_ -> IO (())
-removeNonAIInputGameKeyEvents object_ = jmethod object_ "removeNonAIInputGameKeyEvents" (\() -> (removeNonAIInputGameKeyEvents_impl (javaCast object_ :: GameInput))) ()
-
-removeNonAIInputGameKeyEvents_super :: (JavaObjectClass this_) => this_ -> IO (())
-removeNonAIInputGameKeyEvents_super object_ = (removeNonAIInputGameKeyEvents_impl (javaCast object_ :: GameInput))
-
-removeNonAIInputGameKeyEvents_impl :: GameInput -> IO (())
-removeNonAIInputGameKeyEvents_impl this = do
-        let list = (jget (this).gameKeyEventList)
-        gameKeyEvent <- newIORef (javaNull)
-        index <- newIORef =<< (BasicArrayList.size list)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            jset gameKeyEvent ((javaCast (jindex ((jget (list).objectArray)) ((jget index))) :: GameKeyEvent.GameKeyEvent))
-            when ((jio (GameKeyEvent.getSourceId ((jget gameKeyEvent)))) /= 1) $ do
-                Control.Monad.void (BasicArrayList.removeAt list (jget index))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "add_1", jm_add_1 )
+        , ( "addForRemoval_1", jm_addForRemoval_1 )
+        , ( "isForRemoval_1", jm_isForRemoval_1 )
+        , ( "clear_0", jm_clear_0 )
+        , ( "removeNonAIInputGameKeyEvents_0", jm_removeNonAIInputGameKeyEvents_0 )
+        , ( "update_0", jm_update_0 )
+        , ( "getRemovalGameKeyEventList_0", jm_getRemovalGameKeyEventList_0 )
+        , ( "getGameKeyEventList_0", jm_getGameKeyEventList_0 ) ]
+        JR.noMethods
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: GameInput))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: GameInput))
-
-update_impl :: GameInput -> IO (())
-update_impl this = do
-        let removeList = (jget (this).removalGameKeyEventList)
-        let list = (jget (this).gameKeyEventList)
-        size <- (BasicArrayList.size removeList)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let anyType = (jindex ((jget (removeList).objectArray)) (index))
-            index2 <- newIORef =<< (BasicArrayList.size list)
-            fix $ \loop -> when ((jpreIncrement index2 (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-                when ((jindex ((jget (list).objectArray)) ((jget index2))) == anyType) $ do
-                    Control.Monad.void (BasicArrayList.removeAt list (jget index2))
-        Control.Monad.void (BasicArrayList.clear removeList)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameInput"
+        [ ( "jm_add_1", jm_add_1 ), ( "jm_addForRemoval_1", jm_addForRemoval_1 ), ( "jm_isForRemoval_1", jm_isForRemoval_1 ), ( "jm_clear_0", jm_clear_0 ), ( "jm_removeNonAIInputGameKeyEvents_0", jm_removeNonAIInputGameKeyEvents_0 ), ( "jm_update_0", jm_update_0 ), ( "jm_getRemovalGameKeyEventList_0", jm_getRemovalGameKeyEventList_0 ), ( "jm_getGameKeyEventList_0", jm_getGameKeyEventList_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
 
-getRemovalGameKeyEventList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getRemovalGameKeyEventList object_ = jmethod object_ "getRemovalGameKeyEventList" (\() -> (getRemovalGameKeyEventList_impl (javaCast object_ :: GameInput))) ()
-
-getRemovalGameKeyEventList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getRemovalGameKeyEventList_super object_ = (getRemovalGameKeyEventList_impl (javaCast object_ :: GameInput))
-
-getRemovalGameKeyEventList_impl :: GameInput -> IO (BasicArrayList.BasicArrayList)
-getRemovalGameKeyEventList_impl this = do
-        pure ((jget (this).removalGameKeyEventList))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getGameKeyEventList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getGameKeyEventList object_ = jmethod object_ "getGameKeyEventList" (\() -> (getGameKeyEventList_impl (javaCast object_ :: GameInput))) ()
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "gameKeyEventList", "" ), ( "removalGameKeyEventList", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "gameKeyEventList" "" JR.this (JR.local "gameKeyEventList")), 
+                    JR.exec (JR.setField "removalGameKeyEventList" "" JR.this (JR.local "removalGameKeyEventList")), 
+                    JR.exec (JR.setField "isRemoveDuplicateKeyPresses" "Z" JR.this (JR.invoke "isFeature_1" (JR.callStatic Features.jm_getInstance_0 []) [ (JR.field "REMOVE_DUPLICATE_KEY_PRESSES" (JR.callStatic InputFeatureFactory.jm_getInstance_0 [])) ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getGameKeyEventList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getGameKeyEventList_super object_ = (getGameKeyEventList_impl (javaCast object_ :: GameInput))
 
-getGameKeyEventList_impl :: GameInput -> IO (BasicArrayList.BasicArrayList)
-getGameKeyEventList_impl this = do
-        pure ((jget (this).gameKeyEventList))
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
 
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.and (JR.thisField "isRemoveDuplicateKeyPresses") (JR.invoke "contains_1" (JR.thisField "gameKeyEventList") [ (JR.local "gameKeyEvent") ])) (JR.run [ 
+                        JR.returnVoid ]) identity, 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "gameKeyEvent") JR.null) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "gameKeyEventList") [ (JR.local "gameKeyEvent") ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Danger Passed Null GameKeyEvent"), JR.this, (JR.field "ADD" (JR.thisField "commonStrings")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addForRemoval_1 : JR.Method
+jm_addForRemoval_1 jheap jthis jargs =
+    JR.method [ ( "gameKeyEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "removalGameKeyEventList") [ (JR.local "gameKeyEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isForRemoval_1 : JR.Method
+jm_isForRemoval_1 jheap jthis jargs =
+    JR.method [ ( "gameKeyEvent", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "contains_1" (JR.thisField "removalGameKeyEventList") [ (JR.local "gameKeyEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "gameKeyEventList") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeNonAIInputGameKeyEvents_0 : JR.Method
+jm_removeNonAIInputGameKeyEvents_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "list" "" (JR.thisField "gameKeyEventList"), 
+                    JR.declare "gameKeyEvent" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67992 -> (JR.setLocal "index" "I" (JR.lit jwN67992))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.setLocal "gameKeyEvent" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getSourceId_0" (JR.local "gameKeyEvent") []) (JR.int 1)) (JR.run [ 
+                            JR.exec (JR.invoke "removeAt_1" (JR.local "list") [ (JR.local "index") ]) ]) identity ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "removeList" "" (JR.thisField "removalGameKeyEventList"), 
+                    JR.declare "list" "" (JR.thisField "gameKeyEventList"), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "removeList") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68461 -> (JR.setLocal "index" "I" (JR.lit jwN68461))) JR.increment) ]) (JR.run [ 
+                        JR.declare "anyType" "" (JR.aget (JR.field "objectArray" (JR.local "removeList")) (JR.local "index")), 
+                        JR.run [ JR.declare "index2" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index2") (\jwN68353 -> (JR.setLocal "index2" "I" (JR.lit jwN68353))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index2")) (JR.local "anyType")) (JR.run [ 
+                                JR.exec (JR.invoke "removeAt_1" (JR.local "list") [ (JR.local "index2") ]) ]) identity ]) ] ]) ], 
+                    JR.exec (JR.invoke "clear_0" (JR.local "removeList") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRemovalGameKeyEventList_0 : JR.Method
+jm_getRemovalGameKeyEventList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "removalGameKeyEventList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameKeyEventList_0 : JR.Method
+jm_getGameKeyEventList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameKeyEventList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

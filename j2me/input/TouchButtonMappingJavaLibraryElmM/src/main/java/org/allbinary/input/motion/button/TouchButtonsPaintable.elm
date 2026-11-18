@@ -1,123 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
-module TouchButtonsPaintable (module TouchButtonsPaintable, module Paintable) where
+module Org.Allbinary.Input.Motion.Button.TouchButtonsPaintable exposing (..)
 
-import Paintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, paint, paint_super, paint_impl, foregroundBasicColor, foregroundColor, basicSetColorUtil, touchButtonFactory)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TouchButtonFactory -- same package or java.lang
-import qualified TouchButton -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorSetUtil -- org.allbinary.graphics.color.BasicColorSetUtil
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.button
+-}
 
-data TouchButtonsPaintable = TouchButtonsPaintable
-    { header_ :: JavaHeader
-    , base :: Paintable.Paintable
-    , foregroundBasicColor :: IORef (BasicColor.BasicColor)
-    , foregroundColor :: IORef (Int)
-    , basicSetColorUtil :: IORef (BasicColorSetUtil.BasicColorSetUtil)
-    , touchButtonFactory :: IORef (TouchButtonFactory.TouchButtonFactory)
-    }
-
-instance JavaNull TouchButtonsPaintable where
-    javaNull = javaNullRecord "TouchButtonsPaintable"
-
-instance JavaEquals TouchButtonsPaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TouchButtonsPaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TouchButtonsPaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO TouchButtonsPaintable
-newRecord_ = do
-    base <- Paintable.newRecord_
-    let header_ = base.header_
-    foregroundBasicColor <- newIORef javaNull
-    foregroundColor <- newIORef 0
-    basicSetColorUtil <- newIORef javaNull
-    touchButtonFactory <- newIORef javaNull
-    let this = TouchButtonsPaintable header_ base foregroundBasicColor foregroundColor basicSetColorUtil touchButtonFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: TouchButtonsPaintable -> IO ()
-initFields_ this = do
-    jset this.foregroundBasicColor (javaNull)
-    jset this.foregroundColor (0)
-    jset this.basicSetColorUtil =<< (BasicColorSetUtil.getInstance)
-    jset this.touchButtonFactory =<< (TouchButtonFactory.getInstance)
-    pure ()
-
-new_1 :: BasicColor.BasicColor -> IO TouchButtonsPaintable
-new_1 basicColor = do
-    this <- newRecord_
-    init_1 this basicColor
-    pure this
-
-init_1 :: TouchButtonsPaintable -> BasicColor.BasicColor -> IO ()
-init_1 this basicColor = do
-        Paintable.init_ this.base
-        initFields_ this
-        jset (this).foregroundBasicColor (basicColor)
-        assignedValue <- (BasicColor.intValue basicColor)
-        jset (this).foregroundColor (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorSetUtil as BasicColorSetUtil
+import Org.Allbinary.Graphics.Paint.Paintable as Paintable
+import Org.Allbinary.Input.Motion.Button.TouchButtonFactory as TouchButtonFactory
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: TouchButtonsPaintable))) () a1
+jclass : String
+jclass =
+    "TouchButtonsPaintable"
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: TouchButtonsPaintable)) a1
 
-paint_impl :: TouchButtonsPaintable -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        list <- (TouchButtonFactory.getList ((jget (this).touchButtonFactory)))
-        Control.Monad.void (BasicColorSetUtil.setBasicColorP3 ((jget (this).basicSetColorUtil)) graphics (jget (this).foregroundBasicColor) (jget (this).foregroundColor))
-        touchButton <- newIORef (javaNull)
-        index <- newIORef =<< (BasicArrayList.size list)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            jset touchButton ((javaCast (jindex ((jget (list).objectArray)) ((jget index))) :: TouchButton.TouchButton))
-            Control.Monad.void (TouchButton.paint ((jget touchButton)) graphics)
-        index <- newIORef =<< (BasicArrayList.size list)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            jset touchButton ((javaCast (jindex ((jget (list).objectArray)) ((jget index))) :: TouchButton.TouchButton))
-            Control.Monad.void (TouchButton.paintHint ((jget touchButton)) graphics)
-        pure ()
+jchain : List String
+jchain =
+    [ "TouchButtonsPaintable" ]
+        ++ Paintable.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    Paintable.jfields ++ [ ( "foregroundBasicColor", JR.defaultOf "" ), ( "foregroundColor", JR.defaultOf "I" ), ( "basicSetColorUtil", JR.defaultOf "" ), ( "touchButtonFactory", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "paint_1", jm_paint_1 ) ]
+        Paintable.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TouchButtonsPaintable"
+        [ ( "jm_paint_1", jm_paint_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Paintable.jinit_0 JR.this []),
+                JR.exec (JR.setField "basicSetColorUtil" "" JR.this (JR.callStatic BasicColorSetUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "touchButtonFactory" "" JR.this (JR.callStatic TouchButtonFactory.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "foregroundBasicColor" "" JR.this (JR.local "basicColor")), 
+                    JR.exec (JR.setField "foregroundColor" "I" JR.this (JR.invoke "intValue_0" (JR.local "basicColor") [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "list" "" (JR.invoke "getList_0" (JR.thisField "touchButtonFactory") []), 
+                    JR.exec (JR.invoke "setBasicColorP3_3" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.thisField "foregroundBasicColor"), (JR.thisField "foregroundColor") ]), 
+                    JR.declare "touchButton" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67779 -> (JR.setLocal "index" "I" (JR.lit jwN67779))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.setLocal "touchButton" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "paint_1" (JR.local "touchButton") [ (JR.local "graphics") ]) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67938 -> (JR.setLocal "index" "I" (JR.lit jwN67938))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.setLocal "touchButton" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "paintHint_1" (JR.local "touchButton") [ (JR.local "graphics") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,84 +1,80 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.role
-module UserRoleData where
+module Org.Allbinary.Business.User.Role.UserRoleData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.role
+-}
 
-data UserRoleData = UserRoleData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull UserRoleData where
-    javaNull = javaNullRecord "UserRoleData"
 
-instance JavaEquals UserRoleData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq UserRoleData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "UserRoleData"
 
-instance JavaObjectClass UserRoleData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-nAME :: String
-nAME = "ROLE"
+jchain : List String
+jchain =
+    [ "UserRoleData" ]
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-newRecord_ :: IO UserRoleData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = UserRoleData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: UserRoleData -> IO ()
-initFields_ this = do
-    pure ()
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-new_ :: IO UserRoleData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: UserRoleData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "UserRoleData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NAME", jstatic_NAME ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "UserRoleData" jclinit "NAME"
+        (JR.str "ROLE")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

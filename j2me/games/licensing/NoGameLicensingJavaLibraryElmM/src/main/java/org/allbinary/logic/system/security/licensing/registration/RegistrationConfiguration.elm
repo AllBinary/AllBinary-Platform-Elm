@@ -1,154 +1,145 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing.registration
-module RegistrationConfiguration where
+module Org.Allbinary.Logic.System.Security.Licensing.Registration.RegistrationConfiguration exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.licensing.registration
+-}
 
-data RegistrationConfiguration = RegistrationConfiguration
-    { header_ :: JavaHeader
-    , registrationCode :: IORef (String)
-    , nAME :: IORef (String)
-    }
-
-instance JavaNull RegistrationConfiguration where
-    javaNull = javaNullRecord "RegistrationConfiguration"
-
-instance JavaEquals RegistrationConfiguration where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RegistrationConfiguration where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RegistrationConfiguration where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: RegistrationConfiguration
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_))
-
-newRecord_ :: IO RegistrationConfiguration
-newRecord_ = do
-    header_ <- newJavaHeader
-    registrationCode <- newIORef ""
-    nAME <- newIORef ""
-    let this = RegistrationConfiguration header_ registrationCode nAME
-    jregisterLevel header_ this
-    jregisterMethod header_ "read" (\() -> read_impl this)
-    jregisterMethod header_ "write" (\() -> write_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    jregisterMethod header_ "setRegistrationCode" (\() -> setRegistrationCode_impl this)
-    jregisterMethod header_ "getRegistrationCode" (\() -> getRegistrationCode_impl this)
-    pure this
-
-initFields_ :: RegistrationConfiguration -> IO ()
-initFields_ this = do
-    jset this.registrationCode ("No Registration Code")
-    jset this.nAME ("registrationid")
-    pure ()
-
-new_ :: IO RegistrationConfiguration
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: RegistrationConfiguration -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (RegistrationConfiguration)
-getInstance = do
-        pure (RegistrationConfiguration.sINGLETON)
+jclass : String
+jclass =
+    "RegistrationConfiguration"
 
 
--- throws Exception
-read :: (JavaObjectClass this_) => this_ -> IO (())
-read object_ = jmethod object_ "read" (\() -> (read_impl (javaCast object_ :: RegistrationConfiguration))) ()
-
-read_super :: (JavaObjectClass this_) => this_ -> IO (())
-read_super object_ = (read_impl (javaCast object_ :: RegistrationConfiguration))
-
-read_impl :: RegistrationConfiguration -> IO (())
-read_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "RegistrationConfiguration" ]
 
 
--- throws Exception
-write :: (JavaObjectClass this_) => this_ -> IO (())
-write object_ = jmethod object_ "write" (\() -> (write_impl (javaCast object_ :: RegistrationConfiguration))) ()
-
-write_super :: (JavaObjectClass this_) => this_ -> IO (())
-write_super object_ = (write_impl (javaCast object_ :: RegistrationConfiguration))
-
-write_impl :: RegistrationConfiguration -> IO (())
-write_impl this = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "registrationCode", JR.defaultOf "" ), ( "NAME", JR.defaultOf "" ) ]
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: RegistrationConfiguration))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: RegistrationConfiguration))
-
-toString_impl :: RegistrationConfiguration -> IO (String)
-toString_impl this = do
-        (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "Registration Code: "))) (jio (RegistrationConfiguration.getRegistrationCode this))))))
-
-
-setRegistrationCode :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setRegistrationCode object_ a1 = jmethod object_ "setRegistrationCode" (\() -> (setRegistrationCode_impl (javaCast object_ :: RegistrationConfiguration))) () a1
-
-setRegistrationCode_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setRegistrationCode_super object_ a1 = (setRegistrationCode_impl (javaCast object_ :: RegistrationConfiguration)) a1
-
-setRegistrationCode_impl :: RegistrationConfiguration -> String -> IO (())
-setRegistrationCode_impl this registrationCode = do
-        jset (this).registrationCode (registrationCode)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "read_0", jm_read_0 )
+        , ( "write_0", jm_write_0 )
+        , ( "toString_0", jm_toString_0 )
+        , ( "setRegistrationCode_1", jm_setRegistrationCode_1 )
+        , ( "getRegistrationCode_0", jm_getRegistrationCode_0 ) ]
+        JR.noMethods
 
 
-getRegistrationCode :: (JavaObjectClass this_) => this_ -> IO (String)
-getRegistrationCode object_ = jmethod object_ "getRegistrationCode" (\() -> (getRegistrationCode_impl (javaCast object_ :: RegistrationConfiguration))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RegistrationConfiguration"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_read_0", jm_read_0 ), ( "jm_write_0", jm_write_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jm_setRegistrationCode_1", jm_setRegistrationCode_1 ), ( "jm_getRegistrationCode_0", jm_getRegistrationCode_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
 
-getRegistrationCode_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getRegistrationCode_super object_ = (getRegistrationCode_impl (javaCast object_ :: RegistrationConfiguration))
 
-getRegistrationCode_impl :: RegistrationConfiguration -> IO (String)
-getRegistrationCode_impl this = do
-        pure ((jget (this).registrationCode))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "RegistrationConfiguration" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "registrationCode" "" JR.this (JR.str "No Registration Code")),
+                JR.exec (JR.setField "NAME" "" JR.this (JR.str "registrationid")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_read_0 : JR.Method
+jm_read_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_write_0 : JR.Method
+jm_write_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Registration Code: ") ]) [ (JR.invoke "getRegistrationCode_0" JR.this []) ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setRegistrationCode_1 : JR.Method
+jm_setRegistrationCode_1 jheap jthis jargs =
+    JR.method [ ( "registrationCode", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "registrationCode" "" JR.this (JR.local "registrationCode")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRegistrationCode_0 : JR.Method
+jm_getRegistrationCode_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "registrationCode") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

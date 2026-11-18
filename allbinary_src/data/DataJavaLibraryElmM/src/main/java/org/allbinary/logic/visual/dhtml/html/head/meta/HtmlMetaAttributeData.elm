@@ -1,110 +1,98 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.visual.dhtml.html.head.meta
-module HtmlMetaAttributeData where
+module Org.Allbinary.Logic.Visual.Dhtml.Html.Head.Meta.HtmlMetaAttributeData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.visual.dhtml.html.head.meta
+-}
 
-data HtmlMetaAttributeData = HtmlMetaAttributeData
-    { header_ :: JavaHeader
-    , id :: IORef (Int)
-    , name :: IORef (String)
-    }
-
-instance JavaNull HtmlMetaAttributeData where
-    javaNull = javaNullRecord "HtmlMetaAttributeData"
-
-instance JavaEquals HtmlMetaAttributeData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HtmlMetaAttributeData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HtmlMetaAttributeData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HtmlMetaAttributeData
-newRecord_ = do
-    header_ <- newJavaHeader
-    id <- newIORef 0
-    name <- newIORef ""
-    let this = HtmlMetaAttributeData header_ id name
-    jregisterLevel header_ this
-    jregisterMethod header_ "equals" (\() -> equals_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: HtmlMetaAttributeData -> IO ()
-initFields_ this = do
-    jset this.id (0)
-    jset this.name (javaNull)
-    pure ()
-
-new_2 :: Int -> String -> IO HtmlMetaAttributeData
-new_2 id value = do
-    this <- newRecord_
-    init_2 this id value
-    pure this
-
-init_2 :: HtmlMetaAttributeData -> Int -> String -> IO ()
-init_2 this id value = do
-        initFields_ this
-        jset (this).name (value)
-        jset (this).id (id)
-        pure ()
+import JR
 
 
-equals :: (JavaObjectClass this_) => this_ -> HtmlMetaAttributeData -> IO (Bool)
-equals object_ a1 = jmethod object_ "equals" (\() -> (equals_impl (javaCast object_ :: HtmlMetaAttributeData))) () a1
 
-equals_super :: (JavaObjectClass this_) => this_ -> HtmlMetaAttributeData -> IO (Bool)
-equals_super object_ a1 = (equals_impl (javaCast object_ :: HtmlMetaAttributeData)) a1
-
-equals_impl :: HtmlMetaAttributeData -> HtmlMetaAttributeData -> IO (Bool)
-equals_impl this htmlMetaAttributeData = do
-    javaCatchReturn $ do
-        if ((jget (htmlMetaAttributeData).id) == (jget (this).id)) then do
-            javaReturn (True)
-        else do
-            javaReturn (False)
+jclass : String
+jclass =
+    "HtmlMetaAttributeData"
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: HtmlMetaAttributeData))) ()
+jchain : List String
+jchain =
+    [ "HtmlMetaAttributeData" ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: HtmlMetaAttributeData))
 
-toString_impl :: HtmlMetaAttributeData -> IO (String)
-toString_impl this = do
-        pure ((jget (this).name))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "id", JR.defaultOf "I" ), ( "name", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "equals_1", jm_equals_1 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HtmlMetaAttributeData"
+        [ ( "jm_equals_1", jm_equals_1 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "id", "I" ), ( "value", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "value")), 
+                    JR.exec (JR.setField "id" "I" JR.this (JR.local "id")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_equals_1 : JR.Method
+jm_equals_1 jheap jthis jargs =
+    JR.method [ ( "htmlMetaAttributeData", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.field "id" (JR.local "htmlMetaAttributeData")) (JR.thisField "id")) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

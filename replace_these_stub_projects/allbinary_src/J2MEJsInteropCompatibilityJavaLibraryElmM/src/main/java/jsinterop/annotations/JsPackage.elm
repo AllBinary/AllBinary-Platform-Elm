@@ -1,4 +1,4 @@
-module JsPackage exposing (..)
+module Jsinterop.Annotations.JsPackage exposing (..)
 
 {-| Generated Code Do Not Modify package jsinterop.annotations
 -}

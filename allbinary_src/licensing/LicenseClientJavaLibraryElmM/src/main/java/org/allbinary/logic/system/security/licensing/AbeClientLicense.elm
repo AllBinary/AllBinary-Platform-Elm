@@ -1,263 +1,230 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
-module AbeClientLicense where
+module Org.Allbinary.Logic.System.Security.Licensing.AbeClientLicense exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified LicenseType -- same package or java.lang
-import qualified AbeClientInformationData -- same package or java.lang
-import qualified LicenseTypeFactory -- same package or java.lang
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified StringValidationUtil -- org.allbinary.logic.string.StringValidationUtil
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified AbeLicenseInterface
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.licensing
+-}
 
--- implements AbeLicenseInterface
-data AbeClientLicense = AbeClientLicense
-    { header_ :: JavaHeader
-    , hashtable :: IORef (ABHashtable.ABHashtable)
-    , id :: IORef (String)
-    , servers :: IORef (BasicArrayList.BasicArrayList)
-    , special :: IORef (String)
-    , licenseType :: IORef (LicenseType.LicenseType)
-    }
-
-instance JavaNull AbeClientLicense where
-    javaNull = javaNullRecord "AbeClientLicense"
-
-instance JavaEquals AbeClientLicense where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AbeClientLicense where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AbeClientLicense where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AbeClientLicense
-newRecord_ = do
-    header_ <- newJavaHeader
-    hashtable <- newIORef javaNull
-    id <- newIORef ""
-    servers <- newIORef javaNull
-    special <- newIORef ""
-    licenseType <- newIORef javaNull
-    let this = AbeClientLicense header_ hashtable id servers special licenseType
-    jregisterLevel header_ this
-    AbeLicenseInterface.registerInterface_ header_
-    jregisterMethod header_ "hasKey" (\() -> hasKey_impl this)
-    jregisterMethod header_ "getKey" (\() -> getKey_impl this)
-    jregisterMethod header_ "getLicenseId" (\() -> getLicenseId_impl this)
-    jregisterMethod header_ "getServers" (\() -> getServers_impl this)
-    jregisterMethod header_ "isValid" (\() -> isValid_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    jregisterMethod header_ "setSpecial" (\() -> setSpecial_impl this)
-    jregisterMethod header_ "getSpecial" (\() -> getSpecial_impl this)
-    jregisterMethod header_ "getLicenseType" (\() -> getLicenseType_impl this)
-    pure this
-
-initFields_ :: AbeClientLicense -> IO ()
-initFields_ this = do
-    jset this.hashtable (javaNull)
-    jset this.id (javaNull)
-    jset this.servers (javaNull)
-    jset this.special ("")
-    jset this.licenseType (javaNull)
-    pure ()
-
-new_1 :: ABHashtable.ABHashtable -> IO AbeClientLicense
-new_1 hashtable = do
-    this <- newRecord_
-    init_1 this hashtable
-    pure this
-
-init_1 :: AbeClientLicense -> ABHashtable.ABHashtable -> IO ()
-init_1 this hashtable = do
-        initFields_ this
-        assignedValue <- (StdUtil.createHashtable ((jio (StdUtil.getInstance))))
-        jset (this).hashtable (assignedValue)
-        abeClientInformationData <- (AbeClientInformationData.getInstance)
-        keyValue <- (ABHashtable.get hashtable (jget (abeClientInformationData).kEY))
-        when (keyValue /= javaNull) $ do
-            when (javaInstanceOf keyValue "String") $ do
-                Control.Monad.void (ABHashtable.put ((jget (this).hashtable)) (jget (abeClientInformationData).kEY) keyValue)
-        jset (this).id ((javaCast (jio (ABHashtable.get hashtable (jget (abeClientInformationData).lICENSEID))) :: String))
-        let vector = (javaCast (jio (ABHashtable.get hashtable (jget (abeClientInformationData).lICENSESERVERS))) :: BasicArrayList.BasicArrayList)
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        jset (this).servers (assignedValue)
-        size <- (BasicArrayList.size vector)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (BasicArrayList.add ((jget (this).servers)) (jio (BasicArrayList.get vector index)))
-        stringUtil <- (StringUtil.getInstance)
-        Control.Monad.void (AbeClientLicense.setSpecial this (jio (StringUtil.getNonNull stringUtil (javaCast (jio (ABHashtable.get hashtable (jget (abeClientInformationData).sPECIAL))) :: String))))
-        licenseTypeString <- (StringUtil.getNonNull stringUtil (javaCast (jio (ABHashtable.get hashtable (jget (abeClientInformationData).lICENSE_TYPE))) :: String))
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: LicenseType.LicenseType) (LicenseTypeFactory.getInstance_1 ((jio (LicenseTypeFactory.getInstance))) licenseTypeString))
-        jset (this).licenseType (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Logic.System.Security.Licensing.AbeClientInformationData as AbeClientInformationData
+import Org.Allbinary.Logic.System.Security.Licensing.AbeLicenseInterface as AbeLicenseInterface
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.System.Security.Licensing.LicenseTypeFactory as LicenseTypeFactory
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
 
 
-hasRequiredKeys :: ABHashtable.ABHashtable -> IO (Bool)
-hasRequiredKeys resultHashtable = do
-    javaCatchReturn $ do
-        abeClientInformationData <- (AbeClientInformationData.getInstance)
-        if ((((jio (ABHashtable.containsKey resultHashtable (jget (abeClientInformationData).lICENSEID))) && (jio (ABHashtable.containsKey resultHashtable (jget (abeClientInformationData).lICENSESERVERS)))) && (jio (ABHashtable.containsKey resultHashtable (jget (abeClientInformationData).kEY)))) && (jio (ABHashtable.containsKey resultHashtable (jget (abeClientInformationData).lICENSE_TYPE)))) then do
-            javaReturn (True)
-        else do
-            javaReturn (False)
+jclass : String
+jclass =
+    "AbeClientLicense"
 
 
-hasKey :: (JavaObjectClass this_) => this_ -> IO (Bool)
-hasKey object_ = jmethod object_ "hasKey" (\() -> (hasKey_impl (javaCast object_ :: AbeClientLicense))) ()
-
-hasKey_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-hasKey_super object_ = (hasKey_impl (javaCast object_ :: AbeClientLicense))
-
-hasKey_impl :: AbeClientLicense -> IO (Bool)
-hasKey_impl this = do
-        (AbeClientLicense.isValid this)
+jchain : List String
+jchain =
+    [ "AbeClientLicense" ]
+        ++ AbeLicenseInterface.jchain
 
 
-getKey :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-getKey object_ a1 = jmethod object_ "getKey" (\() -> (getKey_impl (javaCast object_ :: AbeClientLicense))) () a1
-
-getKey_super :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-getKey_super object_ a1 = (getKey_impl (javaCast object_ :: AbeClientLicense)) a1
-
-getKey_impl :: AbeClientLicense -> String -> IO (String)
-getKey_impl this keyName = do
-        pure ((javaCast (jio (ABHashtable.get ((jget (this).hashtable)) keyName)) :: String))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "hashtable", JR.defaultOf "" ), ( "id", JR.defaultOf "" ), ( "servers", JR.defaultOf "" ), ( "special", JR.defaultOf "" ), ( "licenseType", JR.defaultOf "" ) ]
 
 
-getLicenseId :: (JavaObjectClass this_) => this_ -> IO (String)
-getLicenseId object_ = jmethod object_ "getLicenseId" (\() -> (getLicenseId_impl (javaCast object_ :: AbeClientLicense))) ()
-
-getLicenseId_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getLicenseId_super object_ = (getLicenseId_impl (javaCast object_ :: AbeClientLicense))
-
-getLicenseId_impl :: AbeClientLicense -> IO (String)
-getLicenseId_impl this = do
-        pure ((jget (this).id))
-
-
-getServers :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getServers object_ = jmethod object_ "getServers" (\() -> (getServers_impl (javaCast object_ :: AbeClientLicense))) ()
-
-getServers_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getServers_super object_ = (getServers_impl (javaCast object_ :: AbeClientLicense))
-
-getServers_impl :: AbeClientLicense -> IO (BasicArrayList.BasicArrayList)
-getServers_impl this = do
-        pure ((jget (this).servers))
+jvtable =
+    JR.vtable
+        [ ( "hasRequiredKeys_1", jm_hasRequiredKeys_1 )
+        , ( "hasKey_0", jm_hasKey_0 )
+        , ( "getKey_1", jm_getKey_1 )
+        , ( "getLicenseId_0", jm_getLicenseId_0 )
+        , ( "getServers_0", jm_getServers_0 )
+        , ( "isValid_0", jm_isValid_0 )
+        , ( "toString_0", jm_toString_0 )
+        , ( "setSpecial_1", jm_setSpecial_1 )
+        , ( "getSpecial_0", jm_getSpecial_0 )
+        , ( "getLicenseType_0", jm_getLicenseType_0 ) ]
+        JR.noMethods
 
 
-isValid :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isValid object_ = jmethod object_ "isValid" (\() -> (isValid_impl (javaCast object_ :: AbeClientLicense))) ()
-
-isValid_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isValid_super object_ = (isValid_impl (javaCast object_ :: AbeClientLicense))
-
-isValid_impl :: AbeClientLicense -> IO (Bool)
-isValid_impl this = do
-    javaCatchReturn $ do
-        stringValidationUtil <- (StringValidationUtil.getInstance)
-        when (Prelude.not (jio (StringValidationUtil.isEmpty stringValidationUtil (jio (AbeClientLicense.getKey this (jget ((jio (AbeClientInformationData.getInstance))).kEY)))))) $ do
-            javaReturn (True)
-        pure (False)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbeClientLicense"
+        [ ( "jm_hasRequiredKeys_1", jm_hasRequiredKeys_1 ), ( "jm_hasKey_0", jm_hasKey_0 ), ( "jm_getKey_1", jm_getKey_1 ), ( "jm_getLicenseId_0", jm_getLicenseId_0 ), ( "jm_getServers_0", jm_getServers_0 ), ( "jm_isValid_0", jm_isValid_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jm_setSpecial_1", jm_setSpecial_1 ), ( "jm_getSpecial_0", jm_getSpecial_0 ), ( "jm_getLicenseType_0", jm_getLicenseType_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: AbeClientLicense))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: AbeClientLicense))
-
-toString_impl :: AbeClientLicense -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        let bREAK = "<br/>"
-        Control.Monad.void (StringMaker.append stringBuffer "License Id: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (AbeClientLicense.getLicenseId this)))
-        Control.Monad.void (StringMaker.append stringBuffer bREAK)
-        Control.Monad.void (StringMaker.append stringBuffer "Is Valid: ")
-        Control.Monad.void (StringMaker.appendboolean stringBuffer (jio (AbeClientLicense.isValid this)))
-        Control.Monad.void (StringMaker.append stringBuffer bREAK)
-        Control.Monad.void (StringMaker.append stringBuffer "Keys: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (ABHashtable.toString ((jget (this).hashtable)))))
-        Control.Monad.void (StringMaker.append stringBuffer bREAK)
-        serverVector <- (AbeClientLicense.getServers this)
-        size <- (BasicArrayList.size serverVector)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let nextServerString = (javaCast (jio (BasicArrayList.get serverVector index)) :: String)
-            Control.Monad.void (StringMaker.append stringBuffer "Server: ")
-            Control.Monad.void (StringMaker.append stringBuffer nextServerString)
-            Control.Monad.void (StringMaker.append stringBuffer bREAK)
-        (StringMaker.toString stringBuffer)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setSpecial :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setSpecial object_ a1 = jmethod object_ "setSpecial" (\() -> (setSpecial_impl (javaCast object_ :: AbeClientLicense))) () a1
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "hashtable", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "hashtable" "" JR.this (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) [])), 
+                    JR.declare "abeClientInformationData" "" (JR.callStatic AbeClientInformationData.jm_getInstance_0 []), 
+                    JR.declare "keyValue" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.field "KEY" (JR.local "abeClientInformationData")) ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "keyValue") JR.null) (JR.run [ 
+                        JR.ifElse (JR.instanceOf "String" (JR.local "keyValue")) (JR.run [ 
+                            JR.exec (JR.invoke "put_2" (JR.thisField "hashtable") [ (JR.field "KEY" (JR.local "abeClientInformationData")), (JR.local "keyValue") ]) ]) identity ]) identity, 
+                    JR.exec (JR.setField "id" "" JR.this (JR.invoke "get_1" (JR.local "hashtable") [ (JR.field "LICENSEID" (JR.local "abeClientInformationData")) ])), 
+                    JR.declare "vector" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.field "LICENSESERVERS" (JR.local "abeClientInformationData")) ]), 
+                    JR.exec (JR.setField "servers" "" JR.this (JR.new BasicArrayListD.jnew_0 [])), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "vector") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67636 -> (JR.setLocal "index" "I" (JR.lit jwN67636))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "servers") [ (JR.invoke "get_1" (JR.local "vector") [ (JR.local "index") ]) ]) ]) ], 
+                    JR.declare "stringUtil" "" (JR.callStatic StringUtil.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "setSpecial_1" JR.this [ (JR.invoke "getNonNull_1" (JR.local "stringUtil") [ (JR.invoke "get_1" (JR.local "hashtable") [ (JR.field "SPECIAL" (JR.local "abeClientInformationData")) ]) ]) ]), 
+                    JR.declare "licenseTypeString" "" (JR.invoke "getNonNull_1" (JR.local "stringUtil") [ (JR.invoke "get_1" (JR.local "hashtable") [ (JR.field "LICENSE_TYPE" (JR.local "abeClientInformationData")) ]) ]), 
+                    JR.exec (JR.setField "licenseType" "" JR.this (JR.invoke "getInstance_1" (JR.callStatic LicenseTypeFactory.jm_getInstance_0 []) [ (JR.local "licenseTypeString") ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setSpecial_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setSpecial_super object_ a1 = (setSpecial_impl (javaCast object_ :: AbeClientLicense)) a1
 
-setSpecial_impl :: AbeClientLicense -> String -> IO (())
-setSpecial_impl this special = do
-        jset (this).special (special)
-        pure ()
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
 
 
-getSpecial :: (JavaObjectClass this_) => this_ -> IO (String)
-getSpecial object_ = jmethod object_ "getSpecial" (\() -> (getSpecial_impl (javaCast object_ :: AbeClientLicense))) ()
+jm_hasRequiredKeys_1 : JR.Method
+jm_hasRequiredKeys_1 jheap jthis jargs =
+    JR.method [ ( "resultHashtable", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "abeClientInformationData" "" (JR.callStatic AbeClientInformationData.jm_getInstance_0 []), 
+                    JR.ifElse (JR.and (JR.and (JR.and (JR.invoke "containsKey_1" (JR.local "resultHashtable") [ (JR.field "LICENSEID" (JR.local "abeClientInformationData")) ]) (JR.invoke "containsKey_1" (JR.local "resultHashtable") [ (JR.field "LICENSESERVERS" (JR.local "abeClientInformationData")) ])) (JR.invoke "containsKey_1" (JR.local "resultHashtable") [ (JR.field "KEY" (JR.local "abeClientInformationData")) ])) (JR.invoke "containsKey_1" (JR.local "resultHashtable") [ (JR.field "LICENSE_TYPE" (JR.local "abeClientInformationData")) ])) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getSpecial_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getSpecial_super object_ = (getSpecial_impl (javaCast object_ :: AbeClientLicense))
 
-getSpecial_impl :: AbeClientLicense -> IO (String)
-getSpecial_impl this = do
-        pure ((jget (this).special))
+jm_hasKey_0 : JR.Method
+jm_hasKey_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isValid_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getLicenseType :: (JavaObjectClass this_) => this_ -> IO (LicenseType.LicenseType)
-getLicenseType object_ = jmethod object_ "getLicenseType" (\() -> (getLicenseType_impl (javaCast object_ :: AbeClientLicense))) ()
+jm_getKey_1 : JR.Method
+jm_getKey_1 jheap jthis jargs =
+    JR.method [ ( "keyName", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "get_1" (JR.thisField "hashtable") [ (JR.local "keyName") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getLicenseType_super :: (JavaObjectClass this_) => this_ -> IO (LicenseType.LicenseType)
-getLicenseType_super object_ = (getLicenseType_impl (javaCast object_ :: AbeClientLicense))
 
-getLicenseType_impl :: AbeClientLicense -> IO (LicenseType.LicenseType)
-getLicenseType_impl this = do
-        pure ((jget (this).licenseType))
+jm_getLicenseId_0 : JR.Method
+jm_getLicenseId_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "id") ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_getServers_0 : JR.Method
+jm_getServers_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "servers") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isValid_0 : JR.Method
+jm_isValid_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.declare "stringValidationUtil" "" (JR.callStatic StringValidationUtil.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isEmpty_1" (JR.local "stringValidationUtil") [ (JR.invoke "getKey_1" JR.this [ (JR.field "KEY" (JR.callStatic AbeClientInformationData.jm_getInstance_0 [])) ]) ])) (JR.run [ 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "BREAK" "" (JR.str "<br/>"), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "License Id: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getLicenseId_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "BREAK") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Is Valid: ") ]), 
+                    JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.invoke "isValid_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "BREAK") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Keys: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.thisField "hashtable") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "BREAK") ]), 
+                    JR.declare "serverVector" "" (JR.invoke "getServers_0" JR.this []), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "serverVector") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69354 -> (JR.setLocal "index" "I" (JR.lit jwN69354))) JR.increment) ]) (JR.run [ 
+                        JR.declare "nextServerString" "" (JR.invoke "get_1" (JR.local "serverVector") [ (JR.local "index") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Server: ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "nextServerString") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "BREAK") ]) ]) ], 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setSpecial_1 : JR.Method
+jm_setSpecial_1 jheap jthis jargs =
+    JR.method [ ( "special", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "special" "" JR.this (JR.local "special")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSpecial_0 : JR.Method
+jm_getSpecial_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "special") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLicenseType_0 : JR.Method
+jm_getLicenseType_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "licenseType") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

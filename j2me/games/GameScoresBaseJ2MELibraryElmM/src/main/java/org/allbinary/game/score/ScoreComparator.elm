@@ -1,176 +1,151 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module ScoreComparator where
+module Org.Allbinary.Game.Score.ScoreComparator exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ByteArrayInputStream -- java.io.ByteArrayInputStream
-import qualified DataInputStream -- java.io.DataInputStream
-import qualified EOFException -- java.io.EOFException
-import qualified IOException -- java.io.IOException
-import qualified RecordComparator -- javax.microedition.rms.RecordComparator
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
--- implements RecordComparator
-data ScoreComparator = ScoreComparator
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , isHighestBest :: IORef (Bool)
-    }
-
-instance JavaNull ScoreComparator where
-    javaNull = javaNullRecord "ScoreComparator"
-
-instance JavaEquals ScoreComparator where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ScoreComparator where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ScoreComparator where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ScoreComparator
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    isHighestBest <- newIORef False
-    let this = ScoreComparator header_ logUtil isHighestBest
-    jregisterLevel header_ this
-    RecordComparator.registerInterface_ header_
-    jregisterMethod header_ "getBestScore" (\() -> getBestScore_impl this)
-    jregisterMethod header_ "compare" (\() -> compare_impl this)
-    jregisterMethod header_ "getHighTooLow" (\() -> getHighTooLow_impl this)
-    jregisterMethod header_ "getLowTooHigh" (\() -> getLowTooHigh_impl this)
-    pure this
-
-initFields_ :: ScoreComparator -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.isHighestBest (False)
-    pure ()
-
-new_1 :: Bool -> IO ScoreComparator
-new_1 isHighestBest = do
-    this <- newRecord_
-    init_1 this isHighestBest
-    pure this
-
-init_1 :: ScoreComparator -> Bool -> IO ()
-init_1 this isHighestBest = do
-        initFields_ this
-        jset (this).isHighestBest (isHighestBest)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JByteArrayInputStream
+import JDataInputStream
+import JLong
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Javax.Microedition.Rms.RecordComparator as RecordComparator
 
 
-getBestScore :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getBestScore object_ = jmethod object_ "getBestScore" (\() -> (getBestScore_impl (javaCast object_ :: ScoreComparator))) ()
-
-getBestScore_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getBestScore_super object_ = (getBestScore_impl (javaCast object_ :: ScoreComparator))
-
-getBestScore_impl :: ScoreComparator -> IO (Int64)
-getBestScore_impl this = do
-        pure ((if (jget (this).isHighestBest) then (Prelude.maxBound :: Int64) else 0))
+jclass : String
+jclass =
+    "ScoreComparator"
 
 
-compare :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> JavaArray (Int8) -> IO (Int)
-compare object_ a1 a2 = jmethod object_ "compare" (\() -> (compare_impl (javaCast object_ :: ScoreComparator))) () a1 a2
-
-compare_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> JavaArray (Int8) -> IO (Int)
-compare_super object_ a1 a2 = (compare_impl (javaCast object_ :: ScoreComparator)) a1 a2
-
-compare_impl :: ScoreComparator -> JavaArray (Int8) -> JavaArray (Int8) -> IO (Int)
-compare_impl this recordOne recordTwo = do
-    javaCatchReturn $ do
-        byteArrayInputStreamOne <- (ByteArrayInputStream.new_1 recordOne)
-        inputStreamOne <- (DataInputStream.new_1 byteArrayInputStreamOne)
-        byteArrayInputStreamTwo <- (ByteArrayInputStream.new_1 recordTwo)
-        inputStreamTwo <- (DataInputStream.new_1 byteArrayInputStreamTwo)
-        scoreOne <- newIORef (0 :: Int64)
-        scoreTwo <- newIORef (0 :: Int64)
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this "compare" e)
-            ) $ do
-            Control.Monad.void (DataInputStream.readUTF inputStreamOne)
-            Control.Monad.void (DataInputStream.readUTF inputStreamTwo)
-            assignedValue <- (DataInputStream.readLong inputStreamOne)
-            jset scoreOne (assignedValue)
-            assignedValue <- (DataInputStream.readLong inputStreamTwo)
-            jset scoreTwo (assignedValue)
-        if (jget (this).isHighestBest) then do
-            javaReturn =<< (ScoreComparator.getHighTooLow this (jget scoreOne) (jget scoreTwo))
-        else do
-            javaReturn =<< (ScoreComparator.getLowTooHigh this (jget scoreOne) (jget scoreTwo))
+jchain : List String
+jchain =
+    [ "ScoreComparator" ]
+        ++ RecordComparator.jchain
 
 
-getHighTooLow :: (JavaObjectClass this_) => this_ -> Int64 -> Int64 -> IO (Int)
-getHighTooLow object_ a1 a2 = jmethod object_ "getHighTooLow" (\() -> (getHighTooLow_impl (javaCast object_ :: ScoreComparator))) () a1 a2
-
-getHighTooLow_super :: (JavaObjectClass this_) => this_ -> Int64 -> Int64 -> IO (Int)
-getHighTooLow_super object_ a1 a2 = (getHighTooLow_impl (javaCast object_ :: ScoreComparator)) a1 a2
-
-getHighTooLow_impl :: ScoreComparator -> Int64 -> Int64 -> IO (Int)
-getHighTooLow_impl this scoreOne scoreTwo = do
-    javaCatchReturn $ do
-        if (scoreOne > scoreTwo) then do
-            javaReturn (RecordComparator.pRECEDES)
-        else if (scoreOne < scoreTwo) then do
-            javaReturn (RecordComparator.fOLLOWS)
-        else do
-            javaReturn (RecordComparator.eQUIVALENT)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "isHighestBest", JR.defaultOf "Z" ) ]
 
 
-getLowTooHigh :: (JavaObjectClass this_) => this_ -> Int64 -> Int64 -> IO (Int)
-getLowTooHigh object_ a1 a2 = jmethod object_ "getLowTooHigh" (\() -> (getLowTooHigh_impl (javaCast object_ :: ScoreComparator))) () a1 a2
+jvtable =
+    JR.vtable
+        [ ( "getBestScore_0", jm_getBestScore_0 )
+        , ( "compare_2", jm_compare_2 )
+        , ( "getHighTooLow_2", jm_getHighTooLow_2 )
+        , ( "getLowTooHigh_2", jm_getLowTooHigh_2 ) ]
+        JR.noMethods
 
-getLowTooHigh_super :: (JavaObjectClass this_) => this_ -> Int64 -> Int64 -> IO (Int)
-getLowTooHigh_super object_ a1 a2 = (getLowTooHigh_impl (javaCast object_ :: ScoreComparator)) a1 a2
 
-getLowTooHigh_impl :: ScoreComparator -> Int64 -> Int64 -> IO (Int)
-getLowTooHigh_impl this scoreOne scoreTwo = do
-    javaCatchReturn $ do
-        if (scoreOne < scoreTwo) then do
-            javaReturn (RecordComparator.pRECEDES)
-        else if (scoreOne > scoreTwo) then do
-            javaReturn (RecordComparator.fOLLOWS)
-        else do
-            javaReturn (RecordComparator.eQUIVALENT)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ScoreComparator"
+        [ ( "jm_getBestScore_0", jm_getBestScore_0 ), ( "jm_compare_2", jm_compare_2 ), ( "jm_getHighTooLow_2", jm_getHighTooLow_2 ), ( "jm_getLowTooHigh_2", jm_getLowTooHigh_2 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "isHighestBest", "Z" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "isHighestBest" "Z" JR.this (JR.local "isHighestBest")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getBestScore_0 : JR.Method
+jm_getBestScore_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.cond (JR.thisField "isHighestBest") JLong.jstatic_MAX_VALUE (JR.int 0)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_compare_2 : JR.Method
+jm_compare_2 jheap jthis jargs =
+    JR.method [ ( "recordOne", "" ), ( "recordTwo", "" ) ] "I"
+        (JR.run [ 
+                    JR.declare "byteArrayInputStreamOne" "" (JR.new JByteArrayInputStream.jnew_1 [ (JR.local "recordOne") ]), 
+                    JR.declare "inputStreamOne" "" (JR.new JDataInputStream.jnew_1 [ (JR.local "byteArrayInputStreamOne") ]), 
+                    JR.declare "byteArrayInputStreamTwo" "" (JR.new JByteArrayInputStream.jnew_1 [ (JR.local "recordTwo") ]), 
+                    JR.declare "inputStreamTwo" "" (JR.new JDataInputStream.jnew_1 [ (JR.local "byteArrayInputStreamTwo") ]), 
+                    JR.declare "scoreOne" "J" (JR.long 0), 
+                    JR.declare "scoreTwo" "J" (JR.long 0), 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "readUTF_0" (JR.local "inputStreamOne") []), 
+                        JR.exec (JR.invoke "readUTF_0" (JR.local "inputStreamTwo") []), 
+                        JR.exec (JR.setLocal "scoreOne" "J" (JR.invoke "readLong_0" (JR.local "inputStreamOne") [])), 
+                        JR.exec (JR.setLocal "scoreTwo" "J" (JR.invoke "readLong_0" (JR.local "inputStreamTwo") [])) ]) [ ( [ "EOFException" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.str "compare"), (JR.local "e") ]) ]) ), ( [ "IOException" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.str "compare"), (JR.local "e") ]) ]) ), ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.str "compare"), (JR.local "e") ]) ]) ) ] identity, 
+                    JR.ifElse (JR.thisField "isHighestBest") (JR.run [ 
+                        JR.return (JR.invoke "getHighTooLow_2" JR.this [ (JR.local "scoreOne"), (JR.local "scoreTwo") ]) ]) (JR.run [ 
+                        JR.return (JR.invoke "getLowTooHigh_2" JR.this [ (JR.local "scoreOne"), (JR.local "scoreTwo") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHighTooLow_2 : JR.Method
+jm_getHighTooLow_2 jheap jthis jargs =
+    JR.method [ ( "scoreOne", "J" ), ( "scoreTwo", "J" ) ] "I"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "scoreOne") (JR.local "scoreTwo")) (JR.run [ 
+                        JR.return RecordComparator.jstatic_PRECEDES ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.less (JR.local "scoreOne") (JR.local "scoreTwo")) (JR.run [ 
+                        JR.return RecordComparator.jstatic_FOLLOWS ]) (JR.run [ 
+                        JR.return RecordComparator.jstatic_EQUIVALENT ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLowTooHigh_2 : JR.Method
+jm_getLowTooHigh_2 jheap jthis jargs =
+    JR.method [ ( "scoreOne", "J" ), ( "scoreTwo", "J" ) ] "I"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.less (JR.local "scoreOne") (JR.local "scoreTwo")) (JR.run [ 
+                        JR.return RecordComparator.jstatic_PRECEDES ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "scoreOne") (JR.local "scoreTwo")) (JR.run [ 
+                        JR.return RecordComparator.jstatic_FOLLOWS ]) (JR.run [ 
+                        JR.return RecordComparator.jstatic_EQUIVALENT ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

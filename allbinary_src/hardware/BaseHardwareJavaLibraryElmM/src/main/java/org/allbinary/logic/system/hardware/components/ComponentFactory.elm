@@ -1,11 +1,11 @@
-module ComponentFactory exposing (..)
+module Org.Allbinary.Logic.System.Hardware.Components.ComponentFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.hardware.components
 -}
 
 import JR
-import CommonStrings
-import Component
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.System.Hardware.Components.Component as Component
 
 
 jclass : String

@@ -1,189 +1,158 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module ImageArraySpecialAnimation (module ImageArraySpecialAnimation, module ImageArrayAnimation) where
+module Org.Allbinary.Animation.Image.ImageArraySpecialAnimation exposing (..)
 
-import ImageArrayAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getLoopCount, getLoopCount_super, getLoopCount_impl, setLastFrame, setLastFrame_super, setLastFrame_impl, reset, reset_super, reset_impl, nextFrame, nextFrame_super, nextFrame_impl, isComplete, isComplete_super, isComplete_impl, paintXY, paintXY_super, paintXY_impl, timeDelayHelper, loopCount, loopCountTotal)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CircularIndexUtil -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified AnimationBehavior -- org.allbinary.animation.AnimationBehavior
-import qualified SpecialAnimationInterface -- org.allbinary.animation.special.SpecialAnimationInterface
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified GameTickTimeDelayHelperFactory -- org.allbinary.time.GameTickTimeDelayHelperFactory
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-import qualified ImageArrayAnimation
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
--- implements SpecialAnimationInterface
-data ImageArraySpecialAnimation = ImageArraySpecialAnimation
-    { header_ :: JavaHeader
-    , base :: ImageArrayAnimation.ImageArrayAnimation
-    , timeDelayHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , loopCount :: IORef (Int)
-    , loopCountTotal :: IORef (Int)
-    }
-
-instance JavaNull ImageArraySpecialAnimation where
-    javaNull = javaNullRecord "ImageArraySpecialAnimation"
-
-instance JavaEquals ImageArraySpecialAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageArraySpecialAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageArraySpecialAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ImageArraySpecialAnimation
-newRecord_ = do
-    base <- ImageArrayAnimation.newRecord_
-    let header_ = base.header_
-    timeDelayHelper <- newIORef javaNull
-    loopCount <- newIORef 0
-    loopCountTotal <- newIORef 0
-    let this = ImageArraySpecialAnimation header_ base timeDelayHelper loopCount loopCountTotal
-    jregisterLevel header_ this
-    SpecialAnimationInterface.registerInterface_ header_
-    jregisterMethod header_ "getLoopCount" (\() -> getLoopCount_impl this)
-    jregisterMethod header_ "setLastFrame" (\() -> setLastFrame_impl this)
-    jregisterMethod header_ "reset" (\() -> reset_impl this)
-    jregisterMethod header_ "nextFrame" (\() -> nextFrame_impl this)
-    jregisterMethod header_ "isComplete" (\() -> isComplete_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    pure this
-
-initFields_ :: ImageArraySpecialAnimation -> IO ()
-initFields_ this = do
-    jset this.timeDelayHelper =<< (TimeDelayHelper.new_1 270)
-    jset this.loopCount (0)
-    jset this.loopCountTotal (1)
-    pure ()
-
-new_2 :: JavaArray (Image.Image) -> AnimationBehavior.AnimationBehavior -> IO ImageArraySpecialAnimation
-new_2 imageArray animationBehavior = do
-    this <- newRecord_
-    init_2 this imageArray animationBehavior
-    pure this
-
-init_2 :: ImageArraySpecialAnimation -> JavaArray (Image.Image) -> AnimationBehavior.AnimationBehavior -> IO ()
-init_2 this imageArray animationBehavior = do
-        ImageArrayAnimation.init_2 this.base (imageArray) (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (ImageArraySpecialAnimation.reset this)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Time.GameTickTimeDelayHelperFactory as GameTickTimeDelayHelperFactory
+import Org.Allbinary.Animation.Image.ImageArrayAnimation as ImageArrayAnimation
+import Org.Allbinary.Animation.Special.SpecialAnimationInterface as SpecialAnimationInterface
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
 
 
-getLoopCount :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLoopCount object_ = jmethod object_ "getLoopCount" (\() -> (getLoopCount_impl (javaCast object_ :: ImageArraySpecialAnimation))) ()
-
-getLoopCount_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLoopCount_super object_ = (getLoopCount_impl (javaCast object_ :: ImageArraySpecialAnimation))
-
-getLoopCount_impl :: ImageArraySpecialAnimation -> IO (Int)
-getLoopCount_impl this = do
-        pure ((jget (this).loopCount))
+jclass : String
+jclass =
+    "ImageArraySpecialAnimation"
 
 
-setLastFrame :: (JavaObjectClass this_) => this_ -> IO (())
-setLastFrame object_ = jmethod object_ "setLastFrame" (\() -> (setLastFrame_impl (javaCast object_ :: ImageArraySpecialAnimation))) ()
-
-setLastFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-setLastFrame_super object_ = (setLastFrame_impl (javaCast object_ :: ImageArraySpecialAnimation))
-
-setLastFrame_impl :: ImageArraySpecialAnimation -> IO (())
-setLastFrame_impl this = do
-        Control.Monad.void (CircularIndexUtil.setIndex ((jget (this).base.circularIndexUtil)) ((jio (CircularIndexUtil.getSize ((jget (this).base.circularIndexUtil)))) - 1))
-        pure ()
+jchain : List String
+jchain =
+    [ "ImageArraySpecialAnimation" ]
+        ++ ImageArrayAnimation.jchain
+        ++ SpecialAnimationInterface.jchain
 
 
-reset :: (JavaObjectClass this_) => this_ -> IO (())
-reset object_ = jmethod object_ "reset" (\() -> (reset_impl (javaCast object_ :: ImageArraySpecialAnimation))) ()
-
-reset_super :: (JavaObjectClass this_) => this_ -> IO (())
-reset_super object_ = (reset_impl (javaCast object_ :: ImageArraySpecialAnimation))
-
-reset_impl :: ImageArraySpecialAnimation -> IO (())
-reset_impl this = do
-        Control.Monad.void (ImageArrayAnimation.setFrame this ((jio (ImageArrayAnimation.getSize this)) - 1))
-        jset (this).loopCount (0)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    ImageArrayAnimation.jfields ++ [ ( "timeDelayHelper", JR.defaultOf "" ), ( "loopCount", JR.defaultOf "I" ), ( "loopCountTotal", JR.defaultOf "I" ) ]
 
 
-nextFrame :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame object_ = jmethod object_ "nextFrame" (\() -> (nextFrame_impl (javaCast object_ :: ImageArraySpecialAnimation))) ()
-
-nextFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame_super object_ = (nextFrame_impl (javaCast object_ :: ImageArraySpecialAnimation))
-
-nextFrame_impl :: ImageArraySpecialAnimation -> IO (())
-nextFrame_impl this = do
-        when ((jio (ImageArrayAnimation.getFrame this)) > 0) $ do
-            when (jio (TimeDelayHelper.isTime ((jget (this).timeDelayHelper)) (jget ((jio (GameTickTimeDelayHelperFactory.getInstance))).startTime))) $ do
-                Control.Monad.void (ImageArrayAnimation.previousFrame this)
-                when ((jio (ImageArrayAnimation.getFrame this)) == 0) $ do
-                    jset (this).loopCount ((jget (this).loopCount) + 1)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getLoopCount_0", jm_getLoopCount_0 )
+        , ( "setLastFrame_0", jm_setLastFrame_0 )
+        , ( "reset_0", jm_reset_0 )
+        , ( "nextFrame_0", jm_nextFrame_0 )
+        , ( "isComplete_0", jm_isComplete_0 )
+        , ( "paintXY_3", jm_paintXY_3 ) ]
+        ImageArrayAnimation.jvtable
 
 
-isComplete :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isComplete object_ = jmethod object_ "isComplete" (\() -> (isComplete_impl (javaCast object_ :: ImageArraySpecialAnimation))) ()
-
-isComplete_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isComplete_super object_ = (isComplete_impl (javaCast object_ :: ImageArraySpecialAnimation))
-
-isComplete_impl :: ImageArraySpecialAnimation -> IO (Bool)
-isComplete_impl this = do
-    javaCatchReturn $ do
-        if (((jget (this).loopCount) < (jget (this).loopCountTotal)) || ((jio (ImageArrayAnimation.getFrame this)) /= 0)) then do
-            javaReturn (False)
-        else do
-            javaReturn (True)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageArraySpecialAnimation"
+        [ ( "jm_getLoopCount_0", jm_getLoopCount_0 ), ( "jm_setLastFrame_0", jm_setLastFrame_0 ), ( "jm_reset_0", jm_reset_0 ), ( "jm_nextFrame_0", jm_nextFrame_0 ), ( "jm_isComplete_0", jm_isComplete_0 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
 
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: ImageArraySpecialAnimation))) () a1 a2 a3
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: ImageArraySpecialAnimation)) a1 a2 a3
 
-paintXY_impl :: ImageArraySpecialAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        x <- newIORef x
-        y <- newIORef y
-        jset x (((jio (DisplayInfoSingleton.getLastHalfWidth ((jio (DisplayInfoSingleton.getInstance))))) - (((jio (Image.getWidth ((jio (ImageArrayAnimation.getImage this (jio (CircularIndexUtil.getIndex ((jget (this).base.circularIndexUtil))))))))) `Data.Bits.shiftR` 1))))
-        jset y (5)
-        Control.Monad.void (ImageArrayAnimation.paintXY_super this.base graphics (jget x) (jget y))
-        pure ()
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "imageArray", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ImageArrayAnimation.jinit_2 JR.this [ (JR.local "imageArray"), (JR.local "animationBehavior") ]),
+                JR.exec (JR.setField "timeDelayHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 270) ])),
+                JR.exec (JR.setField "loopCount" "I" JR.this (JR.int 0)),
+                JR.exec (JR.setField "loopCountTotal" "I" JR.this (JR.int 1)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "reset_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getLoopCount_0 : JR.Method
+jm_getLoopCount_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "loopCount") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLastFrame_0 : JR.Method
+jm_setLastFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setIndex_1" (JR.thisField "circularIndexUtil") [ (JR.map2 JR.sub (JR.invoke "getSize_0" (JR.thisField "circularIndexUtil") []) (JR.int 1)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_reset_0 : JR.Method
+jm_reset_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setFrame_1" JR.this [ (JR.map2 JR.sub (JR.invoke "getSize_0" JR.this []) (JR.int 1)) ]), 
+                    JR.exec (JR.setField "loopCount" "I" JR.this (JR.int 0)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_nextFrame_0 : JR.Method
+jm_nextFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "getFrame_0" JR.this []) (JR.int 0)) (JR.run [ 
+                        JR.ifElse (JR.invoke "isTime_1" (JR.thisField "timeDelayHelper") [ (JR.field "startTime" (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "previousFrame_0" JR.this []), 
+                            JR.ifElse (JR.map2 JR.equals (JR.invoke "getFrame_0" JR.this []) (JR.int 0)) (JR.run [ 
+                                JR.exec (JR.postUpdate (JR.thisField "loopCount") (\jwN68607 -> (JR.setField "loopCount" "I" JR.this (JR.lit jwN68607))) JR.increment) ]) identity ]) identity ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isComplete_0 : JR.Method
+jm_isComplete_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.or (JR.map2 JR.less (JR.thisField "loopCount") (JR.thisField "loopCountTotal")) (JR.map2 JR.notEquals (JR.invoke "getFrame_0" JR.this []) (JR.int 0))) (JR.run [ 
+                        JR.return (JR.bool False) ]) (JR.run [ 
+                        JR.return (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setLocal "x" "I" (JR.map2 JR.sub (JR.invoke "getLastHalfWidth_0" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []) []) ((JR.map2 JR.shr (JR.invoke "getWidth_0" (JR.invoke "getImage_1" JR.this [ (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") []) ]) []) (JR.int 1))))), 
+                    JR.exec (JR.setLocal "y" "I" (JR.int 5)), 
+                    JR.exec (JR.callVia ImageArrayAnimation.jvtable "paintXY_3" JR.this [ (JR.local "graphics"), (JR.local "x"), (JR.local "y") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

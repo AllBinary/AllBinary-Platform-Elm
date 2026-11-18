@@ -1,240 +1,206 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module DemoGameBehavior where
+module Org.Allbinary.Game.Displayable.Canvas.DemoGameBehavior exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameCanvas -- same package or java.lang
-import qualified GameTypeFactory -- org.allbinary.game.GameTypeFactory
-import qualified NullPaintable -- org.allbinary.graphics.paint.NullPaintable
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data DemoGameBehavior = DemoGameBehavior
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull DemoGameBehavior where
-    javaNull = javaNullRecord "DemoGameBehavior"
-
-instance JavaEquals DemoGameBehavior where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DemoGameBehavior where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DemoGameBehavior where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: DemoGameBehavior
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DemoGameBehavior
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = DemoGameBehavior header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "pause" (\() -> pause_impl this)
-    jregisterMethod header_ "unPause" (\() -> unPause_impl this)
-    jregisterMethod header_ "updateTouch" (\() -> updateTouch_impl this)
-    jregisterMethod header_ "updateScreenButtonPaintable" (\() -> updateScreenButtonPaintable_impl this)
-    jregisterMethod header_ "setGameState" (\() -> setGameState_impl this)
-    jregisterMethod header_ "removeAllGameKeyInputListeners" (\() -> removeAllGameKeyInputListeners_impl this)
-    jregisterMethod header_ "updateEndGameProcessor" (\() -> updateEndGameProcessor_impl this)
-    jregisterMethod header_ "buildGame" (\() -> buildGame_impl this)
-    jregisterMethod header_ "run" (\() -> run_impl this)
-    jregisterMethod header_ "setHighScore" (\() -> setHighScore_impl this)
-    pure this
-
-initFields_ :: DemoGameBehavior -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_ :: IO DemoGameBehavior
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DemoGameBehavior -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.GameTypeFactory as GameTypeFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Graphics.Paint.NullPaintable as NullPaintable
 
 
-getInstance :: IO (DemoGameBehavior)
-getInstance = do
-        pure (DemoGameBehavior.instance_)
+jclass : String
+jclass =
+    "DemoGameBehavior"
 
 
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: DemoGameBehavior))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: DemoGameBehavior))
-
-init_impl :: DemoGameBehavior -> IO (())
-init_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "DemoGameBehavior" ]
 
 
-pause :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-pause object_ a1 = jmethod object_ "pause" (\() -> (pause_impl (javaCast object_ :: DemoGameBehavior))) () a1
-
-pause_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-pause_super object_ a1 = (pause_impl (javaCast object_ :: DemoGameBehavior)) a1
-
-pause_impl :: DemoGameBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-pause_impl this allBinaryGameCanvas = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
 
-unPause :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-unPause object_ a1 = jmethod object_ "unPause" (\() -> (unPause_impl (javaCast object_ :: DemoGameBehavior))) () a1
-
-unPause_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-unPause_super object_ a1 = (unPause_impl (javaCast object_ :: DemoGameBehavior)) a1
-
-unPause_impl :: DemoGameBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-unPause_impl this allBinaryGameCanvas = do
-        pure ()
-
-
--- throws Exception
-updateTouch :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateTouch object_ a1 = jmethod object_ "updateTouch" (\() -> (updateTouch_impl (javaCast object_ :: DemoGameBehavior))) () a1
-
-updateTouch_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateTouch_super object_ a1 = (updateTouch_impl (javaCast object_ :: DemoGameBehavior)) a1
-
-updateTouch_impl :: DemoGameBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateTouch_impl this allBinaryGameCanvas = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "pause_1", jm_pause_1 )
+        , ( "unPause_1", jm_unPause_1 )
+        , ( "updateTouch_1", jm_updateTouch_1 )
+        , ( "updateScreenButtonPaintable_1", jm_updateScreenButtonPaintable_1 )
+        , ( "setGameState_1", jm_setGameState_1 )
+        , ( "removeAllGameKeyInputListeners_1", jm_removeAllGameKeyInputListeners_1 )
+        , ( "updateEndGameProcessor_1", jm_updateEndGameProcessor_1 )
+        , ( "buildGame_1", jm_buildGame_1 )
+        , ( "run_1", jm_run_1 )
+        , ( "setHighScore_6", jm_setHighScore_6 ) ]
+        JR.noMethods
 
 
--- throws Exception
-updateScreenButtonPaintable :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateScreenButtonPaintable object_ a1 = jmethod object_ "updateScreenButtonPaintable" (\() -> (updateScreenButtonPaintable_impl (javaCast object_ :: DemoGameBehavior))) () a1
-
-updateScreenButtonPaintable_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateScreenButtonPaintable_super object_ a1 = (updateScreenButtonPaintable_impl (javaCast object_ :: DemoGameBehavior)) a1
-
-updateScreenButtonPaintable_impl :: DemoGameBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateScreenButtonPaintable_impl this allBinaryGameCanvas = do
-        Control.Monad.void (AllBinaryGameCanvas.setTouchPaintableP allBinaryGameCanvas (jio (NullPaintable.getInstance)))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DemoGameBehavior"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_pause_1", jm_pause_1 ), ( "jm_unPause_1", jm_unPause_1 ), ( "jm_updateTouch_1", jm_updateTouch_1 ), ( "jm_updateScreenButtonPaintable_1", jm_updateScreenButtonPaintable_1 ), ( "jm_setGameState_1", jm_setGameState_1 ), ( "jm_removeAllGameKeyInputListeners_1", jm_removeAllGameKeyInputListeners_1 ), ( "jm_updateEndGameProcessor_1", jm_updateEndGameProcessor_1 ), ( "jm_buildGame_1", jm_buildGame_1 ), ( "jm_run_1", jm_run_1 ), ( "jm_setHighScore_6", jm_setHighScore_6 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
--- throws Exception
-setGameState :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-setGameState object_ a1 = jmethod object_ "setGameState" (\() -> (setGameState_impl (javaCast object_ :: DemoGameBehavior))) () a1
-
-setGameState_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-setGameState_super object_ a1 = (setGameState_impl (javaCast object_ :: DemoGameBehavior)) a1
-
-setGameState_impl :: DemoGameBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-setGameState_impl this allBinaryGameCanvas = do
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-removeAllGameKeyInputListeners :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-removeAllGameKeyInputListeners object_ a1 = jmethod object_ "removeAllGameKeyInputListeners" (\() -> (removeAllGameKeyInputListeners_impl (javaCast object_ :: DemoGameBehavior))) () a1
-
-removeAllGameKeyInputListeners_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-removeAllGameKeyInputListeners_super object_ a1 = (removeAllGameKeyInputListeners_impl (javaCast object_ :: DemoGameBehavior)) a1
-
-removeAllGameKeyInputListeners_impl :: DemoGameBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-removeAllGameKeyInputListeners_impl this allBinaryGameCanvas = do
-        pure ()
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "DemoGameBehavior" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
 
--- throws Exception
-updateEndGameProcessor :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateEndGameProcessor object_ a1 = jmethod object_ "updateEndGameProcessor" (\() -> (updateEndGameProcessor_impl (javaCast object_ :: DemoGameBehavior))) () a1
-
-updateEndGameProcessor_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateEndGameProcessor_super object_ a1 = (updateEndGameProcessor_impl (javaCast object_ :: DemoGameBehavior)) a1
-
-updateEndGameProcessor_impl :: DemoGameBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateEndGameProcessor_impl this allBinaryGameCanvas = do
-        pure ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
--- throws Exception
-buildGame :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-buildGame object_ a1 = jmethod object_ "buildGame" (\() -> (buildGame_impl (javaCast object_ :: DemoGameBehavior))) () a1
-
-buildGame_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-buildGame_super object_ a1 = (buildGame_impl (javaCast object_ :: DemoGameBehavior)) a1
-
-buildGame_impl :: DemoGameBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-buildGame_impl this allBinaryGameCanvas = do
-        pure ()
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
 
--- throws Exception
-run :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-run object_ a1 = jmethod object_ "run" (\() -> (run_impl (javaCast object_ :: DemoGameBehavior))) () a1
-
-run_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-run_super object_ a1 = (run_impl (javaCast object_ :: DemoGameBehavior)) a1
-
-run_impl :: DemoGameBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-run_impl this allBinaryGameCanvas = do
-        commonStrings <- (CommonStrings.getInstance)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (toString ((jget ((jio (GameTypeFactory.getInstance))).bOT)))) this (jget (commonStrings).rUN))
-        pure ()
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
--- throws Exception
-setHighScore :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> AllBinaryGameCanvas.AllBinaryGameCanvas -> String -> Int64 -> Bool -> Bool -> IO (())
-setHighScore object_ a1 a2 a3 a4 a5 a6 = jmethod object_ "setHighScore" (\() -> (setHighScore_impl (javaCast object_ :: DemoGameBehavior))) () a1 a2 a3 a4 a5 a6
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
 
-setHighScore_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> AllBinaryGameCanvas.AllBinaryGameCanvas -> String -> Int64 -> Bool -> Bool -> IO (())
-setHighScore_super object_ a1 a2 a3 a4 a5 a6 = (setHighScore_impl (javaCast object_ :: DemoGameBehavior)) a1 a2 a3 a4 a5 a6
 
-setHighScore_impl :: DemoGameBehavior -> AbeClientInformationInterface.AbeClientInformationInterface -> AllBinaryGameCanvas.AllBinaryGameCanvas -> String -> Int64 -> Bool -> Bool -> IO (())
-setHighScore_impl this abeClientInformation allBinaryGameCanvas name score autoSubmit isLast = do
-        pure ()
+jm_pause_1 : JR.Method
+jm_pause_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_unPause_1 : JR.Method
+jm_unPause_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateTouch_1 : JR.Method
+jm_updateTouch_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateScreenButtonPaintable_1 : JR.Method
+jm_updateScreenButtonPaintable_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setTouchPaintableP_1" (JR.local "allBinaryGameCanvas") [ (JR.callStatic NullPaintable.jm_getInstance_0 []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setGameState_1 : JR.Method
+jm_setGameState_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeAllGameKeyInputListeners_1 : JR.Method
+jm_removeAllGameKeyInputListeners_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateEndGameProcessor_1 : JR.Method
+jm_updateEndGameProcessor_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_buildGame_1 : JR.Method
+jm_buildGame_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_run_1 : JR.Method
+jm_run_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.field "BOT" (JR.callStatic GameTypeFactory.jm_getInstance_0 [])) []), JR.this, (JR.field "RUN" (JR.local "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHighScore_6 : JR.Method
+jm_setHighScore_6 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "allBinaryGameCanvas", "" ), ( "name", "" ), ( "score", "J" ), ( "autoSubmit", "Z" ), ( "isLast", "Z" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

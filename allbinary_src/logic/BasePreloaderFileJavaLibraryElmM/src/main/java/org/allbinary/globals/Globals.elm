@@ -1,140 +1,132 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.globals
-module Globals where
+module Org.Allbinary.Globals.Globals exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AppUrlGlobals -- same package or java.lang
-import qualified URLGLOBALS -- same package or java.lang
-import qualified ClassLoader -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringValidationUtil -- org.allbinary.logic.string.StringValidationUtil
-import qualified WebappClassLoaderInfo -- org.allbinary.logic.system.loader.WebappClassLoaderInfo
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.globals
+-}
 
-data Globals = Globals
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull Globals where
-    javaNull = javaNullRecord "Globals"
-
-instance JavaEquals Globals where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Globals where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Globals where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: Globals
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO Globals
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = Globals header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    pure this
-
-initFields_ :: Globals -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Globals.AppUrlGlobals as AppUrlGlobals
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
+import Org.Allbinary.Logic.System.Loader.WebappClassLoaderInfo as WebappClassLoaderInfo
 
 
-getInstance :: IO (Globals)
-getInstance = do
-        pure (Globals.instance_)
-
-new_ :: IO Globals
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: Globals -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "Globals"
 
 
-init :: (JavaObjectClass this_) => this_ -> ClassLoader.ClassLoader -> String -> IO (())
-init object_ a1 a2 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: Globals))) () a1 a2
+jchain : List String
+jchain =
+    [ "Globals" ]
 
-init_super :: (JavaObjectClass this_) => this_ -> ClassLoader.ClassLoader -> String -> IO (())
-init_super object_ a1 a2 = (init_impl (javaCast object_ :: Globals)) a1 a2
 
-init_impl :: Globals -> ClassLoader.ClassLoader -> String -> IO (())
-init_impl this classLoader pathString = do
-        commonStrings <- (CommonStrings.getInstance)
-        appUrlGlobals <- (AppUrlGlobals.new_)
-        Control.Monad.void (AppUrlGlobals.setWebappPath appUrlGlobals pathString)
-        Control.Monad.void (URLGLOBALS.init (javaCast appUrlGlobals))
-        Control.Monad.void (WebappClassLoaderInfo.setLoader classLoader)
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "Setting Up AllBinary System Configuration Args: ")
-        Control.Monad.void (StringMaker.append stringBuffer pathString)
-        Control.Monad.void (StringMaker.append stringBuffer " ClassLoader: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (Class.getName ((jio (jobjectGetClass classLoader))))))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this (jget (commonStrings).iNIT))
-        stringValidationUtil <- (StringValidationUtil.getInstance)
-        when (jio (StringValidationUtil.isEmpty stringValidationUtil pathString)) $ do
-            Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-            Control.Monad.void (StringMaker.append stringBuffer "No Path Provided. Using Process Path: ")
-            Control.Monad.void (StringMaker.append stringBuffer pathString)
-            Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-            Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).eQUALS))
-            Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-            Control.Monad.void (StringMaker.append stringBuffer (jio (URLGLOBALS.getWebappPath)))
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this (jget (commonStrings).iNIT))
-        Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-        Control.Monad.void (StringMaker.append stringBuffer "Webapp Path Set To: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (URLGLOBALS.getWebappPath)))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this (jget (commonStrings).iNIT))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_2", jm_init_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Globals"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_2", jm_init_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "Globals" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_2 : JR.Method
+jm_init_2 jheap jthis jargs =
+    JR.method [ ( "classLoader", "" ), ( "pathString", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.declare "appUrlGlobals" "" (JR.new AppUrlGlobals.jnew_0 []), 
+                    JR.exec (JR.invoke "setWebappPath_1" (JR.local "appUrlGlobals") [ (JR.local "pathString") ]), 
+                    JR.exec (JR.invoke "init_1" (JR.thisField "URLGLOBALS") [ (JR.local "appUrlGlobals") ]), 
+                    JR.exec (JR.callStatic WebappClassLoaderInfo.jm_setLoader_1 [ (JR.local "classLoader") ]), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Setting Up AllBinary System Configuration Args: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "pathString") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " ClassLoader: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.getClass (JR.local "classLoader")) []) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "INIT" (JR.local "commonStrings")) ]), 
+                    JR.declare "stringValidationUtil" "" (JR.callStatic StringValidationUtil.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isEmpty_1" (JR.local "stringValidationUtil") [ (JR.local "pathString") ]) (JR.run [ 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "No Path Provided. Using Process Path: ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "pathString") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getWebappPath_0" (JR.thisField "URLGLOBALS") []) ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "INIT" (JR.local "commonStrings")) ]) ]) identity, 
+                    JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Webapp Path Set To: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getWebappPath_0" (JR.thisField "URLGLOBALS") []) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "INIT" (JR.local "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

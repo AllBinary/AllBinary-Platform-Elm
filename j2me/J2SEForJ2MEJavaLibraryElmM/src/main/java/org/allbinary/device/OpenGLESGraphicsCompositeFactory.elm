@@ -1,117 +1,112 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.device
-module OpenGLESGraphicsCompositeFactory where
+module Org.Allbinary.Device.OpenGLESGraphicsCompositeFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified OpenGLESGraphicsFactory -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.device
+-}
 
-data OpenGLESGraphicsCompositeFactory = OpenGLESGraphicsCompositeFactory
-    { header_ :: JavaHeader
-    , openGLESGraphicsFactory :: IORef (OpenGLESGraphicsFactory.OpenGLESGraphicsFactory)
-    }
-
-instance JavaNull OpenGLESGraphicsCompositeFactory where
-    javaNull = javaNullRecord "OpenGLESGraphicsCompositeFactory"
-
-instance JavaEquals OpenGLESGraphicsCompositeFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLESGraphicsCompositeFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLESGraphicsCompositeFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: OpenGLESGraphicsCompositeFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OpenGLESGraphicsCompositeFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    openGLESGraphicsFactory <- newIORef javaNull
-    let this = OpenGLESGraphicsCompositeFactory header_ openGLESGraphicsFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "set" (\() -> set_impl this)
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    pure this
-
-initFields_ :: OpenGLESGraphicsCompositeFactory -> IO ()
-initFields_ this = do
-    jset this.openGLESGraphicsFactory =<< (OpenGLESGraphicsFactory.new_)
-    pure ()
-
-new_ :: IO OpenGLESGraphicsCompositeFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLESGraphicsCompositeFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Device.OpenGLESGraphicsFactory as OpenGLESGraphicsFactory
 
 
-getInstance :: IO (OpenGLESGraphicsCompositeFactory)
-getInstance = do
-        pure (OpenGLESGraphicsCompositeFactory.instance_)
+jclass : String
+jclass =
+    "OpenGLESGraphicsCompositeFactory"
 
 
-set :: (JavaObjectClass this_) => this_ -> OpenGLESGraphicsFactory.OpenGLESGraphicsFactory -> IO (())
-set object_ a1 = jmethod object_ "set" (\() -> (set_impl (javaCast object_ :: OpenGLESGraphicsCompositeFactory))) () a1
-
-set_super :: (JavaObjectClass this_) => this_ -> OpenGLESGraphicsFactory.OpenGLESGraphicsFactory -> IO (())
-set_super object_ a1 = (set_impl (javaCast object_ :: OpenGLESGraphicsCompositeFactory)) a1
-
-set_impl :: OpenGLESGraphicsCompositeFactory -> OpenGLESGraphicsFactory.OpenGLESGraphicsFactory -> IO (())
-set_impl this openGLESGraphicsFactory = do
-        jset (this).openGLESGraphicsFactory (openGLESGraphicsFactory)
-        pure ()
+jchain : List String
+jchain =
+    [ "OpenGLESGraphicsCompositeFactory" ]
 
 
-get :: (JavaObjectClass this_) => this_ -> IO (OpenGLESGraphicsFactory.OpenGLESGraphicsFactory)
-get object_ = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: OpenGLESGraphicsCompositeFactory))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "openGLESGraphicsFactory", JR.defaultOf "" ) ]
 
-get_super :: (JavaObjectClass this_) => this_ -> IO (OpenGLESGraphicsFactory.OpenGLESGraphicsFactory)
-get_super object_ = (get_impl (javaCast object_ :: OpenGLESGraphicsCompositeFactory))
 
-get_impl :: OpenGLESGraphicsCompositeFactory -> IO (OpenGLESGraphicsFactory.OpenGLESGraphicsFactory)
-get_impl this = do
-        pure ((jget (this).openGLESGraphicsFactory))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "set_1", jm_set_1 )
+        , ( "get_0", jm_get_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLESGraphicsCompositeFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_set_1", jm_set_1 ), ( "jm_get_0", jm_get_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "OpenGLESGraphicsCompositeFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "openGLESGraphicsFactory" "" JR.this (JR.new OpenGLESGraphicsFactory.jnew_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_set_1 : JR.Method
+jm_set_1 jheap jthis jargs =
+    JR.method [ ( "openGLESGraphicsFactory", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "openGLESGraphicsFactory" "" JR.this (JR.local "openGLESGraphicsFactory")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_get_0 : JR.Method
+jm_get_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "openGLESGraphicsFactory") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

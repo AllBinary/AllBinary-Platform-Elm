@@ -1,122 +1,110 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.multiplayer.layer
-module MultiplayerBehavior where
+module Org.Allbinary.Game.Multiplayer.Layer.MultiplayerBehavior exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.multiplayer.layer
+-}
 
-data MultiplayerBehavior = MultiplayerBehavior
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull MultiplayerBehavior where
-    javaNull = javaNullRecord "MultiplayerBehavior"
-
-instance JavaEquals MultiplayerBehavior where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MultiplayerBehavior where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MultiplayerBehavior where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_MULTIPLAYER_BEHAVIOR :: MultiplayerBehavior
-{-# NOINLINE nULL_MULTIPLAYER_BEHAVIOR #-}
-nULL_MULTIPLAYER_BEHAVIOR = unsafePerformIO ((new_1 (jget ((jio (StringUtil.getInstance))).eMPTY_STRING)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MultiplayerBehavior
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = MultiplayerBehavior header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "startTick" (\() -> startTick_impl this)
-    jregisterMethod header_ "endTick" (\() -> endTick_impl this)
-    jregisterMethod header_ "getApproximateElapsed" (\() -> getApproximateElapsed_impl this)
-    pure this
-
-initFields_ :: MultiplayerBehavior -> IO ()
-initFields_ this = do
-    pure ()
-
-new_1 :: String -> IO MultiplayerBehavior
-new_1 username = do
-    this <- newRecord_
-    init_1 this username
-    pure this
-
-init_1 :: MultiplayerBehavior -> String -> IO ()
-init_1 this username = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-startTick :: (JavaObjectClass this_) => this_ -> IO (())
-startTick object_ = jmethod object_ "startTick" (\() -> (startTick_impl (javaCast object_ :: MultiplayerBehavior))) ()
-
-startTick_super :: (JavaObjectClass this_) => this_ -> IO (())
-startTick_super object_ = (startTick_impl (javaCast object_ :: MultiplayerBehavior))
-
-startTick_impl :: MultiplayerBehavior -> IO (())
-startTick_impl this = do
-        pure ()
+jclass : String
+jclass =
+    "MultiplayerBehavior"
 
 
-endTick :: (JavaObjectClass this_) => this_ -> IO (())
-endTick object_ = jmethod object_ "endTick" (\() -> (endTick_impl (javaCast object_ :: MultiplayerBehavior))) ()
-
-endTick_super :: (JavaObjectClass this_) => this_ -> IO (())
-endTick_super object_ = (endTick_impl (javaCast object_ :: MultiplayerBehavior))
-
-endTick_impl :: MultiplayerBehavior -> IO (())
-endTick_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "MultiplayerBehavior" ]
 
 
-getApproximateElapsed :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getApproximateElapsed object_ = jmethod object_ "getApproximateElapsed" (\() -> (getApproximateElapsed_impl (javaCast object_ :: MultiplayerBehavior))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-getApproximateElapsed_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getApproximateElapsed_super object_ = (getApproximateElapsed_impl (javaCast object_ :: MultiplayerBehavior))
 
-getApproximateElapsed_impl :: MultiplayerBehavior -> IO (Int64)
-getApproximateElapsed_impl this = do
-        pure (0)
+jvtable =
+    JR.vtable
+        [ ( "startTick_0", jm_startTick_0 )
+        , ( "endTick_0", jm_endTick_0 )
+        , ( "getApproximateElapsed_0", jm_getApproximateElapsed_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MultiplayerBehavior"
+        [ ( "jm_startTick_0", jm_startTick_0 ), ( "jm_endTick_0", jm_endTick_0 ), ( "jm_getApproximateElapsed_0", jm_getApproximateElapsed_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_NULL_MULTIPLAYER_BEHAVIOR", jstatic_NULL_MULTIPLAYER_BEHAVIOR ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_MULTIPLAYER_BEHAVIOR : JR.M
+jstatic_NULL_MULTIPLAYER_BEHAVIOR s =
+    JR.static "MultiplayerBehavior" jclinit "NULL_MULTIPLAYER_BEHAVIOR"
+        (JR.new jnew_1 [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])
+        s
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "username", "" ) ] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_startTick_0 : JR.Method
+jm_startTick_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_endTick_0 : JR.Method
+jm_endTick_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getApproximateElapsed_0 : JR.Method
+jm_getApproximateElapsed_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.long 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

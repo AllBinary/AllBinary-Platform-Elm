@@ -1,4 +1,4 @@
-module JsProperty exposing (..)
+module Jsinterop.Annotations.JsProperty exposing (..)
 
 {-| Generated Code Do Not Modify package jsinterop.annotations
 -}

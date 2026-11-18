@@ -1,82 +1,79 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.ag.game.vector
-module HealthVectorData where
+module Org.Allbinary.Ag.Game.Vector.HealthVectorData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.ag.game.vector
+-}
 
-data HealthVectorData = HealthVectorData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull HealthVectorData where
-    javaNull = javaNullRecord "HealthVectorData"
 
-instance JavaEquals HealthVectorData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq HealthVectorData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "HealthVectorData"
 
-instance JavaObjectClass HealthVectorData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-{-# NOINLINE points #-}
-points = unsafePerformIO (newIORef ((jarrayFromList [(jarrayFromList [(jarrayFromList [2, 1] :: JavaArray Int), (jarrayFromList [3, 2] :: JavaArray Int), (jarrayFromList [3, 2] :: JavaArray Int), (jarrayFromList [4, 1] :: JavaArray Int), (jarrayFromList [4, 1] :: JavaArray Int), (jarrayFromList [5, 1] :: JavaArray Int), (jarrayFromList [5, 1] :: JavaArray Int), (jarrayFromList [6, 2] :: JavaArray Int), (jarrayFromList [6, 2] :: JavaArray Int), (jarrayFromList [6, 3] :: JavaArray Int), (jarrayFromList [6, 3] :: JavaArray Int), (jarrayFromList [3, 6] :: JavaArray Int), (jarrayFromList [3, 6] :: JavaArray Int), (jarrayFromList [0, 3] :: JavaArray Int), (jarrayFromList [0, 3] :: JavaArray Int), (jarrayFromList [0, 2] :: JavaArray Int), (jarrayFromList [0, 2] :: JavaArray Int), (jarrayFromList [1, 1] :: JavaArray Int), (jarrayFromList [1, 1] :: JavaArray Int), (jarrayFromList [2, 1] :: JavaArray Int), (jarrayFromList [1000, 1000] :: JavaArray Int)] :: JavaArray (JavaArray Int))] :: JavaArray (JavaArray (JavaArray Int)))))
+jchain : List String
+jchain =
+    [ "HealthVectorData" ]
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-newRecord_ :: IO HealthVectorData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = HealthVectorData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: HealthVectorData -> IO ()
-initFields_ this = do
-    pure ()
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-new_ :: IO HealthVectorData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: HealthVectorData -> IO ()
-init_ this = do
-    initFields_ this
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HealthVectorData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_points", jstatic_points ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_points : JR.M
+jstatic_points s =
+    JR.static "HealthVectorData" jclinit "points"
+        (JR.arrayOf "" [ (JR.arrayOf "" [ (JR.arrayOf "I" [ (JR.int 2), (JR.int 1) ]), (JR.arrayOf "I" [ (JR.int 3), (JR.int 2) ]), (JR.arrayOf "I" [ (JR.int 3), (JR.int 2) ]), (JR.arrayOf "I" [ (JR.int 4), (JR.int 1) ]), (JR.arrayOf "I" [ (JR.int 4), (JR.int 1) ]), (JR.arrayOf "I" [ (JR.int 5), (JR.int 1) ]), (JR.arrayOf "I" [ (JR.int 5), (JR.int 1) ]), (JR.arrayOf "I" [ (JR.int 6), (JR.int 2) ]), (JR.arrayOf "I" [ (JR.int 6), (JR.int 2) ]), (JR.arrayOf "I" [ (JR.int 6), (JR.int 3) ]), (JR.arrayOf "I" [ (JR.int 6), (JR.int 3) ]), (JR.arrayOf "I" [ (JR.int 3), (JR.int 6) ]), (JR.arrayOf "I" [ (JR.int 3), (JR.int 6) ]), (JR.arrayOf "I" [ (JR.int 0), (JR.int 3) ]), (JR.arrayOf "I" [ (JR.int 0), (JR.int 3) ]), (JR.arrayOf "I" [ (JR.int 0), (JR.int 2) ]), (JR.arrayOf "I" [ (JR.int 0), (JR.int 2) ]), (JR.arrayOf "I" [ (JR.int 1), (JR.int 1) ]), (JR.arrayOf "I" [ (JR.int 1), (JR.int 1) ]), (JR.arrayOf "I" [ (JR.int 2), (JR.int 1) ]), (JR.arrayOf "I" [ (JR.int 1000), (JR.int 1000) ]) ]) ])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

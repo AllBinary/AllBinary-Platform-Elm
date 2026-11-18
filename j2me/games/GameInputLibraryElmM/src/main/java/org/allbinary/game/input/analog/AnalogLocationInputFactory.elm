@@ -1,127 +1,130 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.analog
-module AnalogLocationInputFactory where
+module Org.Allbinary.Game.Input.Analog.AnalogLocationInputFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnalogLocationInput -- same package or java.lang
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.game.input.analog
+-}
 
-data AnalogLocationInputFactory = AnalogLocationInputFactory
-    { header_ :: JavaHeader
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull AnalogLocationInputFactory where
-    javaNull = javaNullRecord "AnalogLocationInputFactory"
-
-instance JavaEquals AnalogLocationInputFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AnalogLocationInputFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AnalogLocationInputFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AnalogLocationInputFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AnalogLocationInputFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    list <- newIORef javaNull
-    let this = AnalogLocationInputFactory header_ list
-    jregisterLevel header_ this
-    jregisterMethod header_ "addPlayer" (\() -> addPlayer_impl this)
-    jregisterMethod header_ "getInstanceForPlayer" (\() -> getInstanceForPlayer_impl this)
-    jregisterMethod header_ "getList" (\() -> getList_impl this)
-    pure this
-
-initFields_ :: AnalogLocationInputFactory -> IO ()
-initFields_ this = do
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
+import JR
+import Org.Allbinary.Game.Input.Analog.AnalogLocationInput as AnalogLocationInput
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
 
 
-getInstance :: IO (AnalogLocationInputFactory)
-getInstance = do
-        pure (AnalogLocationInputFactory.instance_)
-
-new_ :: IO AnalogLocationInputFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AnalogLocationInputFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "AnalogLocationInputFactory"
 
 
-addPlayer :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-addPlayer object_ a1 = jmethod object_ "addPlayer" (\() -> (addPlayer_impl (javaCast object_ :: AnalogLocationInputFactory))) () a1
-
-addPlayer_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-addPlayer_super object_ a1 = (addPlayer_impl (javaCast object_ :: AnalogLocationInputFactory)) a1
-
-addPlayer_impl :: AnalogLocationInputFactory -> Int -> IO (())
-addPlayer_impl this playerInputId = do
-        analogLocationInput <- newIORef (AnalogLocationInput.nULL_ANALOG_LOCATION_INPUT)
-        when (playerInputId < (jio (BasicArrayList.size ((jget (this).list))))) $ do
-            jset analogLocationInput ((javaCast (jio (BasicArrayList.get ((jget (this).list)) playerInputId)) :: AnalogLocationInput.AnalogLocationInput))
-        when ((jget analogLocationInput) == AnalogLocationInput.nULL_ANALOG_LOCATION_INPUT) $ do
-            assignedValue <- (AnalogLocationInput.new_1 playerInputId)
-            jset analogLocationInput (assignedValue)
-            Control.Monad.void (BasicArrayList.add ((jget (this).list)) (jget analogLocationInput))
-        pure ()
+jchain : List String
+jchain =
+    [ "AnalogLocationInputFactory" ]
 
 
-getInstanceForPlayer :: (JavaObjectClass this_) => this_ -> Int -> IO (AnalogLocationInput.AnalogLocationInput)
-getInstanceForPlayer object_ a1 = jmethod object_ "getInstanceForPlayer" (\() -> (getInstanceForPlayer_impl (javaCast object_ :: AnalogLocationInputFactory))) () a1
-
-getInstanceForPlayer_super :: (JavaObjectClass this_) => this_ -> Int -> IO (AnalogLocationInput.AnalogLocationInput)
-getInstanceForPlayer_super object_ a1 = (getInstanceForPlayer_impl (javaCast object_ :: AnalogLocationInputFactory)) a1
-
-getInstanceForPlayer_impl :: AnalogLocationInputFactory -> Int -> IO (AnalogLocationInput.AnalogLocationInput)
-getInstanceForPlayer_impl this playerInputId = do
-        pure ((javaCast (jio (BasicArrayList.get ((jget (this).list)) playerInputId)) :: AnalogLocationInput.AnalogLocationInput))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "list", JR.defaultOf "" ) ]
 
 
-getList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList object_ = jmethod object_ "getList" (\() -> (getList_impl (javaCast object_ :: AnalogLocationInputFactory))) ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "addPlayer_1", jm_addPlayer_1 )
+        , ( "getInstanceForPlayer_1", jm_getInstanceForPlayer_1 )
+        , ( "getList_0", jm_getList_0 ) ]
+        JR.noMethods
 
-getList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList_super object_ = (getList_impl (javaCast object_ :: AnalogLocationInputFactory))
 
-getList_impl :: AnalogLocationInputFactory -> IO (BasicArrayList.BasicArrayList)
-getList_impl this = do
-        pure ((jget (this).list))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AnalogLocationInputFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_addPlayer_1", jm_addPlayer_1 ), ( "jm_getInstanceForPlayer_1", jm_getInstanceForPlayer_1 ), ( "jm_getList_0", jm_getList_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AnalogLocationInputFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addPlayer_1 : JR.Method
+jm_addPlayer_1 jheap jthis jargs =
+    JR.method [ ( "playerInputId", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "analogLocationInput" "" AnalogLocationInput.jstatic_NULL_ANALOG_LOCATION_INPUT, 
+                    JR.ifElse (JR.map2 JR.less (JR.local "playerInputId") (JR.invoke "size_0" (JR.thisField "list") [])) (JR.run [ 
+                        JR.exec (JR.setLocal "analogLocationInput" "" (JR.invoke "get_1" (JR.thisField "list") [ (JR.local "playerInputId") ])) ]) identity, 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "analogLocationInput") AnalogLocationInput.jstatic_NULL_ANALOG_LOCATION_INPUT) (JR.run [ 
+                        JR.exec (JR.setLocal "analogLocationInput" "" (JR.new AnalogLocationInput.jnew_1 [ (JR.local "playerInputId") ])), 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "analogLocationInput") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceForPlayer_1 : JR.Method
+jm_getInstanceForPlayer_1 jheap jthis jargs =
+    JR.method [ ( "playerInputId", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "get_1" (JR.thisField "list") [ (JR.local "playerInputId") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getList_0 : JR.Method
+jm_getList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "list") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,136 +1,105 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module ImageArrayAnimationFactory where
+module Org.Allbinary.Animation.Image.ImageArrayAnimationFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ImageArrayAnimation -- same package or java.lang
-import qualified AdjustedImageArrayAnimation -- same package or java.lang
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified AnimationBehavior -- org.allbinary.animation.AnimationBehavior
-import qualified AnimationBehaviorFactory -- org.allbinary.animation.AnimationBehaviorFactory
-import qualified AnimationInterfaceFactoryInterface -- org.allbinary.animation.AnimationInterfaceFactoryInterface
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified ScaleProperties -- org.allbinary.media.ScaleProperties
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
--- implements AnimationInterfaceFactoryInterface
-data ImageArrayAnimationFactory = ImageArrayAnimationFactory
-    { header_ :: JavaHeader
-    , dx :: IORef (Int)
-    , dy :: IORef (Int)
-    , imageArray :: IORef (JavaArray (Image.Image))
-    , animationBehaviorFactory :: IORef (AnimationBehaviorFactory.AnimationBehaviorFactory)
-    }
-
-instance JavaNull ImageArrayAnimationFactory where
-    javaNull = javaNullRecord "ImageArrayAnimationFactory"
-
-instance JavaEquals ImageArrayAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageArrayAnimationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageArrayAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ImageArrayAnimationFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    dx <- newIORef 0
-    dy <- newIORef 0
-    imageArray <- newIORef javaNull
-    animationBehaviorFactory <- newIORef javaNull
-    let this = ImageArrayAnimationFactory header_ dx dy imageArray animationBehaviorFactory
-    jregisterLevel header_ this
-    AnimationInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    jregisterMethod header_ "setInitialScale" (\() -> setInitialScale_impl this)
-    pure this
-
-initFields_ :: ImageArrayAnimationFactory -> IO ()
-initFields_ this = do
-    jset this.dx (0)
-    jset this.dy (0)
-    jset this.imageArray (javaNull)
-    jset this.animationBehaviorFactory (javaNull)
-    pure ()
-
-new_4 :: JavaArray (Image.Image) -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ImageArrayAnimationFactory
-new_4 imageArray dx dy animationBehaviorFactory = do
-    this <- newRecord_
-    init_4 this imageArray dx dy animationBehaviorFactory
-    pure this
-
-init_4 :: ImageArrayAnimationFactory -> JavaArray (Image.Image) -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ()
-init_4 this imageArray dx dy animationBehaviorFactory = do
-        initFields_ this
-        jset (this).imageArray (imageArray)
-        jset (this).animationBehaviorFactory (animationBehaviorFactory)
-        jset (this).dx (dx)
-        jset (this).dy (dy)
-        pure ()
+import JR
+import Org.Allbinary.Animation.Image.AdjustedImageArrayAnimation as AdjustedImageArrayAnimation
+import Org.Allbinary.Animation.AnimationBehavior as AnimationBehavior
+import Org.Allbinary.Animation.AnimationInterfaceFactoryInterface as AnimationInterfaceFactoryInterface
+import Org.Allbinary.Animation.Image.ImageArrayAnimation as ImageArrayAnimation
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: ImageArrayAnimationFactory))) () a1
-
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: ImageArrayAnimationFactory)) a1
-
-getInstance_impl :: ImageArrayAnimationFactory -> Int -> IO (Animation.Animation)
-getInstance_impl this instanceId = do
-    javaCatchReturn $ do
-        if (((jget (this).dx) /= 0) || ((jget (this).dy) /= 0)) then do
-            javaReturn =<< (fmap (\value_ -> javaCast value_ :: Animation.Animation) (AdjustedImageArrayAnimation.new_4 (jget (this).imageArray) (jget (this).dx) (jget (this).dy) (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).animationBehaviorFactory))))))
-        else do
-            javaReturn =<< (fmap (\value_ -> javaCast value_ :: Animation.Animation) (ImageArrayAnimation.new_2 (jget (this).imageArray) (jio (AnimationBehavior.getInstance))))
+jclass : String
+jclass =
+    "ImageArrayAnimationFactory"
 
 
-setInitialScale :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale object_ a1 = jmethod object_ "setInitialScale" (\() -> (setInitialScale_impl (javaCast object_ :: ImageArrayAnimationFactory))) () a1
+jchain : List String
+jchain =
+    [ "ImageArrayAnimationFactory" ]
+        ++ AnimationInterfaceFactoryInterface.jchain
 
-setInitialScale_super :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_super object_ a1 = (setInitialScale_impl (javaCast object_ :: ImageArrayAnimationFactory)) a1
 
-setInitialScale_impl :: ImageArrayAnimationFactory -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_impl this scaleProperties = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "dx", JR.defaultOf "I" ), ( "dy", JR.defaultOf "I" ), ( "imageArray", JR.defaultOf "" ), ( "animationBehaviorFactory", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_1", jm_getInstance_1 )
+        , ( "setInitialScale_1", jm_setInitialScale_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageArrayAnimationFactory"
+        [ ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_setInitialScale_1", jm_setInitialScale_1 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "imageArray", "" ), ( "dx", "I" ), ( "dy", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "dx" "I" JR.this (JR.int 0)),
+                JR.exec (JR.setField "dy" "I" JR.this (JR.int 0)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "imageArray" "" JR.this (JR.local "imageArray")), 
+                    JR.exec (JR.setField "animationBehaviorFactory" "" JR.this (JR.local "animationBehaviorFactory")), 
+                    JR.exec (JR.setField "dx" "I" JR.this (JR.local "dx")), 
+                    JR.exec (JR.setField "dy" "I" JR.this (JR.local "dy")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "instanceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.or (JR.map2 JR.notEquals (JR.thisField "dx") (JR.int 0)) (JR.map2 JR.notEquals (JR.thisField "dy") (JR.int 0))) (JR.run [ 
+                        JR.return (JR.new AdjustedImageArrayAnimation.jnew_4 [ (JR.thisField "imageArray"), (JR.thisField "dx"), (JR.thisField "dy"), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]) ]) (JR.run [ 
+                        JR.return (JR.new ImageArrayAnimation.jnew_2 [ (JR.thisField "imageArray"), (JR.callStatic AnimationBehavior.jm_getInstance_0 []) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInitialScale_1 : JR.Method
+jm_setInitialScale_1 jheap jthis jargs =
+    JR.method [ ( "scaleProperties", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

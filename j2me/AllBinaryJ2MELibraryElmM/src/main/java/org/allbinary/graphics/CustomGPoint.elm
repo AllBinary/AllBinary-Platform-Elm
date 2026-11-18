@@ -1,178 +1,169 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
-module CustomGPoint (module CustomGPoint, module GPoint) where
+module Org.Allbinary.Graphics.CustomGPoint exposing (..)
 
-import GPoint hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, getInstance3, getInstance3_super, getInstance3_impl, setX, setX_super, setX_impl, getX, getX_super, getX_impl, setY, setY_super, setY_impl, getY, getY_super, getY_impl, setZ, setZ_super, setZ_impl, getZ, getZ_super, getZ_impl, nULL_CUSTOM_POINT, cx, cy, cz)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GPoint
+{-| Generated Code Do Not Modify package org.allbinary.graphics
+-}
 
-data CustomGPoint = CustomGPoint
-    { header_ :: JavaHeader
-    , base :: GPoint.GPoint
-    , cx :: IORef (Int)
-    , cy :: IORef (Int)
-    , cz :: IORef (Int)
-    }
-
-instance JavaNull CustomGPoint where
-    javaNull = javaNullRecord "CustomGPoint"
-
-instance JavaEquals CustomGPoint where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CustomGPoint where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CustomGPoint where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_CUSTOM_POINT :: CustomGPoint
-{-# NOINLINE nULL_CUSTOM_POINT #-}
-nULL_CUSTOM_POINT = unsafePerformIO ((new_3 0 0 0))
-
-newRecord_ :: IO CustomGPoint
-newRecord_ = do
-    base <- GPoint.newRecord_
-    let header_ = base.header_
-    cx <- newIORef 0
-    cy <- newIORef 0
-    cz <- newIORef 0
-    let this = CustomGPoint header_ base cx cy cz
-    jregisterLevel header_ this
-    jregisterMethod header_ "setX" (\() -> setX_impl this)
-    jregisterMethod header_ "getX" (\() -> getX_impl this)
-    jregisterMethod header_ "setY" (\() -> setY_impl this)
-    jregisterMethod header_ "getY" (\() -> getY_impl this)
-    jregisterMethod header_ "setZ" (\() -> setZ_impl this)
-    jregisterMethod header_ "getZ" (\() -> getZ_impl this)
-    pure this
-
-initFields_ :: CustomGPoint -> IO ()
-initFields_ this = do
-    jset this.cx (0)
-    jset this.cy (0)
-    jset this.cz (0)
-    pure ()
+import JR
+import Org.Allbinary.Graphics.GPoint as GPoint
 
 
-getInstance :: GPoint.GPoint -> IO (CustomGPoint)
-getInstance point = do
-        (new_3 (jio (GPoint.getX point)) (jio (GPoint.getY point)) (jio (GPoint.getZ point)))
+jclass : String
+jclass =
+    "CustomGPoint"
 
 
-getInstance3 :: Int -> Int -> IO (CustomGPoint)
-getInstance3 x y = do
-        (new_3 x y 3)
-
-new_3 :: Int -> Int -> Int -> IO CustomGPoint
-new_3 x y z = do
-    this <- newRecord_
-    init_3 this x y z
-    pure this
-
-init_3 :: CustomGPoint -> Int -> Int -> Int -> IO ()
-init_3 this x y z = do
-        GPoint.init_3 this.base (x) (y) (z)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+jchain : List String
+jchain =
+    [ "CustomGPoint" ]
+        ++ GPoint.jchain
 
 
-setX :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setX object_ a1 = jmethod object_ "setX" (\() -> (setX_impl (javaCast object_ :: CustomGPoint))) () a1
-
-setX_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setX_super object_ a1 = (setX_impl (javaCast object_ :: CustomGPoint)) a1
-
-setX_impl :: CustomGPoint -> Int -> IO (())
-setX_impl this x = do
-        jset (this).cx (x)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    GPoint.jfields ++ [ ( "cx", JR.defaultOf "I" ), ( "cy", JR.defaultOf "I" ), ( "cz", JR.defaultOf "I" ) ]
 
 
-getX :: (JavaObjectClass this_) => this_ -> IO (Int)
-getX object_ = jmethod object_ "getX" (\() -> (getX_impl (javaCast object_ :: CustomGPoint))) ()
-
-getX_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getX_super object_ = (getX_impl (javaCast object_ :: CustomGPoint))
-
-getX_impl :: CustomGPoint -> IO (Int)
-getX_impl this = do
-        pure ((jget (this).cx))
-
-
-setY :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setY object_ a1 = jmethod object_ "setY" (\() -> (setY_impl (javaCast object_ :: CustomGPoint))) () a1
-
-setY_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setY_super object_ a1 = (setY_impl (javaCast object_ :: CustomGPoint)) a1
-
-setY_impl :: CustomGPoint -> Int -> IO (())
-setY_impl this y = do
-        jset (this).cy (y)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_1", jm_getInstance_1 )
+        , ( "getInstance3_2", jm_getInstance3_2 )
+        , ( "setX_1", jm_setX_1 )
+        , ( "getX_0", jm_getX_0 )
+        , ( "setY_1", jm_setY_1 )
+        , ( "getY_0", jm_getY_0 )
+        , ( "setZ_1", jm_setZ_1 )
+        , ( "getZ_0", jm_getZ_0 ) ]
+        GPoint.jvtable
 
 
-getY :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY object_ = jmethod object_ "getY" (\() -> (getY_impl (javaCast object_ :: CustomGPoint))) ()
-
-getY_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY_super object_ = (getY_impl (javaCast object_ :: CustomGPoint))
-
-getY_impl :: CustomGPoint -> IO (Int)
-getY_impl this = do
-        pure ((jget (this).cy))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CustomGPoint"
+        [ ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_getInstance3_2", jm_getInstance3_2 ), ( "jm_setX_1", jm_setX_1 ), ( "jm_getX_0", jm_getX_0 ), ( "jm_setY_1", jm_setY_1 ), ( "jm_getY_0", jm_getY_0 ), ( "jm_setZ_1", jm_setZ_1 ), ( "jm_getZ_0", jm_getZ_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        [ ( "jstatic_NULL_CUSTOM_POINT", jstatic_NULL_CUSTOM_POINT ) ]
+        jheap
 
 
-setZ :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setZ object_ a1 = jmethod object_ "setZ" (\() -> (setZ_impl (javaCast object_ :: CustomGPoint))) () a1
-
-setZ_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setZ_super object_ a1 = (setZ_impl (javaCast object_ :: CustomGPoint)) a1
-
-setZ_impl :: CustomGPoint -> Int -> IO (())
-setZ_impl this z = do
-        jset (this).cz (z)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getZ :: (JavaObjectClass this_) => this_ -> IO (Int)
-getZ object_ = jmethod object_ "getZ" (\() -> (getZ_impl (javaCast object_ :: CustomGPoint))) ()
+jstatic_NULL_CUSTOM_POINT : JR.M
+jstatic_NULL_CUSTOM_POINT s =
+    JR.static "CustomGPoint" jclinit "NULL_CUSTOM_POINT"
+        (JR.new jnew_3 [ (JR.int 0), (JR.int 0), (JR.int 0) ])
+        s
 
-getZ_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getZ_super object_ = (getZ_impl (javaCast object_ :: CustomGPoint))
 
-getZ_impl :: CustomGPoint -> IO (Int)
-getZ_impl this = do
-        pure ((jget (this).cz))
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect GPoint.jinit_3 JR.this [ (JR.local "x"), (JR.local "y"), (JR.local "z") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "point", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_3 [ (JR.invoke "getX_0" (JR.local "point") []), (JR.invoke "getY_0" (JR.local "point") []), (JR.invoke "getZ_0" (JR.local "point") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance3_2 : JR.Method
+jm_getInstance3_2 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_3 [ (JR.local "x"), (JR.local "y"), (JR.int 3) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setX_1 : JR.Method
+jm_setX_1 jheap jthis jargs =
+    JR.method [ ( "x", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "cx" "I" JR.this (JR.local "x")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getX_0 : JR.Method
+jm_getX_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "cx") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setY_1 : JR.Method
+jm_setY_1 jheap jthis jargs =
+    JR.method [ ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "cy" "I" JR.this (JR.local "y")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getY_0 : JR.Method
+jm_getY_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "cy") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setZ_1 : JR.Method
+jm_setZ_1 jheap jthis jargs =
+    JR.method [ ( "z", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "cz" "I" JR.this (JR.local "z")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getZ_0 : JR.Method
+jm_getZ_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "cz") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

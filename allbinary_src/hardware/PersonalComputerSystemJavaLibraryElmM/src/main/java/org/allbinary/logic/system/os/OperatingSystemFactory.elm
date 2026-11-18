@@ -1,23 +1,23 @@
-module OperatingSystemFactory exposing (..)
+module Org.Allbinary.Logic.System.Os.OperatingSystemFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.os
 -}
 
 import JR
-import CommonStrings
+import Org.Allbinary.String.CommonStrings as CommonStrings
 import JSystem
-import LinuxOperatingSystemFactory
-import LogConfigTypeFactory
-import LogConfigTypes
-import LogFactory
-import LogUtil
-import NoOperatingSystem
-import OperatingSystems
-import SolarisOperatingSystemFactory
-import StringMaker
-import StringUtil
-import SystemProperties
-import WindowsOperatingSystemFactory
+import Org.Allbinary.Logic.System.Os.Linux.LinuxOperatingSystemFactory as LinuxOperatingSystemFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogFactory as LogFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.System.Os.NoOperatingSystem as NoOperatingSystem
+import Org.Allbinary.Logic.System.Os.OperatingSystems as OperatingSystems
+import Org.Allbinary.Logic.System.Os.Solaris.SolarisOperatingSystemFactory as SolarisOperatingSystemFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Logic.System.Os.SystemProperties as SystemProperties
+import Org.Allbinary.Logic.System.Os.Windows.WindowsOperatingSystemFactory as WindowsOperatingSystemFactory
 
 
 jclass : String

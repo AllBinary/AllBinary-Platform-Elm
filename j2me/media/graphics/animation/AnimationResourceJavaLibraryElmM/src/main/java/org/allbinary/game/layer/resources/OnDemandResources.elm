@@ -1,130 +1,111 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.resources
-module OnDemandResources where
+module Org.Allbinary.Game.Layer.Resources.OnDemandResources exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BaseResourceAnimationInterfaceFactoryInterfaceFactory -- org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory
-import qualified ImageCache -- org.allbinary.image.ImageCache
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.resources
+-}
 
-data OnDemandResources = OnDemandResources
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull OnDemandResources where
-    javaNull = javaNullRecord "OnDemandResources"
-
-instance JavaEquals OnDemandResources where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OnDemandResources where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OnDemandResources where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_ON_DEMAND_RESOURCES :: OnDemandResources
-{-# NOINLINE nULL_ON_DEMAND_RESOURCES #-}
-nULL_ON_DEMAND_RESOURCES = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OnDemandResources
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = OnDemandResources header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "waitFor" (\() -> waitFor_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "initAt" (\() -> initAt_impl this)
-    pure this
-
-initFields_ :: OnDemandResources -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_ :: IO OnDemandResources
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OnDemandResources -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
--- throws Exception
-waitFor :: (JavaObjectClass this_) => this_ -> IO (())
-waitFor object_ = jmethod object_ "waitFor" (\() -> (waitFor_impl (javaCast object_ :: OnDemandResources))) ()
-
-waitFor_super :: (JavaObjectClass this_) => this_ -> IO (())
-waitFor_super object_ = (waitFor_impl (javaCast object_ :: OnDemandResources))
-
-waitFor_impl :: OnDemandResources -> IO (())
-waitFor_impl this = do
-        pure ()
+jclass : String
+jclass =
+    "OnDemandResources"
 
 
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: OnDemandResources))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: OnDemandResources))
-
-init_impl :: OnDemandResources -> IO (())
-init_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "OnDemandResources" ]
 
 
--- throws Exception
-initAt :: (JavaObjectClass this_) => this_ -> ImageCache.ImageCache -> BaseResourceAnimationInterfaceFactoryInterfaceFactory.BaseResourceAnimationInterfaceFactoryInterfaceFactory -> Int -> String -> Int -> IO (Int)
-initAt object_ a1 a2 a3 a4 a5 = jmethod object_ "initAt" (\() -> (initAt_impl (javaCast object_ :: OnDemandResources))) () a1 a2 a3 a4 a5
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
-initAt_super :: (JavaObjectClass this_) => this_ -> ImageCache.ImageCache -> BaseResourceAnimationInterfaceFactoryInterfaceFactory.BaseResourceAnimationInterfaceFactoryInterfaceFactory -> Int -> String -> Int -> IO (Int)
-initAt_super object_ a1 a2 a3 a4 a5 = (initAt_impl (javaCast object_ :: OnDemandResources)) a1 a2 a3 a4 a5
 
-initAt_impl :: OnDemandResources -> ImageCache.ImageCache -> BaseResourceAnimationInterfaceFactoryInterfaceFactory.BaseResourceAnimationInterfaceFactoryInterfaceFactory -> Int -> String -> Int -> IO (Int)
-initAt_impl this imageCache resourceAnimationInterfaceFactoryInterfaceFactory portion loadingString index = do
-        pure (0)
+jvtable =
+    JR.vtable
+        [ ( "waitFor_0", jm_waitFor_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "initAt_5", jm_initAt_5 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OnDemandResources"
+        [ ( "jm_waitFor_0", jm_waitFor_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_initAt_5", jm_initAt_5 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_ON_DEMAND_RESOURCES", jstatic_NULL_ON_DEMAND_RESOURCES ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_ON_DEMAND_RESOURCES : JR.M
+jstatic_NULL_ON_DEMAND_RESOURCES s =
+    JR.static "OnDemandResources" jclinit "NULL_ON_DEMAND_RESOURCES"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_waitFor_0 : JR.Method
+jm_waitFor_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initAt_5 : JR.Method
+jm_initAt_5 jheap jthis jargs =
+    JR.method [ ( "imageCache", "" ), ( "resourceAnimationInterfaceFactoryInterfaceFactory", "" ), ( "portion", "I" ), ( "loadingString", "" ), ( "index", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

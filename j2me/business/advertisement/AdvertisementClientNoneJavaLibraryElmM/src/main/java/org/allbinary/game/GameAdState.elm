@@ -1,114 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
-module GameAdState (module GameAdState, module GameAdStateBase) where
+module Org.Allbinary.Game.GameAdState exposing (..)
 
-import GameAdStateBase hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, onVirtualKeyboardEvent, onVirtualKeyboardEvent_super, onVirtualKeyboardEvent_impl, onEvent, onEvent_super, onEvent_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameAdStateBase -- org.allbinary.business.advertisement.GameAdStateBase
-import qualified AdConfiguration -- org.allbinary.business.advertisement.AdConfiguration
-import qualified VirtualKeyboardEvent -- org.allbinary.input.event.VirtualKeyboardEvent
-import qualified VirtualKeyboardEventHandler -- org.allbinary.input.event.VirtualKeyboardEventHandler
-import qualified VirtualKeyboardEventListenerInterface -- org.allbinary.input.event.VirtualKeyboardEventListenerInterface
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
+{-| Generated Code Do Not Modify package org.allbinary.game
+-}
 
--- implements VirtualKeyboardEventListenerInterface
-data GameAdState = GameAdState
-    { header_ :: JavaHeader
-    , base :: GameAdStateBase.GameAdStateBase
-    }
-
-instance JavaNull GameAdState where
-    javaNull = javaNullRecord "GameAdState"
-
-instance JavaEquals GameAdState where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameAdState where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameAdState where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO GameAdState
-newRecord_ = do
-    base <- GameAdStateBase.newRecord_
-    let header_ = base.header_
-    let this = GameAdState header_ base
-    jregisterLevel header_ this
-    VirtualKeyboardEventListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "onVirtualKeyboardEvent" (\() -> onVirtualKeyboardEvent_impl this)
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    pure this
-
-initFields_ :: GameAdState -> IO ()
-initFields_ this = do
-    pure ()
-
-new_1 :: AdConfiguration.AdConfiguration -> IO GameAdState
-new_1 adConfiguration = do
-    this <- newRecord_
-    init_1 this adConfiguration
-    pure this
-
-init_1 :: GameAdState -> AdConfiguration.AdConfiguration -> IO ()
-init_1 this adConfiguration = do
-        GameAdStateBase.init_1 this.base (adConfiguration)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (VirtualKeyboardEventHandler.addListenerInterface ((jio (VirtualKeyboardEventHandler.getInstance))) this)
-        pure ()
+import JR
+import Org.Allbinary.Business.Advertisement.GameAdStateBase as GameAdStateBase
+import Org.Allbinary.Input.Event.VirtualKeyboardEventHandler as VirtualKeyboardEventHandler
+import Org.Allbinary.Input.Event.VirtualKeyboardEventListenerInterface as VirtualKeyboardEventListenerInterface
 
 
--- throws Exception
-onVirtualKeyboardEvent :: (JavaObjectClass this_) => this_ -> VirtualKeyboardEvent.VirtualKeyboardEvent -> IO (())
-onVirtualKeyboardEvent object_ a1 = jmethod object_ "onVirtualKeyboardEvent" (\() -> (onVirtualKeyboardEvent_impl (javaCast object_ :: GameAdState))) () a1
-
-onVirtualKeyboardEvent_super :: (JavaObjectClass this_) => this_ -> VirtualKeyboardEvent.VirtualKeyboardEvent -> IO (())
-onVirtualKeyboardEvent_super object_ a1 = (onVirtualKeyboardEvent_impl (javaCast object_ :: GameAdState)) a1
-
-onVirtualKeyboardEvent_impl :: GameAdState -> VirtualKeyboardEvent.VirtualKeyboardEvent -> IO (())
-onVirtualKeyboardEvent_impl this virtualKeyboardEvent = do
-        pure ()
+jclass : String
+jclass =
+    "GameAdState"
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: GameAdState))) () a1
+jchain : List String
+jchain =
+    [ "GameAdState" ]
+        ++ GameAdStateBase.jchain
+        ++ VirtualKeyboardEventListenerInterface.jchain
 
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: GameAdState)) a1
 
-onEvent_impl :: GameAdState -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        Control.Monad.void (GameAdStateBase.onEvent_super this.base eventObject)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    GameAdStateBase.jfields ++ []
 
+
+jvtable =
+    JR.vtable
+        [ ( "onVirtualKeyboardEvent_1", jm_onVirtualKeyboardEvent_1 )
+        , ( "onEvent_1", jm_onEvent_1 ) ]
+        GameAdStateBase.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameAdState"
+        [ ( "jm_onVirtualKeyboardEvent_1", jm_onVirtualKeyboardEvent_1 ), ( "jm_onEvent_1", jm_onEvent_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "adConfiguration", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect GameAdStateBase.jinit_1 JR.this [ (JR.local "adConfiguration") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "addListenerInterface_1" (JR.callStatic VirtualKeyboardEventHandler.jm_getInstance_0 []) [ JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_onVirtualKeyboardEvent_1 : JR.Method
+jm_onVirtualKeyboardEvent_1 jheap jthis jargs =
+    JR.method [ ( "virtualKeyboardEvent", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia GameAdStateBase.jvtable "onEvent_1" JR.this [ (JR.local "eventObject") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,4 +1,4 @@
-module JsType exposing (..)
+module Jsinterop.Annotations.JsType exposing (..)
 
 {-| Generated Code Do Not Modify package jsinterop.annotations
 -}

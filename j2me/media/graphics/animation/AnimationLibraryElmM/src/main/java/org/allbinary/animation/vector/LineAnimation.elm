@@ -1,189 +1,162 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
-module LineAnimation (module LineAnimation, module Animation) where
+module Org.Allbinary.Animation.Vector.LineAnimation exposing (..)
 
-import Animation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, init, init_super, init_impl, setPosition, setPosition_super, setPosition_impl, paintXY, paintXY_super, paintXY_impl, nextFrame, nextFrame_super, nextFrame_impl, getBasicColorP, getBasicColorP_super, getBasicColorP_impl, setBasicColorP, setBasicColorP_super, setBasicColorP_impl, newLine, tempLine, line)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicColorSetUtil -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified ColorCompositeInterface -- org.allbinary.graphics.color.ColorCompositeInterface
-import qualified PositionInterface -- org.allbinary.layer.PositionInterface
-import qualified NullUtil -- org.allbinary.logic.NullUtil
+{-| Generated Code Do Not Modify package org.allbinary.animation.vector
+-}
 
--- implements ColorCompositeInterface
--- implements PositionInterface
-data LineAnimation = LineAnimation
-    { header_ :: JavaHeader
-    , base :: Animation.Animation
-    , newLine :: IORef (JavaArray (JavaArray (Int)))
-    , tempLine :: IORef (JavaArray (JavaArray (Int)))
-    , line :: IORef (JavaArray (JavaArray (Int)))
-    }
-
-instance JavaNull LineAnimation where
-    javaNull = javaNullRecord "LineAnimation"
-
-instance JavaEquals LineAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LineAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LineAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO LineAnimation
-newRecord_ = do
-    base <- Animation.newRecord_
-    let header_ = base.header_
-    newLine <- newIORef javaNull
-    tempLine <- newIORef javaNull
-    line <- newIORef javaNull
-    let this = LineAnimation header_ base newLine tempLine line
-    jregisterLevel header_ this
-    ColorCompositeInterface.registerInterface_ header_
-    PositionInterface.registerInterface_ header_
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "setPosition" (\() -> setPosition_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    jregisterMethod header_ "nextFrame" (\() -> nextFrame_impl this)
-    jregisterMethod header_ "getBasicColorP" (\() -> getBasicColorP_impl this)
-    jregisterMethod header_ "setBasicColorP" (\() -> setBasicColorP_impl this)
-    pure this
-
-initFields_ :: LineAnimation -> IO ()
-initFields_ this = do
-    jset this.newLine ((jnewArray2 (2) (2) 0))
-    jset this.tempLine ((jget ((jio (NullUtil.getInstance))).nULL_INT_ARRAY_ARRAY))
-    jset this.line ((jnewArray2 (2) (2) 0))
-    pure ()
-
-new_1 :: BasicColor.BasicColor -> IO LineAnimation
-new_1 basicColor = do
-    this <- newRecord_
-    init_1 this basicColor
-    pure this
-
-init_1 :: LineAnimation -> BasicColor.BasicColor -> IO ()
-init_1 this basicColor = do
-        Animation.init_ this.base
-        initFields_ this
-        Control.Monad.void (LineAnimation.setBasicColorP this basicColor)
-        pure ()
+import JR
+import Org.Allbinary.Animation.Animation as Animation
+import Org.Allbinary.Graphics.Color.ColorCompositeInterface as ColorCompositeInterface
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Layer.PositionInterface as PositionInterface
 
 
-init :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-init object_ a1 a2 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: LineAnimation))) () a1 a2
-
-init_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-init_super object_ a1 a2 = (init_impl (javaCast object_ :: LineAnimation)) a1 a2
-
-init_impl :: LineAnimation -> Int -> Int -> IO (())
-init_impl this x y = do
-        jsetIndex ((jindex ((jget (this).newLine)) (0))) (0) (x)
-        jsetIndex ((jindex ((jget (this).newLine)) (0))) (1) (y)
-        jsetIndex ((jindex ((jget (this).newLine)) (1))) (0) (x)
-        jsetIndex ((jindex ((jget (this).newLine)) (1))) (1) (y)
-        jset (this).tempLine ((jget (this).line))
-        jset (this).line ((jget (this).newLine))
-        jset (this).newLine ((jget (this).tempLine))
-        pure ()
+jclass : String
+jclass =
+    "LineAnimation"
 
 
-setPosition :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-setPosition object_ a1 a2 a3 = jmethod object_ "setPosition" (\() -> (setPosition_impl (javaCast object_ :: LineAnimation))) () a1 a2 a3
-
-setPosition_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-setPosition_super object_ a1 a2 a3 = (setPosition_impl (javaCast object_ :: LineAnimation)) a1 a2 a3
-
-setPosition_impl :: LineAnimation -> Int -> Int -> Int -> IO (())
-setPosition_impl this x y z = do
-        jsetIndex ((jindex ((jget (this).newLine)) (0))) (0) ((jindex ((jindex ((jget (this).line)) (1))) (0)))
-        jsetIndex ((jindex ((jget (this).newLine)) (0))) (1) ((jindex ((jindex ((jget (this).line)) (1))) (1)))
-        jsetIndex ((jindex ((jget (this).newLine)) (1))) (0) (x)
-        jsetIndex ((jindex ((jget (this).newLine)) (1))) (1) (y)
-        jset (this).tempLine ((jget (this).line))
-        jset (this).line ((jget (this).newLine))
-        jset (this).newLine ((jget (this).tempLine))
-        pure ()
+jchain : List String
+jchain =
+    [ "LineAnimation" ]
+        ++ Animation.jchain
+        ++ ColorCompositeInterface.jchain
+        ++ PositionInterface.jchain
 
 
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: LineAnimation))) () a1 a2 a3
-
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: LineAnimation)) a1 a2 a3
-
-paintXY_impl :: LineAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        let currentLine = (jget (this).line)
-        Control.Monad.void (BasicColorSetUtil.setBasicColorP3 ((jget (this).base.basicSetColorUtil)) graphics (jio (LineAnimation.getBasicColorP this)) (jio (Animation.getColor this)))
-        Control.Monad.void (Graphics.drawLine graphics (jindex ((jindex currentLine (0))) (0)) (jindex ((jindex currentLine (0))) (1)) (jindex ((jindex currentLine (1))) (0)) (jindex ((jindex currentLine (1))) (1)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    Animation.jfields ++ [ ( "newLine", JR.defaultOf "" ), ( "tempLine", JR.defaultOf "" ), ( "line", JR.defaultOf "" ) ]
 
 
-nextFrame :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame object_ = jmethod object_ "nextFrame" (\() -> (nextFrame_impl (javaCast object_ :: LineAnimation))) ()
-
-nextFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame_super object_ = (nextFrame_impl (javaCast object_ :: LineAnimation))
-
-nextFrame_impl :: LineAnimation -> IO (())
-nextFrame_impl this = do
-        pure ()
-
-
-getBasicColorP :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP object_ = jmethod object_ "getBasicColorP" (\() -> (getBasicColorP_impl (javaCast object_ :: LineAnimation))) ()
-
-getBasicColorP_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP_super object_ = (getBasicColorP_impl (javaCast object_ :: LineAnimation))
-
-getBasicColorP_impl :: LineAnimation -> IO (BasicColor.BasicColor)
-getBasicColorP_impl this = do
-        (Animation.getBasicColorP_super this.base)
+jvtable =
+    JR.vtable
+        [ ( "init_2", jm_init_2 )
+        , ( "setPosition_3", jm_setPosition_3 )
+        , ( "paintXY_3", jm_paintXY_3 )
+        , ( "nextFrame_0", jm_nextFrame_0 )
+        , ( "getBasicColorP_0", jm_getBasicColorP_0 )
+        , ( "setBasicColorP_1", jm_setBasicColorP_1 ) ]
+        Animation.jvtable
 
 
-setBasicColorP :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP object_ a1 = jmethod object_ "setBasicColorP" (\() -> (setBasicColorP_impl (javaCast object_ :: LineAnimation))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LineAnimation"
+        [ ( "jm_init_2", jm_init_2 ), ( "jm_setPosition_3", jm_setPosition_3 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jm_nextFrame_0", jm_nextFrame_0 ), ( "jm_getBasicColorP_0", jm_getBasicColorP_0 ), ( "jm_setBasicColorP_1", jm_setBasicColorP_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
-setBasicColorP_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP_super object_ a1 = (setBasicColorP_impl (javaCast object_ :: LineAnimation)) a1
 
-setBasicColorP_impl :: LineAnimation -> BasicColor.BasicColor -> IO (())
-setBasicColorP_impl this basicColor = do
-        Control.Monad.void (Animation.setBasicColorP_super this.base basicColor)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Animation.jinit_0 JR.this []),
+                JR.exec (JR.setField "newLine" "" JR.this (JR.newArray "I" [ (JR.int 2), (JR.int 2) ])),
+                JR.exec (JR.setField "tempLine" "" JR.this (JR.field "NULL_INT_ARRAY_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "line" "" JR.this (JR.newArray "I" [ (JR.int 2), (JR.int 2) ])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setBasicColorP_1" JR.this [ (JR.local "basicColor") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_init_2 : JR.Method
+jm_init_2 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66551 -> JR.andThen (JR.int 0) (\jiN66551 -> (JR.aset (JR.lit jaN66551) (JR.lit jiN66551) (JR.local "x"))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66595 -> JR.andThen (JR.int 1) (\jiN66595 -> (JR.aset (JR.lit jaN66595) (JR.lit jiN66595) (JR.local "y"))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN66639 -> JR.andThen (JR.int 0) (\jiN66639 -> (JR.aset (JR.lit jaN66639) (JR.lit jiN66639) (JR.local "x"))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN66683 -> JR.andThen (JR.int 1) (\jiN66683 -> (JR.aset (JR.lit jaN66683) (JR.lit jiN66683) (JR.local "y"))))), 
+                    JR.exec (JR.setField "tempLine" "" JR.this (JR.thisField "line")), 
+                    JR.exec (JR.setField "line" "" JR.this (JR.thisField "newLine")), 
+                    JR.exec (JR.setField "newLine" "" JR.this (JR.thisField "tempLine")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPosition_3 : JR.Method
+jm_setPosition_3 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66874 -> JR.andThen (JR.int 0) (\jiN66874 -> (JR.aset (JR.lit jaN66874) (JR.lit jiN66874) (JR.aget (JR.aget (JR.thisField "line") (JR.int 1)) (JR.int 0)))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66937 -> JR.andThen (JR.int 1) (\jiN66937 -> (JR.aset (JR.lit jaN66937) (JR.lit jiN66937) (JR.aget (JR.aget (JR.thisField "line") (JR.int 1)) (JR.int 1)))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN67000 -> JR.andThen (JR.int 0) (\jiN67000 -> (JR.aset (JR.lit jaN67000) (JR.lit jiN67000) (JR.local "x"))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN67044 -> JR.andThen (JR.int 1) (\jiN67044 -> (JR.aset (JR.lit jaN67044) (JR.lit jiN67044) (JR.local "y"))))), 
+                    JR.exec (JR.setField "tempLine" "" JR.this (JR.thisField "line")), 
+                    JR.exec (JR.setField "line" "" JR.this (JR.thisField "newLine")), 
+                    JR.exec (JR.setField "newLine" "" JR.this (JR.thisField "tempLine")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "currentLine" "" (JR.thisField "line"), 
+                    JR.exec (JR.invoke "setBasicColorP3_3" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.invoke "getBasicColorP_0" JR.this []), (JR.invoke "getColor_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "drawLine_4" (JR.local "graphics") [ (JR.aget (JR.aget (JR.local "currentLine") (JR.int 0)) (JR.int 0)), (JR.aget (JR.aget (JR.local "currentLine") (JR.int 0)) (JR.int 1)), (JR.aget (JR.aget (JR.local "currentLine") (JR.int 1)) (JR.int 0)), (JR.aget (JR.aget (JR.local "currentLine") (JR.int 1)) (JR.int 1)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_nextFrame_0 : JR.Method
+jm_nextFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBasicColorP_0 : JR.Method
+jm_getBasicColorP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callVia Animation.jvtable "getBasicColorP_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setBasicColorP_1 : JR.Method
+jm_setBasicColorP_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia Animation.jvtable "setBasicColorP_1" JR.this [ (JR.local "basicColor") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

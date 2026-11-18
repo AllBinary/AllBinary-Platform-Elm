@@ -1,12 +1,12 @@
-module ThreadObjectUtil exposing (..)
+module Org.Allbinary.Thread.ThreadObjectUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}
 
 import JR
 import JThread
-import NullPriorityRunnable
-import TsUtil
+import Org.Allbinary.Thread.NullPriorityRunnable as NullPriorityRunnable
+import Org.Allbinary.TsUtil as TsUtil
 
 
 jclass : String

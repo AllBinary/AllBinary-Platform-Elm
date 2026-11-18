@@ -1,88 +1,87 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
-module RectangleFactory where
+module Org.Allbinary.Graphics.RectangleFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Rectangle -- same package or java.lang
-import qualified PointFactory -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.graphics
+-}
 
-data RectangleFactory = RectangleFactory
-    { header_ :: JavaHeader
-    }
+import JR
+import Org.Allbinary.Graphics.PointFactory as PointFactory
+import Org.Allbinary.Graphics.Rectangle as Rectangle
 
-instance JavaNull RectangleFactory where
-    javaNull = javaNullRecord "RectangleFactory"
 
-instance JavaEquals RectangleFactory where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "RectangleFactory"
 
-instance Eq RectangleFactory where
-    (==) = jrecordEquals
 
-instance JavaObjectClass RectangleFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "RectangleFactory" ]
 
-sINGLETON :: Rectangle.Rectangle
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((Rectangle.new_3 (jget ((jio (PointFactory.getInstance))).zERO_ZERO) 0 0))
 
-aRRAY_OF_ARRAYS :: JavaArray (JavaArray (Rectangle.Rectangle))
-aRRAY_OF_ARRAYS = (jnewArray2 (0) (0) javaNull)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-newRecord_ :: IO RectangleFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = RectangleFactory header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: RectangleFactory -> IO ()
-initFields_ this = do
-    pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RectangleFactory"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ), ( "jstatic_ARRAY_OF_ARRAYS", jstatic_ARRAY_OF_ARRAYS ) ]
+        jheap
 
-new_ :: IO RectangleFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: RectangleFactory -> IO ()
-init_ this = do
-    initFields_ this
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "RectangleFactory" jclinit "SINGLETON"
+        (JR.new Rectangle.jnew_3 [ (JR.field "ZERO_ZERO" (JR.callStatic PointFactory.jm_getInstance_0 [])), (JR.int 0), (JR.int 0) ])
+        s
+
+
+jstatic_ARRAY_OF_ARRAYS : JR.M
+jstatic_ARRAY_OF_ARRAYS s =
+    JR.static "RectangleFactory" jclinit "ARRAY_OF_ARRAYS"
+        (JR.newArray "" [ (JR.int 0), (JR.int 0) ])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

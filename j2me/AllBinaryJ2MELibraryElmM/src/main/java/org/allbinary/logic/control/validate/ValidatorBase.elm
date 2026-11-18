@@ -1,148 +1,139 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.control.validate
-module ValidatorBase where
+module Org.Allbinary.Logic.Control.Validate.ValidatorBase exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified BooleanFactory -- org.allbinary.logic.java.bool.BooleanFactory
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListUtil -- org.allbinary.util.BasicArrayListUtil
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified ValidatorBaseInterface
+{-| Generated Code Do Not Modify package org.allbinary.logic.control.validate
+-}
 
--- implements ValidatorBaseInterface
-data ValidatorBase = ValidatorBase
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ValidatorBase where
-    javaNull = javaNullRecord "ValidatorBase"
-
-instance JavaEquals ValidatorBase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ValidatorBase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ValidatorBase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ValidatorBase
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ValidatorBase
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ValidatorBase header_
-    jregisterLevel header_ this
-    ValidatorBaseInterface.registerInterface_ header_
-    jregisterMethod header_ "isValid" (\() -> isValid_impl this)
-    jregisterMethod header_ "validationInfo" (\() -> validationInfo_impl this)
-    jregisterMethod header_ "toHashtable" (\() -> toHashtable_impl this)
-    jregisterMethod header_ "toList" (\() -> toList_impl this)
-    pure this
-
-initFields_ :: ValidatorBase -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListUtil as BasicArrayListUtil
+import Org.Allbinary.Logic.Java.Bool.BooleanFactory as BooleanFactory
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Logic.Control.Validate.ValidatorBaseInterface as ValidatorBaseInterface
 
 
-getInstance :: IO (ValidatorBase)
-getInstance = do
-        pure (ValidatorBase.instance_)
-
-new_ :: IO ValidatorBase
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ValidatorBase -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "ValidatorBase"
 
 
-isValid :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isValid object_ = jmethod object_ "isValid" (\() -> (isValid_impl (javaCast object_ :: ValidatorBase))) ()
-
-isValid_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isValid_super object_ = (isValid_impl (javaCast object_ :: ValidatorBase))
-
-isValid_impl :: ValidatorBase -> IO (Bool)
-isValid_impl this = do
-        pure ((jget ((jio (BooleanFactory.getInstance))).tRUE))
+jchain : List String
+jchain =
+    [ "ValidatorBase" ]
+        ++ ValidatorBaseInterface.jchain
 
 
-validationInfo :: (JavaObjectClass this_) => this_ -> IO (String)
-validationInfo object_ = jmethod object_ "validationInfo" (\() -> (validationInfo_impl (javaCast object_ :: ValidatorBase))) ()
-
-validationInfo_super :: (JavaObjectClass this_) => this_ -> IO (String)
-validationInfo_super object_ = (validationInfo_impl (javaCast object_ :: ValidatorBase))
-
-validationInfo_impl :: ValidatorBase -> IO (String)
-validationInfo_impl this = do
-        pure ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-toHashtable :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-toHashtable object_ = jmethod object_ "toHashtable" (\() -> (toHashtable_impl (javaCast object_ :: ValidatorBase))) ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "isValid_0", jm_isValid_0 )
+        , ( "validationInfo_0", jm_validationInfo_0 )
+        , ( "toHashtable_0", jm_toHashtable_0 )
+        , ( "toList_0", jm_toList_0 ) ]
+        JR.noMethods
 
-toHashtable_super :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-toHashtable_super object_ = (toHashtable_impl (javaCast object_ :: ValidatorBase))
 
-toHashtable_impl :: ValidatorBase -> IO (ABHashtable.ABHashtable)
-toHashtable_impl this = do
-        pure ((jget ((jio (StdUtil.getInstance))).nULL_TABLE))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ValidatorBase"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_isValid_0", jm_isValid_0 ), ( "jm_validationInfo_0", jm_validationInfo_0 ), ( "jm_toHashtable_0", jm_toHashtable_0 ), ( "jm_toList_0", jm_toList_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-toList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-toList object_ = jmethod object_ "toList" (\() -> (toList_impl (javaCast object_ :: ValidatorBase))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-toList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-toList_super object_ = (toList_impl (javaCast object_ :: ValidatorBase))
 
-toList_impl :: ValidatorBase -> IO (BasicArrayList.BasicArrayList)
-toList_impl this = do
-        (BasicArrayListUtil.getImmutableInstance ((jio (BasicArrayListUtil.getInstance))))
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ValidatorBase" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isValid_0 : JR.Method
+jm_isValid_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.field "TRUE" (JR.callStatic BooleanFactory.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_validationInfo_0 : JR.Method
+jm_validationInfo_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toHashtable_0 : JR.Method
+jm_toHashtable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.field "NULL_TABLE" (JR.callStatic StdUtil.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toList_0 : JR.Method
+jm_toList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getImmutableInstance_0" (JR.callStatic BasicArrayListUtil.jm_getInstance_0 []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

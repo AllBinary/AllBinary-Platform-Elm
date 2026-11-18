@@ -1,13 +1,13 @@
-module MusicThreadPool exposing (..)
+module Org.Allbinary.Thread.MusicThreadPool exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}
 
 import JR
 import JSystem
-import StringMaker
-import StringUtil
-import ThreadPool
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Thread.ThreadPool as ThreadPool
 
 
 jclass : String

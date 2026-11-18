@@ -1,159 +1,150 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module VectorAnimationUtil where
+module Org.Allbinary.Animation.VectorAnimationUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
-data VectorAnimationUtil = VectorAnimationUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull VectorAnimationUtil where
-    javaNull = javaNullRecord "VectorAnimationUtil"
-
-instance JavaEquals VectorAnimationUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq VectorAnimationUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass VectorAnimationUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: VectorAnimationUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO VectorAnimationUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = VectorAnimationUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "toAnimationArrayFromListOfPointListWithPointsPerFrame" (\() -> toAnimationArrayFromListOfPointListWithPointsPerFrame_impl this)
-    jregisterMethod header_ "toAnimationArrayFromListOfPointList" (\() -> toAnimationArrayFromListOfPointList_impl this)
-    jregisterMethod header_ "toFrameArrayFromPointBasicArrayList" (\() -> toFrameArrayFromPointBasicArrayList_impl this)
-    pure this
-
-initFields_ :: VectorAnimationUtil -> IO ()
-initFields_ this = do
-    pure ()
+import JR
 
 
-getInstance :: IO (VectorAnimationUtil)
-getInstance = do
-        pure (VectorAnimationUtil.instance_)
 
-new_ :: IO VectorAnimationUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: VectorAnimationUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "VectorAnimationUtil"
 
 
-toAnimationArrayFromListOfPointListWithPointsPerFrame :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-toAnimationArrayFromListOfPointListWithPointsPerFrame object_ a1 a2 = jmethod object_ "toAnimationArrayFromListOfPointListWithPointsPerFrame" (\() -> (toAnimationArrayFromListOfPointListWithPointsPerFrame_impl (javaCast object_ :: VectorAnimationUtil))) () a1 a2
-
-toAnimationArrayFromListOfPointListWithPointsPerFrame_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-toAnimationArrayFromListOfPointListWithPointsPerFrame_super object_ a1 a2 = (toAnimationArrayFromListOfPointListWithPointsPerFrame_impl (javaCast object_ :: VectorAnimationUtil)) a1 a2
-
-toAnimationArrayFromListOfPointListWithPointsPerFrame_impl :: VectorAnimationUtil -> BasicArrayList.BasicArrayList -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-toAnimationArrayFromListOfPointListWithPointsPerFrame_impl this vector pointsPerFrame = do
-        size <- (BasicArrayList.size vector)
-        let points = (jnewArray3 (size) (pointsPerFrame) (2) 0)
-        nextBasicArrayList <- newIORef (javaNull)
-        framePoints <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset nextBasicArrayList ((javaCast (jindex ((jget (vector).objectArray)) (index)) :: BasicArrayList.BasicArrayList))
-            assignedValue <- (VectorAnimationUtil.toFrameArrayFromPointBasicArrayList this (jget nextBasicArrayList))
-            jset framePoints (assignedValue)
-            forM_ [0 .. (jlength (jget framePoints)) - 1] $ \pointIndex -> javaIteration (pure ()) $ do
-                jsetIndex ((jindex ((jindex points (index))) (pointIndex))) (0) ((jindex ((jindex ((jget framePoints)) (pointIndex))) (0)))
-                jsetIndex ((jindex ((jindex points (index))) (pointIndex))) (1) ((jindex ((jindex ((jget framePoints)) (pointIndex))) (1)))
-        pure (points)
+jchain : List String
+jchain =
+    [ "VectorAnimationUtil" ]
 
 
-toAnimationArrayFromListOfPointList :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (JavaArray (JavaArray (JavaArray (Int))))
-toAnimationArrayFromListOfPointList object_ a1 = jmethod object_ "toAnimationArrayFromListOfPointList" (\() -> (toAnimationArrayFromListOfPointList_impl (javaCast object_ :: VectorAnimationUtil))) () a1
-
-toAnimationArrayFromListOfPointList_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (JavaArray (JavaArray (JavaArray (Int))))
-toAnimationArrayFromListOfPointList_super object_ a1 = (toAnimationArrayFromListOfPointList_impl (javaCast object_ :: VectorAnimationUtil)) a1
-
-toAnimationArrayFromListOfPointList_impl :: VectorAnimationUtil -> BasicArrayList.BasicArrayList -> IO (JavaArray (JavaArray (JavaArray (Int))))
-toAnimationArrayFromListOfPointList_impl this vector = do
-        size <- (BasicArrayList.size vector)
-        let points = (jnewArray3 (size) (0) (0) 0)
-        nextBasicArrayList <- newIORef (javaNull)
-        framePoints <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset nextBasicArrayList ((javaCast (jindex ((jget (vector).objectArray)) (index)) :: BasicArrayList.BasicArrayList))
-            assignedValue <- (VectorAnimationUtil.toFrameArrayFromPointBasicArrayList this (jget nextBasicArrayList))
-            jset framePoints (assignedValue)
-            jsetIndex points (index) ((jnewArray2 ((jlength (jget framePoints))) (2) 0))
-            forM_ [0 .. (jlength (jget framePoints)) - 1] $ \pointIndex -> javaIteration (pure ()) $ do
-                jsetIndex ((jindex ((jindex points (index))) (pointIndex))) (0) ((jindex ((jindex ((jget framePoints)) (pointIndex))) (0)))
-                jsetIndex ((jindex ((jindex points (index))) (pointIndex))) (1) ((jindex ((jindex ((jget framePoints)) (pointIndex))) (1)))
-        pure (points)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-toFrameArrayFromPointBasicArrayList :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (JavaArray (JavaArray (Int)))
-toFrameArrayFromPointBasicArrayList object_ a1 = jmethod object_ "toFrameArrayFromPointBasicArrayList" (\() -> (toFrameArrayFromPointBasicArrayList_impl (javaCast object_ :: VectorAnimationUtil))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "toAnimationArrayFromListOfPointListWithPointsPerFrame_2", jm_toAnimationArrayFromListOfPointListWithPointsPerFrame_2 )
+        , ( "toAnimationArrayFromListOfPointList_1", jm_toAnimationArrayFromListOfPointList_1 )
+        , ( "toFrameArrayFromPointBasicArrayList_1", jm_toFrameArrayFromPointBasicArrayList_1 ) ]
+        JR.noMethods
 
-toFrameArrayFromPointBasicArrayList_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (JavaArray (JavaArray (Int)))
-toFrameArrayFromPointBasicArrayList_super object_ a1 = (toFrameArrayFromPointBasicArrayList_impl (javaCast object_ :: VectorAnimationUtil)) a1
 
-toFrameArrayFromPointBasicArrayList_impl :: VectorAnimationUtil -> BasicArrayList.BasicArrayList -> IO (JavaArray (JavaArray (Int)))
-toFrameArrayFromPointBasicArrayList_impl this list = do
-        let points = (jnewArray2 ((jio (BasicArrayList.size list))) (2) 0)
-        size <- (BasicArrayList.size list)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let nextPoint = (javaCast (jindex ((jget (list).objectArray)) (index)) :: GPoint.GPoint)
-            assignedValue <- (GPoint.getX nextPoint)
-            jsetIndex ((jindex points (index))) (0) (assignedValue)
-            assignedValue <- (GPoint.getY nextPoint)
-            jsetIndex ((jindex points (index))) (1) (assignedValue)
-        pure (points)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "VectorAnimationUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_toAnimationArrayFromListOfPointListWithPointsPerFrame_2", jm_toAnimationArrayFromListOfPointListWithPointsPerFrame_2 ), ( "jm_toAnimationArrayFromListOfPointList_1", jm_toAnimationArrayFromListOfPointList_1 ), ( "jm_toFrameArrayFromPointBasicArrayList_1", jm_toFrameArrayFromPointBasicArrayList_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "VectorAnimationUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toAnimationArrayFromListOfPointListWithPointsPerFrame_2 : JR.Method
+jm_toAnimationArrayFromListOfPointListWithPointsPerFrame_2 jheap jthis jargs =
+    JR.method [ ( "vector", "" ), ( "pointsPerFrame", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "vector") []), 
+                    JR.declare "points" "" (JR.newArray "I" [ (JR.local "size"), (JR.local "pointsPerFrame"), (JR.int 2) ]), 
+                    JR.declare "nextBasicArrayList" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "framePoints" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66746 -> (JR.setLocal "index" "I" (JR.lit jwN66746))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "nextBasicArrayList" "" (JR.aget (JR.field "objectArray" (JR.local "vector")) (JR.local "index"))), 
+                        JR.exec (JR.setLocal "framePoints" "" (JR.invoke "toFrameArrayFromPointBasicArrayList_1" JR.this [ (JR.local "nextBasicArrayList") ])), 
+                        JR.run [ JR.declare "pointIndex" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "pointIndex") (JR.alength (JR.local "framePoints"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "pointIndex") (\jwN66680 -> (JR.setLocal "pointIndex" "I" (JR.lit jwN66680))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "pointIndex")) (\jaN66470 -> JR.andThen (JR.int 0) (\jiN66470 -> (JR.aset (JR.lit jaN66470) (JR.lit jiN66470) (JR.aget (JR.aget (JR.local "framePoints") (JR.local "pointIndex")) (JR.int 0)))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "pointIndex")) (\jaN66547 -> JR.andThen (JR.int 1) (\jiN66547 -> (JR.aset (JR.lit jaN66547) (JR.lit jiN66547) (JR.aget (JR.aget (JR.local "framePoints") (JR.local "pointIndex")) (JR.int 1)))))) ]) ] ]) ], 
+                    JR.return (JR.local "points") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toAnimationArrayFromListOfPointList_1 : JR.Method
+jm_toAnimationArrayFromListOfPointList_1 jheap jthis jargs =
+    JR.method [ ( "vector", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "vector") []), 
+                    JR.declare "points" "" (JR.newArray "I" [ (JR.local "size"), (JR.int 0), (JR.int 0) ]), 
+                    JR.declare "nextBasicArrayList" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "framePoints" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67514 -> (JR.setLocal "index" "I" (JR.lit jwN67514))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "nextBasicArrayList" "" (JR.aget (JR.field "objectArray" (JR.local "vector")) (JR.local "index"))), 
+                        JR.exec (JR.setLocal "framePoints" "" (JR.invoke "toFrameArrayFromPointBasicArrayList_1" JR.this [ (JR.local "nextBasicArrayList") ])), 
+                        JR.exec (JR.andThen (JR.local "points") (\jaN67158 -> JR.andThen (JR.local "index") (\jiN67158 -> (JR.aset (JR.lit jaN67158) (JR.lit jiN67158) (JR.newArray "I" [ (JR.alength (JR.local "framePoints")), (JR.int 2) ]))))), 
+                        JR.run [ JR.declare "pointIndex" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "pointIndex") (JR.alength (JR.local "framePoints"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "pointIndex") (\jwN67448 -> (JR.setLocal "pointIndex" "I" (JR.lit jwN67448))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "pointIndex")) (\jaN67234 -> JR.andThen (JR.int 0) (\jiN67234 -> (JR.aset (JR.lit jaN67234) (JR.lit jiN67234) (JR.aget (JR.aget (JR.local "framePoints") (JR.local "pointIndex")) (JR.int 0)))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "pointIndex")) (\jaN67315 -> JR.andThen (JR.int 1) (\jiN67315 -> (JR.aset (JR.lit jaN67315) (JR.lit jiN67315) (JR.aget (JR.aget (JR.local "framePoints") (JR.local "pointIndex")) (JR.int 1)))))) ]) ] ]) ], 
+                    JR.return (JR.local "points") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toFrameArrayFromPointBasicArrayList_1 : JR.Method
+jm_toFrameArrayFromPointBasicArrayList_1 jheap jthis jargs =
+    JR.method [ ( "list", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "points" "" (JR.newArray "I" [ (JR.invoke "size_0" (JR.local "list") []), (JR.int 2) ]), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67952 -> (JR.setLocal "index" "I" (JR.lit jwN67952))) JR.increment) ]) (JR.run [ 
+                        JR.declare "nextPoint" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
+                        JR.exec (JR.andThen (JR.aget (JR.local "points") (JR.local "index")) (\jaN67798 -> JR.andThen (JR.int 0) (\jiN67798 -> (JR.aset (JR.lit jaN67798) (JR.lit jiN67798) (JR.invoke "getX_0" (JR.local "nextPoint") []))))), 
+                        JR.exec (JR.andThen (JR.aget (JR.local "points") (JR.local "index")) (\jaN67851 -> JR.andThen (JR.int 1) (\jiN67851 -> (JR.aset (JR.lit jaN67851) (JR.lit jiN67851) (JR.invoke "getY_0" (JR.local "nextPoint") []))))) ]) ], 
+                    JR.return (JR.local "points") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,116 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.gesture
-module TrackballMotionGestureFactory where
+module Org.Allbinary.Input.Motion.Gesture.TrackballMotionGestureFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified MotionGestureInput -- same package or java.lang
-import qualified InputFactory -- org.allbinary.game.input.InputFactory
-import qualified NullUtil -- org.allbinary.logic.NullUtil
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.gesture
+-}
 
-data TrackballMotionGestureFactory = TrackballMotionGestureFactory
-    { header_ :: JavaHeader
-    , lEFT :: IORef (MotionGestureInput.MotionGestureInput)
-    , rIGHT :: IORef (MotionGestureInput.MotionGestureInput)
-    , uP :: IORef (MotionGestureInput.MotionGestureInput)
-    , dOWN :: IORef (MotionGestureInput.MotionGestureInput)
-    }
-
-instance JavaNull TrackballMotionGestureFactory where
-    javaNull = javaNullRecord "TrackballMotionGestureFactory"
-
-instance JavaEquals TrackballMotionGestureFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TrackballMotionGestureFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TrackballMotionGestureFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TrackballMotionGestureFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    lEFT <- newIORef javaNull
-    rIGHT <- newIORef javaNull
-    uP <- newIORef javaNull
-    dOWN <- newIORef javaNull
-    let this = TrackballMotionGestureFactory header_ lEFT rIGHT uP dOWN
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: TrackballMotionGestureFactory -> IO ()
-initFields_ this = do
-    jset this.lEFT (javaNull)
-    jset this.rIGHT (javaNull)
-    jset this.uP (javaNull)
-    jset this.dOWN (javaNull)
-    pure ()
+import JR
+import Org.Allbinary.Game.Input.InputFactory as InputFactory
+import Org.Allbinary.Input.Motion.Gesture.MotionGestureInput as MotionGestureInput
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
-getInstance :: IO (TrackballMotionGestureFactory)
-getInstance = do
-        when ((jget TrackballMotionGestureFactory.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset TrackballMotionGestureFactory.instance_ (assignedValue)
-        pure ((javaCast (jget TrackballMotionGestureFactory.instance_) :: TrackballMotionGestureFactory))
+jclass : String
+jclass =
+    "TrackballMotionGestureFactory"
 
-new_ :: IO TrackballMotionGestureFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: TrackballMotionGestureFactory -> IO ()
-init_ this = do
-        initFields_ this
-        let mAX = (jget ((jio (InputFactory.getInstance))).mAX)
-        assignedValue <- (MotionGestureInput.new_2 (mAX - 26) "L Trackball")
-        jset (this).lEFT (assignedValue)
-        assignedValue <- (MotionGestureInput.new_2 (mAX - 27) "R Trackball")
-        jset (this).rIGHT (assignedValue)
-        assignedValue <- (MotionGestureInput.new_2 (mAX - 28) "Up Trackball")
-        jset (this).uP (assignedValue)
-        assignedValue <- (MotionGestureInput.new_2 (mAX - 29) "D Trackball")
-        jset (this).dOWN (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "TrackballMotionGestureFactory" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "LEFT", JR.defaultOf "" ), ( "RIGHT", JR.defaultOf "" ), ( "UP", JR.defaultOf "" ), ( "DOWN", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TrackballMotionGestureFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "TrackballMotionGestureFactory" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.declare "MAX" "I" (JR.field "MAX" (JR.callStatic InputFactory.jm_getInstance_0 [])), 
+                    JR.exec (JR.setField "LEFT" "" JR.this (JR.new MotionGestureInput.jnew_2 [ (JR.map2 JR.sub (JR.local "MAX") (JR.int 26)), (JR.str "L Trackball") ])), 
+                    JR.exec (JR.setField "RIGHT" "" JR.this (JR.new MotionGestureInput.jnew_2 [ (JR.map2 JR.sub (JR.local "MAX") (JR.int 27)), (JR.str "R Trackball") ])), 
+                    JR.exec (JR.setField "UP" "" JR.this (JR.new MotionGestureInput.jnew_2 [ (JR.map2 JR.sub (JR.local "MAX") (JR.int 28)), (JR.str "Up Trackball") ])), 
+                    JR.exec (JR.setField "DOWN" "" JR.this (JR.new MotionGestureInput.jnew_2 [ (JR.map2 JR.sub (JR.local "MAX") (JR.int 29)), (JR.str "D Trackball") ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "TrackballMotionGestureFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

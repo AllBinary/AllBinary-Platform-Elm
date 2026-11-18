@@ -1,162 +1,138 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.resources
-module BasicGameResources where
+module Org.Allbinary.Game.Layer.Resources.BasicGameResources exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameGraphicsResourceUtil -- same package or java.lang
-import qualified GameConfigurationCentral -- org.allbinary.game.configuration.GameConfigurationCentral
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.resources
+-}
 
-data BasicGameResources = BasicGameResources
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , rESOURCE :: IORef (String)
-    , rESOURCE_DESTROY :: IORef (String)
-    }
-
-instance JavaNull BasicGameResources where
-    javaNull = javaNullRecord "BasicGameResources"
-
-instance JavaEquals BasicGameResources where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicGameResources where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicGameResources where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-stringBuffer :: StringMaker.StringMaker
-{-# NOINLINE stringBuffer #-}
-stringBuffer = unsafePerformIO ((StringMaker.new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BasicGameResources
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    rESOURCE <- newIORef ""
-    rESOURCE_DESTROY <- newIORef ""
-    let this = BasicGameResources header_ logUtil rESOURCE rESOURCE_DESTROY
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "append" (\() -> append_impl this)
-    jregisterMethod header_ "getString" (\() -> getString_impl this)
-    pure this
-
-initFields_ :: BasicGameResources -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.rESOURCE ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.rESOURCE_DESTROY ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    pure ()
-
-new_ :: IO BasicGameResources
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BasicGameResources -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.GameConfigurationCentral as GameConfigurationCentral
+import Org.Allbinary.Game.Layer.Resources.GameGraphicsResourceUtil as GameGraphicsResourceUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-init :: (JavaObjectClass this_) => this_ -> String -> JavaArray (String) -> IO (())
-init object_ a1 a2 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: BasicGameResources))) () a1 a2
-
-init_super :: (JavaObjectClass this_) => this_ -> String -> JavaArray (String) -> IO (())
-init_super object_ a1 a2 = (init_impl (javaCast object_ :: BasicGameResources)) a1 a2
-
-init_impl :: BasicGameResources -> String -> JavaArray (String) -> IO (())
-init_impl this rOOT sIZE = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).iNIT) e)
-            ) $ do
-            scale <- (intValue ((jio (getValue ((jget ((jio (GameConfigurationCentral.getInstance))).sCALE))))))
-            if ((scale > 1) && ((scale - 1) < (jlength sIZE))) then do
-                Control.Monad.void (BasicGameResources.append this rOOT (jindex sIZE ((scale - 1))))
-            else do
-                javaThrow ((JavaException "Exception" (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "Invalid Value: "))) scale)))))))
-        pure ()
+jclass : String
+jclass =
+    "BasicGameResources"
 
 
--- throws Exception
-append :: (JavaObjectClass this_) => this_ -> String -> String -> IO (())
-append object_ a1 a2 = jmethod object_ "append" (\() -> (append_impl (javaCast object_ :: BasicGameResources))) () a1 a2
-
-append_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (())
-append_super object_ a1 a2 = (append_impl (javaCast object_ :: BasicGameResources)) a1 a2
-
-append_impl :: BasicGameResources -> String -> String -> IO (())
-append_impl this rOOT sizeString = do
-        let dESTROY = "_destroy"
-        string <- (BasicGameResources.getString this)
-        Control.Monad.void (StringMaker.delete BasicGameResources.stringBuffer 0 (jio (StringMaker.length BasicGameResources.stringBuffer)))
-        Control.Monad.void (StringMaker.append BasicGameResources.stringBuffer rOOT)
-        Control.Monad.void (StringMaker.append BasicGameResources.stringBuffer string)
-        Control.Monad.void (StringMaker.append BasicGameResources.stringBuffer sizeString)
-        assignedValue <- (StringMaker.toString BasicGameResources.stringBuffer)
-        jset (this).rESOURCE (assignedValue)
-        Control.Monad.void (StringMaker.delete BasicGameResources.stringBuffer 0 (jio (StringMaker.length BasicGameResources.stringBuffer)))
-        Control.Monad.void (StringMaker.append BasicGameResources.stringBuffer rOOT)
-        Control.Monad.void (StringMaker.append BasicGameResources.stringBuffer dESTROY)
-        Control.Monad.void (StringMaker.append BasicGameResources.stringBuffer string)
-        Control.Monad.void (StringMaker.append BasicGameResources.stringBuffer sizeString)
-        assignedValue <- (StringMaker.toString BasicGameResources.stringBuffer)
-        jset (this).rESOURCE_DESTROY (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "BasicGameResources" ]
 
 
--- throws Exception
-getString :: (JavaObjectClass this_) => this_ -> IO (String)
-getString object_ = jmethod object_ "getString" (\() -> (getString_impl (javaCast object_ :: BasicGameResources))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "RESOURCE", JR.defaultOf "" ), ( "RESOURCE_DESTROY", JR.defaultOf "" ) ]
 
-getString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getString_super object_ = (getString_impl (javaCast object_ :: BasicGameResources))
 
-getString_impl :: BasicGameResources -> IO (String)
-getString_impl this = do
-        (GameGraphicsResourceUtil.getName ((jio (GameGraphicsResourceUtil.getInstance))))
+jvtable =
+    JR.vtable
+        [ ( "init_2", jm_init_2 )
+        , ( "append_2", jm_append_2 )
+        , ( "getString_0", jm_getString_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicGameResources"
+        [ ( "jm_init_2", jm_init_2 ), ( "jm_append_2", jm_append_2 ), ( "jm_getString_0", jm_getString_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_stringBuffer", jstatic_stringBuffer ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_stringBuffer : JR.M
+jstatic_stringBuffer s =
+    JR.static "BasicGameResources" jclinit "stringBuffer"
+        (JR.new StringMaker.jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "RESOURCE" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "RESOURCE_DESTROY" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_2 : JR.Method
+jm_init_2 jheap jthis jargs =
+    JR.method [ ( "ROOT", "" ), ( "SIZE", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "scale" "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.field "SCALE" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 [])) []) []), 
+                        JR.ifElse (JR.and (JR.map2 JR.greater (JR.local "scale") (JR.int 1)) (JR.map2 JR.less (JR.map2 JR.sub (JR.local "scale") (JR.int 1)) (JR.alength (JR.local "SIZE")))) (JR.run [ 
+                            JR.exec (JR.invoke "append_2" JR.this [ (JR.local "ROOT"), (JR.aget (JR.local "SIZE") (JR.map2 JR.sub (JR.local "scale") (JR.int 1))) ]) ]) (JR.run [ 
+                            JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Invalid Value: ") ]) [ (JR.local "scale") ]) []) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "INIT" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_append_2 : JR.Method
+jm_append_2 jheap jthis jargs =
+    JR.method [ ( "ROOT", "" ), ( "sizeString", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "DESTROY" "" (JR.str "_destroy"), 
+                    JR.declare "string" "" (JR.invoke "getString_0" JR.this []), 
+                    JR.exec (JR.invoke "delete_2" jstatic_stringBuffer [ (JR.int 0), (JR.invoke "length_0" jstatic_stringBuffer []) ]), 
+                    JR.exec (JR.invoke "append_1" jstatic_stringBuffer [ (JR.local "ROOT") ]), 
+                    JR.exec (JR.invoke "append_1" jstatic_stringBuffer [ (JR.local "string") ]), 
+                    JR.exec (JR.invoke "append_1" jstatic_stringBuffer [ (JR.local "sizeString") ]), 
+                    JR.exec (JR.setField "RESOURCE" "" JR.this (JR.invoke "toString_0" jstatic_stringBuffer [])), 
+                    JR.exec (JR.invoke "delete_2" jstatic_stringBuffer [ (JR.int 0), (JR.invoke "length_0" jstatic_stringBuffer []) ]), 
+                    JR.exec (JR.invoke "append_1" jstatic_stringBuffer [ (JR.local "ROOT") ]), 
+                    JR.exec (JR.invoke "append_1" jstatic_stringBuffer [ (JR.local "DESTROY") ]), 
+                    JR.exec (JR.invoke "append_1" jstatic_stringBuffer [ (JR.local "string") ]), 
+                    JR.exec (JR.invoke "append_1" jstatic_stringBuffer [ (JR.local "sizeString") ]), 
+                    JR.exec (JR.setField "RESOURCE_DESTROY" "" JR.this (JR.invoke "toString_0" jstatic_stringBuffer [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getString_0 : JR.Method
+jm_getString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getName_0" (JR.callStatic GameGraphicsResourceUtil.jm_getInstance_0 []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

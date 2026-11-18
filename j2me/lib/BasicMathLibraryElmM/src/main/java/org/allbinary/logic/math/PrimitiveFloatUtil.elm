@@ -1,4 +1,4 @@
-module PrimitiveFloatUtil exposing (..)
+module Org.Allbinary.Logic.Math.PrimitiveFloatUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.math
 -}

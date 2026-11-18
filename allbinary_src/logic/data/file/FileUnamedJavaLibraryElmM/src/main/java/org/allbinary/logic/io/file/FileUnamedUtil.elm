@@ -1,107 +1,104 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
-module FileUnamedUtil where
+module Org.Allbinary.Logic.Io.File.FileUnamedUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file
+-}
 
-data FileUnamedUtil = FileUnamedUtil
-    { header_ :: JavaHeader
-    , commonSeps :: IORef (CommonSeps.CommonSeps)
-    }
-
-instance JavaNull FileUnamedUtil where
-    javaNull = javaNullRecord "FileUnamedUtil"
-
-instance JavaEquals FileUnamedUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FileUnamedUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FileUnamedUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: FileUnamedUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO FileUnamedUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonSeps <- newIORef javaNull
-    let this = FileUnamedUtil header_ commonSeps
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: FileUnamedUtil -> IO ()
-initFields_ this = do
-    jset this.commonSeps =<< (CommonSeps.getInstance)
-    pure ()
-
-new_ :: IO FileUnamedUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: FileUnamedUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
 
 
-getInstance :: IO (FileUnamedUtil)
-getInstance = do
-        pure (FileUnamedUtil.instance_)
+jclass : String
+jclass =
+    "FileUnamedUtil"
 
 
-process :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: FileUnamedUtil))) () a1
+jchain : List String
+jchain =
+    [ "FileUnamedUtil" ]
 
-process_super :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-process_super object_ a1 = (process_impl (javaCast object_ :: FileUnamedUtil)) a1
 
-process_impl :: FileUnamedUtil -> String -> IO (String)
-process_impl this string = do
-        simplifiedString <- newIORef ((Prelude.map Data.Char.toLower string))
-        jset simplifiedString ((jstringReplace (jget simplifiedString) (jget ((jget (this).commonSeps)).sPACE) (jget ((jget (this).commonSeps)).uNDERSCORE)))
-        jset simplifiedString ((jstringReplace (jget simplifiedString) (jget ((jget (this).commonSeps)).dASH) (jget ((jget (this).commonSeps)).uNDERSCORE)))
-        pure ((jget simplifiedString))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonSeps", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "process_1", jm_process_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FileUnamedUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_process_1", jm_process_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "FileUnamedUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "commonSeps" "" JR.this (JR.callStatic CommonSeps.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "string", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "simplifiedString" "" (JR.invoke "toLowerCase_0" (JR.local "string") []), 
+                    JR.exec (JR.setLocal "simplifiedString" "" (JR.invoke "replace_2" (JR.local "simplifiedString") [ (JR.field "SPACE" (JR.thisField "commonSeps")), (JR.field "UNDERSCORE" (JR.thisField "commonSeps")) ])), 
+                    JR.exec (JR.setLocal "simplifiedString" "" (JR.invoke "replace_2" (JR.local "simplifiedString") [ (JR.field "DASH" (JR.thisField "commonSeps")), (JR.field "UNDERSCORE" (JR.thisField "commonSeps")) ])), 
+                    JR.return (JR.local "simplifiedString") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

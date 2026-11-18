@@ -1,4 +1,4 @@
-module Angle exposing (..)
+module Org.Allbinary.Math.Angle exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.math
 -}

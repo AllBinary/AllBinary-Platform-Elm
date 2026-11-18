@@ -1,98 +1,78 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.log
-module LogData where
+module Org.Allbinary.Logic.Communication.Log.LogData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AbPathData -- org.allbinary.logic.io.path.AbPathData
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.log
+-}
 
-data LogData = LogData
-    { header_ :: JavaHeader
-    , mAX :: IORef (Int64)
-    , extension :: IORef (String)
-    , backupFileExt :: IORef (String)
-    , aLLBINARY :: IORef (String)
-    , nAME :: IORef (String)
-    , dESCRIPTION :: IORef (String)
-    }
+import JR
+import Org.Allbinary.Logic.Io.Path.AbPathData as AbPathData
 
-instance JavaNull LogData where
-    javaNull = javaNullRecord "LogData"
 
-instance JavaEquals LogData where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "LogData"
 
-instance Eq LogData where
-    (==) = jrecordEquals
 
-instance JavaObjectClass LogData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "LogData" ]
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "MAX", JR.defaultOf "J" ), ( "extension", JR.defaultOf "" ), ( "backupFileExt", JR.defaultOf "" ), ( "ALLBINARY", JR.defaultOf "" ), ( "NAME", JR.defaultOf "" ), ( "DESCRIPTION", JR.defaultOf "" ) ]
 
-newRecord_ :: IO LogData
-newRecord_ = do
-    header_ <- newJavaHeader
-    mAX <- newIORef 0
-    extension <- newIORef ""
-    backupFileExt <- newIORef ""
-    aLLBINARY <- newIORef ""
-    nAME <- newIORef ""
-    dESCRIPTION <- newIORef ""
-    let this = LogData header_ mAX extension backupFileExt aLLBINARY nAME dESCRIPTION
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: LogData -> IO ()
-initFields_ this = do
-    jset this.mAX (5000000)
-    jset this.extension ("log")
-    jset this.backupFileExt ((((javaToString (jget ((jio (AbPathData.getInstance))).eXTENSION_SEP) ++ "bak") ++ javaToString (jget ((jio (AbPathData.getInstance))).eXTENSION_SEP)) ++ "txt"))
-    jset this.aLLBINARY ("allbinary")
-    jset this.nAME ("LOG_NAME")
-    jset this.dESCRIPTION ("LOG_DESCRIPTION")
-    pure ()
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-new_ :: IO LogData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: LogData -> IO ()
-init_ this = do
-    initFields_ this
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LogData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "MAX" "J" JR.this (JR.long 5000000)),
+                JR.exec (JR.setField "extension" "" JR.this (JR.str "log")),
+                JR.exec (JR.setField "backupFileExt" "" JR.this (JR.concat (JR.concat (JR.concat (JR.field "EXTENSION_SEP" (JR.callStatic AbPathData.jm_getInstance_0 [])) (JR.str "bak")) (JR.field "EXTENSION_SEP" (JR.callStatic AbPathData.jm_getInstance_0 []))) (JR.str "txt"))),
+                JR.exec (JR.setField "ALLBINARY" "" JR.this (JR.str "allbinary")),
+                JR.exec (JR.setField "NAME" "" JR.this (JR.str "LOG_NAME")),
+                JR.exec (JR.setField "DESCRIPTION" "" JR.this (JR.str "LOG_DESCRIPTION")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

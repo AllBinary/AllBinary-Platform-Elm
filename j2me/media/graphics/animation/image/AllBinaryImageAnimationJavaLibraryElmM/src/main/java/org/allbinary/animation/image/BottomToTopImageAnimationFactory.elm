@@ -1,102 +1,88 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module BottomToTopImageAnimationFactory (module BottomToTopImageAnimationFactory, module BaseImageAnimationFactory) where
+module Org.Allbinary.Animation.Image.BottomToTopImageAnimationFactory exposing (..)
 
-import BaseImageAnimationFactory hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BottomToTopImageAnimation -- same package or java.lang
-import qualified AnimationFactoryImageScaleUtil -- same package or java.lang
-import qualified AnimationFactoryInitializationVisitor -- same package or java.lang
-import qualified ScaleProperties -- same package or java.lang
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified AnimationBehaviorFactory -- org.allbinary.animation.AnimationBehaviorFactory
-import qualified PrimitiveIntUtil -- org.allbinary.logic.math.PrimitiveIntUtil
-import qualified BaseImageAnimationFactory
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
-data BottomToTopImageAnimationFactory = BottomToTopImageAnimationFactory
-    { header_ :: JavaHeader
-    , base :: BaseImageAnimationFactory.BaseImageAnimationFactory
-    }
-
-instance JavaNull BottomToTopImageAnimationFactory where
-    javaNull = javaNullRecord "BottomToTopImageAnimationFactory"
-
-instance JavaEquals BottomToTopImageAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BottomToTopImageAnimationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BottomToTopImageAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO BottomToTopImageAnimationFactory
-newRecord_ = do
-    base <- BaseImageAnimationFactory.newRecord_
-    let header_ = base.header_
-    let this = BottomToTopImageAnimationFactory header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    pure this
-
-initFields_ :: BottomToTopImageAnimationFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_2 :: Image.Image -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO BottomToTopImageAnimationFactory
-new_2 image animationBehaviorFactory = do
-    this <- newRecord_
-    init_2 this image animationBehaviorFactory
-    pure this
-
-init_2 :: BottomToTopImageAnimationFactory -> Image.Image -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ()
-init_2 this image animationBehaviorFactory = do
-        BaseImageAnimationFactory.init_7 this.base (image) (jio (PrimitiveIntUtil.getArrayInstance)) (jio (Image.getWidth image)) (jio (Image.getHeight image)) (0) (0) (animationBehaviorFactory)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Animation.Image.BaseImageAnimationFactory as BaseImageAnimationFactory
+import Org.Allbinary.Animation.Image.BottomToTopImageAnimation as BottomToTopImageAnimation
+import Org.Allbinary.Logic.Math.PrimitiveIntUtil as PrimitiveIntUtil
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: BottomToTopImageAnimationFactory))) () a1
+jclass : String
+jclass =
+    "BottomToTopImageAnimationFactory"
 
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: BottomToTopImageAnimationFactory)) a1
 
-getInstance_impl :: BottomToTopImageAnimationFactory -> Int -> IO (Animation.Animation)
-getInstance_impl this instanceId = do
-        scaledImage <- (AnimationFactoryImageScaleUtil.createImage ((jget (this).base.animationFactoryImageScaleUtil)) (jio (BaseImageAnimationFactory.getImage this)) (jget ((jget (this).base.animationFactoryInitializationVisitor)).width) (jget ((jget (this).base.animationFactoryInitializationVisitor)).height) (jget ((jget (this).base.scaleProperties)).scaleWidth) (jget ((jget (this).base.scaleProperties)).scaleHeight))
-        (fmap (\value_ -> javaCast value_ :: Animation.Animation) (BottomToTopImageAnimation.new_2 scaledImage (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).base.animationBehaviorFactory))))))
+jchain : List String
+jchain =
+    [ "BottomToTopImageAnimationFactory" ]
+        ++ BaseImageAnimationFactory.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BaseImageAnimationFactory.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_1", jm_getInstance_1 ) ]
+        BaseImageAnimationFactory.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BottomToTopImageAnimationFactory"
+        [ ( "jm_getInstance_1", jm_getInstance_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BaseImageAnimationFactory.jinit_7 JR.this [ (JR.local "image"), (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []), (JR.invoke "getWidth_0" (JR.local "image") []), (JR.invoke "getHeight_0" (JR.local "image") []), (JR.int 0), (JR.int 0), (JR.local "animationBehaviorFactory") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "instanceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "scaledImage" "" (JR.invoke "createImage_5" (JR.thisField "animationFactoryImageScaleUtil") [ (JR.invoke "getImage_0" JR.this []), (JR.field "width" (JR.thisField "animationFactoryInitializationVisitor")), (JR.field "height" (JR.thisField "animationFactoryInitializationVisitor")), (JR.field "scaleWidth" (JR.thisField "scaleProperties")), (JR.field "scaleHeight" (JR.thisField "scaleProperties")) ]), 
+                    JR.return (JR.new BottomToTopImageAnimation.jnew_2 [ (JR.local "scaledImage"), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

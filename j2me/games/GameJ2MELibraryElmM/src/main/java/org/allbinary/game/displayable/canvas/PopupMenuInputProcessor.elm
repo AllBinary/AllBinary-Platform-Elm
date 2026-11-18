@@ -1,219 +1,175 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module PopupMenuInputProcessor (module PopupMenuInputProcessor, module BasicMenuInputProcessor) where
+module Org.Allbinary.Game.Displayable.Canvas.PopupMenuInputProcessor exposing (..)
 
-import BasicMenuInputProcessor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, init, init_super, init_impl, processInput, processInput_super, processInput_impl, processInputList, processInputList_super, processInputList_impl, processMotionInputs, processMotionInputs_super, processMotionInputs_impl, processMotionInput, processMotionInput_super, processMotionInput_impl, rectangleCollisionUtil, cLICK_DELAY, clickTimeHelper, rectangle)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameCanvas -- same package or java.lang
-import qualified LogUtil -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified GameInputStrings -- org.allbinary.game.input.GameInputStrings
-import qualified GameKeyEvent -- org.allbinary.game.input.event.GameKeyEvent
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified MyCanvas -- org.allbinary.graphics.displayable.MyCanvas
-import qualified MotionGestureInput -- org.allbinary.input.motion.gesture.MotionGestureInput
-import qualified TouchMotionGestureFactory -- org.allbinary.input.motion.gesture.TouchMotionGestureFactory
-import qualified MotionGestureEvent -- org.allbinary.input.motion.gesture.observer.MotionGestureEvent
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified RectangleCollisionUtil -- org.allbinary.math.RectangleCollisionUtil
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicMenuInputProcessor
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data PopupMenuInputProcessor = PopupMenuInputProcessor
-    { header_ :: JavaHeader
-    , base :: BasicMenuInputProcessor.BasicMenuInputProcessor
-    , rectangleCollisionUtil :: IORef (RectangleCollisionUtil.RectangleCollisionUtil)
-    , cLICK_DELAY :: IORef (Int)
-    , clickTimeHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , rectangle :: IORef (Rectangle.Rectangle)
-    }
-
-instance JavaNull PopupMenuInputProcessor where
-    javaNull = javaNullRecord "PopupMenuInputProcessor"
-
-instance JavaEquals PopupMenuInputProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PopupMenuInputProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PopupMenuInputProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO PopupMenuInputProcessor
-newRecord_ = do
-    base <- BasicMenuInputProcessor.newRecord_
-    let header_ = base.header_
-    rectangleCollisionUtil <- newIORef javaNull
-    cLICK_DELAY <- newIORef 0
-    clickTimeHelper <- newIORef javaNull
-    rectangle <- newIORef javaNull
-    let this = PopupMenuInputProcessor header_ base rectangleCollisionUtil cLICK_DELAY clickTimeHelper rectangle
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "processInput" (\() -> processInput_impl this)
-    jregisterMethod header_ "processInputList" (\() -> processInputList_impl this)
-    jregisterMethod header_ "processMotionInputs" (\() -> processMotionInputs_impl this)
-    jregisterMethod header_ "processMotionInput" (\() -> processMotionInput_impl this)
-    pure this
-
-initFields_ :: PopupMenuInputProcessor -> IO ()
-initFields_ this = do
-    jset this.rectangleCollisionUtil =<< (RectangleCollisionUtil.getInstance)
-    jset this.cLICK_DELAY (120)
-    jset this.clickTimeHelper =<< (TimeDelayHelper.new_1 (jget (this).cLICK_DELAY))
-    jset this.rectangle (javaNull)
-    pure ()
-
-new_4 :: BasicArrayList.BasicArrayList -> Int -> MyCanvas.MyCanvas -> Rectangle.Rectangle -> IO PopupMenuInputProcessor
-new_4 gameKeyEventList playerInputId gameCanvas rectangle = do
-    this <- newRecord_
-    init_4 this gameKeyEventList playerInputId gameCanvas rectangle
-    pure this
-
-init_4 :: PopupMenuInputProcessor -> BasicArrayList.BasicArrayList -> Int -> MyCanvas.MyCanvas -> Rectangle.Rectangle -> IO ()
-init_4 this gameKeyEventList playerInputId gameCanvas rectangle = do
-        BasicMenuInputProcessor.init_3 this.base (gameKeyEventList) (playerInputId) (gameCanvas)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).rectangle (rectangle)
-        pure ()
+import JR
+import Org.Allbinary.Game.Displayable.Canvas.BasicMenuInputProcessor as BasicMenuInputProcessor
+import Javax.Microedition.Lcdui.Canvas as Canvas
+import Org.Allbinary.Game.Input.GameInputStrings as GameInputStrings
+import Org.Allbinary.Math.RectangleCollisionUtil as RectangleCollisionUtil
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
+import Org.Allbinary.Input.Motion.Gesture.TouchMotionGestureFactory as TouchMotionGestureFactory
 
 
-init :: (JavaObjectClass this_) => this_ -> Rectangle.Rectangle -> IO (())
-init object_ a1 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: PopupMenuInputProcessor))) () a1
-
-init_super :: (JavaObjectClass this_) => this_ -> Rectangle.Rectangle -> IO (())
-init_super object_ a1 = (init_impl (javaCast object_ :: PopupMenuInputProcessor)) a1
-
-init_impl :: PopupMenuInputProcessor -> Rectangle.Rectangle -> IO (())
-init_impl this rectangle = do
-        jset (this).rectangle (rectangle)
-        pure ()
+jclass : String
+jclass =
+    "PopupMenuInputProcessor"
 
 
--- throws Exception
-processInput :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-processInput object_ a1 = jmethod object_ "processInput" (\() -> (processInput_impl (javaCast object_ :: PopupMenuInputProcessor))) () a1
-
-processInput_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-processInput_super object_ a1 = (processInput_impl (javaCast object_ :: PopupMenuInputProcessor)) a1
-
-processInput_impl :: PopupMenuInputProcessor -> Int -> IO (Int)
-processInput_impl this key = do
-    javaCatchReturn $ do
-        when (key == Canvas.kEY_STAR) $ do
-            let gameCanvas = (javaCast (jio (BasicMenuInputProcessor.getCanvas this)) :: AllBinaryGameCanvas.AllBinaryGameCanvas)
-            Control.Monad.void (AllBinaryGameCanvas.toggleMenu gameCanvas)
-            javaReturn (1)
-        pure (0)
+jchain : List String
+jchain =
+    [ "PopupMenuInputProcessor" ]
+        ++ BasicMenuInputProcessor.jchain
 
 
--- throws Exception
-processInputList :: (JavaObjectClass this_) => this_ -> IO (Int)
-processInputList object_ = jmethod object_ "processInputList" (\() -> (processInputList_impl (javaCast object_ :: PopupMenuInputProcessor))) ()
-
-processInputList_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-processInputList_super object_ = (processInputList_impl (javaCast object_ :: PopupMenuInputProcessor))
-
-processInputList_impl :: PopupMenuInputProcessor -> IO (Int)
-processInputList_impl this = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jio (GameInputStrings.getInstance))).pROCESS_INPUT) e)
-            pure ((Prelude.negate 1))
-            ) $ do
-            motionInputsIndex <- (PopupMenuInputProcessor.processMotionInputs this)
-            list <- (BasicMenuInputProcessor.getGameKeyEventList this)
-            size <- (BasicArrayList.size list)
-            key <- newIORef (0 :: Int)
-            gameKeyEvent <- newIORef (javaNull)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                jset gameKeyEvent ((javaCast (jindex ((jget (list).objectArray)) (index)) :: GameKeyEvent.GameKeyEvent))
-                when ((jget gameKeyEvent) /= javaNull) $ do
-                    assignedValue <- (GameKeyEvent.getKey ((jget gameKeyEvent)))
-                    jset key (assignedValue)
-                    when ((jio (PopupMenuInputProcessor.processInput this (jget key))) == 1) $ do
-                        throwIO JavaBreak
-            Control.Monad.void (BasicMenuInputProcessor.clear this)
-            if ((size > 0) || (motionInputsIndex >= 0)) then do
-                javaReturn (1)
-            else do
-                javaReturn ((Prelude.negate 1))
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicMenuInputProcessor.jfields ++ [ ( "rectangleCollisionUtil", JR.defaultOf "" ), ( "CLICK_DELAY", JR.defaultOf "I" ), ( "clickTimeHelper", JR.defaultOf "" ), ( "rectangle", JR.defaultOf "" ) ]
 
 
--- throws Exception
-processMotionInputs :: (JavaObjectClass this_) => this_ -> IO (Int)
-processMotionInputs object_ = jmethod object_ "processMotionInputs" (\() -> (processMotionInputs_impl (javaCast object_ :: PopupMenuInputProcessor))) ()
-
-processMotionInputs_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-processMotionInputs_super object_ = (processMotionInputs_impl (javaCast object_ :: PopupMenuInputProcessor))
-
-processMotionInputs_impl :: PopupMenuInputProcessor -> IO (Int)
-processMotionInputs_impl this = do
-        let lastIndex = ((jio (size ((jget (this).base.motionGestureEventList)))) - 1)
-        when (lastIndex >= 0) $ do
-            let motionGestureEvent = (javaCast (jindex ((jget ((jget (this).base.motionGestureEventList)).objectArray)) (lastIndex)) :: MotionGestureEvent.MotionGestureEvent)
-            Control.Monad.void (PopupMenuInputProcessor.processMotionInput this motionGestureEvent)
-        Control.Monad.void (clear ((jget (this).base.motionGestureEventList)))
-        pure (lastIndex)
+jvtable =
+    JR.vtable
+        [ ( "init_1", jm_init_1 )
+        , ( "processInput_1", jm_processInput_1 )
+        , ( "processInputList_0", jm_processInputList_0 )
+        , ( "processMotionInputs_0", jm_processMotionInputs_0 )
+        , ( "processMotionInput_1", jm_processMotionInput_1 ) ]
+        BasicMenuInputProcessor.jvtable
 
 
--- throws Exception
-processMotionInput :: (JavaObjectClass this_) => this_ -> MotionGestureEvent.MotionGestureEvent -> IO (())
-processMotionInput object_ a1 = jmethod object_ "processMotionInput" (\() -> (processMotionInput_impl (javaCast object_ :: PopupMenuInputProcessor))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PopupMenuInputProcessor"
+        [ ( "jm_init_1", jm_init_1 ), ( "jm_processInput_1", jm_processInput_1 ), ( "jm_processInputList_0", jm_processInputList_0 ), ( "jm_processMotionInputs_0", jm_processMotionInputs_0 ), ( "jm_processMotionInput_1", jm_processMotionInput_1 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
 
-processMotionInput_super :: (JavaObjectClass this_) => this_ -> MotionGestureEvent.MotionGestureEvent -> IO (())
-processMotionInput_super object_ a1 = (processMotionInput_impl (javaCast object_ :: PopupMenuInputProcessor)) a1
 
-processMotionInput_impl :: PopupMenuInputProcessor -> MotionGestureEvent.MotionGestureEvent -> IO (())
-processMotionInput_impl this motionGestureEvent = do
-    javaCatchReturn $ do
-        when (motionGestureEvent == javaNull) $ do
-            Control.Monad.void (putF ((jget (this).base.logUtil)) "Exception: Bug" this (jget ((jget (this).base.gameInputStrings)).pROCESS_MOTION_INPUT))
-            javaReturn (())
-        touchMotionGestureFactory <- (TouchMotionGestureFactory.getInstance)
-        motionGestureInput <- (MotionGestureEvent.getMotionGesture motionGestureEvent)
-        when (motionGestureInput == (jget (touchMotionGestureFactory).rELEASED)) $ do
-            point <- (MotionGestureEvent.getCurrentPoint motionGestureEvent)
-            rectPoint <- (Rectangle.getPoint ((jget (this).rectangle)))
-            when (jio (RectangleCollisionUtil.isInside ((jget (this).rectangleCollisionUtil)) (jio (GPoint.getX rectPoint)) (jio (GPoint.getY rectPoint)) ((jio (Rectangle.getMaxX ((jget (this).rectangle)))) + 20) (jio (Rectangle.getMaxY ((jget (this).rectangle)))) (jio (GPoint.getX point)) (jio (GPoint.getY point)))) $ do
-                when (jio (TimeDelayHelper.isTimeTNT ((jget (this).clickTimeHelper)))) $ do
-                    let gameCanvas = (javaCast (jio (BasicMenuInputProcessor.getCanvas this)) :: AllBinaryGameCanvas.AllBinaryGameCanvas)
-                    Control.Monad.void (AllBinaryGameCanvas.toggleMenu gameCanvas)
-    pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "gameKeyEventList", "" ), ( "playerInputId", "I" ), ( "gameCanvas", "" ), ( "rectangle", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicMenuInputProcessor.jinit_3 JR.this [ (JR.local "gameKeyEventList"), (JR.local "playerInputId"), (JR.local "gameCanvas") ]),
+                JR.exec (JR.setField "rectangleCollisionUtil" "" JR.this (JR.callStatic RectangleCollisionUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "CLICK_DELAY" "I" JR.this (JR.int 120)),
+                JR.exec (JR.setField "clickTimeHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.thisField "CLICK_DELAY") ])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "rectangle" "" JR.this (JR.local "rectangle")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "rectangle", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "rectangle" "" JR.this (JR.local "rectangle")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processInput_1 : JR.Method
+jm_processInput_1 jheap jthis jargs =
+    JR.method [ ( "key", "I" ) ] "I"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_KEY_STAR) (JR.run [ 
+                        JR.declare "gameCanvas" "" (JR.invoke "getCanvas_0" JR.this []), 
+                        JR.exec (JR.invoke "toggleMenu_0" (JR.local "gameCanvas") []), 
+                        JR.return (JR.int 1) ]) identity, 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processInputList_0 : JR.Method
+jm_processInputList_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "motionInputsIndex" "I" (JR.invoke "processMotionInputs_0" JR.this []), 
+                        JR.declare "list" "" (JR.invoke "getGameKeyEventList_0" JR.this []), 
+                        JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                        JR.declare "key" "I" (JR.int 0), 
+                        JR.declare "gameKeyEvent" "" (JR.lit (JR.defaultOf "")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75395 -> (JR.setLocal "index" "I" (JR.lit jwN75395))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "gameKeyEvent" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "gameKeyEvent") JR.null) (JR.run [ 
+                                JR.exec (JR.setLocal "key" "I" (JR.invoke "getKey_0" (JR.local "gameKeyEvent") [])), 
+                                JR.ifElse (JR.map2 JR.equals (JR.invoke "processInput_1" JR.this [ (JR.local "key") ]) (JR.int 1)) (JR.run [ 
+                                    JR.break ]) identity ]) identity ]) ], 
+                        JR.exec (JR.invoke "clear_0" JR.this []), 
+                        JR.ifElse (JR.or (JR.map2 JR.greater (JR.local "size") (JR.int 0)) (JR.map2 JR.greaterEquals (JR.local "motionInputsIndex") (JR.int 0))) (JR.run [ 
+                            JR.return (JR.int 1) ]) (JR.run [ 
+                            JR.return (JR.map JR.neg (JR.int 1)) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "PROCESS_INPUT" (JR.callStatic GameInputStrings.jm_getInstance_0 [])), (JR.local "e") ]), 
+                        JR.return (JR.map JR.neg (JR.int 1)) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processMotionInputs_0 : JR.Method
+jm_processMotionInputs_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.declare "lastIndex" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "motionGestureEventList") []) (JR.int 1)), 
+                    JR.ifElse (JR.map2 JR.greaterEquals (JR.local "lastIndex") (JR.int 0)) (JR.run [ 
+                        JR.declare "motionGestureEvent" "" (JR.aget (JR.field "objectArray" (JR.thisField "motionGestureEventList")) (JR.local "lastIndex")), 
+                        JR.exec (JR.invoke "processMotionInput_1" JR.this [ (JR.local "motionGestureEvent") ]) ]) identity, 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "motionGestureEventList") []), 
+                    JR.return (JR.local "lastIndex") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processMotionInput_1 : JR.Method
+jm_processMotionInput_1 jheap jthis jargs =
+    JR.method [ ( "motionGestureEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "motionGestureEvent") JR.null) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Exception: Bug"), JR.this, (JR.field "PROCESS_MOTION_INPUT" (JR.thisField "gameInputStrings")) ]), 
+                        JR.returnVoid ]) identity, 
+                    JR.declare "touchMotionGestureFactory" "" (JR.callStatic TouchMotionGestureFactory.jm_getInstance_0 []), 
+                    JR.declare "motionGestureInput" "" (JR.invoke "getMotionGesture_0" (JR.local "motionGestureEvent") []), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "motionGestureInput") (JR.field "RELEASED" (JR.local "touchMotionGestureFactory"))) (JR.run [ 
+                        JR.declare "point" "" (JR.invoke "getCurrentPoint_0" (JR.local "motionGestureEvent") []), 
+                        JR.declare "rectPoint" "" (JR.invoke "getPoint_0" (JR.thisField "rectangle") []), 
+                        JR.ifElse (JR.invoke "isInside_6" (JR.thisField "rectangleCollisionUtil") [ (JR.invoke "getX_0" (JR.local "rectPoint") []), (JR.invoke "getY_0" (JR.local "rectPoint") []), (JR.map2 JR.add (JR.invoke "getMaxX_0" (JR.thisField "rectangle") []) (JR.int 20)), (JR.invoke "getMaxY_0" (JR.thisField "rectangle") []), (JR.invoke "getX_0" (JR.local "point") []), (JR.invoke "getY_0" (JR.local "point") []) ]) (JR.run [ 
+                            JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "clickTimeHelper") []) (JR.run [ 
+                                JR.declare "gameCanvas" "" (JR.invoke "getCanvas_0" JR.this []), 
+                                JR.exec (JR.invoke "toggleMenu_0" (JR.local "gameCanvas") []) ]) identity ]) identity ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

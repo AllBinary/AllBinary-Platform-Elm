@@ -1,151 +1,137 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.event
-module VirtualKeyboardEventHandler (module VirtualKeyboardEventHandler, module BasicEventHandler) where
+module Org.Allbinary.Input.Event.VirtualKeyboardEventHandler exposing (..)
 
-import BasicEventHandler hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, process, process_super, process_impl, open, open_super, open_impl, close, close_super, close_impl, gameKeyEventHandler, sHOW_EVENT, hIDE_EVENT)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified VirtualKeyboardEvent -- same package or java.lang
-import qualified VirtualKeyboardEventListenerInterface -- same package or java.lang
-import qualified Thread -- same package or java.lang
-import qualified BooleanFactory -- org.allbinary.logic.java.bool.BooleanFactory
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventListenerInterface -- org.allbinary.logic.util.event.EventListenerInterface
-import qualified BasicEventHandler -- org.allbinary.logic.util.event.handler.BasicEventHandler
+{-| Generated Code Do Not Modify package org.allbinary.input.event
+-}
 
-data VirtualKeyboardEventHandler = VirtualKeyboardEventHandler
-    { header_ :: JavaHeader
-    , base :: BasicEventHandler.BasicEventHandler
-    , sHOW_EVENT :: IORef (VirtualKeyboardEvent.VirtualKeyboardEvent)
-    , hIDE_EVENT :: IORef (VirtualKeyboardEvent.VirtualKeyboardEvent)
-    }
-
-instance JavaNull VirtualKeyboardEventHandler where
-    javaNull = javaNullRecord "VirtualKeyboardEventHandler"
-
-instance JavaEquals VirtualKeyboardEventHandler where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq VirtualKeyboardEventHandler where
-    (==) = jrecordEquals
-
-instance JavaObjectClass VirtualKeyboardEventHandler where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-gameKeyEventHandler :: VirtualKeyboardEventHandler
-{-# NOINLINE gameKeyEventHandler #-}
-gameKeyEventHandler = unsafePerformIO ((new_))
-
-newRecord_ :: IO VirtualKeyboardEventHandler
-newRecord_ = do
-    base <- BasicEventHandler.newRecord_
-    let header_ = base.header_
-    sHOW_EVENT <- newIORef javaNull
-    hIDE_EVENT <- newIORef javaNull
-    let this = VirtualKeyboardEventHandler header_ base sHOW_EVENT hIDE_EVENT
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "open" (\() -> open_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    pure this
-
-initFields_ :: VirtualKeyboardEventHandler -> IO ()
-initFields_ this = do
-    jset this.sHOW_EVENT =<< (VirtualKeyboardEvent.new_1 (jget ((jio (BooleanFactory.getInstance))).tRUE))
-    jset this.hIDE_EVENT =<< (VirtualKeyboardEvent.new_1 (jget ((jio (BooleanFactory.getInstance))).fALSE))
-    pure ()
-
-new_ :: IO VirtualKeyboardEventHandler
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: VirtualKeyboardEventHandler -> IO ()
-init_ this = do
-        BasicEventHandler.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.Util.Event.Handler.BasicEventHandler as BasicEventHandler
+import Org.Allbinary.Logic.Java.Bool.BooleanFactory as BooleanFactory
+import JThread
+import Org.Allbinary.Input.Event.VirtualKeyboardEvent as VirtualKeyboardEvent
 
 
-getInstance :: IO (VirtualKeyboardEventHandler)
-getInstance = do
-        pure (VirtualKeyboardEventHandler.gameKeyEventHandler)
+jclass : String
+jclass =
+    "VirtualKeyboardEventHandler"
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> EventListenerInterface.EventListenerInterface -> IO (())
-process object_ a1 a2 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: VirtualKeyboardEventHandler))) () a1 a2
-
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> EventListenerInterface.EventListenerInterface -> IO (())
-process_super object_ a1 a2 = (process_impl (javaCast object_ :: VirtualKeyboardEventHandler)) a1 a2
-
-process_impl :: VirtualKeyboardEventHandler -> AllBinaryEventObject.AllBinaryEventObject -> EventListenerInterface.EventListenerInterface -> IO (())
-process_impl this eventObject eventListenerInterface = do
-        let virtualKeyboardEventListenerInterface = (javaCast eventListenerInterface :: VirtualKeyboardEventListenerInterface.VirtualKeyboardEventListenerInterface)
-        Control.Monad.void (VirtualKeyboardEventListenerInterface.onVirtualKeyboardEvent virtualKeyboardEventListenerInterface (javaCast eventObject :: VirtualKeyboardEvent.VirtualKeyboardEvent))
-        pure ()
+jchain : List String
+jchain =
+    [ "VirtualKeyboardEventHandler" ]
+        ++ BasicEventHandler.jchain
 
 
-open :: (JavaObjectClass this_) => this_ -> IO (())
-open object_ = jmethod object_ "open" (\() -> (open_impl (javaCast object_ :: VirtualKeyboardEventHandler))) ()
-
-open_super :: (JavaObjectClass this_) => this_ -> IO (())
-open_super object_ = (open_impl (javaCast object_ :: VirtualKeyboardEventHandler))
-
-open_impl :: VirtualKeyboardEventHandler -> IO (())
-open_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this "open" e)
-            ) $ do
-            Control.Monad.void (threadDelay (Prelude.fromIntegral 120 * 1000))
-            Control.Monad.void (BasicEventHandler.fireEvent this (jget (this).sHOW_EVENT))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicEventHandler.jfields ++ [ ( "SHOW_EVENT", JR.defaultOf "" ), ( "HIDE_EVENT", JR.defaultOf "" ) ]
 
 
--- throws Exception
-close :: (JavaObjectClass this_) => this_ -> IO (())
-close object_ = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: VirtualKeyboardEventHandler))) ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "process_2", jm_process_2 )
+        , ( "open_0", jm_open_0 )
+        , ( "close_0", jm_close_0 ) ]
+        BasicEventHandler.jvtable
 
-close_super :: (JavaObjectClass this_) => this_ -> IO (())
-close_super object_ = (close_impl (javaCast object_ :: VirtualKeyboardEventHandler))
 
-close_impl :: VirtualKeyboardEventHandler -> IO (())
-close_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.commonStrings)).cLOSE) e)
-            ) $ do
-            Control.Monad.void (threadDelay (Prelude.fromIntegral 120 * 1000))
-            Control.Monad.void (BasicEventHandler.fireEvent this (jget (this).hIDE_EVENT))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "VirtualKeyboardEventHandler"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_process_2", jm_process_2 ), ( "jm_open_0", jm_open_0 ), ( "jm_close_0", jm_close_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_gameKeyEventHandler", jstatic_gameKeyEventHandler ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_gameKeyEventHandler : JR.M
+jstatic_gameKeyEventHandler s =
+    JR.static "VirtualKeyboardEventHandler" jclinit "gameKeyEventHandler"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect BasicEventHandler.jinit_0 JR.this []),
+                JR.exec (JR.setField "SHOW_EVENT" "" JR.this (JR.new VirtualKeyboardEvent.jnew_1 [ (JR.field "TRUE" (JR.callStatic BooleanFactory.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "HIDE_EVENT" "" JR.this (JR.new VirtualKeyboardEvent.jnew_1 [ (JR.field "FALSE" (JR.callStatic BooleanFactory.jm_getInstance_0 [])) ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_gameKeyEventHandler ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_2 : JR.Method
+jm_process_2 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ), ( "eventListenerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "virtualKeyboardEventListenerInterface" "" (JR.local "eventListenerInterface"), 
+                    JR.exec (JR.invoke "onVirtualKeyboardEvent_1" (JR.local "virtualKeyboardEventListenerInterface") [ (JR.local "eventObject") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_open_0 : JR.Method
+jm_open_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.callStatic JThread.jm_sleep_1 [ (JR.int 120) ]), 
+                        JR.exec (JR.invoke "fireEvent_1" JR.this [ (JR.thisField "SHOW_EVENT") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "open"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_close_0 : JR.Method
+jm_close_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.callStatic JThread.jm_sleep_1 [ (JR.int 120) ]), 
+                        JR.exec (JR.invoke "fireEvent_1" JR.this [ (JR.thisField "HIDE_EVENT") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "CLOSE" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

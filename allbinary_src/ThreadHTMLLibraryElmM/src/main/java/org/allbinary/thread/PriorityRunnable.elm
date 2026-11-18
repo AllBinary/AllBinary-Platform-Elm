@@ -1,4 +1,4 @@
-module PriorityRunnable exposing (..)
+module Org.Allbinary.Thread.PriorityRunnable exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}

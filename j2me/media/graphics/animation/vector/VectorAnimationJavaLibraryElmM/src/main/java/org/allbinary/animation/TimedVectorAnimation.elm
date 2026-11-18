@@ -1,101 +1,89 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module TimedVectorAnimation (module TimedVectorAnimation, module VectorAnimation) where
+module Org.Allbinary.Animation.TimedVectorAnimation exposing (..)
 
-import VectorAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, nextFrame, nextFrame_super, nextFrame_impl, timeElapsedHelper)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnimationBehavior -- same package or java.lang
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified GameTickTimeDelayHelperFactory -- org.allbinary.time.GameTickTimeDelayHelperFactory
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-import qualified VectorAnimation
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
-data TimedVectorAnimation = TimedVectorAnimation
-    { header_ :: JavaHeader
-    , base :: VectorAnimation.VectorAnimation
-    , timeElapsedHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    }
-
-instance JavaNull TimedVectorAnimation where
-    javaNull = javaNullRecord "TimedVectorAnimation"
-
-instance JavaEquals TimedVectorAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TimedVectorAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TimedVectorAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO TimedVectorAnimation
-newRecord_ = do
-    base <- VectorAnimation.newRecord_
-    let header_ = base.header_
-    timeElapsedHelper <- newIORef javaNull
-    let this = TimedVectorAnimation header_ base timeElapsedHelper
-    jregisterLevel header_ this
-    jregisterMethod header_ "nextFrame" (\() -> nextFrame_impl this)
-    pure this
-
-initFields_ :: TimedVectorAnimation -> IO ()
-initFields_ this = do
-    jset this.timeElapsedHelper =<< (TimeDelayHelper.new_1 200)
-    pure ()
-
-new_3 :: JavaArray (JavaArray (JavaArray (Int))) -> BasicColor.BasicColor -> AnimationBehavior.AnimationBehavior -> IO TimedVectorAnimation
-new_3 currentPoints basicColor animationBehavior = do
-    this <- newRecord_
-    init_3 this currentPoints basicColor animationBehavior
-    pure this
-
-init_3 :: TimedVectorAnimation -> JavaArray (JavaArray (JavaArray (Int))) -> BasicColor.BasicColor -> AnimationBehavior.AnimationBehavior -> IO ()
-init_3 this currentPoints basicColor animationBehavior = do
-        VectorAnimation.init_3 this.base (currentPoints) (basicColor) (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Time.GameTickTimeDelayHelperFactory as GameTickTimeDelayHelperFactory
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
+import Org.Allbinary.Animation.VectorAnimation as VectorAnimation
 
 
-nextFrame :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame object_ = jmethod object_ "nextFrame" (\() -> (nextFrame_impl (javaCast object_ :: TimedVectorAnimation))) ()
+jclass : String
+jclass =
+    "TimedVectorAnimation"
 
-nextFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame_super object_ = (nextFrame_impl (javaCast object_ :: TimedVectorAnimation))
 
-nextFrame_impl :: TimedVectorAnimation -> IO (())
-nextFrame_impl this = do
-        when (jio (TimeDelayHelper.isTime ((jget (this).timeElapsedHelper)) (jget ((jio (GameTickTimeDelayHelperFactory.getInstance))).startTime))) $ do
-            Control.Monad.void (VectorAnimation.nextFrame_super this.base)
-        pure ()
+jchain : List String
+jchain =
+    [ "TimedVectorAnimation" ]
+        ++ VectorAnimation.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    VectorAnimation.jfields ++ [ ( "timeElapsedHelper", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "nextFrame_0", jm_nextFrame_0 ) ]
+        VectorAnimation.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TimedVectorAnimation"
+        [ ( "jm_nextFrame_0", jm_nextFrame_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "currentPoints", "" ), ( "basicColor", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect VectorAnimation.jinit_3 JR.this [ (JR.local "currentPoints"), (JR.local "basicColor"), (JR.local "animationBehavior") ]),
+                JR.exec (JR.setField "timeElapsedHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 200) ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_nextFrame_0 : JR.Method
+jm_nextFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isTime_1" (JR.thisField "timeElapsedHelper") [ (JR.field "startTime" (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.exec (JR.callVia VectorAnimation.jvtable "nextFrame_0" JR.this []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

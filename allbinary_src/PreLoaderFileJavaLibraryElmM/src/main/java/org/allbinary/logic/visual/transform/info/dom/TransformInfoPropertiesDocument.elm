@@ -1,137 +1,114 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.visual.transform.info.dom
-module TransformInfoPropertiesDocument where
+module Org.Allbinary.Logic.Visual.Transform.Info.Dom.TransformInfoPropertiesDocument exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HashMap -- java.util.HashMap
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified DomSearchHelper -- org.allbinary.data.tree.dom.DomSearchHelper
-import qualified DomDocumentFileHelper -- org.allbinary.data.tree.dom.document.DomDocumentFileHelper
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified TransformInfoData -- org.allbinary.logic.visual.transform.info.TransformInfoData
-import qualified TransformInfoProperties -- org.allbinary.logic.visual.transform.info.TransformInfoProperties
-import qualified TransformInfoPropertiesFactory -- org.allbinary.logic.visual.transform.info.TransformInfoPropertiesFactory
-import qualified TransformInfosData -- org.allbinary.logic.visual.transform.info.TransformInfosData
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified Document -- org.w3c.dom.Document
-import qualified Node -- org.w3c.dom.Node
-import qualified NodeList -- org.w3c.dom.NodeList
+{-| Generated Code Do Not Modify package org.allbinary.logic.visual.transform.info.dom
+-}
 
-data TransformInfoPropertiesDocument = TransformInfoPropertiesDocument
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , document :: IORef (Document.Document)
-    }
-
-instance JavaNull TransformInfoPropertiesDocument where
-    javaNull = javaNullRecord "TransformInfoPropertiesDocument"
-
-instance JavaEquals TransformInfoPropertiesDocument where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TransformInfoPropertiesDocument where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TransformInfoPropertiesDocument where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TransformInfoPropertiesDocument
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    document <- newIORef javaNull
-    let this = TransformInfoPropertiesDocument header_ logUtil document
-    jregisterLevel header_ this
-    jregisterMethod header_ "toTransformInfoPropertiesHashMap" (\() -> toTransformInfoPropertiesHashMap_impl this)
-    pure this
-
-initFields_ :: TransformInfoPropertiesDocument -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.document (javaNull)
-    pure ()
-
-new_1 :: String -> IO TransformInfoPropertiesDocument
-new_1 filePath = do
-    this <- newRecord_
-    init_1 this filePath
-    pure this
-
-init_1 :: TransformInfoPropertiesDocument -> String -> IO ()
-init_1 this filePath = do
-        initFields_ this
-        xmlFile <- (AbFile.createAbFile filePath)
-        assignedValue <- (DomDocumentFileHelper.createDocument xmlFile)
-        jset (this).document (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Logic.Io.File.AbFile as AbFile
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Data.Tree.Dom.Document.DomDocumentFileHelper as DomDocumentFileHelper
+import Org.Allbinary.Data.Tree.Dom.DomSearchHelper as DomSearchHelper
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.Visual.Transform.Info.TransformInfoData as TransformInfoData
+import Org.Allbinary.Logic.Visual.Transform.Info.TransformInfoPropertiesFactory as TransformInfoPropertiesFactory
+import Org.Allbinary.Logic.Visual.Transform.Info.TransformInfosData as TransformInfosData
 
 
-toTransformInfoPropertiesHashMap :: (JavaObjectClass this_) => this_ -> IO (HashMap.HashMap)
-toTransformInfoPropertiesHashMap object_ = jmethod object_ "toTransformInfoPropertiesHashMap" (\() -> (toTransformInfoPropertiesHashMap_impl (javaCast object_ :: TransformInfoPropertiesDocument))) ()
+jclass : String
+jclass =
+    "TransformInfoPropertiesDocument"
 
-toTransformInfoPropertiesHashMap_super :: (JavaObjectClass this_) => this_ -> IO (HashMap.HashMap)
-toTransformInfoPropertiesHashMap_super object_ = (toTransformInfoPropertiesHashMap_impl (javaCast object_ :: TransformInfoPropertiesDocument))
 
-toTransformInfoPropertiesHashMap_impl :: TransformInfoPropertiesDocument -> IO (HashMap.HashMap)
-toTransformInfoPropertiesHashMap_impl this = do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).vIEWERROR))) $ do
-                commonStrings <- (CommonStrings.getInstance)
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this "toTransformInfoPropertiesHashMap()" e)
-            pure (javaNull)
-            ) $ do
-            transformInfoPropertiesHashMap <- (StdUtil.createHashMap ((jio (StdUtil.getInstance))))
-            transformInfosNode <- (Document.item ((jio (Document.getElementsByTagName ((jget (this).document)) (jget ((jio (TransformInfosData.getInstance))).nAME)))) 0)
-            transformInfosChildNodeList <- (Node.getChildNodes transformInfosNode)
-            transformInfoNodeVector <- (DomSearchHelper.getAllNodes (jget ((jio (TransformInfoData.getInstance))).nAME) transformInfosChildNodeList)
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).vIEW))) $ do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ("Size: " ++ javaToString (jio (BasicArrayList.size transformInfoNodeVector))) this "toTransformInfoPropertiesHashMap()")
-            size <- (BasicArrayList.size transformInfoNodeVector)
-            node <- newIORef (javaNull)
-            transformInfoProperties <- newIORef (javaNull)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                jset node ((javaCast (jio (BasicArrayList.get transformInfoNodeVector index)) :: Node.Node))
-                assignedValue <- (fmap (\value_ -> javaCast value_ :: TransformInfoProperties.TransformInfoProperties) (TransformInfoPropertiesFactory.getInstance_1 ((jio (TransformInfoPropertiesFactory.getInstance))) (jget node)))
-                jset transformInfoProperties (assignedValue)
-                Control.Monad.void (HashMap.put transformInfoPropertiesHashMap (jio (TransformInfoProperties.getName ((jget transformInfoProperties)))) (jget transformInfoProperties))
-            pure (transformInfoPropertiesHashMap)
+jchain : List String
+jchain =
+    [ "TransformInfoPropertiesDocument" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "document", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "toTransformInfoPropertiesHashMap_0", jm_toTransformInfoPropertiesHashMap_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TransformInfoPropertiesDocument"
+        [ ( "jm_toTransformInfoPropertiesHashMap_0", jm_toTransformInfoPropertiesHashMap_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "filePath", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.declare "xmlFile" "" (JR.callStatic AbFile.jm_createAbFile_1 [ (JR.local "filePath") ]), 
+                    JR.exec (JR.setField "document" "" JR.this (JR.callStatic DomDocumentFileHelper.jm_createDocument_1 [ (JR.local "xmlFile") ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_toTransformInfoPropertiesHashMap_0 : JR.Method
+jm_toTransformInfoPropertiesHashMap_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "transformInfoPropertiesHashMap" "" (JR.invoke "createHashMap_0" (JR.callStatic StdUtil.jm_getInstance_0 []) []), 
+                        JR.declare "transformInfosNode" "" (JR.invoke "item_1" (JR.invoke "getElementsByTagName_1" (JR.thisField "document") [ (JR.field "NAME" (JR.callStatic TransformInfosData.jm_getInstance_0 [])) ]) [ (JR.int 0) ]), 
+                        JR.declare "transformInfosChildNodeList" "" (JR.invoke "getChildNodes_0" (JR.local "transformInfosNode") []), 
+                        JR.declare "transformInfoNodeVector" "" (JR.callStatic DomSearchHelper.jm_getAllNodes_2 [ (JR.field "NAME" (JR.callStatic TransformInfoData.jm_getInstance_0 [])), (JR.local "transformInfosChildNodeList") ]), 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "VIEW" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "Size: ") (JR.invoke "size_0" (JR.local "transformInfoNodeVector") [])), JR.this, (JR.str "toTransformInfoPropertiesHashMap()") ]) ]) identity, 
+                        JR.declare "size" "I" (JR.invoke "size_0" (JR.local "transformInfoNodeVector") []), 
+                        JR.declare "node" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "transformInfoProperties" "" (JR.lit (JR.defaultOf "")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69350 -> (JR.setLocal "index" "I" (JR.lit jwN69350))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "node" "" (JR.invoke "get_1" (JR.local "transformInfoNodeVector") [ (JR.local "index") ])), 
+                            JR.exec (JR.setLocal "transformInfoProperties" "" (JR.invoke "getInstance_1" (JR.callStatic TransformInfoPropertiesFactory.jm_getInstance_0 []) [ (JR.local "node") ])), 
+                            JR.exec (JR.invoke "put_2" (JR.local "transformInfoPropertiesHashMap") [ (JR.invoke "getName_0" (JR.local "transformInfoProperties") []), (JR.local "transformInfoProperties") ]) ]) ], 
+                        JR.return (JR.local "transformInfoPropertiesHashMap") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "VIEWERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.str "toTransformInfoPropertiesHashMap()"), (JR.local "e") ]) ]) identity, 
+                        JR.return JR.null ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

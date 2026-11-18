@@ -1,95 +1,87 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
-module BasicArrayListCacheable (module BasicArrayListCacheable, module BasicArrayListD) where
+module Org.Allbinary.Logic.Util.Cache.BasicArrayListCacheable exposing (..)
 
-import BasicArrayListD hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getKey, getKey_super, getKey_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified CacheableInterface
+{-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
+-}
 
--- implements CacheableInterface
-data BasicArrayListCacheable = BasicArrayListCacheable
-    { header_ :: JavaHeader
-    , base :: BasicArrayListD.BasicArrayListD
-    }
-
-instance JavaNull BasicArrayListCacheable where
-    javaNull = javaNullRecord "BasicArrayListCacheable"
-
-instance JavaEquals BasicArrayListCacheable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicArrayListCacheable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicArrayListCacheable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO BasicArrayListCacheable
-newRecord_ = do
-    base <- BasicArrayListD.newRecord_
-    let header_ = base.header_
-    let this = BasicArrayListCacheable header_ base
-    jregisterLevel header_ this
-    CacheableInterface.registerInterface_ header_
-    jregisterMethod header_ "getKey" (\() -> getKey_impl this)
-    pure this
-
-initFields_ :: BasicArrayListCacheable -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO BasicArrayListCacheable
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BasicArrayListCacheable -> IO ()
-init_ this = do
-    BasicArrayListD.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Util.Cache.CacheableInterface as CacheableInterface
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getKey :: (JavaObjectClass this_) => this_ -> IO (Any.Any)
-getKey object_ = jmethod object_ "getKey" (\() -> (getKey_impl (javaCast object_ :: BasicArrayListCacheable))) ()
+jclass : String
+jclass =
+    "BasicArrayListCacheable"
 
-getKey_super :: (JavaObjectClass this_) => this_ -> IO (Any.Any)
-getKey_super object_ = (getKey_impl (javaCast object_ :: BasicArrayListCacheable))
 
-getKey_impl :: BasicArrayListCacheable -> IO (Any.Any)
-getKey_impl this = do
-        pure ((jtoObject (jget ((jio (StringUtil.getInstance))).eMPTY_STRING)))
+jchain : List String
+jchain =
+    [ "BasicArrayListCacheable" ]
+        ++ BasicArrayListD.jchain
+        ++ CacheableInterface.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicArrayListD.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getKey_0", jm_getKey_0 ) ]
+        BasicArrayListD.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicArrayListCacheable"
+        [ ( "jm_getKey_0", jm_getKey_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect BasicArrayListD.jinit_0 JR.this []),
+            identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getKey_0 : JR.Method
+jm_getKey_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

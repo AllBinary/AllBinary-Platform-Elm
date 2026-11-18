@@ -1,122 +1,109 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2022 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
-module WebCommandProcessor where
+module Org.Allbinary.Graphics.Displayable.Screen.WebCommandProcessor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AboutCommandProcessor -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.graphics.displayable.screen
+-}
 
-data WebCommandProcessor = WebCommandProcessor
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , aboutCommandProcessor :: IORef (AboutCommandProcessor.AboutCommandProcessor)
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull WebCommandProcessor where
-    javaNull = javaNullRecord "WebCommandProcessor"
-
-instance JavaEquals WebCommandProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq WebCommandProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass WebCommandProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: WebCommandProcessor
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO WebCommandProcessor
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    aboutCommandProcessor <- newIORef javaNull
-    list <- newIORef javaNull
-    let this = WebCommandProcessor header_ logUtil aboutCommandProcessor list
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: WebCommandProcessor -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.aboutCommandProcessor =<< (AboutCommandProcessor.getInstance)
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
-
-new_ :: IO WebCommandProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: WebCommandProcessor -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Displayable.Screen.AboutCommandProcessor as AboutCommandProcessor
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getInstance :: IO (WebCommandProcessor)
-getInstance = do
-        pure (WebCommandProcessor.instance_)
+jclass : String
+jclass =
+    "WebCommandProcessor"
 
 
-process :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> Command.Command -> Canvas.Canvas -> IO (())
-process object_ a1 a2 a3 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: WebCommandProcessor))) () a1 a2 a3
+jchain : List String
+jchain =
+    [ "WebCommandProcessor" ]
 
-process_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> Command.Command -> Canvas.Canvas -> IO (())
-process_super object_ a1 a2 a3 = (process_impl (javaCast object_ :: WebCommandProcessor)) a1 a2 a3
 
-process_impl :: WebCommandProcessor -> CommandListener.CommandListener -> Command.Command -> Canvas.Canvas -> IO (())
-process_impl this midletCommandListener command canvas = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).pROCESS) e)
-            ) $ do
-            Control.Monad.void (BasicArrayList.removeAt ((jget (this).list)) 0)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "aboutCommandProcessor", JR.defaultOf "" ), ( "list", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "process_3", jm_process_3 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "WebCommandProcessor"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_process_3", jm_process_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "WebCommandProcessor" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "aboutCommandProcessor" "" JR.this (JR.callStatic AboutCommandProcessor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_3 : JR.Method
+jm_process_3 jheap jthis jargs =
+    JR.method [ ( "midletCommandListener", "" ), ( "command", "" ), ( "canvas", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "removeAt_1" (JR.thisField "list") [ (JR.int 0) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "PROCESS" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,4 +1,4 @@
-module FilePathData exposing (..)
+module Org.Allbinary.Logic.Io.File.FilePathData exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.io.file
 -}

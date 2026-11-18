@@ -1,209 +1,194 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2026 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
-module AbFileSystem where
+module Org.Allbinary.Logic.Io.File.AbFileSystem exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified File -- java.io.File
-import qualified FileInputStream -- java.io.FileInputStream
-import qualified InputStream -- java.io.InputStream
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file
+-}
 
-data AbFileSystem = AbFileSystem
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    }
-
-instance JavaNull AbFileSystem where
-    javaNull = javaNullRecord "AbFileSystem"
-
-instance JavaEquals AbFileSystem where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AbFileSystem where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AbFileSystem where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AbFileSystem
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AbFileSystem
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    let this = AbFileSystem header_ logUtil commonStrings
-    jregisterLevel header_ this
-    jregisterMethod header_ "isDirectoryOrFile" (\() -> isDirectoryOrFile_impl this)
-    jregisterMethod header_ "isDirectory" (\() -> isDirectory_impl this)
-    jregisterMethod header_ "getFilesAsStringArrayForPath" (\() -> getFilesAsStringArrayForPath_impl this)
-    jregisterMethod header_ "readAsString" (\() -> readAsString_impl this)
-    jregisterMethod header_ "readAsString_2" (\() -> readAsString_2_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    pure this
-
-initFields_ :: AbFileSystem -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    pure ()
-
-new_ :: IO AbFileSystem
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AbFileSystem -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JFile
+import JSystem
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (AbFileSystem)
-getInstance = do
-        pure (AbFileSystem.instance_)
+jclass : String
+jclass =
+    "AbFileSystem"
 
 
-isDirectoryOrFile :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isDirectoryOrFile object_ a1 = jmethod object_ "isDirectoryOrFile" (\() -> (isDirectoryOrFile_impl (javaCast object_ :: AbFileSystem))) () a1
-
-isDirectoryOrFile_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isDirectoryOrFile_super object_ a1 = (isDirectoryOrFile_impl (javaCast object_ :: AbFileSystem)) a1
-
-isDirectoryOrFile_impl :: AbFileSystem -> String -> IO (Bool)
-isDirectoryOrFile_impl this path = do
-        file <- (File.new_1 path)
-        pure (((jio (File.isDirectory file)) || (jio (File.isFile file))))
+jchain : List String
+jchain =
+    [ "AbFileSystem" ]
 
 
-isDirectory :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isDirectory object_ a1 = jmethod object_ "isDirectory" (\() -> (isDirectory_impl (javaCast object_ :: AbFileSystem))) () a1
-
-isDirectory_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isDirectory_super object_ a1 = (isDirectory_impl (javaCast object_ :: AbFileSystem)) a1
-
-isDirectory_impl :: AbFileSystem -> String -> IO (Bool)
-isDirectory_impl this path = do
-        (File.isDirectory ((jio (File.new_1 path))))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ) ]
 
 
-getFilesAsStringArrayForPath :: (JavaObjectClass this_) => this_ -> String -> IO (JavaArray (String))
-getFilesAsStringArrayForPath object_ a1 = jmethod object_ "getFilesAsStringArrayForPath" (\() -> (getFilesAsStringArrayForPath_impl (javaCast object_ :: AbFileSystem))) () a1
-
-getFilesAsStringArrayForPath_super :: (JavaObjectClass this_) => this_ -> String -> IO (JavaArray (String))
-getFilesAsStringArrayForPath_super object_ a1 = (getFilesAsStringArrayForPath_impl (javaCast object_ :: AbFileSystem)) a1
-
-getFilesAsStringArrayForPath_impl :: AbFileSystem -> String -> IO (JavaArray (String))
-getFilesAsStringArrayForPath_impl this currentDirPath = do
-    javaCatchReturn $ do
-        file <- (File.new_1 currentDirPath)
-        if (jio (File.exists file)) then do
-            javaReturn =<< (File.list file)
-        else do
-            javaReturn =<< (StringUtil.getArrayInstance ((jio (StringUtil.getInstance))))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "isDirectoryOrFile_1", jm_isDirectoryOrFile_1 )
+        , ( "isDirectory_1", jm_isDirectory_1 )
+        , ( "getFilesAsStringArrayForPath_1", jm_getFilesAsStringArrayForPath_1 )
+        , ( "readAsString_1", jm_readAsString_1 )
+        , ( "readAsString_2", jm_readAsString_2 )
+        , ( "close_1", jm_close_1 )
+        , ( "main_1", jm_main_1 ) ]
+        JR.noMethods
 
 
-readAsString :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-readAsString object_ a1 = jmethod object_ "readAsString" (\() -> (readAsString_impl (javaCast object_ :: AbFileSystem))) () a1
-
-readAsString_super :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-readAsString_super object_ a1 = (readAsString_impl (javaCast object_ :: AbFileSystem)) a1
-
-readAsString_impl :: AbFileSystem -> String -> IO (String)
-readAsString_impl this fileName = do
-        let bytes = (jnewArray (1000000) 0)
-        (AbFileSystem.readAsString_2 this fileName bytes)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbFileSystem"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_isDirectoryOrFile_1", jm_isDirectoryOrFile_1 ), ( "jm_isDirectory_1", jm_isDirectory_1 ), ( "jm_getFilesAsStringArrayForPath_1", jm_getFilesAsStringArrayForPath_1 ), ( "jm_readAsString_1", jm_readAsString_1 ), ( "jm_readAsString_2", jm_readAsString_2 ), ( "jm_close_1", jm_close_1 ), ( "jm_main_1", jm_main_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-readAsString_2 :: (JavaObjectClass this_) => this_ -> String -> JavaArray (Int8) -> IO (String)
-readAsString_2 object_ a1 a2 = jmethod object_ "readAsString_2" (\() -> (readAsString_2_impl (javaCast object_ :: AbFileSystem))) () a1 a2
-
-readAsString_2_super :: (JavaObjectClass this_) => this_ -> String -> JavaArray (Int8) -> IO (String)
-readAsString_2_super object_ a1 a2 = (readAsString_2_impl (javaCast object_ :: AbFileSystem)) a1 a2
-
-readAsString_2_impl :: AbFileSystem -> String -> JavaArray (Int8) -> IO (String)
-readAsString_2_impl this fileName bytes = do
-    javaCatchReturn $ do
-        closeable <- newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT))
-        flip finally (do
-            Control.Monad.void (AbFileSystem.close this (jget closeable))
-            ) $ handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "readAsString" e)
-            ) $ do
-            idFile <- (fmap (\value_ -> javaCast value_ :: InputStream.InputStream) (FileInputStream.new_1 fileName))
-            jset closeable ((jtoObject idFile))
-            size <- (InputStream.read idFile bytes)
-            when (size > 0) $ do
-                javaReturn =<< (jnewStringRange bytes 0 size)
-        pure ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-close :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Bool)
-close object_ a1 = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: AbFileSystem))) () (jtoObject a1)
-
-close_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Bool)
-close_super object_ a1 = (close_impl (javaCast object_ :: AbFileSystem)) (jtoObject a1)
-
-close_impl :: AbFileSystem -> JavaObject -> IO (Bool)
-close_impl this closeableObject_ = do
-        let closeable = jtoObject closeableObject_
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).cLOSE) e)
-            pure (False)
-            ) $ do
-            when (closeable /= javaNull) $ do
-                let inputStream = ((javaCast closeable :: InputStream.InputStream))
-                Control.Monad.void (InputStream.close inputStream)
-            pure (True)
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AbFileSystem" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
 
--- throws Exception
-main :: JavaArray (String) -> IO (())
-main args = do
-        isDirectory <- (AbFileSystem.isDirectory ((jio (AbFileSystem.getInstance))) "c:")
-        Control.Monad.void (putStrLn (javaToString ("isDirectory: " ++ javaToString isDirectory)))
-        pure ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isDirectoryOrFile_1 : JR.Method
+jm_isDirectoryOrFile_1 jheap jthis jargs =
+    JR.method [ ( "path", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "file" "" (JR.new JFile.jnew_1 [ (JR.local "path") ]), 
+                    JR.return (JR.or (JR.invoke "isDirectory_0" (JR.local "file") []) (JR.invoke "isFile_0" (JR.local "file") [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isDirectory_1 : JR.Method
+jm_isDirectory_1 jheap jthis jargs =
+    JR.method [ ( "path", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isDirectory_0" (JR.new JFile.jnew_1 [ (JR.local "path") ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFilesAsStringArrayForPath_1 : JR.Method
+jm_getFilesAsStringArrayForPath_1 jheap jthis jargs =
+    JR.method [ ( "currentDirPath", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "file" "" (JR.new JFile.jnew_1 [ (JR.local "currentDirPath") ]), 
+                    JR.ifElse (JR.invoke "exists_0" (JR.local "file") []) (JR.run [ 
+                        JR.return (JR.invoke "list_0" (JR.local "file") []) ]) (JR.run [ 
+                        JR.return (JR.invoke "getArrayInstance_0" (JR.callStatic StringUtil.jm_getInstance_0 []) []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_readAsString_1 : JR.Method
+jm_readAsString_1 jheap jthis jargs =
+    JR.method [ ( "fileName", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "bytes" "" (JR.newArray "B" [ (JR.int 1000000) ]), 
+                    JR.return (JR.invoke "readAsString_2" JR.this [ (JR.local "fileName"), (JR.local "bytes") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_readAsString_2 : JR.Method
+jm_readAsString_2 jheap jthis jargs =
+    JR.method [ ( "fileName", "" ), ( "bytes", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "closeable" "" (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 [])), 
+                    JR.try (JR.run [ 
+                        JR.declare "idFile" "" (JR.new (JR.namedMethod "FileInputStream.jnew_1") [ (JR.local "fileName") ]), 
+                        JR.exec (JR.setLocal "closeable" "" (JR.local "idFile")), 
+                        JR.declare "size" "I" (JR.invoke "read_1" (JR.local "idFile") [ (JR.local "bytes") ]), 
+                        JR.ifElse (JR.map2 JR.greater (JR.local "size") (JR.int 0)) (JR.run [ 
+                            JR.return (JR.withState JR.newString [ (JR.local "bytes"), (JR.int 0), (JR.local "size") ]) ]) identity ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "readAsString"), (JR.local "e") ]) ]) ) ] (JR.run [ 
+                        JR.exec (JR.invoke "close_1" JR.this [ (JR.local "closeable") ]) ]), 
+                    JR.return (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_close_1 : JR.Method
+jm_close_1 jheap jthis jargs =
+    JR.method [ ( "closeable", "" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "closeable") JR.null) (JR.run [ 
+                            JR.declare "inputStream" "" ((JR.local "closeable")), 
+                            JR.exec (JR.invoke "close_0" (JR.local "inputStream") []) ]) identity, 
+                        JR.return (JR.bool True) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "CLOSE" (JR.thisField "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_main_1 : JR.Method
+jm_main_1 jheap jthis jargs =
+    JR.method [ ( "args", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "isDirectory" "Z" (JR.invoke "isDirectory_1" (JR.callStatic jm_getInstance_0 []) [ (JR.str "c:") ]), 
+                    JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.str "isDirectory: ") (JR.local "isDirectory")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

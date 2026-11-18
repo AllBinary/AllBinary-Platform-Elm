@@ -1,225 +1,173 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module BasicPopupMenuPaintable (module BasicPopupMenuPaintable, module Paintable) where
+module Org.Allbinary.Game.Displayable.Canvas.BasicPopupMenuPaintable exposing (..)
 
-import Paintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, init, init_super, init_impl, paint, paint_super, paint_impl, nAME, basicSetColorUtil, drawStringUtil, label, foregroundBasicColor, myFontProcessor, rectangle, bORDER, heightOffset, offset, animationInterface)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified AndroidUtil -- org.allbinary.AndroidUtil
-import qualified J2MEUtil -- org.allbinary.J2MEUtil
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified NullAnimationFactory -- org.allbinary.animation.NullAnimationFactory
-import qualified RectangleFilledAnimation -- org.allbinary.animation.vector.RectangleFilledAnimation
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified SWTUtil -- org.allbinary.game.layer.SWTUtil
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified BasicColorSetUtil -- org.allbinary.graphics.color.BasicColorSetUtil
-import qualified DrawVerticalStringUtil -- org.allbinary.graphics.draw.DrawVerticalStringUtil
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified OpenGLFeatureFactory -- org.allbinary.graphics.opengles.OpenGLFeatureFactory
-import qualified OpenGLFeatureUtil -- org.allbinary.graphics.opengles.OpenGLFeatureUtil
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified SWTJOGLProcessor -- org.allbinary.graphics.threed.SWTJOGLProcessor
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
--- implements UpdateMyFontInterface
-data BasicPopupMenuPaintable = BasicPopupMenuPaintable
-    { header_ :: JavaHeader
-    , base :: Paintable.Paintable
-    , basicSetColorUtil :: IORef (BasicColorSetUtil.BasicColorSetUtil)
-    , drawStringUtil :: IORef (DrawVerticalStringUtil.DrawVerticalStringUtil)
-    , label :: IORef (String)
-    , foregroundBasicColor :: IORef (BasicColor.BasicColor)
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , rectangle :: IORef (Rectangle.Rectangle)
-    , bORDER :: IORef (Int)
-    , heightOffset :: IORef (Int)
-    , offset :: IORef (Int)
-    , animationInterface :: IORef (Animation.Animation)
-    }
-
-instance JavaNull BasicPopupMenuPaintable where
-    javaNull = javaNullRecord "BasicPopupMenuPaintable"
-
-instance JavaEquals BasicPopupMenuPaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicPopupMenuPaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicPopupMenuPaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nAME :: String
-nAME = "MENU"
-
-newRecord_ :: IO BasicPopupMenuPaintable
-newRecord_ = do
-    base <- Paintable.newRecord_
-    let header_ = base.header_
-    basicSetColorUtil <- newIORef javaNull
-    drawStringUtil <- newIORef javaNull
-    label <- newIORef ""
-    foregroundBasicColor <- newIORef javaNull
-    myFontProcessor <- newIORef javaNull
-    rectangle <- newIORef javaNull
-    bORDER <- newIORef 0
-    heightOffset <- newIORef 0
-    offset <- newIORef 0
-    animationInterface <- newIORef javaNull
-    let this = BasicPopupMenuPaintable header_ base basicSetColorUtil drawStringUtil label foregroundBasicColor myFontProcessor rectangle bORDER heightOffset offset animationInterface
-    jregisterLevel header_ this
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: BasicPopupMenuPaintable -> IO ()
-initFields_ this = do
-    jset this.basicSetColorUtil =<< (BasicColorSetUtil.getInstance)
-    jset this.drawStringUtil =<< (DrawVerticalStringUtil.getInstance)
-    jset this.label (javaNull)
-    jset this.foregroundBasicColor (javaNull)
-    jset this.myFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.rectangle (javaNull)
-    jset this.bORDER (0)
-    jset this.heightOffset (0)
-    jset this.offset (0)
-    jset this.animationInterface (javaNull)
-    pure ()
-
-new_3 :: Rectangle.Rectangle -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO BasicPopupMenuPaintable
-new_3 rectangle backgroundBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_3 this rectangle backgroundBasicColor foregroundBasicColor
-    pure this
-
-init_3 :: BasicPopupMenuPaintable -> Rectangle.Rectangle -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_3 this rectangle backgroundBasicColor foregroundBasicColor = do
-        Paintable.init_ this.base
-        initFields_ this
-        jset (this).foregroundBasicColor (foregroundBasicColor)
-        jset (this).label (BasicPopupMenuPaintable.nAME)
-        jset (this).rectangle (rectangle)
-        if ((jio (J2MEUtil.isJ2ME)) || (jio (J2MEUtil.isHTML))) then do
-            assignedValue <- (NullAnimationFactory.getInstance ((jio (NullAnimationFactory.getFactoryInstance))) 0)
-            jset (this).animationInterface (assignedValue)
-        else do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: Animation.Animation) (RectangleFilledAnimation.new_3 (jio (Rectangle.getWidth ((jget (this).rectangle)))) (jio (Rectangle.getHeight ((jget (this).rectangle)))) (jget ((jio (BasicColorFactory.getInstance))).tRANSPARENT_GREY)))
-            jset (this).animationInterface (assignedValue)
-        Control.Monad.void (BasicPopupMenuPaintable.init this rectangle)
-        pure ()
+import JR
+import Org.Allbinary.AndroidUtil as AndroidUtil
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Graphics.Color.BasicColorSetUtil as BasicColorSetUtil
+import Org.Allbinary.Graphics.Draw.DrawVerticalStringUtil as DrawVerticalStringUtil
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.J2MEUtil as J2MEUtil
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Animation.NullAnimationFactory as NullAnimationFactory
+import Org.Allbinary.Graphics.Opengles.OpenGLFeatureFactory as OpenGLFeatureFactory
+import Org.Allbinary.Graphics.Opengles.OpenGLFeatureUtil as OpenGLFeatureUtil
+import Org.Allbinary.Graphics.Paint.Paintable as Paintable
+import Org.Allbinary.Animation.Vector.RectangleFilledAnimation as RectangleFilledAnimation
+import Org.Allbinary.Graphics.Threed.SWTJOGLProcessor as SWTJOGLProcessor
+import Org.Allbinary.Game.Layer.SWTUtil as SWTUtil
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: BasicPopupMenuPaintable))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: BasicPopupMenuPaintable)) a1
-
-updateMeasurement_impl :: BasicPopupMenuPaintable -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        features <- (Features.getInstance)
-        isOpenGL <- (Features.isDefault features (jget ((jio (OpenGLFeatureFactory.getInstance))).oPENGL))
-        Control.Monad.void (DrawVerticalStringUtil.updateMeasurement ((jget (this).drawStringUtil)) graphics (jget (this).label))
-        bORDER <- newIORef (0 :: Int)
-        if ((jio (J2MEUtil.isHTML)) || isOpenGL) then do
-            jset bORDER (((jio (MyFontProcessor.defaultCharWidth font)) / 2))
-        else if (((jio (AndroidUtil.isAndroid)) || (jio (J2MEUtil.isJ2SE))) || SWTUtil.isSWT) then do
-            assignedValue <- (MyFontProcessor.defaultCharWidth font)
-            jset bORDER (assignedValue)
-        else do
-            jset bORDER (((jio (MyFontProcessor.defaultCharWidth font)) * 2))
-        jset (this).bORDER ((jget bORDER))
-        jset (this).heightOffset (((jio (Rectangle.getHeight ((jget (this).rectangle)))) - (((jio (Font.getHeight font)) * (Prelude.length BasicPopupMenuPaintable.nAME)))))
-        when (jio (OpenGLFeatureUtil.isAnyThreed ((jio (OpenGLFeatureUtil.getInstance))))) $ do
-            jset (this).heightOffset (((jget (this).heightOffset) - ((jio (Font.getHeight font)) + 2)))
-            if (jio (AndroidUtil.isAndroid)) then do
-                assignedValue <- (Font.getHeight font)
-                jset (this).heightOffset (assignedValue)
-            else do
-                jset (this).heightOffset (((jget (this).heightOffset) - ((jio (Font.getHeight font)) + 2)))
-        jset (this).offset (((((jget (this).heightOffset) `Data.Bits.shiftR` 1)) + ((if (jio (SWTJOGLProcessor.isJOGL ((jio (SWTJOGLProcessor.getInstance))))) then 4 else 0))))
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "BasicPopupMenuPaintable"
 
 
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> Rectangle.Rectangle -> IO (())
-init object_ a1 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: BasicPopupMenuPaintable))) () a1
-
-init_super :: (JavaObjectClass this_) => this_ -> Rectangle.Rectangle -> IO (())
-init_super object_ a1 = (init_impl (javaCast object_ :: BasicPopupMenuPaintable)) a1
-
-init_impl :: BasicPopupMenuPaintable -> Rectangle.Rectangle -> IO (())
-init_impl this rectangle = do
-        jset (this).rectangle (rectangle)
-        width <- (Rectangle.getWidth ((jget (this).rectangle)))
-        height <- (Rectangle.getHeight ((jget (this).rectangle)))
-        if ((jio (J2MEUtil.isJ2ME)) || (jio (J2MEUtil.isHTML))) then do
-            pure ()
-        else do
-            let rectangleFilledAnimation = (javaCast (jget (this).animationInterface) :: RectangleFilledAnimation.RectangleFilledAnimation)
-            Control.Monad.void (RectangleFilledAnimation.setWidth rectangleFilledAnimation width)
-            Control.Monad.void (RectangleFilledAnimation.setHeight rectangleFilledAnimation height)
-        pure ()
+jchain : List String
+jchain =
+    [ "BasicPopupMenuPaintable" ]
+        ++ Paintable.jchain
+        ++ UpdateMyFontInterface.jchain
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: BasicPopupMenuPaintable))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    Paintable.jfields ++ [ ( "basicSetColorUtil", JR.defaultOf "" ), ( "drawStringUtil", JR.defaultOf "" ), ( "label", JR.defaultOf "" ), ( "foregroundBasicColor", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "rectangle", JR.defaultOf "" ), ( "BORDER", JR.defaultOf "I" ), ( "heightOffset", JR.defaultOf "I" ), ( "offset", JR.defaultOf "I" ), ( "animationInterface", JR.defaultOf "" ) ]
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: BasicPopupMenuPaintable)) a1
 
-paint_impl :: BasicPopupMenuPaintable -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-        point <- (Rectangle.getPoint ((jget (this).rectangle)))
-        x <- (GPoint.getX point)
-        y <- (GPoint.getY point)
-        width <- (Rectangle.getWidth ((jget (this).rectangle)))
-        height <- (Rectangle.getHeight ((jget (this).rectangle)))
-        Control.Monad.void (Animation.paintXY ((jget (this).animationInterface)) graphics x y)
-        Control.Monad.void (BasicColorSetUtil.setBasicColorP ((jget (this).basicSetColorUtil)) graphics (jget (this).foregroundBasicColor))
-        Control.Monad.void (DrawVerticalStringUtil.paintVerticle ((jget (this).drawStringUtil)) graphics (jget (this).label) (x + (jget (this).bORDER)) (y + (jget (this).offset)) 0)
-        Control.Monad.void (Graphics.drawRect graphics x y width height)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "init_1", jm_init_1 )
+        , ( "paint_1", jm_paint_1 ) ]
+        Paintable.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicPopupMenuPaintable"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_init_1", jm_init_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        [ ( "jstatic_NAME", jstatic_NAME ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "BasicPopupMenuPaintable" jclinit "NAME"
+        (JR.str "MENU")
+        s
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "rectangle", "" ), ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Paintable.jinit_0 JR.this []),
+                JR.exec (JR.setField "basicSetColorUtil" "" JR.this (JR.callStatic BasicColorSetUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "drawStringUtil" "" JR.this (JR.callStatic DrawVerticalStringUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "foregroundBasicColor" "" JR.this (JR.local "foregroundBasicColor")), 
+                    JR.exec (JR.setField "label" "" JR.this jstatic_NAME), 
+                    JR.exec (JR.setField "rectangle" "" JR.this (JR.local "rectangle")), 
+                    JR.ifElse (JR.or (JR.callStatic J2MEUtil.jm_isJ2ME_0 []) (JR.callStatic J2MEUtil.jm_isHTML_0 [])) (JR.run [ 
+                        JR.exec (JR.setField "animationInterface" "" JR.this (JR.invoke "getInstance_1" (JR.callStatic NullAnimationFactory.jm_getFactoryInstance_0 []) [ (JR.int 0) ])) ]) (JR.run [ 
+                        JR.exec (JR.setField "animationInterface" "" JR.this (JR.new RectangleFilledAnimation.jnew_3 [ (JR.invoke "getWidth_0" (JR.thisField "rectangle") []), (JR.invoke "getHeight_0" (JR.thisField "rectangle") []), (JR.field "TRANSPARENT_GREY" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ])) ]), 
+                    JR.exec (JR.invoke "init_1" JR.this [ (JR.local "rectangle") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.declare "isOpenGL" "Z" (JR.invoke "isDefault_1" (JR.local "features") [ (JR.field "OPENGL" (JR.callStatic OpenGLFeatureFactory.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "updateMeasurement_2" (JR.thisField "drawStringUtil") [ (JR.local "graphics"), (JR.thisField "label") ]), 
+                    JR.declare "BORDER" "I" (JR.int 0), 
+                    JR.ifElse (JR.or (JR.callStatic J2MEUtil.jm_isHTML_0 []) (JR.local "isOpenGL")) (JR.run [ 
+                        JR.exec (JR.setLocal "BORDER" "I" (JR.map2 JR.div (JR.callStatic MyFontProcessor.jm_defaultCharWidth_1 [ (JR.local "font") ]) (JR.int 2))) ]) (JR.run [ 
+                    JR.ifElse (JR.or (JR.or (JR.callStatic AndroidUtil.jm_isAndroid_0 []) (JR.callStatic J2MEUtil.jm_isJ2SE_0 [])) SWTUtil.jstatic_isSWT) (JR.run [ 
+                        JR.exec (JR.setLocal "BORDER" "I" (JR.callStatic MyFontProcessor.jm_defaultCharWidth_1 [ (JR.local "font") ])) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "BORDER" "I" (JR.map2 JR.mul (JR.callStatic MyFontProcessor.jm_defaultCharWidth_1 [ (JR.local "font") ]) (JR.int 2))) ]) ]), 
+                    JR.exec (JR.setField "BORDER" "I" JR.this (JR.local "BORDER")), 
+                    JR.exec (JR.setField "heightOffset" "I" JR.this (JR.map2 JR.sub (JR.invoke "getHeight_0" (JR.thisField "rectangle") []) ((JR.map2 JR.mul (JR.invoke "getHeight_0" (JR.local "font") []) (JR.invoke "length_0" jstatic_NAME []))))), 
+                    JR.ifElse (JR.invoke "isAnyThreed_0" (JR.callStatic OpenGLFeatureUtil.jm_getInstance_0 []) []) (JR.run [ 
+                        JR.exec (JR.setField "heightOffset" "I" JR.this (JR.map2 JR.sub (JR.thisField "heightOffset") (JR.map2 JR.add (JR.invoke "getHeight_0" (JR.local "font") []) (JR.int 2)))), 
+                        JR.ifElse (JR.callStatic AndroidUtil.jm_isAndroid_0 []) (JR.run [ 
+                            JR.exec (JR.setField "heightOffset" "I" JR.this (JR.invoke "getHeight_0" (JR.local "font") [])) ]) (JR.run [ 
+                            JR.exec (JR.setField "heightOffset" "I" JR.this (JR.map2 JR.sub (JR.thisField "heightOffset") (JR.map2 JR.add (JR.invoke "getHeight_0" (JR.local "font") []) (JR.int 2)))) ]) ]) identity, 
+                    JR.exec (JR.setField "offset" "I" JR.this (JR.map2 JR.add ((JR.map2 JR.shr (JR.thisField "heightOffset") (JR.int 1))) ((JR.cond (JR.invoke "isJOGL_0" (JR.callStatic SWTJOGLProcessor.jm_getInstance_0 []) []) (JR.int 4) (JR.int 0))))), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "rectangle", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "rectangle" "" JR.this (JR.local "rectangle")), 
+                    JR.declare "width" "I" (JR.invoke "getWidth_0" (JR.thisField "rectangle") []), 
+                    JR.declare "height" "I" (JR.invoke "getHeight_0" (JR.thisField "rectangle") []), 
+                    JR.ifElse (JR.or (JR.callStatic J2MEUtil.jm_isJ2ME_0 []) (JR.callStatic J2MEUtil.jm_isHTML_0 [])) identity (JR.run [ 
+                        JR.declare "rectangleFilledAnimation" "" (JR.thisField "animationInterface"), 
+                        JR.exec (JR.invoke "setWidth_1" (JR.local "rectangleFilledAnimation") [ (JR.local "width") ]), 
+                        JR.exec (JR.invoke "setHeight_1" (JR.local "rectangleFilledAnimation") [ (JR.local "height") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.declare "point" "" (JR.invoke "getPoint_0" (JR.thisField "rectangle") []), 
+                    JR.declare "x" "I" (JR.invoke "getX_0" (JR.local "point") []), 
+                    JR.declare "y" "I" (JR.invoke "getY_0" (JR.local "point") []), 
+                    JR.declare "width" "I" (JR.invoke "getWidth_0" (JR.thisField "rectangle") []), 
+                    JR.declare "height" "I" (JR.invoke "getHeight_0" (JR.thisField "rectangle") []), 
+                    JR.exec (JR.invoke "paintXY_3" (JR.thisField "animationInterface") [ (JR.local "graphics"), (JR.local "x"), (JR.local "y") ]), 
+                    JR.exec (JR.invoke "setBasicColorP_2" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.thisField "foregroundBasicColor") ]), 
+                    JR.exec (JR.invoke "paintVerticle_5" (JR.thisField "drawStringUtil") [ (JR.local "graphics"), (JR.thisField "label"), (JR.map2 JR.add (JR.local "x") (JR.thisField "BORDER")), (JR.map2 JR.add (JR.local "y") (JR.thisField "offset")), (JR.int 0) ]), 
+                    JR.exec (JR.invoke "drawRect_4" (JR.local "graphics") [ (JR.local "x"), (JR.local "y"), (JR.local "width"), (JR.local "height") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

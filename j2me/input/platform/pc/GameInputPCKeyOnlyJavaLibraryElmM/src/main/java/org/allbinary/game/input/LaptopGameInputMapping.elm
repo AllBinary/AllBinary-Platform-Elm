@@ -1,92 +1,85 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module LaptopGameInputMapping (module LaptopGameInputMapping, module PCGameInputMapping) where
+module Org.Allbinary.Game.Input.LaptopGameInputMapping exposing (..)
 
-import PCGameInputMapping hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getDefault, getDefault_super, getDefault_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LaptopDefaultGameInputMapping -- same package or java.lang
-import qualified InputToGameKeyMapping -- org.allbinary.game.input.mapping.InputToGameKeyMapping
-import qualified PCGameInputMapping
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data LaptopGameInputMapping = LaptopGameInputMapping
-    { header_ :: JavaHeader
-    , base :: PCGameInputMapping.PCGameInputMapping
-    }
-
-instance JavaNull LaptopGameInputMapping where
-    javaNull = javaNullRecord "LaptopGameInputMapping"
-
-instance JavaEquals LaptopGameInputMapping where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LaptopGameInputMapping where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LaptopGameInputMapping where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO LaptopGameInputMapping
-newRecord_ = do
-    base <- PCGameInputMapping.newRecord_
-    let header_ = base.header_
-    let this = LaptopGameInputMapping header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "getDefault" (\() -> getDefault_impl this)
-    pure this
-
-initFields_ :: LaptopGameInputMapping -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO LaptopGameInputMapping
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LaptopGameInputMapping -> IO ()
-init_ this = do
-    PCGameInputMapping.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Input.LaptopDefaultGameInputMapping as LaptopDefaultGameInputMapping
+import Org.Allbinary.Game.Input.PCGameInputMapping as PCGameInputMapping
 
 
-getDefault :: (JavaObjectClass this_) => this_ -> IO (InputToGameKeyMapping.InputToGameKeyMapping)
-getDefault object_ = jmethod object_ "getDefault" (\() -> (getDefault_impl (javaCast object_ :: LaptopGameInputMapping))) ()
+jclass : String
+jclass =
+    "LaptopGameInputMapping"
 
-getDefault_super :: (JavaObjectClass this_) => this_ -> IO (InputToGameKeyMapping.InputToGameKeyMapping)
-getDefault_super object_ = (getDefault_impl (javaCast object_ :: LaptopGameInputMapping))
 
-getDefault_impl :: LaptopGameInputMapping -> IO (InputToGameKeyMapping.InputToGameKeyMapping)
-getDefault_impl this = do
-        (LaptopDefaultGameInputMapping.getInputMapping ((jio (LaptopDefaultGameInputMapping.new_))))
+jchain : List String
+jchain =
+    [ "LaptopGameInputMapping" ]
+        ++ PCGameInputMapping.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    PCGameInputMapping.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getDefault_0", jm_getDefault_0 ) ]
+        PCGameInputMapping.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LaptopGameInputMapping"
+        [ ( "jm_getDefault_0", jm_getDefault_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect PCGameInputMapping.jinit_0 JR.this []),
+            identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getDefault_0 : JR.Method
+jm_getDefault_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getInputMapping_0" (JR.new LaptopDefaultGameInputMapping.jnew_0 []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

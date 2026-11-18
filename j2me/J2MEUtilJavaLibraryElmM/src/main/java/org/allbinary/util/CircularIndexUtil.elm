@@ -1,11 +1,11 @@
-module CircularIndexUtil exposing (..)
+module Org.Allbinary.Util.CircularIndexUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}
 
 import JR
-import CommonLabels
-import StringMaker
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

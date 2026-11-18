@@ -1,219 +1,187 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
-module NoZBasicConstantVelocityMovement (module NoZBasicConstantVelocityMovement, module Movement) where
+module Org.Allbinary.Physics.Movement.NoZBasicConstantVelocityMovement exposing (..)
 
-import Movement hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, init, init_super, init_impl, moveOutsideRadius, moveOutsideRadius_super, moveOutsideRadius_impl, process, process_super, process_impl, toString, toString_super, toString_impl, stop, stop_super, stop_impl, getVelocityProperties, getVelocityProperties_super, getVelocityProperties_impl, setVelocityProperties, setVelocityProperties_super, setVelocityProperties_impl, setSpeedBasicDecimal, setSpeedBasicDecimal_super, setSpeedBasicDecimal_impl, getSpeedBasicDecimal, getSpeedBasicDecimal_super, getSpeedBasicDecimal_impl, velocityProperties, speedBasicDecimal, axisMathVectorUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameLayer -- org.allbinary.game.layer.AllBinaryGameLayer
-import qualified BasicVelocityProperties -- org.allbinary.game.physics.velocity.BasicVelocityProperties
-import qualified VelocityInterfaceCompositeInterface -- org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified BasicDecimal -- org.allbinary.logic.math.BasicDecimal
-import qualified AxisMathVectorUtil -- org.allbinary.logic.math.vector.AxisMathVectorUtil
-import qualified AngleFactory -- org.allbinary.math.AngleFactory
-import qualified Movement
+{-| Generated Code Do Not Modify package org.allbinary.physics.movement
+-}
 
--- implements VelocityInterfaceCompositeInterface
-data NoZBasicConstantVelocityMovement = NoZBasicConstantVelocityMovement
-    { header_ :: JavaHeader
-    , base :: Movement.Movement
-    , velocityProperties :: IORef (BasicVelocityProperties.BasicVelocityProperties)
-    , speedBasicDecimal :: IORef (BasicDecimal.BasicDecimal)
-    , axisMathVectorUtil :: IORef (AxisMathVectorUtil.AxisMathVectorUtil)
-    }
-
-instance JavaNull NoZBasicConstantVelocityMovement where
-    javaNull = javaNullRecord "NoZBasicConstantVelocityMovement"
-
-instance JavaEquals NoZBasicConstantVelocityMovement where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NoZBasicConstantVelocityMovement where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NoZBasicConstantVelocityMovement where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO NoZBasicConstantVelocityMovement
-newRecord_ = do
-    base <- Movement.newRecord_
-    let header_ = base.header_
-    velocityProperties <- newIORef javaNull
-    speedBasicDecimal <- newIORef javaNull
-    axisMathVectorUtil <- newIORef javaNull
-    let this = NoZBasicConstantVelocityMovement header_ base velocityProperties speedBasicDecimal axisMathVectorUtil
-    jregisterLevel header_ this
-    VelocityInterfaceCompositeInterface.registerInterface_ header_
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "moveOutsideRadius" (\() -> moveOutsideRadius_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    jregisterMethod header_ "stop" (\() -> stop_impl this)
-    jregisterMethod header_ "getVelocityProperties" (\() -> getVelocityProperties_impl this)
-    jregisterMethod header_ "setVelocityProperties" (\() -> setVelocityProperties_impl this)
-    jregisterMethod header_ "setSpeedBasicDecimal" (\() -> setSpeedBasicDecimal_impl this)
-    jregisterMethod header_ "getSpeedBasicDecimal" (\() -> getSpeedBasicDecimal_impl this)
-    pure this
-
-initFields_ :: NoZBasicConstantVelocityMovement -> IO ()
-initFields_ this = do
-    jset this.velocityProperties (javaNull)
-    jset this.speedBasicDecimal (BasicDecimal.zERO_BIGDECIMAL)
-    jset this.axisMathVectorUtil =<< (AxisMathVectorUtil.getInstance)
-    pure ()
-
-new_2 :: BasicDecimal.BasicDecimal -> BasicVelocityProperties.BasicVelocityProperties -> IO NoZBasicConstantVelocityMovement
-new_2 basicDecimal velocityProperties = do
-    this <- newRecord_
-    init_2 this basicDecimal velocityProperties
-    pure this
-
-init_2 :: NoZBasicConstantVelocityMovement -> BasicDecimal.BasicDecimal -> BasicVelocityProperties.BasicVelocityProperties -> IO ()
-init_2 this basicDecimal velocityProperties = do
-        Movement.init_ this.base
-        initFields_ this
-        Control.Monad.void (NoZBasicConstantVelocityMovement.setSpeedBasicDecimal this basicDecimal)
-        jset (this).velocityProperties (velocityProperties)
-        pure ()
+import JR
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Logic.Math.Vector.AxisMathVectorUtil as AxisMathVectorUtil
+import Org.Allbinary.Logic.Math.BasicDecimal as BasicDecimal
+import Org.Allbinary.Physics.Movement.Movement as Movement
+import Org.Allbinary.Game.Physics.Velocity.VelocityInterfaceCompositeInterface as VelocityInterfaceCompositeInterface
 
 
-init :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Int -> Int -> IO (())
-init object_ a1 a2 a3 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))) () a1 a2 a3
-
-init_super :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> Int -> Int -> IO (())
-init_super object_ a1 a2 a3 = (init_impl (javaCast object_ :: NoZBasicConstantVelocityMovement)) a1 a2 a3
-
-init_impl :: NoZBasicConstantVelocityMovement -> BasicDecimal.BasicDecimal -> Int -> Int -> IO (())
-init_impl this speedBasicDecimal angle otherAngle = do
-        jset (this).speedBasicDecimal (speedBasicDecimal)
-        angleFactory <- (AngleFactory.getInstance)
-        Control.Monad.void (BasicVelocityProperties.setVelocityWithBigDecimal ((jget (this).velocityProperties)) speedBasicDecimal (jio (AngleFactory.getAt angleFactory angle)) (jio (AngleFactory.getAt angleFactory otherAngle)))
-        pure ()
+jclass : String
+jclass =
+    "NoZBasicConstantVelocityMovement"
 
 
-moveOutsideRadius :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int64 -> Int -> Int -> IO (())
-moveOutsideRadius object_ a1 a2 a3 a4 = jmethod object_ "moveOutsideRadius" (\() -> (moveOutsideRadius_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))) () a1 a2 a3 a4
-
-moveOutsideRadius_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int64 -> Int -> Int -> IO (())
-moveOutsideRadius_super object_ a1 a2 a3 a4 = (moveOutsideRadius_impl (javaCast object_ :: NoZBasicConstantVelocityMovement)) a1 a2 a3 a4
-
-moveOutsideRadius_impl :: NoZBasicConstantVelocityMovement -> AllBinaryLayer.AllBinaryLayer -> Int64 -> Int -> Int -> IO (())
-moveOutsideRadius_impl this layer radius angle otherAngle = do
-        scaleFactorValue <- (BasicDecimal.getScaledFactorValue ((jget (this).speedBasicDecimal)))
-        let xVector = (Prelude.fromInteger (jnumericInteger (((jio (AxisMathVectorUtil.calculateX ((jget (this).axisMathVectorUtil)) radius angle)) / scaleFactorValue))))
-        let yVector = (Prelude.fromInteger (jnumericInteger (((jio (AxisMathVectorUtil.calculateY ((jget (this).axisMathVectorUtil)) radius angle)) / scaleFactorValue))))
-        Control.Monad.void (AllBinaryLayer.moveDXYZ layer xVector yVector 0)
-        pure ()
+jchain : List String
+jchain =
+    [ "NoZBasicConstantVelocityMovement" ]
+        ++ Movement.jchain
+        ++ VelocityInterfaceCompositeInterface.jchain
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))) () a1
-
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: NoZBasicConstantVelocityMovement)) a1
-
-process_impl :: NoZBasicConstantVelocityMovement -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_impl this layer = do
-        Control.Monad.void (AllBinaryGameLayer.moveDXYZ layer (jio (BasicVelocityProperties.getScaled ((jio (BasicVelocityProperties.getVelocityXBasicDecimalP ((jget (this).velocityProperties))))))) (jio (BasicVelocityProperties.getScaled ((jio (BasicVelocityProperties.getVelocityYBasicDecimalP ((jget (this).velocityProperties))))))) 0)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    Movement.jfields ++ [ ( "velocityProperties", JR.defaultOf "" ), ( "speedBasicDecimal", JR.defaultOf "" ), ( "axisMathVectorUtil", JR.defaultOf "" ) ]
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))
-
-toString_impl :: NoZBasicConstantVelocityMovement -> IO (String)
-toString_impl this = do
-        (BasicVelocityProperties.toString ((jget (this).velocityProperties)))
-
-
-stop :: (JavaObjectClass this_) => this_ -> IO (())
-stop object_ = jmethod object_ "stop" (\() -> (stop_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))) ()
-
-stop_super :: (JavaObjectClass this_) => this_ -> IO (())
-stop_super object_ = (stop_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))
-
-stop_impl :: NoZBasicConstantVelocityMovement -> IO (())
-stop_impl this = do
-        Control.Monad.void (BasicVelocityProperties.zero ((jget (this).velocityProperties)))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "init_3", jm_init_3 )
+        , ( "moveOutsideRadius_4", jm_moveOutsideRadius_4 )
+        , ( "process_1", jm_process_1 )
+        , ( "toString_0", jm_toString_0 )
+        , ( "stop_0", jm_stop_0 )
+        , ( "getVelocityProperties_0", jm_getVelocityProperties_0 )
+        , ( "setVelocityProperties_1", jm_setVelocityProperties_1 )
+        , ( "setSpeedBasicDecimal_1", jm_setSpeedBasicDecimal_1 )
+        , ( "getSpeedBasicDecimal_0", jm_getSpeedBasicDecimal_0 ) ]
+        Movement.jvtable
 
 
-getVelocityProperties :: (JavaObjectClass this_) => this_ -> IO (BasicVelocityProperties.BasicVelocityProperties)
-getVelocityProperties object_ = jmethod object_ "getVelocityProperties" (\() -> (getVelocityProperties_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))) ()
-
-getVelocityProperties_super :: (JavaObjectClass this_) => this_ -> IO (BasicVelocityProperties.BasicVelocityProperties)
-getVelocityProperties_super object_ = (getVelocityProperties_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))
-
-getVelocityProperties_impl :: NoZBasicConstantVelocityMovement -> IO (BasicVelocityProperties.BasicVelocityProperties)
-getVelocityProperties_impl this = do
-        pure ((jget (this).velocityProperties))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NoZBasicConstantVelocityMovement"
+        [ ( "jm_init_3", jm_init_3 ), ( "jm_moveOutsideRadius_4", jm_moveOutsideRadius_4 ), ( "jm_process_1", jm_process_1 ), ( "jm_toString_0", jm_toString_0 ), ( "jm_stop_0", jm_stop_0 ), ( "jm_getVelocityProperties_0", jm_getVelocityProperties_0 ), ( "jm_setVelocityProperties_1", jm_setVelocityProperties_1 ), ( "jm_setSpeedBasicDecimal_1", jm_setSpeedBasicDecimal_1 ), ( "jm_getSpeedBasicDecimal_0", jm_getSpeedBasicDecimal_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
 
-setVelocityProperties :: (JavaObjectClass this_) => this_ -> BasicVelocityProperties.BasicVelocityProperties -> IO (())
-setVelocityProperties object_ a1 = jmethod object_ "setVelocityProperties" (\() -> (setVelocityProperties_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))) () a1
-
-setVelocityProperties_super :: (JavaObjectClass this_) => this_ -> BasicVelocityProperties.BasicVelocityProperties -> IO (())
-setVelocityProperties_super object_ a1 = (setVelocityProperties_impl (javaCast object_ :: NoZBasicConstantVelocityMovement)) a1
-
-setVelocityProperties_impl :: NoZBasicConstantVelocityMovement -> BasicVelocityProperties.BasicVelocityProperties -> IO (())
-setVelocityProperties_impl this velocityProperties = do
-        jset (this).velocityProperties (velocityProperties)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setSpeedBasicDecimal :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> IO (())
-setSpeedBasicDecimal object_ a1 = jmethod object_ "setSpeedBasicDecimal" (\() -> (setSpeedBasicDecimal_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))) () a1
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "basicDecimal", "" ), ( "velocityProperties", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Movement.jinit_0 JR.this []),
+                JR.exec (JR.setField "speedBasicDecimal" "" JR.this BasicDecimal.jstatic_ZERO_BIGDECIMAL),
+                JR.exec (JR.setField "axisMathVectorUtil" "" JR.this (JR.callStatic AxisMathVectorUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setSpeedBasicDecimal_1" JR.this [ (JR.local "basicDecimal") ]), 
+                    JR.exec (JR.setField "velocityProperties" "" JR.this (JR.local "velocityProperties")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setSpeedBasicDecimal_super :: (JavaObjectClass this_) => this_ -> BasicDecimal.BasicDecimal -> IO (())
-setSpeedBasicDecimal_super object_ a1 = (setSpeedBasicDecimal_impl (javaCast object_ :: NoZBasicConstantVelocityMovement)) a1
 
-setSpeedBasicDecimal_impl :: NoZBasicConstantVelocityMovement -> BasicDecimal.BasicDecimal -> IO (())
-setSpeedBasicDecimal_impl this speedBasicDecimal = do
-        jset (this).speedBasicDecimal (speedBasicDecimal)
-        pure ()
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
 
 
-getSpeedBasicDecimal :: (JavaObjectClass this_) => this_ -> IO (BasicDecimal.BasicDecimal)
-getSpeedBasicDecimal object_ = jmethod object_ "getSpeedBasicDecimal" (\() -> (getSpeedBasicDecimal_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))) ()
+jm_init_3 : JR.Method
+jm_init_3 jheap jthis jargs =
+    JR.method [ ( "speedBasicDecimal", "" ), ( "angle", "I" ), ( "otherAngle", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "speedBasicDecimal" "" JR.this (JR.local "speedBasicDecimal")), 
+                    JR.declare "angleFactory" "" (JR.callStatic AngleFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "setVelocityWithBigDecimal_3" (JR.thisField "velocityProperties") [ (JR.local "speedBasicDecimal"), (JR.invoke "getAt_1" (JR.local "angleFactory") [ (JR.local "angle") ]), (JR.invoke "getAt_1" (JR.local "angleFactory") [ (JR.local "otherAngle") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getSpeedBasicDecimal_super :: (JavaObjectClass this_) => this_ -> IO (BasicDecimal.BasicDecimal)
-getSpeedBasicDecimal_super object_ = (getSpeedBasicDecimal_impl (javaCast object_ :: NoZBasicConstantVelocityMovement))
 
-getSpeedBasicDecimal_impl :: NoZBasicConstantVelocityMovement -> IO (BasicDecimal.BasicDecimal)
-getSpeedBasicDecimal_impl this = do
-        pure ((jget (this).speedBasicDecimal))
+jm_moveOutsideRadius_4 : JR.Method
+jm_moveOutsideRadius_4 jheap jthis jargs =
+    JR.method [ ( "layer", "" ), ( "radius", "J" ), ( "angle", "I" ), ( "otherAngle", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "scaleFactorValue" "I" (JR.invoke "getScaledFactorValue_0" (JR.thisField "speedBasicDecimal") []), 
+                    JR.declare "xVector" "I" (JR.cast "I" ((JR.map2 JR.div (JR.invoke "calculateX_2" (JR.thisField "axisMathVectorUtil") [ (JR.local "radius"), (JR.local "angle") ]) (JR.cast "J" (JR.local "scaleFactorValue"))))), 
+                    JR.declare "yVector" "I" (JR.cast "I" ((JR.map2 JR.div (JR.invoke "calculateY_2" (JR.thisField "axisMathVectorUtil") [ (JR.local "radius"), (JR.local "angle") ]) (JR.cast "J" (JR.local "scaleFactorValue"))))), 
+                    JR.exec (JR.invoke "moveDXYZ_3" (JR.local "layer") [ (JR.local "xVector"), (JR.local "yVector"), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "layer", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "moveDXYZ_3" (JR.local "layer") [ (JR.invoke "getScaled_0" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.thisField "velocityProperties") []) []), (JR.invoke "getScaled_0" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.thisField "velocityProperties") []) []), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "toString_0" (JR.thisField "velocityProperties") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_stop_0 : JR.Method
+jm_stop_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "zero_0" (JR.thisField "velocityProperties") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getVelocityProperties_0 : JR.Method
+jm_getVelocityProperties_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "velocityProperties") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setVelocityProperties_1 : JR.Method
+jm_setVelocityProperties_1 jheap jthis jargs =
+    JR.method [ ( "velocityProperties", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "velocityProperties" "" JR.this (JR.local "velocityProperties")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setSpeedBasicDecimal_1 : JR.Method
+jm_setSpeedBasicDecimal_1 jheap jthis jargs =
+    JR.method [ ( "speedBasicDecimal", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "speedBasicDecimal" "" JR.this (JR.local "speedBasicDecimal")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSpeedBasicDecimal_0 : JR.Method
+jm_getSpeedBasicDecimal_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "speedBasicDecimal") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

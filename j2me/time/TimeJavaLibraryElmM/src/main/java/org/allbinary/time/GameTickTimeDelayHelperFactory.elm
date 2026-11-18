@@ -1,10 +1,10 @@
-module GameTickTimeDelayHelperFactory exposing (..)
+module Org.Allbinary.Time.GameTickTimeDelayHelperFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.time
 -}
 
 import JR
-import GameTickTimeDelayHelper
+import Org.Allbinary.Time.GameTickTimeDelayHelper as GameTickTimeDelayHelper
 
 
 jclass : String

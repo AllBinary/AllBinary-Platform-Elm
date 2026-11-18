@@ -1,4 +1,4 @@
-module MathUtil exposing (..)
+module Org.Allbinary.Logic.Math.MathUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.math
 -}

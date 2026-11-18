@@ -1,4 +1,4 @@
-module MachineAccessControlAddressInterface exposing (..)
+module Org.Allbinary.Logic.System.Hardware.Components.Interfaces.MachineAccessControlAddressInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.hardware.components.interfaces
 -}

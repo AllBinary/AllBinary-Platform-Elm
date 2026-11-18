@@ -1,10 +1,10 @@
-module NoTimeDelayHelper exposing (..)
+module Org.Allbinary.Time.NoTimeDelayHelper exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.time
 -}
 
 import JR
-import TimeDelayHelper
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
 
 
 jclass : String

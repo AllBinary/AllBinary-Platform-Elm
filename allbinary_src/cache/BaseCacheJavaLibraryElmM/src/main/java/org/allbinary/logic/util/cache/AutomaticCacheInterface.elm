@@ -1,10 +1,10 @@
-module AutomaticCacheInterface exposing (..)
+module Org.Allbinary.Logic.Util.Cache.AutomaticCacheInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
 -}
 
 import JR
-import CacheInterface
+import Org.Allbinary.Logic.Util.Cache.CacheInterface as CacheInterface
 
 
 jclass : String

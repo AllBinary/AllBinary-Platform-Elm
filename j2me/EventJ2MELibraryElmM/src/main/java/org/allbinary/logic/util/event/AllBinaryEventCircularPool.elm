@@ -1,11 +1,11 @@
-module AllBinaryEventCircularPool exposing (..)
+module Org.Allbinary.Logic.Util.Event.AllBinaryEventCircularPool exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.event
 -}
 
 import JR
-import BaseCircularPool
-import CircularIndexUtil
+import Org.Allbinary.Logic.Util.Cache.BaseCircularPool as BaseCircularPool
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
 
 
 jclass : String

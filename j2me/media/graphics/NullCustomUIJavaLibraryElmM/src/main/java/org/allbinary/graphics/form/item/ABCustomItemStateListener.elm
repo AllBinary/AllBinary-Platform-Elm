@@ -1,51 +1,58 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
-module ABCustomItemStateListener where
+module Org.Allbinary.Graphics.Form.Item.ABCustomItemStateListener exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form.item
+-}
 
--- Java interface: the classes that implement it have these functions
-data ABCustomItemStateListener = ABCustomItemStateListener
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull ABCustomItemStateListener where
-    javaNull = javaNullRecord "ABCustomItemStateListener"
 
-instance JavaEquals ABCustomItemStateListener where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq ABCustomItemStateListener where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "ABCustomItemStateListener"
 
-instance JavaObjectClass ABCustomItemStateListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-fromHeader_ :: JavaHeader -> ABCustomItemStateListener
-fromHeader_ header = ABCustomItemStateListener header
+jchain : List String
+jchain =
+    [ "ABCustomItemStateListener" ]
 
-registerInterface_ :: JavaHeader -> IO ()
-registerInterface_ header = do
-    jregisterLevel header (ABCustomItemStateListener header)
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ABCustomItemStateListener"
+        []
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,136 +1,115 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
-module BaseSoundsFactory where
+module Org.Allbinary.Media.Audio.BaseSoundsFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Sound -- same package or java.lang
-import qualified SoundsFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.media.audio
+-}
 
--- implements SoundsFactoryInterface
-data BaseSoundsFactory = BaseSoundsFactory
-    { header_ :: JavaHeader
-    , initialized :: IORef (Bool)
-    }
-
-instance JavaNull BaseSoundsFactory where
-    javaNull = javaNullRecord "BaseSoundsFactory"
-
-instance JavaEquals BaseSoundsFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BaseSoundsFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BaseSoundsFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BaseSoundsFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    initialized <- newIORef False
-    let this = BaseSoundsFactory header_ initialized
-    jregisterLevel header_ this
-    SoundsFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "getSoundInterfaceArray" (\() -> getSoundInterfaceArray_impl this)
-    jregisterMethod header_ "setInitialized" (\() -> setInitialized_impl this)
-    jregisterMethod header_ "isInitialized" (\() -> isInitialized_impl this)
-    pure this
-
-initFields_ :: BaseSoundsFactory -> IO ()
-initFields_ this = do
-    jset this.initialized (False)
-    pure ()
-
-new_ :: IO BaseSoundsFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BaseSoundsFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Media.Audio.SoundsFactoryInterface as SoundsFactoryInterface
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: BaseSoundsFactory))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: BaseSoundsFactory))
-
-init_impl :: BaseSoundsFactory -> IO (())
-init_impl this = do
-        pure ()
+jclass : String
+jclass =
+    "BaseSoundsFactory"
 
 
--- throws Exception
-getSoundInterfaceArray :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Sound.Sound))
-getSoundInterfaceArray object_ = jmethod object_ "getSoundInterfaceArray" (\() -> (getSoundInterfaceArray_impl (javaCast object_ :: BaseSoundsFactory))) ()
-
-getSoundInterfaceArray_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Sound.Sound))
-getSoundInterfaceArray_super object_ = (getSoundInterfaceArray_impl (javaCast object_ :: BaseSoundsFactory))
-
-getSoundInterfaceArray_impl :: BaseSoundsFactory -> IO (JavaArray (Sound.Sound))
-getSoundInterfaceArray_impl this = do
-        pure ((jnewArray (0) javaNull))
+jchain : List String
+jchain =
+    [ "BaseSoundsFactory" ]
+        ++ SoundsFactoryInterface.jchain
 
 
-setInitialized :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setInitialized object_ a1 = jmethod object_ "setInitialized" (\() -> (setInitialized_impl (javaCast object_ :: BaseSoundsFactory))) () a1
-
-setInitialized_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setInitialized_super object_ a1 = (setInitialized_impl (javaCast object_ :: BaseSoundsFactory)) a1
-
-setInitialized_impl :: BaseSoundsFactory -> Bool -> IO (())
-setInitialized_impl this initialized = do
-        jset (this).initialized (initialized)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "initialized", JR.defaultOf "Z" ) ]
 
 
-isInitialized :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isInitialized object_ = jmethod object_ "isInitialized" (\() -> (isInitialized_impl (javaCast object_ :: BaseSoundsFactory))) ()
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 )
+        , ( "getSoundInterfaceArray_0", jm_getSoundInterfaceArray_0 )
+        , ( "setInitialized_1", jm_setInitialized_1 )
+        , ( "isInitialized_0", jm_isInitialized_0 ) ]
+        JR.noMethods
 
-isInitialized_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isInitialized_super object_ = (isInitialized_impl (javaCast object_ :: BaseSoundsFactory))
 
-isInitialized_impl :: BaseSoundsFactory -> IO (Bool)
-isInitialized_impl this = do
-        pure ((jget (this).initialized))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BaseSoundsFactory"
+        [ ( "jm_init_0", jm_init_0 ), ( "jm_getSoundInterfaceArray_0", jm_getSoundInterfaceArray_0 ), ( "jm_setInitialized_1", jm_setInitialized_1 ), ( "jm_isInitialized_0", jm_isInitialized_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSoundInterfaceArray_0 : JR.Method
+jm_getSoundInterfaceArray_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.newArray "" [ (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInitialized_1 : JR.Method
+jm_setInitialized_1 jheap jthis jargs =
+    JR.method [ ( "initialized", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "initialized" "Z" JR.this (JR.local "initialized")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isInitialized_0 : JR.Method
+jm_isInitialized_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "initialized") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

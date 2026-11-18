@@ -1,115 +1,113 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.java.anyType
-module ConstructorUtil where
+module Org.Allbinary.Logic.Java.AnyType.ConstructorUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Class -- same package or java.lang
-import qualified Constructor -- java.lang.reflect.Constructor
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
+{-| Generated Code Do Not Modify package org.allbinary.logic.java.anyType
+-}
 
-data ConstructorUtil = ConstructorUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ConstructorUtil where
-    javaNull = javaNullRecord "ConstructorUtil"
-
-instance JavaEquals ConstructorUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ConstructorUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ConstructorUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ConstructorUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ConstructorUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: ConstructorUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO ConstructorUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ConstructorUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-viewAll :: Class.Class -> String -> IO (String)
-viewAll myClass lineBreak = do
-        stringBuffer <- (StringMaker.new_)
-        constructor <- (Class.getConstructors myClass)
-        Control.Monad.void (StringMaker.append stringBuffer "Constructors: ")
-        Control.Monad.void (StringMaker.append stringBuffer lineBreak)
-        forM_ [0 .. (jlength constructor) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (jio (ConstructorUtil.view (jindex constructor (index)) lineBreak)))
-        (StringMaker.toString stringBuffer)
+jclass : String
+jclass =
+    "ConstructorUtil"
 
 
-view :: Constructor.Constructor -> String -> IO (String)
-view constructor lineBreak = do
-    javaCatchReturn $ do
-        if (constructor /= javaNull) then do
-            commonSeps <- (CommonSeps.getInstance)
-            stringBuffer <- (StringMaker.new_)
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Constructor.getName constructor)))
-            classes <- (Constructor.getParameterTypes constructor)
-            forM_ [0 .. (jlength classes) - 1] $ \index -> javaIteration (pure ()) $ do
-                Control.Monad.void (StringMaker.append stringBuffer (jget (commonSeps).sPACE))
-                Control.Monad.void (StringMaker.append stringBuffer (jio (Class.getName ((jindex classes (index))))))
-                Control.Monad.void (StringMaker.append stringBuffer (jget (commonSeps).cOLON))
-                Control.Monad.void (StringMaker.appendint stringBuffer index)
-            Control.Monad.void (StringMaker.append stringBuffer lineBreak)
-            javaReturn =<< (StringMaker.toString stringBuffer)
-        else do
-            javaReturn ("Constructor Null")
+jchain : List String
+jchain =
+    [ "ConstructorUtil" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "viewAll_2", jm_viewAll_2 )
+        , ( "view_2", jm_view_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ConstructorUtil"
+        [ ( "jm_viewAll_2", jm_viewAll_2 ), ( "jm_view_2", jm_view_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_viewAll_2 : JR.Method
+jm_viewAll_2 jheap jthis jargs =
+    JR.method [ ( "myClass", "" ), ( "lineBreak", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "constructor" "" (JR.invoke "getConstructors_0" (JR.local "myClass") []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Constructors: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "lineBreak") ]), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "constructor"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66269 -> (JR.setLocal "index" "I" (JR.lit jwN66269))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.callStatic jm_view_2 [ (JR.aget (JR.local "constructor") (JR.local "index")), (JR.local "lineBreak") ]) ]) ]) ], 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_view_2 : JR.Method
+jm_view_2 jheap jthis jargs =
+    JR.method [ ( "constructor", "" ), ( "lineBreak", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "constructor") JR.null) (JR.run [ 
+                        JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                        JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.local "constructor") []) ]), 
+                        JR.declare "classes" "" (JR.invoke "getParameterTypes_0" (JR.local "constructor") []), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "classes"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66838 -> (JR.setLocal "index" "I" (JR.lit jwN66838))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.local "commonSeps")) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.aget (JR.local "classes") (JR.local "index")) []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COLON" (JR.local "commonSeps")) ]), 
+                            JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "index") ]) ]) ], 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "lineBreak") ]), 
+                        JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ]) (JR.run [ 
+                    JR.return (JR.str "Constructor Null") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

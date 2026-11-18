@@ -1,250 +1,207 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.layer
-module AllBinaryLayerManager (module AllBinaryLayerManager, module LayerManager) where
+module Org.Allbinary.Layer.AllBinaryLayerManager exposing (..)
 
-import LayerManager hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getLayerProcessorArray, getLayerProcessorArray_super, getLayerProcessorArray_impl, setLayerProcessorArray, setLayerProcessorArray_super, setLayerProcessorArray_impl, log, log_super, log_impl, append, append_super, append_impl, appendAt, appendAt_super, appendAt_impl, appendProcessors, appendProcessors_super, appendProcessors_impl, remove, remove_super, remove_impl, process, process_super, process_impl, cleanup, cleanup_super, cleanup_impl, layerManagerEventHandler, createLayerManagerEvent, deleteLayerManagerEvent, basicLayerProcessorArray)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LayerProcessor -- same package or java.lang
-import qualified LayerManagerNoDebug -- same package or java.lang
-import qualified AllBinaryLayer -- same package or java.lang
-import qualified LayerManager -- same package or java.lang
-import qualified LayerManagerEvent -- org.allbinary.layer.event.LayerManagerEvent
-import qualified LayerManagerEventHandler -- org.allbinary.layer.event.LayerManagerEventHandler
-import qualified LayerManager
+{-| Generated Code Do Not Modify package org.allbinary.layer
+-}
 
-data AllBinaryLayerManager = AllBinaryLayerManager
-    { header_ :: JavaHeader
-    , base :: LayerManager.LayerManager
-    , layerManagerEventHandler :: IORef (LayerManagerEventHandler.LayerManagerEventHandler)
-    , createLayerManagerEvent :: IORef (LayerManagerEvent.LayerManagerEvent)
-    , deleteLayerManagerEvent :: IORef (LayerManagerEvent.LayerManagerEvent)
-    , basicLayerProcessorArray :: IORef (JavaArray (LayerProcessor.LayerProcessor))
-    }
-
-instance JavaNull AllBinaryLayerManager where
-    javaNull = javaNullRecord "AllBinaryLayerManager"
-
-instance JavaEquals AllBinaryLayerManager where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryLayerManager where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryLayerManager where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AllBinaryLayerManager
-newRecord_ = do
-    base <- LayerManager.newRecord_
-    let header_ = base.header_
-    layerManagerEventHandler <- newIORef javaNull
-    createLayerManagerEvent <- newIORef javaNull
-    deleteLayerManagerEvent <- newIORef javaNull
-    basicLayerProcessorArray <- newIORef javaNull
-    let this = AllBinaryLayerManager header_ base layerManagerEventHandler createLayerManagerEvent deleteLayerManagerEvent basicLayerProcessorArray
-    jregisterLevel header_ this
-    jregisterMethod header_ "getLayerProcessorArray" (\() -> getLayerProcessorArray_impl this)
-    jregisterMethod header_ "setLayerProcessorArray" (\() -> setLayerProcessorArray_impl this)
-    jregisterMethod header_ "log" (\() -> log_impl this)
-    jregisterMethod header_ "append" (\() -> append_impl this)
-    jregisterMethod header_ "appendAt" (\() -> appendAt_impl this)
-    jregisterMethod header_ "appendProcessors" (\() -> appendProcessors_impl this)
-    jregisterMethod header_ "remove" (\() -> remove_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "cleanup" (\() -> cleanup_impl this)
-    pure this
-
-initFields_ :: AllBinaryLayerManager -> IO ()
-initFields_ this = do
-    jset this.layerManagerEventHandler =<< (LayerManagerEventHandler.getInstance)
-    jset this.createLayerManagerEvent =<< (LayerManagerEvent.new_2 (javaCast this) (jget ((jget (this).layerManagerEventHandler)).cREATE))
-    jset this.deleteLayerManagerEvent =<< (LayerManagerEvent.new_2 (javaCast this) (jget ((jget (this).layerManagerEventHandler)).dELETE))
-    jset this.basicLayerProcessorArray ((jnewArray (0) javaNull))
-    pure ()
-
-new_ :: IO AllBinaryLayerManager
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllBinaryLayerManager -> IO ()
-init_ this = do
-        LayerManager.init_1 this.base (javaCast (jio (LayerManagerNoDebug.getInstance)))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Layer.LayerManager as LayerManager
+import Org.Allbinary.Layer.Event.LayerManagerEvent as LayerManagerEvent
+import Org.Allbinary.Layer.Event.LayerManagerEventHandler as LayerManagerEventHandler
+import Org.Allbinary.Layer.LayerManagerNoDebug as LayerManagerNoDebug
 
 
-getLayerProcessorArray :: (JavaObjectClass this_) => this_ -> IO (JavaArray (LayerProcessor.LayerProcessor))
-getLayerProcessorArray object_ = jmethod object_ "getLayerProcessorArray" (\() -> (getLayerProcessorArray_impl (javaCast object_ :: AllBinaryLayerManager))) ()
-
-getLayerProcessorArray_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (LayerProcessor.LayerProcessor))
-getLayerProcessorArray_super object_ = (getLayerProcessorArray_impl (javaCast object_ :: AllBinaryLayerManager))
-
-getLayerProcessorArray_impl :: AllBinaryLayerManager -> IO (JavaArray (LayerProcessor.LayerProcessor))
-getLayerProcessorArray_impl this = do
-        pure ((jget (this).basicLayerProcessorArray))
+jclass : String
+jclass =
+    "AllBinaryLayerManager"
 
 
-setLayerProcessorArray :: (JavaObjectClass this_) => this_ -> JavaArray (LayerProcessor.LayerProcessor) -> IO (())
-setLayerProcessorArray object_ a1 = jmethod object_ "setLayerProcessorArray" (\() -> (setLayerProcessorArray_impl (javaCast object_ :: AllBinaryLayerManager))) () a1
-
-setLayerProcessorArray_super :: (JavaObjectClass this_) => this_ -> JavaArray (LayerProcessor.LayerProcessor) -> IO (())
-setLayerProcessorArray_super object_ a1 = (setLayerProcessorArray_impl (javaCast object_ :: AllBinaryLayerManager)) a1
-
-setLayerProcessorArray_impl :: AllBinaryLayerManager -> JavaArray (LayerProcessor.LayerProcessor) -> IO (())
-setLayerProcessorArray_impl this layerProcessorArray = do
-        jset (this).basicLayerProcessorArray (layerProcessorArray)
-        pure ()
+jchain : List String
+jchain =
+    [ "AllBinaryLayerManager" ]
+        ++ LayerManager.jchain
 
 
-log :: (JavaObjectClass this_) => this_ -> IO (())
-log object_ = jmethod object_ "log" (\() -> (log_impl (javaCast object_ :: AllBinaryLayerManager))) ()
-
-log_super :: (JavaObjectClass this_) => this_ -> IO (())
-log_super object_ = (log_impl (javaCast object_ :: AllBinaryLayerManager))
-
-log_impl :: AllBinaryLayerManager -> IO (())
-log_impl this = do
-        let size = (jlength (jget (this).basicLayerProcessorArray))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let layerProcessorInterface = (jindex ((jget (this).basicLayerProcessorArray)) (index))
-            pure ()
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    LayerManager.jfields ++ [ ( "layerManagerEventHandler", JR.defaultOf "" ), ( "createLayerManagerEvent", JR.defaultOf "" ), ( "deleteLayerManagerEvent", JR.defaultOf "" ), ( "basicLayerProcessorArray", JR.defaultOf "" ) ]
 
 
--- throws Exception
-append :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append object_ a1 = jmethod object_ "append" (\() -> (append_impl (javaCast object_ :: AllBinaryLayerManager))) () a1
-
-append_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append_super object_ a1 = (append_impl (javaCast object_ :: AllBinaryLayerManager)) a1
-
-append_impl :: AllBinaryLayerManager -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append_impl this layerInterface = do
-        when (Prelude.not (jio (LayerManager.contains this layerInterface))) $ do
-            Control.Monad.void (AllBinaryLayerManager.appendProcessors this layerInterface)
-            Control.Monad.void (LayerManager.append_super this.base layerInterface)
-        pure ()
-
-
--- throws Exception
-appendAt :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt object_ a1 a2 = jmethod object_ "appendAt" (\() -> (appendAt_impl (javaCast object_ :: AllBinaryLayerManager))) () a1 a2
-
-appendAt_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt_super object_ a1 a2 = (appendAt_impl (javaCast object_ :: AllBinaryLayerManager)) a1 a2
-
-appendAt_impl :: AllBinaryLayerManager -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt_impl this layerInterface index = do
-        when (Prelude.not (jio (LayerManager.contains this layerInterface))) $ do
-            Control.Monad.void (AllBinaryLayerManager.appendProcessors this layerInterface)
-            Control.Monad.void (LayerManager.appendAt_super this.base layerInterface index)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getLayerProcessorArray_0", jm_getLayerProcessorArray_0 )
+        , ( "setLayerProcessorArray_1", jm_setLayerProcessorArray_1 )
+        , ( "log_0", jm_log_0 )
+        , ( "append_1", jm_append_1 )
+        , ( "appendAt_2", jm_appendAt_2 )
+        , ( "appendProcessors_1", jm_appendProcessors_1 )
+        , ( "remove_1", jm_remove_1 )
+        , ( "process_0", jm_process_0 )
+        , ( "cleanup_0", jm_cleanup_0 ) ]
+        LayerManager.jvtable
 
 
--- throws Exception
-appendProcessors :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-appendProcessors object_ a1 = jmethod object_ "appendProcessors" (\() -> (appendProcessors_impl (javaCast object_ :: AllBinaryLayerManager))) () a1
-
-appendProcessors_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-appendProcessors_super object_ a1 = (appendProcessors_impl (javaCast object_ :: AllBinaryLayerManager)) a1
-
-appendProcessors_impl :: AllBinaryLayerManager -> AllBinaryLayer.AllBinaryLayer -> IO (())
-appendProcessors_impl this layerInterface = do
-        Control.Monad.void (LayerManagerEvent.setLayerInterface ((jget (this).createLayerManagerEvent)) layerInterface)
-        Control.Monad.void (LayerManagerEventHandler.fireEvent ((jget (this).layerManagerEventHandler)) (javaCast (jget (this).createLayerManagerEvent)))
-        layerProcessorInterface <- newIORef (javaNull)
-        index <- newIORef ((jlength (jget (this).basicLayerProcessorArray)) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            jset layerProcessorInterface ((jindex ((jget (this).basicLayerProcessorArray)) ((jget index))))
-            when (jio (LayerProcessor.isProcessorLayer ((jget layerProcessorInterface)) layerInterface)) $ do
-                Control.Monad.void (LayerManager.append ((jio (LayerProcessor.getLayerManager ((jget layerProcessorInterface))))) layerInterface)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryLayerManager"
+        [ ( "jm_getLayerProcessorArray_0", jm_getLayerProcessorArray_0 ), ( "jm_setLayerProcessorArray_1", jm_setLayerProcessorArray_1 ), ( "jm_log_0", jm_log_0 ), ( "jm_append_1", jm_append_1 ), ( "jm_appendAt_2", jm_appendAt_2 ), ( "jm_appendProcessors_1", jm_appendProcessors_1 ), ( "jm_remove_1", jm_remove_1 ), ( "jm_process_0", jm_process_0 ), ( "jm_cleanup_0", jm_cleanup_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
 
--- throws Exception
-remove :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove object_ a1 = jmethod object_ "remove" (\() -> (remove_impl (javaCast object_ :: AllBinaryLayerManager))) () a1
-
-remove_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove_super object_ a1 = (remove_impl (javaCast object_ :: AllBinaryLayerManager)) a1
-
-remove_impl :: AllBinaryLayerManager -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove_impl this layerInterface = do
-        Control.Monad.void (LayerManagerEvent.setLayerInterface ((jget (this).deleteLayerManagerEvent)) layerInterface)
-        Control.Monad.void (LayerManagerEventHandler.fireDeleteEvent ((jget (this).layerManagerEventHandler)) (javaCast (jget (this).deleteLayerManagerEvent)))
-        layerProcessorInterface <- newIORef (javaNull)
-        index <- newIORef ((jlength (jget (this).basicLayerProcessorArray)) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            jset layerProcessorInterface ((jindex ((jget (this).basicLayerProcessorArray)) ((jget index))))
-            Control.Monad.void (LayerManager.remove ((jio (LayerProcessor.getLayerManager ((jget layerProcessorInterface))))) layerInterface)
-        Control.Monad.void (LayerManager.remove_super this.base layerInterface)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> IO (())
-process object_ = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: AllBinaryLayerManager))) ()
-
-process_super :: (JavaObjectClass this_) => this_ -> IO (())
-process_super object_ = (process_impl (javaCast object_ :: AllBinaryLayerManager))
-
-process_impl :: AllBinaryLayerManager -> IO (())
-process_impl this = do
-        layerProcessorInterface <- newIORef (javaNull)
-        let size = (jlength (jget (this).basicLayerProcessorArray))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset layerProcessorInterface ((jindex ((jget (this).basicLayerProcessorArray)) (index)))
-            Control.Monad.void (LayerProcessor.process ((jget layerProcessorInterface)) this)
-        pure ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect LayerManager.jinit_1 JR.this [ (JR.callStatic LayerManagerNoDebug.jm_getInstance_0 []) ]),
+                JR.exec (JR.setField "layerManagerEventHandler" "" JR.this (JR.callStatic LayerManagerEventHandler.jm_getInstance_0 [])),
+                JR.exec (JR.setField "createLayerManagerEvent" "" JR.this (JR.new LayerManagerEvent.jnew_2 [ JR.this, (JR.field "CREATE" (JR.thisField "layerManagerEventHandler")) ])),
+                JR.exec (JR.setField "deleteLayerManagerEvent" "" JR.this (JR.new LayerManagerEvent.jnew_2 [ JR.this, (JR.field "DELETE" (JR.thisField "layerManagerEventHandler")) ])),
+                JR.exec (JR.setField "basicLayerProcessorArray" "" JR.this (JR.newArray "" [ (JR.int 0) ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
--- throws Exception
-cleanup :: (JavaObjectClass this_) => this_ -> IO (())
-cleanup object_ = jmethod object_ "cleanup" (\() -> (cleanup_impl (javaCast object_ :: AllBinaryLayerManager))) ()
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
-cleanup_super :: (JavaObjectClass this_) => this_ -> IO (())
-cleanup_super object_ = (cleanup_impl (javaCast object_ :: AllBinaryLayerManager))
 
-cleanup_impl :: AllBinaryLayerManager -> IO (())
-cleanup_impl this = do
-        layerProcessorInterface <- newIORef (javaNull)
-        let size = (jlength (jget (this).basicLayerProcessorArray))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset layerProcessorInterface ((jindex ((jget (this).basicLayerProcessorArray)) (index)))
-            Control.Monad.void (LayerManager.cleanup ((jio (LayerProcessor.getLayerManager ((jget layerProcessorInterface))))))
-        Control.Monad.void (LayerManager.cleanup_super this.base)
-        pure ()
+jm_getLayerProcessorArray_0 : JR.Method
+jm_getLayerProcessorArray_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "basicLayerProcessorArray") ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_setLayerProcessorArray_1 : JR.Method
+jm_setLayerProcessorArray_1 jheap jthis jargs =
+    JR.method [ ( "layerProcessorArray", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "basicLayerProcessorArray" "" JR.this (JR.local "layerProcessorArray")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_log_0 : JR.Method
+jm_log_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68308 -> (JR.setLocal "index" "I" (JR.lit jwN68308))) JR.increment) ]) (JR.run [ 
+                        JR.declare "layerProcessorInterface" "" (JR.aget (JR.thisField "basicLayerProcessorArray") (JR.local "index")) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_append_1 : JR.Method
+jm_append_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "contains_1" JR.this [ (JR.local "layerInterface") ])) (JR.run [ 
+                        JR.exec (JR.invoke "appendProcessors_1" JR.this [ (JR.local "layerInterface") ]), 
+                        JR.exec (JR.callVia LayerManager.jvtable "append_1" JR.this [ (JR.local "layerInterface") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_appendAt_2 : JR.Method
+jm_appendAt_2 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ), ( "index", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "contains_1" JR.this [ (JR.local "layerInterface") ])) (JR.run [ 
+                        JR.exec (JR.invoke "appendProcessors_1" JR.this [ (JR.local "layerInterface") ]), 
+                        JR.exec (JR.callVia LayerManager.jvtable "appendAt_2" JR.this [ (JR.local "layerInterface"), (JR.local "index") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_appendProcessors_1 : JR.Method
+jm_appendProcessors_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setLayerInterface_1" (JR.thisField "createLayerManagerEvent") [ (JR.local "layerInterface") ]), 
+                    JR.exec (JR.invoke "fireEvent_1" (JR.thisField "layerManagerEventHandler") [ (JR.thisField "createLayerManagerEvent") ]), 
+                    JR.declare "layerProcessorInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68949 -> (JR.setLocal "index" "I" (JR.lit jwN68949))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.setLocal "layerProcessorInterface" "" (JR.aget (JR.thisField "basicLayerProcessorArray") (JR.local "index"))), 
+                        JR.ifElse (JR.invoke "isProcessorLayer_1" (JR.local "layerProcessorInterface") [ (JR.local "layerInterface") ]) (JR.run [ 
+                            JR.exec (JR.invoke "append_1" (JR.invoke "getLayerManager_0" (JR.local "layerProcessorInterface") []) [ (JR.local "layerInterface") ]) ]) identity ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_remove_1 : JR.Method
+jm_remove_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setLayerInterface_1" (JR.thisField "deleteLayerManagerEvent") [ (JR.local "layerInterface") ]), 
+                    JR.exec (JR.invoke "fireDeleteEvent_1" (JR.thisField "layerManagerEventHandler") [ (JR.thisField "deleteLayerManagerEvent") ]), 
+                    JR.declare "layerProcessorInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69275 -> (JR.setLocal "index" "I" (JR.lit jwN69275))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.setLocal "layerProcessorInterface" "" (JR.aget (JR.thisField "basicLayerProcessorArray") (JR.local "index"))), 
+                        JR.exec (JR.invoke "remove_1" (JR.invoke "getLayerManager_0" (JR.local "layerProcessorInterface") []) [ (JR.local "layerInterface") ]) ]) ], 
+                    JR.exec (JR.callVia LayerManager.jvtable "remove_1" JR.this [ (JR.local "layerInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_0 : JR.Method
+jm_process_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "layerProcessorInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69641 -> (JR.setLocal "index" "I" (JR.lit jwN69641))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "layerProcessorInterface" "" (JR.aget (JR.thisField "basicLayerProcessorArray") (JR.local "index"))), 
+                        JR.exec (JR.invoke "process_1" (JR.local "layerProcessorInterface") [ JR.this ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_cleanup_0 : JR.Method
+jm_cleanup_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "layerProcessorInterface" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69892 -> (JR.setLocal "index" "I" (JR.lit jwN69892))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "layerProcessorInterface" "" (JR.aget (JR.thisField "basicLayerProcessorArray") (JR.local "index"))), 
+                        JR.exec (JR.invoke "cleanup_0" (JR.invoke "getLayerManager_0" (JR.local "layerProcessorInterface") []) []) ]) ], 
+                    JR.exec (JR.callVia LayerManager.jvtable "cleanup_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,16 +1,16 @@
-module LogFormatUtil exposing (..)
+module Org.Allbinary.Logic.Communication.Log.LogFormatUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.log
 -}
 
 import JR
-import CommonLabels
-import CommonSeps
-import ExceptionUtil
-import NullUtil
-import StringMaker
-import StringUtil
-import TimeStampUtil
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.Java.Exception.ExceptionUtil as ExceptionUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Time.TimeStampUtil as TimeStampUtil
 
 
 jclass : String

@@ -1,141 +1,137 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.log.config.type
-module LogConfigTypes where
+module Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LogConfigTypeFactory -- same package or java.lang
-import qualified LogConfigTypeData -- same package or java.lang
-import qualified LogConfigType -- same package or java.lang
-import qualified DomNodeHelper -- org.allbinary.data.tree.dom.DomNodeHelper
-import qualified DomSearchHelper -- org.allbinary.data.tree.dom.DomSearchHelper
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified LoggingInitInfo -- org.allbinary.logic.communication.log.config.LoggingInitInfo
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified Node -- org.w3c.dom.Node
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.log.config.type
+-}
 
-data LogConfigTypes = LogConfigTypes
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull LogConfigTypes where
-    javaNull = javaNullRecord "LogConfigTypes"
-
-instance JavaEquals LogConfigTypes where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LogConfigTypes where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LogConfigTypes where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-jSP_ERROR_NO_FUNCTION :: String
-jSP_ERROR_NO_FUNCTION = "in JSP Not In Function"
-
-lOGGING :: IORef (BasicArrayList.BasicArrayList)
-{-# NOINLINE lOGGING #-}
-lOGGING = unsafePerformIO ((fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_)) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LogConfigTypes
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = LogConfigTypes header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: LogConfigTypes -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Data.Tree.Dom.DomNodeHelper as DomNodeHelper
+import Org.Allbinary.Data.Tree.Dom.DomSearchHelper as DomSearchHelper
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigType as LogConfigType
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeData as LogConfigTypeData
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.LoggingInitInfo as LoggingInitInfo
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
 
 
--- Java static initializer: call this before the class is used
-staticInit_ :: IO ()
-staticInit_ = do
-        Control.Monad.void (LogConfigTypes.init)
-        pure ()
-
-new_ :: IO LogConfigTypes
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LogConfigTypes -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "LogConfigTypes"
 
 
-init :: IO (())
-init = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (PreLogUtil.putSE "Unable to initialize LogConfigTypes" "LogConfigTypes" "init()" e)
-            ) $ do
-            Control.Monad.void (PreLogUtil.put "Initialize LogconfigTypes" "LogConfigTypes" "init()")
-            Control.Monad.void (LogConfigTypeFactory.getInstance)
-            loggingInitInfo <- (LoggingInitInfo.new_)
-            logConfigTypeVector <- (LoggingInitInfo.getTypeList loggingInitInfo)
-            Control.Monad.void (PreLogUtil.put ("Number Of Log Configs: " ++ javaToString (jio (LoggingInitInfo.getNumberOfLogConfigs loggingInitInfo))) "LogConfigTypes" "init()")
-            Control.Monad.void (PreLogUtil.put ("Number Of Log Config Type Names: " ++ javaToString (jio (BasicArrayList.size logConfigTypeVector))) "LogConfigTypes" "init()")
-            Control.Monad.void (BasicArrayList.addAllList ((jget LogConfigTypes.lOGGING)) logConfigTypeVector)
-            Control.Monad.void (BasicArrayList.add ((jget LogConfigTypes.lOGGING)) (jget ((jio (LogConfigTypeFactory.getInstance))).nETBEANS_MODULE))
-        pure ()
+jchain : List String
+jchain =
+    [ "LogConfigTypes" ]
 
 
--- throws Exception
-getInstance :: Node.Node -> IO (LogConfigType.LogConfigType)
-getInstance node = do
-    javaCatchReturn $ do
-        nameValueNode <- (DomSearchHelper.getNode (jget ((jio (LogConfigTypeData.getInstance))).nAME) (jio (Node.getChildNodes node)))
-        name <- (DomNodeHelper.getTextNodeValue nameValueNode)
-        descriptionValueNode <- (DomSearchHelper.getNodeNoThrow (jget ((jio (LogConfigTypeData.getInstance))).dESCRIPTION) (jio (Node.getChildNodes node)))
-        when (descriptionValueNode /= javaNull) $ do
-            description <- (DomNodeHelper.getTextNodeValue descriptionValueNode)
-            pure ()
-        let availableLogConfigTypes = LogConfigType.availableLogConfigTypes
-        size <- (BasicArrayList.size availableLogConfigTypes)
-        logConfigType <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset logConfigType ((javaCast (jio (BasicArrayList.get availableLogConfigTypes index)) :: LogConfigType.LogConfigType))
-            when ((jio (LogConfigType.compareTo ((jio (LogConfigType.getName ((jget logConfigType))))) name)) == 0) $ do
-                javaReturn ((jget logConfigType))
-        javaThrow ((JavaException "Exception" ("No Such LogConfigType: " ++ name)))
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 )
+        , ( "getInstance_1", jm_getInstance_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LogConfigTypes"
+        [ ( "jm_init_0", jm_init_0 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_JSP_ERROR_NO_FUNCTION", jstatic_JSP_ERROR_NO_FUNCTION ), ( "jstatic_LOGGING", jstatic_LOGGING ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister, (JR.run [ 
+                    JR.exec (JR.callStatic jm_init_0 []) ]) ]
+
+
+jstatic_JSP_ERROR_NO_FUNCTION : JR.M
+jstatic_JSP_ERROR_NO_FUNCTION s =
+    JR.static "LogConfigTypes" jclinit "JSP_ERROR_NO_FUNCTION"
+        (JR.str "in JSP Not In Function")
+        s
+
+
+jstatic_LOGGING : JR.M
+jstatic_LOGGING s =
+    JR.static "LogConfigTypes" jclinit "LOGGING"
+        (JR.new BasicArrayListD.jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.str "Initialize LogconfigTypes"), (JR.str "LogConfigTypes"), (JR.str "init()") ]), 
+                        JR.exec (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 []), 
+                        JR.declare "loggingInitInfo" "" (JR.new LoggingInitInfo.jnew_0 []), 
+                        JR.declare "logConfigTypeVector" "" (JR.invoke "getTypeList_0" (JR.local "loggingInitInfo") []), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.concat (JR.str "Number Of Log Configs: ") (JR.invoke "getNumberOfLogConfigs_0" (JR.local "loggingInitInfo") [])), (JR.str "LogConfigTypes"), (JR.str "init()") ]), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.concat (JR.str "Number Of Log Config Type Names: ") (JR.invoke "size_0" (JR.local "logConfigTypeVector") [])), (JR.str "LogConfigTypes"), (JR.str "init()") ]), 
+                        JR.exec (JR.invoke "addAllList_1" jstatic_LOGGING [ (JR.local "logConfigTypeVector") ]), 
+                        JR.exec (JR.invoke "add_1" jstatic_LOGGING [ (JR.field "NETBEANS_MODULE" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_putSE_4 [ (JR.str "Unable to initialize LogConfigTypes"), (JR.str "LogConfigTypes"), (JR.str "init()"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "node", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "nameValueNode" "" (JR.callStatic DomSearchHelper.jm_getNode_2 [ (JR.field "NAME" (JR.callStatic LogConfigTypeData.jm_getInstance_0 [])), (JR.invoke "getChildNodes_0" (JR.local "node") []) ]), 
+                    JR.declare "name" "" (JR.callStatic DomNodeHelper.jm_getTextNodeValue_1 [ (JR.local "nameValueNode") ]), 
+                    JR.declare "descriptionValueNode" "" (JR.callStatic DomSearchHelper.jm_getNodeNoThrow_2 [ (JR.field "DESCRIPTION" (JR.callStatic LogConfigTypeData.jm_getInstance_0 [])), (JR.invoke "getChildNodes_0" (JR.local "node") []) ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "descriptionValueNode") JR.null) (JR.run [ 
+                        JR.declare "description" "" (JR.callStatic DomNodeHelper.jm_getTextNodeValue_1 [ (JR.local "descriptionValueNode") ]) ]) identity, 
+                    JR.declare "availableLogConfigTypes" "" LogConfigType.jstatic_availableLogConfigTypes, 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "availableLogConfigTypes") []), 
+                    JR.declare "logConfigType" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68164 -> (JR.setLocal "index" "I" (JR.lit jwN68164))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "logConfigType" "" (JR.invoke "get_1" (JR.local "availableLogConfigTypes") [ (JR.local "index") ])), 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getName_0" (JR.local "logConfigType") []) [ (JR.local "name") ]) (JR.int 0)) (JR.run [ 
+                            JR.return (JR.local "logConfigType") ]) identity ]) ], 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.concat (JR.str "No Such LogConfigType: ") (JR.local "name")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

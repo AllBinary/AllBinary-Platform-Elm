@@ -1,4 +1,4 @@
-module ABVector exposing (..)
+module Org.Allbinary.Util.ABVector exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}

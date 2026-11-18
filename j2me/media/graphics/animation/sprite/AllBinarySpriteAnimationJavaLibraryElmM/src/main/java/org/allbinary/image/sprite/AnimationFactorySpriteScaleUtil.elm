@@ -1,163 +1,136 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image.sprite
-module AnimationFactorySpriteScaleUtil where
+module Org.Allbinary.Image.Sprite.AnimationFactorySpriteScaleUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Sprite -- javax.microedition.lcdui.game.Sprite
-import qualified SpriteFactory -- org.allbinary.game.layer.SpriteFactory
-import qualified OpenGLUtil -- org.allbinary.graphics.opengles.OpenGLUtil
-import qualified ImageCache -- org.allbinary.image.ImageCache
-import qualified ImageCacheFactory -- org.allbinary.image.ImageCacheFactory
-import qualified OpenGLESImageExclusionUtil -- org.allbinary.image.opengles.OpenGLESImageExclusionUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified J2SEMath -- org.allbinary.logic.math.J2SEMath
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified ImageScaleUtil -- org.allbinary.media.image.ImageScaleUtil
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.image.sprite
+-}
 
-data AnimationFactorySpriteScaleUtil = AnimationFactorySpriteScaleUtil
-    { header_ :: JavaHeader
-    , imageCache :: IORef (ImageCache.ImageCache)
-    , imageScaleUtil :: IORef (ImageScaleUtil.ImageScaleUtil)
-    , openGLUtil :: IORef (OpenGLUtil.OpenGLUtil)
-    , j2seMath :: IORef (J2SEMath.J2SEMath)
-    , openGLESImageExclusionUtil :: IORef (OpenGLESImageExclusionUtil.OpenGLESImageExclusionUtil)
-    }
-
-instance JavaNull AnimationFactorySpriteScaleUtil where
-    javaNull = javaNullRecord "AnimationFactorySpriteScaleUtil"
-
-instance JavaEquals AnimationFactorySpriteScaleUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AnimationFactorySpriteScaleUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AnimationFactorySpriteScaleUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AnimationFactorySpriteScaleUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AnimationFactorySpriteScaleUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    imageCache <- newIORef javaNull
-    imageScaleUtil <- newIORef javaNull
-    openGLUtil <- newIORef javaNull
-    j2seMath <- newIORef javaNull
-    openGLESImageExclusionUtil <- newIORef javaNull
-    let this = AnimationFactorySpriteScaleUtil header_ imageCache imageScaleUtil openGLUtil j2seMath openGLESImageExclusionUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "createImage" (\() -> createImage_impl this)
-    pure this
-
-initFields_ :: AnimationFactorySpriteScaleUtil -> IO ()
-initFields_ this = do
-    jset this.imageCache =<< (ImageCacheFactory.getInstance)
-    jset this.imageScaleUtil =<< (ImageScaleUtil.getInstance)
-    jset this.openGLUtil =<< (OpenGLUtil.getInstance)
-    jset this.j2seMath =<< (J2SEMath.getInstance)
-    jset this.openGLESImageExclusionUtil =<< (OpenGLESImageExclusionUtil.getInstance)
-    pure ()
-
-new_ :: IO AnimationFactorySpriteScaleUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AnimationFactorySpriteScaleUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Image.ImageCacheFactory as ImageCacheFactory
+import Org.Allbinary.Media.Image.ImageScaleUtil as ImageScaleUtil
+import Org.Allbinary.Logic.Math.J2SEMath as J2SEMath
+import Org.Allbinary.Image.Opengles.OpenGLESImageExclusionUtil as OpenGLESImageExclusionUtil
+import Org.Allbinary.Graphics.Opengles.OpenGLUtil as OpenGLUtil
+import Org.Allbinary.Game.Layer.SpriteFactory as SpriteFactory
 
 
-getInstance :: IO (AnimationFactorySpriteScaleUtil)
-getInstance = do
-        pure (AnimationFactorySpriteScaleUtil.instance_)
+jclass : String
+jclass =
+    "AnimationFactorySpriteScaleUtil"
 
 
--- throws Exception
-createImage :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> Int -> Int -> Int -> IO (Sprite.Sprite)
-createImage object_ a1 a2 a3 a4 a5 = jmethod object_ "createImage" (\() -> (createImage_impl (javaCast object_ :: AnimationFactorySpriteScaleUtil))) () a1 a2 a3 a4 a5
+jchain : List String
+jchain =
+    [ "AnimationFactorySpriteScaleUtil" ]
 
-createImage_super :: (JavaObjectClass this_) => this_ -> Image.Image -> Int -> Int -> Int -> Int -> IO (Sprite.Sprite)
-createImage_super object_ a1 a2 a3 a4 a5 = (createImage_impl (javaCast object_ :: AnimationFactorySpriteScaleUtil)) a1 a2 a3 a4 a5
 
-createImage_impl :: AnimationFactorySpriteScaleUtil -> Image.Image -> Int -> Int -> Int -> Int -> IO (Sprite.Sprite)
-createImage_impl this image width height scaleWidth scaleHeight = do
-        spriteFactory <- (SpriteFactory.getInstance)
-        sprite <- newIORef (javaNull)
-        scaledImage <- newIORef (javaNull)
-        if ((scaleWidth /= 0) && (scaleHeight /= 0)) then do
-            scaleX <- newIORef ((((Prelude.fromIntegral scaleWidth)) / ((Prelude.fromIntegral width))) :: Float)
-            scaleY <- newIORef ((((Prelude.fromIntegral scaleHeight)) / ((Prelude.fromIntegral height))) :: Float)
-            if (((((jget scaleX) == 1.0) && ((jget scaleY) == 1.0))) || ((((jget scaleX) == 0.0) || ((jget scaleY) == 0.0)))) then do
-                assignedValue <- (OpenGLUtil.addImage ((jget (this).openGLUtil)) image)
-                jset scaledImage (assignedValue)
-                assignedValue <- (SpriteFactory.createSprite spriteFactory (jget scaledImage) width height)
-                jset sprite (assignedValue)
-            else do
-                when (jio (OpenGLESImageExclusionUtil.isCustomScaling ((jget (this).openGLESImageExclusionUtil)) image)) $ do
-                    width2 <- (J2SEMath.round ((jget (this).j2seMath)) ((Prelude.fromIntegral (scaleWidth)) - 0.5))
-                    height2 <- (J2SEMath.round ((jget (this).j2seMath)) ((Prelude.fromIntegral (scaleHeight)) - 0.5))
-                    let multiplesOf16Width = (width2 `quot` 16)
-                    let by16Width = (multiplesOf16Width * 16)
-                    jset scaleX ((((Prelude.fromIntegral by16Width)) / (Prelude.fromIntegral width)))
-                    let multiplesOf16Height = (height2 `quot` 16)
-                    let by16Height = (multiplesOf16Height * 16)
-                    jset scaleY ((((Prelude.fromIntegral by16Height)) / (Prelude.fromIntegral height)))
-                    when (scaleWidth < width) $ do
-                        jset scaleX (((jget scaleX) * 2.35))
-                    when (scaleHeight < height) $ do
-                        jset scaleY (((jget scaleY) * 2.35))
-                assignedValue <- (ImageScaleUtil.createImage2 ((jget (this).imageScaleUtil)) (jget (this).imageCache) image (jget scaleX) (1.0) (jget scaleY) (1.0) True)
-                jset scaledImage (assignedValue)
-                assignedValue <- (SpriteFactory.createSprite spriteFactory (jget scaledImage) (Prelude.truncate (((Prelude.fromIntegral width) * (jget scaleX)))) (Prelude.truncate (((Prelude.fromIntegral height) * (jget scaleY)))))
-                jset sprite (assignedValue)
-        else do
-            assignedValue <- (OpenGLUtil.addImage ((jget (this).openGLUtil)) image)
-            jset scaledImage (assignedValue)
-            assignedValue <- (SpriteFactory.createSprite spriteFactory (jget scaledImage) width height)
-            jset sprite (assignedValue)
-        pure ((jget sprite))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "imageCache", JR.defaultOf "" ), ( "imageScaleUtil", JR.defaultOf "" ), ( "openGLUtil", JR.defaultOf "" ), ( "j2seMath", JR.defaultOf "" ), ( "openGLESImageExclusionUtil", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "createImage_5", jm_createImage_5 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AnimationFactorySpriteScaleUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_createImage_5", jm_createImage_5 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AnimationFactorySpriteScaleUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "imageCache" "" JR.this (JR.callStatic ImageCacheFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "imageScaleUtil" "" JR.this (JR.callStatic ImageScaleUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "openGLUtil" "" JR.this (JR.callStatic OpenGLUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "j2seMath" "" JR.this (JR.callStatic J2SEMath.jm_getInstance_0 [])),
+                JR.exec (JR.setField "openGLESImageExclusionUtil" "" JR.this (JR.callStatic OpenGLESImageExclusionUtil.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImage_5 : JR.Method
+jm_createImage_5 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "width", "I" ), ( "height", "I" ), ( "scaleWidth", "I" ), ( "scaleHeight", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "spriteFactory" "" (JR.callStatic SpriteFactory.jm_getInstance_0 []), 
+                    JR.declare "sprite" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "scaledImage" "" (JR.lit (JR.defaultOf "")), 
+                    JR.ifElse (JR.and (JR.map2 JR.notEquals (JR.local "scaleWidth") (JR.int 0)) (JR.map2 JR.notEquals (JR.local "scaleHeight") (JR.int 0))) (JR.run [ 
+                        JR.declare "scaleX" "F" (JR.map2 JR.div ((JR.cast "F" (JR.local "scaleWidth"))) ((JR.cast "F" (JR.local "width")))), 
+                        JR.declare "scaleY" "F" (JR.map2 JR.div ((JR.cast "F" (JR.local "scaleHeight"))) ((JR.cast "F" (JR.local "height")))), 
+                        JR.ifElse (JR.or ((JR.and (JR.map2 JR.equals (JR.local "scaleX") (JR.float 1.0)) (JR.map2 JR.equals (JR.local "scaleY") (JR.float 1.0)))) ((JR.or (JR.map2 JR.equals (JR.local "scaleX") (JR.float 0.0)) (JR.map2 JR.equals (JR.local "scaleY") (JR.float 0.0))))) (JR.run [ 
+                            JR.exec (JR.setLocal "scaledImage" "" (JR.invoke "addImage_1" (JR.thisField "openGLUtil") [ (JR.local "image") ])), 
+                            JR.exec (JR.setLocal "sprite" "" (JR.invoke "createSprite_3" (JR.local "spriteFactory") [ (JR.local "scaledImage"), (JR.local "width"), (JR.local "height") ])) ]) (JR.run [ 
+                            JR.ifElse (JR.invoke "isCustomScaling_1" (JR.thisField "openGLESImageExclusionUtil") [ (JR.local "image") ]) (JR.run [ 
+                                JR.declare "width2" "I" (JR.invoke "round_1" (JR.thisField "j2seMath") [ (JR.map2 JR.sub (JR.cast "F" ((JR.local "scaleWidth"))) (JR.float 0.5)) ]), 
+                                JR.declare "height2" "I" (JR.invoke "round_1" (JR.thisField "j2seMath") [ (JR.map2 JR.sub (JR.cast "F" ((JR.local "scaleHeight"))) (JR.float 0.5)) ]), 
+                                JR.declare "multiplesOf16Width" "I" (JR.map2 JR.div (JR.local "width2") (JR.int 16)), 
+                                JR.declare "by16Width" "I" (JR.map2 JR.mul (JR.local "multiplesOf16Width") (JR.int 16)), 
+                                JR.exec (JR.setLocal "scaleX" "F" (JR.map2 JR.div ((JR.cast "F" (JR.local "by16Width"))) (JR.cast "F" (JR.local "width")))), 
+                                JR.declare "multiplesOf16Height" "I" (JR.map2 JR.div (JR.local "height2") (JR.int 16)), 
+                                JR.declare "by16Height" "I" (JR.map2 JR.mul (JR.local "multiplesOf16Height") (JR.int 16)), 
+                                JR.exec (JR.setLocal "scaleY" "F" (JR.map2 JR.div ((JR.cast "F" (JR.local "by16Height"))) (JR.cast "F" (JR.local "height")))), 
+                                JR.ifElse (JR.map2 JR.less (JR.local "scaleWidth") (JR.local "width")) (JR.run [ 
+                                    JR.exec (JR.setLocal "scaleX" "F" (JR.map2 JR.mul (JR.local "scaleX") (JR.float 2.35))) ]) identity, 
+                                JR.ifElse (JR.map2 JR.less (JR.local "scaleHeight") (JR.local "height")) (JR.run [ 
+                                    JR.exec (JR.setLocal "scaleY" "F" (JR.map2 JR.mul (JR.local "scaleY") (JR.float 2.35))) ]) identity ]) identity, 
+                            JR.exec (JR.setLocal "scaledImage" "" (JR.invoke "createImage2_7" (JR.thisField "imageScaleUtil") [ (JR.thisField "imageCache"), (JR.local "image"), (JR.local "scaleX"), (JR.float 1.0), (JR.local "scaleY"), (JR.float 1.0), (JR.bool True) ])), 
+                            JR.exec (JR.setLocal "sprite" "" (JR.invoke "createSprite_3" (JR.local "spriteFactory") [ (JR.local "scaledImage"), (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.local "width")) (JR.local "scaleX")))), (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.local "height")) (JR.local "scaleY")))) ])) ]) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "scaledImage" "" (JR.invoke "addImage_1" (JR.thisField "openGLUtil") [ (JR.local "image") ])), 
+                        JR.exec (JR.setLocal "sprite" "" (JR.invoke "createSprite_3" (JR.local "spriteFactory") [ (JR.local "scaledImage"), (JR.local "width"), (JR.local "height") ])) ]), 
+                    JR.return (JR.local "sprite") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

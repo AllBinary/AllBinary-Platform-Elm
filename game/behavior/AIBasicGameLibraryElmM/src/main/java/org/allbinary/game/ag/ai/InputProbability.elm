@@ -1,166 +1,141 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
-module InputProbability where
+module Org.Allbinary.Game.Ag.Ai.InputProbability exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai
+-}
 
-data InputProbability = InputProbability
-    { header_ :: JavaHeader
-    , likelyhoodIntegerArray :: IORef (JavaArray (JavaArray (Int)))
-    , repeatLikelyhoodIntegerArray :: IORef (JavaArray (Int))
-    , max :: IORef (Int)
-    , timeDelayHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    }
-
-instance JavaNull InputProbability where
-    javaNull = javaNullRecord "InputProbability"
-
-instance JavaEquals InputProbability where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InputProbability where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InputProbability where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE iNPUT_PROBABILITY #-}
-iNPUT_PROBABILITY = unsafePerformIO ((SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 0) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO InputProbability
-newRecord_ = do
-    header_ <- newJavaHeader
-    likelyhoodIntegerArray <- newIORef javaNull
-    repeatLikelyhoodIntegerArray <- newIORef javaNull
-    max <- newIORef 0
-    timeDelayHelper <- newIORef javaNull
-    let this = InputProbability header_ likelyhoodIntegerArray repeatLikelyhoodIntegerArray max timeDelayHelper
-    jregisterLevel header_ this
-    jregisterMethod header_ "getLikelyhoodIntegerArray" (\() -> getLikelyhoodIntegerArray_impl this)
-    jregisterMethod header_ "getRepeatLikelyhoodIntegerArray" (\() -> getRepeatLikelyhoodIntegerArray_impl this)
-    jregisterMethod header_ "getMax" (\() -> getMax_impl this)
-    jregisterMethod header_ "getTimeDelayHelper" (\() -> getTimeDelayHelper_impl this)
-    jregisterMethod header_ "toHashtable" (\() -> toHashtable_impl this)
-    pure this
-
-initFields_ :: InputProbability -> IO ()
-initFields_ this = do
-    jset this.likelyhoodIntegerArray (javaNull)
-    jset this.repeatLikelyhoodIntegerArray (javaNull)
-    jset this.max (0)
-    jset this.timeDelayHelper (javaNull)
-    pure ()
-
-new_4 :: JavaArray (JavaArray (Int)) -> JavaArray (Int) -> Int -> TimeDelayHelper.TimeDelayHelper -> IO InputProbability
-new_4 likelyhoodIntegerArray repeatLikelyhoodIntegerArray max timeDelayHelper = do
-    this <- newRecord_
-    init_4 this likelyhoodIntegerArray repeatLikelyhoodIntegerArray max timeDelayHelper
-    pure this
-
-init_4 :: InputProbability -> JavaArray (JavaArray (Int)) -> JavaArray (Int) -> Int -> TimeDelayHelper.TimeDelayHelper -> IO ()
-init_4 this likelyhoodIntegerArray repeatLikelyhoodIntegerArray max timeDelayHelper = do
-        initFields_ this
-        jset (this).likelyhoodIntegerArray (likelyhoodIntegerArray)
-        jset (this).repeatLikelyhoodIntegerArray (repeatLikelyhoodIntegerArray)
-        jset (this).max (max)
-        jset (this).timeDelayHelper (timeDelayHelper)
-        pure ()
+import JR
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.StdUtil as StdUtil
 
 
-getLikelyhoodIntegerArray :: (JavaObjectClass this_) => this_ -> IO (JavaArray (JavaArray (Int)))
-getLikelyhoodIntegerArray object_ = jmethod object_ "getLikelyhoodIntegerArray" (\() -> (getLikelyhoodIntegerArray_impl (javaCast object_ :: InputProbability))) ()
-
-getLikelyhoodIntegerArray_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (JavaArray (Int)))
-getLikelyhoodIntegerArray_super object_ = (getLikelyhoodIntegerArray_impl (javaCast object_ :: InputProbability))
-
-getLikelyhoodIntegerArray_impl :: InputProbability -> IO (JavaArray (JavaArray (Int)))
-getLikelyhoodIntegerArray_impl this = do
-        pure ((jget (this).likelyhoodIntegerArray))
+jclass : String
+jclass =
+    "InputProbability"
 
 
-getRepeatLikelyhoodIntegerArray :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getRepeatLikelyhoodIntegerArray object_ = jmethod object_ "getRepeatLikelyhoodIntegerArray" (\() -> (getRepeatLikelyhoodIntegerArray_impl (javaCast object_ :: InputProbability))) ()
-
-getRepeatLikelyhoodIntegerArray_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getRepeatLikelyhoodIntegerArray_super object_ = (getRepeatLikelyhoodIntegerArray_impl (javaCast object_ :: InputProbability))
-
-getRepeatLikelyhoodIntegerArray_impl :: InputProbability -> IO (JavaArray (Int))
-getRepeatLikelyhoodIntegerArray_impl this = do
-        pure ((jget (this).repeatLikelyhoodIntegerArray))
+jchain : List String
+jchain =
+    [ "InputProbability" ]
 
 
-getMax :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMax object_ = jmethod object_ "getMax" (\() -> (getMax_impl (javaCast object_ :: InputProbability))) ()
-
-getMax_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMax_super object_ = (getMax_impl (javaCast object_ :: InputProbability))
-
-getMax_impl :: InputProbability -> IO (Int)
-getMax_impl this = do
-        pure ((jget (this).max))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "likelyhoodIntegerArray", JR.defaultOf "" ), ( "repeatLikelyhoodIntegerArray", JR.defaultOf "" ), ( "max", JR.defaultOf "I" ), ( "timeDelayHelper", JR.defaultOf "" ) ]
 
 
-getTimeDelayHelper :: (JavaObjectClass this_) => this_ -> IO (TimeDelayHelper.TimeDelayHelper)
-getTimeDelayHelper object_ = jmethod object_ "getTimeDelayHelper" (\() -> (getTimeDelayHelper_impl (javaCast object_ :: InputProbability))) ()
+jvtable =
+    JR.vtable
+        [ ( "getLikelyhoodIntegerArray_0", jm_getLikelyhoodIntegerArray_0 )
+        , ( "getRepeatLikelyhoodIntegerArray_0", jm_getRepeatLikelyhoodIntegerArray_0 )
+        , ( "getMax_0", jm_getMax_0 )
+        , ( "getTimeDelayHelper_0", jm_getTimeDelayHelper_0 )
+        , ( "toHashtable_0", jm_toHashtable_0 ) ]
+        JR.noMethods
 
-getTimeDelayHelper_super :: (JavaObjectClass this_) => this_ -> IO (TimeDelayHelper.TimeDelayHelper)
-getTimeDelayHelper_super object_ = (getTimeDelayHelper_impl (javaCast object_ :: InputProbability))
 
-getTimeDelayHelper_impl :: InputProbability -> IO (TimeDelayHelper.TimeDelayHelper)
-getTimeDelayHelper_impl this = do
-        pure ((jget (this).timeDelayHelper))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InputProbability"
+        [ ( "jm_getLikelyhoodIntegerArray_0", jm_getLikelyhoodIntegerArray_0 ), ( "jm_getRepeatLikelyhoodIntegerArray_0", jm_getRepeatLikelyhoodIntegerArray_0 ), ( "jm_getMax_0", jm_getMax_0 ), ( "jm_getTimeDelayHelper_0", jm_getTimeDelayHelper_0 ), ( "jm_toHashtable_0", jm_toHashtable_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        [ ( "jstatic_INPUT_PROBABILITY", jstatic_INPUT_PROBABILITY ) ]
+        jheap
 
 
-toHashtable :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-toHashtable object_ = jmethod object_ "toHashtable" (\() -> (toHashtable_impl (javaCast object_ :: InputProbability))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-toHashtable_super :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-toHashtable_super object_ = (toHashtable_impl (javaCast object_ :: InputProbability))
 
-toHashtable_impl :: InputProbability -> IO (ABHashtable.ABHashtable)
-toHashtable_impl this = do
-        hashtable <- (StdUtil.createHashtable ((jio (StdUtil.getInstance))))
-        Control.Monad.void (ABHashtable.put hashtable (jget InputProbability.iNPUT_PROBABILITY) this)
-        pure (hashtable)
+jstatic_INPUT_PROBABILITY : JR.M
+jstatic_INPUT_PROBABILITY s =
+    JR.static "InputProbability" jclinit "INPUT_PROBABILITY"
+        (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 0) ])
+        s
 
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "likelyhoodIntegerArray", "" ), ( "repeatLikelyhoodIntegerArray", "" ), ( "max", "I" ), ( "timeDelayHelper", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "likelyhoodIntegerArray" "" JR.this (JR.local "likelyhoodIntegerArray")), 
+                    JR.exec (JR.setField "repeatLikelyhoodIntegerArray" "" JR.this (JR.local "repeatLikelyhoodIntegerArray")), 
+                    JR.exec (JR.setField "max" "I" JR.this (JR.local "max")), 
+                    JR.exec (JR.setField "timeDelayHelper" "" JR.this (JR.local "timeDelayHelper")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_getLikelyhoodIntegerArray_0 : JR.Method
+jm_getLikelyhoodIntegerArray_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "likelyhoodIntegerArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRepeatLikelyhoodIntegerArray_0 : JR.Method
+jm_getRepeatLikelyhoodIntegerArray_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "repeatLikelyhoodIntegerArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMax_0 : JR.Method
+jm_getMax_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "max") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTimeDelayHelper_0 : JR.Method
+jm_getTimeDelayHelper_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "timeDelayHelper") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toHashtable_0 : JR.Method
+jm_toHashtable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "hashtable" "" (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) []), 
+                    JR.exec (JR.invoke "put_2" (JR.local "hashtable") [ jstatic_INPUT_PROBABILITY, JR.this ]), 
+                    JR.return (JR.local "hashtable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

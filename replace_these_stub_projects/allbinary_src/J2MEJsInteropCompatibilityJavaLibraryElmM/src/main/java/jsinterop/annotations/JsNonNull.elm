@@ -1,4 +1,4 @@
-module JsNonNull exposing (..)
+module Jsinterop.Annotations.JsNonNull exposing (..)
 
 {-| Generated Code Do Not Modify package jsinterop.annotations
 -}

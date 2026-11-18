@@ -1,172 +1,152 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable
-module GameTickDisplayInfoSingleton where
+module Org.Allbinary.Graphics.Displayable.GameTickDisplayInfoSingleton exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DisplayInfoSingleton -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.graphics.displayable
+-}
 
-data GameTickDisplayInfoSingleton = GameTickDisplayInfoSingleton
-    { header_ :: JavaHeader
-    , displayInfoSingleton :: IORef (DisplayInfoSingleton.DisplayInfoSingleton)
-    , lastWidth :: IORef (Int)
-    , lastHeight :: IORef (Int)
-    , lastHalfWidth :: IORef (Int)
-    , lastHalfHeight :: IORef (Int)
-    }
-
-instance JavaNull GameTickDisplayInfoSingleton where
-    javaNull = javaNullRecord "GameTickDisplayInfoSingleton"
-
-instance JavaEquals GameTickDisplayInfoSingleton where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameTickDisplayInfoSingleton where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameTickDisplayInfoSingleton where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameTickDisplayInfoSingleton
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameTickDisplayInfoSingleton
-newRecord_ = do
-    header_ <- newJavaHeader
-    displayInfoSingleton <- newIORef javaNull
-    lastWidth <- newIORef 0
-    lastHeight <- newIORef 0
-    lastHalfWidth <- newIORef 0
-    lastHalfHeight <- newIORef 0
-    let this = GameTickDisplayInfoSingleton header_ displayInfoSingleton lastWidth lastHeight lastHalfWidth lastHalfHeight
-    jregisterLevel header_ this
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "getLastWidth" (\() -> getLastWidth_impl this)
-    jregisterMethod header_ "getLastHeight" (\() -> getLastHeight_impl this)
-    jregisterMethod header_ "getLastHalfWidth" (\() -> getLastHalfWidth_impl this)
-    jregisterMethod header_ "getLastHalfHeight" (\() -> getLastHalfHeight_impl this)
-    pure this
-
-initFields_ :: GameTickDisplayInfoSingleton -> IO ()
-initFields_ this = do
-    jset this.displayInfoSingleton =<< (DisplayInfoSingleton.getInstance)
-    jset this.lastWidth =<< (DisplayInfoSingleton.getLastWidth ((jget (this).displayInfoSingleton)))
-    jset this.lastHeight =<< (DisplayInfoSingleton.getLastHeight ((jget (this).displayInfoSingleton)))
-    jset this.lastHalfWidth =<< (DisplayInfoSingleton.getLastHalfWidth ((jget (this).displayInfoSingleton)))
-    jset this.lastHalfHeight =<< (DisplayInfoSingleton.getLastHalfHeight ((jget (this).displayInfoSingleton)))
-    pure ()
-
-new_ :: IO GameTickDisplayInfoSingleton
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameTickDisplayInfoSingleton -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
 
 
-getInstance :: IO (GameTickDisplayInfoSingleton)
-getInstance = do
-        pure (GameTickDisplayInfoSingleton.instance_)
+jclass : String
+jclass =
+    "GameTickDisplayInfoSingleton"
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: GameTickDisplayInfoSingleton))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: GameTickDisplayInfoSingleton))
-
-update_impl :: GameTickDisplayInfoSingleton -> IO (())
-update_impl this = do
-        assignedValue <- (DisplayInfoSingleton.getLastWidth ((jget (this).displayInfoSingleton)))
-        jset (this).lastWidth (assignedValue)
-        assignedValue <- (DisplayInfoSingleton.getLastHeight ((jget (this).displayInfoSingleton)))
-        jset (this).lastHeight (assignedValue)
-        assignedValue <- (DisplayInfoSingleton.getLastHalfWidth ((jget (this).displayInfoSingleton)))
-        jset (this).lastHalfWidth (assignedValue)
-        assignedValue <- (DisplayInfoSingleton.getLastHalfHeight ((jget (this).displayInfoSingleton)))
-        jset (this).lastHalfHeight (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "GameTickDisplayInfoSingleton" ]
 
 
-getLastWidth :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastWidth object_ = jmethod object_ "getLastWidth" (\() -> (getLastWidth_impl (javaCast object_ :: GameTickDisplayInfoSingleton))) ()
-
-getLastWidth_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastWidth_super object_ = (getLastWidth_impl (javaCast object_ :: GameTickDisplayInfoSingleton))
-
-getLastWidth_impl :: GameTickDisplayInfoSingleton -> IO (Int)
-getLastWidth_impl this = do
-        pure ((jget (this).lastWidth))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "displayInfoSingleton", JR.defaultOf "" ), ( "lastWidth", JR.defaultOf "I" ), ( "lastHeight", JR.defaultOf "I" ), ( "lastHalfWidth", JR.defaultOf "I" ), ( "lastHalfHeight", JR.defaultOf "I" ) ]
 
 
-getLastHeight :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastHeight object_ = jmethod object_ "getLastHeight" (\() -> (getLastHeight_impl (javaCast object_ :: GameTickDisplayInfoSingleton))) ()
-
-getLastHeight_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastHeight_super object_ = (getLastHeight_impl (javaCast object_ :: GameTickDisplayInfoSingleton))
-
-getLastHeight_impl :: GameTickDisplayInfoSingleton -> IO (Int)
-getLastHeight_impl this = do
-        pure ((jget (this).lastHeight))
-
-
-getLastHalfWidth :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastHalfWidth object_ = jmethod object_ "getLastHalfWidth" (\() -> (getLastHalfWidth_impl (javaCast object_ :: GameTickDisplayInfoSingleton))) ()
-
-getLastHalfWidth_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastHalfWidth_super object_ = (getLastHalfWidth_impl (javaCast object_ :: GameTickDisplayInfoSingleton))
-
-getLastHalfWidth_impl :: GameTickDisplayInfoSingleton -> IO (Int)
-getLastHalfWidth_impl this = do
-        pure ((jget (this).lastHalfWidth))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "update_0", jm_update_0 )
+        , ( "getLastWidth_0", jm_getLastWidth_0 )
+        , ( "getLastHeight_0", jm_getLastHeight_0 )
+        , ( "getLastHalfWidth_0", jm_getLastHalfWidth_0 )
+        , ( "getLastHalfHeight_0", jm_getLastHalfHeight_0 ) ]
+        JR.noMethods
 
 
-getLastHalfHeight :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastHalfHeight object_ = jmethod object_ "getLastHalfHeight" (\() -> (getLastHalfHeight_impl (javaCast object_ :: GameTickDisplayInfoSingleton))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameTickDisplayInfoSingleton"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_update_0", jm_update_0 ), ( "jm_getLastWidth_0", jm_getLastWidth_0 ), ( "jm_getLastHeight_0", jm_getLastHeight_0 ), ( "jm_getLastHalfWidth_0", jm_getLastHalfWidth_0 ), ( "jm_getLastHalfHeight_0", jm_getLastHalfHeight_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
-getLastHalfHeight_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastHalfHeight_super object_ = (getLastHalfHeight_impl (javaCast object_ :: GameTickDisplayInfoSingleton))
 
-getLastHalfHeight_impl :: GameTickDisplayInfoSingleton -> IO (Int)
-getLastHalfHeight_impl this = do
-        pure ((jget (this).lastHalfHeight))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameTickDisplayInfoSingleton" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "displayInfoSingleton" "" JR.this (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 [])),
+                JR.exec (JR.setField "lastWidth" "I" JR.this (JR.invoke "getLastWidth_0" (JR.thisField "displayInfoSingleton") [])),
+                JR.exec (JR.setField "lastHeight" "I" JR.this (JR.invoke "getLastHeight_0" (JR.thisField "displayInfoSingleton") [])),
+                JR.exec (JR.setField "lastHalfWidth" "I" JR.this (JR.invoke "getLastHalfWidth_0" (JR.thisField "displayInfoSingleton") [])),
+                JR.exec (JR.setField "lastHalfHeight" "I" JR.this (JR.invoke "getLastHalfHeight_0" (JR.thisField "displayInfoSingleton") [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "lastWidth" "I" JR.this (JR.invoke "getLastWidth_0" (JR.thisField "displayInfoSingleton") [])), 
+                    JR.exec (JR.setField "lastHeight" "I" JR.this (JR.invoke "getLastHeight_0" (JR.thisField "displayInfoSingleton") [])), 
+                    JR.exec (JR.setField "lastHalfWidth" "I" JR.this (JR.invoke "getLastHalfWidth_0" (JR.thisField "displayInfoSingleton") [])), 
+                    JR.exec (JR.setField "lastHalfHeight" "I" JR.this (JR.invoke "getLastHalfHeight_0" (JR.thisField "displayInfoSingleton") [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLastWidth_0 : JR.Method
+jm_getLastWidth_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "lastWidth") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLastHeight_0 : JR.Method
+jm_getLastHeight_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "lastHeight") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLastHalfWidth_0 : JR.Method
+jm_getLastHalfWidth_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "lastHalfWidth") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLastHalfHeight_0 : JR.Method
+jm_getLastHalfHeight_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "lastHalfHeight") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

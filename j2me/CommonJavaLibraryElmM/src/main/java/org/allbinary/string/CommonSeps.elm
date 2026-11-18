@@ -1,10 +1,10 @@
-module CommonSeps exposing (..)
+module Org.Allbinary.String.CommonSeps exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.string
 -}
 
 import JR
-import StringMaker
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

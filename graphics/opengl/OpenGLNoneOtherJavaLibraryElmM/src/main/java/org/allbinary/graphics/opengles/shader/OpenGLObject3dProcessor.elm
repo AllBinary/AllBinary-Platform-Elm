@@ -1,99 +1,92 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles.shader
-module OpenGLObject3dProcessor where
+module Org.Allbinary.Graphics.Opengles.Shader.OpenGLObject3dProcessor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified GL10 -- javax.microedition.khronos.opengles.GL10
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.graphics.opengles.shader
+-}
 
-data OpenGLObject3dProcessor = OpenGLObject3dProcessor
-    { header_ :: JavaHeader
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    }
-
-instance JavaNull OpenGLObject3dProcessor where
-    javaNull = javaNullRecord "OpenGLObject3dProcessor"
-
-instance JavaEquals OpenGLObject3dProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLObject3dProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLObject3dProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OpenGLObject3dProcessor
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonStrings <- newIORef javaNull
-    let this = OpenGLObject3dProcessor header_ commonStrings
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "process_3" (\() -> process_3_impl this)
-    pure this
-
-initFields_ :: OpenGLObject3dProcessor -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    pure ()
-
-new_ :: IO OpenGLObject3dProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLObject3dProcessor -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
 
 
-process :: (JavaObjectClass this_, JavaObjectClass o2) => this_ -> GL10.GL10 -> o2 -> IO (())
-process object_ a1 a2 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: OpenGLObject3dProcessor))) () a1 (jtoObject a2)
-
-process_super :: (JavaObjectClass this_, JavaObjectClass o2) => this_ -> GL10.GL10 -> o2 -> IO (())
-process_super object_ a1 a2 = (process_impl (javaCast object_ :: OpenGLObject3dProcessor)) a1 (jtoObject a2)
-
-process_impl :: OpenGLObject3dProcessor -> GL10.GL10 -> JavaObject -> IO (())
-process_impl this gl object3dObject_ = do
-        let object3d = jtoObject object3dObject_
-        pure ()
+jclass : String
+jclass =
+    "OpenGLObject3dProcessor"
 
 
-process_3 :: (JavaObjectClass this_, JavaObjectClass o2) => this_ -> GL10.GL10 -> o2 -> Int -> IO (())
-process_3 object_ a1 a2 a3 = jmethod object_ "process_3" (\() -> (process_3_impl (javaCast object_ :: OpenGLObject3dProcessor))) () a1 (jtoObject a2) a3
+jchain : List String
+jchain =
+    [ "OpenGLObject3dProcessor" ]
 
-process_3_super :: (JavaObjectClass this_, JavaObjectClass o2) => this_ -> GL10.GL10 -> o2 -> Int -> IO (())
-process_3_super object_ a1 a2 a3 = (process_3_impl (javaCast object_ :: OpenGLObject3dProcessor)) a1 (jtoObject a2) a3
 
-process_3_impl :: OpenGLObject3dProcessor -> GL10.GL10 -> JavaObject -> Int -> IO (())
-process_3_impl this gl object3dObject_ index = do
-        let object3d = jtoObject object3dObject_
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonStrings", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "process_2", jm_process_2 )
+        , ( "process_3", jm_process_3 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLObject3dProcessor"
+        [ ( "jm_process_2", jm_process_2 ), ( "jm_process_3", jm_process_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_process_2 : JR.Method
+jm_process_2 jheap jthis jargs =
+    JR.method [ ( "gl", "" ), ( "object3d", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_3 : JR.Method
+jm_process_3 jheap jthis jargs =
+    JR.method [ ( "gl", "" ), ( "object3d", "" ), ( "index", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

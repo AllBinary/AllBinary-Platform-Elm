@@ -1,103 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module DemoCanvasProgressUtil where
+module Org.Allbinary.Game.Displayable.Canvas.DemoCanvasProgressUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DemoCanvas -- same package or java.lang
-import qualified ProgressCanvas -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvas
-import qualified ProgressCanvasFactory -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
-import qualified PaintableComposite -- org.allbinary.graphics.paint.PaintableComposite
-import qualified PaintableInterface -- org.allbinary.graphics.paint.PaintableInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data DemoCanvasProgressUtil = DemoCanvasProgressUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull DemoCanvasProgressUtil where
-    javaNull = javaNullRecord "DemoCanvasProgressUtil"
-
-instance JavaEquals DemoCanvasProgressUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DemoCanvasProgressUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DemoCanvasProgressUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DemoCanvasProgressUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = DemoCanvasProgressUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: DemoCanvasProgressUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO DemoCanvasProgressUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DemoCanvasProgressUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Paint.PaintableComposite as PaintableComposite
+import Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressCanvasFactory as ProgressCanvasFactory
 
 
-showProgress :: DemoCanvas.DemoCanvas -> IO (())
-showProgress demoCanvas = do
-        Control.Monad.void (DemoCanvasProgressUtil.showProgressOptionallyInTheBackground demoCanvas False)
-        pure ()
+jclass : String
+jclass =
+    "DemoCanvasProgressUtil"
 
 
-showProgressOptionallyInTheBackground :: DemoCanvas.DemoCanvas -> Bool -> IO (())
-showProgressOptionallyInTheBackground demoCanvas background = do
-        progressCanvas <- (ProgressCanvasFactory.getInstance)
-        Control.Monad.void (ProgressCanvas.startBackground progressCanvas background)
-        let paintableArray = (jnewArray (2) javaNull)
-        jsetIndex paintableArray (0) ((javaCast progressCanvas :: PaintableInterface.PaintableInterface))
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: PaintableInterface.PaintableInterface) (DemoCanvas.getDefaultPaintableInterface demoCanvas))
-        jsetIndex paintableArray (1) (assignedValue)
-        Control.Monad.void (DemoCanvas.setDefaultPaintableInterface demoCanvas (javaCast (jio (PaintableComposite.new_1 paintableArray))))
-        Control.Monad.void (DemoCanvas.setPaintableInterface demoCanvas (javaCast (jio (DemoCanvas.getDefaultPaintableInterface demoCanvas))))
-        pure ()
+jchain : List String
+jchain =
+    [ "DemoCanvasProgressUtil" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "showProgress_1", jm_showProgress_1 )
+        , ( "showProgressOptionallyInTheBackground_2", jm_showProgressOptionallyInTheBackground_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DemoCanvasProgressUtil"
+        [ ( "jm_showProgress_1", jm_showProgress_1 ), ( "jm_showProgressOptionallyInTheBackground_2", jm_showProgressOptionallyInTheBackground_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_showProgress_1 : JR.Method
+jm_showProgress_1 jheap jthis jargs =
+    JR.method [ ( "demoCanvas", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic jm_showProgressOptionallyInTheBackground_2 [ (JR.local "demoCanvas"), (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_showProgressOptionallyInTheBackground_2 : JR.Method
+jm_showProgressOptionallyInTheBackground_2 jheap jthis jargs =
+    JR.method [ ( "demoCanvas", "" ), ( "background", "Z" ) ] ""
+        (JR.run [ 
+                    JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "startBackground_1" (JR.local "progressCanvas") [ (JR.local "background") ]), 
+                    JR.declare "paintableArray" "" (JR.newArray "" [ (JR.int 2) ]), 
+                    JR.exec (JR.andThen (JR.local "paintableArray") (\jaN74375 -> JR.andThen (JR.int 0) (\jiN74375 -> (JR.aset (JR.lit jaN74375) (JR.lit jiN74375) (JR.local "progressCanvas"))))), 
+                    JR.exec (JR.andThen (JR.local "paintableArray") (\jaN74408 -> JR.andThen (JR.int 1) (\jiN74408 -> (JR.aset (JR.lit jaN74408) (JR.lit jiN74408) (JR.invoke "getDefaultPaintableInterface_0" (JR.local "demoCanvas") []))))), 
+                    JR.exec (JR.invoke "setDefaultPaintableInterface_1" (JR.local "demoCanvas") [ (JR.new PaintableComposite.jnew_1 [ (JR.local "paintableArray") ]) ]), 
+                    JR.exec (JR.invoke "setPaintableInterface_1" (JR.local "demoCanvas") [ (JR.invoke "getDefaultPaintableInterface_0" (JR.local "demoCanvas") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

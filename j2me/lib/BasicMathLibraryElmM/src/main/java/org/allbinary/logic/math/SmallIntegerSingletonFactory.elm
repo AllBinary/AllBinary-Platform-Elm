@@ -1,13 +1,13 @@
-module SmallIntegerSingletonFactory exposing (..)
+module Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.math
 -}
 
 import JR
-import AndroidUtil
-import J2MEUtil
-import LogUtil
-import StringMaker
+import Org.Allbinary.AndroidUtil as AndroidUtil
+import Org.Allbinary.J2MEUtil as J2MEUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

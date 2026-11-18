@@ -1,120 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
-module PickedUpLayerTypeFactory where
+module Org.Allbinary.Game.Layer.Pickup.PickedUpLayerTypeFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified PickedUpLayerType -- same package or java.lang
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.pickup
+-}
 
-data PickedUpLayerTypeFactory = PickedUpLayerTypeFactory
-    { header_ :: JavaHeader
-    , nONE :: IORef (PickedUpLayerType.PickedUpLayerType)
-    , bEAM :: IORef (PickedUpLayerType.PickedUpLayerType)
-    , mINE :: IORef (PickedUpLayerType.PickedUpLayerType)
-    , pROJECTILE :: IORef (PickedUpLayerType.PickedUpLayerType)
-    , eNHANCEMENT :: IORef (PickedUpLayerType.PickedUpLayerType)
-    , mORPH :: IORef (PickedUpLayerType.PickedUpLayerType)
-    , pART :: IORef (PickedUpLayerType.PickedUpLayerType)
-    , hEAL :: IORef (PickedUpLayerType.PickedUpLayerType)
-    , lIFE :: IORef (PickedUpLayerType.PickedUpLayerType)
-    , pOINTS :: IORef (PickedUpLayerType.PickedUpLayerType)
-    }
-
-instance JavaNull PickedUpLayerTypeFactory where
-    javaNull = javaNullRecord "PickedUpLayerTypeFactory"
-
-instance JavaEquals PickedUpLayerTypeFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PickedUpLayerTypeFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PickedUpLayerTypeFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: PickedUpLayerTypeFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PickedUpLayerTypeFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    nONE <- newIORef javaNull
-    bEAM <- newIORef javaNull
-    mINE <- newIORef javaNull
-    pROJECTILE <- newIORef javaNull
-    eNHANCEMENT <- newIORef javaNull
-    mORPH <- newIORef javaNull
-    pART <- newIORef javaNull
-    hEAL <- newIORef javaNull
-    lIFE <- newIORef javaNull
-    pOINTS <- newIORef javaNull
-    let this = PickedUpLayerTypeFactory header_ nONE bEAM mINE pROJECTILE eNHANCEMENT mORPH pART hEAL lIFE pOINTS
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: PickedUpLayerTypeFactory -> IO ()
-initFields_ this = do
-    jset this.nONE =<< (PickedUpLayerType.new_1 (jget ((jio (StringUtil.getInstance))).nULL_STRING))
-    jset this.bEAM =<< (PickedUpLayerType.new_1 "BEAM")
-    jset this.mINE =<< (PickedUpLayerType.new_1 "MINE")
-    jset this.pROJECTILE =<< (PickedUpLayerType.new_1 "PROJECTILE")
-    jset this.eNHANCEMENT =<< (PickedUpLayerType.new_1 "Enhancement")
-    jset this.mORPH =<< (PickedUpLayerType.new_1 "Morph")
-    jset this.pART =<< (PickedUpLayerType.new_1 "Part")
-    jset this.hEAL =<< (PickedUpLayerType.new_1 "Heal")
-    jset this.lIFE =<< (PickedUpLayerType.new_1 "Life")
-    jset this.pOINTS =<< (PickedUpLayerType.new_1 "Points")
-    pure ()
-
-new_ :: IO PickedUpLayerTypeFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PickedUpLayerTypeFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Layer.Pickup.PickedUpLayerType as PickedUpLayerType
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (PickedUpLayerTypeFactory)
-getInstance = do
-        pure (PickedUpLayerTypeFactory.instance_)
+jclass : String
+jclass =
+    "PickedUpLayerTypeFactory"
 
+
+jchain : List String
+jchain =
+    [ "PickedUpLayerTypeFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "NONE", JR.defaultOf "" ), ( "BEAM", JR.defaultOf "" ), ( "MINE", JR.defaultOf "" ), ( "PROJECTILE", JR.defaultOf "" ), ( "ENHANCEMENT", JR.defaultOf "" ), ( "MORPH", JR.defaultOf "" ), ( "PART", JR.defaultOf "" ), ( "HEAL", JR.defaultOf "" ), ( "LIFE", JR.defaultOf "" ), ( "POINTS", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PickedUpLayerTypeFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "PickedUpLayerTypeFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "NONE" "" JR.this (JR.new PickedUpLayerType.jnew_1 [ (JR.field "NULL_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "BEAM" "" JR.this (JR.new PickedUpLayerType.jnew_1 [ (JR.str "BEAM") ])),
+                JR.exec (JR.setField "MINE" "" JR.this (JR.new PickedUpLayerType.jnew_1 [ (JR.str "MINE") ])),
+                JR.exec (JR.setField "PROJECTILE" "" JR.this (JR.new PickedUpLayerType.jnew_1 [ (JR.str "PROJECTILE") ])),
+                JR.exec (JR.setField "ENHANCEMENT" "" JR.this (JR.new PickedUpLayerType.jnew_1 [ (JR.str "Enhancement") ])),
+                JR.exec (JR.setField "MORPH" "" JR.this (JR.new PickedUpLayerType.jnew_1 [ (JR.str "Morph") ])),
+                JR.exec (JR.setField "PART" "" JR.this (JR.new PickedUpLayerType.jnew_1 [ (JR.str "Part") ])),
+                JR.exec (JR.setField "HEAL" "" JR.this (JR.new PickedUpLayerType.jnew_1 [ (JR.str "Heal") ])),
+                JR.exec (JR.setField "LIFE" "" JR.this (JR.new PickedUpLayerType.jnew_1 [ (JR.str "Life") ])),
+                JR.exec (JR.setField "POINTS" "" JR.this (JR.new PickedUpLayerType.jnew_1 [ (JR.str "Points") ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

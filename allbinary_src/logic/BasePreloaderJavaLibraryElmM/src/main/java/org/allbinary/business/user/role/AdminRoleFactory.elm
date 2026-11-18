@@ -1,11 +1,11 @@
-module AdminRoleFactory exposing (..)
+module Org.Allbinary.Business.User.Role.AdminRoleFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.business.user.role
 -}
 
 import JR
-import BasicArrayListD
-import BasicUserRoleFactory
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Business.User.Role.BasicUserRoleFactory as BasicUserRoleFactory
 
 
 jclass : String

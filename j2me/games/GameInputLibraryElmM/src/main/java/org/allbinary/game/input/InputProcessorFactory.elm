@@ -1,104 +1,101 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module InputProcessorFactory where
+module Org.Allbinary.Game.Input.InputProcessorFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified InputProcessor -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data InputProcessorFactory = InputProcessorFactory
-    { header_ :: JavaHeader
-    , inputProcessor :: IORef (InputProcessor.InputProcessor)
-    }
-
-instance JavaNull InputProcessorFactory where
-    javaNull = javaNullRecord "InputProcessorFactory"
-
-instance JavaEquals InputProcessorFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InputProcessorFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InputProcessorFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: InputProcessorFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO InputProcessorFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    inputProcessor <- newIORef javaNull
-    let this = InputProcessorFactory header_ inputProcessor
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInputProcessor" (\() -> getInputProcessor_impl this)
-    pure this
-
-initFields_ :: InputProcessorFactory -> IO ()
-initFields_ this = do
-    jset this.inputProcessor =<< (InputProcessor.new_)
-    pure ()
-
-new_ :: IO InputProcessorFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: InputProcessorFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Input.InputProcessor as InputProcessor
 
 
-getInstance :: IO (InputProcessorFactory)
-getInstance = do
-        pure (InputProcessorFactory.instance_)
+jclass : String
+jclass =
+    "InputProcessorFactory"
 
 
-getInputProcessor :: (JavaObjectClass this_) => this_ -> IO (InputProcessor.InputProcessor)
-getInputProcessor object_ = jmethod object_ "getInputProcessor" (\() -> (getInputProcessor_impl (javaCast object_ :: InputProcessorFactory))) ()
+jchain : List String
+jchain =
+    [ "InputProcessorFactory" ]
 
-getInputProcessor_super :: (JavaObjectClass this_) => this_ -> IO (InputProcessor.InputProcessor)
-getInputProcessor_super object_ = (getInputProcessor_impl (javaCast object_ :: InputProcessorFactory))
 
-getInputProcessor_impl :: InputProcessorFactory -> IO (InputProcessor.InputProcessor)
-getInputProcessor_impl this = do
-        pure ((jget (this).inputProcessor))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "inputProcessor", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInputProcessor_0", jm_getInputProcessor_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InputProcessorFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInputProcessor_0", jm_getInputProcessor_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "InputProcessorFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "inputProcessor" "" JR.this (JR.new InputProcessor.jnew_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInputProcessor_0 : JR.Method
+jm_getInputProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "inputProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

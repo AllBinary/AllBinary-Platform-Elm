@@ -1,4 +1,4 @@
-module ABHashSet exposing (..)
+module Org.Allbinary.Util.ABHashSet exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}

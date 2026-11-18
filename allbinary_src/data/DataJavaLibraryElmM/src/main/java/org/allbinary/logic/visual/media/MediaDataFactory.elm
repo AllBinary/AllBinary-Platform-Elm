@@ -1,149 +1,109 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.visual.media
-module MediaDataFactory where
+module Org.Allbinary.Logic.Visual.Media.MediaDataFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified MediaData -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.logic.visual.media
+-}
 
-data MediaDataFactory = MediaDataFactory
-    { header_ :: JavaHeader
-    , aVI :: IORef (MediaData.MediaData)
-    , bMP :: IORef (MediaData.MediaData)
-    , cEL :: IORef (MediaData.MediaData)
-    , fITS :: IORef (MediaData.MediaData)
-    , fLI :: IORef (MediaData.MediaData)
-    , gBR :: IORef (MediaData.MediaData)
-    , gIF :: IORef (MediaData.MediaData)
-    , gIH :: IORef (MediaData.MediaData)
-    , jPG :: IORef (MediaData.MediaData)
-    , pIX :: IORef (MediaData.MediaData)
-    , pNG :: IORef (MediaData.MediaData)
-    , pNM :: IORef (MediaData.MediaData)
-    , pSD :: IORef (MediaData.MediaData)
-    , pSP :: IORef (MediaData.MediaData)
-    , pS :: IORef (MediaData.MediaData)
-    , sGI :: IORef (MediaData.MediaData)
-    , sWF :: IORef (MediaData.MediaData)
-    , tGA :: IORef (MediaData.MediaData)
-    , tIFF :: IORef (MediaData.MediaData)
-    , wMF :: IORef (MediaData.MediaData)
-    }
-
-instance JavaNull MediaDataFactory where
-    javaNull = javaNullRecord "MediaDataFactory"
-
-instance JavaEquals MediaDataFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MediaDataFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MediaDataFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: MediaDataFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MediaDataFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    aVI <- newIORef javaNull
-    bMP <- newIORef javaNull
-    cEL <- newIORef javaNull
-    fITS <- newIORef javaNull
-    fLI <- newIORef javaNull
-    gBR <- newIORef javaNull
-    gIF <- newIORef javaNull
-    gIH <- newIORef javaNull
-    jPG <- newIORef javaNull
-    pIX <- newIORef javaNull
-    pNG <- newIORef javaNull
-    pNM <- newIORef javaNull
-    pSD <- newIORef javaNull
-    pSP <- newIORef javaNull
-    pS <- newIORef javaNull
-    sGI <- newIORef javaNull
-    sWF <- newIORef javaNull
-    tGA <- newIORef javaNull
-    tIFF <- newIORef javaNull
-    wMF <- newIORef javaNull
-    let this = MediaDataFactory header_ aVI bMP cEL fITS fLI gBR gIF gIH jPG pIX pNG pNM pSD pSP pS sGI sWF tGA tIFF wMF
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: MediaDataFactory -> IO ()
-initFields_ this = do
-    jset this.aVI =<< (MediaData.new_1 "avi")
-    jset this.bMP =<< (MediaData.new_1 "bmp")
-    jset this.cEL =<< (MediaData.new_1 "cel")
-    jset this.fITS =<< (MediaData.new_1 "fits")
-    jset this.fLI =<< (MediaData.new_1 "fli")
-    jset this.gBR =<< (MediaData.new_1 "gbr")
-    jset this.gIF =<< (MediaData.new_1 "gif")
-    jset this.gIH =<< (MediaData.new_1 "gih")
-    jset this.jPG =<< (MediaData.new_1 "jpg")
-    jset this.pIX =<< (MediaData.new_1 "pix")
-    jset this.pNG =<< (MediaData.new_1 "png")
-    jset this.pNM =<< (MediaData.new_1 "pnm")
-    jset this.pSD =<< (MediaData.new_1 "psd")
-    jset this.pSP =<< (MediaData.new_1 "psp")
-    jset this.pS =<< (MediaData.new_1 "ps")
-    jset this.sGI =<< (MediaData.new_1 "SGI")
-    jset this.sWF =<< (MediaData.new_1 "swf")
-    jset this.tGA =<< (MediaData.new_1 "tga")
-    jset this.tIFF =<< (MediaData.new_1 "tiff")
-    jset this.wMF =<< (MediaData.new_1 "wmf")
-    pure ()
-
-new_ :: IO MediaDataFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: MediaDataFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.Visual.Media.MediaData as MediaData
 
 
-getInstance :: IO (MediaDataFactory)
-getInstance = do
-        pure (MediaDataFactory.instance_)
+jclass : String
+jclass =
+    "MediaDataFactory"
 
+
+jchain : List String
+jchain =
+    [ "MediaDataFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "AVI", JR.defaultOf "" ), ( "BMP", JR.defaultOf "" ), ( "CEL", JR.defaultOf "" ), ( "FITS", JR.defaultOf "" ), ( "FLI", JR.defaultOf "" ), ( "GBR", JR.defaultOf "" ), ( "GIF", JR.defaultOf "" ), ( "GIH", JR.defaultOf "" ), ( "JPG", JR.defaultOf "" ), ( "PIX", JR.defaultOf "" ), ( "PNG", JR.defaultOf "" ), ( "PNM", JR.defaultOf "" ), ( "PSD", JR.defaultOf "" ), ( "PSP", JR.defaultOf "" ), ( "PS", JR.defaultOf "" ), ( "SGI", JR.defaultOf "" ), ( "SWF", JR.defaultOf "" ), ( "TGA", JR.defaultOf "" ), ( "TIFF", JR.defaultOf "" ), ( "WMF", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MediaDataFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "MediaDataFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "AVI" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "avi") ])),
+                JR.exec (JR.setField "BMP" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "bmp") ])),
+                JR.exec (JR.setField "CEL" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "cel") ])),
+                JR.exec (JR.setField "FITS" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "fits") ])),
+                JR.exec (JR.setField "FLI" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "fli") ])),
+                JR.exec (JR.setField "GBR" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "gbr") ])),
+                JR.exec (JR.setField "GIF" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "gif") ])),
+                JR.exec (JR.setField "GIH" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "gih") ])),
+                JR.exec (JR.setField "JPG" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "jpg") ])),
+                JR.exec (JR.setField "PIX" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "pix") ])),
+                JR.exec (JR.setField "PNG" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "png") ])),
+                JR.exec (JR.setField "PNM" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "pnm") ])),
+                JR.exec (JR.setField "PSD" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "psd") ])),
+                JR.exec (JR.setField "PSP" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "psp") ])),
+                JR.exec (JR.setField "PS" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "ps") ])),
+                JR.exec (JR.setField "SGI" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "SGI") ])),
+                JR.exec (JR.setField "SWF" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "swf") ])),
+                JR.exec (JR.setField "TGA" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "tga") ])),
+                JR.exec (JR.setField "TIFF" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "tiff") ])),
+                JR.exec (JR.setField "WMF" "" JR.this (JR.new MediaData.jnew_1 [ (JR.str "wmf") ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

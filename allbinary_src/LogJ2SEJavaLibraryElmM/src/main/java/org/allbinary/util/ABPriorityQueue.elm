@@ -1,4 +1,4 @@
-module ABPriorityQueue exposing (..)
+module Org.Allbinary.Util.ABPriorityQueue exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}

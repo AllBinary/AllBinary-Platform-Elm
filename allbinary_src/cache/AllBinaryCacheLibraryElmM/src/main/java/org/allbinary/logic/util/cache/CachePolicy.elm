@@ -1,154 +1,130 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
-module CachePolicy where
+module Org.Allbinary.Logic.Util.Cache.CachePolicy exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
+-}
 
-data CachePolicy = CachePolicy
-    { header_ :: JavaHeader
-    , name :: IORef (String)
-    , maxTime :: IORef (Int64)
-    , maxSize :: IORef (Int64)
-    }
-
-instance JavaNull CachePolicy where
-    javaNull = javaNullRecord "CachePolicy"
-
-instance JavaEquals CachePolicy where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CachePolicy where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CachePolicy where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CachePolicy
-newRecord_ = do
-    header_ <- newJavaHeader
-    name <- newIORef ""
-    maxTime <- newIORef 0
-    maxSize <- newIORef 0
-    let this = CachePolicy header_ name maxTime maxSize
-    jregisterLevel header_ this
-    jregisterMethod header_ "getMaxTime" (\() -> getMaxTime_impl this)
-    jregisterMethod header_ "setMaxTime" (\() -> setMaxTime_impl this)
-    jregisterMethod header_ "getMaxSize" (\() -> getMaxSize_impl this)
-    jregisterMethod header_ "setMaxSize" (\() -> setMaxSize_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    pure this
-
-initFields_ :: CachePolicy -> IO ()
-initFields_ this = do
-    jset this.name (javaNull)
-    jset this.maxTime (0)
-    jset this.maxSize (0)
-    pure ()
-
-new_3 :: String -> Int64 -> Int64 -> IO CachePolicy
-new_3 name maxTime maxSize = do
-    this <- newRecord_
-    init_3 this name maxTime maxSize
-    pure this
-
-init_3 :: CachePolicy -> String -> Int64 -> Int64 -> IO ()
-init_3 this name maxTime maxSize = do
-        initFields_ this
-        jset (this).name (name)
-        Control.Monad.void (CachePolicy.setMaxTime this maxTime)
-        Control.Monad.void (CachePolicy.setMaxSize this maxSize)
-        pure ()
+import JR
 
 
-getMaxTime :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getMaxTime object_ = jmethod object_ "getMaxTime" (\() -> (getMaxTime_impl (javaCast object_ :: CachePolicy))) ()
 
-getMaxTime_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getMaxTime_super object_ = (getMaxTime_impl (javaCast object_ :: CachePolicy))
-
-getMaxTime_impl :: CachePolicy -> IO (Int64)
-getMaxTime_impl this = do
-        pure ((jget (this).maxTime))
+jclass : String
+jclass =
+    "CachePolicy"
 
 
-setMaxTime :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-setMaxTime object_ a1 = jmethod object_ "setMaxTime" (\() -> (setMaxTime_impl (javaCast object_ :: CachePolicy))) () a1
-
-setMaxTime_super :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-setMaxTime_super object_ a1 = (setMaxTime_impl (javaCast object_ :: CachePolicy)) a1
-
-setMaxTime_impl :: CachePolicy -> Int64 -> IO (())
-setMaxTime_impl this maxTime = do
-        jset (this).maxTime (maxTime)
-        pure ()
+jchain : List String
+jchain =
+    [ "CachePolicy" ]
 
 
-getMaxSize :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getMaxSize object_ = jmethod object_ "getMaxSize" (\() -> (getMaxSize_impl (javaCast object_ :: CachePolicy))) ()
-
-getMaxSize_super :: (JavaObjectClass this_) => this_ -> IO (Int64)
-getMaxSize_super object_ = (getMaxSize_impl (javaCast object_ :: CachePolicy))
-
-getMaxSize_impl :: CachePolicy -> IO (Int64)
-getMaxSize_impl this = do
-        pure ((jget (this).maxSize))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "name", JR.defaultOf "" ), ( "maxTime", JR.defaultOf "J" ), ( "maxSize", JR.defaultOf "J" ) ]
 
 
-setMaxSize :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-setMaxSize object_ a1 = jmethod object_ "setMaxSize" (\() -> (setMaxSize_impl (javaCast object_ :: CachePolicy))) () a1
-
-setMaxSize_super :: (JavaObjectClass this_) => this_ -> Int64 -> IO (())
-setMaxSize_super object_ a1 = (setMaxSize_impl (javaCast object_ :: CachePolicy)) a1
-
-setMaxSize_impl :: CachePolicy -> Int64 -> IO (())
-setMaxSize_impl this maxSize = do
-        jset (this).maxSize (maxSize)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getMaxTime_0", jm_getMaxTime_0 )
+        , ( "setMaxTime_1", jm_setMaxTime_1 )
+        , ( "getMaxSize_0", jm_getMaxSize_0 )
+        , ( "setMaxSize_1", jm_setMaxSize_1 )
+        , ( "getName_0", jm_getName_0 ) ]
+        JR.noMethods
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: CachePolicy))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CachePolicy"
+        [ ( "jm_getMaxTime_0", jm_getMaxTime_0 ), ( "jm_setMaxTime_1", jm_setMaxTime_1 ), ( "jm_getMaxSize_0", jm_getMaxSize_0 ), ( "jm_setMaxSize_1", jm_setMaxSize_1 ), ( "jm_getName_0", jm_getName_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
 
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: CachePolicy))
 
-getName_impl :: CachePolicy -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "maxTime", "J" ), ( "maxSize", "J" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "name")), 
+                    JR.exec (JR.invoke "setMaxTime_1" JR.this [ (JR.local "maxTime") ]), 
+                    JR.exec (JR.invoke "setMaxSize_1" JR.this [ (JR.local "maxSize") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_getMaxTime_0 : JR.Method
+jm_getMaxTime_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.thisField "maxTime") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMaxTime_1 : JR.Method
+jm_setMaxTime_1 jheap jthis jargs =
+    JR.method [ ( "maxTime", "J" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "maxTime" "J" JR.this (JR.local "maxTime")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMaxSize_0 : JR.Method
+jm_getMaxSize_0 jheap jthis jargs =
+    JR.method [] "J"
+        (JR.run [ 
+                    JR.return (JR.thisField "maxSize") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMaxSize_1 : JR.Method
+jm_setMaxSize_1 jheap jthis jargs =
+    JR.method [ ( "maxSize", "J" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "maxSize" "J" JR.this (JR.local "maxSize")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

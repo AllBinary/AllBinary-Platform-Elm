@@ -1,188 +1,164 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
-module OpenGLESImage (module OpenGLESImage, module Image) where
+module Org.Allbinary.Image.Opengles.OpenGLESImage exposing (..)
 
-import Image hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, set, set_super, set_impl, initTexture, initTexture_super, initTexture_impl, drawRegion, drawRegion_super, drawRegion_impl, draw, draw_super, draw_impl, getType, getType_super, getType_impl, nULL_OPENGL_IMAGE, texture2dList, commonStrings, textureFactory, openGLBitmap, openGLESImageProperties, imageProcessor, openGLESImageTranslate, tYPE)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified OpenGLESImageProperties -- same package or java.lang
-import qualified OpenGLESImageProcessor -- same package or java.lang
-import qualified OpenGLESImageTranslate -- same package or java.lang
-import qualified GL -- javax.microedition.khronos.opengles.GL
-import qualified GL10 -- javax.microedition.khronos.opengles.GL10
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified NullImage -- javax.microedition.lcdui.NullImage
-import qualified PlatformBitmapBase -- org.allbinary.platform.graphics.PlatformBitmapBase
-import qualified PlatformBitmapBaseFactory -- org.allbinary.platform.graphics.PlatformBitmapBaseFactory
-import qualified PlatformTextureBaseFactory -- org.allbinary.platform.opengles.PlatformTextureBaseFactory
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified OpenGLSurfaceChangedInterface
+{-| Generated Code Do Not Modify package org.allbinary.image.opengles
+-}
 
--- implements OpenGLSurfaceChangedInterface
-data OpenGLESImage = OpenGLESImage
-    { header_ :: JavaHeader
-    , base :: Image.Image
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , textureFactory :: IORef (PlatformTextureBaseFactory.PlatformTextureBaseFactory)
-    , openGLBitmap :: IORef (PlatformBitmapBase.PlatformBitmapBase)
-    , openGLESImageProperties :: IORef (OpenGLESImageProperties.OpenGLESImageProperties)
-    , imageProcessor :: IORef (OpenGLESImageProcessor.OpenGLESImageProcessor)
-    , openGLESImageTranslate :: IORef (OpenGLESImageTranslate.OpenGLESImageTranslate)
-    }
-
-instance JavaNull OpenGLESImage where
-    javaNull = javaNullRecord "OpenGLESImage"
-
-instance JavaEquals OpenGLESImage where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLESImage where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLESImage where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_OPENGL_IMAGE :: OpenGLESImage
-{-# NOINLINE nULL_OPENGL_IMAGE #-}
-nULL_OPENGL_IMAGE = unsafePerformIO ((new_3 (NullImage.nULL_IMAGE) (PlatformBitmapBaseFactory.nULL_PLATFORM_BITMAP_BASE_FACTORY) (PlatformTextureBaseFactory.nULL_PLATFORM_TEXTURE_BASE_FACTORY)))
-
-texture2dList :: BasicArrayList.BasicArrayList
-{-# NOINLINE texture2dList #-}
-texture2dList = unsafePerformIO ((fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_)))
-
-tYPE :: Int
-tYPE = 4
-
-newRecord_ :: IO OpenGLESImage
-newRecord_ = do
-    base <- Image.newRecord_
-    let header_ = base.header_
-    commonStrings <- newIORef javaNull
-    textureFactory <- newIORef javaNull
-    openGLBitmap <- newIORef javaNull
-    openGLESImageProperties <- newIORef javaNull
-    imageProcessor <- newIORef javaNull
-    openGLESImageTranslate <- newIORef javaNull
-    let this = OpenGLESImage header_ base commonStrings textureFactory openGLBitmap openGLESImageProperties imageProcessor openGLESImageTranslate
-    jregisterLevel header_ this
-    OpenGLSurfaceChangedInterface.registerInterface_ header_
-    jregisterMethod header_ "set" (\() -> set_impl this)
-    jregisterMethod header_ "initTexture" (\() -> initTexture_impl this)
-    jregisterMethod header_ "drawRegion" (\() -> drawRegion_impl this)
-    jregisterMethod header_ "draw" (\() -> draw_impl this)
-    jregisterMethod header_ "getType" (\() -> getType_impl this)
-    pure this
-
-initFields_ :: OpenGLESImage -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.textureFactory (javaNull)
-    jset this.openGLBitmap (javaNull)
-    jset this.openGLESImageProperties =<< (OpenGLESImageProperties.new_)
-    jset this.imageProcessor =<< (OpenGLESImageProcessor.getInstance)
-    jset this.openGLESImageTranslate =<< (OpenGLESImageTranslate.getInstance)
-    pure ()
-
-new_3 :: Image.Image -> PlatformBitmapBaseFactory.PlatformBitmapBaseFactory -> PlatformTextureBaseFactory.PlatformTextureBaseFactory -> IO OpenGLESImage
-new_3 image bitmapFactory textureFactory = do
-    this <- newRecord_
-    init_3 this image bitmapFactory textureFactory
-    pure this
-
-init_3 :: OpenGLESImage -> Image.Image -> PlatformBitmapBaseFactory.PlatformBitmapBaseFactory -> PlatformTextureBaseFactory.PlatformTextureBaseFactory -> IO ()
-init_3 this image bitmapFactory textureFactory = do
-        Image.init_ this.base
-        initFields_ this
-        assignedValue <- (PlatformBitmapBaseFactory.createBitmap bitmapFactory image)
-        jset (this).openGLBitmap (assignedValue)
-        jset (this).textureFactory (textureFactory)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Javax.Microedition.Lcdui.Image as Image
+import Javax.Microedition.Lcdui.NullImage as NullImage
+import Org.Allbinary.Image.Opengles.OpenGLESImageProcessor as OpenGLESImageProcessor
+import Org.Allbinary.Image.Opengles.OpenGLESImageProperties as OpenGLESImageProperties
+import Org.Allbinary.Image.Opengles.OpenGLESImageTranslate as OpenGLESImageTranslate
+import Org.Allbinary.Image.Opengles.OpenGLSurfaceChangedInterface as OpenGLSurfaceChangedInterface
+import Org.Allbinary.Platform.Graphics.PlatformBitmapBaseFactory as PlatformBitmapBaseFactory
+import Org.Allbinary.Platform.Opengles.PlatformTextureBaseFactory as PlatformTextureBaseFactory
 
 
--- throws Exception
-set :: (JavaObjectClass this_) => this_ -> GL.GL -> IO (())
-set object_ a1 = jmethod object_ "set" (\() -> (set_impl (javaCast object_ :: OpenGLESImage))) () a1
-
-set_super :: (JavaObjectClass this_) => this_ -> GL.GL -> IO (())
-set_super object_ a1 = (set_impl (javaCast object_ :: OpenGLESImage)) a1
-
-set_impl :: OpenGLESImage -> GL.GL -> IO (())
-set_impl this gl = do
-        javaThrow ((JavaException "Exception" (jget ((jget (this).commonStrings)).nOT_IMPLEMENTED)))
-        pure ()
+jclass : String
+jclass =
+    "OpenGLESImage"
 
 
-initTexture :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> IO (Bool)
-initTexture object_ a1 = jmethod object_ "initTexture" (\() -> (initTexture_impl (javaCast object_ :: OpenGLESImage))) () a1
-
-initTexture_super :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> IO (Bool)
-initTexture_super object_ a1 = (initTexture_impl (javaCast object_ :: OpenGLESImage)) a1
-
-initTexture_impl :: OpenGLESImage -> GL10.GL10 -> IO (Bool)
-initTexture_impl this gl = do
-        pure (False)
+jchain : List String
+jchain =
+    [ "OpenGLESImage" ]
+        ++ Image.jchain
+        ++ OpenGLSurfaceChangedInterface.jchain
 
 
-drawRegion :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> Int -> Float -> Float -> Float -> Float -> Int -> Int -> Int -> IO (())
-drawRegion object_ a1 a2 a3 a4 a5 a6 a7 a8 a9 = jmethod object_ "drawRegion" (\() -> (drawRegion_impl (javaCast object_ :: OpenGLESImage))) () a1 a2 a3 a4 a5 a6 a7 a8 a9
-
-drawRegion_super :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> Int -> Float -> Float -> Float -> Float -> Int -> Int -> Int -> IO (())
-drawRegion_super object_ a1 a2 a3 a4 a5 a6 a7 a8 a9 = (drawRegion_impl (javaCast object_ :: OpenGLESImage)) a1 a2 a3 a4 a5 a6 a7 a8 a9
-
-drawRegion_impl :: OpenGLESImage -> GL10.GL10 -> Int -> Float -> Float -> Float -> Float -> Int -> Int -> Int -> IO (())
-drawRegion_impl this gl viewHeight x_src y_src width height x y z = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    Image.jfields ++ [ ( "commonStrings", JR.defaultOf "" ), ( "textureFactory", JR.defaultOf "" ), ( "openGLBitmap", JR.defaultOf "" ), ( "openGLESImageProperties", JR.defaultOf "" ), ( "imageProcessor", JR.defaultOf "" ), ( "openGLESImageTranslate", JR.defaultOf "" ) ]
 
 
-draw :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> Int -> Int -> Int -> IO (())
-draw object_ a1 a2 a3 a4 = jmethod object_ "draw" (\() -> (draw_impl (javaCast object_ :: OpenGLESImage))) () a1 a2 a3 a4
+jvtable =
+    JR.vtable
+        [ ( "set_1", jm_set_1 )
+        , ( "initTexture_1", jm_initTexture_1 )
+        , ( "drawRegion_9", jm_drawRegion_9 )
+        , ( "draw_4", jm_draw_4 )
+        , ( "getType_0", jm_getType_0 ) ]
+        Image.jvtable
 
-draw_super :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> Int -> Int -> Int -> IO (())
-draw_super object_ a1 a2 a3 a4 = (draw_impl (javaCast object_ :: OpenGLESImage)) a1 a2 a3 a4
 
-draw_impl :: OpenGLESImage -> GL10.GL10 -> Int -> Int -> Int -> IO (())
-draw_impl this gl x y z = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLESImage"
+        [ ( "jm_set_1", jm_set_1 ), ( "jm_initTexture_1", jm_initTexture_1 ), ( "jm_drawRegion_9", jm_drawRegion_9 ), ( "jm_draw_4", jm_draw_4 ), ( "jm_getType_0", jm_getType_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        [ ( "jstatic_NULL_OPENGL_IMAGE", jstatic_NULL_OPENGL_IMAGE ), ( "jstatic_texture2dList", jstatic_texture2dList ), ( "jstatic_TYPE", jstatic_TYPE ) ]
+        jheap
 
 
-getType :: (JavaObjectClass this_) => this_ -> IO (Int)
-getType object_ = jmethod object_ "getType" (\() -> (getType_impl (javaCast object_ :: OpenGLESImage))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-getType_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getType_super object_ = (getType_impl (javaCast object_ :: OpenGLESImage))
 
-getType_impl :: OpenGLESImage -> IO (Int)
-getType_impl this = do
-        pure (OpenGLESImage.tYPE)
+jstatic_NULL_OPENGL_IMAGE : JR.M
+jstatic_NULL_OPENGL_IMAGE s =
+    JR.static "OpenGLESImage" jclinit "NULL_OPENGL_IMAGE"
+        (JR.new jnew_3 [ NullImage.jstatic_NULL_IMAGE, PlatformBitmapBaseFactory.jstatic_NULL_PLATFORM_BITMAP_BASE_FACTORY, PlatformTextureBaseFactory.jstatic_NULL_PLATFORM_TEXTURE_BASE_FACTORY ])
+        s
 
+
+jstatic_texture2dList : JR.M
+jstatic_texture2dList s =
+    JR.static "OpenGLESImage" jclinit "texture2dList"
+        (JR.new BasicArrayListD.jnew_0 [])
+        s
+
+
+jstatic_TYPE : JR.M
+jstatic_TYPE s =
+    JR.static "OpenGLESImage" jclinit "TYPE"
+        (JR.int 4)
+        s
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "bitmapFactory", "" ), ( "textureFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Image.jinit_0 JR.this []),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "openGLESImageProperties" "" JR.this (JR.new OpenGLESImageProperties.jnew_0 [])),
+                JR.exec (JR.setField "imageProcessor" "" JR.this (JR.callStatic OpenGLESImageProcessor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "openGLESImageTranslate" "" JR.this (JR.callStatic OpenGLESImageTranslate.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "openGLBitmap" "" JR.this (JR.invoke "createBitmap_1" (JR.local "bitmapFactory") [ (JR.local "image") ])), 
+                    JR.exec (JR.setField "textureFactory" "" JR.this (JR.local "textureFactory")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_set_1 : JR.Method
+jm_set_1 jheap jthis jargs =
+    JR.method [ ( "gl", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initTexture_1 : JR.Method
+jm_initTexture_1 jheap jthis jargs =
+    JR.method [ ( "gl", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_drawRegion_9 : JR.Method
+jm_drawRegion_9 jheap jthis jargs =
+    JR.method [ ( "gl", "" ), ( "viewHeight", "I" ), ( "x_src", "F" ), ( "y_src", "F" ), ( "width", "F" ), ( "height", "F" ), ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_draw_4 : JR.Method
+jm_draw_4 jheap jthis jargs =
+    JR.method [ ( "gl", "" ), ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getType_0 : JR.Method
+jm_getType_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return jstatic_TYPE ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

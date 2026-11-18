@@ -1,11 +1,11 @@
-module StringValidationUtil exposing (..)
+module Org.Allbinary.Logic.String.StringValidationUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.string
 -}
 
 import JR
-import StringUtil
-import TsUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.TsUtil as TsUtil
 
 
 jclass : String

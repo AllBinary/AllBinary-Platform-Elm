@@ -1,161 +1,135 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
-module TouchButtonsMappingPaintable (module TouchButtonsMappingPaintable, module Paintable) where
+module Org.Allbinary.Input.Motion.Button.TouchButtonsMappingPaintable exposing (..)
 
-import Paintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, init, init_super, init_impl, createPaintableTable, createPaintableTable_super, createPaintableTable_impl, paint, paint_super, paint_impl, logUtil, foregroundColor, paintableTable, touchButtonLocationHelper)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TouchButtonLocationHelper -- same package or java.lang
-import qualified CommonButtons -- same package or java.lang
-import qualified TouchButton -- same package or java.lang
-import qualified BasicTouchInputFactory -- same package or java.lang
-import qualified TouchButtonBlankResource -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified CellPositionFactory -- org.allbinary.graphics.CellPositionFactory
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.button
+-}
 
-data TouchButtonsMappingPaintable = TouchButtonsMappingPaintable
-    { header_ :: JavaHeader
-    , base :: Paintable.Paintable
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , foregroundColor :: IORef (Int)
-    , paintableTable :: IORef (JavaArray (JavaArray (Paintable.Paintable)))
-    , touchButtonLocationHelper :: IORef (TouchButtonLocationHelper.TouchButtonLocationHelper)
-    }
-
-instance JavaNull TouchButtonsMappingPaintable where
-    javaNull = javaNullRecord "TouchButtonsMappingPaintable"
-
-instance JavaEquals TouchButtonsMappingPaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TouchButtonsMappingPaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TouchButtonsMappingPaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO TouchButtonsMappingPaintable
-newRecord_ = do
-    base <- Paintable.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    foregroundColor <- newIORef 0
-    paintableTable <- newIORef javaNull
-    touchButtonLocationHelper <- newIORef javaNull
-    let this = TouchButtonsMappingPaintable header_ base logUtil foregroundColor paintableTable touchButtonLocationHelper
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "createPaintableTable" (\() -> createPaintableTable_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: TouchButtonsMappingPaintable -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.foregroundColor (0)
-    jset this.paintableTable ((jnewArray2 (0) (0) javaNull))
-    jset this.touchButtonLocationHelper =<< (TouchButtonLocationHelper.new_)
-    pure ()
-
-new_1 :: BasicColor.BasicColor -> IO TouchButtonsMappingPaintable
-new_1 basicColor = do
-    this <- newRecord_
-    init_1 this basicColor
-    pure this
-
-init_1 :: TouchButtonsMappingPaintable -> BasicColor.BasicColor -> IO ()
-init_1 this basicColor = do
-        Paintable.init_ this.base
-        initFields_ this
-        assignedValue <- (BasicColor.intValue basicColor)
-        jset (this).foregroundColor (assignedValue)
-        Control.Monad.void (TouchButtonsMappingPaintable.init this)
-        pure ()
+import JR
+import Org.Allbinary.Input.Motion.Button.BasicTouchInputFactory as BasicTouchInputFactory
+import Org.Allbinary.Graphics.CellPositionFactory as CellPositionFactory
+import Org.Allbinary.Input.Motion.Button.CommonButtons as CommonButtons
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Graphics.Paint.Paintable as Paintable
+import Org.Allbinary.Input.Motion.Button.TouchButton as TouchButton
+import Org.Allbinary.Input.Motion.Button.TouchButtonBlankResource as TouchButtonBlankResource
+import Org.Allbinary.Input.Motion.Button.TouchButtonLocationHelper as TouchButtonLocationHelper
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: TouchButtonsMappingPaintable))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: TouchButtonsMappingPaintable))
-
-init_impl :: TouchButtonsMappingPaintable -> IO (())
-init_impl this = do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this "updateRectangle" e)
-            ) $ do
-            assignedValue <- (TouchButtonsMappingPaintable.createPaintableTable this)
-            jset (this).paintableTable (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "TouchButtonsMappingPaintable"
 
 
--- throws Exception
-createPaintableTable :: (JavaObjectClass this_) => this_ -> IO (JavaArray (JavaArray (Paintable.Paintable)))
-createPaintableTable object_ = jmethod object_ "createPaintableTable" (\() -> (createPaintableTable_impl (javaCast object_ :: TouchButtonsMappingPaintable))) ()
-
-createPaintableTable_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (JavaArray (Paintable.Paintable)))
-createPaintableTable_super object_ = (createPaintableTable_impl (javaCast object_ :: TouchButtonsMappingPaintable))
-
-createPaintableTable_impl :: TouchButtonsMappingPaintable -> IO (JavaArray (JavaArray (Paintable.Paintable)))
-createPaintableTable_impl this = do
-        totalColumns <- (TouchButtonLocationHelper.getTotalColumns ((jget (this).touchButtonLocationHelper)))
-        totalRows <- (TouchButtonLocationHelper.getTotalRows ((jget (this).touchButtonLocationHelper)))
-        let paintableTable = (jnewArray2 (totalColumns) (totalRows) javaNull)
-        cellPositionFactory <- (CellPositionFactory.getInstance)
-        commonButtons <- (CommonButtons.getInstance)
-        forM_ [(totalColumns - 1), (totalColumns - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            forM_ [(totalRows - 1), (totalRows - 1) + (-1) .. 0] $ \rowIndex -> javaIteration (pure ()) $ do
-                assignedValue <- (TouchButton.createButton (jget ((jio (BasicTouchInputFactory.getInstance))).nONE) (jio (TouchButtonBlankResource.getInstance)) (jget (commonButtons).nORMAL_BUTTON) (jio (CellPositionFactory.getInstanceColRow cellPositionFactory index rowIndex)) (jio (TouchButtonLocationHelper.getColumnsRemainderHalf ((jget (this).touchButtonLocationHelper)))) (jio (TouchButtonLocationHelper.getRowsRemainderHalf ((jget (this).touchButtonLocationHelper)))))
-                jsetIndex ((jindex ((jget (this).paintableTable)) (index))) (rowIndex) (assignedValue)
-        pure (paintableTable)
+jchain : List String
+jchain =
+    [ "TouchButtonsMappingPaintable" ]
+        ++ Paintable.jchain
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: TouchButtonsMappingPaintable))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    Paintable.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "foregroundColor", JR.defaultOf "I" ), ( "paintableTable", JR.defaultOf "" ), ( "touchButtonLocationHelper", JR.defaultOf "" ) ]
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: TouchButtonsMappingPaintable)) a1
 
-paint_impl :: TouchButtonsMappingPaintable -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        totalColumns <- (TouchButtonLocationHelper.getTotalColumns ((jget (this).touchButtonLocationHelper)))
-        totalRows <- (TouchButtonLocationHelper.getTotalRows ((jget (this).touchButtonLocationHelper)))
-        forM_ [(totalColumns - 1), (totalColumns - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            forM_ [(totalRows - 1), (totalRows - 1) + (-1) .. 0] $ \rowIndex -> javaIteration (pure ()) $ do
-                Control.Monad.void (Paintable.paint ((jindex ((jindex ((jget (this).paintableTable)) (index))) (rowIndex))) graphics)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 )
+        , ( "createPaintableTable_0", jm_createPaintableTable_0 )
+        , ( "paint_1", jm_paint_1 ) ]
+        Paintable.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TouchButtonsMappingPaintable"
+        [ ( "jm_init_0", jm_init_0 ), ( "jm_createPaintableTable_0", jm_createPaintableTable_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Paintable.jinit_0 JR.this []),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "paintableTable" "" JR.this (JR.newArray "" [ (JR.int 0), (JR.int 0) ])),
+                JR.exec (JR.setField "touchButtonLocationHelper" "" JR.this (JR.new TouchButtonLocationHelper.jnew_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "foregroundColor" "I" JR.this (JR.invoke "intValue_0" (JR.local "basicColor") [])), 
+                    JR.exec (JR.invoke "init_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.setField "paintableTable" "" JR.this (JR.invoke "createPaintableTable_0" JR.this [])) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.str "updateRectangle"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createPaintableTable_0 : JR.Method
+jm_createPaintableTable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "totalColumns" "I" (JR.invoke "getTotalColumns_0" (JR.thisField "touchButtonLocationHelper") []), 
+                    JR.declare "totalRows" "I" (JR.invoke "getTotalRows_0" (JR.thisField "touchButtonLocationHelper") []), 
+                    JR.declare "paintableTable" "" (JR.newArray "" [ (JR.local "totalColumns"), (JR.local "totalRows") ]), 
+                    JR.declare "cellPositionFactory" "" (JR.callStatic CellPositionFactory.jm_getInstance_0 []), 
+                    JR.declare "commonButtons" "" (JR.callStatic CommonButtons.jm_getInstance_0 []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "totalColumns") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68646 -> (JR.setLocal "index" "I" (JR.lit jwN68646))) JR.decrement) ]) (JR.run [ 
+                        JR.run [ JR.declare "rowIndex" "I" (JR.map2 JR.sub (JR.local "totalRows") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "rowIndex") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "rowIndex") (\jwN68571 -> (JR.setLocal "rowIndex" "I" (JR.lit jwN68571))) JR.decrement) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "paintableTable") (JR.local "index")) (\jaN68322 -> JR.andThen (JR.local "rowIndex") (\jiN68322 -> (JR.aset (JR.lit jaN68322) (JR.lit jiN68322) (JR.callStatic TouchButton.jm_createButton_6 [ (JR.field "NONE" (JR.callStatic BasicTouchInputFactory.jm_getInstance_0 [])), (JR.callStatic TouchButtonBlankResource.jm_getInstance_0 []), (JR.field "NORMAL_BUTTON" (JR.local "commonButtons")), (JR.invoke "getInstanceColRow_2" (JR.local "cellPositionFactory") [ (JR.local "index"), (JR.local "rowIndex") ]), (JR.invoke "getColumnsRemainderHalf_0" (JR.thisField "touchButtonLocationHelper") []), (JR.invoke "getRowsRemainderHalf_0" (JR.thisField "touchButtonLocationHelper") []) ]))))) ]) ] ]) ], 
+                    JR.return (JR.local "paintableTable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "totalColumns" "I" (JR.invoke "getTotalColumns_0" (JR.thisField "touchButtonLocationHelper") []), 
+                    JR.declare "totalRows" "I" (JR.invoke "getTotalRows_0" (JR.thisField "touchButtonLocationHelper") []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "totalColumns") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69017 -> (JR.setLocal "index" "I" (JR.lit jwN69017))) JR.decrement) ]) (JR.run [ 
+                        JR.run [ JR.declare "rowIndex" "I" (JR.map2 JR.sub (JR.local "totalRows") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "rowIndex") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "rowIndex") (\jwN68942 -> (JR.setLocal "rowIndex" "I" (JR.lit jwN68942))) JR.decrement) ]) (JR.run [ 
+                            JR.exec (JR.invoke "paint_1" (JR.aget (JR.aget (JR.thisField "paintableTable") (JR.local "index")) (JR.local "rowIndex")) [ (JR.local "graphics") ]) ]) ] ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

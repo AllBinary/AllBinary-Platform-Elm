@@ -1,229 +1,176 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
-module TouchButton (module TouchButton, module Paintable) where
+module Org.Allbinary.Input.Motion.Button.TouchButton exposing (..)
 
-import Paintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, paint, paint_super, paint_impl, updateRectangle, updateRectangle_super, updateRectangle_impl, getCellPositionP, getCellPositionP_super, getCellPositionP_impl, getRectangleP, getRectangleP_super, getRectangleP_impl, getTouchButtonInput, getTouchButtonInput_super, getTouchButtonInput_impl, toString, toString_super, toString_impl, logUtil, commonStrings, touchButtonInput, animationInterface, rawRectangle, xBorder, yBorder, rectangle, cellPosition, animationX, animationY)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TouchButtonInput -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified AnimationInterface -- org.allbinary.animation.AnimationInterface
-import qualified CellPosition -- org.allbinary.graphics.CellPosition
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified RectangleFactory -- org.allbinary.graphics.RectangleFactory
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.button
+-}
 
-data TouchButton = TouchButton
-    { header_ :: JavaHeader
-    , base :: Paintable.Paintable
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , touchButtonInput :: IORef (TouchButtonInput.TouchButtonInput)
-    , animationInterface :: IORef (Animation.Animation)
-    , rawRectangle :: IORef (Rectangle.Rectangle)
-    , xBorder :: IORef (Int)
-    , yBorder :: IORef (Int)
-    , rectangle :: IORef (Rectangle.Rectangle)
-    , cellPosition :: IORef (CellPosition.CellPosition)
-    , animationX :: IORef (Int)
-    , animationY :: IORef (Int)
-    }
-
-instance JavaNull TouchButton where
-    javaNull = javaNullRecord "TouchButton"
-
-instance JavaEquals TouchButton where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TouchButton where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TouchButton where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO TouchButton
-newRecord_ = do
-    base <- Paintable.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    touchButtonInput <- newIORef javaNull
-    animationInterface <- newIORef javaNull
-    rawRectangle <- newIORef javaNull
-    xBorder <- newIORef 0
-    yBorder <- newIORef 0
-    rectangle <- newIORef javaNull
-    cellPosition <- newIORef javaNull
-    animationX <- newIORef 0
-    animationY <- newIORef 0
-    let this = TouchButton header_ base logUtil commonStrings touchButtonInput animationInterface rawRectangle xBorder yBorder rectangle cellPosition animationX animationY
-    jregisterLevel header_ this
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "updateRectangle" (\() -> updateRectangle_impl this)
-    jregisterMethod header_ "getCellPositionP" (\() -> getCellPositionP_impl this)
-    jregisterMethod header_ "getRectangleP" (\() -> getRectangleP_impl this)
-    jregisterMethod header_ "getTouchButtonInput" (\() -> getTouchButtonInput_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: TouchButton -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.touchButtonInput (javaNull)
-    jset this.animationInterface (javaNull)
-    jset this.rawRectangle (javaNull)
-    jset this.xBorder (0)
-    jset this.yBorder (0)
-    jset this.rectangle (RectangleFactory.sINGLETON)
-    jset this.cellPosition (javaNull)
-    jset this.animationX (0)
-    jset this.animationY (0)
-    pure ()
-
-new_6 :: TouchButtonInput.TouchButtonInput -> AnimationInterface.AnimationInterface -> Rectangle.Rectangle -> CellPosition.CellPosition -> Int -> Int -> IO TouchButton
-new_6 touchButtonInput animationInterface rawRectangle cellPosition xBorder yBorder = do
-    this <- newRecord_
-    init_6 this touchButtonInput animationInterface rawRectangle cellPosition xBorder yBorder
-    pure this
-
-init_6 :: TouchButton -> TouchButtonInput.TouchButtonInput -> AnimationInterface.AnimationInterface -> Rectangle.Rectangle -> CellPosition.CellPosition -> Int -> Int -> IO ()
-init_6 this touchButtonInput animationInterface rawRectangle cellPosition xBorder yBorder = do
-        Paintable.init_ this.base
-        initFields_ this
-        jset (this).touchButtonInput (touchButtonInput)
-        jset (this).animationInterface ((javaCast animationInterface :: Animation.Animation))
-        jset (this).rawRectangle (rawRectangle)
-        jset (this).cellPosition (cellPosition)
-        jset (this).xBorder (xBorder)
-        jset (this).yBorder (yBorder)
-        Control.Monad.void (TouchButton.updateRectangle this)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "Created: "))) (jio (TouchButton.toString this))))))) this (jget ((jget (this).commonStrings)).cONSTRUCTOR))
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Graphics.Paint.Paintable as Paintable
+import Org.Allbinary.Graphics.PointFactory as PointFactory
+import Org.Allbinary.Graphics.Rectangle as Rectangle
+import Org.Allbinary.Graphics.RectangleFactory as RectangleFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: TouchButton))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: TouchButton)) a1
-
-paint_impl :: TouchButton -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (Animation.paintXY ((jget (this).animationInterface)) graphics (jget this.animationX) (jget (this).animationY))
-        pure ()
+jclass : String
+jclass =
+    "TouchButton"
 
 
-updateRectangle :: (JavaObjectClass this_) => this_ -> IO (())
-updateRectangle object_ = jmethod object_ "updateRectangle" (\() -> (updateRectangle_impl (javaCast object_ :: TouchButton))) ()
-
-updateRectangle_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateRectangle_super object_ = (updateRectangle_impl (javaCast object_ :: TouchButton))
-
-updateRectangle_impl :: TouchButton -> IO (())
-updateRectangle_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "updateRectangle" e)
-            ) $ do
-            let x = ((jio (Rectangle.getWidth ((jget (this).rawRectangle)))) * (jio (CellPosition.getColumn ((jget (this).cellPosition)))))
-            let y = ((jio (Rectangle.getHeight ((jget (this).rawRectangle)))) * (jio (CellPosition.getRow ((jget (this).cellPosition)))))
-            pointFactory <- (PointFactory.getInstance)
-            assignedValue <- (Rectangle.new_3 (jio (PointFactory.createXY pointFactory (x + (jget (this).xBorder)) (y + (jget (this).yBorder)))) (jio (Rectangle.getWidth ((jget (this).rawRectangle)))) (jio (Rectangle.getHeight ((jget (this).rawRectangle)))))
-            jset (this).rectangle (assignedValue)
-            point <- (Rectangle.getPoint ((jget (this).rectangle)))
-            assignedValue <- (GPoint.getX point)
-            jset (this).animationX (assignedValue)
-            assignedValue <- (GPoint.getY point)
-            jset (this).animationY (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "TouchButton" ]
+        ++ Paintable.jchain
 
 
-getCellPositionP :: (JavaObjectClass this_) => this_ -> IO (CellPosition.CellPosition)
-getCellPositionP object_ = jmethod object_ "getCellPositionP" (\() -> (getCellPositionP_impl (javaCast object_ :: TouchButton))) ()
-
-getCellPositionP_super :: (JavaObjectClass this_) => this_ -> IO (CellPosition.CellPosition)
-getCellPositionP_super object_ = (getCellPositionP_impl (javaCast object_ :: TouchButton))
-
-getCellPositionP_impl :: TouchButton -> IO (CellPosition.CellPosition)
-getCellPositionP_impl this = do
-        pure ((jget (this).cellPosition))
+jfields : List ( String, JR.JValue )
+jfields =
+    Paintable.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "touchButtonInput", JR.defaultOf "" ), ( "animationInterface", JR.defaultOf "" ), ( "rawRectangle", JR.defaultOf "" ), ( "xBorder", JR.defaultOf "I" ), ( "yBorder", JR.defaultOf "I" ), ( "rectangle", JR.defaultOf "" ), ( "cellPosition", JR.defaultOf "" ), ( "animationX", JR.defaultOf "I" ), ( "animationY", JR.defaultOf "I" ) ]
 
 
-getRectangleP :: (JavaObjectClass this_) => this_ -> IO (Rectangle.Rectangle)
-getRectangleP object_ = jmethod object_ "getRectangleP" (\() -> (getRectangleP_impl (javaCast object_ :: TouchButton))) ()
-
-getRectangleP_super :: (JavaObjectClass this_) => this_ -> IO (Rectangle.Rectangle)
-getRectangleP_super object_ = (getRectangleP_impl (javaCast object_ :: TouchButton))
-
-getRectangleP_impl :: TouchButton -> IO (Rectangle.Rectangle)
-getRectangleP_impl this = do
-        pure ((jget (this).rectangle))
-
-
-getTouchButtonInput :: (JavaObjectClass this_) => this_ -> IO (TouchButtonInput.TouchButtonInput)
-getTouchButtonInput object_ = jmethod object_ "getTouchButtonInput" (\() -> (getTouchButtonInput_impl (javaCast object_ :: TouchButton))) ()
-
-getTouchButtonInput_super :: (JavaObjectClass this_) => this_ -> IO (TouchButtonInput.TouchButtonInput)
-getTouchButtonInput_super object_ = (getTouchButtonInput_impl (javaCast object_ :: TouchButton))
-
-getTouchButtonInput_impl :: TouchButton -> IO (TouchButtonInput.TouchButtonInput)
-getTouchButtonInput_impl this = do
-        pure ((jget (this).touchButtonInput))
+jvtable =
+    JR.vtable
+        [ ( "paint_1", jm_paint_1 )
+        , ( "updateRectangle_0", jm_updateRectangle_0 )
+        , ( "getCellPositionP_0", jm_getCellPositionP_0 )
+        , ( "getRectangleP_0", jm_getRectangleP_0 )
+        , ( "getTouchButtonInput_0", jm_getTouchButtonInput_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        Paintable.jvtable
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: TouchButton))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TouchButton"
+        [ ( "jm_paint_1", jm_paint_1 ), ( "jm_updateRectangle_0", jm_updateRectangle_0 ), ( "jm_getCellPositionP_0", jm_getCellPositionP_0 ), ( "jm_getRectangleP_0", jm_getRectangleP_0 ), ( "jm_getTouchButtonInput_0", jm_getTouchButtonInput_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_6", jnew_6 ), ( "jinit_6", jinit_6 ) ]
+        []
+        jheap
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: TouchButton))
 
-toString_impl :: TouchButton -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        stringUtil <- (StringUtil.getInstance)
-        Control.Monad.void (StringMaker.append stringBuffer "TouchButton: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString stringUtil (jget (this).rectangle))))
-        Control.Monad.void (StringMaker.append stringBuffer " CellPosition: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString stringUtil (jget (this).cellPosition))))
-        Control.Monad.void (StringMaker.append stringBuffer " xBorder: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jget (this).xBorder))
-        Control.Monad.void (StringMaker.append stringBuffer " yBorder: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jget (this).yBorder))
-        (StringMaker.toString stringBuffer)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_6 : JR.Method
+jinit_6 jheap jthis jargs =
+    JR.method [ ( "touchButtonInput", "" ), ( "animationInterface", "" ), ( "rawRectangle", "" ), ( "cellPosition", "" ), ( "xBorder", "I" ), ( "yBorder", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Paintable.jinit_0 JR.this []),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "rectangle" "" JR.this RectangleFactory.jstatic_SINGLETON),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "touchButtonInput" "" JR.this (JR.local "touchButtonInput")), 
+                    JR.exec (JR.setField "animationInterface" "" JR.this (JR.local "animationInterface")), 
+                    JR.exec (JR.setField "rawRectangle" "" JR.this (JR.local "rawRectangle")), 
+                    JR.exec (JR.setField "cellPosition" "" JR.this (JR.local "cellPosition")), 
+                    JR.exec (JR.setField "xBorder" "I" JR.this (JR.local "xBorder")), 
+                    JR.exec (JR.setField "yBorder" "I" JR.this (JR.local "yBorder")), 
+                    JR.exec (JR.invoke "updateRectangle_0" JR.this []), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Created: ") ]) [ (JR.invoke "toString_0" JR.this []) ]) []), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_6 : JR.Method
+jnew_6 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_6 jheap jthis jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paintXY_3" (JR.thisField "animationInterface") [ (JR.local "graphics"), (JR.thisField "animationX"), (JR.thisField "animationY") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateRectangle_0 : JR.Method
+jm_updateRectangle_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "x" "I" (JR.map2 JR.mul (JR.invoke "getWidth_0" (JR.thisField "rawRectangle") []) (JR.invoke "getColumn_0" (JR.thisField "cellPosition") [])), 
+                        JR.declare "y" "I" (JR.map2 JR.mul (JR.invoke "getHeight_0" (JR.thisField "rawRectangle") []) (JR.invoke "getRow_0" (JR.thisField "cellPosition") [])), 
+                        JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.setField "rectangle" "" JR.this (JR.new Rectangle.jnew_3 [ (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.map2 JR.add (JR.local "x") (JR.thisField "xBorder")), (JR.map2 JR.add (JR.local "y") (JR.thisField "yBorder")) ]), (JR.invoke "getWidth_0" (JR.thisField "rawRectangle") []), (JR.invoke "getHeight_0" (JR.thisField "rawRectangle") []) ])), 
+                        JR.declare "point" "" (JR.invoke "getPoint_0" (JR.thisField "rectangle") []), 
+                        JR.exec (JR.setField "animationX" "I" JR.this (JR.invoke "getX_0" (JR.local "point") [])), 
+                        JR.exec (JR.setField "animationY" "I" JR.this (JR.invoke "getY_0" (JR.local "point") [])) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "updateRectangle"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCellPositionP_0 : JR.Method
+jm_getCellPositionP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "cellPosition") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRectangleP_0 : JR.Method
+jm_getRectangleP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "rectangle") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTouchButtonInput_0 : JR.Method
+jm_getTouchButtonInput_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "touchButtonInput") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "stringUtil" "" (JR.callStatic StringUtil.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "TouchButton: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.local "stringUtil") [ (JR.thisField "rectangle") ]) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " CellPosition: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.local "stringUtil") [ (JR.thisField "cellPosition") ]) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " xBorder: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.thisField "xBorder") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " yBorder: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.thisField "yBorder") ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

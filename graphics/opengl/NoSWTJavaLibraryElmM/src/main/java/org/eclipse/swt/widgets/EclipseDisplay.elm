@@ -1,91 +1,81 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.eclipse.swt.widgets
-module EclipseDisplay where
+module Org.Eclipse.Swt.Widgets.EclipseDisplay exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.eclipse.swt.widgets
+-}
 
-data EclipseDisplay = EclipseDisplay
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull EclipseDisplay where
-    javaNull = javaNullRecord "EclipseDisplay"
-
-instance JavaEquals EclipseDisplay where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq EclipseDisplay where
-    (==) = jrecordEquals
-
-instance JavaObjectClass EclipseDisplay where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO EclipseDisplay
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = EclipseDisplay header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "sleep" (\() -> sleep_impl this)
-    pure this
-
-initFields_ :: EclipseDisplay -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO EclipseDisplay
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: EclipseDisplay -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-sleep :: (JavaObjectClass this_) => this_ -> IO (())
-sleep object_ = jmethod object_ "sleep" (\() -> (sleep_impl (javaCast object_ :: EclipseDisplay))) ()
 
-sleep_super :: (JavaObjectClass this_) => this_ -> IO (())
-sleep_super object_ = (sleep_impl (javaCast object_ :: EclipseDisplay))
+jclass : String
+jclass =
+    "EclipseDisplay"
 
-sleep_impl :: EclipseDisplay -> IO (())
-sleep_impl this = do
-        pure ()
 
+jchain : List String
+jchain =
+    [ "EclipseDisplay" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "sleep_0", jm_sleep_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "EclipseDisplay"
+        [ ( "jm_sleep_0", jm_sleep_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_sleep_0 : JR.Method
+jm_sleep_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

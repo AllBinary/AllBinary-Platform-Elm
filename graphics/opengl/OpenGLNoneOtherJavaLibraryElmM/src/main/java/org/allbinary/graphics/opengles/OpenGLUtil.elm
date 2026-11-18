@@ -1,114 +1,120 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
-module OpenGLUtil where
+module Org.Allbinary.Graphics.Opengles.OpenGLUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Runnable -- same package or java.lang
-import qualified Image -- javax.microedition.lcdui.Image
+{-| Generated Code Do Not Modify package org.allbinary.graphics.opengles
+-}
 
-data OpenGLUtil = OpenGLUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull OpenGLUtil where
-    javaNull = javaNullRecord "OpenGLUtil"
-
-instance JavaEquals OpenGLUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: OpenGLUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OpenGLUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = OpenGLUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "addImage" (\() -> addImage_impl this)
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    jregisterMethod header_ "addRunnable" (\() -> addRunnable_impl this)
-    pure this
-
-initFields_ :: OpenGLUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO OpenGLUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (OpenGLUtil)
-getInstance = do
-        pure (OpenGLUtil.instance_)
+
+jclass : String
+jclass =
+    "OpenGLUtil"
 
 
-addImage :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (Image.Image)
-addImage object_ a1 = jmethod object_ "addImage" (\() -> (addImage_impl (javaCast object_ :: OpenGLUtil))) () a1
-
-addImage_super :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (Image.Image)
-addImage_super object_ a1 = (addImage_impl (javaCast object_ :: OpenGLUtil)) a1
-
-addImage_impl :: OpenGLUtil -> Image.Image -> IO (Image.Image)
-addImage_impl this image = do
-        pure (image)
+jchain : List String
+jchain =
+    [ "OpenGLUtil" ]
 
 
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: OpenGLUtil))) ()
-
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: OpenGLUtil))
-
-clear_impl :: OpenGLUtil -> IO (())
-clear_impl this = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-addRunnable :: (JavaObjectClass this_) => this_ -> Runnable.Runnable -> IO (())
-addRunnable object_ a1 = jmethod object_ "addRunnable" (\() -> (addRunnable_impl (javaCast object_ :: OpenGLUtil))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "addImage_1", jm_addImage_1 )
+        , ( "clear_0", jm_clear_0 )
+        , ( "addRunnable_1", jm_addRunnable_1 ) ]
+        JR.noMethods
 
-addRunnable_super :: (JavaObjectClass this_) => this_ -> Runnable.Runnable -> IO (())
-addRunnable_super object_ a1 = (addRunnable_impl (javaCast object_ :: OpenGLUtil)) a1
 
-addRunnable_impl :: OpenGLUtil -> Runnable.Runnable -> IO (())
-addRunnable_impl this runnable = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_addImage_1", jm_addImage_1 ), ( "jm_clear_0", jm_clear_0 ), ( "jm_addRunnable_1", jm_addRunnable_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "OpenGLUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addImage_1 : JR.Method
+jm_addImage_1 jheap jthis jargs =
+    JR.method [ ( "image", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.local "image") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addRunnable_1 : JR.Method
+jm_addRunnable_1 jheap jthis jargs =
+    JR.method [ ( "runnable", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

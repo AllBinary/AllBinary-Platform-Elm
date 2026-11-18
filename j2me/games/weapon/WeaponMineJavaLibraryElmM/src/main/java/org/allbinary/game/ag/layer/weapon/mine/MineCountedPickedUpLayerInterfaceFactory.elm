@@ -1,147 +1,138 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.weapon.mine
-module MineCountedPickedUpLayerInterfaceFactory (module MineCountedPickedUpLayerInterfaceFactory, module CountedPickedUpLayerInterfaceFactory) where
+module Org.Allbinary.Game.Ag.Layer.Weapon.Mine.MineCountedPickedUpLayerInterfaceFactory exposing (..)
 
-import CountedPickedUpLayerInterfaceFactory hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, init, init_super, init_impl, getInstance, getInstance_super, getInstance_impl, getTotal, getTotal_super, getTotal_impl, getNextInstance, getNextInstance_super, getNextInstance_impl, weaponLayerCircularStaticPool, pickedUpLayerInterfaceFactoryInterface, weaponProperties, smallIntegerSingletonFactory)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified MineLayerCircularStaticPool -- same package or java.lang
-import qualified MineWeaponResources -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified FeaturedAnimationInterfaceFactoryInterfaceFactory -- org.allbinary.animation.FeaturedAnimationInterfaceFactoryInterfaceFactory
-import qualified WeaponProperties -- org.allbinary.game.combat.weapon.WeaponProperties
-import qualified CountedPickedUpLayerInterfaceFactory -- org.allbinary.game.layer.pickup.CountedPickedUpLayerInterfaceFactory
-import qualified IconLayerFactory -- org.allbinary.game.layer.pickup.IconLayerFactory
-import qualified PickedUpLayerInterfaceFactoryInterface -- org.allbinary.game.layer.pickup.PickedUpLayerInterfaceFactoryInterface
-import qualified PickedUpLayerTypeFactory -- org.allbinary.game.layer.pickup.PickedUpLayerTypeFactory
-import qualified WeaponLayerCircularPool -- org.allbinary.game.layer.weapon.WeaponLayerCircularPool
-import qualified ScoreableInterface -- org.allbinary.game.score.ScoreableInterface
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.weapon.mine
+-}
 
-data MineCountedPickedUpLayerInterfaceFactory = MineCountedPickedUpLayerInterfaceFactory
-    { header_ :: JavaHeader
-    , base :: CountedPickedUpLayerInterfaceFactory.CountedPickedUpLayerInterfaceFactory
-    , weaponLayerCircularStaticPool :: IORef (WeaponLayerCircularPool.WeaponLayerCircularPool)
-    , weaponProperties :: IORef (WeaponProperties.WeaponProperties)
-    , smallIntegerSingletonFactory :: IORef (SmallIntegerSingletonFactory.SmallIntegerSingletonFactory)
-    }
-
-instance JavaNull MineCountedPickedUpLayerInterfaceFactory where
-    javaNull = javaNullRecord "MineCountedPickedUpLayerInterfaceFactory"
-
-instance JavaEquals MineCountedPickedUpLayerInterfaceFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MineCountedPickedUpLayerInterfaceFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MineCountedPickedUpLayerInterfaceFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-pickedUpLayerInterfaceFactoryInterface :: IORef (PickedUpLayerInterfaceFactoryInterface.PickedUpLayerInterfaceFactoryInterface)
-{-# NOINLINE pickedUpLayerInterfaceFactoryInterface #-}
-pickedUpLayerInterfaceFactoryInterface = unsafePerformIO (newIORef (CountedPickedUpLayerInterfaceFactory.nULL_COUNTED_PICKUP_LAYER_FACTORY))
-
-newRecord_ :: IO MineCountedPickedUpLayerInterfaceFactory
-newRecord_ = do
-    base <- CountedPickedUpLayerInterfaceFactory.newRecord_
-    let header_ = base.header_
-    weaponLayerCircularStaticPool <- newIORef javaNull
-    weaponProperties <- newIORef javaNull
-    smallIntegerSingletonFactory <- newIORef javaNull
-    let this = MineCountedPickedUpLayerInterfaceFactory header_ base weaponLayerCircularStaticPool weaponProperties smallIntegerSingletonFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "getTotal" (\() -> getTotal_impl this)
-    jregisterMethod header_ "getNextInstance" (\() -> getNextInstance_impl this)
-    pure this
-
-initFields_ :: MineCountedPickedUpLayerInterfaceFactory -> IO ()
-initFields_ this = do
-    jset this.weaponLayerCircularStaticPool =<< (MineLayerCircularStaticPool.getInstance)
-    jset this.weaponProperties =<< (WeaponProperties.new_5 (Prelude.negate 1) (Prelude.negate 1) 0 8000 (Prelude.fromIntegral (10 :: Int)))
-    jset this.smallIntegerSingletonFactory =<< (SmallIntegerSingletonFactory.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Game.Layer.Pickup.CountedPickedUpLayerInterfaceFactory as CountedPickedUpLayerInterfaceFactory
+import Org.Allbinary.Animation.FeaturedAnimationInterfaceFactoryInterfaceFactory as FeaturedAnimationInterfaceFactoryInterfaceFactory
+import Org.Allbinary.Game.Layer.Pickup.IconLayerFactory as IconLayerFactory
+import Org.Allbinary.Game.Ag.Layer.Weapon.Mine.MineLayerCircularStaticPool as MineLayerCircularStaticPool
+import Org.Allbinary.Game.Ag.Layer.Weapon.Mine.MineWeaponResources as MineWeaponResources
+import Org.Allbinary.Game.Layer.Pickup.PickedUpLayerTypeFactory as PickedUpLayerTypeFactory
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Game.Combat.Weapon.WeaponProperties as WeaponProperties
 
 
--- throws Exception
-init :: IO (())
-init = do
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: PickedUpLayerInterfaceFactoryInterface.PickedUpLayerInterfaceFactoryInterface) (new_))
-        jset MineCountedPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface (assignedValue)
-        pure ()
-
-new_ :: IO MineCountedPickedUpLayerInterfaceFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: MineCountedPickedUpLayerInterfaceFactory -> IO ()
-init_ this = do
-        CountedPickedUpLayerInterfaceFactory.init_3 this.base (jget ((jio (PickedUpLayerTypeFactory.getInstance))).mINE) (jio (IconLayerFactory.getInstance (jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance ((jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.get ((jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance))) (jget ((jio (MineWeaponResources.getInstance))).dROP_ICON_RESOURCE)))) 0)) 10 10)) (jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance ((jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.get ((jio (FeaturedAnimationInterfaceFactoryInterfaceFactory.getInstance))) (jget ((jio (MineWeaponResources.getInstance))).dROP_RESOURCE)))) 0))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+jclass : String
+jclass =
+    "MineCountedPickedUpLayerInterfaceFactory"
 
 
-getInstance :: IO (PickedUpLayerInterfaceFactoryInterface.PickedUpLayerInterfaceFactoryInterface)
-getInstance = do
-        pure ((jget MineCountedPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface))
+jchain : List String
+jchain =
+    [ "MineCountedPickedUpLayerInterfaceFactory" ]
+        ++ CountedPickedUpLayerInterfaceFactory.jchain
 
 
-getTotal :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotal object_ = jmethod object_ "getTotal" (\() -> (getTotal_impl (javaCast object_ :: MineCountedPickedUpLayerInterfaceFactory))) ()
-
-getTotal_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotal_super object_ = (getTotal_impl (javaCast object_ :: MineCountedPickedUpLayerInterfaceFactory))
-
-getTotal_impl :: MineCountedPickedUpLayerInterfaceFactory -> IO (Int)
-getTotal_impl this = do
-        pure (3)
+jfields : List ( String, JR.JValue )
+jfields =
+    CountedPickedUpLayerInterfaceFactory.jfields ++ [ ( "weaponLayerCircularStaticPool", JR.defaultOf "" ), ( "weaponProperties", JR.defaultOf "" ), ( "smallIntegerSingletonFactory", JR.defaultOf "" ) ]
 
 
--- throws Exception
-getNextInstance :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> Int -> Int -> Int -> IO (AllBinaryLayer.AllBinaryLayer)
-getNextInstance object_ a1 a2 a3 a4 = jmethod object_ "getNextInstance" (\() -> (getNextInstance_impl (javaCast object_ :: MineCountedPickedUpLayerInterfaceFactory))) () a1 a2 a3 a4
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 )
+        , ( "getInstance_0", jm_getInstance_0 )
+        , ( "getTotal_0", jm_getTotal_0 )
+        , ( "getNextInstance_4", jm_getNextInstance_4 ) ]
+        CountedPickedUpLayerInterfaceFactory.jvtable
 
-getNextInstance_super :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> Int -> Int -> Int -> IO (AllBinaryLayer.AllBinaryLayer)
-getNextInstance_super object_ a1 a2 a3 a4 = (getNextInstance_impl (javaCast object_ :: MineCountedPickedUpLayerInterfaceFactory)) a1 a2 a3 a4
 
-getNextInstance_impl :: MineCountedPickedUpLayerInterfaceFactory -> ABHashtable.ABHashtable -> Int -> Int -> Int -> IO (AllBinaryLayer.AllBinaryLayer)
-getNextInstance_impl this hashtable x y z = do
-        let sourceLayerInterface = (javaCast (jio (ABHashtable.get hashtable (javaCast (jio (SmallIntegerSingletonFactory.getAt ((jget (this).smallIntegerSingletonFactory)) 0)) :: Any.Any))) :: AllBinaryLayer.AllBinaryLayer)
-        let angle = (javaCast (jio (ABHashtable.get hashtable (javaCast (jio (SmallIntegerSingletonFactory.getAt ((jget (this).smallIntegerSingletonFactory)) 1)) :: Any.Any))) :: Int)
-        let scoreableInterface = (javaCast sourceLayerInterface :: ScoreableInterface.ScoreableInterface)
-        (WeaponLayerCircularPool.getInstanceWeaponLayer ((jget (this).weaponLayerCircularStaticPool)) sourceLayerInterface x y z (angle) 0 (jget (this).weaponProperties) scoreableInterface)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MineCountedPickedUpLayerInterfaceFactory"
+        [ ( "jm_init_0", jm_init_0 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getTotal_0", jm_getTotal_0 ), ( "jm_getNextInstance_4", jm_getNextInstance_4 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_pickedUpLayerInterfaceFactoryInterface", jstatic_pickedUpLayerInterfaceFactoryInterface ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_pickedUpLayerInterfaceFactoryInterface : JR.M
+jstatic_pickedUpLayerInterfaceFactoryInterface s =
+    JR.static "MineCountedPickedUpLayerInterfaceFactory" jclinit "pickedUpLayerInterfaceFactoryInterface"
+        CountedPickedUpLayerInterfaceFactory.jstatic_NULL_COUNTED_PICKUP_LAYER_FACTORY
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect CountedPickedUpLayerInterfaceFactory.jinit_3 JR.this [ (JR.field "MINE" (JR.callStatic PickedUpLayerTypeFactory.jm_getInstance_0 [])), (JR.callStatic IconLayerFactory.jm_getInstance_3 [ (JR.invoke "getInstance_1" (JR.invoke "get_1" (JR.callStatic FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0 []) [ (JR.field "DROP_ICON_RESOURCE" (JR.callStatic MineWeaponResources.jm_getInstance_0 [])) ]) [ (JR.int 0) ]), (JR.int 10), (JR.int 10) ]), (JR.invoke "getInstance_1" (JR.invoke "get_1" (JR.callStatic FeaturedAnimationInterfaceFactoryInterfaceFactory.jm_getInstance_0 []) [ (JR.field "DROP_RESOURCE" (JR.callStatic MineWeaponResources.jm_getInstance_0 [])) ]) [ (JR.int 0) ]) ]),
+                JR.exec (JR.setField "weaponLayerCircularStaticPool" "" JR.this (JR.callStatic MineLayerCircularStaticPool.jm_getInstance_0 [])),
+                JR.exec (JR.setField "weaponProperties" "" JR.this (JR.new WeaponProperties.jnew_5 [ (JR.map JR.neg (JR.long 1)), (JR.map JR.neg (JR.long 1)), (JR.int 0), (JR.int 8000), (JR.cast "S" (JR.int 10)) ])),
+                JR.exec (JR.setField "smallIntegerSingletonFactory" "" JR.this (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setStatic "MineCountedPickedUpLayerInterfaceFactory.pickedUpLayerInterfaceFactoryInterface" "" (JR.new jnew_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_pickedUpLayerInterfaceFactoryInterface ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTotal_0 : JR.Method
+jm_getTotal_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 3) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNextInstance_4 : JR.Method
+jm_getNextInstance_4 jheap jthis jargs =
+    JR.method [ ( "hashtable", "" ), ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "sourceLayerInterface" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.invoke "getAt_1" (JR.thisField "smallIntegerSingletonFactory") [ (JR.int 0) ]) ]), 
+                    JR.declare "angle" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.invoke "getAt_1" (JR.thisField "smallIntegerSingletonFactory") [ (JR.int 1) ]) ]), 
+                    JR.declare "scoreableInterface" "" (JR.local "sourceLayerInterface"), 
+                    JR.return (JR.invoke "getInstanceWeaponLayer_8" (JR.thisField "weaponLayerCircularStaticPool") [ (JR.local "sourceLayerInterface"), (JR.local "x"), (JR.local "y"), (JR.local "z"), (JR.cast "I" (JR.invoke "intValue_0" (JR.local "angle") [])), (JR.int 0), (JR.thisField "weaponProperties"), (JR.local "scoreableInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

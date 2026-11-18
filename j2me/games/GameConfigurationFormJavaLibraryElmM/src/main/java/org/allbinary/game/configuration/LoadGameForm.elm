@@ -1,214 +1,185 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
-module LoadGameForm (module LoadGameForm, module CommandForm) where
+module Org.Allbinary.Game.Configuration.LoadGameForm exposing (..)
 
-import CommandForm hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, initCommands, initCommands_super, initCommands_impl, update, update_super, update_impl, add, add_super, add_impl, getChoiceGroup, getChoiceGroup_super, getChoiceGroup_impl, getSelectedId, getSelectedId_super, getSelectedId_impl, getSelectedText, getSelectedText_super, getSelectedText_impl, meUtil, areChoices)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Choice -- javax.microedition.lcdui.Choice
-import qualified ChoiceGroup -- javax.microedition.lcdui.ChoiceGroup
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified LcduiItem -- javax.microedition.lcdui.LcduiItem
-import qualified NullImage -- javax.microedition.lcdui.NullImage
-import qualified StringItem -- javax.microedition.lcdui.StringItem
-import qualified MIDPUtil -- org.allbinary.MIDPUtil
-import qualified GameCommandsFactory -- org.allbinary.game.commands.GameCommandsFactory
-import qualified GamePersistanceSingleton -- org.allbinary.game.configuration.persistance.GamePersistanceSingleton
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified CommandForm -- org.allbinary.graphics.displayable.screen.CommandForm
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration
+-}
 
-data LoadGameForm = LoadGameForm
-    { header_ :: JavaHeader
-    , base :: CommandForm.CommandForm
-    , meUtil :: IORef (MIDPUtil.MIDPUtil)
-    , areChoices :: IORef (Bool)
-    }
-
-instance JavaNull LoadGameForm where
-    javaNull = javaNullRecord "LoadGameForm"
-
-instance JavaEquals LoadGameForm where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LoadGameForm where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LoadGameForm where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO LoadGameForm
-newRecord_ = do
-    base <- CommandForm.newRecord_
-    let header_ = base.header_
-    meUtil <- newIORef javaNull
-    areChoices <- newIORef False
-    let this = LoadGameForm header_ base meUtil areChoices
-    jregisterLevel header_ this
-    jregisterMethod header_ "initCommands" (\() -> initCommands_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "getChoiceGroup" (\() -> getChoiceGroup_impl this)
-    jregisterMethod header_ "getSelectedId" (\() -> getSelectedId_impl this)
-    jregisterMethod header_ "getSelectedText" (\() -> getSelectedText_impl this)
-    pure this
-
-initFields_ :: LoadGameForm -> IO ()
-initFields_ this = do
-    jset this.meUtil =<< (MIDPUtil.getInstance)
-    jset this.areChoices (False)
-    pure ()
-
-new_4 :: CommandListener.CommandListener -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO LoadGameForm
-new_4 commandListener title backgrounBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_4 this commandListener title backgrounBasicColor foregroundBasicColor
-    pure this
-
-init_4 :: LoadGameForm -> CommandListener.CommandListener -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_4 this commandListener title backgrounBasicColor foregroundBasicColor = do
-        CommandForm.init_4 this.base (commandListener) (title) (backgrounBasicColor) (foregroundBasicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-        Control.Monad.void (LoadGameForm.update this)
-        Control.Monad.void (LoadGameForm.initCommands this commandListener)
-        pure ()
+import JR
+import Javax.Microedition.Lcdui.Choice as Choice
+import Javax.Microedition.Lcdui.ChoiceGroup as ChoiceGroup
+import Org.Allbinary.Graphics.Displayable.Screen.CommandForm as CommandForm
+import Org.Allbinary.Game.Commands.GameCommandsFactory as GameCommandsFactory
+import Org.Allbinary.Game.Configuration.Persistance.GamePersistanceSingleton as GamePersistanceSingleton
+import JInteger
+import Javax.Microedition.Lcdui.LcduiItem as LcduiItem
+import Org.Allbinary.MIDPUtil as MIDPUtil
+import Javax.Microedition.Lcdui.NullImage as NullImage
+import Javax.Microedition.Lcdui.StringItem as StringItem
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-initCommands :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands object_ a1 = jmethod object_ "initCommands" (\() -> (initCommands_impl (javaCast object_ :: LoadGameForm))) () a1
-
-initCommands_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands_super object_ a1 = (initCommands_impl (javaCast object_ :: LoadGameForm)) a1
-
-initCommands_impl :: LoadGameForm -> CommandListener.CommandListener -> IO (())
-initCommands_impl this cmdListener = do
-        gameCommandsFactory <- (GameCommandsFactory.getInstance)
-        Control.Monad.void (CommandForm.removeAllCommands this)
-        Control.Monad.void (CommandForm.addCommand this (jget (gameCommandsFactory).lOAD_FILE))
-        Control.Monad.void (CommandForm.addCommand this (jget (gameCommandsFactory).dELETE_FILE))
-        Control.Monad.void (CommandForm.addCommand this (jget (gameCommandsFactory).cLOSE_AND_SHOW_GAME_CANVAS))
-        Control.Monad.void (CommandForm.setCommandListener this cmdListener)
-        pure ()
+jclass : String
+jclass =
+    "LoadGameForm"
 
 
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: LoadGameForm))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: LoadGameForm))
-
-update_impl :: LoadGameForm -> IO (())
-update_impl this = do
-        list <- (GamePersistanceSingleton.getIds ((jio (GamePersistanceSingleton.getInstance))))
-        Control.Monad.void (CommandForm.deleteAll this)
-        if ((jio (BasicArrayList.size list)) > 0) then do
-            Control.Monad.void (LoadGameForm.add this list "Select A Saved Game" (Choice.eXCLUSIVE))
-            jset (this).areChoices (True)
-        else do
-            Control.Monad.void (MIDPUtil.appendItem ((jget (this).meUtil)) this (jio (StringItem.new_3 "No Saved Games" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (LcduiItem.pLAIN))))
-            jset (this).areChoices (False)
-        Control.Monad.void (CommandForm.update_super this.base)
-        pure ()
+jchain : List String
+jchain =
+    [ "LoadGameForm" ]
+        ++ CommandForm.jchain
 
 
-add :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> String -> Int -> IO (())
-add object_ a1 a2 a3 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: LoadGameForm))) () a1 a2 a3
-
-add_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> String -> Int -> IO (())
-add_super object_ a1 a2 a3 = (add_impl (javaCast object_ :: LoadGameForm)) a1 a2 a3
-
-add_impl :: LoadGameForm -> BasicArrayList.BasicArrayList -> String -> Int -> IO (())
-add_impl this list name option = do
-        choiceGroup <- (LoadGameForm.getChoiceGroup this list name option)
-        when ((jio (BasicArrayList.size list)) > 0) $ do
-            Control.Monad.void (ChoiceGroup.setSelectedIndex choiceGroup 0 True)
-        Control.Monad.void (MIDPUtil.appendItem ((jget (this).meUtil)) this choiceGroup)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    CommandForm.jfields ++ [ ( "meUtil", JR.defaultOf "" ), ( "areChoices", JR.defaultOf "Z" ) ]
 
 
-getChoiceGroup :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> String -> Int -> IO (ChoiceGroup.ChoiceGroup)
-getChoiceGroup object_ a1 a2 a3 = jmethod object_ "getChoiceGroup" (\() -> (getChoiceGroup_impl (javaCast object_ :: LoadGameForm))) () a1 a2 a3
-
-getChoiceGroup_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> String -> Int -> IO (ChoiceGroup.ChoiceGroup)
-getChoiceGroup_super object_ a1 a2 a3 = (getChoiceGroup_impl (javaCast object_ :: LoadGameForm)) a1 a2 a3
-
-getChoiceGroup_impl :: LoadGameForm -> BasicArrayList.BasicArrayList -> String -> Int -> IO (ChoiceGroup.ChoiceGroup)
-getChoiceGroup_impl this list name option = do
-        let mETHOD_NAME = "getChoiceGroup"
-        let aDDING_CHOICE = "Adding Choice: "
-        choiceGroup <- (ChoiceGroup.new_4 name option (jio (StringUtil.getArrayInstance ((jio (StringUtil.getInstance))))) (NullImage.nULL_IMAGE_ARRAY))
-        size <- (BasicArrayList.size list)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let anyType = (jindex ((jget (list).objectArray)) (index))
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) aDDING_CHOICE))) (jio (Any.toString anyType))))))) this mETHOD_NAME)
-            Control.Monad.void (ChoiceGroup.append choiceGroup (jio (Any.toString anyType)) (NullImage.nULL_IMAGE))
-        pure (choiceGroup)
+jvtable =
+    JR.vtable
+        [ ( "initCommands_1", jm_initCommands_1 )
+        , ( "update_0", jm_update_0 )
+        , ( "add_3", jm_add_3 )
+        , ( "getChoiceGroup_3", jm_getChoiceGroup_3 )
+        , ( "getSelectedId_0", jm_getSelectedId_0 )
+        , ( "getSelectedText_0", jm_getSelectedText_0 ) ]
+        CommandForm.jvtable
 
 
-getSelectedId :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSelectedId object_ = jmethod object_ "getSelectedId" (\() -> (getSelectedId_impl (javaCast object_ :: LoadGameForm))) ()
-
-getSelectedId_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSelectedId_super object_ = (getSelectedId_impl (javaCast object_ :: LoadGameForm))
-
-getSelectedId_impl :: LoadGameForm -> IO (Int)
-getSelectedId_impl this = do
-    javaCatchReturn $ do
-        if (jget (this).areChoices) then do
-            let choiceGroup = (javaCast (jio (CommandForm.get this 0)) :: ChoiceGroup.ChoiceGroup)
-            javaReturn =<< (ChoiceGroup.getSelectedIndex choiceGroup)
-        else do
-            javaReturn ((Prelude.negate 1))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LoadGameForm"
+        [ ( "jm_initCommands_1", jm_initCommands_1 ), ( "jm_update_0", jm_update_0 ), ( "jm_add_3", jm_add_3 ), ( "jm_getChoiceGroup_3", jm_getChoiceGroup_3 ), ( "jm_getSelectedId_0", jm_getSelectedId_0 ), ( "jm_getSelectedText_0", jm_getSelectedText_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
 
 
-getSelectedText :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSelectedText object_ = jmethod object_ "getSelectedText" (\() -> (getSelectedText_impl (javaCast object_ :: LoadGameForm))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-getSelectedText_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSelectedText_super object_ = (getSelectedText_impl (javaCast object_ :: LoadGameForm))
 
-getSelectedText_impl :: LoadGameForm -> IO (Int)
-getSelectedText_impl this = do
-    javaCatchReturn $ do
-        if (jget (this).areChoices) then do
-            let choiceGroup = (javaCast (jio (CommandForm.get this 0)) :: ChoiceGroup.ChoiceGroup)
-            let value = ((jio (ChoiceGroup.getString choiceGroup (jio (ChoiceGroup.getSelectedIndex choiceGroup)))))
-            javaReturn (value)
-        else do
-            javaReturn ((Prelude.negate 1))
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "commandListener", "" ), ( "title", "" ), ( "backgrounBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect CommandForm.jinit_4 JR.this [ (JR.local "commandListener"), (JR.local "title"), (JR.local "backgrounBasicColor"), (JR.local "foregroundBasicColor") ]),
+                JR.exec (JR.setField "meUtil" "" JR.this (JR.callStatic MIDPUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.invoke "update_0" JR.this []), 
+                    JR.exec (JR.invoke "initCommands_1" JR.this [ (JR.local "commandListener") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_initCommands_1 : JR.Method
+jm_initCommands_1 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameCommandsFactory" "" (JR.callStatic GameCommandsFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "removeAllCommands_0" JR.this []), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "LOAD_FILE" (JR.local "gameCommandsFactory")) ]), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "DELETE_FILE" (JR.local "gameCommandsFactory")) ]), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "CLOSE_AND_SHOW_GAME_CANVAS" (JR.local "gameCommandsFactory")) ]), 
+                    JR.exec (JR.invoke "setCommandListener_1" JR.this [ (JR.local "cmdListener") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "list" "" (JR.invoke "getIds_0" (JR.callStatic GamePersistanceSingleton.jm_getInstance_0 []) []), 
+                    JR.exec (JR.invoke "deleteAll_0" JR.this []), 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "size_0" (JR.local "list") []) (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.invoke "add_3" JR.this [ (JR.local "list"), (JR.str "Select A Saved Game"), Choice.jstatic_EXCLUSIVE ]), 
+                        JR.exec (JR.setField "areChoices" "Z" JR.this (JR.bool True)) ]) (JR.run [ 
+                        JR.exec (JR.invoke "appendItem_2" (JR.thisField "meUtil") [ JR.this, (JR.new StringItem.jnew_3 [ (JR.str "No Saved Games"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), LcduiItem.jstatic_PLAIN ]) ]), 
+                        JR.exec (JR.setField "areChoices" "Z" JR.this (JR.bool False)) ]), 
+                    JR.exec (JR.callVia CommandForm.jvtable "update_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_3 : JR.Method
+jm_add_3 jheap jthis jargs =
+    JR.method [ ( "list", "" ), ( "name", "" ), ( "option", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "choiceGroup" "" (JR.invoke "getChoiceGroup_3" JR.this [ (JR.local "list"), (JR.local "name"), (JR.local "option") ]), 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "size_0" (JR.local "list") []) (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.invoke "setSelectedIndex_2" (JR.local "choiceGroup") [ (JR.int 0), (JR.bool True) ]) ]) identity, 
+                    JR.exec (JR.invoke "appendItem_2" (JR.thisField "meUtil") [ JR.this, (JR.local "choiceGroup") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getChoiceGroup_3 : JR.Method
+jm_getChoiceGroup_3 jheap jthis jargs =
+    JR.method [ ( "list", "" ), ( "name", "" ), ( "option", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "METHOD_NAME" "" (JR.str "getChoiceGroup"), 
+                    JR.declare "ADDING_CHOICE" "" (JR.str "Adding Choice: "), 
+                    JR.declare "choiceGroup" "" (JR.new ChoiceGroup.jnew_4 [ (JR.local "name"), (JR.local "option"), (JR.invoke "getArrayInstance_0" (JR.callStatic StringUtil.jm_getInstance_0 []) []), NullImage.jstatic_NULL_IMAGE_ARRAY ]), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69453 -> (JR.setLocal "index" "I" (JR.lit jwN69453))) JR.increment) ]) (JR.run [ 
+                        JR.declare "anyType" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.local "ADDING_CHOICE") ]) [ (JR.invoke "toString_0" (JR.local "anyType") []) ]) []), JR.this, (JR.local "METHOD_NAME") ]), 
+                        JR.exec (JR.invoke "append_2" (JR.local "choiceGroup") [ (JR.invoke "toString_0" (JR.local "anyType") []), NullImage.jstatic_NULL_IMAGE ]) ]) ], 
+                    JR.return (JR.local "choiceGroup") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSelectedId_0 : JR.Method
+jm_getSelectedId_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.ifElse (JR.thisField "areChoices") (JR.run [ 
+                        JR.declare "choiceGroup" "" (JR.invoke "get_1" JR.this [ (JR.int 0) ]), 
+                        JR.return (JR.invoke "getSelectedIndex_0" (JR.local "choiceGroup") []) ]) (JR.run [ 
+                        JR.return (JR.map JR.neg (JR.int 1)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSelectedText_0 : JR.Method
+jm_getSelectedText_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.ifElse (JR.thisField "areChoices") (JR.run [ 
+                        JR.declare "choiceGroup" "" (JR.invoke "get_1" JR.this [ (JR.int 0) ]), 
+                        JR.declare "value" "I" (JR.invoke "intValue_0" (JR.callStatic JInteger.jm_valueOf_1 [ (JR.invoke "getString_1" (JR.local "choiceGroup") [ (JR.invoke "getSelectedIndex_0" (JR.local "choiceGroup") []) ]) ]) []), 
+                        JR.return (JR.local "value") ]) (JR.run [ 
+                        JR.return (JR.map JR.neg (JR.int 1)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,4 +1,4 @@
-module ScreenListenerInterface exposing (..)
+module Org.Allbinary.Graphics.ScreenListenerInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics
 -}

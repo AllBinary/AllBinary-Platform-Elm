@@ -1,239 +1,306 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.smtp.event
-module UserEmailEventNameData where
+module Org.Allbinary.Logic.Communication.Smtp.Event.UserEmailEventNameData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HashMap -- java.util.HashMap
-import qualified OrderHistoryData -- org.allbinary.business.user.commerce.inventory.order.OrderHistoryData
-import qualified StdUtil -- org.allbinary.logic.StdUtil
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.smtp.event
+-}
 
-data UserEmailEventNameData = UserEmailEventNameData
-    { header_ :: JavaHeader
-    , eventNameId :: IORef (Int)
-    , eventHandlerName :: IORef (String)
-    }
-
-instance JavaNull UserEmailEventNameData where
-    javaNull = javaNullRecord "UserEmailEventNameData"
-
-instance JavaEquals UserEmailEventNameData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq UserEmailEventNameData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass UserEmailEventNameData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-userNameEvenNameHashMap :: IORef (HashMap.HashMap)
-{-# NOINLINE userNameEvenNameHashMap #-}
-userNameEvenNameHashMap = unsafePerformIO ((StdUtil.createHashMap ((jio (StdUtil.getInstance)))) >>= newIORef)
-
-nextId :: IORef (Int)
-{-# NOINLINE nextId #-}
-nextId = unsafePerformIO (newIORef (0))
-
-iNSTALLER :: UserEmailEventNameData
-{-# NOINLINE iNSTALLER #-}
-iNSTALLER = unsafePerformIO ((new_1 "Installer"))
-
-eXCEPTION :: UserEmailEventNameData
-{-# NOINLINE eXCEPTION #-}
-eXCEPTION = unsafePerformIO ((new_1 "Exception"))
-
-lOGGEDEXCEPTION :: UserEmailEventNameData
-{-# NOINLINE lOGGEDEXCEPTION #-}
-lOGGEDEXCEPTION = unsafePerformIO ((new_1 "Logged Exception"))
-
-eRROR :: UserEmailEventNameData
-{-# NOINLINE eRROR #-}
-eRROR = unsafePerformIO ((new_1 "Error"))
-
-oUTOFMEMORY :: UserEmailEventNameData
-{-# NOINLINE oUTOFMEMORY #-}
-oUTOFMEMORY = unsafePerformIO ((new_1 "Out Of Memory Error"))
-
-aDMINGENERATINGSTATICPAGES :: UserEmailEventNameData
-{-# NOINLINE aDMINGENERATINGSTATICPAGES #-}
-aDMINGENERATINGSTATICPAGES = unsafePerformIO ((new_1 "Admin Generating Static Pages"))
-
-sTOREERROROCCURRED :: UserEmailEventNameData
-{-# NOINLINE sTOREERROROCCURRED #-}
-sTOREERROROCCURRED = unsafePerformIO ((new_1 "Store Error Occurred"))
-
-sTOREOUTOFMEMORY :: UserEmailEventNameData
-{-# NOINLINE sTOREOUTOFMEMORY #-}
-sTOREOUTOFMEMORY = unsafePerformIO ((new_1 "Store Out Of Memory Error"))
-
-sTORECREATED :: UserEmailEventNameData
-{-# NOINLINE sTORECREATED #-}
-sTORECREATED = unsafePerformIO ((new_1 "Store Created"))
-
-sTOREOPENED :: UserEmailEventNameData
-{-# NOINLINE sTOREOPENED #-}
-sTOREOPENED = unsafePerformIO ((new_1 "Store Opened"))
-
-sTORECLOSED :: UserEmailEventNameData
-{-# NOINLINE sTORECLOSED #-}
-sTORECLOSED = unsafePerformIO ((new_1 "Store Closed"))
-
-sTOREGENERATINGSTATICPAGES :: UserEmailEventNameData
-{-# NOINLINE sTOREGENERATINGSTATICPAGES #-}
-sTOREGENERATINGSTATICPAGES = unsafePerformIO ((new_1 "Store Generating Static Pages"))
-
-pRODUCTISOUT :: UserEmailEventNameData
-{-# NOINLINE pRODUCTISOUT #-}
-pRODUCTISOUT = unsafePerformIO ((new_1 "Product Is Out"))
-
-pRODUCTISAVAILABLE :: UserEmailEventNameData
-{-# NOINLINE pRODUCTISAVAILABLE #-}
-pRODUCTISAVAILABLE = unsafePerformIO ((new_1 "Product Is Available"))
-
-pRODUCTISOLD :: UserEmailEventNameData
-{-# NOINLINE pRODUCTISOLD #-}
-pRODUCTISOLD = unsafePerformIO ((new_1 "Product Is Old"))
-
-pRODUCTISONSALE :: UserEmailEventNameData
-{-# NOINLINE pRODUCTISONSALE #-}
-pRODUCTISONSALE = unsafePerformIO ((new_1 "Product Is On Sale"))
-
-pRODUCTSALEISOVER :: UserEmailEventNameData
-{-# NOINLINE pRODUCTSALEISOVER #-}
-pRODUCTSALEISOVER = unsafePerformIO ((new_1 "Product Sale Is Over"))
-
-oRDERPREPROCESSING :: UserEmailEventNameData
-{-# NOINLINE oRDERPREPROCESSING #-}
-oRDERPREPROCESSING = unsafePerformIO ((new_1 (OrderHistoryData.pREPROCESSING)))
-
-oRDERPROCESSING :: UserEmailEventNameData
-{-# NOINLINE oRDERPROCESSING #-}
-oRDERPROCESSING = unsafePerformIO ((new_1 (OrderHistoryData.pROCESSING)))
-
-oRDERCANCELLED :: UserEmailEventNameData
-{-# NOINLINE oRDERCANCELLED #-}
-oRDERCANCELLED = unsafePerformIO ((new_1 (OrderHistoryData.cANCELLED)))
-
-oRDERPARTIALLYSHIPPED :: UserEmailEventNameData
-{-# NOINLINE oRDERPARTIALLYSHIPPED #-}
-oRDERPARTIALLYSHIPPED = unsafePerformIO ((new_1 (OrderHistoryData.pARTIALLYSHIPPED)))
-
-oRDERSHIPPED :: UserEmailEventNameData
-{-# NOINLINE oRDERSHIPPED #-}
-oRDERSHIPPED = unsafePerformIO ((new_1 (OrderHistoryData.sHIPPED)))
-
-qUOTEREQUEST :: UserEmailEventNameData
-{-# NOINLINE qUOTEREQUEST #-}
-qUOTEREQUEST = unsafePerformIO ((new_1 "Quote Request"))
-
-nEWPASSWORD :: UserEmailEventNameData
-{-# NOINLINE nEWPASSWORD #-}
-nEWPASSWORD = unsafePerformIO ((new_1 "New Password"))
-
-newRecord_ :: IO UserEmailEventNameData
-newRecord_ = do
-    header_ <- newJavaHeader
-    eventNameId <- newIORef 0
-    eventHandlerName <- newIORef ""
-    let this = UserEmailEventNameData header_ eventNameId eventHandlerName
-    jregisterLevel header_ this
-    jregisterMethod header_ "initNextId" (\() -> initNextId_impl this)
-    jregisterMethod header_ "isEvent" (\() -> isEvent_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: UserEmailEventNameData -> IO ()
-initFields_ this = do
-    jset this.eventNameId (0)
-    jset this.eventHandlerName (javaNull)
-    pure ()
-
-new_1 :: String -> IO UserEmailEventNameData
-new_1 eventHandlerName = do
-    this <- newRecord_
-    init_1 this eventHandlerName
-    pure this
-
-init_1 :: UserEmailEventNameData -> String -> IO ()
-init_1 this eventHandlerName = do
-        initFields_ this
-        jset (this).eventHandlerName (eventHandlerName)
-        Control.Monad.void (UserEmailEventNameData.initNextId this)
-        Control.Monad.void (HashMap.put ((jget UserEmailEventNameData.userNameEvenNameHashMap)) (jget (this).eventHandlerName) this)
-        pure ()
+import JR
+import Org.Allbinary.Business.User.Commerce.Inventory.Order.OrderHistoryData as OrderHistoryData
+import Org.Allbinary.Logic.StdUtil as StdUtil
 
 
-initNextId :: (JavaObjectClass this_) => this_ -> IO (())
-initNextId object_ = jmethod object_ "initNextId" (\() -> (initNextId_impl (javaCast object_ :: UserEmailEventNameData))) ()
-
-initNextId_super :: (JavaObjectClass this_) => this_ -> IO (())
-initNextId_super object_ = (initNextId_impl (javaCast object_ :: UserEmailEventNameData))
-
-initNextId_impl :: UserEmailEventNameData -> IO (())
-initNextId_impl this = do
-        jset (this).eventNameId ((jget UserEmailEventNameData.nextId))
-        jset UserEmailEventNameData.nextId ((jget UserEmailEventNameData.nextId) + 1)
-        pure ()
+jclass : String
+jclass =
+    "UserEmailEventNameData"
 
 
-isEvent :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isEvent object_ a1 = jmethod object_ "isEvent" (\() -> (isEvent_impl (javaCast object_ :: UserEmailEventNameData))) () a1
-
-isEvent_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isEvent_super object_ a1 = (isEvent_impl (javaCast object_ :: UserEmailEventNameData)) a1
-
-isEvent_impl :: UserEmailEventNameData -> String -> IO (Bool)
-isEvent_impl this userEmailEventNameString = do
-        (HashMap.containsKey ((jget UserEmailEventNameData.userNameEvenNameHashMap)) userEmailEventNameString)
+jchain : List String
+jchain =
+    [ "UserEmailEventNameData" ]
 
 
--- throws Exception
-getInstance :: String -> IO (UserEmailEventNameData)
-getInstance userEmailEventNameString = do
-    javaCatchReturn $ do
-        let userEmailEventNameData = (javaCast (jio (HashMap.get ((jget UserEmailEventNameData.userNameEvenNameHashMap)) userEmailEventNameString)) :: UserEmailEventNameData)
-        if (userEmailEventNameData == javaNull) then do
-            javaThrow ((JavaException "Exception" ""))
-        else do
-            javaReturn (userEmailEventNameData)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "eventNameId", JR.defaultOf "I" ), ( "eventHandlerName", JR.defaultOf "" ) ]
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: UserEmailEventNameData))) ()
+jvtable =
+    JR.vtable
+        [ ( "initNextId_0", jm_initNextId_0 )
+        , ( "isEvent_1", jm_isEvent_1 )
+        , ( "getInstance_1", jm_getInstance_1 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: UserEmailEventNameData))
 
-toString_impl :: UserEmailEventNameData -> IO (String)
-toString_impl this = do
-        pure ((jget (this).eventHandlerName))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "UserEmailEventNameData"
+        [ ( "jm_initNextId_0", jm_initNextId_0 ), ( "jm_isEvent_1", jm_isEvent_1 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_userNameEvenNameHashMap", jstatic_userNameEvenNameHashMap ), ( "jstatic_nextId", jstatic_nextId ), ( "jstatic_INSTALLER", jstatic_INSTALLER ), ( "jstatic_EXCEPTION", jstatic_EXCEPTION ), ( "jstatic_LOGGEDEXCEPTION", jstatic_LOGGEDEXCEPTION ), ( "jstatic_ERROR", jstatic_ERROR ), ( "jstatic_OUTOFMEMORY", jstatic_OUTOFMEMORY ), ( "jstatic_ADMINGENERATINGSTATICPAGES", jstatic_ADMINGENERATINGSTATICPAGES ), ( "jstatic_STOREERROROCCURRED", jstatic_STOREERROROCCURRED ), ( "jstatic_STOREOUTOFMEMORY", jstatic_STOREOUTOFMEMORY ), ( "jstatic_STORECREATED", jstatic_STORECREATED ), ( "jstatic_STOREOPENED", jstatic_STOREOPENED ), ( "jstatic_STORECLOSED", jstatic_STORECLOSED ), ( "jstatic_STOREGENERATINGSTATICPAGES", jstatic_STOREGENERATINGSTATICPAGES ), ( "jstatic_PRODUCTISOUT", jstatic_PRODUCTISOUT ), ( "jstatic_PRODUCTISAVAILABLE", jstatic_PRODUCTISAVAILABLE ), ( "jstatic_PRODUCTISOLD", jstatic_PRODUCTISOLD ), ( "jstatic_PRODUCTISONSALE", jstatic_PRODUCTISONSALE ), ( "jstatic_PRODUCTSALEISOVER", jstatic_PRODUCTSALEISOVER ), ( "jstatic_ORDERPREPROCESSING", jstatic_ORDERPREPROCESSING ), ( "jstatic_ORDERPROCESSING", jstatic_ORDERPROCESSING ), ( "jstatic_ORDERCANCELLED", jstatic_ORDERCANCELLED ), ( "jstatic_ORDERPARTIALLYSHIPPED", jstatic_ORDERPARTIALLYSHIPPED ), ( "jstatic_ORDERSHIPPED", jstatic_ORDERSHIPPED ), ( "jstatic_QUOTEREQUEST", jstatic_QUOTEREQUEST ), ( "jstatic_NEWPASSWORD", jstatic_NEWPASSWORD ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_userNameEvenNameHashMap : JR.M
+jstatic_userNameEvenNameHashMap s =
+    JR.static "UserEmailEventNameData" jclinit "userNameEvenNameHashMap"
+        (JR.invoke "createHashMap_0" (JR.callStatic StdUtil.jm_getInstance_0 []) [])
+        s
+
+
+jstatic_nextId : JR.M
+jstatic_nextId s =
+    JR.static "UserEmailEventNameData" jclinit "nextId"
+        (JR.int 0)
+        s
+
+
+jstatic_INSTALLER : JR.M
+jstatic_INSTALLER s =
+    JR.static "UserEmailEventNameData" jclinit "INSTALLER"
+        (JR.new jnew_1 [ (JR.str "Installer") ])
+        s
+
+
+jstatic_EXCEPTION : JR.M
+jstatic_EXCEPTION s =
+    JR.static "UserEmailEventNameData" jclinit "EXCEPTION"
+        (JR.new jnew_1 [ (JR.str "Exception") ])
+        s
+
+
+jstatic_LOGGEDEXCEPTION : JR.M
+jstatic_LOGGEDEXCEPTION s =
+    JR.static "UserEmailEventNameData" jclinit "LOGGEDEXCEPTION"
+        (JR.new jnew_1 [ (JR.str "Logged Exception") ])
+        s
+
+
+jstatic_ERROR : JR.M
+jstatic_ERROR s =
+    JR.static "UserEmailEventNameData" jclinit "ERROR"
+        (JR.new jnew_1 [ (JR.str "Error") ])
+        s
+
+
+jstatic_OUTOFMEMORY : JR.M
+jstatic_OUTOFMEMORY s =
+    JR.static "UserEmailEventNameData" jclinit "OUTOFMEMORY"
+        (JR.new jnew_1 [ (JR.str "Out Of Memory Error") ])
+        s
+
+
+jstatic_ADMINGENERATINGSTATICPAGES : JR.M
+jstatic_ADMINGENERATINGSTATICPAGES s =
+    JR.static "UserEmailEventNameData" jclinit "ADMINGENERATINGSTATICPAGES"
+        (JR.new jnew_1 [ (JR.str "Admin Generating Static Pages") ])
+        s
+
+
+jstatic_STOREERROROCCURRED : JR.M
+jstatic_STOREERROROCCURRED s =
+    JR.static "UserEmailEventNameData" jclinit "STOREERROROCCURRED"
+        (JR.new jnew_1 [ (JR.str "Store Error Occurred") ])
+        s
+
+
+jstatic_STOREOUTOFMEMORY : JR.M
+jstatic_STOREOUTOFMEMORY s =
+    JR.static "UserEmailEventNameData" jclinit "STOREOUTOFMEMORY"
+        (JR.new jnew_1 [ (JR.str "Store Out Of Memory Error") ])
+        s
+
+
+jstatic_STORECREATED : JR.M
+jstatic_STORECREATED s =
+    JR.static "UserEmailEventNameData" jclinit "STORECREATED"
+        (JR.new jnew_1 [ (JR.str "Store Created") ])
+        s
+
+
+jstatic_STOREOPENED : JR.M
+jstatic_STOREOPENED s =
+    JR.static "UserEmailEventNameData" jclinit "STOREOPENED"
+        (JR.new jnew_1 [ (JR.str "Store Opened") ])
+        s
+
+
+jstatic_STORECLOSED : JR.M
+jstatic_STORECLOSED s =
+    JR.static "UserEmailEventNameData" jclinit "STORECLOSED"
+        (JR.new jnew_1 [ (JR.str "Store Closed") ])
+        s
+
+
+jstatic_STOREGENERATINGSTATICPAGES : JR.M
+jstatic_STOREGENERATINGSTATICPAGES s =
+    JR.static "UserEmailEventNameData" jclinit "STOREGENERATINGSTATICPAGES"
+        (JR.new jnew_1 [ (JR.str "Store Generating Static Pages") ])
+        s
+
+
+jstatic_PRODUCTISOUT : JR.M
+jstatic_PRODUCTISOUT s =
+    JR.static "UserEmailEventNameData" jclinit "PRODUCTISOUT"
+        (JR.new jnew_1 [ (JR.str "Product Is Out") ])
+        s
+
+
+jstatic_PRODUCTISAVAILABLE : JR.M
+jstatic_PRODUCTISAVAILABLE s =
+    JR.static "UserEmailEventNameData" jclinit "PRODUCTISAVAILABLE"
+        (JR.new jnew_1 [ (JR.str "Product Is Available") ])
+        s
+
+
+jstatic_PRODUCTISOLD : JR.M
+jstatic_PRODUCTISOLD s =
+    JR.static "UserEmailEventNameData" jclinit "PRODUCTISOLD"
+        (JR.new jnew_1 [ (JR.str "Product Is Old") ])
+        s
+
+
+jstatic_PRODUCTISONSALE : JR.M
+jstatic_PRODUCTISONSALE s =
+    JR.static "UserEmailEventNameData" jclinit "PRODUCTISONSALE"
+        (JR.new jnew_1 [ (JR.str "Product Is On Sale") ])
+        s
+
+
+jstatic_PRODUCTSALEISOVER : JR.M
+jstatic_PRODUCTSALEISOVER s =
+    JR.static "UserEmailEventNameData" jclinit "PRODUCTSALEISOVER"
+        (JR.new jnew_1 [ (JR.str "Product Sale Is Over") ])
+        s
+
+
+jstatic_ORDERPREPROCESSING : JR.M
+jstatic_ORDERPREPROCESSING s =
+    JR.static "UserEmailEventNameData" jclinit "ORDERPREPROCESSING"
+        (JR.new jnew_1 [ OrderHistoryData.jstatic_PREPROCESSING ])
+        s
+
+
+jstatic_ORDERPROCESSING : JR.M
+jstatic_ORDERPROCESSING s =
+    JR.static "UserEmailEventNameData" jclinit "ORDERPROCESSING"
+        (JR.new jnew_1 [ OrderHistoryData.jstatic_PROCESSING ])
+        s
+
+
+jstatic_ORDERCANCELLED : JR.M
+jstatic_ORDERCANCELLED s =
+    JR.static "UserEmailEventNameData" jclinit "ORDERCANCELLED"
+        (JR.new jnew_1 [ OrderHistoryData.jstatic_CANCELLED ])
+        s
+
+
+jstatic_ORDERPARTIALLYSHIPPED : JR.M
+jstatic_ORDERPARTIALLYSHIPPED s =
+    JR.static "UserEmailEventNameData" jclinit "ORDERPARTIALLYSHIPPED"
+        (JR.new jnew_1 [ OrderHistoryData.jstatic_PARTIALLYSHIPPED ])
+        s
+
+
+jstatic_ORDERSHIPPED : JR.M
+jstatic_ORDERSHIPPED s =
+    JR.static "UserEmailEventNameData" jclinit "ORDERSHIPPED"
+        (JR.new jnew_1 [ OrderHistoryData.jstatic_SHIPPED ])
+        s
+
+
+jstatic_QUOTEREQUEST : JR.M
+jstatic_QUOTEREQUEST s =
+    JR.static "UserEmailEventNameData" jclinit "QUOTEREQUEST"
+        (JR.new jnew_1 [ (JR.str "Quote Request") ])
+        s
+
+
+jstatic_NEWPASSWORD : JR.M
+jstatic_NEWPASSWORD s =
+    JR.static "UserEmailEventNameData" jclinit "NEWPASSWORD"
+        (JR.new jnew_1 [ (JR.str "New Password") ])
+        s
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "eventHandlerName", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "eventHandlerName" "" JR.this (JR.local "eventHandlerName")), 
+                    JR.exec (JR.invoke "initNextId_0" JR.this []), 
+                    JR.exec (JR.invoke "put_2" jstatic_userNameEvenNameHashMap [ (JR.thisField "eventHandlerName"), JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_initNextId_0 : JR.Method
+jm_initNextId_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "eventNameId" "I" JR.this jstatic_nextId), 
+                    JR.exec (JR.postUpdate jstatic_nextId (\jwN66490 -> (JR.setStatic "UserEmailEventNameData.nextId" "I" (JR.lit jwN66490))) JR.increment) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isEvent_1 : JR.Method
+jm_isEvent_1 jheap jthis jargs =
+    JR.method [ ( "userEmailEventNameString", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "containsKey_1" jstatic_userNameEvenNameHashMap [ (JR.local "userEmailEventNameString") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "userEmailEventNameString", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "userEmailEventNameData" "" (JR.invoke "get_1" jstatic_userNameEvenNameHashMap [ (JR.local "userEmailEventNameString") ]), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "userEmailEventNameData") JR.null) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) []) ]) (JR.run [ 
+                        JR.return (JR.local "userEmailEventNameData") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "eventHandlerName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

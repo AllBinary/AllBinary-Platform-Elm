@@ -1,106 +1,101 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
-module OpenGLESImageExclusionUtil where
+module Org.Allbinary.Image.Opengles.OpenGLESImageExclusionUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.image.opengles
+-}
 
-data OpenGLESImageExclusionUtil = OpenGLESImageExclusionUtil
-    { header_ :: JavaHeader
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull OpenGLESImageExclusionUtil where
-    javaNull = javaNullRecord "OpenGLESImageExclusionUtil"
-
-instance JavaEquals OpenGLESImageExclusionUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLESImageExclusionUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLESImageExclusionUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: OpenGLESImageExclusionUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OpenGLESImageExclusionUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    list <- newIORef javaNull
-    let this = OpenGLESImageExclusionUtil header_ list
-    jregisterLevel header_ this
-    jregisterMethod header_ "isCustomScaling" (\() -> isCustomScaling_impl this)
-    pure this
-
-initFields_ :: OpenGLESImageExclusionUtil -> IO ()
-initFields_ this = do
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
-
-new_ :: IO OpenGLESImageExclusionUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLESImageExclusionUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
 
 
-getInstance :: IO (OpenGLESImageExclusionUtil)
-getInstance = do
-        pure (OpenGLESImageExclusionUtil.instance_)
+jclass : String
+jclass =
+    "OpenGLESImageExclusionUtil"
 
 
-isCustomScaling :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (Bool)
-isCustomScaling object_ a1 = jmethod object_ "isCustomScaling" (\() -> (isCustomScaling_impl (javaCast object_ :: OpenGLESImageExclusionUtil))) () a1
+jchain : List String
+jchain =
+    [ "OpenGLESImageExclusionUtil" ]
 
-isCustomScaling_super :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (Bool)
-isCustomScaling_super object_ a1 = (isCustomScaling_impl (javaCast object_ :: OpenGLESImageExclusionUtil)) a1
 
-isCustomScaling_impl :: OpenGLESImageExclusionUtil -> Image.Image -> IO (Bool)
-isCustomScaling_impl this image = do
-        pure (False)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "list", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "isCustomScaling_1", jm_isCustomScaling_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLESImageExclusionUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_isCustomScaling_1", jm_isCustomScaling_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "OpenGLESImageExclusionUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isCustomScaling_1 : JR.Method
+jm_isCustomScaling_1 jheap jthis jargs =
+    JR.method [ ( "image", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

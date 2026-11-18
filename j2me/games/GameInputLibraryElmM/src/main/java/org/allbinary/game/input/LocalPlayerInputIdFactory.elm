@@ -1,227 +1,200 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module LocalPlayerInputIdFactory where
+module Org.Allbinary.Game.Input.LocalPlayerInputIdFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnalogLocationInputFactory -- org.allbinary.game.input.analog.AnalogLocationInputFactory
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data LocalPlayerInputIdFactory = LocalPlayerInputIdFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , mAX_NUMBER_OF_PLAYERS :: IORef (Int)
-    , mAX_FAST_DEVICEID :: IORef (Int)
-    , deviceIdToplayerId :: IORef (JavaArray (Int))
-    , playerIdToDeviceId :: IORef (JavaArray (Int))
-    , playersInPlay :: IORef (JavaArray (Bool))
-    , totalDevicesMapped :: IORef (Int)
-    }
-
-instance JavaNull LocalPlayerInputIdFactory where
-    javaNull = javaNullRecord "LocalPlayerInputIdFactory"
-
-instance JavaEquals LocalPlayerInputIdFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LocalPlayerInputIdFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LocalPlayerInputIdFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: LocalPlayerInputIdFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LocalPlayerInputIdFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    mAX_NUMBER_OF_PLAYERS <- newIORef 0
-    mAX_FAST_DEVICEID <- newIORef 0
-    deviceIdToplayerId <- newIORef javaNull
-    playerIdToDeviceId <- newIORef javaNull
-    playersInPlay <- newIORef javaNull
-    totalDevicesMapped <- newIORef 0
-    let this = LocalPlayerInputIdFactory header_ logUtil mAX_NUMBER_OF_PLAYERS mAX_FAST_DEVICEID deviceIdToplayerId playerIdToDeviceId playersInPlay totalDevicesMapped
-    jregisterLevel header_ this
-    jregisterMethod header_ "getDeviceId" (\() -> getDeviceId_impl this)
-    jregisterMethod header_ "getPlayerForDevice" (\() -> getPlayerForDevice_impl this)
-    jregisterMethod header_ "getTotalDevicesInPlay" (\() -> getTotalDevicesInPlay_impl this)
-    jregisterMethod header_ "isPlayerInPlay" (\() -> isPlayerInPlay_impl this)
-    jregisterMethod header_ "setPlayerInPlay" (\() -> setPlayerInPlay_impl this)
-    jregisterMethod header_ "setPlayerOutOfPlay" (\() -> setPlayerOutOfPlay_impl this)
-    jregisterMethod header_ "getPlayersInPlay" (\() -> getPlayersInPlay_impl this)
-    pure this
-
-initFields_ :: LocalPlayerInputIdFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.mAX_NUMBER_OF_PLAYERS (6)
-    jset this.mAX_FAST_DEVICEID (65)
-    jset this.deviceIdToplayerId ((jnewArray ((jget (this).mAX_FAST_DEVICEID)) 0))
-    jset this.playerIdToDeviceId ((jnewArray ((jget (this).mAX_NUMBER_OF_PLAYERS)) 0))
-    jset this.playersInPlay ((jnewArray ((jget (this).mAX_NUMBER_OF_PLAYERS)) False))
-    jset this.totalDevicesMapped (0)
-    pure ()
-
-new_ :: IO LocalPlayerInputIdFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LocalPlayerInputIdFactory -> IO ()
-init_ this = do
-        initFields_ this
-        forM_ [((jlength (jget (this).deviceIdToplayerId)) - 1), ((jlength (jget (this).deviceIdToplayerId)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex ((jget (this).deviceIdToplayerId)) (index) ((Prelude.negate 1))
-        pure ()
+import JR
+import Org.Allbinary.Game.Input.Analog.AnalogLocationInputFactory as AnalogLocationInputFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (LocalPlayerInputIdFactory)
-getInstance = do
-        pure (LocalPlayerInputIdFactory.instance_)
+jclass : String
+jclass =
+    "LocalPlayerInputIdFactory"
 
 
-getDeviceId :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getDeviceId object_ a1 = jmethod object_ "getDeviceId" (\() -> (getDeviceId_impl (javaCast object_ :: LocalPlayerInputIdFactory))) () a1
-
-getDeviceId_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getDeviceId_super object_ a1 = (getDeviceId_impl (javaCast object_ :: LocalPlayerInputIdFactory)) a1
-
-getDeviceId_impl :: LocalPlayerInputIdFactory -> Int -> IO (Int)
-getDeviceId_impl this playerInputId = do
-        pure ((jindex ((jget (this).playerIdToDeviceId)) (playerInputId)))
+jchain : List String
+jchain =
+    [ "LocalPlayerInputIdFactory" ]
 
 
-getPlayerForDevice :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getPlayerForDevice object_ a1 = jmethod object_ "getPlayerForDevice" (\() -> (getPlayerForDevice_impl (javaCast object_ :: LocalPlayerInputIdFactory))) () a1
-
-getPlayerForDevice_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-getPlayerForDevice_super object_ a1 = (getPlayerForDevice_impl (javaCast object_ :: LocalPlayerInputIdFactory)) a1
-
-getPlayerForDevice_impl :: LocalPlayerInputIdFactory -> Int -> IO (Int)
-getPlayerForDevice_impl this deviceId = do
-    javaCatchReturn $ do
-        index <- newIORef (0 :: Int)
-        if (deviceId < (jget (this).mAX_FAST_DEVICEID)) then do
-            let playerInputId = (jindex ((jget (this).deviceIdToplayerId)) (deviceId))
-            when (playerInputId /= (Prelude.negate 1)) $ do
-                javaReturn (playerInputId)
-        else do
-            jset index (((jget (this).totalDevicesMapped) - 1))
-            fix $ \loop -> when ((jget index) >= 0) $ javaIteration (do { jset index ((jget index) - 1); loop }) $ do
-                when ((jindex ((jget (this).playerIdToDeviceId)) ((jget index))) == deviceId) $ do
-                    javaReturn ((jget index))
-        jset index ((jget (this).totalDevicesMapped))
-        if (deviceId < (jget (this).mAX_FAST_DEVICEID)) then do
-            jsetIndex ((jget (this).deviceIdToplayerId)) (deviceId) ((jget index))
-        else do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "Added DeviceId: "))) deviceId))) " beyond fast Id list"))))) this "getPlayerForDevice")
-        jsetIndex ((jget (this).playerIdToDeviceId)) ((jget index)) (deviceId)
-        Control.Monad.void (AnalogLocationInputFactory.addPlayer ((jio (AnalogLocationInputFactory.getInstance))) (jget (this).totalDevicesMapped))
-        jset (this).totalDevicesMapped ((jget (this).totalDevicesMapped) + 1)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "Added DeviceId: "))) deviceId))) " at: "))) (jget index)))) " Total: "))) (jget (this).totalDevicesMapped)))))) this "getPlayerForDevice")
-        pure ((jget index))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "MAX_NUMBER_OF_PLAYERS", JR.defaultOf "I" ), ( "MAX_FAST_DEVICEID", JR.defaultOf "I" ), ( "deviceIdToplayerId", JR.defaultOf "" ), ( "playerIdToDeviceId", JR.defaultOf "" ), ( "playersInPlay", JR.defaultOf "" ), ( "totalDevicesMapped", JR.defaultOf "I" ) ]
 
 
-getTotalDevicesInPlay :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotalDevicesInPlay object_ = jmethod object_ "getTotalDevicesInPlay" (\() -> (getTotalDevicesInPlay_impl (javaCast object_ :: LocalPlayerInputIdFactory))) ()
-
-getTotalDevicesInPlay_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotalDevicesInPlay_super object_ = (getTotalDevicesInPlay_impl (javaCast object_ :: LocalPlayerInputIdFactory))
-
-getTotalDevicesInPlay_impl :: LocalPlayerInputIdFactory -> IO (Int)
-getTotalDevicesInPlay_impl this = do
-        total <- newIORef (0 :: Int)
-        forM_ [((jget (this).totalDevicesMapped) - 1), ((jget (this).totalDevicesMapped) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            when ((jindex ((jget (this).playersInPlay)) (index)) == True) $ do
-                jset total ((jget total) + 1)
-        pure ((jget total))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getDeviceId_1", jm_getDeviceId_1 )
+        , ( "getPlayerForDevice_1", jm_getPlayerForDevice_1 )
+        , ( "getTotalDevicesInPlay_0", jm_getTotalDevicesInPlay_0 )
+        , ( "isPlayerInPlay_1", jm_isPlayerInPlay_1 )
+        , ( "setPlayerInPlay_1", jm_setPlayerInPlay_1 )
+        , ( "setPlayerOutOfPlay_1", jm_setPlayerOutOfPlay_1 )
+        , ( "getPlayersInPlay_0", jm_getPlayersInPlay_0 ) ]
+        JR.noMethods
 
 
-isPlayerInPlay :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-isPlayerInPlay object_ a1 = jmethod object_ "isPlayerInPlay" (\() -> (isPlayerInPlay_impl (javaCast object_ :: LocalPlayerInputIdFactory))) () a1
-
-isPlayerInPlay_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-isPlayerInPlay_super object_ a1 = (isPlayerInPlay_impl (javaCast object_ :: LocalPlayerInputIdFactory)) a1
-
-isPlayerInPlay_impl :: LocalPlayerInputIdFactory -> Int -> IO (Bool)
-isPlayerInPlay_impl this playerInputId = do
-        pure ((jindex ((jget (this).playersInPlay)) (playerInputId)))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LocalPlayerInputIdFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getDeviceId_1", jm_getDeviceId_1 ), ( "jm_getPlayerForDevice_1", jm_getPlayerForDevice_1 ), ( "jm_getTotalDevicesInPlay_0", jm_getTotalDevicesInPlay_0 ), ( "jm_isPlayerInPlay_1", jm_isPlayerInPlay_1 ), ( "jm_setPlayerInPlay_1", jm_setPlayerInPlay_1 ), ( "jm_setPlayerOutOfPlay_1", jm_setPlayerOutOfPlay_1 ), ( "jm_getPlayersInPlay_0", jm_getPlayersInPlay_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-setPlayerInPlay :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setPlayerInPlay object_ a1 = jmethod object_ "setPlayerInPlay" (\() -> (setPlayerInPlay_impl (javaCast object_ :: LocalPlayerInputIdFactory))) () a1
-
-setPlayerInPlay_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setPlayerInPlay_super object_ a1 = (setPlayerInPlay_impl (javaCast object_ :: LocalPlayerInputIdFactory)) a1
-
-setPlayerInPlay_impl :: LocalPlayerInputIdFactory -> Int -> IO (())
-setPlayerInPlay_impl this playerInputId = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "Setting PlayerInPlay with playerInputId: "))) playerInputId))))) this "setPlayerInPlay")
-        jsetIndex ((jget (this).playersInPlay)) (playerInputId) (True)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setPlayerOutOfPlay :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setPlayerOutOfPlay object_ a1 = jmethod object_ "setPlayerOutOfPlay" (\() -> (setPlayerOutOfPlay_impl (javaCast object_ :: LocalPlayerInputIdFactory))) () a1
-
-setPlayerOutOfPlay_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setPlayerOutOfPlay_super object_ a1 = (setPlayerOutOfPlay_impl (javaCast object_ :: LocalPlayerInputIdFactory)) a1
-
-setPlayerOutOfPlay_impl :: LocalPlayerInputIdFactory -> Int -> IO (())
-setPlayerOutOfPlay_impl this playerInputId = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) "Setting PlayerOutOfPlay with playerInputId: "))) playerInputId))))) this "setPlayerOutOfPlay")
-        jsetIndex ((jget (this).playersInPlay)) (playerInputId) (False)
-        pure ()
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LocalPlayerInputIdFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
 
-getPlayersInPlay :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Bool))
-getPlayersInPlay object_ = jmethod object_ "getPlayersInPlay" (\() -> (getPlayersInPlay_impl (javaCast object_ :: LocalPlayerInputIdFactory))) ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "MAX_NUMBER_OF_PLAYERS" "I" JR.this (JR.int 6)),
+                JR.exec (JR.setField "MAX_FAST_DEVICEID" "I" JR.this (JR.int 65)),
+                JR.exec (JR.setField "deviceIdToplayerId" "" JR.this (JR.newArray "I" [ (JR.thisField "MAX_FAST_DEVICEID") ])),
+                JR.exec (JR.setField "playerIdToDeviceId" "" JR.this (JR.newArray "I" [ (JR.thisField "MAX_NUMBER_OF_PLAYERS") ])),
+                JR.exec (JR.setField "playersInPlay" "" JR.this (JR.newArray "Z" [ (JR.thisField "MAX_NUMBER_OF_PLAYERS") ])),
+                JR.exec (JR.setField "totalDevicesMapped" "I" JR.this (JR.int 0)),
+                identity,
+                (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "deviceIdToplayerId")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66864 -> (JR.setLocal "index" "I" (JR.lit jwN66864))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "deviceIdToplayerId") (\jaN66755 -> JR.andThen (JR.local "index") (\jiN66755 -> (JR.aset (JR.lit jaN66755) (JR.lit jiN66755) (JR.map JR.neg (JR.int 1)))))) ]) ] ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getPlayersInPlay_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Bool))
-getPlayersInPlay_super object_ = (getPlayersInPlay_impl (javaCast object_ :: LocalPlayerInputIdFactory))
 
-getPlayersInPlay_impl :: LocalPlayerInputIdFactory -> IO (JavaArray (Bool))
-getPlayersInPlay_impl this = do
-        pure ((jget (this).playersInPlay))
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDeviceId_1 : JR.Method
+jm_getDeviceId_1 jheap jthis jargs =
+    JR.method [ ( "playerInputId", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.aget (JR.thisField "playerIdToDeviceId") (JR.local "playerInputId")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPlayerForDevice_1 : JR.Method
+jm_getPlayerForDevice_1 jheap jthis jargs =
+    JR.method [ ( "deviceId", "I" ) ] "I"
+        (JR.run [ 
+                    JR.declare "index" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.ifElse (JR.map2 JR.less (JR.local "deviceId") (JR.thisField "MAX_FAST_DEVICEID")) (JR.run [ 
+                        JR.declare "playerInputId" "I" (JR.aget (JR.thisField "deviceIdToplayerId") (JR.local "deviceId")), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "playerInputId") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                            JR.return (JR.local "playerInputId") ]) identity ]) (JR.run [ 
+                        JR.run [ JR.exec (JR.setLocal "index" "I" (JR.map2 JR.sub (JR.thisField "totalDevicesMapped") (JR.int 1))), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67207 -> (JR.setLocal "index" "I" (JR.lit jwN67207))) JR.decrement) ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.aget (JR.thisField "playerIdToDeviceId") (JR.local "index")) (JR.local "deviceId")) (JR.run [ 
+                                JR.return (JR.local "index") ]) identity ]) ] ]), 
+                    JR.exec (JR.setLocal "index" "I" (JR.thisField "totalDevicesMapped")), 
+                    JR.ifElse (JR.map2 JR.less (JR.local "deviceId") (JR.thisField "MAX_FAST_DEVICEID")) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "deviceIdToplayerId") (\jaN67499 -> JR.andThen (JR.local "deviceId") (\jiN67499 -> (JR.aset (JR.lit jaN67499) (JR.lit jiN67499) (JR.local "index"))))) ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Added DeviceId: ") ]) [ (JR.local "deviceId") ]) [ (JR.str " beyond fast Id list") ]) []), JR.this, (JR.str "getPlayerForDevice") ]) ]), 
+                    JR.exec (JR.andThen (JR.thisField "playerIdToDeviceId") (\jaN67546 -> JR.andThen (JR.local "index") (\jiN67546 -> (JR.aset (JR.lit jaN67546) (JR.lit jiN67546) (JR.local "deviceId"))))), 
+                    JR.exec (JR.invoke "addPlayer_1" (JR.callStatic AnalogLocationInputFactory.jm_getInstance_0 []) [ (JR.thisField "totalDevicesMapped") ]), 
+                    JR.exec (JR.postUpdate (JR.thisField "totalDevicesMapped") (\jwN67628 -> (JR.setField "totalDevicesMapped" "I" JR.this (JR.lit jwN67628))) JR.increment), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Added DeviceId: ") ]) [ (JR.local "deviceId") ]) [ (JR.str " at: ") ]) [ (JR.local "index") ]) [ (JR.str " Total: ") ]) [ (JR.thisField "totalDevicesMapped") ]) []), JR.this, (JR.str "getPlayerForDevice") ]), 
+                    JR.return (JR.local "index") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTotalDevicesInPlay_0 : JR.Method
+jm_getTotalDevicesInPlay_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.declare "total" "I" (JR.int 0), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.thisField "totalDevicesMapped") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68019 -> (JR.setLocal "index" "I" (JR.lit jwN68019))) JR.decrement) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.aget (JR.thisField "playersInPlay") (JR.local "index")) (JR.bool True)) (JR.run [ 
+                            JR.exec (JR.postUpdate (JR.local "total") (\jwN67939 -> (JR.setLocal "total" "I" (JR.lit jwN67939))) JR.increment) ]) identity ]) ], 
+                    JR.return (JR.local "total") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isPlayerInPlay_1 : JR.Method
+jm_isPlayerInPlay_1 jheap jthis jargs =
+    JR.method [ ( "playerInputId", "I" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.aget (JR.thisField "playersInPlay") (JR.local "playerInputId")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPlayerInPlay_1 : JR.Method
+jm_setPlayerInPlay_1 jheap jthis jargs =
+    JR.method [ ( "playerInputId", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Setting PlayerInPlay with playerInputId: ") ]) [ (JR.local "playerInputId") ]) []), JR.this, (JR.str "setPlayerInPlay") ]), 
+                    JR.exec (JR.andThen (JR.thisField "playersInPlay") (\jaN68239 -> JR.andThen (JR.local "playerInputId") (\jiN68239 -> (JR.aset (JR.lit jaN68239) (JR.lit jiN68239) (JR.bool True))))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPlayerOutOfPlay_1 : JR.Method
+jm_setPlayerOutOfPlay_1 jheap jthis jargs =
+    JR.method [ ( "playerInputId", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Setting PlayerOutOfPlay with playerInputId: ") ]) [ (JR.local "playerInputId") ]) []), JR.this, (JR.str "setPlayerOutOfPlay") ]), 
+                    JR.exec (JR.andThen (JR.thisField "playersInPlay") (\jaN68403 -> JR.andThen (JR.local "playerInputId") (\jiN68403 -> (JR.aset (JR.lit jaN68403) (JR.lit jiN68403) (JR.bool False))))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPlayersInPlay_0 : JR.Method
+jm_getPlayersInPlay_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "playersInPlay") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

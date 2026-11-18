@@ -1,96 +1,108 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.globals
-module UrlGlobalsData where
+module Org.Allbinary.Globals.UrlGlobalsData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.globals
+-}
 
-data UrlGlobalsData = UrlGlobalsData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull UrlGlobalsData where
-    javaNull = javaNullRecord "UrlGlobalsData"
 
-instance JavaEquals UrlGlobalsData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq UrlGlobalsData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "UrlGlobalsData"
 
-instance JavaObjectClass UrlGlobalsData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-nAME :: String
-nAME = "URLGLOBALS_NAME"
+jchain : List String
+jchain =
+    [ "UrlGlobalsData" ]
 
-wEBAPPPATH :: String
-wEBAPPPATH = "URLGLOBALS_WEBAPPPATH"
 
-tESTINGMODE :: String
-tESTINGMODE = "URLGLOBALS_TESTINGMODE"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-tESTINGHTMLPATH :: String
-tESTINGHTMLPATH = "URLGLOBALS_TESTINGHTMLPATH"
 
-mAINPATH :: String
-mAINPATH = "URLGLOBALS_MAINPATH"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "UrlGlobalsData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_WEBAPPPATH", jstatic_WEBAPPPATH ), ( "jstatic_TESTINGMODE", jstatic_TESTINGMODE ), ( "jstatic_TESTINGHTMLPATH", jstatic_TESTINGHTMLPATH ), ( "jstatic_MAINPATH", jstatic_MAINPATH ) ]
+        jheap
 
-newRecord_ :: IO UrlGlobalsData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = UrlGlobalsData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: UrlGlobalsData -> IO ()
-initFields_ this = do
-    pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-new_ :: IO UrlGlobalsData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: UrlGlobalsData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "UrlGlobalsData" jclinit "NAME"
+        (JR.str "URLGLOBALS_NAME")
+        s
 
+
+jstatic_WEBAPPPATH : JR.M
+jstatic_WEBAPPPATH s =
+    JR.static "UrlGlobalsData" jclinit "WEBAPPPATH"
+        (JR.str "URLGLOBALS_WEBAPPPATH")
+        s
+
+
+jstatic_TESTINGMODE : JR.M
+jstatic_TESTINGMODE s =
+    JR.static "UrlGlobalsData" jclinit "TESTINGMODE"
+        (JR.str "URLGLOBALS_TESTINGMODE")
+        s
+
+
+jstatic_TESTINGHTMLPATH : JR.M
+jstatic_TESTINGHTMLPATH s =
+    JR.static "UrlGlobalsData" jclinit "TESTINGHTMLPATH"
+        (JR.str "URLGLOBALS_TESTINGHTMLPATH")
+        s
+
+
+jstatic_MAINPATH : JR.M
+jstatic_MAINPATH s =
+    JR.static "UrlGlobalsData" jclinit "MAINPATH"
+        (JR.str "URLGLOBALS_MAINPATH")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

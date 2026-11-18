@@ -1,116 +1,119 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
-module GameMidletStateFactory where
+module Org.Allbinary.Game.Midlet.GameMidletStateFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameState -- org.allbinary.game.state.GameState
-import qualified GameStateFactory -- org.allbinary.game.state.GameStateFactory
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
+{-| Generated Code Do Not Modify package org.allbinary.game.midlet
+-}
 
-data GameMidletStateFactory = GameMidletStateFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , currentGameState :: IORef (GameState.GameState)
-    }
-
-instance JavaNull GameMidletStateFactory where
-    javaNull = javaNullRecord "GameMidletStateFactory"
-
-instance JavaEquals GameMidletStateFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameMidletStateFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameMidletStateFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-iNSTANCE :: GameMidletStateFactory
-{-# NOINLINE iNSTANCE #-}
-iNSTANCE = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameMidletStateFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    currentGameState <- newIORef javaNull
-    let this = GameMidletStateFactory header_ logUtil currentGameState
-    jregisterLevel header_ this
-    jregisterMethod header_ "getCurrentGameState" (\() -> getCurrentGameState_impl this)
-    jregisterMethod header_ "setCurrentGameState" (\() -> setCurrentGameState_impl this)
-    pure this
-
-initFields_ :: GameMidletStateFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.currentGameState ((jget ((jio (GameStateFactory.getInstance))).nO_GAME_STATE))
-    pure ()
-
-new_ :: IO GameMidletStateFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameMidletStateFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.Game.State.GameStateFactory as GameStateFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (GameMidletStateFactory)
-getInstance = do
-        pure (GameMidletStateFactory.iNSTANCE)
+jclass : String
+jclass =
+    "GameMidletStateFactory"
 
 
-getCurrentGameState :: (JavaObjectClass this_) => this_ -> IO (GameState.GameState)
-getCurrentGameState object_ = jmethod object_ "getCurrentGameState" (\() -> (getCurrentGameState_impl (javaCast object_ :: GameMidletStateFactory))) ()
-
-getCurrentGameState_super :: (JavaObjectClass this_) => this_ -> IO (GameState.GameState)
-getCurrentGameState_super object_ = (getCurrentGameState_impl (javaCast object_ :: GameMidletStateFactory))
-
-getCurrentGameState_impl :: GameMidletStateFactory -> IO (GameState.GameState)
-getCurrentGameState_impl this = do
-        pure ((jget (this).currentGameState))
+jchain : List String
+jchain =
+    [ "GameMidletStateFactory" ]
 
 
-setCurrentGameState :: (JavaObjectClass this_) => this_ -> GameState.GameState -> IO (())
-setCurrentGameState object_ a1 = jmethod object_ "setCurrentGameState" (\() -> (setCurrentGameState_impl (javaCast object_ :: GameMidletStateFactory))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "currentGameState", JR.defaultOf "" ) ]
 
-setCurrentGameState_super :: (JavaObjectClass this_) => this_ -> GameState.GameState -> IO (())
-setCurrentGameState_super object_ a1 = (setCurrentGameState_impl (javaCast object_ :: GameMidletStateFactory)) a1
 
-setCurrentGameState_impl :: GameMidletStateFactory -> GameState.GameState -> IO (())
-setCurrentGameState_impl this currentGameState = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonLabels.getInstance))).cURRENT)))) " GameState: "))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) currentGameState))))))) this "setCurrentGameState")
-        jset (this).currentGameState (currentGameState)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getCurrentGameState_0", jm_getCurrentGameState_0 )
+        , ( "setCurrentGameState_1", jm_setCurrentGameState_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameMidletStateFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getCurrentGameState_0", jm_getCurrentGameState_0 ), ( "jm_setCurrentGameState_1", jm_setCurrentGameState_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_INSTANCE", jstatic_INSTANCE ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_INSTANCE : JR.M
+jstatic_INSTANCE s =
+    JR.static "GameMidletStateFactory" jclinit "INSTANCE"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "currentGameState" "" JR.this (JR.field "NO_GAME_STATE" (JR.callStatic GameStateFactory.jm_getInstance_0 []))),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_INSTANCE ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCurrentGameState_0 : JR.Method
+jm_getCurrentGameState_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "currentGameState") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setCurrentGameState_1 : JR.Method
+jm_setCurrentGameState_1 jheap jthis jargs =
+    JR.method [ ( "currentGameState", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "CURRENT" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.str " GameState: ") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "currentGameState") ]) ]) []), JR.this, (JR.str "setCurrentGameState") ]), 
+                    JR.exec (JR.setField "currentGameState" "" JR.this (JR.local "currentGameState")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

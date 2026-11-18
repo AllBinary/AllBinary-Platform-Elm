@@ -1,138 +1,118 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.acceleration
-module BasicAccelerationProperties where
+module Org.Allbinary.Game.Physics.Acceleration.BasicAccelerationProperties exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.game.physics.acceleration
+-}
 
-data BasicAccelerationProperties = BasicAccelerationProperties
-    { header_ :: JavaHeader
-    , forward :: IORef (Int)
-    , reverse :: IORef (Int)
-    }
-
-instance JavaNull BasicAccelerationProperties where
-    javaNull = javaNullRecord "BasicAccelerationProperties"
-
-instance JavaEquals BasicAccelerationProperties where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicAccelerationProperties where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicAccelerationProperties where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BasicAccelerationProperties
-newRecord_ = do
-    header_ <- newJavaHeader
-    forward <- newIORef 0
-    reverse <- newIORef 0
-    let this = BasicAccelerationProperties header_ forward reverse
-    jregisterLevel header_ this
-    jregisterMethod header_ "setReverse" (\() -> setReverse_impl this)
-    jregisterMethod header_ "getReverse" (\() -> getReverse_impl this)
-    jregisterMethod header_ "setForward" (\() -> setForward_impl this)
-    jregisterMethod header_ "getForward" (\() -> getForward_impl this)
-    pure this
-
-initFields_ :: BasicAccelerationProperties -> IO ()
-initFields_ this = do
-    jset this.forward (0)
-    jset this.reverse (0)
-    pure ()
-
-new_2 :: Int -> Int -> IO BasicAccelerationProperties
-new_2 forward reverse = do
-    this <- newRecord_
-    init_2 this forward reverse
-    pure this
-
-init_2 :: BasicAccelerationProperties -> Int -> Int -> IO ()
-init_2 this forward reverse = do
-        initFields_ this
-        Control.Monad.void (BasicAccelerationProperties.setForward this forward)
-        Control.Monad.void (BasicAccelerationProperties.setReverse this reverse)
-        pure ()
+import JR
 
 
-setReverse :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setReverse object_ a1 = jmethod object_ "setReverse" (\() -> (setReverse_impl (javaCast object_ :: BasicAccelerationProperties))) () a1
 
-setReverse_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setReverse_super object_ a1 = (setReverse_impl (javaCast object_ :: BasicAccelerationProperties)) a1
-
-setReverse_impl :: BasicAccelerationProperties -> Int -> IO (())
-setReverse_impl this reverse = do
-        jset (this).reverse (reverse)
-        pure ()
+jclass : String
+jclass =
+    "BasicAccelerationProperties"
 
 
-getReverse :: (JavaObjectClass this_) => this_ -> IO (Int)
-getReverse object_ = jmethod object_ "getReverse" (\() -> (getReverse_impl (javaCast object_ :: BasicAccelerationProperties))) ()
-
-getReverse_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getReverse_super object_ = (getReverse_impl (javaCast object_ :: BasicAccelerationProperties))
-
-getReverse_impl :: BasicAccelerationProperties -> IO (Int)
-getReverse_impl this = do
-        pure ((jget (this).reverse))
+jchain : List String
+jchain =
+    [ "BasicAccelerationProperties" ]
 
 
-setForward :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setForward object_ a1 = jmethod object_ "setForward" (\() -> (setForward_impl (javaCast object_ :: BasicAccelerationProperties))) () a1
-
-setForward_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setForward_super object_ a1 = (setForward_impl (javaCast object_ :: BasicAccelerationProperties)) a1
-
-setForward_impl :: BasicAccelerationProperties -> Int -> IO (())
-setForward_impl this forward = do
-        jset (this).forward (forward)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "forward", JR.defaultOf "I" ), ( "reverse", JR.defaultOf "I" ) ]
 
 
-getForward :: (JavaObjectClass this_) => this_ -> IO (Int)
-getForward object_ = jmethod object_ "getForward" (\() -> (getForward_impl (javaCast object_ :: BasicAccelerationProperties))) ()
+jvtable =
+    JR.vtable
+        [ ( "setReverse_1", jm_setReverse_1 )
+        , ( "getReverse_0", jm_getReverse_0 )
+        , ( "setForward_1", jm_setForward_1 )
+        , ( "getForward_0", jm_getForward_0 ) ]
+        JR.noMethods
 
-getForward_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getForward_super object_ = (getForward_impl (javaCast object_ :: BasicAccelerationProperties))
 
-getForward_impl :: BasicAccelerationProperties -> IO (Int)
-getForward_impl this = do
-        pure ((jget (this).forward))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicAccelerationProperties"
+        [ ( "jm_setReverse_1", jm_setReverse_1 ), ( "jm_getReverse_0", jm_getReverse_0 ), ( "jm_setForward_1", jm_setForward_1 ), ( "jm_getForward_0", jm_getForward_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "forward", "I" ), ( "reverse", "I" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setForward_1" JR.this [ (JR.local "forward") ]), 
+                    JR.exec (JR.invoke "setReverse_1" JR.this [ (JR.local "reverse") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_setReverse_1 : JR.Method
+jm_setReverse_1 jheap jthis jargs =
+    JR.method [ ( "reverse", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "reverse" "I" JR.this (JR.local "reverse")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getReverse_0 : JR.Method
+jm_getReverse_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "reverse") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setForward_1 : JR.Method
+jm_setForward_1 jheap jthis jargs =
+    JR.method [ ( "forward", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "forward" "I" JR.this (JR.local "forward")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getForward_0 : JR.Method
+jm_getForward_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "forward") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

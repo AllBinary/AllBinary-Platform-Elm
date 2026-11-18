@@ -1,168 +1,139 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics
-module RelativeRelationship where
+module Org.Allbinary.Graphics.RelativeRelationship exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified PointFactory -- same package or java.lang
-import qualified GPoint -- same package or java.lang
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListUtil -- org.allbinary.util.BasicArrayListUtil
+{-| Generated Code Do Not Modify package org.allbinary.graphics
+-}
 
-data RelativeRelationship = RelativeRelationship
-    { header_ :: JavaHeader
-    , typesAllowedList :: IORef (BasicArrayList.BasicArrayList)
-    , x :: IORef (Int)
-    , y :: IORef (Int)
-    , z :: IORef (Int)
-    }
-
-instance JavaNull RelativeRelationship where
-    javaNull = javaNullRecord "RelativeRelationship"
-
-instance JavaEquals RelativeRelationship where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RelativeRelationship where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RelativeRelationship where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_RELATIVE_RELATIONSHIP :: RelativeRelationship
-{-# NOINLINE nULL_RELATIVE_RELATIONSHIP #-}
-nULL_RELATIVE_RELATIONSHIP = unsafePerformIO ((new_2 (jget ((jio (PointFactory.getInstance))).zERO_ZERO) (jio (BasicArrayListUtil.getImmutableInstance ((jio (BasicArrayListUtil.getInstance)))))))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO RelativeRelationship
-newRecord_ = do
-    header_ <- newJavaHeader
-    typesAllowedList <- newIORef javaNull
-    x <- newIORef 0
-    y <- newIORef 0
-    z <- newIORef 0
-    let this = RelativeRelationship header_ typesAllowedList x y z
-    jregisterLevel header_ this
-    jregisterMethod header_ "getX" (\() -> getX_impl this)
-    jregisterMethod header_ "getY" (\() -> getY_impl this)
-    jregisterMethod header_ "getZ" (\() -> getZ_impl this)
-    jregisterMethod header_ "getTypesAllowedList" (\() -> getTypesAllowedList_impl this)
-    jregisterMethod header_ "setTypesAllowedList" (\() -> setTypesAllowedList_impl this)
-    pure this
-
-initFields_ :: RelativeRelationship -> IO ()
-initFields_ this = do
-    jset this.typesAllowedList (javaNull)
-    jset this.x (0)
-    jset this.y (0)
-    jset this.z (0)
-    pure ()
-
-new_2 :: GPoint.GPoint -> BasicArrayList.BasicArrayList -> IO RelativeRelationship
-new_2 point typesAllowedList = do
-    this <- newRecord_
-    init_2 this point typesAllowedList
-    pure this
-
-init_2 :: RelativeRelationship -> GPoint.GPoint -> BasicArrayList.BasicArrayList -> IO ()
-init_2 this point typesAllowedList = do
-        initFields_ this
-        assignedValue <- (GPoint.getX point)
-        jset (this).x (assignedValue)
-        assignedValue <- (GPoint.getY point)
-        jset (this).y (assignedValue)
-        assignedValue <- (GPoint.getZ point)
-        jset (this).z (assignedValue)
-        jset (this).typesAllowedList (typesAllowedList)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListUtil as BasicArrayListUtil
+import Org.Allbinary.Graphics.PointFactory as PointFactory
 
 
-getX :: (JavaObjectClass this_) => this_ -> IO (Int)
-getX object_ = jmethod object_ "getX" (\() -> (getX_impl (javaCast object_ :: RelativeRelationship))) ()
-
-getX_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getX_super object_ = (getX_impl (javaCast object_ :: RelativeRelationship))
-
-getX_impl :: RelativeRelationship -> IO (Int)
-getX_impl this = do
-        pure ((jget (this).x))
+jclass : String
+jclass =
+    "RelativeRelationship"
 
 
-getY :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY object_ = jmethod object_ "getY" (\() -> (getY_impl (javaCast object_ :: RelativeRelationship))) ()
-
-getY_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY_super object_ = (getY_impl (javaCast object_ :: RelativeRelationship))
-
-getY_impl :: RelativeRelationship -> IO (Int)
-getY_impl this = do
-        pure ((jget (this).y))
+jchain : List String
+jchain =
+    [ "RelativeRelationship" ]
 
 
-getZ :: (JavaObjectClass this_) => this_ -> IO (Int)
-getZ object_ = jmethod object_ "getZ" (\() -> (getZ_impl (javaCast object_ :: RelativeRelationship))) ()
-
-getZ_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getZ_super object_ = (getZ_impl (javaCast object_ :: RelativeRelationship))
-
-getZ_impl :: RelativeRelationship -> IO (Int)
-getZ_impl this = do
-        pure ((jget (this).z))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "typesAllowedList", JR.defaultOf "" ), ( "x", JR.defaultOf "I" ), ( "y", JR.defaultOf "I" ), ( "z", JR.defaultOf "I" ) ]
 
 
-getTypesAllowedList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getTypesAllowedList object_ = jmethod object_ "getTypesAllowedList" (\() -> (getTypesAllowedList_impl (javaCast object_ :: RelativeRelationship))) ()
+jvtable =
+    JR.vtable
+        [ ( "getX_0", jm_getX_0 )
+        , ( "getY_0", jm_getY_0 )
+        , ( "getZ_0", jm_getZ_0 )
+        , ( "getTypesAllowedList_0", jm_getTypesAllowedList_0 )
+        , ( "setTypesAllowedList_1", jm_setTypesAllowedList_1 ) ]
+        JR.noMethods
 
-getTypesAllowedList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getTypesAllowedList_super object_ = (getTypesAllowedList_impl (javaCast object_ :: RelativeRelationship))
 
-getTypesAllowedList_impl :: RelativeRelationship -> IO (BasicArrayList.BasicArrayList)
-getTypesAllowedList_impl this = do
-        pure ((jget (this).typesAllowedList))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RelativeRelationship"
+        [ ( "jm_getX_0", jm_getX_0 ), ( "jm_getY_0", jm_getY_0 ), ( "jm_getZ_0", jm_getZ_0 ), ( "jm_getTypesAllowedList_0", jm_getTypesAllowedList_0 ), ( "jm_setTypesAllowedList_1", jm_setTypesAllowedList_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_NULL_RELATIVE_RELATIONSHIP", jstatic_NULL_RELATIVE_RELATIONSHIP ) ]
+        jheap
 
 
-setTypesAllowedList :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setTypesAllowedList object_ a1 = jmethod object_ "setTypesAllowedList" (\() -> (setTypesAllowedList_impl (javaCast object_ :: RelativeRelationship))) () a1
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-setTypesAllowedList_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setTypesAllowedList_super object_ a1 = (setTypesAllowedList_impl (javaCast object_ :: RelativeRelationship)) a1
 
-setTypesAllowedList_impl :: RelativeRelationship -> BasicArrayList.BasicArrayList -> IO (())
-setTypesAllowedList_impl this typesAllowedList = do
-        jset (this).typesAllowedList (typesAllowedList)
-        pure ()
+jstatic_NULL_RELATIVE_RELATIONSHIP : JR.M
+jstatic_NULL_RELATIVE_RELATIONSHIP s =
+    JR.static "RelativeRelationship" jclinit "NULL_RELATIVE_RELATIONSHIP"
+        (JR.new jnew_2 [ (JR.field "ZERO_ZERO" (JR.callStatic PointFactory.jm_getInstance_0 [])), (JR.invoke "getImmutableInstance_0" (JR.callStatic BasicArrayListUtil.jm_getInstance_0 []) []) ])
+        s
 
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "point", "" ), ( "typesAllowedList", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "x" "I" JR.this (JR.invoke "getX_0" (JR.local "point") [])), 
+                    JR.exec (JR.setField "y" "I" JR.this (JR.invoke "getY_0" (JR.local "point") [])), 
+                    JR.exec (JR.setField "z" "I" JR.this (JR.invoke "getZ_0" (JR.local "point") [])), 
+                    JR.exec (JR.setField "typesAllowedList" "" JR.this (JR.local "typesAllowedList")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getX_0 : JR.Method
+jm_getX_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "x") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getY_0 : JR.Method
+jm_getY_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "y") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getZ_0 : JR.Method
+jm_getZ_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "z") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTypesAllowedList_0 : JR.Method
+jm_getTypesAllowedList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "typesAllowedList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setTypesAllowedList_1 : JR.Method
+jm_setTypesAllowedList_1 jheap jthis jargs =
+    JR.method [ ( "typesAllowedList", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "typesAllowedList" "" JR.this (JR.local "typesAllowedList")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

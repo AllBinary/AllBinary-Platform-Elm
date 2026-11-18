@@ -1,100 +1,89 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.android.input.motion
-module AllAnalogControllerVisitor (module AllAnalogControllerVisitor, module AnalogControllerVisitor) where
+module Org.Allbinary.Android.Input.Motion.AllAnalogControllerVisitor exposing (..)
 
-import AnalogControllerVisitor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, process, process_super, process_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnalogLocationInputProcessor -- same package or java.lang
-import qualified AnalogLocationInput -- org.allbinary.game.input.analog.AnalogLocationInput
-import qualified AnalogLocationInputFactory -- org.allbinary.game.input.analog.AnalogLocationInputFactory
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified AnalogControllerVisitor
+{-| Generated Code Do Not Modify package org.allbinary.android.input.motion
+-}
 
-data AllAnalogControllerVisitor = AllAnalogControllerVisitor
-    { header_ :: JavaHeader
-    , base :: AnalogControllerVisitor.AnalogControllerVisitor
-    }
-
-instance JavaNull AllAnalogControllerVisitor where
-    javaNull = javaNullRecord "AllAnalogControllerVisitor"
-
-instance JavaEquals AllAnalogControllerVisitor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllAnalogControllerVisitor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllAnalogControllerVisitor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AllAnalogControllerVisitor
-newRecord_ = do
-    base <- AnalogControllerVisitor.newRecord_
-    let header_ = base.header_
-    let this = AllAnalogControllerVisitor header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: AllAnalogControllerVisitor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AllAnalogControllerVisitor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllAnalogControllerVisitor -> IO ()
-init_ this = do
-    AnalogControllerVisitor.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Android.Input.Motion.AnalogControllerVisitor as AnalogControllerVisitor
+import Org.Allbinary.Game.Input.Analog.AnalogLocationInputFactory as AnalogLocationInputFactory
 
 
-process :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> AnalogLocationInputProcessor.AnalogLocationInputProcessor -> IO (())
-process object_ a1 a2 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: AllAnalogControllerVisitor))) () a1 a2
+jclass : String
+jclass =
+    "AllAnalogControllerVisitor"
 
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> AnalogLocationInputProcessor.AnalogLocationInputProcessor -> IO (())
-process_super object_ a1 a2 = (process_impl (javaCast object_ :: AllAnalogControllerVisitor)) a1 a2
 
-process_impl :: AllAnalogControllerVisitor -> AllBinaryLayerManager.AllBinaryLayerManager -> AnalogLocationInputProcessor.AnalogLocationInputProcessor -> IO (())
-process_impl this allbinaryLayerManager analogLocationInputProcessor = do
-        analogLocationInputList <- (AnalogLocationInputFactory.getList ((jio (AnalogLocationInputFactory.getInstance))))
-        analogLocationInput <- newIORef (javaNull)
-        forM_ [((jio (BasicArrayList.size analogLocationInputList)) - 1), ((jio (BasicArrayList.size analogLocationInputList)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jset analogLocationInput ((javaCast (jio (BasicArrayList.get analogLocationInputList index)) :: AnalogLocationInput.AnalogLocationInput))
-            Control.Monad.void (AnalogLocationInputProcessor.process analogLocationInputProcessor allbinaryLayerManager (jget analogLocationInput))
-        pure ()
+jchain : List String
+jchain =
+    [ "AllAnalogControllerVisitor" ]
+        ++ AnalogControllerVisitor.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    AnalogControllerVisitor.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "process_2", jm_process_2 ) ]
+        AnalogControllerVisitor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllAnalogControllerVisitor"
+        [ ( "jm_process_2", jm_process_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect AnalogControllerVisitor.jinit_0 JR.this []),
+            identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_process_2 : JR.Method
+jm_process_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "analogLocationInputProcessor", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "analogLocationInputList" "" (JR.invoke "getList_0" (JR.callStatic AnalogLocationInputFactory.jm_getInstance_0 []) []), 
+                    JR.declare "analogLocationInput" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "analogLocationInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67809 -> (JR.setLocal "index" "I" (JR.lit jwN67809))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "analogLocationInput" "" (JR.invoke "get_1" (JR.local "analogLocationInputList") [ (JR.local "index") ])), 
+                        JR.exec (JR.invoke "process_2" (JR.local "analogLocationInputProcessor") [ (JR.local "allbinaryLayerManager"), (JR.local "analogLocationInput") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

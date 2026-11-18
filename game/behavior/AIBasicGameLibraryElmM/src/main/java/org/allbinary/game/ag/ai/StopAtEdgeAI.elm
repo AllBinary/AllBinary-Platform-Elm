@@ -1,121 +1,107 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
-module StopAtEdgeAI (module StopAtEdgeAI, module BasicAI) where
+module Org.Allbinary.Game.Ag.Ai.StopAtEdgeAI exposing (..)
 
-import BasicAI hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, processAI, processAI_super, processAI_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicAI -- org.allbinary.game.ai.BasicAI
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified BasicVelocityProperties -- org.allbinary.game.physics.velocity.BasicVelocityProperties
-import qualified VelocityInterfaceCompositeInterface -- org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai
+-}
 
-data StopAtEdgeAI = StopAtEdgeAI
-    { header_ :: JavaHeader
-    , base :: BasicAI.BasicAI
-    }
-
-instance JavaNull StopAtEdgeAI where
-    javaNull = javaNullRecord "StopAtEdgeAI"
-
-instance JavaEquals StopAtEdgeAI where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq StopAtEdgeAI where
-    (==) = jrecordEquals
-
-instance JavaObjectClass StopAtEdgeAI where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO StopAtEdgeAI
-newRecord_ = do
-    base <- BasicAI.newRecord_
-    let header_ = base.header_
-    let this = StopAtEdgeAI header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "processAI" (\() -> processAI_impl this)
-    pure this
-
-initFields_ :: StopAtEdgeAI -> IO ()
-initFields_ this = do
-    pure ()
-
-new_2 :: AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO StopAtEdgeAI
-new_2 ownerLayerInterface gameInput = do
-    this <- newRecord_
-    init_2 this ownerLayerInterface gameInput
-    pure this
-
-init_2 :: StopAtEdgeAI -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO ()
-init_2 this ownerLayerInterface gameInput = do
-        BasicAI.init_2 this.base (ownerLayerInterface) (gameInput)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Game.Ai.BasicAI as BasicAI
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
 
 
--- throws Exception
-processAI :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI object_ a1 = jmethod object_ "processAI" (\() -> (processAI_impl (javaCast object_ :: StopAtEdgeAI))) () a1
+jclass : String
+jclass =
+    "StopAtEdgeAI"
 
-processAI_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_super object_ a1 = (processAI_impl (javaCast object_ :: StopAtEdgeAI)) a1
 
-processAI_impl :: StopAtEdgeAI -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_impl this allBinaryLayerManager = do
-        ownerLayerInterface <- (BasicAI.getOwnerLayerInterface this)
-        let velocityInterfaceCompositeInterface = ((javaCast ownerLayerInterface :: VelocityInterfaceCompositeInterface.VelocityInterfaceCompositeInterface))
-        velocityProperties <- (VelocityInterfaceCompositeInterface.getVelocityProperties velocityInterfaceCompositeInterface)
-        x <- (AllBinaryLayer.getXP ownerLayerInterface)
-        y <- (AllBinaryLayer.getYP ownerLayerInterface)
-        x2 <- (AllBinaryLayer.getX2 ownerLayerInterface)
-        y2 <- (AllBinaryLayer.getY2 ownerLayerInterface)
-        width <- (AllBinaryLayer.getWidth ownerLayerInterface)
-        height <- (AllBinaryLayer.getHeight ownerLayerInterface)
-        displayInfo <- (DisplayInfoSingleton.getInstance)
-        when ((x2 + (jio (BasicVelocityProperties.getScaled ((jio (BasicVelocityProperties.getVelocityXBasicDecimalP velocityProperties)))))) > (jio (DisplayInfoSingleton.getLastWidth displayInfo))) $ do
-            Control.Monad.void (AllBinaryLayer.setPosition ownerLayerInterface ((jio (DisplayInfoSingleton.getLastWidth displayInfo)) - width) y (jio (AllBinaryLayer.getZP ownerLayerInterface)))
-            Control.Monad.void (BasicVelocityProperties.setint ((jio (BasicVelocityProperties.getVelocityYBasicDecimalP velocityProperties))) 0)
-        when ((y2 + (jio (BasicVelocityProperties.getScaled ((jio (BasicVelocityProperties.getVelocityYBasicDecimalP velocityProperties)))))) > (jio (DisplayInfoSingleton.getLastHeight displayInfo))) $ do
-            Control.Monad.void (AllBinaryLayer.setPosition ownerLayerInterface x ((jio (DisplayInfoSingleton.getLastHeight displayInfo)) - height) (jio (AllBinaryLayer.getZP ownerLayerInterface)))
-            Control.Monad.void (BasicVelocityProperties.setint ((jio (BasicVelocityProperties.getVelocityXBasicDecimalP velocityProperties))) 0)
-        when ((x + (jio (BasicVelocityProperties.getScaled ((jio (BasicVelocityProperties.getVelocityXBasicDecimalP velocityProperties)))))) < 0) $ do
-            Control.Monad.void (AllBinaryLayer.setPosition ownerLayerInterface 0 y (jio (AllBinaryLayer.getZP ownerLayerInterface)))
-            Control.Monad.void (BasicVelocityProperties.setint ((jio (BasicVelocityProperties.getVelocityYBasicDecimalP velocityProperties))) 0)
-        when ((y + (jio (BasicVelocityProperties.getScaled ((jio (BasicVelocityProperties.getVelocityYBasicDecimalP velocityProperties)))))) < 0) $ do
-            Control.Monad.void (AllBinaryLayer.setPosition ownerLayerInterface x 0 (jio (AllBinaryLayer.getZP ownerLayerInterface)))
-            Control.Monad.void (BasicVelocityProperties.setint ((jio (BasicVelocityProperties.getVelocityXBasicDecimalP velocityProperties))) 0)
-        pure ()
+jchain : List String
+jchain =
+    [ "StopAtEdgeAI" ]
+        ++ BasicAI.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicAI.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "processAI_1", jm_processAI_1 ) ]
+        BasicAI.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "StopAtEdgeAI"
+        [ ( "jm_processAI_1", jm_processAI_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "ownerLayerInterface", "" ), ( "gameInput", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicAI.jinit_2 JR.this [ (JR.local "ownerLayerInterface"), (JR.local "gameInput") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_processAI_1 : JR.Method
+jm_processAI_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "ownerLayerInterface" "" (JR.invoke "getOwnerLayerInterface_0" JR.this []), 
+                    JR.declare "velocityInterfaceCompositeInterface" "" ((JR.local "ownerLayerInterface")), 
+                    JR.declare "velocityProperties" "" (JR.invoke "getVelocityProperties_0" (JR.local "velocityInterfaceCompositeInterface") []), 
+                    JR.declare "x" "I" (JR.invoke "getXP_0" (JR.local "ownerLayerInterface") []), 
+                    JR.declare "y" "I" (JR.invoke "getYP_0" (JR.local "ownerLayerInterface") []), 
+                    JR.declare "x2" "I" (JR.invoke "getX2_0" (JR.local "ownerLayerInterface") []), 
+                    JR.declare "y2" "I" (JR.invoke "getY2_0" (JR.local "ownerLayerInterface") []), 
+                    JR.declare "width" "I" (JR.invoke "getWidth_0" (JR.local "ownerLayerInterface") []), 
+                    JR.declare "height" "I" (JR.invoke "getHeight_0" (JR.local "ownerLayerInterface") []), 
+                    JR.declare "displayInfo" "" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map2 JR.greater (JR.map2 JR.add (JR.local "x2") (JR.invoke "getScaled_0" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.local "velocityProperties") []) [])) (JR.invoke "getLastWidth_0" (JR.local "displayInfo") [])) (JR.run [ 
+                        JR.exec (JR.invoke "setPosition_3" (JR.local "ownerLayerInterface") [ (JR.map2 JR.sub (JR.invoke "getLastWidth_0" (JR.local "displayInfo") []) (JR.local "width")), (JR.local "y"), (JR.invoke "getZP_0" (JR.local "ownerLayerInterface") []) ]), 
+                        JR.exec (JR.invoke "setint_1" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.local "velocityProperties") []) [ (JR.int 0) ]) ]) identity, 
+                    JR.ifElse (JR.map2 JR.greater (JR.map2 JR.add (JR.local "y2") (JR.invoke "getScaled_0" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.local "velocityProperties") []) [])) (JR.invoke "getLastHeight_0" (JR.local "displayInfo") [])) (JR.run [ 
+                        JR.exec (JR.invoke "setPosition_3" (JR.local "ownerLayerInterface") [ (JR.local "x"), (JR.map2 JR.sub (JR.invoke "getLastHeight_0" (JR.local "displayInfo") []) (JR.local "height")), (JR.invoke "getZP_0" (JR.local "ownerLayerInterface") []) ]), 
+                        JR.exec (JR.invoke "setint_1" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.local "velocityProperties") []) [ (JR.int 0) ]) ]) identity, 
+                    JR.ifElse (JR.map2 JR.less (JR.map2 JR.add (JR.local "x") (JR.invoke "getScaled_0" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.local "velocityProperties") []) [])) (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.invoke "setPosition_3" (JR.local "ownerLayerInterface") [ (JR.int 0), (JR.local "y"), (JR.invoke "getZP_0" (JR.local "ownerLayerInterface") []) ]), 
+                        JR.exec (JR.invoke "setint_1" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.local "velocityProperties") []) [ (JR.int 0) ]) ]) identity, 
+                    JR.ifElse (JR.map2 JR.less (JR.map2 JR.add (JR.local "y") (JR.invoke "getScaled_0" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.local "velocityProperties") []) [])) (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.invoke "setPosition_3" (JR.local "ownerLayerInterface") [ (JR.local "x"), (JR.int 0), (JR.invoke "getZP_0" (JR.local "ownerLayerInterface") []) ]), 
+                        JR.exec (JR.invoke "setint_1" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.local "velocityProperties") []) [ (JR.int 0) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

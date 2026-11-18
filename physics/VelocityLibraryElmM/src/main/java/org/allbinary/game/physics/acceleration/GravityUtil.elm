@@ -1,109 +1,102 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.acceleration
-module GravityUtil where
+module Org.Allbinary.Game.Physics.Acceleration.GravityUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicDecimal -- same package or java.lang
-import qualified BasicVelocityProperties -- org.allbinary.game.physics.velocity.BasicVelocityProperties
+{-| Generated Code Do Not Modify package org.allbinary.game.physics.acceleration
+-}
 
-data GravityUtil = GravityUtil
-    { header_ :: JavaHeader
-    , gAME_GRAVITY_VELOCITY :: IORef (Int)
-    , mAX_GAME_VELOCITY :: IORef (Int)
-    }
-
-instance JavaNull GravityUtil where
-    javaNull = javaNullRecord "GravityUtil"
-
-instance JavaEquals GravityUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GravityUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GravityUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GravityUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GravityUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    gAME_GRAVITY_VELOCITY <- newIORef 0
-    mAX_GAME_VELOCITY <- newIORef 0
-    let this = GravityUtil header_ gAME_GRAVITY_VELOCITY mAX_GAME_VELOCITY
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: GravityUtil -> IO ()
-initFields_ this = do
-    jset this.gAME_GRAVITY_VELOCITY (1800)
-    jset this.mAX_GAME_VELOCITY (18000)
-    pure ()
-
-new_ :: IO GravityUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GravityUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (GravityUtil)
-getInstance = do
-        pure (GravityUtil.instance_)
+
+jclass : String
+jclass =
+    "GravityUtil"
 
 
-process :: (JavaObjectClass this_) => this_ -> BasicVelocityProperties.BasicVelocityProperties -> Int -> IO (())
-process object_ a1 a2 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: GravityUtil))) () a1 a2
+jchain : List String
+jchain =
+    [ "GravityUtil" ]
 
-process_super :: (JavaObjectClass this_) => this_ -> BasicVelocityProperties.BasicVelocityProperties -> Int -> IO (())
-process_super object_ a1 a2 = (process_impl (javaCast object_ :: GravityUtil)) a1 a2
 
-process_impl :: GravityUtil -> BasicVelocityProperties.BasicVelocityProperties -> Int -> IO (())
-process_impl this velocityProperties customGravity = do
-        Control.Monad.void (BasicDecimal.addint ((jio (BasicVelocityProperties.getVelocityYBasicDecimalP velocityProperties))) customGravity)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "GAME_GRAVITY_VELOCITY", JR.defaultOf "I" ), ( "MAX_GAME_VELOCITY", JR.defaultOf "I" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "process_2", jm_process_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GravityUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_process_2", jm_process_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GravityUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "GAME_GRAVITY_VELOCITY" "I" JR.this (JR.int 1800)),
+                JR.exec (JR.setField "MAX_GAME_VELOCITY" "I" JR.this (JR.int 18000)),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_2 : JR.Method
+jm_process_2 jheap jthis jargs =
+    JR.method [ ( "velocityProperties", "" ), ( "customGravity", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "addint_1" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.local "velocityProperties") []) [ (JR.local "customGravity") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

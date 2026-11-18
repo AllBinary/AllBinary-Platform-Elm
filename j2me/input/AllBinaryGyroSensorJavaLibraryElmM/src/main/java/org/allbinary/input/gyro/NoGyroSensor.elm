@@ -1,109 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.gyro
-module NoGyroSensor (module NoGyroSensor, module AllBinaryOrientationSensor) where
+module Org.Allbinary.Input.Gyro.NoGyroSensor exposing (..)
 
-import AllBinaryOrientationSensor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getOrientation, getOrientation_super, getOrientation_impl, onSensorChange, onSensorChange_super, onSensorChange_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinarySensorListener -- org.allbinary.input.AllBinarySensorListener
-import qualified Orientation -- org.allbinary.logic.math.Orientation
-import qualified AllBinaryOrientationSensor
+{-| Generated Code Do Not Modify package org.allbinary.input.gyro
+-}
 
--- implements AllBinarySensorListener
-data NoGyroSensor = NoGyroSensor
-    { header_ :: JavaHeader
-    , base :: AllBinaryOrientationSensor.AllBinaryOrientationSensor
-    }
-
-instance JavaNull NoGyroSensor where
-    javaNull = javaNullRecord "NoGyroSensor"
-
-instance JavaEquals NoGyroSensor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NoGyroSensor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NoGyroSensor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO NoGyroSensor
-newRecord_ = do
-    base <- AllBinaryOrientationSensor.newRecord_
-    let header_ = base.header_
-    let this = NoGyroSensor header_ base
-    jregisterLevel header_ this
-    AllBinarySensorListener.registerInterface_ header_
-    jregisterMethod header_ "getOrientation" (\() -> getOrientation_impl this)
-    jregisterMethod header_ "onSensorChange" (\() -> onSensorChange_impl this)
-    pure this
-
-initFields_ :: NoGyroSensor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO NoGyroSensor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NoGyroSensor -> IO ()
-init_ this = do
-        AllBinaryOrientationSensor.init_ this.base
-        initFields_ this
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-        pure ()
+import JR
+import Org.Allbinary.Input.Gyro.AllBinaryOrientationSensor as AllBinaryOrientationSensor
+import Org.Allbinary.Input.AllBinarySensorListener as AllBinarySensorListener
+import Org.Allbinary.Logic.Math.Orientation as Orientation
 
 
--- throws Exception
-getOrientation :: (JavaObjectClass this_) => this_ -> IO (Orientation.Orientation)
-getOrientation object_ = jmethod object_ "getOrientation" (\() -> (getOrientation_impl (javaCast object_ :: NoGyroSensor))) ()
-
-getOrientation_super :: (JavaObjectClass this_) => this_ -> IO (Orientation.Orientation)
-getOrientation_super object_ = (getOrientation_impl (javaCast object_ :: NoGyroSensor))
-
-getOrientation_impl :: NoGyroSensor -> IO (Orientation.Orientation)
-getOrientation_impl this = do
-        pure (Orientation.nONE)
+jclass : String
+jclass =
+    "NoGyroSensor"
 
 
-onSensorChange :: (JavaObjectClass this_) => this_ -> IO (())
-onSensorChange object_ = jmethod object_ "onSensorChange" (\() -> (onSensorChange_impl (javaCast object_ :: NoGyroSensor))) ()
+jchain : List String
+jchain =
+    [ "NoGyroSensor" ]
+        ++ AllBinaryOrientationSensor.jchain
+        ++ AllBinarySensorListener.jchain
 
-onSensorChange_super :: (JavaObjectClass this_) => this_ -> IO (())
-onSensorChange_super object_ = (onSensorChange_impl (javaCast object_ :: NoGyroSensor))
 
-onSensorChange_impl :: NoGyroSensor -> IO (())
-onSensorChange_impl this = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinaryOrientationSensor.jfields ++ []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getOrientation_0", jm_getOrientation_0 )
+        , ( "onSensorChange_0", jm_onSensorChange_0 ) ]
+        AllBinaryOrientationSensor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NoGyroSensor"
+        [ ( "jm_getOrientation_0", jm_getOrientation_0 ), ( "jm_onSensorChange_0", jm_onSensorChange_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinaryOrientationSensor.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getOrientation_0 : JR.Method
+jm_getOrientation_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return Orientation.jstatic_NONE ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onSensorChange_0 : JR.Method
+jm_onSensorChange_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,102 +1,94 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.visual.transform.template.customizer.widgets.logo
-module LogoData where
+module Org.Allbinary.Logic.Visual.Transform.Template.Customizer.Widgets.Logo.LogoData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.visual.transform.template.customizer.widgets.logo
+-}
 
-data LogoData = LogoData
-    { header_ :: JavaHeader
-    , nAME :: IORef (String)
-    , iMAGEPATH :: IORef (String)
-    , iMAGEFILENAME :: IORef (String)
-    , iMAGE :: IORef (String)
-    }
-
-instance JavaNull LogoData where
-    javaNull = javaNullRecord "LogoData"
-
-instance JavaEquals LogoData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LogoData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LogoData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: LogoData
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LogoData
-newRecord_ = do
-    header_ <- newJavaHeader
-    nAME <- newIORef ""
-    iMAGEPATH <- newIORef ""
-    iMAGEFILENAME <- newIORef ""
-    iMAGE <- newIORef ""
-    let this = LogoData header_ nAME iMAGEPATH iMAGEFILENAME iMAGE
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: LogoData -> IO ()
-initFields_ this = do
-    jset this.nAME ("LOGO_NAME")
-    jset this.iMAGEPATH ("LOGO_IMAGE_PATH")
-    jset this.iMAGEFILENAME ("LOGO_IMAGE_FILE_NAME")
-    jset this.iMAGE ("LOGO_IMAGE")
-    pure ()
+import JR
 
 
-getInstance :: IO (LogoData)
-getInstance = do
-        pure (LogoData.instance_)
 
-new_ :: IO LogoData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jclass : String
+jclass =
+    "LogoData"
 
-init_ :: LogoData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jchain : List String
+jchain =
+    [ "LogoData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "NAME", JR.defaultOf "" ), ( "IMAGEPATH", JR.defaultOf "" ), ( "IMAGEFILENAME", JR.defaultOf "" ), ( "IMAGE", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LogoData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LogoData" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "NAME" "" JR.this (JR.str "LOGO_NAME")),
+                JR.exec (JR.setField "IMAGEPATH" "" JR.this (JR.str "LOGO_IMAGE_PATH")),
+                JR.exec (JR.setField "IMAGEFILENAME" "" JR.this (JR.str "LOGO_IMAGE_FILE_NAME")),
+                JR.exec (JR.setField "IMAGE" "" JR.this (JR.str "LOGO_IMAGE")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

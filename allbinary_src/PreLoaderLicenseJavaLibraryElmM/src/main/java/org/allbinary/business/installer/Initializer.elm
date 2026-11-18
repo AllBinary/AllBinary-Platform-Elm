@@ -1,547 +1,406 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.installer
-module Initializer where
+module Org.Allbinary.Business.Installer.Initializer exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified InitializerData -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified HashMap -- java.util.HashMap
-import qualified Map -- java.util.Map
-import qualified Set -- java.util.Set
-import qualified HistoryDbInitInfo -- org.allbinary.business.init.db.HistoryDbInitInfo
-import qualified InventoryDbInitInfo -- org.allbinary.business.init.db.InventoryDbInitInfo
-import qualified LogDbInitInfo -- org.allbinary.business.init.db.LogDbInitInfo
-import qualified StaticPagesDbInitInfo -- org.allbinary.business.init.db.StaticPagesDbInitInfo
-import qualified UserDbInitInfo -- org.allbinary.business.init.db.UserDbInitInfo
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringValidationUtil -- org.allbinary.logic.string.StringValidationUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.business.installer
+-}
 
-data Initializer = Initializer
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , userJdbcDriver :: IORef (String)
-    , userName :: IORef (String)
-    , userUserName :: IORef (String)
-    , userPassword :: IORef (String)
-    , userSchema :: IORef (String)
-    , userServer :: IORef (String)
-    , userPort :: IORef (String)
-    , historyJdbcDriver :: IORef (String)
-    , historyName :: IORef (String)
-    , historyUserName :: IORef (String)
-    , historyPassword :: IORef (String)
-    , historySchema :: IORef (String)
-    , historyServer :: IORef (String)
-    , historyPort :: IORef (String)
-    , logJdbcDriver :: IORef (String)
-    , logName :: IORef (String)
-    , logUserName :: IORef (String)
-    , logPassword :: IORef (String)
-    , logSchema :: IORef (String)
-    , logServer :: IORef (String)
-    , logPort :: IORef (String)
-    , inventoryJdbcDriver :: IORef (String)
-    , inventoryName :: IORef (String)
-    , inventoryUserName :: IORef (String)
-    , inventoryPassword :: IORef (String)
-    , inventorySchema :: IORef (String)
-    , inventoryServer :: IORef (String)
-    , inventoryPort :: IORef (String)
-    , staticPagesJdbcDriver :: IORef (String)
-    , staticPagesName :: IORef (String)
-    , staticPagesUserName :: IORef (String)
-    , staticPagesPassword :: IORef (String)
-    , staticPagesSchema :: IORef (String)
-    , staticPagesServer :: IORef (String)
-    , staticPagesPort :: IORef (String)
-    }
-
-instance JavaNull Initializer where
-    javaNull = javaNullRecord "Initializer"
-
-instance JavaEquals Initializer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Initializer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Initializer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-mAXDB :: Int
-mAXDB = 30
-
-mAX :: Int
-mAX = 16
-
-mIN :: Int
-mIN = 4
-
-mINPASSWORD :: Int
-mINPASSWORD = 0
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO Initializer
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    userJdbcDriver <- newIORef ""
-    userName <- newIORef ""
-    userUserName <- newIORef ""
-    userPassword <- newIORef ""
-    userSchema <- newIORef ""
-    userServer <- newIORef ""
-    userPort <- newIORef ""
-    historyJdbcDriver <- newIORef ""
-    historyName <- newIORef ""
-    historyUserName <- newIORef ""
-    historyPassword <- newIORef ""
-    historySchema <- newIORef ""
-    historyServer <- newIORef ""
-    historyPort <- newIORef ""
-    logJdbcDriver <- newIORef ""
-    logName <- newIORef ""
-    logUserName <- newIORef ""
-    logPassword <- newIORef ""
-    logSchema <- newIORef ""
-    logServer <- newIORef ""
-    logPort <- newIORef ""
-    inventoryJdbcDriver <- newIORef ""
-    inventoryName <- newIORef ""
-    inventoryUserName <- newIORef ""
-    inventoryPassword <- newIORef ""
-    inventorySchema <- newIORef ""
-    inventoryServer <- newIORef ""
-    inventoryPort <- newIORef ""
-    staticPagesJdbcDriver <- newIORef ""
-    staticPagesName <- newIORef ""
-    staticPagesUserName <- newIORef ""
-    staticPagesPassword <- newIORef ""
-    staticPagesSchema <- newIORef ""
-    staticPagesServer <- newIORef ""
-    staticPagesPort <- newIORef ""
-    let this = Initializer header_ logUtil userJdbcDriver userName userUserName userPassword userSchema userServer userPort historyJdbcDriver historyName historyUserName historyPassword historySchema historyServer historyPort logJdbcDriver logName logUserName logPassword logSchema logServer logPort inventoryJdbcDriver inventoryName inventoryUserName inventoryPassword inventorySchema inventoryServer inventoryPort staticPagesJdbcDriver staticPagesName staticPagesUserName staticPagesPassword staticPagesSchema staticPagesServer staticPagesPort
-    jregisterLevel header_ this
-    jregisterMethod header_ "getFormData" (\() -> getFormData_impl this)
-    jregisterMethod header_ "isJdbcDriverValid" (\() -> isJdbcDriverValid_impl this)
-    jregisterMethod header_ "isValid" (\() -> isValid_impl this)
-    jregisterMethod header_ "getJdbcDriverValidationInfo" (\() -> getJdbcDriverValidationInfo_impl this)
-    jregisterMethod header_ "getJdbcDriverSolutionInfo" (\() -> getJdbcDriverSolutionInfo_impl this)
-    jregisterMethod header_ "getInvalidInfo" (\() -> getInvalidInfo_impl this)
-    jregisterMethod header_ "set" (\() -> set_impl this)
-    pure this
-
-initFields_ :: Initializer -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.userJdbcDriver ("")
-    jset this.userName ("")
-    jset this.userUserName ("")
-    jset this.userPassword ("")
-    jset this.userSchema ("")
-    jset this.userServer ("")
-    jset this.userPort ("")
-    jset this.historyJdbcDriver ("")
-    jset this.historyName ("")
-    jset this.historyUserName ("")
-    jset this.historyPassword ("")
-    jset this.historySchema ("")
-    jset this.historyServer ("")
-    jset this.historyPort ("")
-    jset this.logJdbcDriver ("")
-    jset this.logName ("")
-    jset this.logUserName ("")
-    jset this.logPassword ("")
-    jset this.logSchema ("")
-    jset this.logServer ("")
-    jset this.logPort ("")
-    jset this.inventoryJdbcDriver ("")
-    jset this.inventoryName ("")
-    jset this.inventoryUserName ("")
-    jset this.inventoryPassword ("")
-    jset this.inventorySchema ("")
-    jset this.inventoryServer ("")
-    jset this.inventoryPort ("")
-    jset this.staticPagesJdbcDriver ("")
-    jset this.staticPagesName ("")
-    jset this.staticPagesUserName ("")
-    jset this.staticPagesPassword ("")
-    jset this.staticPagesSchema ("")
-    jset this.staticPagesServer ("")
-    jset this.staticPagesPort ("")
-    pure ()
-
--- Java overloaded constructors with 1 parameters: call the overload for the types of the arguments
-new_1 :: (JavaObjectClass o1) => o1 -> IO Initializer
-new_1 a1
-    | jisInstanceOf a1 (javaNull :: Map.Map) = new_1_overload1 (javaCast a1 :: Map.Map)
-    | jisInstanceOf a1 (javaNull :: HashMap.HashMap) = new_1_overload2 (javaCast a1 :: HashMap.HashMap)
-    | otherwise = new_1_overload2 (javaCast a1 :: HashMap.HashMap)
-
-init_1 :: (JavaObjectClass o1) => Initializer -> o1 -> IO ()
-init_1 this a1
-    | jisInstanceOf a1 (javaNull :: Map.Map) = init_1_overload1 this (javaCast a1 :: Map.Map)
-    | jisInstanceOf a1 (javaNull :: HashMap.HashMap) = init_1_overload2 this (javaCast a1 :: HashMap.HashMap)
-    | otherwise = init_1_overload2 this (javaCast a1 :: HashMap.HashMap)
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Business.Init.Db.HistoryDbInitInfo as HistoryDbInitInfo
+import Org.Allbinary.Business.Installer.InitializerData as InitializerData
+import Org.Allbinary.Business.Init.Db.InventoryDbInitInfo as InventoryDbInitInfo
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Business.Init.Db.LogDbInitInfo as LogDbInitInfo
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Business.Init.Db.StaticPagesDbInitInfo as StaticPagesDbInitInfo
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
+import Org.Allbinary.Business.Init.Db.UserDbInitInfo as UserDbInitInfo
 
 
-new_1_overload1 :: Map.Map -> IO Initializer
-new_1_overload1 map = do
-    this <- newRecord_
-    init_1_overload1 this map
-    pure this
-
-init_1_overload1 :: Initializer -> Map.Map -> IO ()
-init_1_overload1 this map = do
-        initFields_ this
-        stringBuffer <- (StringMaker.new_)
-        hashMap <- (StdUtil.createHashMap ((jio (StdUtil.getInstance))))
-        keys <- (Map.keySet map)
-        keyArray <- (Set.toArray keys)
-        let size = (jlength keyArray)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let key = (javaCast (jindex keyArray (index)) :: String)
-            let values = (javaCast (jio (Map.get map key)) :: JavaArray (String))
-            Control.Monad.void (HashMap.put hashMap (jio (jnewString key)) (jio (jnewString (jindex values (0)))))
-            Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-            Control.Monad.void (StringMaker.append stringBuffer "key: ")
-            Control.Monad.void (StringMaker.append stringBuffer key)
-            Control.Monad.void (StringMaker.append stringBuffer " Value: ")
-            Control.Monad.void (StringMaker.append stringBuffer (jindex values (0)))
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this "getFormData()")
-        Control.Monad.void (Initializer.getFormData this hashMap)
-        pure ()
-
-new_1_overload2 :: HashMap.HashMap -> IO Initializer
-new_1_overload2 initHashMap = do
-    this <- newRecord_
-    init_1_overload2 this initHashMap
-    pure this
-
-init_1_overload2 :: Initializer -> HashMap.HashMap -> IO ()
-init_1_overload2 this initHashMap = do
-        initFields_ this
-        Control.Monad.void (Initializer.getFormData this initHashMap)
-        pure ()
+jclass : String
+jclass =
+    "Initializer"
 
 
-getFormData :: (JavaObjectClass this_) => this_ -> HashMap.HashMap -> IO (())
-getFormData object_ a1 = jmethod object_ "getFormData" (\() -> (getFormData_impl (javaCast object_ :: Initializer))) () a1
-
-getFormData_super :: (JavaObjectClass this_) => this_ -> HashMap.HashMap -> IO (())
-getFormData_super object_ a1 = (getFormData_impl (javaCast object_ :: Initializer)) a1
-
-getFormData_impl :: Initializer -> HashMap.HashMap -> IO (())
-getFormData_impl this hashMap = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) "Unable to get form data" this "getFormData()" e)
-            ) $ do
-            initializerData <- (InitializerData.getInstance)
-            jset (this).userJdbcDriver ((javaCast (jio (HashMap.get hashMap (jget (initializerData).cUSTOMERJDBCDRIVER))) :: String))
-            jset (this).userName ((javaCast (jio (HashMap.get hashMap (jget (initializerData).cUSTOMERNAME))) :: String))
-            jset (this).userUserName ((javaCast (jio (HashMap.get hashMap (jget (initializerData).cUSTOMERUSERNAME))) :: String))
-            jset (this).userPassword ((javaCast (jio (HashMap.get hashMap (jget (initializerData).cUSTOMERPASSWORD))) :: String))
-            jset (this).userSchema ((javaCast (jio (HashMap.get hashMap (jget (initializerData).cUSTOMERSCHEMA))) :: String))
-            jset (this).userServer ((javaCast (jio (HashMap.get hashMap (jget (initializerData).cUSTOMERSERVER))) :: String))
-            jset (this).userPort ((javaCast (jio (HashMap.get hashMap (jget (initializerData).cUSTOMERPORT))) :: String))
-            jset (this).historyJdbcDriver ((javaCast (jio (HashMap.get hashMap (jget (initializerData).hISTORYJDBCDRIVER))) :: String))
-            jset (this).historyName ((javaCast (jio (HashMap.get hashMap (jget (initializerData).hISTORYNAME))) :: String))
-            jset (this).historyUserName ((javaCast (jio (HashMap.get hashMap (jget (initializerData).hISTORYUSERNAME))) :: String))
-            jset (this).historyPassword ((javaCast (jio (HashMap.get hashMap (jget (initializerData).hISTORYPASSWORD))) :: String))
-            jset (this).historySchema ((javaCast (jio (HashMap.get hashMap (jget (initializerData).hISTORYSCHEMA))) :: String))
-            jset (this).historyServer ((javaCast (jio (HashMap.get hashMap (jget (initializerData).hISTORYSERVER))) :: String))
-            jset (this).historyPort ((javaCast (jio (HashMap.get hashMap (jget (initializerData).hISTORYPORT))) :: String))
-            jset (this).logJdbcDriver ((javaCast (jio (HashMap.get hashMap (jget (initializerData).lOGJDBCDRIVER))) :: String))
-            jset (this).logName ((javaCast (jio (HashMap.get hashMap (jget (initializerData).lOGNAME))) :: String))
-            jset (this).logUserName ((javaCast (jio (HashMap.get hashMap (jget (initializerData).lOGUSERNAME))) :: String))
-            jset (this).logPassword ((javaCast (jio (HashMap.get hashMap (jget (initializerData).lOGPASSWORD))) :: String))
-            jset (this).logSchema ((javaCast (jio (HashMap.get hashMap (jget (initializerData).lOGSCHEMA))) :: String))
-            jset (this).logServer ((javaCast (jio (HashMap.get hashMap (jget (initializerData).lOGSERVER))) :: String))
-            jset (this).logPort ((javaCast (jio (HashMap.get hashMap (jget (initializerData).lOGPORT))) :: String))
-            jset (this).inventoryJdbcDriver ((javaCast (jio (HashMap.get hashMap (jget (initializerData).iNVENTORYJDBCDRIVER))) :: String))
-            jset (this).inventoryName ((javaCast (jio (HashMap.get hashMap (jget (initializerData).iNVENTORYNAME))) :: String))
-            jset (this).inventoryUserName ((javaCast (jio (HashMap.get hashMap (jget (initializerData).iNVENTORYUSERNAME))) :: String))
-            jset (this).inventoryPassword ((javaCast (jio (HashMap.get hashMap (jget (initializerData).iNVENTORYPASSWORD))) :: String))
-            jset (this).inventorySchema ((javaCast (jio (HashMap.get hashMap (jget (initializerData).iNVENTORYSCHEMA))) :: String))
-            jset (this).inventoryServer ((javaCast (jio (HashMap.get hashMap (jget (initializerData).iNVENTORYSERVER))) :: String))
-            jset (this).inventoryPort ((javaCast (jio (HashMap.get hashMap (jget (initializerData).iNVENTORYPORT))) :: String))
-            jset (this).staticPagesJdbcDriver ((javaCast (jio (HashMap.get hashMap (jget (initializerData).sTATICPAGESJDBCDRIVER))) :: String))
-            jset (this).staticPagesName ((javaCast (jio (HashMap.get hashMap (jget (initializerData).sTATICPAGESNAME))) :: String))
-            jset (this).staticPagesUserName ((javaCast (jio (HashMap.get hashMap (jget (initializerData).sTATICPAGESUSERNAME))) :: String))
-            jset (this).staticPagesPassword ((javaCast (jio (HashMap.get hashMap (jget (initializerData).sTATICPAGESPASSWORD))) :: String))
-            jset (this).staticPagesSchema ((javaCast (jio (HashMap.get hashMap (jget (initializerData).sTATICPAGESSCHEMA))) :: String))
-            jset (this).staticPagesServer ((javaCast (jio (HashMap.get hashMap (jget (initializerData).sTATICPAGESSERVER))) :: String))
-            jset (this).staticPagesPort ((javaCast (jio (HashMap.get hashMap (jget (initializerData).sTATICPAGESPORT))) :: String))
-        pure ()
+jchain : List String
+jchain =
+    [ "Initializer" ]
 
 
-isJdbcDriverValid :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isJdbcDriverValid object_ a1 = jmethod object_ "isJdbcDriverValid" (\() -> (isJdbcDriverValid_impl (javaCast object_ :: Initializer))) () a1
-
-isJdbcDriverValid_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-isJdbcDriverValid_super object_ a1 = (isJdbcDriverValid_impl (javaCast object_ :: Initializer)) a1
-
-isJdbcDriverValid_impl :: Initializer -> String -> IO (Bool)
-isJdbcDriverValid_impl this jdbcDriverClassPathString = do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).pRELOADERERROR))) $ do
-                commonStrings <- (CommonStrings.getInstance)
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).iS_VALID) e)
-            pure (False)
-            ) $ do
-            Control.Monad.void (Class.newInstance ((jio (Class.forName jdbcDriverClassPathString))))
-            pure (True)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "userJdbcDriver", JR.defaultOf "" ), ( "userName", JR.defaultOf "" ), ( "userUserName", JR.defaultOf "" ), ( "userPassword", JR.defaultOf "" ), ( "userSchema", JR.defaultOf "" ), ( "userServer", JR.defaultOf "" ), ( "userPort", JR.defaultOf "" ), ( "historyJdbcDriver", JR.defaultOf "" ), ( "historyName", JR.defaultOf "" ), ( "historyUserName", JR.defaultOf "" ), ( "historyPassword", JR.defaultOf "" ), ( "historySchema", JR.defaultOf "" ), ( "historyServer", JR.defaultOf "" ), ( "historyPort", JR.defaultOf "" ), ( "logJdbcDriver", JR.defaultOf "" ), ( "logName", JR.defaultOf "" ), ( "logUserName", JR.defaultOf "" ), ( "logPassword", JR.defaultOf "" ), ( "logSchema", JR.defaultOf "" ), ( "logServer", JR.defaultOf "" ), ( "logPort", JR.defaultOf "" ), ( "inventoryJdbcDriver", JR.defaultOf "" ), ( "inventoryName", JR.defaultOf "" ), ( "inventoryUserName", JR.defaultOf "" ), ( "inventoryPassword", JR.defaultOf "" ), ( "inventorySchema", JR.defaultOf "" ), ( "inventoryServer", JR.defaultOf "" ), ( "inventoryPort", JR.defaultOf "" ), ( "staticPagesJdbcDriver", JR.defaultOf "" ), ( "staticPagesName", JR.defaultOf "" ), ( "staticPagesUserName", JR.defaultOf "" ), ( "staticPagesPassword", JR.defaultOf "" ), ( "staticPagesSchema", JR.defaultOf "" ), ( "staticPagesServer", JR.defaultOf "" ), ( "staticPagesPort", JR.defaultOf "" ) ]
 
 
-isValid :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isValid object_ = jmethod object_ "isValid" (\() -> (isValid_impl (javaCast object_ :: Initializer))) ()
-
-isValid_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isValid_super object_ = (isValid_impl (javaCast object_ :: Initializer))
-
-isValid_impl :: Initializer -> IO (Bool)
-isValid_impl this = do
-        isValid <- newIORef (True :: Bool)
-        when (Prelude.not (jio (Initializer.isJdbcDriverValid this (jget (this).userJdbcDriver)))) $ do
-            jset isValid (False)
-        stringValidationUtil <- (StringValidationUtil.getInstance)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).userName) (Initializer.mIN) (Initializer.mAXDB)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).userUserName) (Initializer.mIN) (Initializer.mAX)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).userPassword) (Initializer.mINPASSWORD) (Initializer.mAX)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (Initializer.isJdbcDriverValid this (jget (this).historyJdbcDriver)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).historyName) (Initializer.mIN) (Initializer.mAXDB)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).historyUserName) (Initializer.mIN) (Initializer.mAX)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).historyPassword) (Initializer.mINPASSWORD) (Initializer.mAX)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (Initializer.isJdbcDriverValid this (jget (this).logJdbcDriver)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).logName) (Initializer.mIN) (Initializer.mAXDB)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).logUserName) (Initializer.mIN) (Initializer.mAX)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).logPassword) (Initializer.mINPASSWORD) (Initializer.mAX)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (Initializer.isJdbcDriverValid this (jget (this).inventoryJdbcDriver)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).inventoryName) (Initializer.mIN) (Initializer.mAXDB)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).inventoryUserName) (Initializer.mIN) (Initializer.mAX)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).inventoryPassword) (Initializer.mINPASSWORD) (Initializer.mAX)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (Initializer.isJdbcDriverValid this (jget (this).staticPagesJdbcDriver)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).staticPagesName) (Initializer.mIN) (Initializer.mAXDB)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).staticPagesUserName) (Initializer.mIN) (Initializer.mAX)))) $ do
-            jset isValid (False)
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).staticPagesPassword) (Initializer.mINPASSWORD) (Initializer.mAX)))) $ do
-            jset isValid (False)
-        pure ((jget isValid))
+jvtable =
+    JR.vtable
+        [ ( "getFormData_1", jm_getFormData_1 )
+        , ( "isJdbcDriverValid_1", jm_isJdbcDriverValid_1 )
+        , ( "isValid_0", jm_isValid_0 )
+        , ( "getJdbcDriverValidationInfo_1", jm_getJdbcDriverValidationInfo_1 )
+        , ( "getJdbcDriverSolutionInfo_0", jm_getJdbcDriverSolutionInfo_0 )
+        , ( "getInvalidInfo_0", jm_getInvalidInfo_0 )
+        , ( "set_0", jm_set_0 ) ]
+        JR.noMethods
 
 
-getJdbcDriverValidationInfo :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-getJdbcDriverValidationInfo object_ a1 = jmethod object_ "getJdbcDriverValidationInfo" (\() -> (getJdbcDriverValidationInfo_impl (javaCast object_ :: Initializer))) () a1
-
-getJdbcDriverValidationInfo_super :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-getJdbcDriverValidationInfo_super object_ a1 = (getJdbcDriverValidationInfo_impl (javaCast object_ :: Initializer)) a1
-
-getJdbcDriverValidationInfo_impl :: Initializer -> String -> IO (String)
-getJdbcDriverValidationInfo_impl this jdbcDriver = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "The JDBC driver (")
-        Control.Monad.void (StringMaker.append stringBuffer jdbcDriver)
-        Control.Monad.void (StringMaker.append stringBuffer ") you have provided is not valid.<br/>")
-        (StringMaker.toString stringBuffer)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Initializer"
+        [ ( "jm_getFormData_1", jm_getFormData_1 ), ( "jm_isJdbcDriverValid_1", jm_isJdbcDriverValid_1 ), ( "jm_isValid_0", jm_isValid_0 ), ( "jm_getJdbcDriverValidationInfo_1", jm_getJdbcDriverValidationInfo_1 ), ( "jm_getJdbcDriverSolutionInfo_0", jm_getJdbcDriverSolutionInfo_0 ), ( "jm_getInvalidInfo_0", jm_getInvalidInfo_0 ), ( "jm_set_0", jm_set_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_MAXDB", jstatic_MAXDB ), ( "jstatic_MAX", jstatic_MAX ), ( "jstatic_MIN", jstatic_MIN ), ( "jstatic_MINPASSWORD", jstatic_MINPASSWORD ) ]
+        jheap
 
 
-getJdbcDriverSolutionInfo :: (JavaObjectClass this_) => this_ -> IO (String)
-getJdbcDriverSolutionInfo object_ = jmethod object_ "getJdbcDriverSolutionInfo" (\() -> (getJdbcDriverSolutionInfo_impl (javaCast object_ :: Initializer))) ()
-
-getJdbcDriverSolutionInfo_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getJdbcDriverSolutionInfo_super object_ = (getJdbcDriverSolutionInfo_impl (javaCast object_ :: Initializer))
-
-getJdbcDriverSolutionInfo_impl :: Initializer -> IO (String)
-getJdbcDriverSolutionInfo_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "The following describes the possible problems and solutions regarding the Jdbc Driver error(s):<p/>")
-        Control.Monad.void (StringMaker.append stringBuffer "1. A JDBC driver you specified is not in your classpath.<br/>")
-        Control.Monad.void (StringMaker.append stringBuffer "Solution 1: Move the JDBC driver into any directory specified in the existing classpath. <br/>")
-        Control.Monad.void (StringMaker.append stringBuffer "Solution 2: Add the directory that contains the JDBC driver to the classpath.<br/>")
-        Control.Monad.void (StringMaker.append stringBuffer "Solution 3: Add the JDBC driver to the WEB-INF/lib directory where you installed this webapp.<br/>")
-        Control.Monad.void (StringMaker.append stringBuffer "2. The JDBC driver you specified does not exit.<br/>")
-        Control.Monad.void (StringMaker.append stringBuffer "Solution: Get a JDBC driver. <br/>")
-        Control.Monad.void (StringMaker.append stringBuffer "3. The JDBC driver you specified is not valid.<br/>")
-        Control.Monad.void (StringMaker.append stringBuffer "Solution: Use a valid JDBC driver.<p/>")
-        (StringMaker.toString stringBuffer)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getInvalidInfo :: (JavaObjectClass this_) => this_ -> IO (String)
-getInvalidInfo object_ = jmethod object_ "getInvalidInfo" (\() -> (getInvalidInfo_impl (javaCast object_ :: Initializer))) ()
-
-getInvalidInfo_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getInvalidInfo_super object_ = (getInvalidInfo_impl (javaCast object_ :: Initializer))
-
-getInvalidInfo_impl :: Initializer -> IO (String)
-getInvalidInfo_impl this = do
-        isJdbcDriversValid <- newIORef (True :: Bool)
-        stringBuffer <- (StringMaker.new_)
-        when (Prelude.not (jio (Initializer.isJdbcDriverValid this (jget (this).userJdbcDriver)))) $ do
-            jset isJdbcDriversValid (False)
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Initializer.getJdbcDriverValidationInfo this (jget (this).userJdbcDriver))))
-        stringValidationUtil <- (StringValidationUtil.getInstance)
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).userName) (Initializer.mIN) (Initializer.mAXDB)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("User db name should be < " ++ javaToString Initializer.mAXDB) ++ " and > ") ++ javaToString Initializer.mIN) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).userUserName) (Initializer.mIN) (Initializer.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("User db username should be < " ++ javaToString Initializer.mAX) ++ " and > ") ++ javaToString Initializer.mIN) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).userPassword) (Initializer.mINPASSWORD) (Initializer.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("User DB password should be < " ++ javaToString Initializer.mAX) ++ " and > ") ++ javaToString Initializer.mINPASSWORD) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (Initializer.isJdbcDriverValid this (jget (this).historyJdbcDriver)))) $ do
-            jset isJdbcDriversValid (False)
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Initializer.getJdbcDriverValidationInfo this (jget (this).historyJdbcDriver))))
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).historyName) (Initializer.mIN) (Initializer.mAXDB)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("History db should be < " ++ javaToString Initializer.mAXDB) ++ " and > ") ++ javaToString Initializer.mIN) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).historyUserName) (Initializer.mIN) (Initializer.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("History db username should be < " ++ javaToString Initializer.mAX) ++ " and > ") ++ javaToString Initializer.mIN) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).historyPassword) (Initializer.mINPASSWORD) (Initializer.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("History db password should be < " ++ javaToString Initializer.mAX) ++ " and > ") ++ javaToString Initializer.mINPASSWORD) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (Initializer.isJdbcDriverValid this (jget (this).logJdbcDriver)))) $ do
-            jset isJdbcDriversValid (False)
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Initializer.getJdbcDriverValidationInfo this (jget (this).logJdbcDriver))))
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).logName) (Initializer.mIN) (Initializer.mAXDB)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("Log db should be < " ++ javaToString Initializer.mAXDB) ++ " and > ") ++ javaToString Initializer.mIN) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).logUserName) (Initializer.mIN) (Initializer.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("Log db username should be < " ++ javaToString Initializer.mAX) ++ " and > ") ++ javaToString Initializer.mIN) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).logPassword) (Initializer.mINPASSWORD) (Initializer.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("Log db password should be < " ++ javaToString Initializer.mAX) ++ " and > ") ++ javaToString Initializer.mINPASSWORD) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (Initializer.isJdbcDriverValid this (jget (this).inventoryJdbcDriver)))) $ do
-            jset isJdbcDriversValid (False)
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Initializer.getJdbcDriverValidationInfo this (jget (this).inventoryJdbcDriver))))
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).inventoryName) (Initializer.mIN) (Initializer.mAXDB)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("Inventory db should be < " ++ javaToString Initializer.mAXDB) ++ " and > ") ++ javaToString Initializer.mIN) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).inventoryUserName) (Initializer.mIN) (Initializer.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("Inventory db username should be < " ++ javaToString Initializer.mAX) ++ " and > ") ++ javaToString Initializer.mIN) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).inventoryPassword) (Initializer.mINPASSWORD) (Initializer.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("Inventory DB password should be < " ++ javaToString Initializer.mAX) ++ " and > ") ++ javaToString Initializer.mINPASSWORD) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (Initializer.isJdbcDriverValid this (jget (this).staticPagesJdbcDriver)))) $ do
-            jset isJdbcDriversValid (False)
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Initializer.getJdbcDriverValidationInfo this (jget (this).staticPagesJdbcDriver))))
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).staticPagesName) (Initializer.mIN) (Initializer.mAXDB)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("Static Pages db should be < " ++ javaToString Initializer.mAXDB) ++ " and > ") ++ javaToString Initializer.mIN) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (StringValidationUtil.isValidRequired stringValidationUtil (jget (this).staticPagesUserName) (Initializer.mIN) (Initializer.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("Static Pages db username should be < " ++ javaToString Initializer.mAX) ++ " and > ") ++ javaToString Initializer.mIN) ++ " characters in length.<br />"))
-        when (Prelude.not (jio (StringValidationUtil.isValidNotRequired stringValidationUtil (jget (this).staticPagesPassword) (Initializer.mINPASSWORD) (Initializer.mAX)))) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (((("Static Pages DB password should be < " ++ javaToString Initializer.mAX) ++ " and > ") ++ javaToString Initializer.mINPASSWORD) ++ " characters in length.<br />"))
-        when (Prelude.not (jget isJdbcDriversValid)) $ do
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Initializer.getJdbcDriverSolutionInfo this)))
-        (StringMaker.toString stringBuffer)
+jstatic_MAXDB : JR.M
+jstatic_MAXDB s =
+    JR.static "Initializer" jclinit "MAXDB"
+        (JR.int 30)
+        s
 
 
--- throws Exception
-set :: (JavaObjectClass this_) => this_ -> IO (())
-set object_ = jmethod object_ "set" (\() -> (set_impl (javaCast object_ :: Initializer))) ()
+jstatic_MAX : JR.M
+jstatic_MAX s =
+    JR.static "Initializer" jclinit "MAX"
+        (JR.int 16)
+        s
 
-set_super :: (JavaObjectClass this_) => this_ -> IO (())
-set_super object_ = (set_impl (javaCast object_ :: Initializer))
 
-set_impl :: Initializer -> IO (())
-set_impl this = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Creating DB connection files" this "set()")
-        userDbInitInfo <- (UserDbInitInfo.new_1 False)
-        Control.Monad.void (UserDbInitInfo.setJdbcDriver userDbInitInfo (jget (this).userJdbcDriver))
-        Control.Monad.void (UserDbInitInfo.setName userDbInitInfo (jget (this).userName))
-        Control.Monad.void (UserDbInitInfo.setUserName userDbInitInfo (jget (this).userUserName))
-        Control.Monad.void (UserDbInitInfo.setPassword userDbInitInfo (jget (this).userPassword))
-        Control.Monad.void (UserDbInitInfo.setSchema userDbInitInfo (jget (this).userSchema))
-        Control.Monad.void (UserDbInitInfo.setServer userDbInitInfo (jget (this).userServer))
-        Control.Monad.void (UserDbInitInfo.setPort userDbInitInfo (jget (this).userPort))
-        Control.Monad.void (UserDbInitInfo.setHasRead userDbInitInfo True)
-        Control.Monad.void (UserDbInitInfo.write userDbInitInfo)
-        historyDbInitInfo <- (HistoryDbInitInfo.new_1 False)
-        Control.Monad.void (HistoryDbInitInfo.setJdbcDriver historyDbInitInfo (jget (this).historyJdbcDriver))
-        Control.Monad.void (HistoryDbInitInfo.setName historyDbInitInfo (jget (this).historyName))
-        Control.Monad.void (HistoryDbInitInfo.setUserName historyDbInitInfo (jget (this).historyUserName))
-        Control.Monad.void (HistoryDbInitInfo.setPassword historyDbInitInfo (jget (this).historyPassword))
-        Control.Monad.void (HistoryDbInitInfo.setSchema historyDbInitInfo (jget (this).historySchema))
-        Control.Monad.void (HistoryDbInitInfo.setServer historyDbInitInfo (jget (this).historyServer))
-        Control.Monad.void (HistoryDbInitInfo.setPort historyDbInitInfo (jget (this).historyPort))
-        Control.Monad.void (HistoryDbInitInfo.setHasRead historyDbInitInfo True)
-        Control.Monad.void (HistoryDbInitInfo.write historyDbInitInfo)
-        logDbInitInfo <- (LogDbInitInfo.new_1 False)
-        Control.Monad.void (LogDbInitInfo.setJdbcDriver logDbInitInfo (jget (this).logJdbcDriver))
-        Control.Monad.void (LogDbInitInfo.setName logDbInitInfo (jget (this).logName))
-        Control.Monad.void (LogDbInitInfo.setUserName logDbInitInfo (jget (this).logUserName))
-        Control.Monad.void (LogDbInitInfo.setPassword logDbInitInfo (jget (this).logPassword))
-        Control.Monad.void (LogDbInitInfo.setSchema logDbInitInfo (jget (this).logSchema))
-        Control.Monad.void (LogDbInitInfo.setServer logDbInitInfo (jget (this).logServer))
-        Control.Monad.void (LogDbInitInfo.setPort logDbInitInfo (jget (this).logPort))
-        Control.Monad.void (LogDbInitInfo.setHasRead logDbInitInfo True)
-        Control.Monad.void (LogDbInitInfo.write logDbInitInfo)
-        staticPagesDbInitInfo <- (StaticPagesDbInitInfo.new_1 False)
-        Control.Monad.void (StaticPagesDbInitInfo.setJdbcDriver staticPagesDbInitInfo (jget (this).staticPagesJdbcDriver))
-        Control.Monad.void (StaticPagesDbInitInfo.setName staticPagesDbInitInfo (jget (this).staticPagesName))
-        Control.Monad.void (StaticPagesDbInitInfo.setUserName staticPagesDbInitInfo (jget (this).staticPagesUserName))
-        Control.Monad.void (StaticPagesDbInitInfo.setPassword staticPagesDbInitInfo (jget (this).staticPagesPassword))
-        Control.Monad.void (StaticPagesDbInitInfo.setSchema staticPagesDbInitInfo (jget (this).staticPagesSchema))
-        Control.Monad.void (StaticPagesDbInitInfo.setServer staticPagesDbInitInfo (jget (this).staticPagesServer))
-        Control.Monad.void (StaticPagesDbInitInfo.setPort staticPagesDbInitInfo (jget (this).staticPagesPort))
-        Control.Monad.void (StaticPagesDbInitInfo.setHasRead staticPagesDbInitInfo True)
-        Control.Monad.void (StaticPagesDbInitInfo.write staticPagesDbInitInfo)
-        inventoryDbInitInfo <- (InventoryDbInitInfo.new_1 False)
-        Control.Monad.void (InventoryDbInitInfo.setJdbcDriver inventoryDbInitInfo (jget (this).inventoryJdbcDriver))
-        Control.Monad.void (InventoryDbInitInfo.setName inventoryDbInitInfo (jget (this).inventoryName))
-        Control.Monad.void (InventoryDbInitInfo.setUserName inventoryDbInitInfo (jget (this).inventoryUserName))
-        Control.Monad.void (InventoryDbInitInfo.setPassword inventoryDbInitInfo (jget (this).inventoryPassword))
-        Control.Monad.void (InventoryDbInitInfo.setSchema inventoryDbInitInfo (jget (this).inventorySchema))
-        Control.Monad.void (InventoryDbInitInfo.setServer inventoryDbInitInfo (jget (this).inventoryServer))
-        Control.Monad.void (InventoryDbInitInfo.setPort inventoryDbInitInfo (jget (this).inventoryPort))
-        Control.Monad.void (InventoryDbInitInfo.setHasRead inventoryDbInitInfo True)
-        Control.Monad.void (InventoryDbInitInfo.write inventoryDbInitInfo)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Created DB connection files" this "set()")
-        pure ()
+jstatic_MIN : JR.M
+jstatic_MIN s =
+    JR.static "Initializer" jclinit "MIN"
+        (JR.int 4)
+        s
 
+
+jstatic_MINPASSWORD : JR.M
+jstatic_MINPASSWORD s =
+    JR.static "Initializer" jclinit "MINPASSWORD"
+        (JR.int 0)
+        s
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "map", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "hashMap" "" (JR.invoke "createHashMap_0" (JR.callStatic StdUtil.jm_getInstance_0 []) []), 
+                    JR.declare "keys" "" (JR.invoke "keySet_0" (JR.local "map") []), 
+                    JR.declare "keyArray" "" (JR.invoke "toArray_0" (JR.local "keys") []), 
+                    JR.declare "size" "I" (JR.alength (JR.local "keyArray")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70614 -> (JR.setLocal "index" "I" (JR.lit jwN70614))) JR.increment) ]) (JR.run [ 
+                        JR.declare "key" "" (JR.aget (JR.local "keyArray") (JR.local "index")), 
+                        JR.declare "values" "" (JR.invoke "get_1" (JR.local "map") [ (JR.local "key") ]), 
+                        JR.exec (JR.invoke "put_2" (JR.local "hashMap") [ (JR.withState JR.newString [ (JR.local "key") ]), (JR.withState JR.newString [ (JR.aget (JR.local "values") (JR.int 0)) ]) ]), 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "key: ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "key") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Value: ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.aget (JR.local "values") (JR.int 0)) ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "getFormData()") ]) ]) ], 
+                    JR.exec (JR.invoke "getFormData_1" JR.this [ (JR.local "hashMap") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getFormData_1 : JR.Method
+jm_getFormData_1 jheap jthis jargs =
+    JR.method [ ( "hashMap", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "initializerData" "" (JR.callStatic InitializerData.jm_getInstance_0 []), 
+                        JR.exec (JR.setField "userJdbcDriver" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "CUSTOMERJDBCDRIVER" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "userName" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "CUSTOMERNAME" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "userUserName" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "CUSTOMERUSERNAME" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "userPassword" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "CUSTOMERPASSWORD" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "userSchema" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "CUSTOMERSCHEMA" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "userServer" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "CUSTOMERSERVER" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "userPort" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "CUSTOMERPORT" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "historyJdbcDriver" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "HISTORYJDBCDRIVER" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "historyName" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "HISTORYNAME" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "historyUserName" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "HISTORYUSERNAME" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "historyPassword" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "HISTORYPASSWORD" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "historySchema" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "HISTORYSCHEMA" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "historyServer" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "HISTORYSERVER" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "historyPort" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "HISTORYPORT" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "logJdbcDriver" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "LOGJDBCDRIVER" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "logName" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "LOGNAME" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "logUserName" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "LOGUSERNAME" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "logPassword" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "LOGPASSWORD" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "logSchema" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "LOGSCHEMA" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "logServer" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "LOGSERVER" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "logPort" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "LOGPORT" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "inventoryJdbcDriver" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "INVENTORYJDBCDRIVER" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "inventoryName" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "INVENTORYNAME" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "inventoryUserName" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "INVENTORYUSERNAME" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "inventoryPassword" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "INVENTORYPASSWORD" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "inventorySchema" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "INVENTORYSCHEMA" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "inventoryServer" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "INVENTORYSERVER" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "inventoryPort" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "INVENTORYPORT" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "staticPagesJdbcDriver" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "STATICPAGESJDBCDRIVER" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "staticPagesName" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "STATICPAGESNAME" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "staticPagesUserName" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "STATICPAGESUSERNAME" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "staticPagesPassword" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "STATICPAGESPASSWORD" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "staticPagesSchema" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "STATICPAGESSCHEMA" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "staticPagesServer" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "STATICPAGESSERVER" (JR.local "initializerData")) ])), 
+                        JR.exec (JR.setField "staticPagesPort" "" JR.this (JR.invoke "get_1" (JR.local "hashMap") [ (JR.field "STATICPAGESPORT" (JR.local "initializerData")) ])) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Unable to get form data"), JR.this, (JR.str "getFormData()"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isJdbcDriverValid_1 : JR.Method
+jm_isJdbcDriverValid_1 jheap jthis jargs =
+    JR.method [ ( "jdbcDriverClassPathString", "" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "newInstance_0" (JR.callStatic (JR.namedMethod "Class.jm_forName_1") [ (JR.local "jdbcDriverClassPathString") ]) []), 
+                        JR.return (JR.bool True) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "PRELOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "IS_VALID" (JR.local "commonStrings")), (JR.local "e") ]) ]) identity, 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isValid_0 : JR.Method
+jm_isValid_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.declare "isValid" "Z" (JR.bool True), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "userJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.declare "stringValidationUtil" "" (JR.callStatic StringValidationUtil.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "userName"), jstatic_MIN, jstatic_MAXDB ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "userUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "userPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "historyJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "historyName"), jstatic_MIN, jstatic_MAXDB ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "historyUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "historyPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "logJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "logName"), jstatic_MIN, jstatic_MAXDB ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "logUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "logPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "inventoryJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "inventoryName"), jstatic_MIN, jstatic_MAXDB ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "inventoryUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "inventoryPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "staticPagesJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "staticPagesName"), jstatic_MIN, jstatic_MAXDB ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "staticPagesUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "staticPagesPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isValid" "Z" (JR.bool False)) ]) identity, 
+                    JR.return (JR.local "isValid") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getJdbcDriverValidationInfo_1 : JR.Method
+jm_getJdbcDriverValidationInfo_1 jheap jthis jargs =
+    JR.method [ ( "jdbcDriver", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "The JDBC driver (") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "jdbcDriver") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str ") you have provided is not valid.<br/>") ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getJdbcDriverSolutionInfo_0 : JR.Method
+jm_getJdbcDriverSolutionInfo_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "The following describes the possible problems and solutions regarding the Jdbc Driver error(s):<p/>") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "1. A JDBC driver you specified is not in your classpath.<br/>") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Solution 1: Move the JDBC driver into any directory specified in the existing classpath. <br/>") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Solution 2: Add the directory that contains the JDBC driver to the classpath.<br/>") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Solution 3: Add the JDBC driver to the WEB-INF/lib directory where you installed this webapp.<br/>") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "2. The JDBC driver you specified does not exit.<br/>") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Solution: Get a JDBC driver. <br/>") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "3. The JDBC driver you specified is not valid.<br/>") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Solution: Use a valid JDBC driver.<p/>") ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInvalidInfo_0 : JR.Method
+jm_getInvalidInfo_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "isJdbcDriversValid" "Z" (JR.bool True), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "userJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isJdbcDriversValid" "Z" (JR.bool False)), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getJdbcDriverValidationInfo_1" JR.this [ (JR.thisField "userJdbcDriver") ]) ]) ]) identity, 
+                    JR.declare "stringValidationUtil" "" (JR.callStatic StringValidationUtil.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "userName"), jstatic_MIN, jstatic_MAXDB ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "User db name should be < ") jstatic_MAXDB) (JR.str " and > ")) jstatic_MIN) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "userUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "User db username should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MIN) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "userPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "User DB password should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MINPASSWORD) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "historyJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isJdbcDriversValid" "Z" (JR.bool False)), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getJdbcDriverValidationInfo_1" JR.this [ (JR.thisField "historyJdbcDriver") ]) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "historyName"), jstatic_MIN, jstatic_MAXDB ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "History db should be < ") jstatic_MAXDB) (JR.str " and > ")) jstatic_MIN) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "historyUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "History db username should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MIN) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "historyPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "History db password should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MINPASSWORD) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "logJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isJdbcDriversValid" "Z" (JR.bool False)), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getJdbcDriverValidationInfo_1" JR.this [ (JR.thisField "logJdbcDriver") ]) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "logName"), jstatic_MIN, jstatic_MAXDB ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "Log db should be < ") jstatic_MAXDB) (JR.str " and > ")) jstatic_MIN) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "logUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "Log db username should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MIN) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "logPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "Log db password should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MINPASSWORD) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "inventoryJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isJdbcDriversValid" "Z" (JR.bool False)), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getJdbcDriverValidationInfo_1" JR.this [ (JR.thisField "inventoryJdbcDriver") ]) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "inventoryName"), jstatic_MIN, jstatic_MAXDB ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "Inventory db should be < ") jstatic_MAXDB) (JR.str " and > ")) jstatic_MIN) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "inventoryUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "Inventory db username should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MIN) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "inventoryPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "Inventory DB password should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MINPASSWORD) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isJdbcDriverValid_1" JR.this [ (JR.thisField "staticPagesJdbcDriver") ])) (JR.run [ 
+                        JR.exec (JR.setLocal "isJdbcDriversValid" "Z" (JR.bool False)), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getJdbcDriverValidationInfo_1" JR.this [ (JR.thisField "staticPagesJdbcDriver") ]) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "staticPagesName"), jstatic_MIN, jstatic_MAXDB ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "Static Pages db should be < ") jstatic_MAXDB) (JR.str " and > ")) jstatic_MIN) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "staticPagesUserName"), jstatic_MIN, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "Static Pages db username should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MIN) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isValidNotRequired_3" (JR.local "stringValidationUtil") [ (JR.thisField "staticPagesPassword"), jstatic_MINPASSWORD, jstatic_MAX ])) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.concat (JR.concat (JR.concat (JR.concat (JR.str "Static Pages DB password should be < ") jstatic_MAX) (JR.str " and > ")) jstatic_MINPASSWORD) (JR.str " characters in length.<br />")) ]) ]) identity, 
+                    JR.ifElse (JR.map JR.not_ (JR.local "isJdbcDriversValid")) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getJdbcDriverSolutionInfo_0" JR.this []) ]) ]) identity, 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_set_0 : JR.Method
+jm_set_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Creating DB connection files"), JR.this, (JR.str "set()") ]), 
+                    JR.declare "userDbInitInfo" "" (JR.new UserDbInitInfo.jnew_1 [ (JR.bool False) ]), 
+                    JR.exec (JR.invoke "setJdbcDriver_1" (JR.local "userDbInitInfo") [ (JR.thisField "userJdbcDriver") ]), 
+                    JR.exec (JR.invoke "setName_1" (JR.local "userDbInitInfo") [ (JR.thisField "userName") ]), 
+                    JR.exec (JR.invoke "setUserName_1" (JR.local "userDbInitInfo") [ (JR.thisField "userUserName") ]), 
+                    JR.exec (JR.invoke "setPassword_1" (JR.local "userDbInitInfo") [ (JR.thisField "userPassword") ]), 
+                    JR.exec (JR.invoke "setSchema_1" (JR.local "userDbInitInfo") [ (JR.thisField "userSchema") ]), 
+                    JR.exec (JR.invoke "setServer_1" (JR.local "userDbInitInfo") [ (JR.thisField "userServer") ]), 
+                    JR.exec (JR.invoke "setPort_1" (JR.local "userDbInitInfo") [ (JR.thisField "userPort") ]), 
+                    JR.exec (JR.invoke "setHasRead_1" (JR.local "userDbInitInfo") [ (JR.bool True) ]), 
+                    JR.exec (JR.invoke "write_0" (JR.local "userDbInitInfo") []), 
+                    JR.declare "historyDbInitInfo" "" (JR.new HistoryDbInitInfo.jnew_1 [ (JR.bool False) ]), 
+                    JR.exec (JR.invoke "setJdbcDriver_1" (JR.local "historyDbInitInfo") [ (JR.thisField "historyJdbcDriver") ]), 
+                    JR.exec (JR.invoke "setName_1" (JR.local "historyDbInitInfo") [ (JR.thisField "historyName") ]), 
+                    JR.exec (JR.invoke "setUserName_1" (JR.local "historyDbInitInfo") [ (JR.thisField "historyUserName") ]), 
+                    JR.exec (JR.invoke "setPassword_1" (JR.local "historyDbInitInfo") [ (JR.thisField "historyPassword") ]), 
+                    JR.exec (JR.invoke "setSchema_1" (JR.local "historyDbInitInfo") [ (JR.thisField "historySchema") ]), 
+                    JR.exec (JR.invoke "setServer_1" (JR.local "historyDbInitInfo") [ (JR.thisField "historyServer") ]), 
+                    JR.exec (JR.invoke "setPort_1" (JR.local "historyDbInitInfo") [ (JR.thisField "historyPort") ]), 
+                    JR.exec (JR.invoke "setHasRead_1" (JR.local "historyDbInitInfo") [ (JR.bool True) ]), 
+                    JR.exec (JR.invoke "write_0" (JR.local "historyDbInitInfo") []), 
+                    JR.declare "logDbInitInfo" "" (JR.new LogDbInitInfo.jnew_1 [ (JR.bool False) ]), 
+                    JR.exec (JR.invoke "setJdbcDriver_1" (JR.local "logDbInitInfo") [ (JR.thisField "logJdbcDriver") ]), 
+                    JR.exec (JR.invoke "setName_1" (JR.local "logDbInitInfo") [ (JR.thisField "logName") ]), 
+                    JR.exec (JR.invoke "setUserName_1" (JR.local "logDbInitInfo") [ (JR.thisField "logUserName") ]), 
+                    JR.exec (JR.invoke "setPassword_1" (JR.local "logDbInitInfo") [ (JR.thisField "logPassword") ]), 
+                    JR.exec (JR.invoke "setSchema_1" (JR.local "logDbInitInfo") [ (JR.thisField "logSchema") ]), 
+                    JR.exec (JR.invoke "setServer_1" (JR.local "logDbInitInfo") [ (JR.thisField "logServer") ]), 
+                    JR.exec (JR.invoke "setPort_1" (JR.local "logDbInitInfo") [ (JR.thisField "logPort") ]), 
+                    JR.exec (JR.invoke "setHasRead_1" (JR.local "logDbInitInfo") [ (JR.bool True) ]), 
+                    JR.exec (JR.invoke "write_0" (JR.local "logDbInitInfo") []), 
+                    JR.declare "staticPagesDbInitInfo" "" (JR.new StaticPagesDbInitInfo.jnew_1 [ (JR.bool False) ]), 
+                    JR.exec (JR.invoke "setJdbcDriver_1" (JR.local "staticPagesDbInitInfo") [ (JR.thisField "staticPagesJdbcDriver") ]), 
+                    JR.exec (JR.invoke "setName_1" (JR.local "staticPagesDbInitInfo") [ (JR.thisField "staticPagesName") ]), 
+                    JR.exec (JR.invoke "setUserName_1" (JR.local "staticPagesDbInitInfo") [ (JR.thisField "staticPagesUserName") ]), 
+                    JR.exec (JR.invoke "setPassword_1" (JR.local "staticPagesDbInitInfo") [ (JR.thisField "staticPagesPassword") ]), 
+                    JR.exec (JR.invoke "setSchema_1" (JR.local "staticPagesDbInitInfo") [ (JR.thisField "staticPagesSchema") ]), 
+                    JR.exec (JR.invoke "setServer_1" (JR.local "staticPagesDbInitInfo") [ (JR.thisField "staticPagesServer") ]), 
+                    JR.exec (JR.invoke "setPort_1" (JR.local "staticPagesDbInitInfo") [ (JR.thisField "staticPagesPort") ]), 
+                    JR.exec (JR.invoke "setHasRead_1" (JR.local "staticPagesDbInitInfo") [ (JR.bool True) ]), 
+                    JR.exec (JR.invoke "write_0" (JR.local "staticPagesDbInitInfo") []), 
+                    JR.declare "inventoryDbInitInfo" "" (JR.new InventoryDbInitInfo.jnew_1 [ (JR.bool False) ]), 
+                    JR.exec (JR.invoke "setJdbcDriver_1" (JR.local "inventoryDbInitInfo") [ (JR.thisField "inventoryJdbcDriver") ]), 
+                    JR.exec (JR.invoke "setName_1" (JR.local "inventoryDbInitInfo") [ (JR.thisField "inventoryName") ]), 
+                    JR.exec (JR.invoke "setUserName_1" (JR.local "inventoryDbInitInfo") [ (JR.thisField "inventoryUserName") ]), 
+                    JR.exec (JR.invoke "setPassword_1" (JR.local "inventoryDbInitInfo") [ (JR.thisField "inventoryPassword") ]), 
+                    JR.exec (JR.invoke "setSchema_1" (JR.local "inventoryDbInitInfo") [ (JR.thisField "inventorySchema") ]), 
+                    JR.exec (JR.invoke "setServer_1" (JR.local "inventoryDbInitInfo") [ (JR.thisField "inventoryServer") ]), 
+                    JR.exec (JR.invoke "setPort_1" (JR.local "inventoryDbInitInfo") [ (JR.thisField "inventoryPort") ]), 
+                    JR.exec (JR.invoke "setHasRead_1" (JR.local "inventoryDbInitInfo") [ (JR.bool True) ]), 
+                    JR.exec (JR.invoke "write_0" (JR.local "inventoryDbInitInfo") []), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Created DB connection files"), JR.this, (JR.str "set()") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

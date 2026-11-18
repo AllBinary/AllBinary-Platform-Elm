@@ -1,121 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.persistance
-module PersistanceStrings where
+module Org.Allbinary.Game.Configuration.Persistance.PersistanceStrings exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.persistance
+-}
 
-data PersistanceStrings = PersistanceStrings
-    { header_ :: JavaHeader
-    , sAVING :: IORef (String)
-    , nUMBER_OF_RECORDS :: IORef (String)
-    , lOADING_ID :: IORef (String)
-    , lOAD_ALL :: IORef (String)
-    , dELETING_WITH_ID :: IORef (String)
-    , cLOSING_RECORDSTORE :: IORef (String)
-    , nOT_SAVING :: IORef (String)
-    , eRROR_LOADING :: IORef (String)
-    , eRROR_LOADING_ID :: IORef (String)
-    , iD :: IORef (String)
-    , gAME_ACTION_INPUT :: IORef (String)
-    }
-
-instance JavaNull PersistanceStrings where
-    javaNull = javaNullRecord "PersistanceStrings"
-
-instance JavaEquals PersistanceStrings where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PersistanceStrings where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PersistanceStrings where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: PersistanceStrings
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PersistanceStrings
-newRecord_ = do
-    header_ <- newJavaHeader
-    sAVING <- newIORef ""
-    nUMBER_OF_RECORDS <- newIORef ""
-    lOADING_ID <- newIORef ""
-    lOAD_ALL <- newIORef ""
-    dELETING_WITH_ID <- newIORef ""
-    cLOSING_RECORDSTORE <- newIORef ""
-    nOT_SAVING <- newIORef ""
-    eRROR_LOADING <- newIORef ""
-    eRROR_LOADING_ID <- newIORef ""
-    iD <- newIORef ""
-    gAME_ACTION_INPUT <- newIORef ""
-    let this = PersistanceStrings header_ sAVING nUMBER_OF_RECORDS lOADING_ID lOAD_ALL dELETING_WITH_ID cLOSING_RECORDSTORE nOT_SAVING eRROR_LOADING eRROR_LOADING_ID iD gAME_ACTION_INPUT
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: PersistanceStrings -> IO ()
-initFields_ this = do
-    jset this.sAVING ("Saving: ")
-    jset this.nUMBER_OF_RECORDS ("Number of records: ")
-    jset this.lOADING_ID ("Loading data with id: ")
-    jset this.lOAD_ALL ("loadAll")
-    jset this.dELETING_WITH_ID ("Deleting data with id: ")
-    jset this.cLOSING_RECORDSTORE ("Closing RecordStore")
-    jset this.nOT_SAVING ("Not Saving: ")
-    jset this.eRROR_LOADING ("Error Loading gameActionInput: ")
-    jset this.eRROR_LOADING_ID ("Error Loading id: ")
-    jset this.iD (" id: ")
-    jset this.gAME_ACTION_INPUT (" GameActionInput: ")
-    pure ()
-
-new_ :: IO PersistanceStrings
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PersistanceStrings -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (PersistanceStrings)
-getInstance = do
-        pure (PersistanceStrings.instance_)
 
+jclass : String
+jclass =
+    "PersistanceStrings"
+
+
+jchain : List String
+jchain =
+    [ "PersistanceStrings" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "SAVING", JR.defaultOf "" ), ( "NUMBER_OF_RECORDS", JR.defaultOf "" ), ( "LOADING_ID", JR.defaultOf "" ), ( "LOAD_ALL", JR.defaultOf "" ), ( "DELETING_WITH_ID", JR.defaultOf "" ), ( "CLOSING_RECORDSTORE", JR.defaultOf "" ), ( "NOT_SAVING", JR.defaultOf "" ), ( "ERROR_LOADING", JR.defaultOf "" ), ( "ERROR_LOADING_ID", JR.defaultOf "" ), ( "ID", JR.defaultOf "" ), ( "GAME_ACTION_INPUT", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PersistanceStrings"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "PersistanceStrings" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "SAVING" "" JR.this (JR.str "Saving: ")),
+                JR.exec (JR.setField "NUMBER_OF_RECORDS" "" JR.this (JR.str "Number of records: ")),
+                JR.exec (JR.setField "LOADING_ID" "" JR.this (JR.str "Loading data with id: ")),
+                JR.exec (JR.setField "LOAD_ALL" "" JR.this (JR.str "loadAll")),
+                JR.exec (JR.setField "DELETING_WITH_ID" "" JR.this (JR.str "Deleting data with id: ")),
+                JR.exec (JR.setField "CLOSING_RECORDSTORE" "" JR.this (JR.str "Closing RecordStore")),
+                JR.exec (JR.setField "NOT_SAVING" "" JR.this (JR.str "Not Saving: ")),
+                JR.exec (JR.setField "ERROR_LOADING" "" JR.this (JR.str "Error Loading gameActionInput: ")),
+                JR.exec (JR.setField "ERROR_LOADING_ID" "" JR.this (JR.str "Error Loading id: ")),
+                JR.exec (JR.setField "ID" "" JR.this (JR.str " id: ")),
+                JR.exec (JR.setField "GAME_ACTION_INPUT" "" JR.this (JR.str " GameActionInput: ")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

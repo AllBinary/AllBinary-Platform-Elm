@@ -1,81 +1,87 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- To change this license header, choose License Headers in Project Properties. 
--- To change this template file, choose Tools | Templates 
--- and open the template in the editor.  
--- Generated Code Do Not Modify
--- package org.allbinary.game.multiplayer.layer
-module RemoteInfo where
+module Org.Allbinary.Game.Multiplayer.Layer.RemoteInfo exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.multiplayer.layer
+-}
 
-data RemoteInfo = RemoteInfo
-    { header_ :: JavaHeader
-    }
+import JR
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
-instance JavaNull RemoteInfo where
-    javaNull = javaNullRecord "RemoteInfo"
 
-instance JavaEquals RemoteInfo where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "RemoteInfo"
 
-instance Eq RemoteInfo where
-    (==) = jrecordEquals
 
-instance JavaObjectClass RemoteInfo where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "RemoteInfo" ]
 
-nEW_PLAYER_ID :: Int
-nEW_PLAYER_ID = 0
 
-rEMOTE_INFO :: RemoteInfo
-{-# NOINLINE rEMOTE_INFO #-}
-rEMOTE_INFO = unsafePerformIO ((new_4 (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Prelude.negate 1) (Prelude.negate 1) (RemoteInfo.nEW_PLAYER_ID)))
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-newRecord_ :: IO RemoteInfo
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = RemoteInfo header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: RemoteInfo -> IO ()
-initFields_ this = do
-    pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RemoteInfo"
+        [ ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        [ ( "jstatic_NEW_PLAYER_ID", jstatic_NEW_PLAYER_ID ), ( "jstatic_REMOTE_INFO", jstatic_REMOTE_INFO ) ]
+        jheap
 
-new_4 :: String -> Int -> Int -> Int -> IO RemoteInfo
-new_4 username actorSessionId playerInputId id = do
-    this <- newRecord_
-    init_4 this username actorSessionId playerInputId id
-    pure this
 
-init_4 :: RemoteInfo -> String -> Int -> Int -> Int -> IO ()
-init_4 this username actorSessionId playerInputId id = do
-        initFields_ this
-        pure ()
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_NEW_PLAYER_ID : JR.M
+jstatic_NEW_PLAYER_ID s =
+    JR.static "RemoteInfo" jclinit "NEW_PLAYER_ID"
+        (JR.int 0)
+        s
+
+
+jstatic_REMOTE_INFO : JR.M
+jstatic_REMOTE_INFO s =
+    JR.static "RemoteInfo" jclinit "REMOTE_INFO"
+        (JR.new jnew_4 [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.map JR.neg (JR.int 1)), (JR.map JR.neg (JR.int 1)), jstatic_NEW_PLAYER_ID ])
+        s
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "username", "" ), ( "actorSessionId", "I" ), ( "playerInputId", "I" ), ( "id", "I" ) ] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

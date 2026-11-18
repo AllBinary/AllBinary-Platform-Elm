@@ -1,142 +1,122 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score.remote
-module XmlRpcRemoteHighScoresClient (module XmlRpcRemoteHighScoresClient, module XmlRpcAbeClient) where
+module Org.Allbinary.Game.Score.Remote.XmlRpcRemoteHighScoresClient exposing (..)
 
-import XmlRpcAbeClient hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, get, get_super, get_impl, logUtil, page)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified IOException -- java.io.IOException
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified CryptInterface -- org.allbinary.init.crypt.jcehelper.CryptInterface
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified XmlRpcAbeClient -- org.allbinary.logic.communication.xmlrpc.XmlRpcAbeClient
-import qualified ExceptionUtil -- org.allbinary.logic.java.exception.ExceptionUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified XmlRpcClient -- org.apache.xmlrpc.XmlRpcClient
-import qualified XmlRpcException -- org.apache.xmlrpc.XmlRpcException
+{-| Generated Code Do Not Modify package org.allbinary.game.score.remote
+-}
 
-data XmlRpcRemoteHighScoresClient = XmlRpcRemoteHighScoresClient
-    { header_ :: JavaHeader
-    , base :: XmlRpcAbeClient.XmlRpcAbeClient
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , page :: IORef (String)
-    }
-
-instance JavaNull XmlRpcRemoteHighScoresClient where
-    javaNull = javaNullRecord "XmlRpcRemoteHighScoresClient"
-
-instance JavaEquals XmlRpcRemoteHighScoresClient where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq XmlRpcRemoteHighScoresClient where
-    (==) = jrecordEquals
-
-instance JavaObjectClass XmlRpcRemoteHighScoresClient where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO XmlRpcRemoteHighScoresClient
-newRecord_ = do
-    base <- XmlRpcAbeClient.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    page <- newIORef ""
-    let this = XmlRpcRemoteHighScoresClient header_ base logUtil page
-    jregisterLevel header_ this
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    pure this
-
-initFields_ :: XmlRpcRemoteHighScoresClient -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.page (javaNull)
-    pure ()
-
-new_3 :: AbeClientInformationInterface.AbeClientInformationInterface -> String -> String -> IO XmlRpcRemoteHighScoresClient
-new_3 clientInfo page remoteMethod = do
-    this <- newRecord_
-    init_3 this clientInfo page remoteMethod
-    pure this
-
-init_3 :: XmlRpcRemoteHighScoresClient -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> String -> IO ()
-init_3 this clientInfo page remoteMethod = do
-        XmlRpcAbeClient.init_2 this.base (clientInfo) (remoteMethod)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).page (page)
-        Control.Monad.void (XmlRpcAbeClient.setServer this 0)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Java.Exception.ExceptionUtil as ExceptionUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Logic.Communication.Xmlrpc.XmlRpcAbeClient as XmlRpcAbeClient
+import Org.Apache.Xmlrpc.XmlRpcClient as XmlRpcClient
 
 
--- throws Exception
-get :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> CryptInterface.CryptInterface -> IO (Any.Any)
-get object_ a1 a2 = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: XmlRpcRemoteHighScoresClient))) () (jtoObject a1) a2
+jclass : String
+jclass =
+    "XmlRpcRemoteHighScoresClient"
 
-get_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> CryptInterface.CryptInterface -> IO (Any.Any)
-get_super object_ a1 a2 = (get_impl (javaCast object_ :: XmlRpcRemoteHighScoresClient)) (jtoObject a1) a2
 
-get_impl :: XmlRpcRemoteHighScoresClient -> JavaObject -> CryptInterface.CryptInterface -> IO (Any.Any)
-get_impl this anyTypeObject_ cryptInterface = do
-    let anyType = jtoObject anyTypeObject_
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (tRYING_OTHER_SERVERS + (jio (ExceptionUtil.getStackTrace ((jio (ExceptionUtil.getInstance))) e))) this (jget ((jget (this).base.commonStrings)).gET) e)
-            if (Prelude.not (Data.List.isPrefixOf hOST_NOT_RESOLVED (Control.Exception.displayException e))) then do
-                javaReturn =<< (fmap jtoObject (XmlRpcAbeClient.tryAnother this anyType))
-            else do
-                javaThrow ((JavaException "Exception" hOST_NOT_RESOLVED_MSG))
-            ) $ do
-            param <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            serverUrl <- newIORef =<< (getLicenseServer ((jio (XmlRpcAbeClient.getClientInfo this))) (jio (XmlRpcAbeClient.getServer this)))
-            let index = (jstringLastIndexOf (jget serverUrl) '/')
-            jset serverUrl (((Prelude.take (((index + 1)) - (0)) (Prelude.drop (0) (jget serverUrl))) ++ (jget (this).page)))
-            stringBuffer <- (StringMaker.new_)
-            Control.Monad.void (StringMaker.append stringBuffer tRYING)
-            Control.Monad.void (StringMaker.appendint stringBuffer (Prelude.fromInteger (jnumericInteger (jio (XmlRpcAbeClient.getServer this)))))
-            Control.Monad.void (StringMaker.append stringBuffer SEP)
-            Control.Monad.void (StringMaker.append stringBuffer (jget serverUrl))
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this (jget ((jget (this).base.commonStrings)).gET))
-            xmlRpcClient <- (XmlRpcClient.new_1 (jget serverUrl))
-            Control.Monad.void (XmlRpcAbeClient.setClient this xmlRpcClient)
-            Control.Monad.void (XmlRpcClient.setBasicAuthentication xmlRpcClient (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-            let hashtable = (javaCast anyType :: ABHashtable.ABHashtable)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (javaToString cLIENT_INFO ++ (jio (ABHashtable.toString hashtable))) this (jget ((jget (this).base.commonStrings)).gET))
-            Control.Monad.void (BasicArrayList.add param hashtable)
-            result <- (XmlRpcClient.executeWithCrypt xmlRpcClient (jio (XmlRpcAbeClient.getRemoteMethod this)) param cryptInterface)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (javaToString rESULT ++ (jio (Any.toString result))) this (jget ((jget (this).base.commonStrings)).gET))
-            jset this.base.isOnline (True)
-            pure ((jtoObject result))
+jchain : List String
+jchain =
+    [ "XmlRpcRemoteHighScoresClient" ]
+        ++ XmlRpcAbeClient.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    XmlRpcAbeClient.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "page", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "get_2", jm_get_2 ) ]
+        XmlRpcAbeClient.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "XmlRpcRemoteHighScoresClient"
+        [ ( "jm_get_2", jm_get_2 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "clientInfo", "" ), ( "page", "" ), ( "remoteMethod", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect XmlRpcAbeClient.jinit_2 JR.this [ (JR.local "clientInfo"), (JR.local "remoteMethod") ]),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "page" "" JR.this (JR.local "page")), 
+                    JR.exec (JR.invoke "setServer_1" JR.this [ (JR.int 0) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_get_2 : JR.Method
+jm_get_2 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ), ( "cryptInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "param" "" (JR.new BasicArrayListD.jnew_0 []), 
+                        JR.declare "serverUrl" "" (JR.invoke "getLicenseServer_1" (JR.invoke "getClientInfo_0" JR.this []) [ (JR.invoke "getServer_0" JR.this []) ]), 
+                        JR.declare "index" "I" (JR.invoke "lastIndexOf_1" (JR.local "serverUrl") [ (JR.char 47) ]), 
+                        JR.exec (JR.setLocal "serverUrl" "" (JR.concat (JR.invoke "substring_2" (JR.local "serverUrl") [ (JR.int 0), (JR.map2 JR.add (JR.local "index") (JR.int 1)) ]) (JR.thisField "page"))), 
+                        JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "TRYING") ]), 
+                        JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "getServer_0" JR.this []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "SEP") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "serverUrl") ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "GET" (JR.thisField "commonStrings")) ]), 
+                        JR.declare "xmlRpcClient" "" (JR.new XmlRpcClient.jnew_1 [ (JR.local "serverUrl") ]), 
+                        JR.exec (JR.invoke "setClient_1" JR.this [ (JR.local "xmlRpcClient") ]), 
+                        JR.exec (JR.invoke "setBasicAuthentication_2" (JR.local "xmlRpcClient") [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]), 
+                        JR.declare "hashtable" "" (JR.local "anyType"), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.thisField "CLIENT_INFO") (JR.invoke "toString_0" (JR.local "hashtable") [])), JR.this, (JR.field "GET" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.invoke "add_1" (JR.local "param") [ (JR.local "hashtable") ]), 
+                        JR.declare "result" "" (JR.invoke "executeWithCrypt_3" (JR.local "xmlRpcClient") [ (JR.invoke "getRemoteMethod_0" JR.this []), (JR.local "param"), (JR.local "cryptInterface") ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.thisField "RESULT") (JR.invoke "toString_0" (JR.local "result") [])), JR.this, (JR.field "GET" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.setField "isOnline" "" JR.this (JR.bool True)), 
+                        JR.return (JR.local "result") ]) [ ( [ "IOException" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.thisField "TRYING_OTHER_SERVERS") (JR.invoke "getStackTrace_1" (JR.callStatic ExceptionUtil.jm_getInstance_0 []) [ (JR.local "e") ])), JR.this, (JR.field "GET" (JR.thisField "commonStrings")), (JR.local "e") ]), 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "startsWith_1" (JR.invoke "getMessage_0" (JR.local "e") []) [ (JR.thisField "HOST_NOT_RESOLVED") ])) (JR.run [ 
+                            JR.return (JR.invoke "tryAnother_1" JR.this [ (JR.local "anyType") ]) ]) (JR.run [ 
+                            JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.thisField "HOST_NOT_RESOLVED_MSG") ]) ]) ]) ), ( [ "XmlRpcException" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.thisField "SERVER_REPORTED_ERROR"), JR.this, (JR.field "GET" (JR.thisField "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.invoke "tryAnother_1" JR.this [ (JR.local "anyType") ]) ]) ), ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.thisField "UNKNOWN_ERROR"), JR.this, (JR.field "GET" (JR.thisField "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.invoke "tryAnother_1" JR.this [ (JR.local "anyType") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,199 +1,207 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
-module AllBinarySpriteRotationAnimationFactory (module AllBinarySpriteRotationAnimationFactory, module BaseImageAnimationFactory) where
+module Org.Allbinary.Animation.Image.Sprite.AllBinarySpriteRotationAnimationFactory exposing (..)
 
-import BaseImageAnimationFactory hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createWHDY, createWHDY_super, createWHDY_impl, createWH, createWH_super, createWH_impl, createDXY, createDXY_super, createDXY_impl, createDXYQ, createDXYQ_super, createDXYQ_impl, createQ, createQ_super, createQ_impl, createWHF, createWHF_super, createWHF_impl, init, init_super, init_impl, initWH, initWH_super, initWH_impl, getInstance, getInstance_super, getInstance_impl, getInstanceAnimation, getInstanceAnimation_super, getInstanceAnimation_impl, animationFactorySpriteScaleUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinarySpriteRotationAnimation -- same package or java.lang
-import qualified AllBinaryAdjustedSpriteRotationAnimation -- same package or java.lang
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Sprite -- javax.microedition.lcdui.game.Sprite
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified AnimationBehaviorFactory -- org.allbinary.animation.AnimationBehaviorFactory
-import qualified ProceduralAnimationInterfaceFactoryInterface -- org.allbinary.animation.ProceduralAnimationInterfaceFactoryInterface
-import qualified BaseImageAnimationFactory -- org.allbinary.animation.image.BaseImageAnimationFactory
-import qualified AnimationFactorySpriteScaleUtil -- org.allbinary.image.sprite.AnimationFactorySpriteScaleUtil
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified PrimitiveIntUtil -- org.allbinary.logic.math.PrimitiveIntUtil
+{-| Generated Code Do Not Modify package org.allbinary.animation.image.sprite
+-}
 
--- implements ProceduralAnimationInterfaceFactoryInterface
-data AllBinarySpriteRotationAnimationFactory = AllBinarySpriteRotationAnimationFactory
-    { header_ :: JavaHeader
-    , base :: BaseImageAnimationFactory.BaseImageAnimationFactory
-    , animationFactorySpriteScaleUtil :: IORef (AnimationFactorySpriteScaleUtil.AnimationFactorySpriteScaleUtil)
-    }
-
-instance JavaNull AllBinarySpriteRotationAnimationFactory where
-    javaNull = javaNullRecord "AllBinarySpriteRotationAnimationFactory"
-
-instance JavaEquals AllBinarySpriteRotationAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinarySpriteRotationAnimationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinarySpriteRotationAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AllBinarySpriteRotationAnimationFactory
-newRecord_ = do
-    base <- BaseImageAnimationFactory.newRecord_
-    let header_ = base.header_
-    animationFactorySpriteScaleUtil <- newIORef javaNull
-    let this = AllBinarySpriteRotationAnimationFactory header_ base animationFactorySpriteScaleUtil
-    jregisterLevel header_ this
-    ProceduralAnimationInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "initWH" (\() -> initWH_impl this)
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    jregisterMethod header_ "getInstanceAnimation" (\() -> getInstanceAnimation_impl this)
-    pure this
-
-initFields_ :: AllBinarySpriteRotationAnimationFactory -> IO ()
-initFields_ this = do
-    jset this.animationFactorySpriteScaleUtil =<< (AnimationFactorySpriteScaleUtil.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Animation.Image.Sprite.AllBinaryAdjustedSpriteRotationAnimation as AllBinaryAdjustedSpriteRotationAnimation
+import Org.Allbinary.Animation.Image.Sprite.AllBinarySpriteRotationAnimation as AllBinarySpriteRotationAnimation
+import Org.Allbinary.Animation.AnimationBehaviorFactory as AnimationBehaviorFactory
+import Org.Allbinary.Image.Sprite.AnimationFactorySpriteScaleUtil as AnimationFactorySpriteScaleUtil
+import Org.Allbinary.Animation.Image.BaseImageAnimationFactory as BaseImageAnimationFactory
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Logic.Math.PrimitiveIntUtil as PrimitiveIntUtil
+import Org.Allbinary.Animation.ProceduralAnimationInterfaceFactoryInterface as ProceduralAnimationInterfaceFactoryInterface
 
 
--- throws Exception
-createWHDY :: Image.Image -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO (AllBinarySpriteRotationAnimationFactory)
-createWHDY image dx dy animationBehaviorFactory = do
-        spriteRotationAnimationFactory <- (new_7 image (jio (PrimitiveIntUtil.getArrayInstance)) (((jio (Image.getHeight image)) `Data.Bits.shiftR` 2)) (((jio (Image.getHeight image)) `Data.Bits.shiftR` 2)) 0 0 animationBehaviorFactory)
-        Control.Monad.void (AllBinarySpriteRotationAnimationFactory.initWH spriteRotationAnimationFactory dx dy)
-        pure (spriteRotationAnimationFactory)
+jclass : String
+jclass =
+    "AllBinarySpriteRotationAnimationFactory"
 
 
--- throws Exception
-createWH :: Image.Image -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO (AllBinarySpriteRotationAnimationFactory)
-createWH image animationBehaviorFactory = do
-        (AllBinarySpriteRotationAnimationFactory.createWHDY image 0 0 animationBehaviorFactory)
+jchain : List String
+jchain =
+    [ "AllBinarySpriteRotationAnimationFactory" ]
+        ++ BaseImageAnimationFactory.jchain
+        ++ ProceduralAnimationInterfaceFactoryInterface.jchain
 
 
--- throws Exception
-createDXY :: Image.Image -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO (AllBinarySpriteRotationAnimationFactory)
-createDXY image dx dy animationBehaviorFactory = do
-        spriteRotationAnimationFactory <- (new_7 image (jio (PrimitiveIntUtil.getArrayInstance)) (jio (Image.getHeight image)) (jio (Image.getHeight image)) 0 0 animationBehaviorFactory)
-        Control.Monad.void (AllBinarySpriteRotationAnimationFactory.init spriteRotationAnimationFactory dx dy)
-        pure (spriteRotationAnimationFactory)
+jfields : List ( String, JR.JValue )
+jfields =
+    BaseImageAnimationFactory.jfields ++ [ ( "animationFactorySpriteScaleUtil", JR.defaultOf "" ) ]
 
 
--- throws Exception
-createDXYQ :: Image.Image -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO (AllBinarySpriteRotationAnimationFactory)
-createDXYQ image dx dy animationBehaviorFactory = do
-        spriteRotationAnimationFactory <- (new_7 image (jio (PrimitiveIntUtil.getArrayInstance)) (((jio (Image.getHeight image)) `Data.Bits.shiftR` 2)) (((jio (Image.getHeight image)) `Data.Bits.shiftR` 2)) 0 0 animationBehaviorFactory)
-        Control.Monad.void (AllBinarySpriteRotationAnimationFactory.init spriteRotationAnimationFactory dx dy)
-        pure (spriteRotationAnimationFactory)
+jvtable =
+    JR.vtable
+        [ ( "createWHDY_4", jm_createWHDY_4 )
+        , ( "createWH_2", jm_createWH_2 )
+        , ( "createDXY_4", jm_createDXY_4 )
+        , ( "createDXYQ_4", jm_createDXYQ_4 )
+        , ( "createQ_2", jm_createQ_2 )
+        , ( "createWHF_2", jm_createWHF_2 )
+        , ( "init_2", jm_init_2 )
+        , ( "initWH_2", jm_initWH_2 )
+        , ( "getInstance_1", jm_getInstance_1 )
+        , ( "getInstanceAnimation_1", jm_getInstanceAnimation_1 ) ]
+        BaseImageAnimationFactory.jvtable
 
 
--- throws Exception
-createQ :: Image.Image -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO (AllBinarySpriteRotationAnimationFactory)
-createQ image animationBehaviorFactory = do
-        (new_7 image (jio (PrimitiveIntUtil.getArrayInstance)) (((jio (Image.getHeight image)) `Data.Bits.shiftR` 2)) (((jio (Image.getHeight image)) `Data.Bits.shiftR` 2)) 0 0 animationBehaviorFactory)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinarySpriteRotationAnimationFactory"
+        [ ( "jm_createWHDY_4", jm_createWHDY_4 ), ( "jm_createWH_2", jm_createWH_2 ), ( "jm_createDXY_4", jm_createDXY_4 ), ( "jm_createDXYQ_4", jm_createDXYQ_4 ), ( "jm_createQ_2", jm_createQ_2 ), ( "jm_createWHF_2", jm_createWHF_2 ), ( "jm_init_2", jm_init_2 ), ( "jm_initWH_2", jm_initWH_2 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_getInstanceAnimation_1", jm_getInstanceAnimation_1 ), ( "jnew_7", jnew_7 ), ( "jinit_7", jinit_7 ) ]
+        []
+        jheap
 
 
--- throws Exception
-createWHF :: Image.Image -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO (AllBinarySpriteRotationAnimationFactory)
-createWHF image animationBehaviorFactory = do
-        (new_7 image (jio (PrimitiveIntUtil.getArrayInstance)) (jio (Image.getHeight image)) (jio (Image.getHeight image)) 0 0 animationBehaviorFactory)
-
-new_7 :: Image.Image -> JavaArray (Int) -> Int -> Int -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO AllBinarySpriteRotationAnimationFactory
-new_7 image sequenceArray width height dx dy animationBehaviorFactory = do
-    this <- newRecord_
-    init_7 this image sequenceArray width height dx dy animationBehaviorFactory
-    pure this
-
-init_7 :: AllBinarySpriteRotationAnimationFactory -> Image.Image -> JavaArray (Int) -> Int -> Int -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ()
-init_7 this image sequenceArray width height dx dy animationBehaviorFactory = do
-        BaseImageAnimationFactory.init_7 this.base (image) (sequenceArray) (width) (height) (dx) (dy) (animationBehaviorFactory)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        when (animationBehaviorFactory == (jio (AnimationBehaviorFactory.getInstance))) $ do
-            Control.Monad.void (ForcedLogUtil.log "Using default AnimationBehaviorFactory with IndexedAnimationFactory" this)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-init :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-init object_ a1 a2 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: AllBinarySpriteRotationAnimationFactory))) () a1 a2
-
-init_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-init_super object_ a1 a2 = (init_impl (javaCast object_ :: AllBinarySpriteRotationAnimationFactory)) a1 a2
-
-init_impl :: AllBinarySpriteRotationAnimationFactory -> Int -> Int -> IO (())
-init_impl this dx dy = do
-        jset ((jget (this).base.animationFactoryInitializationVisitor)).dx (dx)
-        jset ((jget (this).base.animationFactoryInitializationVisitor)).dy (dy)
-        pure ()
-
-
-initWH :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-initWH object_ a1 a2 = jmethod object_ "initWH" (\() -> (initWH_impl (javaCast object_ :: AllBinarySpriteRotationAnimationFactory))) () a1 a2
-
-initWH_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-initWH_super object_ a1 a2 = (initWH_impl (javaCast object_ :: AllBinarySpriteRotationAnimationFactory)) a1 a2
-
-initWH_impl :: AllBinarySpriteRotationAnimationFactory -> Int -> Int -> IO (())
-initWH_impl this dx dy = do
-        Control.Monad.void (AllBinarySpriteRotationAnimationFactory.init this dx dy)
-        jset ((jget (this).base.animationFactoryInitializationVisitor)).dx (((jget ((jget (this).base.animationFactoryInitializationVisitor)).dx) + ((Prelude.negate (jget ((jget (this).base.animationFactoryInitializationVisitor)).width)) / 5)))
-        jset ((jget (this).base.animationFactoryInitializationVisitor)).dy (((jget ((jget (this).base.animationFactoryInitializationVisitor)).dy) + ((Prelude.negate (jget ((jget (this).base.animationFactoryInitializationVisitor)).height)) / 5)))
-        pure ()
+jinit_7 : JR.Method
+jinit_7 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "sequenceArray", "" ), ( "width", "I" ), ( "height", "I" ), ( "dx", "I" ), ( "dy", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BaseImageAnimationFactory.jinit_7 JR.this [ (JR.local "image"), (JR.local "sequenceArray"), (JR.local "width"), (JR.local "height"), (JR.local "dx"), (JR.local "dy"), (JR.local "animationBehaviorFactory") ]),
+                JR.exec (JR.setField "animationFactorySpriteScaleUtil" "" JR.this (JR.callStatic AnimationFactorySpriteScaleUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "animationBehaviorFactory") (JR.callStatic AnimationBehaviorFactory.jm_getInstance_0 [])) (JR.run [ 
+                        JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.str "Using default AnimationBehaviorFactory with IndexedAnimationFactory"), JR.this ]) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: AllBinarySpriteRotationAnimationFactory))) () a1
-
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: AllBinarySpriteRotationAnimationFactory)) a1
-
-getInstance_impl :: AllBinarySpriteRotationAnimationFactory -> Int -> IO (Animation.Animation)
-getInstance_impl this instanceId = do
-    javaCatchReturn $ do
-        sprite <- (AnimationFactorySpriteScaleUtil.createImage ((jget (this).animationFactorySpriteScaleUtil)) (jio (BaseImageAnimationFactory.getImage this)) (jget ((jget (this).base.animationFactoryInitializationVisitor)).width) (jget ((jget (this).base.animationFactoryInitializationVisitor)).height) (jget ((jget (this).base.scaleProperties)).scaleWidth) (jget ((jget (this).base.scaleProperties)).scaleHeight))
-        if (((jget ((jget (this).base.animationFactoryInitializationVisitor)).dx) /= 0) || ((jget ((jget (this).base.animationFactoryInitializationVisitor)).dy) /= 0)) then do
-            javaReturn =<< (fmap (\value_ -> javaCast value_ :: Animation.Animation) (AllBinaryAdjustedSpriteRotationAnimation.new_5 sprite (jio (BaseImageAnimationFactory.getImage this)) (jget ((jget (this).base.animationFactoryInitializationVisitor)).dx) (jget ((jget (this).base.animationFactoryInitializationVisitor)).dy) (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).base.animationBehaviorFactory))))))
-        else do
-            javaReturn =<< (fmap (\value_ -> javaCast value_ :: Animation.Animation) (AllBinarySpriteRotationAnimation.new_3 sprite (jio (BaseImageAnimationFactory.getImage this)) (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).base.animationBehaviorFactory))))))
+jnew_7 : JR.Method
+jnew_7 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_7 jheap jthis jargs
 
 
--- throws Exception
-getInstanceAnimation :: (JavaObjectClass this_) => this_ -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation object_ a1 = jmethod object_ "getInstanceAnimation" (\() -> (getInstanceAnimation_impl (javaCast object_ :: AllBinarySpriteRotationAnimationFactory))) () a1
+jm_createWHDY_4 : JR.Method
+jm_createWHDY_4 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "dx", "I" ), ( "dy", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "spriteRotationAnimationFactory" "" (JR.new jnew_7 [ (JR.local "image"), (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []), ((JR.map2 JR.shr (JR.invoke "getHeight_0" (JR.local "image") []) (JR.int 2))), ((JR.map2 JR.shr (JR.invoke "getHeight_0" (JR.local "image") []) (JR.int 2))), (JR.int 0), (JR.int 0), (JR.local "animationBehaviorFactory") ]), 
+                    JR.exec (JR.invoke "initWH_2" (JR.local "spriteRotationAnimationFactory") [ (JR.local "dx"), (JR.local "dy") ]), 
+                    JR.return (JR.local "spriteRotationAnimationFactory") ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getInstanceAnimation_super :: (JavaObjectClass this_) => this_ -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation_super object_ a1 = (getInstanceAnimation_impl (javaCast object_ :: AllBinarySpriteRotationAnimationFactory)) a1
 
-getInstanceAnimation_impl :: AllBinarySpriteRotationAnimationFactory -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation_impl this animationInterface = do
-        (AllBinarySpriteRotationAnimationFactory.getInstance this 0)
+jm_createWH_2 : JR.Method
+jm_createWH_2 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic jm_createWHDY_4 [ (JR.local "image"), (JR.int 0), (JR.int 0), (JR.local "animationBehaviorFactory") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_createDXY_4 : JR.Method
+jm_createDXY_4 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "dx", "I" ), ( "dy", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "spriteRotationAnimationFactory" "" (JR.new jnew_7 [ (JR.local "image"), (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []), (JR.invoke "getHeight_0" (JR.local "image") []), (JR.invoke "getHeight_0" (JR.local "image") []), (JR.int 0), (JR.int 0), (JR.local "animationBehaviorFactory") ]), 
+                    JR.exec (JR.invoke "init_2" (JR.local "spriteRotationAnimationFactory") [ (JR.local "dx"), (JR.local "dy") ]), 
+                    JR.return (JR.local "spriteRotationAnimationFactory") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createDXYQ_4 : JR.Method
+jm_createDXYQ_4 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "dx", "I" ), ( "dy", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "spriteRotationAnimationFactory" "" (JR.new jnew_7 [ (JR.local "image"), (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []), ((JR.map2 JR.shr (JR.invoke "getHeight_0" (JR.local "image") []) (JR.int 2))), ((JR.map2 JR.shr (JR.invoke "getHeight_0" (JR.local "image") []) (JR.int 2))), (JR.int 0), (JR.int 0), (JR.local "animationBehaviorFactory") ]), 
+                    JR.exec (JR.invoke "init_2" (JR.local "spriteRotationAnimationFactory") [ (JR.local "dx"), (JR.local "dy") ]), 
+                    JR.return (JR.local "spriteRotationAnimationFactory") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createQ_2 : JR.Method
+jm_createQ_2 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_7 [ (JR.local "image"), (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []), ((JR.map2 JR.shr (JR.invoke "getHeight_0" (JR.local "image") []) (JR.int 2))), ((JR.map2 JR.shr (JR.invoke "getHeight_0" (JR.local "image") []) (JR.int 2))), (JR.int 0), (JR.int 0), (JR.local "animationBehaviorFactory") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createWHF_2 : JR.Method
+jm_createWHF_2 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_7 [ (JR.local "image"), (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []), (JR.invoke "getHeight_0" (JR.local "image") []), (JR.invoke "getHeight_0" (JR.local "image") []), (JR.int 0), (JR.int 0), (JR.local "animationBehaviorFactory") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_2 : JR.Method
+jm_init_2 jheap jthis jargs =
+    JR.method [ ( "dx", "I" ), ( "dy", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN70029 -> (JR.setField "dx" "I" (JR.lit jtN70029) (JR.local "dx")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN70065 -> (JR.setField "dy" "I" (JR.lit jtN70065) (JR.local "dy")))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initWH_2 : JR.Method
+jm_initWH_2 jheap jthis jargs =
+    JR.method [ ( "dx", "I" ), ( "dy", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "init_2" JR.this [ (JR.local "dx"), (JR.local "dy") ]), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN70203 -> (JR.setField "dx" "I" (JR.lit jtN70203) (JR.map2 JR.add (JR.field "dx" (JR.lit jtN70203)) (JR.map2 JR.div (JR.map JR.neg (JR.field "width" (JR.thisField "animationFactoryInitializationVisitor"))) (JR.int 5)))))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN70264 -> (JR.setField "dy" "I" (JR.lit jtN70264) (JR.map2 JR.add (JR.field "dy" (JR.lit jtN70264)) (JR.map2 JR.div (JR.map JR.neg (JR.field "height" (JR.thisField "animationFactoryInitializationVisitor"))) (JR.int 5)))))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "instanceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "sprite" "" (JR.invoke "createImage_5" (JR.thisField "animationFactorySpriteScaleUtil") [ (JR.invoke "getImage_0" JR.this []), (JR.field "width" (JR.thisField "animationFactoryInitializationVisitor")), (JR.field "height" (JR.thisField "animationFactoryInitializationVisitor")), (JR.field "scaleWidth" (JR.thisField "scaleProperties")), (JR.field "scaleHeight" (JR.thisField "scaleProperties")) ]), 
+                    JR.ifElse (JR.or (JR.map2 JR.notEquals (JR.field "dx" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 0)) (JR.map2 JR.notEquals (JR.field "dy" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 0))) (JR.run [ 
+                        JR.return (JR.new AllBinaryAdjustedSpriteRotationAnimation.jnew_5 [ (JR.local "sprite"), (JR.invoke "getImage_0" JR.this []), (JR.field "dx" (JR.thisField "animationFactoryInitializationVisitor")), (JR.field "dy" (JR.thisField "animationFactoryInitializationVisitor")), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]) ]) (JR.run [ 
+                        JR.return (JR.new AllBinarySpriteRotationAnimation.jnew_3 [ (JR.local "sprite"), (JR.invoke "getImage_0" JR.this []), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceAnimation_1 : JR.Method
+jm_getInstanceAnimation_1 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getInstance_1" JR.this [ (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

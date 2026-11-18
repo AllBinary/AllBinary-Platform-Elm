@@ -1,169 +1,156 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.thread
-module ThreadFactoryUtil where
+module Org.Allbinary.Thread.ThreadFactoryUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Thread -- same package or java.lang
-import qualified ABRunnable -- same package or java.lang
-import qualified PrimaryThreadPool -- same package or java.lang
-import qualified ThreadPool -- same package or java.lang
-import qualified Runnable -- same package or java.lang
-import qualified J2MEUtil -- org.allbinary.J2MEUtil
-import qualified RunnableCanvas -- org.allbinary.canvas.RunnableCanvas
-import qualified AllBinaryGameCanvas -- org.allbinary.game.displayable.canvas.AllBinaryGameCanvas
-import qualified DemoCanvas -- org.allbinary.game.displayable.canvas.DemoCanvas
-import qualified GameCanvasRunnableInterface -- org.allbinary.game.displayable.canvas.GameCanvasRunnableInterface
-import qualified RunnableCanvasSingleThreadStartRunnable -- org.allbinary.game.displayable.canvas.RunnableCanvasSingleThreadStartRunnable
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.thread
+-}
 
-data ThreadFactoryUtil = ThreadFactoryUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull ThreadFactoryUtil where
-    javaNull = javaNullRecord "ThreadFactoryUtil"
-
-instance JavaEquals ThreadFactoryUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ThreadFactoryUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ThreadFactoryUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ThreadFactoryUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ThreadFactoryUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = ThreadFactoryUtil header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstanceGameCanvasRunnable" (\() -> getInstanceGameCanvasRunnable_impl this)
-    jregisterMethod header_ "getInstanceForRunnable" (\() -> getInstanceForRunnable_impl this)
-    jregisterMethod header_ "getInstanceType" (\() -> getInstanceType_impl this)
-    jregisterMethod header_ "start" (\() -> start_impl this)
-    pure this
-
-initFields_ :: ThreadFactoryUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_ :: IO ThreadFactoryUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ThreadFactoryUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Displayable.Canvas.AllBinaryGameCanvas as AllBinaryGameCanvas
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Displayable.Canvas.DemoCanvas as DemoCanvas
+import Org.Allbinary.J2MEUtil as J2MEUtil
+import JThread
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Thread.PrimaryThreadPool as PrimaryThreadPool
+import Org.Allbinary.Game.Displayable.Canvas.RunnableCanvasSingleThreadStartRunnable as RunnableCanvasSingleThreadStartRunnable
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (ThreadFactoryUtil)
-getInstance = do
-        pure (ThreadFactoryUtil.instance_)
+jclass : String
+jclass =
+    "ThreadFactoryUtil"
 
 
-getInstanceGameCanvasRunnable :: (JavaObjectClass this_) => this_ -> GameCanvasRunnableInterface.GameCanvasRunnableInterface -> IO (Thread.Thread)
-getInstanceGameCanvasRunnable object_ a1 = jmethod object_ "getInstanceGameCanvasRunnable" (\() -> (getInstanceGameCanvasRunnable_impl (javaCast object_ :: ThreadFactoryUtil))) () a1
-
-getInstanceGameCanvasRunnable_super :: (JavaObjectClass this_) => this_ -> GameCanvasRunnableInterface.GameCanvasRunnableInterface -> IO (Thread.Thread)
-getInstanceGameCanvasRunnable_super object_ a1 = (getInstanceGameCanvasRunnable_impl (javaCast object_ :: ThreadFactoryUtil)) a1
-
-getInstanceGameCanvasRunnable_impl :: ThreadFactoryUtil -> GameCanvasRunnableInterface.GameCanvasRunnableInterface -> IO (Thread.Thread)
-getInstanceGameCanvasRunnable_impl this runnable = do
-        (ThreadFactoryUtil.getInstanceType this (javaCast runnable) (jio (GameCanvasRunnableInterface.getType runnable)))
+jchain : List String
+jchain =
+    [ "ThreadFactoryUtil" ]
 
 
-getInstanceForRunnable :: (JavaObjectClass this_) => this_ -> ABRunnable.ABRunnable -> IO (Thread.Thread)
-getInstanceForRunnable object_ a1 = jmethod object_ "getInstanceForRunnable" (\() -> (getInstanceForRunnable_impl (javaCast object_ :: ThreadFactoryUtil))) () a1
-
-getInstanceForRunnable_super :: (JavaObjectClass this_) => this_ -> ABRunnable.ABRunnable -> IO (Thread.Thread)
-getInstanceForRunnable_super object_ a1 = (getInstanceForRunnable_impl (javaCast object_ :: ThreadFactoryUtil)) a1
-
-getInstanceForRunnable_impl :: ThreadFactoryUtil -> ABRunnable.ABRunnable -> IO (Thread.Thread)
-getInstanceForRunnable_impl this runnable = do
-        (ThreadFactoryUtil.getInstanceType this (javaCast runnable) (jio (ABRunnable.getType runnable)))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
 
-getInstanceType :: (JavaObjectClass this_) => this_ -> Runnable.Runnable -> Int -> IO (Thread.Thread)
-getInstanceType object_ a1 a2 = jmethod object_ "getInstanceType" (\() -> (getInstanceType_impl (javaCast object_ :: ThreadFactoryUtil))) () a1 a2
-
-getInstanceType_super :: (JavaObjectClass this_) => this_ -> Runnable.Runnable -> Int -> IO (Thread.Thread)
-getInstanceType_super object_ a1 a2 = (getInstanceType_impl (javaCast object_ :: ThreadFactoryUtil)) a1 a2
-
-getInstanceType_impl :: ThreadFactoryUtil -> Runnable.Runnable -> Int -> IO (Thread.Thread)
-getInstanceType_impl this runnable type_ = do
-        commonStrings <- (CommonStrings.getInstance)
-        when (jio (J2MEUtil.isHTML)) $ do
-            if ((type_ == DemoCanvas.tYPE) || (type_ == AllBinaryGameCanvas.tYPE)) then do
-                demoGameSingleThreadStartRunnable <- (RunnableCanvasSingleThreadStartRunnable.new_1 (javaCast runnable :: RunnableCanvas.RunnableCanvas))
-                Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "Using Pseudo Thread for DemoCanvas/AllBinaryGameCanvas under PlayN/HTML5: "))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) runnable))))))) this (jget (commonStrings).cONSTRUCTOR))
-                primaryThreadPool <- (PrimaryThreadPool.getInstance)
-                Control.Monad.void (ThreadPool.runTask primaryThreadPool demoGameSingleThreadStartRunnable)
-            else do
-                Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "Using Pseudo Thread for Runnable under PlayN/HTML5: "))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) runnable))))))) this (jget (commonStrings).cONSTRUCTOR))
-                primaryThreadPool <- (PrimaryThreadPool.getInstance)
-                Control.Monad.void (ThreadPool.runTask primaryThreadPool runnable)
-        thread <- (Thread.new_2 runnable (jio (Runnable.toString runnable)))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (Thread.toString thread)) this (jget (commonStrings).cONSTRUCTOR))
-        pure (thread)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInstanceGameCanvasRunnable_1", jm_getInstanceGameCanvasRunnable_1 )
+        , ( "getInstanceForRunnable_1", jm_getInstanceForRunnable_1 )
+        , ( "getInstanceType_2", jm_getInstanceType_2 )
+        , ( "start_1", jm_start_1 ) ]
+        JR.noMethods
 
 
-start :: (JavaObjectClass this_) => this_ -> Thread.Thread -> IO (())
-start object_ a1 = jmethod object_ "start" (\() -> (start_impl (javaCast object_ :: ThreadFactoryUtil))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ThreadFactoryUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInstanceGameCanvasRunnable_1", jm_getInstanceGameCanvasRunnable_1 ), ( "jm_getInstanceForRunnable_1", jm_getInstanceForRunnable_1 ), ( "jm_getInstanceType_2", jm_getInstanceType_2 ), ( "jm_start_1", jm_start_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
-start_super :: (JavaObjectClass this_) => this_ -> Thread.Thread -> IO (())
-start_super object_ a1 = (start_impl (javaCast object_ :: ThreadFactoryUtil)) a1
 
-start_impl :: ThreadFactoryUtil -> Thread.Thread -> IO (())
-start_impl this thread = do
-        Control.Monad.void (Thread.start thread)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ThreadFactoryUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceGameCanvasRunnable_1 : JR.Method
+jm_getInstanceGameCanvasRunnable_1 jheap jthis jargs =
+    JR.method [ ( "runnable", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getInstanceType_2" JR.this [ (JR.local "runnable"), (JR.invoke "getType_0" (JR.local "runnable") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceForRunnable_1 : JR.Method
+jm_getInstanceForRunnable_1 jheap jthis jargs =
+    JR.method [ ( "runnable", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getInstanceType_2" JR.this [ (JR.local "runnable"), (JR.invoke "getType_0" (JR.local "runnable") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceType_2 : JR.Method
+jm_getInstanceType_2 jheap jthis jargs =
+    JR.method [ ( "runnable", "" ), ( "type", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.ifElse (JR.callStatic J2MEUtil.jm_isHTML_0 []) (JR.run [ 
+                        JR.ifElse (JR.or (JR.map2 JR.equals (JR.local "type") DemoCanvas.jstatic_TYPE) (JR.map2 JR.equals (JR.local "type") AllBinaryGameCanvas.jstatic_TYPE)) (JR.run [ 
+                            JR.declare "demoGameSingleThreadStartRunnable" "" (JR.new RunnableCanvasSingleThreadStartRunnable.jnew_1 [ (JR.local "runnable") ]), 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Using Pseudo Thread for DemoCanvas/AllBinaryGameCanvas under PlayN/HTML5: ") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "runnable") ]) ]) []), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")) ]), 
+                            JR.declare "primaryThreadPool" "" (JR.callStatic PrimaryThreadPool.jm_getInstance_0 []), 
+                            JR.exec (JR.invoke "runTask_1" (JR.local "primaryThreadPool") [ (JR.local "demoGameSingleThreadStartRunnable") ]) ]) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Using Pseudo Thread for Runnable under PlayN/HTML5: ") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "runnable") ]) ]) []), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")) ]), 
+                            JR.declare "primaryThreadPool" "" (JR.callStatic PrimaryThreadPool.jm_getInstance_0 []), 
+                            JR.exec (JR.invoke "runTask_1" (JR.local "primaryThreadPool") [ (JR.local "runnable") ]) ]) ]) identity, 
+                    JR.declare "thread" "" (JR.new JThread.jnew_2 [ (JR.local "runnable"), (JR.invoke "toString_0" (JR.local "runnable") []) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "thread") []), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")) ]), 
+                    JR.return (JR.local "thread") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_start_1 : JR.Method
+jm_start_1 jheap jthis jargs =
+    JR.method [ ( "thread", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "start_0" (JR.local "thread") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

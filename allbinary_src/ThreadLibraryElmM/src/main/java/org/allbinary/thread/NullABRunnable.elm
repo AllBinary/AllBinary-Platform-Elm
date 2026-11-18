@@ -1,10 +1,10 @@
-module NullABRunnable exposing (..)
+module Org.Allbinary.Thread.NullABRunnable exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}
 
 import JR
-import ABRunnable
+import Org.Allbinary.Thread.ABRunnable as ABRunnable
 
 
 jclass : String

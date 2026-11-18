@@ -1,100 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary
-module ThreedResources where
+module Org.Allbinary.ThreedResources exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary
+-}
 
-data ThreedResources = ThreedResources
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ThreedResources where
-    javaNull = javaNullRecord "ThreedResources"
-
-instance JavaEquals ThreedResources where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ThreedResources where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ThreedResources where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-threedResources :: ThreedResources
-{-# NOINLINE threedResources #-}
-threedResources = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ThreedResources
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ThreedResources header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    pure this
-
-initFields_ :: ThreedResources -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO ThreedResources
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ThreedResources -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getThreedResources :: IO (ThreedResources)
-getThreedResources = do
-        pure (ThreedResources.threedResources)
+
+jclass : String
+jclass =
+    "ThreedResources"
 
 
-add :: (JavaObjectClass this_) => this_ -> IO (())
-add object_ = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: ThreedResources))) ()
+jchain : List String
+jchain =
+    [ "ThreedResources" ]
 
-add_super :: (JavaObjectClass this_) => this_ -> IO (())
-add_super object_ = (add_impl (javaCast object_ :: ThreedResources))
 
-add_impl :: ThreedResources -> IO (())
-add_impl this = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getThreedResources_0", jm_getThreedResources_0 )
+        , ( "add_0", jm_add_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ThreedResources"
+        [ ( "jm_getThreedResources_0", jm_getThreedResources_0 ), ( "jm_add_0", jm_add_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_threedResources", jstatic_threedResources ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_threedResources : JR.M
+jstatic_threedResources s =
+    JR.static "ThreedResources" jclinit "threedResources"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getThreedResources_0 : JR.Method
+jm_getThreedResources_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_threedResources ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_0 : JR.Method
+jm_add_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,15 +1,15 @@
-module BasicEventHandler exposing (..)
+module Org.Allbinary.Logic.Util.Event.Handler.BasicEventHandler exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.event.handler
 -}
 
 import JR
-import BasicArrayListD
-import BasicEventHandlerInterface
-import CommonStrings
-import EventStrings
-import LogUtil
-import StringMaker
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Util.Event.Handler.BasicEventHandlerInterface as BasicEventHandlerInterface
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

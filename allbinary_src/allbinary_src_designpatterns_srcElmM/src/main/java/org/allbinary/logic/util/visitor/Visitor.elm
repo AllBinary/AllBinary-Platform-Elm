@@ -1,11 +1,11 @@
-module Visitor exposing (..)
+module Org.Allbinary.Logic.Util.Visitor.Visitor exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.visitor
 -}
 
 import JR
-import NullUtil
-import VisitorInterface
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Util.Visitor.VisitorInterface as VisitorInterface
 
 
 jclass : String

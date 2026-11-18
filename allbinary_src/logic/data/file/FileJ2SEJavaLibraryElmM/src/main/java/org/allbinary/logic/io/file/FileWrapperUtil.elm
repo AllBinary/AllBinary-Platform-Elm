@@ -1,105 +1,103 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
-module FileWrapperUtil where
+module Org.Allbinary.Logic.Io.File.FileWrapperUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AbFile -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified File -- java.io.File
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file
+-}
 
-data FileWrapperUtil = FileWrapperUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull FileWrapperUtil where
-    javaNull = javaNullRecord "FileWrapperUtil"
-
-instance JavaEquals FileWrapperUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FileWrapperUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FileWrapperUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO FileWrapperUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = FileWrapperUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: FileWrapperUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO FileWrapperUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: FileWrapperUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.Io.File.AbFile as AbFile
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
 
 
-wrapFiles :: JavaArray (Any.Any) -> IO (JavaArray (AbFile.AbFile))
-wrapFiles files = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (PreLogUtil.putSE "Exception Wrapping Files" "FileWrapperUtil" "wrapFiles" e)
-            pure ((jnewArray (0) javaNull))
-            ) $ do
-            let abFileArray = (jnewArray ((jlength files)) javaNull)
-            forM_ [((jlength files) - 1), ((jlength files) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-                assignedValue <- (AbFile.new_1 (javaCast (jindex files (index)) :: File.File))
-                jsetIndex abFileArray (index) (assignedValue)
-            pure (abFileArray)
+jclass : String
+jclass =
+    "FileWrapperUtil"
 
 
-wrapFile :: File.File -> IO (AbFile.AbFile)
-wrapFile file = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (PreLogUtil.putSE "Exception Wrapping File" "FileWrapperUtil" "wrapFile" e)
-            pure (AbFile.nULL_FILE)
-            ) $ do
-            (AbFile.new_1 file)
+jchain : List String
+jchain =
+    [ "FileWrapperUtil" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "wrapFiles_1", jm_wrapFiles_1 )
+        , ( "wrapFile_1", jm_wrapFile_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FileWrapperUtil"
+        [ ( "jm_wrapFiles_1", jm_wrapFiles_1 ), ( "jm_wrapFile_1", jm_wrapFile_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_wrapFiles_1 : JR.Method
+jm_wrapFiles_1 jheap jthis jargs =
+    JR.method [ ( "files", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "abFileArray" "" (JR.newArray "" [ (JR.alength (JR.local "files")) ]), 
+                        JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.local "files")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66431 -> (JR.setLocal "index" "I" (JR.lit jwN66431))) JR.decrement) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.local "abFileArray") (\jaN66290 -> JR.andThen (JR.local "index") (\jiN66290 -> (JR.aset (JR.lit jaN66290) (JR.lit jiN66290) (JR.new AbFile.jnew_1 [ (JR.aget (JR.local "files") (JR.local "index")) ]))))) ]) ], 
+                        JR.return (JR.local "abFileArray") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_putSE_4 [ (JR.str "Exception Wrapping Files"), (JR.str "FileWrapperUtil"), (JR.str "wrapFiles"), (JR.local "e") ]), 
+                        JR.return (JR.newArray "" [ (JR.int 0) ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_wrapFile_1 : JR.Method
+jm_wrapFile_1 jheap jthis jargs =
+    JR.method [ ( "file", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.return (JR.new AbFile.jnew_1 [ (JR.local "file") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_putSE_4 [ (JR.str "Exception Wrapping File"), (JR.str "FileWrapperUtil"), (JR.str "wrapFile"), (JR.local "e") ]), 
+                        JR.return AbFile.jstatic_NULL_FILE ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

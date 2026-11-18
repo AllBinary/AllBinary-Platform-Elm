@@ -1,220 +1,189 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module BaseImageAnimationFactory where
+module Org.Allbinary.Animation.Image.BaseImageAnimationFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnimationFactoryInitializationVisitor -- same package or java.lang
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified AnimationBehaviorFactory -- org.allbinary.animation.AnimationBehaviorFactory
-import qualified AnimationInterfaceFactoryInterface -- org.allbinary.animation.AnimationInterfaceFactoryInterface
-import qualified NullAnimationFactory -- org.allbinary.animation.NullAnimationFactory
-import qualified AnimationFactoryImageScaleUtil -- org.allbinary.image.AnimationFactoryImageScaleUtil
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified ScaleProperties -- org.allbinary.media.ScaleProperties
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
--- implements AnimationInterfaceFactoryInterface
-data BaseImageAnimationFactory = BaseImageAnimationFactory
-    { header_ :: JavaHeader
-    , animationFactoryImageScaleUtil :: IORef (AnimationFactoryImageScaleUtil.AnimationFactoryImageScaleUtil)
-    , image :: IORef (Image.Image)
-    , animationBehaviorFactory :: IORef (AnimationBehaviorFactory.AnimationBehaviorFactory)
-    , sequenceArray :: IORef (JavaArray (Int))
-    , animationFactoryInitializationVisitor :: IORef (AnimationFactoryInitializationVisitor.AnimationFactoryInitializationVisitor)
-    , scaleProperties :: IORef (ScaleProperties.ScaleProperties)
-    }
-
-instance JavaNull BaseImageAnimationFactory where
-    javaNull = javaNullRecord "BaseImageAnimationFactory"
-
-instance JavaEquals BaseImageAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BaseImageAnimationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BaseImageAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO BaseImageAnimationFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    animationFactoryImageScaleUtil <- newIORef javaNull
-    image <- newIORef javaNull
-    animationBehaviorFactory <- newIORef javaNull
-    sequenceArray <- newIORef javaNull
-    animationFactoryInitializationVisitor <- newIORef javaNull
-    scaleProperties <- newIORef javaNull
-    let this = BaseImageAnimationFactory header_ animationFactoryImageScaleUtil image animationBehaviorFactory sequenceArray animationFactoryInitializationVisitor scaleProperties
-    jregisterLevel header_ this
-    AnimationInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    jregisterMethod header_ "getImage" (\() -> getImage_impl this)
-    jregisterMethod header_ "getSequenceArray" (\() -> getSequenceArray_impl this)
-    jregisterMethod header_ "setInitialScale" (\() -> setInitialScale_impl this)
-    jregisterMethod header_ "getAnimationFactoryInitializationVisitorP" (\() -> getAnimationFactoryInitializationVisitorP_impl this)
-    jregisterMethod header_ "getScalePropertiesP" (\() -> getScalePropertiesP_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: BaseImageAnimationFactory -> IO ()
-initFields_ this = do
-    jset this.animationFactoryImageScaleUtil =<< (AnimationFactoryImageScaleUtil.getInstance)
-    jset this.image (javaNull)
-    jset this.animationBehaviorFactory (javaNull)
-    jset this.sequenceArray (javaNull)
-    jset this.animationFactoryInitializationVisitor (javaNull)
-    jset this.scaleProperties (ScaleProperties.instance_)
-    pure ()
+import JR
+import Org.Allbinary.Image.AnimationFactoryImageScaleUtil as AnimationFactoryImageScaleUtil
+import Org.Allbinary.Animation.Image.AnimationFactoryInitializationVisitor as AnimationFactoryInitializationVisitor
+import Org.Allbinary.Animation.AnimationInterfaceFactoryInterface as AnimationInterfaceFactoryInterface
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Animation.NullAnimationFactory as NullAnimationFactory
+import Org.Allbinary.Media.ScaleProperties as ScaleProperties
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
--- throws Exception
-createFactoryBase :: Image.Image -> JavaArray (Int) -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO (BaseImageAnimationFactory)
-createFactoryBase image sequenceArray width height animationBehaviorFactory = do
-        (new_7 image sequenceArray width height 0 0 animationBehaviorFactory)
-
-new_7 :: Image.Image -> JavaArray (Int) -> Int -> Int -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO BaseImageAnimationFactory
-new_7 image sequenceArray width height dx dy animationBehaviorFactory = do
-    this <- newRecord_
-    init_7 this image sequenceArray width height dx dy animationBehaviorFactory
-    pure this
-
-init_7 :: BaseImageAnimationFactory -> Image.Image -> JavaArray (Int) -> Int -> Int -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ()
-init_7 this image sequenceArray width height dx dy animationBehaviorFactory = do
-        initFields_ this
-        assignedValue <- (AnimationFactoryInitializationVisitor.new_)
-        jset (this).animationFactoryInitializationVisitor (assignedValue)
-        jset (this).image (image)
-        jset ((jget (this).animationFactoryInitializationVisitor)).width (width)
-        jset ((jget (this).animationFactoryInitializationVisitor)).height (height)
-        jset (this).animationBehaviorFactory (animationBehaviorFactory)
-        jset (this).sequenceArray (sequenceArray)
-        jset ((jget (this).animationFactoryInitializationVisitor)).dx (dx)
-        jset ((jget (this).animationFactoryInitializationVisitor)).dy (dy)
-        pure ()
+jclass : String
+jclass =
+    "BaseImageAnimationFactory"
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: BaseImageAnimationFactory))) () a1
-
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: BaseImageAnimationFactory)) a1
-
-getInstance_impl :: BaseImageAnimationFactory -> Int -> IO (Animation.Animation)
-getInstance_impl this instanceId = do
-        (NullAnimationFactory.getInstance ((jio (NullAnimationFactory.getFactoryInstance))) instanceId)
+jchain : List String
+jchain =
+    [ "BaseImageAnimationFactory" ]
+        ++ AnimationInterfaceFactoryInterface.jchain
 
 
-getImage :: (JavaObjectClass this_) => this_ -> IO (Image.Image)
-getImage object_ = jmethod object_ "getImage" (\() -> (getImage_impl (javaCast object_ :: BaseImageAnimationFactory))) ()
-
-getImage_super :: (JavaObjectClass this_) => this_ -> IO (Image.Image)
-getImage_super object_ = (getImage_impl (javaCast object_ :: BaseImageAnimationFactory))
-
-getImage_impl :: BaseImageAnimationFactory -> IO (Image.Image)
-getImage_impl this = do
-        pure ((jget (this).image))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "animationFactoryImageScaleUtil", JR.defaultOf "" ), ( "image", JR.defaultOf "" ), ( "animationBehaviorFactory", JR.defaultOf "" ), ( "sequenceArray", JR.defaultOf "" ), ( "animationFactoryInitializationVisitor", JR.defaultOf "" ), ( "scaleProperties", JR.defaultOf "" ) ]
 
 
-getSequenceArray :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequenceArray object_ = jmethod object_ "getSequenceArray" (\() -> (getSequenceArray_impl (javaCast object_ :: BaseImageAnimationFactory))) ()
-
-getSequenceArray_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequenceArray_super object_ = (getSequenceArray_impl (javaCast object_ :: BaseImageAnimationFactory))
-
-getSequenceArray_impl :: BaseImageAnimationFactory -> IO (JavaArray (Int))
-getSequenceArray_impl this = do
-        pure ((jget (this).sequenceArray))
-
-
-setInitialScale :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale object_ a1 = jmethod object_ "setInitialScale" (\() -> (setInitialScale_impl (javaCast object_ :: BaseImageAnimationFactory))) () a1
-
-setInitialScale_super :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_super object_ a1 = (setInitialScale_impl (javaCast object_ :: BaseImageAnimationFactory)) a1
-
-setInitialScale_impl :: BaseImageAnimationFactory -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_impl this scaleProperties = do
-        jset (this).scaleProperties (scaleProperties)
-        if (jget ((jget (this).scaleProperties)).shouldScale) then do
-            jset ((jget (this).scaleProperties)).scaleWidth ((Prelude.fromInteger (jnumericInteger (((jget ((jget (this).animationFactoryInitializationVisitor)).width) * (jget ((jget (this).scaleProperties)).scaleX))))))
-            jset ((jget (this).scaleProperties)).scaleHeight ((Prelude.fromInteger (jnumericInteger (((jget ((jget (this).animationFactoryInitializationVisitor)).height) * (jget ((jget (this).scaleProperties)).scaleY))))))
-        else do
-            pure ()
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "createFactoryBase_5", jm_createFactoryBase_5 )
+        , ( "getInstance_1", jm_getInstance_1 )
+        , ( "getImage_0", jm_getImage_0 )
+        , ( "getSequenceArray_0", jm_getSequenceArray_0 )
+        , ( "setInitialScale_1", jm_setInitialScale_1 )
+        , ( "getAnimationFactoryInitializationVisitorP_0", jm_getAnimationFactoryInitializationVisitorP_0 )
+        , ( "getScalePropertiesP_0", jm_getScalePropertiesP_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
 
-getAnimationFactoryInitializationVisitorP :: (JavaObjectClass this_) => this_ -> IO (AnimationFactoryInitializationVisitor.AnimationFactoryInitializationVisitor)
-getAnimationFactoryInitializationVisitorP object_ = jmethod object_ "getAnimationFactoryInitializationVisitorP" (\() -> (getAnimationFactoryInitializationVisitorP_impl (javaCast object_ :: BaseImageAnimationFactory))) ()
-
-getAnimationFactoryInitializationVisitorP_super :: (JavaObjectClass this_) => this_ -> IO (AnimationFactoryInitializationVisitor.AnimationFactoryInitializationVisitor)
-getAnimationFactoryInitializationVisitorP_super object_ = (getAnimationFactoryInitializationVisitorP_impl (javaCast object_ :: BaseImageAnimationFactory))
-
-getAnimationFactoryInitializationVisitorP_impl :: BaseImageAnimationFactory -> IO (AnimationFactoryInitializationVisitor.AnimationFactoryInitializationVisitor)
-getAnimationFactoryInitializationVisitorP_impl this = do
-        pure ((jget (this).animationFactoryInitializationVisitor))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BaseImageAnimationFactory"
+        [ ( "jm_createFactoryBase_5", jm_createFactoryBase_5 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_getImage_0", jm_getImage_0 ), ( "jm_getSequenceArray_0", jm_getSequenceArray_0 ), ( "jm_setInitialScale_1", jm_setInitialScale_1 ), ( "jm_getAnimationFactoryInitializationVisitorP_0", jm_getAnimationFactoryInitializationVisitorP_0 ), ( "jm_getScalePropertiesP_0", jm_getScalePropertiesP_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_7", jnew_7 ), ( "jinit_7", jinit_7 ) ]
+        []
+        jheap
 
 
-getScalePropertiesP :: (JavaObjectClass this_) => this_ -> IO (ScaleProperties.ScaleProperties)
-getScalePropertiesP object_ = jmethod object_ "getScalePropertiesP" (\() -> (getScalePropertiesP_impl (javaCast object_ :: BaseImageAnimationFactory))) ()
-
-getScalePropertiesP_super :: (JavaObjectClass this_) => this_ -> IO (ScaleProperties.ScaleProperties)
-getScalePropertiesP_super object_ = (getScalePropertiesP_impl (javaCast object_ :: BaseImageAnimationFactory))
-
-getScalePropertiesP_impl :: BaseImageAnimationFactory -> IO (ScaleProperties.ScaleProperties)
-getScalePropertiesP_impl this = do
-        pure ((jget (this).scaleProperties))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: BaseImageAnimationFactory))) ()
+jinit_7 : JR.Method
+jinit_7 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "sequenceArray", "" ), ( "width", "I" ), ( "height", "I" ), ( "dx", "I" ), ( "dy", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "animationFactoryImageScaleUtil" "" JR.this (JR.callStatic AnimationFactoryImageScaleUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "scaleProperties" "" JR.this ScaleProperties.jstatic_instance),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "animationFactoryInitializationVisitor" "" JR.this (JR.new AnimationFactoryInitializationVisitor.jnew_0 [])), 
+                    JR.exec (JR.setField "image" "" JR.this (JR.local "image")), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67512 -> (JR.setField "width" "I" (JR.lit jtN67512) (JR.local "width")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67548 -> (JR.setField "height" "I" (JR.lit jtN67548) (JR.local "height")))), 
+                    JR.exec (JR.setField "animationBehaviorFactory" "" JR.this (JR.local "animationBehaviorFactory")), 
+                    JR.exec (JR.setField "sequenceArray" "" JR.this (JR.local "sequenceArray")), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67640 -> (JR.setField "dx" "I" (JR.lit jtN67640) (JR.local "dx")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67676 -> (JR.setField "dy" "I" (JR.lit jtN67676) (JR.local "dy")))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: BaseImageAnimationFactory))
 
-toString_impl :: BaseImageAnimationFactory -> IO (String)
-toString_impl this = do
-        commonSeps <- (CommonSeps.getInstance)
-        commonLabels <- (CommonLabels.getInstance)
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer (jio (jobjectToString this)))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonLabels).hEIGHT_LABEL))
-        Control.Monad.void (StringMaker.appendint stringBuffer (Prelude.fromInteger (jnumericInteger (jio (Image.getHeight ((jget (this).image)))))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonSeps).sPACE))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (AnimationFactoryInitializationVisitor.toString ((jget (this).animationFactoryInitializationVisitor)))))
-        (StringMaker.toString stringBuffer)
+jnew_7 : JR.Method
+jnew_7 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_7 jheap jthis jargs
 
+
+jm_createFactoryBase_5 : JR.Method
+jm_createFactoryBase_5 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "sequenceArray", "" ), ( "width", "I" ), ( "height", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_7 [ (JR.local "image"), (JR.local "sequenceArray"), (JR.local "width"), (JR.local "height"), (JR.int 0), (JR.int 0), (JR.local "animationBehaviorFactory") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "instanceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getInstance_1" (JR.callStatic NullAnimationFactory.jm_getFactoryInstance_0 []) [ (JR.local "instanceId") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getImage_0 : JR.Method
+jm_getImage_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "image") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSequenceArray_0 : JR.Method
+jm_getSequenceArray_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "sequenceArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInitialScale_1 : JR.Method
+jm_setInitialScale_1 jheap jthis jargs =
+    JR.method [ ( "scaleProperties", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "scaleProperties" "" JR.this (JR.local "scaleProperties")), 
+                    JR.ifElse (JR.field "shouldScale" (JR.thisField "scaleProperties")) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN68172 -> (JR.setField "scaleWidth" "I" (JR.lit jtN68172) (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.field "width" (JR.thisField "animationFactoryInitializationVisitor"))) (JR.field "scaleX" (JR.thisField "scaleProperties")))))))), 
+                        JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN68255 -> (JR.setField "scaleHeight" "I" (JR.lit jtN68255) (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.field "height" (JR.thisField "animationFactoryInitializationVisitor"))) (JR.field "scaleY" (JR.thisField "scaleProperties")))))))) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAnimationFactoryInitializationVisitorP_0 : JR.Method
+jm_getAnimationFactoryInitializationVisitorP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "animationFactoryInitializationVisitor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getScalePropertiesP_0 : JR.Method
+jm_getScalePropertiesP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "scaleProperties") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                    JR.declare "commonLabels" "" (JR.callStatic CommonLabels.jm_getInstance_0 []), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.callVia JR.noMethods "toString_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "HEIGHT_LABEL" (JR.local "commonLabels")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "getHeight_0" (JR.thisField "image") [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.local "commonSeps")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.thisField "animationFactoryInitializationVisitor") []) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

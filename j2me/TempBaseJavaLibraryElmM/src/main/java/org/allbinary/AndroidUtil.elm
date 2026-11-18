@@ -1,4 +1,4 @@
-module AndroidUtil exposing (..)
+module Org.Allbinary.AndroidUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary
 -}

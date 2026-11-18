@@ -1,102 +1,88 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2026 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module InitGameProcessor (module InitGameProcessor, module Processor) where
+module Org.Allbinary.Game.Displayable.Canvas.InitGameProcessor exposing (..)
 
-import Processor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, process, process_super, process_impl, gameCanvas)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameCanvas -- same package or java.lang
-import qualified Processor -- org.allbinary.canvas.Processor
-import qualified ProgressCanvasFactory -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data InitGameProcessor = InitGameProcessor
-    { header_ :: JavaHeader
-    , base :: Processor.Processor
-    , gameCanvas :: IORef (AllBinaryGameCanvas.AllBinaryGameCanvas)
-    }
-
-instance JavaNull InitGameProcessor where
-    javaNull = javaNullRecord "InitGameProcessor"
-
-instance JavaEquals InitGameProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InitGameProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InitGameProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO InitGameProcessor
-newRecord_ = do
-    base <- Processor.newRecord_
-    let header_ = base.header_
-    gameCanvas <- newIORef javaNull
-    let this = InitGameProcessor header_ base gameCanvas
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: InitGameProcessor -> IO ()
-initFields_ this = do
-    jset this.gameCanvas (javaNull)
-    pure ()
-
-new_1 :: AllBinaryGameCanvas.AllBinaryGameCanvas -> IO InitGameProcessor
-new_1 gameCanvas = do
-    this <- newRecord_
-    init_1 this gameCanvas
-    pure this
-
-init_1 :: InitGameProcessor -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO ()
-init_1 this gameCanvas = do
-        Processor.init_ this.base
-        initFields_ this
-        jset (this).gameCanvas (gameCanvas)
-        pure ()
+import JR
+import Org.Allbinary.Canvas.Processor as Processor
+import Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressCanvasFactory as ProgressCanvasFactory
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> IO (())
-process object_ = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: InitGameProcessor))) ()
+jclass : String
+jclass =
+    "InitGameProcessor"
 
-process_super :: (JavaObjectClass this_) => this_ -> IO (())
-process_super object_ = (process_impl (javaCast object_ :: InitGameProcessor))
 
-process_impl :: InitGameProcessor -> IO (())
-process_impl this = do
-        when (jio (ProgressCanvasFactory.isInGame ((jio (ProgressCanvasFactory.getInstance))))) $ do
-            Control.Monad.void (AllBinaryGameCanvas.setProcessGameProcessorInit ((jget (this).gameCanvas)))
-        pure ()
+jchain : List String
+jchain =
+    [ "InitGameProcessor" ]
+        ++ Processor.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    Processor.jfields ++ [ ( "gameCanvas", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "process_0", jm_process_0 ) ]
+        Processor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InitGameProcessor"
+        [ ( "jm_process_0", jm_process_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "gameCanvas", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Processor.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "gameCanvas" "" JR.this (JR.local "gameCanvas")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_process_0 : JR.Method
+jm_process_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isInGame_0" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []) []) (JR.run [ 
+                        JR.exec (JR.invoke "setProcessGameProcessorInit_0" (JR.thisField "gameCanvas") []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

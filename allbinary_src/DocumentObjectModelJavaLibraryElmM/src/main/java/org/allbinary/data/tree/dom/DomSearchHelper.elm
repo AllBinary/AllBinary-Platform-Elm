@@ -1,136 +1,145 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.data.tree.dom
-module DomSearchHelper where
+module Org.Allbinary.Data.Tree.Dom.DomSearchHelper exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified Node -- org.w3c.dom.Node
-import qualified NodeList -- org.w3c.dom.NodeList
+{-| Generated Code Do Not Modify package org.allbinary.data.tree.dom
+-}
 
-data DomSearchHelper = DomSearchHelper
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull DomSearchHelper where
-    javaNull = javaNullRecord "DomSearchHelper"
-
-instance JavaEquals DomSearchHelper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DomSearchHelper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DomSearchHelper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DomSearchHelper
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = DomSearchHelper header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: DomSearchHelper -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO DomSearchHelper
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DomSearchHelper -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
 
 
-getNodeNoThrow :: String -> NodeList.NodeList -> IO (Node.Node)
-getNodeNoThrow nodeName nodeList = do
-    javaCatchReturn $ do
-        numberOfNodes <- (NodeList.getLength nodeList)
-        forM_ [0 .. numberOfNodes - 1] $ \index -> javaIteration (pure ()) $ do
-            node <- (NodeList.item nodeList index)
-            when ((jio (Node.compareTo ((jio (Node.getNodeName node))) nodeName)) == 0) $ do
-                javaReturn (node)
-        pure (javaNull)
+jclass : String
+jclass =
+    "DomSearchHelper"
 
 
--- throws Exception
-getNode :: String -> NodeList.NodeList -> IO (Node.Node)
-getNode nodeName nodeList = do
-    javaCatchReturn $ do
-        node <- (DomSearchHelper.getNodeNoThrow nodeName nodeList)
-        if (node /= javaNull) then do
-            javaReturn (node)
-        else do
-            javaThrow ((JavaException "Exception" (nodeName ++ " Node Not Found in search")))
+jchain : List String
+jchain =
+    [ "DomSearchHelper" ]
 
 
--- throws Exception
-getChildNodeList :: String -> NodeList.NodeList -> IO (NodeList.NodeList)
-getChildNodeList nodeName nodeList = do
-        node <- (DomSearchHelper.getNode nodeName nodeList)
-        (Node.getChildNodes node)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
--- throws Exception
-getAllNodes :: String -> NodeList.NodeList -> IO (BasicArrayList.BasicArrayList)
-getAllNodes nodeName nodeList = do
-    javaCatchReturn $ do
-        vector <- (DomSearchHelper.getAllNodesNoThrow nodeName nodeList)
-        if (vector == javaNull) then do
-            javaThrow ((JavaException "Exception" (nodeName ++ " Node Not Found in search")))
-        else do
-            javaReturn (vector)
+jvtable =
+    JR.vtable
+        [ ( "getNodeNoThrow_2", jm_getNodeNoThrow_2 )
+        , ( "getNode_2", jm_getNode_2 )
+        , ( "getChildNodeList_2", jm_getChildNodeList_2 )
+        , ( "getAllNodes_2", jm_getAllNodes_2 )
+        , ( "getAllNodesNoThrow_2", jm_getAllNodesNoThrow_2 ) ]
+        JR.noMethods
 
 
-getAllNodesNoThrow :: String -> NodeList.NodeList -> IO (BasicArrayList.BasicArrayList)
-getAllNodesNoThrow nodeName nodeList = do
-        nodeVector <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        numberOfNodes <- (NodeList.getLength nodeList)
-        forM_ [0 .. numberOfNodes - 1] $ \index -> javaIteration (pure ()) $ do
-            node <- (NodeList.item nodeList index)
-            when ((jio (Node.compareTo ((jio (Node.getNodeName node))) nodeName)) == 0) $ do
-                Control.Monad.void (BasicArrayList.add nodeVector node)
-        pure (nodeVector)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DomSearchHelper"
+        [ ( "jm_getNodeNoThrow_2", jm_getNodeNoThrow_2 ), ( "jm_getNode_2", jm_getNode_2 ), ( "jm_getChildNodeList_2", jm_getChildNodeList_2 ), ( "jm_getAllNodes_2", jm_getAllNodes_2 ), ( "jm_getAllNodesNoThrow_2", jm_getAllNodesNoThrow_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getNodeNoThrow_2 : JR.Method
+jm_getNodeNoThrow_2 jheap jthis jargs =
+    JR.method [ ( "nodeName", "" ), ( "nodeList", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "numberOfNodes" "I" (JR.invoke "getLength_0" (JR.local "nodeList") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfNodes")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66299 -> (JR.setLocal "index" "I" (JR.lit jwN66299))) JR.increment) ]) (JR.run [ 
+                        JR.declare "node" "" (JR.invoke "item_1" (JR.local "nodeList") [ (JR.local "index") ]), 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getNodeName_0" (JR.local "node") []) [ (JR.local "nodeName") ]) (JR.int 0)) (JR.run [ 
+                            JR.return (JR.local "node") ]) identity ]) ], 
+                    JR.return JR.null ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNode_2 : JR.Method
+jm_getNode_2 jheap jthis jargs =
+    JR.method [ ( "nodeName", "" ), ( "nodeList", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "node" "" (JR.callStatic jm_getNodeNoThrow_2 [ (JR.local "nodeName"), (JR.local "nodeList") ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "node") JR.null) (JR.run [ 
+                        JR.return (JR.local "node") ]) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.concat (JR.local "nodeName") (JR.str " Node Not Found in search")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getChildNodeList_2 : JR.Method
+jm_getChildNodeList_2 jheap jthis jargs =
+    JR.method [ ( "nodeName", "" ), ( "nodeList", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "node" "" (JR.callStatic jm_getNode_2 [ (JR.local "nodeName"), (JR.local "nodeList") ]), 
+                    JR.return (JR.invoke "getChildNodes_0" (JR.local "node") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAllNodes_2 : JR.Method
+jm_getAllNodes_2 jheap jthis jargs =
+    JR.method [ ( "nodeName", "" ), ( "nodeList", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "vector" "" (JR.callStatic jm_getAllNodesNoThrow_2 [ (JR.local "nodeName"), (JR.local "nodeList") ]), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "vector") JR.null) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.concat (JR.local "nodeName") (JR.str " Node Not Found in search")) ]) ]) (JR.run [ 
+                        JR.return (JR.local "vector") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAllNodesNoThrow_2 : JR.Method
+jm_getAllNodesNoThrow_2 jheap jthis jargs =
+    JR.method [ ( "nodeName", "" ), ( "nodeList", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "nodeVector" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "numberOfNodes" "I" (JR.invoke "getLength_0" (JR.local "nodeList") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfNodes")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67297 -> (JR.setLocal "index" "I" (JR.lit jwN67297))) JR.increment) ]) (JR.run [ 
+                        JR.declare "node" "" (JR.invoke "item_1" (JR.local "nodeList") [ (JR.local "index") ]), 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getNodeName_0" (JR.local "node") []) [ (JR.local "nodeName") ]) (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "nodeVector") [ (JR.local "node") ]) ]) identity ]) ], 
+                    JR.return (JR.local "nodeVector") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,185 +1,164 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.device
-module OpenGLESGraphics (module OpenGLESGraphics, module Graphics) where
+module Org.Allbinary.Device.OpenGLESGraphics exposing (..)
 
-import Graphics hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateGL, updateGL_super, updateGL_impl, set, set_super, set_impl, init, init_super, init_impl, update, update_super, update_impl, setOrthoginalMode, setOrthoginalMode_super, setOrthoginalMode_impl, setCameraMode, setCameraMode_super, setCameraMode_impl, getGl10, getGl10_super, getGl10_impl, setFontDebug, setFontDebug_super, setFontDebug_impl, commonStrings, gl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NullGL10 -- same package or java.lang
-import qualified GL -- javax.microedition.khronos.opengles.GL
-import qualified GL10 -- javax.microedition.khronos.opengles.GL10
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified FontDebugBase -- org.allbinary.graphics.font.FontDebugBase
-import qualified OpenGLSurfaceChangedInterface -- org.allbinary.image.opengles.OpenGLSurfaceChangedInterface
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified GraphicsInterface
+{-| Generated Code Do Not Modify package org.allbinary.device
+-}
 
--- implements OpenGLSurfaceChangedInterface
--- implements GraphicsInterface
-data OpenGLESGraphics = OpenGLESGraphics
-    { header_ :: JavaHeader
-    , base :: Graphics.Graphics
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , gl :: IORef (GL10.GL10)
-    }
-
-instance JavaNull OpenGLESGraphics where
-    javaNull = javaNullRecord "OpenGLESGraphics"
-
-instance JavaEquals OpenGLESGraphics where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLESGraphics where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLESGraphics where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO OpenGLESGraphics
-newRecord_ = do
-    base <- Graphics.newRecord_
-    let header_ = base.header_
-    commonStrings <- newIORef javaNull
-    gl <- newIORef javaNull
-    let this = OpenGLESGraphics header_ base commonStrings gl
-    jregisterLevel header_ this
-    OpenGLSurfaceChangedInterface.registerInterface_ header_
-    GraphicsInterface.registerInterface_ header_
-    jregisterMethod header_ "updateGL" (\() -> updateGL_impl this)
-    jregisterMethod header_ "set" (\() -> set_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "setOrthoginalMode" (\() -> setOrthoginalMode_impl this)
-    jregisterMethod header_ "setCameraMode" (\() -> setCameraMode_impl this)
-    jregisterMethod header_ "getGl10" (\() -> getGl10_impl this)
-    jregisterMethod header_ "setFontDebug" (\() -> setFontDebug_impl this)
-    pure this
-
-initFields_ :: OpenGLESGraphics -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.gl (NullGL10.nULL_GL10)
-    pure ()
-
-new_ :: IO OpenGLESGraphics
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLESGraphics -> IO ()
-init_ this = do
-        Graphics.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Javax.Microedition.Lcdui.Graphics as Graphics
+import Org.Allbinary.Device.GraphicsInterface as GraphicsInterface
+import Org.Allbinary.Device.NullGL10 as NullGL10
+import Org.Allbinary.Image.Opengles.OpenGLSurfaceChangedInterface as OpenGLSurfaceChangedInterface
 
 
-updateGL :: (JavaObjectClass this_) => this_ -> GL.GL -> IO (())
-updateGL object_ a1 = jmethod object_ "updateGL" (\() -> (updateGL_impl (javaCast object_ :: OpenGLESGraphics))) () a1
-
-updateGL_super :: (JavaObjectClass this_) => this_ -> GL.GL -> IO (())
-updateGL_super object_ a1 = (updateGL_impl (javaCast object_ :: OpenGLESGraphics)) a1
-
-updateGL_impl :: OpenGLESGraphics -> GL.GL -> IO (())
-updateGL_impl this gl = do
-        pure ()
+jclass : String
+jclass =
+    "OpenGLESGraphics"
 
 
-set :: (JavaObjectClass this_) => this_ -> GL.GL -> IO (())
-set object_ a1 = jmethod object_ "set" (\() -> (set_impl (javaCast object_ :: OpenGLESGraphics))) () a1
-
-set_super :: (JavaObjectClass this_) => this_ -> GL.GL -> IO (())
-set_super object_ a1 = (set_impl (javaCast object_ :: OpenGLESGraphics)) a1
-
-set_impl :: OpenGLESGraphics -> GL.GL -> IO (())
-set_impl this gl = do
-        pure ()
+jchain : List String
+jchain =
+    [ "OpenGLESGraphics" ]
+        ++ Graphics.jchain
+        ++ OpenGLSurfaceChangedInterface.jchain
+        ++ GraphicsInterface.jchain
 
 
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: OpenGLESGraphics))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: OpenGLESGraphics))
-
-init_impl :: OpenGLESGraphics -> IO (())
-init_impl this = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    Graphics.jfields ++ [ ( "commonStrings", JR.defaultOf "" ), ( "gl", JR.defaultOf "" ) ]
 
 
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: OpenGLESGraphics))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: OpenGLESGraphics))
-
-update_impl :: OpenGLESGraphics -> IO (())
-update_impl this = do
-        pure ()
-
-
-setOrthoginalMode :: (JavaObjectClass this_) => this_ -> IO (())
-setOrthoginalMode object_ = jmethod object_ "setOrthoginalMode" (\() -> (setOrthoginalMode_impl (javaCast object_ :: OpenGLESGraphics))) ()
-
-setOrthoginalMode_super :: (JavaObjectClass this_) => this_ -> IO (())
-setOrthoginalMode_super object_ = (setOrthoginalMode_impl (javaCast object_ :: OpenGLESGraphics))
-
-setOrthoginalMode_impl :: OpenGLESGraphics -> IO (())
-setOrthoginalMode_impl this = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "updateGL_1", jm_updateGL_1 )
+        , ( "set_1", jm_set_1 )
+        , ( "init_0", jm_init_0 )
+        , ( "update_0", jm_update_0 )
+        , ( "setOrthoginalMode_0", jm_setOrthoginalMode_0 )
+        , ( "setCameraMode_0", jm_setCameraMode_0 )
+        , ( "getGl10_0", jm_getGl10_0 )
+        , ( "setFontDebug_2", jm_setFontDebug_2 ) ]
+        Graphics.jvtable
 
 
-setCameraMode :: (JavaObjectClass this_) => this_ -> IO (())
-setCameraMode object_ = jmethod object_ "setCameraMode" (\() -> (setCameraMode_impl (javaCast object_ :: OpenGLESGraphics))) ()
-
-setCameraMode_super :: (JavaObjectClass this_) => this_ -> IO (())
-setCameraMode_super object_ = (setCameraMode_impl (javaCast object_ :: OpenGLESGraphics))
-
-setCameraMode_impl :: OpenGLESGraphics -> IO (())
-setCameraMode_impl this = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLESGraphics"
+        [ ( "jm_updateGL_1", jm_updateGL_1 ), ( "jm_set_1", jm_set_1 ), ( "jm_init_0", jm_init_0 ), ( "jm_update_0", jm_update_0 ), ( "jm_setOrthoginalMode_0", jm_setOrthoginalMode_0 ), ( "jm_setCameraMode_0", jm_setCameraMode_0 ), ( "jm_getGl10_0", jm_getGl10_0 ), ( "jm_setFontDebug_2", jm_setFontDebug_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
 
-getGl10 :: (JavaObjectClass this_) => this_ -> IO (GL10.GL10)
-getGl10 object_ = jmethod object_ "getGl10" (\() -> (getGl10_impl (javaCast object_ :: OpenGLESGraphics))) ()
-
-getGl10_super :: (JavaObjectClass this_) => this_ -> IO (GL10.GL10)
-getGl10_super object_ = (getGl10_impl (javaCast object_ :: OpenGLESGraphics))
-
-getGl10_impl :: OpenGLESGraphics -> IO (GL10.GL10)
-getGl10_impl this = do
-        pure ((jget (this).gl))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setFontDebug :: (JavaObjectClass this_) => this_ -> Font.Font -> FontDebugBase.FontDebugBase -> IO (())
-setFontDebug object_ a1 a2 = jmethod object_ "setFontDebug" (\() -> (setFontDebug_impl (javaCast object_ :: OpenGLESGraphics))) () a1 a2
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect Graphics.jinit_0 JR.this []),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gl" "" JR.this NullGL10.jstatic_NULL_GL10),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setFontDebug_super :: (JavaObjectClass this_) => this_ -> Font.Font -> FontDebugBase.FontDebugBase -> IO (())
-setFontDebug_super object_ a1 a2 = (setFontDebug_impl (javaCast object_ :: OpenGLESGraphics)) a1 a2
 
-setFontDebug_impl :: OpenGLESGraphics -> Font.Font -> FontDebugBase.FontDebugBase -> IO (())
-setFontDebug_impl this font fontDebug = do
-        javaThrow ((JavaException "RuntimeException" ""))
-        pure ()
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
+
+jm_updateGL_1 : JR.Method
+jm_updateGL_1 jheap jthis jargs =
+    JR.method [ ( "gl", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_set_1 : JR.Method
+jm_set_1 jheap jthis jargs =
+    JR.method [ ( "gl", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setOrthoginalMode_0 : JR.Method
+jm_setOrthoginalMode_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setCameraMode_0 : JR.Method
+jm_setCameraMode_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGl10_0 : JR.Method
+jm_getGl10_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gl") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFontDebug_2 : JR.Method
+jm_setFontDebug_2 jheap jthis jargs =
+    JR.method [ ( "font", "" ), ( "fontDebug", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

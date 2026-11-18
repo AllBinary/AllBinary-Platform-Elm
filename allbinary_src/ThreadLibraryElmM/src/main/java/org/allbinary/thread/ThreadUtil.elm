@@ -1,10 +1,10 @@
-module ThreadUtil exposing (..)
+module Org.Allbinary.Thread.ThreadUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}
 
 import JR
-import LogUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
 jclass : String

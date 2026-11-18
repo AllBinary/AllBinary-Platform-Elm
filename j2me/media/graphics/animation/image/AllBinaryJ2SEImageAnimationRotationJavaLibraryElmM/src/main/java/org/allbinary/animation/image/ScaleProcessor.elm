@@ -1,116 +1,110 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module ScaleProcessor (module ScaleProcessor, module ScaleBaseProcessor) where
+module Org.Allbinary.Animation.Image.ScaleProcessor exposing (..)
 
-import ScaleBaseProcessor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, update, update_super, update_impl, logUtil, instanceC, commonStrings, imageScaleUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified ImageScaleUtil -- org.allbinary.media.image.ImageScaleUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified ScaleBaseProcessor
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
-data ScaleProcessor = ScaleProcessor
-    { header_ :: JavaHeader
-    , base :: ScaleBaseProcessor.ScaleBaseProcessor
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , imageScaleUtil :: IORef (ImageScaleUtil.ImageScaleUtil)
-    }
-
-instance JavaNull ScaleProcessor where
-    javaNull = javaNullRecord "ScaleProcessor"
-
-instance JavaEquals ScaleProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ScaleProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ScaleProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instanceC :: ScaleProcessor
-{-# NOINLINE instanceC #-}
-instanceC = unsafePerformIO ((new_))
-
-newRecord_ :: IO ScaleProcessor
-newRecord_ = do
-    base <- ScaleBaseProcessor.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    imageScaleUtil <- newIORef javaNull
-    let this = ScaleProcessor header_ base logUtil commonStrings imageScaleUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    pure this
-
-initFields_ :: ScaleProcessor -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.imageScaleUtil =<< (ImageScaleUtil.getInstance)
-    pure ()
-
-new_ :: IO ScaleProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ScaleProcessor -> IO ()
-init_ this = do
-    ScaleBaseProcessor.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Media.Image.ImageScaleUtil as ImageScaleUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Animation.Image.ScaleBaseProcessor as ScaleBaseProcessor
 
 
-getInstance :: IO (ScaleBaseProcessor.ScaleBaseProcessor)
-getInstance = do
-        pure ((javaCast ScaleProcessor.instanceC :: ScaleBaseProcessor.ScaleBaseProcessor))
+jclass : String
+jclass =
+    "ScaleProcessor"
 
 
-update :: (JavaObjectClass this_) => this_ -> Image.Image -> JavaArray (Image.Image) -> JavaArray (Image.Image) -> Int -> Float -> Float -> Float -> Float -> IO (())
-update object_ a1 a2 a3 a4 a5 a6 a7 a8 = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: ScaleProcessor))) () a1 a2 a3 a4 a5 a6 a7 a8
+jchain : List String
+jchain =
+    [ "ScaleProcessor" ]
+        ++ ScaleBaseProcessor.jchain
 
-update_super :: (JavaObjectClass this_) => this_ -> Image.Image -> JavaArray (Image.Image) -> JavaArray (Image.Image) -> Int -> Float -> Float -> Float -> Float -> IO (())
-update_super object_ a1 a2 a3 a4 a5 a6 a7 a8 = (update_impl (javaCast object_ :: ScaleProcessor)) a1 a2 a3 a4 a5 a6 a7 a8
 
-update_impl :: ScaleProcessor -> Image.Image -> JavaArray (Image.Image) -> JavaArray (Image.Image) -> Int -> Float -> Float -> Float -> Float -> IO (())
-update_impl this originalImage originalImageArray ximageToShowArray unused scaleX scaleY maxScaleX maxScaleY = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).uPDATE) e)
-            ) $ do
-            Control.Monad.void (ImageScaleUtil.scale2 ((jget (this).imageScaleUtil)) originalImage originalImageArray ximageToShowArray unused scaleX scaleY maxScaleX maxScaleY)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    ScaleBaseProcessor.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "imageScaleUtil", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "update_8", jm_update_8 ) ]
+        ScaleBaseProcessor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ScaleProcessor"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_update_8", jm_update_8 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instanceC", jstatic_instanceC ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instanceC : JR.M
+jstatic_instanceC s =
+    JR.static "ScaleProcessor" jclinit "instanceC"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect ScaleBaseProcessor.jinit_0 JR.this []),
+            JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "imageScaleUtil" "" JR.this (JR.callStatic ImageScaleUtil.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instanceC ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_8 : JR.Method
+jm_update_8 jheap jthis jargs =
+    JR.method [ ( "originalImage", "" ), ( "originalImageArray", "" ), ( "ximageToShowArray", "" ), ( "unused", "I" ), ( "scaleX", "F" ), ( "scaleY", "F" ), ( "maxScaleX", "F" ), ( "maxScaleY", "F" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "scale2_8" (JR.thisField "imageScaleUtil") [ (JR.local "originalImage"), (JR.local "originalImageArray"), (JR.local "ximageToShowArray"), (JR.local "unused"), (JR.local "scaleX"), (JR.local "scaleY"), (JR.local "maxScaleX"), (JR.local "maxScaleY") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

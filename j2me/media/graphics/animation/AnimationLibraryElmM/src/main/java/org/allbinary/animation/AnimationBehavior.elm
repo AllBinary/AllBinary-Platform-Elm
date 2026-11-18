@@ -1,100 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module AnimationBehavior where
+module Org.Allbinary.Animation.AnimationBehavior exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
-data AnimationBehavior = AnimationBehavior
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull AnimationBehavior where
-    javaNull = javaNullRecord "AnimationBehavior"
-
-instance JavaEquals AnimationBehavior where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AnimationBehavior where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AnimationBehavior where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AnimationBehavior
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AnimationBehavior
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = AnimationBehavior header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "reset" (\() -> reset_impl this)
-    pure this
-
-initFields_ :: AnimationBehavior -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AnimationBehavior
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AnimationBehavior -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (AnimationBehavior)
-getInstance = do
-        pure (AnimationBehavior.instance_)
+
+jclass : String
+jclass =
+    "AnimationBehavior"
 
 
-reset :: (JavaObjectClass this_) => this_ -> IO (())
-reset object_ = jmethod object_ "reset" (\() -> (reset_impl (javaCast object_ :: AnimationBehavior))) ()
+jchain : List String
+jchain =
+    [ "AnimationBehavior" ]
 
-reset_super :: (JavaObjectClass this_) => this_ -> IO (())
-reset_super object_ = (reset_impl (javaCast object_ :: AnimationBehavior))
 
-reset_impl :: AnimationBehavior -> IO (())
-reset_impl this = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "reset_0", jm_reset_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AnimationBehavior"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_reset_0", jm_reset_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AnimationBehavior" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_reset_0 : JR.Method
+jm_reset_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

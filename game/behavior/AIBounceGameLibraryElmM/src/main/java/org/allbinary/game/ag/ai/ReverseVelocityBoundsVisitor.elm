@@ -1,179 +1,148 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
-module ReverseVelocityBoundsVisitor where
+module Org.Allbinary.Game.Ag.Ai.ReverseVelocityBoundsVisitor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BoundsVisitorInterface -- org.allbinary.bounds.BoundsVisitorInterface
-import qualified VelocityInterface -- org.allbinary.game.physics.velocity.VelocityInterface
-import qualified VelocityInterfaceCompositeInterface -- org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface
-import qualified LayerInterface -- org.allbinary.layer.LayerInterface
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai
+-}
 
--- implements BoundsVisitorInterface
-data ReverseVelocityBoundsVisitor = ReverseVelocityBoundsVisitor
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , velocityInterface :: IORef (VelocityInterface.VelocityInterface)
-    , layerInterface :: IORef (LayerInterface.LayerInterface)
-    }
-
-instance JavaNull ReverseVelocityBoundsVisitor where
-    javaNull = javaNullRecord "ReverseVelocityBoundsVisitor"
-
-instance JavaEquals ReverseVelocityBoundsVisitor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ReverseVelocityBoundsVisitor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ReverseVelocityBoundsVisitor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ReverseVelocityBoundsVisitor
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    velocityInterface <- newIORef javaNull
-    layerInterface <- newIORef javaNull
-    let this = ReverseVelocityBoundsVisitor header_ logUtil velocityInterface layerInterface
-    jregisterLevel header_ this
-    BoundsVisitorInterface.registerInterface_ header_
-    jregisterMethod header_ "getX" (\() -> getX_impl this)
-    jregisterMethod header_ "getY" (\() -> getY_impl this)
-    jregisterMethod header_ "minX" (\() -> minX_impl this)
-    jregisterMethod header_ "maxX" (\() -> maxX_impl this)
-    jregisterMethod header_ "minY" (\() -> minY_impl this)
-    jregisterMethod header_ "maxY" (\() -> maxY_impl this)
-    pure this
-
-initFields_ :: ReverseVelocityBoundsVisitor -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.velocityInterface (javaNull)
-    jset this.layerInterface (javaNull)
-    pure ()
-
-new_1 :: LayerInterface.LayerInterface -> IO ReverseVelocityBoundsVisitor
-new_1 layerInterface = do
-    this <- newRecord_
-    init_1 this layerInterface
-    pure this
-
-init_1 :: ReverseVelocityBoundsVisitor -> LayerInterface.LayerInterface -> IO ()
-init_1 this layerInterface = do
-        initFields_ this
-        jset (this).layerInterface (layerInterface)
-        let velocityInterfaceCompositeInterface = (javaCast layerInterface :: VelocityInterfaceCompositeInterface.VelocityInterfaceCompositeInterface)
-        jset (this).velocityInterface ((javaCast (jio (VelocityInterfaceCompositeInterface.getVelocityProperties velocityInterfaceCompositeInterface)) :: VelocityInterface.VelocityInterface))
-        pure ()
+import JR
+import Org.Allbinary.Bounds.BoundsVisitorInterface as BoundsVisitorInterface
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getX :: (JavaObjectClass this_) => this_ -> IO (Int)
-getX object_ = jmethod object_ "getX" (\() -> (getX_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))) ()
-
-getX_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getX_super object_ = (getX_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))
-
-getX_impl :: ReverseVelocityBoundsVisitor -> IO (Int)
-getX_impl this = do
-        (LayerInterface.getXP ((jget (this).layerInterface)))
+jclass : String
+jclass =
+    "ReverseVelocityBoundsVisitor"
 
 
-getY :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY object_ = jmethod object_ "getY" (\() -> (getY_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))) ()
-
-getY_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getY_super object_ = (getY_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))
-
-getY_impl :: ReverseVelocityBoundsVisitor -> IO (Int)
-getY_impl this = do
-        (LayerInterface.getYP ((jget (this).layerInterface)))
+jchain : List String
+jchain =
+    [ "ReverseVelocityBoundsVisitor" ]
+        ++ BoundsVisitorInterface.jchain
 
 
-minX :: (JavaObjectClass this_) => this_ -> IO (())
-minX object_ = jmethod object_ "minX" (\() -> (minX_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))) ()
-
-minX_super :: (JavaObjectClass this_) => this_ -> IO (())
-minX_super object_ = (minX_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))
-
-minX_impl :: ReverseVelocityBoundsVisitor -> IO (())
-minX_impl this = do
-        when ((jio (VelocityInterface.getUnscaled ((jio (VelocityInterface.getVelocityXBasicDecimalP ((jget (this).velocityInterface))))))) < 0) $ do
-            Control.Monad.void (VelocityInterface.multiplyint ((jio (VelocityInterface.getVelocityXBasicDecimalP ((jget (this).velocityInterface))))) (Prelude.negate 1))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "velocityInterface", JR.defaultOf "" ), ( "layerInterface", JR.defaultOf "" ) ]
 
 
-maxX :: (JavaObjectClass this_) => this_ -> IO (())
-maxX object_ = jmethod object_ "maxX" (\() -> (maxX_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))) ()
-
-maxX_super :: (JavaObjectClass this_) => this_ -> IO (())
-maxX_super object_ = (maxX_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))
-
-maxX_impl :: ReverseVelocityBoundsVisitor -> IO (())
-maxX_impl this = do
-        when ((jio (VelocityInterface.getUnscaled ((jio (VelocityInterface.getVelocityXBasicDecimalP ((jget (this).velocityInterface))))))) > 0) $ do
-            Control.Monad.void (VelocityInterface.multiplyint ((jio (VelocityInterface.getVelocityXBasicDecimalP ((jget (this).velocityInterface))))) (Prelude.negate 1))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getX_0", jm_getX_0 )
+        , ( "getY_0", jm_getY_0 )
+        , ( "minX_0", jm_minX_0 )
+        , ( "maxX_0", jm_maxX_0 )
+        , ( "minY_0", jm_minY_0 )
+        , ( "maxY_0", jm_maxY_0 ) ]
+        JR.noMethods
 
 
-minY :: (JavaObjectClass this_) => this_ -> IO (())
-minY object_ = jmethod object_ "minY" (\() -> (minY_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))) ()
-
-minY_super :: (JavaObjectClass this_) => this_ -> IO (())
-minY_super object_ = (minY_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))
-
-minY_impl :: ReverseVelocityBoundsVisitor -> IO (())
-minY_impl this = do
-        when ((jio (VelocityInterface.getUnscaled ((jio (VelocityInterface.getVelocityYBasicDecimalP ((jget (this).velocityInterface))))))) < 0) $ do
-            Control.Monad.void (VelocityInterface.multiplyint ((jio (VelocityInterface.getVelocityYBasicDecimalP ((jget (this).velocityInterface))))) (Prelude.negate 1))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ReverseVelocityBoundsVisitor"
+        [ ( "jm_getX_0", jm_getX_0 ), ( "jm_getY_0", jm_getY_0 ), ( "jm_minX_0", jm_minX_0 ), ( "jm_maxX_0", jm_maxX_0 ), ( "jm_minY_0", jm_minY_0 ), ( "jm_maxY_0", jm_maxY_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
 
-maxY :: (JavaObjectClass this_) => this_ -> IO (())
-maxY object_ = jmethod object_ "maxY" (\() -> (maxY_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-maxY_super :: (JavaObjectClass this_) => this_ -> IO (())
-maxY_super object_ = (maxY_impl (javaCast object_ :: ReverseVelocityBoundsVisitor))
 
-maxY_impl :: ReverseVelocityBoundsVisitor -> IO (())
-maxY_impl this = do
-        when ((jio (VelocityInterface.getUnscaled ((jio (VelocityInterface.getVelocityYBasicDecimalP ((jget (this).velocityInterface))))))) > 0) $ do
-            Control.Monad.void (VelocityInterface.multiplyint ((jio (VelocityInterface.getVelocityYBasicDecimalP ((jget (this).velocityInterface))))) (Prelude.negate 1))
-        pure ()
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "layerInterface" "" JR.this (JR.local "layerInterface")), 
+                    JR.declare "velocityInterfaceCompositeInterface" "" (JR.local "layerInterface"), 
+                    JR.exec (JR.setField "velocityInterface" "" JR.this (JR.invoke "getVelocityProperties_0" (JR.local "velocityInterfaceCompositeInterface") [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getX_0 : JR.Method
+jm_getX_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getXP_0" (JR.thisField "layerInterface") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getY_0 : JR.Method
+jm_getY_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getYP_0" (JR.thisField "layerInterface") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_minX_0 : JR.Method
+jm_minX_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.less (JR.invoke "getUnscaled_0" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.thisField "velocityInterface") []) []) (JR.long 0)) (JR.run [ 
+                    JR.exec (JR.invoke "multiplyint_1" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.thisField "velocityInterface") []) [ (JR.map JR.neg (JR.int 1)) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_maxX_0 : JR.Method
+jm_maxX_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "getUnscaled_0" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.thisField "velocityInterface") []) []) (JR.long 0)) (JR.run [ 
+                    JR.exec (JR.invoke "multiplyint_1" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.thisField "velocityInterface") []) [ (JR.map JR.neg (JR.int 1)) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_minY_0 : JR.Method
+jm_minY_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.less (JR.invoke "getUnscaled_0" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.thisField "velocityInterface") []) []) (JR.long 0)) (JR.run [ 
+                    JR.exec (JR.invoke "multiplyint_1" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.thisField "velocityInterface") []) [ (JR.map JR.neg (JR.int 1)) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_maxY_0 : JR.Method
+jm_maxY_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "getUnscaled_0" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.thisField "velocityInterface") []) []) (JR.long 0)) (JR.run [ 
+                    JR.exec (JR.invoke "multiplyint_1" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.thisField "velocityInterface") []) [ (JR.map JR.neg (JR.int 1)) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

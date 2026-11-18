@@ -1,4 +1,4 @@
-module AllBinaryEventObjectFactoryInterface exposing (..)
+module Org.Allbinary.Logic.Util.Event.AllBinaryEventObjectFactoryInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.event
 -}

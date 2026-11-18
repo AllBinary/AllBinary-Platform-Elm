@@ -1,119 +1,112 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
--- 
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
--- 
--- Created By: Travis Berthelot 
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security
-module AbCryptUtil where
+module Org.Allbinary.Logic.System.Security.AbCryptUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ByteArrayOutputStream -- java.io.ByteArrayOutputStream
-import qualified InputStream -- java.io.InputStream
-import qualified StreamUtil -- org.allbinary.logic.io.StreamUtil
-import qualified AbCrypt -- org.allbinary.logic.system.security.crypt.jcehelper.AbCrypt
-import qualified KeySpecFactory -- org.allbinary.logic.system.security.crypt.jcehelper.KeySpecFactory
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security
+-}
 
-data AbCryptUtil = AbCryptUtil
-    { header_ :: JavaHeader
-    , streamUtil :: IORef (StreamUtil.StreamUtil)
-    }
-
-instance JavaNull AbCryptUtil where
-    javaNull = javaNullRecord "AbCryptUtil"
-
-instance JavaEquals AbCryptUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AbCryptUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AbCryptUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AbCryptUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AbCryptUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    streamUtil <- newIORef javaNull
-    let this = AbCryptUtil header_ streamUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "decrypt" (\() -> decrypt_impl this)
-    pure this
-
-initFields_ :: AbCryptUtil -> IO ()
-initFields_ this = do
-    jset this.streamUtil =<< (StreamUtil.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Logic.System.Security.Crypt.Jcehelper.AbCrypt as AbCrypt
+import JByteArrayOutputStream
+import Org.Allbinary.Logic.System.Security.Crypt.Jcehelper.KeySpecFactory as KeySpecFactory
+import Org.Allbinary.Logic.Io.StreamUtil as StreamUtil
 
 
-getInstance :: IO (AbCryptUtil)
-getInstance = do
-        pure (AbCryptUtil.instance_)
-
-new_ :: IO AbCryptUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AbCryptUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "AbCryptUtil"
 
 
--- throws Exception
-decrypt :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> String -> IO (JavaArray (Int8))
-decrypt object_ a1 a2 = jmethod object_ "decrypt" (\() -> (decrypt_impl (javaCast object_ :: AbCryptUtil))) () a1 a2
+jchain : List String
+jchain =
+    [ "AbCryptUtil" ]
 
-decrypt_super :: (JavaObjectClass this_) => this_ -> InputStream.InputStream -> String -> IO (JavaArray (Int8))
-decrypt_super object_ a1 a2 = (decrypt_impl (javaCast object_ :: AbCryptUtil)) a1 a2
 
-decrypt_impl :: AbCryptUtil -> InputStream.InputStream -> String -> IO (JavaArray (Int8))
-decrypt_impl this inputStream key = do
-        outputStream <- newIORef (javaNull)
-        flip finally (do
-            Control.Monad.void (StreamUtil.close ((jget (this).streamUtil)) (jget outputStream))
-            Control.Monad.void (StreamUtil.close ((jget (this).streamUtil)) inputStream)
-            ) $ do
-            jset outputStream ((javaCast (jio (StreamUtil.get ((jget (this).streamUtil)) inputStream (jio (ByteArrayOutputStream.new_)) (jnewArray (16384) 0))) :: ByteArrayOutputStream.ByteArrayOutputStream))
-            abCrypt <- (AbCrypt.new_1 (jget ((jio (KeySpecFactory.getInstance))).dESEDE))
-            Control.Monad.void (AbCrypt.init abCrypt key)
-            (AbCrypt.decrypt abCrypt (jio (ByteArrayOutputStream.toByteArray ((jget outputStream)))))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "streamUtil", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "decrypt_2", jm_decrypt_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbCryptUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_decrypt_2", jm_decrypt_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AbCryptUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "streamUtil" "" JR.this (JR.callStatic StreamUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_decrypt_2 : JR.Method
+jm_decrypt_2 jheap jthis jargs =
+    JR.method [ ( "inputStream", "" ), ( "key", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "outputStream" "" JR.null, 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.setLocal "outputStream" "" (JR.invoke "get_3" (JR.thisField "streamUtil") [ (JR.local "inputStream"), (JR.new JByteArrayOutputStream.jnew_0 []), (JR.newArray "B" [ (JR.int 16384) ]) ])), 
+                        JR.declare "abCrypt" "" (JR.new AbCrypt.jnew_1 [ (JR.field "DESEDE" (JR.callStatic KeySpecFactory.jm_getInstance_0 [])) ]), 
+                        JR.exec (JR.invoke "init_1" (JR.local "abCrypt") [ (JR.local "key") ]), 
+                        JR.return (JR.invoke "decrypt_1" (JR.local "abCrypt") [ (JR.invoke "toByteArray_0" (JR.local "outputStream") []) ]) ]) [  ] (JR.run [ 
+                        JR.exec (JR.invoke "close_1" (JR.thisField "streamUtil") [ (JR.local "outputStream") ]), 
+                        JR.exec (JR.invoke "close_1" (JR.thisField "streamUtil") [ (JR.local "inputStream") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

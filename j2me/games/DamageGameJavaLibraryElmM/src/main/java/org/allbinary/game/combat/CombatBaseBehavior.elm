@@ -1,146 +1,126 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat
-module CombatBaseBehavior where
+module Org.Allbinary.Game.Combat.CombatBaseBehavior exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DamageableBaseBehavior -- org.allbinary.game.combat.damage.DamageableBaseBehavior
-import qualified DestroyableBaseBehavior -- org.allbinary.game.combat.destroy.DestroyableBaseBehavior
+{-| Generated Code Do Not Modify package org.allbinary.game.combat
+-}
 
-data CombatBaseBehavior = CombatBaseBehavior
-    { header_ :: JavaHeader
-    , damageableBaseBehavior :: IORef (DamageableBaseBehavior.DamageableBaseBehavior)
-    , destroyableBaseBehavior :: IORef (DestroyableBaseBehavior.DestroyableBaseBehavior)
-    , readyForExplosion :: IORef (Bool)
-    }
-
-instance JavaNull CombatBaseBehavior where
-    javaNull = javaNullRecord "CombatBaseBehavior"
-
-instance JavaEquals CombatBaseBehavior where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CombatBaseBehavior where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CombatBaseBehavior where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_COMBAT_BEHAVIOR :: CombatBaseBehavior
-{-# NOINLINE nULL_COMBAT_BEHAVIOR #-}
-nULL_COMBAT_BEHAVIOR = unsafePerformIO ((new_2 (jio (DamageableBaseBehavior.getInstance)) (jio (DestroyableBaseBehavior.getInstance))))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CombatBaseBehavior
-newRecord_ = do
-    header_ <- newJavaHeader
-    damageableBaseBehavior <- newIORef javaNull
-    destroyableBaseBehavior <- newIORef javaNull
-    readyForExplosion <- newIORef False
-    let this = CombatBaseBehavior header_ damageableBaseBehavior destroyableBaseBehavior readyForExplosion
-    jregisterLevel header_ this
-    jregisterMethod header_ "getDamageableBaseBehavior" (\() -> getDamageableBaseBehavior_impl this)
-    jregisterMethod header_ "getDestroyableBaseBehavior" (\() -> getDestroyableBaseBehavior_impl this)
-    jregisterMethod header_ "isReadyForExplosion" (\() -> isReadyForExplosion_impl this)
-    jregisterMethod header_ "setReadyForExplosion" (\() -> setReadyForExplosion_impl this)
-    pure this
-
-initFields_ :: CombatBaseBehavior -> IO ()
-initFields_ this = do
-    jset this.damageableBaseBehavior (javaNull)
-    jset this.destroyableBaseBehavior (javaNull)
-    jset this.readyForExplosion (False)
-    pure ()
-
-new_2 :: DamageableBaseBehavior.DamageableBaseBehavior -> DestroyableBaseBehavior.DestroyableBaseBehavior -> IO CombatBaseBehavior
-new_2 damageableBaseBehavior destroyableBaseBehavior = do
-    this <- newRecord_
-    init_2 this damageableBaseBehavior destroyableBaseBehavior
-    pure this
-
-init_2 :: CombatBaseBehavior -> DamageableBaseBehavior.DamageableBaseBehavior -> DestroyableBaseBehavior.DestroyableBaseBehavior -> IO ()
-init_2 this damageableBaseBehavior destroyableBaseBehavior = do
-        initFields_ this
-        jset (this).damageableBaseBehavior (damageableBaseBehavior)
-        jset (this).destroyableBaseBehavior (destroyableBaseBehavior)
-        pure ()
+import JR
+import Org.Allbinary.Game.Combat.Damage.DamageableBaseBehavior as DamageableBaseBehavior
+import Org.Allbinary.Game.Combat.Destroy.DestroyableBaseBehavior as DestroyableBaseBehavior
 
 
-getDamageableBaseBehavior :: (JavaObjectClass this_) => this_ -> IO (DamageableBaseBehavior.DamageableBaseBehavior)
-getDamageableBaseBehavior object_ = jmethod object_ "getDamageableBaseBehavior" (\() -> (getDamageableBaseBehavior_impl (javaCast object_ :: CombatBaseBehavior))) ()
-
-getDamageableBaseBehavior_super :: (JavaObjectClass this_) => this_ -> IO (DamageableBaseBehavior.DamageableBaseBehavior)
-getDamageableBaseBehavior_super object_ = (getDamageableBaseBehavior_impl (javaCast object_ :: CombatBaseBehavior))
-
-getDamageableBaseBehavior_impl :: CombatBaseBehavior -> IO (DamageableBaseBehavior.DamageableBaseBehavior)
-getDamageableBaseBehavior_impl this = do
-        pure ((jget (this).damageableBaseBehavior))
+jclass : String
+jclass =
+    "CombatBaseBehavior"
 
 
-getDestroyableBaseBehavior :: (JavaObjectClass this_) => this_ -> IO (DestroyableBaseBehavior.DestroyableBaseBehavior)
-getDestroyableBaseBehavior object_ = jmethod object_ "getDestroyableBaseBehavior" (\() -> (getDestroyableBaseBehavior_impl (javaCast object_ :: CombatBaseBehavior))) ()
-
-getDestroyableBaseBehavior_super :: (JavaObjectClass this_) => this_ -> IO (DestroyableBaseBehavior.DestroyableBaseBehavior)
-getDestroyableBaseBehavior_super object_ = (getDestroyableBaseBehavior_impl (javaCast object_ :: CombatBaseBehavior))
-
-getDestroyableBaseBehavior_impl :: CombatBaseBehavior -> IO (DestroyableBaseBehavior.DestroyableBaseBehavior)
-getDestroyableBaseBehavior_impl this = do
-        pure ((jget (this).destroyableBaseBehavior))
+jchain : List String
+jchain =
+    [ "CombatBaseBehavior" ]
 
 
-isReadyForExplosion :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isReadyForExplosion object_ = jmethod object_ "isReadyForExplosion" (\() -> (isReadyForExplosion_impl (javaCast object_ :: CombatBaseBehavior))) ()
-
-isReadyForExplosion_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isReadyForExplosion_super object_ = (isReadyForExplosion_impl (javaCast object_ :: CombatBaseBehavior))
-
-isReadyForExplosion_impl :: CombatBaseBehavior -> IO (Bool)
-isReadyForExplosion_impl this = do
-        pure ((jget (this).readyForExplosion))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "damageableBaseBehavior", JR.defaultOf "" ), ( "destroyableBaseBehavior", JR.defaultOf "" ), ( "readyForExplosion", JR.defaultOf "Z" ) ]
 
 
-setReadyForExplosion :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setReadyForExplosion object_ a1 = jmethod object_ "setReadyForExplosion" (\() -> (setReadyForExplosion_impl (javaCast object_ :: CombatBaseBehavior))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getDamageableBaseBehavior_0", jm_getDamageableBaseBehavior_0 )
+        , ( "getDestroyableBaseBehavior_0", jm_getDestroyableBaseBehavior_0 )
+        , ( "isReadyForExplosion_0", jm_isReadyForExplosion_0 )
+        , ( "setReadyForExplosion_1", jm_setReadyForExplosion_1 ) ]
+        JR.noMethods
 
-setReadyForExplosion_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setReadyForExplosion_super object_ a1 = (setReadyForExplosion_impl (javaCast object_ :: CombatBaseBehavior)) a1
 
-setReadyForExplosion_impl :: CombatBaseBehavior -> Bool -> IO (())
-setReadyForExplosion_impl this readyForExplosion = do
-        jset (this).readyForExplosion (readyForExplosion)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CombatBaseBehavior"
+        [ ( "jm_getDamageableBaseBehavior_0", jm_getDamageableBaseBehavior_0 ), ( "jm_getDestroyableBaseBehavior_0", jm_getDestroyableBaseBehavior_0 ), ( "jm_isReadyForExplosion_0", jm_isReadyForExplosion_0 ), ( "jm_setReadyForExplosion_1", jm_setReadyForExplosion_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_NULL_COMBAT_BEHAVIOR", jstatic_NULL_COMBAT_BEHAVIOR ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_COMBAT_BEHAVIOR : JR.M
+jstatic_NULL_COMBAT_BEHAVIOR s =
+    JR.static "CombatBaseBehavior" jclinit "NULL_COMBAT_BEHAVIOR"
+        (JR.new jnew_2 [ (JR.callStatic DamageableBaseBehavior.jm_getInstance_0 []), (JR.callStatic DestroyableBaseBehavior.jm_getInstance_0 []) ])
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "damageableBaseBehavior", "" ), ( "destroyableBaseBehavior", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "damageableBaseBehavior" "" JR.this (JR.local "damageableBaseBehavior")), 
+                    JR.exec (JR.setField "destroyableBaseBehavior" "" JR.this (JR.local "destroyableBaseBehavior")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getDamageableBaseBehavior_0 : JR.Method
+jm_getDamageableBaseBehavior_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "damageableBaseBehavior") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDestroyableBaseBehavior_0 : JR.Method
+jm_getDestroyableBaseBehavior_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "destroyableBaseBehavior") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isReadyForExplosion_0 : JR.Method
+jm_isReadyForExplosion_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "readyForExplosion") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setReadyForExplosion_1 : JR.Method
+jm_setReadyForExplosion_1 jheap jthis jargs =
+    JR.method [ ( "readyForExplosion", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "readyForExplosion" "Z" JR.this (JR.local "readyForExplosion")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

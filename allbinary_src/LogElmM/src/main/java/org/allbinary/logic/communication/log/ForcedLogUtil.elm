@@ -1,11 +1,11 @@
-module ForcedLogUtil exposing (..)
+module Org.Allbinary.Logic.Communication.Log.ForcedLogUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.log
 -}
 
 import JR
-import CommonStrings
-import PreLogUtil
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
 
 
 jclass : String

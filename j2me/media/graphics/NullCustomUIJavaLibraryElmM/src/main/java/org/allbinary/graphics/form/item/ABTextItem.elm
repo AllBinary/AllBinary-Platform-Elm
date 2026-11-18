@@ -1,159 +1,152 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
-module ABTextItem (module ABTextItem, module CustomCustomItem) where
+module Org.Allbinary.Graphics.Form.Item.ABTextItem exposing (..)
 
-import CustomCustomItem hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, keyPressed, keyPressed_super, keyPressed_impl, paintUnselected, paintUnselected_super, paintUnselected_impl, getLabelStringComponent, getLabelStringComponent_super, getLabelStringComponent_impl, getMinimumWidth, getMinimumWidth_super, getMinimumWidth_impl, getMinimumHeight, getMinimumHeight_super, getMinimumHeight_impl, getLabel, getLabel_super, getLabel_impl, paintXY, paintXY_super, paintXY_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ABStringComponent -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified CustomCustomItem
-import qualified ABCustomItemInterface
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form.item
+-}
 
--- implements ABCustomItemInterface
-data ABTextItem = ABTextItem
-    { header_ :: JavaHeader
-    , base :: CustomCustomItem.CustomCustomItem
-    }
-
-instance JavaNull ABTextItem where
-    javaNull = javaNullRecord "ABTextItem"
-
-instance JavaEquals ABTextItem where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ABTextItem where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ABTextItem where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ABTextItem
-newRecord_ = do
-    base <- CustomCustomItem.newRecord_
-    let header_ = base.header_
-    let this = ABTextItem header_ base
-    jregisterLevel header_ this
-    ABCustomItemInterface.registerInterface_ header_
-    jregisterMethod header_ "keyPressed" (\() -> keyPressed_impl this)
-    jregisterMethod header_ "paintUnselected" (\() -> paintUnselected_impl this)
-    jregisterMethod header_ "getLabelStringComponent" (\() -> getLabelStringComponent_impl this)
-    jregisterMethod header_ "getMinimumWidth" (\() -> getMinimumWidth_impl this)
-    jregisterMethod header_ "getMinimumHeight" (\() -> getMinimumHeight_impl this)
-    jregisterMethod header_ "getLabel" (\() -> getLabel_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    pure this
-
-initFields_ :: ABTextItem -> IO ()
-initFields_ this = do
-    pure ()
-
-new_5 :: String -> Int -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ABTextItem
-new_5 label layout altText backgroundBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_5 this label layout altText backgroundBasicColor foregroundBasicColor
-    pure this
-
-init_5 :: ABTextItem -> String -> Int -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_5 this label layout altText backgroundBasicColor foregroundBasicColor = do
-        CustomCustomItem.init_3 this.base (label) (backgroundBasicColor) (foregroundBasicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Form.Item.ABCustomItemInterface as ABCustomItemInterface
+import Org.Allbinary.Graphics.Form.Item.ABStringComponent as ABStringComponent
+import Org.Allbinary.Graphics.Form.Item.CustomCustomItem as CustomCustomItem
 
 
-keyPressed :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyPressed object_ a1 = jmethod object_ "keyPressed" (\() -> (keyPressed_impl (javaCast object_ :: ABTextItem))) () a1
-
-keyPressed_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyPressed_super object_ a1 = (keyPressed_impl (javaCast object_ :: ABTextItem)) a1
-
-keyPressed_impl :: ABTextItem -> Int -> IO (())
-keyPressed_impl this keyCode = do
-        pure ()
+jclass : String
+jclass =
+    "ABTextItem"
 
 
-paintUnselected :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintUnselected object_ a1 a2 a3 = jmethod object_ "paintUnselected" (\() -> (paintUnselected_impl (javaCast object_ :: ABTextItem))) () a1 a2 a3
-
-paintUnselected_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintUnselected_super object_ a1 a2 a3 = (paintUnselected_impl (javaCast object_ :: ABTextItem)) a1 a2 a3
-
-paintUnselected_impl :: ABTextItem -> Graphics.Graphics -> Int -> Int -> IO (())
-paintUnselected_impl this graphics x y = do
-        pure ()
+jchain : List String
+jchain =
+    [ "ABTextItem" ]
+        ++ CustomCustomItem.jchain
+        ++ ABCustomItemInterface.jchain
 
 
-getLabelStringComponent :: (JavaObjectClass this_) => this_ -> IO (ABStringComponent.ABStringComponent)
-getLabelStringComponent object_ = jmethod object_ "getLabelStringComponent" (\() -> (getLabelStringComponent_impl (javaCast object_ :: ABTextItem))) ()
-
-getLabelStringComponent_super :: (JavaObjectClass this_) => this_ -> IO (ABStringComponent.ABStringComponent)
-getLabelStringComponent_super object_ = (getLabelStringComponent_impl (javaCast object_ :: ABTextItem))
-
-getLabelStringComponent_impl :: ABTextItem -> IO (ABStringComponent.ABStringComponent)
-getLabelStringComponent_impl this = do
-        pure (ABStringComponent.nULL_STRING_COMPONENT)
+jfields : List ( String, JR.JValue )
+jfields =
+    CustomCustomItem.jfields ++ []
 
 
-getMinimumWidth :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinimumWidth object_ = jmethod object_ "getMinimumWidth" (\() -> (getMinimumWidth_impl (javaCast object_ :: ABTextItem))) ()
-
-getMinimumWidth_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinimumWidth_super object_ = (getMinimumWidth_impl (javaCast object_ :: ABTextItem))
-
-getMinimumWidth_impl :: ABTextItem -> IO (Int)
-getMinimumWidth_impl this = do
-        (CustomCustomItem.getMinimumWidth_super this.base)
-
-
-getMinimumHeight :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinimumHeight object_ = jmethod object_ "getMinimumHeight" (\() -> (getMinimumHeight_impl (javaCast object_ :: ABTextItem))) ()
-
-getMinimumHeight_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinimumHeight_super object_ = (getMinimumHeight_impl (javaCast object_ :: ABTextItem))
-
-getMinimumHeight_impl :: ABTextItem -> IO (Int)
-getMinimumHeight_impl this = do
-        (CustomCustomItem.getMinimumHeight_super this.base)
+jvtable =
+    JR.vtable
+        [ ( "keyPressed_1", jm_keyPressed_1 )
+        , ( "paintUnselected_3", jm_paintUnselected_3 )
+        , ( "getLabelStringComponent_0", jm_getLabelStringComponent_0 )
+        , ( "getMinimumWidth_0", jm_getMinimumWidth_0 )
+        , ( "getMinimumHeight_0", jm_getMinimumHeight_0 )
+        , ( "getLabel_0", jm_getLabel_0 )
+        , ( "paintXY_3", jm_paintXY_3 ) ]
+        CustomCustomItem.jvtable
 
 
-getLabel :: (JavaObjectClass this_) => this_ -> IO (String)
-getLabel object_ = jmethod object_ "getLabel" (\() -> (getLabel_impl (javaCast object_ :: ABTextItem))) ()
-
-getLabel_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getLabel_super object_ = (getLabel_impl (javaCast object_ :: ABTextItem))
-
-getLabel_impl :: ABTextItem -> IO (String)
-getLabel_impl this = do
-        (CustomCustomItem.getLabel_super this.base)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ABTextItem"
+        [ ( "jm_keyPressed_1", jm_keyPressed_1 ), ( "jm_paintUnselected_3", jm_paintUnselected_3 ), ( "jm_getLabelStringComponent_0", jm_getLabelStringComponent_0 ), ( "jm_getMinimumWidth_0", jm_getMinimumWidth_0 ), ( "jm_getMinimumHeight_0", jm_getMinimumHeight_0 ), ( "jm_getLabel_0", jm_getLabel_0 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jnew_5", jnew_5 ), ( "jinit_5", jinit_5 ) ]
+        []
+        jheap
 
 
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: ABTextItem))) () a1 a2 a3
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: ABTextItem)) a1 a2 a3
 
-paintXY_impl :: ABTextItem -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        Control.Monad.void (CustomCustomItem.paintXY_super this.base graphics x y)
-        pure ()
+jinit_5 : JR.Method
+jinit_5 jheap jthis jargs =
+    JR.method [ ( "label", "" ), ( "layout", "I" ), ( "altText", "" ), ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect CustomCustomItem.jinit_3 JR.this [ (JR.local "label"), (JR.local "backgroundBasicColor"), (JR.local "foregroundBasicColor") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_5 : JR.Method
+jnew_5 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_5 jheap jthis jargs
+
+
+jm_keyPressed_1 : JR.Method
+jm_keyPressed_1 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintUnselected_3 : JR.Method
+jm_paintUnselected_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLabelStringComponent_0 : JR.Method
+jm_getLabelStringComponent_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return ABStringComponent.jstatic_NULL_STRING_COMPONENT ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMinimumWidth_0 : JR.Method
+jm_getMinimumWidth_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.callVia CustomCustomItem.jvtable "getMinimumWidth_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMinimumHeight_0 : JR.Method
+jm_getMinimumHeight_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.callVia CustomCustomItem.jvtable "getMinimumHeight_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLabel_0 : JR.Method
+jm_getLabel_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callVia CustomCustomItem.jvtable "getLabel_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia CustomCustomItem.jvtable "paintXY_3" JR.this [ (JR.local "graphics"), (JR.local "x"), (JR.local "y") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

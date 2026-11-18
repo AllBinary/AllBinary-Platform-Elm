@@ -1,110 +1,105 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
-module ScreenRepaintProcessorFactory where
+module Org.Allbinary.Graphics.Displayable.Screen.ScreenRepaintProcessorFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ScreenRepaintProcessor -- same package or java.lang
-import qualified Displayable -- javax.microedition.lcdui.Displayable
-import qualified J2MEUtil -- org.allbinary.J2MEUtil
-import qualified Processor -- org.allbinary.canvas.Processor
+{-| Generated Code Do Not Modify package org.allbinary.graphics.displayable.screen
+-}
 
-data ScreenRepaintProcessorFactory = ScreenRepaintProcessorFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ScreenRepaintProcessorFactory where
-    javaNull = javaNullRecord "ScreenRepaintProcessorFactory"
-
-instance JavaEquals ScreenRepaintProcessorFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ScreenRepaintProcessorFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ScreenRepaintProcessorFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ScreenRepaintProcessorFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ScreenRepaintProcessorFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ScreenRepaintProcessorFactory header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "create" (\() -> create_impl this)
-    pure this
-
-initFields_ :: ScreenRepaintProcessorFactory -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.J2MEUtil as J2MEUtil
+import Org.Allbinary.Canvas.Processor as Processor
+import Org.Allbinary.Graphics.Displayable.Screen.ScreenRepaintProcessor as ScreenRepaintProcessor
 
 
-getInstance :: IO (ScreenRepaintProcessorFactory)
-getInstance = do
-        pure (ScreenRepaintProcessorFactory.instance_)
-
-new_ :: IO ScreenRepaintProcessorFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ScreenRepaintProcessorFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "ScreenRepaintProcessorFactory"
 
 
-create :: (JavaObjectClass this_) => this_ -> Displayable.Displayable -> IO (Processor.Processor)
-create object_ a1 = jmethod object_ "create" (\() -> (create_impl (javaCast object_ :: ScreenRepaintProcessorFactory))) () a1
+jchain : List String
+jchain =
+    [ "ScreenRepaintProcessorFactory" ]
 
-create_super :: (JavaObjectClass this_) => this_ -> Displayable.Displayable -> IO (Processor.Processor)
-create_super object_ a1 = (create_impl (javaCast object_ :: ScreenRepaintProcessorFactory)) a1
 
-create_impl :: ScreenRepaintProcessorFactory -> Displayable.Displayable -> IO (Processor.Processor)
-create_impl this displayable = do
-    javaCatchReturn $ do
-        if (Prelude.not (jio (J2MEUtil.isJ2ME))) then do
-            javaReturn =<< (fmap (\value_ -> javaCast value_ :: Processor.Processor) (ScreenRepaintProcessor.new_1 displayable))
-        else do
-            javaReturn =<< (Processor.getInstance)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "create_1", jm_create_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ScreenRepaintProcessorFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_create_1", jm_create_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ScreenRepaintProcessorFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_create_1 : JR.Method
+jm_create_1 jheap jthis jargs =
+    JR.method [ ( "displayable", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.callStatic J2MEUtil.jm_isJ2ME_0 [])) (JR.run [ 
+                        JR.return (JR.new ScreenRepaintProcessor.jnew_1 [ (JR.local "displayable") ]) ]) (JR.run [ 
+                        JR.return (JR.callStatic Processor.jm_getInstance_0 []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

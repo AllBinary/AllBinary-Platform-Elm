@@ -1,188 +1,162 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item.validation
-module NumberTextFieldItemValidator (module NumberTextFieldItemValidator, module ValidatorBase) where
+module Org.Allbinary.Graphics.Form.Item.Validation.NumberTextFieldItemValidator exposing (..)
 
-import ValidatorBase hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, isNumberValid, isNumberValid_super, isNumberValid_impl, toNumberVector, toNumberVector_super, toNumberVector_impl, isValid, isValid_super, isValid_impl, toList, toList_super, toList_impl, textFieldItem, min, max, maxChars)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ABTextFieldItem -- org.allbinary.graphics.form.item.ABTextFieldItem
-import qualified ValidatorBase -- org.allbinary.logic.control.validate.ValidatorBase
-import qualified BooleanFactory -- org.allbinary.logic.java.bool.BooleanFactory
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form.item.validation
+-}
 
-data NumberTextFieldItemValidator = NumberTextFieldItemValidator
-    { header_ :: JavaHeader
-    , base :: ValidatorBase.ValidatorBase
-    , textFieldItem :: IORef (ABTextFieldItem.ABTextFieldItem)
-    , min :: IORef (Int)
-    , max :: IORef (Int)
-    , maxChars :: IORef (Int)
-    }
-
-instance JavaNull NumberTextFieldItemValidator where
-    javaNull = javaNullRecord "NumberTextFieldItemValidator"
-
-instance JavaEquals NumberTextFieldItemValidator where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NumberTextFieldItemValidator where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NumberTextFieldItemValidator where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO NumberTextFieldItemValidator
-newRecord_ = do
-    base <- ValidatorBase.newRecord_
-    let header_ = base.header_
-    textFieldItem <- newIORef javaNull
-    min <- newIORef 0
-    max <- newIORef 0
-    maxChars <- newIORef 0
-    let this = NumberTextFieldItemValidator header_ base textFieldItem min max maxChars
-    jregisterLevel header_ this
-    jregisterMethod header_ "isNumberValid" (\() -> isNumberValid_impl this)
-    jregisterMethod header_ "toNumberVector" (\() -> toNumberVector_impl this)
-    jregisterMethod header_ "isValid" (\() -> isValid_impl this)
-    jregisterMethod header_ "toList" (\() -> toList_impl this)
-    pure this
-
-initFields_ :: NumberTextFieldItemValidator -> IO ()
-initFields_ this = do
-    jset this.textFieldItem (javaNull)
-    jset this.min (0)
-    jset this.max (0)
-    jset this.maxChars (0)
-    pure ()
-
-new_4 :: ABTextFieldItem.ABTextFieldItem -> Int -> Int -> Int -> IO NumberTextFieldItemValidator
-new_4 textFieldItem maxChars min max = do
-    this <- newRecord_
-    init_4 this textFieldItem maxChars min max
-    pure this
-
-init_4 :: NumberTextFieldItemValidator -> ABTextFieldItem.ABTextFieldItem -> Int -> Int -> Int -> IO ()
-init_4 this textFieldItem maxChars min max = do
-        ValidatorBase.init_ this.base
-        initFields_ this
-        jset (this).textFieldItem (textFieldItem)
-        jset (this).min (min)
-        jset (this).max (max)
-        jset (this).maxChars (maxChars)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Java.Bool.BooleanFactory as BooleanFactory
+import JInteger
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.Control.Validate.ValidatorBase as ValidatorBase
 
 
-isNumberValid :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-isNumberValid object_ a1 = jmethod object_ "isNumberValid" (\() -> (isNumberValid_impl (javaCast object_ :: NumberTextFieldItemValidator))) () a1
-
-isNumberValid_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-isNumberValid_super object_ a1 = (isNumberValid_impl (javaCast object_ :: NumberTextFieldItemValidator)) a1
-
-isNumberValid_impl :: NumberTextFieldItemValidator -> Int -> IO (Bool)
-isNumberValid_impl this value = do
-        pure ((jget ((jio (BooleanFactory.getInstance))).tRUE))
+jclass : String
+jclass =
+    "NumberTextFieldItemValidator"
 
 
-toNumberVector :: (JavaObjectClass this_) => this_ -> Int -> IO (BasicArrayList.BasicArrayList)
-toNumberVector object_ a1 = jmethod object_ "toNumberVector" (\() -> (toNumberVector_impl (javaCast object_ :: NumberTextFieldItemValidator))) () a1
-
-toNumberVector_super :: (JavaObjectClass this_) => this_ -> Int -> IO (BasicArrayList.BasicArrayList)
-toNumberVector_super object_ a1 = (toNumberVector_impl (javaCast object_ :: NumberTextFieldItemValidator)) a1
-
-toNumberVector_impl :: NumberTextFieldItemValidator -> Int -> IO (BasicArrayList.BasicArrayList)
-toNumberVector_impl this value = do
-        (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
+jchain : List String
+jchain =
+    [ "NumberTextFieldItemValidator" ]
+        ++ ValidatorBase.jchain
 
 
-isValid :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isValid object_ = jmethod object_ "isValid" (\() -> (isValid_impl (javaCast object_ :: NumberTextFieldItemValidator))) ()
-
-isValid_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isValid_super object_ = (isValid_impl (javaCast object_ :: NumberTextFieldItemValidator))
-
-isValid_impl :: NumberTextFieldItemValidator -> IO (Bool)
-isValid_impl this = do
-        result <- newIORef ((jget ((jio (BooleanFactory.getInstance))).tRUE))
-        string <- (ABTextFieldItem.getString ((jget (this).textFieldItem)))
-        let textLength = (Prelude.length string)
-        if ((textLength > 0) && (textLength < (jget (this).maxChars))) then do
-            handle (\(e :: JavaException) -> do
-                jset result ((jget ((jio (BooleanFactory.getInstance))).fALSE))
-                ) $ do
-                Control.Monad.void (jparseInt (jio (ABTextFieldItem.getString ((jget (this).textFieldItem)))))
-        else do
-            if (textLength < 1) then do
-                jset result ((jget ((jio (BooleanFactory.getInstance))).fALSE))
-            else when (textLength > (jget (this).maxChars)) $ do
-                jset result ((jget ((jio (BooleanFactory.getInstance))).fALSE))
-        pure ((jget result))
+jfields : List ( String, JR.JValue )
+jfields =
+    ValidatorBase.jfields ++ [ ( "textFieldItem", JR.defaultOf "" ), ( "min", JR.defaultOf "I" ), ( "max", JR.defaultOf "I" ), ( "maxChars", JR.defaultOf "I" ) ]
 
 
-toList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-toList object_ = jmethod object_ "toList" (\() -> (toList_impl (javaCast object_ :: NumberTextFieldItemValidator))) ()
+jvtable =
+    JR.vtable
+        [ ( "isNumberValid_1", jm_isNumberValid_1 )
+        , ( "toNumberVector_1", jm_toNumberVector_1 )
+        , ( "isValid_0", jm_isValid_0 )
+        , ( "toList_0", jm_toList_0 ) ]
+        ValidatorBase.jvtable
 
-toList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-toList_super object_ = (toList_impl (javaCast object_ :: NumberTextFieldItemValidator))
 
-toList_impl :: NumberTextFieldItemValidator -> IO (BasicArrayList.BasicArrayList)
-toList_impl this = do
-        list <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        string <- (ABTextFieldItem.getString ((jget (this).textFieldItem)))
-        let textLength = (Prelude.length string)
-        label <- (ABTextFieldItem.getLabel ((jget (this).textFieldItem)))
-        let name = (Prelude.take ((((Prelude.length label) - 2)) - (0)) (Prelude.drop (0) label))
-        smallIntegerSingletonFactory <- (SmallIntegerSingletonFactory.getInstance)
-        stringMaker <- (StringMaker.new_)
-        if ((textLength > 0) && (textLength < (jget (this).maxChars))) then do
-            handle (\(e :: JavaException) -> do
-                Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-                Control.Monad.void (BasicArrayList.add list (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append stringMaker name))) " is not a number"))))))
-                ) $ do
-                number <- (SmallIntegerSingletonFactory.createInstance smallIntegerSingletonFactory (jio (jparseInt (jio (ABTextFieldItem.getString ((jget (this).textFieldItem)))))))
-                if (number > (jget (this).min)) then do
-                    Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-                    Control.Monad.void (BasicArrayList.add list (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append stringMaker name))) " is to small"))))))
-                else when (number > (jget (this).max)) $ do
-                    Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-                    Control.Monad.void (BasicArrayList.add list (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append stringMaker name))) " is to large"))))))
-        else do
-            if (textLength < 1) then do
-                Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-                Control.Monad.void (BasicArrayList.add list (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append stringMaker name))) " is to short"))))))
-            else when (textLength > (jget (this).maxChars)) $ do
-                Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-                Control.Monad.void (BasicArrayList.add list (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append stringMaker name))) " is to long"))))))
-        pure (list)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NumberTextFieldItemValidator"
+        [ ( "jm_isNumberValid_1", jm_isNumberValid_1 ), ( "jm_toNumberVector_1", jm_toNumberVector_1 ), ( "jm_isValid_0", jm_isValid_0 ), ( "jm_toList_0", jm_toList_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "textFieldItem", "" ), ( "maxChars", "I" ), ( "min", "I" ), ( "max", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ValidatorBase.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "textFieldItem" "" JR.this (JR.local "textFieldItem")), 
+                    JR.exec (JR.setField "min" "I" JR.this (JR.local "min")), 
+                    JR.exec (JR.setField "max" "I" JR.this (JR.local "max")), 
+                    JR.exec (JR.setField "maxChars" "I" JR.this (JR.local "maxChars")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_isNumberValid_1 : JR.Method
+jm_isNumberValid_1 jheap jthis jargs =
+    JR.method [ ( "value", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.field "TRUE" (JR.callStatic BooleanFactory.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toNumberVector_1 : JR.Method
+jm_toNumberVector_1 jheap jthis jargs =
+    JR.method [ ( "value", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new BasicArrayListD.jnew_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isValid_0 : JR.Method
+jm_isValid_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "result" "" (JR.field "TRUE" (JR.callStatic BooleanFactory.jm_getInstance_0 [])), 
+                    JR.declare "string" "" (JR.invoke "getString_0" (JR.thisField "textFieldItem") []), 
+                    JR.declare "textLength" "I" (JR.invoke "length_0" (JR.local "string") []), 
+                    JR.ifElse (JR.and (JR.map2 JR.greater (JR.local "textLength") (JR.int 0)) (JR.map2 JR.less (JR.local "textLength") (JR.thisField "maxChars"))) (JR.run [ 
+                        JR.try (JR.run [ 
+                            JR.exec (JR.callStatic JInteger.jm_parseInt_1 [ (JR.invoke "getString_0" (JR.thisField "textFieldItem") []) ]) ]) [ ( [ "NumberFormatException" ], "e", (JR.run [ 
+                            JR.exec (JR.setLocal "result" "" (JR.field "FALSE" (JR.callStatic BooleanFactory.jm_getInstance_0 []))) ]) ) ] identity ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.less (JR.local "textLength") (JR.int 1)) (JR.run [ 
+                            JR.exec (JR.setLocal "result" "" (JR.field "FALSE" (JR.callStatic BooleanFactory.jm_getInstance_0 []))) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.greater (JR.local "textLength") (JR.thisField "maxChars")) (JR.run [ 
+                            JR.exec (JR.setLocal "result" "" (JR.field "FALSE" (JR.callStatic BooleanFactory.jm_getInstance_0 []))) ]) identity ]) ]), 
+                    JR.return (JR.local "result") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toList_0 : JR.Method
+jm_toList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "list" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "string" "" (JR.invoke "getString_0" (JR.thisField "textFieldItem") []), 
+                    JR.declare "textLength" "I" (JR.invoke "length_0" (JR.local "string") []), 
+                    JR.declare "label" "" (JR.invoke "getLabel_0" (JR.thisField "textFieldItem") []), 
+                    JR.declare "name" "" (JR.invoke "substring_2" (JR.local "label") [ (JR.int 0), (JR.map2 JR.sub (JR.invoke "length_0" (JR.local "label") []) (JR.int 2)) ]), 
+                    JR.declare "smallIntegerSingletonFactory" "" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []), 
+                    JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.ifElse (JR.and (JR.map2 JR.greater (JR.local "textLength") (JR.int 0)) (JR.map2 JR.less (JR.local "textLength") (JR.thisField "maxChars"))) (JR.run [ 
+                        JR.try (JR.run [ 
+                            JR.declare "number" "" (JR.invoke "createInstance_1" (JR.local "smallIntegerSingletonFactory") [ (JR.callStatic JInteger.jm_parseInt_1 [ (JR.invoke "getString_0" (JR.thisField "textFieldItem") []) ]) ]), 
+                            JR.ifElse (JR.map2 JR.greater (JR.invoke "intValue_0" (JR.local "number") []) (JR.thisField "min")) (JR.run [ 
+                                JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                                JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.local "name") ]) [ (JR.str " is to small") ]) []) ]) ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.greater (JR.invoke "intValue_0" (JR.local "number") []) (JR.thisField "max")) (JR.run [ 
+                                JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                                JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.local "name") ]) [ (JR.str " is to large") ]) []) ]) ]) identity ]) ]) [ ( [ "NumberFormatException" ], "e", (JR.run [ 
+                            JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                            JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.local "name") ]) [ (JR.str " is not a number") ]) []) ]) ]) ) ] identity ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.less (JR.local "textLength") (JR.int 1)) (JR.run [ 
+                            JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                            JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.local "name") ]) [ (JR.str " is to short") ]) []) ]) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.greater (JR.local "textLength") (JR.thisField "maxChars")) (JR.run [ 
+                            JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                            JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.local "name") ]) [ (JR.str " is to long") ]) []) ]) ]) identity ]) ]), 
+                    JR.return (JR.local "list") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

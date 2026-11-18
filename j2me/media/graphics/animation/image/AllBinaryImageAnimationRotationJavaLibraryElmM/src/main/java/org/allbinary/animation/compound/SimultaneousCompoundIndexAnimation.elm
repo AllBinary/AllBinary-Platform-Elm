@@ -1,266 +1,224 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.compound
-module SimultaneousCompoundIndexAnimation (module SimultaneousCompoundIndexAnimation, module IndexedAnimation) where
+module Org.Allbinary.Animation.Compound.SimultaneousCompoundIndexAnimation exposing (..)
 
-import IndexedAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, setFrame, setFrame_super, setFrame_impl, getFrame, getFrame_super, getFrame_impl, getAnimationSize, getAnimationSize_super, getAnimationSize_impl, getSize, getSize_super, getSize_impl, previousFrame, previousFrame_super, previousFrame_impl, nextFrame, nextFrame_super, nextFrame_impl, setSequence, setSequence_super, setSequence_impl, getSequence, getSequence_super, getSequence_impl, paintXY, paintXY_super, paintXY_impl, paintThreedXYZ, paintThreedXYZ_super, paintThreedXYZ_impl, set, set_super, set_impl, getAnimationInterfaceArray, getAnimationInterfaceArray_super, getAnimationInterfaceArray_impl, setAnimationInterfaceArray, setAnimationInterfaceArray_super, setAnimationInterfaceArray_impl, animationInterfaceArray)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GL -- javax.microedition.khronos.opengles.GL
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified AnimationBehavior -- org.allbinary.animation.AnimationBehavior
-import qualified IndexedAnimation -- org.allbinary.animation.IndexedAnimation
-import qualified PrimitiveIntUtil -- org.allbinary.logic.math.PrimitiveIntUtil
+{-| Generated Code Do Not Modify package org.allbinary.animation.compound
+-}
 
-data SimultaneousCompoundIndexAnimation = SimultaneousCompoundIndexAnimation
-    { header_ :: JavaHeader
-    , base :: IndexedAnimation.IndexedAnimation
-    , animationInterfaceArray :: IORef (JavaArray (IndexedAnimation.IndexedAnimation))
-    }
-
-instance JavaNull SimultaneousCompoundIndexAnimation where
-    javaNull = javaNullRecord "SimultaneousCompoundIndexAnimation"
-
-instance JavaEquals SimultaneousCompoundIndexAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SimultaneousCompoundIndexAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SimultaneousCompoundIndexAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO SimultaneousCompoundIndexAnimation
-newRecord_ = do
-    base <- IndexedAnimation.newRecord_
-    let header_ = base.header_
-    animationInterfaceArray <- newIORef javaNull
-    let this = SimultaneousCompoundIndexAnimation header_ base animationInterfaceArray
-    jregisterLevel header_ this
-    jregisterMethod header_ "setFrame" (\() -> setFrame_impl this)
-    jregisterMethod header_ "getFrame" (\() -> getFrame_impl this)
-    jregisterMethod header_ "getAnimationSize" (\() -> getAnimationSize_impl this)
-    jregisterMethod header_ "getSize" (\() -> getSize_impl this)
-    jregisterMethod header_ "previousFrame" (\() -> previousFrame_impl this)
-    jregisterMethod header_ "nextFrame" (\() -> nextFrame_impl this)
-    jregisterMethod header_ "setSequence" (\() -> setSequence_impl this)
-    jregisterMethod header_ "getSequence" (\() -> getSequence_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    jregisterMethod header_ "paintThreedXYZ" (\() -> paintThreedXYZ_impl this)
-    jregisterMethod header_ "set" (\() -> set_impl this)
-    jregisterMethod header_ "getAnimationInterfaceArray" (\() -> getAnimationInterfaceArray_impl this)
-    jregisterMethod header_ "setAnimationInterfaceArray" (\() -> setAnimationInterfaceArray_impl this)
-    pure this
-
-initFields_ :: SimultaneousCompoundIndexAnimation -> IO ()
-initFields_ this = do
-    jset this.animationInterfaceArray (javaNull)
-    pure ()
-
-new_2 :: JavaArray (IndexedAnimation.IndexedAnimation) -> AnimationBehavior.AnimationBehavior -> IO SimultaneousCompoundIndexAnimation
-new_2 animationInterfaceArray animationBehavior = do
-    this <- newRecord_
-    init_2 this animationInterfaceArray animationBehavior
-    pure this
-
-init_2 :: SimultaneousCompoundIndexAnimation -> JavaArray (IndexedAnimation.IndexedAnimation) -> AnimationBehavior.AnimationBehavior -> IO ()
-init_2 this animationInterfaceArray animationBehavior = do
-        IndexedAnimation.init_1 this.base (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).animationInterfaceArray (animationInterfaceArray)
-        pure ()
+import JR
+import Org.Allbinary.Animation.IndexedAnimation as IndexedAnimation
+import Org.Allbinary.Logic.Math.PrimitiveIntUtil as PrimitiveIntUtil
 
 
-setFrame :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame object_ a1 = jmethod object_ "setFrame" (\() -> (setFrame_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) () a1
-
-setFrame_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame_super object_ a1 = (setFrame_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation)) a1
-
-setFrame_impl :: SimultaneousCompoundIndexAnimation -> Int -> IO (())
-setFrame_impl this frameIndex = do
-        index <- newIORef ((jlength (jget (this).animationInterfaceArray)) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            Control.Monad.void (IndexedAnimation.setFrame ((jindex ((jget (this).animationInterfaceArray)) ((jget index)))) frameIndex)
-        pure ()
+jclass : String
+jclass =
+    "SimultaneousCompoundIndexAnimation"
 
 
-getFrame :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame object_ = jmethod object_ "getFrame" (\() -> (getFrame_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) ()
-
-getFrame_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame_super object_ = (getFrame_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))
-
-getFrame_impl :: SimultaneousCompoundIndexAnimation -> IO (Int)
-getFrame_impl this = do
-        (IndexedAnimation.getFrame ((jindex ((jget (this).animationInterfaceArray)) (0))))
+jchain : List String
+jchain =
+    [ "SimultaneousCompoundIndexAnimation" ]
+        ++ IndexedAnimation.jchain
 
 
--- throws Exception
-getAnimationSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize object_ = jmethod object_ "getAnimationSize" (\() -> (getAnimationSize_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) ()
-
-getAnimationSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize_super object_ = (getAnimationSize_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))
-
-getAnimationSize_impl :: SimultaneousCompoundIndexAnimation -> IO (Int)
-getAnimationSize_impl this = do
-        (IndexedAnimation.getAnimationSize ((jindex ((jget (this).animationInterfaceArray)) (0))))
+jfields : List ( String, JR.JValue )
+jfields =
+    IndexedAnimation.jfields ++ [ ( "animationInterfaceArray", JR.defaultOf "" ) ]
 
 
-getSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize object_ = jmethod object_ "getSize" (\() -> (getSize_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) ()
-
-getSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize_super object_ = (getSize_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))
-
-getSize_impl :: SimultaneousCompoundIndexAnimation -> IO (Int)
-getSize_impl this = do
-        (IndexedAnimation.getSize ((jindex ((jget (this).animationInterfaceArray)) (0))))
-
-
-previousFrame :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame object_ = jmethod object_ "previousFrame" (\() -> (previousFrame_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) ()
-
-previousFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame_super object_ = (previousFrame_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))
-
-previousFrame_impl :: SimultaneousCompoundIndexAnimation -> IO (())
-previousFrame_impl this = do
-        index <- newIORef ((jlength (jget (this).animationInterfaceArray)) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            Control.Monad.void (IndexedAnimation.previousFrame ((jindex ((jget (this).animationInterfaceArray)) ((jget index)))))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "setFrame_1", jm_setFrame_1 )
+        , ( "getFrame_0", jm_getFrame_0 )
+        , ( "getAnimationSize_0", jm_getAnimationSize_0 )
+        , ( "getSize_0", jm_getSize_0 )
+        , ( "previousFrame_0", jm_previousFrame_0 )
+        , ( "nextFrame_0", jm_nextFrame_0 )
+        , ( "setSequence_1", jm_setSequence_1 )
+        , ( "getSequence_0", jm_getSequence_0 )
+        , ( "paintXY_3", jm_paintXY_3 )
+        , ( "paintThreedXYZ_4", jm_paintThreedXYZ_4 )
+        , ( "set_1", jm_set_1 )
+        , ( "getAnimationInterfaceArray_0", jm_getAnimationInterfaceArray_0 )
+        , ( "setAnimationInterfaceArray_1", jm_setAnimationInterfaceArray_1 ) ]
+        IndexedAnimation.jvtable
 
 
--- throws Exception
-nextFrame :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame object_ = jmethod object_ "nextFrame" (\() -> (nextFrame_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) ()
-
-nextFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame_super object_ = (nextFrame_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))
-
-nextFrame_impl :: SimultaneousCompoundIndexAnimation -> IO (())
-nextFrame_impl this = do
-        index <- newIORef ((jlength (jget (this).animationInterfaceArray)) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            Control.Monad.void (IndexedAnimation.nextFrame ((jindex ((jget (this).animationInterfaceArray)) ((jget index)))))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SimultaneousCompoundIndexAnimation"
+        [ ( "jm_setFrame_1", jm_setFrame_1 ), ( "jm_getFrame_0", jm_getFrame_0 ), ( "jm_getAnimationSize_0", jm_getAnimationSize_0 ), ( "jm_getSize_0", jm_getSize_0 ), ( "jm_previousFrame_0", jm_previousFrame_0 ), ( "jm_nextFrame_0", jm_nextFrame_0 ), ( "jm_setSequence_1", jm_setSequence_1 ), ( "jm_getSequence_0", jm_getSequence_0 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jm_paintThreedXYZ_4", jm_paintThreedXYZ_4 ), ( "jm_set_1", jm_set_1 ), ( "jm_getAnimationInterfaceArray_0", jm_getAnimationInterfaceArray_0 ), ( "jm_setAnimationInterfaceArray_1", jm_setAnimationInterfaceArray_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
 
-setSequence :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence object_ a1 = jmethod object_ "setSequence" (\() -> (setSequence_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) () a1
-
-setSequence_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence_super object_ a1 = (setSequence_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation)) a1
-
-setSequence_impl :: SimultaneousCompoundIndexAnimation -> JavaArray (Int) -> IO (())
-setSequence_impl this sequence = do
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getSequence :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence object_ = jmethod object_ "getSequence" (\() -> (getSequence_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) ()
-
-getSequence_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence_super object_ = (getSequence_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))
-
-getSequence_impl :: SimultaneousCompoundIndexAnimation -> IO (JavaArray (Int))
-getSequence_impl this = do
-        (PrimitiveIntUtil.getArrayInstance)
-
-
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) () a1 a2 a3
-
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation)) a1 a2 a3
-
-paintXY_impl :: SimultaneousCompoundIndexAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        index <- newIORef ((jlength (jget (this).animationInterfaceArray)) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            Control.Monad.void (IndexedAnimation.paintXY ((jindex ((jget (this).animationInterfaceArray)) ((jget index)))) graphics x y)
-        pure ()
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "animationInterfaceArray", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect IndexedAnimation.jinit_1 JR.this [ (JR.local "animationBehavior") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "animationInterfaceArray" "" JR.this (JR.local "animationInterfaceArray")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-paintThreedXYZ :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintThreedXYZ object_ a1 a2 a3 a4 = jmethod object_ "paintThreedXYZ" (\() -> (paintThreedXYZ_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) () a1 a2 a3 a4
-
-paintThreedXYZ_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintThreedXYZ_super object_ a1 a2 a3 a4 = (paintThreedXYZ_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation)) a1 a2 a3 a4
-
-paintThreedXYZ_impl :: SimultaneousCompoundIndexAnimation -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintThreedXYZ_impl this graphics x y z = do
-        index <- newIORef ((jlength (jget (this).animationInterfaceArray)) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            Control.Monad.void (IndexedAnimation.paintThreedXYZ ((jindex ((jget (this).animationInterfaceArray)) ((jget index)))) graphics x y z)
-        pure ()
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
 
 
--- throws Exception
-set :: (JavaObjectClass this_) => this_ -> GL.GL -> IO (())
-set object_ a1 = jmethod object_ "set" (\() -> (set_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) () a1
-
-set_super :: (JavaObjectClass this_) => this_ -> GL.GL -> IO (())
-set_super object_ a1 = (set_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation)) a1
-
-set_impl :: SimultaneousCompoundIndexAnimation -> GL.GL -> IO (())
-set_impl this gl = do
-        index <- newIORef ((jlength (jget (this).animationInterfaceArray)) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            Control.Monad.void (IndexedAnimation.set ((jindex ((jget (this).animationInterfaceArray)) ((jget index)))) gl)
-        pure ()
+jm_setFrame_1 : JR.Method
+jm_setFrame_1 jheap jthis jargs =
+    JR.method [ ( "frameIndex", "I" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66954 -> (JR.setLocal "index" "I" (JR.lit jwN66954))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.invoke "setFrame_1" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "frameIndex") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getAnimationInterfaceArray :: (JavaObjectClass this_) => this_ -> IO (JavaArray (IndexedAnimation.IndexedAnimation))
-getAnimationInterfaceArray object_ = jmethod object_ "getAnimationInterfaceArray" (\() -> (getAnimationInterfaceArray_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) ()
+jm_getFrame_0 : JR.Method
+jm_getFrame_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getFrame_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.int 0)) []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getAnimationInterfaceArray_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (IndexedAnimation.IndexedAnimation))
-getAnimationInterfaceArray_super object_ = (getAnimationInterfaceArray_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))
 
-getAnimationInterfaceArray_impl :: SimultaneousCompoundIndexAnimation -> IO (JavaArray (IndexedAnimation.IndexedAnimation))
-getAnimationInterfaceArray_impl this = do
-        pure ((jget (this).animationInterfaceArray))
+jm_getAnimationSize_0 : JR.Method
+jm_getAnimationSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getAnimationSize_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.int 0)) []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-setAnimationInterfaceArray :: (JavaObjectClass this_) => this_ -> JavaArray (IndexedAnimation.IndexedAnimation) -> IO (())
-setAnimationInterfaceArray object_ a1 = jmethod object_ "setAnimationInterfaceArray" (\() -> (setAnimationInterfaceArray_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation))) () a1
+jm_getSize_0 : JR.Method
+jm_getSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getSize_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.int 0)) []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setAnimationInterfaceArray_super :: (JavaObjectClass this_) => this_ -> JavaArray (IndexedAnimation.IndexedAnimation) -> IO (())
-setAnimationInterfaceArray_super object_ a1 = (setAnimationInterfaceArray_impl (javaCast object_ :: SimultaneousCompoundIndexAnimation)) a1
 
-setAnimationInterfaceArray_impl :: SimultaneousCompoundIndexAnimation -> JavaArray (IndexedAnimation.IndexedAnimation) -> IO (())
-setAnimationInterfaceArray_impl this animationInterfaceArray = do
-        jset (this).animationInterfaceArray (animationInterfaceArray)
-        pure ()
+jm_previousFrame_0 : JR.Method
+jm_previousFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67337 -> (JR.setLocal "index" "I" (JR.lit jwN67337))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.invoke "previousFrame_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) []) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_nextFrame_0 : JR.Method
+jm_nextFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67482 -> (JR.setLocal "index" "I" (JR.lit jwN67482))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.invoke "nextFrame_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) []) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setSequence_1 : JR.Method
+jm_setSequence_1 jheap jthis jargs =
+    JR.method [ ( "sequence", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSequence_0 : JR.Method
+jm_getSequence_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67787 -> (JR.setLocal "index" "I" (JR.lit jwN67787))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.invoke "paintXY_3" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "graphics"), (JR.local "x"), (JR.local "y") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintThreedXYZ_4 : JR.Method
+jm_paintThreedXYZ_4 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68034 -> (JR.setLocal "index" "I" (JR.lit jwN68034))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.invoke "paintThreedXYZ_4" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "graphics"), (JR.local "x"), (JR.local "y"), (JR.local "z") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_set_1 : JR.Method
+jm_set_1 jheap jthis jargs =
+    JR.method [ ( "gl", "" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68277 -> (JR.setLocal "index" "I" (JR.lit jwN68277))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.invoke "set_1" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "gl") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAnimationInterfaceArray_0 : JR.Method
+jm_getAnimationInterfaceArray_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "animationInterfaceArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAnimationInterfaceArray_1 : JR.Method
+jm_setAnimationInterfaceArray_1 jheap jthis jargs =
+    JR.method [ ( "animationInterfaceArray", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "animationInterfaceArray" "" JR.this (JR.local "animationInterfaceArray")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

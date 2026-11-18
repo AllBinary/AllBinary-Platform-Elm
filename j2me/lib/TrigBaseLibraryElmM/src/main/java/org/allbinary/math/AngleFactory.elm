@@ -1,17 +1,17 @@
-module AngleFactory exposing (..)
+module Org.Allbinary.Math.AngleFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.math
 -}
 
 import JR
-import Angle
-import CommonPhoneStrings
-import CommonSeps
-import CommonStrings
-import FrameUtil
-import LogUtil
-import NamedAngle
-import StringMaker
+import Org.Allbinary.Math.Angle as Angle
+import Org.Allbinary.String.CommonPhoneStrings as CommonPhoneStrings
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Math.FrameUtil as FrameUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Math.NamedAngle as NamedAngle
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

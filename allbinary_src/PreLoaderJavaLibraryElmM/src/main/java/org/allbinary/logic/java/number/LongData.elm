@@ -1,85 +1,80 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.java.number
-module LongData where
+module Org.Allbinary.Logic.Java.Number.LongData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.java.number
+-}
 
-data LongData = LongData
-    { header_ :: JavaHeader
-    }
+import JR
+import JLong
 
-instance JavaNull LongData where
-    javaNull = javaNullRecord "LongData"
 
-instance JavaEquals LongData where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "LongData"
 
-instance Eq LongData where
-    (==) = jrecordEquals
 
-instance JavaObjectClass LongData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "LongData" ]
 
-mAX_LONG_LENGTH :: IORef (Int)
-{-# NOINLINE mAX_LONG_LENGTH #-}
-mAX_LONG_LENGTH = unsafePerformIO (newIORef ((Prelude.length (javaToString (Prelude.fromIntegral ((Prelude.maxBound :: Int64)) :: Int64)))))
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO LongData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = LongData header_
-    jregisterLevel header_ this
-    pure this
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-initFields_ :: LongData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO LongData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LongData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_MAX_LONG_LENGTH", jstatic_MAX_LONG_LENGTH ) ]
+        jheap
 
-init_ :: LongData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_MAX_LONG_LENGTH : JR.M
+jstatic_MAX_LONG_LENGTH s =
+    JR.static "LongData" jclinit "MAX_LONG_LENGTH"
+        (JR.invoke "length_0" (JR.invoke "toString_0" (JR.cast "J" JLong.jstatic_MAX_VALUE) []) [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

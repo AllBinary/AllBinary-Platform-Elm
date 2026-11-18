@@ -1,123 +1,115 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.tracking
-module TrackingEventCircularStaticPool where
+module Org.Allbinary.Game.Tracking.TrackingEventCircularStaticPool exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TrackingEventFactory -- same package or java.lang
-import qualified TrackingEvent -- same package or java.lang
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryEventCircularPool -- org.allbinary.logic.util.event.AllBinaryEventCircularPool
+{-| Generated Code Do Not Modify package org.allbinary.game.tracking
+-}
 
-data TrackingEventCircularStaticPool = TrackingEventCircularStaticPool
-    { header_ :: JavaHeader
-    , eVENT_POOL :: IORef (AllBinaryEventCircularPool.AllBinaryEventCircularPool)
-    }
-
-instance JavaNull TrackingEventCircularStaticPool where
-    javaNull = javaNullRecord "TrackingEventCircularStaticPool"
-
-instance JavaEquals TrackingEventCircularStaticPool where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TrackingEventCircularStaticPool where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TrackingEventCircularStaticPool where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: IORef (TrackingEventCircularStaticPool)
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TrackingEventCircularStaticPool
-newRecord_ = do
-    header_ <- newJavaHeader
-    eVENT_POOL <- newIORef javaNull
-    let this = TrackingEventCircularStaticPool header_ eVENT_POOL
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "getNextInstance" (\() -> getNextInstance_impl this)
-    pure this
-
-initFields_ :: TrackingEventCircularStaticPool -> IO ()
-initFields_ this = do
-    jset this.eVENT_POOL =<< (AllBinaryEventCircularPool.new_1 20)
-    pure ()
-
-new_ :: IO TrackingEventCircularStaticPool
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TrackingEventCircularStaticPool -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.Util.Event.AllBinaryEventCircularPool as AllBinaryEventCircularPool
+import Org.Allbinary.Game.Tracking.TrackingEventFactory as TrackingEventFactory
 
 
-getInstance :: IO (TrackingEventCircularStaticPool)
-getInstance = do
-        pure ((jget TrackingEventCircularStaticPool.instance_))
+jclass : String
+jclass =
+    "TrackingEventCircularStaticPool"
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: TrackingEventCircularStaticPool))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: TrackingEventCircularStaticPool))
-
-init_impl :: TrackingEventCircularStaticPool -> IO (())
-init_impl this = do
-        Control.Monad.void (AllBinaryEventCircularPool.initAllBinaryEventCircularPool ((jget (this).eVENT_POOL)) (jio (TrackingEventFactory.new_)))
-        pure ()
+jchain : List String
+jchain =
+    [ "TrackingEventCircularStaticPool" ]
 
 
--- throws Exception
-getNextInstance :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (TrackingEvent.TrackingEvent)
-getNextInstance object_ a1 = jmethod object_ "getNextInstance" (\() -> (getNextInstance_impl (javaCast object_ :: TrackingEventCircularStaticPool))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "EVENT_POOL", JR.defaultOf "" ) ]
 
-getNextInstance_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (TrackingEvent.TrackingEvent)
-getNextInstance_super object_ a1 = (getNextInstance_impl (javaCast object_ :: TrackingEventCircularStaticPool)) a1
 
-getNextInstance_impl :: TrackingEventCircularStaticPool -> AllBinaryLayer.AllBinaryLayer -> IO (TrackingEvent.TrackingEvent)
-getNextInstance_impl this layerInterface = do
-        let trackingEvent = (javaCast (jio (AllBinaryEventCircularPool.getNextInstance ((jget (this).eVENT_POOL)))) :: TrackingEvent.TrackingEvent)
-        Control.Monad.void (TrackingEvent.setLayerInterfaceForCircularStaticPool trackingEvent layerInterface)
-        pure (trackingEvent)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "getNextInstance_1", jm_getNextInstance_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TrackingEventCircularStaticPool"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_getNextInstance_1", jm_getNextInstance_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "TrackingEventCircularStaticPool" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "EVENT_POOL" "" JR.this (JR.new AllBinaryEventCircularPool.jnew_1 [ (JR.int 20) ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "initAllBinaryEventCircularPool_1" (JR.thisField "EVENT_POOL") [ (JR.new TrackingEventFactory.jnew_0 []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNextInstance_1 : JR.Method
+jm_getNextInstance_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "trackingEvent" "" (JR.invoke "getNextInstance_0" (JR.thisField "EVENT_POOL") []), 
+                    JR.exec (JR.invoke "setLayerInterfaceForCircularStaticPool_1" (JR.local "trackingEvent") [ (JR.local "layerInterface") ]), 
+                    JR.return (JR.local "trackingEvent") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,168 +1,150 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module BaseMenuBehavior where
+module Org.Allbinary.Game.Displayable.Canvas.BaseMenuBehavior exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameCanvas -- same package or java.lang
-import qualified DisplayChangeEvent -- org.allbinary.graphics.displayable.event.DisplayChangeEvent
-import qualified NullPaintable -- org.allbinary.graphics.paint.NullPaintable
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data BaseMenuBehavior = BaseMenuBehavior
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull BaseMenuBehavior where
-    javaNull = javaNullRecord "BaseMenuBehavior"
-
-instance JavaEquals BaseMenuBehavior where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BaseMenuBehavior where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BaseMenuBehavior where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: BaseMenuBehavior
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BaseMenuBehavior
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = BaseMenuBehavior header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "onDisplayChangeEvent" (\() -> onDisplayChangeEvent_impl this)
-    jregisterMethod header_ "initSpecialPaint" (\() -> initSpecialPaint_impl this)
-    jregisterMethod header_ "initMenu" (\() -> initMenu_impl this)
-    jregisterMethod header_ "updateMenu" (\() -> updateMenu_impl this)
-    jregisterMethod header_ "popupMenu" (\() -> popupMenu_impl this)
-    jregisterMethod header_ "closeMenu" (\() -> closeMenu_impl this)
-    pure this
-
-initFields_ :: BaseMenuBehavior -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO BaseMenuBehavior
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BaseMenuBehavior -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Paint.NullPaintable as NullPaintable
 
 
-getInstance :: IO (BaseMenuBehavior)
-getInstance = do
-        pure (BaseMenuBehavior.instance_)
+jclass : String
+jclass =
+    "BaseMenuBehavior"
 
 
--- throws Exception
-onDisplayChangeEvent :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent object_ a1 a2 = jmethod object_ "onDisplayChangeEvent" (\() -> (onDisplayChangeEvent_impl (javaCast object_ :: BaseMenuBehavior))) () a1 a2
-
-onDisplayChangeEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent_super object_ a1 a2 = (onDisplayChangeEvent_impl (javaCast object_ :: BaseMenuBehavior)) a1 a2
-
-onDisplayChangeEvent_impl :: BaseMenuBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent_impl this allBinaryGameCanvas displayChangeEvent = do
-        pure ()
+jchain : List String
+jchain =
+    [ "BaseMenuBehavior" ]
 
 
-initSpecialPaint :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-initSpecialPaint object_ a1 = jmethod object_ "initSpecialPaint" (\() -> (initSpecialPaint_impl (javaCast object_ :: BaseMenuBehavior))) () a1
-
-initSpecialPaint_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-initSpecialPaint_super object_ a1 = (initSpecialPaint_impl (javaCast object_ :: BaseMenuBehavior)) a1
-
-initSpecialPaint_impl :: BaseMenuBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-initSpecialPaint_impl this allBinaryGameCanvas = do
-        Control.Monad.void (AllBinaryGameCanvas.setNonBotPaintableP allBinaryGameCanvas (jio (NullPaintable.getInstance)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
--- throws Exception
-initMenu :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-initMenu object_ a1 = jmethod object_ "initMenu" (\() -> (initMenu_impl (javaCast object_ :: BaseMenuBehavior))) () a1
-
-initMenu_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-initMenu_super object_ a1 = (initMenu_impl (javaCast object_ :: BaseMenuBehavior)) a1
-
-initMenu_impl :: BaseMenuBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-initMenu_impl this allBinaryGameCanvas = do
-        pure ()
-
-
--- throws Exception
-updateMenu :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateMenu object_ a1 = jmethod object_ "updateMenu" (\() -> (updateMenu_impl (javaCast object_ :: BaseMenuBehavior))) () a1
-
-updateMenu_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateMenu_super object_ a1 = (updateMenu_impl (javaCast object_ :: BaseMenuBehavior)) a1
-
-updateMenu_impl :: BaseMenuBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-updateMenu_impl this allBinaryGameCanvas = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "onDisplayChangeEvent_2", jm_onDisplayChangeEvent_2 )
+        , ( "initSpecialPaint_1", jm_initSpecialPaint_1 )
+        , ( "initMenu_1", jm_initMenu_1 )
+        , ( "updateMenu_1", jm_updateMenu_1 )
+        , ( "popupMenu_1", jm_popupMenu_1 )
+        , ( "closeMenu_1", jm_closeMenu_1 ) ]
+        JR.noMethods
 
 
--- throws Exception
-popupMenu :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-popupMenu object_ a1 = jmethod object_ "popupMenu" (\() -> (popupMenu_impl (javaCast object_ :: BaseMenuBehavior))) () a1
-
-popupMenu_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-popupMenu_super object_ a1 = (popupMenu_impl (javaCast object_ :: BaseMenuBehavior)) a1
-
-popupMenu_impl :: BaseMenuBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-popupMenu_impl this allBinaryGameCanvas = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BaseMenuBehavior"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_onDisplayChangeEvent_2", jm_onDisplayChangeEvent_2 ), ( "jm_initSpecialPaint_1", jm_initSpecialPaint_1 ), ( "jm_initMenu_1", jm_initMenu_1 ), ( "jm_updateMenu_1", jm_updateMenu_1 ), ( "jm_popupMenu_1", jm_popupMenu_1 ), ( "jm_closeMenu_1", jm_closeMenu_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-closeMenu :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-closeMenu object_ a1 = jmethod object_ "closeMenu" (\() -> (closeMenu_impl (javaCast object_ :: BaseMenuBehavior))) () a1
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-closeMenu_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-closeMenu_super object_ a1 = (closeMenu_impl (javaCast object_ :: BaseMenuBehavior)) a1
 
-closeMenu_impl :: BaseMenuBehavior -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO (())
-closeMenu_impl this allBinaryGameCanvas = do
-        pure ()
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "BaseMenuBehavior" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onDisplayChangeEvent_2 : JR.Method
+jm_onDisplayChangeEvent_2 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ), ( "displayChangeEvent", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initSpecialPaint_1 : JR.Method
+jm_initSpecialPaint_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setNonBotPaintableP_1" (JR.local "allBinaryGameCanvas") [ (JR.callStatic NullPaintable.jm_getInstance_0 []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initMenu_1 : JR.Method
+jm_initMenu_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateMenu_1 : JR.Method
+jm_updateMenu_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_popupMenu_1 : JR.Method
+jm_popupMenu_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_closeMenu_1 : JR.Method
+jm_closeMenu_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

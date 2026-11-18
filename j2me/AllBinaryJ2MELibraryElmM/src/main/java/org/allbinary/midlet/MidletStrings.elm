@@ -1,91 +1,90 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
-module MidletStrings where
+module Org.Allbinary.Midlet.MidletStrings exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.midlet
+-}
 
-data MidletStrings = MidletStrings
-    { header_ :: JavaHeader
-    , cOMMAND_ACTION :: IORef (String)
-    }
-
-instance JavaNull MidletStrings where
-    javaNull = javaNullRecord "MidletStrings"
-
-instance JavaEquals MidletStrings where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MidletStrings where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MidletStrings where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: MidletStrings
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MidletStrings
-newRecord_ = do
-    header_ <- newJavaHeader
-    cOMMAND_ACTION <- newIORef ""
-    let this = MidletStrings header_ cOMMAND_ACTION
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: MidletStrings -> IO ()
-initFields_ this = do
-    jset this.cOMMAND_ACTION ("commandAction")
-    pure ()
-
-new_ :: IO MidletStrings
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: MidletStrings -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (MidletStrings)
-getInstance = do
-        pure (MidletStrings.instance_)
 
+jclass : String
+jclass =
+    "MidletStrings"
+
+
+jchain : List String
+jchain =
+    [ "MidletStrings" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "COMMAND_ACTION", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MidletStrings"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "MidletStrings" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "COMMAND_ACTION" "" JR.this (JR.str "commandAction")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

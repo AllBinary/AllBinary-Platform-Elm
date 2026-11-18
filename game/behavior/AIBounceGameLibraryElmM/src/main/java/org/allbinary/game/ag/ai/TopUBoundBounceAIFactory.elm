@@ -1,117 +1,97 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
-module TopUBoundBounceAIFactory where
+module Org.Allbinary.Game.Ag.Ai.TopUBoundBounceAIFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BoundBounceAI -- same package or java.lang
-import qualified ReverseVelocityBoundsVisitor -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified ArtificialIntelligenceInterface -- org.allbinary.ai.ArtificialIntelligenceInterface
-import qualified TopULayerBounds -- org.allbinary.bounds.TopULayerBounds
-import qualified ArtificialIntelligenceInterfaceFactoryInterface -- org.allbinary.game.ai.ArtificialIntelligenceInterfaceFactoryInterface
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified VelocityInterface -- org.allbinary.game.physics.velocity.VelocityInterface
-import qualified VelocityInterfaceCompositeInterface -- org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai
+-}
 
--- implements ArtificialIntelligenceInterfaceFactoryInterface
-data TopUBoundBounceAIFactory = TopUBoundBounceAIFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull TopUBoundBounceAIFactory where
-    javaNull = javaNullRecord "TopUBoundBounceAIFactory"
-
-instance JavaEquals TopUBoundBounceAIFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TopUBoundBounceAIFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TopUBoundBounceAIFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO TopUBoundBounceAIFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = TopUBoundBounceAIFactory header_
-    jregisterLevel header_ this
-    ArtificialIntelligenceInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    pure this
-
-initFields_ :: TopUBoundBounceAIFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO TopUBoundBounceAIFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TopUBoundBounceAIFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Ai.ArtificialIntelligenceInterfaceFactoryInterface as ArtificialIntelligenceInterfaceFactoryInterface
+import Org.Allbinary.Game.Ag.Ai.BoundBounceAI as BoundBounceAI
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Graphics.PointFactory as PointFactory
+import Org.Allbinary.Graphics.Rectangle as Rectangle
+import Org.Allbinary.Game.Ag.Ai.ReverseVelocityBoundsVisitor as ReverseVelocityBoundsVisitor
+import Org.Allbinary.Bounds.TopULayerBounds as TopULayerBounds
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface)
-getInstance object_ a1 a2 a3 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: TopUBoundBounceAIFactory))) () a1 a2 a3
+jclass : String
+jclass =
+    "TopUBoundBounceAIFactory"
 
-getInstance_super :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface)
-getInstance_super object_ a1 a2 a3 = (getInstance_impl (javaCast object_ :: TopUBoundBounceAIFactory)) a1 a2 a3
 
-getInstance_impl :: TopUBoundBounceAIFactory -> ABHashtable.ABHashtable -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface)
-getInstance_impl this hashtable ownerLayerInterface gameInput = do
-        let velocityInterfaceCompositeInterface = (javaCast ownerLayerInterface :: VelocityInterfaceCompositeInterface.VelocityInterfaceCompositeInterface)
-        let velocityInterface = (javaCast (jio (VelocityInterfaceCompositeInterface.getVelocityProperties velocityInterfaceCompositeInterface)) :: VelocityInterface.VelocityInterface)
-        let maxDistancePerTick = (((jio (VelocityInterface.getMaxForwardVelocity velocityInterface)) `Data.Bits.shiftR` (jio (VelocityInterface.getScaledFactor ((jio (VelocityInterface.getVelocityXBasicDecimalP velocityInterface)))))))
-        let halfWidth = ((((jio (AllBinaryLayer.getWidth ownerLayerInterface)) * 2) + maxDistancePerTick) + 1)
-        let halfHeight = ((((jio (AllBinaryLayer.getHeight ownerLayerInterface)) * 2) + maxDistancePerTick) + 1)
-        point <- (PointFactory.createXY ((jio (PointFactory.getInstance))) halfWidth (halfHeight + 60))
-        displayInfo <- (DisplayInfoSingleton.getInstance)
-        rectangle <- (Rectangle.new_3 point ((((jio (DisplayInfoSingleton.getLastWidth displayInfo)) - halfWidth) - (jio (GPoint.getX point)))) ((((jio (DisplayInfoSingleton.getLastHeight displayInfo)) - halfHeight) - (jio (GPoint.getY point)))))
-        (fmap (\value_ -> javaCast value_ :: ArtificialIntelligenceInterface.ArtificialIntelligenceInterface) (BoundBounceAI.new_4 ownerLayerInterface gameInput (javaCast (jio (TopULayerBounds.new_1 rectangle))) (javaCast (jio (ReverseVelocityBoundsVisitor.new_1 (javaCast ownerLayerInterface))))))
+jchain : List String
+jchain =
+    [ "TopUBoundBounceAIFactory" ]
+        ++ ArtificialIntelligenceInterfaceFactoryInterface.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_3", jm_getInstance_3 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TopUBoundBounceAIFactory"
+        [ ( "jm_getInstance_3", jm_getInstance_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_3 : JR.Method
+jm_getInstance_3 jheap jthis jargs =
+    JR.method [ ( "hashtable", "" ), ( "ownerLayerInterface", "" ), ( "gameInput", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "velocityInterfaceCompositeInterface" "" (JR.local "ownerLayerInterface"), 
+                    JR.declare "velocityInterface" "" (JR.invoke "getVelocityProperties_0" (JR.local "velocityInterfaceCompositeInterface") []), 
+                    JR.declare "maxDistancePerTick" "I" ((JR.map2 JR.shr (JR.invoke "getMaxForwardVelocity_0" (JR.local "velocityInterface") []) (JR.invoke "getScaledFactor_0" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.local "velocityInterface") []) []))), 
+                    JR.declare "halfWidth" "I" (JR.map2 JR.add (JR.map2 JR.add (JR.map2 JR.mul (JR.invoke "getWidth_0" (JR.local "ownerLayerInterface") []) (JR.int 2)) (JR.local "maxDistancePerTick")) (JR.int 1)), 
+                    JR.declare "halfHeight" "I" (JR.map2 JR.add (JR.map2 JR.add (JR.map2 JR.mul (JR.invoke "getHeight_0" (JR.local "ownerLayerInterface") []) (JR.int 2)) (JR.local "maxDistancePerTick")) (JR.int 1)), 
+                    JR.declare "point" "" (JR.invoke "createXY_2" (JR.callStatic PointFactory.jm_getInstance_0 []) [ (JR.local "halfWidth"), (JR.map2 JR.add (JR.local "halfHeight") (JR.int 60)) ]), 
+                    JR.declare "displayInfo" "" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []), 
+                    JR.declare "rectangle" "" (JR.new Rectangle.jnew_3 [ (JR.local "point"), ((JR.map2 JR.sub (JR.map2 JR.sub (JR.invoke "getLastWidth_0" (JR.local "displayInfo") []) (JR.local "halfWidth")) (JR.invoke "getX_0" (JR.local "point") []))), ((JR.map2 JR.sub (JR.map2 JR.sub (JR.invoke "getLastHeight_0" (JR.local "displayInfo") []) (JR.local "halfHeight")) (JR.invoke "getY_0" (JR.local "point") []))) ]), 
+                    JR.return (JR.new BoundBounceAI.jnew_4 [ (JR.local "ownerLayerInterface"), (JR.local "gameInput"), (JR.new TopULayerBounds.jnew_1 [ (JR.local "rectangle") ]), (JR.new ReverseVelocityBoundsVisitor.jnew_1 [ (JR.local "ownerLayerInterface") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,132 +1,116 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.java.jar
-module JarUtil where
+module Org.Allbinary.Logic.Java.Jar.JarUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified IOException -- java.io.IOException
-import qualified URL -- java.net.URL
-import qualified URLConnection -- java.net.URLConnection
-import qualified JarEntry -- java.util.jar.JarEntry
-import qualified JarInputStream -- java.util.jar.JarInputStream
+{-| Generated Code Do Not Modify package org.allbinary.logic.java.jar
+-}
 
-data JarUtil = JarUtil
-    { header_ :: JavaHeader
-    , jarURL :: IORef (URL.URL)
-    }
-
-instance JavaNull JarUtil where
-    javaNull = javaNullRecord "JarUtil"
-
-instance JavaEquals JarUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq JarUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass JarUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO JarUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    jarURL <- newIORef javaNull
-    let this = JarUtil header_ jarURL
-    jregisterLevel header_ this
-    jregisterMethod header_ "show" (\() -> show_impl this)
-    pure this
-
-initFields_ :: JarUtil -> IO ()
-initFields_ this = do
-    jset this.jarURL (javaNull)
-    pure ()
-
-new_1 :: URL.URL -> IO JarUtil
-new_1 jarURL = do
-    this <- newRecord_
-    init_1 this jarURL
-    pure this
-
-init_1 :: JarUtil -> URL.URL -> IO ()
-init_1 this jarURL = do
-        initFields_ this
-        jset (this).jarURL (jarURL)
-        pure ()
+import JR
+import JSystem
 
 
-show :: (JavaObjectClass this_) => this_ -> IO (())
-show object_ = jmethod object_ "show" (\() -> (show_impl (javaCast object_ :: JarUtil))) ()
-
-show_super :: (JavaObjectClass this_) => this_ -> IO (())
-show_super object_ = (show_impl (javaCast object_ :: JarUtil))
-
-show_impl :: JarUtil -> IO (())
-show_impl this = do
-        cache <- newIORef ((jnewArray (1024) 0))
-        handle (\(ex :: JavaException) -> do
-            Control.Monad.void (putStrLn (javaToString ex))
-            Control.Monad.void (hPutStrLn System.IO.stderr (Prelude.show ex))
-            ) $ do
-            conn <- (URL.openConnection ((jget (this).jarURL)))
-            jis <- (JarInputStream.new_1 (jio (URLConnection.getInputStream conn)))
-            fix $ \loop -> when True $ javaIteration (loop) $ do
-                entry <- (JarInputStream.getNextJarEntry jis)
-                if (entry /= javaNull) then do
-                    when (Prelude.not (jio (JarEntry.isDirectory entry))) $ do
-                        offset <- newIORef (0 :: Int)
-                        i <- newIORef (0 :: Int)
-                        fix $ \loop -> when (((jassign i ((jio (JarInputStream.read jis (jget cache) (jget offset) ((jlength (jget cache)) - (jget offset))))))) /= (Prelude.negate 1)) $ javaIteration (loop) $ do
-                            jset offset (((jget offset) + (jget i)))
-                            when ((jget offset) >= (jlength (jget cache))) $ do
-                                let newcache = (jnewArray (((jlength (jget cache)) + 1024)) 0)
-                                Control.Monad.void (jarraycopy (jget cache) 0 newcache 0 (jlength (jget cache)))
-                                jset cache (newcache)
-                        let tmp = (jnewArray ((jget offset)) 0)
-                        Control.Monad.void (jarraycopy (jget cache) 0 tmp 0 (jget offset))
-                        Control.Monad.void (putStrLn (javaToString (jio (JarEntry.getName entry))))
-                else do
-                    throwIO JavaBreak
-        pure ()
+jclass : String
+jclass =
+    "JarUtil"
 
 
--- throws Exception
-main :: JavaArray (String) -> IO (())
-main args = do
-        Control.Monad.void (JarUtil.show ((jio (new_1 (jio (URL.new_1 "file:///G:/mnt/bc/mydev/working/j2me/MiniSpaceWars/MiniSpaceWars/dist/MiniSpaceWars.jar"))))))
-        pure ()
+jchain : List String
+jchain =
+    [ "JarUtil" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "jarURL", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "show_0", jm_show_0 )
+        , ( "main_1", jm_main_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "JarUtil"
+        [ ( "jm_show_0", jm_show_0 ), ( "jm_main_1", jm_main_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "jarURL", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "jarURL" "" JR.this (JR.local "jarURL")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_show_0 : JR.Method
+jm_show_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "cache" "" (JR.newArray "B" [ (JR.int 1024) ]), 
+                    JR.try (JR.run [ 
+                        JR.declare "conn" "" (JR.invoke "openConnection_0" (JR.thisField "jarURL") []), 
+                        JR.declare "jis" "" (JR.new (JR.namedMethod "JarInputStream.jnew_1") [ (JR.invoke "getInputStream_0" (JR.local "conn") []) ]), 
+                        JR.while (JR.bool True) (JR.run [ 
+                            JR.declare "entry" "" (JR.invoke "getNextJarEntry_0" (JR.local "jis") []), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "entry") JR.null) (JR.run [ 
+                                JR.ifElse (JR.map JR.not_ (JR.invoke "isDirectory_0" (JR.local "entry") [])) (JR.run [ 
+                                    JR.declare "offset" "I" (JR.int 0), 
+                                    JR.declare "i" "I" (JR.int 0), 
+                                    JR.while (JR.map2 JR.notEquals ((JR.setLocal "i" "I" (JR.invoke "read_3" (JR.local "jis") [ (JR.local "cache"), (JR.local "offset"), (JR.map2 JR.sub (JR.alength (JR.local "cache")) (JR.local "offset")) ]))) (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                                        JR.exec (JR.setLocal "offset" "I" (JR.map2 JR.add (JR.local "offset") (JR.local "i"))), 
+                                        JR.ifElse (JR.map2 JR.greaterEquals (JR.local "offset") (JR.alength (JR.local "cache"))) (JR.run [ 
+                                            JR.declare "newcache" "" (JR.newArray "B" [ (JR.map2 JR.add (JR.alength (JR.local "cache")) (JR.int 1024)) ]), 
+                                            JR.exec (JR.withState JR.arraycopy [ (JR.local "cache"), (JR.int 0), (JR.local "newcache"), (JR.int 0), (JR.alength (JR.local "cache")) ]), 
+                                            JR.exec (JR.setLocal "cache" "" (JR.local "newcache")) ]) identity ]), 
+                                    JR.declare "tmp" "" (JR.newArray "B" [ (JR.local "offset") ]), 
+                                    JR.exec (JR.withState JR.arraycopy [ (JR.local "cache"), (JR.int 0), (JR.local "tmp"), (JR.int 0), (JR.local "offset") ]), 
+                                    JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.invoke "getName_0" (JR.local "entry") []) ]) ]) identity ]) (JR.run [ 
+                                JR.break ]) ]) ]) [ ( [ "IOException" ], "ex", (JR.run [ 
+                        JR.exec (JR.invoke "println_1" JSystem.jstatic_err [ (JR.local "ex") ]), 
+                        JR.exec (JR.invoke "printStackTrace_0" (JR.local "ex") []) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_main_1 : JR.Method
+jm_main_1 jheap jthis jargs =
+    JR.method [ ( "args", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "show_0" (JR.new jnew_1 [ (JR.new (JR.namedMethod "URL.jnew_1") [ (JR.str "file:///G:/mnt/bc/mydev/working/j2me/MiniSpaceWars/MiniSpaceWars/dist/MiniSpaceWars.jar") ]) ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

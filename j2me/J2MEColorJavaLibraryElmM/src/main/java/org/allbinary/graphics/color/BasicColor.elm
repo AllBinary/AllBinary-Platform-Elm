@@ -1,11 +1,11 @@
-module BasicColor exposing (..)
+module Org.Allbinary.Graphics.Color.BasicColor exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics.color
 -}
 
 import JR
-import BasicColorUtil
-import StringMaker
+import Org.Allbinary.Graphics.Color.BasicColorUtil as BasicColorUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

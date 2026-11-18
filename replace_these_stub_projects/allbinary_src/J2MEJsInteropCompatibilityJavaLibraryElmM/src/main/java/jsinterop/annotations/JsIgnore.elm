@@ -1,4 +1,4 @@
-module JsIgnore exposing (..)
+module Jsinterop.Annotations.JsIgnore exposing (..)
 
 {-| Generated Code Do Not Modify package jsinterop.annotations
 -}

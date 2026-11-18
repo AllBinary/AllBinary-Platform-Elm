@@ -1,102 +1,94 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.advertisement.search
-module AdvertisementSearchData where
+module Org.Allbinary.Business.Advertisement.Search.AdvertisementSearchData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.advertisement.search
+-}
 
-data AdvertisementSearchData = AdvertisementSearchData
-    { header_ :: JavaHeader
-    , tITLE :: IORef (String)
-    , pRICE :: IORef (String)
-    , rELEVANCY :: IORef (String)
-    , pOPULARITY :: IORef (String)
-    }
-
-instance JavaNull AdvertisementSearchData where
-    javaNull = javaNullRecord "AdvertisementSearchData"
-
-instance JavaEquals AdvertisementSearchData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AdvertisementSearchData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AdvertisementSearchData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AdvertisementSearchData
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AdvertisementSearchData
-newRecord_ = do
-    header_ <- newJavaHeader
-    tITLE <- newIORef ""
-    pRICE <- newIORef ""
-    rELEVANCY <- newIORef ""
-    pOPULARITY <- newIORef ""
-    let this = AdvertisementSearchData header_ tITLE pRICE rELEVANCY pOPULARITY
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: AdvertisementSearchData -> IO ()
-initFields_ this = do
-    jset this.tITLE ("AFFILIATE_TITLE")
-    jset this.pRICE ("AFFILIATE_PRICE")
-    jset this.rELEVANCY ("AFFILIATE_RELEVANCY")
-    jset this.pOPULARITY ("AFFILIATE_POPULARITY")
-    pure ()
+import JR
 
 
-getInstance :: IO (AdvertisementSearchData)
-getInstance = do
-        pure (AdvertisementSearchData.instance_)
 
-new_ :: IO AdvertisementSearchData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jclass : String
+jclass =
+    "AdvertisementSearchData"
 
-init_ :: AdvertisementSearchData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jchain : List String
+jchain =
+    [ "AdvertisementSearchData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "TITLE", JR.defaultOf "" ), ( "PRICE", JR.defaultOf "" ), ( "RELEVANCY", JR.defaultOf "" ), ( "POPULARITY", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AdvertisementSearchData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AdvertisementSearchData" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "TITLE" "" JR.this (JR.str "AFFILIATE_TITLE")),
+                JR.exec (JR.setField "PRICE" "" JR.this (JR.str "AFFILIATE_PRICE")),
+                JR.exec (JR.setField "RELEVANCY" "" JR.this (JR.str "AFFILIATE_RELEVANCY")),
+                JR.exec (JR.setField "POPULARITY" "" JR.this (JR.str "AFFILIATE_POPULARITY")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

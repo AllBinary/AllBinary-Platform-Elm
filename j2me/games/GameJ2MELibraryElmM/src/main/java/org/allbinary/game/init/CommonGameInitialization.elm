@@ -1,134 +1,116 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.init
-module CommonGameInitialization (module CommonGameInitialization, module BaseGameInitialization) where
+module Org.Allbinary.Game.Init.CommonGameInitialization exposing (..)
 
-import BaseGameInitialization hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, init, init_super, init_impl, initGame, initGame_super, initGame_impl, commonStrings)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified ResourceInitialization -- org.allbinary.game.resource.ResourceInitialization
-import qualified ResourceLoadingLevelFactory -- org.allbinary.game.resource.ResourceLoadingLevelFactory
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified ProgressCanvas -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvas
-import qualified ProgressCanvasFactory -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified AngleFactory -- org.allbinary.math.AngleFactory
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BaseGameInitialization
+{-| Generated Code Do Not Modify package org.allbinary.game.init
+-}
 
-data CommonGameInitialization = CommonGameInitialization
-    { header_ :: JavaHeader
-    , base :: BaseGameInitialization.BaseGameInitialization
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    }
-
-instance JavaNull CommonGameInitialization where
-    javaNull = javaNullRecord "CommonGameInitialization"
-
-instance JavaEquals CommonGameInitialization where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CommonGameInitialization where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CommonGameInitialization where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO CommonGameInitialization
-newRecord_ = do
-    base <- BaseGameInitialization.newRecord_
-    let header_ = base.header_
-    commonStrings <- newIORef javaNull
-    let this = CommonGameInitialization header_ base commonStrings
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "initGame" (\() -> initGame_impl this)
-    pure this
-
-initFields_ :: CommonGameInitialization -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    pure ()
-
-new_2 :: JavaArray (ResourceInitialization.ResourceInitialization) -> Int -> IO CommonGameInitialization
-new_2 resourceInitializationArray portion = do
-    this <- newRecord_
-    init_2 this resourceInitializationArray portion
-    pure this
-
-init_2 :: CommonGameInitialization -> JavaArray (ResourceInitialization.ResourceInitialization) -> Int -> IO ()
-init_2 this resourceInitializationArray portion = do
-        BaseGameInitialization.init_2 this.base (resourceInitializationArray) (portion)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Game.Init.BaseGameInitialization as BaseGameInitialization
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Graphics.PointFactory as PointFactory
+import Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressCanvasFactory as ProgressCanvasFactory
+import Org.Allbinary.Game.Resource.ResourceLoadingLevelFactory as ResourceLoadingLevelFactory
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
 
 
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> CommandListener.CommandListener -> Int -> IO (())
-init object_ a1 a2 a3 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: CommonGameInitialization))) () a1 a2 a3
-
-init_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> CommandListener.CommandListener -> Int -> IO (())
-init_super object_ a1 a2 a3 = (init_impl (javaCast object_ :: CommonGameInitialization)) a1 a2 a3
-
-init_impl :: CommonGameInitialization -> AbeClientInformationInterface.AbeClientInformationInterface -> CommandListener.CommandListener -> Int -> IO (())
-init_impl this abeClientInformation commandListener level = do
-        Control.Monad.void (BaseGameInitialization.init_super this.base abeClientInformation commandListener level)
-        resourceLoadingLevelFactory <- (ResourceLoadingLevelFactory.getInstance)
-        when ((Prelude.not (jio (BaseGameInitialization.isGameInitialized this))) && (level == (jio (getLevel ((jget (resourceLoadingLevelFactory).lOAD_ALL)))))) $ do
-            Control.Monad.void (BaseGameInitialization.setGameInitialized this True)
-            progressCanvas <- (ProgressCanvasFactory.getInstance)
-            Control.Monad.void (SmallIntegerSingletonFactory.init ((jio (SmallIntegerSingletonFactory.getInstance))))
-            Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas 50 "Integers")
-            Control.Monad.void (PointFactory.init ((jio (PointFactory.getInstance))))
-            Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas 50 "Points")
-            Control.Monad.void (AngleFactory.getInstance)
-            Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas 50 "Angles")
-            Control.Monad.void (CommonGameInitialization.initGame this)
-            Control.Monad.void (ResourceInitialization.init ((jindex ((jget (this).base.resourceInitializationArray)) ((jget (this).base.gAME_RESOURCES)))))
-        Control.Monad.void (BaseGameInitialization.resourceInitialization_super this.base level)
-        pure ()
+jclass : String
+jclass =
+    "CommonGameInitialization"
 
 
--- throws Exception
-initGame :: (JavaObjectClass this_) => this_ -> IO (())
-initGame object_ = jmethod object_ "initGame" (\() -> (initGame_impl (javaCast object_ :: CommonGameInitialization))) ()
+jchain : List String
+jchain =
+    [ "CommonGameInitialization" ]
+        ++ BaseGameInitialization.jchain
 
-initGame_super :: (JavaObjectClass this_) => this_ -> IO (())
-initGame_super object_ = (initGame_impl (javaCast object_ :: CommonGameInitialization))
 
-initGame_impl :: CommonGameInitialization -> IO (())
-initGame_impl this = do
-        javaThrow ((JavaException "Exception" (jget ((jget (this).commonStrings)).nOT_IMPLEMENTED)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BaseGameInitialization.jfields ++ [ ( "commonStrings", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "init_3", jm_init_3 )
+        , ( "initGame_0", jm_initGame_0 ) ]
+        BaseGameInitialization.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CommonGameInitialization"
+        [ ( "jm_init_3", jm_init_3 ), ( "jm_initGame_0", jm_initGame_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "resourceInitializationArray", "" ), ( "portion", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BaseGameInitialization.jinit_2 JR.this [ (JR.local "resourceInitializationArray"), (JR.local "portion") ]),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_init_3 : JR.Method
+jm_init_3 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "commandListener", "" ), ( "level", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia BaseGameInitialization.jvtable "init_3" JR.this [ (JR.local "abeClientInformation"), (JR.local "commandListener"), (JR.local "level") ]), 
+                    JR.declare "resourceLoadingLevelFactory" "" (JR.callStatic ResourceLoadingLevelFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.and (JR.map JR.not_ (JR.invoke "isGameInitialized_0" JR.this [])) (JR.map2 JR.equals (JR.local "level") (JR.invoke "getLevel_0" (JR.field "LOAD_ALL" (JR.local "resourceLoadingLevelFactory")) []))) (JR.run [ 
+                        JR.exec (JR.invoke "setGameInitialized_1" JR.this [ (JR.bool True) ]), 
+                        JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "init_0" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) []), 
+                        JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.int 50), (JR.str "Integers") ]), 
+                        JR.exec (JR.invoke "init_0" (JR.callStatic PointFactory.jm_getInstance_0 []) []), 
+                        JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.int 50), (JR.str "Points") ]), 
+                        JR.exec (JR.callStatic AngleFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.int 50), (JR.str "Angles") ]), 
+                        JR.exec (JR.invoke "initGame_0" JR.this []), 
+                        JR.exec (JR.invoke "init_0" (JR.aget (JR.thisField "resourceInitializationArray") (JR.thisField "GAME_RESOURCES")) []) ]) identity, 
+                    JR.exec (JR.callVia BaseGameInitialization.jvtable "resourceInitialization_1" JR.this [ (JR.local "level") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initGame_0 : JR.Method
+jm_initGame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

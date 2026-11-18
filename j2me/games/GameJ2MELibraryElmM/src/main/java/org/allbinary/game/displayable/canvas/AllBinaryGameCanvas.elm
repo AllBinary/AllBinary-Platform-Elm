@@ -1,3025 +1,2434 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module AllBinaryGameCanvas (module AllBinaryGameCanvas, module RunnableCanvas) where
-
-import RunnableCanvas hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, getInGameMenuBehavior, getInGameMenuBehavior_super, getInGameMenuBehavior_impl, setCurrentThread, setCurrentThread_super, setCurrentThread_impl, onEvent, onEvent_super, onEvent_impl, onDisplayChangeEvent, onDisplayChangeEvent_super, onDisplayChangeEvent_impl, updateMenuFromEvent, updateMenuFromEvent_super, updateMenuFromEvent_impl, processSleep, processSleep_super, processSleep_impl, initPopupMenu, initPopupMenu_super, initPopupMenu_impl, initMenu, initMenu_super, initMenu_impl, initMenu2, initMenu2_super, initMenu2_impl, updateMenu, updateMenu_super, updateMenu_impl, updateMenu2, updateMenu2_super, updateMenu2_impl, pause, pause_super, pause_impl, unPause, unPause_super, unPause_impl, isPausable, isPausable_super, isPausable_impl, popupMenu, popupMenu_super, popupMenu_impl, popupMenu2, popupMenu2_super, popupMenu2_impl, toggleMenu, toggleMenu_super, toggleMenu_impl, closeMenu, closeMenu_super, closeMenu_impl, closeMenu2, closeMenu2_super, closeMenu2_impl, open, open_super, open_impl, close, close_super, close_impl, processorInit, processorInit_super, processorInit_impl, setProcessGameProcessorInit, setProcessGameProcessorInit_super, setProcessGameProcessorInit_impl, initSpecialPaint, initSpecialPaint_super, initSpecialPaint_impl, init, init_super, init_impl, notifyIntermission, notifyIntermission_super, notifyIntermission_impl, mediaInit, mediaInit_super, mediaInit_impl, initConfigurable, initConfigurable_super, initConfigurable_impl, initApp, initApp_super, initApp_impl, initTouch, initTouch_super, initTouch_impl, updateCurrentTouchInputFactory, updateCurrentTouchInputFactory_super, updateCurrentTouchInputFactory_impl, updateTouch, updateTouch_super, updateTouch_impl, updateTouch2, updateTouch2_super, updateTouch2_impl, postInitTouch, postInitTouch_super, postInitTouch_impl, initCommands, initCommands_super, initCommands_impl, addCommands, addCommands_super, addCommands_impl, itemStateChanged, itemStateChanged_super, itemStateChanged_impl, updateScreenButtonPaintable, updateScreenButtonPaintable_super, updateScreenButtonPaintable_impl, updateScreenButtonPaintable2, updateScreenButtonPaintable2_super, updateScreenButtonPaintable2_impl, getLayerManager, getLayerManager_super, getLayerManager_impl, setLayerManager, setLayerManager_super, setLayerManager_impl, isGameOver, isGameOver_super, isGameOver_impl, setGameOver, setGameOver_super, setGameOver_impl, processGameOver, processGameOver_super, processGameOver_impl, isHighScoreSubmitted, isHighScoreSubmitted_super, isHighScoreSubmitted_impl, setHighScoreSubmitted, setHighScoreSubmitted_super, setHighScoreSubmitted_impl, getGameState, getGameState_super, getGameState_impl, setGameState, setGameState_super, setGameState_impl, updateGameState, updateGameState_super, updateGameState_impl, updateGameKeyEventProcessor, updateGameKeyEventProcessor_super, updateGameKeyEventProcessor_impl, removeAllGameKeyInputListenersOnBuild, removeAllGameKeyInputListenersOnBuild_super, removeAllGameKeyInputListenersOnBuild_impl, removeAllGameKeyInputListeners, removeAllGameKeyInputListeners_super, removeAllGameKeyInputListeners_impl, removeAllGameKeyInputListeners2, removeAllGameKeyInputListeners2_super, removeAllGameKeyInputListeners2_impl, removeKeyInputListener, removeKeyInputListener_super, removeKeyInputListener_impl, updateEndGameProcessor, updateEndGameProcessor_super, updateEndGameProcessor_impl, updateEndGameProcessor2, updateEndGameProcessor2_super, updateEndGameProcessor2_impl, buildGameInit, buildGameInit_super, buildGameInit_impl, cleanupGame, cleanupGame_super, cleanupGame_impl, loadResourceLoadingLevel, loadResourceLoadingLevel_super, loadResourceLoadingLevel_impl, loadResources, loadResources_super, loadResources_impl, updateColor, updateColor_super, updateColor_impl, buildGame, buildGame_super, buildGame_impl, buildGame2, buildGame2_super, buildGame2_impl, addKeyInputListener, addKeyInputListener_super, addKeyInputListener_impl, setGameCanvasStartListener, setGameCanvasStartListener_super, setGameCanvasStartListener_impl, loadState, loadState_super, loadState_impl, getLoadStateHashtable, getLoadStateHashtable_super, getLoadStateHashtable_impl, setLoadStateHashtable, setLoadStateHashtable_super, setLoadStateHashtable_impl, getCurrentStateHashtable, getCurrentStateHashtable_super, getCurrentStateHashtable_impl, paintGameOver, paintGameOver_super, paintGameOver_impl, draw, draw_super, draw_impl, clear, clear_super, clear_impl, paint, paint_super, paint_impl, paintThreed, paintThreed_super, paintThreed_impl, processEndLevelIntermissionGameState, processEndLevelIntermissionGameState_super, processEndLevelIntermissionGameState_impl, nonBotPaint, nonBotPaint_super, nonBotPaint_impl, paintIntermission, paintIntermission_super, paintIntermission_impl, keyPressed, keyPressed_super, keyPressed_impl, keyReleased, keyReleased_super, keyReleased_impl, keyRepeated, keyRepeated_super, keyRepeated_impl, keyPressedByDevice, keyPressedByDevice_super, keyPressedByDevice_impl, keyRepeatedByDevice, keyRepeatedByDevice_super, keyRepeatedByDevice_impl, keyReleasedByDevice, keyReleasedByDevice_super, keyReleasedByDevice_impl, handleRawKey, handleRawKey_super, handleRawKey_impl, endProgress, endProgress_super, endProgress_impl, processPlayingGame, processPlayingGame_super, processPlayingGame_impl, threadInit, threadInit_super, threadInit_impl, processGame, processGame_super, processGame_impl, notifyDonePainting, notifyDonePainting_super, notifyDonePainting_impl, shouldWait, shouldWait_super, shouldWait_impl, run, run_super, run_impl, run2, run2_super, run2_impl, run3, run3_super, run3_impl, setRunning, setRunning_super, setRunning_impl, end, end_super, end_impl, endGameThread, endGameThread_super, endGameThread_impl, createHighScore, createHighScore_super, createHighScore_impl, setHighScore, setHighScore_super, setHighScore_impl, setHighScore2, setHighScore2_super, setHighScore2_impl, getGameStateTimeHelper, getGameStateTimeHelper_super, getGameStateTimeHelper_impl, setInitialized, setInitialized_super, setInitialized_impl, isInitialized, isInitialized_super, isInitialized_impl, getSourceId, getSourceId_super, getSourceId_impl, setProgressPaintable, setProgressPaintable_super, setProgressPaintable_impl, getStartIntermissionInterface, getStartIntermissionInterface_super, getStartIntermissionInterface_impl, getEndLevelIntermissionInterface, getEndLevelIntermissionInterface_super, getEndLevelIntermissionInterface_impl, setTouchPaintableP, setTouchPaintableP_super, setTouchPaintableP_impl, getTouchPaintableP, getTouchPaintableP_super, getTouchPaintableP_impl, setEndGamePaintable, setEndGamePaintable_super, setEndGamePaintable_impl, getEndGamePaintable, getEndGamePaintable_super, getEndGamePaintable_impl, setIntermissionPaintable, setIntermissionPaintable_super, setIntermissionPaintable_impl, getIntermissionPaintable, getIntermissionPaintable_super, getIntermissionPaintable_impl, getEndGameInfoP, getEndGameInfoP_super, getEndGameInfoP_impl, setHighScoresPaintable, setHighScoresPaintable_super, setHighScoresPaintable_impl, getHighScoresPaintable, getHighScoresPaintable_super, getHighScoresPaintable_impl, getRealHighScoresPaintable, getRealHighScoresPaintable_super, getRealHighScoresPaintable_impl, clearPlayerGameInputList, clearPlayerGameInputList_super, clearPlayerGameInputList_impl, addPlayerGameInput, addPlayerGameInput_super, addPlayerGameInput_impl, setMenuInputProcessor, setMenuInputProcessor_super, setMenuInputProcessor_impl, getMenuInputProcessor, getMenuInputProcessor_super, getMenuInputProcessor_impl, getMenuForm, getMenuForm_super, getMenuForm_impl, setMenuForm, setMenuForm_super, setMenuForm_impl, getStartLevel, getStartLevel_super, getStartLevel_impl, setStartLevel, setStartLevel_super, setStartLevel_impl, setTouchButtonsPaintable, setTouchButtonsPaintable_super, setTouchButtonsPaintable_impl, getTouchButtonsPaintable, getTouchButtonsPaintable_super, getTouchButtonsPaintable_impl, setGameInputProcessor, setGameInputProcessor_super, setGameInputProcessor_impl, getGameInputProcessor, getGameInputProcessor_super, getGameInputProcessor_impl, setEndGameProcessor, setEndGameProcessor_super, setEndGameProcessor_impl, getEndGameProcessor, getEndGameProcessor_super, getEndGameProcessor_impl, setEndGameStatePaintable, setEndGameStatePaintable_super, setEndGameStatePaintable_impl, getEndGameStatePaintable, getEndGameStatePaintable_super, getEndGameStatePaintable_impl, setNonBotPaintableP, setNonBotPaintableP_super, setNonBotPaintableP_impl, getNonBotPaintableP, getNonBotPaintableP_super, getNonBotPaintableP_impl, setStartIntermissionPaintable, setStartIntermissionPaintable_super, setStartIntermissionPaintable_impl, getStartIntermissionPaintable, getStartIntermissionPaintable_super, getStartIntermissionPaintable_impl, setMainStateProcessor, setMainStateProcessor_super, setMainStateProcessor_impl, getMainStateProcessor, getMainStateProcessor_super, getMainStateProcessor_impl, setProcessGameProcessor, setProcessGameProcessor_super, setProcessGameProcessor_impl, getProcessGameProcessor, getProcessGameProcessor_super, getProcessGameProcessor_impl, setOpenMenuPaintable, setOpenMenuPaintable_super, setOpenMenuPaintable_impl, getOpenMenuPaintable, getOpenMenuPaintable_super, getOpenMenuPaintable_impl, setPopupMenuInputProcessor, setPopupMenuInputProcessor_super, setPopupMenuInputProcessor_impl, getPopupMenuInputProcessor, getPopupMenuInputProcessor_super, getPopupMenuInputProcessor_impl, getSensorGameUpdateProcessor, getSensorGameUpdateProcessor_super, getSensorGameUpdateProcessor_impl, getRawGameInputProcessor, getRawGameInputProcessor_super, getRawGameInputProcessor_impl, getRawInputProcessor, getRawInputProcessor_super, getRawInputProcessor_impl, setInputProcessor, setInputProcessor_super, setInputProcessor_impl, getInputProcessor, getInputProcessor_super, getInputProcessor_impl, setMenuPaintable, setMenuPaintable_super, setMenuPaintable_impl, getMenuPaintable, getMenuPaintable_super, getMenuPaintable_impl, setFormPaintable, setFormPaintable_super, setFormPaintable_impl, getFormPaintable, getFormPaintable_super, getFormPaintable_impl, setGameSpecificPaintableP, setGameSpecificPaintableP_super, setGameSpecificPaintableP_impl, getGameSpecificPaintableP, getGameSpecificPaintableP_super, getGameSpecificPaintableP_impl, isSingleThread, isSingleThread_super, isSingleThread_impl, isRunningInAnotherThread, isRunningInAnotherThread_super, isRunningInAnotherThread_impl, getType, getType_super, getType_impl, getTitle, getTitle_super, getTitle_impl, isPaused, isPaused_super, isPaused_impl, basicColorFactory, basicSetColorUtil, touchFeatureFactory, openGLFeatureFactory, touchButtonFactory, gameAdStateFactory, gameStrings, gameInputStrings, gameStateFactory, gameTickTimeDelayHelper, gameTickDisplayInfoSingleton, gameRunnable, gamePauseRunnable, formUtil, myFormUtil, updateMyFontProcessor, myFontProcessor, gameSpecificPaintable, sensorGameUpdateProcessor, endGameInfo, startIntermissionInterface, endLevelIntermissionInterface, id, gameLayerManager, gameState, gameOver, initialized, gameStateTimeHelper, highScoresHelper, highScoreSubmitted, realHighScoresPaintable, highScoresPaintable, localPlayerGameInputList, isCheating, hashtable, isSingleKeyRepeatableProcessing, gameInitializationInterfaceFactoryInterface, touchButtonsPaintable, touchPaintable, cheatProcessor, gameInputProcessor, endGameProcessor, realEndGameProcessor, startIntermissionProcessor, realStartIntermissionProcessor, endGamePaintable, endGameStatePaintable, nonBotPaintable, intermissionPaintable, startIntermissionPaintable, mainStateProcessor, processGameProcessor, highScoresFactoryInterface, startLevel, mainMenuInputProcessor, popupMenuInputProcessor, menuInputProcessor, menuForm, formPaintable, openMenuPaintable, menuPaintable, currentTouchInputFactory, colorFillPaintable, baseGameStatistics, primaryPlayerQueue, secondaryPlayerQueue, bUILD_GAME, gameTypeFactory, screenCapture, basicMotionGesturesHandler, gameKeyEventHandler, gameBehavior, menuBehavior, progressPaintable, fontHeightP, gameCanvasStartListener, rawGameInputProcessor, rawInputProcessor, inputProcessor, yIELD_SLEEP, tYPE)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameCanvasRunnable -- same package or java.lang
-import qualified GameCanvasPauseRunnable -- same package or java.lang
-import qualified FormUtil -- same package or java.lang
-import qualified MyFormUtil -- same package or java.lang
-import qualified EndGameInfo -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified NoMenuInputProcessor -- same package or java.lang
-import qualified BasicMenuInputProcessor -- same package or java.lang
-import qualified DemoGameBehavior -- same package or java.lang
-import qualified BaseMenuBehavior -- same package or java.lang
-import qualified BaseGameBehavior -- same package or java.lang
-import qualified BasicPopupMenuPaintable -- same package or java.lang
-import qualified PopupMenuInputProcessor -- same package or java.lang
-import qualified InGameMenuBehavior -- same package or java.lang
-import qualified GameLimitedCommandTextItemArrayFactory -- same package or java.lang
-import qualified PopupCommandFormInputProcessor -- same package or java.lang
-import qualified NullWaitGameRunnable -- same package or java.lang
-import qualified GameProcessor -- same package or java.lang
-import qualified CheatGameInputProcessor -- same package or java.lang
-import qualified EndGameProcessor -- same package or java.lang
-import qualified StartIntermissionProcessor -- same package or java.lang
-import qualified EndGamePaintable -- same package or java.lang
-import qualified NullDemoPaintable -- same package or java.lang
-import qualified DemoPaintableInterface -- same package or java.lang
-import qualified GameCanvasInputProcessor -- same package or java.lang
-import qualified FormInputProcessor -- same package or java.lang
-import qualified Thread -- same package or java.lang
-import qualified SaveHighScoreRunnable -- same package or java.lang
-import qualified SpecialGameInputInterface -- same package or java.lang
-import qualified ChoiceGroup -- javax.microedition.lcdui.ChoiceGroup
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified LcduiItem -- javax.microedition.lcdui.LcduiItem
-import qualified NullCommandListener -- javax.microedition.lcdui.NullCommandListener
-import qualified AndroidUtil -- org.allbinary.AndroidUtil
-import qualified J2MEUtil -- org.allbinary.J2MEUtil
-import qualified GameAdStateFactory -- org.allbinary.business.advertisement.GameAdStateFactory
-import qualified BaseGameStatistics -- org.allbinary.canvas.BaseGameStatistics
-import qualified GameStatisticsFactory -- org.allbinary.canvas.GameStatisticsFactory
-import qualified Processor -- org.allbinary.canvas.Processor
-import qualified RunnableCanvas -- org.allbinary.canvas.RunnableCanvas
-import qualified DebugFactory -- org.allbinary.debug.DebugFactory
-import qualified NoDebug -- org.allbinary.debug.NoDebug
-import qualified GameAdState -- org.allbinary.game.GameAdState
-import qualified GameInfo -- org.allbinary.game.GameInfo
-import qualified GameStrings -- org.allbinary.game.GameStrings
-import qualified GameTypeFactory -- org.allbinary.game.GameTypeFactory
-import qualified Intermission -- org.allbinary.game.Intermission
-import qualified IntermissionCompositeInterface -- org.allbinary.game.IntermissionCompositeInterface
-import qualified IntermissionEnableListenerInterface -- org.allbinary.game.IntermissionEnableListenerInterface
-import qualified IntermissionInterface -- org.allbinary.game.IntermissionInterface
-import qualified PlayerTypesFactory -- org.allbinary.game.PlayerTypesFactory
-import qualified GameCommandsFactory -- org.allbinary.game.commands.GameCommandsFactory
-import qualified InGameFeatures -- org.allbinary.game.configuration.InGameFeatures
-import qualified InGameOptionsForm -- org.allbinary.game.configuration.InGameOptionsForm
-import qualified ChangedGameFeatureListener -- org.allbinary.game.configuration.event.ChangedGameFeatureListener
-import qualified GameInitializedEvent -- org.allbinary.game.configuration.event.GameInitializedEvent
-import qualified GameInitializedEventHandler -- org.allbinary.game.configuration.event.GameInitializedEventHandler
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified GameFeatureFactory -- org.allbinary.game.configuration.feature.GameFeatureFactory
-import qualified GameFeatureUtil -- org.allbinary.game.configuration.feature.GameFeatureUtil
-import qualified InputFeatureFactory -- org.allbinary.game.configuration.feature.InputFeatureFactory
-import qualified MainFeatureFactory -- org.allbinary.game.configuration.feature.MainFeatureFactory
-import qualified SensorFeatureFactory -- org.allbinary.game.configuration.feature.SensorFeatureFactory
-import qualified TouchFeatureFactory -- org.allbinary.game.configuration.feature.TouchFeatureFactory
-import qualified GameLevelDisplayChangeEventListenersFactory -- org.allbinary.game.displayable.GameLevelDisplayChangeEventListenersFactory
-import qualified BasicBuildGameInitializerFactory -- org.allbinary.game.init.BasicBuildGameInitializerFactory
-import qualified GameInitializationUtil -- org.allbinary.game.init.GameInitializationUtil
-import qualified GameInputStrings -- org.allbinary.game.input.GameInputStrings
-import qualified InputProcessor -- org.allbinary.game.input.InputProcessor
-import qualified NoPlayerGameInput -- org.allbinary.game.input.NoPlayerGameInput
-import qualified PlayerGameInput -- org.allbinary.game.input.PlayerGameInput
-import qualified GameKeyEventHandler -- org.allbinary.game.input.event.GameKeyEventHandler
-import qualified AllBinaryGameLayerManager -- org.allbinary.game.layer.AllBinaryGameLayerManager
-import qualified SWTUtil -- org.allbinary.game.layer.SWTUtil
-import qualified ColorFillBasePaintable -- org.allbinary.game.paint.ColorFillBasePaintable
-import qualified ColorFillPaintableFactory -- org.allbinary.game.paint.ColorFillPaintableFactory
-import qualified ResourceLoadingLevel -- org.allbinary.game.resource.ResourceLoadingLevel
-import qualified ResourceLoadingLevelFactory -- org.allbinary.game.resource.ResourceLoadingLevelFactory
-import qualified HighScore -- org.allbinary.game.score.HighScore
-import qualified HighScoresHelperBaseInterface -- org.allbinary.game.score.HighScoresHelperBaseInterface
-import qualified HighScoresFactoryInterface -- org.allbinary.game.score.HighScoresFactoryInterface
-import qualified HighScoresPaintable -- org.allbinary.game.score.HighScoresPaintable
-import qualified NullHighScoresSingletonFactory -- org.allbinary.game.score.NullHighScoresSingletonFactory
-import qualified HighScoreTextBox -- org.allbinary.game.score.displayable.HighScoreTextBox
-import qualified GameState -- org.allbinary.game.state.GameState
-import qualified GameStateFactory -- org.allbinary.game.state.GameStateFactory
-import qualified GraphicsStrings -- org.allbinary.graphics.GraphicsStrings
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified ScreenCapture -- org.allbinary.graphics.ScreenCapture
-import qualified ScreenCaptureFactory -- org.allbinary.graphics.ScreenCaptureFactory
-import qualified ProgressCanvas -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvas
-import qualified ProgressCanvasFactory -- org.allbinary.graphics.canvas.transition.progress.ProgressCanvasFactory
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified BasicColorSetUtil -- org.allbinary.graphics.color.BasicColorSetUtil
-import qualified CanvasStrings -- org.allbinary.graphics.displayable.CanvasStrings
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified GameTickDisplayInfoSingleton -- org.allbinary.graphics.displayable.GameTickDisplayInfoSingleton
-import qualified MyCommandsFactory -- org.allbinary.graphics.displayable.command.MyCommandsFactory
-import qualified DisplayChangeEvent -- org.allbinary.graphics.displayable.event.DisplayChangeEvent
-import qualified DisplayChangeEventHandler -- org.allbinary.graphics.displayable.event.DisplayChangeEventHandler
-import qualified DisplayChangeEventListener -- org.allbinary.graphics.displayable.event.DisplayChangeEventListener
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified CommandCurrentSelectionFormFactory -- org.allbinary.graphics.form.CommandCurrentSelectionFormFactory
-import qualified FormPaintable -- org.allbinary.graphics.form.FormPaintable
-import qualified FormType -- org.allbinary.graphics.form.FormType
-import qualified FormTypeFactory -- org.allbinary.graphics.form.FormTypeFactory
-import qualified ScrollSelectionForm -- org.allbinary.graphics.form.ScrollSelectionForm
-import qualified ScrollSelectionFormNoneFactory -- org.allbinary.graphics.form.ScrollSelectionFormNoneFactory
-import qualified CommandTextItemArrayFactory -- org.allbinary.graphics.form.item.CommandTextItemArrayFactory
-import qualified ABCustomItem -- org.allbinary.graphics.form.item.ABCustomItem
-import qualified CurrentDisplayableFactory -- org.allbinary.graphics.opengles.CurrentDisplayableFactory
-import qualified OpenGLFeatureFactory -- org.allbinary.graphics.opengles.OpenGLFeatureFactory
-import qualified OpenGLFeatureUtil -- org.allbinary.graphics.opengles.OpenGLFeatureUtil
-import qualified OpenGLThreadUtil -- org.allbinary.graphics.opengles.OpenGLThreadUtil
-import qualified InitUpdatePaintable -- org.allbinary.graphics.paint.InitUpdatePaintable
-import qualified NullInitUpdatePaintable -- org.allbinary.graphics.paint.NullInitUpdatePaintable
-import qualified NullPaintable -- org.allbinary.graphics.paint.NullPaintable
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified PaintableInterface -- org.allbinary.graphics.paint.PaintableInterface
-import qualified OpenGLImageSpecificFactory -- org.allbinary.image.opengles.OpenGLImageSpecificFactory
-import qualified SensorGameUpdateProcessor -- org.allbinary.input.gyro.SensorGameUpdateProcessor
-import qualified SingleSensorGameUpdateProcessor -- org.allbinary.input.gyro.SingleSensorGameUpdateProcessor
-import qualified BaseTouchInput -- org.allbinary.input.motion.button.BaseTouchInput
-import qualified NoButtonsTouchInputFactory -- org.allbinary.input.motion.button.NoButtonsTouchInputFactory
-import qualified TouchButtonFactory -- org.allbinary.input.motion.button.TouchButtonFactory
-import qualified TouchButtonsPaintableFactory -- org.allbinary.input.motion.button.TouchButtonsPaintableFactory
-import qualified TouchScreenFactory -- org.allbinary.input.motion.button.TouchScreenFactory
-import qualified BasicMotionGesturesHandler -- org.allbinary.input.motion.gesture.observer.BasicMotionGesturesHandler
-import qualified ABSystemWrapper -- org.allbinary.logic.ABSystemWrapper
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified OperatingSystemFactory -- org.allbinary.logic.system.os.OperatingSystemFactory
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventStrings -- org.allbinary.logic.util.event.EventStrings
-import qualified AllBinaryMediaManager -- org.allbinary.media.audio.AllBinaryMediaManager
-import qualified PlayerQueue -- org.allbinary.media.audio.PlayerQueue
-import qualified PrimaryPlayerQueueFactory -- org.allbinary.media.audio.PrimaryPlayerQueueFactory
-import qualified SecondaryPlayerQueueFactory -- org.allbinary.media.audio.SecondaryPlayerQueueFactory
-import qualified SelectSound -- org.allbinary.media.audio.SelectSound
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified SecondaryThreadPool -- org.allbinary.thread.SecondaryThreadPool
-import qualified GameTickTimeDelayHelper -- org.allbinary.time.GameTickTimeDelayHelper
-import qualified GameTickTimeDelayHelperFactory -- org.allbinary.time.GameTickTimeDelayHelperFactory
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified BasicArrayListUtil -- org.allbinary.util.BasicArrayListUtil
-import qualified AllBinaryGameCanvasInterface
-import qualified GameCanvasRunnableInterface
-import qualified MenuListener
-import qualified PopupMenuInterface
-
--- implements AllBinaryGameCanvasInterface
--- implements GameCanvasRunnableInterface
--- implements MenuListener
--- implements IntermissionCompositeInterface
--- implements IntermissionEnableListenerInterface
--- implements PopupMenuInterface
--- implements DisplayChangeEventListener
--- implements UpdateMyFontInterface
-data AllBinaryGameCanvas = AllBinaryGameCanvas
-    { header_ :: JavaHeader
-    , base :: RunnableCanvas.RunnableCanvas
-    , basicColorFactory :: IORef (BasicColorFactory.BasicColorFactory)
-    , basicSetColorUtil :: IORef (BasicColorSetUtil.BasicColorSetUtil)
-    , touchFeatureFactory :: IORef (TouchFeatureFactory.TouchFeatureFactory)
-    , openGLFeatureFactory :: IORef (OpenGLFeatureFactory.OpenGLFeatureFactory)
-    , touchButtonFactory :: IORef (TouchButtonFactory.TouchButtonFactory)
-    , gameAdStateFactory :: IORef (GameAdStateFactory.GameAdStateFactory)
-    , gameStrings :: IORef (GameStrings.GameStrings)
-    , gameInputStrings :: IORef (GameInputStrings.GameInputStrings)
-    , gameStateFactory :: IORef (GameStateFactory.GameStateFactory)
-    , gameTickTimeDelayHelper :: IORef (GameTickTimeDelayHelper.GameTickTimeDelayHelper)
-    , gameTickDisplayInfoSingleton :: IORef (GameTickDisplayInfoSingleton.GameTickDisplayInfoSingleton)
-    , gameRunnable :: IORef (GameCanvasRunnable.GameCanvasRunnable)
-    , gamePauseRunnable :: IORef (GameCanvasPauseRunnable.GameCanvasPauseRunnable)
-    , formUtil :: IORef (FormUtil.FormUtil)
-    , myFormUtil :: IORef (MyFormUtil.MyFormUtil)
-    , updateMyFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , gameSpecificPaintable :: IORef (Paintable.Paintable)
-    , sensorGameUpdateProcessor :: IORef (SensorGameUpdateProcessor.SensorGameUpdateProcessor)
-    , endGameInfo :: IORef (EndGameInfo.EndGameInfo)
-    , startIntermissionInterface :: IORef (IntermissionInterface.IntermissionInterface)
-    , endLevelIntermissionInterface :: IORef (IntermissionInterface.IntermissionInterface)
-    , gameLayerManager :: IORef (AllBinaryGameLayerManager.AllBinaryGameLayerManager)
-    , gameState :: IORef (GameState.GameState)
-    , gameOver :: IORef (Bool)
-    , initialized :: IORef (Bool)
-    , gameStateTimeHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , highScoresHelper :: IORef (HighScoresHelperBaseInterface.HighScoresHelperBaseInterface)
-    , highScoreSubmitted :: IORef (Bool)
-    , realHighScoresPaintable :: IORef (HighScoresPaintable.HighScoresPaintable)
-    , highScoresPaintable :: IORef (Paintable.Paintable)
-    , localPlayerGameInputList :: IORef (BasicArrayList.BasicArrayList)
-    , isCheating :: IORef (Bool)
-    , hashtable :: IORef (ABHashtable.ABHashtable)
-    , isSingleKeyRepeatableProcessing :: IORef (Bool)
-    , gameInitializationInterfaceFactoryInterface :: IORef (BasicBuildGameInitializerFactory.BasicBuildGameInitializerFactory)
-    , touchButtonsPaintable :: IORef (Paintable.Paintable)
-    , touchPaintable :: IORef (Paintable.Paintable)
-    , cheatProcessor :: IORef (PlayerGameInput.PlayerGameInput)
-    , gameInputProcessor :: IORef (Processor.Processor)
-    , endGameProcessor :: IORef (Processor.Processor)
-    , realEndGameProcessor :: IORef (Processor.Processor)
-    , startIntermissionProcessor :: IORef (Processor.Processor)
-    , realStartIntermissionProcessor :: IORef (Processor.Processor)
-    , endGamePaintable :: IORef (Paintable.Paintable)
-    , endGameStatePaintable :: IORef (Paintable.Paintable)
-    , nonBotPaintable :: IORef (Paintable.Paintable)
-    , intermissionPaintable :: IORef (Paintable.Paintable)
-    , startIntermissionPaintable :: IORef (InitUpdatePaintable.InitUpdatePaintable)
-    , mainStateProcessor :: IORef (Processor.Processor)
-    , processGameProcessor :: IORef (Processor.Processor)
-    , highScoresFactoryInterface :: IORef (HighScoresFactoryInterface.HighScoresFactoryInterface)
-    , startLevel :: IORef (Int)
-    , mainMenuInputProcessor :: IORef (BasicMenuInputProcessor.BasicMenuInputProcessor)
-    , popupMenuInputProcessor :: IORef (BasicMenuInputProcessor.BasicMenuInputProcessor)
-    , menuInputProcessor :: IORef (BasicMenuInputProcessor.BasicMenuInputProcessor)
-    , menuForm :: IORef (ScrollSelectionForm.ScrollSelectionForm)
-    , formPaintable :: IORef (Paintable.Paintable)
-    , openMenuPaintable :: IORef (Paintable.Paintable)
-    , menuPaintable :: IORef (Paintable.Paintable)
-    , currentTouchInputFactory :: IORef (BaseTouchInput.BaseTouchInput)
-    , colorFillPaintable :: IORef (ColorFillBasePaintable.ColorFillBasePaintable)
-    , baseGameStatistics :: IORef (BaseGameStatistics.BaseGameStatistics)
-    , primaryPlayerQueue :: IORef (PlayerQueue.PlayerQueue)
-    , secondaryPlayerQueue :: IORef (PlayerQueue.PlayerQueue)
-    , bUILD_GAME :: IORef (String)
-    , gameTypeFactory :: IORef (GameTypeFactory.GameTypeFactory)
-    , screenCapture :: IORef (ScreenCapture.ScreenCapture)
-    , basicMotionGesturesHandler :: IORef (BasicMotionGesturesHandler.BasicMotionGesturesHandler)
-    , gameKeyEventHandler :: IORef (GameKeyEventHandler.GameKeyEventHandler)
-    , gameBehavior :: IORef (DemoGameBehavior.DemoGameBehavior)
-    , menuBehavior :: IORef (BaseMenuBehavior.BaseMenuBehavior)
-    , progressPaintable :: IORef (PaintableInterface.PaintableInterface)
-    , fontHeightP :: IORef (Int)
-    , gameCanvasStartListener :: IORef (DemoPaintableInterface.DemoPaintableInterface)
-    , rawGameInputProcessor :: IORef (InputProcessor.InputProcessor)
-    , rawInputProcessor :: IORef (InputProcessor.InputProcessor)
-    , inputProcessor :: IORef (InputProcessor.InputProcessor)
-    , yIELD_SLEEP :: IORef (Int64)
-    }
-
-instance JavaNull AllBinaryGameCanvas where
-    javaNull = javaNullRecord "AllBinaryGameCanvas"
-
-instance JavaEquals AllBinaryGameCanvas where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryGameCanvas where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryGameCanvas where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-id :: Int
-id = 0
-
-tYPE :: Int
-tYPE = 2
-
-newRecord_ :: IO AllBinaryGameCanvas
-newRecord_ = do
-    base <- RunnableCanvas.newRecord_
-    let header_ = base.header_
-    basicColorFactory <- newIORef javaNull
-    basicSetColorUtil <- newIORef javaNull
-    touchFeatureFactory <- newIORef javaNull
-    openGLFeatureFactory <- newIORef javaNull
-    touchButtonFactory <- newIORef javaNull
-    gameAdStateFactory <- newIORef javaNull
-    gameStrings <- newIORef javaNull
-    gameInputStrings <- newIORef javaNull
-    gameStateFactory <- newIORef javaNull
-    gameTickTimeDelayHelper <- newIORef javaNull
-    gameTickDisplayInfoSingleton <- newIORef javaNull
-    gameRunnable <- newIORef javaNull
-    gamePauseRunnable <- newIORef javaNull
-    formUtil <- newIORef javaNull
-    myFormUtil <- newIORef javaNull
-    updateMyFontProcessor <- newIORef javaNull
-    myFontProcessor <- newIORef javaNull
-    gameSpecificPaintable <- newIORef javaNull
-    sensorGameUpdateProcessor <- newIORef javaNull
-    endGameInfo <- newIORef javaNull
-    startIntermissionInterface <- newIORef javaNull
-    endLevelIntermissionInterface <- newIORef javaNull
-    gameLayerManager <- newIORef javaNull
-    gameState <- newIORef javaNull
-    gameOver <- newIORef False
-    initialized <- newIORef False
-    gameStateTimeHelper <- newIORef javaNull
-    highScoresHelper <- newIORef javaNull
-    highScoreSubmitted <- newIORef False
-    realHighScoresPaintable <- newIORef javaNull
-    highScoresPaintable <- newIORef javaNull
-    localPlayerGameInputList <- newIORef javaNull
-    isCheating <- newIORef False
-    hashtable <- newIORef javaNull
-    isSingleKeyRepeatableProcessing <- newIORef False
-    gameInitializationInterfaceFactoryInterface <- newIORef javaNull
-    touchButtonsPaintable <- newIORef javaNull
-    touchPaintable <- newIORef javaNull
-    cheatProcessor <- newIORef javaNull
-    gameInputProcessor <- newIORef javaNull
-    endGameProcessor <- newIORef javaNull
-    realEndGameProcessor <- newIORef javaNull
-    startIntermissionProcessor <- newIORef javaNull
-    realStartIntermissionProcessor <- newIORef javaNull
-    endGamePaintable <- newIORef javaNull
-    endGameStatePaintable <- newIORef javaNull
-    nonBotPaintable <- newIORef javaNull
-    intermissionPaintable <- newIORef javaNull
-    startIntermissionPaintable <- newIORef javaNull
-    mainStateProcessor <- newIORef javaNull
-    processGameProcessor <- newIORef javaNull
-    highScoresFactoryInterface <- newIORef javaNull
-    startLevel <- newIORef 0
-    mainMenuInputProcessor <- newIORef javaNull
-    popupMenuInputProcessor <- newIORef javaNull
-    menuInputProcessor <- newIORef javaNull
-    menuForm <- newIORef javaNull
-    formPaintable <- newIORef javaNull
-    openMenuPaintable <- newIORef javaNull
-    menuPaintable <- newIORef javaNull
-    currentTouchInputFactory <- newIORef javaNull
-    colorFillPaintable <- newIORef javaNull
-    baseGameStatistics <- newIORef javaNull
-    primaryPlayerQueue <- newIORef javaNull
-    secondaryPlayerQueue <- newIORef javaNull
-    bUILD_GAME <- newIORef ""
-    gameTypeFactory <- newIORef javaNull
-    screenCapture <- newIORef javaNull
-    basicMotionGesturesHandler <- newIORef javaNull
-    gameKeyEventHandler <- newIORef javaNull
-    gameBehavior <- newIORef javaNull
-    menuBehavior <- newIORef javaNull
-    progressPaintable <- newIORef javaNull
-    fontHeightP <- newIORef 0
-    gameCanvasStartListener <- newIORef javaNull
-    rawGameInputProcessor <- newIORef javaNull
-    rawInputProcessor <- newIORef javaNull
-    inputProcessor <- newIORef javaNull
-    yIELD_SLEEP <- newIORef 0
-    let this = AllBinaryGameCanvas header_ base basicColorFactory basicSetColorUtil touchFeatureFactory openGLFeatureFactory touchButtonFactory gameAdStateFactory gameStrings gameInputStrings gameStateFactory gameTickTimeDelayHelper gameTickDisplayInfoSingleton gameRunnable gamePauseRunnable formUtil myFormUtil updateMyFontProcessor myFontProcessor gameSpecificPaintable sensorGameUpdateProcessor endGameInfo startIntermissionInterface endLevelIntermissionInterface gameLayerManager gameState gameOver initialized gameStateTimeHelper highScoresHelper highScoreSubmitted realHighScoresPaintable highScoresPaintable localPlayerGameInputList isCheating hashtable isSingleKeyRepeatableProcessing gameInitializationInterfaceFactoryInterface touchButtonsPaintable touchPaintable cheatProcessor gameInputProcessor endGameProcessor realEndGameProcessor startIntermissionProcessor realStartIntermissionProcessor endGamePaintable endGameStatePaintable nonBotPaintable intermissionPaintable startIntermissionPaintable mainStateProcessor processGameProcessor highScoresFactoryInterface startLevel mainMenuInputProcessor popupMenuInputProcessor menuInputProcessor menuForm formPaintable openMenuPaintable menuPaintable currentTouchInputFactory colorFillPaintable baseGameStatistics primaryPlayerQueue secondaryPlayerQueue bUILD_GAME gameTypeFactory screenCapture basicMotionGesturesHandler gameKeyEventHandler gameBehavior menuBehavior progressPaintable fontHeightP gameCanvasStartListener rawGameInputProcessor rawInputProcessor inputProcessor yIELD_SLEEP
-    jregisterLevel header_ this
-    AllBinaryGameCanvasInterface.registerInterface_ header_
-    GameCanvasRunnableInterface.registerInterface_ header_
-    MenuListener.registerInterface_ header_
-    IntermissionCompositeInterface.registerInterface_ header_
-    IntermissionEnableListenerInterface.registerInterface_ header_
-    PopupMenuInterface.registerInterface_ header_
-    DisplayChangeEventListener.registerInterface_ header_
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "getInGameMenuBehavior" (\() -> getInGameMenuBehavior_impl this)
-    jregisterMethod header_ "setCurrentThread" (\() -> setCurrentThread_impl this)
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "onDisplayChangeEvent" (\() -> onDisplayChangeEvent_impl this)
-    jregisterMethod header_ "updateMenuFromEvent" (\() -> updateMenuFromEvent_impl this)
-    jregisterMethod header_ "processSleep" (\() -> processSleep_impl this)
-    jregisterMethod header_ "initPopupMenu" (\() -> initPopupMenu_impl this)
-    jregisterMethod header_ "initMenu" (\() -> initMenu_impl this)
-    jregisterMethod header_ "initMenu2" (\() -> initMenu2_impl this)
-    jregisterMethod header_ "updateMenu" (\() -> updateMenu_impl this)
-    jregisterMethod header_ "updateMenu2" (\() -> updateMenu2_impl this)
-    jregisterMethod header_ "pause" (\() -> pause_impl this)
-    jregisterMethod header_ "unPause" (\() -> unPause_impl this)
-    jregisterMethod header_ "isPausable" (\() -> isPausable_impl this)
-    jregisterMethod header_ "popupMenu" (\() -> popupMenu_impl this)
-    jregisterMethod header_ "popupMenu2" (\() -> popupMenu2_impl this)
-    jregisterMethod header_ "toggleMenu" (\() -> toggleMenu_impl this)
-    jregisterMethod header_ "closeMenu" (\() -> closeMenu_impl this)
-    jregisterMethod header_ "closeMenu2" (\() -> closeMenu2_impl this)
-    jregisterMethod header_ "open" (\() -> open_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    jregisterMethod header_ "processorInit" (\() -> processorInit_impl this)
-    jregisterMethod header_ "setProcessGameProcessorInit" (\() -> setProcessGameProcessorInit_impl this)
-    jregisterMethod header_ "initSpecialPaint" (\() -> initSpecialPaint_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "notifyIntermission" (\() -> notifyIntermission_impl this)
-    jregisterMethod header_ "mediaInit" (\() -> mediaInit_impl this)
-    jregisterMethod header_ "initConfigurable" (\() -> initConfigurable_impl this)
-    jregisterMethod header_ "initApp" (\() -> initApp_impl this)
-    jregisterMethod header_ "initTouch" (\() -> initTouch_impl this)
-    jregisterMethod header_ "updateCurrentTouchInputFactory" (\() -> updateCurrentTouchInputFactory_impl this)
-    jregisterMethod header_ "updateTouch" (\() -> updateTouch_impl this)
-    jregisterMethod header_ "updateTouch2" (\() -> updateTouch2_impl this)
-    jregisterMethod header_ "postInitTouch" (\() -> postInitTouch_impl this)
-    jregisterMethod header_ "initCommands" (\() -> initCommands_impl this)
-    jregisterMethod header_ "addCommands" (\() -> addCommands_impl this)
-    jregisterMethod header_ "itemStateChanged" (\() -> itemStateChanged_impl this)
-    jregisterMethod header_ "updateScreenButtonPaintable" (\() -> updateScreenButtonPaintable_impl this)
-    jregisterMethod header_ "updateScreenButtonPaintable2" (\() -> updateScreenButtonPaintable2_impl this)
-    jregisterMethod header_ "getLayerManager" (\() -> getLayerManager_impl this)
-    jregisterMethod header_ "setLayerManager" (\() -> setLayerManager_impl this)
-    jregisterMethod header_ "isGameOver" (\() -> isGameOver_impl this)
-    jregisterMethod header_ "setGameOver" (\() -> setGameOver_impl this)
-    jregisterMethod header_ "processGameOver" (\() -> processGameOver_impl this)
-    jregisterMethod header_ "isHighScoreSubmitted" (\() -> isHighScoreSubmitted_impl this)
-    jregisterMethod header_ "setHighScoreSubmitted" (\() -> setHighScoreSubmitted_impl this)
-    jregisterMethod header_ "getGameState" (\() -> getGameState_impl this)
-    jregisterMethod header_ "setGameState" (\() -> setGameState_impl this)
-    jregisterMethod header_ "updateGameState" (\() -> updateGameState_impl this)
-    jregisterMethod header_ "updateGameKeyEventProcessor" (\() -> updateGameKeyEventProcessor_impl this)
-    jregisterMethod header_ "removeAllGameKeyInputListenersOnBuild" (\() -> removeAllGameKeyInputListenersOnBuild_impl this)
-    jregisterMethod header_ "removeAllGameKeyInputListeners" (\() -> removeAllGameKeyInputListeners_impl this)
-    jregisterMethod header_ "removeAllGameKeyInputListeners2" (\() -> removeAllGameKeyInputListeners2_impl this)
-    jregisterMethod header_ "removeKeyInputListener" (\() -> removeKeyInputListener_impl this)
-    jregisterMethod header_ "updateEndGameProcessor" (\() -> updateEndGameProcessor_impl this)
-    jregisterMethod header_ "updateEndGameProcessor2" (\() -> updateEndGameProcessor2_impl this)
-    jregisterMethod header_ "buildGameInit" (\() -> buildGameInit_impl this)
-    jregisterMethod header_ "cleanupGame" (\() -> cleanupGame_impl this)
-    jregisterMethod header_ "loadResourceLoadingLevel" (\() -> loadResourceLoadingLevel_impl this)
-    jregisterMethod header_ "loadResources" (\() -> loadResources_impl this)
-    jregisterMethod header_ "updateColor" (\() -> updateColor_impl this)
-    jregisterMethod header_ "buildGame" (\() -> buildGame_impl this)
-    jregisterMethod header_ "buildGame2" (\() -> buildGame2_impl this)
-    jregisterMethod header_ "addKeyInputListener" (\() -> addKeyInputListener_impl this)
-    jregisterMethod header_ "setGameCanvasStartListener" (\() -> setGameCanvasStartListener_impl this)
-    jregisterMethod header_ "loadState" (\() -> loadState_impl this)
-    jregisterMethod header_ "getLoadStateHashtable" (\() -> getLoadStateHashtable_impl this)
-    jregisterMethod header_ "setLoadStateHashtable" (\() -> setLoadStateHashtable_impl this)
-    jregisterMethod header_ "getCurrentStateHashtable" (\() -> getCurrentStateHashtable_impl this)
-    jregisterMethod header_ "paintGameOver" (\() -> paintGameOver_impl this)
-    jregisterMethod header_ "draw" (\() -> draw_impl this)
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "paintThreed" (\() -> paintThreed_impl this)
-    jregisterMethod header_ "processEndLevelIntermissionGameState" (\() -> processEndLevelIntermissionGameState_impl this)
-    jregisterMethod header_ "nonBotPaint" (\() -> nonBotPaint_impl this)
-    jregisterMethod header_ "paintIntermission" (\() -> paintIntermission_impl this)
-    jregisterMethod header_ "keyPressed" (\() -> keyPressed_impl this)
-    jregisterMethod header_ "keyReleased" (\() -> keyReleased_impl this)
-    jregisterMethod header_ "keyRepeated" (\() -> keyRepeated_impl this)
-    jregisterMethod header_ "keyPressedByDevice" (\() -> keyPressedByDevice_impl this)
-    jregisterMethod header_ "keyRepeatedByDevice" (\() -> keyRepeatedByDevice_impl this)
-    jregisterMethod header_ "keyReleasedByDevice" (\() -> keyReleasedByDevice_impl this)
-    jregisterMethod header_ "handleRawKey" (\() -> handleRawKey_impl this)
-    jregisterMethod header_ "endProgress" (\() -> endProgress_impl this)
-    jregisterMethod header_ "processPlayingGame" (\() -> processPlayingGame_impl this)
-    jregisterMethod header_ "threadInit" (\() -> threadInit_impl this)
-    jregisterMethod header_ "processGame" (\() -> processGame_impl this)
-    jregisterMethod header_ "notifyDonePainting" (\() -> notifyDonePainting_impl this)
-    jregisterMethod header_ "shouldWait" (\() -> shouldWait_impl this)
-    jregisterMethod header_ "run" (\() -> run_impl this)
-    jregisterMethod header_ "run2" (\() -> run2_impl this)
-    jregisterMethod header_ "run3" (\() -> run3_impl this)
-    jregisterMethod header_ "setRunning" (\() -> setRunning_impl this)
-    jregisterMethod header_ "end" (\() -> end_impl this)
-    jregisterMethod header_ "endGameThread" (\() -> endGameThread_impl this)
-    jregisterMethod header_ "createHighScore" (\() -> createHighScore_impl this)
-    jregisterMethod header_ "setHighScore" (\() -> setHighScore_impl this)
-    jregisterMethod header_ "setHighScore2" (\() -> setHighScore2_impl this)
-    jregisterMethod header_ "getGameStateTimeHelper" (\() -> getGameStateTimeHelper_impl this)
-    jregisterMethod header_ "setInitialized" (\() -> setInitialized_impl this)
-    jregisterMethod header_ "isInitialized" (\() -> isInitialized_impl this)
-    jregisterMethod header_ "getSourceId" (\() -> getSourceId_impl this)
-    jregisterMethod header_ "setProgressPaintable" (\() -> setProgressPaintable_impl this)
-    jregisterMethod header_ "getStartIntermissionInterface" (\() -> getStartIntermissionInterface_impl this)
-    jregisterMethod header_ "getEndLevelIntermissionInterface" (\() -> getEndLevelIntermissionInterface_impl this)
-    jregisterMethod header_ "setTouchPaintableP" (\() -> setTouchPaintableP_impl this)
-    jregisterMethod header_ "getTouchPaintableP" (\() -> getTouchPaintableP_impl this)
-    jregisterMethod header_ "setEndGamePaintable" (\() -> setEndGamePaintable_impl this)
-    jregisterMethod header_ "getEndGamePaintable" (\() -> getEndGamePaintable_impl this)
-    jregisterMethod header_ "setIntermissionPaintable" (\() -> setIntermissionPaintable_impl this)
-    jregisterMethod header_ "getIntermissionPaintable" (\() -> getIntermissionPaintable_impl this)
-    jregisterMethod header_ "getEndGameInfoP" (\() -> getEndGameInfoP_impl this)
-    jregisterMethod header_ "setHighScoresPaintable" (\() -> setHighScoresPaintable_impl this)
-    jregisterMethod header_ "getHighScoresPaintable" (\() -> getHighScoresPaintable_impl this)
-    jregisterMethod header_ "getRealHighScoresPaintable" (\() -> getRealHighScoresPaintable_impl this)
-    jregisterMethod header_ "clearPlayerGameInputList" (\() -> clearPlayerGameInputList_impl this)
-    jregisterMethod header_ "addPlayerGameInput" (\() -> addPlayerGameInput_impl this)
-    jregisterMethod header_ "setMenuInputProcessor" (\() -> setMenuInputProcessor_impl this)
-    jregisterMethod header_ "getMenuInputProcessor" (\() -> getMenuInputProcessor_impl this)
-    jregisterMethod header_ "getMenuForm" (\() -> getMenuForm_impl this)
-    jregisterMethod header_ "setMenuForm" (\() -> setMenuForm_impl this)
-    jregisterMethod header_ "getStartLevel" (\() -> getStartLevel_impl this)
-    jregisterMethod header_ "setStartLevel" (\() -> setStartLevel_impl this)
-    jregisterMethod header_ "setTouchButtonsPaintable" (\() -> setTouchButtonsPaintable_impl this)
-    jregisterMethod header_ "getTouchButtonsPaintable" (\() -> getTouchButtonsPaintable_impl this)
-    jregisterMethod header_ "setGameInputProcessor" (\() -> setGameInputProcessor_impl this)
-    jregisterMethod header_ "getGameInputProcessor" (\() -> getGameInputProcessor_impl this)
-    jregisterMethod header_ "setEndGameProcessor" (\() -> setEndGameProcessor_impl this)
-    jregisterMethod header_ "getEndGameProcessor" (\() -> getEndGameProcessor_impl this)
-    jregisterMethod header_ "setEndGameStatePaintable" (\() -> setEndGameStatePaintable_impl this)
-    jregisterMethod header_ "getEndGameStatePaintable" (\() -> getEndGameStatePaintable_impl this)
-    jregisterMethod header_ "setNonBotPaintableP" (\() -> setNonBotPaintableP_impl this)
-    jregisterMethod header_ "getNonBotPaintableP" (\() -> getNonBotPaintableP_impl this)
-    jregisterMethod header_ "setStartIntermissionPaintable" (\() -> setStartIntermissionPaintable_impl this)
-    jregisterMethod header_ "getStartIntermissionPaintable" (\() -> getStartIntermissionPaintable_impl this)
-    jregisterMethod header_ "setMainStateProcessor" (\() -> setMainStateProcessor_impl this)
-    jregisterMethod header_ "getMainStateProcessor" (\() -> getMainStateProcessor_impl this)
-    jregisterMethod header_ "setProcessGameProcessor" (\() -> setProcessGameProcessor_impl this)
-    jregisterMethod header_ "getProcessGameProcessor" (\() -> getProcessGameProcessor_impl this)
-    jregisterMethod header_ "setOpenMenuPaintable" (\() -> setOpenMenuPaintable_impl this)
-    jregisterMethod header_ "getOpenMenuPaintable" (\() -> getOpenMenuPaintable_impl this)
-    jregisterMethod header_ "setPopupMenuInputProcessor" (\() -> setPopupMenuInputProcessor_impl this)
-    jregisterMethod header_ "getPopupMenuInputProcessor" (\() -> getPopupMenuInputProcessor_impl this)
-    jregisterMethod header_ "getSensorGameUpdateProcessor" (\() -> getSensorGameUpdateProcessor_impl this)
-    jregisterMethod header_ "getRawGameInputProcessor" (\() -> getRawGameInputProcessor_impl this)
-    jregisterMethod header_ "getRawInputProcessor" (\() -> getRawInputProcessor_impl this)
-    jregisterMethod header_ "setInputProcessor" (\() -> setInputProcessor_impl this)
-    jregisterMethod header_ "getInputProcessor" (\() -> getInputProcessor_impl this)
-    jregisterMethod header_ "setMenuPaintable" (\() -> setMenuPaintable_impl this)
-    jregisterMethod header_ "getMenuPaintable" (\() -> getMenuPaintable_impl this)
-    jregisterMethod header_ "setFormPaintable" (\() -> setFormPaintable_impl this)
-    jregisterMethod header_ "getFormPaintable" (\() -> getFormPaintable_impl this)
-    jregisterMethod header_ "setGameSpecificPaintableP" (\() -> setGameSpecificPaintableP_impl this)
-    jregisterMethod header_ "getGameSpecificPaintableP" (\() -> getGameSpecificPaintableP_impl this)
-    jregisterMethod header_ "isSingleThread" (\() -> isSingleThread_impl this)
-    jregisterMethod header_ "isRunningInAnotherThread" (\() -> isRunningInAnotherThread_impl this)
-    jregisterMethod header_ "getType" (\() -> getType_impl this)
-    jregisterMethod header_ "getTitle" (\() -> getTitle_impl this)
-    jregisterMethod header_ "isPaused" (\() -> isPaused_impl this)
-    pure this
-
-initFields_ :: AllBinaryGameCanvas -> IO ()
-initFields_ this = do
-    jset this.basicColorFactory =<< (BasicColorFactory.getInstance)
-    jset this.basicSetColorUtil =<< (BasicColorSetUtil.getInstance)
-    jset this.touchFeatureFactory =<< (TouchFeatureFactory.getInstance)
-    jset this.openGLFeatureFactory =<< (OpenGLFeatureFactory.getInstance)
-    jset this.touchButtonFactory =<< (TouchButtonFactory.getInstance)
-    jset this.gameAdStateFactory =<< (GameAdStateFactory.getInstance)
-    jset this.gameStrings =<< (GameStrings.getInstance)
-    jset this.gameInputStrings =<< (GameInputStrings.getInstance)
-    jset this.gameStateFactory =<< (GameStateFactory.getInstance)
-    jset this.gameTickTimeDelayHelper =<< (GameTickTimeDelayHelperFactory.getInstance)
-    jset this.gameTickDisplayInfoSingleton =<< (GameTickDisplayInfoSingleton.getInstance)
-    jset this.gameRunnable =<< (GameCanvasRunnable.new_1 this)
-    jset this.gamePauseRunnable =<< (GameCanvasPauseRunnable.new_1 this)
-    jset this.formUtil =<< (FormUtil.getInstance)
-    jset this.myFormUtil =<< (MyFormUtil.getInstance)
-    jset this.updateMyFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.myFontProcessor ((jget (this).updateMyFontProcessor))
-    jset this.gameSpecificPaintable =<< (NullPaintable.getInstance)
-    jset this.sensorGameUpdateProcessor =<< (fmap (\value_ -> javaCast value_ :: SensorGameUpdateProcessor.SensorGameUpdateProcessor) (SingleSensorGameUpdateProcessor.new_))
-    jset this.endGameInfo =<< (EndGameInfo.new_)
-    jset this.startIntermissionInterface =<< (fmap (\value_ -> javaCast value_ :: IntermissionInterface.IntermissionInterface) (Intermission.new_))
-    jset this.endLevelIntermissionInterface =<< (fmap (\value_ -> javaCast value_ :: IntermissionInterface.IntermissionInterface) (Intermission.new_))
-    jset this.gameLayerManager =<< (AllBinaryGameLayerManager.getNullInstance)
-    jset this.gameState ((jget ((jget (this).gameStateFactory)).nO_GAME_STATE))
-    jset this.gameOver (False)
-    jset this.initialized (False)
-    jset this.gameStateTimeHelper =<< (TimeDelayHelper.new_1 0)
-    jset this.highScoresHelper (javaNull)
-    jset this.highScoreSubmitted (False)
-    jset this.realHighScoresPaintable =<< (HighScoresPaintable.new_)
-    jset this.highScoresPaintable =<< (NullPaintable.getInstance)
-    jset this.localPlayerGameInputList =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    jset this.isCheating (False)
-    jset this.hashtable ((jget ((jget (this).base.stdUtil)).nULL_TABLE))
-    jset this.isSingleKeyRepeatableProcessing (False)
-    jset this.gameInitializationInterfaceFactoryInterface ((jget BasicBuildGameInitializerFactory.nULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY))
-    jset this.touchButtonsPaintable =<< (NullPaintable.getInstance)
-    jset this.touchPaintable =<< (NullPaintable.getInstance)
-    jset this.cheatProcessor =<< (NoPlayerGameInput.getInstance)
-    jset this.gameInputProcessor =<< (Processor.getInstance)
-    jset this.endGameProcessor =<< (Processor.getInstance)
-    jset this.realEndGameProcessor =<< (Processor.getInstance)
-    jset this.startIntermissionProcessor =<< (Processor.getInstance)
-    jset this.realStartIntermissionProcessor =<< (Processor.getInstance)
-    jset this.endGamePaintable =<< (NullPaintable.getInstance)
-    jset this.endGameStatePaintable =<< (NullPaintable.getInstance)
-    jset this.nonBotPaintable =<< (NullPaintable.getInstance)
-    jset this.intermissionPaintable =<< (NullPaintable.getInstance)
-    jset this.startIntermissionPaintable =<< (NullInitUpdatePaintable.getInstance)
-    jset this.mainStateProcessor =<< (Processor.getInstance)
-    jset this.processGameProcessor =<< (Processor.getInstance)
-    jset this.highScoresFactoryInterface (javaNull)
-    jset this.startLevel (0)
-    jset this.mainMenuInputProcessor =<< (NoMenuInputProcessor.getInstance)
-    jset this.popupMenuInputProcessor =<< (NoMenuInputProcessor.getInstance)
-    jset this.menuInputProcessor =<< (NoMenuInputProcessor.getInstance)
-    jset this.menuForm =<< (ScrollSelectionForm.getNullScrollSelectionForm)
-    jset this.formPaintable =<< (NullPaintable.getInstance)
-    jset this.openMenuPaintable =<< (NullPaintable.getInstance)
-    jset this.menuPaintable =<< (NullPaintable.getInstance)
-    jset this.currentTouchInputFactory =<< (NoButtonsTouchInputFactory.getInstance)
-    jset this.colorFillPaintable =<< (ColorFillPaintableFactory.getInstance ((jio (ColorFillPaintableFactory.getInstance))) (jget ((jget (this).basicColorFactory)).bLACK) True)
-    jset this.baseGameStatistics =<< (GameStatisticsFactory.getInstance)
-    jset this.primaryPlayerQueue =<< (PrimaryPlayerQueueFactory.getInstance)
-    jset this.secondaryPlayerQueue =<< (SecondaryPlayerQueueFactory.getInstance)
-    jset this.bUILD_GAME ("buildGame")
-    jset this.gameTypeFactory =<< (GameTypeFactory.getInstance)
-    jset this.screenCapture =<< (ScreenCaptureFactory.getInstance)
-    jset this.basicMotionGesturesHandler =<< (BasicMotionGesturesHandler.getInstance)
-    jset this.gameKeyEventHandler =<< (GameKeyEventHandler.getInstance)
-    jset this.gameBehavior (javaNull)
-    jset this.menuBehavior (javaNull)
-    jset this.progressPaintable =<< (ProgressCanvasFactory.getLazyInstance)
-    jset this.fontHeightP (0)
-    jset this.gameCanvasStartListener ((javaCast NullDemoPaintable.nULL_DEMO_PAINTABLE :: DemoPaintableInterface.DemoPaintableInterface))
-    jset this.rawGameInputProcessor =<< (fmap (\value_ -> javaCast value_ :: InputProcessor.InputProcessor) (GameCanvasInputProcessor.new_1 this))
-    jset this.rawInputProcessor =<< (fmap (\value_ -> javaCast value_ :: InputProcessor.InputProcessor) (FormInputProcessor.new_1 this))
-    jset this.inputProcessor =<< (AllBinaryGameCanvas.getRawGameInputProcessor this)
-    jset this.yIELD_SLEEP (100)
-    pure ()
-
-new_5 :: CommandListener.CommandListener -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> HighScoresFactoryInterface.HighScoresFactoryInterface -> BasicBuildGameInitializerFactory.BasicBuildGameInitializerFactory -> Bool -> IO AllBinaryGameCanvas
-new_5 commandListener gameLayerManager highScoresFactoryInterface gameInitializationInterfaceFactoryInterface buffered = do
-    this <- newRecord_
-    init_5 this commandListener gameLayerManager highScoresFactoryInterface gameInitializationInterfaceFactoryInterface buffered
-    pure this
-
-init_5 :: AllBinaryGameCanvas -> CommandListener.CommandListener -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> HighScoresFactoryInterface.HighScoresFactoryInterface -> BasicBuildGameInitializerFactory.BasicBuildGameInitializerFactory -> Bool -> IO ()
-init_5 this commandListener gameLayerManager highScoresFactoryInterface gameInitializationInterfaceFactoryInterface buffered = do
-        RunnableCanvas.init_3 this.base (commandListener) (jget ((jio (CanvasStrings.getInstance))).eMPTY_CHILD_NAME_LIST) (True)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        assignedValue <- (HighScoresFactoryInterface.createHighScoresHelper highScoresFactoryInterface)
-        jset (this).highScoresHelper (assignedValue)
-        jset (this).gameInitializationInterfaceFactoryInterface (gameInitializationInterfaceFactoryInterface)
-        Control.Monad.void (AllBinaryGameCanvas.init this gameLayerManager buffered)
-        jset (this).highScoresFactoryInterface (highScoresFactoryInterface)
-        if (((jio (GameInfo.getGameType ((jio (AllBinaryGameLayerManager.getGameInfo ((jget (this).gameLayerManager))))))) == (jget ((jget (this).gameTypeFactory)).bOT)) || ((jio (GameInfo.getGameType ((jio (AllBinaryGameLayerManager.getGameInfo ((jget (this).gameLayerManager))))))) == (jget ((jget (this).gameTypeFactory)).nONE))) then do
-            assignedValue <- (DemoGameBehavior.getInstance)
-            jset (this).gameBehavior (assignedValue)
-            assignedValue <- (BaseMenuBehavior.getInstance)
-            jset (this).menuBehavior (assignedValue)
-        else do
-            assignedValue <- (BaseGameBehavior.getInstance)
-            jset (this).gameBehavior (assignedValue)
-            assignedValue <- (AllBinaryGameCanvas.getInGameMenuBehavior this)
-            jset (this).menuBehavior (assignedValue)
-        Control.Monad.void (AllBinaryGameCanvas.initPopupMenu this)
-        Control.Monad.void (AllBinaryGameCanvas.initMenu this)
-        Control.Monad.void (AllBinaryGameCanvas.initSpecialPaint this)
-        Control.Monad.void (DisplayChangeEventHandler.addListenerInterface ((jio (DisplayChangeEventHandler.getInstance))) this)
-        pure ()
-
-
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-updateMeasurement_impl :: AllBinaryGameCanvas -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.canvasStrings)).oN_DISPLAY_CHANGE_EVENT) e)
-            ) $ do
-            font <- (Graphics.getFont graphics)
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.commonStrings)).sTART)))) (jget ((jget (this).base.canvasStrings)).fD_WIDTH)))) (Prelude.fromInteger (jnumericInteger (jio (MyFontProcessor.defaultCharWidth font))))))) (jget ((jget (this).base.canvasStrings)).fD_HEIGHT)))) (Prelude.fromInteger (jnumericInteger (jio (Font.getHeight font))))))))) this (jget ((jget (this).base.canvasStrings)).uPDATE_MEASUREMENT))
-            assignedValue <- (Font.getHeight font)
-            jset (this).fontHeightP (assignedValue)
-            Control.Monad.void (MyFormUtil.updateMeasurement ((jget (this).myFormUtil)) graphics)
-            popupMenuRectangle <- (MyFormUtil.getPopupMenuRectangle ((jget (this).myFormUtil)))
-            let basicPopupMenuPaintable = ((javaCast (jio (AllBinaryGameCanvas.getOpenMenuPaintable this)) :: BasicPopupMenuPaintable.BasicPopupMenuPaintable))
-            Control.Monad.void (BasicPopupMenuPaintable.init basicPopupMenuPaintable popupMenuRectangle)
-            when ((jio (AllBinaryGameCanvas.getPopupMenuInputProcessor this)) /= (jio (NoMenuInputProcessor.getInstance))) $ do
-                let popupMenuInputProcessor = ((javaCast (jio (AllBinaryGameCanvas.getPopupMenuInputProcessor this)) :: PopupMenuInputProcessor.PopupMenuInputProcessor))
-                Control.Monad.void (PopupMenuInputProcessor.init popupMenuInputProcessor popupMenuRectangle)
-            assignedValue <- (MyFontProcessor.getInstance)
-            jset (this).myFontProcessor (assignedValue)
-        pure ()
-
-
-getInGameMenuBehavior :: (JavaObjectClass this_) => this_ -> IO (BaseMenuBehavior.BaseMenuBehavior)
-getInGameMenuBehavior object_ = jmethod object_ "getInGameMenuBehavior" (\() -> (getInGameMenuBehavior_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getInGameMenuBehavior_super :: (JavaObjectClass this_) => this_ -> IO (BaseMenuBehavior.BaseMenuBehavior)
-getInGameMenuBehavior_super object_ = (getInGameMenuBehavior_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getInGameMenuBehavior_impl :: AllBinaryGameCanvas -> IO (BaseMenuBehavior.BaseMenuBehavior)
-getInGameMenuBehavior_impl this = do
-        (fmap (\value_ -> javaCast value_ :: BaseMenuBehavior.BaseMenuBehavior) (InGameMenuBehavior.getInstance))
-
-
-setCurrentThread :: (JavaObjectClass this_) => this_ -> IO (())
-setCurrentThread object_ = jmethod object_ "setCurrentThread" (\() -> (setCurrentThread_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-setCurrentThread_super :: (JavaObjectClass this_) => this_ -> IO (())
-setCurrentThread_super object_ = (setCurrentThread_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-setCurrentThread_impl :: AllBinaryGameCanvas -> IO (())
-setCurrentThread_impl this = do
-        if (jio (J2MEUtil.isHTML)) then do
-            Control.Monad.void (RunnableCanvas.setCurrentThreadFake_super this.base)
-        else do
-            Control.Monad.void (RunnableCanvas.setCurrentThread_super this.base)
-        pure ()
-
-
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-onEvent_impl :: AllBinaryGameCanvas -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jio (EventStrings.getInstance))).pERFORMANCE_MESSAGE) this)
-        pure ()
-
-
-onDisplayChangeEvent :: (JavaObjectClass this_) => this_ -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent object_ a1 = jmethod object_ "onDisplayChangeEvent" (\() -> (onDisplayChangeEvent_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-onDisplayChangeEvent_super :: (JavaObjectClass this_) => this_ -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent_super object_ a1 = (onDisplayChangeEvent_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-onDisplayChangeEvent_impl :: AllBinaryGameCanvas -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent_impl this displayChangeEvent = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.canvasStrings)).oN_DISPLAY_CHANGE_EVENT) e)
-            ) $ do
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.commonStrings)).sTART)))) (jio (DisplayInfoSingleton.toString ((jio (DisplayInfoSingleton.getInstance)))))))))) this (jget ((jget (this).base.canvasStrings)).uPDATE_MEASUREMENT))
-            jset (this).myFontProcessor ((jget (this).updateMyFontProcessor))
-            Control.Monad.void (BaseMenuBehavior.onDisplayChangeEvent ((jget (this).menuBehavior)) this displayChangeEvent)
-        pure ()
-
-
--- throws Exception
-updateMenuFromEvent :: (JavaObjectClass this_) => this_ -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-updateMenuFromEvent object_ a1 = jmethod object_ "updateMenuFromEvent" (\() -> (updateMenuFromEvent_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-updateMenuFromEvent_super :: (JavaObjectClass this_) => this_ -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-updateMenuFromEvent_super object_ a1 = (updateMenuFromEvent_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-updateMenuFromEvent_impl :: AllBinaryGameCanvas -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-updateMenuFromEvent_impl this displayChangeEvent = do
-        formType <- (FormTypeFactory.getFormType ((jio (FormTypeFactory.getInstance))))
-        rectangle <- (FormUtil.createFormRectangle ((jget (this).formUtil)))
-        Control.Monad.void (ScrollSelectionForm.init ((jget (this).menuForm)) rectangle formType)
-        when ((jget (this).currentTouchInputFactory) /= (jio (NoButtonsTouchInputFactory.getInstance))) $ do
-            Control.Monad.void (TouchButtonFactory.toggle ((jget (this).touchButtonFactory)) (jio (AllBinaryGameCanvas.isPaused this)) (jio (BaseTouchInput.getList ((jget (this).currentTouchInputFactory)))))
-        jset (this).myFontProcessor ((jget (this).updateMyFontProcessor))
-        pure ()
-
-
--- throws Exception
-processSleep :: (JavaObjectClass this_) => this_ -> IO (())
-processSleep object_ = jmethod object_ "processSleep" (\() -> (processSleep_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-processSleep_super :: (JavaObjectClass this_) => this_ -> IO (())
-processSleep_super object_ = (processSleep_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-processSleep_impl :: AllBinaryGameCanvas -> IO (())
-processSleep_impl this = do
-        Control.Monad.void (RunnableCanvas.processSleep_super this.base)
-        when (jio (AllBinaryMediaManager.update)) $ do
-            when (Prelude.not (jio (PlayerQueue.process ((jget (this).primaryPlayerQueue))))) $ do
-                Control.Monad.void (PlayerQueue.process ((jget (this).secondaryPlayerQueue)))
-        when ((jio (BasicMenuInputProcessor.processInputList ((jget (this).menuInputProcessor)))) /= (Prelude.negate 1)) $ do
-            Control.Monad.void (process ((jget (this).base.runnableCanvasRefreshHelper)))
-        pure ()
-
-
--- throws Exception
-initPopupMenu :: (JavaObjectClass this_) => this_ -> IO (())
-initPopupMenu object_ = jmethod object_ "initPopupMenu" (\() -> (initPopupMenu_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-initPopupMenu_super :: (JavaObjectClass this_) => this_ -> IO (())
-initPopupMenu_super object_ = (initPopupMenu_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-initPopupMenu_impl :: AllBinaryGameCanvas -> IO (())
-initPopupMenu_impl this = do
-        if ((jget (this).popupMenuInputProcessor) == (jio (NoMenuInputProcessor.getInstance))) then do
-            features <- (Features.getInstance)
-            popupMenuRectangle <- (MyFormUtil.getPopupMenuRectangle ((jget (this).myFormUtil)))
-            when (jio (Features.isFeature features (jget ((jget (this).touchFeatureFactory)).tOUCH_ENABLED))) $ do
-                Control.Monad.void (AllBinaryGameCanvas.setOpenMenuPaintable this (javaCast (jio (BasicPopupMenuPaintable.new_3 popupMenuRectangle (jio (AllBinaryGameLayerManager.getBackgroundBasicColor ((jget (this).gameLayerManager)))) (jio (AllBinaryGameLayerManager.getForegroundBasicColor ((jget (this).gameLayerManager))))))))
-                Control.Monad.void (AllBinaryGameCanvas.setPopupMenuInputProcessor this (javaCast (jio (PopupMenuInputProcessor.new_4 (javaCast (jio (BasicArrayListD.new_))) (Prelude.negate 1) (javaCast this) popupMenuRectangle))))
-        else do
-            pure ()
-        pure ()
-
-
-initMenu :: (JavaObjectClass this_) => this_ -> IO (())
-initMenu object_ = jmethod object_ "initMenu" (\() -> (initMenu_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-initMenu_super :: (JavaObjectClass this_) => this_ -> IO (())
-initMenu_super object_ = (initMenu_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-initMenu_impl :: AllBinaryGameCanvas -> IO (())
-initMenu_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this "initMenu" e)
-            ) $ do
-            Control.Monad.void (BaseMenuBehavior.initMenu ((jget (this).menuBehavior)) this)
-        pure ()
-
-
--- throws Exception
-initMenu2 :: (JavaObjectClass this_) => this_ -> IO (())
-initMenu2 object_ = jmethod object_ "initMenu2" (\() -> (initMenu2_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-initMenu2_super :: (JavaObjectClass this_) => this_ -> IO (())
-initMenu2_super object_ = (initMenu2_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-initMenu2_impl :: AllBinaryGameCanvas -> IO (())
-initMenu2_impl this = do
-        Control.Monad.void (AllBinaryGameCanvas.closeMenu this)
-        formType <- (FormTypeFactory.getFormType ((jio (FormTypeFactory.getInstance))))
-        gameLimitedCommandTextItemArrayFactory <- (GameLimitedCommandTextItemArrayFactory.getInstance)
-        commandTextItemArrayFactory <- (GameLimitedCommandTextItemArrayFactory.getCommandTextItemArrayFactory gameLimitedCommandTextItemArrayFactory)
-        items <- (CommandTextItemArrayFactory.getInstance commandTextItemArrayFactory (jio (RunnableCanvas.getCommandStack this)) (jio (AllBinaryGameLayerManager.getBackgroundBasicColor ((jget (this).gameLayerManager)))) (jio (AllBinaryGameLayerManager.getForegroundBasicColor ((jget (this).gameLayerManager)))))
-        rectangle <- (FormUtil.createFormRectangle ((jget (this).formUtil)))
-        Control.Monad.void (AllBinaryGameCanvas.setMenuForm this (jio (CommandCurrentSelectionFormFactory.getInstance (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) items rectangle formType 25 False (jio (AllBinaryGameLayerManager.getBackgroundBasicColor ((jget (this).gameLayerManager)))) (jio (AllBinaryGameLayerManager.getForegroundBasicColor ((jget (this).gameLayerManager)))))))
-        scrollSelectionForm <- (AllBinaryGameCanvas.getMenuForm this)
-        features <- (Features.getInstance)
-        if (jio (Features.isFeature features (jget ((jget (this).touchFeatureFactory)).tOUCH_ENABLED))) then do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicMenuInputProcessor.BasicMenuInputProcessor) (PopupCommandFormInputProcessor.new_5 (javaCast (jio (BasicArrayListD.new_))) (Prelude.negate 1) (javaCast this) scrollSelectionForm (javaCast (jio (AllBinaryGameCanvas.getPopupMenuInputProcessor this)) :: PopupMenuInputProcessor.PopupMenuInputProcessor)))
-            jset (this).mainMenuInputProcessor (assignedValue)
-        else do
-            pure ()
-        Control.Monad.void (AllBinaryGameCanvas.setMenuInputProcessor this (jio (AllBinaryGameCanvas.getPopupMenuInputProcessor this)))
-        if (scrollSelectionForm /= (jio (ScrollSelectionFormNoneFactory.getInstance))) then do
-            Control.Monad.void (AllBinaryGameCanvas.setFormPaintable this (javaCast (jio (FormPaintable.new_1 scrollSelectionForm))))
-        else do
-            pure ()
-        Control.Monad.void (AllBinaryGameCanvas.closeMenu this)
-        pure ()
-
-
-updateMenu :: (JavaObjectClass this_) => this_ -> IO (())
-updateMenu object_ = jmethod object_ "updateMenu" (\() -> (updateMenu_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-updateMenu_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateMenu_super object_ = (updateMenu_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-updateMenu_impl :: AllBinaryGameCanvas -> IO (())
-updateMenu_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this "initMenu" e)
-            ) $ do
-            Control.Monad.void (BaseMenuBehavior.updateMenu ((jget (this).menuBehavior)) this)
-        pure ()
-
-
--- throws Exception
-updateMenu2 :: (JavaObjectClass this_) => this_ -> IO (())
-updateMenu2 object_ = jmethod object_ "updateMenu2" (\() -> (updateMenu2_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-updateMenu2_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateMenu2_super object_ = (updateMenu2_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-updateMenu2_impl :: AllBinaryGameCanvas -> IO (())
-updateMenu2_impl this = do
-        scrollSelectionForm <- (AllBinaryGameCanvas.getMenuForm this)
-        Control.Monad.void (ScrollSelectionForm.deleteAll scrollSelectionForm)
-        gameLimitedCommandTextItemArrayFactory <- (GameLimitedCommandTextItemArrayFactory.getInstance)
-        commandTextItemArrayFactory <- (GameLimitedCommandTextItemArrayFactory.getCommandTextItemArrayFactory gameLimitedCommandTextItemArrayFactory)
-        items <- (CommandTextItemArrayFactory.getInstance commandTextItemArrayFactory (jio (RunnableCanvas.getCommandStack this)) (jio (AllBinaryGameLayerManager.getBackgroundBasicColor ((jget (this).gameLayerManager)))) (jio (AllBinaryGameLayerManager.getForegroundBasicColor ((jget (this).gameLayerManager)))))
-        let size = (jlength items)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (ScrollSelectionForm.append scrollSelectionForm (jindex items (index)))
-        formType <- (FormTypeFactory.getFormType ((jio (FormTypeFactory.getInstance))))
-        rectangle <- (FormUtil.createFormRectangle ((jget (this).formUtil)))
-        Control.Monad.void (ScrollSelectionForm.init scrollSelectionForm rectangle formType)
-        pure ()
-
-
-pause :: (JavaObjectClass this_) => this_ -> IO (())
-pause object_ = jmethod object_ "pause" (\() -> (pause_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-pause_super :: (JavaObjectClass this_) => this_ -> IO (())
-pause_super object_ = (pause_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-pause_impl :: AllBinaryGameCanvas -> IO (())
-pause_impl this = do
-        Control.Monad.void (DemoGameBehavior.pause ((jget (this).gameBehavior)) this)
-        Control.Monad.void (AllBinaryGameCanvas.closeMenu this)
-        Control.Monad.void (RunnableCanvas.pause_super this.base)
-        Control.Monad.void (TouchButtonFactory.toggle ((jget (this).touchButtonFactory)) (jio (AllBinaryGameCanvas.isPaused this)) (jio (BasicArrayListUtil.getImmutableInstance ((jio (BasicArrayListUtil.getInstance))))))
-        Control.Monad.void (gc ((jget (this).base.tsUtil)))
-        pure ()
-
-
-unPause :: (JavaObjectClass this_) => this_ -> IO (())
-unPause object_ = jmethod object_ "unPause" (\() -> (unPause_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-unPause_super :: (JavaObjectClass this_) => this_ -> IO (())
-unPause_super object_ = (unPause_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-unPause_impl :: AllBinaryGameCanvas -> IO (())
-unPause_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).gameStrings)).uNPAUSE))
-        Control.Monad.void (AllBinaryGameCanvas.closeMenu this)
-        Control.Monad.void (gc ((jget (this).base.tsUtil)))
-        Control.Monad.void (RunnableCanvas.unPause_super this.base)
-        Control.Monad.void (TouchButtonFactory.toggle ((jget (this).touchButtonFactory)) (jio (AllBinaryGameCanvas.isPaused this)) (jio (BasicArrayListUtil.getImmutableInstance ((jio (BasicArrayListUtil.getInstance))))))
-        Control.Monad.void (DemoGameBehavior.unPause ((jget (this).gameBehavior)) this)
-        pure ()
-
-
-isPausable :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isPausable object_ = jmethod object_ "isPausable" (\() -> (isPausable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-isPausable_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isPausable_super object_ = (isPausable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-isPausable_impl :: AllBinaryGameCanvas -> IO (Bool)
-isPausable_impl this = do
-    javaCatchReturn $ do
-        if ((jio (CurrentDisplayableFactory.getUsedRunnable ((jio (CurrentDisplayableFactory.getInstance))))) == (jio (NullWaitGameRunnable.getInstance))) then do
-            javaReturn (True)
-        else do
-            javaReturn (False)
-
-
--- throws Exception
-popupMenu :: (JavaObjectClass this_) => this_ -> IO (())
-popupMenu object_ = jmethod object_ "popupMenu" (\() -> (popupMenu_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-popupMenu_super :: (JavaObjectClass this_) => this_ -> IO (())
-popupMenu_super object_ = (popupMenu_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-popupMenu_impl :: AllBinaryGameCanvas -> IO (())
-popupMenu_impl this = do
-        Control.Monad.void (BaseMenuBehavior.popupMenu ((jget (this).menuBehavior)) this)
-        pure ()
-
-
--- throws Exception
-popupMenu2 :: (JavaObjectClass this_) => this_ -> IO (())
-popupMenu2 object_ = jmethod object_ "popupMenu2" (\() -> (popupMenu2_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-popupMenu2_super :: (JavaObjectClass this_) => this_ -> IO (())
-popupMenu2_super object_ = (popupMenu2_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-popupMenu2_impl :: AllBinaryGameCanvas -> IO (())
-popupMenu2_impl this = do
-        Control.Monad.void (PlayerQueue.add ((jget (this).primaryPlayerQueue)) (jio (SelectSound.getInstance)))
-        Control.Monad.void (AllBinaryGameCanvas.setMenuPaintable this (jio (AllBinaryGameCanvas.getFormPaintable this)))
-        Control.Monad.void (AllBinaryGameCanvas.setMenuInputProcessor this (jget (this).mainMenuInputProcessor))
-        Control.Monad.void (BasicMotionGesturesHandler.addListenerInterface ((jget (this).basicMotionGesturesHandler)) (jget (this).mainMenuInputProcessor))
-        Control.Monad.void (GameKeyEventHandler.addListener ((jget (this).gameKeyEventHandler)) (jget (this).mainMenuInputProcessor))
-        pure ()
-
-
--- throws Exception
-toggleMenu :: (JavaObjectClass this_) => this_ -> IO (())
-toggleMenu object_ = jmethod object_ "toggleMenu" (\() -> (toggleMenu_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-toggleMenu_super :: (JavaObjectClass this_) => this_ -> IO (())
-toggleMenu_super object_ = (toggleMenu_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-toggleMenu_impl :: AllBinaryGameCanvas -> IO (())
-toggleMenu_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).gameStrings)).tOGGLE_MENU))
-        if ((jio (AllBinaryGameCanvas.getMenuPaintable this)) == (jio (AllBinaryGameCanvas.getOpenMenuPaintable this))) then do
-            Control.Monad.void (AllBinaryGameCanvas.pause this)
-            Control.Monad.void (AllBinaryGameCanvas.updateMenu this)
-            Control.Monad.void (AllBinaryGameCanvas.popupMenu this)
-        else when ((jio (AllBinaryGameCanvas.getMenuPaintable this)) == (jio (AllBinaryGameCanvas.getFormPaintable this))) $ do
-            Control.Monad.void (PlayerQueue.add ((jget (this).primaryPlayerQueue)) (jio (SelectSound.getInstance)))
-            Control.Monad.void (AllBinaryGameCanvas.unPause this)
-        pure ()
-
-
-closeMenu :: (JavaObjectClass this_) => this_ -> IO (())
-closeMenu object_ = jmethod object_ "closeMenu" (\() -> (closeMenu_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-closeMenu_super :: (JavaObjectClass this_) => this_ -> IO (())
-closeMenu_super object_ = (closeMenu_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-closeMenu_impl :: AllBinaryGameCanvas -> IO (())
-closeMenu_impl this = do
-        Control.Monad.void (BaseMenuBehavior.closeMenu ((jget (this).menuBehavior)) this)
-        pure ()
-
-
-closeMenu2 :: (JavaObjectClass this_) => this_ -> IO (())
-closeMenu2 object_ = jmethod object_ "closeMenu2" (\() -> (closeMenu2_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-closeMenu2_super :: (JavaObjectClass this_) => this_ -> IO (())
-closeMenu2_super object_ = (closeMenu2_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-closeMenu2_impl :: AllBinaryGameCanvas -> IO (())
-closeMenu2_impl this = do
-        Control.Monad.void (AllBinaryGameCanvas.setMenuPaintable this (jio (AllBinaryGameCanvas.getOpenMenuPaintable this)))
-        Control.Monad.void (BasicMotionGesturesHandler.removeListener ((jget (this).basicMotionGesturesHandler)) (jget (this).mainMenuInputProcessor))
-        Control.Monad.void (GameKeyEventHandler.removeListener ((jget (this).gameKeyEventHandler)) (jget (this).mainMenuInputProcessor))
-        Control.Monad.void (AllBinaryGameCanvas.setMenuInputProcessor this (jio (AllBinaryGameCanvas.getPopupMenuInputProcessor this)))
-        pure ()
-
-
-open :: (JavaObjectClass this_) => this_ -> IO (())
-open object_ = jmethod object_ "open" (\() -> (open_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-open_super :: (JavaObjectClass this_) => this_ -> IO (())
-open_super object_ = (open_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-open_impl :: AllBinaryGameCanvas -> IO (())
-open_impl this = do
-        Control.Monad.void (BasicMotionGesturesHandler.addListenerInterface ((jget (this).basicMotionGesturesHandler)) (jget (this).menuInputProcessor))
-        Control.Monad.void (GameKeyEventHandler.addListener ((jget (this).gameKeyEventHandler)) (jget (this).menuInputProcessor))
-        pure ()
-
-
-close :: (JavaObjectClass this_) => this_ -> IO (())
-close object_ = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-close_super :: (JavaObjectClass this_) => this_ -> IO (())
-close_super object_ = (close_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-close_impl :: AllBinaryGameCanvas -> IO (())
-close_impl this = do
-        Control.Monad.void (BasicMotionGesturesHandler.removeListener ((jget (this).basicMotionGesturesHandler)) (jget (this).menuInputProcessor))
-        Control.Monad.void (GameKeyEventHandler.removeListener ((jget (this).gameKeyEventHandler)) (jget (this).menuInputProcessor))
-        Control.Monad.void (PlayerQueue.clear ((jget (this).primaryPlayerQueue)))
-        Control.Monad.void (PlayerQueue.clear ((jget (this).secondaryPlayerQueue)))
-        pure ()
-
-
--- throws Exception
-processorInit :: (JavaObjectClass this_) => this_ -> IO (())
-processorInit object_ = jmethod object_ "processorInit" (\() -> (processorInit_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-processorInit_super :: (JavaObjectClass this_) => this_ -> IO (())
-processorInit_super object_ = (processorInit_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-processorInit_impl :: AllBinaryGameCanvas -> IO (())
-processorInit_impl this = do
-        Control.Monad.void (AllBinaryGameCanvas.setMainStateProcessor this (jio (Processor.getInstance)))
-        Control.Monad.void (AllBinaryGameCanvas.setProcessGameProcessorInit this)
-        pure ()
-
-
-setProcessGameProcessorInit :: (JavaObjectClass this_) => this_ -> IO (())
-setProcessGameProcessorInit object_ = jmethod object_ "setProcessGameProcessorInit" (\() -> (setProcessGameProcessorInit_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-setProcessGameProcessorInit_super :: (JavaObjectClass this_) => this_ -> IO (())
-setProcessGameProcessorInit_super object_ = (setProcessGameProcessorInit_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-setProcessGameProcessorInit_impl :: AllBinaryGameCanvas -> IO (())
-setProcessGameProcessorInit_impl this = do
-        Control.Monad.void (AllBinaryGameCanvas.setProcessGameProcessor this (javaCast (jio (GameProcessor.new_1 this))))
-        pure ()
-
-
-initSpecialPaint :: (JavaObjectClass this_) => this_ -> IO (())
-initSpecialPaint object_ = jmethod object_ "initSpecialPaint" (\() -> (initSpecialPaint_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-initSpecialPaint_super :: (JavaObjectClass this_) => this_ -> IO (())
-initSpecialPaint_super object_ = (initSpecialPaint_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-initSpecialPaint_impl :: AllBinaryGameCanvas -> IO (())
-initSpecialPaint_impl this = do
-        Control.Monad.void (BaseMenuBehavior.initSpecialPaint ((jget (this).menuBehavior)) this)
-        pure ()
-
-
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> Bool -> IO (())
-init object_ a1 a2 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1 a2
-
-init_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> Bool -> IO (())
-init_super object_ a1 a2 = (init_impl (javaCast object_ :: AllBinaryGameCanvas)) a1 a2
-
-init_impl :: AllBinaryGameCanvas -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> Bool -> IO (())
-init_impl this gameLayerManager buffered = do
-        Control.Monad.void (TimeDelayHelper.setStartTimeTNT ((jget (this).gameStateTimeHelper)))
-        Control.Monad.void (AllBinaryGameCanvas.setHighScoreSubmitted this False)
-        Control.Monad.void (AllBinaryGameCanvas.setLayerManager this gameLayerManager)
-        if (Prelude.not buffered) then do
-            let bUFF_MESSAGE = "XXX Not Buffering Causes Concurrency Issues XXX"
-            Control.Monad.void (putF ((jget (this).base.logUtil)) bUFF_MESSAGE this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-        else do
-            javaThrow ((JavaException "Exception" "Buffering is disabled"))
-        Control.Monad.void (AllBinaryGameCanvas.setGameInputProcessor this (jio (Processor.getInstance)))
-        features <- (Features.getInstance)
-        if (jio (Features.isFeature features (jget ((jio (GameFeatureFactory.getInstance))).cHEATING))) then do
-            jset (this).isCheating (True)
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: PlayerGameInput.PlayerGameInput) (CheatGameInputProcessor.new_1 this))
-            jset (this).cheatProcessor (assignedValue)
-            Control.Monad.void (GameKeyEventHandler.addListener ((jget (this).gameKeyEventHandler)) (jget (this).cheatProcessor))
-        else do
-            jset (this).isCheating (False)
-            assignedValue <- (NoPlayerGameInput.getInstance)
-            jset (this).cheatProcessor (assignedValue)
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: Processor.Processor) (EndGameProcessor.new_1 this))
-        jset (this).realEndGameProcessor (assignedValue)
-        Control.Monad.void (AllBinaryGameCanvas.setEndGameProcessor this (jio (Processor.getInstance)))
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: Processor.Processor) (StartIntermissionProcessor.new_1 this))
-        jset (this).realStartIntermissionProcessor (assignedValue)
-        assignedValue <- (Processor.getInstance)
-        jset (this).startIntermissionProcessor (assignedValue)
-        Control.Monad.void (AllBinaryGameCanvas.setEndGameStatePaintable this (javaCast (jio (EndGamePaintable.new_1 this))))
-        Control.Monad.void (AllBinaryGameCanvas.setEndGamePaintable this (jio (NullPaintable.getInstance)))
-        Control.Monad.void (AllBinaryGameCanvas.setIntermissionPaintable this (jio (NullPaintable.getInstance)))
-        Control.Monad.void (IntermissionInterface.setListener ((jio (AllBinaryGameCanvas.getStartIntermissionInterface this))) this)
-        pure ()
-
-
-notifyIntermission :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-notifyIntermission object_ a1 = jmethod object_ "notifyIntermission" (\() -> (notifyIntermission_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-notifyIntermission_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-notifyIntermission_super object_ a1 = (notifyIntermission_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-notifyIntermission_impl :: AllBinaryGameCanvas -> Bool -> IO (())
-notifyIntermission_impl this enable = do
-        if enable then do
-            jset (this).startIntermissionProcessor ((jget (this).realStartIntermissionProcessor))
-        else do
-            assignedValue <- (Processor.getInstance)
-            jset (this).startIntermissionProcessor (assignedValue)
-        if enable then do
-            Control.Monad.void (AllBinaryGameCanvas.setIntermissionPaintable this (javaCast (jio (AllBinaryGameCanvas.getStartIntermissionPaintable this))))
-        else do
-            Control.Monad.void (AllBinaryGameCanvas.setIntermissionPaintable this (jio (NullPaintable.getInstance)))
-        pure ()
-
-
--- throws Exception
-mediaInit :: (JavaObjectClass this_) => this_ -> IO (())
-mediaInit object_ = jmethod object_ "mediaInit" (\() -> (mediaInit_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-mediaInit_super :: (JavaObjectClass this_) => this_ -> IO (())
-mediaInit_super object_ = (mediaInit_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-mediaInit_impl :: AllBinaryGameCanvas -> IO (())
-mediaInit_impl this = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jget (this).base.commonStrings)).nOT_IMPLEMENTED) this)
-        pure ()
-
-
--- throws Exception
-initConfigurable :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-initConfigurable object_ a1 = jmethod object_ "initConfigurable" (\() -> (initConfigurable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-initConfigurable_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-initConfigurable_super object_ a1 = (initConfigurable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-initConfigurable_impl :: AllBinaryGameCanvas -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-initConfigurable_impl this abeClientInformation = do
-        progressCanvas <- (ProgressCanvasFactory.getInstance)
-        Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas 50 "Setting Configurables")
-        Control.Monad.void (GameInitializationUtil.initGame ((jio (GameInitializationUtil.getInstance))) abeClientInformation (javaCast this) (jget (this).gameInitializationInterfaceFactoryInterface))
-        gameFeatureFactory <- (GameFeatureFactory.getInstance)
-        changedGameFeatureListener <- (ChangedGameFeatureListener.getInstance)
-        when (jio (ChangedGameFeatureListener.isChangedFeature changedGameFeatureListener (jget (gameFeatureFactory).sOUND))) $ do
-            features <- (Features.getInstance)
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendboolean ((jio (StringMaker.append ((jio (StringMaker.new_))) "Sound Changing To: "))) (jio (Features.isFeature features (jget (gameFeatureFactory).sOUND)))))))) this "initConfigurable")
-            Control.Monad.void (AllBinaryGameCanvas.mediaInit this)
-            Control.Monad.void (ChangedGameFeatureListener.remove changedGameFeatureListener (jget (gameFeatureFactory).sOUND))
-        sensorFeatureFactory <- (SensorFeatureFactory.getInstance)
-        when (((jio (ChangedGameFeatureListener.isChangedFeature changedGameFeatureListener (jget (sensorFeatureFactory).oRIENTATION_SENSORS))) || (jio (ChangedGameFeatureListener.isChangedFeature changedGameFeatureListener (jget (sensorFeatureFactory).nO_ORIENTATION)))) || (jio (ChangedGameFeatureListener.isChangedFeature changedGameFeatureListener (jget (sensorFeatureFactory).sIMULATED_ORIENTATION_SENSORS)))) $ do
-            Control.Monad.void (ChangedGameFeatureListener.remove changedGameFeatureListener (jget (sensorFeatureFactory).nO_ORIENTATION))
-            Control.Monad.void (ChangedGameFeatureListener.remove changedGameFeatureListener (jget (sensorFeatureFactory).oRIENTATION_SENSORS))
-            Control.Monad.void (ChangedGameFeatureListener.remove changedGameFeatureListener (jget (sensorFeatureFactory).sIMULATED_ORIENTATION_SENSORS))
-        resourceLoadingLevelFactory <- (ResourceLoadingLevelFactory.getInstance)
-        Control.Monad.void (AllBinaryGameCanvas.loadResourceLoadingLevel this (jget (resourceLoadingLevelFactory).lOAD_GAME))
-        pure ()
-
-
--- throws Exception
-initApp :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-initApp object_ a1 = jmethod object_ "initApp" (\() -> (initApp_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-initApp_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-initApp_super object_ a1 = (initApp_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-initApp_impl :: AllBinaryGameCanvas -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-initApp_impl this abeClientInformation = do
-        Control.Monad.void (AllBinaryGameCanvas.initConfigurable this abeClientInformation)
-        Control.Monad.void (AllBinaryGameCanvas.processorInit this)
-        Control.Monad.void (SensorGameUpdateProcessor.process ((jget (this).sensorGameUpdateProcessor)) (jget (this).gameLayerManager))
-        Control.Monad.void (SensorGameUpdateProcessor.sendNotifications ((jget (this).sensorGameUpdateProcessor)) (jget (this).gameLayerManager))
-        Control.Monad.void (AllBinaryGameCanvas.initTouch this)
-        pure ()
-
-
--- throws Exception
-initTouch :: (JavaObjectClass this_) => this_ -> IO (())
-initTouch object_ = jmethod object_ "initTouch" (\() -> (initTouch_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-initTouch_super :: (JavaObjectClass this_) => this_ -> IO (())
-initTouch_super object_ = (initTouch_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-initTouch_impl :: AllBinaryGameCanvas -> IO (())
-initTouch_impl this = do
-        let gameInitializedEvent = (jget ((jio (GameInitializationUtil.getInstance))).eVENT)
-        resourceLoadingLevelFactory <- (ResourceLoadingLevelFactory.getInstance)
-        Control.Monad.void (GameInitializedEvent.setResourceLoadingLevel gameInitializedEvent (jget (resourceLoadingLevelFactory).lOAD_TOUCH))
-        Control.Monad.void (GameInitializedEventHandler.fireEvent ((jio (GameInitializedEventHandler.getInstance))) gameInitializedEvent)
-        Control.Monad.void (TouchButtonFactory.defaultList ((jget (this).touchButtonFactory)))
-        Control.Monad.void (AllBinaryGameCanvas.updateTouch this)
-        Control.Monad.void (AllBinaryGameCanvas.postInitTouch this)
-        pure ()
-
-
--- throws Exception
-updateCurrentTouchInputFactory :: (JavaObjectClass this_) => this_ -> BaseTouchInput.BaseTouchInput -> IO (())
-updateCurrentTouchInputFactory object_ a1 = jmethod object_ "updateCurrentTouchInputFactory" (\() -> (updateCurrentTouchInputFactory_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-updateCurrentTouchInputFactory_super :: (JavaObjectClass this_) => this_ -> BaseTouchInput.BaseTouchInput -> IO (())
-updateCurrentTouchInputFactory_super object_ a1 = (updateCurrentTouchInputFactory_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-updateCurrentTouchInputFactory_impl :: AllBinaryGameCanvas -> BaseTouchInput.BaseTouchInput -> IO (())
-updateCurrentTouchInputFactory_impl this nextTouchInput = do
-        when (nextTouchInput /= (jget (this).currentTouchInputFactory)) $ do
-            jset (this).currentTouchInputFactory (nextTouchInput)
-            Control.Monad.void (PreLogUtil.put (jio (BaseTouchInput.toString ((jget (this).currentTouchInputFactory)))) this (jget ((jget (this).gameInputStrings)).uDPATE_CURRENT_TOUCH_INPUT_FACTORY))
-            Control.Monad.void (TouchButtonFactory.toggle ((jget (this).touchButtonFactory)) (jio (AllBinaryGameCanvas.isPaused this)) (jio (BaseTouchInput.getList ((jget (this).currentTouchInputFactory)))))
-        pure ()
-
-
--- throws Exception
-updateTouch :: (JavaObjectClass this_) => this_ -> IO (())
-updateTouch object_ = jmethod object_ "updateTouch" (\() -> (updateTouch_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-updateTouch_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateTouch_super object_ = (updateTouch_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-updateTouch_impl :: AllBinaryGameCanvas -> IO (())
-updateTouch_impl this = do
-        Control.Monad.void (DemoGameBehavior.updateTouch ((jget (this).gameBehavior)) this)
-        pure ()
-
-
--- throws Exception
-updateTouch2 :: (JavaObjectClass this_) => this_ -> IO (())
-updateTouch2 object_ = jmethod object_ "updateTouch2" (\() -> (updateTouch2_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-updateTouch2_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateTouch2_super object_ = (updateTouch2_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-updateTouch2_impl :: AllBinaryGameCanvas -> IO (())
-updateTouch2_impl this = do
-        features <- (Features.getInstance)
-        when (jio (Features.isFeature features (jget ((jget (this).touchFeatureFactory)).aUTO_HIDE_SHOW_SCREEN_BUTTONS))) $ do
-            when (((jio (GameInfo.getCurrentLevel ((jio (AllBinaryGameLayerManager.getGameInfo ((jget (this).gameLayerManager))))))) - (jio (AllBinaryGameCanvas.getStartLevel this))) == 1) $ do
-                Control.Monad.void (AllBinaryGameCanvas.setTouchPaintableP this (jio (NullPaintable.getInstance)))
-        pure ()
-
-
--- throws Exception
-postInitTouch :: (JavaObjectClass this_) => this_ -> IO (())
-postInitTouch object_ = jmethod object_ "postInitTouch" (\() -> (postInitTouch_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-postInitTouch_super :: (JavaObjectClass this_) => this_ -> IO (())
-postInitTouch_super object_ = (postInitTouch_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-postInitTouch_impl :: AllBinaryGameCanvas -> IO (())
-postInitTouch_impl this = do
-        Control.Monad.void (AllBinaryGameCanvas.setTouchButtonsPaintable this (jio (TouchButtonsPaintableFactory.getInstance (jio (AllBinaryGameLayerManager.getForegroundBasicColor ((jget (this).gameLayerManager)))))))
-        Control.Monad.void (AllBinaryGameCanvas.updateScreenButtonPaintable this)
-        pure ()
-
-
-initCommands :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands object_ a1 = jmethod object_ "initCommands" (\() -> (initCommands_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-initCommands_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands_super object_ a1 = (initCommands_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-initCommands_impl :: AllBinaryGameCanvas -> CommandListener.CommandListener -> IO (())
-initCommands_impl this cmdListener = do
-        Control.Monad.void (RunnableCanvas.removeAllCommands this)
-        Control.Monad.void (AllBinaryGameCanvas.addCommands this)
-        Control.Monad.void (RunnableCanvas.setCommandListener this cmdListener)
-        pure ()
-
-
-addCommands :: (JavaObjectClass this_) => this_ -> IO (())
-addCommands object_ = jmethod object_ "addCommands" (\() -> (addCommands_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-addCommands_super :: (JavaObjectClass this_) => this_ -> IO (())
-addCommands_super object_ = (addCommands_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-addCommands_impl :: AllBinaryGameCanvas -> IO (())
-addCommands_impl this = do
-        gameCommandsFactory <- (GameCommandsFactory.getInstance)
-        myCommandsFactory <- (MyCommandsFactory.getInstance)
-        when ((jio (DebugFactory.getInstance)) /= (jio (NoDebug.getInstance))) $ do
-            Control.Monad.void (RunnableCanvas.addCommand this (jget (gameCommandsFactory).sTART_TRACE))
-        Control.Monad.void (RunnableCanvas.addCommand this (jget (gameCommandsFactory).rESTART_COMMAND))
-        Control.Monad.void (RunnableCanvas.addCommand this (jget (myCommandsFactory).pAUSE_COMMAND))
-        Control.Monad.void (RunnableCanvas.addCommand this (jget (gameCommandsFactory).qUIT_COMMAND))
-        isOverScan <- (OperatingSystemFactory.isOverScan ((jio (OperatingSystemFactory.getOperatingSystemInstance ((jio (OperatingSystemFactory.getInstance)))))))
-        if (jio (J2MEUtil.isHTML)) then do
-            pure ()
-        else if SWTUtil.isSWT then do
-            pure ()
-        else when (Prelude.not isOverScan) $ do
-            when ((jio (TouchScreenFactory.isTouch ((jio (TouchScreenFactory.getInstance))))) && (jio (InGameFeatures.isAny ((jio (InGameFeatures.new_)))))) $ do
-                Control.Monad.void (RunnableCanvas.addCommand this (InGameOptionsForm.dISPLAY))
-            Control.Monad.void (RunnableCanvas.addCommand this (jget (gameCommandsFactory).sAVE))
-            Control.Monad.void (RunnableCanvas.addCommand this (jget (gameCommandsFactory).dISPLAY_LOAD_FORM))
-        pure ()
-
-
-itemStateChanged :: (JavaObjectClass this_) => this_ -> LcduiItem.LcduiItem -> IO (())
-itemStateChanged object_ a1 = jmethod object_ "itemStateChanged" (\() -> (itemStateChanged_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-itemStateChanged_super :: (JavaObjectClass this_) => this_ -> LcduiItem.LcduiItem -> IO (())
-itemStateChanged_super object_ a1 = (itemStateChanged_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-itemStateChanged_impl :: AllBinaryGameCanvas -> LcduiItem.LcduiItem -> IO (())
-itemStateChanged_impl this item = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this "itemStateChanged" e)
-            ) $ do
-            itemLabel <- (LcduiItem.getLabel item)
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.commonLabels)).iTEM_LABEL)))) itemLabel))))) this "itemStateChanged")
-            when (javaInstanceOf item "ChoiceGroup") $ do
-                gameFeatureUtil <- (GameFeatureUtil.getInstance)
-                if (jio (GameFeatureUtil.isExclusive gameFeatureUtil itemLabel)) then do
-                    Control.Monad.void (GameFeatureUtil.updateExclusiveForChoiceGroup gameFeatureUtil (javaCast item :: ChoiceGroup.ChoiceGroup))
-                else do
-                    Control.Monad.void (GameFeatureUtil.updateMultiple gameFeatureUtil (javaCast item :: ChoiceGroup.ChoiceGroup))
-            Control.Monad.void (SensorGameUpdateProcessor.process ((jget (this).sensorGameUpdateProcessor)) (jget (this).gameLayerManager))
-            Control.Monad.void (AllBinaryGameCanvas.updateTouch this)
-            Control.Monad.void (AllBinaryGameCanvas.updateScreenButtonPaintable this)
-            Control.Monad.void (SensorGameUpdateProcessor.sendNotifications ((jget (this).sensorGameUpdateProcessor)) (jget (this).gameLayerManager))
-        pure ()
-
-
--- throws Exception
-updateScreenButtonPaintable :: (JavaObjectClass this_) => this_ -> IO (())
-updateScreenButtonPaintable object_ = jmethod object_ "updateScreenButtonPaintable" (\() -> (updateScreenButtonPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-updateScreenButtonPaintable_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateScreenButtonPaintable_super object_ = (updateScreenButtonPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-updateScreenButtonPaintable_impl :: AllBinaryGameCanvas -> IO (())
-updateScreenButtonPaintable_impl this = do
-        Control.Monad.void (DemoGameBehavior.updateScreenButtonPaintable ((jget (this).gameBehavior)) this)
-        pure ()
-
-
-updateScreenButtonPaintable2 :: (JavaObjectClass this_) => this_ -> IO (())
-updateScreenButtonPaintable2 object_ = jmethod object_ "updateScreenButtonPaintable2" (\() -> (updateScreenButtonPaintable2_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-updateScreenButtonPaintable2_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateScreenButtonPaintable2_super object_ = (updateScreenButtonPaintable2_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-updateScreenButtonPaintable2_impl :: AllBinaryGameCanvas -> IO (())
-updateScreenButtonPaintable2_impl this = do
-        features <- (Features.getInstance)
-        if (jio (Features.isFeature features (jget ((jget (this).touchFeatureFactory)).aUTO_HIDE_SHOW_SCREEN_BUTTONS))) then do
-            Control.Monad.void (AllBinaryGameCanvas.setTouchPaintableP this (jio (AllBinaryGameCanvas.getTouchButtonsPaintable this)))
-            Control.Monad.void (AllBinaryGameCanvas.setStartLevel this (jio (GameInfo.getCurrentLevel ((jio (AllBinaryGameLayerManager.getGameInfo ((jget (this).gameLayerManager))))))))
-        else if (jio (Features.isFeature features (jget ((jget (this).touchFeatureFactory)).sHOW_SCREEN_BUTTONS))) then do
-            Control.Monad.void (AllBinaryGameCanvas.setTouchPaintableP this (jio (AllBinaryGameCanvas.getTouchButtonsPaintable this)))
-        else if (jio (Features.isFeature features (jget ((jget (this).touchFeatureFactory)).hIDE_SCREEN_BUTTONS))) then do
-            Control.Monad.void (AllBinaryGameCanvas.setTouchPaintableP this (jio (NullPaintable.getInstance)))
-        else do
-            Control.Monad.void (AllBinaryGameCanvas.setTouchPaintableP this (jio (NullPaintable.getInstance)))
-        pure ()
-
-
-getLayerManager :: (JavaObjectClass this_) => this_ -> IO (AllBinaryGameLayerManager.AllBinaryGameLayerManager)
-getLayerManager object_ = jmethod object_ "getLayerManager" (\() -> (getLayerManager_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getLayerManager_super :: (JavaObjectClass this_) => this_ -> IO (AllBinaryGameLayerManager.AllBinaryGameLayerManager)
-getLayerManager_super object_ = (getLayerManager_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getLayerManager_impl :: AllBinaryGameCanvas -> IO (AllBinaryGameLayerManager.AllBinaryGameLayerManager)
-getLayerManager_impl this = do
-        pure ((jget (this).gameLayerManager))
-
-
-setLayerManager :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> IO (())
-setLayerManager object_ a1 = jmethod object_ "setLayerManager" (\() -> (setLayerManager_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setLayerManager_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> IO (())
-setLayerManager_super object_ a1 = (setLayerManager_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setLayerManager_impl :: AllBinaryGameCanvas -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> IO (())
-setLayerManager_impl this layerManager = do
-        jset (this).gameLayerManager (layerManager)
-        pure ()
-
-
-isGameOver :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isGameOver object_ = jmethod object_ "isGameOver" (\() -> (isGameOver_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-isGameOver_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isGameOver_super object_ = (isGameOver_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-isGameOver_impl :: AllBinaryGameCanvas -> IO (Bool)
-isGameOver_impl this = do
-        pure ((jget (this).gameOver))
-
-
-setGameOver :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setGameOver object_ a1 = jmethod object_ "setGameOver" (\() -> (setGameOver_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setGameOver_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setGameOver_super object_ a1 = (setGameOver_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setGameOver_impl :: AllBinaryGameCanvas -> Bool -> IO (())
-setGameOver_impl this gameOver = do
-        jset (this).gameOver (gameOver)
-        pure ()
-
-
--- throws Exception
-processGameOver :: (JavaObjectClass this_) => this_ -> IO (())
-processGameOver object_ = jmethod object_ "processGameOver" (\() -> (processGameOver_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-processGameOver_super :: (JavaObjectClass this_) => this_ -> IO (())
-processGameOver_super object_ = (processGameOver_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-processGameOver_impl :: AllBinaryGameCanvas -> IO (())
-processGameOver_impl this = do
-        Control.Monad.void (PreLogUtil.put (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).gameStrings)).sET_GAME_OVER))
-        Control.Monad.void (AllBinaryGameCanvas.setGameOver this True)
-        Control.Monad.void (RunnableCanvas.removePauseCommand this)
-        Control.Monad.void (AllBinaryGameCanvas.setGameState this (jget ((jget (this).gameStateFactory)).sHOW_END_RESULT_GAME_STATE))
-        Control.Monad.void (AllBinaryGameCanvas.setEndGamePaintable this (jio (AllBinaryGameCanvas.getEndGameStatePaintable this)))
-        pure ()
-
-
-isHighScoreSubmitted :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isHighScoreSubmitted object_ = jmethod object_ "isHighScoreSubmitted" (\() -> (isHighScoreSubmitted_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-isHighScoreSubmitted_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isHighScoreSubmitted_super object_ = (isHighScoreSubmitted_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-isHighScoreSubmitted_impl :: AllBinaryGameCanvas -> IO (Bool)
-isHighScoreSubmitted_impl this = do
-        pure ((jget (this).highScoreSubmitted))
-
-
--- throws Exception
-setHighScoreSubmitted :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setHighScoreSubmitted object_ a1 = jmethod object_ "setHighScoreSubmitted" (\() -> (setHighScoreSubmitted_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setHighScoreSubmitted_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setHighScoreSubmitted_super object_ a1 = (setHighScoreSubmitted_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setHighScoreSubmitted_impl :: AllBinaryGameCanvas -> Bool -> IO (())
-setHighScoreSubmitted_impl this highScoreSubmitted = do
-        jset (this).highScoreSubmitted (highScoreSubmitted)
-        when highScoreSubmitted $ do
-            Control.Monad.void (HighScoresHelperBaseInterface.setSelectedHighScores ((jget (this).highScoresHelper)) (jio (NullHighScoresSingletonFactory.getInstance)))
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendboolean ((jio (StringMaker.append ((jio (StringMaker.new_))) "isHighScoreSubmitted: "))) highScoreSubmitted))))) this "setHighScoreSubmitted")
-        pure ()
-
-
-getGameState :: (JavaObjectClass this_) => this_ -> IO (GameState.GameState)
-getGameState object_ = jmethod object_ "getGameState" (\() -> (getGameState_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getGameState_super :: (JavaObjectClass this_) => this_ -> IO (GameState.GameState)
-getGameState_super object_ = (getGameState_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getGameState_impl :: AllBinaryGameCanvas -> IO (GameState.GameState)
-getGameState_impl this = do
-        pure ((jget (this).gameState))
-
-
--- throws Exception
-setGameState :: (JavaObjectClass this_) => this_ -> GameState.GameState -> IO (())
-setGameState object_ a1 = jmethod object_ "setGameState" (\() -> (setGameState_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setGameState_super :: (JavaObjectClass this_) => this_ -> GameState.GameState -> IO (())
-setGameState_super object_ a1 = (setGameState_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setGameState_impl :: AllBinaryGameCanvas -> GameState.GameState -> IO (())
-setGameState_impl this gameState = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).gameStrings)).gAME_STATE)))) (jio (toString ((jget (this).base.stringUtil)) gameState))))))) this (jget ((jget (this).gameStrings)).sET_GAME_STATE))
-        jset (this).gameState (gameState)
-        Control.Monad.void (TimeDelayHelper.setStartTimeTNT ((jget (this).gameStateTimeHelper)))
-        Control.Monad.void (AllBinaryGameCanvas.updateEndGameProcessor this)
-        Control.Monad.void (AllBinaryGameCanvas.updateGameKeyEventProcessor this)
-        Control.Monad.void (DemoGameBehavior.setGameState ((jget (this).gameBehavior)) this)
-        pure ()
-
-
--- throws Exception
-updateGameState :: (JavaObjectClass this_) => this_ -> IO (())
-updateGameState object_ = jmethod object_ "updateGameState" (\() -> (updateGameState_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-updateGameState_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateGameState_super object_ = (updateGameState_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-updateGameState_impl :: AllBinaryGameCanvas -> IO (())
-updateGameState_impl this = do
-        gameAdState <- (GameAdStateFactory.getCurrentInstance ((jget (this).gameAdStateFactory)))
-        Control.Monad.void (GameAdState.processAdState gameAdState (jget (this).gameState) (jio (GameInfo.getGameType ((jio (AllBinaryGameLayerManager.getGameInfo ((jget (this).gameLayerManager))))))))
-        when ((jget (this).gameState) /= (jget ((jget (this).gameStateFactory)).pLAYING_GAME_STATE)) $ do
-            Control.Monad.void (GameAdState.processPageAdState gameAdState)
-        pure ()
-
-
-updateGameKeyEventProcessor :: (JavaObjectClass this_) => this_ -> IO (())
-updateGameKeyEventProcessor object_ = jmethod object_ "updateGameKeyEventProcessor" (\() -> (updateGameKeyEventProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-updateGameKeyEventProcessor_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateGameKeyEventProcessor_super object_ = (updateGameKeyEventProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-updateGameKeyEventProcessor_impl :: AllBinaryGameCanvas -> IO (())
-updateGameKeyEventProcessor_impl this = do
-        if (((jio (AllBinaryGameCanvas.getGameState this)) /= (jget ((jget (this).gameStateFactory)).pLAYING_GAME_STATE)) || (jget (this).isCheating)) then do
-            pure ()
-        else do
-            pure ()
-        pure ()
-
-
-removeAllGameKeyInputListenersOnBuild :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllGameKeyInputListenersOnBuild object_ = jmethod object_ "removeAllGameKeyInputListenersOnBuild" (\() -> (removeAllGameKeyInputListenersOnBuild_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-removeAllGameKeyInputListenersOnBuild_super :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllGameKeyInputListenersOnBuild_super object_ = (removeAllGameKeyInputListenersOnBuild_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-removeAllGameKeyInputListenersOnBuild_impl :: AllBinaryGameCanvas -> IO (())
-removeAllGameKeyInputListenersOnBuild_impl this = do
-        Control.Monad.void (AllBinaryGameCanvas.removeAllGameKeyInputListeners this)
-        pure ()
-
-
-removeAllGameKeyInputListeners :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllGameKeyInputListeners object_ = jmethod object_ "removeAllGameKeyInputListeners" (\() -> (removeAllGameKeyInputListeners_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-removeAllGameKeyInputListeners_super :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllGameKeyInputListeners_super object_ = (removeAllGameKeyInputListeners_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-removeAllGameKeyInputListeners_impl :: AllBinaryGameCanvas -> IO (())
-removeAllGameKeyInputListeners_impl this = do
-        Control.Monad.void (DemoGameBehavior.removeAllGameKeyInputListeners ((jget (this).gameBehavior)) this)
-        pure ()
-
-
-removeAllGameKeyInputListeners2 :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllGameKeyInputListeners2 object_ = jmethod object_ "removeAllGameKeyInputListeners2" (\() -> (removeAllGameKeyInputListeners2_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-removeAllGameKeyInputListeners2_super :: (JavaObjectClass this_) => this_ -> IO (())
-removeAllGameKeyInputListeners2_super object_ = (removeAllGameKeyInputListeners2_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-removeAllGameKeyInputListeners2_impl :: AllBinaryGameCanvas -> IO (())
-removeAllGameKeyInputListeners2_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) "Remove PlayerInput Listeners" this "removeAllGameKeyInputListeners")
-        forM_ [((jio (BasicArrayList.size ((jget (this).localPlayerGameInputList)))) - 1), ((jio (BasicArrayList.size ((jget (this).localPlayerGameInputList)))) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            let playerGameInput = (javaCast (jio (BasicArrayList.get ((jget (this).localPlayerGameInputList)) index)) :: PlayerGameInput.PlayerGameInput)
-            Control.Monad.void (AllBinaryGameCanvas.removeKeyInputListener this playerGameInput)
-            Control.Monad.void (PlayerGameInput.removeNonAIInputGameKeyEvents playerGameInput)
-        pure ()
-
-
-removeKeyInputListener :: (JavaObjectClass this_) => this_ -> PlayerGameInput.PlayerGameInput -> IO (())
-removeKeyInputListener object_ a1 = jmethod object_ "removeKeyInputListener" (\() -> (removeKeyInputListener_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-removeKeyInputListener_super :: (JavaObjectClass this_) => this_ -> PlayerGameInput.PlayerGameInput -> IO (())
-removeKeyInputListener_super object_ a1 = (removeKeyInputListener_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-removeKeyInputListener_impl :: AllBinaryGameCanvas -> PlayerGameInput.PlayerGameInput -> IO (())
-removeKeyInputListener_impl this playerGameInput = do
-        Control.Monad.void (GameKeyEventHandler.removeListener ((jget (this).gameKeyEventHandler)) playerGameInput)
-        pure ()
-
-
--- throws Exception
-updateEndGameProcessor :: (JavaObjectClass this_) => this_ -> IO (())
-updateEndGameProcessor object_ = jmethod object_ "updateEndGameProcessor" (\() -> (updateEndGameProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-updateEndGameProcessor_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateEndGameProcessor_super object_ = (updateEndGameProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-updateEndGameProcessor_impl :: AllBinaryGameCanvas -> IO (())
-updateEndGameProcessor_impl this = do
-        Control.Monad.void (DemoGameBehavior.updateEndGameProcessor ((jget (this).gameBehavior)) this)
-        pure ()
-
-
--- throws Exception
-updateEndGameProcessor2 :: (JavaObjectClass this_) => this_ -> IO (())
-updateEndGameProcessor2 object_ = jmethod object_ "updateEndGameProcessor2" (\() -> (updateEndGameProcessor2_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-updateEndGameProcessor2_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateEndGameProcessor2_super object_ = (updateEndGameProcessor2_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-updateEndGameProcessor2_impl :: AllBinaryGameCanvas -> IO (())
-updateEndGameProcessor2_impl this = do
-        if (((jio (AllBinaryGameCanvas.getGameState this)) == (jget ((jget (this).gameStateFactory)).sHOW_END_RESULT_GAME_STATE)) || ((jio (AllBinaryGameCanvas.getGameState this)) == (jget ((jget (this).gameStateFactory)).sHOW_HIGH_SCORE_GAME_STATE))) then do
-            Control.Monad.void (AllBinaryGameCanvas.setEndGameProcessor this (jget (this).realEndGameProcessor))
-        else do
-            Control.Monad.void (AllBinaryGameCanvas.setEndGameProcessor this (jio (Processor.getInstance)))
-        pure ()
-
-
--- throws Exception
-buildGameInit :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-buildGameInit object_ a1 = jmethod object_ "buildGameInit" (\() -> (buildGameInit_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-buildGameInit_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-buildGameInit_super object_ a1 = (buildGameInit_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-buildGameInit_impl :: AllBinaryGameCanvas -> Bool -> IO (())
-buildGameInit_impl this isPortion = do
-        pure ()
-
-
--- throws Exception
-cleanupGame :: (JavaObjectClass this_) => this_ -> IO (())
-cleanupGame object_ = jmethod object_ "cleanupGame" (\() -> (cleanupGame_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-cleanupGame_super :: (JavaObjectClass this_) => this_ -> IO (())
-cleanupGame_super object_ = (cleanupGame_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-cleanupGame_impl :: AllBinaryGameCanvas -> IO (())
-cleanupGame_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).cLEANUP))
-        progressCanvas <- (ProgressCanvasFactory.getInstance)
-        Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas 10 "Cleaning Up")
-        Control.Monad.void (PlayerQueue.clear ((jget (this).primaryPlayerQueue)))
-        Control.Monad.void (PlayerQueue.clear ((jget (this).secondaryPlayerQueue)))
-        Control.Monad.void (GameLevelDisplayChangeEventListenersFactory.clear ((jio (GameLevelDisplayChangeEventListenersFactory.getInstance))))
-        pure ()
-
-
--- throws Exception
-loadResourceLoadingLevel :: (JavaObjectClass this_) => this_ -> ResourceLoadingLevel.ResourceLoadingLevel -> IO (())
-loadResourceLoadingLevel object_ a1 = jmethod object_ "loadResourceLoadingLevel" (\() -> (loadResourceLoadingLevel_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-loadResourceLoadingLevel_super :: (JavaObjectClass this_) => this_ -> ResourceLoadingLevel.ResourceLoadingLevel -> IO (())
-loadResourceLoadingLevel_super object_ a1 = (loadResourceLoadingLevel_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-loadResourceLoadingLevel_impl :: AllBinaryGameCanvas -> ResourceLoadingLevel.ResourceLoadingLevel -> IO (())
-loadResourceLoadingLevel_impl this resourceLoadingLevel = do
-        let gameInitializedEvent = (jget ((jio (GameInitializationUtil.getInstance))).eVENT)
-        Control.Monad.void (GameInitializedEvent.setResourceLoadingLevel gameInitializedEvent resourceLoadingLevel)
-        Control.Monad.void (GameInitializedEventHandler.fireEvent ((jio (GameInitializedEventHandler.getInstance))) gameInitializedEvent)
-        pure ()
-
-
--- throws Exception
-loadResources :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-loadResources object_ a1 = jmethod object_ "loadResources" (\() -> (loadResources_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-loadResources_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-loadResources_super object_ a1 = (loadResources_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-loadResources_impl :: AllBinaryGameCanvas -> Int -> IO (())
-loadResources_impl this level = do
-        let gameInitializedEvent = (jget ((jio (GameInitializationUtil.getInstance))).eVENT)
-        Control.Monad.void (GameInitializedEvent.setLevel gameInitializedEvent level)
-        Control.Monad.void (GameInitializedEventHandler.fireEvent ((jio (GameInitializedEventHandler.getInstance))) gameInitializedEvent)
-        pure ()
-
-
--- throws Exception
-updateColor :: (JavaObjectClass this_) => this_ -> IO (())
-updateColor object_ = jmethod object_ "updateColor" (\() -> (updateColor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-updateColor_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateColor_super object_ = (updateColor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-updateColor_impl :: AllBinaryGameCanvas -> IO (())
-updateColor_impl this = do
-        pure ()
-
-
--- throws Exception
-buildGame :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-buildGame object_ a1 = jmethod object_ "buildGame" (\() -> (buildGame_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-buildGame_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-buildGame_super object_ a1 = (buildGame_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-buildGame_impl :: AllBinaryGameCanvas -> Int -> IO (())
-buildGame_impl this portion = do
-    javaCatchReturn $ do
-        Control.Monad.void (ScreenCapture.endRecording ((jget (this).screenCapture)))
-        Control.Monad.void (ScreenCapture.startRecording ((jget (this).screenCapture)))
-        progressCanvas <- (ProgressCanvasFactory.getInstance)
-        features <- (Features.getInstance)
-        Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas portion "Generic Build")
-        Control.Monad.void (AllBinaryGameCanvas.removeAllGameKeyInputListenersOnBuild this)
-        Control.Monad.void (AllBinaryGameCanvas.updateTouch this)
-        Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas portion "High Scores")
-        Control.Monad.void (HighScoresFactoryInterface.fetchHighScores ((jget (this).highScoresFactoryInterface)) (jio (AllBinaryGameLayerManager.getGameInfo ((jget (this).gameLayerManager)))) (jget (this).highScoresHelper))
-        Control.Monad.void (AllBinaryGameCanvas.setHighScoresPaintable this (jio (NullPaintable.getInstance)))
-        Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas portion "Finishing.")
-        Control.Monad.void (EndGameInfo.update ((jio (AllBinaryGameCanvas.getEndGameInfoP this))) (jio (AllBinaryGameLayerManager.getGameInfo ((jio (AllBinaryGameCanvas.getLayerManager this))))) this)
-        assignedValue <- (Features.isFeature features (jget ((jio (InputFeatureFactory.getInstance))).sINGLE_KEY_REPEAT_PRESS))
-        jset (this).isSingleKeyRepeatableProcessing (assignedValue)
-        Control.Monad.void (AllBinaryGameCanvas.setGameOver this False)
-        Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas portion "Finishing..")
-        Control.Monad.void (AllBinaryGameCanvas.updateColor this)
-        Control.Monad.void (InitUpdatePaintable.update ((jio (AllBinaryGameCanvas.getStartIntermissionPaintable this))))
-        when (Prelude.not (jio (AllBinaryGameCanvas.isRunningInAnotherThread this))) $ do
-            javaReturn (())
-        Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas portion "Finishing...")
-        when ((jio (RunnableCanvas.isMainCanvas this)) || (Prelude.not (jio (AllBinaryGameCanvas.isInitialized this)))) $ do
-            if (jio (Features.isFeature features (jget ((jio (MainFeatureFactory.getInstance))).lOAD_ONDEMAND))) then do
-                when ((jio (RunnableCanvas.getCustomCommandListener this)) /= javaNull) $ do
-                    Control.Monad.void (ProgressCanvas.end progressCanvas)
-            else do
-                Control.Monad.void (ProgressCanvas.end progressCanvas)
-            Control.Monad.void (AllBinaryGameCanvas.setInitialized this True)
-        if ((jio (RunnableCanvas.getCustomCommandListener this)) == NullCommandListener.nULL_COMMAND_LISTENER) then do
-            Control.Monad.void (putF ((jget (this).base.logUtil)) "Show Game Paintable in DemoCanvas Thread" this (jget (this).bUILD_GAME))
-            Control.Monad.void (DemoPaintableInterface.showGamePaintable ((jget (this).gameCanvasStartListener)))
-        else do
-            Control.Monad.void (putF ((jget (this).base.logUtil)) "No GameCanvasStartListener" this (jget (this).bUILD_GAME))
-        Control.Monad.void (ColorFillBasePaintable.setBasicColorP ((jget (this).colorFillPaintable)) (jio (AllBinaryGameLayerManager.getBackgroundBasicColor ((jget (this).gameLayerManager)))))
-        Control.Monad.void (DemoGameBehavior.buildGame ((jget (this).gameBehavior)) this)
-    pure ()
-
-
-buildGame2 :: (JavaObjectClass this_) => this_ -> IO (())
-buildGame2 object_ = jmethod object_ "buildGame2" (\() -> (buildGame2_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-buildGame2_super :: (JavaObjectClass this_) => this_ -> IO (())
-buildGame2_super object_ = (buildGame2_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-buildGame2_impl :: AllBinaryGameCanvas -> IO (())
-buildGame2_impl this = do
-        Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).gameInputStrings)).eNABLE_PLAYER_GAME_INPUTS)))) (jio (BasicArrayList.size ((jget (this).localPlayerGameInputList))))))))) this (jget (this).bUILD_GAME))
-        playerGameInput <- newIORef (javaNull)
-        forM_ [((jio (BasicArrayList.size ((jget (this).localPlayerGameInputList)))) - 1), ((jio (BasicArrayList.size ((jget (this).localPlayerGameInputList)))) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jset playerGameInput ((javaCast (jio (BasicArrayList.get ((jget (this).localPlayerGameInputList)) index)) :: PlayerGameInput.PlayerGameInput))
-            Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).gameInputStrings)).eNABLE_PLAYER_GAME_INPUT)))) (jio (PlayerGameInput.toString ((jget playerGameInput))))))))) this (jget (this).bUILD_GAME))
-            Control.Monad.void (PlayerGameInput.removeNonAIInputGameKeyEvents ((jget playerGameInput)))
-            Control.Monad.void (AllBinaryGameCanvas.addKeyInputListener this (jget playerGameInput))
-        pure ()
-
-
-addKeyInputListener :: (JavaObjectClass this_) => this_ -> PlayerGameInput.PlayerGameInput -> IO (())
-addKeyInputListener object_ a1 = jmethod object_ "addKeyInputListener" (\() -> (addKeyInputListener_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-addKeyInputListener_super :: (JavaObjectClass this_) => this_ -> PlayerGameInput.PlayerGameInput -> IO (())
-addKeyInputListener_super object_ a1 = (addKeyInputListener_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-addKeyInputListener_impl :: AllBinaryGameCanvas -> PlayerGameInput.PlayerGameInput -> IO (())
-addKeyInputListener_impl this playerGameInput = do
-        Control.Monad.void (GameKeyEventHandler.addListenerForPlayer ((jio (GameKeyEventHandler.getInstance))) playerGameInput (jio (PlayerGameInput.getPlayerInputId playerGameInput)))
-        pure ()
-
-
-setGameCanvasStartListener :: (JavaObjectClass this_) => this_ -> DemoPaintableInterface.DemoPaintableInterface -> IO (())
-setGameCanvasStartListener object_ a1 = jmethod object_ "setGameCanvasStartListener" (\() -> (setGameCanvasStartListener_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setGameCanvasStartListener_super :: (JavaObjectClass this_) => this_ -> DemoPaintableInterface.DemoPaintableInterface -> IO (())
-setGameCanvasStartListener_super object_ a1 = (setGameCanvasStartListener_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setGameCanvasStartListener_impl :: AllBinaryGameCanvas -> DemoPaintableInterface.DemoPaintableInterface -> IO (())
-setGameCanvasStartListener_impl this gameCanvasStartListener = do
-        jset (this).gameCanvasStartListener (gameCanvasStartListener)
-        pure ()
-
-
--- throws Exception
-loadState :: (JavaObjectClass this_) => this_ -> IO (())
-loadState object_ = jmethod object_ "loadState" (\() -> (loadState_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-loadState_super :: (JavaObjectClass this_) => this_ -> IO (())
-loadState_super object_ = (loadState_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-loadState_impl :: AllBinaryGameCanvas -> IO (())
-loadState_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).lOAD))
-        hashtable <- (AllBinaryGameCanvas.getLoadStateHashtable this)
-        when ((hashtable /= javaNull) && ((jio (ABHashtable.size hashtable)) > 0)) $ do
-            let levelAsString = (javaCast (jio (ABHashtable.get hashtable (javaCast GameInfo.lEVEL_NAME :: Any.Any))) :: String)
-            let level = (jio (jparseInt levelAsString))
-            gameInfo <- (AllBinaryGameLayerManager.getGameInfo ((jget (this).gameLayerManager)))
-            Control.Monad.void (GameInfo.setCurrentLevel gameInfo level)
-        pure ()
-
-
--- throws Exception
-getLoadStateHashtable :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-getLoadStateHashtable object_ = jmethod object_ "getLoadStateHashtable" (\() -> (getLoadStateHashtable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getLoadStateHashtable_super :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-getLoadStateHashtable_super object_ = (getLoadStateHashtable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getLoadStateHashtable_impl :: AllBinaryGameCanvas -> IO (ABHashtable.ABHashtable)
-getLoadStateHashtable_impl this = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.commonLabels)).sTART_LABEL)))) (jio (toString ((jget (this).base.stringUtil)) (jget (this).hashtable)))))))) this "getLoadStateHashtable")
-        pure ((jget (this).hashtable))
-
-
-setLoadStateHashtable :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> IO (())
-setLoadStateHashtable object_ a1 = jmethod object_ "setLoadStateHashtable" (\() -> (setLoadStateHashtable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setLoadStateHashtable_super :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> IO (())
-setLoadStateHashtable_super object_ a1 = (setLoadStateHashtable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setLoadStateHashtable_impl :: AllBinaryGameCanvas -> ABHashtable.ABHashtable -> IO (())
-setLoadStateHashtable_impl this hashtable = do
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.commonLabels)).sTART_LABEL)))) (jio (toString ((jget (this).base.stringUtil)) hashtable))))))) this "setLoadStateHashtable")
-        jset (this).hashtable (hashtable)
-        pure ()
-
-
-getCurrentStateHashtable :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-getCurrentStateHashtable object_ = jmethod object_ "getCurrentStateHashtable" (\() -> (getCurrentStateHashtable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getCurrentStateHashtable_super :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-getCurrentStateHashtable_super object_ = (getCurrentStateHashtable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getCurrentStateHashtable_impl :: AllBinaryGameCanvas -> IO (ABHashtable.ABHashtable)
-getCurrentStateHashtable_impl this = do
-        hashtable <- (createHashtable ((jget (this).base.stdUtil)))
-        level <- (GameInfo.getCurrentLevel ((jio (AllBinaryGameLayerManager.getGameInfo ((jget (this).gameLayerManager))))))
-        Control.Monad.void (ABHashtable.put hashtable (jio (toString GameInfo.lEVEL_NAME)) (javaToString level))
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "End: "))) (jio (toString ((jget (this).base.stringUtil)) hashtable))))))) this "getCurrentStateHashtable")
-        pure (hashtable)
-
-
-paintGameOver :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintGameOver object_ a1 = jmethod object_ "paintGameOver" (\() -> (paintGameOver_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-paintGameOver_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintGameOver_super object_ a1 = (paintGameOver_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-paintGameOver_impl :: AllBinaryGameCanvas -> Graphics.Graphics -> IO (())
-paintGameOver_impl this graphics = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jget (this).base.commonStrings)).nOT_IMPLEMENTED) this)
-        pure ()
-
-
-draw :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-draw object_ a1 = jmethod object_ "draw" (\() -> (draw_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-draw_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-draw_super object_ a1 = (draw_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-draw_impl :: AllBinaryGameCanvas -> Graphics.Graphics -> IO (())
-draw_impl this graphics = do
-        Control.Monad.void (ColorFillBasePaintable.paint ((jget (this).colorFillPaintable)) graphics)
-        Control.Monad.void (BasicColorSetUtil.setBasicColorP ((jget (this).basicSetColorUtil)) graphics (jio (AllBinaryGameLayerManager.getForegroundBasicColor ((jget (this).gameLayerManager)))))
-        Control.Monad.void (Paintable.paint ((jget (this).gameSpecificPaintable)) graphics)
-        pure ()
-
-
-clear :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-clear object_ a1 = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-clear_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-clear_super object_ a1 = (clear_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-clear_impl :: AllBinaryGameCanvas -> Graphics.Graphics -> IO (())
-clear_impl this graphics = do
-        Control.Monad.void (ColorFillBasePaintable.paint ((jget (this).colorFillPaintable)) graphics)
-        pure ()
-
-
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-paint_impl :: AllBinaryGameCanvas -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-        Control.Monad.void (BaseGameStatistics.nextRefresh ((jget (this).baseGameStatistics)))
-        Control.Monad.void (AllBinaryGameCanvas.draw this graphics)
-        Control.Monad.void (Paintable.paint ((jget (this).menuPaintable)) graphics)
-        Control.Monad.void (PaintableInterface.paint ((jget (this).progressPaintable)) graphics)
-        pure ()
-
-
-paintThreed :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed object_ a1 = jmethod object_ "paintThreed" (\() -> (paintThreed_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-paintThreed_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed_super object_ a1 = (paintThreed_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-paintThreed_impl :: AllBinaryGameCanvas -> Graphics.Graphics -> IO (())
-paintThreed_impl this graphics = do
-        pure ()
-
-
--- throws Exception
-processEndLevelIntermissionGameState :: (JavaObjectClass this_) => this_ -> IO (())
-processEndLevelIntermissionGameState object_ = jmethod object_ "processEndLevelIntermissionGameState" (\() -> (processEndLevelIntermissionGameState_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-processEndLevelIntermissionGameState_super :: (JavaObjectClass this_) => this_ -> IO (())
-processEndLevelIntermissionGameState_super object_ = (processEndLevelIntermissionGameState_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-processEndLevelIntermissionGameState_impl :: AllBinaryGameCanvas -> IO (())
-processEndLevelIntermissionGameState_impl this = do
-        pure ()
-
-
-nonBotPaint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-nonBotPaint object_ a1 = jmethod object_ "nonBotPaint" (\() -> (nonBotPaint_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-nonBotPaint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-nonBotPaint_super object_ a1 = (nonBotPaint_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-nonBotPaint_impl :: AllBinaryGameCanvas -> Graphics.Graphics -> IO (())
-nonBotPaint_impl this graphics = do
-        Control.Monad.void (Paintable.paint ((jget (this).endGamePaintable)) graphics)
-        Control.Monad.void (Paintable.paint ((jget (this).intermissionPaintable)) graphics)
-        Control.Monad.void (AllBinaryGameCanvas.paintIntermission this graphics)
-        Control.Monad.void (Paintable.paint ((jget (this).touchPaintable)) graphics)
-        pure ()
-
-
-paintIntermission :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintIntermission object_ a1 = jmethod object_ "paintIntermission" (\() -> (paintIntermission_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-paintIntermission_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintIntermission_super object_ a1 = (paintIntermission_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-paintIntermission_impl :: AllBinaryGameCanvas -> Graphics.Graphics -> IO (())
-paintIntermission_impl this graphics = do
-        pure ()
-
-
-keyPressed :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyPressed object_ a1 = jmethod object_ "keyPressed" (\() -> (keyPressed_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-keyPressed_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyPressed_super object_ a1 = (keyPressed_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-keyPressed_impl :: AllBinaryGameCanvas -> Int -> IO (())
-keyPressed_impl this keyCode = do
-        Control.Monad.void (AllBinaryGameCanvas.keyPressedByDevice this keyCode 0)
-        pure ()
-
-
-keyReleased :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyReleased object_ a1 = jmethod object_ "keyReleased" (\() -> (keyReleased_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-keyReleased_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyReleased_super object_ a1 = (keyReleased_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-keyReleased_impl :: AllBinaryGameCanvas -> Int -> IO (())
-keyReleased_impl this keyCode = do
-        Control.Monad.void (AllBinaryGameCanvas.keyReleasedByDevice this keyCode 0)
-        pure ()
-
-
-keyRepeated :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyRepeated object_ a1 = jmethod object_ "keyRepeated" (\() -> (keyRepeated_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-keyRepeated_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-keyRepeated_super object_ a1 = (keyRepeated_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-keyRepeated_impl :: AllBinaryGameCanvas -> Int -> IO (())
-keyRepeated_impl this keyCode = do
-        Control.Monad.void (AllBinaryGameCanvas.keyRepeatedByDevice this keyCode 0)
-        pure ()
-
-
-keyPressedByDevice :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyPressedByDevice object_ a1 a2 = jmethod object_ "keyPressedByDevice" (\() -> (keyPressedByDevice_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1 a2
-
-keyPressedByDevice_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyPressedByDevice_super object_ a1 a2 = (keyPressedByDevice_impl (javaCast object_ :: AllBinaryGameCanvas)) a1 a2
-
-keyPressedByDevice_impl :: AllBinaryGameCanvas -> Int -> Int -> IO (())
-keyPressedByDevice_impl this keyCode deviceId = do
-        Control.Monad.void (InputProcessor.keyPressedByDevice ((jget (this).inputProcessor)) keyCode deviceId)
-        pure ()
-
-
-keyRepeatedByDevice :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyRepeatedByDevice object_ a1 a2 = jmethod object_ "keyRepeatedByDevice" (\() -> (keyRepeatedByDevice_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1 a2
-
-keyRepeatedByDevice_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyRepeatedByDevice_super object_ a1 a2 = (keyRepeatedByDevice_impl (javaCast object_ :: AllBinaryGameCanvas)) a1 a2
-
-keyRepeatedByDevice_impl :: AllBinaryGameCanvas -> Int -> Int -> IO (())
-keyRepeatedByDevice_impl this keyCode deviceId = do
-        when (jget (this).isSingleKeyRepeatableProcessing) $ do
-            Control.Monad.void (InputProcessor.keyPressedByDevice ((jget (this).inputProcessor)) keyCode deviceId)
-        pure ()
-
-
-keyReleasedByDevice :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyReleasedByDevice object_ a1 a2 = jmethod object_ "keyReleasedByDevice" (\() -> (keyReleasedByDevice_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1 a2
-
-keyReleasedByDevice_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyReleasedByDevice_super object_ a1 a2 = (keyReleasedByDevice_impl (javaCast object_ :: AllBinaryGameCanvas)) a1 a2
-
-keyReleasedByDevice_impl :: AllBinaryGameCanvas -> Int -> Int -> IO (())
-keyReleasedByDevice_impl this keyCode deviceId = do
-        Control.Monad.void (InputProcessor.keyReleasedByDevice ((jget (this).inputProcessor)) this keyCode deviceId)
-        pure ()
-
-
--- throws Exception
-handleRawKey :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> IO (())
-handleRawKey object_ a1 a2 a3 = jmethod object_ "handleRawKey" (\() -> (handleRawKey_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1 a2 a3
-
-handleRawKey_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> IO (())
-handleRawKey_super object_ a1 a2 a3 = (handleRawKey_impl (javaCast object_ :: AllBinaryGameCanvas)) a1 a2 a3
-
-handleRawKey_impl :: AllBinaryGameCanvas -> Int -> Int -> Bool -> IO (())
-handleRawKey_impl this keyCode deviceId repeated = do
-        pure ()
-
-
-endProgress :: (JavaObjectClass this_) => this_ -> Bool -> IO (Int)
-endProgress object_ a1 = jmethod object_ "endProgress" (\() -> (endProgress_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-endProgress_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (Int)
-endProgress_super object_ a1 = (endProgress_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-endProgress_impl :: AllBinaryGameCanvas -> Bool -> IO (Int)
-endProgress_impl this isProgress = do
-        portion <- newIORef (30 :: Int)
-        when (isProgress && (jio (RunnableCanvas.isMainCanvas this))) $ do
-            myCommandsFactory <- (MyCommandsFactory.getInstance)
-            progressCanvas <- (ProgressCanvasFactory.getInstance)
-            Control.Monad.void (ProgressCanvas.start progressCanvas)
-            Control.Monad.void (RunnableCanvas.commandAction ((jio (RunnableCanvas.getCustomCommandListener this))) (jget (myCommandsFactory).sET_DISPLAYABLE) progressCanvas)
-            jset portion (4)
-        pure ((jget portion))
-
-
--- throws Exception
-processPlayingGame :: (JavaObjectClass this_) => this_ -> IO (())
-processPlayingGame object_ = jmethod object_ "processPlayingGame" (\() -> (processPlayingGame_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-processPlayingGame_super :: (JavaObjectClass this_) => this_ -> IO (())
-processPlayingGame_super object_ = (processPlayingGame_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-processPlayingGame_impl :: AllBinaryGameCanvas -> IO (())
-processPlayingGame_impl this = do
-        Control.Monad.void (PlayerGameInput.update ((jget (this).cheatProcessor)))
-        Control.Monad.void (SensorGameUpdateProcessor.update ((jio (SensorGameUpdateProcessor.getInputSensor ((jget (this).sensorGameUpdateProcessor))))))
-        Control.Monad.void (Processor.process ((jget (this).gameInputProcessor)))
-        Control.Monad.void (AllBinaryGameLayerManager.process ((jget (this).gameLayerManager)))
-        Control.Monad.void (Processor.process ((jget (this).startIntermissionProcessor)))
-        pure ()
-
-
--- throws Exception
-threadInit :: (JavaObjectClass this_) => this_ -> IO (())
-threadInit object_ = jmethod object_ "threadInit" (\() -> (threadInit_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-threadInit_super :: (JavaObjectClass this_) => this_ -> IO (())
-threadInit_super object_ = (threadInit_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-threadInit_impl :: AllBinaryGameCanvas -> IO (())
-threadInit_impl this = do
-        pure ()
-
-
--- throws Exception
-processGame :: (JavaObjectClass this_) => this_ -> IO (())
-processGame object_ = jmethod object_ "processGame" (\() -> (processGame_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-processGame_super :: (JavaObjectClass this_) => this_ -> IO (())
-processGame_super object_ = (processGame_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-processGame_impl :: AllBinaryGameCanvas -> IO (())
-processGame_impl this = do
-        Control.Monad.void (RunnableCanvas.process_super this.base)
-        when (jio (AllBinaryMediaManager.update)) $ do
-            when (Prelude.not (jio (PlayerQueue.process ((jget (this).primaryPlayerQueue))))) $ do
-                Control.Monad.void (PlayerQueue.process ((jget (this).secondaryPlayerQueue)))
-        Control.Monad.void (Processor.process ((jget (this).mainStateProcessor)))
-        Control.Monad.void (BasicMenuInputProcessor.processInputList ((jget (this).menuInputProcessor)))
-        Control.Monad.void (Processor.process ((jget (this).endGameProcessor)))
-        Control.Monad.void (BaseGameStatistics.nextFrame ((jget (this).baseGameStatistics)))
-        pure ()
-
-
-notifyDonePainting :: (JavaObjectClass this_) => this_ -> IO (())
-notifyDonePainting object_ = jmethod object_ "notifyDonePainting" (\() -> (notifyDonePainting_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-notifyDonePainting_super :: (JavaObjectClass this_) => this_ -> IO (())
-notifyDonePainting_super object_ = (notifyDonePainting_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-notifyDonePainting_impl :: AllBinaryGameCanvas -> IO (())
-notifyDonePainting_impl this = do
-        do -- synchronized
-            Control.Monad.void (notifyObject ((jget (this).base.threadObjectUtil)) this)
-        pure ()
-
-
--- throws Exception
-shouldWait :: (JavaObjectClass this_) => this_ -> IO (())
-shouldWait object_ = jmethod object_ "shouldWait" (\() -> (shouldWait_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-shouldWait_super :: (JavaObjectClass this_) => this_ -> IO (())
-shouldWait_super object_ = (shouldWait_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-shouldWait_impl :: AllBinaryGameCanvas -> IO (())
-shouldWait_impl this = do
-        features <- (Features.getInstance)
-        if (jio (AndroidUtil.isAndroid)) then do
-            pure ()
-        else if (jio (Features.isFeature features (jget ((jget (this).openGLFeatureFactory)).oPENGL_2D))) then do
-            pure ()
-        else do
-            when (jio (Features.isDefault features (jget ((jget (this).openGLFeatureFactory)).oPENGL))) $ do
-                openGLImageSpecificFactory <- (OpenGLImageSpecificFactory.getInstance)
-                fix $ \loop -> when (jget (openGLImageSpecificFactory).updating) $ javaIteration (loop) $ do
-                    Control.Monad.void (threadDelay (Prelude.fromIntegral (jget (this).yIELD_SLEEP) * 1000))
-        pure ()
-
-
-run :: (JavaObjectClass this_) => this_ -> IO (())
-run object_ = jmethod object_ "run" (\() -> (run_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-run_super :: (JavaObjectClass this_) => this_ -> IO (())
-run_super object_ = (run_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-run_impl :: AllBinaryGameCanvas -> IO (())
-run_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.commonStrings)).rUN) e)
-            ) $ do
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART_RUNNABLE) this (jget ((jget (this).base.commonStrings)).rUN))
-            progressCanvas <- (ProgressCanvasFactory.getInstance)
-            Control.Monad.void (ProgressCanvas.addNormalPortion progressCanvas 50 "Game Thread")
-            Control.Monad.void (AllBinaryGameCanvas.setCurrentThread this)
-            Control.Monad.void (AllBinaryGameCanvas.setRunning this True)
-            when ((jio (RunnableCanvas.getCustomCommandListener this)) == NullCommandListener.nULL_COMMAND_LISTENER) $ do
-                Control.Monad.void (threadDelay (Prelude.fromIntegral (jget (this).yIELD_SLEEP) * 1000))
-            Control.Monad.void (AllBinaryGameCanvas.shouldWait this)
-            Control.Monad.void (AllBinaryGameCanvas.threadInit this)
-            when ((jio (RunnableCanvas.getCustomCommandListener this)) == NullCommandListener.nULL_COMMAND_LISTENER) $ do
-                Control.Monad.void (threadDelay (Prelude.fromIntegral (jget (this).yIELD_SLEEP) * 1000))
-            Control.Monad.void (AllBinaryGameCanvas.open this)
-            gameAdState <- (GameAdStateFactory.getCurrentInstance ((jget (this).gameAdStateFactory)))
-            Control.Monad.void (GameAdState.init gameAdState)
-            Control.Monad.void (GameAdState.setGameIsReady gameAdState True)
-            Control.Monad.void (DemoGameBehavior.run ((jget (this).gameBehavior)) this)
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eND_RUNNABLE) this (jget ((jget (this).base.commonStrings)).rUN))
-        pure ()
-
-
--- throws Exception
-run2 :: (JavaObjectClass this_) => this_ -> IO (())
-run2 object_ = jmethod object_ "run2" (\() -> (run2_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-run2_super :: (JavaObjectClass this_) => this_ -> IO (())
-run2_super object_ = (run2_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-run2_impl :: AllBinaryGameCanvas -> IO (())
-run2_impl this = do
-        features <- (Features.getInstance)
-        if ((jio (Features.isDefault features (jget ((jget (this).openGLFeatureFactory)).oPENGL_AS_GAME_THREAD))) || (jio (J2MEUtil.isHTML))) then do
-            when (jio (Features.isDefault features (jget ((jget (this).openGLFeatureFactory)).oPENGL_AS_GAME_THREAD))) $ do
-                Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (getName ((jget ((jget (this).openGLFeatureFactory)).oPENGL_AS_GAME_THREAD)))) this (jget ((jget (this).base.commonStrings)).rUN))
-            when (jio (J2MEUtil.isHTML)) $ do
-                Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jio (GraphicsStrings.getInstance))).hTML) this (jget ((jget (this).base.commonStrings)).rUN))
-            currentDisplayableFactory <- (CurrentDisplayableFactory.getInstance)
-            Control.Monad.void (CurrentDisplayableFactory.setRunnable currentDisplayableFactory (javaCast (jget (this).gameRunnable)))
-            Control.Monad.void (CurrentDisplayableFactory.setDisplayable currentDisplayableFactory (javaCast this))
-            Control.Monad.void (OpenGLThreadUtil.onResume ((jio (OpenGLThreadUtil.getInstance))))
-        else if (jio (Features.isDefault features (jget ((jget (this).openGLFeatureFactory)).oPENGL_AND_GAME_HAVE_DIFFERENT_THREADS))) then do
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (getName ((jget ((jget (this).openGLFeatureFactory)).oPENGL_AND_GAME_HAVE_DIFFERENT_THREADS)))) this (jget ((jget (this).base.commonStrings)).rUN))
-            Control.Monad.void (OpenGLThreadUtil.onResume ((jio (OpenGLThreadUtil.getInstance))))
-            fix $ \loop -> when (jio (RunnableCanvas.isRunning this)) $ javaIteration (loop) $ do
-                Control.Monad.void (AllBinaryGameCanvas.run3 this)
-            Control.Monad.void (AllBinaryGameCanvas.end this)
-        else do
-            Control.Monad.void (putF ((jget (this).base.logUtil)) "this thread" this (jget ((jget (this).base.commonStrings)).rUN))
-            fix $ \loop -> when (jio (RunnableCanvas.isRunning this)) $ javaIteration (loop) $ do
-                Control.Monad.void (AllBinaryGameCanvas.run3 this)
-            Control.Monad.void (AllBinaryGameCanvas.end this)
-        pure ()
-
-
--- throws Exception
-run3 :: (JavaObjectClass this_) => this_ -> IO (())
-run3 object_ = jmethod object_ "run3" (\() -> (run3_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-run3_super :: (JavaObjectClass this_) => this_ -> IO (())
-run3_super object_ = (run3_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-run3_impl :: AllBinaryGameCanvas -> IO (())
-run3_impl this = do
-        Control.Monad.void (setStartTime ((jget (this).base.loopTimeHelper)) (jio (GameTickTimeDelayHelper.setStartTime ((jget (this).gameTickTimeDelayHelper)))))
-        Control.Monad.void (GameTickDisplayInfoSingleton.update ((jget (this).gameTickDisplayInfoSingleton)))
-        Control.Monad.void (AllBinaryGameCanvas.processGame this)
-        Control.Monad.void (RunnableCanvas.processLoopSleep this)
-        pure ()
-
-
-setRunning :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setRunning object_ a1 = jmethod object_ "setRunning" (\() -> (setRunning_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setRunning_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setRunning_super object_ a1 = (setRunning_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setRunning_impl :: AllBinaryGameCanvas -> Bool -> IO (())
-setRunning_impl this running = do
-        Control.Monad.void (RunnableCanvas.setRunning_super this.base running)
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget (this).base.sET_RUNNING) e)
-            ) $ do
-            features <- (Features.getInstance)
-            if running then do
-                pure ()
-            else do
-                when ((jio (Features.isDefault features (jget ((jget (this).openGLFeatureFactory)).oPENGL))) || SWTUtil.isSWT) $ do
-                    when ((jio (GameInfo.getGameType ((jio (AllBinaryGameLayerManager.getGameInfo ((jget (this).gameLayerManager))))))) /= (jget ((jget (this).gameTypeFactory)).bOT)) $ do
-                        currentDisplayableFactory <- (CurrentDisplayableFactory.getInstance)
-                        Control.Monad.void (CurrentDisplayableFactory.clearRunnable currentDisplayableFactory)
-                    Control.Monad.void (AllBinaryGameCanvas.end this)
-        pure ()
-
-
--- throws Exception
-end :: (JavaObjectClass this_) => this_ -> IO (())
-end object_ = jmethod object_ "end" (\() -> (end_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-end_super :: (JavaObjectClass this_) => this_ -> IO (())
-end_super object_ = (end_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-end_impl :: AllBinaryGameCanvas -> IO (())
-end_impl this = do
-        Control.Monad.void (ScreenCapture.endRecording ((jget (this).screenCapture)))
-        Control.Monad.void (BaseGameStatistics.add ((jget (this).baseGameStatistics)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jio (BaseGameStatistics.toString ((jget (this).baseGameStatistics))))))) (jget ((jio (CommonSeps.getInstance))).nEW_LINE)))))))
-        Control.Monad.void (BaseGameStatistics.init ((jget (this).baseGameStatistics)))
-        Control.Monad.void (GameKeyEventHandler.removeListener ((jget (this).gameKeyEventHandler)) (jget (this).cheatProcessor))
-        Control.Monad.void (AllBinaryGameCanvas.close this)
-        Control.Monad.void (AllBinaryGameCanvas.removeAllGameKeyInputListeners this)
-        Control.Monad.void (AllBinaryGameCanvas.endGameThread this)
-        pure ()
-
-
--- throws Exception
-endGameThread :: (JavaObjectClass this_) => this_ -> IO (())
-endGameThread object_ = jmethod object_ "endGameThread" (\() -> (endGameThread_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-endGameThread_super :: (JavaObjectClass this_) => this_ -> IO (())
-endGameThread_super object_ = (endGameThread_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-endGameThread_impl :: AllBinaryGameCanvas -> IO (())
-endGameThread_impl this = do
-        Control.Monad.void (DisplayChangeEventHandler.removeListener ((jio (DisplayChangeEventHandler.getInstance))) this)
-        Control.Monad.void (GameLevelDisplayChangeEventListenersFactory.clear ((jio (GameLevelDisplayChangeEventListenersFactory.getInstance))))
-        gameAdState <- (GameAdStateFactory.getCurrentInstance ((jget (this).gameAdStateFactory)))
-        Control.Monad.void (GameAdState.notPlayingAdState gameAdState)
-        pure ()
-
-
-createHighScore :: (JavaObjectClass this_) => this_ -> Int64 -> IO (HighScore.HighScore)
-createHighScore object_ a1 = jmethod object_ "createHighScore" (\() -> (createHighScore_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-createHighScore_super :: (JavaObjectClass this_) => this_ -> Int64 -> IO (HighScore.HighScore)
-createHighScore_super object_ a1 = (createHighScore_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-createHighScore_impl :: AllBinaryGameCanvas -> Int64 -> IO (HighScore.HighScore)
-createHighScore_impl this score = do
-        gameInfo <- (AllBinaryGameLayerManager.getGameInfo ((jget (this).gameLayerManager)))
-        (HighScore.new_4 0 "NONE" (jio (GameInfo.new_5 (jio (GameInfo.getGameType gameInfo)) (jio (GameInfo.getGameMode gameInfo)) (jget ((jio (PlayerTypesFactory.getInstance))).pLAYER_TYPE_ONE) 0 0)) score)
-
-
--- throws Exception
-setHighScore :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> Int64 -> Bool -> Bool -> IO (())
-setHighScore object_ a1 a2 a3 a4 a5 = jmethod object_ "setHighScore" (\() -> (setHighScore_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1 a2 a3 a4 a5
-
-setHighScore_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> Int64 -> Bool -> Bool -> IO (())
-setHighScore_super object_ a1 a2 a3 a4 a5 = (setHighScore_impl (javaCast object_ :: AllBinaryGameCanvas)) a1 a2 a3 a4 a5
-
-setHighScore_impl :: AllBinaryGameCanvas -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> Int64 -> Bool -> Bool -> IO (())
-setHighScore_impl this abeClientInformation name score autoSubmit isLast = do
-        Control.Monad.void (DemoGameBehavior.setHighScore ((jget (this).gameBehavior)) abeClientInformation this name score autoSubmit isLast)
-        pure ()
-
-
--- throws Exception
-setHighScore2 :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> Int64 -> Bool -> Bool -> IO (())
-setHighScore2 object_ a1 a2 a3 a4 a5 = jmethod object_ "setHighScore2" (\() -> (setHighScore2_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1 a2 a3 a4 a5
-
-setHighScore2_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> Int64 -> Bool -> Bool -> IO (())
-setHighScore2_super object_ a1 a2 a3 a4 a5 = (setHighScore2_impl (javaCast object_ :: AllBinaryGameCanvas)) a1 a2 a3 a4 a5
-
-setHighScore2_impl :: AllBinaryGameCanvas -> AbeClientInformationInterface.AbeClientInformationInterface -> String -> Int64 -> Bool -> Bool -> IO (())
-setHighScore2_impl this abeClientInformation name score autoSubmit isLast = do
-        highScore <- (AllBinaryGameCanvas.createHighScore this score)
-        textBox <- (HighScoreTextBox.new_9 (jget (this).highScoresFactoryInterface) (jget (this).highScoresHelper) abeClientInformation (jio (AllBinaryGameLayerManager.getGameInfo ((jget (this).gameLayerManager)))) (jio (RunnableCanvas.getCustomCommandListener this)) name highScore (jio (AllBinaryGameLayerManager.getBackgroundBasicColor ((jget (this).gameLayerManager)))) (jio (AllBinaryGameLayerManager.getForegroundBasicColor ((jget (this).gameLayerManager)))))
-        when isLast $ do
-            Control.Monad.void (RunnableCanvas.commandAction ((jio (RunnableCanvas.getCustomCommandListener this))) (jget ((jio (GameCommandsFactory.getInstance))).sET_MENU_DISPLAYABLE) textBox)
-        when autoSubmit $ do
-            Control.Monad.void (SecondaryThreadPool.runTask ((jio (SecondaryThreadPool.getInstance))) (jio (SaveHighScoreRunnable.new_2 isLast textBox)))
-        pure ()
-
-
-getGameStateTimeHelper :: (JavaObjectClass this_) => this_ -> IO (TimeDelayHelper.TimeDelayHelper)
-getGameStateTimeHelper object_ = jmethod object_ "getGameStateTimeHelper" (\() -> (getGameStateTimeHelper_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getGameStateTimeHelper_super :: (JavaObjectClass this_) => this_ -> IO (TimeDelayHelper.TimeDelayHelper)
-getGameStateTimeHelper_super object_ = (getGameStateTimeHelper_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getGameStateTimeHelper_impl :: AllBinaryGameCanvas -> IO (TimeDelayHelper.TimeDelayHelper)
-getGameStateTimeHelper_impl this = do
-        pure ((jget (this).gameStateTimeHelper))
-
-
-setInitialized :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setInitialized object_ a1 = jmethod object_ "setInitialized" (\() -> (setInitialized_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setInitialized_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setInitialized_super object_ a1 = (setInitialized_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setInitialized_impl :: AllBinaryGameCanvas -> Bool -> IO (())
-setInitialized_impl this initialized = do
-        jset (this).initialized (initialized)
-        pure ()
-
-
-isInitialized :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isInitialized object_ = jmethod object_ "isInitialized" (\() -> (isInitialized_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-isInitialized_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isInitialized_super object_ = (isInitialized_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-isInitialized_impl :: AllBinaryGameCanvas -> IO (Bool)
-isInitialized_impl this = do
-        pure ((jget (this).initialized))
-
-
-getSourceId :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSourceId object_ = jmethod object_ "getSourceId" (\() -> (getSourceId_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getSourceId_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSourceId_super object_ = (getSourceId_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getSourceId_impl :: AllBinaryGameCanvas -> IO (Int)
-getSourceId_impl this = do
-        pure (AllBinaryGameCanvas.id)
-
-
-setProgressPaintable :: (JavaObjectClass this_) => this_ -> PaintableInterface.PaintableInterface -> IO (())
-setProgressPaintable object_ a1 = jmethod object_ "setProgressPaintable" (\() -> (setProgressPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setProgressPaintable_super :: (JavaObjectClass this_) => this_ -> PaintableInterface.PaintableInterface -> IO (())
-setProgressPaintable_super object_ a1 = (setProgressPaintable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setProgressPaintable_impl :: AllBinaryGameCanvas -> PaintableInterface.PaintableInterface -> IO (())
-setProgressPaintable_impl this paintable = do
-        jset (this).progressPaintable (paintable)
-        pure ()
-
-
-getStartIntermissionInterface :: (JavaObjectClass this_) => this_ -> IO (IntermissionInterface.IntermissionInterface)
-getStartIntermissionInterface object_ = jmethod object_ "getStartIntermissionInterface" (\() -> (getStartIntermissionInterface_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getStartIntermissionInterface_super :: (JavaObjectClass this_) => this_ -> IO (IntermissionInterface.IntermissionInterface)
-getStartIntermissionInterface_super object_ = (getStartIntermissionInterface_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getStartIntermissionInterface_impl :: AllBinaryGameCanvas -> IO (IntermissionInterface.IntermissionInterface)
-getStartIntermissionInterface_impl this = do
-        pure ((jget (this).startIntermissionInterface))
-
-
-getEndLevelIntermissionInterface :: (JavaObjectClass this_) => this_ -> IO (IntermissionInterface.IntermissionInterface)
-getEndLevelIntermissionInterface object_ = jmethod object_ "getEndLevelIntermissionInterface" (\() -> (getEndLevelIntermissionInterface_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getEndLevelIntermissionInterface_super :: (JavaObjectClass this_) => this_ -> IO (IntermissionInterface.IntermissionInterface)
-getEndLevelIntermissionInterface_super object_ = (getEndLevelIntermissionInterface_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getEndLevelIntermissionInterface_impl :: AllBinaryGameCanvas -> IO (IntermissionInterface.IntermissionInterface)
-getEndLevelIntermissionInterface_impl this = do
-        pure ((jget (this).endLevelIntermissionInterface))
-
-
-setTouchPaintableP :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setTouchPaintableP object_ a1 = jmethod object_ "setTouchPaintableP" (\() -> (setTouchPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setTouchPaintableP_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setTouchPaintableP_super object_ a1 = (setTouchPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setTouchPaintableP_impl :: AllBinaryGameCanvas -> Paintable.Paintable -> IO (())
-setTouchPaintableP_impl this paintable = do
-        jset (this).touchPaintable (paintable)
-        pure ()
-
-
-getTouchPaintableP :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getTouchPaintableP object_ = jmethod object_ "getTouchPaintableP" (\() -> (getTouchPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getTouchPaintableP_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getTouchPaintableP_super object_ = (getTouchPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getTouchPaintableP_impl :: AllBinaryGameCanvas -> IO (Paintable.Paintable)
-getTouchPaintableP_impl this = do
-        pure ((jget (this).touchPaintable))
-
-
-setEndGamePaintable :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setEndGamePaintable object_ a1 = jmethod object_ "setEndGamePaintable" (\() -> (setEndGamePaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setEndGamePaintable_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setEndGamePaintable_super object_ a1 = (setEndGamePaintable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setEndGamePaintable_impl :: AllBinaryGameCanvas -> Paintable.Paintable -> IO (())
-setEndGamePaintable_impl this endGamePaintable = do
-        jset (this).endGamePaintable (endGamePaintable)
-        pure ()
-
-
-getEndGamePaintable :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getEndGamePaintable object_ = jmethod object_ "getEndGamePaintable" (\() -> (getEndGamePaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getEndGamePaintable_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getEndGamePaintable_super object_ = (getEndGamePaintable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getEndGamePaintable_impl :: AllBinaryGameCanvas -> IO (Paintable.Paintable)
-getEndGamePaintable_impl this = do
-        pure ((jget (this).endGamePaintable))
-
-
-setIntermissionPaintable :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setIntermissionPaintable object_ a1 = jmethod object_ "setIntermissionPaintable" (\() -> (setIntermissionPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setIntermissionPaintable_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setIntermissionPaintable_super object_ a1 = (setIntermissionPaintable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setIntermissionPaintable_impl :: AllBinaryGameCanvas -> Paintable.Paintable -> IO (())
-setIntermissionPaintable_impl this intermissionPaintable = do
-        jset (this).intermissionPaintable (intermissionPaintable)
-        pure ()
-
-
-getIntermissionPaintable :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getIntermissionPaintable object_ = jmethod object_ "getIntermissionPaintable" (\() -> (getIntermissionPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getIntermissionPaintable_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getIntermissionPaintable_super object_ = (getIntermissionPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getIntermissionPaintable_impl :: AllBinaryGameCanvas -> IO (Paintable.Paintable)
-getIntermissionPaintable_impl this = do
-        pure ((jget (this).intermissionPaintable))
-
-
-getEndGameInfoP :: (JavaObjectClass this_) => this_ -> IO (EndGameInfo.EndGameInfo)
-getEndGameInfoP object_ = jmethod object_ "getEndGameInfoP" (\() -> (getEndGameInfoP_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getEndGameInfoP_super :: (JavaObjectClass this_) => this_ -> IO (EndGameInfo.EndGameInfo)
-getEndGameInfoP_super object_ = (getEndGameInfoP_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getEndGameInfoP_impl :: AllBinaryGameCanvas -> IO (EndGameInfo.EndGameInfo)
-getEndGameInfoP_impl this = do
-        pure ((jget (this).endGameInfo))
-
-
-setHighScoresPaintable :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setHighScoresPaintable object_ a1 = jmethod object_ "setHighScoresPaintable" (\() -> (setHighScoresPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setHighScoresPaintable_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setHighScoresPaintable_super object_ a1 = (setHighScoresPaintable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setHighScoresPaintable_impl :: AllBinaryGameCanvas -> Paintable.Paintable -> IO (())
-setHighScoresPaintable_impl this highScoresPaintable = do
-        jset (this).highScoresPaintable (highScoresPaintable)
-        pure ()
-
-
-getHighScoresPaintable :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getHighScoresPaintable object_ = jmethod object_ "getHighScoresPaintable" (\() -> (getHighScoresPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getHighScoresPaintable_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getHighScoresPaintable_super object_ = (getHighScoresPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getHighScoresPaintable_impl :: AllBinaryGameCanvas -> IO (Paintable.Paintable)
-getHighScoresPaintable_impl this = do
-        pure ((jget (this).highScoresPaintable))
-
-
-getRealHighScoresPaintable :: (JavaObjectClass this_) => this_ -> IO (HighScoresPaintable.HighScoresPaintable)
-getRealHighScoresPaintable object_ = jmethod object_ "getRealHighScoresPaintable" (\() -> (getRealHighScoresPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getRealHighScoresPaintable_super :: (JavaObjectClass this_) => this_ -> IO (HighScoresPaintable.HighScoresPaintable)
-getRealHighScoresPaintable_super object_ = (getRealHighScoresPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getRealHighScoresPaintable_impl :: AllBinaryGameCanvas -> IO (HighScoresPaintable.HighScoresPaintable)
-getRealHighScoresPaintable_impl this = do
-        pure ((jget (this).realHighScoresPaintable))
-
-
-clearPlayerGameInputList :: (JavaObjectClass this_) => this_ -> IO (())
-clearPlayerGameInputList object_ = jmethod object_ "clearPlayerGameInputList" (\() -> (clearPlayerGameInputList_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-clearPlayerGameInputList_super :: (JavaObjectClass this_) => this_ -> IO (())
-clearPlayerGameInputList_super object_ = (clearPlayerGameInputList_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-clearPlayerGameInputList_impl :: AllBinaryGameCanvas -> IO (())
-clearPlayerGameInputList_impl this = do
-        playerGameInput <- newIORef (javaNull)
-        forM_ [((jio (BasicArrayList.size ((jget (this).localPlayerGameInputList)))) - 1), ((jio (BasicArrayList.size ((jget (this).localPlayerGameInputList)))) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jset playerGameInput ((javaCast (jio (BasicArrayList.get ((jget (this).localPlayerGameInputList)) index)) :: PlayerGameInput.PlayerGameInput))
-            Control.Monad.void (GameKeyEventHandler.removeListener ((jget (this).gameKeyEventHandler)) (jget playerGameInput))
-        Control.Monad.void (BasicArrayList.clear ((jget (this).localPlayerGameInputList)))
-        pure ()
-
-
-addPlayerGameInput :: (JavaObjectClass this_) => this_ -> PlayerGameInput.PlayerGameInput -> IO (())
-addPlayerGameInput object_ a1 = jmethod object_ "addPlayerGameInput" (\() -> (addPlayerGameInput_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-addPlayerGameInput_super :: (JavaObjectClass this_) => this_ -> PlayerGameInput.PlayerGameInput -> IO (())
-addPlayerGameInput_super object_ a1 = (addPlayerGameInput_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-addPlayerGameInput_impl :: AllBinaryGameCanvas -> PlayerGameInput.PlayerGameInput -> IO (())
-addPlayerGameInput_impl this playerGameInput = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).localPlayerGameInputList)) playerGameInput)
-        pure ()
-
-
-setMenuInputProcessor :: (JavaObjectClass this_) => this_ -> BasicMenuInputProcessor.BasicMenuInputProcessor -> IO (())
-setMenuInputProcessor object_ a1 = jmethod object_ "setMenuInputProcessor" (\() -> (setMenuInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setMenuInputProcessor_super :: (JavaObjectClass this_) => this_ -> BasicMenuInputProcessor.BasicMenuInputProcessor -> IO (())
-setMenuInputProcessor_super object_ a1 = (setMenuInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setMenuInputProcessor_impl :: AllBinaryGameCanvas -> BasicMenuInputProcessor.BasicMenuInputProcessor -> IO (())
-setMenuInputProcessor_impl this menuInputProcessor = do
-        jset (this).menuInputProcessor (menuInputProcessor)
-        pure ()
-
-
-getMenuInputProcessor :: (JavaObjectClass this_) => this_ -> IO (BasicMenuInputProcessor.BasicMenuInputProcessor)
-getMenuInputProcessor object_ = jmethod object_ "getMenuInputProcessor" (\() -> (getMenuInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getMenuInputProcessor_super :: (JavaObjectClass this_) => this_ -> IO (BasicMenuInputProcessor.BasicMenuInputProcessor)
-getMenuInputProcessor_super object_ = (getMenuInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getMenuInputProcessor_impl :: AllBinaryGameCanvas -> IO (BasicMenuInputProcessor.BasicMenuInputProcessor)
-getMenuInputProcessor_impl this = do
-        pure ((jget (this).menuInputProcessor))
-
-
-getMenuForm :: (JavaObjectClass this_) => this_ -> IO (ScrollSelectionForm.ScrollSelectionForm)
-getMenuForm object_ = jmethod object_ "getMenuForm" (\() -> (getMenuForm_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getMenuForm_super :: (JavaObjectClass this_) => this_ -> IO (ScrollSelectionForm.ScrollSelectionForm)
-getMenuForm_super object_ = (getMenuForm_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getMenuForm_impl :: AllBinaryGameCanvas -> IO (ScrollSelectionForm.ScrollSelectionForm)
-getMenuForm_impl this = do
-        pure ((jget (this).menuForm))
-
-
-setMenuForm :: (JavaObjectClass this_) => this_ -> ScrollSelectionForm.ScrollSelectionForm -> IO (())
-setMenuForm object_ a1 = jmethod object_ "setMenuForm" (\() -> (setMenuForm_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setMenuForm_super :: (JavaObjectClass this_) => this_ -> ScrollSelectionForm.ScrollSelectionForm -> IO (())
-setMenuForm_super object_ a1 = (setMenuForm_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setMenuForm_impl :: AllBinaryGameCanvas -> ScrollSelectionForm.ScrollSelectionForm -> IO (())
-setMenuForm_impl this menuForm = do
-        jset (this).menuForm (menuForm)
-        pure ()
-
-
-getStartLevel :: (JavaObjectClass this_) => this_ -> IO (Int)
-getStartLevel object_ = jmethod object_ "getStartLevel" (\() -> (getStartLevel_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getStartLevel_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getStartLevel_super object_ = (getStartLevel_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getStartLevel_impl :: AllBinaryGameCanvas -> IO (Int)
-getStartLevel_impl this = do
-        pure ((jget (this).startLevel))
-
-
-setStartLevel :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setStartLevel object_ a1 = jmethod object_ "setStartLevel" (\() -> (setStartLevel_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setStartLevel_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setStartLevel_super object_ a1 = (setStartLevel_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setStartLevel_impl :: AllBinaryGameCanvas -> Int -> IO (())
-setStartLevel_impl this startLevel = do
-        jset (this).startLevel (startLevel)
-        pure ()
-
-
-setTouchButtonsPaintable :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setTouchButtonsPaintable object_ a1 = jmethod object_ "setTouchButtonsPaintable" (\() -> (setTouchButtonsPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setTouchButtonsPaintable_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setTouchButtonsPaintable_super object_ a1 = (setTouchButtonsPaintable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setTouchButtonsPaintable_impl :: AllBinaryGameCanvas -> Paintable.Paintable -> IO (())
-setTouchButtonsPaintable_impl this touchButtonsPaintable = do
-        jset (this).touchButtonsPaintable (touchButtonsPaintable)
-        pure ()
-
-
-getTouchButtonsPaintable :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getTouchButtonsPaintable object_ = jmethod object_ "getTouchButtonsPaintable" (\() -> (getTouchButtonsPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getTouchButtonsPaintable_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getTouchButtonsPaintable_super object_ = (getTouchButtonsPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getTouchButtonsPaintable_impl :: AllBinaryGameCanvas -> IO (Paintable.Paintable)
-getTouchButtonsPaintable_impl this = do
-        pure ((jget (this).touchButtonsPaintable))
-
-
-setGameInputProcessor :: (JavaObjectClass this_) => this_ -> Processor.Processor -> IO (())
-setGameInputProcessor object_ a1 = jmethod object_ "setGameInputProcessor" (\() -> (setGameInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setGameInputProcessor_super :: (JavaObjectClass this_) => this_ -> Processor.Processor -> IO (())
-setGameInputProcessor_super object_ a1 = (setGameInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setGameInputProcessor_impl :: AllBinaryGameCanvas -> Processor.Processor -> IO (())
-setGameInputProcessor_impl this gameInputProcessor = do
-        jset (this).gameInputProcessor (gameInputProcessor)
-        pure ()
-
-
-getGameInputProcessor :: (JavaObjectClass this_) => this_ -> IO (Processor.Processor)
-getGameInputProcessor object_ = jmethod object_ "getGameInputProcessor" (\() -> (getGameInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getGameInputProcessor_super :: (JavaObjectClass this_) => this_ -> IO (Processor.Processor)
-getGameInputProcessor_super object_ = (getGameInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getGameInputProcessor_impl :: AllBinaryGameCanvas -> IO (Processor.Processor)
-getGameInputProcessor_impl this = do
-        pure ((jget (this).gameInputProcessor))
-
-
-setEndGameProcessor :: (JavaObjectClass this_) => this_ -> Processor.Processor -> IO (())
-setEndGameProcessor object_ a1 = jmethod object_ "setEndGameProcessor" (\() -> (setEndGameProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setEndGameProcessor_super :: (JavaObjectClass this_) => this_ -> Processor.Processor -> IO (())
-setEndGameProcessor_super object_ a1 = (setEndGameProcessor_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setEndGameProcessor_impl :: AllBinaryGameCanvas -> Processor.Processor -> IO (())
-setEndGameProcessor_impl this endGameProcessor = do
-        jset (this).endGameProcessor (endGameProcessor)
-        pure ()
-
-
-getEndGameProcessor :: (JavaObjectClass this_) => this_ -> IO (Processor.Processor)
-getEndGameProcessor object_ = jmethod object_ "getEndGameProcessor" (\() -> (getEndGameProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getEndGameProcessor_super :: (JavaObjectClass this_) => this_ -> IO (Processor.Processor)
-getEndGameProcessor_super object_ = (getEndGameProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getEndGameProcessor_impl :: AllBinaryGameCanvas -> IO (Processor.Processor)
-getEndGameProcessor_impl this = do
-        pure ((jget (this).endGameProcessor))
-
-
-setEndGameStatePaintable :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setEndGameStatePaintable object_ a1 = jmethod object_ "setEndGameStatePaintable" (\() -> (setEndGameStatePaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setEndGameStatePaintable_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setEndGameStatePaintable_super object_ a1 = (setEndGameStatePaintable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setEndGameStatePaintable_impl :: AllBinaryGameCanvas -> Paintable.Paintable -> IO (())
-setEndGameStatePaintable_impl this endGameStatePaintable = do
-        jset (this).endGameStatePaintable (endGameStatePaintable)
-        pure ()
-
-
-getEndGameStatePaintable :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getEndGameStatePaintable object_ = jmethod object_ "getEndGameStatePaintable" (\() -> (getEndGameStatePaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getEndGameStatePaintable_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getEndGameStatePaintable_super object_ = (getEndGameStatePaintable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getEndGameStatePaintable_impl :: AllBinaryGameCanvas -> IO (Paintable.Paintable)
-getEndGameStatePaintable_impl this = do
-        pure ((jget (this).endGameStatePaintable))
-
-
-setNonBotPaintableP :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setNonBotPaintableP object_ a1 = jmethod object_ "setNonBotPaintableP" (\() -> (setNonBotPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setNonBotPaintableP_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setNonBotPaintableP_super object_ a1 = (setNonBotPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setNonBotPaintableP_impl :: AllBinaryGameCanvas -> Paintable.Paintable -> IO (())
-setNonBotPaintableP_impl this nonBotPaintable = do
-        jset (this).nonBotPaintable (nonBotPaintable)
-        pure ()
-
-
-getNonBotPaintableP :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getNonBotPaintableP object_ = jmethod object_ "getNonBotPaintableP" (\() -> (getNonBotPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getNonBotPaintableP_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getNonBotPaintableP_super object_ = (getNonBotPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getNonBotPaintableP_impl :: AllBinaryGameCanvas -> IO (Paintable.Paintable)
-getNonBotPaintableP_impl this = do
-        pure ((jget (this).nonBotPaintable))
-
-
-setStartIntermissionPaintable :: (JavaObjectClass this_) => this_ -> InitUpdatePaintable.InitUpdatePaintable -> IO (())
-setStartIntermissionPaintable object_ a1 = jmethod object_ "setStartIntermissionPaintable" (\() -> (setStartIntermissionPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setStartIntermissionPaintable_super :: (JavaObjectClass this_) => this_ -> InitUpdatePaintable.InitUpdatePaintable -> IO (())
-setStartIntermissionPaintable_super object_ a1 = (setStartIntermissionPaintable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setStartIntermissionPaintable_impl :: AllBinaryGameCanvas -> InitUpdatePaintable.InitUpdatePaintable -> IO (())
-setStartIntermissionPaintable_impl this startIntermissionPaintable = do
-        jset (this).startIntermissionPaintable (startIntermissionPaintable)
-        pure ()
-
-
-getStartIntermissionPaintable :: (JavaObjectClass this_) => this_ -> IO (InitUpdatePaintable.InitUpdatePaintable)
-getStartIntermissionPaintable object_ = jmethod object_ "getStartIntermissionPaintable" (\() -> (getStartIntermissionPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getStartIntermissionPaintable_super :: (JavaObjectClass this_) => this_ -> IO (InitUpdatePaintable.InitUpdatePaintable)
-getStartIntermissionPaintable_super object_ = (getStartIntermissionPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getStartIntermissionPaintable_impl :: AllBinaryGameCanvas -> IO (InitUpdatePaintable.InitUpdatePaintable)
-getStartIntermissionPaintable_impl this = do
-        pure ((jget (this).startIntermissionPaintable))
-
-
-setMainStateProcessor :: (JavaObjectClass this_) => this_ -> Processor.Processor -> IO (())
-setMainStateProcessor object_ a1 = jmethod object_ "setMainStateProcessor" (\() -> (setMainStateProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setMainStateProcessor_super :: (JavaObjectClass this_) => this_ -> Processor.Processor -> IO (())
-setMainStateProcessor_super object_ a1 = (setMainStateProcessor_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setMainStateProcessor_impl :: AllBinaryGameCanvas -> Processor.Processor -> IO (())
-setMainStateProcessor_impl this mainStateProcessor = do
-        jset (this).mainStateProcessor (mainStateProcessor)
-        pure ()
-
-
-getMainStateProcessor :: (JavaObjectClass this_) => this_ -> IO (Processor.Processor)
-getMainStateProcessor object_ = jmethod object_ "getMainStateProcessor" (\() -> (getMainStateProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getMainStateProcessor_super :: (JavaObjectClass this_) => this_ -> IO (Processor.Processor)
-getMainStateProcessor_super object_ = (getMainStateProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getMainStateProcessor_impl :: AllBinaryGameCanvas -> IO (Processor.Processor)
-getMainStateProcessor_impl this = do
-        pure ((jget (this).mainStateProcessor))
-
-
-setProcessGameProcessor :: (JavaObjectClass this_) => this_ -> Processor.Processor -> IO (())
-setProcessGameProcessor object_ a1 = jmethod object_ "setProcessGameProcessor" (\() -> (setProcessGameProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setProcessGameProcessor_super :: (JavaObjectClass this_) => this_ -> Processor.Processor -> IO (())
-setProcessGameProcessor_super object_ a1 = (setProcessGameProcessor_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setProcessGameProcessor_impl :: AllBinaryGameCanvas -> Processor.Processor -> IO (())
-setProcessGameProcessor_impl this processGameProcessor = do
-        jset (this).processGameProcessor (processGameProcessor)
-        pure ()
-
-
-getProcessGameProcessor :: (JavaObjectClass this_) => this_ -> IO (Processor.Processor)
-getProcessGameProcessor object_ = jmethod object_ "getProcessGameProcessor" (\() -> (getProcessGameProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getProcessGameProcessor_super :: (JavaObjectClass this_) => this_ -> IO (Processor.Processor)
-getProcessGameProcessor_super object_ = (getProcessGameProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getProcessGameProcessor_impl :: AllBinaryGameCanvas -> IO (Processor.Processor)
-getProcessGameProcessor_impl this = do
-        pure ((jget (this).processGameProcessor))
-
-
-setOpenMenuPaintable :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setOpenMenuPaintable object_ a1 = jmethod object_ "setOpenMenuPaintable" (\() -> (setOpenMenuPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setOpenMenuPaintable_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setOpenMenuPaintable_super object_ a1 = (setOpenMenuPaintable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setOpenMenuPaintable_impl :: AllBinaryGameCanvas -> Paintable.Paintable -> IO (())
-setOpenMenuPaintable_impl this openMenuPaintable = do
-        jset (this).openMenuPaintable (openMenuPaintable)
-        pure ()
-
-
-getOpenMenuPaintable :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getOpenMenuPaintable object_ = jmethod object_ "getOpenMenuPaintable" (\() -> (getOpenMenuPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getOpenMenuPaintable_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getOpenMenuPaintable_super object_ = (getOpenMenuPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getOpenMenuPaintable_impl :: AllBinaryGameCanvas -> IO (Paintable.Paintable)
-getOpenMenuPaintable_impl this = do
-        pure ((jget (this).openMenuPaintable))
-
-
-setPopupMenuInputProcessor :: (JavaObjectClass this_) => this_ -> BasicMenuInputProcessor.BasicMenuInputProcessor -> IO (())
-setPopupMenuInputProcessor object_ a1 = jmethod object_ "setPopupMenuInputProcessor" (\() -> (setPopupMenuInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setPopupMenuInputProcessor_super :: (JavaObjectClass this_) => this_ -> BasicMenuInputProcessor.BasicMenuInputProcessor -> IO (())
-setPopupMenuInputProcessor_super object_ a1 = (setPopupMenuInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setPopupMenuInputProcessor_impl :: AllBinaryGameCanvas -> BasicMenuInputProcessor.BasicMenuInputProcessor -> IO (())
-setPopupMenuInputProcessor_impl this popupMenuInputProcessor = do
-        jset (this).popupMenuInputProcessor (popupMenuInputProcessor)
-        pure ()
-
-
-getPopupMenuInputProcessor :: (JavaObjectClass this_) => this_ -> IO (BasicMenuInputProcessor.BasicMenuInputProcessor)
-getPopupMenuInputProcessor object_ = jmethod object_ "getPopupMenuInputProcessor" (\() -> (getPopupMenuInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getPopupMenuInputProcessor_super :: (JavaObjectClass this_) => this_ -> IO (BasicMenuInputProcessor.BasicMenuInputProcessor)
-getPopupMenuInputProcessor_super object_ = (getPopupMenuInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getPopupMenuInputProcessor_impl :: AllBinaryGameCanvas -> IO (BasicMenuInputProcessor.BasicMenuInputProcessor)
-getPopupMenuInputProcessor_impl this = do
-        pure ((jget (this).popupMenuInputProcessor))
-
-
-getSensorGameUpdateProcessor :: (JavaObjectClass this_) => this_ -> IO (SensorGameUpdateProcessor.SensorGameUpdateProcessor)
-getSensorGameUpdateProcessor object_ = jmethod object_ "getSensorGameUpdateProcessor" (\() -> (getSensorGameUpdateProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getSensorGameUpdateProcessor_super :: (JavaObjectClass this_) => this_ -> IO (SensorGameUpdateProcessor.SensorGameUpdateProcessor)
-getSensorGameUpdateProcessor_super object_ = (getSensorGameUpdateProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getSensorGameUpdateProcessor_impl :: AllBinaryGameCanvas -> IO (SensorGameUpdateProcessor.SensorGameUpdateProcessor)
-getSensorGameUpdateProcessor_impl this = do
-        pure ((jget (this).sensorGameUpdateProcessor))
-
-
-getRawGameInputProcessor :: (JavaObjectClass this_) => this_ -> IO (InputProcessor.InputProcessor)
-getRawGameInputProcessor object_ = jmethod object_ "getRawGameInputProcessor" (\() -> (getRawGameInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getRawGameInputProcessor_super :: (JavaObjectClass this_) => this_ -> IO (InputProcessor.InputProcessor)
-getRawGameInputProcessor_super object_ = (getRawGameInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getRawGameInputProcessor_impl :: AllBinaryGameCanvas -> IO (InputProcessor.InputProcessor)
-getRawGameInputProcessor_impl this = do
-        pure ((jget (this).rawGameInputProcessor))
-
-
-getRawInputProcessor :: (JavaObjectClass this_) => this_ -> IO (InputProcessor.InputProcessor)
-getRawInputProcessor object_ = jmethod object_ "getRawInputProcessor" (\() -> (getRawInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getRawInputProcessor_super :: (JavaObjectClass this_) => this_ -> IO (InputProcessor.InputProcessor)
-getRawInputProcessor_super object_ = (getRawInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getRawInputProcessor_impl :: AllBinaryGameCanvas -> IO (InputProcessor.InputProcessor)
-getRawInputProcessor_impl this = do
-        pure ((jget (this).rawInputProcessor))
-
-
-setInputProcessor :: (JavaObjectClass this_) => this_ -> InputProcessor.InputProcessor -> IO (())
-setInputProcessor object_ a1 = jmethod object_ "setInputProcessor" (\() -> (setInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setInputProcessor_super :: (JavaObjectClass this_) => this_ -> InputProcessor.InputProcessor -> IO (())
-setInputProcessor_super object_ a1 = (setInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setInputProcessor_impl :: AllBinaryGameCanvas -> InputProcessor.InputProcessor -> IO (())
-setInputProcessor_impl this inputProcessor = do
-        jset (this).inputProcessor (inputProcessor)
-        pure ()
-
-
-getInputProcessor :: (JavaObjectClass this_) => this_ -> IO (InputProcessor.InputProcessor)
-getInputProcessor object_ = jmethod object_ "getInputProcessor" (\() -> (getInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getInputProcessor_super :: (JavaObjectClass this_) => this_ -> IO (InputProcessor.InputProcessor)
-getInputProcessor_super object_ = (getInputProcessor_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getInputProcessor_impl :: AllBinaryGameCanvas -> IO (InputProcessor.InputProcessor)
-getInputProcessor_impl this = do
-        pure ((jget (this).inputProcessor))
-
-
-setMenuPaintable :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setMenuPaintable object_ a1 = jmethod object_ "setMenuPaintable" (\() -> (setMenuPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setMenuPaintable_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setMenuPaintable_super object_ a1 = (setMenuPaintable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setMenuPaintable_impl :: AllBinaryGameCanvas -> Paintable.Paintable -> IO (())
-setMenuPaintable_impl this menuPaintable = do
-        jset (this).menuPaintable (menuPaintable)
-        pure ()
-
-
-getMenuPaintable :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getMenuPaintable object_ = jmethod object_ "getMenuPaintable" (\() -> (getMenuPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getMenuPaintable_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getMenuPaintable_super object_ = (getMenuPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getMenuPaintable_impl :: AllBinaryGameCanvas -> IO (Paintable.Paintable)
-getMenuPaintable_impl this = do
-        pure ((jget (this).menuPaintable))
-
-
-setFormPaintable :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setFormPaintable object_ a1 = jmethod object_ "setFormPaintable" (\() -> (setFormPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setFormPaintable_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setFormPaintable_super object_ a1 = (setFormPaintable_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setFormPaintable_impl :: AllBinaryGameCanvas -> Paintable.Paintable -> IO (())
-setFormPaintable_impl this formPaintable = do
-        jset (this).formPaintable (formPaintable)
-        pure ()
-
-
-getFormPaintable :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getFormPaintable object_ = jmethod object_ "getFormPaintable" (\() -> (getFormPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getFormPaintable_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getFormPaintable_super object_ = (getFormPaintable_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getFormPaintable_impl :: AllBinaryGameCanvas -> IO (Paintable.Paintable)
-getFormPaintable_impl this = do
-        pure ((jget (this).formPaintable))
-
-
-setGameSpecificPaintableP :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setGameSpecificPaintableP object_ a1 = jmethod object_ "setGameSpecificPaintableP" (\() -> (setGameSpecificPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas))) () a1
-
-setGameSpecificPaintableP_super :: (JavaObjectClass this_) => this_ -> Paintable.Paintable -> IO (())
-setGameSpecificPaintableP_super object_ a1 = (setGameSpecificPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas)) a1
-
-setGameSpecificPaintableP_impl :: AllBinaryGameCanvas -> Paintable.Paintable -> IO (())
-setGameSpecificPaintableP_impl this gameSpecificPaintable = do
-        jset (this).gameSpecificPaintable (gameSpecificPaintable)
-        pure ()
-
-
-getGameSpecificPaintableP :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getGameSpecificPaintableP object_ = jmethod object_ "getGameSpecificPaintableP" (\() -> (getGameSpecificPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getGameSpecificPaintableP_super :: (JavaObjectClass this_) => this_ -> IO (Paintable.Paintable)
-getGameSpecificPaintableP_super object_ = (getGameSpecificPaintableP_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getGameSpecificPaintableP_impl :: AllBinaryGameCanvas -> IO (Paintable.Paintable)
-getGameSpecificPaintableP_impl this = do
-        pure ((jget (this).gameSpecificPaintable))
-
-
-isSingleThread :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isSingleThread object_ = jmethod object_ "isSingleThread" (\() -> (isSingleThread_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-isSingleThread_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isSingleThread_super object_ = (isSingleThread_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-isSingleThread_impl :: AllBinaryGameCanvas -> IO (Bool)
-isSingleThread_impl this = do
-        pure (((jio (OpenGLFeatureUtil.isAnyThreed ((jio (OpenGLFeatureUtil.getInstance))))) || SWTUtil.isSWT))
-
-
-isRunningInAnotherThread :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isRunningInAnotherThread object_ = jmethod object_ "isRunningInAnotherThread" (\() -> (isRunningInAnotherThread_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-isRunningInAnotherThread_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isRunningInAnotherThread_super object_ = (isRunningInAnotherThread_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-isRunningInAnotherThread_impl :: AllBinaryGameCanvas -> IO (Bool)
-isRunningInAnotherThread_impl this = do
-    javaCatchReturn $ do
-        features <- (Features.getInstance)
-        openGLFeatureFactory <- (OpenGLFeatureFactory.getInstance)
-        if (jio (Features.isDefault features (jget (openGLFeatureFactory).oPENGL_AS_GAME_THREAD))) then do
-            javaReturn (True)
-        else do
-            javaReturn =<< (RunnableCanvas.isRunning this)
-
-
-getType :: (JavaObjectClass this_) => this_ -> IO (Int)
-getType object_ = jmethod object_ "getType" (\() -> (getType_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getType_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getType_super object_ = (getType_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getType_impl :: AllBinaryGameCanvas -> IO (Int)
-getType_impl this = do
-        pure (AllBinaryGameCanvas.tYPE)
-
-
-getTitle :: (JavaObjectClass this_) => this_ -> IO (String)
-getTitle object_ = jmethod object_ "getTitle" (\() -> (getTitle_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-getTitle_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTitle_super object_ = (getTitle_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-getTitle_impl :: AllBinaryGameCanvas -> IO (String)
-getTitle_impl this = do
-        (RunnableCanvas.getTitle_super this.base)
-
-
-isPaused :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isPaused object_ = jmethod object_ "isPaused" (\() -> (isPaused_impl (javaCast object_ :: AllBinaryGameCanvas))) ()
-
-isPaused_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isPaused_super object_ = (isPaused_impl (javaCast object_ :: AllBinaryGameCanvas))
-
-isPaused_impl :: AllBinaryGameCanvas -> IO (Bool)
-isPaused_impl this = do
-        (RunnableCanvas.isPaused_super this.base)
-
+module Org.Allbinary.Game.Displayable.Canvas.AllBinaryGameCanvas exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
+
+import JR
+import Org.Allbinary.Game.Displayable.Canvas.AllBinaryGameCanvasInterface as AllBinaryGameCanvasInterface
+import Org.Allbinary.Game.Layer.AllBinaryGameLayerManager as AllBinaryGameLayerManager
+import Org.Allbinary.Media.Audio.AllBinaryMediaManager as AllBinaryMediaManager
+import Org.Allbinary.AndroidUtil as AndroidUtil
+import Org.Allbinary.Game.Displayable.Canvas.BaseGameBehavior as BaseGameBehavior
+import Org.Allbinary.Game.Displayable.Canvas.BaseMenuBehavior as BaseMenuBehavior
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Util.BasicArrayListUtil as BasicArrayListUtil
+import Org.Allbinary.Game.Init.BasicBuildGameInitializerFactory as BasicBuildGameInitializerFactory
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Graphics.Color.BasicColorSetUtil as BasicColorSetUtil
+import Org.Allbinary.Input.Motion.Gesture.Observer.BasicMotionGesturesHandler as BasicMotionGesturesHandler
+import Org.Allbinary.Game.Displayable.Canvas.BasicPopupMenuPaintable as BasicPopupMenuPaintable
+import Org.Allbinary.Graphics.Displayable.CanvasStrings as CanvasStrings
+import Org.Allbinary.Game.Configuration.Event.ChangedGameFeatureListener as ChangedGameFeatureListener
+import Org.Allbinary.Game.Displayable.Canvas.CheatGameInputProcessor as CheatGameInputProcessor
+import Org.Allbinary.Game.Paint.ColorFillPaintableFactory as ColorFillPaintableFactory
+import Org.Allbinary.Graphics.Form.CommandCurrentSelectionFormFactory as CommandCurrentSelectionFormFactory
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Graphics.Opengles.CurrentDisplayableFactory as CurrentDisplayableFactory
+import Org.Allbinary.Debug.DebugFactory as DebugFactory
+import Org.Allbinary.Game.Displayable.Canvas.DemoGameBehavior as DemoGameBehavior
+import Org.Allbinary.Graphics.Displayable.Event.DisplayChangeEventHandler as DisplayChangeEventHandler
+import Org.Allbinary.Graphics.Displayable.Event.DisplayChangeEventListener as DisplayChangeEventListener
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Game.Displayable.Canvas.EndGameInfo as EndGameInfo
+import Org.Allbinary.Game.Displayable.Canvas.EndGamePaintable as EndGamePaintable
+import Org.Allbinary.Game.Displayable.Canvas.EndGameProcessor as EndGameProcessor
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Game.Displayable.Canvas.FormInputProcessor as FormInputProcessor
+import Org.Allbinary.Graphics.Form.FormPaintable as FormPaintable
+import Org.Allbinary.Graphics.Form.FormTypeFactory as FormTypeFactory
+import Org.Allbinary.Game.Displayable.Canvas.FormUtil as FormUtil
+import Org.Allbinary.Business.Advertisement.GameAdStateFactory as GameAdStateFactory
+import Org.Allbinary.Game.Displayable.Canvas.GameCanvasInputProcessor as GameCanvasInputProcessor
+import Org.Allbinary.Game.Displayable.Canvas.GameCanvasPauseRunnable as GameCanvasPauseRunnable
+import Org.Allbinary.Game.Displayable.Canvas.GameCanvasRunnable as GameCanvasRunnable
+import Org.Allbinary.Game.Displayable.Canvas.GameCanvasRunnableInterface as GameCanvasRunnableInterface
+import Org.Allbinary.Game.Commands.GameCommandsFactory as GameCommandsFactory
+import Org.Allbinary.Game.Configuration.Feature.GameFeatureFactory as GameFeatureFactory
+import Org.Allbinary.Game.Configuration.Feature.GameFeatureUtil as GameFeatureUtil
+import Org.Allbinary.Game.GameInfo as GameInfo
+import Org.Allbinary.Game.Init.GameInitializationUtil as GameInitializationUtil
+import Org.Allbinary.Game.Configuration.Event.GameInitializedEventHandler as GameInitializedEventHandler
+import Org.Allbinary.Game.Input.GameInputStrings as GameInputStrings
+import Org.Allbinary.Game.Input.Event.GameKeyEventHandler as GameKeyEventHandler
+import Org.Allbinary.Game.Displayable.GameLevelDisplayChangeEventListenersFactory as GameLevelDisplayChangeEventListenersFactory
+import Org.Allbinary.Game.Displayable.Canvas.GameLimitedCommandTextItemArrayFactory as GameLimitedCommandTextItemArrayFactory
+import Org.Allbinary.Game.Displayable.Canvas.GameProcessor as GameProcessor
+import Org.Allbinary.Game.State.GameStateFactory as GameStateFactory
+import Org.Allbinary.Canvas.GameStatisticsFactory as GameStatisticsFactory
+import Org.Allbinary.Game.GameStrings as GameStrings
+import Org.Allbinary.Graphics.Displayable.GameTickDisplayInfoSingleton as GameTickDisplayInfoSingleton
+import Org.Allbinary.Time.GameTickTimeDelayHelperFactory as GameTickTimeDelayHelperFactory
+import Org.Allbinary.Game.GameTypeFactory as GameTypeFactory
+import Org.Allbinary.Graphics.GraphicsStrings as GraphicsStrings
+import Org.Allbinary.Game.Score.HighScore as HighScore
+import Org.Allbinary.Game.Score.Displayable.HighScoreTextBox as HighScoreTextBox
+import Org.Allbinary.Game.Score.HighScoresPaintable as HighScoresPaintable
+import Org.Allbinary.Game.Configuration.InGameFeatures as InGameFeatures
+import Org.Allbinary.Game.Displayable.Canvas.InGameMenuBehavior as InGameMenuBehavior
+import Org.Allbinary.Game.Configuration.InGameOptionsForm as InGameOptionsForm
+import Org.Allbinary.Game.Configuration.Feature.InputFeatureFactory as InputFeatureFactory
+import Org.Allbinary.Game.Intermission as Intermission
+import Org.Allbinary.Game.IntermissionCompositeInterface as IntermissionCompositeInterface
+import Org.Allbinary.Game.IntermissionEnableListenerInterface as IntermissionEnableListenerInterface
+import Org.Allbinary.J2MEUtil as J2MEUtil
+import JInteger
+import JThread
+import Org.Allbinary.Game.Configuration.Feature.MainFeatureFactory as MainFeatureFactory
+import Org.Allbinary.Game.Displayable.Canvas.MenuListener as MenuListener
+import Org.Allbinary.Graphics.Displayable.Command.MyCommandsFactory as MyCommandsFactory
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Game.Displayable.Canvas.MyFormUtil as MyFormUtil
+import Org.Allbinary.Input.Motion.Button.NoButtonsTouchInputFactory as NoButtonsTouchInputFactory
+import Org.Allbinary.Debug.NoDebug as NoDebug
+import Org.Allbinary.Game.Displayable.Canvas.NoMenuInputProcessor as NoMenuInputProcessor
+import Org.Allbinary.Game.Input.NoPlayerGameInput as NoPlayerGameInput
+import Javax.Microedition.Lcdui.NullCommandListener as NullCommandListener
+import Org.Allbinary.Game.Displayable.Canvas.NullDemoPaintable as NullDemoPaintable
+import Org.Allbinary.Game.Score.NullHighScoresSingletonFactory as NullHighScoresSingletonFactory
+import Org.Allbinary.Graphics.Paint.NullInitUpdatePaintable as NullInitUpdatePaintable
+import Org.Allbinary.Graphics.Paint.NullPaintable as NullPaintable
+import Org.Allbinary.Game.Displayable.Canvas.NullWaitGameRunnable as NullWaitGameRunnable
+import Org.Allbinary.Graphics.Opengles.OpenGLFeatureFactory as OpenGLFeatureFactory
+import Org.Allbinary.Graphics.Opengles.OpenGLFeatureUtil as OpenGLFeatureUtil
+import Org.Allbinary.Image.Opengles.OpenGLImageSpecificFactory as OpenGLImageSpecificFactory
+import Org.Allbinary.Graphics.Opengles.OpenGLThreadUtil as OpenGLThreadUtil
+import Org.Allbinary.Logic.System.Os.OperatingSystemFactory as OperatingSystemFactory
+import Org.Allbinary.Game.PlayerTypesFactory as PlayerTypesFactory
+import Org.Allbinary.Game.Displayable.Canvas.PopupCommandFormInputProcessor as PopupCommandFormInputProcessor
+import Org.Allbinary.Game.Displayable.Canvas.PopupMenuInputProcessor as PopupMenuInputProcessor
+import Org.Allbinary.Game.Displayable.Canvas.PopupMenuInterface as PopupMenuInterface
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Media.Audio.PrimaryPlayerQueueFactory as PrimaryPlayerQueueFactory
+import Org.Allbinary.Canvas.Processor as Processor
+import Org.Allbinary.Graphics.Canvas.Transition.Progress.ProgressCanvasFactory as ProgressCanvasFactory
+import Org.Allbinary.Game.Resource.ResourceLoadingLevelFactory as ResourceLoadingLevelFactory
+import Org.Allbinary.Canvas.RunnableCanvas as RunnableCanvas
+import Org.Allbinary.Game.Layer.SWTUtil as SWTUtil
+import Org.Allbinary.Game.Displayable.Canvas.SaveHighScoreRunnable as SaveHighScoreRunnable
+import Org.Allbinary.Graphics.ScreenCaptureFactory as ScreenCaptureFactory
+import Org.Allbinary.Graphics.Form.ScrollSelectionForm as ScrollSelectionForm
+import Org.Allbinary.Graphics.Form.ScrollSelectionFormNoneFactory as ScrollSelectionFormNoneFactory
+import Org.Allbinary.Media.Audio.SecondaryPlayerQueueFactory as SecondaryPlayerQueueFactory
+import Org.Allbinary.Thread.SecondaryThreadPool as SecondaryThreadPool
+import Org.Allbinary.Media.Audio.SelectSound as SelectSound
+import Org.Allbinary.Game.Configuration.Feature.SensorFeatureFactory as SensorFeatureFactory
+import Org.Allbinary.Input.Gyro.SingleSensorGameUpdateProcessor as SingleSensorGameUpdateProcessor
+import Org.Allbinary.Game.Displayable.Canvas.StartIntermissionProcessor as StartIntermissionProcessor
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
+import Org.Allbinary.Input.Motion.Button.TouchButtonFactory as TouchButtonFactory
+import Org.Allbinary.Input.Motion.Button.TouchButtonsPaintableFactory as TouchButtonsPaintableFactory
+import Org.Allbinary.Game.Configuration.Feature.TouchFeatureFactory as TouchFeatureFactory
+import Org.Allbinary.Input.Motion.Button.TouchScreenFactory as TouchScreenFactory
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
+
+
+jclass : String
+jclass =
+    "AllBinaryGameCanvas"
+
+
+jchain : List String
+jchain =
+    [ "AllBinaryGameCanvas" ]
+        ++ RunnableCanvas.jchain
+        ++ AllBinaryGameCanvasInterface.jchain
+        ++ GameCanvasRunnableInterface.jchain
+        ++ MenuListener.jchain
+        ++ IntermissionCompositeInterface.jchain
+        ++ IntermissionEnableListenerInterface.jchain
+        ++ PopupMenuInterface.jchain
+        ++ DisplayChangeEventListener.jchain
+        ++ UpdateMyFontInterface.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    RunnableCanvas.jfields ++ [ ( "basicColorFactory", JR.defaultOf "" ), ( "basicSetColorUtil", JR.defaultOf "" ), ( "touchFeatureFactory", JR.defaultOf "" ), ( "openGLFeatureFactory", JR.defaultOf "" ), ( "touchButtonFactory", JR.defaultOf "" ), ( "gameAdStateFactory", JR.defaultOf "" ), ( "gameStrings", JR.defaultOf "" ), ( "gameInputStrings", JR.defaultOf "" ), ( "gameStateFactory", JR.defaultOf "" ), ( "gameTickTimeDelayHelper", JR.defaultOf "" ), ( "gameTickDisplayInfoSingleton", JR.defaultOf "" ), ( "gameRunnable", JR.defaultOf "" ), ( "gamePauseRunnable", JR.defaultOf "" ), ( "formUtil", JR.defaultOf "" ), ( "myFormUtil", JR.defaultOf "" ), ( "updateMyFontProcessor", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "gameSpecificPaintable", JR.defaultOf "" ), ( "sensorGameUpdateProcessor", JR.defaultOf "" ), ( "endGameInfo", JR.defaultOf "" ), ( "startIntermissionInterface", JR.defaultOf "" ), ( "endLevelIntermissionInterface", JR.defaultOf "" ), ( "gameLayerManager", JR.defaultOf "" ), ( "gameState", JR.defaultOf "" ), ( "gameOver", JR.defaultOf "Z" ), ( "initialized", JR.defaultOf "Z" ), ( "gameStateTimeHelper", JR.defaultOf "" ), ( "highScoresHelper", JR.defaultOf "" ), ( "highScoreSubmitted", JR.defaultOf "Z" ), ( "realHighScoresPaintable", JR.defaultOf "" ), ( "highScoresPaintable", JR.defaultOf "" ), ( "localPlayerGameInputList", JR.defaultOf "" ), ( "isCheating", JR.defaultOf "Z" ), ( "hashtable", JR.defaultOf "" ), ( "isSingleKeyRepeatableProcessing", JR.defaultOf "Z" ), ( "gameInitializationInterfaceFactoryInterface", JR.defaultOf "" ), ( "touchButtonsPaintable", JR.defaultOf "" ), ( "touchPaintable", JR.defaultOf "" ), ( "cheatProcessor", JR.defaultOf "" ), ( "gameInputProcessor", JR.defaultOf "" ), ( "endGameProcessor", JR.defaultOf "" ), ( "realEndGameProcessor", JR.defaultOf "" ), ( "startIntermissionProcessor", JR.defaultOf "" ), ( "realStartIntermissionProcessor", JR.defaultOf "" ), ( "endGamePaintable", JR.defaultOf "" ), ( "endGameStatePaintable", JR.defaultOf "" ), ( "nonBotPaintable", JR.defaultOf "" ), ( "intermissionPaintable", JR.defaultOf "" ), ( "startIntermissionPaintable", JR.defaultOf "" ), ( "mainStateProcessor", JR.defaultOf "" ), ( "processGameProcessor", JR.defaultOf "" ), ( "highScoresFactoryInterface", JR.defaultOf "" ), ( "startLevel", JR.defaultOf "I" ), ( "mainMenuInputProcessor", JR.defaultOf "" ), ( "popupMenuInputProcessor", JR.defaultOf "" ), ( "menuInputProcessor", JR.defaultOf "" ), ( "menuForm", JR.defaultOf "" ), ( "formPaintable", JR.defaultOf "" ), ( "openMenuPaintable", JR.defaultOf "" ), ( "menuPaintable", JR.defaultOf "" ), ( "currentTouchInputFactory", JR.defaultOf "" ), ( "colorFillPaintable", JR.defaultOf "" ), ( "baseGameStatistics", JR.defaultOf "" ), ( "primaryPlayerQueue", JR.defaultOf "" ), ( "secondaryPlayerQueue", JR.defaultOf "" ), ( "BUILD_GAME", JR.defaultOf "" ), ( "gameTypeFactory", JR.defaultOf "" ), ( "screenCapture", JR.defaultOf "" ), ( "basicMotionGesturesHandler", JR.defaultOf "" ), ( "gameKeyEventHandler", JR.defaultOf "" ), ( "gameBehavior", JR.defaultOf "" ), ( "menuBehavior", JR.defaultOf "" ), ( "progressPaintable", JR.defaultOf "" ), ( "fontHeightP", JR.defaultOf "I" ), ( "gameCanvasStartListener", JR.defaultOf "" ), ( "rawGameInputProcessor", JR.defaultOf "" ), ( "rawInputProcessor", JR.defaultOf "" ), ( "inputProcessor", JR.defaultOf "" ), ( "YIELD_SLEEP", JR.defaultOf "J" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "getInGameMenuBehavior_0", jm_getInGameMenuBehavior_0 )
+        , ( "setCurrentThread_0", jm_setCurrentThread_0 )
+        , ( "onEvent_1", jm_onEvent_1 )
+        , ( "onDisplayChangeEvent_1", jm_onDisplayChangeEvent_1 )
+        , ( "updateMenuFromEvent_1", jm_updateMenuFromEvent_1 )
+        , ( "processSleep_0", jm_processSleep_0 )
+        , ( "initPopupMenu_0", jm_initPopupMenu_0 )
+        , ( "initMenu_0", jm_initMenu_0 )
+        , ( "initMenu2_0", jm_initMenu2_0 )
+        , ( "updateMenu_0", jm_updateMenu_0 )
+        , ( "updateMenu2_0", jm_updateMenu2_0 )
+        , ( "pause_0", jm_pause_0 )
+        , ( "unPause_0", jm_unPause_0 )
+        , ( "isPausable_0", jm_isPausable_0 )
+        , ( "popupMenu_0", jm_popupMenu_0 )
+        , ( "popupMenu2_0", jm_popupMenu2_0 )
+        , ( "toggleMenu_0", jm_toggleMenu_0 )
+        , ( "closeMenu_0", jm_closeMenu_0 )
+        , ( "closeMenu2_0", jm_closeMenu2_0 )
+        , ( "open_0", jm_open_0 )
+        , ( "close_0", jm_close_0 )
+        , ( "processorInit_0", jm_processorInit_0 )
+        , ( "setProcessGameProcessorInit_0", jm_setProcessGameProcessorInit_0 )
+        , ( "initSpecialPaint_0", jm_initSpecialPaint_0 )
+        , ( "init_2", jm_init_2 )
+        , ( "notifyIntermission_1", jm_notifyIntermission_1 )
+        , ( "mediaInit_0", jm_mediaInit_0 )
+        , ( "initConfigurable_1", jm_initConfigurable_1 )
+        , ( "initApp_1", jm_initApp_1 )
+        , ( "initTouch_0", jm_initTouch_0 )
+        , ( "updateCurrentTouchInputFactory_1", jm_updateCurrentTouchInputFactory_1 )
+        , ( "updateTouch_0", jm_updateTouch_0 )
+        , ( "updateTouch2_0", jm_updateTouch2_0 )
+        , ( "postInitTouch_0", jm_postInitTouch_0 )
+        , ( "initCommands_1", jm_initCommands_1 )
+        , ( "addCommands_0", jm_addCommands_0 )
+        , ( "itemStateChanged_1", jm_itemStateChanged_1 )
+        , ( "updateScreenButtonPaintable_0", jm_updateScreenButtonPaintable_0 )
+        , ( "updateScreenButtonPaintable2_0", jm_updateScreenButtonPaintable2_0 )
+        , ( "getLayerManager_0", jm_getLayerManager_0 )
+        , ( "setLayerManager_1", jm_setLayerManager_1 )
+        , ( "isGameOver_0", jm_isGameOver_0 )
+        , ( "setGameOver_1", jm_setGameOver_1 )
+        , ( "processGameOver_0", jm_processGameOver_0 )
+        , ( "isHighScoreSubmitted_0", jm_isHighScoreSubmitted_0 )
+        , ( "setHighScoreSubmitted_1", jm_setHighScoreSubmitted_1 )
+        , ( "getGameState_0", jm_getGameState_0 )
+        , ( "setGameState_1", jm_setGameState_1 )
+        , ( "updateGameState_0", jm_updateGameState_0 )
+        , ( "updateGameKeyEventProcessor_0", jm_updateGameKeyEventProcessor_0 )
+        , ( "removeAllGameKeyInputListenersOnBuild_0", jm_removeAllGameKeyInputListenersOnBuild_0 )
+        , ( "removeAllGameKeyInputListeners_0", jm_removeAllGameKeyInputListeners_0 )
+        , ( "removeAllGameKeyInputListeners2_0", jm_removeAllGameKeyInputListeners2_0 )
+        , ( "removeKeyInputListener_1", jm_removeKeyInputListener_1 )
+        , ( "updateEndGameProcessor_0", jm_updateEndGameProcessor_0 )
+        , ( "updateEndGameProcessor2_0", jm_updateEndGameProcessor2_0 )
+        , ( "buildGameInit_1", jm_buildGameInit_1 )
+        , ( "cleanupGame_0", jm_cleanupGame_0 )
+        , ( "loadResourceLoadingLevel_1", jm_loadResourceLoadingLevel_1 )
+        , ( "loadResources_1", jm_loadResources_1 )
+        , ( "updateColor_0", jm_updateColor_0 )
+        , ( "buildGame_1", jm_buildGame_1 )
+        , ( "buildGame2_0", jm_buildGame2_0 )
+        , ( "addKeyInputListener_1", jm_addKeyInputListener_1 )
+        , ( "setGameCanvasStartListener_1", jm_setGameCanvasStartListener_1 )
+        , ( "loadState_0", jm_loadState_0 )
+        , ( "getLoadStateHashtable_0", jm_getLoadStateHashtable_0 )
+        , ( "setLoadStateHashtable_1", jm_setLoadStateHashtable_1 )
+        , ( "getCurrentStateHashtable_0", jm_getCurrentStateHashtable_0 )
+        , ( "paintGameOver_1", jm_paintGameOver_1 )
+        , ( "draw_1", jm_draw_1 )
+        , ( "clear_1", jm_clear_1 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "paintThreed_1", jm_paintThreed_1 )
+        , ( "processEndLevelIntermissionGameState_0", jm_processEndLevelIntermissionGameState_0 )
+        , ( "nonBotPaint_1", jm_nonBotPaint_1 )
+        , ( "paintIntermission_1", jm_paintIntermission_1 )
+        , ( "keyPressed_1", jm_keyPressed_1 )
+        , ( "keyReleased_1", jm_keyReleased_1 )
+        , ( "keyRepeated_1", jm_keyRepeated_1 )
+        , ( "keyPressedByDevice_2", jm_keyPressedByDevice_2 )
+        , ( "keyRepeatedByDevice_2", jm_keyRepeatedByDevice_2 )
+        , ( "keyReleasedByDevice_2", jm_keyReleasedByDevice_2 )
+        , ( "handleRawKey_3", jm_handleRawKey_3 )
+        , ( "endProgress_1", jm_endProgress_1 )
+        , ( "processPlayingGame_0", jm_processPlayingGame_0 )
+        , ( "threadInit_0", jm_threadInit_0 )
+        , ( "processGame_0", jm_processGame_0 )
+        , ( "notifyDonePainting_0", jm_notifyDonePainting_0 )
+        , ( "shouldWait_0", jm_shouldWait_0 )
+        , ( "run_0", jm_run_0 )
+        , ( "run2_0", jm_run2_0 )
+        , ( "run3_0", jm_run3_0 )
+        , ( "setRunning_1", jm_setRunning_1 )
+        , ( "end_0", jm_end_0 )
+        , ( "endGameThread_0", jm_endGameThread_0 )
+        , ( "createHighScore_1", jm_createHighScore_1 )
+        , ( "setHighScore_5", jm_setHighScore_5 )
+        , ( "setHighScore2_5", jm_setHighScore2_5 )
+        , ( "getGameStateTimeHelper_0", jm_getGameStateTimeHelper_0 )
+        , ( "setInitialized_1", jm_setInitialized_1 )
+        , ( "isInitialized_0", jm_isInitialized_0 )
+        , ( "getSourceId_0", jm_getSourceId_0 )
+        , ( "setProgressPaintable_1", jm_setProgressPaintable_1 )
+        , ( "getStartIntermissionInterface_0", jm_getStartIntermissionInterface_0 )
+        , ( "getEndLevelIntermissionInterface_0", jm_getEndLevelIntermissionInterface_0 )
+        , ( "setTouchPaintableP_1", jm_setTouchPaintableP_1 )
+        , ( "getTouchPaintableP_0", jm_getTouchPaintableP_0 )
+        , ( "setEndGamePaintable_1", jm_setEndGamePaintable_1 )
+        , ( "getEndGamePaintable_0", jm_getEndGamePaintable_0 )
+        , ( "setIntermissionPaintable_1", jm_setIntermissionPaintable_1 )
+        , ( "getIntermissionPaintable_0", jm_getIntermissionPaintable_0 )
+        , ( "getEndGameInfoP_0", jm_getEndGameInfoP_0 )
+        , ( "setHighScoresPaintable_1", jm_setHighScoresPaintable_1 )
+        , ( "getHighScoresPaintable_0", jm_getHighScoresPaintable_0 )
+        , ( "getRealHighScoresPaintable_0", jm_getRealHighScoresPaintable_0 )
+        , ( "clearPlayerGameInputList_0", jm_clearPlayerGameInputList_0 )
+        , ( "addPlayerGameInput_1", jm_addPlayerGameInput_1 )
+        , ( "setMenuInputProcessor_1", jm_setMenuInputProcessor_1 )
+        , ( "getMenuInputProcessor_0", jm_getMenuInputProcessor_0 )
+        , ( "getMenuForm_0", jm_getMenuForm_0 )
+        , ( "setMenuForm_1", jm_setMenuForm_1 )
+        , ( "getStartLevel_0", jm_getStartLevel_0 )
+        , ( "setStartLevel_1", jm_setStartLevel_1 )
+        , ( "setTouchButtonsPaintable_1", jm_setTouchButtonsPaintable_1 )
+        , ( "getTouchButtonsPaintable_0", jm_getTouchButtonsPaintable_0 )
+        , ( "setGameInputProcessor_1", jm_setGameInputProcessor_1 )
+        , ( "getGameInputProcessor_0", jm_getGameInputProcessor_0 )
+        , ( "setEndGameProcessor_1", jm_setEndGameProcessor_1 )
+        , ( "getEndGameProcessor_0", jm_getEndGameProcessor_0 )
+        , ( "setEndGameStatePaintable_1", jm_setEndGameStatePaintable_1 )
+        , ( "getEndGameStatePaintable_0", jm_getEndGameStatePaintable_0 )
+        , ( "setNonBotPaintableP_1", jm_setNonBotPaintableP_1 )
+        , ( "getNonBotPaintableP_0", jm_getNonBotPaintableP_0 )
+        , ( "setStartIntermissionPaintable_1", jm_setStartIntermissionPaintable_1 )
+        , ( "getStartIntermissionPaintable_0", jm_getStartIntermissionPaintable_0 )
+        , ( "setMainStateProcessor_1", jm_setMainStateProcessor_1 )
+        , ( "getMainStateProcessor_0", jm_getMainStateProcessor_0 )
+        , ( "setProcessGameProcessor_1", jm_setProcessGameProcessor_1 )
+        , ( "getProcessGameProcessor_0", jm_getProcessGameProcessor_0 )
+        , ( "setOpenMenuPaintable_1", jm_setOpenMenuPaintable_1 )
+        , ( "getOpenMenuPaintable_0", jm_getOpenMenuPaintable_0 )
+        , ( "setPopupMenuInputProcessor_1", jm_setPopupMenuInputProcessor_1 )
+        , ( "getPopupMenuInputProcessor_0", jm_getPopupMenuInputProcessor_0 )
+        , ( "getSensorGameUpdateProcessor_0", jm_getSensorGameUpdateProcessor_0 )
+        , ( "getRawGameInputProcessor_0", jm_getRawGameInputProcessor_0 )
+        , ( "getRawInputProcessor_0", jm_getRawInputProcessor_0 )
+        , ( "setInputProcessor_1", jm_setInputProcessor_1 )
+        , ( "getInputProcessor_0", jm_getInputProcessor_0 )
+        , ( "setMenuPaintable_1", jm_setMenuPaintable_1 )
+        , ( "getMenuPaintable_0", jm_getMenuPaintable_0 )
+        , ( "setFormPaintable_1", jm_setFormPaintable_1 )
+        , ( "getFormPaintable_0", jm_getFormPaintable_0 )
+        , ( "setGameSpecificPaintableP_1", jm_setGameSpecificPaintableP_1 )
+        , ( "getGameSpecificPaintableP_0", jm_getGameSpecificPaintableP_0 )
+        , ( "isSingleThread_0", jm_isSingleThread_0 )
+        , ( "isRunningInAnotherThread_0", jm_isRunningInAnotherThread_0 )
+        , ( "getType_0", jm_getType_0 )
+        , ( "getTitle_0", jm_getTitle_0 )
+        , ( "isPaused_0", jm_isPaused_0 ) ]
+        RunnableCanvas.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryGameCanvas"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_getInGameMenuBehavior_0", jm_getInGameMenuBehavior_0 ), ( "jm_setCurrentThread_0", jm_setCurrentThread_0 ), ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_onDisplayChangeEvent_1", jm_onDisplayChangeEvent_1 ), ( "jm_updateMenuFromEvent_1", jm_updateMenuFromEvent_1 ), ( "jm_processSleep_0", jm_processSleep_0 ), ( "jm_initPopupMenu_0", jm_initPopupMenu_0 ), ( "jm_initMenu_0", jm_initMenu_0 ), ( "jm_initMenu2_0", jm_initMenu2_0 ), ( "jm_updateMenu_0", jm_updateMenu_0 ), ( "jm_updateMenu2_0", jm_updateMenu2_0 ), ( "jm_pause_0", jm_pause_0 ), ( "jm_unPause_0", jm_unPause_0 ), ( "jm_isPausable_0", jm_isPausable_0 ), ( "jm_popupMenu_0", jm_popupMenu_0 ), ( "jm_popupMenu2_0", jm_popupMenu2_0 ), ( "jm_toggleMenu_0", jm_toggleMenu_0 ), ( "jm_closeMenu_0", jm_closeMenu_0 ), ( "jm_closeMenu2_0", jm_closeMenu2_0 ), ( "jm_open_0", jm_open_0 ), ( "jm_close_0", jm_close_0 ), ( "jm_processorInit_0", jm_processorInit_0 ), ( "jm_setProcessGameProcessorInit_0", jm_setProcessGameProcessorInit_0 ), ( "jm_initSpecialPaint_0", jm_initSpecialPaint_0 ), ( "jm_init_2", jm_init_2 ), ( "jm_notifyIntermission_1", jm_notifyIntermission_1 ), ( "jm_mediaInit_0", jm_mediaInit_0 ), ( "jm_initConfigurable_1", jm_initConfigurable_1 ), ( "jm_initApp_1", jm_initApp_1 ), ( "jm_initTouch_0", jm_initTouch_0 ), ( "jm_updateCurrentTouchInputFactory_1", jm_updateCurrentTouchInputFactory_1 ), ( "jm_updateTouch_0", jm_updateTouch_0 ), ( "jm_updateTouch2_0", jm_updateTouch2_0 ), ( "jm_postInitTouch_0", jm_postInitTouch_0 ), ( "jm_initCommands_1", jm_initCommands_1 ), ( "jm_addCommands_0", jm_addCommands_0 ), ( "jm_itemStateChanged_1", jm_itemStateChanged_1 ), ( "jm_updateScreenButtonPaintable_0", jm_updateScreenButtonPaintable_0 ), ( "jm_updateScreenButtonPaintable2_0", jm_updateScreenButtonPaintable2_0 ), ( "jm_getLayerManager_0", jm_getLayerManager_0 ), ( "jm_setLayerManager_1", jm_setLayerManager_1 ), ( "jm_isGameOver_0", jm_isGameOver_0 ), ( "jm_setGameOver_1", jm_setGameOver_1 ), ( "jm_processGameOver_0", jm_processGameOver_0 ), ( "jm_isHighScoreSubmitted_0", jm_isHighScoreSubmitted_0 ), ( "jm_setHighScoreSubmitted_1", jm_setHighScoreSubmitted_1 ), ( "jm_getGameState_0", jm_getGameState_0 ), ( "jm_setGameState_1", jm_setGameState_1 ), ( "jm_updateGameState_0", jm_updateGameState_0 ), ( "jm_updateGameKeyEventProcessor_0", jm_updateGameKeyEventProcessor_0 ), ( "jm_removeAllGameKeyInputListenersOnBuild_0", jm_removeAllGameKeyInputListenersOnBuild_0 ), ( "jm_removeAllGameKeyInputListeners_0", jm_removeAllGameKeyInputListeners_0 ), ( "jm_removeAllGameKeyInputListeners2_0", jm_removeAllGameKeyInputListeners2_0 ), ( "jm_removeKeyInputListener_1", jm_removeKeyInputListener_1 ), ( "jm_updateEndGameProcessor_0", jm_updateEndGameProcessor_0 ), ( "jm_updateEndGameProcessor2_0", jm_updateEndGameProcessor2_0 ), ( "jm_buildGameInit_1", jm_buildGameInit_1 ), ( "jm_cleanupGame_0", jm_cleanupGame_0 ), ( "jm_loadResourceLoadingLevel_1", jm_loadResourceLoadingLevel_1 ), ( "jm_loadResources_1", jm_loadResources_1 ), ( "jm_updateColor_0", jm_updateColor_0 ), ( "jm_buildGame_1", jm_buildGame_1 ), ( "jm_buildGame2_0", jm_buildGame2_0 ), ( "jm_addKeyInputListener_1", jm_addKeyInputListener_1 ), ( "jm_setGameCanvasStartListener_1", jm_setGameCanvasStartListener_1 ), ( "jm_loadState_0", jm_loadState_0 ), ( "jm_getLoadStateHashtable_0", jm_getLoadStateHashtable_0 ), ( "jm_setLoadStateHashtable_1", jm_setLoadStateHashtable_1 ), ( "jm_getCurrentStateHashtable_0", jm_getCurrentStateHashtable_0 ), ( "jm_paintGameOver_1", jm_paintGameOver_1 ), ( "jm_draw_1", jm_draw_1 ), ( "jm_clear_1", jm_clear_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_paintThreed_1", jm_paintThreed_1 ), ( "jm_processEndLevelIntermissionGameState_0", jm_processEndLevelIntermissionGameState_0 ), ( "jm_nonBotPaint_1", jm_nonBotPaint_1 ), ( "jm_paintIntermission_1", jm_paintIntermission_1 ), ( "jm_keyPressed_1", jm_keyPressed_1 ), ( "jm_keyReleased_1", jm_keyReleased_1 ), ( "jm_keyRepeated_1", jm_keyRepeated_1 ), ( "jm_keyPressedByDevice_2", jm_keyPressedByDevice_2 ), ( "jm_keyRepeatedByDevice_2", jm_keyRepeatedByDevice_2 ), ( "jm_keyReleasedByDevice_2", jm_keyReleasedByDevice_2 ), ( "jm_handleRawKey_3", jm_handleRawKey_3 ), ( "jm_endProgress_1", jm_endProgress_1 ), ( "jm_processPlayingGame_0", jm_processPlayingGame_0 ), ( "jm_threadInit_0", jm_threadInit_0 ), ( "jm_processGame_0", jm_processGame_0 ), ( "jm_notifyDonePainting_0", jm_notifyDonePainting_0 ), ( "jm_shouldWait_0", jm_shouldWait_0 ), ( "jm_run_0", jm_run_0 ), ( "jm_run2_0", jm_run2_0 ), ( "jm_run3_0", jm_run3_0 ), ( "jm_setRunning_1", jm_setRunning_1 ), ( "jm_end_0", jm_end_0 ), ( "jm_endGameThread_0", jm_endGameThread_0 ), ( "jm_createHighScore_1", jm_createHighScore_1 ), ( "jm_setHighScore_5", jm_setHighScore_5 ), ( "jm_setHighScore2_5", jm_setHighScore2_5 ), ( "jm_getGameStateTimeHelper_0", jm_getGameStateTimeHelper_0 ), ( "jm_setInitialized_1", jm_setInitialized_1 ), ( "jm_isInitialized_0", jm_isInitialized_0 ), ( "jm_getSourceId_0", jm_getSourceId_0 ), ( "jm_setProgressPaintable_1", jm_setProgressPaintable_1 ), ( "jm_getStartIntermissionInterface_0", jm_getStartIntermissionInterface_0 ), ( "jm_getEndLevelIntermissionInterface_0", jm_getEndLevelIntermissionInterface_0 ), ( "jm_setTouchPaintableP_1", jm_setTouchPaintableP_1 ), ( "jm_getTouchPaintableP_0", jm_getTouchPaintableP_0 ), ( "jm_setEndGamePaintable_1", jm_setEndGamePaintable_1 ), ( "jm_getEndGamePaintable_0", jm_getEndGamePaintable_0 ), ( "jm_setIntermissionPaintable_1", jm_setIntermissionPaintable_1 ), ( "jm_getIntermissionPaintable_0", jm_getIntermissionPaintable_0 ), ( "jm_getEndGameInfoP_0", jm_getEndGameInfoP_0 ), ( "jm_setHighScoresPaintable_1", jm_setHighScoresPaintable_1 ), ( "jm_getHighScoresPaintable_0", jm_getHighScoresPaintable_0 ), ( "jm_getRealHighScoresPaintable_0", jm_getRealHighScoresPaintable_0 ), ( "jm_clearPlayerGameInputList_0", jm_clearPlayerGameInputList_0 ), ( "jm_addPlayerGameInput_1", jm_addPlayerGameInput_1 ), ( "jm_setMenuInputProcessor_1", jm_setMenuInputProcessor_1 ), ( "jm_getMenuInputProcessor_0", jm_getMenuInputProcessor_0 ), ( "jm_getMenuForm_0", jm_getMenuForm_0 ), ( "jm_setMenuForm_1", jm_setMenuForm_1 ), ( "jm_getStartLevel_0", jm_getStartLevel_0 ), ( "jm_setStartLevel_1", jm_setStartLevel_1 ), ( "jm_setTouchButtonsPaintable_1", jm_setTouchButtonsPaintable_1 ), ( "jm_getTouchButtonsPaintable_0", jm_getTouchButtonsPaintable_0 ), ( "jm_setGameInputProcessor_1", jm_setGameInputProcessor_1 ), ( "jm_getGameInputProcessor_0", jm_getGameInputProcessor_0 ), ( "jm_setEndGameProcessor_1", jm_setEndGameProcessor_1 ), ( "jm_getEndGameProcessor_0", jm_getEndGameProcessor_0 ), ( "jm_setEndGameStatePaintable_1", jm_setEndGameStatePaintable_1 ), ( "jm_getEndGameStatePaintable_0", jm_getEndGameStatePaintable_0 ), ( "jm_setNonBotPaintableP_1", jm_setNonBotPaintableP_1 ), ( "jm_getNonBotPaintableP_0", jm_getNonBotPaintableP_0 ), ( "jm_setStartIntermissionPaintable_1", jm_setStartIntermissionPaintable_1 ), ( "jm_getStartIntermissionPaintable_0", jm_getStartIntermissionPaintable_0 ), ( "jm_setMainStateProcessor_1", jm_setMainStateProcessor_1 ), ( "jm_getMainStateProcessor_0", jm_getMainStateProcessor_0 ), ( "jm_setProcessGameProcessor_1", jm_setProcessGameProcessor_1 ), ( "jm_getProcessGameProcessor_0", jm_getProcessGameProcessor_0 ), ( "jm_setOpenMenuPaintable_1", jm_setOpenMenuPaintable_1 ), ( "jm_getOpenMenuPaintable_0", jm_getOpenMenuPaintable_0 ), ( "jm_setPopupMenuInputProcessor_1", jm_setPopupMenuInputProcessor_1 ), ( "jm_getPopupMenuInputProcessor_0", jm_getPopupMenuInputProcessor_0 ), ( "jm_getSensorGameUpdateProcessor_0", jm_getSensorGameUpdateProcessor_0 ), ( "jm_getRawGameInputProcessor_0", jm_getRawGameInputProcessor_0 ), ( "jm_getRawInputProcessor_0", jm_getRawInputProcessor_0 ), ( "jm_setInputProcessor_1", jm_setInputProcessor_1 ), ( "jm_getInputProcessor_0", jm_getInputProcessor_0 ), ( "jm_setMenuPaintable_1", jm_setMenuPaintable_1 ), ( "jm_getMenuPaintable_0", jm_getMenuPaintable_0 ), ( "jm_setFormPaintable_1", jm_setFormPaintable_1 ), ( "jm_getFormPaintable_0", jm_getFormPaintable_0 ), ( "jm_setGameSpecificPaintableP_1", jm_setGameSpecificPaintableP_1 ), ( "jm_getGameSpecificPaintableP_0", jm_getGameSpecificPaintableP_0 ), ( "jm_isSingleThread_0", jm_isSingleThread_0 ), ( "jm_isRunningInAnotherThread_0", jm_isRunningInAnotherThread_0 ), ( "jm_getType_0", jm_getType_0 ), ( "jm_getTitle_0", jm_getTitle_0 ), ( "jm_isPaused_0", jm_isPaused_0 ), ( "jnew_5", jnew_5 ), ( "jinit_5", jinit_5 ) ]
+        [ ( "jstatic_id", jstatic_id ), ( "jstatic_TYPE", jstatic_TYPE ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_id : JR.M
+jstatic_id s =
+    JR.static "AllBinaryGameCanvas" jclinit "id"
+        (JR.int 0)
+        s
+
+
+jstatic_TYPE : JR.M
+jstatic_TYPE s =
+    JR.static "AllBinaryGameCanvas" jclinit "TYPE"
+        (JR.int 2)
+        s
+
+
+jinit_5 : JR.Method
+jinit_5 jheap jthis jargs =
+    JR.method [ ( "commandListener", "" ), ( "gameLayerManager", "" ), ( "highScoresFactoryInterface", "" ), ( "gameInitializationInterfaceFactoryInterface", "" ), ( "buffered", "Z" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect RunnableCanvas.jinit_3 JR.this [ (JR.local "commandListener"), (JR.field "EMPTY_CHILD_NAME_LIST" (JR.callStatic CanvasStrings.jm_getInstance_0 [])), (JR.bool True) ]),
+                JR.exec (JR.setField "basicColorFactory" "" JR.this (JR.callStatic BasicColorFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "basicSetColorUtil" "" JR.this (JR.callStatic BasicColorSetUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "touchFeatureFactory" "" JR.this (JR.callStatic TouchFeatureFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "openGLFeatureFactory" "" JR.this (JR.callStatic OpenGLFeatureFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "touchButtonFactory" "" JR.this (JR.callStatic TouchButtonFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameAdStateFactory" "" JR.this (JR.callStatic GameAdStateFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameStrings" "" JR.this (JR.callStatic GameStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameInputStrings" "" JR.this (JR.callStatic GameInputStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameStateFactory" "" JR.this (JR.callStatic GameStateFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameTickTimeDelayHelper" "" JR.this (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameTickDisplayInfoSingleton" "" JR.this (JR.callStatic GameTickDisplayInfoSingleton.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameRunnable" "" JR.this (JR.new GameCanvasRunnable.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "gamePauseRunnable" "" JR.this (JR.new GameCanvasPauseRunnable.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "formUtil" "" JR.this (JR.callStatic FormUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "myFormUtil" "" JR.this (JR.callStatic MyFormUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "updateMyFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")),
+                JR.exec (JR.setField "gameSpecificPaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "sensorGameUpdateProcessor" "" JR.this (JR.new SingleSensorGameUpdateProcessor.jnew_0 [])),
+                JR.exec (JR.setField "endGameInfo" "" JR.this (JR.new EndGameInfo.jnew_0 [])),
+                JR.exec (JR.setField "startIntermissionInterface" "" JR.this (JR.new Intermission.jnew_0 [])),
+                JR.exec (JR.setField "endLevelIntermissionInterface" "" JR.this (JR.new Intermission.jnew_0 [])),
+                JR.exec (JR.setField "gameLayerManager" "" JR.this (JR.callStatic AllBinaryGameLayerManager.jm_getNullInstance_0 [])),
+                JR.exec (JR.setField "gameState" "" JR.this (JR.field "NO_GAME_STATE" (JR.thisField "gameStateFactory"))),
+                JR.exec (JR.setField "gameStateTimeHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 0) ])),
+                JR.exec (JR.setField "realHighScoresPaintable" "" JR.this (JR.new HighScoresPaintable.jnew_0 [])),
+                JR.exec (JR.setField "highScoresPaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "localPlayerGameInputList" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                JR.exec (JR.setField "hashtable" "" JR.this (JR.field "NULL_TABLE" (JR.thisField "stdUtil"))),
+                JR.exec (JR.setField "gameInitializationInterfaceFactoryInterface" "" JR.this BasicBuildGameInitializerFactory.jstatic_NULL_BASE_BUILD_GMAE_INITIALIZER_FACTORY),
+                JR.exec (JR.setField "touchButtonsPaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "touchPaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "cheatProcessor" "" JR.this (JR.callStatic NoPlayerGameInput.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameInputProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "endGameProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "realEndGameProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "startIntermissionProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "realStartIntermissionProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "endGamePaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "endGameStatePaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "nonBotPaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "intermissionPaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "startIntermissionPaintable" "" JR.this (JR.callStatic NullInitUpdatePaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "mainStateProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "processGameProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "mainMenuInputProcessor" "" JR.this (JR.callStatic NoMenuInputProcessor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "popupMenuInputProcessor" "" JR.this (JR.callStatic NoMenuInputProcessor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "menuInputProcessor" "" JR.this (JR.callStatic NoMenuInputProcessor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "menuForm" "" JR.this (JR.callStatic ScrollSelectionForm.jm_getNullScrollSelectionForm_0 [])),
+                JR.exec (JR.setField "formPaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "openMenuPaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "menuPaintable" "" JR.this (JR.callStatic NullPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "currentTouchInputFactory" "" JR.this (JR.callStatic NoButtonsTouchInputFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "colorFillPaintable" "" JR.this (JR.invoke "getInstance_2" (JR.callStatic ColorFillPaintableFactory.jm_getInstance_0 []) [ (JR.field "BLACK" (JR.thisField "basicColorFactory")), (JR.bool True) ])),
+                JR.exec (JR.setField "baseGameStatistics" "" JR.this (JR.callStatic GameStatisticsFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "primaryPlayerQueue" "" JR.this (JR.callStatic PrimaryPlayerQueueFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "secondaryPlayerQueue" "" JR.this (JR.callStatic SecondaryPlayerQueueFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "BUILD_GAME" "" JR.this (JR.str "buildGame")),
+                JR.exec (JR.setField "gameTypeFactory" "" JR.this (JR.callStatic GameTypeFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "screenCapture" "" JR.this (JR.callStatic ScreenCaptureFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "basicMotionGesturesHandler" "" JR.this (JR.callStatic BasicMotionGesturesHandler.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameKeyEventHandler" "" JR.this (JR.callStatic GameKeyEventHandler.jm_getInstance_0 [])),
+                JR.exec (JR.setField "progressPaintable" "" JR.this (JR.callStatic ProgressCanvasFactory.jm_getLazyInstance_0 [])),
+                JR.exec (JR.setField "gameCanvasStartListener" "" JR.this NullDemoPaintable.jstatic_NULL_DEMO_PAINTABLE),
+                JR.exec (JR.setField "rawGameInputProcessor" "" JR.this (JR.new GameCanvasInputProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "rawInputProcessor" "" JR.this (JR.new FormInputProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "inputProcessor" "" JR.this (JR.invoke "getRawGameInputProcessor_0" JR.this [])),
+                JR.exec (JR.setField "YIELD_SLEEP" "J" JR.this (JR.long 100)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "highScoresHelper" "" JR.this (JR.invoke "createHighScoresHelper_0" (JR.local "highScoresFactoryInterface") [])), 
+                    JR.exec (JR.setField "gameInitializationInterfaceFactoryInterface" "" JR.this (JR.local "gameInitializationInterfaceFactoryInterface")), 
+                    JR.exec (JR.invoke "init_2" JR.this [ (JR.local "gameLayerManager"), (JR.local "buffered") ]), 
+                    JR.exec (JR.setField "highScoresFactoryInterface" "" JR.this (JR.local "highScoresFactoryInterface")), 
+                    JR.ifElse (JR.or (JR.map2 JR.equals (JR.invoke "getGameType_0" (JR.invoke "getGameInfo_0" (JR.thisField "gameLayerManager") []) []) (JR.field "BOT" (JR.thisField "gameTypeFactory"))) (JR.map2 JR.equals (JR.invoke "getGameType_0" (JR.invoke "getGameInfo_0" (JR.thisField "gameLayerManager") []) []) (JR.field "NONE" (JR.thisField "gameTypeFactory")))) (JR.run [ 
+                        JR.exec (JR.setField "gameBehavior" "" JR.this (JR.callStatic DemoGameBehavior.jm_getInstance_0 [])), 
+                        JR.exec (JR.setField "menuBehavior" "" JR.this (JR.callStatic BaseMenuBehavior.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.exec (JR.setField "gameBehavior" "" JR.this (JR.callStatic BaseGameBehavior.jm_getInstance_0 [])), 
+                        JR.exec (JR.setField "menuBehavior" "" JR.this (JR.invoke "getInGameMenuBehavior_0" JR.this [])) ]), 
+                    JR.exec (JR.invoke "initPopupMenu_0" JR.this []), 
+                    JR.exec (JR.invoke "initMenu_0" JR.this []), 
+                    JR.exec (JR.invoke "initSpecialPaint_0" JR.this []), 
+                    JR.exec (JR.invoke "addListenerInterface_1" (JR.callStatic DisplayChangeEventHandler.jm_getInstance_0 []) [ JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_5 : JR.Method
+jnew_5 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_5 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START" (JR.thisField "commonStrings")) ]) [ (JR.field "FD_WIDTH" (JR.thisField "canvasStrings")) ]) [ (JR.callStatic MyFontProcessor.jm_defaultCharWidth_1 [ (JR.local "font") ]) ]) [ (JR.field "FD_HEIGHT" (JR.thisField "canvasStrings")) ]) [ (JR.invoke "getHeight_0" (JR.local "font") []) ]) []), JR.this, (JR.field "UPDATE_MEASUREMENT" (JR.thisField "canvasStrings")) ]), 
+                        JR.exec (JR.setField "fontHeightP" "I" JR.this (JR.invoke "getHeight_0" (JR.local "font") [])), 
+                        JR.exec (JR.invoke "updateMeasurement_1" (JR.thisField "myFormUtil") [ (JR.local "graphics") ]), 
+                        JR.declare "popupMenuRectangle" "" (JR.invoke "getPopupMenuRectangle_0" (JR.thisField "myFormUtil") []), 
+                        JR.declare "basicPopupMenuPaintable" "" ((JR.invoke "getOpenMenuPaintable_0" JR.this [])), 
+                        JR.exec (JR.invoke "init_1" (JR.local "basicPopupMenuPaintable") [ (JR.local "popupMenuRectangle") ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getPopupMenuInputProcessor_0" JR.this []) (JR.callStatic NoMenuInputProcessor.jm_getInstance_0 [])) (JR.run [ 
+                            JR.declare "popupMenuInputProcessor" "" ((JR.invoke "getPopupMenuInputProcessor_0" JR.this [])), 
+                            JR.exec (JR.invoke "init_1" (JR.local "popupMenuInputProcessor") [ (JR.local "popupMenuRectangle") ]) ]) identity, 
+                        JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "ON_DISPLAY_CHANGE_EVENT" (JR.thisField "canvasStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInGameMenuBehavior_0 : JR.Method
+jm_getInGameMenuBehavior_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic InGameMenuBehavior.jm_getInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setCurrentThread_0 : JR.Method
+jm_setCurrentThread_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.callStatic J2MEUtil.jm_isHTML_0 []) (JR.run [ 
+                        JR.exec (JR.callVia RunnableCanvas.jvtable "setCurrentThreadFake_0" JR.this []) ]) (JR.run [ 
+                        JR.exec (JR.callVia RunnableCanvas.jvtable "setCurrentThread_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "PERFORMANCE_MESSAGE" (JR.callStatic EventStrings.jm_getInstance_0 [])), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onDisplayChangeEvent_1 : JR.Method
+jm_onDisplayChangeEvent_1 jheap jthis jargs =
+    JR.method [ ( "displayChangeEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START" (JR.thisField "commonStrings")) ]) [ (JR.invoke "toString_0" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []) []) ]) []), JR.this, (JR.field "UPDATE_MEASUREMENT" (JR.thisField "canvasStrings")) ]), 
+                        JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")), 
+                        JR.exec (JR.invoke "onDisplayChangeEvent_2" (JR.thisField "menuBehavior") [ JR.this, (JR.local "displayChangeEvent") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "ON_DISPLAY_CHANGE_EVENT" (JR.thisField "canvasStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateMenuFromEvent_1 : JR.Method
+jm_updateMenuFromEvent_1 jheap jthis jargs =
+    JR.method [ ( "displayChangeEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "formType" "" (JR.invoke "getFormType_0" (JR.callStatic FormTypeFactory.jm_getInstance_0 []) []), 
+                    JR.declare "rectangle" "" (JR.invoke "createFormRectangle_0" (JR.thisField "formUtil") []), 
+                    JR.exec (JR.invoke "init_2" (JR.thisField "menuForm") [ (JR.local "rectangle"), (JR.local "formType") ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.thisField "currentTouchInputFactory") (JR.callStatic NoButtonsTouchInputFactory.jm_getInstance_0 [])) (JR.run [ 
+                        JR.exec (JR.invoke "toggle_2" (JR.thisField "touchButtonFactory") [ (JR.invoke "isPaused_0" JR.this []), (JR.invoke "getList_0" (JR.thisField "currentTouchInputFactory") []) ]) ]) identity, 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processSleep_0 : JR.Method
+jm_processSleep_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia RunnableCanvas.jvtable "processSleep_0" JR.this []), 
+                    JR.ifElse (JR.callStatic AllBinaryMediaManager.jm_update_0 []) (JR.run [ 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "process_0" (JR.thisField "primaryPlayerQueue") [])) (JR.run [ 
+                            JR.exec (JR.invoke "process_0" (JR.thisField "secondaryPlayerQueue") []) ]) identity ]) identity, 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.invoke "processInputList_0" (JR.thisField "menuInputProcessor") []) (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                        JR.exec (JR.invoke "process_0" (JR.thisField "runnableCanvasRefreshHelper") []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initPopupMenu_0 : JR.Method
+jm_initPopupMenu_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "popupMenuInputProcessor") (JR.callStatic NoMenuInputProcessor.jm_getInstance_0 [])) (JR.run [ 
+                        JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                        JR.declare "popupMenuRectangle" "" (JR.invoke "getPopupMenuRectangle_0" (JR.thisField "myFormUtil") []), 
+                        JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "TOUCH_ENABLED" (JR.thisField "touchFeatureFactory")) ]) (JR.run [ 
+                            JR.exec (JR.invoke "setOpenMenuPaintable_1" JR.this [ (JR.new BasicPopupMenuPaintable.jnew_3 [ (JR.local "popupMenuRectangle"), (JR.invoke "getBackgroundBasicColor_0" (JR.thisField "gameLayerManager") []), (JR.invoke "getForegroundBasicColor_0" (JR.thisField "gameLayerManager") []) ]) ]), 
+                            JR.exec (JR.invoke "setPopupMenuInputProcessor_1" JR.this [ (JR.new PopupMenuInputProcessor.jnew_4 [ (JR.new BasicArrayListD.jnew_0 []), (JR.map JR.neg (JR.int 1)), JR.this, (JR.local "popupMenuRectangle") ]) ]) ]) identity ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initMenu_0 : JR.Method
+jm_initMenu_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "initMenu_1" (JR.thisField "menuBehavior") [ JR.this ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "initMenu"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initMenu2_0 : JR.Method
+jm_initMenu2_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "closeMenu_0" JR.this []), 
+                    JR.declare "formType" "" (JR.invoke "getFormType_0" (JR.callStatic FormTypeFactory.jm_getInstance_0 []) []), 
+                    JR.declare "gameLimitedCommandTextItemArrayFactory" "" (JR.callStatic GameLimitedCommandTextItemArrayFactory.jm_getInstance_0 []), 
+                    JR.declare "commandTextItemArrayFactory" "" (JR.invoke "getCommandTextItemArrayFactory_0" (JR.local "gameLimitedCommandTextItemArrayFactory") []), 
+                    JR.declare "items" "" (JR.invoke "getInstance_3" (JR.local "commandTextItemArrayFactory") [ (JR.invoke "getCommandStack_0" JR.this []), (JR.invoke "getBackgroundBasicColor_0" (JR.thisField "gameLayerManager") []), (JR.invoke "getForegroundBasicColor_0" (JR.thisField "gameLayerManager") []) ]), 
+                    JR.declare "rectangle" "" (JR.invoke "createFormRectangle_0" (JR.thisField "formUtil") []), 
+                    JR.exec (JR.invoke "setMenuForm_1" JR.this [ (JR.callStatic CommandCurrentSelectionFormFactory.jm_getInstance_8 [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.local "items"), (JR.local "rectangle"), (JR.local "formType"), (JR.int 25), (JR.bool False), (JR.invoke "getBackgroundBasicColor_0" (JR.thisField "gameLayerManager") []), (JR.invoke "getForegroundBasicColor_0" (JR.thisField "gameLayerManager") []) ]) ]), 
+                    JR.declare "scrollSelectionForm" "" (JR.invoke "getMenuForm_0" JR.this []), 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "TOUCH_ENABLED" (JR.thisField "touchFeatureFactory")) ]) (JR.run [ 
+                        JR.exec (JR.setField "mainMenuInputProcessor" "" JR.this (JR.new PopupCommandFormInputProcessor.jnew_5 [ (JR.new BasicArrayListD.jnew_0 []), (JR.map JR.neg (JR.int 1)), JR.this, (JR.local "scrollSelectionForm"), (JR.invoke "getPopupMenuInputProcessor_0" JR.this []) ])) ]) identity, 
+                    JR.exec (JR.invoke "setMenuInputProcessor_1" JR.this [ (JR.invoke "getPopupMenuInputProcessor_0" JR.this []) ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "scrollSelectionForm") (JR.callStatic ScrollSelectionFormNoneFactory.jm_getInstance_0 [])) (JR.run [ 
+                        JR.exec (JR.invoke "setFormPaintable_1" JR.this [ (JR.new FormPaintable.jnew_1 [ (JR.local "scrollSelectionForm") ]) ]) ]) identity, 
+                    JR.exec (JR.invoke "closeMenu_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateMenu_0 : JR.Method
+jm_updateMenu_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "updateMenu_1" (JR.thisField "menuBehavior") [ JR.this ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "initMenu"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateMenu2_0 : JR.Method
+jm_updateMenu2_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "scrollSelectionForm" "" (JR.invoke "getMenuForm_0" JR.this []), 
+                    JR.exec (JR.invoke "deleteAll_0" (JR.local "scrollSelectionForm") []), 
+                    JR.declare "gameLimitedCommandTextItemArrayFactory" "" (JR.callStatic GameLimitedCommandTextItemArrayFactory.jm_getInstance_0 []), 
+                    JR.declare "commandTextItemArrayFactory" "" (JR.invoke "getCommandTextItemArrayFactory_0" (JR.local "gameLimitedCommandTextItemArrayFactory") []), 
+                    JR.declare "items" "" (JR.invoke "getInstance_3" (JR.local "commandTextItemArrayFactory") [ (JR.invoke "getCommandStack_0" JR.this []), (JR.invoke "getBackgroundBasicColor_0" (JR.thisField "gameLayerManager") []), (JR.invoke "getForegroundBasicColor_0" (JR.thisField "gameLayerManager") []) ]), 
+                    JR.declare "size" "I" (JR.alength (JR.local "items")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN94408 -> (JR.setLocal "index" "I" (JR.lit jwN94408))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "append_1" (JR.local "scrollSelectionForm") [ (JR.aget (JR.local "items") (JR.local "index")) ]) ]) ], 
+                    JR.declare "formType" "" (JR.invoke "getFormType_0" (JR.callStatic FormTypeFactory.jm_getInstance_0 []) []), 
+                    JR.declare "rectangle" "" (JR.invoke "createFormRectangle_0" (JR.thisField "formUtil") []), 
+                    JR.exec (JR.invoke "init_2" (JR.local "scrollSelectionForm") [ (JR.local "rectangle"), (JR.local "formType") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_pause_0 : JR.Method
+jm_pause_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "pause_1" (JR.thisField "gameBehavior") [ JR.this ]), 
+                    JR.exec (JR.invoke "closeMenu_0" JR.this []), 
+                    JR.exec (JR.callVia RunnableCanvas.jvtable "pause_0" JR.this []), 
+                    JR.exec (JR.invoke "toggle_2" (JR.thisField "touchButtonFactory") [ (JR.invoke "isPaused_0" JR.this []), (JR.invoke "getImmutableInstance_0" (JR.callStatic BasicArrayListUtil.jm_getInstance_0 []) []) ]), 
+                    JR.exec (JR.invoke "gc_0" (JR.thisField "tsUtil") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_unPause_0 : JR.Method
+jm_unPause_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "UNPAUSE" (JR.thisField "gameStrings")) ]), 
+                    JR.exec (JR.invoke "closeMenu_0" JR.this []), 
+                    JR.exec (JR.invoke "gc_0" (JR.thisField "tsUtil") []), 
+                    JR.exec (JR.callVia RunnableCanvas.jvtable "unPause_0" JR.this []), 
+                    JR.exec (JR.invoke "toggle_2" (JR.thisField "touchButtonFactory") [ (JR.invoke "isPaused_0" JR.this []), (JR.invoke "getImmutableInstance_0" (JR.callStatic BasicArrayListUtil.jm_getInstance_0 []) []) ]), 
+                    JR.exec (JR.invoke "unPause_1" (JR.thisField "gameBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isPausable_0 : JR.Method
+jm_isPausable_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "getUsedRunnable_0" (JR.callStatic CurrentDisplayableFactory.jm_getInstance_0 []) []) (JR.callStatic NullWaitGameRunnable.jm_getInstance_0 [])) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_popupMenu_0 : JR.Method
+jm_popupMenu_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "popupMenu_1" (JR.thisField "menuBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_popupMenu2_0 : JR.Method
+jm_popupMenu2_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "primaryPlayerQueue") [ (JR.callStatic SelectSound.jm_getInstance_0 []) ]), 
+                    JR.exec (JR.invoke "setMenuPaintable_1" JR.this [ (JR.invoke "getFormPaintable_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "setMenuInputProcessor_1" JR.this [ (JR.thisField "mainMenuInputProcessor") ]), 
+                    JR.exec (JR.invoke "addListenerInterface_1" (JR.thisField "basicMotionGesturesHandler") [ (JR.thisField "mainMenuInputProcessor") ]), 
+                    JR.exec (JR.invoke "addListener_1" (JR.thisField "gameKeyEventHandler") [ (JR.thisField "mainMenuInputProcessor") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toggleMenu_0 : JR.Method
+jm_toggleMenu_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "TOGGLE_MENU" (JR.thisField "gameStrings")) ]), 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "getMenuPaintable_0" JR.this []) (JR.invoke "getOpenMenuPaintable_0" JR.this [])) (JR.run [ 
+                        JR.exec (JR.invoke "pause_0" JR.this []), 
+                        JR.exec (JR.invoke "updateMenu_0" JR.this []), 
+                        JR.exec (JR.invoke "popupMenu_0" JR.this []) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "getMenuPaintable_0" JR.this []) (JR.invoke "getFormPaintable_0" JR.this [])) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "primaryPlayerQueue") [ (JR.callStatic SelectSound.jm_getInstance_0 []) ]), 
+                        JR.exec (JR.invoke "unPause_0" JR.this []) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_closeMenu_0 : JR.Method
+jm_closeMenu_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "closeMenu_1" (JR.thisField "menuBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_closeMenu2_0 : JR.Method
+jm_closeMenu2_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setMenuPaintable_1" JR.this [ (JR.invoke "getOpenMenuPaintable_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "removeListener_1" (JR.thisField "basicMotionGesturesHandler") [ (JR.thisField "mainMenuInputProcessor") ]), 
+                    JR.exec (JR.invoke "removeListener_1" (JR.thisField "gameKeyEventHandler") [ (JR.thisField "mainMenuInputProcessor") ]), 
+                    JR.exec (JR.invoke "setMenuInputProcessor_1" JR.this [ (JR.invoke "getPopupMenuInputProcessor_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_open_0 : JR.Method
+jm_open_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "addListenerInterface_1" (JR.thisField "basicMotionGesturesHandler") [ (JR.thisField "menuInputProcessor") ]), 
+                    JR.exec (JR.invoke "addListener_1" (JR.thisField "gameKeyEventHandler") [ (JR.thisField "menuInputProcessor") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_close_0 : JR.Method
+jm_close_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeListener_1" (JR.thisField "basicMotionGesturesHandler") [ (JR.thisField "menuInputProcessor") ]), 
+                    JR.exec (JR.invoke "removeListener_1" (JR.thisField "gameKeyEventHandler") [ (JR.thisField "menuInputProcessor") ]), 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "primaryPlayerQueue") []), 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "secondaryPlayerQueue") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processorInit_0 : JR.Method
+jm_processorInit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setMainStateProcessor_1" JR.this [ (JR.callStatic Processor.jm_getInstance_0 []) ]), 
+                    JR.exec (JR.invoke "setProcessGameProcessorInit_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setProcessGameProcessorInit_0 : JR.Method
+jm_setProcessGameProcessorInit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setProcessGameProcessor_1" JR.this [ (JR.new GameProcessor.jnew_1 [ JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initSpecialPaint_0 : JR.Method
+jm_initSpecialPaint_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "initSpecialPaint_1" (JR.thisField "menuBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_2 : JR.Method
+jm_init_2 jheap jthis jargs =
+    JR.method [ ( "gameLayerManager", "" ), ( "buffered", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setStartTimeTNT_0" (JR.thisField "gameStateTimeHelper") []), 
+                    JR.exec (JR.invoke "setHighScoreSubmitted_1" JR.this [ (JR.bool False) ]), 
+                    JR.exec (JR.invoke "setLayerManager_1" JR.this [ (JR.local "gameLayerManager") ]), 
+                    JR.ifElse (JR.map JR.not_ (JR.local "buffered")) (JR.run [ 
+                        JR.declare "BUFF_MESSAGE" "" (JR.str "XXX Not Buffering Causes Concurrency Issues XXX"), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.local "BUFF_MESSAGE"), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]) ]) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Buffering is disabled") ]) ]), 
+                    JR.exec (JR.invoke "setGameInputProcessor_1" JR.this [ (JR.callStatic Processor.jm_getInstance_0 []) ]), 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "CHEATING" (JR.callStatic GameFeatureFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.exec (JR.setField "isCheating" "Z" JR.this (JR.bool True)), 
+                        JR.exec (JR.setField "cheatProcessor" "" JR.this (JR.new CheatGameInputProcessor.jnew_1 [ JR.this ])), 
+                        JR.exec (JR.invoke "addListener_1" (JR.thisField "gameKeyEventHandler") [ (JR.thisField "cheatProcessor") ]) ]) (JR.run [ 
+                        JR.exec (JR.setField "isCheating" "Z" JR.this (JR.bool False)), 
+                        JR.exec (JR.setField "cheatProcessor" "" JR.this (JR.callStatic NoPlayerGameInput.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.setField "realEndGameProcessor" "" JR.this (JR.new EndGameProcessor.jnew_1 [ JR.this ])), 
+                    JR.exec (JR.invoke "setEndGameProcessor_1" JR.this [ (JR.callStatic Processor.jm_getInstance_0 []) ]), 
+                    JR.exec (JR.setField "realStartIntermissionProcessor" "" JR.this (JR.new StartIntermissionProcessor.jnew_1 [ JR.this ])), 
+                    JR.exec (JR.setField "startIntermissionProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])), 
+                    JR.exec (JR.invoke "setEndGameStatePaintable_1" JR.this [ (JR.new EndGamePaintable.jnew_1 [ JR.this ]) ]), 
+                    JR.exec (JR.invoke "setEndGamePaintable_1" JR.this [ (JR.callStatic NullPaintable.jm_getInstance_0 []) ]), 
+                    JR.exec (JR.invoke "setIntermissionPaintable_1" JR.this [ (JR.callStatic NullPaintable.jm_getInstance_0 []) ]), 
+                    JR.exec (JR.invoke "setListener_1" (JR.invoke "getStartIntermissionInterface_0" JR.this []) [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_notifyIntermission_1 : JR.Method
+jm_notifyIntermission_1 jheap jthis jargs =
+    JR.method [ ( "enable", "Z" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.local "enable") (JR.run [ 
+                        JR.exec (JR.setField "startIntermissionProcessor" "" JR.this (JR.thisField "realStartIntermissionProcessor")) ]) (JR.run [ 
+                        JR.exec (JR.setField "startIntermissionProcessor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])) ]), 
+                    JR.ifElse (JR.local "enable") (JR.run [ 
+                        JR.exec (JR.invoke "setIntermissionPaintable_1" JR.this [ (JR.invoke "getStartIntermissionPaintable_0" JR.this []) ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setIntermissionPaintable_1" JR.this [ (JR.callStatic NullPaintable.jm_getInstance_0 []) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_mediaInit_0 : JR.Method
+jm_mediaInit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initConfigurable_1 : JR.Method
+jm_initConfigurable_1 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.int 50), (JR.str "Setting Configurables") ]), 
+                    JR.exec (JR.invoke "initGame_3" (JR.callStatic GameInitializationUtil.jm_getInstance_0 []) [ (JR.local "abeClientInformation"), JR.this, (JR.thisField "gameInitializationInterfaceFactoryInterface") ]), 
+                    JR.declare "gameFeatureFactory" "" (JR.callStatic GameFeatureFactory.jm_getInstance_0 []), 
+                    JR.declare "changedGameFeatureListener" "" (JR.callStatic ChangedGameFeatureListener.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isChangedFeature_1" (JR.local "changedGameFeatureListener") [ (JR.field "SOUND" (JR.local "gameFeatureFactory")) ]) (JR.run [ 
+                        JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendboolean_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Sound Changing To: ") ]) [ (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "SOUND" (JR.local "gameFeatureFactory")) ]) ]) []), JR.this, (JR.str "initConfigurable") ]), 
+                        JR.exec (JR.invoke "mediaInit_0" JR.this []), 
+                        JR.exec (JR.invoke "remove_1" (JR.local "changedGameFeatureListener") [ (JR.field "SOUND" (JR.local "gameFeatureFactory")) ]) ]) identity, 
+                    JR.declare "sensorFeatureFactory" "" (JR.callStatic SensorFeatureFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.or (JR.or (JR.invoke "isChangedFeature_1" (JR.local "changedGameFeatureListener") [ (JR.field "ORIENTATION_SENSORS" (JR.local "sensorFeatureFactory")) ]) (JR.invoke "isChangedFeature_1" (JR.local "changedGameFeatureListener") [ (JR.field "NO_ORIENTATION" (JR.local "sensorFeatureFactory")) ])) (JR.invoke "isChangedFeature_1" (JR.local "changedGameFeatureListener") [ (JR.field "SIMULATED_ORIENTATION_SENSORS" (JR.local "sensorFeatureFactory")) ])) (JR.run [ 
+                        JR.exec (JR.invoke "remove_1" (JR.local "changedGameFeatureListener") [ (JR.field "NO_ORIENTATION" (JR.local "sensorFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "remove_1" (JR.local "changedGameFeatureListener") [ (JR.field "ORIENTATION_SENSORS" (JR.local "sensorFeatureFactory")) ]), 
+                        JR.exec (JR.invoke "remove_1" (JR.local "changedGameFeatureListener") [ (JR.field "SIMULATED_ORIENTATION_SENSORS" (JR.local "sensorFeatureFactory")) ]) ]) identity, 
+                    JR.declare "resourceLoadingLevelFactory" "" (JR.callStatic ResourceLoadingLevelFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "loadResourceLoadingLevel_1" JR.this [ (JR.field "LOAD_GAME" (JR.local "resourceLoadingLevelFactory")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initApp_1 : JR.Method
+jm_initApp_1 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "initConfigurable_1" JR.this [ (JR.local "abeClientInformation") ]), 
+                    JR.exec (JR.invoke "processorInit_0" JR.this []), 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "sensorGameUpdateProcessor") [ (JR.thisField "gameLayerManager") ]), 
+                    JR.exec (JR.invoke "sendNotifications_1" (JR.thisField "sensorGameUpdateProcessor") [ (JR.thisField "gameLayerManager") ]), 
+                    JR.exec (JR.invoke "initTouch_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initTouch_0 : JR.Method
+jm_initTouch_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "gameInitializedEvent" "" (JR.field "EVENT" (JR.callStatic GameInitializationUtil.jm_getInstance_0 [])), 
+                    JR.declare "resourceLoadingLevelFactory" "" (JR.callStatic ResourceLoadingLevelFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "setResourceLoadingLevel_1" (JR.local "gameInitializedEvent") [ (JR.field "LOAD_TOUCH" (JR.local "resourceLoadingLevelFactory")) ]), 
+                    JR.exec (JR.invoke "fireEvent_1" (JR.callStatic GameInitializedEventHandler.jm_getInstance_0 []) [ (JR.local "gameInitializedEvent") ]), 
+                    JR.exec (JR.invoke "defaultList_0" (JR.thisField "touchButtonFactory") []), 
+                    JR.exec (JR.invoke "updateTouch_0" JR.this []), 
+                    JR.exec (JR.invoke "postInitTouch_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateCurrentTouchInputFactory_1 : JR.Method
+jm_updateCurrentTouchInputFactory_1 jheap jthis jargs =
+    JR.method [ ( "nextTouchInput", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "nextTouchInput") (JR.thisField "currentTouchInputFactory")) (JR.run [ 
+                        JR.exec (JR.setField "currentTouchInputFactory" "" JR.this (JR.local "nextTouchInput")), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.thisField "currentTouchInputFactory") []), JR.this, (JR.field "UDPATE_CURRENT_TOUCH_INPUT_FACTORY" (JR.thisField "gameInputStrings")) ]), 
+                        JR.exec (JR.invoke "toggle_2" (JR.thisField "touchButtonFactory") [ (JR.invoke "isPaused_0" JR.this []), (JR.invoke "getList_0" (JR.thisField "currentTouchInputFactory") []) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateTouch_0 : JR.Method
+jm_updateTouch_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "updateTouch_1" (JR.thisField "gameBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateTouch2_0 : JR.Method
+jm_updateTouch2_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "AUTO_HIDE_SHOW_SCREEN_BUTTONS" (JR.thisField "touchFeatureFactory")) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.map2 JR.sub (JR.invoke "getCurrentLevel_0" (JR.invoke "getGameInfo_0" (JR.thisField "gameLayerManager") []) []) (JR.invoke "getStartLevel_0" JR.this [])) (JR.int 1)) (JR.run [ 
+                            JR.exec (JR.invoke "setTouchPaintableP_1" JR.this [ (JR.callStatic NullPaintable.jm_getInstance_0 []) ]) ]) identity ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_postInitTouch_0 : JR.Method
+jm_postInitTouch_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setTouchButtonsPaintable_1" JR.this [ (JR.callStatic TouchButtonsPaintableFactory.jm_getInstance_1 [ (JR.invoke "getForegroundBasicColor_0" (JR.thisField "gameLayerManager") []) ]) ]), 
+                    JR.exec (JR.invoke "updateScreenButtonPaintable_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initCommands_1 : JR.Method
+jm_initCommands_1 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeAllCommands_0" JR.this []), 
+                    JR.exec (JR.invoke "addCommands_0" JR.this []), 
+                    JR.exec (JR.invoke "setCommandListener_1" JR.this [ (JR.local "cmdListener") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addCommands_0 : JR.Method
+jm_addCommands_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "gameCommandsFactory" "" (JR.callStatic GameCommandsFactory.jm_getInstance_0 []), 
+                    JR.declare "myCommandsFactory" "" (JR.callStatic MyCommandsFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.callStatic DebugFactory.jm_getInstance_0 []) (JR.callStatic NoDebug.jm_getInstance_0 [])) (JR.run [ 
+                        JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "START_TRACE" (JR.local "gameCommandsFactory")) ]) ]) identity, 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "RESTART_COMMAND" (JR.local "gameCommandsFactory")) ]), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "PAUSE_COMMAND" (JR.local "myCommandsFactory")) ]), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "QUIT_COMMAND" (JR.local "gameCommandsFactory")) ]), 
+                    JR.declare "isOverScan" "Z" (JR.invoke "isOverScan_0" (JR.invoke "getOperatingSystemInstance_0" (JR.callStatic OperatingSystemFactory.jm_getInstance_0 []) []) []), 
+                    JR.ifElse (JR.callStatic J2MEUtil.jm_isHTML_0 []) identity (JR.run [ 
+                    JR.ifElse SWTUtil.jstatic_isSWT identity (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.local "isOverScan")) (JR.run [ 
+                        JR.ifElse (JR.and (JR.invoke "isTouch_0" (JR.callStatic TouchScreenFactory.jm_getInstance_0 []) []) (JR.invoke "isAny_0" (JR.new InGameFeatures.jnew_0 []) [])) (JR.run [ 
+                            JR.exec (JR.invoke "addCommand_1" JR.this [ InGameOptionsForm.jstatic_DISPLAY ]) ]) identity, 
+                        JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "SAVE" (JR.local "gameCommandsFactory")) ]), 
+                        JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "DISPLAY_LOAD_FORM" (JR.local "gameCommandsFactory")) ]) ]) identity ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_itemStateChanged_1 : JR.Method
+jm_itemStateChanged_1 jheap jthis jargs =
+    JR.method [ ( "item", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "itemLabel" "" (JR.invoke "getLabel_0" (JR.local "item") []), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "ITEM_LABEL" (JR.thisField "commonLabels")) ]) [ (JR.local "itemLabel") ]) []), JR.this, (JR.str "itemStateChanged") ]), 
+                        JR.ifElse (JR.instanceOf "ChoiceGroup" (JR.local "item")) (JR.run [ 
+                            JR.declare "gameFeatureUtil" "" (JR.callStatic GameFeatureUtil.jm_getInstance_0 []), 
+                            JR.ifElse (JR.invoke "isExclusive_1" (JR.local "gameFeatureUtil") [ (JR.local "itemLabel") ]) (JR.run [ 
+                                JR.exec (JR.invoke "updateExclusiveForChoiceGroup_1" (JR.local "gameFeatureUtil") [ (JR.local "item") ]) ]) (JR.run [ 
+                                JR.exec (JR.invoke "updateMultiple_1" (JR.local "gameFeatureUtil") [ (JR.local "item") ]) ]) ]) identity, 
+                        JR.exec (JR.invoke "process_1" (JR.thisField "sensorGameUpdateProcessor") [ (JR.thisField "gameLayerManager") ]), 
+                        JR.exec (JR.invoke "updateTouch_0" JR.this []), 
+                        JR.exec (JR.invoke "updateScreenButtonPaintable_0" JR.this []), 
+                        JR.exec (JR.invoke "sendNotifications_1" (JR.thisField "sensorGameUpdateProcessor") [ (JR.thisField "gameLayerManager") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "itemStateChanged"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateScreenButtonPaintable_0 : JR.Method
+jm_updateScreenButtonPaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "updateScreenButtonPaintable_1" (JR.thisField "gameBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateScreenButtonPaintable2_0 : JR.Method
+jm_updateScreenButtonPaintable2_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "AUTO_HIDE_SHOW_SCREEN_BUTTONS" (JR.thisField "touchFeatureFactory")) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setTouchPaintableP_1" JR.this [ (JR.invoke "getTouchButtonsPaintable_0" JR.this []) ]), 
+                        JR.exec (JR.invoke "setStartLevel_1" JR.this [ (JR.invoke "getCurrentLevel_0" (JR.invoke "getGameInfo_0" (JR.thisField "gameLayerManager") []) []) ]) ]) (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "SHOW_SCREEN_BUTTONS" (JR.thisField "touchFeatureFactory")) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setTouchPaintableP_1" JR.this [ (JR.invoke "getTouchButtonsPaintable_0" JR.this []) ]) ]) (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "HIDE_SCREEN_BUTTONS" (JR.thisField "touchFeatureFactory")) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setTouchPaintableP_1" JR.this [ (JR.callStatic NullPaintable.jm_getInstance_0 []) ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setTouchPaintableP_1" JR.this [ (JR.callStatic NullPaintable.jm_getInstance_0 []) ]) ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLayerManager_0 : JR.Method
+jm_getLayerManager_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameLayerManager") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLayerManager_1 : JR.Method
+jm_setLayerManager_1 jheap jthis jargs =
+    JR.method [ ( "layerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "gameLayerManager" "" JR.this (JR.local "layerManager")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isGameOver_0 : JR.Method
+jm_isGameOver_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "gameOver") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setGameOver_1 : JR.Method
+jm_setGameOver_1 jheap jthis jargs =
+    JR.method [ ( "gameOver", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "gameOver" "Z" JR.this (JR.local "gameOver")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processGameOver_0 : JR.Method
+jm_processGameOver_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "SET_GAME_OVER" (JR.thisField "gameStrings")) ]), 
+                    JR.exec (JR.invoke "setGameOver_1" JR.this [ (JR.bool True) ]), 
+                    JR.exec (JR.invoke "removePauseCommand_0" JR.this []), 
+                    JR.exec (JR.invoke "setGameState_1" JR.this [ (JR.field "SHOW_END_RESULT_GAME_STATE" (JR.thisField "gameStateFactory")) ]), 
+                    JR.exec (JR.invoke "setEndGamePaintable_1" JR.this [ (JR.invoke "getEndGameStatePaintable_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isHighScoreSubmitted_0 : JR.Method
+jm_isHighScoreSubmitted_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "highScoreSubmitted") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHighScoreSubmitted_1 : JR.Method
+jm_setHighScoreSubmitted_1 jheap jthis jargs =
+    JR.method [ ( "highScoreSubmitted", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "highScoreSubmitted" "Z" JR.this (JR.local "highScoreSubmitted")), 
+                    JR.ifElse (JR.local "highScoreSubmitted") (JR.run [ 
+                        JR.exec (JR.invoke "setSelectedHighScores_1" (JR.thisField "highScoresHelper") [ (JR.callStatic NullHighScoresSingletonFactory.jm_getInstance_0 []) ]) ]) identity, 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendboolean_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "isHighScoreSubmitted: ") ]) [ (JR.local "highScoreSubmitted") ]) []), JR.this, (JR.str "setHighScoreSubmitted") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameState_0 : JR.Method
+jm_getGameState_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameState") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setGameState_1 : JR.Method
+jm_setGameState_1 jheap jthis jargs =
+    JR.method [ ( "gameState", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "GAME_STATE" (JR.thisField "gameStrings")) ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "gameState") ]) ]) []), JR.this, (JR.field "SET_GAME_STATE" (JR.thisField "gameStrings")) ]), 
+                    JR.exec (JR.setField "gameState" "" JR.this (JR.local "gameState")), 
+                    JR.exec (JR.invoke "setStartTimeTNT_0" (JR.thisField "gameStateTimeHelper") []), 
+                    JR.exec (JR.invoke "updateEndGameProcessor_0" JR.this []), 
+                    JR.exec (JR.invoke "updateGameKeyEventProcessor_0" JR.this []), 
+                    JR.exec (JR.invoke "setGameState_1" (JR.thisField "gameBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateGameState_0 : JR.Method
+jm_updateGameState_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "gameAdState" "" (JR.invoke "getCurrentInstance_0" (JR.thisField "gameAdStateFactory") []), 
+                    JR.exec (JR.invoke "processAdState_2" (JR.local "gameAdState") [ (JR.thisField "gameState"), (JR.invoke "getGameType_0" (JR.invoke "getGameInfo_0" (JR.thisField "gameLayerManager") []) []) ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.thisField "gameState") (JR.field "PLAYING_GAME_STATE" (JR.thisField "gameStateFactory"))) (JR.run [ 
+                        JR.exec (JR.invoke "processPageAdState_0" (JR.local "gameAdState") []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateGameKeyEventProcessor_0 : JR.Method
+jm_updateGameKeyEventProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.or (JR.map2 JR.notEquals (JR.invoke "getGameState_0" JR.this []) (JR.field "PLAYING_GAME_STATE" (JR.thisField "gameStateFactory"))) (JR.thisField "isCheating")) identity identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeAllGameKeyInputListenersOnBuild_0 : JR.Method
+jm_removeAllGameKeyInputListenersOnBuild_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeAllGameKeyInputListeners_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeAllGameKeyInputListeners_0 : JR.Method
+jm_removeAllGameKeyInputListeners_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeAllGameKeyInputListeners_1" (JR.thisField "gameBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeAllGameKeyInputListeners2_0 : JR.Method
+jm_removeAllGameKeyInputListeners2_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Remove PlayerInput Listeners"), JR.this, (JR.str "removeAllGameKeyInputListeners") ]), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "localPlayerGameInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN103341 -> (JR.setLocal "index" "I" (JR.lit jwN103341))) JR.decrement) ]) (JR.run [ 
+                        JR.declare "playerGameInput" "" (JR.invoke "get_1" (JR.thisField "localPlayerGameInputList") [ (JR.local "index") ]), 
+                        JR.exec (JR.invoke "removeKeyInputListener_1" JR.this [ (JR.local "playerGameInput") ]), 
+                        JR.exec (JR.invoke "removeNonAIInputGameKeyEvents_0" (JR.local "playerGameInput") []) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeKeyInputListener_1 : JR.Method
+jm_removeKeyInputListener_1 jheap jthis jargs =
+    JR.method [ ( "playerGameInput", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeListener_1" (JR.thisField "gameKeyEventHandler") [ (JR.local "playerGameInput") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateEndGameProcessor_0 : JR.Method
+jm_updateEndGameProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "updateEndGameProcessor_1" (JR.thisField "gameBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateEndGameProcessor2_0 : JR.Method
+jm_updateEndGameProcessor2_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.or (JR.map2 JR.equals (JR.invoke "getGameState_0" JR.this []) (JR.field "SHOW_END_RESULT_GAME_STATE" (JR.thisField "gameStateFactory"))) (JR.map2 JR.equals (JR.invoke "getGameState_0" JR.this []) (JR.field "SHOW_HIGH_SCORE_GAME_STATE" (JR.thisField "gameStateFactory")))) (JR.run [ 
+                        JR.exec (JR.invoke "setEndGameProcessor_1" JR.this [ (JR.thisField "realEndGameProcessor") ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setEndGameProcessor_1" JR.this [ (JR.callStatic Processor.jm_getInstance_0 []) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_buildGameInit_1 : JR.Method
+jm_buildGameInit_1 jheap jthis jargs =
+    JR.method [ ( "isPortion", "Z" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_cleanupGame_0 : JR.Method
+jm_cleanupGame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CLEANUP" (JR.thisField "commonStrings")) ]), 
+                    JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.int 10), (JR.str "Cleaning Up") ]), 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "primaryPlayerQueue") []), 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "secondaryPlayerQueue") []), 
+                    JR.exec (JR.invoke "clear_0" (JR.callStatic GameLevelDisplayChangeEventListenersFactory.jm_getInstance_0 []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_loadResourceLoadingLevel_1 : JR.Method
+jm_loadResourceLoadingLevel_1 jheap jthis jargs =
+    JR.method [ ( "resourceLoadingLevel", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameInitializedEvent" "" (JR.field "EVENT" (JR.callStatic GameInitializationUtil.jm_getInstance_0 [])), 
+                    JR.exec (JR.invoke "setResourceLoadingLevel_1" (JR.local "gameInitializedEvent") [ (JR.local "resourceLoadingLevel") ]), 
+                    JR.exec (JR.invoke "fireEvent_1" (JR.callStatic GameInitializedEventHandler.jm_getInstance_0 []) [ (JR.local "gameInitializedEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_loadResources_1 : JR.Method
+jm_loadResources_1 jheap jthis jargs =
+    JR.method [ ( "level", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameInitializedEvent" "" (JR.field "EVENT" (JR.callStatic GameInitializationUtil.jm_getInstance_0 [])), 
+                    JR.exec (JR.invoke "setLevel_1" (JR.local "gameInitializedEvent") [ (JR.local "level") ]), 
+                    JR.exec (JR.invoke "fireEvent_1" (JR.callStatic GameInitializedEventHandler.jm_getInstance_0 []) [ (JR.local "gameInitializedEvent") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateColor_0 : JR.Method
+jm_updateColor_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_buildGame_1 : JR.Method
+jm_buildGame_1 jheap jthis jargs =
+    JR.method [ ( "portion", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "endRecording_0" (JR.thisField "screenCapture") []), 
+                    JR.exec (JR.invoke "startRecording_0" (JR.thisField "screenCapture") []), 
+                    JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.local "portion"), (JR.str "Generic Build") ]), 
+                    JR.exec (JR.invoke "removeAllGameKeyInputListenersOnBuild_0" JR.this []), 
+                    JR.exec (JR.invoke "updateTouch_0" JR.this []), 
+                    JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.local "portion"), (JR.str "High Scores") ]), 
+                    JR.exec (JR.invoke "fetchHighScores_2" (JR.thisField "highScoresFactoryInterface") [ (JR.invoke "getGameInfo_0" (JR.thisField "gameLayerManager") []), (JR.thisField "highScoresHelper") ]), 
+                    JR.exec (JR.invoke "setHighScoresPaintable_1" JR.this [ (JR.callStatic NullPaintable.jm_getInstance_0 []) ]), 
+                    JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.local "portion"), (JR.str "Finishing.") ]), 
+                    JR.exec (JR.invoke "update_2" (JR.invoke "getEndGameInfoP_0" JR.this []) [ (JR.invoke "getGameInfo_0" (JR.invoke "getLayerManager_0" JR.this []) []), JR.this ]), 
+                    JR.exec (JR.setField "isSingleKeyRepeatableProcessing" "Z" JR.this (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "SINGLE_KEY_REPEAT_PRESS" (JR.callStatic InputFeatureFactory.jm_getInstance_0 [])) ])), 
+                    JR.exec (JR.invoke "setGameOver_1" JR.this [ (JR.bool False) ]), 
+                    JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.local "portion"), (JR.str "Finishing..") ]), 
+                    JR.exec (JR.invoke "updateColor_0" JR.this []), 
+                    JR.exec (JR.invoke "update_0" (JR.invoke "getStartIntermissionPaintable_0" JR.this []) []), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isRunningInAnotherThread_0" JR.this [])) (JR.run [ 
+                        JR.returnVoid ]) identity, 
+                    JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.local "portion"), (JR.str "Finishing...") ]), 
+                    JR.ifElse (JR.or (JR.invoke "isMainCanvas_0" JR.this []) (JR.map JR.not_ (JR.invoke "isInitialized_0" JR.this []))) (JR.run [ 
+                        JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "LOAD_ONDEMAND" (JR.callStatic MainFeatureFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getCustomCommandListener_0" JR.this []) JR.null) (JR.run [ 
+                                JR.exec (JR.invoke "end_0" (JR.local "progressCanvas") []) ]) identity ]) (JR.run [ 
+                            JR.exec (JR.invoke "end_0" (JR.local "progressCanvas") []) ]), 
+                        JR.exec (JR.invoke "setInitialized_1" JR.this [ (JR.bool True) ]) ]) identity, 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "getCustomCommandListener_0" JR.this []) NullCommandListener.jstatic_NULL_COMMAND_LISTENER) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Show Game Paintable in DemoCanvas Thread"), JR.this, (JR.thisField "BUILD_GAME") ]), 
+                        JR.exec (JR.invoke "showGamePaintable_0" (JR.thisField "gameCanvasStartListener") []) ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "No GameCanvasStartListener"), JR.this, (JR.thisField "BUILD_GAME") ]) ]), 
+                    JR.exec (JR.invoke "setBasicColorP_1" (JR.thisField "colorFillPaintable") [ (JR.invoke "getBackgroundBasicColor_0" (JR.thisField "gameLayerManager") []) ]), 
+                    JR.exec (JR.invoke "buildGame_1" (JR.thisField "gameBehavior") [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_buildGame2_0 : JR.Method
+jm_buildGame2_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "ENABLE_PLAYER_GAME_INPUTS" (JR.thisField "gameInputStrings")) ]) [ (JR.invoke "size_0" (JR.thisField "localPlayerGameInputList") []) ]) []), JR.this, (JR.thisField "BUILD_GAME") ]), 
+                    JR.declare "playerGameInput" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "localPlayerGameInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN106041 -> (JR.setLocal "index" "I" (JR.lit jwN106041))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "playerGameInput" "" (JR.invoke "get_1" (JR.thisField "localPlayerGameInputList") [ (JR.local "index") ])), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "ENABLE_PLAYER_GAME_INPUT" (JR.thisField "gameInputStrings")) ]) [ (JR.invoke "toString_0" (JR.local "playerGameInput") []) ]) []), JR.this, (JR.thisField "BUILD_GAME") ]), 
+                        JR.exec (JR.invoke "removeNonAIInputGameKeyEvents_0" (JR.local "playerGameInput") []), 
+                        JR.exec (JR.invoke "addKeyInputListener_1" JR.this [ (JR.local "playerGameInput") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addKeyInputListener_1 : JR.Method
+jm_addKeyInputListener_1 jheap jthis jargs =
+    JR.method [ ( "playerGameInput", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "addListenerForPlayer_2" (JR.callStatic GameKeyEventHandler.jm_getInstance_0 []) [ (JR.local "playerGameInput"), (JR.invoke "getPlayerInputId_0" (JR.local "playerGameInput") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setGameCanvasStartListener_1 : JR.Method
+jm_setGameCanvasStartListener_1 jheap jthis jargs =
+    JR.method [ ( "gameCanvasStartListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "gameCanvasStartListener" "" JR.this (JR.local "gameCanvasStartListener")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_loadState_0 : JR.Method
+jm_loadState_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "LOAD" (JR.thisField "commonStrings")) ]), 
+                    JR.declare "hashtable" "" (JR.invoke "getLoadStateHashtable_0" JR.this []), 
+                    JR.ifElse (JR.and (JR.map2 JR.notEquals (JR.local "hashtable") JR.null) (JR.map2 JR.greater (JR.invoke "size_0" (JR.local "hashtable") []) (JR.int 0))) (JR.run [ 
+                        JR.declare "levelAsString" "" (JR.invoke "get_1" (JR.local "hashtable") [ GameInfo.jstatic_LEVEL_NAME ]), 
+                        JR.declare "level" "I" (JR.invoke "intValue_0" (JR.callStatic JInteger.jm_valueOf_1 [ (JR.local "levelAsString") ]) []), 
+                        JR.declare "gameInfo" "" (JR.invoke "getGameInfo_0" (JR.thisField "gameLayerManager") []), 
+                        JR.exec (JR.invoke "setCurrentLevel_1" (JR.local "gameInfo") [ (JR.local "level") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLoadStateHashtable_0 : JR.Method
+jm_getLoadStateHashtable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START_LABEL" (JR.thisField "commonLabels")) ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.thisField "hashtable") ]) ]) []), JR.this, (JR.str "getLoadStateHashtable") ]), 
+                    JR.return (JR.thisField "hashtable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLoadStateHashtable_1 : JR.Method
+jm_setLoadStateHashtable_1 jheap jthis jargs =
+    JR.method [ ( "hashtable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START_LABEL" (JR.thisField "commonLabels")) ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "hashtable") ]) ]) []), JR.this, (JR.str "setLoadStateHashtable") ]), 
+                    JR.exec (JR.setField "hashtable" "" JR.this (JR.local "hashtable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCurrentStateHashtable_0 : JR.Method
+jm_getCurrentStateHashtable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "hashtable" "" (JR.invoke "createHashtable_0" (JR.thisField "stdUtil") []), 
+                    JR.declare "level" "I" (JR.invoke "getCurrentLevel_0" (JR.invoke "getGameInfo_0" (JR.thisField "gameLayerManager") []) []), 
+                    JR.exec (JR.invoke "put_2" (JR.local "hashtable") [ (JR.invoke "toString_0" GameInfo.jstatic_LEVEL_NAME []), (JR.callStatic JInteger.jm_toString_1 [ (JR.local "level") ]) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "End: ") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "hashtable") ]) ]) []), JR.this, (JR.str "getCurrentStateHashtable") ]), 
+                    JR.return (JR.local "hashtable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintGameOver_1 : JR.Method
+jm_paintGameOver_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_draw_1 : JR.Method
+jm_draw_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "colorFillPaintable") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "setBasicColorP_2" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.invoke "getForegroundBasicColor_0" (JR.thisField "gameLayerManager") []) ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "gameSpecificPaintable") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clear_1 : JR.Method
+jm_clear_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "colorFillPaintable") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "nextRefresh_0" (JR.thisField "baseGameStatistics") []), 
+                    JR.exec (JR.invoke "draw_1" JR.this [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "menuPaintable") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "progressPaintable") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintThreed_1 : JR.Method
+jm_paintThreed_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processEndLevelIntermissionGameState_0 : JR.Method
+jm_processEndLevelIntermissionGameState_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_nonBotPaint_1 : JR.Method
+jm_nonBotPaint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "endGamePaintable") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "intermissionPaintable") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "paintIntermission_1" JR.this [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "touchPaintable") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintIntermission_1 : JR.Method
+jm_paintIntermission_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyPressed_1 : JR.Method
+jm_keyPressed_1 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "keyPressedByDevice_2" JR.this [ (JR.local "keyCode"), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyReleased_1 : JR.Method
+jm_keyReleased_1 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "keyReleasedByDevice_2" JR.this [ (JR.local "keyCode"), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyRepeated_1 : JR.Method
+jm_keyRepeated_1 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "keyRepeatedByDevice_2" JR.this [ (JR.local "keyCode"), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyPressedByDevice_2 : JR.Method
+jm_keyPressedByDevice_2 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "keyPressedByDevice_2" (JR.thisField "inputProcessor") [ (JR.local "keyCode"), (JR.local "deviceId") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyRepeatedByDevice_2 : JR.Method
+jm_keyRepeatedByDevice_2 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.thisField "isSingleKeyRepeatableProcessing") (JR.run [ 
+                        JR.exec (JR.invoke "keyPressedByDevice_2" (JR.thisField "inputProcessor") [ (JR.local "keyCode"), (JR.local "deviceId") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyReleasedByDevice_2 : JR.Method
+jm_keyReleasedByDevice_2 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "keyReleasedByDevice_3" (JR.thisField "inputProcessor") [ JR.this, (JR.local "keyCode"), (JR.local "deviceId") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_handleRawKey_3 : JR.Method
+jm_handleRawKey_3 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ), ( "repeated", "Z" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_endProgress_1 : JR.Method
+jm_endProgress_1 jheap jthis jargs =
+    JR.method [ ( "isProgress", "Z" ) ] "I"
+        (JR.run [ 
+                    JR.declare "portion" "I" (JR.int 30), 
+                    JR.ifElse (JR.and (JR.local "isProgress") (JR.invoke "isMainCanvas_0" JR.this [])) (JR.run [ 
+                        JR.declare "myCommandsFactory" "" (JR.callStatic MyCommandsFactory.jm_getInstance_0 []), 
+                        JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "start_0" (JR.local "progressCanvas") []), 
+                        JR.exec (JR.invoke "commandAction_2" (JR.invoke "getCustomCommandListener_0" JR.this []) [ (JR.field "SET_DISPLAYABLE" (JR.local "myCommandsFactory")), (JR.local "progressCanvas") ]), 
+                        JR.exec (JR.setLocal "portion" "I" (JR.int 4)) ]) identity, 
+                    JR.return (JR.local "portion") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processPlayingGame_0 : JR.Method
+jm_processPlayingGame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "update_0" (JR.thisField "cheatProcessor") []), 
+                    JR.exec (JR.invoke "update_0" (JR.invoke "getInputSensor_0" (JR.thisField "sensorGameUpdateProcessor") []) []), 
+                    JR.exec (JR.invoke "process_0" (JR.thisField "gameInputProcessor") []), 
+                    JR.exec (JR.invoke "process_0" (JR.thisField "gameLayerManager") []), 
+                    JR.exec (JR.invoke "process_0" (JR.thisField "startIntermissionProcessor") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_threadInit_0 : JR.Method
+jm_threadInit_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processGame_0 : JR.Method
+jm_processGame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia RunnableCanvas.jvtable "process_0" JR.this []), 
+                    JR.ifElse (JR.callStatic AllBinaryMediaManager.jm_update_0 []) (JR.run [ 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "process_0" (JR.thisField "primaryPlayerQueue") [])) (JR.run [ 
+                            JR.exec (JR.invoke "process_0" (JR.thisField "secondaryPlayerQueue") []) ]) identity ]) identity, 
+                    JR.exec (JR.invoke "process_0" (JR.thisField "mainStateProcessor") []), 
+                    JR.exec (JR.invoke "processInputList_0" (JR.thisField "menuInputProcessor") []), 
+                    JR.exec (JR.invoke "process_0" (JR.thisField "endGameProcessor") []), 
+                    JR.exec (JR.invoke "nextFrame_0" (JR.thisField "baseGameStatistics") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_notifyDonePainting_0 : JR.Method
+jm_notifyDonePainting_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    (JR.run [ 
+                        JR.exec (JR.invoke "notifyObject_1" (JR.thisField "threadObjectUtil") [ JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_shouldWait_0 : JR.Method
+jm_shouldWait_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.ifElse (JR.callStatic AndroidUtil.jm_isAndroid_0 []) identity (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "OPENGL_2D" (JR.thisField "openGLFeatureFactory")) ]) identity (JR.run [ 
+                        JR.ifElse (JR.invoke "isDefault_1" (JR.local "features") [ (JR.field "OPENGL" (JR.thisField "openGLFeatureFactory")) ]) (JR.run [ 
+                            JR.declare "openGLImageSpecificFactory" "" (JR.callStatic OpenGLImageSpecificFactory.jm_getInstance_0 []), 
+                            JR.while (JR.field "updating" (JR.local "openGLImageSpecificFactory")) (JR.run [ 
+                                JR.exec (JR.callStatic JThread.jm_sleep_1 [ (JR.thisField "YIELD_SLEEP") ]) ]) ]) identity ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_run_0 : JR.Method
+jm_run_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START_RUNNABLE" (JR.thisField "commonStrings")), JR.this, (JR.field "RUN" (JR.thisField "commonStrings")) ]), 
+                        JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "addNormalPortion_2" (JR.local "progressCanvas") [ (JR.int 50), (JR.str "Game Thread") ]), 
+                        JR.exec (JR.invoke "setCurrentThread_0" JR.this []), 
+                        JR.exec (JR.invoke "setRunning_1" JR.this [ (JR.bool True) ]), 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "getCustomCommandListener_0" JR.this []) NullCommandListener.jstatic_NULL_COMMAND_LISTENER) (JR.run [ 
+                            JR.exec (JR.callStatic JThread.jm_sleep_1 [ (JR.thisField "YIELD_SLEEP") ]) ]) identity, 
+                        JR.exec (JR.invoke "shouldWait_0" JR.this []), 
+                        JR.exec (JR.invoke "threadInit_0" JR.this []), 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "getCustomCommandListener_0" JR.this []) NullCommandListener.jstatic_NULL_COMMAND_LISTENER) (JR.run [ 
+                            JR.exec (JR.callStatic JThread.jm_sleep_1 [ (JR.thisField "YIELD_SLEEP") ]) ]) identity, 
+                        JR.exec (JR.invoke "open_0" JR.this []), 
+                        JR.declare "gameAdState" "" (JR.invoke "getCurrentInstance_0" (JR.thisField "gameAdStateFactory") []), 
+                        JR.exec (JR.invoke "init_0" (JR.local "gameAdState") []), 
+                        JR.exec (JR.invoke "setGameIsReady_1" (JR.local "gameAdState") [ (JR.bool True) ]), 
+                        JR.exec (JR.invoke "run_1" (JR.thisField "gameBehavior") [ JR.this ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "END_RUNNABLE" (JR.thisField "commonStrings")), JR.this, (JR.field "RUN" (JR.thisField "commonStrings")) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "RUN" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_run2_0 : JR.Method
+jm_run2_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.ifElse (JR.or (JR.invoke "isDefault_1" (JR.local "features") [ (JR.field "OPENGL_AS_GAME_THREAD" (JR.thisField "openGLFeatureFactory")) ]) (JR.callStatic J2MEUtil.jm_isHTML_0 [])) (JR.run [ 
+                        JR.ifElse (JR.invoke "isDefault_1" (JR.local "features") [ (JR.field "OPENGL_AS_GAME_THREAD" (JR.thisField "openGLFeatureFactory")) ]) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "getName_0" (JR.field "OPENGL_AS_GAME_THREAD" (JR.thisField "openGLFeatureFactory")) []), JR.this, (JR.field "RUN" (JR.thisField "commonStrings")) ]) ]) identity, 
+                        JR.ifElse (JR.callStatic J2MEUtil.jm_isHTML_0 []) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "HTML" (JR.callStatic GraphicsStrings.jm_getInstance_0 [])), JR.this, (JR.field "RUN" (JR.thisField "commonStrings")) ]) ]) identity, 
+                        JR.declare "currentDisplayableFactory" "" (JR.callStatic CurrentDisplayableFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "setRunnable_1" (JR.local "currentDisplayableFactory") [ (JR.thisField "gameRunnable") ]), 
+                        JR.exec (JR.invoke "setDisplayable_1" (JR.local "currentDisplayableFactory") [ JR.this ]), 
+                        JR.exec (JR.invoke "onResume_0" (JR.callStatic OpenGLThreadUtil.jm_getInstance_0 []) []) ]) (JR.run [ 
+                    JR.ifElse (JR.invoke "isDefault_1" (JR.local "features") [ (JR.field "OPENGL_AND_GAME_HAVE_DIFFERENT_THREADS" (JR.thisField "openGLFeatureFactory")) ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "getName_0" (JR.field "OPENGL_AND_GAME_HAVE_DIFFERENT_THREADS" (JR.thisField "openGLFeatureFactory")) []), JR.this, (JR.field "RUN" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.invoke "onResume_0" (JR.callStatic OpenGLThreadUtil.jm_getInstance_0 []) []), 
+                        JR.while (JR.invoke "isRunning_0" JR.this []) (JR.run [ 
+                            JR.exec (JR.invoke "run3_0" JR.this []) ]), 
+                        JR.exec (JR.invoke "end_0" JR.this []) ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "this thread"), JR.this, (JR.field "RUN" (JR.thisField "commonStrings")) ]), 
+                        JR.while (JR.invoke "isRunning_0" JR.this []) (JR.run [ 
+                            JR.exec (JR.invoke "run3_0" JR.this []) ]), 
+                        JR.exec (JR.invoke "end_0" JR.this []) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_run3_0 : JR.Method
+jm_run3_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setStartTime_1" (JR.thisField "loopTimeHelper") [ (JR.invoke "setStartTime_0" (JR.thisField "gameTickTimeDelayHelper") []) ]), 
+                    JR.exec (JR.invoke "update_0" (JR.thisField "gameTickDisplayInfoSingleton") []), 
+                    JR.exec (JR.invoke "processGame_0" JR.this []), 
+                    JR.exec (JR.invoke "processLoopSleep_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setRunning_1 : JR.Method
+jm_setRunning_1 jheap jthis jargs =
+    JR.method [ ( "running", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia RunnableCanvas.jvtable "setRunning_1" JR.this [ (JR.local "running") ]), 
+                    JR.try (JR.run [ 
+                        JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                        JR.ifElse (JR.local "running") identity (JR.run [ 
+                            JR.ifElse (JR.or (JR.invoke "isDefault_1" (JR.local "features") [ (JR.field "OPENGL" (JR.thisField "openGLFeatureFactory")) ]) SWTUtil.jstatic_isSWT) (JR.run [ 
+                                JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getGameType_0" (JR.invoke "getGameInfo_0" (JR.thisField "gameLayerManager") []) []) (JR.field "BOT" (JR.thisField "gameTypeFactory"))) (JR.run [ 
+                                    JR.declare "currentDisplayableFactory" "" (JR.callStatic CurrentDisplayableFactory.jm_getInstance_0 []), 
+                                    JR.exec (JR.invoke "clearRunnable_0" (JR.local "currentDisplayableFactory") []) ]) identity, 
+                                JR.exec (JR.invoke "end_0" JR.this []) ]) identity ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.thisField "SET_RUNNING"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_end_0 : JR.Method
+jm_end_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "endRecording_0" (JR.thisField "screenCapture") []), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "baseGameStatistics") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.invoke "toString_0" (JR.thisField "baseGameStatistics") []) ]) [ (JR.field "NEW_LINE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) []) ]), 
+                    JR.exec (JR.invoke "init_0" (JR.thisField "baseGameStatistics") []), 
+                    JR.exec (JR.invoke "removeListener_1" (JR.thisField "gameKeyEventHandler") [ (JR.thisField "cheatProcessor") ]), 
+                    JR.exec (JR.invoke "close_0" JR.this []), 
+                    JR.exec (JR.invoke "removeAllGameKeyInputListeners_0" JR.this []), 
+                    JR.exec (JR.invoke "endGameThread_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_endGameThread_0 : JR.Method
+jm_endGameThread_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeListener_1" (JR.callStatic DisplayChangeEventHandler.jm_getInstance_0 []) [ JR.this ]), 
+                    JR.exec (JR.invoke "clear_0" (JR.callStatic GameLevelDisplayChangeEventListenersFactory.jm_getInstance_0 []) []), 
+                    JR.declare "gameAdState" "" (JR.invoke "getCurrentInstance_0" (JR.thisField "gameAdStateFactory") []), 
+                    JR.exec (JR.invoke "notPlayingAdState_0" (JR.local "gameAdState") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createHighScore_1 : JR.Method
+jm_createHighScore_1 jheap jthis jargs =
+    JR.method [ ( "score", "J" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameInfo" "" (JR.invoke "getGameInfo_0" (JR.thisField "gameLayerManager") []), 
+                    JR.return (JR.new HighScore.jnew_4 [ (JR.int 0), (JR.str "NONE"), (JR.new GameInfo.jnew_5 [ (JR.invoke "getGameType_0" (JR.local "gameInfo") []), (JR.invoke "getGameMode_0" (JR.local "gameInfo") []), (JR.field "PLAYER_TYPE_ONE" (JR.callStatic PlayerTypesFactory.jm_getInstance_0 [])), (JR.int 0), (JR.int 0) ]), (JR.local "score") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHighScore_5 : JR.Method
+jm_setHighScore_5 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "name", "" ), ( "score", "J" ), ( "autoSubmit", "Z" ), ( "isLast", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setHighScore_6" (JR.thisField "gameBehavior") [ (JR.local "abeClientInformation"), JR.this, (JR.local "name"), (JR.local "score"), (JR.local "autoSubmit"), (JR.local "isLast") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHighScore2_5 : JR.Method
+jm_setHighScore2_5 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "name", "" ), ( "score", "J" ), ( "autoSubmit", "Z" ), ( "isLast", "Z" ) ] ""
+        (JR.run [ 
+                    JR.declare "highScore" "" (JR.invoke "createHighScore_1" JR.this [ (JR.local "score") ]), 
+                    JR.declare "textBox" "" (JR.new HighScoreTextBox.jnew_9 [ (JR.thisField "highScoresFactoryInterface"), (JR.thisField "highScoresHelper"), (JR.local "abeClientInformation"), (JR.invoke "getGameInfo_0" (JR.thisField "gameLayerManager") []), (JR.invoke "getCustomCommandListener_0" JR.this []), (JR.local "name"), (JR.local "highScore"), (JR.invoke "getBackgroundBasicColor_0" (JR.thisField "gameLayerManager") []), (JR.invoke "getForegroundBasicColor_0" (JR.thisField "gameLayerManager") []) ]), 
+                    JR.ifElse (JR.local "isLast") (JR.run [ 
+                        JR.exec (JR.invoke "commandAction_2" (JR.invoke "getCustomCommandListener_0" JR.this []) [ (JR.field "SET_MENU_DISPLAYABLE" (JR.callStatic GameCommandsFactory.jm_getInstance_0 [])), (JR.local "textBox") ]) ]) identity, 
+                    JR.ifElse (JR.local "autoSubmit") (JR.run [ 
+                        JR.exec (JR.invoke "runTask_1" (JR.callStatic SecondaryThreadPool.jm_getInstance_0 []) [ (JR.new SaveHighScoreRunnable.jnew_2 [ (JR.local "isLast"), (JR.local "textBox") ]) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameStateTimeHelper_0 : JR.Method
+jm_getGameStateTimeHelper_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameStateTimeHelper") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInitialized_1 : JR.Method
+jm_setInitialized_1 jheap jthis jargs =
+    JR.method [ ( "initialized", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "initialized" "Z" JR.this (JR.local "initialized")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isInitialized_0 : JR.Method
+jm_isInitialized_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "initialized") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSourceId_0 : JR.Method
+jm_getSourceId_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return jstatic_id ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setProgressPaintable_1 : JR.Method
+jm_setProgressPaintable_1 jheap jthis jargs =
+    JR.method [ ( "paintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "progressPaintable" "" JR.this (JR.local "paintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getStartIntermissionInterface_0 : JR.Method
+jm_getStartIntermissionInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "startIntermissionInterface") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getEndLevelIntermissionInterface_0 : JR.Method
+jm_getEndLevelIntermissionInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "endLevelIntermissionInterface") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setTouchPaintableP_1 : JR.Method
+jm_setTouchPaintableP_1 jheap jthis jargs =
+    JR.method [ ( "paintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "touchPaintable" "" JR.this (JR.local "paintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTouchPaintableP_0 : JR.Method
+jm_getTouchPaintableP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "touchPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setEndGamePaintable_1 : JR.Method
+jm_setEndGamePaintable_1 jheap jthis jargs =
+    JR.method [ ( "endGamePaintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "endGamePaintable" "" JR.this (JR.local "endGamePaintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getEndGamePaintable_0 : JR.Method
+jm_getEndGamePaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "endGamePaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setIntermissionPaintable_1 : JR.Method
+jm_setIntermissionPaintable_1 jheap jthis jargs =
+    JR.method [ ( "intermissionPaintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "intermissionPaintable" "" JR.this (JR.local "intermissionPaintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getIntermissionPaintable_0 : JR.Method
+jm_getIntermissionPaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "intermissionPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getEndGameInfoP_0 : JR.Method
+jm_getEndGameInfoP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "endGameInfo") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHighScoresPaintable_1 : JR.Method
+jm_setHighScoresPaintable_1 jheap jthis jargs =
+    JR.method [ ( "highScoresPaintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "highScoresPaintable" "" JR.this (JR.local "highScoresPaintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHighScoresPaintable_0 : JR.Method
+jm_getHighScoresPaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "highScoresPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRealHighScoresPaintable_0 : JR.Method
+jm_getRealHighScoresPaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "realHighScoresPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clearPlayerGameInputList_0 : JR.Method
+jm_clearPlayerGameInputList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "playerGameInput" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "localPlayerGameInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN115314 -> (JR.setLocal "index" "I" (JR.lit jwN115314))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "playerGameInput" "" (JR.invoke "get_1" (JR.thisField "localPlayerGameInputList") [ (JR.local "index") ])), 
+                        JR.exec (JR.invoke "removeListener_1" (JR.thisField "gameKeyEventHandler") [ (JR.local "playerGameInput") ]) ]) ], 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "localPlayerGameInputList") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addPlayerGameInput_1 : JR.Method
+jm_addPlayerGameInput_1 jheap jthis jargs =
+    JR.method [ ( "playerGameInput", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "localPlayerGameInputList") [ (JR.local "playerGameInput") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMenuInputProcessor_1 : JR.Method
+jm_setMenuInputProcessor_1 jheap jthis jargs =
+    JR.method [ ( "menuInputProcessor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "menuInputProcessor" "" JR.this (JR.local "menuInputProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMenuInputProcessor_0 : JR.Method
+jm_getMenuInputProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "menuInputProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMenuForm_0 : JR.Method
+jm_getMenuForm_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "menuForm") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMenuForm_1 : JR.Method
+jm_setMenuForm_1 jheap jthis jargs =
+    JR.method [ ( "menuForm", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "menuForm" "" JR.this (JR.local "menuForm")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getStartLevel_0 : JR.Method
+jm_getStartLevel_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "startLevel") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setStartLevel_1 : JR.Method
+jm_setStartLevel_1 jheap jthis jargs =
+    JR.method [ ( "startLevel", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "startLevel" "I" JR.this (JR.local "startLevel")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setTouchButtonsPaintable_1 : JR.Method
+jm_setTouchButtonsPaintable_1 jheap jthis jargs =
+    JR.method [ ( "touchButtonsPaintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "touchButtonsPaintable" "" JR.this (JR.local "touchButtonsPaintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTouchButtonsPaintable_0 : JR.Method
+jm_getTouchButtonsPaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "touchButtonsPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setGameInputProcessor_1 : JR.Method
+jm_setGameInputProcessor_1 jheap jthis jargs =
+    JR.method [ ( "gameInputProcessor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "gameInputProcessor" "" JR.this (JR.local "gameInputProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameInputProcessor_0 : JR.Method
+jm_getGameInputProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameInputProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setEndGameProcessor_1 : JR.Method
+jm_setEndGameProcessor_1 jheap jthis jargs =
+    JR.method [ ( "endGameProcessor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "endGameProcessor" "" JR.this (JR.local "endGameProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getEndGameProcessor_0 : JR.Method
+jm_getEndGameProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "endGameProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setEndGameStatePaintable_1 : JR.Method
+jm_setEndGameStatePaintable_1 jheap jthis jargs =
+    JR.method [ ( "endGameStatePaintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "endGameStatePaintable" "" JR.this (JR.local "endGameStatePaintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getEndGameStatePaintable_0 : JR.Method
+jm_getEndGameStatePaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "endGameStatePaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setNonBotPaintableP_1 : JR.Method
+jm_setNonBotPaintableP_1 jheap jthis jargs =
+    JR.method [ ( "nonBotPaintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "nonBotPaintable" "" JR.this (JR.local "nonBotPaintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNonBotPaintableP_0 : JR.Method
+jm_getNonBotPaintableP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "nonBotPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setStartIntermissionPaintable_1 : JR.Method
+jm_setStartIntermissionPaintable_1 jheap jthis jargs =
+    JR.method [ ( "startIntermissionPaintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "startIntermissionPaintable" "" JR.this (JR.local "startIntermissionPaintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getStartIntermissionPaintable_0 : JR.Method
+jm_getStartIntermissionPaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "startIntermissionPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMainStateProcessor_1 : JR.Method
+jm_setMainStateProcessor_1 jheap jthis jargs =
+    JR.method [ ( "mainStateProcessor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "mainStateProcessor" "" JR.this (JR.local "mainStateProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMainStateProcessor_0 : JR.Method
+jm_getMainStateProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "mainStateProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setProcessGameProcessor_1 : JR.Method
+jm_setProcessGameProcessor_1 jheap jthis jargs =
+    JR.method [ ( "processGameProcessor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "processGameProcessor" "" JR.this (JR.local "processGameProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getProcessGameProcessor_0 : JR.Method
+jm_getProcessGameProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "processGameProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setOpenMenuPaintable_1 : JR.Method
+jm_setOpenMenuPaintable_1 jheap jthis jargs =
+    JR.method [ ( "openMenuPaintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "openMenuPaintable" "" JR.this (JR.local "openMenuPaintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getOpenMenuPaintable_0 : JR.Method
+jm_getOpenMenuPaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "openMenuPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPopupMenuInputProcessor_1 : JR.Method
+jm_setPopupMenuInputProcessor_1 jheap jthis jargs =
+    JR.method [ ( "popupMenuInputProcessor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "popupMenuInputProcessor" "" JR.this (JR.local "popupMenuInputProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPopupMenuInputProcessor_0 : JR.Method
+jm_getPopupMenuInputProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "popupMenuInputProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSensorGameUpdateProcessor_0 : JR.Method
+jm_getSensorGameUpdateProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "sensorGameUpdateProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRawGameInputProcessor_0 : JR.Method
+jm_getRawGameInputProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "rawGameInputProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRawInputProcessor_0 : JR.Method
+jm_getRawInputProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "rawInputProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInputProcessor_1 : JR.Method
+jm_setInputProcessor_1 jheap jthis jargs =
+    JR.method [ ( "inputProcessor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "inputProcessor" "" JR.this (JR.local "inputProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInputProcessor_0 : JR.Method
+jm_getInputProcessor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "inputProcessor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMenuPaintable_1 : JR.Method
+jm_setMenuPaintable_1 jheap jthis jargs =
+    JR.method [ ( "menuPaintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "menuPaintable" "" JR.this (JR.local "menuPaintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMenuPaintable_0 : JR.Method
+jm_getMenuPaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "menuPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFormPaintable_1 : JR.Method
+jm_setFormPaintable_1 jheap jthis jargs =
+    JR.method [ ( "formPaintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "formPaintable" "" JR.this (JR.local "formPaintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFormPaintable_0 : JR.Method
+jm_getFormPaintable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "formPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setGameSpecificPaintableP_1 : JR.Method
+jm_setGameSpecificPaintableP_1 jheap jthis jargs =
+    JR.method [ ( "gameSpecificPaintable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "gameSpecificPaintable" "" JR.this (JR.local "gameSpecificPaintable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameSpecificPaintableP_0 : JR.Method
+jm_getGameSpecificPaintableP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameSpecificPaintable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isSingleThread_0 : JR.Method
+jm_isSingleThread_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.or (JR.invoke "isAnyThreed_0" (JR.callStatic OpenGLFeatureUtil.jm_getInstance_0 []) []) SWTUtil.jstatic_isSWT) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isRunningInAnotherThread_0 : JR.Method
+jm_isRunningInAnotherThread_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.declare "openGLFeatureFactory" "" (JR.callStatic OpenGLFeatureFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isDefault_1" (JR.local "features") [ (JR.field "OPENGL_AS_GAME_THREAD" (JR.local "openGLFeatureFactory")) ]) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.invoke "isRunning_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getType_0 : JR.Method
+jm_getType_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return jstatic_TYPE ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTitle_0 : JR.Method
+jm_getTitle_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callVia RunnableCanvas.jvtable "getTitle_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isPaused_0 : JR.Method
+jm_isPaused_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.callVia RunnableCanvas.jvtable "isPaused_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

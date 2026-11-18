@@ -1,120 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.graphics.hud
-module BasicHudFactory where
+module Org.Allbinary.Game.Graphics.Hud.BasicHudFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.game.graphics.hud
+-}
 
-data BasicHudFactory = BasicHudFactory
-    { header_ :: JavaHeader
-    , dIRECTION_EXCEPTION :: IORef (String)
-    , vERTICAL :: IORef (Int)
-    , hORIZONTAL :: IORef (Int)
-    , bOTTOMLEFT :: IORef (Int)
-    , bOTTOMRIGHT :: IORef (Int)
-    , tOPLEFT :: IORef (Int)
-    , tOPRIGHT :: IORef (Int)
-    , bOTTOMCENTER :: IORef (Int)
-    , tOPCENTER :: IORef (Int)
-    , aBSOLUTE :: IORef (Int)
-    }
-
-instance JavaNull BasicHudFactory where
-    javaNull = javaNullRecord "BasicHudFactory"
-
-instance JavaEquals BasicHudFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicHudFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicHudFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: BasicHudFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BasicHudFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    dIRECTION_EXCEPTION <- newIORef ""
-    vERTICAL <- newIORef 0
-    hORIZONTAL <- newIORef 0
-    bOTTOMLEFT <- newIORef 0
-    bOTTOMRIGHT <- newIORef 0
-    tOPLEFT <- newIORef 0
-    tOPRIGHT <- newIORef 0
-    bOTTOMCENTER <- newIORef 0
-    tOPCENTER <- newIORef 0
-    aBSOLUTE <- newIORef 0
-    let this = BasicHudFactory header_ dIRECTION_EXCEPTION vERTICAL hORIZONTAL bOTTOMLEFT bOTTOMRIGHT tOPLEFT tOPRIGHT bOTTOMCENTER tOPCENTER aBSOLUTE
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: BasicHudFactory -> IO ()
-initFields_ this = do
-    jset this.dIRECTION_EXCEPTION ("Only Horizontal Direction is Allowed Currently")
-    jset this.vERTICAL (0)
-    jset this.hORIZONTAL (1)
-    jset this.bOTTOMLEFT (0)
-    jset this.bOTTOMRIGHT (1)
-    jset this.tOPLEFT (2)
-    jset this.tOPRIGHT (3)
-    jset this.bOTTOMCENTER (4)
-    jset this.tOPCENTER (5)
-    jset this.aBSOLUTE (6)
-    pure ()
+import JR
 
 
-getInstance :: IO (BasicHudFactory)
-getInstance = do
-        pure (BasicHudFactory.instance_)
 
-new_ :: IO BasicHudFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jclass : String
+jclass =
+    "BasicHudFactory"
 
-init_ :: BasicHudFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jchain : List String
+jchain =
+    [ "BasicHudFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "DIRECTION_EXCEPTION", JR.defaultOf "" ), ( "VERTICAL", JR.defaultOf "I" ), ( "HORIZONTAL", JR.defaultOf "I" ), ( "BOTTOMLEFT", JR.defaultOf "I" ), ( "BOTTOMRIGHT", JR.defaultOf "I" ), ( "TOPLEFT", JR.defaultOf "I" ), ( "TOPRIGHT", JR.defaultOf "I" ), ( "BOTTOMCENTER", JR.defaultOf "I" ), ( "TOPCENTER", JR.defaultOf "I" ), ( "ABSOLUTE", JR.defaultOf "I" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicHudFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "BasicHudFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "DIRECTION_EXCEPTION" "" JR.this (JR.str "Only Horizontal Direction is Allowed Currently")),
+                JR.exec (JR.setField "VERTICAL" "I" JR.this (JR.int 0)),
+                JR.exec (JR.setField "HORIZONTAL" "I" JR.this (JR.int 1)),
+                JR.exec (JR.setField "BOTTOMLEFT" "I" JR.this (JR.int 0)),
+                JR.exec (JR.setField "BOTTOMRIGHT" "I" JR.this (JR.int 1)),
+                JR.exec (JR.setField "TOPLEFT" "I" JR.this (JR.int 2)),
+                JR.exec (JR.setField "TOPRIGHT" "I" JR.this (JR.int 3)),
+                JR.exec (JR.setField "BOTTOMCENTER" "I" JR.this (JR.int 4)),
+                JR.exec (JR.setField "TOPCENTER" "I" JR.this (JR.int 5)),
+                JR.exec (JR.setField "ABSOLUTE" "I" JR.this (JR.int 6)),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,184 +1,154 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.time
-module TimeHudWidget (module TimeHudWidget, module BasicHud) where
+module Org.Allbinary.Game.Ag.Layer.Hud.Basic.Time.TimeHudWidget exposing (..)
 
-import BasicHud hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, update, update_super, update_impl, set, set_super, set_impl, getTimer, getTimer_super, getTimer_impl, paint, paint_super, paint_impl, tIME_STRING, tIME_CHAR_ARRAY, offset, string, totalDigits, timer)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HudTimer -- same package or java.lang
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified BasicHud -- org.allbinary.game.graphics.hud.BasicHud
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified PrimitiveLongSingleton -- org.allbinary.logic.math.PrimitiveLongSingleton
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.hud.basic.time
+-}
 
-data TimeHudWidget = TimeHudWidget
-    { header_ :: JavaHeader
-    , base :: BasicHud.BasicHud
-    , tIME_STRING :: IORef (String)
-    , tIME_CHAR_ARRAY :: IORef (JavaArray (Char))
-    , offset :: IORef (Int)
-    , string :: IORef (JavaArray (Char))
-    , totalDigits :: IORef (Int)
-    , timer :: IORef (HudTimer.HudTimer)
-    }
-
-instance JavaNull TimeHudWidget where
-    javaNull = javaNullRecord "TimeHudWidget"
-
-instance JavaEquals TimeHudWidget where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TimeHudWidget where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TimeHudWidget where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO TimeHudWidget
-newRecord_ = do
-    base <- BasicHud.newRecord_
-    let header_ = base.header_
-    tIME_STRING <- newIORef ""
-    tIME_CHAR_ARRAY <- newIORef javaNull
-    offset <- newIORef 0
-    string <- newIORef javaNull
-    totalDigits <- newIORef 0
-    timer <- newIORef javaNull
-    let this = TimeHudWidget header_ base tIME_STRING tIME_CHAR_ARRAY offset string totalDigits timer
-    jregisterLevel header_ this
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "set" (\() -> set_impl this)
-    jregisterMethod header_ "getTimer" (\() -> getTimer_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: TimeHudWidget -> IO ()
-initFields_ this = do
-    jset this.tIME_STRING ("Time ")
-    jset this.tIME_CHAR_ARRAY ((jarrayFromList ['T', 'i', 'm', 'e', ' '] :: JavaArray Char))
-    jset this.offset (0)
-    jset this.string ((jget ((jio (PrimitiveLongSingleton.getInstance))).zERO))
-    jset this.totalDigits (1)
-    jset this.timer (javaNull)
-    pure ()
+import JR
+import Org.Allbinary.Game.Graphics.Hud.BasicHud as BasicHud
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Logic.Math.PrimitiveLongSingleton as PrimitiveLongSingleton
 
 
--- throws Exception
-getInstance :: Int -> Int -> BasicColor.BasicColor -> HudTimer.HudTimer -> IO (TimeHudWidget)
-getInstance location direction basicColor timer = do
-        (new_5 location direction 2 basicColor timer)
-
-new_5 :: Int -> Int -> Int -> BasicColor.BasicColor -> HudTimer.HudTimer -> IO TimeHudWidget
-new_5 location direction bufferZone basicColor timer = do
-    this <- newRecord_
-    init_5 this location direction bufferZone basicColor timer
-    pure this
-
-init_5 :: TimeHudWidget -> Int -> Int -> Int -> BasicColor.BasicColor -> HudTimer.HudTimer -> IO ()
-init_5 this location direction bufferZone basicColor timer = do
-        BasicHud.init_4 this.base (location) (direction) (bufferZone) (basicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).timer (timer)
-        Control.Monad.void (TimeHudWidget.set this)
-        jset (this).base.updateMaxHeight (14)
-        pure ()
+jclass : String
+jclass =
+    "TimeHudWidget"
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: TimeHudWidget))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: TimeHudWidget)) a1
-
-updateMeasurement_impl :: TimeHudWidget -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        jset (this).base.updateMaxWidth (((jio (Font.getSize font)) * 5))
-        jset (this).offset (((jio (Font.stringWidth font (jget (this).tIME_STRING))) + (jio (MyFontProcessor.defaultStringWidth font 3))))
-        Control.Monad.void (BasicHud.updateMeasurement_super this.base graphics)
-        pure ()
+jchain : List String
+jchain =
+    [ "TimeHudWidget" ]
+        ++ BasicHud.jchain
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: TimeHudWidget))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: TimeHudWidget))
-
-update_impl :: TimeHudWidget -> IO (())
-update_impl this = do
-        Control.Monad.void (HudTimer.update ((jget (this).timer)))
-        Control.Monad.void (TimeHudWidget.set this)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicHud.jfields ++ [ ( "TIME_STRING", JR.defaultOf "" ), ( "TIME_CHAR_ARRAY", JR.defaultOf "" ), ( "offset", JR.defaultOf "I" ), ( "string", JR.defaultOf "" ), ( "totalDigits", JR.defaultOf "I" ), ( "timer", JR.defaultOf "" ) ]
 
 
-set :: (JavaObjectClass this_) => this_ -> IO (())
-set object_ = jmethod object_ "set" (\() -> (set_impl (javaCast object_ :: TimeHudWidget))) ()
-
-set_super :: (JavaObjectClass this_) => this_ -> IO (())
-set_super object_ = (set_impl (javaCast object_ :: TimeHudWidget))
-
-set_impl :: TimeHudWidget -> IO (())
-set_impl this = do
-        assignedValue <- (HudTimer.getTimeChars ((jget (this).timer)))
-        jset (this).string (assignedValue)
-        assignedValue <- (HudTimer.getCurrentTotalDigits ((jget (this).timer)))
-        jset (this).totalDigits (assignedValue)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_4", jm_getInstance_4 )
+        , ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "update_0", jm_update_0 )
+        , ( "set_0", jm_set_0 )
+        , ( "getTimer_0", jm_getTimer_0 )
+        , ( "paint_1", jm_paint_1 ) ]
+        BasicHud.jvtable
 
 
-getTimer :: (JavaObjectClass this_) => this_ -> IO (HudTimer.HudTimer)
-getTimer object_ = jmethod object_ "getTimer" (\() -> (getTimer_impl (javaCast object_ :: TimeHudWidget))) ()
-
-getTimer_super :: (JavaObjectClass this_) => this_ -> IO (HudTimer.HudTimer)
-getTimer_super object_ = (getTimer_impl (javaCast object_ :: TimeHudWidget))
-
-getTimer_impl :: TimeHudWidget -> IO (HudTimer.HudTimer)
-getTimer_impl this = do
-        pure ((jget (this).timer))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TimeHudWidget"
+        [ ( "jm_getInstance_4", jm_getInstance_4 ), ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_update_0", jm_update_0 ), ( "jm_set_0", jm_set_0 ), ( "jm_getTimer_0", jm_getTimer_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_5", jnew_5 ), ( "jinit_5", jinit_5 ) ]
+        []
+        jheap
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: TimeHudWidget))) () a1
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: TimeHudWidget)) a1
 
-paint_impl :: TimeHudWidget -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (BasicHud.paintDX_super this.base graphics (jget (this).tIME_CHAR_ARRAY) 0 (jlength (jget (this).tIME_CHAR_ARRAY)) (jget (this).string) 0 (jget (this).totalDigits) (jget (this).offset))
-        pure ()
+jinit_5 : JR.Method
+jinit_5 jheap jthis jargs =
+    JR.method [ ( "location", "I" ), ( "direction", "I" ), ( "bufferZone", "I" ), ( "basicColor", "" ), ( "timer", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicHud.jinit_4 JR.this [ (JR.local "location"), (JR.local "direction"), (JR.local "bufferZone"), (JR.local "basicColor") ]),
+                JR.exec (JR.setField "TIME_STRING" "" JR.this (JR.str "Time ")),
+                JR.exec (JR.setField "TIME_CHAR_ARRAY" "" JR.this (JR.arrayOf "C" [ (JR.char 84), (JR.char 105), (JR.char 109), (JR.char 101), (JR.char 32) ])),
+                JR.exec (JR.setField "string" "" JR.this (JR.field "ZERO" (JR.callStatic PrimitiveLongSingleton.jm_getInstance_0 []))),
+                JR.exec (JR.setField "totalDigits" "I" JR.this (JR.int 1)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "timer" "" JR.this (JR.local "timer")), 
+                    JR.exec (JR.invoke "set_0" JR.this []), 
+                    JR.exec (JR.setField "updateMaxHeight" "" JR.this (JR.int 14)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_5 : JR.Method
+jnew_5 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_5 jheap jthis jargs
+
+
+jm_getInstance_4 : JR.Method
+jm_getInstance_4 jheap jthis jargs =
+    JR.method [ ( "location", "I" ), ( "direction", "I" ), ( "basicColor", "" ), ( "timer", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_5 [ (JR.local "location"), (JR.local "direction"), (JR.int 2), (JR.local "basicColor"), (JR.local "timer") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "updateMaxWidth" "" JR.this (JR.map2 JR.mul (JR.invoke "getSize_0" (JR.local "font") []) (JR.int 5))), 
+                    JR.exec (JR.setField "offset" "I" JR.this (JR.plus (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.thisField "TIME_STRING") ]) (JR.callStatic MyFontProcessor.jm_defaultStringWidth_2 [ (JR.local "font"), (JR.int 3) ]))), 
+                    JR.exec (JR.callVia BasicHud.jvtable "updateMeasurement_1" JR.this [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "update_0" (JR.thisField "timer") []), 
+                    JR.exec (JR.invoke "set_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_set_0 : JR.Method
+jm_set_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "string" "" JR.this (JR.invoke "getTimeChars_0" (JR.thisField "timer") [])), 
+                    JR.exec (JR.setField "totalDigits" "I" JR.this (JR.invoke "getCurrentTotalDigits_0" (JR.thisField "timer") [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTimer_0 : JR.Method
+jm_getTimer_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "timer") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia BasicHud.jvtable "paintDX_8" JR.this [ (JR.local "graphics"), (JR.thisField "TIME_CHAR_ARRAY"), (JR.int 0), (JR.alength (JR.thisField "TIME_CHAR_ARRAY")), (JR.thisField "string"), (JR.int 0), (JR.thisField "totalDigits"), (JR.thisField "offset") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

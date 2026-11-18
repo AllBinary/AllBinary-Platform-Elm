@@ -1,104 +1,104 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
-module CollidableNeverCollideBehaviorFactory (module CollidableNeverCollideBehaviorFactory, module CollidableBaseBehaviorFactory) where
+module Org.Allbinary.Game.Collision.CollidableNeverCollideBehaviorFactory exposing (..)
 
-import CollidableBaseBehaviorFactory hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, createBehavior, createBehavior_super, createBehavior_impl, instanceC, instance_)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CollidableNeverCollideBehavior -- same package or java.lang
-import qualified CollidableBaseBehavior -- same package or java.lang
-import qualified CollidableBaseBehaviorFactory
+{-| Generated Code Do Not Modify package org.allbinary.game.collision
+-}
 
-data CollidableNeverCollideBehaviorFactory = CollidableNeverCollideBehaviorFactory
-    { header_ :: JavaHeader
-    , base :: CollidableBaseBehaviorFactory.CollidableBaseBehaviorFactory
-    , instance_ :: IORef (CollidableNeverCollideBehavior.CollidableNeverCollideBehavior)
-    }
-
-instance JavaNull CollidableNeverCollideBehaviorFactory where
-    javaNull = javaNullRecord "CollidableNeverCollideBehaviorFactory"
-
-instance JavaEquals CollidableNeverCollideBehaviorFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CollidableNeverCollideBehaviorFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CollidableNeverCollideBehaviorFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instanceC :: CollidableNeverCollideBehaviorFactory
-{-# NOINLINE instanceC #-}
-instanceC = unsafePerformIO ((new_))
-
-newRecord_ :: IO CollidableNeverCollideBehaviorFactory
-newRecord_ = do
-    base <- CollidableBaseBehaviorFactory.newRecord_
-    let header_ = base.header_
-    instance_ <- newIORef javaNull
-    let this = CollidableNeverCollideBehaviorFactory header_ base instance_
-    jregisterLevel header_ this
-    jregisterMethod header_ "createBehavior" (\() -> createBehavior_impl this)
-    pure this
-
-initFields_ :: CollidableNeverCollideBehaviorFactory -> IO ()
-initFields_ this = do
-    jset this.instance_ =<< (CollidableNeverCollideBehavior.new_1 False)
-    pure ()
-
-new_ :: IO CollidableNeverCollideBehaviorFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CollidableNeverCollideBehaviorFactory -> IO ()
-init_ this = do
-    CollidableBaseBehaviorFactory.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Collision.CollidableBaseBehaviorFactory as CollidableBaseBehaviorFactory
+import Org.Allbinary.Game.Collision.CollidableNeverCollideBehavior as CollidableNeverCollideBehavior
 
 
-getInstance :: IO (CollidableNeverCollideBehaviorFactory)
-getInstance = do
-        pure (CollidableNeverCollideBehaviorFactory.instanceC)
+jclass : String
+jclass =
+    "CollidableNeverCollideBehaviorFactory"
 
 
-createBehavior :: (JavaObjectClass this_) => this_ -> IO (CollidableBaseBehavior.CollidableBaseBehavior)
-createBehavior object_ = jmethod object_ "createBehavior" (\() -> (createBehavior_impl (javaCast object_ :: CollidableNeverCollideBehaviorFactory))) ()
+jchain : List String
+jchain =
+    [ "CollidableNeverCollideBehaviorFactory" ]
+        ++ CollidableBaseBehaviorFactory.jchain
 
-createBehavior_super :: (JavaObjectClass this_) => this_ -> IO (CollidableBaseBehavior.CollidableBaseBehavior)
-createBehavior_super object_ = (createBehavior_impl (javaCast object_ :: CollidableNeverCollideBehaviorFactory))
 
-createBehavior_impl :: CollidableNeverCollideBehaviorFactory -> IO (CollidableBaseBehavior.CollidableBaseBehavior)
-createBehavior_impl this = do
-        pure ((javaCast (jget (this).instance_) :: CollidableBaseBehavior.CollidableBaseBehavior))
+jfields : List ( String, JR.JValue )
+jfields =
+    CollidableBaseBehaviorFactory.jfields ++ [ ( "instance", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "createBehavior_0", jm_createBehavior_0 ) ]
+        CollidableBaseBehaviorFactory.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CollidableNeverCollideBehaviorFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_createBehavior_0", jm_createBehavior_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instanceC", jstatic_instanceC ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instanceC : JR.M
+jstatic_instanceC s =
+    JR.static "CollidableNeverCollideBehaviorFactory" jclinit "instanceC"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect CollidableBaseBehaviorFactory.jinit_0 JR.this []),
+            JR.exec (JR.setField "instance" "" JR.this (JR.new CollidableNeverCollideBehavior.jnew_1 [ (JR.bool False) ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instanceC ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createBehavior_0 : JR.Method
+jm_createBehavior_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "instance") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,185 +1,159 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module HighScoresHelperBase where
+module Org.Allbinary.Game.Score.HighScoresHelperBase exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LastFetchHighScoresFactory -- same package or java.lang
-import qualified HighScores -- same package or java.lang
-import qualified NullHighScoresSingletonFactory -- same package or java.lang
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified HighScoresHelperBaseInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
--- implements HighScoresHelperBaseInterface
-data HighScoresHelperBase = HighScoresHelperBase
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , highScoresArrayP :: IORef (JavaArray (HighScores.HighScores))
-    }
-
-instance JavaNull HighScoresHelperBase where
-    javaNull = javaNullRecord "HighScoresHelperBase"
-
-instance JavaEquals HighScoresHelperBase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoresHelperBase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoresHelperBase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO HighScoresHelperBase
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    highScoresArrayP <- newIORef javaNull
-    let this = HighScoresHelperBase header_ logUtil highScoresArrayP
-    jregisterLevel header_ this
-    HighScoresHelperBaseInterface.registerInterface_ header_
-    jregisterMethod header_ "setHighScoresArray" (\() -> setHighScoresArray_impl this)
-    jregisterMethod header_ "getNextHighScores" (\() -> getNextHighScores_impl this)
-    jregisterMethod header_ "isAnyHighScores" (\() -> isAnyHighScores_impl this)
-    jregisterMethod header_ "setSelectedHighScores" (\() -> setSelectedHighScores_impl this)
-    jregisterMethod header_ "getSelectedHighScores" (\() -> getSelectedHighScores_impl this)
-    jregisterMethod header_ "getHighScoresArray" (\() -> getHighScoresArray_impl this)
-    jregisterMethod header_ "selectHighScores" (\() -> selectHighScores_impl this)
-    pure this
-
-initFields_ :: HighScoresHelperBase -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.highScoresArrayP ((jget ((jio (LastFetchHighScoresFactory.getInstance))).highScoresArray))
-    pure ()
-
-new_ :: IO HighScoresHelperBase
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: HighScoresHelperBase -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Score.HighScoresHelperBaseInterface as HighScoresHelperBaseInterface
+import Org.Allbinary.Game.Score.LastFetchHighScoresFactory as LastFetchHighScoresFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Score.NullHighScoresSingletonFactory as NullHighScoresSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-setHighScoresArray :: (JavaObjectClass this_) => this_ -> JavaArray (HighScores.HighScores) -> IO (())
-setHighScoresArray object_ a1 = jmethod object_ "setHighScoresArray" (\() -> (setHighScoresArray_impl (javaCast object_ :: HighScoresHelperBase))) () a1
-
-setHighScoresArray_super :: (JavaObjectClass this_) => this_ -> JavaArray (HighScores.HighScores) -> IO (())
-setHighScoresArray_super object_ a1 = (setHighScoresArray_impl (javaCast object_ :: HighScoresHelperBase)) a1
-
-setHighScoresArray_impl :: HighScoresHelperBase -> JavaArray (HighScores.HighScores) -> IO (())
-setHighScoresArray_impl this highScoresArrayP = do
-        if (highScoresArrayP /= javaNull) then do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (commonStrings).sTART)))) (jlength highScoresArrayP)))))) this "setHighScoresArray")
-        else do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget (commonStrings).sTART) this "setHighScoresArray")
-        jset (this).highScoresArrayP (highScoresArrayP)
-        pure ()
+jclass : String
+jclass =
+    "HighScoresHelperBase"
 
 
-getNextHighScores :: (JavaObjectClass this_) => this_ -> IO (HighScores.HighScores)
-getNextHighScores object_ = jmethod object_ "getNextHighScores" (\() -> (getNextHighScores_impl (javaCast object_ :: HighScoresHelperBase))) ()
-
-getNextHighScores_super :: (JavaObjectClass this_) => this_ -> IO (HighScores.HighScores)
-getNextHighScores_super object_ = (getNextHighScores_impl (javaCast object_ :: HighScoresHelperBase))
-
-getNextHighScores_impl :: HighScoresHelperBase -> IO (HighScores.HighScores)
-getNextHighScores_impl this = do
-        (NullHighScoresSingletonFactory.getInstance)
+jchain : List String
+jchain =
+    [ "HighScoresHelperBase" ]
+        ++ HighScoresHelperBaseInterface.jchain
 
 
-isAnyHighScores :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isAnyHighScores object_ = jmethod object_ "isAnyHighScores" (\() -> (isAnyHighScores_impl (javaCast object_ :: HighScoresHelperBase))) ()
-
-isAnyHighScores_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isAnyHighScores_super object_ = (isAnyHighScores_impl (javaCast object_ :: HighScoresHelperBase))
-
-isAnyHighScores_impl :: HighScoresHelperBase -> IO (Bool)
-isAnyHighScores_impl this = do
-        javaThrow ((JavaException "RuntimeException" ""))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "highScoresArrayP", JR.defaultOf "" ) ]
 
 
-setSelectedHighScores :: (JavaObjectClass this_) => this_ -> HighScores.HighScores -> IO (())
-setSelectedHighScores object_ a1 = jmethod object_ "setSelectedHighScores" (\() -> (setSelectedHighScores_impl (javaCast object_ :: HighScoresHelperBase))) () a1
-
-setSelectedHighScores_super :: (JavaObjectClass this_) => this_ -> HighScores.HighScores -> IO (())
-setSelectedHighScores_super object_ a1 = (setSelectedHighScores_impl (javaCast object_ :: HighScoresHelperBase)) a1
-
-setSelectedHighScores_impl :: HighScoresHelperBase -> HighScores.HighScores -> IO (())
-setSelectedHighScores_impl this selectedHighScores = do
-        pure ()
-
-
-getSelectedHighScores :: (JavaObjectClass this_) => this_ -> IO (HighScores.HighScores)
-getSelectedHighScores object_ = jmethod object_ "getSelectedHighScores" (\() -> (getSelectedHighScores_impl (javaCast object_ :: HighScoresHelperBase))) ()
-
-getSelectedHighScores_super :: (JavaObjectClass this_) => this_ -> IO (HighScores.HighScores)
-getSelectedHighScores_super object_ = (getSelectedHighScores_impl (javaCast object_ :: HighScoresHelperBase))
-
-getSelectedHighScores_impl :: HighScoresHelperBase -> IO (HighScores.HighScores)
-getSelectedHighScores_impl this = do
-        (NullHighScoresSingletonFactory.getInstance)
+jvtable =
+    JR.vtable
+        [ ( "setHighScoresArray_1", jm_setHighScoresArray_1 )
+        , ( "getNextHighScores_0", jm_getNextHighScores_0 )
+        , ( "isAnyHighScores_0", jm_isAnyHighScores_0 )
+        , ( "setSelectedHighScores_1", jm_setSelectedHighScores_1 )
+        , ( "getSelectedHighScores_0", jm_getSelectedHighScores_0 )
+        , ( "getHighScoresArray_0", jm_getHighScoresArray_0 )
+        , ( "selectHighScores_0", jm_selectHighScores_0 ) ]
+        JR.noMethods
 
 
-getHighScoresArray :: (JavaObjectClass this_) => this_ -> IO (JavaArray (HighScores.HighScores))
-getHighScoresArray object_ = jmethod object_ "getHighScoresArray" (\() -> (getHighScoresArray_impl (javaCast object_ :: HighScoresHelperBase))) ()
-
-getHighScoresArray_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (HighScores.HighScores))
-getHighScoresArray_super object_ = (getHighScoresArray_impl (javaCast object_ :: HighScoresHelperBase))
-
-getHighScoresArray_impl :: HighScoresHelperBase -> IO (JavaArray (HighScores.HighScores))
-getHighScoresArray_impl this = do
-        pure ((jget (this).highScoresArrayP))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoresHelperBase"
+        [ ( "jm_setHighScoresArray_1", jm_setHighScoresArray_1 ), ( "jm_getNextHighScores_0", jm_getNextHighScores_0 ), ( "jm_isAnyHighScores_0", jm_isAnyHighScores_0 ), ( "jm_setSelectedHighScores_1", jm_setSelectedHighScores_1 ), ( "jm_getSelectedHighScores_0", jm_getSelectedHighScores_0 ), ( "jm_getHighScoresArray_0", jm_getHighScoresArray_0 ), ( "jm_selectHighScores_0", jm_selectHighScores_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
 
-selectHighScores :: (JavaObjectClass this_) => this_ -> IO (())
-selectHighScores object_ = jmethod object_ "selectHighScores" (\() -> (selectHighScores_impl (javaCast object_ :: HighScoresHelperBase))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-selectHighScores_super :: (JavaObjectClass this_) => this_ -> IO (())
-selectHighScores_super object_ = (selectHighScores_impl (javaCast object_ :: HighScoresHelperBase))
 
-selectHighScores_impl :: HighScoresHelperBase -> IO (())
-selectHighScores_impl this = do
-        pure ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "highScoresArrayP" "" JR.this (JR.field "highScoresArray" (JR.callStatic LastFetchHighScoresFactory.jm_getInstance_0 []))),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_setHighScoresArray_1 : JR.Method
+jm_setHighScoresArray_1 jheap jthis jargs =
+    JR.method [ ( "highScoresArrayP", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "highScoresArrayP") JR.null) (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START" (JR.local "commonStrings")) ]) [ (JR.alength (JR.local "highScoresArrayP")) ]) []), JR.this, (JR.str "setHighScoresArray") ]) ]) (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.local "commonStrings")), JR.this, (JR.str "setHighScoresArray") ]) ]), 
+                    JR.exec (JR.setField "highScoresArrayP" "" JR.this (JR.local "highScoresArrayP")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNextHighScores_0 : JR.Method
+jm_getNextHighScores_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic NullHighScoresSingletonFactory.jm_getInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isAnyHighScores_0 : JR.Method
+jm_isAnyHighScores_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setSelectedHighScores_1 : JR.Method
+jm_setSelectedHighScores_1 jheap jthis jargs =
+    JR.method [ ( "selectedHighScores", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSelectedHighScores_0 : JR.Method
+jm_getSelectedHighScores_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic NullHighScoresSingletonFactory.jm_getInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHighScoresArray_0 : JR.Method
+jm_getHighScoresArray_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "highScoresArrayP") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_selectHighScores_0 : JR.Method
+jm_selectHighScores_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,116 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping
-module MotionInputMappingEventListener where
+module Org.Allbinary.Game.Input.Mapping.MotionInputMappingEventListener exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified InputMappingEvent -- org.allbinary.game.input.mapping.event.InputMappingEvent
-import qualified InputMappingEventListenerInterface -- org.allbinary.game.input.mapping.event.InputMappingEventListenerInterface
-import qualified GameKeyCompleteMotionGestureInputEventFactory -- org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEventFactory
-import qualified BasicTouchInputFactory -- org.allbinary.input.motion.button.BasicTouchInputFactory
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventStrings -- org.allbinary.logic.util.event.EventStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.input.mapping
+-}
 
--- implements InputMappingEventListenerInterface
-data MotionInputMappingEventListener = MotionInputMappingEventListener
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull MotionInputMappingEventListener where
-    javaNull = javaNullRecord "MotionInputMappingEventListener"
-
-instance JavaEquals MotionInputMappingEventListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MotionInputMappingEventListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MotionInputMappingEventListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MotionInputMappingEventListener
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = MotionInputMappingEventListener header_
-    jregisterLevel header_ this
-    InputMappingEventListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "onInputMappingEvent" (\() -> onInputMappingEvent_impl this)
-    pure this
-
-initFields_ :: MotionInputMappingEventListener -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO MotionInputMappingEventListener
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: MotionInputMappingEventListener -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Input.Motion.Button.BasicTouchInputFactory as BasicTouchInputFactory
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Game.Input.Motion.Action.GameKeyCompleteMotionGestureInputEventFactory as GameKeyCompleteMotionGestureInputEventFactory
+import Org.Allbinary.Game.Input.Mapping.Event.InputMappingEventListenerInterface as InputMappingEventListenerInterface
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: MotionInputMappingEventListener))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: MotionInputMappingEventListener)) a1
-
-onEvent_impl :: MotionInputMappingEventListener -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jio (EventStrings.getInstance))).pERFORMANCE_MESSAGE) this)
-        pure ()
+jclass : String
+jclass =
+    "MotionInputMappingEventListener"
 
 
--- throws Exception
-onInputMappingEvent :: (JavaObjectClass this_) => this_ -> InputMappingEvent.InputMappingEvent -> IO (())
-onInputMappingEvent object_ a1 = jmethod object_ "onInputMappingEvent" (\() -> (onInputMappingEvent_impl (javaCast object_ :: MotionInputMappingEventListener))) () a1
+jchain : List String
+jchain =
+    [ "MotionInputMappingEventListener" ]
+        ++ InputMappingEventListenerInterface.jchain
 
-onInputMappingEvent_super :: (JavaObjectClass this_) => this_ -> InputMappingEvent.InputMappingEvent -> IO (())
-onInputMappingEvent_super object_ a1 = (onInputMappingEvent_impl (javaCast object_ :: MotionInputMappingEventListener)) a1
 
-onInputMappingEvent_impl :: MotionInputMappingEventListener -> InputMappingEvent.InputMappingEvent -> IO (())
-onInputMappingEvent_impl this inputMappingEvent = do
-        Control.Monad.void (GameKeyCompleteMotionGestureInputEventFactory.updateAll ((jio (GameKeyCompleteMotionGestureInputEventFactory.getInstance))))
-        Control.Monad.void (BasicTouchInputFactory.updateAll ((jio (BasicTouchInputFactory.getInstance))) (jio (InputMappingEvent.getInputToGameKeyMapping inputMappingEvent)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "onEvent_1", jm_onEvent_1 )
+        , ( "onInputMappingEvent_1", jm_onInputMappingEvent_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MotionInputMappingEventListener"
+        [ ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_onInputMappingEvent_1", jm_onInputMappingEvent_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "PERFORMANCE_MESSAGE" (JR.callStatic EventStrings.jm_getInstance_0 [])), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onInputMappingEvent_1 : JR.Method
+jm_onInputMappingEvent_1 jheap jthis jargs =
+    JR.method [ ( "inputMappingEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "updateAll_0" (JR.callStatic GameKeyCompleteMotionGestureInputEventFactory.jm_getInstance_0 []) []), 
+                    JR.exec (JR.invoke "updateAll_1" (JR.callStatic BasicTouchInputFactory.jm_getInstance_0 []) [ (JR.invoke "getInputToGameKeyMapping_0" (JR.local "inputMappingEvent") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

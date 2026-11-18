@@ -1,12 +1,12 @@
-module AbPathData exposing (..)
+module Org.Allbinary.Logic.Io.Path.AbPathData exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.io.path
 -}
 
 import JR
-import CommonSeps
-import FilePathData
-import StringUtil
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.Io.File.FilePathData as FilePathData
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
 jclass : String

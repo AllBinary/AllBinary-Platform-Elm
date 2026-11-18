@@ -1,4 +1,4 @@
-module VectorUtil exposing (..)
+module Org.Allbinary.Logic.VectorUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic
 -}

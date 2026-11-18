@@ -1,4 +1,4 @@
-module RunnableInterface exposing (..)
+module Org.Allbinary.Thread.RunnableInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}

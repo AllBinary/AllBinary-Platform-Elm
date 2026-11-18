@@ -1,158 +1,133 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint.help
-module BasicInputMappingHelpPaintable (module BasicInputMappingHelpPaintable, module HelpPaintable) where
+module Org.Allbinary.Game.Paint.Help.BasicInputMappingHelpPaintable exposing (..)
 
-import HelpPaintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, update, update_super, update_impl, get, get_super, get_impl, gameInputMappingArray, nONE)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameKey -- org.allbinary.game.input.GameKey
-import qualified GameKeyFactory -- org.allbinary.game.input.GameKeyFactory
-import qualified Input -- org.allbinary.game.input.Input
-import qualified PlatformInputMappingFactory -- org.allbinary.game.input.PlatformInputMappingFactory
-import qualified GameInputMapping -- org.allbinary.game.input.mapping.GameInputMapping
-import qualified PersistentInputMapping -- org.allbinary.game.input.mapping.PersistentInputMapping
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified HelpPaintable
+{-| Generated Code Do Not Modify package org.allbinary.game.paint.help
+-}
 
-data BasicInputMappingHelpPaintable = BasicInputMappingHelpPaintable
-    { header_ :: JavaHeader
-    , base :: HelpPaintable.HelpPaintable
-    , gameInputMappingArray :: IORef (JavaArray (GameInputMapping.GameInputMapping))
-    , nONE :: IORef (GameKey.GameKey)
-    }
-
-instance JavaNull BasicInputMappingHelpPaintable where
-    javaNull = javaNullRecord "BasicInputMappingHelpPaintable"
-
-instance JavaEquals BasicInputMappingHelpPaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicInputMappingHelpPaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicInputMappingHelpPaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO BasicInputMappingHelpPaintable
-newRecord_ = do
-    base <- HelpPaintable.newRecord_
-    let header_ = base.header_
-    gameInputMappingArray <- newIORef javaNull
-    nONE <- newIORef javaNull
-    let this = BasicInputMappingHelpPaintable header_ base gameInputMappingArray nONE
-    jregisterLevel header_ this
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    pure this
-
-initFields_ :: BasicInputMappingHelpPaintable -> IO ()
-initFields_ this = do
-    jset this.gameInputMappingArray (javaNull)
-    jset this.nONE ((jget ((jio (GameKeyFactory.getInstance))).nONE))
-    pure ()
-
-new_2 :: JavaArray (GameInputMapping.GameInputMapping) -> BasicColor.BasicColor -> IO BasicInputMappingHelpPaintable
-new_2 gameInputMappingArray basicColor = do
-    this <- newRecord_
-    init_2 this gameInputMappingArray basicColor
-    pure this
-
-init_2 :: BasicInputMappingHelpPaintable -> JavaArray (GameInputMapping.GameInputMapping) -> BasicColor.BasicColor -> IO ()
-init_2 this gameInputMappingArray basicColor = do
-        HelpPaintable.init_3 this.base ("Help Screen") (jget ((jio (BasicColorFactory.getInstance))).bLACK) (basicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).gameInputMappingArray (gameInputMappingArray)
-        Control.Monad.void (BasicInputMappingHelpPaintable.update this (jget (this).nONE) (javaCast (jget (this).nONE)))
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Game.Input.GameKeyFactory as GameKeyFactory
+import Org.Allbinary.Game.Paint.Help.HelpPaintable as HelpPaintable
+import Org.Allbinary.Game.Input.PlatformInputMappingFactory as PlatformInputMappingFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-update :: (JavaObjectClass this_) => this_ -> GameKey.GameKey -> Input.Input -> IO (())
-update object_ a1 a2 = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: BasicInputMappingHelpPaintable))) () a1 a2
-
-update_super :: (JavaObjectClass this_) => this_ -> GameKey.GameKey -> Input.Input -> IO (())
-update_super object_ a1 a2 = (update_impl (javaCast object_ :: BasicInputMappingHelpPaintable)) a1 a2
-
-update_impl :: BasicInputMappingHelpPaintable -> GameKey.GameKey -> Input.Input -> IO (())
-update_impl this selectedGameKey selectedInput = do
-        gameKeyMapping <- (PlatformInputMappingFactory.getPersistentInputMappingInstance ((jio (PlatformInputMappingFactory.getInstance))))
-        let eQUAL = " = "
-        stringMaker <- (StringMaker.new_)
-        let size = (jlength (jget (this).gameInputMappingArray))
-        let keyInfo = (jnewArray (size) javaNull)
-        gameInputMapping <- newIORef (javaNull)
-        gameKey <- newIORef (javaNull)
-        list <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset gameInputMapping ((jindex ((jget (this).gameInputMappingArray)) (index)))
-            assignedValue <- (GameInputMapping.getGameKey ((jget gameInputMapping)))
-            jset gameKey (assignedValue)
-            assignedValue <- (PersistentInputMapping.getMappedInput ((jio (PersistentInputMapping.getInputMapping gameKeyMapping))) (jget gameKey))
-            jset list (assignedValue)
-            Control.Monad.void (StringMaker.delete stringMaker 0 (jio (StringMaker.length stringMaker)))
-            assignedValue <- (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append stringMaker (jio (GameInputMapping.getName ((jget gameInputMapping))))))) eQUAL))) (jio (BasicInputMappingHelpPaintable.get this (jget list)))))))
-            jsetIndex keyInfo (index) (assignedValue)
-        Control.Monad.void (HelpPaintable.setInputInfoP_super this.base keyInfo)
-        pure ()
+jclass : String
+jclass =
+    "BasicInputMappingHelpPaintable"
 
 
-get :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (String)
-get object_ a1 = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: BasicInputMappingHelpPaintable))) () a1
+jchain : List String
+jchain =
+    [ "BasicInputMappingHelpPaintable" ]
+        ++ HelpPaintable.jchain
 
-get_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (String)
-get_super object_ a1 = (get_impl (javaCast object_ :: BasicInputMappingHelpPaintable)) a1
 
-get_impl :: BasicInputMappingHelpPaintable -> BasicArrayList.BasicArrayList -> IO (String)
-get_impl this keyList = do
-        commonSeps <- (CommonSeps.getInstance)
-        stringBuffer <- (StringMaker.new_)
-        let aND = "and "
-        key <- newIORef (javaNull)
-        size <- (BasicArrayList.size keyList)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset key ((javaCast (jindex ((jget (keyList).objectArray)) (index)) :: Input.Input))
-            Control.Monad.void (StringMaker.append stringBuffer (jio (Input.getName ((jget key)))))
-            when ((index + 1) < (jio (BasicArrayList.size keyList))) $ do
-                if ((jio (BasicArrayList.size keyList)) == 2) then do
-                    Control.Monad.void (StringMaker.append ((jio (StringMaker.append stringBuffer (jget (commonSeps).sPACE)))) aND)
-                else do
-                    if ((index + 2) == (jio (BasicArrayList.size keyList))) then do
-                        Control.Monad.void (StringMaker.append stringBuffer (jget (commonSeps).cOMMA_SEP))
-                        Control.Monad.void (StringMaker.append stringBuffer aND)
-                    else do
-                        Control.Monad.void (StringMaker.append stringBuffer (jget (commonSeps).cOMMA_SEP))
-        (StringMaker.toString stringBuffer)
+jfields : List ( String, JR.JValue )
+jfields =
+    HelpPaintable.jfields ++ [ ( "gameInputMappingArray", JR.defaultOf "" ), ( "NONE", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "update_2", jm_update_2 )
+        , ( "get_1", jm_get_1 ) ]
+        HelpPaintable.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicInputMappingHelpPaintable"
+        [ ( "jm_update_2", jm_update_2 ), ( "jm_get_1", jm_get_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "gameInputMappingArray", "" ), ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect HelpPaintable.jinit_3 JR.this [ (JR.str "Help Screen"), (JR.field "BLACK" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.local "basicColor") ]),
+                JR.exec (JR.setField "NONE" "" JR.this (JR.field "NONE" (JR.callStatic GameKeyFactory.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "gameInputMappingArray" "" JR.this (JR.local "gameInputMappingArray")), 
+                    JR.exec (JR.invoke "update_2" JR.this [ (JR.thisField "NONE"), (JR.thisField "NONE") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_update_2 : JR.Method
+jm_update_2 jheap jthis jargs =
+    JR.method [ ( "selectedGameKey", "" ), ( "selectedInput", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameKeyMapping" "" (JR.invoke "getPersistentInputMappingInstance_0" (JR.callStatic PlatformInputMappingFactory.jm_getInstance_0 []) []), 
+                    JR.declare "EQUAL" "" (JR.str " = "), 
+                    JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "size" "I" (JR.alength (JR.thisField "gameInputMappingArray")), 
+                    JR.declare "keyInfo" "" (JR.newArray "" [ (JR.local "size") ]), 
+                    JR.declare "gameInputMapping" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "gameKey" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "list" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69557 -> (JR.setLocal "index" "I" (JR.lit jwN69557))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "gameInputMapping" "" (JR.aget (JR.thisField "gameInputMappingArray") (JR.local "index"))), 
+                        JR.exec (JR.setLocal "gameKey" "" (JR.invoke "getGameKey_0" (JR.local "gameInputMapping") [])), 
+                        JR.exec (JR.setLocal "list" "" (JR.invoke "getMappedInput_1" (JR.invoke "getInputMapping_0" (JR.local "gameKeyMapping") []) [ (JR.local "gameKey") ])), 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
+                        JR.exec (JR.andThen (JR.local "keyInfo") (\jaN69385 -> JR.andThen (JR.local "index") (\jiN69385 -> (JR.aset (JR.lit jaN69385) (JR.lit jiN69385) (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.invoke "getName_0" (JR.local "gameInputMapping") []) ]) [ (JR.local "EQUAL") ]) [ (JR.invoke "get_1" JR.this [ (JR.local "list") ]) ]) []))))) ]) ], 
+                    JR.exec (JR.callVia HelpPaintable.jvtable "setInputInfoP_1" JR.this [ (JR.local "keyInfo") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_get_1 : JR.Method
+jm_get_1 jheap jthis jargs =
+    JR.method [ ( "keyList", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "AND" "" (JR.str "and "), 
+                    JR.declare "key" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "keyList") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70355 -> (JR.setLocal "index" "I" (JR.lit jwN70355))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "key" "" (JR.aget (JR.field "objectArray" (JR.local "keyList")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.local "key") []) ]), 
+                        JR.ifElse (JR.map2 JR.less (JR.map2 JR.add (JR.local "index") (JR.int 1)) (JR.invoke "size_0" (JR.local "keyList") [])) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.invoke "size_0" (JR.local "keyList") []) (JR.int 2)) (JR.run [ 
+                                JR.exec (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.local "commonSeps")) ]) [ (JR.local "AND") ]) ]) (JR.run [ 
+                                JR.ifElse (JR.map2 JR.equals (JR.map2 JR.add (JR.local "index") (JR.int 2)) (JR.invoke "size_0" (JR.local "keyList") [])) (JR.run [ 
+                                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonSeps")) ]), 
+                                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "AND") ]) ]) (JR.run [ 
+                                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonSeps")) ]) ]) ]) ]) identity ]) ], 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

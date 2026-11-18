@@ -1,361 +1,315 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping
-module InputToGameKeyMapping (module InputToGameKeyMapping, module InputMapping) where
-
-import InputMapping hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getNullInstance, getNullInstance_super, getNullInstance_impl, clear, clear_super, clear_impl, removeAll, removeAll_super, removeAll_impl, addMapping, addMapping_super, addMapping_impl, addAll, addAll_super, addAll_impl, add, add_super, add_impl, remove, remove_super, remove_impl, set, set_super, set_impl, getMaxMappable, getMaxMappable_super, getMaxMappable_impl, getReverseInstance, getReverseInstance_super, getReverseInstance_impl, initGameKey, initGameKey_super, initGameKey_impl, getSmallestCanvasGameKeyCode, getSmallestCanvasGameKeyCode_super, getSmallestCanvasGameKeyCode_impl, init, init_super, init_impl, getInstanceForCanvas, getInstanceForCanvas_super, getInstanceForCanvas_impl, getInstance, getInstance_super, getInstance_impl, instance_, gameKeyFactory, mappedGameKeys, platformToGameKeyMapping, negativePlatformToGameKeyMapping)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified LogUtil -- same package or java.lang
-import qualified CommonStrings -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified GameKey -- org.allbinary.game.input.GameKey
-import qualified GameKeyFactory -- org.allbinary.game.input.GameKeyFactory
-import qualified Input -- org.allbinary.game.input.Input
-import qualified InputFactory -- org.allbinary.game.input.InputFactory
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified InputMapping
-
-data InputToGameKeyMapping = InputToGameKeyMapping
-    { header_ :: JavaHeader
-    , base :: InputMapping.InputMapping
-    , gameKeyFactory :: IORef (GameKeyFactory.GameKeyFactory)
-    , mappedGameKeys :: IORef (JavaArray (GameKey.GameKey))
-    , platformToGameKeyMapping :: IORef (JavaArray (GameKey.GameKey))
-    , negativePlatformToGameKeyMapping :: IORef (JavaArray (GameKey.GameKey))
-    }
-
-instance JavaNull InputToGameKeyMapping where
-    javaNull = javaNullRecord "InputToGameKeyMapping"
-
-instance JavaEquals InputToGameKeyMapping where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InputToGameKeyMapping where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InputToGameKeyMapping where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-newRecord_ :: IO InputToGameKeyMapping
-newRecord_ = do
-    base <- InputMapping.newRecord_
-    let header_ = base.header_
-    gameKeyFactory <- newIORef javaNull
-    mappedGameKeys <- newIORef javaNull
-    platformToGameKeyMapping <- newIORef javaNull
-    negativePlatformToGameKeyMapping <- newIORef javaNull
-    let this = InputToGameKeyMapping header_ base gameKeyFactory mappedGameKeys platformToGameKeyMapping negativePlatformToGameKeyMapping
-    jregisterLevel header_ this
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    jregisterMethod header_ "removeAll" (\() -> removeAll_impl this)
-    jregisterMethod header_ "addMapping" (\() -> addMapping_impl this)
-    jregisterMethod header_ "addAll" (\() -> addAll_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "remove" (\() -> remove_impl this)
-    jregisterMethod header_ "set" (\() -> set_impl this)
-    jregisterMethod header_ "getMaxMappable" (\() -> getMaxMappable_impl this)
-    jregisterMethod header_ "getReverseInstance" (\() -> getReverseInstance_impl this)
-    jregisterMethod header_ "initGameKey" (\() -> initGameKey_impl this)
-    jregisterMethod header_ "getSmallestCanvasGameKeyCode" (\() -> getSmallestCanvasGameKeyCode_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "getInstanceForCanvas" (\() -> getInstanceForCanvas_impl this)
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    pure this
-
-initFields_ :: InputToGameKeyMapping -> IO ()
-initFields_ this = do
-    jset this.gameKeyFactory =<< (GameKeyFactory.getInstance)
-    jset this.mappedGameKeys ((jarrayFromList [(jget ((jget (this).gameKeyFactory)).uP), (jget ((jget (this).gameKeyFactory)).dOWN), (jget ((jget (this).gameKeyFactory)).lEFT), (jget ((jget (this).gameKeyFactory)).rIGHT)]))
-    jset this.platformToGameKeyMapping ((jnewArray ((jget ((jio (InputFactory.getInstance))).mAX)) javaNull))
-    jset this.negativePlatformToGameKeyMapping ((jnewArray (0) javaNull))
-    pure ()
-
-
-getNullInstance :: IO (InputToGameKeyMapping)
-getNullInstance = do
-        when ((jget InputToGameKeyMapping.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset InputToGameKeyMapping.instance_ (assignedValue)
-        pure ((javaCast (jget InputToGameKeyMapping.instance_) :: InputToGameKeyMapping))
-
-new_ :: IO InputToGameKeyMapping
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: InputToGameKeyMapping -> IO ()
-init_ this = do
-        InputMapping.init_ this.base
-        initFields_ this
-        Control.Monad.void (LogUtil.putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-        Control.Monad.void (InputToGameKeyMapping.clear this)
-        pure ()
-
-
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: InputToGameKeyMapping))) ()
-
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: InputToGameKeyMapping))
-
-clear_impl :: InputToGameKeyMapping -> IO (())
-clear_impl this = do
-        forM_ [((jlength (jget (this).platformToGameKeyMapping)) - 1), ((jlength (jget (this).platformToGameKeyMapping)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex ((jget (this).platformToGameKeyMapping)) (index) ((jget ((jget (this).gameKeyFactory)).nONE))
-        pure ()
-
-
-removeAll :: (JavaObjectClass this_) => this_ -> IO (())
-removeAll object_ = jmethod object_ "removeAll" (\() -> (removeAll_impl (javaCast object_ :: InputToGameKeyMapping))) ()
-
-removeAll_super :: (JavaObjectClass this_) => this_ -> IO (())
-removeAll_super object_ = (removeAll_impl (javaCast object_ :: InputToGameKeyMapping))
-
-removeAll_impl :: InputToGameKeyMapping -> IO (())
-removeAll_impl this = do
-        Control.Monad.void (InputMapping.removeAll_super this.base)
-        Control.Monad.void (InputToGameKeyMapping.clear this)
-        pure ()
-
-
-addMapping :: (JavaObjectClass this_) => this_ -> InputToGameKeyMapping -> IO (())
-addMapping object_ a1 = jmethod object_ "addMapping" (\() -> (addMapping_impl (javaCast object_ :: InputToGameKeyMapping))) () a1
-
-addMapping_super :: (JavaObjectClass this_) => this_ -> InputToGameKeyMapping -> IO (())
-addMapping_super object_ a1 = (addMapping_impl (javaCast object_ :: InputToGameKeyMapping)) a1
-
-addMapping_impl :: InputToGameKeyMapping -> InputToGameKeyMapping -> IO (())
-addMapping_impl this inputToGameKeyMapping = do
-        forM_ [((jio (InputToGameKeyMapping.getMaxMappable inputToGameKeyMapping)) - 1), ((jio (InputToGameKeyMapping.getMaxMappable inputToGameKeyMapping)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            input <- (fmap (\value_ -> javaCast value_ :: Input.Input) (InputToGameKeyMapping.getInstance inputToGameKeyMapping index))
-            when ((jtoObject input) /= (jtoObject (jget ((jget (this).gameKeyFactory)).nONE))) $ do
-                Control.Monad.void (InputToGameKeyMapping.addAll this input (jio (InputMapping.getMappedInput inputToGameKeyMapping input)))
-        pure ()
-
-
-addAll :: (JavaObjectClass this_) => this_ -> Input.Input -> BasicArrayList.BasicArrayList -> IO (())
-addAll object_ a1 a2 = jmethod object_ "addAll" (\() -> (addAll_impl (javaCast object_ :: InputToGameKeyMapping))) () a1 a2
-
-addAll_super :: (JavaObjectClass this_) => this_ -> Input.Input -> BasicArrayList.BasicArrayList -> IO (())
-addAll_super object_ a1 a2 = (addAll_impl (javaCast object_ :: InputToGameKeyMapping)) a1 a2
-
-addAll_impl :: InputToGameKeyMapping -> Input.Input -> BasicArrayList.BasicArrayList -> IO (())
-addAll_impl this input list = do
-        forM_ [((jio (BasicArrayList.size list)) - 1), ((jio (BasicArrayList.size list)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            let mappedToInput = (javaCast (jindex ((jget (list).objectArray)) (index)) :: Input.Input)
-            Control.Monad.void (InputToGameKeyMapping.add this input mappedToInput)
-        pure ()
-
-
-add :: (JavaObjectClass this_) => this_ -> Input.Input -> Input.Input -> IO (())
-add object_ a1 a2 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: InputToGameKeyMapping))) () a1 a2
-
-add_super :: (JavaObjectClass this_) => this_ -> Input.Input -> Input.Input -> IO (())
-add_super object_ a1 a2 = (add_impl (javaCast object_ :: InputToGameKeyMapping)) a1 a2
-
-add_impl :: InputToGameKeyMapping -> Input.Input -> Input.Input -> IO (())
-add_impl this input mappedToInput = do
-        Control.Monad.void (InputMapping.add_super this.base input mappedToInput)
-        Control.Monad.void (InputToGameKeyMapping.set this input mappedToInput)
-        pure ()
-
-
-remove :: (JavaObjectClass this_) => this_ -> Input.Input -> Input.Input -> IO (())
-remove object_ a1 a2 = jmethod object_ "remove" (\() -> (remove_impl (javaCast object_ :: InputToGameKeyMapping))) () a1 a2
-
-remove_super :: (JavaObjectClass this_) => this_ -> Input.Input -> Input.Input -> IO (())
-remove_super object_ a1 a2 = (remove_impl (javaCast object_ :: InputToGameKeyMapping)) a1 a2
-
-remove_impl :: InputToGameKeyMapping -> Input.Input -> Input.Input -> IO (())
-remove_impl this input mappedToInput = do
-        Control.Monad.void (LogUtil.putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonLabels.getInstance))).sTART_LABEL)))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) input))))) " == "))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) mappedToInput))))))) this "InputToGameKeyMapping::remove")
-        Control.Monad.void (InputMapping.remove_super this.base input mappedToInput)
-        Control.Monad.void (InputToGameKeyMapping.set this input (javaCast (jget ((jget (this).gameKeyFactory)).nONE)))
-        pure ()
-
-
-set :: (JavaObjectClass this_) => this_ -> Input.Input -> Input.Input -> IO (())
-set object_ a1 a2 = jmethod object_ "set" (\() -> (set_impl (javaCast object_ :: InputToGameKeyMapping))) () a1 a2
-
-set_super :: (JavaObjectClass this_) => this_ -> Input.Input -> Input.Input -> IO (())
-set_super object_ a1 a2 = (set_impl (javaCast object_ :: InputToGameKeyMapping)) a1 a2
-
-set_impl :: InputToGameKeyMapping -> Input.Input -> Input.Input -> IO (())
-set_impl this input mappedToInput = do
-        id <- (Input.getId mappedToInput)
-        when ((id >= 0) && (id < (jlength (jget (this).platformToGameKeyMapping)))) $ do
-            jsetIndex ((jget (this).platformToGameKeyMapping)) (id) ((javaCast input :: GameKey.GameKey))
-        pure ()
-
-
-getMaxMappable :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMaxMappable object_ = jmethod object_ "getMaxMappable" (\() -> (getMaxMappable_impl (javaCast object_ :: InputToGameKeyMapping))) ()
-
-getMaxMappable_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMaxMappable_super object_ = (getMaxMappable_impl (javaCast object_ :: InputToGameKeyMapping))
-
-getMaxMappable_impl :: InputToGameKeyMapping -> IO (Int)
-getMaxMappable_impl this = do
-        pure ((jlength (jget (this).platformToGameKeyMapping)))
-
-
-getReverseInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (BasicArrayList.BasicArrayList)
-getReverseInstance object_ a1 = jmethod object_ "getReverseInstance" (\() -> (getReverseInstance_impl (javaCast object_ :: InputToGameKeyMapping))) () a1
-
-getReverseInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (BasicArrayList.BasicArrayList)
-getReverseInstance_super object_ a1 = (getReverseInstance_impl (javaCast object_ :: InputToGameKeyMapping)) a1
-
-getReverseInstance_impl :: InputToGameKeyMapping -> Int -> IO (BasicArrayList.BasicArrayList)
-getReverseInstance_impl this id = do
-        list <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        inputFactory <- (InputFactory.getInstance)
-        forM_ [0 .. (jlength (jget (this).platformToGameKeyMapping)) - 1] $ \index -> javaIteration (pure ()) $ do
-            when ((jio (GameKey.getId ((jindex ((jget (this).platformToGameKeyMapping)) (index))))) == id) $ do
-                input <- (InputFactory.getInstanceById inputFactory index)
-                when (input /= javaNull) $ do
-                    Control.Monad.void (BasicArrayList.add list input)
-        pure (list)
-
-
--- throws Exception
-initGameKey :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> GameKey.GameKey -> IO (())
-initGameKey object_ a1 a2 = jmethod object_ "initGameKey" (\() -> (initGameKey_impl (javaCast object_ :: InputToGameKeyMapping))) () a1 a2
-
-initGameKey_super :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> GameKey.GameKey -> IO (())
-initGameKey_super object_ a1 a2 = (initGameKey_impl (javaCast object_ :: InputToGameKeyMapping)) a1 a2
-
-initGameKey_impl :: InputToGameKeyMapping -> Canvas.Canvas -> GameKey.GameKey -> IO (())
-initGameKey_impl this canvas gameKey = do
-        key <- (Canvas.getKeyCode canvas (jio (GameKey.getId gameKey)))
-        if ((key < 0) && ((Prelude.negate key) < (jlength (jget (this).negativePlatformToGameKeyMapping)))) then do
-            jsetIndex ((jget (this).negativePlatformToGameKeyMapping)) ((Prelude.negate key)) (gameKey)
-        else if (key > 0) then do
-            when ((jindex ((jget (this).platformToGameKeyMapping)) (key)) == (jget ((jget (this).gameKeyFactory)).nONE)) $ do
-                jsetIndex ((jget (this).platformToGameKeyMapping)) (key) (gameKey)
-        else do
-            Control.Monad.void (PreLogUtil.putOE (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jio (GameKey.toString gameKey))))) (jget ((jio (CommonSeps.getInstance))).cOLON_SEP)))) key))))) this (jget ((jget (this).base.commonStrings)).iNIT) (JavaException "Exception" ""))
-        pure ()
-
-
--- throws Exception
-getSmallestCanvasGameKeyCode :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (Int)
-getSmallestCanvasGameKeyCode object_ a1 = jmethod object_ "getSmallestCanvasGameKeyCode" (\() -> (getSmallestCanvasGameKeyCode_impl (javaCast object_ :: InputToGameKeyMapping))) () a1
-
-getSmallestCanvasGameKeyCode_super :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (Int)
-getSmallestCanvasGameKeyCode_super object_ a1 = (getSmallestCanvasGameKeyCode_impl (javaCast object_ :: InputToGameKeyMapping)) a1
-
-getSmallestCanvasGameKeyCode_impl :: InputToGameKeyMapping -> Canvas.Canvas -> IO (Int)
-getSmallestCanvasGameKeyCode_impl this canvas = do
-        nextKey <- newIORef (0 :: Int)
-        smallestKey <- newIORef (0 :: Int)
-        index <- newIORef ((jlength (jget (this).mappedGameKeys)) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            assignedValue <- (Canvas.getKeyCode canvas (jio (GameKey.getId ((jindex ((jget (this).mappedGameKeys)) ((jget index)))))))
-            jset nextKey (assignedValue)
-            when ((jget nextKey) < (jget smallestKey)) $ do
-                jset smallestKey ((jget nextKey))
-        pure ((jget smallestKey))
-
-
-init :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (())
-init object_ a1 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: InputToGameKeyMapping))) () a1
-
-init_super :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> IO (())
-init_super object_ a1 = (init_impl (javaCast object_ :: InputToGameKeyMapping)) a1
-
-init_impl :: InputToGameKeyMapping -> Canvas.Canvas -> IO (())
-init_impl this canvas = do
-        handle (\(t :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.commonStrings)).iNIT) t)
-            ) $ do
-            negativePlatformToGameKeyMapping <- newIORef ((jnewArray (0) javaNull))
-            smallestKey <- newIORef =<< (InputToGameKeyMapping.getSmallestCanvasGameKeyCode this canvas)
-            when ((jget smallestKey) < 0) $ do
-                jset smallestKey ((jget smallestKey) - 1)
-                when ((jget smallestKey) < (Prelude.negate 256)) $ do
-                    jset smallestKey ((Prelude.negate 256))
-                jset negativePlatformToGameKeyMapping ((jnewArray ((Prelude.negate (jget smallestKey))) javaNull))
-                index <- newIORef ((jlength (jget negativePlatformToGameKeyMapping)) :: Int)
-                fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-                    jsetIndex ((jget negativePlatformToGameKeyMapping)) ((jget index)) ((jget ((jget (this).gameKeyFactory)).nONE))
-                jset (this).negativePlatformToGameKeyMapping ((jget negativePlatformToGameKeyMapping))
-            index <- newIORef ((jlength (jget (this).mappedGameKeys)) :: Int)
-            fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-                Control.Monad.void (InputToGameKeyMapping.initGameKey this canvas (jindex ((jget (this).mappedGameKeys)) ((jget index))))
-        pure ()
-
-
-getInstanceForCanvas :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> Int -> IO (GameKey.GameKey)
-getInstanceForCanvas object_ a1 a2 = jmethod object_ "getInstanceForCanvas" (\() -> (getInstanceForCanvas_impl (javaCast object_ :: InputToGameKeyMapping))) () a1 a2
-
-getInstanceForCanvas_super :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> Int -> IO (GameKey.GameKey)
-getInstanceForCanvas_super object_ a1 a2 = (getInstanceForCanvas_impl (javaCast object_ :: InputToGameKeyMapping)) a1 a2
-
-getInstanceForCanvas_impl :: InputToGameKeyMapping -> Canvas.Canvas -> Int -> IO (GameKey.GameKey)
-getInstanceForCanvas_impl this canvas id = do
-    javaCatchReturn $ do
-        if ((id >= 0) && (id < (jlength (jget (this).platformToGameKeyMapping)))) then do
-            javaReturn ((jindex ((jget (this).platformToGameKeyMapping)) (id)))
-        else if ((id < 0) && ((Prelude.negate id) < (jlength (jget (this).negativePlatformToGameKeyMapping)))) then do
-            javaReturn ((jindex ((jget (this).negativePlatformToGameKeyMapping)) ((Prelude.negate id))))
-        else do
-            javaReturn ((jget ((jget (this).gameKeyFactory)).nONE))
-
-
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (GameKey.GameKey)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: InputToGameKeyMapping))) () a1
-
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (GameKey.GameKey)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: InputToGameKeyMapping)) a1
-
-getInstance_impl :: InputToGameKeyMapping -> Int -> IO (GameKey.GameKey)
-getInstance_impl this id = do
-    javaCatchReturn $ do
-        if ((id >= 0) && (id < (jlength (jget (this).platformToGameKeyMapping)))) then do
-            javaReturn ((jindex ((jget (this).platformToGameKeyMapping)) (id)))
-        else if ((id < 0) && ((Prelude.negate id) < (jlength (jget (this).negativePlatformToGameKeyMapping)))) then do
-            javaReturn ((jindex ((jget (this).negativePlatformToGameKeyMapping)) ((Prelude.negate id))))
-        else do
-            javaReturn ((jget ((jget (this).gameKeyFactory)).nONE))
-
+module Org.Allbinary.Game.Input.Mapping.InputToGameKeyMapping exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.game.input.mapping
+-}
+
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Game.Input.GameKeyFactory as GameKeyFactory
+import Org.Allbinary.Game.Input.InputFactory as InputFactory
+import Org.Allbinary.Game.Input.Mapping.InputMapping as InputMapping
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+
+
+jclass : String
+jclass =
+    "InputToGameKeyMapping"
+
+
+jchain : List String
+jchain =
+    [ "InputToGameKeyMapping" ]
+        ++ InputMapping.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    InputMapping.jfields ++ [ ( "gameKeyFactory", JR.defaultOf "" ), ( "mappedGameKeys", JR.defaultOf "" ), ( "platformToGameKeyMapping", JR.defaultOf "" ), ( "negativePlatformToGameKeyMapping", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getNullInstance_0", jm_getNullInstance_0 )
+        , ( "clear_0", jm_clear_0 )
+        , ( "removeAll_0", jm_removeAll_0 )
+        , ( "addMapping_1", jm_addMapping_1 )
+        , ( "addAll_2", jm_addAll_2 )
+        , ( "add_2", jm_add_2 )
+        , ( "remove_2", jm_remove_2 )
+        , ( "set_2", jm_set_2 )
+        , ( "getMaxMappable_0", jm_getMaxMappable_0 )
+        , ( "getReverseInstance_1", jm_getReverseInstance_1 )
+        , ( "initGameKey_2", jm_initGameKey_2 )
+        , ( "getSmallestCanvasGameKeyCode_1", jm_getSmallestCanvasGameKeyCode_1 )
+        , ( "init_1", jm_init_1 )
+        , ( "getInstanceForCanvas_2", jm_getInstanceForCanvas_2 )
+        , ( "getInstance_1", jm_getInstance_1 ) ]
+        InputMapping.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InputToGameKeyMapping"
+        [ ( "jm_getNullInstance_0", jm_getNullInstance_0 ), ( "jm_clear_0", jm_clear_0 ), ( "jm_removeAll_0", jm_removeAll_0 ), ( "jm_addMapping_1", jm_addMapping_1 ), ( "jm_addAll_2", jm_addAll_2 ), ( "jm_add_2", jm_add_2 ), ( "jm_remove_2", jm_remove_2 ), ( "jm_set_2", jm_set_2 ), ( "jm_getMaxMappable_0", jm_getMaxMappable_0 ), ( "jm_getReverseInstance_1", jm_getReverseInstance_1 ), ( "jm_initGameKey_2", jm_initGameKey_2 ), ( "jm_getSmallestCanvasGameKeyCode_1", jm_getSmallestCanvasGameKeyCode_1 ), ( "jm_init_1", jm_init_1 ), ( "jm_getInstanceForCanvas_2", jm_getInstanceForCanvas_2 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "InputToGameKeyMapping" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect InputMapping.jinit_0 JR.this []),
+                JR.exec (JR.setField "gameKeyFactory" "" JR.this (JR.callStatic GameKeyFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "mappedGameKeys" "" JR.this (JR.arrayOf "" [ (JR.field "UP" (JR.thisField "gameKeyFactory")), (JR.field "DOWN" (JR.thisField "gameKeyFactory")), (JR.field "LEFT" (JR.thisField "gameKeyFactory")), (JR.field "RIGHT" (JR.thisField "gameKeyFactory")) ])),
+                JR.exec (JR.setField "platformToGameKeyMapping" "" JR.this (JR.newArray "" [ (JR.field "MAX" (JR.callStatic InputFactory.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "negativePlatformToGameKeyMapping" "" JR.this (JR.newArray "" [ (JR.int 0) ])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.invoke "clear_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getNullInstance_0 : JR.Method
+jm_getNullInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "InputToGameKeyMapping.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "platformToGameKeyMapping")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68416 -> (JR.setLocal "index" "I" (JR.lit jwN68416))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "platformToGameKeyMapping") (\jaN68297 -> JR.andThen (JR.local "index") (\jiN68297 -> (JR.aset (JR.lit jaN68297) (JR.lit jiN68297) (JR.field "NONE" (JR.thisField "gameKeyFactory")))))) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeAll_0 : JR.Method
+jm_removeAll_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia InputMapping.jvtable "removeAll_0" JR.this []), 
+                    JR.exec (JR.invoke "clear_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addMapping_1 : JR.Method
+jm_addMapping_1 jheap jthis jargs =
+    JR.method [ ( "inputToGameKeyMapping", "" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "getMaxMappable_0" (JR.local "inputToGameKeyMapping") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68763 -> (JR.setLocal "index" "I" (JR.lit jwN68763))) JR.decrement) ]) (JR.run [ 
+                        JR.declare "input" "" (JR.invoke "getInstance_1" (JR.local "inputToGameKeyMapping") [ (JR.local "index") ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "input") (JR.field "NONE" (JR.thisField "gameKeyFactory"))) (JR.run [ 
+                            JR.exec (JR.invoke "addAll_2" JR.this [ (JR.local "input"), (JR.invoke "getMappedInput_1" (JR.local "inputToGameKeyMapping") [ (JR.local "input") ]) ]) ]) identity ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addAll_2 : JR.Method
+jm_addAll_2 jheap jthis jargs =
+    JR.method [ ( "input", "" ), ( "list", "" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69026 -> (JR.setLocal "index" "I" (JR.lit jwN69026))) JR.decrement) ]) (JR.run [ 
+                        JR.declare "mappedToInput" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
+                        JR.exec (JR.invoke "add_2" JR.this [ (JR.local "input"), (JR.local "mappedToInput") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_2 : JR.Method
+jm_add_2 jheap jthis jargs =
+    JR.method [ ( "input", "" ), ( "mappedToInput", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia InputMapping.jvtable "add_2" JR.this [ (JR.local "input"), (JR.local "mappedToInput") ]), 
+                    JR.exec (JR.invoke "set_2" JR.this [ (JR.local "input"), (JR.local "mappedToInput") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_remove_2 : JR.Method
+jm_remove_2 jheap jthis jargs =
+    JR.method [ ( "input", "" ), ( "mappedToInput", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "input") ]) ]) [ (JR.str " == ") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "mappedToInput") ]) ]) []), JR.this, (JR.str "InputToGameKeyMapping::remove") ]), 
+                    JR.exec (JR.callVia InputMapping.jvtable "remove_2" JR.this [ (JR.local "input"), (JR.local "mappedToInput") ]), 
+                    JR.exec (JR.invoke "set_2" JR.this [ (JR.local "input"), (JR.field "NONE" (JR.thisField "gameKeyFactory")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_set_2 : JR.Method
+jm_set_2 jheap jthis jargs =
+    JR.method [ ( "input", "" ), ( "mappedToInput", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "id" "I" (JR.invoke "getId_0" (JR.local "mappedToInput") []), 
+                    JR.ifElse (JR.and (JR.map2 JR.greaterEquals (JR.local "id") (JR.int 0)) (JR.map2 JR.less (JR.local "id") (JR.alength (JR.thisField "platformToGameKeyMapping")))) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "platformToGameKeyMapping") (\jaN69699 -> JR.andThen (JR.local "id") (\jiN69699 -> (JR.aset (JR.lit jaN69699) (JR.lit jiN69699) (JR.local "input"))))) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMaxMappable_0 : JR.Method
+jm_getMaxMappable_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.alength (JR.thisField "platformToGameKeyMapping")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getReverseInstance_1 : JR.Method
+jm_getReverseInstance_1 jheap jthis jargs =
+    JR.method [ ( "id", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "list" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "inputFactory" "" (JR.callStatic InputFactory.jm_getInstance_0 []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "platformToGameKeyMapping"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70192 -> (JR.setLocal "index" "I" (JR.lit jwN70192))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.invoke "getId_0" (JR.aget (JR.thisField "platformToGameKeyMapping") (JR.local "index")) []) (JR.local "id")) (JR.run [ 
+                            JR.declare "input" "" (JR.invoke "getInstanceById_1" (JR.local "inputFactory") [ (JR.local "index") ]), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "input") JR.null) (JR.run [ 
+                                JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.local "input") ]) ]) identity ]) identity ]) ], 
+                    JR.return (JR.local "list") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initGameKey_2 : JR.Method
+jm_initGameKey_2 jheap jthis jargs =
+    JR.method [ ( "canvas", "" ), ( "gameKey", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "key" "I" (JR.invoke "getKeyCode_1" (JR.local "canvas") [ (JR.invoke "getId_0" (JR.local "gameKey") []) ]), 
+                    JR.ifElse (JR.and (JR.map2 JR.less (JR.local "key") (JR.int 0)) (JR.map2 JR.less (JR.map JR.neg (JR.local "key")) (JR.alength (JR.thisField "negativePlatformToGameKeyMapping")))) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "negativePlatformToGameKeyMapping") (\jaN70688 -> JR.andThen (JR.map JR.neg (JR.local "key")) (\jiN70688 -> (JR.aset (JR.lit jaN70688) (JR.lit jiN70688) (JR.local "gameKey"))))) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "key") (JR.int 0)) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.aget (JR.thisField "platformToGameKeyMapping") (JR.local "key")) (JR.field "NONE" (JR.thisField "gameKeyFactory"))) (JR.run [ 
+                            JR.exec (JR.andThen (JR.thisField "platformToGameKeyMapping") (\jaN70637 -> JR.andThen (JR.local "key") (\jiN70637 -> (JR.aset (JR.lit jaN70637) (JR.lit jiN70637) (JR.local "gameKey"))))) ]) identity ]) (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.invoke "toString_0" (JR.local "gameKey") []) ]) [ (JR.field "COLON_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.local "key") ]) []), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")), (JR.new (JR.newThrowable "Exception" [ "Exception" ]) []) ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSmallestCanvasGameKeyCode_1 : JR.Method
+jm_getSmallestCanvasGameKeyCode_1 jheap jthis jargs =
+    JR.method [ ( "canvas", "" ) ] "I"
+        (JR.run [ 
+                    JR.declare "nextKey" "I" (JR.int 0), 
+                    JR.declare "smallestKey" "I" (JR.int 0), 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "mappedGameKeys")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN71002 -> (JR.setLocal "index" "I" (JR.lit jwN71002))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.setLocal "nextKey" "I" (JR.invoke "getKeyCode_1" (JR.local "canvas") [ (JR.invoke "getId_0" (JR.aget (JR.thisField "mappedGameKeys") (JR.local "index")) []) ])), 
+                        JR.ifElse (JR.map2 JR.less (JR.local "nextKey") (JR.local "smallestKey")) (JR.run [ 
+                            JR.exec (JR.setLocal "smallestKey" "I" (JR.local "nextKey")) ]) identity ]) ], 
+                    JR.return (JR.local "smallestKey") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "canvas", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "negativePlatformToGameKeyMapping" "" (JR.newArray "" [ (JR.int 0) ]), 
+                        JR.declare "smallestKey" "I" (JR.invoke "getSmallestCanvasGameKeyCode_1" JR.this [ (JR.local "canvas") ]), 
+                        JR.ifElse (JR.map2 JR.less (JR.local "smallestKey") (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.postUpdate (JR.local "smallestKey") (\jwN71267 -> (JR.setLocal "smallestKey" "I" (JR.lit jwN71267))) JR.decrement), 
+                            JR.ifElse (JR.map2 JR.less (JR.local "smallestKey") (JR.map JR.neg (JR.int 256))) (JR.run [ 
+                                JR.exec (JR.setLocal "smallestKey" "I" (JR.map JR.neg (JR.int 256))) ]) identity, 
+                            JR.exec (JR.setLocal "negativePlatformToGameKeyMapping" "" (JR.newArray "" [ (JR.map JR.neg (JR.local "smallestKey")) ])), 
+                            JR.run [ JR.declare "index" "I" (JR.alength (JR.local "negativePlatformToGameKeyMapping")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN71451 -> (JR.setLocal "index" "I" (JR.lit jwN71451))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                                JR.exec (JR.andThen (JR.local "negativePlatformToGameKeyMapping") (\jaN71400 -> JR.andThen (JR.local "index") (\jiN71400 -> (JR.aset (JR.lit jaN71400) (JR.lit jiN71400) (JR.field "NONE" (JR.thisField "gameKeyFactory")))))) ]) ], 
+                            JR.exec (JR.setField "negativePlatformToGameKeyMapping" "" JR.this (JR.local "negativePlatformToGameKeyMapping")) ]) identity, 
+                        JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "mappedGameKeys")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN71602 -> (JR.setLocal "index" "I" (JR.lit jwN71602))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                            JR.exec (JR.invoke "initGameKey_2" JR.this [ (JR.local "canvas"), (JR.aget (JR.thisField "mappedGameKeys") (JR.local "index")) ]) ]) ] ]) [ ( [ "Throwable" ], "t", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")), (JR.local "t") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceForCanvas_2 : JR.Method
+jm_getInstanceForCanvas_2 jheap jthis jargs =
+    JR.method [ ( "canvas", "" ), ( "id", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.and (JR.map2 JR.greaterEquals (JR.local "id") (JR.int 0)) (JR.map2 JR.less (JR.local "id") (JR.alength (JR.thisField "platformToGameKeyMapping")))) (JR.run [ 
+                        JR.return (JR.aget (JR.thisField "platformToGameKeyMapping") (JR.local "id")) ]) (JR.run [ 
+                    JR.ifElse (JR.and (JR.map2 JR.less (JR.local "id") (JR.int 0)) (JR.map2 JR.less (JR.map JR.neg (JR.local "id")) (JR.alength (JR.thisField "negativePlatformToGameKeyMapping")))) (JR.run [ 
+                        JR.return (JR.aget (JR.thisField "negativePlatformToGameKeyMapping") (JR.map JR.neg (JR.local "id"))) ]) (JR.run [ 
+                        JR.return (JR.field "NONE" (JR.thisField "gameKeyFactory")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "id", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.and (JR.map2 JR.greaterEquals (JR.local "id") (JR.int 0)) (JR.map2 JR.less (JR.local "id") (JR.alength (JR.thisField "platformToGameKeyMapping")))) (JR.run [ 
+                        JR.return (JR.aget (JR.thisField "platformToGameKeyMapping") (JR.local "id")) ]) (JR.run [ 
+                    JR.ifElse (JR.and (JR.map2 JR.less (JR.local "id") (JR.int 0)) (JR.map2 JR.less (JR.map JR.neg (JR.local "id")) (JR.alength (JR.thisField "negativePlatformToGameKeyMapping")))) (JR.run [ 
+                        JR.return (JR.aget (JR.thisField "negativePlatformToGameKeyMapping") (JR.map JR.neg (JR.local "id"))) ]) (JR.run [ 
+                        JR.return (JR.field "NONE" (JR.thisField "gameKeyFactory")) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

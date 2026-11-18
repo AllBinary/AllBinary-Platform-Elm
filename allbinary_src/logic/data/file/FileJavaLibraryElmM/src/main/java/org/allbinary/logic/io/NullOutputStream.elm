@@ -1,121 +1,110 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
--- 
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
--- 
--- Created By: Travis Berthelot 
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
-module NullOutputStream (module NullOutputStream, module OutputStream) where
+module Org.Allbinary.Logic.Io.NullOutputStream exposing (..)
 
-import OutputStream hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, write, write_super, write_impl, write_3, write_3_super, write_3_impl, write, close, close_super, close_impl, nULL_OUTPUT_STREAM)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified IOException -- java.io.IOException
-import qualified OutputStream -- java.io.OutputStream
+{-| Generated Code Do Not Modify package org.allbinary.logic.io
+-}
 
-data NullOutputStream = NullOutputStream
-    { header_ :: JavaHeader
-    , base :: OutputStream.OutputStream
-    }
-
-instance JavaNull NullOutputStream where
-    javaNull = javaNullRecord "NullOutputStream"
-
-instance JavaEquals NullOutputStream where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NullOutputStream where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NullOutputStream where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_OUTPUT_STREAM :: NullOutputStream
-{-# NOINLINE nULL_OUTPUT_STREAM #-}
-nULL_OUTPUT_STREAM = unsafePerformIO ((new_))
-
-newRecord_ :: IO NullOutputStream
-newRecord_ = do
-    base <- OutputStream.newRecord_
-    let header_ = base.header_
-    let this = NullOutputStream header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "write" (\() -> write_impl this)
-    jregisterMethod header_ "write_3" (\() -> write_3_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    pure this
-
-initFields_ :: NullOutputStream -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO NullOutputStream
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NullOutputStream -> IO ()
-init_ this = do
-    OutputStream.init_ this.base
-    initFields_ this
+import JR
 
 
--- throws IOException
-write :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-write object_ a1 = jmethod object_ "write" (\() -> (write_impl (javaCast object_ :: NullOutputStream))) () a1
 
-write_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-write_super object_ a1 = (write_impl (javaCast object_ :: NullOutputStream)) a1
-
-write_impl :: NullOutputStream -> Int -> IO (())
-write_impl this b = do
-        pure ()
+jclass : String
+jclass =
+    "NullOutputStream"
 
 
--- throws IOException
-write_3 :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> Int -> Int -> IO (())
-write_3 object_ a1 a2 a3 = jmethod object_ "write_3" (\() -> (write_3_impl (javaCast object_ :: NullOutputStream))) () a1 a2 a3
-
-write_3_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> Int -> Int -> IO (())
-write_3_super object_ a1 a2 a3 = (write_3_impl (javaCast object_ :: NullOutputStream)) a1 a2 a3
-
-write_3_impl :: NullOutputStream -> JavaArray (Int8) -> Int -> Int -> IO (())
-write_3_impl this b off len = do
-        pure ()
+jchain : List String
+jchain =
+    [ "NullOutputStream" ]
+        ++ [ "OutputStream" ]
 
 
-close :: (JavaObjectClass this_) => this_ -> IO (())
-close object_ = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: NullOutputStream))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [] ++ []
 
-close_super :: (JavaObjectClass this_) => this_ -> IO (())
-close_super object_ = (close_impl (javaCast object_ :: NullOutputStream))
 
-close_impl :: NullOutputStream -> IO (())
-close_impl this = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "write_1", jm_write_1 )
+        , ( "write_3", jm_write_3 )
+        , ( "close_0", jm_close_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullOutputStream"
+        [ ( "jm_write_1", jm_write_1 ), ( "jm_write_3", jm_write_3 ), ( "jm_close_0", jm_close_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_OUTPUT_STREAM", jstatic_NULL_OUTPUT_STREAM ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_OUTPUT_STREAM : JR.M
+jstatic_NULL_OUTPUT_STREAM s =
+    JR.static "NullOutputStream" jclinit "NULL_OUTPUT_STREAM"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect (JR.namedMethod "OutputStream.jinit_0") JR.this []),
+            identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_write_1 : JR.Method
+jm_write_1 jheap jthis jargs =
+    JR.method [ ( "b", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_write_3 : JR.Method
+jm_write_3 jheap jthis jargs =
+    JR.method [ ( "b", "" ), ( "off", "I" ), ( "len", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_close_0 : JR.Method
+jm_close_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,182 +1,150 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
-module MultiKeyPressesAI (module MultiKeyPressesAI, module KeyPressesAI) where
+module Org.Allbinary.Game.Ag.Ai.MultiKeyPressesAI exposing (..)
 
-import KeyPressesAI hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, processAI, processAI_super, processAI_impl, update, update_super, update_impl, toggle, toggle_super, toggle_impl, disable, disable_super, disable_impl, enable, enable_super, enable_impl, toggleTimeHelper, gameTickTimeDelayHelper)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified GameTickTimeDelayHelper -- org.allbinary.time.GameTickTimeDelayHelper
-import qualified GameTickTimeDelayHelperFactory -- org.allbinary.time.GameTickTimeDelayHelperFactory
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified KeyPressesAI
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai
+-}
 
-data MultiKeyPressesAI = MultiKeyPressesAI
-    { header_ :: JavaHeader
-    , base :: KeyPressesAI.KeyPressesAI
-    , toggleTimeHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , gameTickTimeDelayHelper :: IORef (GameTickTimeDelayHelper.GameTickTimeDelayHelper)
-    }
-
-instance JavaNull MultiKeyPressesAI where
-    javaNull = javaNullRecord "MultiKeyPressesAI"
-
-instance JavaEquals MultiKeyPressesAI where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MultiKeyPressesAI where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MultiKeyPressesAI where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO MultiKeyPressesAI
-newRecord_ = do
-    base <- KeyPressesAI.newRecord_
-    let header_ = base.header_
-    toggleTimeHelper <- newIORef javaNull
-    gameTickTimeDelayHelper <- newIORef javaNull
-    let this = MultiKeyPressesAI header_ base toggleTimeHelper gameTickTimeDelayHelper
-    jregisterLevel header_ this
-    jregisterMethod header_ "processAI" (\() -> processAI_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "toggle" (\() -> toggle_impl this)
-    jregisterMethod header_ "disable" (\() -> disable_impl this)
-    jregisterMethod header_ "enable" (\() -> enable_impl this)
-    pure this
-
-initFields_ :: MultiKeyPressesAI -> IO ()
-initFields_ this = do
-    jset this.toggleTimeHelper =<< (TimeDelayHelper.new_1 600)
-    jset this.gameTickTimeDelayHelper =<< (GameTickTimeDelayHelperFactory.getInstance)
-    pure ()
-
-new_3 :: ABHashtable.ABHashtable -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO MultiKeyPressesAI
-new_3 hashtable ownerLayerInterface gameInput = do
-    this <- newRecord_
-    init_3 this hashtable ownerLayerInterface gameInput
-    pure this
-
-init_3 :: MultiKeyPressesAI -> ABHashtable.ABHashtable -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO ()
-init_3 this hashtable ownerLayerInterface gameInput = do
-        KeyPressesAI.init_3 this.base (hashtable) (ownerLayerInterface) (gameInput)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (MultiKeyPressesAI.update this)
-        pure ()
+import JR
+import Org.Allbinary.Time.GameTickTimeDelayHelperFactory as GameTickTimeDelayHelperFactory
+import Org.Allbinary.Game.Ag.Ai.KeyPressesAI as KeyPressesAI
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
 
 
--- throws Exception
-processAI :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI object_ a1 = jmethod object_ "processAI" (\() -> (processAI_impl (javaCast object_ :: MultiKeyPressesAI))) () a1
-
-processAI_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_super object_ a1 = (processAI_impl (javaCast object_ :: MultiKeyPressesAI)) a1
-
-processAI_impl :: MultiKeyPressesAI -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_impl this allBinaryLayerManager = do
-        pure ()
+jclass : String
+jclass =
+    "MultiKeyPressesAI"
 
 
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: MultiKeyPressesAI))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: MultiKeyPressesAI))
-
-update_impl :: MultiKeyPressesAI -> IO (())
-update_impl this = do
-        gameInput <- (KeyPressesAI.getGameInput this)
-        let keys = (jget (this).base.keys)
-        let size = (jlength keys)
-        if (jio (KeyPressesAI.isOn this)) then do
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                let key = (jindex keys (index))
-                when (key /= (Prelude.negate 1)) $ do
-                    Control.Monad.void (GameInput.add gameInput (jio (getInstanceForKey ((jget (this).base.gameKeyEventFactory)) this key)))
-        else do
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                let key = (jindex keys (index))
-                when (key /= (Prelude.negate 1)) $ do
-                    Control.Monad.void (GameInput.addForRemoval gameInput (jio (getInstanceForKey ((jget (this).base.gameKeyEventFactory)) this key)))
-        pure ()
+jchain : List String
+jchain =
+    [ "MultiKeyPressesAI" ]
+        ++ KeyPressesAI.jchain
 
 
--- throws Exception
-toggle :: (JavaObjectClass this_) => this_ -> IO (())
-toggle object_ = jmethod object_ "toggle" (\() -> (toggle_impl (javaCast object_ :: MultiKeyPressesAI))) ()
-
-toggle_super :: (JavaObjectClass this_) => this_ -> IO (())
-toggle_super object_ = (toggle_impl (javaCast object_ :: MultiKeyPressesAI))
-
-toggle_impl :: MultiKeyPressesAI -> IO (())
-toggle_impl this = do
-        when (jio (TimeDelayHelper.isTime ((jget (this).toggleTimeHelper)) (jget ((jget (this).gameTickTimeDelayHelper)).startTime))) $ do
-            Control.Monad.void (KeyPressesAI.toggle_super this.base)
-            Control.Monad.void (MultiKeyPressesAI.update this)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    KeyPressesAI.jfields ++ [ ( "toggleTimeHelper", JR.defaultOf "" ), ( "gameTickTimeDelayHelper", JR.defaultOf "" ) ]
 
 
--- throws Exception
-disable :: (JavaObjectClass this_) => this_ -> IO (())
-disable object_ = jmethod object_ "disable" (\() -> (disable_impl (javaCast object_ :: MultiKeyPressesAI))) ()
-
-disable_super :: (JavaObjectClass this_) => this_ -> IO (())
-disable_super object_ = (disable_impl (javaCast object_ :: MultiKeyPressesAI))
-
-disable_impl :: MultiKeyPressesAI -> IO (())
-disable_impl this = do
-        when (jio (TimeDelayHelper.isTime ((jget (this).toggleTimeHelper)) (jget ((jget (this).gameTickTimeDelayHelper)).startTime))) $ do
-            Control.Monad.void (KeyPressesAI.disable_super this.base)
-            Control.Monad.void (MultiKeyPressesAI.update this)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "processAI_1", jm_processAI_1 )
+        , ( "update_0", jm_update_0 )
+        , ( "toggle_0", jm_toggle_0 )
+        , ( "disable_0", jm_disable_0 )
+        , ( "enable_0", jm_enable_0 ) ]
+        KeyPressesAI.jvtable
 
 
--- throws Exception
-enable :: (JavaObjectClass this_) => this_ -> IO (())
-enable object_ = jmethod object_ "enable" (\() -> (enable_impl (javaCast object_ :: MultiKeyPressesAI))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MultiKeyPressesAI"
+        [ ( "jm_processAI_1", jm_processAI_1 ), ( "jm_update_0", jm_update_0 ), ( "jm_toggle_0", jm_toggle_0 ), ( "jm_disable_0", jm_disable_0 ), ( "jm_enable_0", jm_enable_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
 
-enable_super :: (JavaObjectClass this_) => this_ -> IO (())
-enable_super object_ = (enable_impl (javaCast object_ :: MultiKeyPressesAI))
 
-enable_impl :: MultiKeyPressesAI -> IO (())
-enable_impl this = do
-        when (jio (TimeDelayHelper.isTime ((jget (this).toggleTimeHelper)) (jget ((jget (this).gameTickTimeDelayHelper)).startTime))) $ do
-            Control.Monad.void (KeyPressesAI.enable_super this.base)
-            Control.Monad.void (MultiKeyPressesAI.update this)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "hashtable", "" ), ( "ownerLayerInterface", "" ), ( "gameInput", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect KeyPressesAI.jinit_3 JR.this [ (JR.local "hashtable"), (JR.local "ownerLayerInterface"), (JR.local "gameInput") ]),
+                JR.exec (JR.setField "toggleTimeHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 600) ])),
+                JR.exec (JR.setField "gameTickTimeDelayHelper" "" JR.this (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "update_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_processAI_1 : JR.Method
+jm_processAI_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "gameInput" "" (JR.invoke "getGameInput_0" JR.this []), 
+                    JR.declare "keys" "" (JR.thisField "keys"), 
+                    JR.declare "size" "I" (JR.alength (JR.local "keys")), 
+                    JR.ifElse (JR.invoke "isOn_0" JR.this []) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69336 -> (JR.setLocal "index" "I" (JR.lit jwN69336))) JR.increment) ]) (JR.run [ 
+                            JR.declare "key" "I" (JR.invoke "intValue_0" (JR.aget (JR.local "keys") (JR.local "index")) []), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "key") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                                JR.exec (JR.invoke "add_1" (JR.local "gameInput") [ (JR.invoke "getInstanceForKey_2" (JR.thisField "gameKeyEventFactory") [ JR.this, (JR.local "key") ]) ]) ]) identity ]) ] ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69115 -> (JR.setLocal "index" "I" (JR.lit jwN69115))) JR.increment) ]) (JR.run [ 
+                            JR.declare "key" "I" (JR.invoke "intValue_0" (JR.aget (JR.local "keys") (JR.local "index")) []), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "key") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                                JR.exec (JR.invoke "addForRemoval_1" (JR.local "gameInput") [ (JR.invoke "getInstanceForKey_2" (JR.thisField "gameKeyEventFactory") [ JR.this, (JR.local "key") ]) ]) ]) identity ]) ] ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toggle_0 : JR.Method
+jm_toggle_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isTime_1" (JR.thisField "toggleTimeHelper") [ (JR.field "startTime" (JR.thisField "gameTickTimeDelayHelper")) ]) (JR.run [ 
+                        JR.exec (JR.callVia KeyPressesAI.jvtable "toggle_0" JR.this []), 
+                        JR.exec (JR.invoke "update_0" JR.this []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_disable_0 : JR.Method
+jm_disable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isTime_1" (JR.thisField "toggleTimeHelper") [ (JR.field "startTime" (JR.thisField "gameTickTimeDelayHelper")) ]) (JR.run [ 
+                        JR.exec (JR.callVia KeyPressesAI.jvtable "disable_0" JR.this []), 
+                        JR.exec (JR.invoke "update_0" JR.this []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_enable_0 : JR.Method
+jm_enable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isTime_1" (JR.thisField "toggleTimeHelper") [ (JR.field "startTime" (JR.thisField "gameTickTimeDelayHelper")) ]) (JR.run [ 
+                        JR.exec (JR.callVia KeyPressesAI.jvtable "enable_0" JR.this []), 
+                        JR.exec (JR.invoke "update_0" JR.this []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

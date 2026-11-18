@@ -1,12 +1,12 @@
-module IndexedBasicArrayListCache exposing (..)
+module Org.Allbinary.Logic.Util.Cache.IndexedBasicArrayListCache exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
 -}
 
 import JR
-import BaseBasicArrayListCache
-import CacheInterface
-import CommonStrings
+import Org.Allbinary.Logic.Util.Cache.BaseBasicArrayListCache as BaseBasicArrayListCache
+import Org.Allbinary.Logic.Util.Cache.CacheInterface as CacheInterface
+import Org.Allbinary.String.CommonStrings as CommonStrings
 
 
 jclass : String

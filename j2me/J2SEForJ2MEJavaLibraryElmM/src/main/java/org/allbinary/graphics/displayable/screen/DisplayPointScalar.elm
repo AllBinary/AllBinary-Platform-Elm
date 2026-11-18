@@ -1,127 +1,123 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.displayable.screen
-module DisplayPointScalar where
+module Org.Allbinary.Graphics.Displayable.Screen.DisplayPointScalar exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GPoint -- org.allbinary.graphics.GPoint
+{-| Generated Code Do Not Modify package org.allbinary.graphics.displayable.screen
+-}
 
-data DisplayPointScalar = DisplayPointScalar
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull DisplayPointScalar where
-    javaNull = javaNullRecord "DisplayPointScalar"
-
-instance JavaEquals DisplayPointScalar where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DisplayPointScalar where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DisplayPointScalar where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: DisplayPointScalar
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DisplayPointScalar
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = DisplayPointScalar header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "processX" (\() -> processX_impl this)
-    jregisterMethod header_ "processY" (\() -> processY_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: DisplayPointScalar -> IO ()
-initFields_ this = do
-    pure ()
+import JR
 
 
-getInstance :: IO (DisplayPointScalar)
-getInstance = do
-        pure (DisplayPointScalar.instance_)
 
-new_ :: IO DisplayPointScalar
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DisplayPointScalar -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "DisplayPointScalar"
 
 
-processX :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-processX object_ a1 = jmethod object_ "processX" (\() -> (processX_impl (javaCast object_ :: DisplayPointScalar))) () a1
-
-processX_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-processX_super object_ a1 = (processX_impl (javaCast object_ :: DisplayPointScalar)) a1
-
-processX_impl :: DisplayPointScalar -> Int -> IO (Int)
-processX_impl this value = do
-        pure (value)
+jchain : List String
+jchain =
+    [ "DisplayPointScalar" ]
 
 
-processY :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-processY object_ a1 = jmethod object_ "processY" (\() -> (processY_impl (javaCast object_ :: DisplayPointScalar))) () a1
-
-processY_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-processY_super object_ a1 = (processY_impl (javaCast object_ :: DisplayPointScalar)) a1
-
-processY_impl :: DisplayPointScalar -> Int -> IO (Int)
-processY_impl this value = do
-        pure (value)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-process :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (GPoint.GPoint)
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: DisplayPointScalar))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "processX_1", jm_processX_1 )
+        , ( "processY_1", jm_processY_1 )
+        , ( "process_1", jm_process_1 ) ]
+        JR.noMethods
 
-process_super :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (GPoint.GPoint)
-process_super object_ a1 = (process_impl (javaCast object_ :: DisplayPointScalar)) a1
 
-process_impl :: DisplayPointScalar -> GPoint.GPoint -> IO (GPoint.GPoint)
-process_impl this point = do
-        pure (point)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DisplayPointScalar"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_processX_1", jm_processX_1 ), ( "jm_processY_1", jm_processY_1 ), ( "jm_process_1", jm_process_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "DisplayPointScalar" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processX_1 : JR.Method
+jm_processX_1 jheap jthis jargs =
+    JR.method [ ( "value", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.local "value") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processY_1 : JR.Method
+jm_processY_1 jheap jthis jargs =
+    JR.method [ ( "value", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.local "value") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "point", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.local "point") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

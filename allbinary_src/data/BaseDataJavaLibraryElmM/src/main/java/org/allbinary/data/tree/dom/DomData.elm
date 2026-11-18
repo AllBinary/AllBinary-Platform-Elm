@@ -1,4 +1,4 @@
-module DomData exposing (..)
+module Org.Allbinary.Data.Tree.Dom.DomData exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.data.tree.dom
 -}

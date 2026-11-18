@@ -1,10 +1,10 @@
-module DistanceUtil exposing (..)
+module Org.Allbinary.Math.DistanceUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.math
 -}
 
 import JR
-import MathUtil
+import Org.Allbinary.Logic.Math.MathUtil as MathUtil
 
 
 jclass : String

@@ -1,116 +1,101 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.destroy
-module DestroyableSimpleBehavior (module DestroyableSimpleBehavior, module DestroyableBaseBehavior) where
+module Org.Allbinary.Game.Combat.Destroy.DestroyableSimpleBehavior exposing (..)
 
-import DestroyableBaseBehavior hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, isDestroyed, isDestroyed_super, isDestroyed_impl, setDestroyed, setDestroyed_super, setDestroyed_impl, ownerLayer, destroyed)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DestroyedLayerProcessor -- same package or java.lang
-import qualified BasicLayerProcessor -- same package or java.lang
-import qualified CollidableCompositeLayer -- org.allbinary.game.layer.CollidableCompositeLayer
-import qualified DestroyableBaseBehavior
+{-| Generated Code Do Not Modify package org.allbinary.game.combat.destroy
+-}
 
-data DestroyableSimpleBehavior = DestroyableSimpleBehavior
-    { header_ :: JavaHeader
-    , base :: DestroyableBaseBehavior.DestroyableBaseBehavior
-    , ownerLayer :: IORef (CollidableCompositeLayer.CollidableCompositeLayer)
-    , destroyed :: IORef (Bool)
-    }
-
-instance JavaNull DestroyableSimpleBehavior where
-    javaNull = javaNullRecord "DestroyableSimpleBehavior"
-
-instance JavaEquals DestroyableSimpleBehavior where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DestroyableSimpleBehavior where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DestroyableSimpleBehavior where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO DestroyableSimpleBehavior
-newRecord_ = do
-    base <- DestroyableBaseBehavior.newRecord_
-    let header_ = base.header_
-    ownerLayer <- newIORef javaNull
-    destroyed <- newIORef False
-    let this = DestroyableSimpleBehavior header_ base ownerLayer destroyed
-    jregisterLevel header_ this
-    jregisterMethod header_ "isDestroyed" (\() -> isDestroyed_impl this)
-    jregisterMethod header_ "setDestroyed" (\() -> setDestroyed_impl this)
-    pure this
-
-initFields_ :: DestroyableSimpleBehavior -> IO ()
-initFields_ this = do
-    jset this.ownerLayer (javaNull)
-    jset this.destroyed (False)
-    pure ()
-
-new_1 :: CollidableCompositeLayer.CollidableCompositeLayer -> IO DestroyableSimpleBehavior
-new_1 ownerLayer = do
-    this <- newRecord_
-    init_1 this ownerLayer
-    pure this
-
-init_1 :: DestroyableSimpleBehavior -> CollidableCompositeLayer.CollidableCompositeLayer -> IO ()
-init_1 this ownerLayer = do
-        DestroyableBaseBehavior.init_ this.base
-        initFields_ this
-        jset (this).ownerLayer (ownerLayer)
-        pure ()
+import JR
+import Org.Allbinary.Game.Combat.Destroy.DestroyableBaseBehavior as DestroyableBaseBehavior
+import Org.Allbinary.Game.Combat.Destroy.DestroyedLayerProcessor as DestroyedLayerProcessor
 
 
-isDestroyed :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isDestroyed object_ = jmethod object_ "isDestroyed" (\() -> (isDestroyed_impl (javaCast object_ :: DestroyableSimpleBehavior))) ()
-
-isDestroyed_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isDestroyed_super object_ = (isDestroyed_impl (javaCast object_ :: DestroyableSimpleBehavior))
-
-isDestroyed_impl :: DestroyableSimpleBehavior -> IO (Bool)
-isDestroyed_impl this = do
-        pure ((jget (this).destroyed))
+jclass : String
+jclass =
+    "DestroyableSimpleBehavior"
 
 
-setDestroyed :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setDestroyed object_ a1 = jmethod object_ "setDestroyed" (\() -> (setDestroyed_impl (javaCast object_ :: DestroyableSimpleBehavior))) () a1
+jchain : List String
+jchain =
+    [ "DestroyableSimpleBehavior" ]
+        ++ DestroyableBaseBehavior.jchain
 
-setDestroyed_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setDestroyed_super object_ a1 = (setDestroyed_impl (javaCast object_ :: DestroyableSimpleBehavior)) a1
 
-setDestroyed_impl :: DestroyableSimpleBehavior -> Bool -> IO (())
-setDestroyed_impl this destroyed = do
-        jset (this).destroyed (destroyed)
-        when (jio (DestroyableSimpleBehavior.isDestroyed this)) $ do
-            Control.Monad.void (BasicLayerProcessor.add ((jio (DestroyedLayerProcessor.getInstance))) (jget (this).ownerLayer))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    DestroyableBaseBehavior.jfields ++ [ ( "ownerLayer", JR.defaultOf "" ), ( "destroyed", JR.defaultOf "Z" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "isDestroyed_0", jm_isDestroyed_0 )
+        , ( "setDestroyed_1", jm_setDestroyed_1 ) ]
+        DestroyableBaseBehavior.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DestroyableSimpleBehavior"
+        [ ( "jm_isDestroyed_0", jm_isDestroyed_0 ), ( "jm_setDestroyed_1", jm_setDestroyed_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "ownerLayer", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect DestroyableBaseBehavior.jinit_0 JR.this []),
+                JR.exec (JR.setField "destroyed" "Z" JR.this (JR.bool False)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "ownerLayer" "" JR.this (JR.local "ownerLayer")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_isDestroyed_0 : JR.Method
+jm_isDestroyed_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "destroyed") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDestroyed_1 : JR.Method
+jm_setDestroyed_1 jheap jthis jargs =
+    JR.method [ ( "destroyed", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "destroyed" "Z" JR.this (JR.local "destroyed")), 
+                    JR.ifElse (JR.invoke "isDestroyed_0" JR.this []) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.callStatic DestroyedLayerProcessor.jm_getInstance_0 []) [ (JR.thisField "ownerLayer") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

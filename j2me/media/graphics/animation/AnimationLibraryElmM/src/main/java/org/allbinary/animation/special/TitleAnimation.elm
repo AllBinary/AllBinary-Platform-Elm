@@ -1,326 +1,259 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.special
-module TitleAnimation (module TitleAnimation, module SpecialAnimation) where
+module Org.Allbinary.Animation.Special.TitleAnimation exposing (..)
 
-import SpecialAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createAnimation, createAnimation_super, createAnimation_impl, nextFrame, nextFrame_super, nextFrame_impl, isComplete, isComplete_super, isComplete_impl, setSequence, setSequence_super, setSequence_impl, getSequence, getSequence_super, getSequence_impl, getSize, getSize_super, getSize_impl, getFrame, getFrame_super, getFrame_impl, setFrame, setFrame_super, setFrame_impl, setLastFrame, setLastFrame_super, setLastFrame_impl, reset, reset_super, reset_impl, previousFrame, previousFrame_super, previousFrame_impl, paintFrameXY, paintFrameXY_super, paintFrameXY_impl, paintXY, paintXY_super, paintXY_impl, systemWrapper, deltaX, deltaY, deltaZ, basicColorArray, dxArray, dyArray, widthP, animationInterfaceArray, sizeP, y, lastFrameStartTime, displayInfoSingleton, cLEAR_COLOR)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicColorSetUtil -- same package or java.lang
-import qualified Animation -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified AnimationBehavior -- org.allbinary.animation.AnimationBehavior
-import qualified IndexedAnimation -- org.allbinary.animation.IndexedAnimation
-import qualified IndexedAnimationBehavior -- org.allbinary.animation.IndexedAnimationBehavior
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified ABSystemWrapper -- org.allbinary.logic.ABSystemWrapper
-import qualified PrimitiveIntUtil -- org.allbinary.logic.math.PrimitiveIntUtil
-import qualified SpecialAnimation
+{-| Generated Code Do Not Modify package org.allbinary.animation.special
+-}
 
-data TitleAnimation = TitleAnimation
-    { header_ :: JavaHeader
-    , base :: SpecialAnimation.SpecialAnimation
-    , systemWrapper :: IORef (ABSystemWrapper.ABSystemWrapper)
-    , deltaX :: IORef (Float)
-    , deltaY :: IORef (Float)
-    , deltaZ :: IORef (Float)
-    , basicColorArray :: IORef (JavaArray (BasicColor.BasicColor))
-    , dxArray :: IORef (JavaArray (Int))
-    , dyArray :: IORef (JavaArray (Int))
-    , widthP :: IORef (Int)
-    , animationInterfaceArray :: IORef (JavaArray (IndexedAnimation.IndexedAnimation))
-    , sizeP :: IORef (Int)
-    , y :: IORef (Int)
-    , lastFrameStartTime :: IORef (Int64)
-    , displayInfoSingleton :: IORef (DisplayInfoSingleton.DisplayInfoSingleton)
-    , cLEAR_COLOR :: IORef (BasicColor.BasicColor)
-    }
-
-instance JavaNull TitleAnimation where
-    javaNull = javaNullRecord "TitleAnimation"
-
-instance JavaEquals TitleAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TitleAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TitleAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO TitleAnimation
-newRecord_ = do
-    base <- SpecialAnimation.newRecord_
-    let header_ = base.header_
-    systemWrapper <- newIORef javaNull
-    deltaX <- newIORef 0.0
-    deltaY <- newIORef 0.0
-    deltaZ <- newIORef 0.0
-    basicColorArray <- newIORef javaNull
-    dxArray <- newIORef javaNull
-    dyArray <- newIORef javaNull
-    widthP <- newIORef 0
-    animationInterfaceArray <- newIORef javaNull
-    sizeP <- newIORef 0
-    y <- newIORef 0
-    lastFrameStartTime <- newIORef 0
-    displayInfoSingleton <- newIORef javaNull
-    cLEAR_COLOR <- newIORef javaNull
-    let this = TitleAnimation header_ base systemWrapper deltaX deltaY deltaZ basicColorArray dxArray dyArray widthP animationInterfaceArray sizeP y lastFrameStartTime displayInfoSingleton cLEAR_COLOR
-    jregisterLevel header_ this
-    jregisterMethod header_ "nextFrame" (\() -> nextFrame_impl this)
-    jregisterMethod header_ "isComplete" (\() -> isComplete_impl this)
-    jregisterMethod header_ "setSequence" (\() -> setSequence_impl this)
-    jregisterMethod header_ "getSequence" (\() -> getSequence_impl this)
-    jregisterMethod header_ "getSize" (\() -> getSize_impl this)
-    jregisterMethod header_ "getFrame" (\() -> getFrame_impl this)
-    jregisterMethod header_ "setFrame" (\() -> setFrame_impl this)
-    jregisterMethod header_ "setLastFrame" (\() -> setLastFrame_impl this)
-    jregisterMethod header_ "reset" (\() -> reset_impl this)
-    jregisterMethod header_ "previousFrame" (\() -> previousFrame_impl this)
-    jregisterMethod header_ "paintFrameXY" (\() -> paintFrameXY_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    pure this
-
-initFields_ :: TitleAnimation -> IO ()
-initFields_ this = do
-    jset this.systemWrapper =<< (ABSystemWrapper.getInstance)
-    jset this.deltaX (0.0)
-    jset this.deltaY (0.0)
-    jset this.deltaZ (0.0)
-    jset this.basicColorArray (javaNull)
-    jset this.dxArray (javaNull)
-    jset this.dyArray (javaNull)
-    jset this.widthP (0)
-    jset this.animationInterfaceArray (javaNull)
-    jset this.sizeP (0)
-    jset this.y (0)
-    jset this.lastFrameStartTime (0)
-    jset this.displayInfoSingleton =<< (DisplayInfoSingleton.getInstance)
-    jset this.cLEAR_COLOR ((jget ((jio (BasicColorFactory.getInstance))).cLEAR_COLOR))
-    pure ()
+import JR
+import Org.Allbinary.Logic.ABSystemWrapper as ABSystemWrapper
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Animation.IndexedAnimationBehavior as IndexedAnimationBehavior
+import JInteger
+import Org.Allbinary.Logic.Math.PrimitiveIntUtil as PrimitiveIntUtil
+import Org.Allbinary.Animation.Special.SpecialAnimation as SpecialAnimation
 
 
-createAnimation :: JavaArray (IndexedAnimation.IndexedAnimation) -> JavaArray (BasicColor.BasicColor) -> JavaArray (Int) -> JavaArray (Int) -> Int -> Int -> IO (TitleAnimation)
-createAnimation animationInterfaceArray basicColorArray dxArray dyArray y width = do
-        (new_7 animationInterfaceArray basicColorArray dxArray dyArray y width (javaCast (jio (IndexedAnimationBehavior.new_2 1 250))))
-
-new_7 :: JavaArray (IndexedAnimation.IndexedAnimation) -> JavaArray (BasicColor.BasicColor) -> JavaArray (Int) -> JavaArray (Int) -> Int -> Int -> AnimationBehavior.AnimationBehavior -> IO TitleAnimation
-new_7 animationInterfaceArray basicColorArray dxArray dyArray y width animationBehavior = do
-    this <- newRecord_
-    init_7 this animationInterfaceArray basicColorArray dxArray dyArray y width animationBehavior
-    pure this
-
-init_7 :: TitleAnimation -> JavaArray (IndexedAnimation.IndexedAnimation) -> JavaArray (BasicColor.BasicColor) -> JavaArray (Int) -> JavaArray (Int) -> Int -> Int -> AnimationBehavior.AnimationBehavior -> IO ()
-init_7 this animationInterfaceArray basicColorArray dxArray dyArray y width animationBehavior = do
-        SpecialAnimation.init_1 this.base (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        assignedValue <- (ABSystemWrapper.currentTimeMillis ((jget (this).systemWrapper)))
-        jset (this).lastFrameStartTime (assignedValue)
-        jset (this).animationInterfaceArray (animationInterfaceArray)
-        jset (this).sizeP ((jlength (jget (this).animationInterfaceArray)))
-        jset (this).basicColorArray (basicColorArray)
-        jset (this).dxArray (dxArray)
-        jset (this).dyArray (dyArray)
-        jset (this).y (y)
-        jset (this).widthP (width)
-        Control.Monad.void (TitleAnimation.reset this)
-        pure ()
+jclass : String
+jclass =
+    "TitleAnimation"
 
 
-nextFrame :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame object_ = jmethod object_ "nextFrame" (\() -> (nextFrame_impl (javaCast object_ :: TitleAnimation))) ()
-
-nextFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame_super object_ = (nextFrame_impl (javaCast object_ :: TitleAnimation))
-
-nextFrame_impl :: TitleAnimation -> IO (())
-nextFrame_impl this = do
-        currentTime <- (ABSystemWrapper.currentTimeMillis ((jget (this).systemWrapper)))
-        let totalTimeElapsed = (currentTime - (jget (this).lastFrameStartTime))
-        let indexedAnimationBehavior = (javaCast (jio (SpecialAnimation.getAnimationBehavior this)) :: IndexedAnimationBehavior.IndexedAnimationBehavior)
-        when (totalTimeElapsed > (jget (indexedAnimationBehavior).frameDelayTime)) $ do
-            Control.Monad.void (TitleAnimation.previousFrame this)
-            jset (this).lastFrameStartTime (currentTime)
-        when ((jio (IndexedAnimation.getFrame ((jindex ((jget (this).animationInterfaceArray)) (0))))) == 0) $ do
-            jset (indexedAnimationBehavior).loopIndex ((jget (indexedAnimationBehavior).loopIndex) + 1)
-        pure ()
+jchain : List String
+jchain =
+    [ "TitleAnimation" ]
+        ++ SpecialAnimation.jchain
 
 
-isComplete :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isComplete object_ = jmethod object_ "isComplete" (\() -> (isComplete_impl (javaCast object_ :: TitleAnimation))) ()
-
-isComplete_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isComplete_super object_ = (isComplete_impl (javaCast object_ :: TitleAnimation))
-
-isComplete_impl :: TitleAnimation -> IO (Bool)
-isComplete_impl this = do
-    javaCatchReturn $ do
-        let indexedAnimationBehavior = (javaCast (jio (SpecialAnimation.getAnimationBehavior this)) :: IndexedAnimationBehavior.IndexedAnimationBehavior)
-        if ((((jget (indexedAnimationBehavior).loopTotal) == (Prelude.negate 1)) || ((jget (indexedAnimationBehavior).loopIndex) < (jget (indexedAnimationBehavior).loopTotal))) || ((jio (TitleAnimation.getFrame this)) /= 0)) then do
-            javaReturn (False)
-        else do
-            javaReturn (True)
+jfields : List ( String, JR.JValue )
+jfields =
+    SpecialAnimation.jfields ++ [ ( "systemWrapper", JR.defaultOf "" ), ( "deltaX", JR.defaultOf "F" ), ( "deltaY", JR.defaultOf "F" ), ( "deltaZ", JR.defaultOf "F" ), ( "basicColorArray", JR.defaultOf "" ), ( "dxArray", JR.defaultOf "" ), ( "dyArray", JR.defaultOf "" ), ( "widthP", JR.defaultOf "I" ), ( "animationInterfaceArray", JR.defaultOf "" ), ( "sizeP", JR.defaultOf "I" ), ( "y", JR.defaultOf "I" ), ( "lastFrameStartTime", JR.defaultOf "J" ), ( "displayInfoSingleton", JR.defaultOf "" ), ( "CLEAR_COLOR", JR.defaultOf "" ) ]
 
 
-setSequence :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence object_ a1 = jmethod object_ "setSequence" (\() -> (setSequence_impl (javaCast object_ :: TitleAnimation))) () a1
-
-setSequence_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence_super object_ a1 = (setSequence_impl (javaCast object_ :: TitleAnimation)) a1
-
-setSequence_impl :: TitleAnimation -> JavaArray (Int) -> IO (())
-setSequence_impl this sequence = do
-        pure ()
-
-
-getSequence :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence object_ = jmethod object_ "getSequence" (\() -> (getSequence_impl (javaCast object_ :: TitleAnimation))) ()
-
-getSequence_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence_super object_ = (getSequence_impl (javaCast object_ :: TitleAnimation))
-
-getSequence_impl :: TitleAnimation -> IO (JavaArray (Int))
-getSequence_impl this = do
-        (PrimitiveIntUtil.getArrayInstance)
+jvtable =
+    JR.vtable
+        [ ( "createAnimation_6", jm_createAnimation_6 )
+        , ( "nextFrame_0", jm_nextFrame_0 )
+        , ( "isComplete_0", jm_isComplete_0 )
+        , ( "setSequence_1", jm_setSequence_1 )
+        , ( "getSequence_0", jm_getSequence_0 )
+        , ( "getSize_0", jm_getSize_0 )
+        , ( "getFrame_0", jm_getFrame_0 )
+        , ( "setFrame_1", jm_setFrame_1 )
+        , ( "setLastFrame_0", jm_setLastFrame_0 )
+        , ( "reset_0", jm_reset_0 )
+        , ( "previousFrame_0", jm_previousFrame_0 )
+        , ( "paintFrameXY_4", jm_paintFrameXY_4 )
+        , ( "paintXY_3", jm_paintXY_3 ) ]
+        SpecialAnimation.jvtable
 
 
-getSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize object_ = jmethod object_ "getSize" (\() -> (getSize_impl (javaCast object_ :: TitleAnimation))) ()
-
-getSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize_super object_ = (getSize_impl (javaCast object_ :: TitleAnimation))
-
-getSize_impl :: TitleAnimation -> IO (Int)
-getSize_impl this = do
-        (IndexedAnimation.getSize ((jindex ((jget (this).animationInterfaceArray)) (0))))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TitleAnimation"
+        [ ( "jm_createAnimation_6", jm_createAnimation_6 ), ( "jm_nextFrame_0", jm_nextFrame_0 ), ( "jm_isComplete_0", jm_isComplete_0 ), ( "jm_setSequence_1", jm_setSequence_1 ), ( "jm_getSequence_0", jm_getSequence_0 ), ( "jm_getSize_0", jm_getSize_0 ), ( "jm_getFrame_0", jm_getFrame_0 ), ( "jm_setFrame_1", jm_setFrame_1 ), ( "jm_setLastFrame_0", jm_setLastFrame_0 ), ( "jm_reset_0", jm_reset_0 ), ( "jm_previousFrame_0", jm_previousFrame_0 ), ( "jm_paintFrameXY_4", jm_paintFrameXY_4 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jnew_7", jnew_7 ), ( "jinit_7", jinit_7 ) ]
+        []
+        jheap
 
 
-getFrame :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame object_ = jmethod object_ "getFrame" (\() -> (getFrame_impl (javaCast object_ :: TitleAnimation))) ()
-
-getFrame_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame_super object_ = (getFrame_impl (javaCast object_ :: TitleAnimation))
-
-getFrame_impl :: TitleAnimation -> IO (Int)
-getFrame_impl this = do
-        (IndexedAnimation.getFrame ((jindex ((jget (this).animationInterfaceArray)) (0))))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setFrame :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame object_ a1 = jmethod object_ "setFrame" (\() -> (setFrame_impl (javaCast object_ :: TitleAnimation))) () a1
-
-setFrame_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame_super object_ a1 = (setFrame_impl (javaCast object_ :: TitleAnimation)) a1
-
-setFrame_impl :: TitleAnimation -> Int -> IO (())
-setFrame_impl this frame = do
-        forM_ [0 .. (jget (this).sizeP) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (IndexedAnimation.setFrame ((jindex ((jget (this).animationInterfaceArray)) (index))) frame)
-        pure ()
-
-
-setLastFrame :: (JavaObjectClass this_) => this_ -> IO (())
-setLastFrame object_ = jmethod object_ "setLastFrame" (\() -> (setLastFrame_impl (javaCast object_ :: TitleAnimation))) ()
-
-setLastFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-setLastFrame_super object_ = (setLastFrame_impl (javaCast object_ :: TitleAnimation))
-
-setLastFrame_impl :: TitleAnimation -> IO (())
-setLastFrame_impl this = do
-        Control.Monad.void (TitleAnimation.setFrame this ((jio (TitleAnimation.getSize this)) - 1))
-        pure ()
+jinit_7 : JR.Method
+jinit_7 jheap jthis jargs =
+    JR.method [ ( "animationInterfaceArray", "" ), ( "basicColorArray", "" ), ( "dxArray", "" ), ( "dyArray", "" ), ( "y", "I" ), ( "width", "I" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect SpecialAnimation.jinit_1 JR.this [ (JR.local "animationBehavior") ]),
+                JR.exec (JR.setField "systemWrapper" "" JR.this (JR.callStatic ABSystemWrapper.jm_getInstance_0 [])),
+                JR.exec (JR.setField "displayInfoSingleton" "" JR.this (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 [])),
+                JR.exec (JR.setField "CLEAR_COLOR" "" JR.this (JR.field "CLEAR_COLOR" (JR.callStatic BasicColorFactory.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "lastFrameStartTime" "J" JR.this (JR.invoke "currentTimeMillis_0" (JR.thisField "systemWrapper") [])), 
+                    JR.exec (JR.setField "animationInterfaceArray" "" JR.this (JR.local "animationInterfaceArray")), 
+                    JR.exec (JR.setField "sizeP" "I" JR.this (JR.alength (JR.thisField "animationInterfaceArray"))), 
+                    JR.exec (JR.setField "basicColorArray" "" JR.this (JR.local "basicColorArray")), 
+                    JR.exec (JR.setField "dxArray" "" JR.this (JR.local "dxArray")), 
+                    JR.exec (JR.setField "dyArray" "" JR.this (JR.local "dyArray")), 
+                    JR.exec (JR.setField "y" "I" JR.this (JR.local "y")), 
+                    JR.exec (JR.setField "widthP" "I" JR.this (JR.local "width")), 
+                    JR.exec (JR.invoke "reset_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-reset :: (JavaObjectClass this_) => this_ -> IO (())
-reset object_ = jmethod object_ "reset" (\() -> (reset_impl (javaCast object_ :: TitleAnimation))) ()
-
-reset_super :: (JavaObjectClass this_) => this_ -> IO (())
-reset_super object_ = (reset_impl (javaCast object_ :: TitleAnimation))
-
-reset_impl :: TitleAnimation -> IO (())
-reset_impl this = do
-        Control.Monad.void (TitleAnimation.setLastFrame this)
-        let indexedAnimationBehavior = ((javaCast (jio (SpecialAnimation.getAnimationBehavior this)) :: IndexedAnimationBehavior.IndexedAnimationBehavior))
-        Control.Monad.void (IndexedAnimationBehavior.reset indexedAnimationBehavior)
-        pure ()
+jnew_7 : JR.Method
+jnew_7 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_7 jheap jthis jargs
 
 
-previousFrame :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame object_ = jmethod object_ "previousFrame" (\() -> (previousFrame_impl (javaCast object_ :: TitleAnimation))) ()
-
-previousFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame_super object_ = (previousFrame_impl (javaCast object_ :: TitleAnimation))
-
-previousFrame_impl :: TitleAnimation -> IO (())
-previousFrame_impl this = do
-        forM_ [0 .. (jget (this).sizeP) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (IndexedAnimation.previousFrame ((jindex ((jget (this).animationInterfaceArray)) (index))))
-        pure ()
+jm_createAnimation_6 : JR.Method
+jm_createAnimation_6 jheap jthis jargs =
+    JR.method [ ( "animationInterfaceArray", "" ), ( "basicColorArray", "" ), ( "dxArray", "" ), ( "dyArray", "" ), ( "y", "I" ), ( "width", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_7 [ (JR.local "animationInterfaceArray"), (JR.local "basicColorArray"), (JR.local "dxArray"), (JR.local "dyArray"), (JR.local "y"), (JR.local "width"), (JR.new IndexedAnimationBehavior.jnew_2 [ (JR.int 1), (JR.int 250) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-paintFrameXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintFrameXY object_ a1 a2 a3 a4 = jmethod object_ "paintFrameXY" (\() -> (paintFrameXY_impl (javaCast object_ :: TitleAnimation))) () a1 a2 a3 a4
+jm_nextFrame_0 : JR.Method
+jm_nextFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "currentTime" "J" (JR.invoke "currentTimeMillis_0" (JR.thisField "systemWrapper") []), 
+                    JR.declare "totalTimeElapsed" "J" (JR.map2 JR.sub (JR.local "currentTime") (JR.thisField "lastFrameStartTime")), 
+                    JR.declare "indexedAnimationBehavior" "" (JR.invoke "getAnimationBehavior_0" JR.this []), 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "totalTimeElapsed") (JR.field "frameDelayTime" (JR.local "indexedAnimationBehavior"))) (JR.run [ 
+                        JR.exec (JR.invoke "previousFrame_0" JR.this []), 
+                        JR.exec (JR.setField "lastFrameStartTime" "J" JR.this (JR.local "currentTime")) ]) identity, 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "getFrame_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.int 0)) []) (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "indexedAnimationBehavior") (\jtN69639 -> (JR.postUpdate (JR.field "loopIndex" (JR.lit jtN69639)) (\jwN69639 -> (JR.setField "loopIndex" "I" (JR.lit jtN69639) (JR.lit jwN69639))) JR.increment))) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
-paintFrameXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintFrameXY_super object_ a1 a2 a3 a4 = (paintFrameXY_impl (javaCast object_ :: TitleAnimation)) a1 a2 a3 a4
 
-paintFrameXY_impl :: TitleAnimation -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintFrameXY_impl this graphics frame x y = do
-        Control.Monad.void (TitleAnimation.setFrame this frame)
-        Control.Monad.void (TitleAnimation.paintXY this graphics x y)
-        pure ()
+jm_isComplete_0 : JR.Method
+jm_isComplete_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.declare "indexedAnimationBehavior" "" (JR.invoke "getAnimationBehavior_0" JR.this []), 
+                    JR.ifElse (JR.or (JR.or (JR.map2 JR.equals (JR.field "loopTotal" (JR.local "indexedAnimationBehavior")) (JR.map JR.neg (JR.int 1))) (JR.map2 JR.less (JR.field "loopIndex" (JR.local "indexedAnimationBehavior")) (JR.field "loopTotal" (JR.local "indexedAnimationBehavior")))) (JR.map2 JR.notEquals (JR.invoke "getFrame_0" JR.this []) (JR.int 0))) (JR.run [ 
+                        JR.return (JR.bool False) ]) (JR.run [ 
+                        JR.return (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: TitleAnimation))) () a1 a2 a3
+jm_setSequence_1 : JR.Method
+jm_setSequence_1 jheap jthis jargs =
+    JR.method [ ( "sequence", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
 
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: TitleAnimation)) a1 a2 a3
 
-paintXY_impl :: TitleAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics ax ay = do
-        x <- newIORef (0 :: Int)
-        when ((jget (this).widthP) /= ((-2147483648) :: Int)) $ do
-            jset x ((((((jio (DisplayInfoSingleton.getLastWidth ((jget (this).displayInfoSingleton)))) - (jget (this).widthP))) / 2)))
-        deltaX <- newIORef (0 :: Int)
-        deltaY <- newIORef (0 :: Int)
-        forM_ [0 .. (jget (this).sizeP) - 1] $ \index -> javaIteration (pure ()) $ do
-            jset deltaX (((jindex ((jget (this).dxArray)) (index)) + (jget x)))
-            jset deltaY (((jindex ((jget (this).dyArray)) (index)) + (jget (this).y)))
-            when ((jindex ((jget (this).basicColorArray)) (index)) /= (jget (this).cLEAR_COLOR)) $ do
-                Control.Monad.void (BasicColorSetUtil.setBasicColorP ((jget (this).base.base.base.basicSetColorUtil)) graphics (jindex ((jget (this).basicColorArray)) (index)))
-            Control.Monad.void (IndexedAnimation.paintXY ((jindex ((jget (this).animationInterfaceArray)) (index))) graphics (jget deltaX) (jget deltaY))
-        pure ()
+jm_getSequence_0 : JR.Method
+jm_getSequence_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_getSize_0 : JR.Method
+jm_getSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getSize_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.int 0)) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFrame_0 : JR.Method
+jm_getFrame_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getFrame_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.int 0)) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFrame_1 : JR.Method
+jm_setFrame_1 jheap jthis jargs =
+    JR.method [ ( "frame", "I" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "sizeP")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70291 -> (JR.setLocal "index" "I" (JR.lit jwN70291))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setFrame_1" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "frame") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLastFrame_0 : JR.Method
+jm_setLastFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setFrame_1" JR.this [ (JR.map2 JR.sub (JR.invoke "getSize_0" JR.this []) (JR.int 1)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_reset_0 : JR.Method
+jm_reset_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setLastFrame_0" JR.this []), 
+                    JR.declare "indexedAnimationBehavior" "" ((JR.invoke "getAnimationBehavior_0" JR.this [])), 
+                    JR.exec (JR.invoke "reset_0" (JR.local "indexedAnimationBehavior") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_previousFrame_0 : JR.Method
+jm_previousFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "sizeP")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70676 -> (JR.setLocal "index" "I" (JR.lit jwN70676))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "previousFrame_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) []) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintFrameXY_4 : JR.Method
+jm_paintFrameXY_4 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "frame", "I" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setFrame_1" JR.this [ (JR.local "frame") ]), 
+                    JR.exec (JR.invoke "paintXY_3" JR.this [ (JR.local "graphics"), (JR.local "x"), (JR.local "y") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "ax", "I" ), ( "ay", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "x" "I" (JR.int 0), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.thisField "widthP") JInteger.jstatic_MIN_VALUE) (JR.run [ 
+                        JR.exec (JR.setLocal "x" "I" ((JR.map2 JR.div ((JR.map2 JR.sub (JR.invoke "getLastWidth_0" (JR.thisField "displayInfoSingleton") []) (JR.thisField "widthP"))) (JR.int 2)))) ]) identity, 
+                    JR.declare "deltaX" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "deltaY" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "sizeP")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71502 -> (JR.setLocal "index" "I" (JR.lit jwN71502))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "deltaX" "I" (JR.map2 JR.add (JR.aget (JR.thisField "dxArray") (JR.local "index")) (JR.local "x"))), 
+                        JR.exec (JR.setLocal "deltaY" "I" (JR.map2 JR.add (JR.aget (JR.thisField "dyArray") (JR.local "index")) (JR.thisField "y"))), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.thisField "basicColorArray") (JR.local "index")) (JR.thisField "CLEAR_COLOR")) (JR.run [ 
+                            JR.exec (JR.invoke "setBasicColorP_2" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.aget (JR.thisField "basicColorArray") (JR.local "index")) ]) ]) identity, 
+                        JR.exec (JR.invoke "paintXY_3" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "graphics"), (JR.local "deltaX"), (JR.local "deltaY") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

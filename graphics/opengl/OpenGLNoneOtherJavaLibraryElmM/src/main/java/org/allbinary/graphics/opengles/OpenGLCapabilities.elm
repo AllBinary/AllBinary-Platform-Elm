@@ -1,201 +1,167 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
-module OpenGLCapabilities where
+module Org.Allbinary.Graphics.Opengles.OpenGLCapabilities exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.graphics.opengles
+-}
 
-data OpenGLCapabilities = OpenGLCapabilities
-    { header_ :: JavaHeader
-    , cUSTOM_GL_SURFACE_VIEW :: IORef (Bool)
-    , vERSION_1_0 :: IORef (String)
-    , vERSION_1_1 :: IORef (String)
-    , vERSION_2_0 :: IORef (String)
-    , vERSION_3_0 :: IORef (String)
-    , vERSION_3_1 :: IORef (String)
-    , vERSION_3_2 :: IORef (String)
-    , vERSION_HIGHER_THAN_EXISTS :: IORef (String)
-    , glVersion :: IORef (String)
-    , shaderVersion :: IORef (Int)
-    , glInstanceVersion :: IORef (String)
-    , maxTextureSize :: IORef (Int)
-    }
-
-instance JavaNull OpenGLCapabilities where
-    javaNull = javaNullRecord "OpenGLCapabilities"
-
-instance JavaEquals OpenGLCapabilities where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLCapabilities where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLCapabilities where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: OpenGLCapabilities
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OpenGLCapabilities
-newRecord_ = do
-    header_ <- newJavaHeader
-    cUSTOM_GL_SURFACE_VIEW <- newIORef False
-    vERSION_1_0 <- newIORef ""
-    vERSION_1_1 <- newIORef ""
-    vERSION_2_0 <- newIORef ""
-    vERSION_3_0 <- newIORef ""
-    vERSION_3_1 <- newIORef ""
-    vERSION_3_2 <- newIORef ""
-    vERSION_HIGHER_THAN_EXISTS <- newIORef ""
-    glVersion <- newIORef ""
-    shaderVersion <- newIORef 0
-    glInstanceVersion <- newIORef ""
-    maxTextureSize <- newIORef 0
-    let this = OpenGLCapabilities header_ cUSTOM_GL_SURFACE_VIEW vERSION_1_0 vERSION_1_1 vERSION_2_0 vERSION_3_0 vERSION_3_1 vERSION_3_2 vERSION_HIGHER_THAN_EXISTS glVersion shaderVersion glInstanceVersion maxTextureSize
-    jregisterLevel header_ this
-    jregisterMethod header_ "isInitialized" (\() -> isInitialized_impl this)
-    jregisterMethod header_ "initCapabilities" (\() -> initCapabilities_impl this)
-    jregisterMethod header_ "isGlExtensionDrawTexture" (\() -> isGlExtensionDrawTexture_impl this)
-    jregisterMethod header_ "getGlVersion" (\() -> getGlVersion_impl this)
-    jregisterMethod header_ "isVertexBufferObjectSupport" (\() -> isVertexBufferObjectSupport_impl this)
-    jregisterMethod header_ "isTextureSizeValid" (\() -> isTextureSizeValid_impl this)
-    pure this
-
-initFields_ :: OpenGLCapabilities -> IO ()
-initFields_ this = do
-    jset this.cUSTOM_GL_SURFACE_VIEW (True)
-    jset this.vERSION_1_0 ("1.0")
-    jset this.vERSION_1_1 ("1.1")
-    jset this.vERSION_2_0 ("2.0")
-    jset this.vERSION_3_0 ("3.0")
-    jset this.vERSION_3_1 ("3.1")
-    jset this.vERSION_3_2 ("3.2")
-    jset this.vERSION_HIGHER_THAN_EXISTS ("999.999")
-    jset this.glVersion ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.shaderVersion (0)
-    jset this.glInstanceVersion ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.maxTextureSize (64)
-    pure ()
+import JR
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (OpenGLCapabilities)
-getInstance = do
-        pure (OpenGLCapabilities.instance_)
-
-new_ :: IO OpenGLCapabilities
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLCapabilities -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "OpenGLCapabilities"
 
 
-isInitialized :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isInitialized object_ = jmethod object_ "isInitialized" (\() -> (isInitialized_impl (javaCast object_ :: OpenGLCapabilities))) ()
-
-isInitialized_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isInitialized_super object_ = (isInitialized_impl (javaCast object_ :: OpenGLCapabilities))
-
-isInitialized_impl :: OpenGLCapabilities -> IO (Bool)
-isInitialized_impl this = do
-        pure (True)
+jchain : List String
+jchain =
+    [ "OpenGLCapabilities" ]
 
 
-initCapabilities :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-initCapabilities object_ a1 = jmethod object_ "initCapabilities" (\() -> (initCapabilities_impl (javaCast object_ :: OpenGLCapabilities))) () (jtoObject a1)
-
-initCapabilities_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-initCapabilities_super object_ a1 = (initCapabilities_impl (javaCast object_ :: OpenGLCapabilities)) (jtoObject a1)
-
-initCapabilities_impl :: OpenGLCapabilities -> JavaObject -> IO (())
-initCapabilities_impl this glObject_ = do
-        let gl = jtoObject glObject_
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "CUSTOM_GL_SURFACE_VIEW", JR.defaultOf "Z" ), ( "VERSION_1_0", JR.defaultOf "" ), ( "VERSION_1_1", JR.defaultOf "" ), ( "VERSION_2_0", JR.defaultOf "" ), ( "VERSION_3_0", JR.defaultOf "" ), ( "VERSION_3_1", JR.defaultOf "" ), ( "VERSION_3_2", JR.defaultOf "" ), ( "VERSION_HIGHER_THAN_EXISTS", JR.defaultOf "" ), ( "glVersion", JR.defaultOf "" ), ( "shaderVersion", JR.defaultOf "I" ), ( "glInstanceVersion", JR.defaultOf "" ), ( "maxTextureSize", JR.defaultOf "I" ) ]
 
 
-isGlExtensionDrawTexture :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isGlExtensionDrawTexture object_ = jmethod object_ "isGlExtensionDrawTexture" (\() -> (isGlExtensionDrawTexture_impl (javaCast object_ :: OpenGLCapabilities))) ()
-
-isGlExtensionDrawTexture_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isGlExtensionDrawTexture_super object_ = (isGlExtensionDrawTexture_impl (javaCast object_ :: OpenGLCapabilities))
-
-isGlExtensionDrawTexture_impl :: OpenGLCapabilities -> IO (Bool)
-isGlExtensionDrawTexture_impl this = do
-        pure (False)
-
-
-getGlVersion :: (JavaObjectClass this_) => this_ -> IO (String)
-getGlVersion object_ = jmethod object_ "getGlVersion" (\() -> (getGlVersion_impl (javaCast object_ :: OpenGLCapabilities))) ()
-
-getGlVersion_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getGlVersion_super object_ = (getGlVersion_impl (javaCast object_ :: OpenGLCapabilities))
-
-getGlVersion_impl :: OpenGLCapabilities -> IO (String)
-getGlVersion_impl this = do
-        pure ((jget (this).glVersion))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "isInitialized_0", jm_isInitialized_0 )
+        , ( "initCapabilities_1", jm_initCapabilities_1 )
+        , ( "isGlExtensionDrawTexture_0", jm_isGlExtensionDrawTexture_0 )
+        , ( "getGlVersion_0", jm_getGlVersion_0 )
+        , ( "isVertexBufferObjectSupport_0", jm_isVertexBufferObjectSupport_0 )
+        , ( "isTextureSizeValid_1", jm_isTextureSizeValid_1 ) ]
+        JR.noMethods
 
 
-isVertexBufferObjectSupport :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isVertexBufferObjectSupport object_ = jmethod object_ "isVertexBufferObjectSupport" (\() -> (isVertexBufferObjectSupport_impl (javaCast object_ :: OpenGLCapabilities))) ()
-
-isVertexBufferObjectSupport_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isVertexBufferObjectSupport_super object_ = (isVertexBufferObjectSupport_impl (javaCast object_ :: OpenGLCapabilities))
-
-isVertexBufferObjectSupport_impl :: OpenGLCapabilities -> IO (Bool)
-isVertexBufferObjectSupport_impl this = do
-        pure (False)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLCapabilities"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_isInitialized_0", jm_isInitialized_0 ), ( "jm_initCapabilities_1", jm_initCapabilities_1 ), ( "jm_isGlExtensionDrawTexture_0", jm_isGlExtensionDrawTexture_0 ), ( "jm_getGlVersion_0", jm_getGlVersion_0 ), ( "jm_isVertexBufferObjectSupport_0", jm_isVertexBufferObjectSupport_0 ), ( "jm_isTextureSizeValid_1", jm_isTextureSizeValid_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-isTextureSizeValid :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-isTextureSizeValid object_ a1 = jmethod object_ "isTextureSizeValid" (\() -> (isTextureSizeValid_impl (javaCast object_ :: OpenGLCapabilities))) () a1
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-isTextureSizeValid_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-isTextureSizeValid_super object_ a1 = (isTextureSizeValid_impl (javaCast object_ :: OpenGLCapabilities)) a1
 
-isTextureSizeValid_impl :: OpenGLCapabilities -> Int -> IO (Bool)
-isTextureSizeValid_impl this widthAndHeight = do
-        pure (True)
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "OpenGLCapabilities" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "CUSTOM_GL_SURFACE_VIEW" "Z" JR.this (JR.bool True)),
+                JR.exec (JR.setField "VERSION_1_0" "" JR.this (JR.str "1.0")),
+                JR.exec (JR.setField "VERSION_1_1" "" JR.this (JR.str "1.1")),
+                JR.exec (JR.setField "VERSION_2_0" "" JR.this (JR.str "2.0")),
+                JR.exec (JR.setField "VERSION_3_0" "" JR.this (JR.str "3.0")),
+                JR.exec (JR.setField "VERSION_3_1" "" JR.this (JR.str "3.1")),
+                JR.exec (JR.setField "VERSION_3_2" "" JR.this (JR.str "3.2")),
+                JR.exec (JR.setField "VERSION_HIGHER_THAN_EXISTS" "" JR.this (JR.str "999.999")),
+                JR.exec (JR.setField "glVersion" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "shaderVersion" "I" JR.this (JR.int 0)),
+                JR.exec (JR.setField "glInstanceVersion" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "maxTextureSize" "I" JR.this (JR.int 64)),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isInitialized_0 : JR.Method
+jm_isInitialized_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initCapabilities_1 : JR.Method
+jm_initCapabilities_1 jheap jthis jargs =
+    JR.method [ ( "gl", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isGlExtensionDrawTexture_0 : JR.Method
+jm_isGlExtensionDrawTexture_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGlVersion_0 : JR.Method
+jm_getGlVersion_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "glVersion") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isVertexBufferObjectSupport_0 : JR.Method
+jm_isVertexBufferObjectSupport_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isTextureSizeValid_1 : JR.Method
+jm_isTextureSizeValid_1 jheap jthis jargs =
+    JR.method [ ( "widthAndHeight", "I" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,100 +1,89 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
-module CommandCurrentSelectionFormFactory where
+module Org.Allbinary.Graphics.Form.CommandCurrentSelectionFormFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ScrollSelectionFormNoneFactory -- same package or java.lang
-import qualified CommandCurrentSelectionForm -- same package or java.lang
-import qualified ScrollSelectionForm -- same package or java.lang
-import qualified FormType -- same package or java.lang
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified TouchFeatureFactory -- org.allbinary.game.configuration.feature.TouchFeatureFactory
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified ABCustomItem -- org.allbinary.graphics.form.item.ABCustomItem
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form
+-}
 
-data CommandCurrentSelectionFormFactory = CommandCurrentSelectionFormFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull CommandCurrentSelectionFormFactory where
-    javaNull = javaNullRecord "CommandCurrentSelectionFormFactory"
-
-instance JavaEquals CommandCurrentSelectionFormFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CommandCurrentSelectionFormFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CommandCurrentSelectionFormFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CommandCurrentSelectionFormFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = CommandCurrentSelectionFormFactory header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: CommandCurrentSelectionFormFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO CommandCurrentSelectionFormFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CommandCurrentSelectionFormFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Graphics.Form.CommandCurrentSelectionForm as CommandCurrentSelectionForm
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Graphics.Form.ScrollSelectionFormNoneFactory as ScrollSelectionFormNoneFactory
+import Org.Allbinary.Game.Configuration.Feature.TouchFeatureFactory as TouchFeatureFactory
 
 
--- throws Exception
-getInstance :: String -> JavaArray (ABCustomItem.ABCustomItem) -> Rectangle.Rectangle -> FormType.FormType -> Int -> Bool -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO (ScrollSelectionForm.ScrollSelectionForm)
-getInstance title items rectangle formType border moveForSmallScreen backgroundBasicColor foregroundBasicColor = do
-    javaCatchReturn $ do
-        if (jio (Features.isFeature ((jio (Features.getInstance))) (jget ((jio (TouchFeatureFactory.getInstance))).tOUCH_ENABLED))) then do
-            scrollSelectionForm <- (fmap (\value_ -> javaCast value_ :: ScrollSelectionForm.ScrollSelectionForm) (CommandCurrentSelectionForm.new_6 title items border moveForSmallScreen backgroundBasicColor foregroundBasicColor))
-            Control.Monad.void (ScrollSelectionForm.init scrollSelectionForm rectangle formType)
-            javaReturn (scrollSelectionForm)
-        else do
-            javaReturn =<< (ScrollSelectionFormNoneFactory.getInstance)
+jclass : String
+jclass =
+    "CommandCurrentSelectionFormFactory"
 
+
+jchain : List String
+jchain =
+    [ "CommandCurrentSelectionFormFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_8", jm_getInstance_8 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CommandCurrentSelectionFormFactory"
+        [ ( "jm_getInstance_8", jm_getInstance_8 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_8 : JR.Method
+jm_getInstance_8 jheap jthis jargs =
+    JR.method [ ( "title", "" ), ( "items", "" ), ( "rectangle", "" ), ( "formType", "" ), ( "border", "I" ), ( "moveForSmallScreen", "Z" ), ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.callStatic Features.jm_getInstance_0 []) [ (JR.field "TOUCH_ENABLED" (JR.callStatic TouchFeatureFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.declare "scrollSelectionForm" "" (JR.new CommandCurrentSelectionForm.jnew_6 [ (JR.local "title"), (JR.local "items"), (JR.local "border"), (JR.local "moveForSmallScreen"), (JR.local "backgroundBasicColor"), (JR.local "foregroundBasicColor") ]), 
+                        JR.exec (JR.invoke "init_2" (JR.local "scrollSelectionForm") [ (JR.local "rectangle"), (JR.local "formType") ]), 
+                        JR.return (JR.local "scrollSelectionForm") ]) (JR.run [ 
+                        JR.return (JR.callStatic ScrollSelectionFormNoneFactory.jm_getInstance_0 []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

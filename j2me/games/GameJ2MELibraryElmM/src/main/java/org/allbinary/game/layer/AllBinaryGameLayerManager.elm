@@ -1,269 +1,240 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
-module AllBinaryGameLayerManager (module AllBinaryGameLayerManager, module AllBinaryLayerManager) where
+module Org.Allbinary.Game.Layer.AllBinaryGameLayerManager exposing (..)
 
-import AllBinaryLayerManager hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getNullInstance, getNullInstance_super, getNullInstance_impl, getLayerManager, getLayerManager_super, getLayerManager_impl, init, init_super, init_impl, getBackgroundBasicColor, getBackgroundBasicColor_super, getBackgroundBasicColor_impl, setBackgroundBasicColor, setBackgroundBasicColor_super, setBackgroundBasicColor_impl, getForegroundBasicColor, getForegroundBasicColor_super, getForegroundBasicColor_impl, setForegroundBasicColor, setForegroundBasicColor_super, setForegroundBasicColor_impl, getGameInfo, getGameInfo_super, getGameInfo_impl, setGameInfo, setGameInfo_super, setGameInfo_impl, setLayerProcessorList, setLayerProcessorList_super, setLayerProcessorList_impl, setPlayerGameInputCompositeInterface, setPlayerGameInputCompositeInterface_super, setPlayerGameInputCompositeInterface_impl, getPlayerGameInputCompositeInterface, getPlayerGameInputCompositeInterface_super, getPlayerGameInputCompositeInterface_impl, nULL_ALLBINARY_LAYER_MANAGER, iD, backgroundBasicColor, foregroundBasicColor, gameInfo, playerGameInputCompositeInterface)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified GameInfo -- org.allbinary.game.GameInfo
-import qualified NullPlayerGameInputComposite -- org.allbinary.game.input.NullPlayerGameInputComposite
-import qualified PlayerGameInputCompositeInterface -- org.allbinary.game.input.PlayerGameInputCompositeInterface
-import qualified ItemColorFactory -- org.allbinary.graphics.ItemColorFactory
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified LayerProcessor -- org.allbinary.layer.LayerProcessor
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.game.layer
+-}
 
-data AllBinaryGameLayerManager = AllBinaryGameLayerManager
-    { header_ :: JavaHeader
-    , base :: AllBinaryLayerManager.AllBinaryLayerManager
-    , backgroundBasicColor :: IORef (BasicColor.BasicColor)
-    , foregroundBasicColor :: IORef (BasicColor.BasicColor)
-    , gameInfo :: IORef (GameInfo.GameInfo)
-    , playerGameInputCompositeInterface :: IORef (PlayerGameInputCompositeInterface.PlayerGameInputCompositeInterface)
-    }
-
-instance JavaNull AllBinaryGameLayerManager where
-    javaNull = javaNullRecord "AllBinaryGameLayerManager"
-
-instance JavaEquals AllBinaryGameLayerManager where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryGameLayerManager where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryGameLayerManager where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE nULL_ALLBINARY_LAYER_MANAGER #-}
-nULL_ALLBINARY_LAYER_MANAGER = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-{-# NOINLINE iD #-}
-iD = unsafePerformIO ((SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 22))
-
-newRecord_ :: IO AllBinaryGameLayerManager
-newRecord_ = do
-    base <- AllBinaryLayerManager.newRecord_
-    let header_ = base.header_
-    backgroundBasicColor <- newIORef javaNull
-    foregroundBasicColor <- newIORef javaNull
-    gameInfo <- newIORef javaNull
-    playerGameInputCompositeInterface <- newIORef javaNull
-    let this = AllBinaryGameLayerManager header_ base backgroundBasicColor foregroundBasicColor gameInfo playerGameInputCompositeInterface
-    jregisterLevel header_ this
-    jregisterMethod header_ "getLayerManager" (\() -> getLayerManager_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "getBackgroundBasicColor" (\() -> getBackgroundBasicColor_impl this)
-    jregisterMethod header_ "setBackgroundBasicColor" (\() -> setBackgroundBasicColor_impl this)
-    jregisterMethod header_ "getForegroundBasicColor" (\() -> getForegroundBasicColor_impl this)
-    jregisterMethod header_ "setForegroundBasicColor" (\() -> setForegroundBasicColor_impl this)
-    jregisterMethod header_ "getGameInfo" (\() -> getGameInfo_impl this)
-    jregisterMethod header_ "setGameInfo" (\() -> setGameInfo_impl this)
-    jregisterMethod header_ "setLayerProcessorList" (\() -> setLayerProcessorList_impl this)
-    jregisterMethod header_ "setPlayerGameInputCompositeInterface" (\() -> setPlayerGameInputCompositeInterface_impl this)
-    jregisterMethod header_ "getPlayerGameInputCompositeInterface" (\() -> getPlayerGameInputCompositeInterface_impl this)
-    pure this
-
-initFields_ :: AllBinaryGameLayerManager -> IO ()
-initFields_ this = do
-    jset this.backgroundBasicColor (javaNull)
-    jset this.foregroundBasicColor (javaNull)
-    jset this.gameInfo (javaNull)
-    jset this.playerGameInputCompositeInterface (NullPlayerGameInputComposite.nULL_PLAYER_GAME_INPUT_COMPOSITE)
-    pure ()
+import JR
+import Org.Allbinary.Layer.AllBinaryLayerManager as AllBinaryLayerManager
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Game.GameInfo as GameInfo
+import Org.Allbinary.Graphics.ItemColorFactory as ItemColorFactory
+import Org.Allbinary.Game.Input.NullPlayerGameInputComposite as NullPlayerGameInputComposite
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
 
 
-getNullInstance :: IO (AllBinaryGameLayerManager)
-getNullInstance = do
-        when ((jget AllBinaryGameLayerManager.nULL_ALLBINARY_LAYER_MANAGER) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_3 (jget ((jio (BasicColorFactory.getInstance))).bLACK) (jget ((jio (BasicColorFactory.getInstance))).wHITE) (GameInfo.nONE)))
-            jset AllBinaryGameLayerManager.nULL_ALLBINARY_LAYER_MANAGER (assignedValue)
-        pure ((javaCast (jget AllBinaryGameLayerManager.nULL_ALLBINARY_LAYER_MANAGER) :: AllBinaryGameLayerManager))
-
-new_3 :: BasicColor.BasicColor -> BasicColor.BasicColor -> GameInfo.GameInfo -> IO AllBinaryGameLayerManager
-new_3 backgroundBasicColor foregroundBasicColor gameInfo = do
-    this <- newRecord_
-    init_3 this backgroundBasicColor foregroundBasicColor gameInfo
-    pure this
-
-init_3 :: AllBinaryGameLayerManager -> BasicColor.BasicColor -> BasicColor.BasicColor -> GameInfo.GameInfo -> IO ()
-init_3 this backgroundBasicColor foregroundBasicColor gameInfo = do
-        AllBinaryLayerManager.init_ this.base
-        initFields_ this
-        jset (this).backgroundBasicColor (backgroundBasicColor)
-        jset (this).foregroundBasicColor (foregroundBasicColor)
-        itemColorFactory <- (ItemColorFactory.getInstance)
-        assignedValue <- (BasicColor.intValue ((jget (this).backgroundBasicColor)))
-        jset (itemColorFactory).iNVERT_PAINT (assignedValue)
-        assignedValue <- (BasicColor.intValue ((jget (this).foregroundBasicColor)))
-        jset (itemColorFactory).pAINT (assignedValue)
-        jset (this).gameInfo (gameInfo)
-        pure ()
+jclass : String
+jclass =
+    "AllBinaryGameLayerManager"
 
 
-getLayerManager :: (JavaObjectClass this_) => this_ -> IO (AllBinaryLayerManager.AllBinaryLayerManager)
-getLayerManager object_ = jmethod object_ "getLayerManager" (\() -> (getLayerManager_impl (javaCast object_ :: AllBinaryGameLayerManager))) ()
-
-getLayerManager_super :: (JavaObjectClass this_) => this_ -> IO (AllBinaryLayerManager.AllBinaryLayerManager)
-getLayerManager_super object_ = (getLayerManager_impl (javaCast object_ :: AllBinaryGameLayerManager))
-
-getLayerManager_impl :: AllBinaryGameLayerManager -> IO (AllBinaryLayerManager.AllBinaryLayerManager)
-getLayerManager_impl this = do
-        pure ((javaCast this :: AllBinaryLayerManager.AllBinaryLayerManager))
+jchain : List String
+jchain =
+    [ "AllBinaryGameLayerManager" ]
+        ++ AllBinaryLayerManager.jchain
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: AllBinaryGameLayerManager))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: AllBinaryGameLayerManager))
-
-init_impl :: AllBinaryGameLayerManager -> IO (())
-init_impl this = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinaryLayerManager.jfields ++ [ ( "backgroundBasicColor", JR.defaultOf "" ), ( "foregroundBasicColor", JR.defaultOf "" ), ( "gameInfo", JR.defaultOf "" ), ( "playerGameInputCompositeInterface", JR.defaultOf "" ) ]
 
 
-getBackgroundBasicColor :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBackgroundBasicColor object_ = jmethod object_ "getBackgroundBasicColor" (\() -> (getBackgroundBasicColor_impl (javaCast object_ :: AllBinaryGameLayerManager))) ()
-
-getBackgroundBasicColor_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBackgroundBasicColor_super object_ = (getBackgroundBasicColor_impl (javaCast object_ :: AllBinaryGameLayerManager))
-
-getBackgroundBasicColor_impl :: AllBinaryGameLayerManager -> IO (BasicColor.BasicColor)
-getBackgroundBasicColor_impl this = do
-        pure ((jget (this).backgroundBasicColor))
-
-
-setBackgroundBasicColor :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBackgroundBasicColor object_ a1 = jmethod object_ "setBackgroundBasicColor" (\() -> (setBackgroundBasicColor_impl (javaCast object_ :: AllBinaryGameLayerManager))) () a1
-
-setBackgroundBasicColor_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBackgroundBasicColor_super object_ a1 = (setBackgroundBasicColor_impl (javaCast object_ :: AllBinaryGameLayerManager)) a1
-
-setBackgroundBasicColor_impl :: AllBinaryGameLayerManager -> BasicColor.BasicColor -> IO (())
-setBackgroundBasicColor_impl this backgroundBasicColor = do
-        jset (this).backgroundBasicColor (backgroundBasicColor)
-        assignedValue <- (BasicColor.intValue ((jget (this).backgroundBasicColor)))
-        jset ((jio (ItemColorFactory.getInstance))).iNVERT_PAINT (assignedValue)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getNullInstance_0", jm_getNullInstance_0 )
+        , ( "getLayerManager_0", jm_getLayerManager_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "getBackgroundBasicColor_0", jm_getBackgroundBasicColor_0 )
+        , ( "setBackgroundBasicColor_1", jm_setBackgroundBasicColor_1 )
+        , ( "getForegroundBasicColor_0", jm_getForegroundBasicColor_0 )
+        , ( "setForegroundBasicColor_1", jm_setForegroundBasicColor_1 )
+        , ( "getGameInfo_0", jm_getGameInfo_0 )
+        , ( "setGameInfo_1", jm_setGameInfo_1 )
+        , ( "setLayerProcessorList_1", jm_setLayerProcessorList_1 )
+        , ( "setPlayerGameInputCompositeInterface_1", jm_setPlayerGameInputCompositeInterface_1 )
+        , ( "getPlayerGameInputCompositeInterface_0", jm_getPlayerGameInputCompositeInterface_0 ) ]
+        AllBinaryLayerManager.jvtable
 
 
-getForegroundBasicColor :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getForegroundBasicColor object_ = jmethod object_ "getForegroundBasicColor" (\() -> (getForegroundBasicColor_impl (javaCast object_ :: AllBinaryGameLayerManager))) ()
-
-getForegroundBasicColor_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getForegroundBasicColor_super object_ = (getForegroundBasicColor_impl (javaCast object_ :: AllBinaryGameLayerManager))
-
-getForegroundBasicColor_impl :: AllBinaryGameLayerManager -> IO (BasicColor.BasicColor)
-getForegroundBasicColor_impl this = do
-        pure ((jget (this).foregroundBasicColor))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryGameLayerManager"
+        [ ( "jm_getNullInstance_0", jm_getNullInstance_0 ), ( "jm_getLayerManager_0", jm_getLayerManager_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_getBackgroundBasicColor_0", jm_getBackgroundBasicColor_0 ), ( "jm_setBackgroundBasicColor_1", jm_setBackgroundBasicColor_1 ), ( "jm_getForegroundBasicColor_0", jm_getForegroundBasicColor_0 ), ( "jm_setForegroundBasicColor_1", jm_setForegroundBasicColor_1 ), ( "jm_getGameInfo_0", jm_getGameInfo_0 ), ( "jm_setGameInfo_1", jm_setGameInfo_1 ), ( "jm_setLayerProcessorList_1", jm_setLayerProcessorList_1 ), ( "jm_setPlayerGameInputCompositeInterface_1", jm_setPlayerGameInputCompositeInterface_1 ), ( "jm_getPlayerGameInputCompositeInterface_0", jm_getPlayerGameInputCompositeInterface_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        [ ( "jstatic_NULL_ALLBINARY_LAYER_MANAGER", jstatic_NULL_ALLBINARY_LAYER_MANAGER ), ( "jstatic_ID", jstatic_ID ) ]
+        jheap
 
 
-setForegroundBasicColor :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setForegroundBasicColor object_ a1 = jmethod object_ "setForegroundBasicColor" (\() -> (setForegroundBasicColor_impl (javaCast object_ :: AllBinaryGameLayerManager))) () a1
-
-setForegroundBasicColor_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setForegroundBasicColor_super object_ a1 = (setForegroundBasicColor_impl (javaCast object_ :: AllBinaryGameLayerManager)) a1
-
-setForegroundBasicColor_impl :: AllBinaryGameLayerManager -> BasicColor.BasicColor -> IO (())
-setForegroundBasicColor_impl this foregroundBasicColor = do
-        jset (this).foregroundBasicColor (foregroundBasicColor)
-        assignedValue <- (BasicColor.intValue ((jget (this).foregroundBasicColor)))
-        jset ((jio (ItemColorFactory.getInstance))).pAINT (assignedValue)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getGameInfo :: (JavaObjectClass this_) => this_ -> IO (GameInfo.GameInfo)
-getGameInfo object_ = jmethod object_ "getGameInfo" (\() -> (getGameInfo_impl (javaCast object_ :: AllBinaryGameLayerManager))) ()
-
-getGameInfo_super :: (JavaObjectClass this_) => this_ -> IO (GameInfo.GameInfo)
-getGameInfo_super object_ = (getGameInfo_impl (javaCast object_ :: AllBinaryGameLayerManager))
-
-getGameInfo_impl :: AllBinaryGameLayerManager -> IO (GameInfo.GameInfo)
-getGameInfo_impl this = do
-        pure ((jget (this).gameInfo))
+jstatic_NULL_ALLBINARY_LAYER_MANAGER : JR.M
+jstatic_NULL_ALLBINARY_LAYER_MANAGER s =
+    JR.static "AllBinaryGameLayerManager" jclinit "NULL_ALLBINARY_LAYER_MANAGER"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
 
 
-setGameInfo :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> IO (())
-setGameInfo object_ a1 = jmethod object_ "setGameInfo" (\() -> (setGameInfo_impl (javaCast object_ :: AllBinaryGameLayerManager))) () a1
-
-setGameInfo_super :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> IO (())
-setGameInfo_super object_ a1 = (setGameInfo_impl (javaCast object_ :: AllBinaryGameLayerManager)) a1
-
-setGameInfo_impl :: AllBinaryGameLayerManager -> GameInfo.GameInfo -> IO (())
-setGameInfo_impl this gameInfo = do
-        jset (this).gameInfo (gameInfo)
-        pure ()
+jstatic_ID : JR.M
+jstatic_ID s =
+    JR.static "AllBinaryGameLayerManager" jclinit "ID"
+        (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 22) ])
+        s
 
 
-setLayerProcessorList :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setLayerProcessorList object_ a1 = jmethod object_ "setLayerProcessorList" (\() -> (setLayerProcessorList_impl (javaCast object_ :: AllBinaryGameLayerManager))) () a1
-
-setLayerProcessorList_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setLayerProcessorList_super object_ a1 = (setLayerProcessorList_impl (javaCast object_ :: AllBinaryGameLayerManager)) a1
-
-setLayerProcessorList_impl :: AllBinaryGameLayerManager -> BasicArrayList.BasicArrayList -> IO (())
-setLayerProcessorList_impl this list = do
-        let layerProcessorInterfaceArray = (jnewArray ((jio (BasicArrayList.size list))) javaNull)
-        let size = (jlength layerProcessorInterfaceArray)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex layerProcessorInterfaceArray (index) ((javaCast (jindex ((jget (list).objectArray)) (index)) :: LayerProcessor.LayerProcessor))
-        Control.Monad.void (AllBinaryLayerManager.setLayerProcessorArray this layerProcessorInterfaceArray)
-        pure ()
-
-
-setPlayerGameInputCompositeInterface :: (JavaObjectClass this_) => this_ -> PlayerGameInputCompositeInterface.PlayerGameInputCompositeInterface -> IO (())
-setPlayerGameInputCompositeInterface object_ a1 = jmethod object_ "setPlayerGameInputCompositeInterface" (\() -> (setPlayerGameInputCompositeInterface_impl (javaCast object_ :: AllBinaryGameLayerManager))) () a1
-
-setPlayerGameInputCompositeInterface_super :: (JavaObjectClass this_) => this_ -> PlayerGameInputCompositeInterface.PlayerGameInputCompositeInterface -> IO (())
-setPlayerGameInputCompositeInterface_super object_ a1 = (setPlayerGameInputCompositeInterface_impl (javaCast object_ :: AllBinaryGameLayerManager)) a1
-
-setPlayerGameInputCompositeInterface_impl :: AllBinaryGameLayerManager -> PlayerGameInputCompositeInterface.PlayerGameInputCompositeInterface -> IO (())
-setPlayerGameInputCompositeInterface_impl this playerGameInputCompositeInterface = do
-        jset (this).playerGameInputCompositeInterface (playerGameInputCompositeInterface)
-        pure ()
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ), ( "gameInfo", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinaryLayerManager.jinit_0 JR.this []),
+                JR.exec (JR.setField "playerGameInputCompositeInterface" "" JR.this NullPlayerGameInputComposite.jstatic_NULL_PLAYER_GAME_INPUT_COMPOSITE),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "backgroundBasicColor" "" JR.this (JR.local "backgroundBasicColor")), 
+                    JR.exec (JR.setField "foregroundBasicColor" "" JR.this (JR.local "foregroundBasicColor")), 
+                    JR.declare "itemColorFactory" "" (JR.callStatic ItemColorFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.andThen (JR.local "itemColorFactory") (\jtN69206 -> (JR.setField "INVERT_PAINT" "I" (JR.lit jtN69206) (JR.invoke "intValue_0" (JR.thisField "backgroundBasicColor") [])))), 
+                    JR.exec (JR.andThen (JR.local "itemColorFactory") (\jtN69250 -> (JR.setField "PAINT" "I" (JR.lit jtN69250) (JR.invoke "intValue_0" (JR.thisField "foregroundBasicColor") [])))), 
+                    JR.exec (JR.setField "gameInfo" "" JR.this (JR.local "gameInfo")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getPlayerGameInputCompositeInterface :: (JavaObjectClass this_) => this_ -> IO (PlayerGameInputCompositeInterface.PlayerGameInputCompositeInterface)
-getPlayerGameInputCompositeInterface object_ = jmethod object_ "getPlayerGameInputCompositeInterface" (\() -> (getPlayerGameInputCompositeInterface_impl (javaCast object_ :: AllBinaryGameLayerManager))) ()
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
 
-getPlayerGameInputCompositeInterface_super :: (JavaObjectClass this_) => this_ -> IO (PlayerGameInputCompositeInterface.PlayerGameInputCompositeInterface)
-getPlayerGameInputCompositeInterface_super object_ = (getPlayerGameInputCompositeInterface_impl (javaCast object_ :: AllBinaryGameLayerManager))
 
-getPlayerGameInputCompositeInterface_impl :: AllBinaryGameLayerManager -> IO (PlayerGameInputCompositeInterface.PlayerGameInputCompositeInterface)
-getPlayerGameInputCompositeInterface_impl this = do
-        pure ((jget (this).playerGameInputCompositeInterface))
+jm_getNullInstance_0 : JR.Method
+jm_getNullInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_NULL_ALLBINARY_LAYER_MANAGER (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "AllBinaryGameLayerManager.NULL_ALLBINARY_LAYER_MANAGER" "" (JR.new jnew_3 [ (JR.field "BLACK" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), GameInfo.jstatic_NONE ])) ]) identity, 
+                    JR.return jstatic_NULL_ALLBINARY_LAYER_MANAGER ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_getLayerManager_0 : JR.Method
+jm_getLayerManager_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return JR.this ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBackgroundBasicColor_0 : JR.Method
+jm_getBackgroundBasicColor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "backgroundBasicColor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setBackgroundBasicColor_1 : JR.Method
+jm_setBackgroundBasicColor_1 jheap jthis jargs =
+    JR.method [ ( "backgroundBasicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "backgroundBasicColor" "" JR.this (JR.local "backgroundBasicColor")), 
+                    JR.exec (JR.andThen (JR.callStatic ItemColorFactory.jm_getInstance_0 []) (\jtN69550 -> (JR.setField "INVERT_PAINT" "I" (JR.lit jtN69550) (JR.invoke "intValue_0" (JR.thisField "backgroundBasicColor") [])))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getForegroundBasicColor_0 : JR.Method
+jm_getForegroundBasicColor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "foregroundBasicColor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setForegroundBasicColor_1 : JR.Method
+jm_setForegroundBasicColor_1 jheap jthis jargs =
+    JR.method [ ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "foregroundBasicColor" "" JR.this (JR.local "foregroundBasicColor")), 
+                    JR.exec (JR.andThen (JR.callStatic ItemColorFactory.jm_getInstance_0 []) (\jtN69727 -> (JR.setField "PAINT" "I" (JR.lit jtN69727) (JR.invoke "intValue_0" (JR.thisField "foregroundBasicColor") [])))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameInfo_0 : JR.Method
+jm_getGameInfo_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameInfo") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setGameInfo_1 : JR.Method
+jm_setGameInfo_1 jheap jthis jargs =
+    JR.method [ ( "gameInfo", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "gameInfo" "" JR.this (JR.local "gameInfo")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLayerProcessorList_1 : JR.Method
+jm_setLayerProcessorList_1 jheap jthis jargs =
+    JR.method [ ( "list", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "layerProcessorInterfaceArray" "" (JR.newArray "" [ (JR.invoke "size_0" (JR.local "list") []) ]), 
+                    JR.declare "size" "I" (JR.alength (JR.local "layerProcessorInterfaceArray")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70194 -> (JR.setLocal "index" "I" (JR.lit jwN70194))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "layerProcessorInterfaceArray") (\jaN70077 -> JR.andThen (JR.local "index") (\jiN70077 -> (JR.aset (JR.lit jaN70077) (JR.lit jiN70077) (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")))))) ]) ], 
+                    JR.exec (JR.invoke "setLayerProcessorArray_1" JR.this [ (JR.local "layerProcessorInterfaceArray") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPlayerGameInputCompositeInterface_1 : JR.Method
+jm_setPlayerGameInputCompositeInterface_1 jheap jthis jargs =
+    JR.method [ ( "playerGameInputCompositeInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "playerGameInputCompositeInterface" "" JR.this (JR.local "playerGameInputCompositeInterface")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPlayerGameInputCompositeInterface_0 : JR.Method
+jm_getPlayerGameInputCompositeInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "playerGameInputCompositeInterface") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

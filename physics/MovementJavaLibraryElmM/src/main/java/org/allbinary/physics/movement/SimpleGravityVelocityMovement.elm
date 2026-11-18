@@ -1,102 +1,89 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
-module SimpleGravityVelocityMovement (module SimpleGravityVelocityMovement, module BasicConstantVelocityMovement) where
+module Org.Allbinary.Physics.Movement.SimpleGravityVelocityMovement exposing (..)
 
-import BasicConstantVelocityMovement hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, process, process_super, process_impl, gravityUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameLayer -- org.allbinary.game.layer.AllBinaryGameLayer
-import qualified GravityUtil -- org.allbinary.game.physics.acceleration.GravityUtil
-import qualified VelocityProperties -- org.allbinary.game.physics.velocity.VelocityProperties
-import qualified BasicDecimal -- org.allbinary.logic.math.BasicDecimal
-import qualified BasicConstantVelocityMovement
+{-| Generated Code Do Not Modify package org.allbinary.physics.movement
+-}
 
-data SimpleGravityVelocityMovement = SimpleGravityVelocityMovement
-    { header_ :: JavaHeader
-    , base :: BasicConstantVelocityMovement.BasicConstantVelocityMovement
-    , gravityUtil :: IORef (GravityUtil.GravityUtil)
-    }
-
-instance JavaNull SimpleGravityVelocityMovement where
-    javaNull = javaNullRecord "SimpleGravityVelocityMovement"
-
-instance JavaEquals SimpleGravityVelocityMovement where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SimpleGravityVelocityMovement where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SimpleGravityVelocityMovement where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO SimpleGravityVelocityMovement
-newRecord_ = do
-    base <- BasicConstantVelocityMovement.newRecord_
-    let header_ = base.header_
-    gravityUtil <- newIORef javaNull
-    let this = SimpleGravityVelocityMovement header_ base gravityUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: SimpleGravityVelocityMovement -> IO ()
-initFields_ this = do
-    jset this.gravityUtil =<< (GravityUtil.getInstance)
-    pure ()
-
-new_1 :: BasicDecimal.BasicDecimal -> IO SimpleGravityVelocityMovement
-new_1 speedBasicDecimal = do
-    this <- newRecord_
-    init_1 this speedBasicDecimal
-    pure this
-
-init_1 :: SimpleGravityVelocityMovement -> BasicDecimal.BasicDecimal -> IO ()
-init_1 this speedBasicDecimal = do
-        BasicConstantVelocityMovement.init_2 this.base (speedBasicDecimal) (javaCast (jio (VelocityProperties.new_2 (Prelude.fromInteger (jnumericInteger (jio (BasicDecimal.getUnscaled speedBasicDecimal)))) (Prelude.fromInteger (jnumericInteger (jio (BasicDecimal.getUnscaled speedBasicDecimal)))))))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Physics.Movement.BasicConstantVelocityMovement as BasicConstantVelocityMovement
+import Org.Allbinary.Game.Physics.Acceleration.GravityUtil as GravityUtil
+import Org.Allbinary.Game.Physics.Velocity.VelocityProperties as VelocityProperties
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: SimpleGravityVelocityMovement))) () a1
+jclass : String
+jclass =
+    "SimpleGravityVelocityMovement"
 
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: SimpleGravityVelocityMovement)) a1
 
-process_impl :: SimpleGravityVelocityMovement -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_impl this layer = do
-        Control.Monad.void (GravityUtil.process ((jget (this).gravityUtil)) (jio (BasicConstantVelocityMovement.getVelocityProperties this)) (jget ((jget (this).gravityUtil)).gAME_GRAVITY_VELOCITY))
-        Control.Monad.void (BasicConstantVelocityMovement.process_super this.base layer)
-        pure ()
+jchain : List String
+jchain =
+    [ "SimpleGravityVelocityMovement" ]
+        ++ BasicConstantVelocityMovement.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicConstantVelocityMovement.jfields ++ [ ( "gravityUtil", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "process_1", jm_process_1 ) ]
+        BasicConstantVelocityMovement.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SimpleGravityVelocityMovement"
+        [ ( "jm_process_1", jm_process_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "speedBasicDecimal", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicConstantVelocityMovement.jinit_2 JR.this [ (JR.local "speedBasicDecimal"), (JR.new VelocityProperties.jnew_2 [ (JR.cast "I" (JR.invoke "getUnscaled_0" (JR.local "speedBasicDecimal") [])), (JR.cast "I" (JR.invoke "getUnscaled_0" (JR.local "speedBasicDecimal") [])) ]) ]),
+                JR.exec (JR.setField "gravityUtil" "" JR.this (JR.callStatic GravityUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "layer", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_2" (JR.thisField "gravityUtil") [ (JR.invoke "getVelocityProperties_0" JR.this []), (JR.field "GAME_GRAVITY_VELOCITY" (JR.thisField "gravityUtil")) ]), 
+                    JR.exec (JR.callVia BasicConstantVelocityMovement.jvtable "process_1" JR.this [ (JR.local "layer") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

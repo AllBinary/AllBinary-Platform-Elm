@@ -1,116 +1,110 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.image.opengles
-module OpenGLESImageTranslate where
+module Org.Allbinary.Image.Opengles.OpenGLESImageTranslate exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified OpenGLESImage -- same package or java.lang
-import qualified OpenGLESImageProcessor -- same package or java.lang
-import qualified GL10 -- javax.microedition.khronos.opengles.GL10
+{-| Generated Code Do Not Modify package org.allbinary.image.opengles
+-}
 
-data OpenGLESImageTranslate = OpenGLESImageTranslate
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull OpenGLESImageTranslate where
-    javaNull = javaNullRecord "OpenGLESImageTranslate"
-
-instance JavaEquals OpenGLESImageTranslate where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLESImageTranslate where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLESImageTranslate where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: OpenGLESImageTranslate
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OpenGLESImageTranslate
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = OpenGLESImageTranslate header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "translate" (\() -> translate_impl this)
-    jregisterMethod header_ "translate2" (\() -> translate2_impl this)
-    pure this
-
-initFields_ :: OpenGLESImageTranslate -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO OpenGLESImageTranslate
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLESImageTranslate -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (OpenGLESImageTranslate)
-getInstance = do
-        pure (OpenGLESImageTranslate.instance_)
+
+jclass : String
+jclass =
+    "OpenGLESImageTranslate"
 
 
-translate :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> OpenGLESImage.OpenGLESImage -> Float -> Float -> IO (())
-translate object_ a1 a2 a3 a4 = jmethod object_ "translate" (\() -> (translate_impl (javaCast object_ :: OpenGLESImageTranslate))) () a1 a2 a3 a4
-
-translate_super :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> OpenGLESImage.OpenGLESImage -> Float -> Float -> IO (())
-translate_super object_ a1 a2 a3 a4 = (translate_impl (javaCast object_ :: OpenGLESImageTranslate)) a1 a2 a3 a4
-
-translate_impl :: OpenGLESImageTranslate -> GL10.GL10 -> OpenGLESImage.OpenGLESImage -> Float -> Float -> IO (())
-translate_impl this gl openGLESImage x y = do
-        Control.Monad.void (OpenGLESImageProcessor.translate ((jget (openGLESImage).imageProcessor)) gl x y)
-        pure ()
+jchain : List String
+jchain =
+    [ "OpenGLESImageTranslate" ]
 
 
-translate2 :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> OpenGLESImage.OpenGLESImage -> IO (())
-translate2 object_ a1 a2 = jmethod object_ "translate2" (\() -> (translate2_impl (javaCast object_ :: OpenGLESImageTranslate))) () a1 a2
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-translate2_super :: (JavaObjectClass this_) => this_ -> GL10.GL10 -> OpenGLESImage.OpenGLESImage -> IO (())
-translate2_super object_ a1 a2 = (translate2_impl (javaCast object_ :: OpenGLESImageTranslate)) a1 a2
 
-translate2_impl :: OpenGLESImageTranslate -> GL10.GL10 -> OpenGLESImage.OpenGLESImage -> IO (())
-translate2_impl this gl openGLESImage = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "translate_4", jm_translate_4 )
+        , ( "translate2_2", jm_translate2_2 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLESImageTranslate"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_translate_4", jm_translate_4 ), ( "jm_translate2_2", jm_translate2_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "OpenGLESImageTranslate" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_translate_4 : JR.Method
+jm_translate_4 jheap jthis jargs =
+    JR.method [ ( "gl", "" ), ( "openGLESImage", "" ), ( "x", "F" ), ( "y", "F" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "translate_3" (JR.field "imageProcessor" (JR.local "openGLESImage")) [ (JR.local "gl"), (JR.local "x"), (JR.local "y") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_translate2_2 : JR.Method
+jm_translate2_2 jheap jthis jargs =
+    JR.method [ ( "gl", "" ), ( "openGLESImage", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

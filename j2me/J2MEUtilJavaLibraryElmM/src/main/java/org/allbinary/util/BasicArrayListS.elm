@@ -1,12 +1,12 @@
-module BasicArrayListS exposing (..)
+module Org.Allbinary.Util.BasicArrayListS exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.util
 -}
 
 import JR
-import BasicArrayList
-import NullUtil
-import StringMaker
+import Org.Allbinary.Util.BasicArrayList as BasicArrayList
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

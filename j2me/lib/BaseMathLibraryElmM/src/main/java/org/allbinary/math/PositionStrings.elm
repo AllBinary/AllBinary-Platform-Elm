@@ -1,4 +1,4 @@
-module PositionStrings exposing (..)
+module Org.Allbinary.Math.PositionStrings exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.math
 -}

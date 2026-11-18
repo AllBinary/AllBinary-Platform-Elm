@@ -1,4 +1,4 @@
-module EventListenerInterface exposing (..)
+module Org.Allbinary.Logic.Util.Event.EventListenerInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.event
 -}

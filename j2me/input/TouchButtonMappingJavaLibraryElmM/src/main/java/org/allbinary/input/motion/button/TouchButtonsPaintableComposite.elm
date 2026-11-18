@@ -1,193 +1,149 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
-module TouchButtonsPaintableComposite (module TouchButtonsPaintableComposite, module ProcessPaintable) where
+module Org.Allbinary.Input.Motion.Button.TouchButtonsPaintableComposite exposing (..)
 
-import ProcessPaintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, onEvent, onEvent_super, onEvent_impl, onCompleteMotionGestureInputEvent, onCompleteMotionGestureInputEvent_super, onCompleteMotionGestureInputEvent_impl, process, process_super, process_impl, logUtil, commonStrings, inputMappingInterface, touchButtonsPaintable, timeHelper, released, mETHOD_NAME, rELEASE, fAST_REPEAT, iGNORE)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TouchButtonsMappingPaintable -- same package or java.lang
-import qualified CompleteMotionGestureInputEvent -- org.allbinary.game.input.CompleteMotionGestureInputEvent
-import qualified CompleteMotionGestureInputEventHandler -- org.allbinary.game.input.CompleteMotionGestureInputEventHandler
-import qualified CompleteMotionGestureInputEventListenerInterface -- org.allbinary.game.input.CompleteMotionGestureInputEventListenerInterface
-import qualified GameKey -- org.allbinary.game.input.GameKey
-import qualified InputMappingInterface -- org.allbinary.game.input.mapping.InputMappingInterface
-import qualified GameKeyCompleteMotionGestureInputEvent -- org.allbinary.game.input.motion.action.GameKeyCompleteMotionGestureInputEvent
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified ProcessPaintable -- org.allbinary.graphics.paint.ProcessPaintable
-import qualified MotionGestureInput -- org.allbinary.input.motion.gesture.MotionGestureInput
-import qualified TouchMotionGestureFactory -- org.allbinary.input.motion.gesture.TouchMotionGestureFactory
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventStrings -- org.allbinary.logic.util.event.EventStrings
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.button
+-}
 
--- implements CompleteMotionGestureInputEventListenerInterface
-data TouchButtonsPaintableComposite = TouchButtonsPaintableComposite
-    { header_ :: JavaHeader
-    , base :: ProcessPaintable.ProcessPaintable
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , inputMappingInterface :: IORef (InputMappingInterface.InputMappingInterface)
-    , touchButtonsPaintable :: IORef (TouchButtonsMappingPaintable.TouchButtonsMappingPaintable)
-    , timeHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , released :: IORef (Bool)
-    , mETHOD_NAME :: IORef (String)
-    , rELEASE :: IORef (String)
-    , fAST_REPEAT :: IORef (String)
-    , iGNORE :: IORef (String)
-    }
-
-instance JavaNull TouchButtonsPaintableComposite where
-    javaNull = javaNullRecord "TouchButtonsPaintableComposite"
-
-instance JavaEquals TouchButtonsPaintableComposite where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TouchButtonsPaintableComposite where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TouchButtonsPaintableComposite where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO TouchButtonsPaintableComposite
-newRecord_ = do
-    base <- ProcessPaintable.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    inputMappingInterface <- newIORef javaNull
-    touchButtonsPaintable <- newIORef javaNull
-    timeHelper <- newIORef javaNull
-    released <- newIORef False
-    mETHOD_NAME <- newIORef ""
-    rELEASE <- newIORef ""
-    fAST_REPEAT <- newIORef ""
-    iGNORE <- newIORef ""
-    let this = TouchButtonsPaintableComposite header_ base logUtil commonStrings inputMappingInterface touchButtonsPaintable timeHelper released mETHOD_NAME rELEASE fAST_REPEAT iGNORE
-    jregisterLevel header_ this
-    CompleteMotionGestureInputEventListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "onCompleteMotionGestureInputEvent" (\() -> onCompleteMotionGestureInputEvent_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: TouchButtonsPaintableComposite -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.inputMappingInterface (javaNull)
-    jset this.touchButtonsPaintable (javaNull)
-    jset this.timeHelper =<< (TimeDelayHelper.new_1 250)
-    jset this.released (True)
-    jset this.mETHOD_NAME ("onCompleteMotionGestureInputEvent")
-    jset this.rELEASE ("Ignoring: MotionGestureInput Release")
-    jset this.fAST_REPEAT ("Ignoring: MotionGestureInput Repeated To Quickly")
-    jset this.iGNORE ("Ignoring: Until Released")
-    pure ()
-
-new_2 :: InputMappingInterface.InputMappingInterface -> BasicColor.BasicColor -> IO TouchButtonsPaintableComposite
-new_2 inputMappingInterface basicColor = do
-    this <- newRecord_
-    init_2 this inputMappingInterface basicColor
-    pure this
-
-init_2 :: TouchButtonsPaintableComposite -> InputMappingInterface.InputMappingInterface -> BasicColor.BasicColor -> IO ()
-init_2 this inputMappingInterface basicColor = do
-        ProcessPaintable.init_ this.base
-        initFields_ this
-        jset (this).inputMappingInterface (inputMappingInterface)
-        Control.Monad.void (CompleteMotionGestureInputEventHandler.addListenerInterface ((jio (CompleteMotionGestureInputEventHandler.getInstance))) this)
-        assignedValue <- (TouchButtonsMappingPaintable.new_1 basicColor)
-        jset (this).touchButtonsPaintable (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Input.CompleteMotionGestureInputEventHandler as CompleteMotionGestureInputEventHandler
+import Org.Allbinary.Game.Input.CompleteMotionGestureInputEventListenerInterface as CompleteMotionGestureInputEventListenerInterface
+import Org.Allbinary.Logic.Util.Event.EventStrings as EventStrings
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Graphics.Paint.ProcessPaintable as ProcessPaintable
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
+import Org.Allbinary.Input.Motion.Button.TouchButtonsMappingPaintable as TouchButtonsMappingPaintable
+import Org.Allbinary.Input.Motion.Gesture.TouchMotionGestureFactory as TouchMotionGestureFactory
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: TouchButtonsPaintableComposite))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: TouchButtonsPaintableComposite)) a1
-
-onEvent_impl :: TouchButtonsPaintableComposite -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jio (EventStrings.getInstance))).pERFORMANCE_MESSAGE) this)
-        pure ()
+jclass : String
+jclass =
+    "TouchButtonsPaintableComposite"
 
 
-onCompleteMotionGestureInputEvent :: (JavaObjectClass this_) => this_ -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-onCompleteMotionGestureInputEvent object_ a1 = jmethod object_ "onCompleteMotionGestureInputEvent" (\() -> (onCompleteMotionGestureInputEvent_impl (javaCast object_ :: TouchButtonsPaintableComposite))) () a1
-
-onCompleteMotionGestureInputEvent_super :: (JavaObjectClass this_) => this_ -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-onCompleteMotionGestureInputEvent_super object_ a1 = (onCompleteMotionGestureInputEvent_impl (javaCast object_ :: TouchButtonsPaintableComposite)) a1
-
-onCompleteMotionGestureInputEvent_impl :: TouchButtonsPaintableComposite -> CompleteMotionGestureInputEvent.CompleteMotionGestureInputEvent -> IO (())
-onCompleteMotionGestureInputEvent_impl this completeMotionGestureInputEvent = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this (jget (this).mETHOD_NAME) e)
-            ) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).sTART) this "onCompleteMotionGestureInputEvent")
-            touchMotionGestureFactory <- (TouchMotionGestureFactory.getInstance)
-            let gameKeyCompleteMotionGestureInputEvent = (javaCast completeMotionGestureInputEvent :: GameKeyCompleteMotionGestureInputEvent.GameKeyCompleteMotionGestureInputEvent)
-            gameKey <- (GameKeyCompleteMotionGestureInputEvent.getGameKey gameKeyCompleteMotionGestureInputEvent)
-            motionGestureInput <- (CompleteMotionGestureInputEvent.getMotionGestureInput completeMotionGestureInputEvent)
-            when (motionGestureInput == (jget (touchMotionGestureFactory).rELEASED)) $ do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget (this).rELEASE) this (jget (this).mETHOD_NAME))
-                jset (this).released (True)
-                javaReturn (())
-            when ((motionGestureInput == (jget ((jio (TouchMotionGestureFactory.getInstance))).nO_MOTION)) && (Prelude.not (jio (TimeDelayHelper.isTimeTNT ((jget (this).timeHelper)))))) $ do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget (this).fAST_REPEAT) this (jget (this).mETHOD_NAME))
-                javaReturn (())
-            when (Prelude.not (jget (this).released)) $ do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget (this).iGNORE) this (jget (this).mETHOD_NAME))
-                javaReturn (())
-            jset (this).released (False)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "GameKey: "))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) gameKey))))) " MotionGestureInput: "))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) motionGestureInput))))))) this (jget (this).mETHOD_NAME))
-            Control.Monad.void (InputMappingInterface.processInputMapping ((jget (this).inputMappingInterface)) gameKey motionGestureInput)
-    pure ()
+jchain : List String
+jchain =
+    [ "TouchButtonsPaintableComposite" ]
+        ++ ProcessPaintable.jchain
+        ++ CompleteMotionGestureInputEventListenerInterface.jchain
 
 
-process :: (JavaObjectClass this_) => this_ -> IO (())
-process object_ = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: TouchButtonsPaintableComposite))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    ProcessPaintable.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "inputMappingInterface", JR.defaultOf "" ), ( "touchButtonsPaintable", JR.defaultOf "" ), ( "timeHelper", JR.defaultOf "" ), ( "released", JR.defaultOf "Z" ), ( "METHOD_NAME", JR.defaultOf "" ), ( "RELEASE", JR.defaultOf "" ), ( "FAST_REPEAT", JR.defaultOf "" ), ( "IGNORE", JR.defaultOf "" ) ]
 
-process_super :: (JavaObjectClass this_) => this_ -> IO (())
-process_super object_ = (process_impl (javaCast object_ :: TouchButtonsPaintableComposite))
 
-process_impl :: TouchButtonsPaintableComposite -> IO (())
-process_impl this = do
-        Control.Monad.void (CompleteMotionGestureInputEventHandler.removeListener ((jio (CompleteMotionGestureInputEventHandler.getInstance))) this)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "onEvent_1", jm_onEvent_1 )
+        , ( "onCompleteMotionGestureInputEvent_1", jm_onCompleteMotionGestureInputEvent_1 )
+        , ( "process_0", jm_process_0 ) ]
+        ProcessPaintable.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TouchButtonsPaintableComposite"
+        [ ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_onCompleteMotionGestureInputEvent_1", jm_onCompleteMotionGestureInputEvent_1 ), ( "jm_process_0", jm_process_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "inputMappingInterface", "" ), ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ProcessPaintable.jinit_0 JR.this []),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "timeHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 250) ])),
+                JR.exec (JR.setField "released" "Z" JR.this (JR.bool True)),
+                JR.exec (JR.setField "METHOD_NAME" "" JR.this (JR.str "onCompleteMotionGestureInputEvent")),
+                JR.exec (JR.setField "RELEASE" "" JR.this (JR.str "Ignoring: MotionGestureInput Release")),
+                JR.exec (JR.setField "FAST_REPEAT" "" JR.this (JR.str "Ignoring: MotionGestureInput Repeated To Quickly")),
+                JR.exec (JR.setField "IGNORE" "" JR.this (JR.str "Ignoring: Until Released")),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "inputMappingInterface" "" JR.this (JR.local "inputMappingInterface")), 
+                    JR.exec (JR.invoke "addListenerInterface_1" (JR.callStatic CompleteMotionGestureInputEventHandler.jm_getInstance_0 []) [ JR.this ]), 
+                    JR.exec (JR.setField "touchButtonsPaintable" "" JR.this (JR.new TouchButtonsMappingPaintable.jnew_1 [ (JR.local "basicColor") ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "PERFORMANCE_MESSAGE" (JR.callStatic EventStrings.jm_getInstance_0 [])), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onCompleteMotionGestureInputEvent_1 : JR.Method
+jm_onCompleteMotionGestureInputEvent_1 jheap jthis jargs =
+    JR.method [ ( "completeMotionGestureInputEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.str "onCompleteMotionGestureInputEvent") ]), 
+                        JR.declare "touchMotionGestureFactory" "" (JR.callStatic TouchMotionGestureFactory.jm_getInstance_0 []), 
+                        JR.declare "gameKeyCompleteMotionGestureInputEvent" "" (JR.local "completeMotionGestureInputEvent"), 
+                        JR.declare "gameKey" "" (JR.invoke "getGameKey_0" (JR.local "gameKeyCompleteMotionGestureInputEvent") []), 
+                        JR.declare "motionGestureInput" "" (JR.invoke "getMotionGestureInput_0" (JR.local "completeMotionGestureInputEvent") []), 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "motionGestureInput") (JR.field "RELEASED" (JR.local "touchMotionGestureFactory"))) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.thisField "RELEASE"), JR.this, (JR.thisField "METHOD_NAME") ]), 
+                            JR.exec (JR.setField "released" "Z" JR.this (JR.bool True)), 
+                            JR.returnVoid ]) identity, 
+                        JR.ifElse (JR.and (JR.map2 JR.equals (JR.local "motionGestureInput") (JR.field "NO_MOTION" (JR.callStatic TouchMotionGestureFactory.jm_getInstance_0 []))) (JR.map JR.not_ (JR.invoke "isTimeTNT_0" (JR.thisField "timeHelper") []))) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.thisField "FAST_REPEAT"), JR.this, (JR.thisField "METHOD_NAME") ]), 
+                            JR.returnVoid ]) identity, 
+                        JR.ifElse (JR.map JR.not_ (JR.thisField "released")) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.thisField "IGNORE"), JR.this, (JR.thisField "METHOD_NAME") ]), 
+                            JR.returnVoid ]) identity, 
+                        JR.exec (JR.setField "released" "Z" JR.this (JR.bool False)), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "GameKey: ") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "gameKey") ]) ]) [ (JR.str " MotionGestureInput: ") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "motionGestureInput") ]) ]) []), JR.this, (JR.thisField "METHOD_NAME") ]), 
+                        JR.exec (JR.invoke "processInputMapping_2" (JR.thisField "inputMappingInterface") [ (JR.local "gameKey"), (JR.local "motionGestureInput") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.thisField "METHOD_NAME"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_0 : JR.Method
+jm_process_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeListener_1" (JR.callStatic CompleteMotionGestureInputEventHandler.jm_getInstance_0 []) [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

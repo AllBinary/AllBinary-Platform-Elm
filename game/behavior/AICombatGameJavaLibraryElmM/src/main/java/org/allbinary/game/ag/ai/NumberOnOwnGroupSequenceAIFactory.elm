@@ -1,129 +1,110 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
-module NumberOnOwnGroupSequenceAIFactory where
+module Org.Allbinary.Game.Ag.Ai.NumberOnOwnGroupSequenceAIFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NumberInSameGroupSequence -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified NumberOnOwnGroupSequenceAI -- same package or java.lang
-import qualified ArtificialIntelligenceInterface -- org.allbinary.ai.ArtificialIntelligenceInterface
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai
+-}
 
-data NumberOnOwnGroupSequenceAIFactory = NumberOnOwnGroupSequenceAIFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull NumberOnOwnGroupSequenceAIFactory where
-    javaNull = javaNullRecord "NumberOnOwnGroupSequenceAIFactory"
-
-instance JavaEquals NumberOnOwnGroupSequenceAIFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NumberOnOwnGroupSequenceAIFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NumberOnOwnGroupSequenceAIFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NumberOnOwnGroupSequenceAIFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = NumberOnOwnGroupSequenceAIFactory header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    pure this
-
-initFields_ :: NumberOnOwnGroupSequenceAIFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_ :: IO NumberOnOwnGroupSequenceAIFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NumberOnOwnGroupSequenceAIFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Ag.Ai.NumberInSameGroupSequence as NumberInSameGroupSequence
+import Org.Allbinary.Game.Ag.Ai.NumberOnOwnGroupSequenceAI as NumberOnOwnGroupSequenceAI
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> JavaArray (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface) -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface)
-getInstance object_ a1 a2 a3 a4 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: NumberOnOwnGroupSequenceAIFactory))) () a1 a2 a3 a4
+jclass : String
+jclass =
+    "NumberOnOwnGroupSequenceAIFactory"
 
-getInstance_super :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> JavaArray (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface) -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface)
-getInstance_super object_ a1 a2 a3 a4 = (getInstance_impl (javaCast object_ :: NumberOnOwnGroupSequenceAIFactory)) a1 a2 a3 a4
 
-getInstance_impl :: NumberOnOwnGroupSequenceAIFactory -> ABHashtable.ABHashtable -> JavaArray (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface) -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO (ArtificialIntelligenceInterface.ArtificialIntelligenceInterface)
-getInstance_impl this hashtable artificialIntelligenceInterface ownerLayerInterface gameInput = do
-        let integerArray = (jget ((jio (NumberInSameGroupSequence.getInstance))).nUMBER_ON_SAME_TEAM_SEQUENCE)
-        list <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        forM_ [0 .. (jlength integerArray) - 1] $ \index -> javaIteration (pure ()) $ do
-            integerCanBeNull <- (ABHashtable.get hashtable (javaCast (jindex integerArray (index)) :: Any.Any))
-            when (integerCanBeNull == javaNull) $ do
-                throwIO JavaBreak
-            Control.Monad.void (BasicArrayList.add list integerCanBeNull)
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "Total AI Properties: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (BasicArrayList.size list)))
-        Control.Monad.void (StringMaker.append stringBuffer " == Total AI: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jlength artificialIntelligenceInterface))
-        Control.Monad.void (StringMaker.append stringBuffer " + 1")
-        commonStrings <- (CommonStrings.getInstance)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this (jget (commonStrings).gET_INSTANCE))
-        when (((jlength artificialIntelligenceInterface) - 1) > (jio (BasicArrayList.size list))) $ do
-            javaThrow ((JavaException "Exception" "Not enough AI properties."))
-        when (((jlength artificialIntelligenceInterface) - 1) < (jio (BasicArrayList.size list))) $ do
-            javaThrow ((JavaException "Exception" "Too Many AI properties."))
-        let numberOnSameTeam = (jnewArray ((jio (BasicArrayList.size list))) javaNull)
-        forM_ [0 .. (jlength numberOnSameTeam) - 1] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex numberOnSameTeam (index) ((javaCast (jindex ((jget (list).objectArray)) (index)) :: Int))
-        (fmap (\value_ -> javaCast value_ :: ArtificialIntelligenceInterface.ArtificialIntelligenceInterface) (NumberOnOwnGroupSequenceAI.new_4 numberOnSameTeam artificialIntelligenceInterface ownerLayerInterface gameInput))
+jchain : List String
+jchain =
+    [ "NumberOnOwnGroupSequenceAIFactory" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_4", jm_getInstance_4 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NumberOnOwnGroupSequenceAIFactory"
+        [ ( "jm_getInstance_4", jm_getInstance_4 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_4 : JR.Method
+jm_getInstance_4 jheap jthis jargs =
+    JR.method [ ( "hashtable", "" ), ( "artificialIntelligenceInterface", "" ), ( "ownerLayerInterface", "" ), ( "gameInput", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "integerArray" "" (JR.field "NUMBER_ON_SAME_TEAM_SEQUENCE" (JR.callStatic NumberInSameGroupSequence.jm_getInstance_0 [])), 
+                    JR.declare "list" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "integerArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68388 -> (JR.setLocal "index" "I" (JR.lit jwN68388))) JR.increment) ]) (JR.run [ 
+                        JR.declare "integerCanBeNull" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.aget (JR.local "integerArray") (JR.local "index")) ]), 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "integerCanBeNull") JR.null) (JR.run [ 
+                            JR.break ]) identity, 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.local "integerCanBeNull") ]) ]) ], 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Total AI Properties: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "size_0" (JR.local "list") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " == Total AI: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.alength (JR.local "artificialIntelligenceInterface")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " + 1") ]), 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "GET_INSTANCE" (JR.local "commonStrings")) ]), 
+                    JR.ifElse (JR.map2 JR.greater (JR.map2 JR.sub (JR.alength (JR.local "artificialIntelligenceInterface")) (JR.int 1)) (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Not enough AI properties.") ]) ]) identity, 
+                    JR.ifElse (JR.map2 JR.less (JR.map2 JR.sub (JR.alength (JR.local "artificialIntelligenceInterface")) (JR.int 1)) (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Too Many AI properties.") ]) ]) identity, 
+                    JR.declare "numberOnSameTeam" "" (JR.newArray "" [ (JR.invoke "size_0" (JR.local "list") []) ]), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "numberOnSameTeam"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69082 -> (JR.setLocal "index" "I" (JR.lit jwN69082))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "numberOnSameTeam") (\jaN68957 -> JR.andThen (JR.local "index") (\jiN68957 -> (JR.aset (JR.lit jaN68957) (JR.lit jiN68957) (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")))))) ]) ], 
+                    JR.return (JR.new NumberOnOwnGroupSequenceAI.jnew_4 [ (JR.local "numberOnSameTeam"), (JR.local "artificialIntelligenceInterface"), (JR.local "ownerLayerInterface"), (JR.local "gameInput") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

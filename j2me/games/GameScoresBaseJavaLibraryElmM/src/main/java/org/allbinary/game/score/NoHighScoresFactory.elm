@@ -1,127 +1,119 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module NoHighScoresFactory (module NoHighScoresFactory, module HighScoresBase) where
+module Org.Allbinary.Game.Score.NoHighScoresFactory exposing (..)
 
-import HighScoresBase hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, fetchHighScores, fetchHighScores_super, fetchHighScores_impl, createHighScoresHelper, createHighScoresHelper_super, createHighScoresHelper_impl, logUtil, instance_, nO_HIGH_SCORES)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HighScores -- same package or java.lang
-import qualified HighScoresResultsListener -- same package or java.lang
-import qualified HighScoresHelperBase -- same package or java.lang
-import qualified HighScoresHelperBaseInterface -- same package or java.lang
-import qualified GameInfo -- org.allbinary.game.GameInfo
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified HighScoresBase
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
-data NoHighScoresFactory = NoHighScoresFactory
-    { header_ :: JavaHeader
-    , base :: HighScoresBase.HighScoresBase
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , nO_HIGH_SCORES :: IORef (JavaArray (HighScores.HighScores))
-    }
-
-instance JavaNull NoHighScoresFactory where
-    javaNull = javaNullRecord "NoHighScoresFactory"
-
-instance JavaEquals NoHighScoresFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NoHighScoresFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NoHighScoresFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: NoHighScoresFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-newRecord_ :: IO NoHighScoresFactory
-newRecord_ = do
-    base <- HighScoresBase.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    nO_HIGH_SCORES <- newIORef javaNull
-    let this = NoHighScoresFactory header_ base logUtil nO_HIGH_SCORES
-    jregisterLevel header_ this
-    jregisterMethod header_ "fetchHighScores" (\() -> fetchHighScores_impl this)
-    jregisterMethod header_ "createHighScoresHelper" (\() -> createHighScoresHelper_impl this)
-    pure this
-
-initFields_ :: NoHighScoresFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.nO_HIGH_SCORES ((jnewArray (0) javaNull))
-    pure ()
+import JR
+import Org.Allbinary.Game.Score.HighScoresBase as HighScoresBase
+import Org.Allbinary.Game.Score.HighScoresHelperBase as HighScoresHelperBase
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getInstance :: IO (NoHighScoresFactory)
-getInstance = do
-        pure (NoHighScoresFactory.instance_)
-
-new_ :: IO NoHighScoresFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NoHighScoresFactory -> IO ()
-init_ this = do
-        HighScoresBase.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "NoHighScoresFactory"
 
 
-fetchHighScores :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> IO (())
-fetchHighScores object_ a1 a2 = jmethod object_ "fetchHighScores" (\() -> (fetchHighScores_impl (javaCast object_ :: NoHighScoresFactory))) () a1 a2
-
-fetchHighScores_super :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> IO (())
-fetchHighScores_super object_ a1 a2 = (fetchHighScores_impl (javaCast object_ :: NoHighScoresFactory)) a1 a2
-
-fetchHighScores_impl :: NoHighScoresFactory -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> IO (())
-fetchHighScores_impl this gameInfo highScoresResultsListener = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "Getting No HighScores" this "fetchHighScores")
-        Control.Monad.void (HighScoresResultsListener.setHighScoresArray highScoresResultsListener (jget (this).nO_HIGH_SCORES))
-        pure ()
+jchain : List String
+jchain =
+    [ "NoHighScoresFactory" ]
+        ++ HighScoresBase.jchain
 
 
-createHighScoresHelper :: (JavaObjectClass this_) => this_ -> IO (HighScoresHelperBaseInterface.HighScoresHelperBaseInterface)
-createHighScoresHelper object_ = jmethod object_ "createHighScoresHelper" (\() -> (createHighScoresHelper_impl (javaCast object_ :: NoHighScoresFactory))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    HighScoresBase.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "NO_HIGH_SCORES", JR.defaultOf "" ) ]
 
-createHighScoresHelper_super :: (JavaObjectClass this_) => this_ -> IO (HighScoresHelperBaseInterface.HighScoresHelperBaseInterface)
-createHighScoresHelper_super object_ = (createHighScoresHelper_impl (javaCast object_ :: NoHighScoresFactory))
 
-createHighScoresHelper_impl :: NoHighScoresFactory -> IO (HighScoresHelperBaseInterface.HighScoresHelperBaseInterface)
-createHighScoresHelper_impl this = do
-        (fmap (\value_ -> javaCast value_ :: HighScoresHelperBaseInterface.HighScoresHelperBaseInterface) (HighScoresHelperBase.new_))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "fetchHighScores_2", jm_fetchHighScores_2 )
+        , ( "createHighScoresHelper_0", jm_createHighScoresHelper_0 ) ]
+        HighScoresBase.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NoHighScoresFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_fetchHighScores_2", jm_fetchHighScores_2 ), ( "jm_createHighScoresHelper_0", jm_createHighScoresHelper_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "NoHighScoresFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect HighScoresBase.jinit_0 JR.this []),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "NO_HIGH_SCORES" "" JR.this (JR.newArray "" [ (JR.int 0) ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fetchHighScores_2 : JR.Method
+jm_fetchHighScores_2 jheap jthis jargs =
+    JR.method [ ( "gameInfo", "" ), ( "highScoresResultsListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Getting No HighScores"), JR.this, (JR.str "fetchHighScores") ]), 
+                    JR.exec (JR.invoke "setHighScoresArray_1" (JR.local "highScoresResultsListener") [ (JR.thisField "NO_HIGH_SCORES") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createHighScoresHelper_0 : JR.Method
+jm_createHighScoresHelper_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.new HighScoresHelperBase.jnew_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

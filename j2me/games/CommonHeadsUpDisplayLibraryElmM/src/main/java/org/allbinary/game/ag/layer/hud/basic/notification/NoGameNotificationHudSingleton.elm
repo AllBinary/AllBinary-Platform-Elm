@@ -1,120 +1,112 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.notification
-module NoGameNotificationHudSingleton where
+module Org.Allbinary.Game.Ag.Layer.Hud.Basic.Notification.NoGameNotificationHudSingleton exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameNotificationHud -- same package or java.lang
-import qualified NoGameGameNotificationHud -- same package or java.lang
-import qualified BasicHudFactory -- org.allbinary.game.graphics.hud.BasicHudFactory
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.hud.basic.notification
+-}
 
-data NoGameNotificationHudSingleton = NoGameNotificationHudSingleton
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , gameNotificationHud :: IORef (GameNotificationHud.GameNotificationHud)
-    }
-
-instance JavaNull NoGameNotificationHudSingleton where
-    javaNull = javaNullRecord "NoGameNotificationHudSingleton"
-
-instance JavaEquals NoGameNotificationHudSingleton where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NoGameNotificationHudSingleton where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NoGameNotificationHudSingleton where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: NoGameNotificationHudSingleton
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NoGameNotificationHudSingleton
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    gameNotificationHud <- newIORef javaNull
-    let this = NoGameNotificationHudSingleton header_ logUtil gameNotificationHud
-    jregisterLevel header_ this
-    jregisterMethod header_ "getGameNotificationHud" (\() -> getGameNotificationHud_impl this)
-    pure this
-
-initFields_ :: NoGameNotificationHudSingleton -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.gameNotificationHud (GameNotificationHud.nULL_GAME_NOTIFICATION)
-    pure ()
+import JR
+import Org.Allbinary.Game.Graphics.Hud.BasicHudFactory as BasicHudFactory
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Ag.Layer.Hud.Basic.Notification.GameNotificationHud as GameNotificationHud
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Ag.Layer.Hud.Basic.Notification.NoGameGameNotificationHud as NoGameGameNotificationHud
 
 
-getInstance :: IO (NoGameNotificationHudSingleton)
-getInstance = do
-        pure (NoGameNotificationHudSingleton.instance_)
-
-new_ :: IO NoGameNotificationHudSingleton
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NoGameNotificationHudSingleton -> IO ()
-init_ this = do
-        initFields_ this
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).cONSTRUCTOR) e)
-            ) $ do
-            basicHudFactory <- (BasicHudFactory.getInstance)
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: GameNotificationHud.GameNotificationHud) (NoGameGameNotificationHud.new_))
-            jset (this).gameNotificationHud (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "NoGameNotificationHudSingleton"
 
 
-getGameNotificationHud :: (JavaObjectClass this_) => this_ -> IO (GameNotificationHud.GameNotificationHud)
-getGameNotificationHud object_ = jmethod object_ "getGameNotificationHud" (\() -> (getGameNotificationHud_impl (javaCast object_ :: NoGameNotificationHudSingleton))) ()
+jchain : List String
+jchain =
+    [ "NoGameNotificationHudSingleton" ]
 
-getGameNotificationHud_super :: (JavaObjectClass this_) => this_ -> IO (GameNotificationHud.GameNotificationHud)
-getGameNotificationHud_super object_ = (getGameNotificationHud_impl (javaCast object_ :: NoGameNotificationHudSingleton))
 
-getGameNotificationHud_impl :: NoGameNotificationHudSingleton -> IO (GameNotificationHud.GameNotificationHud)
-getGameNotificationHud_impl this = do
-        pure ((jget (this).gameNotificationHud))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "gameNotificationHud", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getGameNotificationHud_0", jm_getGameNotificationHud_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NoGameNotificationHudSingleton"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getGameNotificationHud_0", jm_getGameNotificationHud_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "NoGameNotificationHudSingleton" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameNotificationHud" "" JR.this GameNotificationHud.jstatic_NULL_GAME_NOTIFICATION),
+                identity,
+                (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "basicHudFactory" "" (JR.callStatic BasicHudFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.setField "gameNotificationHud" "" JR.this (JR.new NoGameGameNotificationHud.jnew_0 [])) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameNotificationHud_0 : JR.Method
+jm_getGameNotificationHud_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameNotificationHud") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

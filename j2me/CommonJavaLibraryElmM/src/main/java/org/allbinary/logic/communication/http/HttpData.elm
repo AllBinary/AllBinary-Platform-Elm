@@ -1,10 +1,10 @@
-module HttpData exposing (..)
+module Org.Allbinary.Logic.Communication.Http.HttpData exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.http
 -}
 
 import JR
-import CommonSeps
+import Org.Allbinary.String.CommonSeps as CommonSeps
 
 
 jclass : String

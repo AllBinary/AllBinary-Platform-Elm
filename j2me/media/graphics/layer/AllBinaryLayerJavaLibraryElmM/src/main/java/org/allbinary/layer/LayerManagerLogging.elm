@@ -1,234 +1,205 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.layer
-module LayerManagerLogging (module LayerManagerLogging, module LayerManagerLoggingBase) where
+module Org.Allbinary.Layer.LayerManagerLogging exposing (..)
 
-import LayerManagerLoggingBase hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, append, append_super, append_impl, appendAt, appendAt_super, appendAt_impl, remove, remove_super, remove_impl, removeResult, removeResult_super, removeResult_impl, log, log_super, log_impl, clear, clear_super, clear_impl, logUtil, instance_, stringBuilder, aPPEND, aPPEND_, _AT_, aTTEMPT_REMOVE_, rEMOVE_, rEMOVE, dID_NOT_REMOVE, cLEAR, removeFailed)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryLayer -- same package or java.lang
-import qualified LayerManager -- same package or java.lang
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified LayerManagerLoggingBase
+{-| Generated Code Do Not Modify package org.allbinary.layer
+-}
 
-data LayerManagerLogging = LayerManagerLogging
-    { header_ :: JavaHeader
-    , base :: LayerManagerLoggingBase.LayerManagerLoggingBase
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , stringBuilder :: IORef (StringMaker.StringMaker)
-    , aPPEND :: IORef (String)
-    , aPPEND_ :: IORef (String)
-    , _AT_ :: IORef (String)
-    , aTTEMPT_REMOVE_ :: IORef (String)
-    , rEMOVE_ :: IORef (String)
-    , rEMOVE :: IORef (String)
-    , dID_NOT_REMOVE :: IORef (String)
-    , cLEAR :: IORef (String)
-    }
-
-instance JavaNull LayerManagerLogging where
-    javaNull = javaNullRecord "LayerManagerLogging"
-
-instance JavaEquals LayerManagerLogging where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LayerManagerLogging where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LayerManagerLogging where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: LayerManagerLogging
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-removeFailed :: IORef (Bool)
-{-# NOINLINE removeFailed #-}
-removeFailed = unsafePerformIO (newIORef (False))
-
-newRecord_ :: IO LayerManagerLogging
-newRecord_ = do
-    base <- LayerManagerLoggingBase.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    stringBuilder <- newIORef javaNull
-    aPPEND <- newIORef ""
-    aPPEND_ <- newIORef ""
-    _AT_ <- newIORef ""
-    aTTEMPT_REMOVE_ <- newIORef ""
-    rEMOVE_ <- newIORef ""
-    rEMOVE <- newIORef ""
-    dID_NOT_REMOVE <- newIORef ""
-    cLEAR <- newIORef ""
-    let this = LayerManagerLogging header_ base logUtil stringBuilder aPPEND aPPEND_ _AT_ aTTEMPT_REMOVE_ rEMOVE_ rEMOVE dID_NOT_REMOVE cLEAR
-    jregisterLevel header_ this
-    jregisterMethod header_ "append" (\() -> append_impl this)
-    jregisterMethod header_ "appendAt" (\() -> appendAt_impl this)
-    jregisterMethod header_ "remove" (\() -> remove_impl this)
-    jregisterMethod header_ "removeResult" (\() -> removeResult_impl this)
-    jregisterMethod header_ "log" (\() -> log_impl this)
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    pure this
-
-initFields_ :: LayerManagerLogging -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.stringBuilder =<< (StringMaker.new_)
-    jset this.aPPEND ("append")
-    jset this.aPPEND_ (" append: ")
-    jset this._AT_ (" at: ")
-    jset this.aTTEMPT_REMOVE_ (" Remove Attempt: ")
-    jset this.rEMOVE_ (" Remove: ")
-    jset this.rEMOVE ("remove")
-    jset this.dID_NOT_REMOVE (" Did not remove: ")
-    jset this.cLEAR (" Clear List")
-    pure ()
-
-new_ :: IO LayerManagerLogging
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LayerManagerLogging -> IO ()
-init_ this = do
-    LayerManagerLoggingBase.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import JInteger
+import Org.Allbinary.Layer.LayerManagerLoggingBase as LayerManagerLoggingBase
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.TsUtil as TsUtil
 
 
-getInstance :: IO (LayerManagerLogging)
-getInstance = do
-        pure (LayerManagerLogging.instance_)
+jclass : String
+jclass =
+    "LayerManagerLogging"
 
 
--- throws Exception
-append :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append object_ a1 = jmethod object_ "append" (\() -> (append_impl (javaCast object_ :: LayerManagerLogging))) () a1
-
-append_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append_super object_ a1 = (append_impl (javaCast object_ :: LayerManagerLogging)) a1
-
-append_impl :: LayerManagerLogging -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append_impl this layerInterface = do
-        Control.Monad.void (StringMaker.delete ((jget (this).stringBuilder)) 0 (jio (StringMaker.length ((jget (this).stringBuilder)))))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.appendint ((jget (this).stringBuilder)) (Prelude.fromInteger (jnumericInteger (jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) this))))))) (jget (this).aPPEND_)))) (jio (AllBinaryLayer.getName layerInterface))))))) this (jget (this).aPPEND))
-        pure ()
+jchain : List String
+jchain =
+    [ "LayerManagerLogging" ]
+        ++ LayerManagerLoggingBase.jchain
 
 
-appendAt :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt object_ a1 a2 = jmethod object_ "appendAt" (\() -> (appendAt_impl (javaCast object_ :: LayerManagerLogging))) () a1 a2
-
-appendAt_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt_super object_ a1 a2 = (appendAt_impl (javaCast object_ :: LayerManagerLogging)) a1 a2
-
-appendAt_impl :: LayerManagerLogging -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt_impl this layerInterface index = do
-        Control.Monad.void (StringMaker.delete ((jget (this).stringBuilder)) 0 (jio (StringMaker.length ((jget (this).stringBuilder)))))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.appendint ((jget (this).stringBuilder)) (Prelude.fromInteger (jnumericInteger (jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) this))))))) (jget (this).aPPEND_)))) (jio (AllBinaryLayer.getName layerInterface))))) (jget (this)._AT_)))) index))))) this (jget (this).aPPEND))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    LayerManagerLoggingBase.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "stringBuilder", JR.defaultOf "" ), ( "APPEND", JR.defaultOf "" ), ( "APPEND_", JR.defaultOf "" ), ( "_AT_", JR.defaultOf "" ), ( "ATTEMPT_REMOVE_", JR.defaultOf "" ), ( "REMOVE_", JR.defaultOf "" ), ( "REMOVE", JR.defaultOf "" ), ( "DID_NOT_REMOVE", JR.defaultOf "" ), ( "CLEAR", JR.defaultOf "" ) ]
 
 
-remove :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove object_ a1 = jmethod object_ "remove" (\() -> (remove_impl (javaCast object_ :: LayerManagerLogging))) () a1
-
-remove_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove_super object_ a1 = (remove_impl (javaCast object_ :: LayerManagerLogging)) a1
-
-remove_impl :: LayerManagerLogging -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove_impl this layerInterface = do
-        if (layerInterface == javaNull) then do
-            Control.Monad.void (StringMaker.delete ((jget (this).stringBuilder)) 0 (jio (StringMaker.length ((jget (this).stringBuilder)))))
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.appendint ((jget (this).stringBuilder)) (Prelude.fromInteger (jnumericInteger (jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) this))))))) (jget (this).aTTEMPT_REMOVE_)))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) layerInterface))))))) this (jget (this).rEMOVE))
-        else do
-            Control.Monad.void (StringMaker.delete ((jget (this).stringBuilder)) 0 (jio (StringMaker.length ((jget (this).stringBuilder)))))
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.appendint ((jget (this).stringBuilder)) (Prelude.fromInteger (jnumericInteger (jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) this))))))) (jget (this).aTTEMPT_REMOVE_)))) (jio (AllBinaryLayer.getName layerInterface))))))) this (jget (this).rEMOVE))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "append_1", jm_append_1 )
+        , ( "appendAt_2", jm_appendAt_2 )
+        , ( "remove_1", jm_remove_1 )
+        , ( "removeResult_3", jm_removeResult_3 )
+        , ( "log_1", jm_log_1 )
+        , ( "clear_0", jm_clear_0 ) ]
+        LayerManagerLoggingBase.jvtable
 
 
-removeResult :: (JavaObjectClass this_) => this_ -> LayerManager.LayerManager -> AllBinaryLayer.AllBinaryLayer -> Bool -> IO (())
-removeResult object_ a1 a2 a3 = jmethod object_ "removeResult" (\() -> (removeResult_impl (javaCast object_ :: LayerManagerLogging))) () a1 a2 a3
-
-removeResult_super :: (JavaObjectClass this_) => this_ -> LayerManager.LayerManager -> AllBinaryLayer.AllBinaryLayer -> Bool -> IO (())
-removeResult_super object_ a1 a2 a3 = (removeResult_impl (javaCast object_ :: LayerManagerLogging)) a1 a2 a3
-
-removeResult_impl :: LayerManagerLogging -> LayerManager.LayerManager -> AllBinaryLayer.AllBinaryLayer -> Bool -> IO (())
-removeResult_impl this layerManager layerInterface result = do
-        if (layerInterface == javaNull) then do
-            Control.Monad.void (StringMaker.delete ((jget (this).stringBuilder)) 0 (jio (StringMaker.length ((jget (this).stringBuilder)))))
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.appendint ((jget (this).stringBuilder)) (Prelude.fromInteger (jnumericInteger (jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) this))))))) (jget (this).rEMOVE_)))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) layerInterface))))))) this (jget (this).rEMOVE))
-        else if result then do
-            when (jget LayerManagerLogging.removeFailed) $ do
-                Control.Monad.void (StringMaker.delete ((jget (this).stringBuilder)) 0 (jio (StringMaker.length ((jget (this).stringBuilder)))))
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.appendint ((jget (this).stringBuilder)) (Prelude.fromInteger (jnumericInteger (jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) this))))))) (jget (this).rEMOVE_)))) (jio (AllBinaryLayer.getName layerInterface))))))) this (jget (this).rEMOVE))
-        else do
-            Control.Monad.void (StringMaker.delete ((jget (this).stringBuilder)) 0 (jio (StringMaker.length ((jget (this).stringBuilder)))))
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.appendint ((jget (this).stringBuilder)) (Prelude.fromInteger (jnumericInteger (jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) this))))))) (jget (this).dID_NOT_REMOVE)))) (jio (AllBinaryLayer.getName layerInterface))))))) this (jget (this).rEMOVE))
-            jset LayerManagerLogging.removeFailed (True)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LayerManagerLogging"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_append_1", jm_append_1 ), ( "jm_appendAt_2", jm_appendAt_2 ), ( "jm_remove_1", jm_remove_1 ), ( "jm_removeResult_3", jm_removeResult_3 ), ( "jm_log_1", jm_log_1 ), ( "jm_clear_0", jm_clear_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ), ( "jstatic_removeFailed", jstatic_removeFailed ) ]
+        jheap
 
 
-log :: (JavaObjectClass this_) => this_ -> LayerManager.LayerManager -> IO (())
-log object_ a1 = jmethod object_ "log" (\() -> (log_impl (javaCast object_ :: LayerManagerLogging))) () a1
-
-log_super :: (JavaObjectClass this_) => this_ -> LayerManager.LayerManager -> IO (())
-log_super object_ a1 = (log_impl (javaCast object_ :: LayerManagerLogging)) a1
-
-log_impl :: LayerManagerLogging -> LayerManager.LayerManager -> IO (())
-log_impl this layerManager = do
-        Control.Monad.void (StringMaker.delete ((jget (this).stringBuilder)) 0 (jio (StringMaker.length ((jget (this).stringBuilder)))))
-        size <- (LayerManager.getSize layerManager)
-        commonSeps <- (CommonSeps.getInstance)
-        Control.Monad.void (StringMaker.append ((jio (StringMaker.append ((jget (this).stringBuilder)) (Numeric.showHex (jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) layerManager)) "")))) (jget (commonSeps).cOLON_SEP))
-        Control.Monad.void (StringMaker.append ((jio (StringMaker.appendint ((jget (this).stringBuilder)) size))) (jget (commonSeps).cOLON_SEP))
-        allBinaryLayer <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset allBinaryLayer (((javaCast (jio (LayerManager.getLayerAt layerManager index)) :: AllBinaryLayer.AllBinaryLayer)))
-            Control.Monad.void (StringMaker.append ((jio (StringMaker.append ((jget (this).stringBuilder)) (jio (AllBinaryLayer.getName ((jget allBinaryLayer))))))) (jget (commonSeps).cOMMA))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jget (this).stringBuilder)))) this (jget (this).rEMOVE))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: LayerManagerLogging))) ()
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LayerManagerLogging" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: LayerManagerLogging))
 
-clear_impl :: LayerManagerLogging -> IO (())
-clear_impl this = do
-        Control.Monad.void (StringMaker.delete ((jget (this).stringBuilder)) 0 (jio (StringMaker.length ((jget (this).stringBuilder)))))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.appendint ((jget (this).stringBuilder)) (Prelude.fromInteger (jnumericInteger (jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) this))))))) (jget (this).cLEAR)))))) this (jget (this).cLEAR))
-        pure ()
+jstatic_removeFailed : JR.M
+jstatic_removeFailed s =
+    JR.static "LayerManagerLogging" jclinit "removeFailed"
+        (JR.bool False)
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect LayerManagerLoggingBase.jinit_0 JR.this []),
+            JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "stringBuilder" "" JR.this (JR.new StringMaker.jnew_0 [])),
+                JR.exec (JR.setField "APPEND" "" JR.this (JR.str "append")),
+                JR.exec (JR.setField "APPEND_" "" JR.this (JR.str " append: ")),
+                JR.exec (JR.setField "_AT_" "" JR.this (JR.str " at: ")),
+                JR.exec (JR.setField "ATTEMPT_REMOVE_" "" JR.this (JR.str " Remove Attempt: ")),
+                JR.exec (JR.setField "REMOVE_" "" JR.this (JR.str " Remove: ")),
+                JR.exec (JR.setField "REMOVE" "" JR.this (JR.str "remove")),
+                JR.exec (JR.setField "DID_NOT_REMOVE" "" JR.this (JR.str " Did not remove: ")),
+                JR.exec (JR.setField "CLEAR" "" JR.this (JR.str " Clear List")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_append_1 : JR.Method
+jm_append_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "delete_2" (JR.thisField "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.thisField "stringBuilder") []) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.thisField "stringBuilder") [ (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ JR.this ]) ]) [ (JR.thisField "APPEND_") ]) [ (JR.invoke "getName_0" (JR.local "layerInterface") []) ]) []), JR.this, (JR.thisField "APPEND") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_appendAt_2 : JR.Method
+jm_appendAt_2 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ), ( "index", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "delete_2" (JR.thisField "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.thisField "stringBuilder") []) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.thisField "stringBuilder") [ (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ JR.this ]) ]) [ (JR.thisField "APPEND_") ]) [ (JR.invoke "getName_0" (JR.local "layerInterface") []) ]) [ (JR.thisField "_AT_") ]) [ (JR.local "index") ]) []), JR.this, (JR.thisField "APPEND") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_remove_1 : JR.Method
+jm_remove_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "layerInterface") JR.null) (JR.run [ 
+                        JR.exec (JR.invoke "delete_2" (JR.thisField "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.thisField "stringBuilder") []) ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.thisField "stringBuilder") [ (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ JR.this ]) ]) [ (JR.thisField "ATTEMPT_REMOVE_") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "layerInterface") ]) ]) []), JR.this, (JR.thisField "REMOVE") ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "delete_2" (JR.thisField "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.thisField "stringBuilder") []) ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.thisField "stringBuilder") [ (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ JR.this ]) ]) [ (JR.thisField "ATTEMPT_REMOVE_") ]) [ (JR.invoke "getName_0" (JR.local "layerInterface") []) ]) []), JR.this, (JR.thisField "REMOVE") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeResult_3 : JR.Method
+jm_removeResult_3 jheap jthis jargs =
+    JR.method [ ( "layerManager", "" ), ( "layerInterface", "" ), ( "result", "Z" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "layerInterface") JR.null) (JR.run [ 
+                        JR.exec (JR.invoke "delete_2" (JR.thisField "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.thisField "stringBuilder") []) ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.thisField "stringBuilder") [ (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ JR.this ]) ]) [ (JR.thisField "REMOVE_") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "layerInterface") ]) ]) []), JR.this, (JR.thisField "REMOVE") ]) ]) (JR.run [ 
+                    JR.ifElse (JR.local "result") (JR.run [ 
+                        JR.ifElse jstatic_removeFailed (JR.run [ 
+                            JR.exec (JR.invoke "delete_2" (JR.thisField "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.thisField "stringBuilder") []) ]), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.thisField "stringBuilder") [ (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ JR.this ]) ]) [ (JR.thisField "REMOVE_") ]) [ (JR.invoke "getName_0" (JR.local "layerInterface") []) ]) []), JR.this, (JR.thisField "REMOVE") ]) ]) identity ]) (JR.run [ 
+                        JR.exec (JR.invoke "delete_2" (JR.thisField "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.thisField "stringBuilder") []) ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.thisField "stringBuilder") [ (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ JR.this ]) ]) [ (JR.thisField "DID_NOT_REMOVE") ]) [ (JR.invoke "getName_0" (JR.local "layerInterface") []) ]) []), JR.this, (JR.thisField "REMOVE") ]), 
+                        JR.exec (JR.setStatic "LayerManagerLogging.removeFailed" "Z" (JR.bool True)) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_log_1 : JR.Method
+jm_log_1 jheap jthis jargs =
+    JR.method [ ( "layerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "delete_2" (JR.thisField "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.thisField "stringBuilder") []) ]), 
+                    JR.declare "size" "I" (JR.invoke "getSize_0" (JR.local "layerManager") []), 
+                    JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.invoke "append_1" (JR.thisField "stringBuilder") [ (JR.callStatic JInteger.jm_toHexString_1 [ (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ (JR.local "layerManager") ]) ]) ]) [ (JR.field "COLON_SEP" (JR.local "commonSeps")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.thisField "stringBuilder") [ (JR.local "size") ]) [ (JR.field "COLON_SEP" (JR.local "commonSeps")) ]), 
+                    JR.declare "allBinaryLayer" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70888 -> (JR.setLocal "index" "I" (JR.lit jwN70888))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "allBinaryLayer" "" ((JR.invoke "getLayerAt_1" (JR.local "layerManager") [ (JR.local "index") ]))), 
+                        JR.exec (JR.invoke "append_1" (JR.invoke "append_1" (JR.thisField "stringBuilder") [ (JR.invoke "getName_0" (JR.local "allBinaryLayer") []) ]) [ (JR.field "COMMA" (JR.local "commonSeps")) ]) ]) ], 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.thisField "stringBuilder") []), JR.this, (JR.thisField "REMOVE") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "delete_2" (JR.thisField "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.thisField "stringBuilder") []) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.thisField "stringBuilder") [ (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ JR.this ]) ]) [ (JR.thisField "CLEAR") ]) []), JR.this, (JR.thisField "CLEAR") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

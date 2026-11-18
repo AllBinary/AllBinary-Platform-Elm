@@ -1,568 +1,514 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
-module ScrollSelectionForm (module ScrollSelectionForm, module PaintableForm) where
-
-import PaintableForm hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createForm, createForm_super, createForm_impl, getNullScrollSelectionForm, getNullScrollSelectionForm_super, getNullScrollSelectionForm_impl, getNullScrollSelectionFormHorizontal, getNullScrollSelectionFormHorizontal_super, getNullScrollSelectionFormHorizontal_impl, init, init_super, init_impl, paintItemHorizontal, paintItemHorizontal_super, paintItemHorizontal_impl, paintItemVertical, paintItemVertical_super, paintItemVertical_impl, paintItemTempHorizontal, paintItemTempHorizontal_super, paintItemTempHorizontal_impl, getSelectedIndexForPointHorizontalDx, getSelectedIndexForPointHorizontalDx_super, getSelectedIndexForPointHorizontalDx_impl, getSelectedIndexForPointVerticalDx, getSelectedIndexForPointVerticalDx_super, getSelectedIndexForPointVerticalDx_impl, getSelectedIndexForPointTempHorizontalDx, getSelectedIndexForPointTempHorizontalDx_super, getSelectedIndexForPointTempHorizontalDx_impl, append, append_super, append_impl, getSelectedItem, getSelectedItem_super, getSelectedItem_impl, getItemIndex, getItemIndex_super, getItemIndex_impl, getStartIndex, getStartIndex_super, getStartIndex_impl, getSelectedIndexForPoint, getSelectedIndexForPoint_super, getSelectedIndexForPoint_impl, processInputKey, processInputKey_super, processInputKey_impl, isInForm, isInForm_super, isInForm_impl, paintItem, paintItem_super, paintItem_impl, paintUnselectedItem, paintUnselectedItem_super, paintUnselectedItem_impl, getDiffX, getDiffX_super, getDiffX_impl, getDx, getDx_super, getDx_impl, getDy, getDy_super, getDy_impl, setButtonBasicColor, setButtonBasicColor_super, setButtonBasicColor_impl, getButtonBasicColor, getButtonBasicColor_super, getButtonBasicColor_impl, nULL_SCROLL_SELECTION_FORM, nULL_SCROLL_SELECTION_HORIZONTAL_FORM, iNSIDE_FORM, iS_IN_FORM, rectangleCollisionUtil, border, halfBorder, buttonBasicColor, scrollSelectionFormFormTypeItemIndexPaintable, formTypeItemIndexDx, paintable, adjustedExtraBorder, gET_SELECTED_INDEX)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ItemPaintableFactory -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified ItemIndexPaintable -- same package or java.lang
-import qualified ItemIndexDx -- same package or java.lang
-import qualified ItemPaintable -- same package or java.lang
-import qualified FormTypeFactory -- same package or java.lang
-import qualified ScrollSelectionFormTempHorizontalPaintable -- same package or java.lang
-import qualified ScrollSelectionFormTempHorizontalDx -- same package or java.lang
-import qualified ScrollSelectionFormVerticalPaintable -- same package or java.lang
-import qualified ScrollSelectionFormVericalDx -- same package or java.lang
-import qualified ScrollSelectionFormHorizontalPaintable -- same package or java.lang
-import qualified ScrollSelectionFormHorizontalDx -- same package or java.lang
-import qualified FormType -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified ABCustomItem -- org.allbinary.graphics.form.item.ABCustomItem
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified RectangleCollisionUtil -- org.allbinary.math.RectangleCollisionUtil
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified PaintableForm
-
-data ScrollSelectionForm = ScrollSelectionForm
-    { header_ :: JavaHeader
-    , base :: PaintableForm.PaintableForm
-    , rectangleCollisionUtil :: IORef (RectangleCollisionUtil.RectangleCollisionUtil)
-    , border :: IORef (Int)
-    , halfBorder :: IORef (Int)
-    , buttonBasicColor :: IORef (BasicColor.BasicColor)
-    , scrollSelectionFormFormTypeItemIndexPaintable :: IORef (ItemIndexPaintable.ItemIndexPaintable)
-    , formTypeItemIndexDx :: IORef (ItemIndexDx.ItemIndexDx)
-    , paintable :: IORef (ItemPaintable.ItemPaintable)
-    , adjustedExtraBorder :: IORef (Int)
-    }
-
-instance JavaNull ScrollSelectionForm where
-    javaNull = javaNullRecord "ScrollSelectionForm"
-
-instance JavaEquals ScrollSelectionForm where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ScrollSelectionForm where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ScrollSelectionForm where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE nULL_SCROLL_SELECTION_FORM #-}
-nULL_SCROLL_SELECTION_FORM = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-{-# NOINLINE nULL_SCROLL_SELECTION_HORIZONTAL_FORM #-}
-nULL_SCROLL_SELECTION_HORIZONTAL_FORM = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-iNSIDE_FORM :: String
-iNSIDE_FORM = " inside form"
-
-iS_IN_FORM :: String
-iS_IN_FORM = "isInForm"
-
-gET_SELECTED_INDEX :: String
-gET_SELECTED_INDEX = "getSelectedIndexForPoint"
-
-newRecord_ :: IO ScrollSelectionForm
-newRecord_ = do
-    base <- PaintableForm.newRecord_
-    let header_ = base.header_
-    rectangleCollisionUtil <- newIORef javaNull
-    border <- newIORef 0
-    halfBorder <- newIORef 0
-    buttonBasicColor <- newIORef javaNull
-    scrollSelectionFormFormTypeItemIndexPaintable <- newIORef javaNull
-    formTypeItemIndexDx <- newIORef javaNull
-    paintable <- newIORef javaNull
-    adjustedExtraBorder <- newIORef 0
-    let this = ScrollSelectionForm header_ base rectangleCollisionUtil border halfBorder buttonBasicColor scrollSelectionFormFormTypeItemIndexPaintable formTypeItemIndexDx paintable adjustedExtraBorder
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "paintItemHorizontal" (\() -> paintItemHorizontal_impl this)
-    jregisterMethod header_ "paintItemVertical" (\() -> paintItemVertical_impl this)
-    jregisterMethod header_ "paintItemTempHorizontal" (\() -> paintItemTempHorizontal_impl this)
-    jregisterMethod header_ "getSelectedIndexForPointHorizontalDx" (\() -> getSelectedIndexForPointHorizontalDx_impl this)
-    jregisterMethod header_ "getSelectedIndexForPointVerticalDx" (\() -> getSelectedIndexForPointVerticalDx_impl this)
-    jregisterMethod header_ "getSelectedIndexForPointTempHorizontalDx" (\() -> getSelectedIndexForPointTempHorizontalDx_impl this)
-    jregisterMethod header_ "append" (\() -> append_impl this)
-    jregisterMethod header_ "getSelectedItem" (\() -> getSelectedItem_impl this)
-    jregisterMethod header_ "getItemIndex" (\() -> getItemIndex_impl this)
-    jregisterMethod header_ "getStartIndex" (\() -> getStartIndex_impl this)
-    jregisterMethod header_ "getSelectedIndexForPoint" (\() -> getSelectedIndexForPoint_impl this)
-    jregisterMethod header_ "processInputKey" (\() -> processInputKey_impl this)
-    jregisterMethod header_ "isInForm" (\() -> isInForm_impl this)
-    jregisterMethod header_ "paintItem" (\() -> paintItem_impl this)
-    jregisterMethod header_ "paintUnselectedItem" (\() -> paintUnselectedItem_impl this)
-    jregisterMethod header_ "getDiffX" (\() -> getDiffX_impl this)
-    jregisterMethod header_ "getDx" (\() -> getDx_impl this)
-    jregisterMethod header_ "getDy" (\() -> getDy_impl this)
-    jregisterMethod header_ "setButtonBasicColor" (\() -> setButtonBasicColor_impl this)
-    jregisterMethod header_ "getButtonBasicColor" (\() -> getButtonBasicColor_impl this)
-    pure this
-
-initFields_ :: ScrollSelectionForm -> IO ()
-initFields_ this = do
-    jset this.rectangleCollisionUtil =<< (RectangleCollisionUtil.getInstance)
-    jset this.border (0)
-    jset this.halfBorder (0)
-    jset this.buttonBasicColor (javaNull)
-    jset this.scrollSelectionFormFormTypeItemIndexPaintable =<< (ItemIndexPaintable.getInstance)
-    jset this.formTypeItemIndexDx =<< (ItemIndexDx.getInstance)
-    jset this.paintable =<< (fmap (\value_ -> javaCast value_ :: ItemPaintable.ItemPaintable) (ItemPaintableFactory.getInstance))
-    jset this.adjustedExtraBorder (0)
-    pure ()
-
-
-createForm :: String -> JavaArray (ABCustomItem.ABCustomItem) -> ItemPaintableFactory.ItemPaintableFactory -> Int -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO (PaintableForm.PaintableForm)
-createForm title items formPaintableFactory border backgroundBasicColor foregroundBasicColor = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            logUtil <- (LogUtil.getInstance)
-            Control.Monad.void (LogUtil.put logUtil (jget (commonStrings).eXCEPTION) logUtil (jget (commonStrings).eXCEPTION) e)
-            (PaintableForm.getNullPaintableForm)
-            ) $ do
-            if (formPaintableFactory == (jio (ItemPaintableFactory.getInstance))) then do
-                javaReturn =<< (fmap (\value_ -> javaCast value_ :: PaintableForm.PaintableForm) (new_7 title items formPaintableFactory border (Prelude.negate 3) backgroundBasicColor foregroundBasicColor))
-            else do
-                commonStrings <- (CommonStrings.getInstance)
-                logUtil <- (LogUtil.getInstance)
-                Control.Monad.void (LogUtil.putF logUtil (jget (commonStrings).eXCEPTION) logUtil (jget (commonStrings).eXCEPTION))
-                javaReturn =<< (PaintableForm.getNullPaintableForm)
-
-
-getNullScrollSelectionForm :: IO (ScrollSelectionForm)
-getNullScrollSelectionForm = do
-        when ((jget ScrollSelectionForm.nULL_SCROLL_SELECTION_FORM) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (ScrollSelectionForm.createForm (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (jnewArray (0) javaNull) (jio (ItemPaintableFactory.getInstance)) 0 (jget ((jio (BasicColorFactory.getInstance))).bLACK) (jget ((jio (BasicColorFactory.getInstance))).wHITE)))
-            jset ScrollSelectionForm.nULL_SCROLL_SELECTION_FORM (assignedValue)
-        pure ((javaCast (jget ScrollSelectionForm.nULL_SCROLL_SELECTION_FORM) :: ScrollSelectionForm))
-
-
-getNullScrollSelectionFormHorizontal :: IO (ScrollSelectionForm)
-getNullScrollSelectionFormHorizontal = do
-        when ((jget ScrollSelectionForm.nULL_SCROLL_SELECTION_HORIZONTAL_FORM) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (ScrollSelectionForm.createForm (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (jnewArray (0) javaNull) (jio (ItemPaintableFactory.getInstance)) 0 (jget ((jio (BasicColorFactory.getInstance))).bLACK) (jget ((jio (BasicColorFactory.getInstance))).wHITE)))
-            jset ScrollSelectionForm.nULL_SCROLL_SELECTION_HORIZONTAL_FORM (assignedValue)
-        pure ((javaCast (jget ScrollSelectionForm.nULL_SCROLL_SELECTION_HORIZONTAL_FORM) :: ScrollSelectionForm))
-
-new_7 :: String -> JavaArray (ABCustomItem.ABCustomItem) -> ItemPaintableFactory.ItemPaintableFactory -> Int -> Int -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ScrollSelectionForm
-new_7 title items formPaintableFactory border adjustedExtraBorder backgroundBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_7 this title items formPaintableFactory border adjustedExtraBorder backgroundBasicColor foregroundBasicColor
-    pure this
-
-init_7 :: ScrollSelectionForm -> String -> JavaArray (ABCustomItem.ABCustomItem) -> ItemPaintableFactory.ItemPaintableFactory -> Int -> Int -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_7 this title items formPaintableFactory border adjustedExtraBorder backgroundBasicColor foregroundBasicColor = do
-        PaintableForm.init_4 this.base (title) (items) (backgroundBasicColor) (foregroundBasicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).adjustedExtraBorder (adjustedExtraBorder)
-        jset (this).buttonBasicColor (foregroundBasicColor)
-        jset (this).border (border)
-        jset (this).halfBorder (((border `Data.Bits.shiftR` 1)))
-        assignedValue <- (ItemPaintableFactory.getInstanceItemPaintable formPaintableFactory (javaCast this))
-        jset (this).paintable (assignedValue)
-        pure ()
-
-
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> Rectangle.Rectangle -> FormType.FormType -> IO (())
-init object_ a1 a2 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: ScrollSelectionForm))) () a1 a2
-
-init_super :: (JavaObjectClass this_) => this_ -> Rectangle.Rectangle -> FormType.FormType -> IO (())
-init_super object_ a1 a2 = (init_impl (javaCast object_ :: ScrollSelectionForm)) a1 a2
-
-init_impl :: ScrollSelectionForm -> Rectangle.Rectangle -> FormType.FormType -> IO (())
-init_impl this rectangle formType = do
-        Control.Monad.void (PaintableForm.init_super this.base rectangle formType)
-        formTypeFactory <- (FormTypeFactory.getInstance)
-        if (formType == (jget (formTypeFactory).hORIZONTAL_FORM)) then do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: ItemIndexPaintable.ItemIndexPaintable) (ScrollSelectionFormHorizontalPaintable.new_1 this))
-            jset (this).scrollSelectionFormFormTypeItemIndexPaintable (assignedValue)
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: ItemIndexDx.ItemIndexDx) (ScrollSelectionFormHorizontalDx.new_1 this))
-            jset (this).formTypeItemIndexDx (assignedValue)
-        else if (formType == (jget (formTypeFactory).vERTICAL_CENTER_FORM)) then do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: ItemIndexPaintable.ItemIndexPaintable) (ScrollSelectionFormVerticalPaintable.new_1 this))
-            jset (this).scrollSelectionFormFormTypeItemIndexPaintable (assignedValue)
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: ItemIndexDx.ItemIndexDx) (ScrollSelectionFormVericalDx.new_1 this))
-            jset (this).formTypeItemIndexDx (assignedValue)
-        else if (formType == (jget (formTypeFactory).tEMP_HORIZONTAL_FORM)) then do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: ItemIndexPaintable.ItemIndexPaintable) (ScrollSelectionFormTempHorizontalPaintable.new_1 this))
-            jset (this).scrollSelectionFormFormTypeItemIndexPaintable (assignedValue)
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: ItemIndexDx.ItemIndexDx) (ScrollSelectionFormTempHorizontalDx.new_1 this))
-            jset (this).formTypeItemIndexDx (assignedValue)
-        else if (formType == (jget (formTypeFactory).nULL_FORM_TYPE)) then do
-            pure ()
-        else do
-            javaThrow ((JavaException "Exception" (jget (formTypeFactory).uNK)))
-        pure ()
-
-
-paintItemHorizontal :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItemHorizontal object_ a1 a2 a3 a4 a5 = jmethod object_ "paintItemHorizontal" (\() -> (paintItemHorizontal_impl (javaCast object_ :: ScrollSelectionForm))) () a1 a2 a3 a4 a5
-
-paintItemHorizontal_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItemHorizontal_super object_ a1 a2 a3 a4 a5 = (paintItemHorizontal_impl (javaCast object_ :: ScrollSelectionForm)) a1 a2 a3 a4 a5
-
-paintItemHorizontal_impl :: ScrollSelectionForm -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItemHorizontal_impl this graphics index item x y = do
-        width <- (ABCustomItem.getMinimumWidth item)
-        pure (((x + width) + (jget (this).border)))
-
-
-paintItemVertical :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItemVertical object_ a1 a2 a3 a4 a5 = jmethod object_ "paintItemVertical" (\() -> (paintItemVertical_impl (javaCast object_ :: ScrollSelectionForm))) () a1 a2 a3 a4 a5
-
-paintItemVertical_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItemVertical_super object_ a1 a2 a3 a4 a5 = (paintItemVertical_impl (javaCast object_ :: ScrollSelectionForm)) a1 a2 a3 a4 a5
-
-paintItemVertical_impl :: ScrollSelectionForm -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItemVertical_impl this graphics index item x y = do
-        height <- (ABCustomItem.getMinimumHeight item)
-        pure (((y + height) + (jget (this).border)))
-
-
-paintItemTempHorizontal :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItemTempHorizontal object_ a1 a2 a3 a4 a5 = jmethod object_ "paintItemTempHorizontal" (\() -> (paintItemTempHorizontal_impl (javaCast object_ :: ScrollSelectionForm))) () a1 a2 a3 a4 a5
-
-paintItemTempHorizontal_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItemTempHorizontal_super object_ a1 a2 a3 a4 a5 = (paintItemTempHorizontal_impl (javaCast object_ :: ScrollSelectionForm)) a1 a2 a3 a4 a5
-
-paintItemTempHorizontal_impl :: ScrollSelectionForm -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItemTempHorizontal_impl this graphics index item x y = do
-        pure (0)
-
-
-getSelectedIndexForPointHorizontalDx :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getSelectedIndexForPointHorizontalDx object_ a1 a2 a3 a4 = jmethod object_ "getSelectedIndexForPointHorizontalDx" (\() -> (getSelectedIndexForPointHorizontalDx_impl (javaCast object_ :: ScrollSelectionForm))) () a1 a2 a3 a4
-
-getSelectedIndexForPointHorizontalDx_super :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getSelectedIndexForPointHorizontalDx_super object_ a1 a2 a3 a4 = (getSelectedIndexForPointHorizontalDx_impl (javaCast object_ :: ScrollSelectionForm)) a1 a2 a3 a4
-
-getSelectedIndexForPointHorizontalDx_impl :: ScrollSelectionForm -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getSelectedIndexForPointHorizontalDx_impl this index item dx dy = do
-        pure ((dx - (jget (this).halfBorder)))
-
-
-getSelectedIndexForPointVerticalDx :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getSelectedIndexForPointVerticalDx object_ a1 a2 a3 a4 = jmethod object_ "getSelectedIndexForPointVerticalDx" (\() -> (getSelectedIndexForPointVerticalDx_impl (javaCast object_ :: ScrollSelectionForm))) () a1 a2 a3 a4
-
-getSelectedIndexForPointVerticalDx_super :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getSelectedIndexForPointVerticalDx_super object_ a1 a2 a3 a4 = (getSelectedIndexForPointVerticalDx_impl (javaCast object_ :: ScrollSelectionForm)) a1 a2 a3 a4
-
-getSelectedIndexForPointVerticalDx_impl :: ScrollSelectionForm -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getSelectedIndexForPointVerticalDx_impl this index item dx dy = do
-        pure ((dx + (jio (ScrollSelectionForm.getDiffX this item))))
-
-
-getSelectedIndexForPointTempHorizontalDx :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getSelectedIndexForPointTempHorizontalDx object_ a1 a2 a3 a4 = jmethod object_ "getSelectedIndexForPointTempHorizontalDx" (\() -> (getSelectedIndexForPointTempHorizontalDx_impl (javaCast object_ :: ScrollSelectionForm))) () a1 a2 a3 a4
-
-getSelectedIndexForPointTempHorizontalDx_super :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getSelectedIndexForPointTempHorizontalDx_super object_ a1 a2 a3 a4 = (getSelectedIndexForPointTempHorizontalDx_impl (javaCast object_ :: ScrollSelectionForm)) a1 a2 a3 a4
-
-getSelectedIndexForPointTempHorizontalDx_impl :: ScrollSelectionForm -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getSelectedIndexForPointTempHorizontalDx_impl this index item dx dy = do
-        pure ((dx + (jio (ScrollSelectionForm.getDiffX this item))))
-
-
-append :: (JavaObjectClass this_) => this_ -> ABCustomItem.ABCustomItem -> IO (Int)
-append object_ a1 = jmethod object_ "append" (\() -> (append_impl (javaCast object_ :: ScrollSelectionForm))) () a1
-
-append_super :: (JavaObjectClass this_) => this_ -> ABCustomItem.ABCustomItem -> IO (Int)
-append_super object_ a1 = (append_impl (javaCast object_ :: ScrollSelectionForm)) a1
-
-append_impl :: ScrollSelectionForm -> ABCustomItem.ABCustomItem -> IO (Int)
-append_impl this item = do
-        (PaintableForm.append_super this.base item)
-
-
--- throws Exception
-getSelectedItem :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (ABCustomItem.ABCustomItem)
-getSelectedItem object_ a1 = jmethod object_ "getSelectedItem" (\() -> (getSelectedItem_impl (javaCast object_ :: ScrollSelectionForm))) () a1
-
-getSelectedItem_super :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (ABCustomItem.ABCustomItem)
-getSelectedItem_super object_ a1 = (getSelectedItem_impl (javaCast object_ :: ScrollSelectionForm)) a1
-
-getSelectedItem_impl :: ScrollSelectionForm -> GPoint.GPoint -> IO (ABCustomItem.ABCustomItem)
-getSelectedItem_impl this point = do
-    javaCatchReturn $ do
-        index <- (ScrollSelectionForm.getSelectedIndexForPoint this point)
-        if (index /= (Prelude.negate 1)) then do
-            javaReturn =<< (PaintableForm.get this index)
-        else do
-            javaReturn =<< (ABCustomItem.getNullInstance)
-
-
--- throws Exception
-getItemIndex :: (JavaObjectClass this_) => this_ -> ABCustomItem.ABCustomItem -> IO (Int)
-getItemIndex object_ a1 = jmethod object_ "getItemIndex" (\() -> (getItemIndex_impl (javaCast object_ :: ScrollSelectionForm))) () a1
-
-getItemIndex_super :: (JavaObjectClass this_) => this_ -> ABCustomItem.ABCustomItem -> IO (Int)
-getItemIndex_super object_ a1 = (getItemIndex_impl (javaCast object_ :: ScrollSelectionForm)) a1
-
-getItemIndex_impl :: ScrollSelectionForm -> ABCustomItem.ABCustomItem -> IO (Int)
-getItemIndex_impl this item = do
-    javaCatchReturn $ do
-        nextItem <- newIORef (javaNull)
-        size <- (PaintableForm.size this)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset nextItem ((javaCast (jio (PaintableForm.get this index)) :: ABCustomItem.ABCustomItem))
-            when ((jget nextItem) == item) $ do
-                javaReturn (index)
-        pure ((Prelude.negate 1))
-
-
-getStartIndex :: (JavaObjectClass this_) => this_ -> IO (Int)
-getStartIndex object_ = jmethod object_ "getStartIndex" (\() -> (getStartIndex_impl (javaCast object_ :: ScrollSelectionForm))) ()
-
-getStartIndex_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getStartIndex_super object_ = (getStartIndex_impl (javaCast object_ :: ScrollSelectionForm))
-
-getStartIndex_impl :: ScrollSelectionForm -> IO (Int)
-getStartIndex_impl this = do
-        pure (0)
-
-
--- throws Exception
-getSelectedIndexForPoint :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (Int)
-getSelectedIndexForPoint object_ a1 = jmethod object_ "getSelectedIndexForPoint" (\() -> (getSelectedIndexForPoint_impl (javaCast object_ :: ScrollSelectionForm))) () a1
-
-getSelectedIndexForPoint_super :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (Int)
-getSelectedIndexForPoint_super object_ a1 = (getSelectedIndexForPoint_impl (javaCast object_ :: ScrollSelectionForm)) a1
-
-getSelectedIndexForPoint_impl :: ScrollSelectionForm -> GPoint.GPoint -> IO (Int)
-getSelectedIndexForPoint_impl this point = do
-    javaCatchReturn $ do
-        start <- (ScrollSelectionForm.getStartIndex this)
-        size <- (PaintableForm.size this)
-        dx <- newIORef =<< (ScrollSelectionForm.getDx this)
-        dy <- newIORef =<< (ScrollSelectionForm.getDy this)
-        formTypeFactory <- (FormTypeFactory.getInstance)
-        commonLabels <- (CommonLabels.getInstance)
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonLabels).sTART_LABEL))
-        Control.Monad.void (StringMaker.appendint stringBuffer start)
-        Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonLabels).tOTAL_LABEL))
-        Control.Monad.void (StringMaker.appendint stringBuffer size)
-        Control.Monad.void (LogUtil.putF ((jget (this).base.logUtil)) (jio (StringMaker.toString stringBuffer)) this (ScrollSelectionForm.gET_SELECTED_INDEX))
-        item <- newIORef (javaNull)
-        width <- newIORef (0 :: Int)
-        height <- newIORef (0 :: Int)
-        diffX <- newIORef (0 :: Int)
-        forM_ [start .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            assignedValue <- (PaintableForm.get this index)
-            jset item (assignedValue)
-            assignedValue <- (ABCustomItem.getMinimumWidth ((jget item)))
-            jset width (assignedValue)
-            assignedValue <- (ABCustomItem.getMinimumHeight ((jget item)))
-            jset height (assignedValue)
-            assignedValue <- (ItemIndexDx.getDx ((jget (this).formTypeItemIndexDx)) index (jget item) (jget dx) (jget dy))
-            jset diffX (assignedValue)
-            when (jio (RectangleCollisionUtil.isInside ((jget (this).rectangleCollisionUtil)) (jget diffX) ((jget dy) - (jget (this).halfBorder)) (((jget diffX) + (jget width)) + (jget (this).border)) ((((jget dy) + (jget height)) + (jget (this).halfBorder)) + 1) (jio (GPoint.getX point)) (jio (GPoint.getY point)))) $ do
-                Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-                Control.Monad.void (StringMaker.append stringBuffer (jget (commonLabels).iTEM_LABEL))
-                Control.Monad.void (StringMaker.append stringBuffer (jio (ABCustomItem.getLabel ((jget item)))))
-                Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonSeps.getInstance))).sPACE))
-                Control.Monad.void (StringMaker.append stringBuffer (jget (commonLabels).iNDEX_LABEL))
-                Control.Monad.void (StringMaker.appendint stringBuffer index)
-                Control.Monad.void (LogUtil.putF ((jget (this).base.logUtil)) (jio (StringMaker.toString stringBuffer)) this (ScrollSelectionForm.gET_SELECTED_INDEX))
-                javaReturn (index)
-            if ((jget (this).base.formType) == (jget (formTypeFactory).hORIZONTAL_FORM)) then do
-                jset dx ((((jget dx) + (jget width)) + (jget (this).border)))
-                when ((jget dx) > (jio (Rectangle.getMaxX ((jget (this).base.rectangle))))) $ do
-                    throwIO JavaBreak
-            else if ((jget (this).base.formType) == (jget (formTypeFactory).vERTICAL_CENTER_FORM)) then do
-                jset dy ((((jget dy) + (jget height)) + (jget (this).border)))
-                when ((jget dy) > (jio (Rectangle.getMaxY ((jget (this).base.rectangle))))) $ do
-                    throwIO JavaBreak
-            else if ((jget (this).base.formType) == (jget (formTypeFactory).nULL_FORM_TYPE)) then do
-                pure ()
-            else do
-                javaThrow ((JavaException "Exception" (jget (formTypeFactory).uNK)))
-        pure ((Prelude.negate 1))
-
-
--- throws Exception
-processInputKey :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-processInputKey object_ a1 = jmethod object_ "processInputKey" (\() -> (processInputKey_impl (javaCast object_ :: ScrollSelectionForm))) () a1
-
-processInputKey_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-processInputKey_super object_ a1 = (processInputKey_impl (javaCast object_ :: ScrollSelectionForm)) a1
-
-processInputKey_impl :: ScrollSelectionForm -> Int -> IO (Int)
-processInputKey_impl this gameKeyCode = do
-    javaCatchReturn $ do
-        formTypeFactory <- (FormTypeFactory.getInstance)
-        when ((jio (PaintableForm.size this)) == 0) $ do
-            javaReturn ((Prelude.negate 1))
-        index <- newIORef =<< (PaintableForm.getSelectedIndex this)
-        if (((jget (this).base.formType) == (jget (formTypeFactory).hORIZONTAL_FORM)) || ((jget (this).base.formType) == (jget (formTypeFactory).tEMP_HORIZONTAL_FORM))) then do
-            if (gameKeyCode == Canvas.rIGHT) then do
-                jset index ((jget index) + 1)
-            else when (gameKeyCode == Canvas.lEFT) $ do
-                jset index ((jget index) - 1)
-        else if ((jget (this).base.formType) == (jget (formTypeFactory).vERTICAL_CENTER_FORM)) then do
-            if (gameKeyCode == Canvas.dOWN) then do
-                jset index ((jget index) + 1)
-            else when (gameKeyCode == Canvas.uP) $ do
-                jset index ((jget index) - 1)
-        else if ((jget (this).base.formType) == (jget (formTypeFactory).nULL_FORM_TYPE)) then do
-            pure ()
-        else do
-            javaThrow ((JavaException "Exception" (jget (formTypeFactory).uNK)))
-        let max = ((jio (PaintableForm.size this)) - 1)
-        if ((jget index) < 0) then do
-            Control.Monad.void (PaintableForm.setSelectedIndex this 0)
-        else if ((jget index) > max) then do
-            Control.Monad.void (PaintableForm.setSelectedIndex this max)
-        else do
-            Control.Monad.void (PaintableForm.setSelectedIndex this (jget index))
-        pure ((Prelude.negate 1))
-
-
-isInForm :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (Bool)
-isInForm object_ a1 = jmethod object_ "isInForm" (\() -> (isInForm_impl (javaCast object_ :: ScrollSelectionForm))) () a1
-
-isInForm_super :: (JavaObjectClass this_) => this_ -> GPoint.GPoint -> IO (Bool)
-isInForm_super object_ a1 = (isInForm_impl (javaCast object_ :: ScrollSelectionForm)) a1
-
-isInForm_impl :: ScrollSelectionForm -> GPoint.GPoint -> IO (Bool)
-isInForm_impl this point = do
-    javaCatchReturn $ do
-        when (jio (RectangleCollisionUtil.isInside ((jget (this).rectangleCollisionUtil)) (jget (this).base.x) ((jget (this).base.y) - (jget (this).halfBorder)) ((jio (Rectangle.getMaxX ((jget (this).base.rectangle)))) + (jget (this).border)) ((jio (Rectangle.getMaxY ((jget (this).base.rectangle)))) + (jget (this).border)) (jio (GPoint.getX point)) (jio (GPoint.getY point)))) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) point))))) (ScrollSelectionForm.iNSIDE_FORM)))))) this (ScrollSelectionForm.iS_IN_FORM))
-            javaReturn (True)
-        pure (False)
-
-
--- throws Exception
-paintItem :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItem object_ a1 a2 a3 a4 a5 = jmethod object_ "paintItem" (\() -> (paintItem_impl (javaCast object_ :: ScrollSelectionForm))) () a1 a2 a3 a4 a5
-
-paintItem_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItem_super object_ a1 a2 a3 a4 a5 = (paintItem_impl (javaCast object_ :: ScrollSelectionForm)) a1 a2 a3 a4 a5
-
-paintItem_impl :: ScrollSelectionForm -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintItem_impl this graphics index item x y = do
-        Control.Monad.void (ABCustomItem.paintXY item graphics x y)
-        width <- (ABCustomItem.getMinimumWidth item)
-        height <- (ABCustomItem.getMinimumHeight item)
-        Control.Monad.void (Graphics.setColor graphics (jio (BasicColor.intValue ((jio (ScrollSelectionForm.getButtonBasicColor this))))))
-        let adjustedBorder = 3
-        Control.Monad.void (Graphics.drawRect graphics ((x - (jget (this).halfBorder)) - adjustedBorder) ((y - (jget (this).halfBorder)) - adjustedBorder) ((width + (jget (this).border)) + (jget (this).adjustedExtraBorder)) ((height + (jget (this).border)) + (jget (this).adjustedExtraBorder)))
-        (ItemIndexPaintable.paint ((jget (this).scrollSelectionFormFormTypeItemIndexPaintable)) graphics index item x y)
-
-
--- throws Exception
-paintUnselectedItem :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintUnselectedItem object_ a1 a2 a3 a4 a5 = jmethod object_ "paintUnselectedItem" (\() -> (paintUnselectedItem_impl (javaCast object_ :: ScrollSelectionForm))) () a1 a2 a3 a4 a5
-
-paintUnselectedItem_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintUnselectedItem_super object_ a1 a2 a3 a4 a5 = (paintUnselectedItem_impl (javaCast object_ :: ScrollSelectionForm)) a1 a2 a3 a4 a5
-
-paintUnselectedItem_impl :: ScrollSelectionForm -> Graphics.Graphics -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-paintUnselectedItem_impl this graphics index item x y = do
-        Control.Monad.void (Graphics.setColor graphics (jio (BasicColor.intValue ((jio (ScrollSelectionForm.getButtonBasicColor this))))))
-        Control.Monad.void (ABCustomItem.paintUnselected item graphics x y)
-        (ItemIndexPaintable.paint ((jget (this).scrollSelectionFormFormTypeItemIndexPaintable)) graphics index item x y)
-
-
-getDiffX :: (JavaObjectClass this_) => this_ -> ABCustomItem.ABCustomItem -> IO (Int)
-getDiffX object_ a1 = jmethod object_ "getDiffX" (\() -> (getDiffX_impl (javaCast object_ :: ScrollSelectionForm))) () a1
-
-getDiffX_super :: (JavaObjectClass this_) => this_ -> ABCustomItem.ABCustomItem -> IO (Int)
-getDiffX_super object_ a1 = (getDiffX_impl (javaCast object_ :: ScrollSelectionForm)) a1
-
-getDiffX_impl :: ScrollSelectionForm -> ABCustomItem.ABCustomItem -> IO (Int)
-getDiffX_impl this item = do
-        pure (0)
-
-
-getDx :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDx object_ = jmethod object_ "getDx" (\() -> (getDx_impl (javaCast object_ :: ScrollSelectionForm))) ()
-
-getDx_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDx_super object_ = (getDx_impl (javaCast object_ :: ScrollSelectionForm))
-
-getDx_impl :: ScrollSelectionForm -> IO (Int)
-getDx_impl this = do
-        pure ((jget (this).base.x))
-
-
-getDy :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDy object_ = jmethod object_ "getDy" (\() -> (getDy_impl (javaCast object_ :: ScrollSelectionForm))) ()
-
-getDy_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDy_super object_ = (getDy_impl (javaCast object_ :: ScrollSelectionForm))
-
-getDy_impl :: ScrollSelectionForm -> IO (Int)
-getDy_impl this = do
-        pure ((jget (this).base.y))
-
-
-setButtonBasicColor :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setButtonBasicColor object_ a1 = jmethod object_ "setButtonBasicColor" (\() -> (setButtonBasicColor_impl (javaCast object_ :: ScrollSelectionForm))) () a1
-
-setButtonBasicColor_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setButtonBasicColor_super object_ a1 = (setButtonBasicColor_impl (javaCast object_ :: ScrollSelectionForm)) a1
-
-setButtonBasicColor_impl :: ScrollSelectionForm -> BasicColor.BasicColor -> IO (())
-setButtonBasicColor_impl this buttonBasicColor = do
-        jset (this).buttonBasicColor (buttonBasicColor)
-        pure ()
-
-
-getButtonBasicColor :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getButtonBasicColor object_ = jmethod object_ "getButtonBasicColor" (\() -> (getButtonBasicColor_impl (javaCast object_ :: ScrollSelectionForm))) ()
-
-getButtonBasicColor_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getButtonBasicColor_super object_ = (getButtonBasicColor_impl (javaCast object_ :: ScrollSelectionForm))
-
-getButtonBasicColor_impl :: ScrollSelectionForm -> IO (BasicColor.BasicColor)
-getButtonBasicColor_impl this = do
-        pure ((jget (this).buttonBasicColor))
+module Org.Allbinary.Graphics.Form.ScrollSelectionForm exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form
+-}
+
+import JR
+import Org.Allbinary.Graphics.Form.Item.ABCustomItem as ABCustomItem
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Javax.Microedition.Lcdui.Canvas as Canvas
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Graphics.Form.FormTypeFactory as FormTypeFactory
+import Org.Allbinary.Graphics.Form.ItemIndexDx as ItemIndexDx
+import Org.Allbinary.Graphics.Form.ItemIndexPaintable as ItemIndexPaintable
+import Org.Allbinary.Graphics.Form.ItemPaintableFactory as ItemPaintableFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Graphics.Form.PaintableForm as PaintableForm
+import Org.Allbinary.Math.RectangleCollisionUtil as RectangleCollisionUtil
+import Org.Allbinary.Graphics.Form.ScrollSelectionFormHorizontalDx as ScrollSelectionFormHorizontalDx
+import Org.Allbinary.Graphics.Form.ScrollSelectionFormHorizontalPaintable as ScrollSelectionFormHorizontalPaintable
+import Org.Allbinary.Graphics.Form.ScrollSelectionFormTempHorizontalDx as ScrollSelectionFormTempHorizontalDx
+import Org.Allbinary.Graphics.Form.ScrollSelectionFormTempHorizontalPaintable as ScrollSelectionFormTempHorizontalPaintable
+import Org.Allbinary.Graphics.Form.ScrollSelectionFormVericalDx as ScrollSelectionFormVericalDx
+import Org.Allbinary.Graphics.Form.ScrollSelectionFormVerticalPaintable as ScrollSelectionFormVerticalPaintable
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+
+
+jclass : String
+jclass =
+    "ScrollSelectionForm"
+
+
+jchain : List String
+jchain =
+    [ "ScrollSelectionForm" ]
+        ++ PaintableForm.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    PaintableForm.jfields ++ [ ( "rectangleCollisionUtil", JR.defaultOf "" ), ( "border", JR.defaultOf "I" ), ( "halfBorder", JR.defaultOf "I" ), ( "buttonBasicColor", JR.defaultOf "" ), ( "scrollSelectionFormFormTypeItemIndexPaintable", JR.defaultOf "" ), ( "formTypeItemIndexDx", JR.defaultOf "" ), ( "paintable", JR.defaultOf "" ), ( "adjustedExtraBorder", JR.defaultOf "I" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "createForm_6", jm_createForm_6 )
+        , ( "getNullScrollSelectionForm_0", jm_getNullScrollSelectionForm_0 )
+        , ( "getNullScrollSelectionFormHorizontal_0", jm_getNullScrollSelectionFormHorizontal_0 )
+        , ( "init_2", jm_init_2 )
+        , ( "paintItemHorizontal_5", jm_paintItemHorizontal_5 )
+        , ( "paintItemVertical_5", jm_paintItemVertical_5 )
+        , ( "paintItemTempHorizontal_5", jm_paintItemTempHorizontal_5 )
+        , ( "getSelectedIndexForPointHorizontalDx_4", jm_getSelectedIndexForPointHorizontalDx_4 )
+        , ( "getSelectedIndexForPointVerticalDx_4", jm_getSelectedIndexForPointVerticalDx_4 )
+        , ( "getSelectedIndexForPointTempHorizontalDx_4", jm_getSelectedIndexForPointTempHorizontalDx_4 )
+        , ( "append_1", jm_append_1 )
+        , ( "getSelectedItem_1", jm_getSelectedItem_1 )
+        , ( "getItemIndex_1", jm_getItemIndex_1 )
+        , ( "getStartIndex_0", jm_getStartIndex_0 )
+        , ( "getSelectedIndexForPoint_1", jm_getSelectedIndexForPoint_1 )
+        , ( "processInputKey_1", jm_processInputKey_1 )
+        , ( "isInForm_1", jm_isInForm_1 )
+        , ( "paintItem_5", jm_paintItem_5 )
+        , ( "paintUnselectedItem_5", jm_paintUnselectedItem_5 )
+        , ( "getDiffX_1", jm_getDiffX_1 )
+        , ( "getDx_0", jm_getDx_0 )
+        , ( "getDy_0", jm_getDy_0 )
+        , ( "setButtonBasicColor_1", jm_setButtonBasicColor_1 )
+        , ( "getButtonBasicColor_0", jm_getButtonBasicColor_0 ) ]
+        PaintableForm.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ScrollSelectionForm"
+        [ ( "jm_createForm_6", jm_createForm_6 ), ( "jm_getNullScrollSelectionForm_0", jm_getNullScrollSelectionForm_0 ), ( "jm_getNullScrollSelectionFormHorizontal_0", jm_getNullScrollSelectionFormHorizontal_0 ), ( "jm_init_2", jm_init_2 ), ( "jm_paintItemHorizontal_5", jm_paintItemHorizontal_5 ), ( "jm_paintItemVertical_5", jm_paintItemVertical_5 ), ( "jm_paintItemTempHorizontal_5", jm_paintItemTempHorizontal_5 ), ( "jm_getSelectedIndexForPointHorizontalDx_4", jm_getSelectedIndexForPointHorizontalDx_4 ), ( "jm_getSelectedIndexForPointVerticalDx_4", jm_getSelectedIndexForPointVerticalDx_4 ), ( "jm_getSelectedIndexForPointTempHorizontalDx_4", jm_getSelectedIndexForPointTempHorizontalDx_4 ), ( "jm_append_1", jm_append_1 ), ( "jm_getSelectedItem_1", jm_getSelectedItem_1 ), ( "jm_getItemIndex_1", jm_getItemIndex_1 ), ( "jm_getStartIndex_0", jm_getStartIndex_0 ), ( "jm_getSelectedIndexForPoint_1", jm_getSelectedIndexForPoint_1 ), ( "jm_processInputKey_1", jm_processInputKey_1 ), ( "jm_isInForm_1", jm_isInForm_1 ), ( "jm_paintItem_5", jm_paintItem_5 ), ( "jm_paintUnselectedItem_5", jm_paintUnselectedItem_5 ), ( "jm_getDiffX_1", jm_getDiffX_1 ), ( "jm_getDx_0", jm_getDx_0 ), ( "jm_getDy_0", jm_getDy_0 ), ( "jm_setButtonBasicColor_1", jm_setButtonBasicColor_1 ), ( "jm_getButtonBasicColor_0", jm_getButtonBasicColor_0 ), ( "jnew_7", jnew_7 ), ( "jinit_7", jinit_7 ) ]
+        [ ( "jstatic_NULL_SCROLL_SELECTION_FORM", jstatic_NULL_SCROLL_SELECTION_FORM ), ( "jstatic_NULL_SCROLL_SELECTION_HORIZONTAL_FORM", jstatic_NULL_SCROLL_SELECTION_HORIZONTAL_FORM ), ( "jstatic_INSIDE_FORM", jstatic_INSIDE_FORM ), ( "jstatic_IS_IN_FORM", jstatic_IS_IN_FORM ), ( "jstatic_GET_SELECTED_INDEX", jstatic_GET_SELECTED_INDEX ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_SCROLL_SELECTION_FORM : JR.M
+jstatic_NULL_SCROLL_SELECTION_FORM s =
+    JR.static "ScrollSelectionForm" jclinit "NULL_SCROLL_SELECTION_FORM"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jstatic_NULL_SCROLL_SELECTION_HORIZONTAL_FORM : JR.M
+jstatic_NULL_SCROLL_SELECTION_HORIZONTAL_FORM s =
+    JR.static "ScrollSelectionForm" jclinit "NULL_SCROLL_SELECTION_HORIZONTAL_FORM"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
 
+jstatic_INSIDE_FORM : JR.M
+jstatic_INSIDE_FORM s =
+    JR.static "ScrollSelectionForm" jclinit "INSIDE_FORM"
+        (JR.str " inside form")
+        s
+
+
+jstatic_IS_IN_FORM : JR.M
+jstatic_IS_IN_FORM s =
+    JR.static "ScrollSelectionForm" jclinit "IS_IN_FORM"
+        (JR.str "isInForm")
+        s
+
+
+jstatic_GET_SELECTED_INDEX : JR.M
+jstatic_GET_SELECTED_INDEX s =
+    JR.static "ScrollSelectionForm" jclinit "GET_SELECTED_INDEX"
+        (JR.str "getSelectedIndexForPoint")
+        s
+
+
+jinit_7 : JR.Method
+jinit_7 jheap jthis jargs =
+    JR.method [ ( "title", "" ), ( "items", "" ), ( "formPaintableFactory", "" ), ( "border", "I" ), ( "adjustedExtraBorder", "I" ), ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect PaintableForm.jinit_4 JR.this [ (JR.local "title"), (JR.local "items"), (JR.local "backgroundBasicColor"), (JR.local "foregroundBasicColor") ]),
+                JR.exec (JR.setField "rectangleCollisionUtil" "" JR.this (JR.callStatic RectangleCollisionUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "scrollSelectionFormFormTypeItemIndexPaintable" "" JR.this (JR.callStatic ItemIndexPaintable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "formTypeItemIndexDx" "" JR.this (JR.callStatic ItemIndexDx.jm_getInstance_0 [])),
+                JR.exec (JR.setField "paintable" "" JR.this (JR.callStatic ItemPaintableFactory.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "adjustedExtraBorder" "I" JR.this (JR.local "adjustedExtraBorder")), 
+                    JR.exec (JR.setField "buttonBasicColor" "" JR.this (JR.local "foregroundBasicColor")), 
+                    JR.exec (JR.setField "border" "I" JR.this (JR.local "border")), 
+                    JR.exec (JR.setField "halfBorder" "I" JR.this ((JR.map2 JR.shr (JR.local "border") (JR.int 1)))), 
+                    JR.exec (JR.setField "paintable" "" JR.this (JR.invoke "getInstanceItemPaintable_1" (JR.local "formPaintableFactory") [ JR.this ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_7 : JR.Method
+jnew_7 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_7 jheap jthis jargs
+
+
+jm_createForm_6 : JR.Method
+jm_createForm_6 jheap jthis jargs =
+    JR.method [ ( "title", "" ), ( "items", "" ), ( "formPaintableFactory", "" ), ( "border", "I" ), ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "formPaintableFactory") (JR.callStatic ItemPaintableFactory.jm_getInstance_0 [])) (JR.run [ 
+                            JR.return (JR.new jnew_7 [ (JR.local "title"), (JR.local "items"), (JR.local "formPaintableFactory"), (JR.local "border"), (JR.map JR.neg (JR.int 3)), (JR.local "backgroundBasicColor"), (JR.local "foregroundBasicColor") ]) ]) (JR.run [ 
+                            JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                            JR.declare "logUtil" "" (JR.callStatic LogUtil.jm_getInstance_0 []), 
+                            JR.exec (JR.invoke "putF_3" (JR.local "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), (JR.local "logUtil"), (JR.field "EXCEPTION" (JR.local "commonStrings")) ]), 
+                            JR.return (JR.callStatic PaintableForm.jm_getNullPaintableForm_0 []) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.declare "logUtil" "" (JR.callStatic LogUtil.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.local "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), (JR.local "logUtil"), (JR.field "EXCEPTION" (JR.local "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.callStatic PaintableForm.jm_getNullPaintableForm_0 []) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNullScrollSelectionForm_0 : JR.Method
+jm_getNullScrollSelectionForm_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_NULL_SCROLL_SELECTION_FORM (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "ScrollSelectionForm.NULL_SCROLL_SELECTION_FORM" "" (JR.callStatic jm_createForm_6 [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.newArray "" [ (JR.int 0) ]), (JR.callStatic ItemPaintableFactory.jm_getInstance_0 []), (JR.int 0), (JR.field "BLACK" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ])) ]) identity, 
+                    JR.return jstatic_NULL_SCROLL_SELECTION_FORM ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNullScrollSelectionFormHorizontal_0 : JR.Method
+jm_getNullScrollSelectionFormHorizontal_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_NULL_SCROLL_SELECTION_HORIZONTAL_FORM (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "ScrollSelectionForm.NULL_SCROLL_SELECTION_HORIZONTAL_FORM" "" (JR.callStatic jm_createForm_6 [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.newArray "" [ (JR.int 0) ]), (JR.callStatic ItemPaintableFactory.jm_getInstance_0 []), (JR.int 0), (JR.field "BLACK" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ])) ]) identity, 
+                    JR.return jstatic_NULL_SCROLL_SELECTION_HORIZONTAL_FORM ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_2 : JR.Method
+jm_init_2 jheap jthis jargs =
+    JR.method [ ( "rectangle", "" ), ( "formType", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia PaintableForm.jvtable "init_2" JR.this [ (JR.local "rectangle"), (JR.local "formType") ]), 
+                    JR.declare "formTypeFactory" "" (JR.callStatic FormTypeFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "formType") (JR.field "HORIZONTAL_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
+                        JR.exec (JR.setField "scrollSelectionFormFormTypeItemIndexPaintable" "" JR.this (JR.new ScrollSelectionFormHorizontalPaintable.jnew_1 [ JR.this ])), 
+                        JR.exec (JR.setField "formTypeItemIndexDx" "" JR.this (JR.new ScrollSelectionFormHorizontalDx.jnew_1 [ JR.this ])) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "formType") (JR.field "VERTICAL_CENTER_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
+                        JR.exec (JR.setField "scrollSelectionFormFormTypeItemIndexPaintable" "" JR.this (JR.new ScrollSelectionFormVerticalPaintable.jnew_1 [ JR.this ])), 
+                        JR.exec (JR.setField "formTypeItemIndexDx" "" JR.this (JR.new ScrollSelectionFormVericalDx.jnew_1 [ JR.this ])) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "formType") (JR.field "TEMP_HORIZONTAL_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
+                        JR.exec (JR.setField "scrollSelectionFormFormTypeItemIndexPaintable" "" JR.this (JR.new ScrollSelectionFormTempHorizontalPaintable.jnew_1 [ JR.this ])), 
+                        JR.exec (JR.setField "formTypeItemIndexDx" "" JR.this (JR.new ScrollSelectionFormTempHorizontalDx.jnew_1 [ JR.this ])) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "formType") (JR.field "NULL_FORM_TYPE" (JR.local "formTypeFactory"))) identity (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "UNK" (JR.local "formTypeFactory")) ]) ]) ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintItemHorizontal_5 : JR.Method
+jm_paintItemHorizontal_5 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "index", "I" ), ( "item", "" ), ( "x", "I" ), ( "y", "I" ) ] "I"
+        (JR.run [ 
+                    JR.declare "width" "I" (JR.invoke "getMinimumWidth_0" (JR.local "item") []), 
+                    JR.return (JR.map2 JR.add (JR.map2 JR.add (JR.local "x") (JR.local "width")) (JR.thisField "border")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintItemVertical_5 : JR.Method
+jm_paintItemVertical_5 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "index", "I" ), ( "item", "" ), ( "x", "I" ), ( "y", "I" ) ] "I"
+        (JR.run [ 
+                    JR.declare "height" "I" (JR.invoke "getMinimumHeight_0" (JR.local "item") []), 
+                    JR.return (JR.map2 JR.add (JR.map2 JR.add (JR.local "y") (JR.local "height")) (JR.thisField "border")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintItemTempHorizontal_5 : JR.Method
+jm_paintItemTempHorizontal_5 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "index", "I" ), ( "item", "" ), ( "x", "I" ), ( "y", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSelectedIndexForPointHorizontalDx_4 : JR.Method
+jm_getSelectedIndexForPointHorizontalDx_4 jheap jthis jargs =
+    JR.method [ ( "index", "I" ), ( "item", "" ), ( "dx", "I" ), ( "dy", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.map2 JR.sub (JR.local "dx") (JR.thisField "halfBorder")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSelectedIndexForPointVerticalDx_4 : JR.Method
+jm_getSelectedIndexForPointVerticalDx_4 jheap jthis jargs =
+    JR.method [ ( "index", "I" ), ( "item", "" ), ( "dx", "I" ), ( "dy", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.map2 JR.add (JR.local "dx") (JR.invoke "getDiffX_1" JR.this [ (JR.local "item") ])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSelectedIndexForPointTempHorizontalDx_4 : JR.Method
+jm_getSelectedIndexForPointTempHorizontalDx_4 jheap jthis jargs =
+    JR.method [ ( "index", "I" ), ( "item", "" ), ( "dx", "I" ), ( "dy", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.map2 JR.add (JR.local "dx") (JR.invoke "getDiffX_1" JR.this [ (JR.local "item") ])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_append_1 : JR.Method
+jm_append_1 jheap jthis jargs =
+    JR.method [ ( "item", "" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.callVia PaintableForm.jvtable "append_1" JR.this [ (JR.local "item") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSelectedItem_1 : JR.Method
+jm_getSelectedItem_1 jheap jthis jargs =
+    JR.method [ ( "point", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "index" "I" (JR.invoke "getSelectedIndexForPoint_1" JR.this [ (JR.local "point") ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "index") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                        JR.return (JR.invoke "get_1" JR.this [ (JR.local "index") ]) ]) (JR.run [ 
+                        JR.return (JR.callStatic ABCustomItem.jm_getNullInstance_0 []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getItemIndex_1 : JR.Method
+jm_getItemIndex_1 jheap jthis jargs =
+    JR.method [ ( "item", "" ) ] "I"
+        (JR.run [ 
+                    JR.declare "nextItem" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.invoke "size_0" JR.this []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72692 -> (JR.setLocal "index" "I" (JR.lit jwN72692))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "nextItem" "" (JR.invoke "get_1" JR.this [ (JR.local "index") ])), 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "nextItem") (JR.local "item")) (JR.run [ 
+                            JR.return (JR.local "index") ]) identity ]) ], 
+                    JR.return (JR.map JR.neg (JR.int 1)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getStartIndex_0 : JR.Method
+jm_getStartIndex_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSelectedIndexForPoint_1 : JR.Method
+jm_getSelectedIndexForPoint_1 jheap jthis jargs =
+    JR.method [ ( "point", "" ) ] "I"
+        (JR.run [ 
+                    JR.declare "start" "I" (JR.invoke "getStartIndex_0" JR.this []), 
+                    JR.declare "size" "I" (JR.invoke "size_0" JR.this []), 
+                    JR.declare "dx" "I" (JR.invoke "getDx_0" JR.this []), 
+                    JR.declare "dy" "I" (JR.invoke "getDy_0" JR.this []), 
+                    JR.declare "formTypeFactory" "" (JR.callStatic FormTypeFactory.jm_getInstance_0 []), 
+                    JR.declare "commonLabels" "" (JR.callStatic CommonLabels.jm_getInstance_0 []), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "START_LABEL" (JR.local "commonLabels")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "start") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "TOTAL_LABEL" (JR.local "commonLabels")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "size") ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, jstatic_GET_SELECTED_INDEX ]), 
+                    JR.declare "item" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "width" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "height" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "diffX" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN74609 -> (JR.setLocal "index" "I" (JR.lit jwN74609))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "item" "" (JR.invoke "get_1" JR.this [ (JR.local "index") ])), 
+                        JR.exec (JR.setLocal "width" "I" (JR.invoke "getMinimumWidth_0" (JR.local "item") [])), 
+                        JR.exec (JR.setLocal "height" "I" (JR.invoke "getMinimumHeight_0" (JR.local "item") [])), 
+                        JR.exec (JR.setLocal "diffX" "I" (JR.invoke "getDx_4" (JR.thisField "formTypeItemIndexDx") [ (JR.local "index"), (JR.local "item"), (JR.local "dx"), (JR.local "dy") ])), 
+                        JR.ifElse (JR.invoke "isInside_6" (JR.thisField "rectangleCollisionUtil") [ (JR.local "diffX"), (JR.map2 JR.sub (JR.local "dy") (JR.thisField "halfBorder")), (JR.map2 JR.add (JR.map2 JR.add (JR.local "diffX") (JR.local "width")) (JR.thisField "border")), (JR.map2 JR.add (JR.map2 JR.add (JR.map2 JR.add (JR.local "dy") (JR.local "height")) (JR.thisField "halfBorder")) (JR.int 1)), (JR.invoke "getX_0" (JR.local "point") []), (JR.invoke "getY_0" (JR.local "point") []) ]) (JR.run [ 
+                            JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "ITEM_LABEL" (JR.local "commonLabels")) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getLabel_0" (JR.local "item") []) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "INDEX_LABEL" (JR.local "commonLabels")) ]), 
+                            JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "index") ]), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, jstatic_GET_SELECTED_INDEX ]), 
+                            JR.return (JR.local "index") ]) identity, 
+                        JR.ifElse (JR.map2 JR.equals (JR.thisField "formType") (JR.field "HORIZONTAL_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
+                            JR.exec (JR.setLocal "dx" "I" (JR.map2 JR.add (JR.map2 JR.add (JR.local "dx") (JR.local "width")) (JR.thisField "border"))), 
+                            JR.ifElse (JR.map2 JR.greater (JR.local "dx") (JR.invoke "getMaxX_0" (JR.thisField "rectangle") [])) (JR.run [ 
+                                JR.break ]) identity ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.thisField "formType") (JR.field "VERTICAL_CENTER_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
+                            JR.exec (JR.setLocal "dy" "I" (JR.map2 JR.add (JR.map2 JR.add (JR.local "dy") (JR.local "height")) (JR.thisField "border"))), 
+                            JR.ifElse (JR.map2 JR.greater (JR.local "dy") (JR.invoke "getMaxY_0" (JR.thisField "rectangle") [])) (JR.run [ 
+                                JR.break ]) identity ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.thisField "formType") (JR.field "NULL_FORM_TYPE" (JR.local "formTypeFactory"))) identity (JR.run [ 
+                            JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "UNK" (JR.local "formTypeFactory")) ]) ]) ]) ]) ]) ], 
+                    JR.return (JR.map JR.neg (JR.int 1)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processInputKey_1 : JR.Method
+jm_processInputKey_1 jheap jthis jargs =
+    JR.method [ ( "gameKeyCode", "I" ) ] "I"
+        (JR.run [ 
+                    JR.declare "formTypeFactory" "" (JR.callStatic FormTypeFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "size_0" JR.this []) (JR.int 0)) (JR.run [ 
+                        JR.return (JR.map JR.neg (JR.int 1)) ]) identity, 
+                    JR.declare "index" "I" (JR.invoke "getSelectedIndex_0" JR.this []), 
+                    JR.ifElse (JR.or (JR.map2 JR.equals (JR.thisField "formType") (JR.field "HORIZONTAL_FORM" (JR.local "formTypeFactory"))) (JR.map2 JR.equals (JR.thisField "formType") (JR.field "TEMP_HORIZONTAL_FORM" (JR.local "formTypeFactory")))) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "gameKeyCode") Canvas.jstatic_RIGHT) (JR.run [ 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75245 -> (JR.setLocal "index" "I" (JR.lit jwN75245))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "gameKeyCode") Canvas.jstatic_LEFT) (JR.run [ 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75220 -> (JR.setLocal "index" "I" (JR.lit jwN75220))) JR.decrement) ]) identity ]) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "formType") (JR.field "VERTICAL_CENTER_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "gameKeyCode") Canvas.jstatic_DOWN) (JR.run [ 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75123 -> (JR.setLocal "index" "I" (JR.lit jwN75123))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "gameKeyCode") Canvas.jstatic_UP) (JR.run [ 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75098 -> (JR.setLocal "index" "I" (JR.lit jwN75098))) JR.decrement) ]) identity ]) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.thisField "formType") (JR.field "NULL_FORM_TYPE" (JR.local "formTypeFactory"))) identity (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "UNK" (JR.local "formTypeFactory")) ]) ]) ]) ]), 
+                    JR.declare "max" "I" (JR.map2 JR.sub (JR.invoke "size_0" JR.this []) (JR.int 1)), 
+                    JR.ifElse (JR.map2 JR.less (JR.local "index") (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.invoke "setSelectedIndex_1" JR.this [ (JR.int 0) ]) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "index") (JR.local "max")) (JR.run [ 
+                        JR.exec (JR.invoke "setSelectedIndex_1" JR.this [ (JR.local "max") ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setSelectedIndex_1" JR.this [ (JR.local "index") ]) ]) ]), 
+                    JR.return (JR.map JR.neg (JR.int 1)) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isInForm_1 : JR.Method
+jm_isInForm_1 jheap jthis jargs =
+    JR.method [ ( "point", "" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isInside_6" (JR.thisField "rectangleCollisionUtil") [ (JR.thisField "x"), (JR.map2 JR.sub (JR.thisField "y") (JR.thisField "halfBorder")), (JR.map2 JR.add (JR.invoke "getMaxX_0" (JR.thisField "rectangle") []) (JR.thisField "border")), (JR.map2 JR.add (JR.invoke "getMaxY_0" (JR.thisField "rectangle") []) (JR.thisField "border")), (JR.invoke "getX_0" (JR.local "point") []), (JR.invoke "getY_0" (JR.local "point") []) ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "point") ]) ]) [ jstatic_INSIDE_FORM ]) []), JR.this, jstatic_IS_IN_FORM ]), 
+                        JR.return (JR.bool True) ]) identity, 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintItem_5 : JR.Method
+jm_paintItem_5 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "index", "I" ), ( "item", "" ), ( "x", "I" ), ( "y", "I" ) ] "I"
+        (JR.run [ 
+                    JR.exec (JR.invoke "paintXY_3" (JR.local "item") [ (JR.local "graphics"), (JR.local "x"), (JR.local "y") ]), 
+                    JR.declare "width" "I" (JR.invoke "getMinimumWidth_0" (JR.local "item") []), 
+                    JR.declare "height" "I" (JR.invoke "getMinimumHeight_0" (JR.local "item") []), 
+                    JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.invoke "intValue_0" (JR.invoke "getButtonBasicColor_0" JR.this []) []) ]), 
+                    JR.declare "adjustedBorder" "I" (JR.int 3), 
+                    JR.exec (JR.invoke "drawRect_4" (JR.local "graphics") [ (JR.map2 JR.sub (JR.map2 JR.sub (JR.local "x") (JR.thisField "halfBorder")) (JR.local "adjustedBorder")), (JR.map2 JR.sub (JR.map2 JR.sub (JR.local "y") (JR.thisField "halfBorder")) (JR.local "adjustedBorder")), (JR.map2 JR.add (JR.map2 JR.add (JR.local "width") (JR.thisField "border")) (JR.thisField "adjustedExtraBorder")), (JR.map2 JR.add (JR.map2 JR.add (JR.local "height") (JR.thisField "border")) (JR.thisField "adjustedExtraBorder")) ]), 
+                    JR.return (JR.invoke "paint_5" (JR.thisField "scrollSelectionFormFormTypeItemIndexPaintable") [ (JR.local "graphics"), (JR.local "index"), (JR.local "item"), (JR.local "x"), (JR.local "y") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintUnselectedItem_5 : JR.Method
+jm_paintUnselectedItem_5 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "index", "I" ), ( "item", "" ), ( "x", "I" ), ( "y", "I" ) ] "I"
+        (JR.run [ 
+                    JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.invoke "intValue_0" (JR.invoke "getButtonBasicColor_0" JR.this []) []) ]), 
+                    JR.exec (JR.invoke "paintUnselected_3" (JR.local "item") [ (JR.local "graphics"), (JR.local "x"), (JR.local "y") ]), 
+                    JR.return (JR.invoke "paint_5" (JR.thisField "scrollSelectionFormFormTypeItemIndexPaintable") [ (JR.local "graphics"), (JR.local "index"), (JR.local "item"), (JR.local "x"), (JR.local "y") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDiffX_1 : JR.Method
+jm_getDiffX_1 jheap jthis jargs =
+    JR.method [ ( "item", "" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDx_0 : JR.Method
+jm_getDx_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "x") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDy_0 : JR.Method
+jm_getDy_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "y") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setButtonBasicColor_1 : JR.Method
+jm_setButtonBasicColor_1 jheap jthis jargs =
+    JR.method [ ( "buttonBasicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "buttonBasicColor" "" JR.this (JR.local "buttonBasicColor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getButtonBasicColor_0 : JR.Method
+jm_getButtonBasicColor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "buttonBasicColor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

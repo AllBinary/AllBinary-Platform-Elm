@@ -1,12 +1,12 @@
-module LogFactory exposing (..)
+module Org.Allbinary.Logic.Communication.Log.LogFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.log
 -}
 
 import JR
-import Log
-import NullUtil
-import StringUtil
+import Org.Allbinary.Logic.Communication.Log.Log as Log
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
 jclass : String

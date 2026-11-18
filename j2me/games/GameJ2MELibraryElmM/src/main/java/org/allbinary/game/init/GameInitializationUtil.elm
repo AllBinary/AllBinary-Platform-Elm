@@ -1,147 +1,134 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.init
-module GameInitializationUtil where
+module Org.Allbinary.Game.Init.GameInitializationUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameInitializationInterface -- same package or java.lang
-import qualified BasicBuildGameInitializerFactory -- same package or java.lang
-import qualified ChangedGameFeatureListener -- org.allbinary.game.configuration.event.ChangedGameFeatureListener
-import qualified GameInitializedEvent -- org.allbinary.game.configuration.event.GameInitializedEvent
-import qualified GameInitializedEventHandler -- org.allbinary.game.configuration.event.GameInitializedEventHandler
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified MainFeatureFactory -- org.allbinary.game.configuration.feature.MainFeatureFactory
-import qualified ResourceLoadingLevelFactory -- org.allbinary.game.resource.ResourceLoadingLevelFactory
-import qualified MyCanvas -- org.allbinary.graphics.displayable.MyCanvas
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.init
+-}
 
-data GameInitializationUtil = GameInitializationUtil
-    { header_ :: JavaHeader
-    , eVENT :: IORef (GameInitializedEvent.GameInitializedEvent)
-    }
-
-instance JavaNull GameInitializationUtil where
-    javaNull = javaNullRecord "GameInitializationUtil"
-
-instance JavaEquals GameInitializationUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameInitializationUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameInitializationUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameInitializationUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameInitializationUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    eVENT <- newIORef javaNull
-    let this = GameInitializationUtil header_ eVENT
-    jregisterLevel header_ this
-    jregisterMethod header_ "initDemo" (\() -> initDemo_impl this)
-    jregisterMethod header_ "initGame" (\() -> initGame_impl this)
-    pure this
-
-initFields_ :: GameInitializationUtil -> IO ()
-initFields_ this = do
-    jset this.eVENT =<< (GameInitializedEvent.new_1 this)
-    pure ()
-
-new_ :: IO GameInitializationUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameInitializationUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Configuration.Event.ChangedGameFeatureListener as ChangedGameFeatureListener
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Configuration.Event.GameInitializedEvent as GameInitializedEvent
+import Org.Allbinary.Game.Configuration.Event.GameInitializedEventHandler as GameInitializedEventHandler
+import Org.Allbinary.Game.Configuration.Feature.MainFeatureFactory as MainFeatureFactory
+import Org.Allbinary.Game.Resource.ResourceLoadingLevelFactory as ResourceLoadingLevelFactory
 
 
--- throws Exception
-initDemo :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> MyCanvas.MyCanvas -> BasicBuildGameInitializerFactory.BasicBuildGameInitializerFactory -> IO (())
-initDemo object_ a1 a2 a3 = jmethod object_ "initDemo" (\() -> (initDemo_impl (javaCast object_ :: GameInitializationUtil))) () a1 a2 a3
-
-initDemo_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> MyCanvas.MyCanvas -> BasicBuildGameInitializerFactory.BasicBuildGameInitializerFactory -> IO (())
-initDemo_super object_ a1 a2 a3 = (initDemo_impl (javaCast object_ :: GameInitializationUtil)) a1 a2 a3
-
-initDemo_impl :: GameInitializationUtil -> AbeClientInformationInterface.AbeClientInformationInterface -> MyCanvas.MyCanvas -> BasicBuildGameInitializerFactory.BasicBuildGameInitializerFactory -> IO (())
-initDemo_impl this abeClientInformation canvas gameInitializationInterfaceFactoryInterface = do
-        mainFeatureFactory <- (MainFeatureFactory.getInstance)
-        when (jio (ChangedGameFeatureListener.isChangedFeature ((jio (ChangedGameFeatureListener.getInstance))) (jget (mainFeatureFactory).sTATIC))) $ do
-            gameInitializationInterface <- (BasicBuildGameInitializerFactory.getInstance gameInitializationInterfaceFactoryInterface)
-            features <- (Features.getInstance)
-            if (jio (Features.isFeature features (jget (mainFeatureFactory).lOAD_ALL))) then do
-                Control.Monad.void (GameInitializationUtil.initGame this abeClientInformation canvas gameInitializationInterfaceFactoryInterface)
-            else if (jio (Features.isFeature features (jget (mainFeatureFactory).lOAD_ONDEMAND))) then do
-                resourceLoadingLevelFactory <- (ResourceLoadingLevelFactory.getInstance)
-                Control.Monad.void (GameInitializationInterface.init gameInitializationInterface abeClientInformation (jio (MyCanvas.getCustomCommandListener canvas)) (jio (getLevel ((jget (resourceLoadingLevelFactory).lOAD_EARLY)))))
-                Control.Monad.void (GameInitializedEvent.setResourceLoadingLevel ((jget (this).eVENT)) (jget (resourceLoadingLevelFactory).lOAD_EARLY))
-            else do
-                javaThrow ((JavaException "Exception" "No Loading Feature Available"))
-            Control.Monad.void (GameInitializedEventHandler.fireEvent ((jio (GameInitializedEventHandler.getInstance))) (jget (this).eVENT))
-        pure ()
+jclass : String
+jclass =
+    "GameInitializationUtil"
 
 
--- throws Exception
-initGame :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> MyCanvas.MyCanvas -> BasicBuildGameInitializerFactory.BasicBuildGameInitializerFactory -> IO (())
-initGame object_ a1 a2 a3 = jmethod object_ "initGame" (\() -> (initGame_impl (javaCast object_ :: GameInitializationUtil))) () a1 a2 a3
-
-initGame_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> MyCanvas.MyCanvas -> BasicBuildGameInitializerFactory.BasicBuildGameInitializerFactory -> IO (())
-initGame_super object_ a1 a2 a3 = (initGame_impl (javaCast object_ :: GameInitializationUtil)) a1 a2 a3
-
-initGame_impl :: GameInitializationUtil -> AbeClientInformationInterface.AbeClientInformationInterface -> MyCanvas.MyCanvas -> BasicBuildGameInitializerFactory.BasicBuildGameInitializerFactory -> IO (())
-initGame_impl this abeClientInformation canvas gameInitializationInterfaceFactoryInterface = do
-        when (jio (ChangedGameFeatureListener.isChangedFeature ((jio (ChangedGameFeatureListener.getInstance))) (jget ((jio (MainFeatureFactory.getInstance))).sTATIC))) $ do
-            gameInitializationInterface <- (BasicBuildGameInitializerFactory.getInstance gameInitializationInterfaceFactoryInterface)
-            resourceLoadingLevelFactory <- (ResourceLoadingLevelFactory.getInstance)
-            Control.Monad.void (GameInitializationInterface.init gameInitializationInterface abeClientInformation (jio (MyCanvas.getCustomCommandListener canvas)) (jio (getLevel ((jget (resourceLoadingLevelFactory).lOAD_ALL)))))
-            Control.Monad.void (GameInitializedEvent.setResourceLoadingLevel ((jget (this).eVENT)) (jget (resourceLoadingLevelFactory).lOAD_ALL))
-            Control.Monad.void (GameInitializedEventHandler.fireEvent ((jio (GameInitializedEventHandler.getInstance))) (jget (this).eVENT))
-            Control.Monad.void (ChangedGameFeatureListener.remove ((jio (ChangedGameFeatureListener.getInstance))) (jget ((jio (MainFeatureFactory.getInstance))).sTATIC))
-        pure ()
+jchain : List String
+jchain =
+    [ "GameInitializationUtil" ]
 
 
-getInstance :: IO (GameInitializationUtil)
-getInstance = do
-        pure (GameInitializationUtil.instance_)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "EVENT", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "initDemo_3", jm_initDemo_3 )
+        , ( "initGame_3", jm_initGame_3 )
+        , ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameInitializationUtil"
+        [ ( "jm_initDemo_3", jm_initDemo_3 ), ( "jm_initGame_3", jm_initGame_3 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameInitializationUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "EVENT" "" JR.this (JR.new GameInitializedEvent.jnew_1 [ JR.this ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_initDemo_3 : JR.Method
+jm_initDemo_3 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "canvas", "" ), ( "gameInitializationInterfaceFactoryInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "mainFeatureFactory" "" (JR.callStatic MainFeatureFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isChangedFeature_1" (JR.callStatic ChangedGameFeatureListener.jm_getInstance_0 []) [ (JR.field "STATIC" (JR.local "mainFeatureFactory")) ]) (JR.run [ 
+                        JR.declare "gameInitializationInterface" "" (JR.invoke "getInstance_0" (JR.local "gameInitializationInterfaceFactoryInterface") []), 
+                        JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                        JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "LOAD_ALL" (JR.local "mainFeatureFactory")) ]) (JR.run [ 
+                            JR.exec (JR.invoke "initGame_3" JR.this [ (JR.local "abeClientInformation"), (JR.local "canvas"), (JR.local "gameInitializationInterfaceFactoryInterface") ]) ]) (JR.run [ 
+                        JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "LOAD_ONDEMAND" (JR.local "mainFeatureFactory")) ]) (JR.run [ 
+                            JR.declare "resourceLoadingLevelFactory" "" (JR.callStatic ResourceLoadingLevelFactory.jm_getInstance_0 []), 
+                            JR.exec (JR.invoke "init_3" (JR.local "gameInitializationInterface") [ (JR.local "abeClientInformation"), (JR.invoke "getCustomCommandListener_0" (JR.local "canvas") []), (JR.invoke "getLevel_0" (JR.field "LOAD_EARLY" (JR.local "resourceLoadingLevelFactory")) []) ]), 
+                            JR.exec (JR.invoke "setResourceLoadingLevel_1" (JR.thisField "EVENT") [ (JR.field "LOAD_EARLY" (JR.local "resourceLoadingLevelFactory")) ]) ]) (JR.run [ 
+                            JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "No Loading Feature Available") ]) ]) ]), 
+                        JR.exec (JR.invoke "fireEvent_1" (JR.callStatic GameInitializedEventHandler.jm_getInstance_0 []) [ (JR.thisField "EVENT") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initGame_3 : JR.Method
+jm_initGame_3 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "canvas", "" ), ( "gameInitializationInterfaceFactoryInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isChangedFeature_1" (JR.callStatic ChangedGameFeatureListener.jm_getInstance_0 []) [ (JR.field "STATIC" (JR.callStatic MainFeatureFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.declare "gameInitializationInterface" "" (JR.invoke "getInstance_0" (JR.local "gameInitializationInterfaceFactoryInterface") []), 
+                        JR.declare "resourceLoadingLevelFactory" "" (JR.callStatic ResourceLoadingLevelFactory.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "init_3" (JR.local "gameInitializationInterface") [ (JR.local "abeClientInformation"), (JR.invoke "getCustomCommandListener_0" (JR.local "canvas") []), (JR.invoke "getLevel_0" (JR.field "LOAD_ALL" (JR.local "resourceLoadingLevelFactory")) []) ]), 
+                        JR.exec (JR.invoke "setResourceLoadingLevel_1" (JR.thisField "EVENT") [ (JR.field "LOAD_ALL" (JR.local "resourceLoadingLevelFactory")) ]), 
+                        JR.exec (JR.invoke "fireEvent_1" (JR.callStatic GameInitializedEventHandler.jm_getInstance_0 []) [ (JR.thisField "EVENT") ]), 
+                        JR.exec (JR.invoke "remove_1" (JR.callStatic ChangedGameFeatureListener.jm_getInstance_0 []) [ (JR.field "STATIC" (JR.callStatic MainFeatureFactory.jm_getInstance_0 [])) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

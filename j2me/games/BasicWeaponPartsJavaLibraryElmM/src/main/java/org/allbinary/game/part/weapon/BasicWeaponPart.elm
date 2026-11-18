@@ -1,270 +1,232 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.part.weapon
-module BasicWeaponPart where
+module Org.Allbinary.Game.Part.Weapon.BasicWeaponPart exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified NullAnimationFactory -- org.allbinary.animation.NullAnimationFactory
-import qualified WeaponProperties -- org.allbinary.game.combat.weapon.WeaponProperties
-import qualified PartInterface -- org.allbinary.game.part.PartInterface
-import qualified NoScoreable -- org.allbinary.game.score.NoScoreable
-import qualified ScoreableInterface -- org.allbinary.game.score.ScoreableInterface
-import qualified RelativeRelationship -- org.allbinary.graphics.RelativeRelationship
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified ViewPositionBase -- org.allbinary.view.ViewPositionBase
-import qualified SalvoInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.part.weapon
+-}
 
--- implements PartInterface
--- implements SalvoInterface
-data BasicWeaponPart = BasicWeaponPart
-    { header_ :: JavaHeader
-    , animationInterface :: IORef (Animation.Animation)
-    , ownerLayerInterface :: IORef (AllBinaryLayer.AllBinaryLayer)
-    , weaponProperties :: IORef (WeaponProperties.WeaponProperties)
-    , scoreableInterface :: IORef (ScoreableInterface.ScoreableInterface)
-    , relativeRelationship :: IORef (RelativeRelationship.RelativeRelationship)
-    }
-
-instance JavaNull BasicWeaponPart where
-    javaNull = javaNullRecord "BasicWeaponPart"
-
-instance JavaEquals BasicWeaponPart where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicWeaponPart where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicWeaponPart where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_BASIC_WEAPON_PART :: BasicWeaponPart
-{-# NOINLINE nULL_BASIC_WEAPON_PART #-}
-nULL_BASIC_WEAPON_PART = unsafePerformIO ((BasicWeaponPart.createBasicWeaponPart (jio (NullAnimationFactory.getInstance ((jio (NullAnimationFactory.getFactoryInstance))) 0))))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BasicWeaponPart
-newRecord_ = do
-    header_ <- newJavaHeader
-    animationInterface <- newIORef javaNull
-    ownerLayerInterface <- newIORef javaNull
-    weaponProperties <- newIORef javaNull
-    scoreableInterface <- newIORef javaNull
-    relativeRelationship <- newIORef javaNull
-    let this = BasicWeaponPart header_ animationInterface ownerLayerInterface weaponProperties scoreableInterface relativeRelationship
-    jregisterLevel header_ this
-    PartInterface.registerInterface_ header_
-    SalvoInterface.registerInterface_ header_
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "processScore" (\() -> processScore_impl this)
-    jregisterMethod header_ "getOwnerLayerInterface" (\() -> getOwnerLayerInterface_impl this)
-    jregisterMethod header_ "setOwnerLayerInterface" (\() -> setOwnerLayerInterface_impl this)
-    jregisterMethod header_ "getAnimationInterface" (\() -> getAnimationInterface_impl this)
-    jregisterMethod header_ "setAnimationInterface" (\() -> setAnimationInterface_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "paintThreed" (\() -> paintThreed_impl this)
-    jregisterMethod header_ "getWeaponProperties" (\() -> getWeaponProperties_impl this)
-    jregisterMethod header_ "setWeaponProperties" (\() -> setWeaponProperties_impl this)
-    pure this
-
-initFields_ :: BasicWeaponPart -> IO ()
-initFields_ this = do
-    jset this.animationInterface =<< (NullAnimationFactory.getInstance ((jio (NullAnimationFactory.getFactoryInstance))) 0)
-    jset this.ownerLayerInterface (AllBinaryLayer.nULL_ALLBINARY_LAYER)
-    jset this.weaponProperties (WeaponProperties.nULL_WEAPON_PROPERTIES)
-    jset this.scoreableInterface =<< (NoScoreable.getInstance)
-    jset this.relativeRelationship (RelativeRelationship.nULL_RELATIVE_RELATIONSHIP)
-    pure ()
+import JR
+import Org.Allbinary.Layer.AllBinaryLayer as AllBinaryLayer
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Score.NoScoreable as NoScoreable
+import Org.Allbinary.Animation.NullAnimationFactory as NullAnimationFactory
+import Org.Allbinary.Game.Part.PartInterface as PartInterface
+import Org.Allbinary.Graphics.RelativeRelationship as RelativeRelationship
+import Org.Allbinary.Game.Part.Weapon.SalvoInterface as SalvoInterface
+import Org.Allbinary.Game.Combat.Weapon.WeaponProperties as WeaponProperties
 
 
-createBasicWeaponPart :: Animation.Animation -> IO (BasicWeaponPart)
-createBasicWeaponPart animationInterface = do
-        (new_5 animationInterface (AllBinaryLayer.nULL_ALLBINARY_LAYER) (WeaponProperties.nULL_WEAPON_PROPERTIES) (jio (NoScoreable.getInstance)) (RelativeRelationship.nULL_RELATIVE_RELATIONSHIP))
-
-new_5 :: Animation.Animation -> AllBinaryLayer.AllBinaryLayer -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> RelativeRelationship.RelativeRelationship -> IO BasicWeaponPart
-new_5 animationInterface sourceLayerInterface weaponProperties scoreableInterface relativeRelationship = do
-    this <- newRecord_
-    init_5 this animationInterface sourceLayerInterface weaponProperties scoreableInterface relativeRelationship
-    pure this
-
-init_5 :: BasicWeaponPart -> Animation.Animation -> AllBinaryLayer.AllBinaryLayer -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> RelativeRelationship.RelativeRelationship -> IO ()
-init_5 this animationInterface sourceLayerInterface weaponProperties scoreableInterface relativeRelationship = do
-        initFields_ this
-        Control.Monad.void (BasicWeaponPart.init this sourceLayerInterface weaponProperties scoreableInterface relativeRelationship)
-        Control.Monad.void (BasicWeaponPart.setAnimationInterface this animationInterface)
-        pure ()
+jclass : String
+jclass =
+    "BasicWeaponPart"
 
 
-init :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> RelativeRelationship.RelativeRelationship -> IO (())
-init object_ a1 a2 a3 a4 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: BasicWeaponPart))) () a1 a2 a3 a4
-
-init_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> RelativeRelationship.RelativeRelationship -> IO (())
-init_super object_ a1 a2 a3 a4 = (init_impl (javaCast object_ :: BasicWeaponPart)) a1 a2 a3 a4
-
-init_impl :: BasicWeaponPart -> AllBinaryLayer.AllBinaryLayer -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> RelativeRelationship.RelativeRelationship -> IO (())
-init_impl this sourceLayerInterface weaponProperties scoreableInterface relativeRelationship = do
-        Control.Monad.void (BasicWeaponPart.setOwnerLayerInterface this sourceLayerInterface)
-        Control.Monad.void (BasicWeaponPart.setWeaponProperties this weaponProperties)
-        jset (this).scoreableInterface (scoreableInterface)
-        jset (this).relativeRelationship (relativeRelationship)
-        pure ()
+jchain : List String
+jchain =
+    [ "BasicWeaponPart" ]
+        ++ PartInterface.jchain
+        ++ SalvoInterface.jchain
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> Int16 -> Int16 -> IO (())
-process object_ a1 a2 a3 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: BasicWeaponPart))) () a1 a2 a3
-
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> Int16 -> Int16 -> IO (())
-process_super object_ a1 a2 a3 = (process_impl (javaCast object_ :: BasicWeaponPart)) a1 a2 a3
-
-process_impl :: BasicWeaponPart -> AllBinaryLayerManager.AllBinaryLayerManager -> Int16 -> Int16 -> IO (())
-process_impl this allbinaryLayerManager angle otherAngle = do
-        Control.Monad.void (BasicWeaponPart.processScore this allbinaryLayerManager angle otherAngle (jio (BasicWeaponPart.getWeaponProperties this)) (jget (this).scoreableInterface))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "animationInterface", JR.defaultOf "" ), ( "ownerLayerInterface", JR.defaultOf "" ), ( "weaponProperties", JR.defaultOf "" ), ( "scoreableInterface", JR.defaultOf "" ), ( "relativeRelationship", JR.defaultOf "" ) ]
 
 
--- throws Exception
-processScore :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> Int16 -> Int16 -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> IO (())
-processScore object_ a1 a2 a3 a4 a5 = jmethod object_ "processScore" (\() -> (processScore_impl (javaCast object_ :: BasicWeaponPart))) () a1 a2 a3 a4 a5
-
-processScore_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> Int16 -> Int16 -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> IO (())
-processScore_super object_ a1 a2 a3 a4 a5 = (processScore_impl (javaCast object_ :: BasicWeaponPart)) a1 a2 a3 a4 a5
-
-processScore_impl :: BasicWeaponPart -> AllBinaryLayerManager.AllBinaryLayerManager -> Int16 -> Int16 -> WeaponProperties.WeaponProperties -> ScoreableInterface.ScoreableInterface -> IO (())
-processScore_impl this allbinaryLayerManager angle otherAngle weaponProperties scoreableInterface = do
-        javaThrow ((JavaException "Exception" (jget ((jio (CommonStrings.getInstance))).nOT_IMPLEMENTED)))
-        pure ()
-
-
-getOwnerLayerInterface :: (JavaObjectClass this_) => this_ -> IO (AllBinaryLayer.AllBinaryLayer)
-getOwnerLayerInterface object_ = jmethod object_ "getOwnerLayerInterface" (\() -> (getOwnerLayerInterface_impl (javaCast object_ :: BasicWeaponPart))) ()
-
-getOwnerLayerInterface_super :: (JavaObjectClass this_) => this_ -> IO (AllBinaryLayer.AllBinaryLayer)
-getOwnerLayerInterface_super object_ = (getOwnerLayerInterface_impl (javaCast object_ :: BasicWeaponPart))
-
-getOwnerLayerInterface_impl :: BasicWeaponPart -> IO (AllBinaryLayer.AllBinaryLayer)
-getOwnerLayerInterface_impl this = do
-        pure ((jget (this).ownerLayerInterface))
+jvtable =
+    JR.vtable
+        [ ( "createBasicWeaponPart_1", jm_createBasicWeaponPart_1 )
+        , ( "init_4", jm_init_4 )
+        , ( "process_3", jm_process_3 )
+        , ( "processScore_5", jm_processScore_5 )
+        , ( "getOwnerLayerInterface_0", jm_getOwnerLayerInterface_0 )
+        , ( "setOwnerLayerInterface_1", jm_setOwnerLayerInterface_1 )
+        , ( "getAnimationInterface_0", jm_getAnimationInterface_0 )
+        , ( "setAnimationInterface_1", jm_setAnimationInterface_1 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "paintThreed_1", jm_paintThreed_1 )
+        , ( "getWeaponProperties_0", jm_getWeaponProperties_0 )
+        , ( "setWeaponProperties_1", jm_setWeaponProperties_1 ) ]
+        JR.noMethods
 
 
-setOwnerLayerInterface :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-setOwnerLayerInterface object_ a1 = jmethod object_ "setOwnerLayerInterface" (\() -> (setOwnerLayerInterface_impl (javaCast object_ :: BasicWeaponPart))) () a1
-
-setOwnerLayerInterface_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-setOwnerLayerInterface_super object_ a1 = (setOwnerLayerInterface_impl (javaCast object_ :: BasicWeaponPart)) a1
-
-setOwnerLayerInterface_impl :: BasicWeaponPart -> AllBinaryLayer.AllBinaryLayer -> IO (())
-setOwnerLayerInterface_impl this ownerLayerInterface = do
-        jset (this).ownerLayerInterface (ownerLayerInterface)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicWeaponPart"
+        [ ( "jm_createBasicWeaponPart_1", jm_createBasicWeaponPart_1 ), ( "jm_init_4", jm_init_4 ), ( "jm_process_3", jm_process_3 ), ( "jm_processScore_5", jm_processScore_5 ), ( "jm_getOwnerLayerInterface_0", jm_getOwnerLayerInterface_0 ), ( "jm_setOwnerLayerInterface_1", jm_setOwnerLayerInterface_1 ), ( "jm_getAnimationInterface_0", jm_getAnimationInterface_0 ), ( "jm_setAnimationInterface_1", jm_setAnimationInterface_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_paintThreed_1", jm_paintThreed_1 ), ( "jm_getWeaponProperties_0", jm_getWeaponProperties_0 ), ( "jm_setWeaponProperties_1", jm_setWeaponProperties_1 ), ( "jnew_5", jnew_5 ), ( "jinit_5", jinit_5 ) ]
+        [ ( "jstatic_NULL_BASIC_WEAPON_PART", jstatic_NULL_BASIC_WEAPON_PART ) ]
+        jheap
 
 
-getAnimationInterface :: (JavaObjectClass this_) => this_ -> IO (Animation.Animation)
-getAnimationInterface object_ = jmethod object_ "getAnimationInterface" (\() -> (getAnimationInterface_impl (javaCast object_ :: BasicWeaponPart))) ()
-
-getAnimationInterface_super :: (JavaObjectClass this_) => this_ -> IO (Animation.Animation)
-getAnimationInterface_super object_ = (getAnimationInterface_impl (javaCast object_ :: BasicWeaponPart))
-
-getAnimationInterface_impl :: BasicWeaponPart -> IO (Animation.Animation)
-getAnimationInterface_impl this = do
-        pure ((jget (this).animationInterface))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setAnimationInterface :: (JavaObjectClass this_) => this_ -> Animation.Animation -> IO (())
-setAnimationInterface object_ a1 = jmethod object_ "setAnimationInterface" (\() -> (setAnimationInterface_impl (javaCast object_ :: BasicWeaponPart))) () a1
-
-setAnimationInterface_super :: (JavaObjectClass this_) => this_ -> Animation.Animation -> IO (())
-setAnimationInterface_super object_ a1 = (setAnimationInterface_impl (javaCast object_ :: BasicWeaponPart)) a1
-
-setAnimationInterface_impl :: BasicWeaponPart -> Animation.Animation -> IO (())
-setAnimationInterface_impl this animationInterface = do
-        jset (this).animationInterface (animationInterface)
-        pure ()
+jstatic_NULL_BASIC_WEAPON_PART : JR.M
+jstatic_NULL_BASIC_WEAPON_PART s =
+    JR.static "BasicWeaponPart" jclinit "NULL_BASIC_WEAPON_PART"
+        (JR.callStatic jm_createBasicWeaponPart_1 [ (JR.invoke "getInstance_1" (JR.callStatic NullAnimationFactory.jm_getFactoryInstance_0 []) [ (JR.int 0) ]) ])
+        s
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: BasicWeaponPart))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: BasicWeaponPart)) a1
-
-paint_impl :: BasicWeaponPart -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        viewPosition <- (AllBinaryLayer.getViewPosition ((jio (BasicWeaponPart.getOwnerLayerInterface this))))
-        viewX <- (ViewPositionBase.getX viewPosition)
-        viewY <- (ViewPositionBase.getY viewPosition)
-        Control.Monad.void (Animation.paintXY ((jget (this).animationInterface)) graphics viewX viewY)
-        pure ()
-
-
-paintThreed :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed object_ a1 = jmethod object_ "paintThreed" (\() -> (paintThreed_impl (javaCast object_ :: BasicWeaponPart))) () a1
-
-paintThreed_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed_super object_ a1 = (paintThreed_impl (javaCast object_ :: BasicWeaponPart)) a1
-
-paintThreed_impl :: BasicWeaponPart -> Graphics.Graphics -> IO (())
-paintThreed_impl this graphics = do
-        pure ()
+jinit_5 : JR.Method
+jinit_5 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ), ( "sourceLayerInterface", "" ), ( "weaponProperties", "" ), ( "scoreableInterface", "" ), ( "relativeRelationship", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "animationInterface" "" JR.this (JR.invoke "getInstance_1" (JR.callStatic NullAnimationFactory.jm_getFactoryInstance_0 []) [ (JR.int 0) ])),
+                JR.exec (JR.setField "ownerLayerInterface" "" JR.this AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER),
+                JR.exec (JR.setField "weaponProperties" "" JR.this WeaponProperties.jstatic_NULL_WEAPON_PROPERTIES),
+                JR.exec (JR.setField "scoreableInterface" "" JR.this (JR.callStatic NoScoreable.jm_getInstance_0 [])),
+                JR.exec (JR.setField "relativeRelationship" "" JR.this RelativeRelationship.jstatic_NULL_RELATIVE_RELATIONSHIP),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "init_4" JR.this [ (JR.local "sourceLayerInterface"), (JR.local "weaponProperties"), (JR.local "scoreableInterface"), (JR.local "relativeRelationship") ]), 
+                    JR.exec (JR.invoke "setAnimationInterface_1" JR.this [ (JR.local "animationInterface") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getWeaponProperties :: (JavaObjectClass this_) => this_ -> IO (WeaponProperties.WeaponProperties)
-getWeaponProperties object_ = jmethod object_ "getWeaponProperties" (\() -> (getWeaponProperties_impl (javaCast object_ :: BasicWeaponPart))) ()
-
-getWeaponProperties_super :: (JavaObjectClass this_) => this_ -> IO (WeaponProperties.WeaponProperties)
-getWeaponProperties_super object_ = (getWeaponProperties_impl (javaCast object_ :: BasicWeaponPart))
-
-getWeaponProperties_impl :: BasicWeaponPart -> IO (WeaponProperties.WeaponProperties)
-getWeaponProperties_impl this = do
-        pure ((jget (this).weaponProperties))
+jnew_5 : JR.Method
+jnew_5 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_5 jheap jthis jargs
 
 
-setWeaponProperties :: (JavaObjectClass this_) => this_ -> WeaponProperties.WeaponProperties -> IO (())
-setWeaponProperties object_ a1 = jmethod object_ "setWeaponProperties" (\() -> (setWeaponProperties_impl (javaCast object_ :: BasicWeaponPart))) () a1
+jm_createBasicWeaponPart_1 : JR.Method
+jm_createBasicWeaponPart_1 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_5 [ (JR.local "animationInterface"), AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER, WeaponProperties.jstatic_NULL_WEAPON_PROPERTIES, (JR.callStatic NoScoreable.jm_getInstance_0 []), RelativeRelationship.jstatic_NULL_RELATIVE_RELATIONSHIP ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-setWeaponProperties_super :: (JavaObjectClass this_) => this_ -> WeaponProperties.WeaponProperties -> IO (())
-setWeaponProperties_super object_ a1 = (setWeaponProperties_impl (javaCast object_ :: BasicWeaponPart)) a1
 
-setWeaponProperties_impl :: BasicWeaponPart -> WeaponProperties.WeaponProperties -> IO (())
-setWeaponProperties_impl this weaponProperties = do
-        jset (this).weaponProperties (weaponProperties)
-        pure ()
+jm_init_4 : JR.Method
+jm_init_4 jheap jthis jargs =
+    JR.method [ ( "sourceLayerInterface", "" ), ( "weaponProperties", "" ), ( "scoreableInterface", "" ), ( "relativeRelationship", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setOwnerLayerInterface_1" JR.this [ (JR.local "sourceLayerInterface") ]), 
+                    JR.exec (JR.invoke "setWeaponProperties_1" JR.this [ (JR.local "weaponProperties") ]), 
+                    JR.exec (JR.setField "scoreableInterface" "" JR.this (JR.local "scoreableInterface")), 
+                    JR.exec (JR.setField "relativeRelationship" "" JR.this (JR.local "relativeRelationship")) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_process_3 : JR.Method
+jm_process_3 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "angle", "S" ), ( "otherAngle", "S" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "processScore_5" JR.this [ (JR.local "allbinaryLayerManager"), (JR.local "angle"), (JR.local "otherAngle"), (JR.invoke "getWeaponProperties_0" JR.this []), (JR.thisField "scoreableInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processScore_5 : JR.Method
+jm_processScore_5 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "angle", "S" ), ( "otherAngle", "S" ), ( "weaponProperties", "" ), ( "scoreableInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.callStatic CommonStrings.jm_getInstance_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getOwnerLayerInterface_0 : JR.Method
+jm_getOwnerLayerInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "ownerLayerInterface") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setOwnerLayerInterface_1 : JR.Method
+jm_setOwnerLayerInterface_1 jheap jthis jargs =
+    JR.method [ ( "ownerLayerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "ownerLayerInterface" "" JR.this (JR.local "ownerLayerInterface")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAnimationInterface_0 : JR.Method
+jm_getAnimationInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "animationInterface") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAnimationInterface_1 : JR.Method
+jm_setAnimationInterface_1 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "animationInterface" "" JR.this (JR.local "animationInterface")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "viewPosition" "" (JR.invoke "getViewPosition_0" (JR.invoke "getOwnerLayerInterface_0" JR.this []) []), 
+                    JR.declare "viewX" "I" (JR.invoke "getX_0" (JR.local "viewPosition") []), 
+                    JR.declare "viewY" "I" (JR.invoke "getY_0" (JR.local "viewPosition") []), 
+                    JR.exec (JR.invoke "paintXY_3" (JR.thisField "animationInterface") [ (JR.local "graphics"), (JR.local "viewX"), (JR.local "viewY") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintThreed_1 : JR.Method
+jm_paintThreed_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getWeaponProperties_0 : JR.Method
+jm_getWeaponProperties_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "weaponProperties") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setWeaponProperties_1 : JR.Method
+jm_setWeaponProperties_1 jheap jthis jargs =
+    JR.method [ ( "weaponProperties", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "weaponProperties" "" JR.this (JR.local "weaponProperties")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

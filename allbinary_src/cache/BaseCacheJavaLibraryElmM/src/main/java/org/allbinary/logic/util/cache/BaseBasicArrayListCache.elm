@@ -1,11 +1,11 @@
-module BaseBasicArrayListCache exposing (..)
+module Org.Allbinary.Logic.Util.Cache.BaseBasicArrayListCache exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
 -}
 
 import JR
-import BasicArrayListD
-import StringMaker
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

@@ -1,113 +1,117 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media
-module AllBinaryVibration (module AllBinaryVibration, module AllBinaryVibrationME) where
+module Org.Allbinary.Media.AllBinaryVibration exposing (..)
 
-import AllBinaryVibrationME hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, init, init_super, init_impl, vibrate, vibrate_super, vibrate_impl, vIBRATION)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryNoVibration -- same package or java.lang
-import qualified GameConfigurationCentral -- org.allbinary.game.configuration.GameConfigurationCentral
-import qualified AllBinaryVibrationME
+{-| Generated Code Do Not Modify package org.allbinary.media
+-}
 
-data AllBinaryVibration = AllBinaryVibration
-    { header_ :: JavaHeader
-    , base :: AllBinaryVibrationME.AllBinaryVibrationME
-    }
-
-instance JavaNull AllBinaryVibration where
-    javaNull = javaNullRecord "AllBinaryVibration"
-
-instance JavaEquals AllBinaryVibration where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryVibration where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryVibration where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-vIBRATION :: IORef (AllBinaryVibrationME.AllBinaryVibrationME)
-{-# NOINLINE vIBRATION #-}
-vIBRATION = unsafePerformIO (newIORef (AllBinaryNoVibration.nO_VIBRATION))
-
-newRecord_ :: IO AllBinaryVibration
-newRecord_ = do
-    base <- AllBinaryVibrationME.newRecord_
-    let header_ = base.header_
-    let this = AllBinaryVibration header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "vibrate" (\() -> vibrate_impl this)
-    pure this
-
-initFields_ :: AllBinaryVibration -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AllBinaryVibration
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllBinaryVibration -> IO ()
-init_ this = do
-        AllBinaryVibrationME.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Media.AllBinaryNoVibration as AllBinaryNoVibration
+import Org.Allbinary.Media.AllBinaryVibrationME as AllBinaryVibrationME
+import Org.Allbinary.Game.Configuration.GameConfigurationCentral as GameConfigurationCentral
 
 
-getInstance :: IO (AllBinaryVibrationME.AllBinaryVibrationME)
-getInstance = do
-        pure ((jget AllBinaryVibration.vIBRATION))
+jclass : String
+jclass =
+    "AllBinaryVibration"
 
 
-init :: IO (())
-init = do
-        if ((jio (intValue ((jio (getValue ((jget ((jio (GameConfigurationCentral.getInstance))).vIBRATION))))))) == 0) then do
-            jset AllBinaryVibration.vIBRATION (AllBinaryNoVibration.nO_VIBRATION)
-        else do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: AllBinaryVibrationME.AllBinaryVibrationME) (new_))
-            jset AllBinaryVibration.vIBRATION (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "AllBinaryVibration" ]
+        ++ AllBinaryVibrationME.jchain
 
 
-vibrate :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-vibrate object_ a1 a2 a3 = jmethod object_ "vibrate" (\() -> (vibrate_impl (javaCast object_ :: AllBinaryVibration))) () a1 a2 a3
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinaryVibrationME.jfields ++ []
 
-vibrate_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-vibrate_super object_ a1 a2 a3 = (vibrate_impl (javaCast object_ :: AllBinaryVibration)) a1 a2 a3
 
-vibrate_impl :: AllBinaryVibration -> Int -> Int -> Int -> IO (())
-vibrate_impl this duration type_ volume = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "vibrate_3", jm_vibrate_3 ) ]
+        AllBinaryVibrationME.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryVibration"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_vibrate_3", jm_vibrate_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_VIBRATION", jstatic_VIBRATION ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_VIBRATION : JR.M
+jstatic_VIBRATION s =
+    JR.static "AllBinaryVibration" jclinit "VIBRATION"
+        AllBinaryNoVibration.jstatic_NO_VIBRATION
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinaryVibrationME.jinit_0 JR.this []),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_VIBRATION ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.field "VIBRATION" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 [])) []) []) (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.setStatic "AllBinaryVibration.VIBRATION" "" AllBinaryNoVibration.jstatic_NO_VIBRATION) ]) (JR.run [ 
+                        JR.exec (JR.setStatic "AllBinaryVibration.VIBRATION" "" (JR.new jnew_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_vibrate_3 : JR.Method
+jm_vibrate_3 jheap jthis jargs =
+    JR.method [ ( "duration", "I" ), ( "type", "I" ), ( "volume", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

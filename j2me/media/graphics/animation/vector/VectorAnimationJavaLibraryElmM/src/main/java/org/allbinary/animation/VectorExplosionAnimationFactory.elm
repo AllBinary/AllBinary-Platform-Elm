@@ -1,143 +1,117 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module VectorExplosionAnimationFactory where
+module Org.Allbinary.Animation.VectorExplosionAnimationFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified VectorExplosionGenerator -- same package or java.lang
-import qualified AnimationBehaviorFactory -- same package or java.lang
-import qualified VectorAnimationInterface -- same package or java.lang
-import qualified VectorRotationAnimation -- same package or java.lang
-import qualified Animation -- same package or java.lang
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified ProceduralAnimationInterfaceFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
--- implements ProceduralAnimationInterfaceFactoryInterface
-data VectorExplosionAnimationFactory = VectorExplosionAnimationFactory
-    { header_ :: JavaHeader
-    , vectorExplosionGenerator :: IORef (VectorExplosionGenerator.VectorExplosionGenerator)
-    , basicColor :: IORef (BasicColor.BasicColor)
-    , animationBehaviorFactory :: IORef (AnimationBehaviorFactory.AnimationBehaviorFactory)
-    }
-
-instance JavaNull VectorExplosionAnimationFactory where
-    javaNull = javaNullRecord "VectorExplosionAnimationFactory"
-
-instance JavaEquals VectorExplosionAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq VectorExplosionAnimationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass VectorExplosionAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO VectorExplosionAnimationFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    vectorExplosionGenerator <- newIORef javaNull
-    basicColor <- newIORef javaNull
-    animationBehaviorFactory <- newIORef javaNull
-    let this = VectorExplosionAnimationFactory header_ vectorExplosionGenerator basicColor animationBehaviorFactory
-    jregisterLevel header_ this
-    ProceduralAnimationInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstanceAnimation" (\() -> getInstanceAnimation_impl this)
-    jregisterMethod header_ "setBasicColorP" (\() -> setBasicColorP_impl this)
-    jregisterMethod header_ "getBasicColorP" (\() -> getBasicColorP_impl this)
-    pure this
-
-initFields_ :: VectorExplosionAnimationFactory -> IO ()
-initFields_ this = do
-    jset this.vectorExplosionGenerator =<< (VectorExplosionGenerator.getInstance)
-    jset this.basicColor ((jget ((jio (BasicColorFactory.getInstance))).wHITE))
-    jset this.animationBehaviorFactory (javaNull)
-    pure ()
-
-new_2 :: BasicColor.BasicColor -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO VectorExplosionAnimationFactory
-new_2 basicColor animationBehaviorFactory = do
-    this <- newRecord_
-    init_2 this basicColor animationBehaviorFactory
-    pure this
-
-init_2 :: VectorExplosionAnimationFactory -> BasicColor.BasicColor -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ()
-init_2 this basicColor animationBehaviorFactory = do
-        initFields_ this
-        jset (this).animationBehaviorFactory (animationBehaviorFactory)
-        Control.Monad.void (VectorExplosionAnimationFactory.setBasicColorP this basicColor)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Animation.ProceduralAnimationInterfaceFactoryInterface as ProceduralAnimationInterfaceFactoryInterface
+import Org.Allbinary.Animation.VectorExplosionGenerator as VectorExplosionGenerator
+import Org.Allbinary.Animation.VectorRotationAnimation as VectorRotationAnimation
 
 
--- throws Exception
-getInstanceAnimation :: (JavaObjectClass this_) => this_ -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation object_ a1 = jmethod object_ "getInstanceAnimation" (\() -> (getInstanceAnimation_impl (javaCast object_ :: VectorExplosionAnimationFactory))) () a1
-
-getInstanceAnimation_super :: (JavaObjectClass this_) => this_ -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation_super object_ a1 = (getInstanceAnimation_impl (javaCast object_ :: VectorExplosionAnimationFactory)) a1
-
-getInstanceAnimation_impl :: VectorExplosionAnimationFactory -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation_impl this animationInterface = do
-        let vectorRotationAnimationInterface = (javaCast animationInterface :: VectorAnimationInterface.VectorAnimationInterface)
-        frame <- (VectorAnimationInterface.getFrame vectorRotationAnimationInterface)
-        framePoints <- (VectorAnimationInterface.getPoints vectorRotationAnimationInterface frame)
-        points <- (VectorExplosionGenerator.getInstance_3 ((jget (this).vectorExplosionGenerator)) framePoints 6 (jget ((jget (this).vectorExplosionGenerator)).rOTATION))
-        (fmap (\value_ -> javaCast value_ :: Animation.Animation) (VectorRotationAnimation.new_3 points (jio (VectorExplosionAnimationFactory.getBasicColorP this)) (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).animationBehaviorFactory))))))
+jclass : String
+jclass =
+    "VectorExplosionAnimationFactory"
 
 
-setBasicColorP :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP object_ a1 = jmethod object_ "setBasicColorP" (\() -> (setBasicColorP_impl (javaCast object_ :: VectorExplosionAnimationFactory))) () a1
-
-setBasicColorP_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP_super object_ a1 = (setBasicColorP_impl (javaCast object_ :: VectorExplosionAnimationFactory)) a1
-
-setBasicColorP_impl :: VectorExplosionAnimationFactory -> BasicColor.BasicColor -> IO (())
-setBasicColorP_impl this basicColor = do
-        jset (this).basicColor (basicColor)
-        pure ()
+jchain : List String
+jchain =
+    [ "VectorExplosionAnimationFactory" ]
+        ++ ProceduralAnimationInterfaceFactoryInterface.jchain
 
 
-getBasicColorP :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP object_ = jmethod object_ "getBasicColorP" (\() -> (getBasicColorP_impl (javaCast object_ :: VectorExplosionAnimationFactory))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "vectorExplosionGenerator", JR.defaultOf "" ), ( "basicColor", JR.defaultOf "" ), ( "animationBehaviorFactory", JR.defaultOf "" ) ]
 
-getBasicColorP_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP_super object_ = (getBasicColorP_impl (javaCast object_ :: VectorExplosionAnimationFactory))
 
-getBasicColorP_impl :: VectorExplosionAnimationFactory -> IO (BasicColor.BasicColor)
-getBasicColorP_impl this = do
-        pure ((jget (this).basicColor))
+jvtable =
+    JR.vtable
+        [ ( "getInstanceAnimation_1", jm_getInstanceAnimation_1 )
+        , ( "setBasicColorP_1", jm_setBasicColorP_1 )
+        , ( "getBasicColorP_0", jm_getBasicColorP_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "VectorExplosionAnimationFactory"
+        [ ( "jm_getInstanceAnimation_1", jm_getInstanceAnimation_1 ), ( "jm_setBasicColorP_1", jm_setBasicColorP_1 ), ( "jm_getBasicColorP_0", jm_getBasicColorP_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "vectorExplosionGenerator" "" JR.this (JR.callStatic VectorExplosionGenerator.jm_getInstance_0 [])),
+                JR.exec (JR.setField "basicColor" "" JR.this (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "animationBehaviorFactory" "" JR.this (JR.local "animationBehaviorFactory")), 
+                    JR.exec (JR.invoke "setBasicColorP_1" JR.this [ (JR.local "basicColor") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getInstanceAnimation_1 : JR.Method
+jm_getInstanceAnimation_1 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "vectorRotationAnimationInterface" "" (JR.local "animationInterface"), 
+                    JR.declare "frame" "I" (JR.invoke "getFrame_0" (JR.local "vectorRotationAnimationInterface") []), 
+                    JR.declare "framePoints" "" (JR.invoke "getPoints_1" (JR.local "vectorRotationAnimationInterface") [ (JR.local "frame") ]), 
+                    JR.declare "points" "" (JR.invoke "getInstance_3" (JR.thisField "vectorExplosionGenerator") [ (JR.local "framePoints"), (JR.int 6), (JR.field "ROTATION" (JR.thisField "vectorExplosionGenerator")) ]), 
+                    JR.return (JR.new VectorRotationAnimation.jnew_3 [ (JR.local "points"), (JR.invoke "getBasicColorP_0" JR.this []), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setBasicColorP_1 : JR.Method
+jm_setBasicColorP_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "basicColor" "" JR.this (JR.local "basicColor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBasicColorP_0 : JR.Method
+jm_getBasicColorP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "basicColor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

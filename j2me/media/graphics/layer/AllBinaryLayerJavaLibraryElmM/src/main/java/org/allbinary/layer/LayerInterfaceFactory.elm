@@ -1,153 +1,135 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
-module LayerInterfaceFactory where
+module Org.Allbinary.Layer.LayerInterfaceFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Layer -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified LayerInterfaceFactoryInterface -- same package or java.lang
-import qualified AllBinaryLayer -- same package or java.lang
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified BasicArrayListUtil -- org.allbinary.util.BasicArrayListUtil
+{-| Generated Code Do Not Modify package org.allbinary.layer
+-}
 
-data LayerInterfaceFactory = LayerInterfaceFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    , hASHTABLE_LABEL :: IORef (String)
-    }
-
-instance JavaNull LayerInterfaceFactory where
-    javaNull = javaNullRecord "LayerInterfaceFactory"
-
-instance JavaEquals LayerInterfaceFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LayerInterfaceFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LayerInterfaceFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: LayerInterfaceFactory
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LayerInterfaceFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    list <- newIORef javaNull
-    hASHTABLE_LABEL <- newIORef ""
-    let this = LayerInterfaceFactory header_ logUtil list hASHTABLE_LABEL
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "getNexInstance" (\() -> getNexInstance_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    pure this
-
-initFields_ :: LayerInterfaceFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.list =<< (BasicArrayListUtil.getImmutableInstance ((jio (BasicArrayListUtil.getInstance))))
-    jset this.hASHTABLE_LABEL ("Hashtable: ")
-    pure ()
-
-new_ :: IO LayerInterfaceFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LayerInterfaceFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Util.BasicArrayListUtil as BasicArrayListUtil
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Layer.Layer as Layer
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (LayerInterfaceFactory)
-getInstance = do
-        pure (LayerInterfaceFactory.sINGLETON)
+jclass : String
+jclass =
+    "LayerInterfaceFactory"
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: LayerInterfaceFactory))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: LayerInterfaceFactory))
-
-init_impl :: LayerInterfaceFactory -> IO (())
-init_impl this = do
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        jset (this).list (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "LayerInterfaceFactory" ]
 
 
--- throws Exception
-getNexInstance :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> Int -> Int -> Int -> IO (AllBinaryLayer.AllBinaryLayer)
-getNexInstance object_ a1 a2 a3 a4 = jmethod object_ "getNexInstance" (\() -> (getNexInstance_impl (javaCast object_ :: LayerInterfaceFactory))) () a1 a2 a3 a4
-
-getNexInstance_super :: (JavaObjectClass this_) => this_ -> ABHashtable.ABHashtable -> Int -> Int -> Int -> IO (AllBinaryLayer.AllBinaryLayer)
-getNexInstance_super object_ a1 a2 a3 a4 = (getNexInstance_impl (javaCast object_ :: LayerInterfaceFactory)) a1 a2 a3 a4
-
-getNexInstance_impl :: LayerInterfaceFactory -> ABHashtable.ABHashtable -> Int -> Int -> Int -> IO (AllBinaryLayer.AllBinaryLayer)
-getNexInstance_impl this hashtable x y z = do
-        commonStrings <- (CommonStrings.getInstance)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (this).hASHTABLE_LABEL)))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) hashtable))))))) this (jget (commonStrings).gET_INSTANCE))
-        let typeInteger = (javaCast (jio (ABHashtable.get hashtable (javaCast Layer.iD :: Any.Any))) :: Int)
-        let layerInterfaceFactoryInterface = (javaCast (jindex ((jget ((jget (this).list)).objectArray)) ((typeInteger - 1))) :: LayerInterfaceFactoryInterface.LayerInterfaceFactoryInterface)
-        (LayerInterfaceFactoryInterface.getNextInstance layerInterfaceFactoryInterface hashtable x y z)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "list", JR.defaultOf "" ), ( "HASHTABLE_LABEL", JR.defaultOf "" ) ]
 
 
-add :: (JavaObjectClass this_) => this_ -> LayerInterfaceFactoryInterface.LayerInterfaceFactoryInterface -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: LayerInterfaceFactory))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "getNexInstance_4", jm_getNexInstance_4 )
+        , ( "add_1", jm_add_1 ) ]
+        JR.noMethods
 
-add_super :: (JavaObjectClass this_) => this_ -> LayerInterfaceFactoryInterface.LayerInterfaceFactoryInterface -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: LayerInterfaceFactory)) a1
 
-add_impl :: LayerInterfaceFactory -> LayerInterfaceFactoryInterface.LayerInterfaceFactoryInterface -> IO (())
-add_impl this layerInterfaceFactoryInterface = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) layerInterfaceFactoryInterface)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LayerInterfaceFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_getNexInstance_4", jm_getNexInstance_4 ), ( "jm_add_1", jm_add_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "LayerInterfaceFactory" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "list" "" JR.this (JR.invoke "getImmutableInstance_0" (JR.callStatic BasicArrayListUtil.jm_getInstance_0 []) [])),
+                JR.exec (JR.setField "HASHTABLE_LABEL" "" JR.this (JR.str "Hashtable: ")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getNexInstance_4 : JR.Method
+jm_getNexInstance_4 jheap jthis jargs =
+    JR.method [ ( "hashtable", "" ), ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "HASHTABLE_LABEL") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "hashtable") ]) ]) []), JR.this, (JR.field "GET_INSTANCE" (JR.local "commonStrings")) ]), 
+                    JR.declare "typeInteger" "" (JR.invoke "get_1" (JR.local "hashtable") [ Layer.jstatic_ID ]), 
+                    JR.declare "layerInterfaceFactoryInterface" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.map2 JR.sub (JR.invoke "intValue_0" (JR.local "typeInteger") []) (JR.int 1))), 
+                    JR.return (JR.invoke "getNextInstance_4" (JR.local "layerInterfaceFactoryInterface") [ (JR.local "hashtable"), (JR.local "x"), (JR.local "y"), (JR.local "z") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "layerInterfaceFactoryInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "layerInterfaceFactoryInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

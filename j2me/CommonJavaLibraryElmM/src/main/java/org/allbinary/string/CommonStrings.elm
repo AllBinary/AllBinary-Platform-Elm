@@ -1,4 +1,4 @@
-module CommonStrings exposing (..)
+module Org.Allbinary.String.CommonStrings exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.string
 -}

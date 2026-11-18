@@ -1,104 +1,93 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.resources
-module OnDemandResourcesFactory where
+module Org.Allbinary.Game.Layer.Resources.OnDemandResourcesFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified OnDemandResources -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.resources
+-}
 
-data OnDemandResourcesFactory = OnDemandResourcesFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull OnDemandResourcesFactory where
-    javaNull = javaNullRecord "OnDemandResourcesFactory"
-
-instance JavaEquals OnDemandResourcesFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OnDemandResourcesFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OnDemandResourcesFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OnDemandResourcesFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = OnDemandResourcesFactory header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "size" (\() -> size_impl this)
-    jregisterMethod header_ "remove" (\() -> remove_impl this)
-    pure this
-
-initFields_ :: OnDemandResourcesFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO OnDemandResourcesFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OnDemandResourcesFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Layer.Resources.OnDemandResources as OnDemandResources
 
 
-size :: (JavaObjectClass this_) => this_ -> IO (Int)
-size object_ = jmethod object_ "size" (\() -> (size_impl (javaCast object_ :: OnDemandResourcesFactory))) ()
-
-size_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-size_super object_ = (size_impl (javaCast object_ :: OnDemandResourcesFactory))
-
-size_impl :: OnDemandResourcesFactory -> IO (Int)
-size_impl this = do
-        pure (0)
+jclass : String
+jclass =
+    "OnDemandResourcesFactory"
 
 
-remove :: (JavaObjectClass this_) => this_ -> Int -> IO (OnDemandResources.OnDemandResources)
-remove object_ a1 = jmethod object_ "remove" (\() -> (remove_impl (javaCast object_ :: OnDemandResourcesFactory))) () a1
+jchain : List String
+jchain =
+    [ "OnDemandResourcesFactory" ]
 
-remove_super :: (JavaObjectClass this_) => this_ -> Int -> IO (OnDemandResources.OnDemandResources)
-remove_super object_ a1 = (remove_impl (javaCast object_ :: OnDemandResourcesFactory)) a1
 
-remove_impl :: OnDemandResourcesFactory -> Int -> IO (OnDemandResources.OnDemandResources)
-remove_impl this layerId = do
-        pure (OnDemandResources.nULL_ON_DEMAND_RESOURCES)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "size_0", jm_size_0 )
+        , ( "remove_1", jm_remove_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OnDemandResourcesFactory"
+        [ ( "jm_size_0", jm_size_0 ), ( "jm_remove_1", jm_remove_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_size_0 : JR.Method
+jm_size_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_remove_1 : JR.Method
+jm_remove_1 jheap jthis jargs =
+    JR.method [ ( "layerId", "I" ) ] ""
+        (JR.run [ 
+                    JR.return OnDemandResources.jstatic_NULL_ON_DEMAND_RESOURCES ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

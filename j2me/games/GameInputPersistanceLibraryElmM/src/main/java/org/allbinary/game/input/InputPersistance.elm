@@ -1,244 +1,204 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module InputPersistance (module InputPersistance, module BasicPersitance) where
+module Org.Allbinary.Game.Input.InputPersistance exposing (..)
 
-import BasicPersitance hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, loadAll, loadAll_super, loadAll_impl, save, save_super, save_impl, tsUtil, hashtableUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Input -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified GameKeyMappingFactory -- same package or java.lang
-import qualified InputFactory -- same package or java.lang
-import qualified ByteArrayInputStream -- java.io.ByteArrayInputStream
-import qualified ByteArrayOutputStream -- java.io.ByteArrayOutputStream
-import qualified DataInputStream -- java.io.DataInputStream
-import qualified DataOutputStream -- java.io.DataOutputStream
-import qualified RecordEnumeration -- javax.microedition.rms.RecordEnumeration
-import qualified RecordStore -- javax.microedition.rms.RecordStore
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified BasicPersitance -- org.allbinary.game.configuration.persistance.BasicPersitance
-import qualified NullRecordComparator -- org.allbinary.game.configuration.persistance.NullRecordComparator
-import qualified NullRecordFilter -- org.allbinary.game.configuration.persistance.NullRecordFilter
-import qualified NullRecordStore -- org.allbinary.game.configuration.persistance.NullRecordStore
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified HashtableUtil -- org.allbinary.util.HashtableUtil
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data InputPersistance = InputPersistance
-    { header_ :: JavaHeader
-    , base :: BasicPersitance.BasicPersitance
-    , tsUtil :: IORef (TsUtil.TsUtil)
-    , hashtableUtil :: IORef (HashtableUtil.HashtableUtil)
-    }
-
-instance JavaNull InputPersistance where
-    javaNull = javaNullRecord "InputPersistance"
-
-instance JavaEquals InputPersistance where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InputPersistance where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InputPersistance where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO InputPersistance
-newRecord_ = do
-    base <- BasicPersitance.newRecord_
-    let header_ = base.header_
-    tsUtil <- newIORef javaNull
-    hashtableUtil <- newIORef javaNull
-    let this = InputPersistance header_ base tsUtil hashtableUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "loadAll" (\() -> loadAll_impl this)
-    jregisterMethod header_ "save" (\() -> save_impl this)
-    pure this
-
-initFields_ :: InputPersistance -> IO ()
-initFields_ this = do
-    jset this.tsUtil =<< (TsUtil.getInstance)
-    jset this.hashtableUtil =<< (HashtableUtil.getInstance)
-    pure ()
-
-new_1 :: String -> IO InputPersistance
-new_1 name = do
-    this <- newRecord_
-    init_1 this name
-    pure this
-
-init_1 :: InputPersistance -> String -> IO ()
-init_1 this name = do
-        BasicPersitance.init_1 this.base (name)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Game.Configuration.Persistance.BasicPersitance as BasicPersitance
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Game.Input.GameKeyMappingFactory as GameKeyMappingFactory
+import Org.Allbinary.Util.HashtableUtil as HashtableUtil
+import Org.Allbinary.Game.Input.InputFactory as InputFactory
+import JByteArrayInputStream
+import JByteArrayOutputStream
+import JDataInputStream
+import JDataOutputStream
+import JInteger
+import Org.Allbinary.Game.Configuration.Persistance.NullRecordComparator as NullRecordComparator
+import Org.Allbinary.Game.Configuration.Persistance.NullRecordFilter as NullRecordFilter
+import Org.Allbinary.Game.Configuration.Persistance.NullRecordStore as NullRecordStore
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Javax.Microedition.Rms.RecordStore as RecordStore
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.TsUtil as TsUtil
 
 
--- throws Exception
-loadAll :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-loadAll object_ a1 = jmethod object_ "loadAll" (\() -> (loadAll_impl (javaCast object_ :: InputPersistance))) () a1
-
-loadAll_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-loadAll_super object_ a1 = (loadAll_impl (javaCast object_ :: InputPersistance)) a1
-
-loadAll_impl :: InputPersistance -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-loadAll_impl this abeClientInformation = do
-        recordStore <- newIORef (NullRecordStore.nULL_RECORD_STORE)
-        flip finally (do
-            when ((jget recordStore) /= javaNull) $ do
-                Control.Monad.void (PreLogUtil.put (jget ((jget (this).base.persistanceStrings)).cLOSING_RECORDSTORE) this (jget ((jget (this).base.persistanceStrings)).lOAD_ALL))
-                Control.Monad.void (RecordStore.closeRecordStore ((jget recordStore)))
-            ) $ handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            assignedValue <- (RecordStore.openRecordStore (jio (BasicPersitance.getRecordId this abeClientInformation)) True)
-            jset recordStore (assignedValue)
-            recordEnum <- (RecordStore.enumerateRecords ((jget recordStore)) (NullRecordFilter.nULL_RECORD_FILTER) (NullRecordComparator.nULL_RECORD_COMPARATOR) True)
-            gameActionInputId <- newIORef (0 :: Int64)
-            inputId <- newIORef (0 :: Int64)
-            gameActionInput <- newIORef (javaNull)
-            input <- newIORef (javaNull)
-            hashtable <- newIORef (javaNull)
-            gameKeyFactory <- (GameKeyMappingFactory.getInstance)
-            stringBuffer <- (StringMaker.new_)
-            inputFactory <- (InputFactory.getInstance)
-            smallIntegerSingletonFactory <- (SmallIntegerSingletonFactory.getInstance)
-            stdUtil <- (StdUtil.getInstance)
-            recordAsBytes <- newIORef (javaNull)
-            byteArrayInputStream <- newIORef (javaNull)
-            inputStream <- newIORef (javaNull)
-            fix $ \loop -> when (jio (RecordEnumeration.hasNextElement recordEnum)) $ javaIteration (loop) $ do
-                id <- (RecordEnumeration.nextRecordId recordEnum)
-                Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-                Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append stringBuffer (jget ((jget (this).base.persistanceStrings)).lOADING_ID)))) id))))) this (jget ((jget (this).base.persistanceStrings)).lOAD_ALL))
-                assignedValue <- (TsUtil.getRecord ((jget (this).tsUtil)) (jget recordStore) id)
-                jset recordAsBytes (assignedValue)
-                if ((jget recordAsBytes) /= javaNull) then do
-                    assignedValue <- (ByteArrayInputStream.new_1 (jget recordAsBytes))
-                    jset byteArrayInputStream (assignedValue)
-                    assignedValue <- (DataInputStream.new_1 (jget byteArrayInputStream))
-                    jset inputStream (assignedValue)
-                    assignedValue <- (StdUtil.createHashtable stdUtil)
-                    jset hashtable (assignedValue)
-                    value <- newIORef (0 :: Int)
-                    fix $ \loop -> when ((jio (DataInputStream.available ((jget inputStream)))) > 0) $ javaIteration (loop) $ do
-                        gameActionInputIdAsString <- (DataInputStream.readUTF ((jget inputStream)))
-                        assignedValue <- (jparseInt gameActionInputIdAsString)
-                        jset value (assignedValue)
-                        jset gameActionInputId ((Prelude.fromIntegral (jget value)))
-                        Control.Monad.void (DataInputStream.readUTF ((jget inputStream)))
-                        assignedValue <- (jparseInt (jio (DataInputStream.readUTF ((jget inputStream)))))
-                        jset value (assignedValue)
-                        jset inputId ((Prelude.fromIntegral (jget value)))
-                        assignedValue <- (GameKeyMappingFactory.getGameKey gameKeyFactory (Prelude.fromIntegral (jget gameActionInputId)))
-                        jset gameActionInput (assignedValue)
-                        assignedValue <- (InputFactory.getInstanceById inputFactory (Prelude.fromIntegral (jget inputId)))
-                        jset input (assignedValue)
-                        if (((jget input) == (jget (inputFactory).nO_INPUT)) || ((jget gameActionInput) == javaNull)) then do
-                            Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-                            when ((jget input) == (jget (inputFactory).nO_INPUT)) $ do
-                                Control.Monad.void (StringMaker.append stringBuffer (jget ((jget (this).base.persistanceStrings)).eRROR_LOADING_ID))
-                                Control.Monad.void (StringMaker.appendlong stringBuffer (jget inputId))
-                                Control.Monad.void (StringMaker.append stringBuffer (jget ((jget (this).base.persistanceStrings)).gAME_ACTION_INPUT))
-                                Control.Monad.void (StringMaker.appendlong stringBuffer (jget gameActionInputId))
-                                Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString stringBuffer)) this (jget ((jget (this).base.persistanceStrings)).lOAD_ALL))
-                            when ((jget gameActionInput) == javaNull) $ do
-                                Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-                                Control.Monad.void (StringMaker.append stringBuffer (jget ((jget (this).base.persistanceStrings)).eRROR_LOADING))
-                                Control.Monad.void (StringMaker.appendlong stringBuffer (jget gameActionInputId))
-                                Control.Monad.void (StringMaker.append stringBuffer (jget ((jget (this).base.persistanceStrings)).iD))
-                                Control.Monad.void (StringMaker.appendlong stringBuffer (jget inputId))
-                                Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString stringBuffer)) this (jget ((jget (this).base.persistanceStrings)).lOAD_ALL))
-                        else do
-                            pure ()
-                        Control.Monad.void (ABHashtable.put ((jget hashtable)) (jget input) (jget gameActionInput))
-                    Control.Monad.void (add ((jget (this).base.valueList)) (jget hashtable))
-                    Control.Monad.void (add ((jget (this).base.idList)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory id)))
-                else do
-                    pure ()
-        pure ()
+jclass : String
+jclass =
+    "InputPersistance"
 
 
--- throws Exception
-save :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> ABHashtable.ABHashtable -> IO (())
-save object_ a1 a2 = jmethod object_ "save" (\() -> (save_impl (javaCast object_ :: InputPersistance))) () a1 a2
+jchain : List String
+jchain =
+    [ "InputPersistance" ]
+        ++ BasicPersitance.jchain
 
-save_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> ABHashtable.ABHashtable -> IO (())
-save_super object_ a1 a2 = (save_impl (javaCast object_ :: InputPersistance)) a1 a2
 
-save_impl :: InputPersistance -> AbeClientInformationInterface.AbeClientInformationInterface -> ABHashtable.ABHashtable -> IO (())
-save_impl this abeClientInformation hashtable = do
-        recordStore <- newIORef (NullRecordStore.nULL_RECORD_STORE)
-        flip finally (do
-            when ((jget recordStore) /= javaNull) $ do
-                Control.Monad.void (PreLogUtil.put (jget ((jget (this).base.persistanceStrings)).cLOSING_RECORDSTORE) this (jget ((jget (this).base.commonStrings)).sAVE))
-                Control.Monad.void (RecordStore.closeRecordStore ((jget recordStore)))
-            ) $ handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            stringBuffer <- (StringMaker.new_)
-            Control.Monad.void (PreLogUtil.put (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append stringBuffer (jget ((jget (this).base.persistanceStrings)).sAVING)))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) hashtable))))))) this (jget ((jget (this).base.commonStrings)).sAVE))
-            assignedValue <- (RecordStore.openRecordStore (jio (BasicPersitance.getRecordId this abeClientInformation)) True)
-            jset recordStore (assignedValue)
-            byteArrayOutputStream <- (ByteArrayOutputStream.new_)
-            outputStream <- (DataOutputStream.new_1 byteArrayOutputStream)
-            gameActionInput <- newIORef (javaNull)
-            list <- newIORef (javaNull)
-            input <- newIORef (javaNull)
-            savedGameBytes <- newIORef (javaNull)
-            commonSeps <- (CommonSeps.getInstance)
-            smallIntegerSingletonFactory <- (SmallIntegerSingletonFactory.getInstance)
-            inputObjectArray <- (HashtableUtil.getKeysAsArray ((jget (this).hashtableUtil)) hashtable)
-            let size = (jlength inputObjectArray)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                jset gameActionInput ((javaCast (jindex inputObjectArray (index)) :: Input.Input))
-                jset list ((javaCast (jio (ABHashtable.get hashtable (javaCast (jindex inputObjectArray (index)) :: Any.Any))) :: BasicArrayList.BasicArrayList))
-                forM_ [0 .. (jio (BasicArrayList.size ((jget list)))) - 1] $ \index2 -> javaIteration (pure ()) $ do
-                    gameActionInputIdAsString <- (SmallIntegerSingletonFactory.toString ((jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory (jio (Input.getId ((jget gameActionInput))))))))
-                    Control.Monad.void (DataOutputStream.writeUTF outputStream gameActionInputIdAsString)
-                    Control.Monad.void (DataOutputStream.writeUTF outputStream (jget (commonSeps).eQUALS))
-                    jset input ((javaCast (jindex ((jget ((jget list)).objectArray)) (index2)) :: Input.Input))
-                    inputIdAsString <- (SmallIntegerSingletonFactory.toString ((jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory (jio (Input.getId ((jget input))))))))
-                    Control.Monad.void (DataOutputStream.writeUTF outputStream inputIdAsString)
-            assignedValue <- (ByteArrayOutputStream.toByteArray byteArrayOutputStream)
-            jset savedGameBytes (assignedValue)
-            Control.Monad.void (RecordStore.addRecord ((jget recordStore)) (jget savedGameBytes) 0 (jlength (jget savedGameBytes)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicPersitance.jfields ++ [ ( "tsUtil", JR.defaultOf "" ), ( "hashtableUtil", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "loadAll_1", jm_loadAll_1 )
+        , ( "save_2", jm_save_2 ) ]
+        BasicPersitance.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InputPersistance"
+        [ ( "jm_loadAll_1", jm_loadAll_1 ), ( "jm_save_2", jm_save_2 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicPersitance.jinit_1 JR.this [ (JR.local "name") ]),
+                JR.exec (JR.setField "tsUtil" "" JR.this (JR.callStatic TsUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "hashtableUtil" "" JR.this (JR.callStatic HashtableUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_loadAll_1 : JR.Method
+jm_loadAll_1 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "recordStore" "" NullRecordStore.jstatic_NULL_RECORD_STORE, 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.setLocal "recordStore" "" (JR.callStatic RecordStore.jm_openRecordStore_2 [ (JR.invoke "getRecordId_1" JR.this [ (JR.local "abeClientInformation") ]), (JR.bool True) ])), 
+                        JR.declare "recordEnum" "" (JR.invoke "enumerateRecords_3" (JR.local "recordStore") [ NullRecordFilter.jstatic_NULL_RECORD_FILTER, NullRecordComparator.jstatic_NULL_RECORD_COMPARATOR, (JR.bool True) ]), 
+                        JR.declare "gameActionInputId" "J" (JR.lit (JR.defaultOf "J")), 
+                        JR.declare "inputId" "J" (JR.lit (JR.defaultOf "J")), 
+                        JR.declare "gameActionInput" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "input" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "hashtable" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "gameKeyFactory" "" (JR.callStatic GameKeyMappingFactory.jm_getInstance_0 []), 
+                        JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.declare "inputFactory" "" (JR.callStatic InputFactory.jm_getInstance_0 []), 
+                        JR.declare "smallIntegerSingletonFactory" "" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []), 
+                        JR.declare "stdUtil" "" (JR.callStatic StdUtil.jm_getInstance_0 []), 
+                        JR.declare "recordAsBytes" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "byteArrayInputStream" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "inputStream" "" (JR.lit (JR.defaultOf "")), 
+                        JR.while (JR.invoke "hasNextElement_0" (JR.local "recordEnum") []) (JR.run [ 
+                            JR.declare "id" "I" (JR.invoke "nextRecordId_0" (JR.local "recordEnum") []), 
+                            JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "LOADING_ID" (JR.thisField "persistanceStrings")) ]) [ (JR.local "id") ]) []), JR.this, (JR.field "LOAD_ALL" (JR.thisField "persistanceStrings")) ]), 
+                            JR.exec (JR.setLocal "recordAsBytes" "" (JR.invoke "getRecord_2" (JR.thisField "tsUtil") [ (JR.local "recordStore"), (JR.local "id") ])), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "recordAsBytes") JR.null) (JR.run [ 
+                                JR.exec (JR.setLocal "byteArrayInputStream" "" (JR.new JByteArrayInputStream.jnew_1 [ (JR.local "recordAsBytes") ])), 
+                                JR.exec (JR.setLocal "inputStream" "" (JR.new JDataInputStream.jnew_1 [ (JR.local "byteArrayInputStream") ])), 
+                                JR.exec (JR.setLocal "hashtable" "" (JR.invoke "createHashtable_0" (JR.local "stdUtil") [])), 
+                                JR.declare "value" "I" (JR.lit (JR.defaultOf "I")), 
+                                JR.while (JR.map2 JR.greater (JR.invoke "available_0" (JR.local "inputStream") []) (JR.int 0)) (JR.run [ 
+                                    JR.declare "gameActionInputIdAsString" "" (JR.invoke "readUTF_0" (JR.local "inputStream") []), 
+                                    JR.exec (JR.setLocal "value" "I" (JR.callStatic JInteger.jm_parseInt_1 [ (JR.local "gameActionInputIdAsString") ])), 
+                                    JR.exec (JR.setLocal "gameActionInputId" "J" (JR.cast "J" (JR.local "value"))), 
+                                    JR.exec (JR.invoke "readUTF_0" (JR.local "inputStream") []), 
+                                    JR.exec (JR.setLocal "value" "I" (JR.callStatic JInteger.jm_parseInt_1 [ (JR.invoke "readUTF_0" (JR.local "inputStream") []) ])), 
+                                    JR.exec (JR.setLocal "inputId" "J" (JR.cast "J" (JR.local "value"))), 
+                                    JR.exec (JR.setLocal "gameActionInput" "" (JR.invoke "getGameKey_1" (JR.local "gameKeyFactory") [ (JR.cast "I" (JR.local "gameActionInputId")) ])), 
+                                    JR.exec (JR.setLocal "input" "" (JR.invoke "getInstanceById_1" (JR.local "inputFactory") [ (JR.cast "I" (JR.local "inputId")) ])), 
+                                    JR.ifElse (JR.or (JR.map2 JR.equals (JR.local "input") (JR.field "NO_INPUT" (JR.local "inputFactory"))) (JR.map2 JR.equals (JR.local "gameActionInput") JR.null)) (JR.run [ 
+                                        JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                                        JR.ifElse (JR.map2 JR.equals (JR.local "input") (JR.field "NO_INPUT" (JR.local "inputFactory"))) (JR.run [ 
+                                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "ERROR_LOADING_ID" (JR.thisField "persistanceStrings")) ]), 
+                                            JR.exec (JR.invoke "appendlong_1" (JR.local "stringBuffer") [ (JR.local "inputId") ]), 
+                                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "GAME_ACTION_INPUT" (JR.thisField "persistanceStrings")) ]), 
+                                            JR.exec (JR.invoke "appendlong_1" (JR.local "stringBuffer") [ (JR.local "gameActionInputId") ]), 
+                                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "LOAD_ALL" (JR.thisField "persistanceStrings")) ]) ]) identity, 
+                                        JR.ifElse (JR.map2 JR.equals (JR.local "gameActionInput") JR.null) (JR.run [ 
+                                            JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "ERROR_LOADING" (JR.thisField "persistanceStrings")) ]), 
+                                            JR.exec (JR.invoke "appendlong_1" (JR.local "stringBuffer") [ (JR.local "gameActionInputId") ]), 
+                                            JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "ID" (JR.thisField "persistanceStrings")) ]), 
+                                            JR.exec (JR.invoke "appendlong_1" (JR.local "stringBuffer") [ (JR.local "inputId") ]), 
+                                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "LOAD_ALL" (JR.thisField "persistanceStrings")) ]) ]) identity ]) identity, 
+                                    JR.exec (JR.invoke "put_2" (JR.local "hashtable") [ (JR.local "input"), (JR.local "gameActionInput") ]) ]), 
+                                JR.exec (JR.invoke "add_1" (JR.thisField "valueList") [ (JR.local "hashtable") ]), 
+                                JR.exec (JR.invoke "add_1" (JR.thisField "idList") [ (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.local "id") ]) ]) ]) identity ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "recordStore") JR.null) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.field "CLOSING_RECORDSTORE" (JR.thisField "persistanceStrings")), JR.this, (JR.field "LOAD_ALL" (JR.thisField "persistanceStrings")) ]), 
+                            JR.exec (JR.invoke "closeRecordStore_0" (JR.local "recordStore") []) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_save_2 : JR.Method
+jm_save_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "hashtable", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "recordStore" "" NullRecordStore.jstatic_NULL_RECORD_STORE, 
+                    JR.try (JR.run [ 
+                        JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SAVING" (JR.thisField "persistanceStrings")) ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "hashtable") ]) ]) []), JR.this, (JR.field "SAVE" (JR.thisField "commonStrings")) ]), 
+                        JR.exec (JR.setLocal "recordStore" "" (JR.callStatic RecordStore.jm_openRecordStore_2 [ (JR.invoke "getRecordId_1" JR.this [ (JR.local "abeClientInformation") ]), (JR.bool True) ])), 
+                        JR.declare "byteArrayOutputStream" "" (JR.new JByteArrayOutputStream.jnew_0 []), 
+                        JR.declare "outputStream" "" (JR.new JDataOutputStream.jnew_1 [ (JR.local "byteArrayOutputStream") ]), 
+                        JR.declare "gameActionInput" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "list" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "input" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "savedGameBytes" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                        JR.declare "smallIntegerSingletonFactory" "" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []), 
+                        JR.declare "inputObjectArray" "" (JR.invoke "getKeysAsArray_1" (JR.thisField "hashtableUtil") [ (JR.local "hashtable") ]), 
+                        JR.declare "size" "I" (JR.alength (JR.local "inputObjectArray")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72370 -> (JR.setLocal "index" "I" (JR.lit jwN72370))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "gameActionInput" "" (JR.aget (JR.local "inputObjectArray") (JR.local "index"))), 
+                            JR.exec (JR.setLocal "list" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.aget (JR.local "inputObjectArray") (JR.local "index")) ])), 
+                            JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN72304 -> (JR.setLocal "index2" "I" (JR.lit jwN72304))) JR.increment) ]) (JR.run [ 
+                                JR.declare "gameActionInputIdAsString" "" (JR.invoke "toString_0" (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.invoke "getId_0" (JR.local "gameActionInput") []) ]) []), 
+                                JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.local "gameActionInputIdAsString") ]), 
+                                JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.field "EQUALS" (JR.local "commonSeps")) ]), 
+                                JR.exec (JR.setLocal "input" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index2"))), 
+                                JR.declare "inputIdAsString" "" (JR.invoke "toString_0" (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.invoke "getId_0" (JR.local "input") []) ]) []), 
+                                JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.local "inputIdAsString") ]) ]) ] ]) ], 
+                        JR.exec (JR.setLocal "savedGameBytes" "" (JR.invoke "toByteArray_0" (JR.local "byteArrayOutputStream") [])), 
+                        JR.exec (JR.invoke "addRecord_3" (JR.local "recordStore") [ (JR.local "savedGameBytes"), (JR.int 0), (JR.alength (JR.local "savedGameBytes")) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "recordStore") JR.null) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.field "CLOSING_RECORDSTORE" (JR.thisField "persistanceStrings")), JR.this, (JR.field "SAVE" (JR.thisField "commonStrings")) ]), 
+                            JR.exec (JR.invoke "closeRecordStore_0" (JR.local "recordStore") []) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

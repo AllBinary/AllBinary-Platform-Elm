@@ -1,140 +1,113 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.draw
-module CanvasDrawLineString where
+module Org.Allbinary.Graphics.Draw.CanvasDrawLineString exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DrawStringUtil -- same package or java.lang
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
+{-| Generated Code Do Not Modify package org.allbinary.graphics.draw
+-}
 
--- implements UpdateMyFontInterface
-data CanvasDrawLineString = CanvasDrawLineString
-    { header_ :: JavaHeader
-    , drawStringUtil :: IORef (DrawStringUtil.DrawStringUtil)
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , x :: IORef (Int)
-    , y :: IORef (Int)
-    , fontHeight :: IORef (Int)
-    }
-
-instance JavaNull CanvasDrawLineString where
-    javaNull = javaNullRecord "CanvasDrawLineString"
-
-instance JavaEquals CanvasDrawLineString where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CanvasDrawLineString where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CanvasDrawLineString where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_CANVAS_DRAW_LINE_STRING :: CanvasDrawLineString
-{-# NOINLINE nULL_CANVAS_DRAW_LINE_STRING #-}
-nULL_CANVAS_DRAW_LINE_STRING = unsafePerformIO ((new_2 0 0))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CanvasDrawLineString
-newRecord_ = do
-    header_ <- newJavaHeader
-    drawStringUtil <- newIORef javaNull
-    myFontProcessor <- newIORef javaNull
-    x <- newIORef 0
-    y <- newIORef 0
-    fontHeight <- newIORef 0
-    let this = CanvasDrawLineString header_ drawStringUtil myFontProcessor x y fontHeight
-    jregisterLevel header_ this
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: CanvasDrawLineString -> IO ()
-initFields_ this = do
-    jset this.drawStringUtil =<< (DrawStringUtil.getInstance)
-    jset this.myFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.x (0)
-    jset this.y (0)
-    jset this.fontHeight (0)
-    pure ()
-
-new_2 :: Int -> Int -> IO CanvasDrawLineString
-new_2 x y = do
-    this <- newRecord_
-    init_2 this x y
-    pure this
-
-init_2 :: CanvasDrawLineString -> Int -> Int -> IO ()
-init_2 this x y = do
-        initFields_ this
-        jset (this).x (x)
-        jset (this).y (y)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Draw.DrawStringUtil as DrawStringUtil
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: CanvasDrawLineString))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: CanvasDrawLineString)) a1
-
-updateMeasurement_impl :: CanvasDrawLineString -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        assignedValue <- (Font.getHeight font)
-        jset (this).fontHeight (assignedValue)
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "CanvasDrawLineString"
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> String -> Int -> IO (())
-paint object_ a1 a2 a3 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: CanvasDrawLineString))) () a1 a2 a3
+jchain : List String
+jchain =
+    [ "CanvasDrawLineString" ]
+        ++ UpdateMyFontInterface.jchain
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> String -> Int -> IO (())
-paint_super object_ a1 a2 a3 = (paint_impl (javaCast object_ :: CanvasDrawLineString)) a1 a2 a3
 
-paint_impl :: CanvasDrawLineString -> Graphics.Graphics -> String -> Int -> IO (())
-paint_impl this graphics string line = do
-        Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-        Control.Monad.void (DrawStringUtil.drawCenterString ((jget (this).drawStringUtil)) graphics string 0 (Prelude.length string) (jget (this).x) ((jget (this).y) + ((line * (jget (this).fontHeight)))))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "drawStringUtil", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "x", JR.defaultOf "I" ), ( "y", JR.defaultOf "I" ), ( "fontHeight", JR.defaultOf "I" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "paint_3", jm_paint_3 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CanvasDrawLineString"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_paint_3", jm_paint_3 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_NULL_CANVAS_DRAW_LINE_STRING", jstatic_NULL_CANVAS_DRAW_LINE_STRING ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_CANVAS_DRAW_LINE_STRING : JR.M
+jstatic_NULL_CANVAS_DRAW_LINE_STRING s =
+    JR.static "CanvasDrawLineString" jclinit "NULL_CANVAS_DRAW_LINE_STRING"
+        (JR.new jnew_2 [ (JR.int 0), (JR.int 0) ])
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "drawStringUtil" "" JR.this (JR.callStatic DrawStringUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "fontHeight" "I" JR.this (JR.int 0)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "x" "I" JR.this (JR.local "x")), 
+                    JR.exec (JR.setField "y" "I" JR.this (JR.local "y")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "fontHeight" "I" JR.this (JR.invoke "getHeight_0" (JR.local "font") [])), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_3 : JR.Method
+jm_paint_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "string", "" ), ( "line", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "drawCenterString_6" (JR.thisField "drawStringUtil") [ (JR.local "graphics"), (JR.local "string"), (JR.int 0), (JR.invoke "length_0" (JR.local "string") []), (JR.thisField "x"), (JR.map2 JR.add (JR.thisField "y") ((JR.map2 JR.mul (JR.local "line") (JR.thisField "fontHeight")))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

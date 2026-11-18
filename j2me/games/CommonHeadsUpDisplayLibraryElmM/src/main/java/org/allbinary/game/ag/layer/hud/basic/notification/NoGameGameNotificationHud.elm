@@ -1,84 +1,79 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
---
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
---
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
---
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.notification
-module NoGameGameNotificationHud (module NoGameGameNotificationHud, module GameNotificationHud) where
+module Org.Allbinary.Game.Ag.Layer.Hud.Basic.Notification.NoGameGameNotificationHud exposing (..)
 
-import GameNotificationHud hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicHudFactory -- org.allbinary.game.graphics.hud.BasicHudFactory
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified GameNotificationHud
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.hud.basic.notification
+-}
 
-data NoGameGameNotificationHud = NoGameGameNotificationHud
-    { header_ :: JavaHeader
-    , base :: GameNotificationHud.GameNotificationHud
-    }
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Game.Graphics.Hud.BasicHudFactory as BasicHudFactory
+import Org.Allbinary.Game.Ag.Layer.Hud.Basic.Notification.GameNotificationHud as GameNotificationHud
 
-instance JavaNull NoGameGameNotificationHud where
-    javaNull = javaNullRecord "NoGameGameNotificationHud"
 
-instance JavaEquals NoGameGameNotificationHud where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "NoGameGameNotificationHud"
 
-instance Eq NoGameGameNotificationHud where
-    (==) = jrecordEquals
 
-instance JavaObjectClass NoGameGameNotificationHud where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "NoGameGameNotificationHud" ]
+        ++ GameNotificationHud.jchain
 
-newRecord_ :: IO NoGameGameNotificationHud
-newRecord_ = do
-    base <- GameNotificationHud.newRecord_
-    let header_ = base.header_
-    let this = NoGameGameNotificationHud header_ base
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: NoGameGameNotificationHud -> IO ()
-initFields_ this = do
-    pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    GameNotificationHud.jfields ++ []
 
-new_ :: IO NoGameGameNotificationHud
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: NoGameGameNotificationHud -> IO ()
-init_ this = do
-        GameNotificationHud.init_4 this.base (jget ((jio (BasicHudFactory.getInstance))).tOPCENTER) (jget ((jio (BasicHudFactory.getInstance))).hORIZONTAL) (2) (jget ((jio (BasicColorFactory.getInstance))).rED)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).base.updateMaxWidth (40)
-        jset (this).base.updateMaxHeight (14)
-        pure ()
+jvtable =
+    JR.vtable
+        []
+        GameNotificationHud.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NoGameGameNotificationHud"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect GameNotificationHud.jinit_4 JR.this [ (JR.field "TOPCENTER" (JR.callStatic BasicHudFactory.jm_getInstance_0 [])), (JR.field "HORIZONTAL" (JR.callStatic BasicHudFactory.jm_getInstance_0 [])), (JR.int 2), (JR.field "RED" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "updateMaxWidth" "" JR.this (JR.int 40)), 
+                    JR.exec (JR.setField "updateMaxHeight" "" JR.this (JR.int 14)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

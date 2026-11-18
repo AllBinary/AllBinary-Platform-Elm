@@ -1,129 +1,108 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module HighScoresBase where
+module Org.Allbinary.Game.Score.HighScoresBase exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HighScoresResultsListener -- same package or java.lang
-import qualified HighScoresHelperBaseInterface -- same package or java.lang
-import qualified GameInfo -- org.allbinary.game.GameInfo
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified HighScoresFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
--- implements HighScoresFactoryInterface
-data HighScoresBase = HighScoresBase
-    { header_ :: JavaHeader
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    }
-
-instance JavaNull HighScoresBase where
-    javaNull = javaNullRecord "HighScoresBase"
-
-instance JavaEquals HighScoresBase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoresBase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoresBase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO HighScoresBase
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonStrings <- newIORef javaNull
-    let this = HighScoresBase header_ commonStrings
-    jregisterLevel header_ this
-    HighScoresFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "fetchHighScores" (\() -> fetchHighScores_impl this)
-    jregisterMethod header_ "fetchHighScoresPreload" (\() -> fetchHighScoresPreload_impl this)
-    jregisterMethod header_ "createHighScoresHelper" (\() -> createHighScoresHelper_impl this)
-    pure this
-
-initFields_ :: HighScoresBase -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    pure ()
-
-new_ :: IO HighScoresBase
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: HighScoresBase -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Score.HighScoresFactoryInterface as HighScoresFactoryInterface
 
 
-fetchHighScores :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> IO (())
-fetchHighScores object_ a1 a2 = jmethod object_ "fetchHighScores" (\() -> (fetchHighScores_impl (javaCast object_ :: HighScoresBase))) () a1 a2
-
-fetchHighScores_super :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> IO (())
-fetchHighScores_super object_ a1 a2 = (fetchHighScores_impl (javaCast object_ :: HighScoresBase)) a1 a2
-
-fetchHighScores_impl :: HighScoresBase -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> IO (())
-fetchHighScores_impl this gameInfo highScoresResultsListener = do
-        javaThrow ((JavaException "RuntimeException" ""))
-        pure ()
+jclass : String
+jclass =
+    "HighScoresBase"
 
 
-fetchHighScoresPreload :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> Bool -> IO (())
-fetchHighScoresPreload object_ a1 a2 a3 = jmethod object_ "fetchHighScoresPreload" (\() -> (fetchHighScoresPreload_impl (javaCast object_ :: HighScoresBase))) () a1 a2 a3
-
-fetchHighScoresPreload_super :: (JavaObjectClass this_) => this_ -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> Bool -> IO (())
-fetchHighScoresPreload_super object_ a1 a2 a3 = (fetchHighScoresPreload_impl (javaCast object_ :: HighScoresBase)) a1 a2 a3
-
-fetchHighScoresPreload_impl :: HighScoresBase -> GameInfo.GameInfo -> HighScoresResultsListener.HighScoresResultsListener -> Bool -> IO (())
-fetchHighScoresPreload_impl this gameInfo highScoresResultsListener preload = do
-        javaThrow ((JavaException "RuntimeException" ""))
-        pure ()
+jchain : List String
+jchain =
+    [ "HighScoresBase" ]
+        ++ HighScoresFactoryInterface.jchain
 
 
-createHighScoresHelper :: (JavaObjectClass this_) => this_ -> IO (HighScoresHelperBaseInterface.HighScoresHelperBaseInterface)
-createHighScoresHelper object_ = jmethod object_ "createHighScoresHelper" (\() -> (createHighScoresHelper_impl (javaCast object_ :: HighScoresBase))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonStrings", JR.defaultOf "" ) ]
 
-createHighScoresHelper_super :: (JavaObjectClass this_) => this_ -> IO (HighScoresHelperBaseInterface.HighScoresHelperBaseInterface)
-createHighScoresHelper_super object_ = (createHighScoresHelper_impl (javaCast object_ :: HighScoresBase))
 
-createHighScoresHelper_impl :: HighScoresBase -> IO (HighScoresHelperBaseInterface.HighScoresHelperBaseInterface)
-createHighScoresHelper_impl this = do
-        javaThrow ((JavaException "RuntimeException" ""))
+jvtable =
+    JR.vtable
+        [ ( "fetchHighScores_2", jm_fetchHighScores_2 )
+        , ( "fetchHighScoresPreload_3", jm_fetchHighScoresPreload_3 )
+        , ( "createHighScoresHelper_0", jm_createHighScoresHelper_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoresBase"
+        [ ( "jm_fetchHighScores_2", jm_fetchHighScores_2 ), ( "jm_fetchHighScoresPreload_3", jm_fetchHighScoresPreload_3 ), ( "jm_createHighScoresHelper_0", jm_createHighScoresHelper_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_fetchHighScores_2 : JR.Method
+jm_fetchHighScores_2 jheap jthis jargs =
+    JR.method [ ( "gameInfo", "" ), ( "highScoresResultsListener", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_fetchHighScoresPreload_3 : JR.Method
+jm_fetchHighScoresPreload_3 jheap jthis jargs =
+    JR.method [ ( "gameInfo", "" ), ( "highScoresResultsListener", "" ), ( "preload", "Z" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createHighScoresHelper_0 : JR.Method
+jm_createHighScoresHelper_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

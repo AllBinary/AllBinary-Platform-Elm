@@ -1,157 +1,132 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io
-module SmallDelete where
+module Org.Allbinary.Logic.Io.SmallDelete exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DataOutputStream -- java.io.DataOutputStream
-import qualified FileOutputStream -- java.io.FileOutputStream
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified AbFileSystem -- org.allbinary.logic.io.file.AbFileSystem
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.logic.io
+-}
 
-data SmallDelete = SmallDelete
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , fileName :: IORef (String)
-    , string :: IORef (String)
-    }
-
-instance JavaNull SmallDelete where
-    javaNull = javaNullRecord "SmallDelete"
-
-instance JavaEquals SmallDelete where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SmallDelete where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SmallDelete where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO SmallDelete
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    fileName <- newIORef ""
-    string <- newIORef ""
-    let this = SmallDelete header_ logUtil commonStrings fileName string
-    jregisterLevel header_ this
-    jregisterMethod header_ "deleteAtStart" (\() -> deleteAtStart_impl this)
-    jregisterMethod header_ "deleteBetween" (\() -> deleteBetween_impl this)
-    pure this
-
-initFields_ :: SmallDelete -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.fileName (javaNull)
-    jset this.string (javaNull)
-    pure ()
-
-new_1 :: String -> IO SmallDelete
-new_1 fileName = do
-    this <- newRecord_
-    init_1 this fileName
-    pure this
-
-init_1 :: SmallDelete -> String -> IO ()
-init_1 this fileName = do
-        initFields_ this
-        jset (this).fileName (fileName)
-        assignedValue <- (AbFileSystem.readAsString ((jio (AbFileSystem.getInstance))) fileName)
-        jset (this).string (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Logic.Io.File.AbFileSystem as AbFileSystem
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JDataOutputStream
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-deleteAtStart :: (JavaObjectClass this_) => this_ -> String -> String -> IO (Bool)
-deleteAtStart object_ a1 a2 = jmethod object_ "deleteAtStart" (\() -> (deleteAtStart_impl (javaCast object_ :: SmallDelete))) () a1 a2
-
-deleteAtStart_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (Bool)
-deleteAtStart_super object_ a1 a2 = (deleteAtStart_impl (javaCast object_ :: SmallDelete)) a1 a2
-
-deleteAtStart_impl :: SmallDelete -> String -> String -> IO (Bool)
-deleteAtStart_impl this start end = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).iDLOGGING))) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "deleteAtStart" e)
-            pure (False)
-            ) $ do
-            beginIndex <- newIORef (0 :: Int)
-            endIndex <- newIORef (0 :: Int)
-            jset beginIndex ((jstringIndexOf (jget (this).string) start 0))
-            jset endIndex ((jstringIndexOf (jget (this).string) end 0))
-            when ((((((jget endIndex) > (jget beginIndex)) && ((jget beginIndex) >= 0)) && ((jget endIndex) >= 0)) && ((jget beginIndex) < 10)) && ((jget endIndex) < 525)) $ do
-                let text = (Prelude.take (((Prelude.length (jget (this).string))) - ((jget endIndex))) (Prelude.drop ((jget endIndex)) (jget (this).string)))
-                idFile <- (FileOutputStream.new_1 (jget (this).fileName))
-                idOutData <- (DataOutputStream.new_1 idFile)
-                Control.Monad.void (DataOutputStream.writeBytes idOutData text)
-                javaReturn (True)
-            pure (False)
+jclass : String
+jclass =
+    "SmallDelete"
 
 
-deleteBetween :: (JavaObjectClass this_) => this_ -> String -> String -> String -> IO (Bool)
-deleteBetween object_ a1 a2 a3 = jmethod object_ "deleteBetween" (\() -> (deleteBetween_impl (javaCast object_ :: SmallDelete))) () a1 a2 a3
+jchain : List String
+jchain =
+    [ "SmallDelete" ]
 
-deleteBetween_super :: (JavaObjectClass this_) => this_ -> String -> String -> String -> IO (Bool)
-deleteBetween_super object_ a1 a2 a3 = (deleteBetween_impl (javaCast object_ :: SmallDelete)) a1 a2 a3
 
-deleteBetween_impl :: SmallDelete -> String -> String -> String -> IO (Bool)
-deleteBetween_impl this start end newText = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains ((jget ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypes)).lOGGING)) (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).iDLOGGING))) $ do
-                Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this "deleteAtStart" e)
-            pure (False)
-            ) $ do
-            beginIndex <- newIORef (0 :: Int)
-            endIndex <- newIORef (0 :: Int)
-            jset beginIndex ((jstringIndexOf (jget (this).string) start 0))
-            jset endIndex ((jstringIndexOf (jget (this).string) end 0))
-            when ((((((jget endIndex) > (jget beginIndex)) && ((jget beginIndex) >= 0)) && ((jget endIndex) >= 0)) && ((jget beginIndex) < 50)) && ((jget endIndex) < 425)) $ do
-                let newStart = (Prelude.take (((jget beginIndex)) - (0)) (Prelude.drop (0) (jget (this).string)))
-                let text = (Prelude.take (((Prelude.length (jget (this).string))) - (((jget endIndex) + (Prelude.length end)))) (Prelude.drop (((jget endIndex) + (Prelude.length end))) (jget (this).string)))
-                idFile <- (FileOutputStream.new_1 (jget (this).fileName))
-                idOutData <- (DataOutputStream.new_1 idFile)
-                Control.Monad.void (DataOutputStream.writeBytes idOutData ((newStart ++ newText) ++ text))
-                javaReturn (True)
-            pure (False)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "fileName", JR.defaultOf "" ), ( "string", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "deleteAtStart_2", jm_deleteAtStart_2 )
+        , ( "deleteBetween_3", jm_deleteBetween_3 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SmallDelete"
+        [ ( "jm_deleteAtStart_2", jm_deleteAtStart_2 ), ( "jm_deleteBetween_3", jm_deleteBetween_3 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "fileName", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "fileName" "" JR.this (JR.local "fileName")), 
+                    JR.exec (JR.setField "string" "" JR.this (JR.invoke "readAsString_1" (JR.callStatic AbFileSystem.jm_getInstance_0 []) [ (JR.local "fileName") ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_deleteAtStart_2 : JR.Method
+jm_deleteAtStart_2 jheap jthis jargs =
+    JR.method [ ( "start", "" ), ( "end", "" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "beginIndex" "I" (JR.lit (JR.defaultOf "I")),
+                        JR.declare "endIndex" "I" (JR.lit (JR.defaultOf "I")), 
+                        JR.exec (JR.setLocal "beginIndex" "I" (JR.invoke "indexOf_1" (JR.thisField "string") [ (JR.local "start") ])), 
+                        JR.exec (JR.setLocal "endIndex" "I" (JR.invoke "indexOf_1" (JR.thisField "string") [ (JR.local "end") ])), 
+                        JR.ifElse (JR.and (JR.and (JR.and (JR.and (JR.map2 JR.greater (JR.local "endIndex") (JR.local "beginIndex")) (JR.map2 JR.greaterEquals (JR.local "beginIndex") (JR.int 0))) (JR.map2 JR.greaterEquals (JR.local "endIndex") (JR.int 0))) (JR.map2 JR.less (JR.local "beginIndex") (JR.int 10))) (JR.map2 JR.less (JR.local "endIndex") (JR.int 525))) (JR.run [ 
+                            JR.declare "text" "" (JR.invoke "substring_2" (JR.thisField "string") [ (JR.local "endIndex"), (JR.invoke "length_0" (JR.thisField "string") []) ]), 
+                            JR.declare "idFile" "" (JR.new (JR.namedMethod "FileOutputStream.jnew_1") [ (JR.thisField "fileName") ]), 
+                            JR.declare "idOutData" "" (JR.new JDataOutputStream.jnew_1 [ (JR.local "idFile") ]), 
+                            JR.exec (JR.invoke "writeBytes_1" (JR.local "idOutData") [ (JR.local "text") ]), 
+                            JR.return (JR.bool True) ]) identity, 
+                        JR.return (JR.bool False) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "IDLOGGING" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "deleteAtStart"), (JR.local "e") ]) ]) identity, 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_deleteBetween_3 : JR.Method
+jm_deleteBetween_3 jheap jthis jargs =
+    JR.method [ ( "start", "" ), ( "end", "" ), ( "newText", "" ) ] "Z"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "beginIndex" "I" (JR.lit (JR.defaultOf "I")),
+                        JR.declare "endIndex" "I" (JR.lit (JR.defaultOf "I")), 
+                        JR.exec (JR.setLocal "beginIndex" "I" (JR.invoke "indexOf_1" (JR.thisField "string") [ (JR.local "start") ])), 
+                        JR.exec (JR.setLocal "endIndex" "I" (JR.invoke "indexOf_1" (JR.thisField "string") [ (JR.local "end") ])), 
+                        JR.ifElse (JR.and (JR.and (JR.and (JR.and (JR.map2 JR.greater (JR.local "endIndex") (JR.local "beginIndex")) (JR.map2 JR.greaterEquals (JR.local "beginIndex") (JR.int 0))) (JR.map2 JR.greaterEquals (JR.local "endIndex") (JR.int 0))) (JR.map2 JR.less (JR.local "beginIndex") (JR.int 50))) (JR.map2 JR.less (JR.local "endIndex") (JR.int 425))) (JR.run [ 
+                            JR.declare "newStart" "" (JR.invoke "substring_2" (JR.thisField "string") [ (JR.int 0), (JR.local "beginIndex") ]), 
+                            JR.declare "text" "" (JR.invoke "substring_2" (JR.thisField "string") [ (JR.map2 JR.add (JR.local "endIndex") (JR.invoke "length_0" (JR.local "end") [])), (JR.invoke "length_0" (JR.thisField "string") []) ]), 
+                            JR.declare "idFile" "" (JR.new (JR.namedMethod "FileOutputStream.jnew_1") [ (JR.thisField "fileName") ]), 
+                            JR.declare "idOutData" "" (JR.new JDataOutputStream.jnew_1 [ (JR.local "idFile") ]), 
+                            JR.exec (JR.invoke "writeBytes_1" (JR.local "idOutData") [ (JR.concat (JR.concat (JR.local "newStart") (JR.local "newText")) (JR.local "text")) ]), 
+                            JR.return (JR.bool True) ]) identity, 
+                        JR.return (JR.bool False) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "IDLOGGING" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "deleteAtStart"), (JR.local "e") ]) ]) identity, 
+                        JR.return (JR.bool False) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,4 +1,4 @@
-module ItemColorFactory exposing (..)
+module Org.Allbinary.Graphics.ItemColorFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics
 -}

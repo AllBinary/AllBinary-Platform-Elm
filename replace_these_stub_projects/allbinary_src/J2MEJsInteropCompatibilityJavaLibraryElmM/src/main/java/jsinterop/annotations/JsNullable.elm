@@ -1,4 +1,4 @@
-module JsNullable exposing (..)
+module Jsinterop.Annotations.JsNullable exposing (..)
 
 {-| Generated Code Do Not Modify package jsinterop.annotations
 -}

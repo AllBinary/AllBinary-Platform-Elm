@@ -1,263 +1,224 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping
-module InputMapping where
+module Org.Allbinary.Game.Input.Mapping.InputMapping exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified InputToGameKeyMapping -- same package or java.lang
-import qualified Input -- org.allbinary.game.input.Input
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
+{-| Generated Code Do Not Modify package org.allbinary.game.input.mapping
+-}
 
-data InputMapping = InputMapping
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , hashtable :: IORef (ABHashtable.ABHashtable)
-    , mappedList :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull InputMapping where
-    javaNull = javaNullRecord "InputMapping"
-
-instance JavaEquals InputMapping where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InputMapping where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InputMapping where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO InputMapping
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    hashtable <- newIORef javaNull
-    mappedList <- newIORef javaNull
-    let this = InputMapping header_ logUtil commonStrings hashtable mappedList
-    jregisterLevel header_ this
-    jregisterMethod header_ "getTotalMapped" (\() -> getTotalMapped_impl this)
-    jregisterMethod header_ "isDefaultNew" (\() -> isDefaultNew_impl this)
-    jregisterMethod header_ "getDefault" (\() -> getDefault_impl this)
-    jregisterMethod header_ "removeAll" (\() -> removeAll_impl this)
-    jregisterMethod header_ "remove" (\() -> remove_impl this)
-    jregisterMethod header_ "addMapping" (\() -> addMapping_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "isMapped" (\() -> isMapped_impl this)
-    jregisterMethod header_ "getMappedInput" (\() -> getMappedInput_impl this)
-    jregisterMethod header_ "getHashtable" (\() -> getHashtable_impl this)
-    pure this
-
-initFields_ :: InputMapping -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.hashtable =<< (StdUtil.createHashtable ((jio (StdUtil.getInstance))))
-    jset this.mappedList =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
-
-new_ :: IO InputMapping
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: InputMapping -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Input.Mapping.InputToGameKeyMapping as InputToGameKeyMapping
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getTotalMapped :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotalMapped object_ = jmethod object_ "getTotalMapped" (\() -> (getTotalMapped_impl (javaCast object_ :: InputMapping))) ()
-
-getTotalMapped_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotalMapped_super object_ = (getTotalMapped_impl (javaCast object_ :: InputMapping))
-
-getTotalMapped_impl :: InputMapping -> IO (Int)
-getTotalMapped_impl this = do
-        (ABHashtable.size ((jget (this).hashtable)))
+jclass : String
+jclass =
+    "InputMapping"
 
 
-isDefaultNew :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isDefaultNew object_ = jmethod object_ "isDefaultNew" (\() -> (isDefaultNew_impl (javaCast object_ :: InputMapping))) ()
-
-isDefaultNew_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isDefaultNew_super object_ = (isDefaultNew_impl (javaCast object_ :: InputMapping))
-
-isDefaultNew_impl :: InputMapping -> IO (Bool)
-isDefaultNew_impl this = do
-        pure (False)
+jchain : List String
+jchain =
+    [ "InputMapping" ]
 
 
-getDefault :: (JavaObjectClass this_) => this_ -> IO (InputToGameKeyMapping.InputToGameKeyMapping)
-getDefault object_ = jmethod object_ "getDefault" (\() -> (getDefault_impl (javaCast object_ :: InputMapping))) ()
-
-getDefault_super :: (JavaObjectClass this_) => this_ -> IO (InputToGameKeyMapping.InputToGameKeyMapping)
-getDefault_super object_ = (getDefault_impl (javaCast object_ :: InputMapping))
-
-getDefault_impl :: InputMapping -> IO (InputToGameKeyMapping.InputToGameKeyMapping)
-getDefault_impl this = do
-        (InputToGameKeyMapping.getNullInstance)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "hashtable", JR.defaultOf "" ), ( "mappedList", JR.defaultOf "" ) ]
 
 
-removeAll :: (JavaObjectClass this_) => this_ -> IO (())
-removeAll object_ = jmethod object_ "removeAll" (\() -> (removeAll_impl (javaCast object_ :: InputMapping))) ()
-
-removeAll_super :: (JavaObjectClass this_) => this_ -> IO (())
-removeAll_super object_ = (removeAll_impl (javaCast object_ :: InputMapping))
-
-removeAll_impl :: InputMapping -> IO (())
-removeAll_impl this = do
-        Control.Monad.void (ABHashtable.clear ((jget (this).hashtable)))
-        Control.Monad.void (BasicArrayList.clear ((jget (this).mappedList)))
-        pure ()
-
-
-remove :: (JavaObjectClass this_) => this_ -> Input.Input -> Input.Input -> IO (())
-remove object_ a1 a2 = jmethod object_ "remove" (\() -> (remove_impl (javaCast object_ :: InputMapping))) () a1 a2
-
-remove_super :: (JavaObjectClass this_) => this_ -> Input.Input -> Input.Input -> IO (())
-remove_super object_ a1 a2 = (remove_impl (javaCast object_ :: InputMapping)) a1 a2
-
-remove_impl :: InputMapping -> Input.Input -> Input.Input -> IO (())
-remove_impl this input mappedToInput = do
-        stringBuffer <- (StringMaker.new_)
-        stringUtil <- (StringUtil.getInstance)
-        Control.Monad.void (StringMaker.append stringBuffer (jget ((jio (CommonLabels.getInstance))).sTART_LABEL))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString stringUtil input)))
-        Control.Monad.void (StringMaker.append stringBuffer " == ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString stringUtil mappedToInput)))
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this "InputMapping::remove")
-        list <- (InputMapping.getMappedInput this input)
-        if (jio (BasicArrayList.contains list mappedToInput)) then do
-            Control.Monad.void (BasicArrayList.remove list mappedToInput)
-            Control.Monad.void (BasicArrayList.remove ((jget (this).mappedList)) mappedToInput)
-            Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-            Control.Monad.void (StringMaker.append stringBuffer "Removed: ")
-            Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString stringUtil input)))
-            Control.Monad.void (StringMaker.append stringBuffer " == ")
-            Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString stringUtil mappedToInput)))
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this "InputMapping::remove")
-        else do
-            Control.Monad.void (StringMaker.delete stringBuffer 0 (jio (StringMaker.length stringBuffer)))
-            Control.Monad.void (StringMaker.append stringBuffer "Not Deleted: ")
-            Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString stringUtil input)))
-            Control.Monad.void (StringMaker.append stringBuffer " == ")
-            Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString stringUtil mappedToInput)))
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this "InputMapping::remove")
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getTotalMapped_0", jm_getTotalMapped_0 )
+        , ( "isDefaultNew_0", jm_isDefaultNew_0 )
+        , ( "getDefault_0", jm_getDefault_0 )
+        , ( "removeAll_0", jm_removeAll_0 )
+        , ( "remove_2", jm_remove_2 )
+        , ( "addMapping_1", jm_addMapping_1 )
+        , ( "add_2", jm_add_2 )
+        , ( "isMapped_1", jm_isMapped_1 )
+        , ( "getMappedInput_1", jm_getMappedInput_1 )
+        , ( "getHashtable_0", jm_getHashtable_0 ) ]
+        JR.noMethods
 
 
--- throws Exception
-addMapping :: (JavaObjectClass this_) => this_ -> InputToGameKeyMapping.InputToGameKeyMapping -> IO (())
-addMapping object_ a1 = jmethod object_ "addMapping" (\() -> (addMapping_impl (javaCast object_ :: InputMapping))) () a1
-
-addMapping_super :: (JavaObjectClass this_) => this_ -> InputToGameKeyMapping.InputToGameKeyMapping -> IO (())
-addMapping_super object_ a1 = (addMapping_impl (javaCast object_ :: InputMapping)) a1
-
-addMapping_impl :: InputMapping -> InputToGameKeyMapping.InputToGameKeyMapping -> IO (())
-addMapping_impl this inputToGameKeyMapping = do
-        javaThrow ((JavaException "Exception" (jget ((jget (this).commonStrings)).nOT_IMPLEMENTED)))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InputMapping"
+        [ ( "jm_getTotalMapped_0", jm_getTotalMapped_0 ), ( "jm_isDefaultNew_0", jm_isDefaultNew_0 ), ( "jm_getDefault_0", jm_getDefault_0 ), ( "jm_removeAll_0", jm_removeAll_0 ), ( "jm_remove_2", jm_remove_2 ), ( "jm_addMapping_1", jm_addMapping_1 ), ( "jm_add_2", jm_add_2 ), ( "jm_isMapped_1", jm_isMapped_1 ), ( "jm_getMappedInput_1", jm_getMappedInput_1 ), ( "jm_getHashtable_0", jm_getHashtable_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
 
-add :: (JavaObjectClass this_) => this_ -> Input.Input -> Input.Input -> IO (())
-add object_ a1 a2 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: InputMapping))) () a1 a2
-
-add_super :: (JavaObjectClass this_) => this_ -> Input.Input -> Input.Input -> IO (())
-add_super object_ a1 a2 = (add_impl (javaCast object_ :: InputMapping)) a1 a2
-
-add_impl :: InputMapping -> Input.Input -> Input.Input -> IO (())
-add_impl this input mappedToInput = do
-        list <- (InputMapping.getMappedInput this input)
-        when (Prelude.not (jio (BasicArrayList.contains list mappedToInput))) $ do
-            Control.Monad.void (BasicArrayList.add list mappedToInput)
-            Control.Monad.void (BasicArrayList.add ((jget (this).mappedList)) mappedToInput)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-isMapped :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isMapped object_ a1 = jmethod object_ "isMapped" (\() -> (isMapped_impl (javaCast object_ :: InputMapping))) () a1
-
-isMapped_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (Bool)
-isMapped_super object_ a1 = (isMapped_impl (javaCast object_ :: InputMapping)) a1
-
-isMapped_impl :: InputMapping -> Input.Input -> IO (Bool)
-isMapped_impl this input = do
-        (BasicArrayList.contains ((jget (this).mappedList)) input)
-
-
-getMappedInput :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (BasicArrayList.BasicArrayList)
-getMappedInput object_ a1 = jmethod object_ "getMappedInput" (\() -> (getMappedInput_impl (javaCast object_ :: InputMapping))) () a1
-
-getMappedInput_super :: (JavaObjectClass this_) => this_ -> Input.Input -> IO (BasicArrayList.BasicArrayList)
-getMappedInput_super object_ a1 = (getMappedInput_impl (javaCast object_ :: InputMapping)) a1
-
-getMappedInput_impl :: InputMapping -> Input.Input -> IO (BasicArrayList.BasicArrayList)
-getMappedInput_impl this id = do
-    javaCatchReturn $ do
-        mappingInputCanBeNullList <- (ABHashtable.get ((jget (this).hashtable)) id)
-        when (mappingInputCanBeNullList == javaNull) $ do
-            list <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            Control.Monad.void (ABHashtable.put ((jget (this).hashtable)) id list)
-            javaReturn (list)
-        pure ((javaCast mappingInputCanBeNullList :: BasicArrayList.BasicArrayList))
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "hashtable" "" JR.this (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) [])),
+                JR.exec (JR.setField "mappedList" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getHashtable :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-getHashtable object_ = jmethod object_ "getHashtable" (\() -> (getHashtable_impl (javaCast object_ :: InputMapping))) ()
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
-getHashtable_super :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-getHashtable_super object_ = (getHashtable_impl (javaCast object_ :: InputMapping))
 
-getHashtable_impl :: InputMapping -> IO (ABHashtable.ABHashtable)
-getHashtable_impl this = do
-        pure ((jget (this).hashtable))
+jm_getTotalMapped_0 : JR.Method
+jm_getTotalMapped_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "size_0" (JR.thisField "hashtable") []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_isDefaultNew_0 : JR.Method
+jm_isDefaultNew_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDefault_0 : JR.Method
+jm_getDefault_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic InputToGameKeyMapping.jm_getNullInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeAll_0 : JR.Method
+jm_removeAll_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "hashtable") []), 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "mappedList") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_remove_2 : JR.Method
+jm_remove_2 jheap jthis jargs =
+    JR.method [ ( "input", "" ), ( "mappedToInput", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "stringUtil" "" (JR.callStatic StringUtil.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "START_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.local "stringUtil") [ (JR.local "input") ]) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " == ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.local "stringUtil") [ (JR.local "mappedToInput") ]) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "InputMapping::remove") ]), 
+                    JR.declare "list" "" (JR.invoke "getMappedInput_1" JR.this [ (JR.local "input") ]), 
+                    JR.ifElse (JR.invoke "contains_1" (JR.local "list") [ (JR.local "mappedToInput") ]) (JR.run [ 
+                        JR.exec (JR.invoke "remove_1" (JR.local "list") [ (JR.local "mappedToInput") ]), 
+                        JR.exec (JR.invoke "remove_1" (JR.thisField "mappedList") [ (JR.local "mappedToInput") ]), 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Removed: ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.local "stringUtil") [ (JR.local "input") ]) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " == ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.local "stringUtil") [ (JR.local "mappedToInput") ]) ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "InputMapping::remove") ]) ]) (JR.run [ 
+                        JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Not Deleted: ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.local "stringUtil") [ (JR.local "input") ]) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " == ") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.local "stringUtil") [ (JR.local "mappedToInput") ]) ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "InputMapping::remove") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addMapping_1 : JR.Method
+jm_addMapping_1 jheap jthis jargs =
+    JR.method [ ( "inputToGameKeyMapping", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_2 : JR.Method
+jm_add_2 jheap jthis jargs =
+    JR.method [ ( "input", "" ), ( "mappedToInput", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "list" "" (JR.invoke "getMappedInput_1" JR.this [ (JR.local "input") ]), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "contains_1" (JR.local "list") [ (JR.local "mappedToInput") ])) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.local "mappedToInput") ]), 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "mappedList") [ (JR.local "mappedToInput") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isMapped_1 : JR.Method
+jm_isMapped_1 jheap jthis jargs =
+    JR.method [ ( "input", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "contains_1" (JR.thisField "mappedList") [ (JR.local "input") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMappedInput_1 : JR.Method
+jm_getMappedInput_1 jheap jthis jargs =
+    JR.method [ ( "id", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "mappingInputCanBeNullList" "" (JR.invoke "get_1" (JR.thisField "hashtable") [ (JR.local "id") ]), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "mappingInputCanBeNullList") JR.null) (JR.run [ 
+                        JR.declare "list" "" (JR.new BasicArrayListD.jnew_0 []), 
+                        JR.exec (JR.invoke "put_2" (JR.thisField "hashtable") [ (JR.local "id"), (JR.local "list") ]), 
+                        JR.return (JR.local "list") ]) identity, 
+                    JR.return (JR.local "mappingInputCanBeNullList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHashtable_0 : JR.Method
+jm_getHashtable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "hashtable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

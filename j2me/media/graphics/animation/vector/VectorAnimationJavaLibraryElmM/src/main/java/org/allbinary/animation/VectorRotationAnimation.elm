@@ -1,154 +1,134 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module VectorRotationAnimation (module VectorRotationAnimation, module VectorBaseRotationAnimation) where
+module Org.Allbinary.Animation.VectorRotationAnimation exposing (..)
 
-import VectorBaseRotationAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, setFrameByDirection, setFrameByDirection_super, setFrameByDirection_impl, setFrameToAngle, setFrameToAngle_super, setFrameToAngle_impl, setFrame, setFrame_super, setFrame_impl, adjustFrame, adjustFrame_super, adjustFrame_impl, adjustFrameToAngle, adjustFrameToAngle_super, adjustFrameToAngle_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnimationBehavior -- same package or java.lang
-import qualified Direction -- org.allbinary.direction.Direction
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified Angle -- org.allbinary.math.Angle
-import qualified AngleFactory -- org.allbinary.math.AngleFactory
-import qualified AngleInfo -- org.allbinary.math.AngleInfo
-import qualified VectorBaseRotationAnimation
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
-data VectorRotationAnimation = VectorRotationAnimation
-    { header_ :: JavaHeader
-    , base :: VectorBaseRotationAnimation.VectorBaseRotationAnimation
-    }
-
-instance JavaNull VectorRotationAnimation where
-    javaNull = javaNullRecord "VectorRotationAnimation"
-
-instance JavaEquals VectorRotationAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq VectorRotationAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass VectorRotationAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO VectorRotationAnimation
-newRecord_ = do
-    base <- VectorBaseRotationAnimation.newRecord_
-    let header_ = base.header_
-    let this = VectorRotationAnimation header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "setFrameByDirection" (\() -> setFrameByDirection_impl this)
-    jregisterMethod header_ "setFrameToAngle" (\() -> setFrameToAngle_impl this)
-    jregisterMethod header_ "setFrame" (\() -> setFrame_impl this)
-    jregisterMethod header_ "adjustFrame" (\() -> adjustFrame_impl this)
-    jregisterMethod header_ "adjustFrameToAngle" (\() -> adjustFrameToAngle_impl this)
-    pure this
-
-initFields_ :: VectorRotationAnimation -> IO ()
-initFields_ this = do
-    pure ()
-
-new_3 :: JavaArray (JavaArray (JavaArray (Int))) -> BasicColor.BasicColor -> AnimationBehavior.AnimationBehavior -> IO VectorRotationAnimation
-new_3 currentPoints basicColor animationBehavior = do
-    this <- newRecord_
-    init_3 this currentPoints basicColor animationBehavior
-    pure this
-
-init_3 :: VectorRotationAnimation -> JavaArray (JavaArray (JavaArray (Int))) -> BasicColor.BasicColor -> AnimationBehavior.AnimationBehavior -> IO ()
-init_3 this currentPoints basicColor animationBehavior = do
-        VectorBaseRotationAnimation.init_4 this.base (jio (AngleInfo.getInstance (Prelude.fromInteger (jnumericInteger (((jget ((jio (AngleFactory.getInstance))).tOTAL_ANGLE) / (jlength currentPoints))))))) (currentPoints) (basicColor) (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (adjustAngle ((jget (this).base.angleInfo)) (jio (VectorBaseRotationAnimation.getFrame this)))
-        pure ()
+import JR
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Math.AngleInfo as AngleInfo
+import Org.Allbinary.Animation.VectorBaseRotationAnimation as VectorBaseRotationAnimation
 
 
-setFrameByDirection :: (JavaObjectClass this_) => this_ -> Direction.Direction -> IO (())
-setFrameByDirection object_ a1 = jmethod object_ "setFrameByDirection" (\() -> (setFrameByDirection_impl (javaCast object_ :: VectorRotationAnimation))) () a1
-
-setFrameByDirection_super :: (JavaObjectClass this_) => this_ -> Direction.Direction -> IO (())
-setFrameByDirection_super object_ a1 = (setFrameByDirection_impl (javaCast object_ :: VectorRotationAnimation)) a1
-
-setFrameByDirection_impl :: VectorRotationAnimation -> Direction.Direction -> IO (())
-setFrameByDirection_impl this direction = do
-        angle <- (getFrameAngle ((jget (this).base.directionUtil)) direction)
-        Control.Monad.void (VectorRotationAnimation.adjustFrameToAngle this angle)
-        pure ()
+jclass : String
+jclass =
+    "VectorRotationAnimation"
 
 
-setFrameToAngle :: (JavaObjectClass this_) => this_ -> Angle.Angle -> IO (())
-setFrameToAngle object_ a1 = jmethod object_ "setFrameToAngle" (\() -> (setFrameToAngle_impl (javaCast object_ :: VectorRotationAnimation))) () a1
-
-setFrameToAngle_super :: (JavaObjectClass this_) => this_ -> Angle.Angle -> IO (())
-setFrameToAngle_super object_ a1 = (setFrameToAngle_impl (javaCast object_ :: VectorRotationAnimation)) a1
-
-setFrameToAngle_impl :: VectorRotationAnimation -> Angle.Angle -> IO (())
-setFrameToAngle_impl this angle = do
-        Control.Monad.void (VectorRotationAnimation.adjustFrameToAngle this angle)
-        pure ()
+jchain : List String
+jchain =
+    [ "VectorRotationAnimation" ]
+        ++ VectorBaseRotationAnimation.jchain
 
 
-setFrame :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame object_ a1 = jmethod object_ "setFrame" (\() -> (setFrame_impl (javaCast object_ :: VectorRotationAnimation))) () a1
-
-setFrame_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame_super object_ a1 = (setFrame_impl (javaCast object_ :: VectorRotationAnimation)) a1
-
-setFrame_impl :: VectorRotationAnimation -> Int -> IO (())
-setFrame_impl this index = do
-        Control.Monad.void (VectorBaseRotationAnimation.setFrame_super this.base index)
-        Control.Monad.void (adjustAngle ((jget (this).base.angleInfo)) (jio (VectorBaseRotationAnimation.getFrame this)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    VectorBaseRotationAnimation.jfields ++ []
 
 
-adjustFrame :: (JavaObjectClass this_) => this_ -> Int16 -> IO (())
-adjustFrame object_ a1 = jmethod object_ "adjustFrame" (\() -> (adjustFrame_impl (javaCast object_ :: VectorRotationAnimation))) () a1
-
-adjustFrame_super :: (JavaObjectClass this_) => this_ -> Int16 -> IO (())
-adjustFrame_super object_ a1 = (adjustFrame_impl (javaCast object_ :: VectorRotationAnimation)) a1
-
-adjustFrame_impl :: VectorRotationAnimation -> Int16 -> IO (())
-adjustFrame_impl this newAngle = do
-        Control.Monad.void (VectorRotationAnimation.setFrame this (jio (getFrameForAngle ((jget (this).base.frameUtil)) newAngle (Prelude.fromInteger (jnumericInteger (jio (getAngleIncrement ((jio (getAngleIncrementInfo ((jget (this).base.angleInfo))))))))))))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "setFrameByDirection_1", jm_setFrameByDirection_1 )
+        , ( "setFrameToAngle_1", jm_setFrameToAngle_1 )
+        , ( "setFrame_1", jm_setFrame_1 )
+        , ( "adjustFrame_1", jm_adjustFrame_1 )
+        , ( "adjustFrameToAngle_1", jm_adjustFrameToAngle_1 ) ]
+        VectorBaseRotationAnimation.jvtable
 
 
-adjustFrameToAngle :: (JavaObjectClass this_) => this_ -> Angle.Angle -> IO (())
-adjustFrameToAngle object_ a1 = jmethod object_ "adjustFrameToAngle" (\() -> (adjustFrameToAngle_impl (javaCast object_ :: VectorRotationAnimation))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "VectorRotationAnimation"
+        [ ( "jm_setFrameByDirection_1", jm_setFrameByDirection_1 ), ( "jm_setFrameToAngle_1", jm_setFrameToAngle_1 ), ( "jm_setFrame_1", jm_setFrame_1 ), ( "jm_adjustFrame_1", jm_adjustFrame_1 ), ( "jm_adjustFrameToAngle_1", jm_adjustFrameToAngle_1 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
 
-adjustFrameToAngle_super :: (JavaObjectClass this_) => this_ -> Angle.Angle -> IO (())
-adjustFrameToAngle_super object_ a1 = (adjustFrameToAngle_impl (javaCast object_ :: VectorRotationAnimation)) a1
 
-adjustFrameToAngle_impl :: VectorRotationAnimation -> Angle.Angle -> IO (())
-adjustFrameToAngle_impl this newAngle = do
-        Control.Monad.void (VectorRotationAnimation.adjustFrame this (jio (Angle.getValue newAngle)))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "currentPoints", "" ), ( "basicColor", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect VectorBaseRotationAnimation.jinit_4 JR.this [ (JR.callStatic AngleInfo.jm_getInstance_1 [ (JR.cast "S" ((JR.map2 JR.div (JR.cast "I" (JR.field "TOTAL_ANGLE" (JR.callStatic AngleFactory.jm_getInstance_0 []))) (JR.alength (JR.local "currentPoints"))))) ]), (JR.local "currentPoints"), (JR.local "basicColor"), (JR.local "animationBehavior") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "adjustAngle_1" (JR.thisField "angleInfo") [ (JR.invoke "getFrame_0" JR.this []) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_setFrameByDirection_1 : JR.Method
+jm_setFrameByDirection_1 jheap jthis jargs =
+    JR.method [ ( "direction", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "angle" "" (JR.invoke "getFrameAngle_1" (JR.thisField "directionUtil") [ (JR.local "direction") ]), 
+                    JR.exec (JR.invoke "adjustFrameToAngle_1" JR.this [ (JR.local "angle") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFrameToAngle_1 : JR.Method
+jm_setFrameToAngle_1 jheap jthis jargs =
+    JR.method [ ( "angle", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "adjustFrameToAngle_1" JR.this [ (JR.local "angle") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFrame_1 : JR.Method
+jm_setFrame_1 jheap jthis jargs =
+    JR.method [ ( "index", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia VectorBaseRotationAnimation.jvtable "setFrame_1" JR.this [ (JR.local "index") ]), 
+                    JR.exec (JR.invoke "adjustAngle_1" (JR.thisField "angleInfo") [ (JR.invoke "getFrame_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_adjustFrame_1 : JR.Method
+jm_adjustFrame_1 jheap jthis jargs =
+    JR.method [ ( "newAngle", "S" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setFrame_1" JR.this [ (JR.invoke "getFrameForAngle_2" (JR.thisField "frameUtil") [ (JR.local "newAngle"), (JR.cast "I" (JR.invoke "getAngleIncrement_0" (JR.invoke "getAngleIncrementInfo_0" (JR.thisField "angleInfo") []) [])) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_adjustFrameToAngle_1 : JR.Method
+jm_adjustFrameToAngle_1 jheap jthis jargs =
+    JR.method [ ( "newAngle", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "adjustFrame_1" JR.this [ (JR.invoke "getValue_0" (JR.local "newAngle") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,634 +1,496 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.context.modules.storefronts
-module BasicStoreFront where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified HashMap -- java.util.HashMap
-import qualified StoreFrontData -- org.allbinary.business.context.modules.storefront.StoreFrontData
-import qualified EntryData -- org.allbinary.business.entry.EntryData
-import qualified UserData -- org.allbinary.business.user.UserData
-import qualified Tokenizer -- org.allbinary.logic.string.tokens.Tokenizer
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified BasicStoreFrontInterface
-
--- implements BasicStoreFrontInterface
-data BasicStoreFront = BasicStoreFront
-    { header_ :: JavaHeader
-    , name :: IORef (String)
-    , userName :: IORef (String)
-    , basketName :: IORef (String)
-    , homeHostName :: IORef (String)
-    , homeHostNamePath :: IORef (String)
-    , hostName :: IORef (String)
-    , hostNamePath :: IORef (String)
-    , testHomeHostName :: IORef (String)
-    , testHomeHostNamePath :: IORef (String)
-    , testHostName :: IORef (String)
-    , testHostNamePath :: IORef (String)
-    , imagePath :: IORef (String)
-    , staticPath :: IORef (String)
-    , categoryPath :: IORef (String)
-    , inventoryControl :: IORef (String)
-    , subStores :: IORef (String)
-    , tagLocation :: IORef (String)
-    , packageLocation :: IORef (String)
-    , ftp :: IORef (String)
-    , ftpPath :: IORef (String)
-    , ftpUserName :: IORef (String)
-    , ftpPassword :: IORef (String)
-    , testFtp :: IORef (String)
-    , testFtpPath :: IORef (String)
-    , testFtpUserName :: IORef (String)
-    , testFtpPassword :: IORef (String)
-    , timeCreated :: IORef (String)
-    , lastModified :: IORef (String)
-    }
-
-instance JavaNull BasicStoreFront where
-    javaNull = javaNullRecord "BasicStoreFront"
-
-instance JavaEquals BasicStoreFront where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicStoreFront where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicStoreFront where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BasicStoreFront
-newRecord_ = do
-    header_ <- newJavaHeader
-    name <- newIORef ""
-    userName <- newIORef ""
-    basketName <- newIORef ""
-    homeHostName <- newIORef ""
-    homeHostNamePath <- newIORef ""
-    hostName <- newIORef ""
-    hostNamePath <- newIORef ""
-    testHomeHostName <- newIORef ""
-    testHomeHostNamePath <- newIORef ""
-    testHostName <- newIORef ""
-    testHostNamePath <- newIORef ""
-    imagePath <- newIORef ""
-    staticPath <- newIORef ""
-    categoryPath <- newIORef ""
-    inventoryControl <- newIORef ""
-    subStores <- newIORef ""
-    tagLocation <- newIORef ""
-    packageLocation <- newIORef ""
-    ftp <- newIORef ""
-    ftpPath <- newIORef ""
-    ftpUserName <- newIORef ""
-    ftpPassword <- newIORef ""
-    testFtp <- newIORef ""
-    testFtpPath <- newIORef ""
-    testFtpUserName <- newIORef ""
-    testFtpPassword <- newIORef ""
-    timeCreated <- newIORef ""
-    lastModified <- newIORef ""
-    let this = BasicStoreFront header_ name userName basketName homeHostName homeHostNamePath hostName hostNamePath testHomeHostName testHomeHostNamePath testHostName testHostNamePath imagePath staticPath categoryPath inventoryControl subStores tagLocation packageLocation ftp ftpPath ftpUserName ftpPassword testFtp testFtpPath testFtpUserName testFtpPassword timeCreated lastModified
-    jregisterLevel header_ this
-    BasicStoreFrontInterface.registerInterface_ header_
-    jregisterMethod header_ "getTestHtmlPath" (\() -> getTestHtmlPath_impl this)
-    jregisterMethod header_ "getCurrentHostName" (\() -> getCurrentHostName_impl this)
-    jregisterMethod header_ "getCurrentHostNamePath" (\() -> getCurrentHostNamePath_impl this)
-    jregisterMethod header_ "getCurrentHomeHostName" (\() -> getCurrentHomeHostName_impl this)
-    jregisterMethod header_ "getCurrentHomeHostNamePath" (\() -> getCurrentHomeHostNamePath_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "getUserName" (\() -> getUserName_impl this)
-    jregisterMethod header_ "getBasketName" (\() -> getBasketName_impl this)
-    jregisterMethod header_ "getHomeHostName" (\() -> getHomeHostName_impl this)
-    jregisterMethod header_ "getHomeHostNamePath" (\() -> getHomeHostNamePath_impl this)
-    jregisterMethod header_ "getHostName" (\() -> getHostName_impl this)
-    jregisterMethod header_ "getHostNamePath" (\() -> getHostNamePath_impl this)
-    jregisterMethod header_ "getTestHomeHostName" (\() -> getTestHomeHostName_impl this)
-    jregisterMethod header_ "getTestHomeHostNamePath" (\() -> getTestHomeHostNamePath_impl this)
-    jregisterMethod header_ "getTestHostName" (\() -> getTestHostName_impl this)
-    jregisterMethod header_ "getTestHostNamePath" (\() -> getTestHostNamePath_impl this)
-    jregisterMethod header_ "getStaticPath" (\() -> getStaticPath_impl this)
-    jregisterMethod header_ "getCategoryPath" (\() -> getCategoryPath_impl this)
-    jregisterMethod header_ "getInventoryControl" (\() -> getInventoryControl_impl this)
-    jregisterMethod header_ "getSubStores" (\() -> getSubStores_impl this)
-    jregisterMethod header_ "getTagLocation" (\() -> getTagLocation_impl this)
-    jregisterMethod header_ "getPackageLocation" (\() -> getPackageLocation_impl this)
-    jregisterMethod header_ "getFtp" (\() -> getFtp_impl this)
-    jregisterMethod header_ "getFtpUserName" (\() -> getFtpUserName_impl this)
-    jregisterMethod header_ "getFtpPassword" (\() -> getFtpPassword_impl this)
-    jregisterMethod header_ "getTestFtp" (\() -> getTestFtp_impl this)
-    jregisterMethod header_ "getTestFtpUserName" (\() -> getTestFtpUserName_impl this)
-    jregisterMethod header_ "getTestFtpPassword" (\() -> getTestFtpPassword_impl this)
-    jregisterMethod header_ "getFtpPath" (\() -> getFtpPath_impl this)
-    jregisterMethod header_ "getTestFtpPath" (\() -> getTestFtpPath_impl this)
-    jregisterMethod header_ "getTimeCreated" (\() -> getTimeCreated_impl this)
-    jregisterMethod header_ "getLastModified" (\() -> getLastModified_impl this)
-    pure this
-
-initFields_ :: BasicStoreFront -> IO ()
-initFields_ this = do
-    jset this.name (javaNull)
-    jset this.userName (javaNull)
-    jset this.basketName (javaNull)
-    jset this.homeHostName (javaNull)
-    jset this.homeHostNamePath (javaNull)
-    jset this.hostName (javaNull)
-    jset this.hostNamePath (javaNull)
-    jset this.testHomeHostName (javaNull)
-    jset this.testHomeHostNamePath (javaNull)
-    jset this.testHostName (javaNull)
-    jset this.testHostNamePath (javaNull)
-    jset this.imagePath (javaNull)
-    jset this.staticPath (javaNull)
-    jset this.categoryPath (javaNull)
-    jset this.inventoryControl (javaNull)
-    jset this.subStores (javaNull)
-    jset this.tagLocation (javaNull)
-    jset this.packageLocation (javaNull)
-    jset this.ftp (javaNull)
-    jset this.ftpPath (javaNull)
-    jset this.ftpUserName (javaNull)
-    jset this.ftpPassword (javaNull)
-    jset this.testFtp (javaNull)
-    jset this.testFtpPath (javaNull)
-    jset this.testFtpUserName (javaNull)
-    jset this.testFtpPassword (javaNull)
-    jset this.timeCreated (javaNull)
-    jset this.lastModified (javaNull)
-    pure ()
-
-new_ :: IO BasicStoreFront
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BasicStoreFront -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
-
-new_1 :: HashMap.HashMap -> IO BasicStoreFront
-new_1 storeHashMap = do
-    this <- newRecord_
-    init_1 this storeHashMap
-    pure this
-
-init_1 :: BasicStoreFront -> HashMap.HashMap -> IO ()
-init_1 this storeHashMap = do
-        initFields_ this
-        storeFrontData <- (StoreFrontData.getInstance)
-        jset (this).name ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).nAME))) :: String))
-        jset (this).userName ((javaCast (jio (HashMap.get storeHashMap (UserData.uSERNAME))) :: String))
-        jset (this).basketName ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).nAME))) :: String))
-        jset (this).homeHostName ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).hOMEHOSTNAME))) :: String))
-        jset (this).homeHostNamePath ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).hOMEHOSTNAMEPATH))) :: String))
-        jset (this).hostName ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).hOSTNAME))) :: String))
-        jset (this).hostNamePath ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).hOSTNAMEPATH))) :: String))
-        jset (this).testHomeHostName ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).tESTHOMEHOSTNAME))) :: String))
-        jset (this).testHomeHostNamePath ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).tESTHOMEHOSTNAMEPATH))) :: String))
-        jset (this).testHostName ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).tESTHOSTNAME))) :: String))
-        jset (this).testHostNamePath ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).tESTHOSTNAMEPATH))) :: String))
-        jset (this).imagePath ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).iMAGEPATH))) :: String))
-        jset (this).staticPath ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).sTATICPATH))) :: String))
-        jset (this).categoryPath ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).cATEGORYPATH))) :: String))
-        jset (this).inventoryControl ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).iNVENTORYCONTROL))) :: String))
-        jset (this).subStores ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).sUBSTORES))) :: String))
-        jset (this).tagLocation ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).tAGLOCATION))) :: String))
-        jset (this).packageLocation ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).pACKAGELOCATION))) :: String))
-        jset (this).ftp ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).fTP))) :: String))
-        jset (this).ftpPath ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).fTPPATH))) :: String))
-        jset (this).ftpUserName ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).fTPUSERNAME))) :: String))
-        jset (this).ftpPassword ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).fTPPASSWORD))) :: String))
-        jset (this).testFtp ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).tESTFTP))) :: String))
-        jset (this).testFtpPath ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).tESTFTPPATH))) :: String))
-        jset (this).testFtpUserName ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).tESTFTPUSERNAME))) :: String))
-        jset (this).testFtpPassword ((javaCast (jio (HashMap.get storeHashMap (jget (storeFrontData).tESTFTPPASSWORD))) :: String))
-        jset (this).timeCreated ((javaCast (jio (HashMap.get storeHashMap (jget ((jio (EntryData.getInstance))).tIMECREATED))) :: String))
-        jset (this).lastModified ((javaCast (jio (HashMap.get storeHashMap (jget ((jio (EntryData.getInstance))).lASTMODIFIED))) :: String))
-        pure ()
-
-
-getTestHtmlPath :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHtmlPath object_ = jmethod object_ "getTestHtmlPath" (\() -> (getTestHtmlPath_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getTestHtmlPath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHtmlPath_super object_ = (getTestHtmlPath_impl (javaCast object_ :: BasicStoreFront))
-
-getTestHtmlPath_impl :: BasicStoreFront -> IO (String)
-getTestHtmlPath_impl this = do
-        pure ((javaToString (jio (getTestHtmlPath ((jget ((jget (org.allbinary).globals)).uRLGLOBALS)))) ++ (jio (BasicStoreFront.getCurrentHostNamePath this))))
-
-
-getCurrentHostName :: (JavaObjectClass this_) => this_ -> IO (String)
-getCurrentHostName object_ = jmethod object_ "getCurrentHostName" (\() -> (getCurrentHostName_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getCurrentHostName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getCurrentHostName_super object_ = (getCurrentHostName_impl (javaCast object_ :: BasicStoreFront))
-
-getCurrentHostName_impl :: BasicStoreFront -> IO (String)
-getCurrentHostName_impl this = do
-        location <- newIORef (javaNull)
-        if (jio (isTestingMode ((jget ((jget (org.allbinary).globals)).uRLGLOBALS)))) then do
-            assignedValue <- (BasicStoreFront.getTestHostName this)
-            jset location (assignedValue)
-        else do
-            assignedValue <- (BasicStoreFront.getHostName this)
-            jset location (assignedValue)
-        pure ((jget location))
-
-
-getCurrentHostNamePath :: (JavaObjectClass this_) => this_ -> IO (String)
-getCurrentHostNamePath object_ = jmethod object_ "getCurrentHostNamePath" (\() -> (getCurrentHostNamePath_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getCurrentHostNamePath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getCurrentHostNamePath_super object_ = (getCurrentHostNamePath_impl (javaCast object_ :: BasicStoreFront))
-
-getCurrentHostNamePath_impl :: BasicStoreFront -> IO (String)
-getCurrentHostNamePath_impl this = do
-        location <- newIORef (javaNull)
-        if (jio (isTestingMode ((jget ((jget (org.allbinary).globals)).uRLGLOBALS)))) then do
-            assignedValue <- (BasicStoreFront.getTestHostNamePath this)
-            jset location (assignedValue)
-        else do
-            assignedValue <- (BasicStoreFront.getHostNamePath this)
-            jset location (assignedValue)
-        pure ((jget location))
-
-
-getCurrentHomeHostName :: (JavaObjectClass this_) => this_ -> IO (String)
-getCurrentHomeHostName object_ = jmethod object_ "getCurrentHomeHostName" (\() -> (getCurrentHomeHostName_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getCurrentHomeHostName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getCurrentHomeHostName_super object_ = (getCurrentHomeHostName_impl (javaCast object_ :: BasicStoreFront))
-
-getCurrentHomeHostName_impl :: BasicStoreFront -> IO (String)
-getCurrentHomeHostName_impl this = do
-        location <- newIORef (javaNull)
-        if (jio (isTestingMode ((jget ((jget (org.allbinary).globals)).uRLGLOBALS)))) then do
-            assignedValue <- (BasicStoreFront.getTestHomeHostName this)
-            jset location (assignedValue)
-        else do
-            assignedValue <- (BasicStoreFront.getHomeHostName this)
-            jset location (assignedValue)
-        pure ((jget location))
-
-
-getCurrentHomeHostNamePath :: (JavaObjectClass this_) => this_ -> IO (String)
-getCurrentHomeHostNamePath object_ = jmethod object_ "getCurrentHomeHostNamePath" (\() -> (getCurrentHomeHostNamePath_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getCurrentHomeHostNamePath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getCurrentHomeHostNamePath_super object_ = (getCurrentHomeHostNamePath_impl (javaCast object_ :: BasicStoreFront))
-
-getCurrentHomeHostNamePath_impl :: BasicStoreFront -> IO (String)
-getCurrentHomeHostNamePath_impl this = do
-        location <- newIORef (javaNull)
-        if (jio (isTestingMode ((jget ((jget (org.allbinary).globals)).uRLGLOBALS)))) then do
-            assignedValue <- (BasicStoreFront.getTestHomeHostNamePath this)
-            jset location (assignedValue)
-        else do
-            assignedValue <- (BasicStoreFront.getHomeHostNamePath this)
-            jset location (assignedValue)
-        pure ((jget location))
-
-
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: BasicStoreFront))
-
-getName_impl :: BasicStoreFront -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
-
-
-getUserName :: (JavaObjectClass this_) => this_ -> IO (String)
-getUserName object_ = jmethod object_ "getUserName" (\() -> (getUserName_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getUserName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getUserName_super object_ = (getUserName_impl (javaCast object_ :: BasicStoreFront))
-
-getUserName_impl :: BasicStoreFront -> IO (String)
-getUserName_impl this = do
-        pure ((jget (this).userName))
-
-
-getBasketName :: (JavaObjectClass this_) => this_ -> IO (String)
-getBasketName object_ = jmethod object_ "getBasketName" (\() -> (getBasketName_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getBasketName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getBasketName_super object_ = (getBasketName_impl (javaCast object_ :: BasicStoreFront))
-
-getBasketName_impl :: BasicStoreFront -> IO (String)
-getBasketName_impl this = do
-        pure ((jget (this).basketName))
-
-
-getHomeHostName :: (JavaObjectClass this_) => this_ -> IO (String)
-getHomeHostName object_ = jmethod object_ "getHomeHostName" (\() -> (getHomeHostName_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getHomeHostName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getHomeHostName_super object_ = (getHomeHostName_impl (javaCast object_ :: BasicStoreFront))
-
-getHomeHostName_impl :: BasicStoreFront -> IO (String)
-getHomeHostName_impl this = do
-        pure ((jget (this).homeHostName))
-
-
-getHomeHostNamePath :: (JavaObjectClass this_) => this_ -> IO (String)
-getHomeHostNamePath object_ = jmethod object_ "getHomeHostNamePath" (\() -> (getHomeHostNamePath_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getHomeHostNamePath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getHomeHostNamePath_super object_ = (getHomeHostNamePath_impl (javaCast object_ :: BasicStoreFront))
-
-getHomeHostNamePath_impl :: BasicStoreFront -> IO (String)
-getHomeHostNamePath_impl this = do
-        pure ((jget (this).homeHostNamePath))
-
-
-getHostName :: (JavaObjectClass this_) => this_ -> IO (String)
-getHostName object_ = jmethod object_ "getHostName" (\() -> (getHostName_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getHostName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getHostName_super object_ = (getHostName_impl (javaCast object_ :: BasicStoreFront))
-
-getHostName_impl :: BasicStoreFront -> IO (String)
-getHostName_impl this = do
-        pure ((jget (this).hostName))
-
-
-getHostNamePath :: (JavaObjectClass this_) => this_ -> IO (String)
-getHostNamePath object_ = jmethod object_ "getHostNamePath" (\() -> (getHostNamePath_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getHostNamePath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getHostNamePath_super object_ = (getHostNamePath_impl (javaCast object_ :: BasicStoreFront))
-
-getHostNamePath_impl :: BasicStoreFront -> IO (String)
-getHostNamePath_impl this = do
-        pure ((jget (this).hostNamePath))
-
-
-getTestHomeHostName :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHomeHostName object_ = jmethod object_ "getTestHomeHostName" (\() -> (getTestHomeHostName_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getTestHomeHostName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHomeHostName_super object_ = (getTestHomeHostName_impl (javaCast object_ :: BasicStoreFront))
-
-getTestHomeHostName_impl :: BasicStoreFront -> IO (String)
-getTestHomeHostName_impl this = do
-        pure ((jget (this).testHomeHostName))
-
-
-getTestHomeHostNamePath :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHomeHostNamePath object_ = jmethod object_ "getTestHomeHostNamePath" (\() -> (getTestHomeHostNamePath_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getTestHomeHostNamePath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHomeHostNamePath_super object_ = (getTestHomeHostNamePath_impl (javaCast object_ :: BasicStoreFront))
-
-getTestHomeHostNamePath_impl :: BasicStoreFront -> IO (String)
-getTestHomeHostNamePath_impl this = do
-        pure ((jget (this).testHomeHostNamePath))
-
-
-getTestHostName :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHostName object_ = jmethod object_ "getTestHostName" (\() -> (getTestHostName_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getTestHostName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHostName_super object_ = (getTestHostName_impl (javaCast object_ :: BasicStoreFront))
-
-getTestHostName_impl :: BasicStoreFront -> IO (String)
-getTestHostName_impl this = do
-        pure ((jget (this).testHostName))
-
-
-getTestHostNamePath :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHostNamePath object_ = jmethod object_ "getTestHostNamePath" (\() -> (getTestHostNamePath_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getTestHostNamePath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestHostNamePath_super object_ = (getTestHostNamePath_impl (javaCast object_ :: BasicStoreFront))
-
-getTestHostNamePath_impl :: BasicStoreFront -> IO (String)
-getTestHostNamePath_impl this = do
-        pure ((jget (this).testHostNamePath))
-
-
-getStaticPath :: (JavaObjectClass this_) => this_ -> IO (String)
-getStaticPath object_ = jmethod object_ "getStaticPath" (\() -> (getStaticPath_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getStaticPath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getStaticPath_super object_ = (getStaticPath_impl (javaCast object_ :: BasicStoreFront))
-
-getStaticPath_impl :: BasicStoreFront -> IO (String)
-getStaticPath_impl this = do
-        pure ((jget (this).staticPath))
-
-
-getCategoryPath :: (JavaObjectClass this_) => this_ -> IO (String)
-getCategoryPath object_ = jmethod object_ "getCategoryPath" (\() -> (getCategoryPath_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getCategoryPath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getCategoryPath_super object_ = (getCategoryPath_impl (javaCast object_ :: BasicStoreFront))
-
-getCategoryPath_impl :: BasicStoreFront -> IO (String)
-getCategoryPath_impl this = do
-        pure ((jget (this).categoryPath))
-
-
-getInventoryControl :: (JavaObjectClass this_) => this_ -> IO (String)
-getInventoryControl object_ = jmethod object_ "getInventoryControl" (\() -> (getInventoryControl_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getInventoryControl_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getInventoryControl_super object_ = (getInventoryControl_impl (javaCast object_ :: BasicStoreFront))
-
-getInventoryControl_impl :: BasicStoreFront -> IO (String)
-getInventoryControl_impl this = do
-        pure ((jget (this).inventoryControl))
-
-
--- throws Exception
-getSubStores :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getSubStores object_ = jmethod object_ "getSubStores" (\() -> (getSubStores_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getSubStores_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getSubStores_super object_ = (getSubStores_impl (javaCast object_ :: BasicStoreFront))
-
-getSubStores_impl :: BasicStoreFront -> IO (BasicArrayList.BasicArrayList)
-getSubStores_impl this = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            tokenizer <- (Tokenizer.new_1 (jget ((jio (CommonSeps.getInstance))).sEMICOLON))
-            subStoreVector <- (Tokenizer.getTokensFromString tokenizer (jget (this).subStores) (jio (BasicArrayListD.new_)))
-            pure (subStoreVector)
-
-
-getTagLocation :: (JavaObjectClass this_) => this_ -> IO (String)
-getTagLocation object_ = jmethod object_ "getTagLocation" (\() -> (getTagLocation_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getTagLocation_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTagLocation_super object_ = (getTagLocation_impl (javaCast object_ :: BasicStoreFront))
-
-getTagLocation_impl :: BasicStoreFront -> IO (String)
-getTagLocation_impl this = do
-        pure ((jget (this).tagLocation))
-
-
-getPackageLocation :: (JavaObjectClass this_) => this_ -> IO (String)
-getPackageLocation object_ = jmethod object_ "getPackageLocation" (\() -> (getPackageLocation_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getPackageLocation_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getPackageLocation_super object_ = (getPackageLocation_impl (javaCast object_ :: BasicStoreFront))
-
-getPackageLocation_impl :: BasicStoreFront -> IO (String)
-getPackageLocation_impl this = do
-        pure ((jget (this).packageLocation))
-
-
-getFtp :: (JavaObjectClass this_) => this_ -> IO (String)
-getFtp object_ = jmethod object_ "getFtp" (\() -> (getFtp_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getFtp_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getFtp_super object_ = (getFtp_impl (javaCast object_ :: BasicStoreFront))
-
-getFtp_impl :: BasicStoreFront -> IO (String)
-getFtp_impl this = do
-        pure ((jget (this).ftp))
-
-
-getFtpUserName :: (JavaObjectClass this_) => this_ -> IO (String)
-getFtpUserName object_ = jmethod object_ "getFtpUserName" (\() -> (getFtpUserName_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getFtpUserName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getFtpUserName_super object_ = (getFtpUserName_impl (javaCast object_ :: BasicStoreFront))
-
-getFtpUserName_impl :: BasicStoreFront -> IO (String)
-getFtpUserName_impl this = do
-        pure ((jget (this).ftpUserName))
-
-
-getFtpPassword :: (JavaObjectClass this_) => this_ -> IO (String)
-getFtpPassword object_ = jmethod object_ "getFtpPassword" (\() -> (getFtpPassword_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getFtpPassword_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getFtpPassword_super object_ = (getFtpPassword_impl (javaCast object_ :: BasicStoreFront))
-
-getFtpPassword_impl :: BasicStoreFront -> IO (String)
-getFtpPassword_impl this = do
-        pure ((jget (this).ftpPassword))
-
-
-getTestFtp :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestFtp object_ = jmethod object_ "getTestFtp" (\() -> (getTestFtp_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getTestFtp_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestFtp_super object_ = (getTestFtp_impl (javaCast object_ :: BasicStoreFront))
-
-getTestFtp_impl :: BasicStoreFront -> IO (String)
-getTestFtp_impl this = do
-        pure ((jget (this).testFtp))
-
-
-getTestFtpUserName :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestFtpUserName object_ = jmethod object_ "getTestFtpUserName" (\() -> (getTestFtpUserName_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getTestFtpUserName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestFtpUserName_super object_ = (getTestFtpUserName_impl (javaCast object_ :: BasicStoreFront))
-
-getTestFtpUserName_impl :: BasicStoreFront -> IO (String)
-getTestFtpUserName_impl this = do
-        pure ((jget (this).testFtpUserName))
-
-
-getTestFtpPassword :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestFtpPassword object_ = jmethod object_ "getTestFtpPassword" (\() -> (getTestFtpPassword_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getTestFtpPassword_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestFtpPassword_super object_ = (getTestFtpPassword_impl (javaCast object_ :: BasicStoreFront))
-
-getTestFtpPassword_impl :: BasicStoreFront -> IO (String)
-getTestFtpPassword_impl this = do
-        pure ((jget (this).testFtpPassword))
-
-
-getFtpPath :: (JavaObjectClass this_) => this_ -> IO (String)
-getFtpPath object_ = jmethod object_ "getFtpPath" (\() -> (getFtpPath_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getFtpPath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getFtpPath_super object_ = (getFtpPath_impl (javaCast object_ :: BasicStoreFront))
-
-getFtpPath_impl :: BasicStoreFront -> IO (String)
-getFtpPath_impl this = do
-        pure ((jget (this).ftpPath))
-
-
-getTestFtpPath :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestFtpPath object_ = jmethod object_ "getTestFtpPath" (\() -> (getTestFtpPath_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getTestFtpPath_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTestFtpPath_super object_ = (getTestFtpPath_impl (javaCast object_ :: BasicStoreFront))
-
-getTestFtpPath_impl :: BasicStoreFront -> IO (String)
-getTestFtpPath_impl this = do
-        pure ((jget (this).testFtpPath))
-
-
-getTimeCreated :: (JavaObjectClass this_) => this_ -> IO (String)
-getTimeCreated object_ = jmethod object_ "getTimeCreated" (\() -> (getTimeCreated_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getTimeCreated_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getTimeCreated_super object_ = (getTimeCreated_impl (javaCast object_ :: BasicStoreFront))
-
-getTimeCreated_impl :: BasicStoreFront -> IO (String)
-getTimeCreated_impl this = do
-        pure ((jget (this).timeCreated))
-
-
-getLastModified :: (JavaObjectClass this_) => this_ -> IO (String)
-getLastModified object_ = jmethod object_ "getLastModified" (\() -> (getLastModified_impl (javaCast object_ :: BasicStoreFront))) ()
-
-getLastModified_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getLastModified_super object_ = (getLastModified_impl (javaCast object_ :: BasicStoreFront))
-
-getLastModified_impl :: BasicStoreFront -> IO (String)
-getLastModified_impl this = do
-        pure ((jget (this).lastModified))
-
+module Org.Allbinary.Business.Context.Modules.Storefronts.BasicStoreFront exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.business.context.modules.storefronts
+-}
+
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Business.Context.Modules.Storefronts.BasicStoreFrontInterface as BasicStoreFrontInterface
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Business.Entry.EntryData as EntryData
+import Org.Allbinary.Business.Context.Modules.Storefront.StoreFrontData as StoreFrontData
+import Org.Allbinary.Logic.String.Tokens.Tokenizer as Tokenizer
+import Org.Allbinary.Globals.URLGLOBALS as URLGLOBALS
+import Org.Allbinary.Business.User.UserData as UserData
+
+
+jclass : String
+jclass =
+    "BasicStoreFront"
+
+
+jchain : List String
+jchain =
+    [ "BasicStoreFront" ]
+        ++ BasicStoreFrontInterface.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "name", JR.defaultOf "" ), ( "userName", JR.defaultOf "" ), ( "basketName", JR.defaultOf "" ), ( "homeHostName", JR.defaultOf "" ), ( "homeHostNamePath", JR.defaultOf "" ), ( "hostName", JR.defaultOf "" ), ( "hostNamePath", JR.defaultOf "" ), ( "testHomeHostName", JR.defaultOf "" ), ( "testHomeHostNamePath", JR.defaultOf "" ), ( "testHostName", JR.defaultOf "" ), ( "testHostNamePath", JR.defaultOf "" ), ( "imagePath", JR.defaultOf "" ), ( "staticPath", JR.defaultOf "" ), ( "categoryPath", JR.defaultOf "" ), ( "inventoryControl", JR.defaultOf "" ), ( "subStores", JR.defaultOf "" ), ( "tagLocation", JR.defaultOf "" ), ( "packageLocation", JR.defaultOf "" ), ( "ftp", JR.defaultOf "" ), ( "ftpPath", JR.defaultOf "" ), ( "ftpUserName", JR.defaultOf "" ), ( "ftpPassword", JR.defaultOf "" ), ( "testFtp", JR.defaultOf "" ), ( "testFtpPath", JR.defaultOf "" ), ( "testFtpUserName", JR.defaultOf "" ), ( "testFtpPassword", JR.defaultOf "" ), ( "timeCreated", JR.defaultOf "" ), ( "lastModified", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getTestHtmlPath_0", jm_getTestHtmlPath_0 )
+        , ( "getCurrentHostName_0", jm_getCurrentHostName_0 )
+        , ( "getCurrentHostNamePath_0", jm_getCurrentHostNamePath_0 )
+        , ( "getCurrentHomeHostName_0", jm_getCurrentHomeHostName_0 )
+        , ( "getCurrentHomeHostNamePath_0", jm_getCurrentHomeHostNamePath_0 )
+        , ( "getName_0", jm_getName_0 )
+        , ( "getUserName_0", jm_getUserName_0 )
+        , ( "getBasketName_0", jm_getBasketName_0 )
+        , ( "getHomeHostName_0", jm_getHomeHostName_0 )
+        , ( "getHomeHostNamePath_0", jm_getHomeHostNamePath_0 )
+        , ( "getHostName_0", jm_getHostName_0 )
+        , ( "getHostNamePath_0", jm_getHostNamePath_0 )
+        , ( "getTestHomeHostName_0", jm_getTestHomeHostName_0 )
+        , ( "getTestHomeHostNamePath_0", jm_getTestHomeHostNamePath_0 )
+        , ( "getTestHostName_0", jm_getTestHostName_0 )
+        , ( "getTestHostNamePath_0", jm_getTestHostNamePath_0 )
+        , ( "getStaticPath_0", jm_getStaticPath_0 )
+        , ( "getCategoryPath_0", jm_getCategoryPath_0 )
+        , ( "getInventoryControl_0", jm_getInventoryControl_0 )
+        , ( "getSubStores_0", jm_getSubStores_0 )
+        , ( "getTagLocation_0", jm_getTagLocation_0 )
+        , ( "getPackageLocation_0", jm_getPackageLocation_0 )
+        , ( "getFtp_0", jm_getFtp_0 )
+        , ( "getFtpUserName_0", jm_getFtpUserName_0 )
+        , ( "getFtpPassword_0", jm_getFtpPassword_0 )
+        , ( "getTestFtp_0", jm_getTestFtp_0 )
+        , ( "getTestFtpUserName_0", jm_getTestFtpUserName_0 )
+        , ( "getTestFtpPassword_0", jm_getTestFtpPassword_0 )
+        , ( "getFtpPath_0", jm_getFtpPath_0 )
+        , ( "getTestFtpPath_0", jm_getTestFtpPath_0 )
+        , ( "getTimeCreated_0", jm_getTimeCreated_0 )
+        , ( "getLastModified_0", jm_getLastModified_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicStoreFront"
+        [ ( "jm_getTestHtmlPath_0", jm_getTestHtmlPath_0 ), ( "jm_getCurrentHostName_0", jm_getCurrentHostName_0 ), ( "jm_getCurrentHostNamePath_0", jm_getCurrentHostNamePath_0 ), ( "jm_getCurrentHomeHostName_0", jm_getCurrentHomeHostName_0 ), ( "jm_getCurrentHomeHostNamePath_0", jm_getCurrentHomeHostNamePath_0 ), ( "jm_getName_0", jm_getName_0 ), ( "jm_getUserName_0", jm_getUserName_0 ), ( "jm_getBasketName_0", jm_getBasketName_0 ), ( "jm_getHomeHostName_0", jm_getHomeHostName_0 ), ( "jm_getHomeHostNamePath_0", jm_getHomeHostNamePath_0 ), ( "jm_getHostName_0", jm_getHostName_0 ), ( "jm_getHostNamePath_0", jm_getHostNamePath_0 ), ( "jm_getTestHomeHostName_0", jm_getTestHomeHostName_0 ), ( "jm_getTestHomeHostNamePath_0", jm_getTestHomeHostNamePath_0 ), ( "jm_getTestHostName_0", jm_getTestHostName_0 ), ( "jm_getTestHostNamePath_0", jm_getTestHostNamePath_0 ), ( "jm_getStaticPath_0", jm_getStaticPath_0 ), ( "jm_getCategoryPath_0", jm_getCategoryPath_0 ), ( "jm_getInventoryControl_0", jm_getInventoryControl_0 ), ( "jm_getSubStores_0", jm_getSubStores_0 ), ( "jm_getTagLocation_0", jm_getTagLocation_0 ), ( "jm_getPackageLocation_0", jm_getPackageLocation_0 ), ( "jm_getFtp_0", jm_getFtp_0 ), ( "jm_getFtpUserName_0", jm_getFtpUserName_0 ), ( "jm_getFtpPassword_0", jm_getFtpPassword_0 ), ( "jm_getTestFtp_0", jm_getTestFtp_0 ), ( "jm_getTestFtpUserName_0", jm_getTestFtpUserName_0 ), ( "jm_getTestFtpPassword_0", jm_getTestFtpPassword_0 ), ( "jm_getFtpPath_0", jm_getFtpPath_0 ), ( "jm_getTestFtpPath_0", jm_getTestFtpPath_0 ), ( "jm_getTimeCreated_0", jm_getTimeCreated_0 ), ( "jm_getLastModified_0", jm_getLastModified_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "storeHashMap", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.declare "storeFrontData" "" (JR.callStatic StoreFrontData.jm_getInstance_0 []), 
+                    JR.exec (JR.setField "name" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "NAME" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "userName" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ UserData.jstatic_USERNAME ])), 
+                    JR.exec (JR.setField "basketName" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "NAME" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "homeHostName" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "HOMEHOSTNAME" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "homeHostNamePath" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "HOMEHOSTNAMEPATH" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "hostName" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "HOSTNAME" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "hostNamePath" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "HOSTNAMEPATH" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "testHomeHostName" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "TESTHOMEHOSTNAME" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "testHomeHostNamePath" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "TESTHOMEHOSTNAMEPATH" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "testHostName" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "TESTHOSTNAME" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "testHostNamePath" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "TESTHOSTNAMEPATH" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "imagePath" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "IMAGEPATH" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "staticPath" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "STATICPATH" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "categoryPath" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "CATEGORYPATH" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "inventoryControl" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "INVENTORYCONTROL" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "subStores" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "SUBSTORES" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "tagLocation" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "TAGLOCATION" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "packageLocation" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "PACKAGELOCATION" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "ftp" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "FTP" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "ftpPath" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "FTPPATH" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "ftpUserName" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "FTPUSERNAME" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "ftpPassword" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "FTPPASSWORD" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "testFtp" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "TESTFTP" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "testFtpPath" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "TESTFTPPATH" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "testFtpUserName" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "TESTFTPUSERNAME" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "testFtpPassword" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "TESTFTPPASSWORD" (JR.local "storeFrontData")) ])), 
+                    JR.exec (JR.setField "timeCreated" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "TIMECREATED" (JR.callStatic EntryData.jm_getInstance_0 [])) ])), 
+                    JR.exec (JR.setField "lastModified" "" JR.this (JR.invoke "get_1" (JR.local "storeHashMap") [ (JR.field "LASTMODIFIED" (JR.callStatic EntryData.jm_getInstance_0 [])) ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getTestHtmlPath_0 : JR.Method
+jm_getTestHtmlPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.plus (JR.callStatic URLGLOBALS.jm_getTestHtmlPath_0 []) (JR.invoke "getCurrentHostNamePath_0" JR.this [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCurrentHostName_0 : JR.Method
+jm_getCurrentHostName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "location" "" JR.null, 
+                    JR.ifElse (JR.callStatic URLGLOBALS.jm_isTestingMode_0 []) (JR.run [ 
+                        JR.exec (JR.setLocal "location" "" (JR.invoke "getTestHostName_0" JR.this [])) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "location" "" (JR.invoke "getHostName_0" JR.this [])) ]), 
+                    JR.return (JR.local "location") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCurrentHostNamePath_0 : JR.Method
+jm_getCurrentHostNamePath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "location" "" JR.null, 
+                    JR.ifElse (JR.callStatic URLGLOBALS.jm_isTestingMode_0 []) (JR.run [ 
+                        JR.exec (JR.setLocal "location" "" (JR.invoke "getTestHostNamePath_0" JR.this [])) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "location" "" (JR.invoke "getHostNamePath_0" JR.this [])) ]), 
+                    JR.return (JR.local "location") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCurrentHomeHostName_0 : JR.Method
+jm_getCurrentHomeHostName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "location" "" JR.null, 
+                    JR.ifElse (JR.callStatic URLGLOBALS.jm_isTestingMode_0 []) (JR.run [ 
+                        JR.exec (JR.setLocal "location" "" (JR.invoke "getTestHomeHostName_0" JR.this [])) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "location" "" (JR.invoke "getHomeHostName_0" JR.this [])) ]), 
+                    JR.return (JR.local "location") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCurrentHomeHostNamePath_0 : JR.Method
+jm_getCurrentHomeHostNamePath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "location" "" JR.null, 
+                    JR.ifElse (JR.callStatic URLGLOBALS.jm_isTestingMode_0 []) (JR.run [ 
+                        JR.exec (JR.setLocal "location" "" (JR.invoke "getTestHomeHostNamePath_0" JR.this [])) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "location" "" (JR.invoke "getHomeHostNamePath_0" JR.this [])) ]), 
+                    JR.return (JR.local "location") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getUserName_0 : JR.Method
+jm_getUserName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "userName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBasketName_0 : JR.Method
+jm_getBasketName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "basketName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHomeHostName_0 : JR.Method
+jm_getHomeHostName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "homeHostName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHomeHostNamePath_0 : JR.Method
+jm_getHomeHostNamePath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "homeHostNamePath") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHostName_0 : JR.Method
+jm_getHostName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "hostName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHostNamePath_0 : JR.Method
+jm_getHostNamePath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "hostNamePath") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTestHomeHostName_0 : JR.Method
+jm_getTestHomeHostName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "testHomeHostName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTestHomeHostNamePath_0 : JR.Method
+jm_getTestHomeHostNamePath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "testHomeHostNamePath") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTestHostName_0 : JR.Method
+jm_getTestHostName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "testHostName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTestHostNamePath_0 : JR.Method
+jm_getTestHostNamePath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "testHostNamePath") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getStaticPath_0 : JR.Method
+jm_getStaticPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "staticPath") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getCategoryPath_0 : JR.Method
+jm_getCategoryPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "categoryPath") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInventoryControl_0 : JR.Method
+jm_getInventoryControl_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "inventoryControl") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSubStores_0 : JR.Method
+jm_getSubStores_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "tokenizer" "" (JR.new Tokenizer.jnew_1 [ (JR.field "SEMICOLON" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
+                        JR.declare "subStoreVector" "" (JR.invoke "getTokensFromString_2" (JR.local "tokenizer") [ (JR.thisField "subStores"), (JR.new BasicArrayListD.jnew_0 []) ]), 
+                        JR.return (JR.local "subStoreVector") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTagLocation_0 : JR.Method
+jm_getTagLocation_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "tagLocation") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPackageLocation_0 : JR.Method
+jm_getPackageLocation_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "packageLocation") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFtp_0 : JR.Method
+jm_getFtp_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "ftp") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFtpUserName_0 : JR.Method
+jm_getFtpUserName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "ftpUserName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFtpPassword_0 : JR.Method
+jm_getFtpPassword_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "ftpPassword") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTestFtp_0 : JR.Method
+jm_getTestFtp_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "testFtp") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTestFtpUserName_0 : JR.Method
+jm_getTestFtpUserName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "testFtpUserName") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTestFtpPassword_0 : JR.Method
+jm_getTestFtpPassword_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "testFtpPassword") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFtpPath_0 : JR.Method
+jm_getFtpPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "ftpPath") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTestFtpPath_0 : JR.Method
+jm_getTestFtpPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "testFtpPath") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTimeCreated_0 : JR.Method
+jm_getTimeCreated_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "timeCreated") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLastModified_0 : JR.Method
+jm_getLastModified_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "lastModified") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

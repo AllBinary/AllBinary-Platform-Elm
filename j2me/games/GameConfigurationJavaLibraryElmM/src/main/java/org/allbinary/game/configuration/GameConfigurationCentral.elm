@@ -1,299 +1,229 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
-module GameConfigurationCentral where
+module Org.Allbinary.Game.Configuration.GameConfigurationCentral exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified GameConfiguration -- same package or java.lang
-import qualified GameConfigurationPersistanceSingleton -- org.allbinary.game.configuration.persistance.GameConfigurationPersistanceSingleton
-import qualified KeyValuePersistance -- org.allbinary.game.configuration.persistance.KeyValuePersistance
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration
+-}
 
-data GameConfigurationCentral = GameConfigurationCentral
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , sCALE :: IORef (GameConfiguration.GameConfiguration)
-    , oRIENTATION :: IORef (GameConfiguration.GameConfiguration)
-    , sENSOR_UPDATE_RATE :: IORef (GameConfiguration.GameConfiguration)
-    , vIBRATION :: IORef (GameConfiguration.GameConfiguration)
-    , cHALLENGE_LEVEL :: IORef (GameConfiguration.GameConfiguration)
-    , cOLLIDE_DAMAGE :: IORef (GameConfiguration.GameConfiguration)
-    , dURABILITY_CHALLENGE_LEVEL :: IORef (GameConfiguration.GameConfiguration)
-    , sPEED_CHALLENGE_LEVEL :: IORef (GameConfiguration.GameConfiguration)
-    , aTTACK_CHALLENGE_LEVEL :: IORef (GameConfiguration.GameConfiguration)
-    , cONTROL_LEVEL :: IORef (GameConfiguration.GameConfiguration)
-    , pLAYER_INPUT_WAIT :: IORef (GameConfiguration.GameConfiguration)
-    , sPEED :: IORef (GameConfiguration.GameConfiguration)
-    , sOUND_VOLUME :: IORef (GameConfiguration.GameConfiguration)
-    , mAX_GAME_OBJECTS :: IORef (GameConfiguration.GameConfiguration)
-    , mAX_LAYERS :: IORef (GameConfiguration.GameConfiguration)
-    , gameControlFidelity :: IORef (Int)
-    }
-
-instance JavaNull GameConfigurationCentral where
-    javaNull = javaNullRecord "GameConfigurationCentral"
-
-instance JavaEquals GameConfigurationCentral where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameConfigurationCentral where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameConfigurationCentral where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-newRecord_ :: IO GameConfigurationCentral
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    sCALE <- newIORef javaNull
-    oRIENTATION <- newIORef javaNull
-    sENSOR_UPDATE_RATE <- newIORef javaNull
-    vIBRATION <- newIORef javaNull
-    cHALLENGE_LEVEL <- newIORef javaNull
-    cOLLIDE_DAMAGE <- newIORef javaNull
-    dURABILITY_CHALLENGE_LEVEL <- newIORef javaNull
-    sPEED_CHALLENGE_LEVEL <- newIORef javaNull
-    aTTACK_CHALLENGE_LEVEL <- newIORef javaNull
-    cONTROL_LEVEL <- newIORef javaNull
-    pLAYER_INPUT_WAIT <- newIORef javaNull
-    sPEED <- newIORef javaNull
-    sOUND_VOLUME <- newIORef javaNull
-    mAX_GAME_OBJECTS <- newIORef javaNull
-    mAX_LAYERS <- newIORef javaNull
-    gameControlFidelity <- newIORef 0
-    let this = GameConfigurationCentral header_ logUtil sCALE oRIENTATION sENSOR_UPDATE_RATE vIBRATION cHALLENGE_LEVEL cOLLIDE_DAMAGE dURABILITY_CHALLENGE_LEVEL sPEED_CHALLENGE_LEVEL aTTACK_CHALLENGE_LEVEL cONTROL_LEVEL pLAYER_INPUT_WAIT sPEED sOUND_VOLUME mAX_GAME_OBJECTS mAX_LAYERS gameControlFidelity
-    jregisterLevel header_ this
-    jregisterMethod header_ "load" (\() -> load_impl this)
-    jregisterMethod header_ "setGameControlFidelity" (\() -> setGameControlFidelity_impl this)
-    jregisterMethod header_ "getGameControlFidelity" (\() -> getGameControlFidelity_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: GameConfigurationCentral -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.sCALE (javaNull)
-    jset this.oRIENTATION (javaNull)
-    jset this.sENSOR_UPDATE_RATE (javaNull)
-    jset this.vIBRATION (javaNull)
-    jset this.cHALLENGE_LEVEL (javaNull)
-    jset this.cOLLIDE_DAMAGE (javaNull)
-    jset this.dURABILITY_CHALLENGE_LEVEL (javaNull)
-    jset this.sPEED_CHALLENGE_LEVEL (javaNull)
-    jset this.aTTACK_CHALLENGE_LEVEL (javaNull)
-    jset this.cONTROL_LEVEL (javaNull)
-    jset this.pLAYER_INPUT_WAIT (javaNull)
-    jset this.sPEED (javaNull)
-    jset this.sOUND_VOLUME (javaNull)
-    jset this.mAX_GAME_OBJECTS (javaNull)
-    jset this.mAX_LAYERS (javaNull)
-    jset this.gameControlFidelity (36)
-    pure ()
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.GameConfiguration as GameConfiguration
+import Org.Allbinary.Game.Configuration.Persistance.GameConfigurationPersistanceSingleton as GameConfigurationPersistanceSingleton
+import JInteger
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (GameConfigurationCentral)
-getInstance = do
-        when ((jget GameConfigurationCentral.sINGLETON) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset GameConfigurationCentral.sINGLETON (assignedValue)
-        pure ((javaCast (jget GameConfigurationCentral.sINGLETON) :: GameConfigurationCentral))
-
-new_ :: IO GameConfigurationCentral
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameConfigurationCentral -> IO ()
-init_ this = do
-        initFields_ this
-        smallIntegerSingletonFactory <- (SmallIntegerSingletonFactory.getInstance)
-        assignedValue <- (GameConfiguration.new_4 "Scale" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 2)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 2)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 3)))
-        jset (this).sCALE (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Orientation" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 0)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 0)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 8)))
-        jset (this).oRIENTATION (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Sensor Update Rate" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 0)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 0)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 3)))
-        jset (this).sENSOR_UPDATE_RATE (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Vibration" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 0)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 0)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 3)))
-        jset (this).vIBRATION (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Global Challenge Level" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 3)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 1)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 10)))
-        jset (this).cHALLENGE_LEVEL (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Collide Damage Challenge Level" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 3)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 1)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 10)))
-        jset (this).cOLLIDE_DAMAGE (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Enemy Durability Challenge Level" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 3)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 1)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 10)))
-        jset (this).dURABILITY_CHALLENGE_LEVEL (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Enemy Speed Challenge Level" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 3)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 1)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 10)))
-        jset (this).sPEED_CHALLENGE_LEVEL (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Enemy Attack Challenge Level" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 3)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 1)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 10)))
-        jset (this).aTTACK_CHALLENGE_LEVEL (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Control Fidelity" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 5)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 1)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 10)))
-        jset (this).cONTROL_LEVEL (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Input Wait" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 5)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 1)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 10)))
-        jset (this).pLAYER_INPUT_WAIT (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Game Speed (Device Specific)" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 5)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 1)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 10)))
-        jset (this).sPEED (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Sound Volume" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 6)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 0)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 10)))
-        jset (this).sOUND_VOLUME (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Max Game Objects" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 20)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 1)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 50)))
-        jset (this).mAX_GAME_OBJECTS (assignedValue)
-        assignedValue <- (GameConfiguration.new_4 "Max Layers" (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 20)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 1)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory 50)))
-        jset (this).mAX_LAYERS (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "GameConfigurationCentral"
 
 
-load :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-load object_ a1 = jmethod object_ "load" (\() -> (load_impl (javaCast object_ :: GameConfigurationCentral))) () a1
-
-load_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-load_super object_ a1 = (load_impl (javaCast object_ :: GameConfigurationCentral)) a1
-
-load_impl :: GameConfigurationCentral -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-load_impl this abeClientInformation = do
-        commonStrings <- (CommonStrings.getInstance)
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).lOAD) e)
-            ) $ do
-            smallIntegerSingletonFactory <- (SmallIntegerSingletonFactory.getInstance)
-            keyValuePersistance <- (fmap (\value_ -> javaCast value_ :: KeyValuePersistance.KeyValuePersistance) (GameConfigurationPersistanceSingleton.getInstance))
-            Control.Monad.void (KeyValuePersistance.clear keyValuePersistance)
-            Control.Monad.void (KeyValuePersistance.loadAll keyValuePersistance abeClientInformation)
-            list <- (KeyValuePersistance.getIds keyValuePersistance)
-            if ((jio (BasicArrayList.size list)) > 0) then do
-                hashtable <- (KeyValuePersistance.get keyValuePersistance 0)
-                let anyType = (javaCast (jio (GameConfiguration.getName ((jget (this).sCALE)))) :: Any.Any)
-                let value = (javaCast (jio (ABHashtable.get hashtable anyType)) :: String)
-                Control.Monad.void (GameConfiguration.setValue ((jget (this).sCALE)) (jio (SmallIntegerSingletonFactory.getAt smallIntegerSingletonFactory (jio (jparseInt value)))))
-            else do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) "No Game Configuration To Load" this (jget (commonStrings).lOAD))
-        pure ()
+jchain : List String
+jchain =
+    [ "GameConfigurationCentral" ]
 
 
-setGameControlFidelity :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setGameControlFidelity object_ a1 = jmethod object_ "setGameControlFidelity" (\() -> (setGameControlFidelity_impl (javaCast object_ :: GameConfigurationCentral))) () a1
-
-setGameControlFidelity_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setGameControlFidelity_super object_ a1 = (setGameControlFidelity_impl (javaCast object_ :: GameConfigurationCentral)) a1
-
-setGameControlFidelity_impl :: GameConfigurationCentral -> Int -> IO (())
-setGameControlFidelity_impl this gameControlFidelity = do
-        jset (this).gameControlFidelity (gameControlFidelity)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "SCALE", JR.defaultOf "" ), ( "ORIENTATION", JR.defaultOf "" ), ( "SENSOR_UPDATE_RATE", JR.defaultOf "" ), ( "VIBRATION", JR.defaultOf "" ), ( "CHALLENGE_LEVEL", JR.defaultOf "" ), ( "COLLIDE_DAMAGE", JR.defaultOf "" ), ( "DURABILITY_CHALLENGE_LEVEL", JR.defaultOf "" ), ( "SPEED_CHALLENGE_LEVEL", JR.defaultOf "" ), ( "ATTACK_CHALLENGE_LEVEL", JR.defaultOf "" ), ( "CONTROL_LEVEL", JR.defaultOf "" ), ( "PLAYER_INPUT_WAIT", JR.defaultOf "" ), ( "SPEED", JR.defaultOf "" ), ( "SOUND_VOLUME", JR.defaultOf "" ), ( "MAX_GAME_OBJECTS", JR.defaultOf "" ), ( "MAX_LAYERS", JR.defaultOf "" ), ( "gameControlFidelity", JR.defaultOf "I" ) ]
 
 
-getGameControlFidelity :: (JavaObjectClass this_) => this_ -> IO (Int)
-getGameControlFidelity object_ = jmethod object_ "getGameControlFidelity" (\() -> (getGameControlFidelity_impl (javaCast object_ :: GameConfigurationCentral))) ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "load_1", jm_load_1 )
+        , ( "setGameControlFidelity_1", jm_setGameControlFidelity_1 )
+        , ( "getGameControlFidelity_0", jm_getGameControlFidelity_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
-getGameControlFidelity_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getGameControlFidelity_super object_ = (getGameControlFidelity_impl (javaCast object_ :: GameConfigurationCentral))
 
-getGameControlFidelity_impl :: GameConfigurationCentral -> IO (Int)
-getGameControlFidelity_impl this = do
-        pure ((jget (this).gameControlFidelity))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameConfigurationCentral"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_load_1", jm_load_1 ), ( "jm_setGameControlFidelity_1", jm_setGameControlFidelity_1 ), ( "jm_getGameControlFidelity_0", jm_getGameControlFidelity_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: GameConfigurationCentral))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: GameConfigurationCentral))
 
-toString_impl :: GameConfigurationCentral -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        commonStrings <- (CommonSeps.getInstance)
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).sCALE)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).sCALE)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).oRIENTATION)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).oRIENTATION)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).sENSOR_UPDATE_RATE)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).sENSOR_UPDATE_RATE)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).vIBRATION)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).vIBRATION)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).cHALLENGE_LEVEL)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).cHALLENGE_LEVEL)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).cOLLIDE_DAMAGE)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).cOLLIDE_DAMAGE)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).dURABILITY_CHALLENGE_LEVEL)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).dURABILITY_CHALLENGE_LEVEL)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).sPEED_CHALLENGE_LEVEL)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).sPEED_CHALLENGE_LEVEL)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).aTTACK_CHALLENGE_LEVEL)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).aTTACK_CHALLENGE_LEVEL)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).cONTROL_LEVEL)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).cONTROL_LEVEL)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).sPEED)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).sPEED)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).mAX_GAME_OBJECTS)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).mAX_GAME_OBJECTS)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).cOMMA_SEP))
-        Control.Monad.void (StringMaker.append stringBuffer (jio (GameConfiguration.getName ((jget (this).mAX_LAYERS)))))
-        Control.Monad.void (StringMaker.append stringBuffer (jget (commonStrings).eQUALS))
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue ((jget (this).mAX_LAYERS)))))
-        (StringMaker.toString stringBuffer)
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "GameConfigurationCentral" jclinit "SINGLETON"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameControlFidelity" "I" JR.this (JR.int 36)),
+                identity,
+                (JR.run [ 
+                    JR.declare "smallIntegerSingletonFactory" "" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.setField "SCALE" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Scale"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 2) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 2) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 3) ]) ])), 
+                    JR.exec (JR.setField "ORIENTATION" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Orientation"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 0) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 0) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 8) ]) ])), 
+                    JR.exec (JR.setField "SENSOR_UPDATE_RATE" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Sensor Update Rate"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 0) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 0) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 3) ]) ])), 
+                    JR.exec (JR.setField "VIBRATION" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Vibration"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 0) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 0) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 3) ]) ])), 
+                    JR.exec (JR.setField "CHALLENGE_LEVEL" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Global Challenge Level"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 3) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 1) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 10) ]) ])), 
+                    JR.exec (JR.setField "COLLIDE_DAMAGE" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Collide Damage Challenge Level"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 3) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 1) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 10) ]) ])), 
+                    JR.exec (JR.setField "DURABILITY_CHALLENGE_LEVEL" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Enemy Durability Challenge Level"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 3) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 1) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 10) ]) ])), 
+                    JR.exec (JR.setField "SPEED_CHALLENGE_LEVEL" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Enemy Speed Challenge Level"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 3) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 1) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 10) ]) ])), 
+                    JR.exec (JR.setField "ATTACK_CHALLENGE_LEVEL" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Enemy Attack Challenge Level"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 3) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 1) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 10) ]) ])), 
+                    JR.exec (JR.setField "CONTROL_LEVEL" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Control Fidelity"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 5) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 1) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 10) ]) ])), 
+                    JR.exec (JR.setField "PLAYER_INPUT_WAIT" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Input Wait"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 5) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 1) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 10) ]) ])), 
+                    JR.exec (JR.setField "SPEED" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Game Speed (Device Specific)"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 5) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 1) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 10) ]) ])), 
+                    JR.exec (JR.setField "SOUND_VOLUME" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Sound Volume"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 6) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 0) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 10) ]) ])), 
+                    JR.exec (JR.setField "MAX_GAME_OBJECTS" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Max Game Objects"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 20) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 1) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 50) ]) ])), 
+                    JR.exec (JR.setField "MAX_LAYERS" "" JR.this (JR.new GameConfiguration.jnew_4 [ (JR.str "Max Layers"), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 20) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 1) ]), (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.int 50) ]) ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_SINGLETON (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "GameConfigurationCentral.SINGLETON" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_load_1 : JR.Method
+jm_load_1 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                    JR.try (JR.run [ 
+                        JR.declare "smallIntegerSingletonFactory" "" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []), 
+                        JR.declare "keyValuePersistance" "" (JR.callStatic GameConfigurationPersistanceSingleton.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "clear_0" (JR.local "keyValuePersistance") []), 
+                        JR.exec (JR.invoke "loadAll_1" (JR.local "keyValuePersistance") [ (JR.local "abeClientInformation") ]), 
+                        JR.declare "list" "" (JR.invoke "getIds_0" (JR.local "keyValuePersistance") []), 
+                        JR.ifElse (JR.map2 JR.greater (JR.invoke "size_0" (JR.local "list") []) (JR.int 0)) (JR.run [ 
+                            JR.declare "hashtable" "" (JR.invoke "get_1" (JR.local "keyValuePersistance") [ (JR.int 0) ]), 
+                            JR.declare "anyType" "" (JR.invoke "getName_0" (JR.thisField "SCALE") []), 
+                            JR.declare "value" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.local "anyType") ]), 
+                            JR.exec (JR.invoke "setValue_1" (JR.thisField "SCALE") [ (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.invoke "intValue_0" (JR.callStatic JInteger.jm_valueOf_1 [ (JR.local "value") ]) []) ]) ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "No Game Configuration To Load"), JR.this, (JR.field "LOAD" (JR.local "commonStrings")) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "LOAD" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setGameControlFidelity_1 : JR.Method
+jm_setGameControlFidelity_1 jheap jthis jargs =
+    JR.method [ ( "gameControlFidelity", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "gameControlFidelity" "I" JR.this (JR.local "gameControlFidelity")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameControlFidelity_0 : JR.Method
+jm_getGameControlFidelity_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "gameControlFidelity") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "commonStrings" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "SCALE") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "SCALE") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "ORIENTATION") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "ORIENTATION") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "SENSOR_UPDATE_RATE") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "SENSOR_UPDATE_RATE") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "VIBRATION") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "VIBRATION") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "CHALLENGE_LEVEL") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "CHALLENGE_LEVEL") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "COLLIDE_DAMAGE") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "COLLIDE_DAMAGE") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "DURABILITY_CHALLENGE_LEVEL") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "DURABILITY_CHALLENGE_LEVEL") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "SPEED_CHALLENGE_LEVEL") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "SPEED_CHALLENGE_LEVEL") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "ATTACK_CHALLENGE_LEVEL") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "ATTACK_CHALLENGE_LEVEL") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "CONTROL_LEVEL") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "CONTROL_LEVEL") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "SPEED") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "SPEED") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "MAX_GAME_OBJECTS") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "MAX_GAME_OBJECTS") []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.thisField "MAX_LAYERS") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.local "commonStrings")) ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.thisField "MAX_LAYERS") []) [])) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

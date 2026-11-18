@@ -1,100 +1,95 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module CanvasUtil where
+module Org.Allbinary.Game.Displayable.Canvas.CanvasUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified CommonPhoneStrings -- org.allbinary.string.CommonPhoneStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data CanvasUtil = CanvasUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull CanvasUtil where
-    javaNull = javaNullRecord "CanvasUtil"
-
-instance JavaEquals CanvasUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CanvasUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CanvasUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CanvasUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = CanvasUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: CanvasUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO CanvasUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CanvasUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Javax.Microedition.Lcdui.Canvas as Canvas
+import Org.Allbinary.String.CommonPhoneStrings as CommonPhoneStrings
 
 
-getKeyName :: Int -> IO (String)
-getKeyName key = do
-    javaCatchReturn $ do
-        commonPhoneStrings <- (CommonPhoneStrings.getInstance)
-        if (key == Canvas.uP) then do
-            javaReturn ((jget (commonPhoneStrings).uP))
-        else if (key == Canvas.dOWN) then do
-            javaReturn ((jget (commonPhoneStrings).dOWN))
-        else if (key == Canvas.rIGHT) then do
-            javaReturn ((jget (commonPhoneStrings).rIGHT))
-        else if (key == Canvas.lEFT) then do
-            javaReturn ((jget (commonPhoneStrings).lEFT))
-        else when (key == Canvas.fIRE) $ do
-            javaReturn ((jget (commonPhoneStrings).fIRE))
-        pure ("UNKNOWN KEY")
+jclass : String
+jclass =
+    "CanvasUtil"
 
+
+jchain : List String
+jchain =
+    [ "CanvasUtil" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getKeyName_1", jm_getKeyName_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CanvasUtil"
+        [ ( "jm_getKeyName_1", jm_getKeyName_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getKeyName_1 : JR.Method
+jm_getKeyName_1 jheap jthis jargs =
+    JR.method [ ( "key", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "commonPhoneStrings" "" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_UP) (JR.run [ 
+                        JR.return (JR.field "UP" (JR.local "commonPhoneStrings")) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_DOWN) (JR.run [ 
+                        JR.return (JR.field "DOWN" (JR.local "commonPhoneStrings")) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_RIGHT) (JR.run [ 
+                        JR.return (JR.field "RIGHT" (JR.local "commonPhoneStrings")) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_LEFT) (JR.run [ 
+                        JR.return (JR.field "LEFT" (JR.local "commonPhoneStrings")) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_FIRE) (JR.run [ 
+                        JR.return (JR.field "FIRE" (JR.local "commonPhoneStrings")) ]) identity ]) ]) ]) ]), 
+                    JR.return (JR.str "UNKNOWN KEY") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

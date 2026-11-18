@@ -1,16 +1,16 @@
-module GenericOperatingSystem exposing (..)
+module Org.Allbinary.Logic.System.Os.GenericOperatingSystem exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.os
 -}
 
 import JR
-import CharacterSet
-import CommonSeps
-import OperatingSystemInterface
-import StringMaker
-import StringUtil
-import StringValidationUtil
-import SystemProperties
+import Org.Allbinary.Logic.Java.Character.CharacterSet as CharacterSet
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.System.Os.OperatingSystemInterface as OperatingSystemInterface
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
+import Org.Allbinary.Logic.System.Os.SystemProperties as SystemProperties
 
 
 jclass : String

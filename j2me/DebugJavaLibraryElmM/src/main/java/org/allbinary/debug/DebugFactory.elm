@@ -1,86 +1,82 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.debug
-module DebugFactory where
+module Org.Allbinary.Debug.DebugFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NoDebug -- same package or java.lang
-import qualified DebugInterface -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.debug
+-}
 
-data DebugFactory = DebugFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull DebugFactory where
-    javaNull = javaNullRecord "DebugFactory"
-
-instance JavaEquals DebugFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DebugFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DebugFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DebugFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = DebugFactory header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: DebugFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO DebugFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DebugFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Debug.NoDebug as NoDebug
 
 
-getInstance :: IO (DebugInterface.DebugInterface)
-getInstance = do
-        (NoDebug.getInstance)
+jclass : String
+jclass =
+    "DebugFactory"
 
+
+jchain : List String
+jchain =
+    [ "DebugFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DebugFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic NoDebug.jm_getInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,128 +1,108 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.midlet
-module ProgressMidlet (module ProgressMidlet, module AllBinaryMidlet) where
+module Org.Allbinary.Midlet.ProgressMidlet exposing (..)
 
-import AllBinaryMidlet hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, preInit, preInit_super, preInit_impl, exitProgress, exitProgress_super, exitProgress_impl, abeClientInformation)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified MidletExitProcessorFactory -- same package or java.lang
-import qualified ExitRunnable -- same package or java.lang
-import qualified Runnable -- same package or java.lang
-import qualified Processor -- org.allbinary.canvas.Processor
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified ClientInformationFactory -- org.allbinary.logic.system.security.licensing.ClientInformationFactory
-import qualified PrimaryThreadPool -- org.allbinary.thread.PrimaryThreadPool
-import qualified ThreadPool -- org.allbinary.thread.ThreadPool
-import qualified AllBinaryMidlet
+{-| Generated Code Do Not Modify package org.allbinary.midlet
+-}
 
-data ProgressMidlet = ProgressMidlet
-    { header_ :: JavaHeader
-    , base :: AllBinaryMidlet.AllBinaryMidlet
-    , abeClientInformation :: IORef (AbeClientInformationInterface.AbeClientInformationInterface)
-    }
-
-instance JavaNull ProgressMidlet where
-    javaNull = javaNullRecord "ProgressMidlet"
-
-instance JavaEquals ProgressMidlet where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ProgressMidlet where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ProgressMidlet where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ProgressMidlet
-newRecord_ = do
-    base <- AllBinaryMidlet.newRecord_
-    let header_ = base.header_
-    abeClientInformation <- newIORef javaNull
-    let this = ProgressMidlet header_ base abeClientInformation
-    jregisterLevel header_ this
-    jregisterMethod header_ "preInit" (\() -> preInit_impl this)
-    jregisterMethod header_ "exitProgress" (\() -> exitProgress_impl this)
-    pure this
-
-initFields_ :: ProgressMidlet -> IO ()
-initFields_ this = do
-    jset this.abeClientInformation (javaNull)
-    pure ()
-
-new_1 :: ClientInformationFactory.ClientInformationFactory -> IO ProgressMidlet
-new_1 clientInformationFactory = do
-    this <- newRecord_
-    init_1 this clientInformationFactory
-    pure this
-
-init_1 :: ProgressMidlet -> ClientInformationFactory.ClientInformationFactory -> IO ()
-init_1 this clientInformationFactory = do
-        AllBinaryMidlet.init_ this.base
-        initFields_ this
-        Control.Monad.void (ProgressMidlet.preInit this)
-        assignedValue <- (ClientInformationFactory.getInstance clientInformationFactory)
-        jset (this).abeClientInformation (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Midlet.AllBinaryMidlet as AllBinaryMidlet
+import Org.Allbinary.Midlet.ExitRunnable as ExitRunnable
+import Org.Allbinary.Midlet.MidletExitProcessorFactory as MidletExitProcessorFactory
+import Org.Allbinary.Thread.PrimaryThreadPool as PrimaryThreadPool
 
 
-preInit :: (JavaObjectClass this_) => this_ -> IO (())
-preInit object_ = jmethod object_ "preInit" (\() -> (preInit_impl (javaCast object_ :: ProgressMidlet))) ()
-
-preInit_super :: (JavaObjectClass this_) => this_ -> IO (())
-preInit_super object_ = (preInit_impl (javaCast object_ :: ProgressMidlet))
-
-preInit_impl :: ProgressMidlet -> IO (())
-preInit_impl this = do
-        pure ()
+jclass : String
+jclass =
+    "ProgressMidlet"
 
 
-exitProgress :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-exitProgress object_ a1 = jmethod object_ "exitProgress" (\() -> (exitProgress_impl (javaCast object_ :: ProgressMidlet))) () a1
+jchain : List String
+jchain =
+    [ "ProgressMidlet" ]
+        ++ AllBinaryMidlet.jchain
 
-exitProgress_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-exitProgress_super object_ a1 = (exitProgress_impl (javaCast object_ :: ProgressMidlet)) a1
 
-exitProgress_impl :: ProgressMidlet -> Bool -> IO (())
-exitProgress_impl this isProgress = do
-        processor <- (MidletExitProcessorFactory.getExitInstance ((jio (MidletExitProcessorFactory.getInstance))) (javaCast this))
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this "exit" e)
-            handle (\(e2 :: JavaException) -> do
-                Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this "exit" e)
-                ) $ do
-                Control.Monad.void (Processor.process processor)
-            ) $ do
-            primaryThreadPool <- (PrimaryThreadPool.getInstance)
-            runnable <- (fmap (\value_ -> javaCast value_ :: Runnable.Runnable) (ExitRunnable.new_3 this processor isProgress))
-            Control.Monad.void (ThreadPool.runTask primaryThreadPool runnable)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinaryMidlet.jfields ++ [ ( "abeClientInformation", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "preInit_0", jm_preInit_0 )
+        , ( "exitProgress_1", jm_exitProgress_1 ) ]
+        AllBinaryMidlet.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ProgressMidlet"
+        [ ( "jm_preInit_0", jm_preInit_0 ), ( "jm_exitProgress_1", jm_exitProgress_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "clientInformationFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinaryMidlet.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "preInit_0" JR.this []), 
+                    JR.exec (JR.setField "abeClientInformation" "" JR.this (JR.invoke "getInstance_0" (JR.local "clientInformationFactory") [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_preInit_0 : JR.Method
+jm_preInit_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_exitProgress_1 : JR.Method
+jm_exitProgress_1 jheap jthis jargs =
+    JR.method [ ( "isProgress", "Z" ) ] ""
+        (JR.run [ 
+                    JR.declare "processor" "" (JR.invoke "getExitInstance_1" (JR.callStatic MidletExitProcessorFactory.jm_getInstance_0 []) [ JR.this ]), 
+                    JR.try (JR.run [ 
+                        JR.declare "primaryThreadPool" "" (JR.callStatic PrimaryThreadPool.jm_getInstance_0 []), 
+                        JR.declare "runnable" "" (JR.new ExitRunnable.jnew_3 [ JR.this, (JR.local "processor"), (JR.local "isProgress") ]), 
+                        JR.exec (JR.invoke "runTask_1" (JR.local "primaryThreadPool") [ (JR.local "runnable") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "exit"), (JR.local "e") ]), 
+                        JR.try (JR.run [ 
+                            JR.exec (JR.invoke "process_0" (JR.local "processor") []) ]) [ ( [ "Exception" ], "e2", (JR.run [ 
+                            JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "exit"), (JR.local "e") ]) ]) ) ] identity ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,383 +1,337 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module VectorAnimation (module VectorAnimation, module IndexedAnimation) where
-
-import IndexedAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createVectorAnimation, createVectorAnimation_super, createVectorAnimation_impl, setBasicColorP, setBasicColorP_super, setBasicColorP_impl, changeBasicColor, changeBasicColor_super, changeBasicColor_impl, setAlpha, setAlpha_super, setAlpha_impl, setScale, setScale_super, setScale_impl, setMaxScale, setMaxScale_super, setMaxScale_impl, updateModifiers, updateModifiers_super, updateModifiers_impl, getAnimationSize, getAnimationSize_super, getAnimationSize_impl, getSize, getSize_super, getSize_impl, setSequence, setSequence_super, setSequence_impl, getSequence, getSequence_super, getSequence_impl, nextFrame, nextFrame_super, nextFrame_impl, previousFrame, previousFrame_super, previousFrame_impl, paintVectors, paintVectors_super, paintVectors_impl, paintXY, paintXY_super, paintXY_impl, getFrame, getFrame_super, getFrame_impl, setFrame, setFrame_super, setFrame_impl, getPoints, getPoints_super, getPoints_impl, setPoints, setPoints_super, setPoints_impl, getBasicColorP, getBasicColorP_super, getBasicColorP_impl, currentPoints, circularIndexUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AnimationBehavior -- same package or java.lang
-import qualified IndexedAnimation -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified NullImage -- javax.microedition.lcdui.NullImage
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified PrimitiveIntUtil -- org.allbinary.logic.math.PrimitiveIntUtil
-import qualified CircularIndexUtil -- org.allbinary.util.CircularIndexUtil
-import qualified IndexedAnimation
-import qualified VectorAnimationInterface
-
--- implements VectorAnimationInterface
-data VectorAnimation = VectorAnimation
-    { header_ :: JavaHeader
-    , base :: IndexedAnimation.IndexedAnimation
-    , currentPoints :: IORef (JavaArray (JavaArray (JavaArray (Int))))
-    , circularIndexUtil :: IORef (CircularIndexUtil.CircularIndexUtil)
-    }
-
-instance JavaNull VectorAnimation where
-    javaNull = javaNullRecord "VectorAnimation"
-
-instance JavaEquals VectorAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq VectorAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass VectorAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO VectorAnimation
-newRecord_ = do
-    base <- IndexedAnimation.newRecord_
-    let header_ = base.header_
-    currentPoints <- newIORef javaNull
-    circularIndexUtil <- newIORef javaNull
-    let this = VectorAnimation header_ base currentPoints circularIndexUtil
-    jregisterLevel header_ this
-    VectorAnimationInterface.registerInterface_ header_
-    jregisterMethod header_ "setBasicColorP" (\() -> setBasicColorP_impl this)
-    jregisterMethod header_ "changeBasicColor" (\() -> changeBasicColor_impl this)
-    jregisterMethod header_ "setAlpha" (\() -> setAlpha_impl this)
-    jregisterMethod header_ "setScale" (\() -> setScale_impl this)
-    jregisterMethod header_ "setMaxScale" (\() -> setMaxScale_impl this)
-    jregisterMethod header_ "updateModifiers" (\() -> updateModifiers_impl this)
-    jregisterMethod header_ "getAnimationSize" (\() -> getAnimationSize_impl this)
-    jregisterMethod header_ "getSize" (\() -> getSize_impl this)
-    jregisterMethod header_ "setSequence" (\() -> setSequence_impl this)
-    jregisterMethod header_ "getSequence" (\() -> getSequence_impl this)
-    jregisterMethod header_ "nextFrame" (\() -> nextFrame_impl this)
-    jregisterMethod header_ "previousFrame" (\() -> previousFrame_impl this)
-    jregisterMethod header_ "paintVectors" (\() -> paintVectors_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    jregisterMethod header_ "getFrame" (\() -> getFrame_impl this)
-    jregisterMethod header_ "setFrame" (\() -> setFrame_impl this)
-    jregisterMethod header_ "getPoints" (\() -> getPoints_impl this)
-    jregisterMethod header_ "setPoints" (\() -> setPoints_impl this)
-    jregisterMethod header_ "getBasicColorP" (\() -> getBasicColorP_impl this)
-    pure this
-
-initFields_ :: VectorAnimation -> IO ()
-initFields_ this = do
-    jset this.currentPoints ((jget ((jio (NullUtil.getInstance))).nULL_INT_ARRAY_ARRAY_ARRAY))
-    jset this.circularIndexUtil =<< (CircularIndexUtil.createInstance 0)
-    pure ()
-
-
-createVectorAnimation :: JavaArray (JavaArray (Int)) -> BasicColor.BasicColor -> AnimationBehavior.AnimationBehavior -> IO (VectorAnimation)
-createVectorAnimation currentPoints2 basicColor animationBehavior = do
-        let currentPoints = (jnewArray3 (1) ((jlength currentPoints2)) (2) 0)
-        let size = (jlength currentPoints2)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex ((jindex ((jindex currentPoints (0))) (index))) (0) ((jindex ((jindex currentPoints2 (index))) (0)))
-            jsetIndex ((jindex ((jindex currentPoints (0))) (index))) (1) ((jindex ((jindex currentPoints2 (index))) (1)))
-        (new_3 currentPoints basicColor animationBehavior)
-
-new_3 :: JavaArray (JavaArray (JavaArray (Int))) -> BasicColor.BasicColor -> AnimationBehavior.AnimationBehavior -> IO VectorAnimation
-new_3 currentPoints basicColor animationBehavior = do
-    this <- newRecord_
-    init_3 this currentPoints basicColor animationBehavior
-    pure this
-
-init_3 :: VectorAnimation -> JavaArray (JavaArray (JavaArray (Int))) -> BasicColor.BasicColor -> AnimationBehavior.AnimationBehavior -> IO ()
-init_3 this currentPoints basicColor animationBehavior = do
-        IndexedAnimation.init_1 this.base (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (VectorAnimation.setPoints this currentPoints)
-        Control.Monad.void (VectorAnimation.setBasicColorP this basicColor)
-        pure ()
-
-
-setBasicColorP :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP object_ a1 = jmethod object_ "setBasicColorP" (\() -> (setBasicColorP_impl (javaCast object_ :: VectorAnimation))) () a1
-
-setBasicColorP_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP_super object_ a1 = (setBasicColorP_impl (javaCast object_ :: VectorAnimation)) a1
-
-setBasicColorP_impl :: VectorAnimation -> BasicColor.BasicColor -> IO (())
-setBasicColorP_impl this basicColor = do
-        changed <- newIORef (False :: Bool)
-        when (((jio (VectorAnimation.getBasicColorP this)) == javaNull) || ((jio (BasicColor.intValue ((jio (VectorAnimation.getBasicColorP this))))) /= (jio (BasicColor.intValue basicColor)))) $ do
-            jset changed (True)
-        Control.Monad.void (IndexedAnimation.setBasicColorP_super this.base basicColor)
-        when (jget changed) $ do
-            Control.Monad.void (VectorAnimation.updateModifiers this)
-        pure ()
-
-
-changeBasicColor :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-changeBasicColor object_ a1 = jmethod object_ "changeBasicColor" (\() -> (changeBasicColor_impl (javaCast object_ :: VectorAnimation))) () a1
-
-changeBasicColor_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-changeBasicColor_super object_ a1 = (changeBasicColor_impl (javaCast object_ :: VectorAnimation)) a1
-
-changeBasicColor_impl :: VectorAnimation -> BasicColor.BasicColor -> IO (())
-changeBasicColor_impl this basicColor = do
-        changed <- newIORef (False :: Bool)
-        when (((jio (IndexedAnimation.getChangeBasicColor this)) == javaNull) || ((jio (IndexedAnimation.intValue ((jio (IndexedAnimation.getChangeBasicColor this))))) /= (jio (BasicColor.intValue basicColor)))) $ do
-            jset changed (True)
-        Control.Monad.void (IndexedAnimation.changeBasicColor_super this.base basicColor)
-        when (jget changed) $ do
-            Control.Monad.void (VectorAnimation.updateModifiers this)
-        pure ()
-
-
-setAlpha :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setAlpha object_ a1 = jmethod object_ "setAlpha" (\() -> (setAlpha_impl (javaCast object_ :: VectorAnimation))) () a1
-
-setAlpha_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setAlpha_super object_ a1 = (setAlpha_impl (javaCast object_ :: VectorAnimation)) a1
-
-setAlpha_impl :: VectorAnimation -> Int -> IO (())
-setAlpha_impl this alpha = do
-        changed <- newIORef (False :: Bool)
-        when ((jget (this).base.alphaP) /= alpha) $ do
-            jset changed (True)
-        Control.Monad.void (IndexedAnimation.setAlpha_super this.base alpha)
-        when (jget changed) $ do
-            Control.Monad.void (VectorAnimation.updateModifiers this)
-        pure ()
-
-
-setScale :: (JavaObjectClass this_) => this_ -> Float -> Float -> IO (())
-setScale object_ a1 a2 = jmethod object_ "setScale" (\() -> (setScale_impl (javaCast object_ :: VectorAnimation))) () a1 a2
-
-setScale_super :: (JavaObjectClass this_) => this_ -> Float -> Float -> IO (())
-setScale_super object_ a1 a2 = (setScale_impl (javaCast object_ :: VectorAnimation)) a1 a2
-
-setScale_impl :: VectorAnimation -> Float -> Float -> IO (())
-setScale_impl this scaleX scaleY = do
-        pure ()
-
-
-setMaxScale :: (JavaObjectClass this_) => this_ -> Float -> Float -> IO (())
-setMaxScale object_ a1 a2 = jmethod object_ "setMaxScale" (\() -> (setMaxScale_impl (javaCast object_ :: VectorAnimation))) () a1 a2
-
-setMaxScale_super :: (JavaObjectClass this_) => this_ -> Float -> Float -> IO (())
-setMaxScale_super object_ a1 a2 = (setMaxScale_impl (javaCast object_ :: VectorAnimation)) a1 a2
-
-setMaxScale_impl :: VectorAnimation -> Float -> Float -> IO (())
-setMaxScale_impl this maxScaleX maxScaleY = do
-        pure ()
-
-
-updateModifiers :: (JavaObjectClass this_) => this_ -> IO (())
-updateModifiers object_ = jmethod object_ "updateModifiers" (\() -> (updateModifiers_impl (javaCast object_ :: VectorAnimation))) ()
-
-updateModifiers_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateModifiers_super object_ = (updateModifiers_impl (javaCast object_ :: VectorAnimation))
-
-updateModifiers_impl :: VectorAnimation -> IO (())
-updateModifiers_impl this = do
-        pure ()
-
-
--- throws Exception
-getAnimationSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize object_ = jmethod object_ "getAnimationSize" (\() -> (getAnimationSize_impl (javaCast object_ :: VectorAnimation))) ()
-
-getAnimationSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize_super object_ = (getAnimationSize_impl (javaCast object_ :: VectorAnimation))
-
-getAnimationSize_impl :: VectorAnimation -> IO (Int)
-getAnimationSize_impl this = do
-        (VectorAnimation.getSize this)
-
-
-getSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize object_ = jmethod object_ "getSize" (\() -> (getSize_impl (javaCast object_ :: VectorAnimation))) ()
-
-getSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize_super object_ = (getSize_impl (javaCast object_ :: VectorAnimation))
-
-getSize_impl :: VectorAnimation -> IO (Int)
-getSize_impl this = do
-        pure ((jlength (jget (this).currentPoints)))
-
-
-setSequence :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence object_ a1 = jmethod object_ "setSequence" (\() -> (setSequence_impl (javaCast object_ :: VectorAnimation))) () a1
-
-setSequence_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence_super object_ a1 = (setSequence_impl (javaCast object_ :: VectorAnimation)) a1
-
-setSequence_impl :: VectorAnimation -> JavaArray (Int) -> IO (())
-setSequence_impl this sequence = do
-        pure ()
-
-
-getSequence :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence object_ = jmethod object_ "getSequence" (\() -> (getSequence_impl (javaCast object_ :: VectorAnimation))) ()
-
-getSequence_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence_super object_ = (getSequence_impl (javaCast object_ :: VectorAnimation))
-
-getSequence_impl :: VectorAnimation -> IO (JavaArray (Int))
-getSequence_impl this = do
-        (PrimitiveIntUtil.getArrayInstance)
-
-
-nextFrame :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame object_ = jmethod object_ "nextFrame" (\() -> (nextFrame_impl (javaCast object_ :: VectorAnimation))) ()
-
-nextFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame_super object_ = (nextFrame_impl (javaCast object_ :: VectorAnimation))
-
-nextFrame_impl :: VectorAnimation -> IO (())
-nextFrame_impl this = do
-        Control.Monad.void (CircularIndexUtil.next ((jget (this).circularIndexUtil)))
-        pure ()
-
-
-previousFrame :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame object_ = jmethod object_ "previousFrame" (\() -> (previousFrame_impl (javaCast object_ :: VectorAnimation))) ()
-
-previousFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame_super object_ = (previousFrame_impl (javaCast object_ :: VectorAnimation))
-
-previousFrame_impl :: VectorAnimation -> IO (())
-previousFrame_impl this = do
-        Control.Monad.void (CircularIndexUtil.previous ((jget (this).circularIndexUtil)))
-        pure ()
-
-
-paintVectors :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintVectors object_ a1 a2 a3 = jmethod object_ "paintVectors" (\() -> (paintVectors_impl (javaCast object_ :: VectorAnimation))) () a1 a2 a3
-
-paintVectors_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintVectors_super object_ a1 a2 a3 = (paintVectors_impl (javaCast object_ :: VectorAnimation)) a1 a2 a3
-
-paintVectors_impl :: VectorAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintVectors_impl this graphics x y = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this "paintVectors" e)
-            ) $ do
-            nextPointX <- newIORef (0 :: Int)
-            nextPointY <- newIORef (0 :: Int)
-            nextPoint <- newIORef (javaNull)
-            point <- newIORef (javaNull)
-            let currentPointsFrame = (jindex ((jget (this).currentPoints)) ((jio (CircularIndexUtil.getIndex ((jget (this).circularIndexUtil))))))
-            let size = (jlength currentPointsFrame)
-            index <- newIORef ((size - 2) :: Int)
-            fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (loop) $ do
-                jset nextPoint ((jindex currentPointsFrame ((jget index))))
-                jset point ((jindex currentPointsFrame (((jget index) + 1))))
-                jset nextPointX ((jindex ((jget nextPoint)) (0)))
-                jset nextPointY ((jindex ((jget nextPoint)) (1)))
-                if ((jget nextPointX) /= 1000) then do
-                    Control.Monad.void (Graphics.drawLine graphics ((jindex ((jget point)) (0)) + x) ((jindex ((jget point)) (1)) + y) ((jget nextPointX) + x) ((jget nextPointY) + y))
-                else do
-                    jset index ((jget index) - 1)
-        pure ()
-
-
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: VectorAnimation))) () a1 a2 a3
-
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: VectorAnimation)) a1 a2 a3
-
-paintXY_impl :: VectorAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        Control.Monad.void (setBasicColorP ((jget (this).base.basicSetColorUtil)) graphics (jget (this).base.basicColor))
-        Control.Monad.void (VectorAnimation.paintVectors this graphics x y)
-        pure ()
-
-
-getFrame :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame object_ = jmethod object_ "getFrame" (\() -> (getFrame_impl (javaCast object_ :: VectorAnimation))) ()
-
-getFrame_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame_super object_ = (getFrame_impl (javaCast object_ :: VectorAnimation))
-
-getFrame_impl :: VectorAnimation -> IO (Int)
-getFrame_impl this = do
-        (CircularIndexUtil.getIndex ((jget (this).circularIndexUtil)))
-
-
-setFrame :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame object_ a1 = jmethod object_ "setFrame" (\() -> (setFrame_impl (javaCast object_ :: VectorAnimation))) () a1
-
-setFrame_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame_super object_ a1 = (setFrame_impl (javaCast object_ :: VectorAnimation)) a1
-
-setFrame_impl :: VectorAnimation -> Int -> IO (())
-setFrame_impl this index = do
-        Control.Monad.void (CircularIndexUtil.setIndex ((jget (this).circularIndexUtil)) index)
-        pure ()
-
-
-getPoints :: (JavaObjectClass this_) => this_ -> Int -> IO (JavaArray (JavaArray (Int)))
-getPoints object_ a1 = jmethod object_ "getPoints" (\() -> (getPoints_impl (javaCast object_ :: VectorAnimation))) () a1
-
-getPoints_super :: (JavaObjectClass this_) => this_ -> Int -> IO (JavaArray (JavaArray (Int)))
-getPoints_super object_ a1 = (getPoints_impl (javaCast object_ :: VectorAnimation)) a1
-
-getPoints_impl :: VectorAnimation -> Int -> IO (JavaArray (JavaArray (Int)))
-getPoints_impl this frame = do
-        pure ((jindex ((jget (this).currentPoints)) (frame)))
-
-
-setPoints :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (JavaArray (Int))) -> IO (())
-setPoints object_ a1 = jmethod object_ "setPoints" (\() -> (setPoints_impl (javaCast object_ :: VectorAnimation))) () a1
-
-setPoints_super :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (JavaArray (Int))) -> IO (())
-setPoints_super object_ a1 = (setPoints_impl (javaCast object_ :: VectorAnimation)) a1
-
-setPoints_impl :: VectorAnimation -> JavaArray (JavaArray (JavaArray (Int))) -> IO (())
-setPoints_impl this currentPoints = do
-        jset (this).currentPoints (currentPoints)
-        assignedValue <- (CircularIndexUtil.createInstance (jlength currentPoints))
-        jset (this).circularIndexUtil (assignedValue)
-        pure ()
-
-
-getBasicColorP :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP object_ = jmethod object_ "getBasicColorP" (\() -> (getBasicColorP_impl (javaCast object_ :: VectorAnimation))) ()
-
-getBasicColorP_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP_super object_ = (getBasicColorP_impl (javaCast object_ :: VectorAnimation))
-
-getBasicColorP_impl :: VectorAnimation -> IO (BasicColor.BasicColor)
-getBasicColorP_impl this = do
-        (IndexedAnimation.getBasicColorP_super this.base)
-
+module Org.Allbinary.Animation.VectorAnimation exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
+
+import JR
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
+import Org.Allbinary.Animation.IndexedAnimation as IndexedAnimation
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Math.PrimitiveIntUtil as PrimitiveIntUtil
+import Org.Allbinary.Animation.VectorAnimationInterface as VectorAnimationInterface
+
+
+jclass : String
+jclass =
+    "VectorAnimation"
+
+
+jchain : List String
+jchain =
+    [ "VectorAnimation" ]
+        ++ IndexedAnimation.jchain
+        ++ VectorAnimationInterface.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    IndexedAnimation.jfields ++ [ ( "currentPoints", JR.defaultOf "" ), ( "circularIndexUtil", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "createVectorAnimation_3", jm_createVectorAnimation_3 )
+        , ( "setBasicColorP_1", jm_setBasicColorP_1 )
+        , ( "changeBasicColor_1", jm_changeBasicColor_1 )
+        , ( "setAlpha_1", jm_setAlpha_1 )
+        , ( "setScale_2", jm_setScale_2 )
+        , ( "setMaxScale_2", jm_setMaxScale_2 )
+        , ( "updateModifiers_0", jm_updateModifiers_0 )
+        , ( "getAnimationSize_0", jm_getAnimationSize_0 )
+        , ( "getSize_0", jm_getSize_0 )
+        , ( "setSequence_1", jm_setSequence_1 )
+        , ( "getSequence_0", jm_getSequence_0 )
+        , ( "nextFrame_0", jm_nextFrame_0 )
+        , ( "previousFrame_0", jm_previousFrame_0 )
+        , ( "paintVectors_3", jm_paintVectors_3 )
+        , ( "paintXY_3", jm_paintXY_3 )
+        , ( "getFrame_0", jm_getFrame_0 )
+        , ( "setFrame_1", jm_setFrame_1 )
+        , ( "getPoints_1", jm_getPoints_1 )
+        , ( "setPoints_1", jm_setPoints_1 )
+        , ( "getBasicColorP_0", jm_getBasicColorP_0 ) ]
+        IndexedAnimation.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "VectorAnimation"
+        [ ( "jm_createVectorAnimation_3", jm_createVectorAnimation_3 ), ( "jm_setBasicColorP_1", jm_setBasicColorP_1 ), ( "jm_changeBasicColor_1", jm_changeBasicColor_1 ), ( "jm_setAlpha_1", jm_setAlpha_1 ), ( "jm_setScale_2", jm_setScale_2 ), ( "jm_setMaxScale_2", jm_setMaxScale_2 ), ( "jm_updateModifiers_0", jm_updateModifiers_0 ), ( "jm_getAnimationSize_0", jm_getAnimationSize_0 ), ( "jm_getSize_0", jm_getSize_0 ), ( "jm_setSequence_1", jm_setSequence_1 ), ( "jm_getSequence_0", jm_getSequence_0 ), ( "jm_nextFrame_0", jm_nextFrame_0 ), ( "jm_previousFrame_0", jm_previousFrame_0 ), ( "jm_paintVectors_3", jm_paintVectors_3 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jm_getFrame_0", jm_getFrame_0 ), ( "jm_setFrame_1", jm_setFrame_1 ), ( "jm_getPoints_1", jm_getPoints_1 ), ( "jm_setPoints_1", jm_setPoints_1 ), ( "jm_getBasicColorP_0", jm_getBasicColorP_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "currentPoints", "" ), ( "basicColor", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect IndexedAnimation.jinit_1 JR.this [ (JR.local "animationBehavior") ]),
+                JR.exec (JR.setField "currentPoints" "" JR.this (JR.field "NULL_INT_ARRAY_ARRAY_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.int 0) ])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setPoints_1" JR.this [ (JR.local "currentPoints") ]), 
+                    JR.exec (JR.invoke "setBasicColorP_1" JR.this [ (JR.local "basicColor") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_createVectorAnimation_3 : JR.Method
+jm_createVectorAnimation_3 jheap jthis jargs =
+    JR.method [ ( "currentPoints2", "" ), ( "basicColor", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "currentPoints" "" (JR.newArray "I" [ (JR.int 1), (JR.alength (JR.local "currentPoints2")), (JR.int 2) ]), 
+                    JR.declare "size" "I" (JR.alength (JR.local "currentPoints2")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67348 -> (JR.setLocal "index" "I" (JR.lit jwN67348))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "currentPoints") (JR.int 0)) (JR.local "index")) (\jaN67154 -> JR.andThen (JR.int 0) (\jiN67154 -> (JR.aset (JR.lit jaN67154) (JR.lit jiN67154) (JR.aget (JR.aget (JR.local "currentPoints2") (JR.local "index")) (JR.int 0)))))), 
+                        JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "currentPoints") (JR.int 0)) (JR.local "index")) (\jaN67227 -> JR.andThen (JR.int 1) (\jiN67227 -> (JR.aset (JR.lit jaN67227) (JR.lit jiN67227) (JR.aget (JR.aget (JR.local "currentPoints2") (JR.local "index")) (JR.int 1)))))) ]) ], 
+                    JR.return (JR.new jnew_3 [ (JR.local "currentPoints"), (JR.local "basicColor"), (JR.local "animationBehavior") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setBasicColorP_1 : JR.Method
+jm_setBasicColorP_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "changed" "Z" (JR.bool False), 
+                    JR.ifElse (JR.or (JR.map2 JR.equals (JR.invoke "getBasicColorP_0" JR.this []) JR.null) (JR.map2 JR.notEquals (JR.invoke "intValue_0" (JR.invoke "getBasicColorP_0" JR.this []) []) (JR.invoke "intValue_0" (JR.local "basicColor") []))) (JR.run [ 
+                        JR.exec (JR.setLocal "changed" "Z" (JR.bool True)) ]) identity, 
+                    JR.exec (JR.callVia IndexedAnimation.jvtable "setBasicColorP_1" JR.this [ (JR.local "basicColor") ]), 
+                    JR.ifElse (JR.local "changed") (JR.run [ 
+                        JR.exec (JR.invoke "updateModifiers_0" JR.this []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_changeBasicColor_1 : JR.Method
+jm_changeBasicColor_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "changed" "Z" (JR.bool False), 
+                    JR.ifElse (JR.or (JR.map2 JR.equals (JR.invoke "getChangeBasicColor_0" JR.this []) JR.null) (JR.map2 JR.notEquals (JR.invoke "intValue_0" (JR.invoke "getChangeBasicColor_0" JR.this []) []) (JR.invoke "intValue_0" (JR.local "basicColor") []))) (JR.run [ 
+                        JR.exec (JR.setLocal "changed" "Z" (JR.bool True)) ]) identity, 
+                    JR.exec (JR.callVia IndexedAnimation.jvtable "changeBasicColor_1" JR.this [ (JR.local "basicColor") ]), 
+                    JR.ifElse (JR.local "changed") (JR.run [ 
+                        JR.exec (JR.invoke "updateModifiers_0" JR.this []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setAlpha_1 : JR.Method
+jm_setAlpha_1 jheap jthis jargs =
+    JR.method [ ( "alpha", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "changed" "Z" (JR.bool False), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.thisField "alphaP") (JR.local "alpha")) (JR.run [ 
+                        JR.exec (JR.setLocal "changed" "Z" (JR.bool True)) ]) identity, 
+                    JR.exec (JR.callVia IndexedAnimation.jvtable "setAlpha_1" JR.this [ (JR.local "alpha") ]), 
+                    JR.ifElse (JR.local "changed") (JR.run [ 
+                        JR.exec (JR.invoke "updateModifiers_0" JR.this []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setScale_2 : JR.Method
+jm_setScale_2 jheap jthis jargs =
+    JR.method [ ( "scaleX", "F" ), ( "scaleY", "F" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMaxScale_2 : JR.Method
+jm_setMaxScale_2 jheap jthis jargs =
+    JR.method [ ( "maxScaleX", "F" ), ( "maxScaleY", "F" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateModifiers_0 : JR.Method
+jm_updateModifiers_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAnimationSize_0 : JR.Method
+jm_getAnimationSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getSize_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSize_0 : JR.Method
+jm_getSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.alength (JR.thisField "currentPoints")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setSequence_1 : JR.Method
+jm_setSequence_1 jheap jthis jargs =
+    JR.method [ ( "sequence", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSequence_0 : JR.Method
+jm_getSequence_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_nextFrame_0 : JR.Method
+jm_nextFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_previousFrame_0 : JR.Method
+jm_previousFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "previous_0" (JR.thisField "circularIndexUtil") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintVectors_3 : JR.Method
+jm_paintVectors_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "nextPointX" "I" (JR.int 0), 
+                        JR.declare "nextPointY" "I" (JR.int 0), 
+                        JR.declare "nextPoint" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "currentPointsFrame" "" (JR.aget (JR.thisField "currentPoints") (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") [])), 
+                        JR.declare "size" "I" (JR.alength (JR.local "currentPointsFrame")), 
+                        JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 2)), 
+                        JR.while (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69683 -> (JR.setLocal "index" "I" (JR.lit jwN69683))) JR.decrement) (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.setLocal "nextPoint" "" (JR.aget (JR.local "currentPointsFrame") (JR.local "index"))), 
+                            JR.exec (JR.setLocal "point" "" (JR.aget (JR.local "currentPointsFrame") (JR.map2 JR.add (JR.local "index") (JR.int 1)))), 
+                            JR.exec (JR.setLocal "nextPointX" "I" (JR.aget (JR.local "nextPoint") (JR.int 0))), 
+                            JR.exec (JR.setLocal "nextPointY" "I" (JR.aget (JR.local "nextPoint") (JR.int 1))), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "nextPointX") (JR.int 1000)) (JR.run [ 
+                                JR.exec (JR.invoke "drawLine_4" (JR.local "graphics") [ (JR.map2 JR.add (JR.aget (JR.local "point") (JR.int 0)) (JR.local "x")), (JR.map2 JR.add (JR.aget (JR.local "point") (JR.int 1)) (JR.local "y")), (JR.map2 JR.add (JR.local "nextPointX") (JR.local "x")), (JR.map2 JR.add (JR.local "nextPointY") (JR.local "y")) ]) ]) (JR.run [ 
+                                JR.exec (JR.postUpdate (JR.local "index") (\jwN69526 -> (JR.setLocal "index" "I" (JR.lit jwN69526))) JR.decrement) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "paintVectors"), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setBasicColorP_2" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.thisField "basicColor") ]), 
+                    JR.exec (JR.invoke "paintVectors_3" JR.this [ (JR.local "graphics"), (JR.local "x"), (JR.local "y") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFrame_0 : JR.Method
+jm_getFrame_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFrame_1 : JR.Method
+jm_setFrame_1 jheap jthis jargs =
+    JR.method [ ( "index", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setIndex_1" (JR.thisField "circularIndexUtil") [ (JR.local "index") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPoints_1 : JR.Method
+jm_getPoints_1 jheap jthis jargs =
+    JR.method [ ( "frame", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.aget (JR.thisField "currentPoints") (JR.local "frame")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setPoints_1 : JR.Method
+jm_setPoints_1 jheap jthis jargs =
+    JR.method [ ( "currentPoints", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "currentPoints" "" JR.this (JR.local "currentPoints")), 
+                    JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.alength (JR.local "currentPoints")) ])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBasicColorP_0 : JR.Method
+jm_getBasicColorP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callVia IndexedAnimation.jvtable "getBasicColorP_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

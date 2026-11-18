@@ -1,102 +1,89 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer
-module AllBinaryLayerCircularPool (module AllBinaryLayerCircularPool, module BaseCircularPool) where
+module Org.Allbinary.Layer.AllBinaryLayerCircularPool exposing (..)
 
-import BaseCircularPool hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, initAllBinaryLayerCircularPool, initAllBinaryLayerCircularPool_super, initAllBinaryLayerCircularPool_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified AllBinaryLayerFactoryInterface -- same package or java.lang
-import qualified BaseCircularPool -- org.allbinary.logic.util.cache.BaseCircularPool
-import qualified CircularIndexUtil -- org.allbinary.util.CircularIndexUtil
+{-| Generated Code Do Not Modify package org.allbinary.layer
+-}
 
-data AllBinaryLayerCircularPool = AllBinaryLayerCircularPool
-    { header_ :: JavaHeader
-    , base :: BaseCircularPool.BaseCircularPool
-    }
-
-instance JavaNull AllBinaryLayerCircularPool where
-    javaNull = javaNullRecord "AllBinaryLayerCircularPool"
-
-instance JavaEquals AllBinaryLayerCircularPool where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryLayerCircularPool where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryLayerCircularPool where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AllBinaryLayerCircularPool
-newRecord_ = do
-    base <- BaseCircularPool.newRecord_
-    let header_ = base.header_
-    let this = AllBinaryLayerCircularPool header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "initAllBinaryLayerCircularPool" (\() -> initAllBinaryLayerCircularPool_impl this)
-    pure this
-
-initFields_ :: AllBinaryLayerCircularPool -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AllBinaryLayerCircularPool
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllBinaryLayerCircularPool -> IO ()
-init_ this = do
-        BaseCircularPool.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.Util.Cache.BaseCircularPool as BaseCircularPool
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
 
 
--- throws Exception
-initAllBinaryLayerCircularPool :: (JavaObjectClass this_) => this_ -> AllBinaryLayerFactoryInterface.AllBinaryLayerFactoryInterface -> Int -> IO (())
-initAllBinaryLayerCircularPool object_ a1 a2 = jmethod object_ "initAllBinaryLayerCircularPool" (\() -> (initAllBinaryLayerCircularPool_impl (javaCast object_ :: AllBinaryLayerCircularPool))) () a1 a2
+jclass : String
+jclass =
+    "AllBinaryLayerCircularPool"
 
-initAllBinaryLayerCircularPool_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerFactoryInterface.AllBinaryLayerFactoryInterface -> Int -> IO (())
-initAllBinaryLayerCircularPool_super object_ a1 a2 = (initAllBinaryLayerCircularPool_impl (javaCast object_ :: AllBinaryLayerCircularPool)) a1 a2
 
-initAllBinaryLayerCircularPool_impl :: AllBinaryLayerCircularPool -> AllBinaryLayerFactoryInterface.AllBinaryLayerFactoryInterface -> Int -> IO (())
-initAllBinaryLayerCircularPool_impl this allbinaryLayerFactoryInterface total = do
-        assignedValue <- (CircularIndexUtil.createInstance total)
-        jset (this).base.circularIndexUtil (assignedValue)
-        jset (this).base.oBJECT_ARRAY ((jnewArray (total) javaNull))
-        forM_ [0 .. total - 1] $ \localIndex -> javaIteration (pure ()) $ do
-            assignedValue <- (AllBinaryLayerFactoryInterface.getInstance allbinaryLayerFactoryInterface)
-            jsetIndex ((jget (this).base.oBJECT_ARRAY)) (localIndex) (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "AllBinaryLayerCircularPool" ]
+        ++ BaseCircularPool.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BaseCircularPool.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "initAllBinaryLayerCircularPool_2", jm_initAllBinaryLayerCircularPool_2 ) ]
+        BaseCircularPool.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryLayerCircularPool"
+        [ ( "jm_initAllBinaryLayerCircularPool_2", jm_initAllBinaryLayerCircularPool_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect BaseCircularPool.jinit_0 JR.this []),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_initAllBinaryLayerCircularPool_2 : JR.Method
+jm_initAllBinaryLayerCircularPool_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerFactoryInterface", "" ), ( "total", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.local "total") ])), 
+                    JR.exec (JR.setField "OBJECT_ARRAY" "" JR.this (JR.newArray "" [ (JR.local "total") ])), 
+                    JR.run [ JR.declare "localIndex" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "localIndex") (JR.local "total")) (JR.run [ JR.exec (JR.postUpdate (JR.local "localIndex") (\jwN66585 -> (JR.setLocal "localIndex" "I" (JR.lit jwN66585))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "OBJECT_ARRAY") (\jaN66489 -> JR.andThen (JR.local "localIndex") (\jiN66489 -> (JR.aset (JR.lit jaN66489) (JR.lit jiN66489) (JR.invoke "getInstance_0" (JR.local "allbinaryLayerFactoryInterface") []))))) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,10 +1,10 @@
-module ScreenListenerHandler exposing (..)
+module Org.Allbinary.Graphics.ScreenListenerHandler exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics
 -}
 
 import JR
-import ScreenEmptyListener
+import Org.Allbinary.Graphics.ScreenEmptyListener as ScreenEmptyListener
 
 
 jclass : String

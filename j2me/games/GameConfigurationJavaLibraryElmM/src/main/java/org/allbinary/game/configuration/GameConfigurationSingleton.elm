@@ -1,154 +1,137 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
-module GameConfigurationSingleton where
+module Org.Allbinary.Game.Configuration.GameConfigurationSingleton exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified GameConfiguration -- same package or java.lang
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration
+-}
 
-data GameConfigurationSingleton = GameConfigurationSingleton
-    { header_ :: JavaHeader
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    , hashtable :: IORef (ABHashtable.ABHashtable)
-    }
-
-instance JavaNull GameConfigurationSingleton where
-    javaNull = javaNullRecord "GameConfigurationSingleton"
-
-instance JavaEquals GameConfigurationSingleton where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameConfigurationSingleton where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameConfigurationSingleton where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: IORef (GameConfigurationSingleton)
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameConfigurationSingleton
-newRecord_ = do
-    header_ <- newJavaHeader
-    list <- newIORef javaNull
-    hashtable <- newIORef javaNull
-    let this = GameConfigurationSingleton header_ list hashtable
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstanceByName" (\() -> getInstanceByName_impl this)
-    jregisterMethod header_ "getOptionsBasicArrayList" (\() -> getOptionsBasicArrayList_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "getHashtable" (\() -> getHashtable_impl this)
-    pure this
-
-initFields_ :: GameConfigurationSingleton -> IO ()
-initFields_ this = do
-    jset this.list (javaNull)
-    jset this.hashtable (javaNull)
-    pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.StdUtil as StdUtil
 
 
-getInstance :: IO (GameConfigurationSingleton)
-getInstance = do
-        pure ((jget GameConfigurationSingleton.sINGLETON))
-
-new_ :: IO GameConfigurationSingleton
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameConfigurationSingleton -> IO ()
-init_ this = do
-        initFields_ this
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        jset (this).list (assignedValue)
-        assignedValue <- (StdUtil.createHashtable ((jio (StdUtil.getInstance))))
-        jset (this).hashtable (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "GameConfigurationSingleton"
 
 
-getInstanceByName :: (JavaObjectClass this_) => this_ -> String -> IO (GameConfiguration.GameConfiguration)
-getInstanceByName object_ a1 = jmethod object_ "getInstanceByName" (\() -> (getInstanceByName_impl (javaCast object_ :: GameConfigurationSingleton))) () a1
-
-getInstanceByName_super :: (JavaObjectClass this_) => this_ -> String -> IO (GameConfiguration.GameConfiguration)
-getInstanceByName_super object_ a1 = (getInstanceByName_impl (javaCast object_ :: GameConfigurationSingleton)) a1
-
-getInstanceByName_impl :: GameConfigurationSingleton -> String -> IO (GameConfiguration.GameConfiguration)
-getInstanceByName_impl this name = do
-        pure ((javaCast (jio (ABHashtable.get ((jget (this).hashtable)) name)) :: GameConfiguration.GameConfiguration))
+jchain : List String
+jchain =
+    [ "GameConfigurationSingleton" ]
 
 
-getOptionsBasicArrayList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getOptionsBasicArrayList object_ = jmethod object_ "getOptionsBasicArrayList" (\() -> (getOptionsBasicArrayList_impl (javaCast object_ :: GameConfigurationSingleton))) ()
-
-getOptionsBasicArrayList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getOptionsBasicArrayList_super object_ = (getOptionsBasicArrayList_impl (javaCast object_ :: GameConfigurationSingleton))
-
-getOptionsBasicArrayList_impl :: GameConfigurationSingleton -> IO (BasicArrayList.BasicArrayList)
-getOptionsBasicArrayList_impl this = do
-        pure ((jget (this).list))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "list", JR.defaultOf "" ), ( "hashtable", JR.defaultOf "" ) ]
 
 
-add :: (JavaObjectClass this_) => this_ -> GameConfiguration.GameConfiguration -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: GameConfigurationSingleton))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> GameConfiguration.GameConfiguration -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: GameConfigurationSingleton)) a1
-
-add_impl :: GameConfigurationSingleton -> GameConfiguration.GameConfiguration -> IO (())
-add_impl this gameConfiguration = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) gameConfiguration)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInstanceByName_1", jm_getInstanceByName_1 )
+        , ( "getOptionsBasicArrayList_0", jm_getOptionsBasicArrayList_0 )
+        , ( "add_1", jm_add_1 )
+        , ( "getHashtable_0", jm_getHashtable_0 ) ]
+        JR.noMethods
 
 
-getHashtable :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-getHashtable object_ = jmethod object_ "getHashtable" (\() -> (getHashtable_impl (javaCast object_ :: GameConfigurationSingleton))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameConfigurationSingleton"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInstanceByName_1", jm_getInstanceByName_1 ), ( "jm_getOptionsBasicArrayList_0", jm_getOptionsBasicArrayList_0 ), ( "jm_add_1", jm_add_1 ), ( "jm_getHashtable_0", jm_getHashtable_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
 
-getHashtable_super :: (JavaObjectClass this_) => this_ -> IO (ABHashtable.ABHashtable)
-getHashtable_super object_ = (getHashtable_impl (javaCast object_ :: GameConfigurationSingleton))
 
-getHashtable_impl :: GameConfigurationSingleton -> IO (ABHashtable.ABHashtable)
-getHashtable_impl this = do
-        pure ((jget (this).hashtable))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "GameConfigurationSingleton" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])), 
+                    JR.exec (JR.setField "hashtable" "" JR.this (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceByName_1 : JR.Method
+jm_getInstanceByName_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "get_1" (JR.thisField "hashtable") [ (JR.local "name") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getOptionsBasicArrayList_0 : JR.Method
+jm_getOptionsBasicArrayList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "list") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "gameConfiguration", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "gameConfiguration") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHashtable_0 : JR.Method
+jm_getHashtable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "hashtable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,112 +1,133 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.globals
-module URLGLOBALS where
+module Org.Allbinary.Globals.URLGLOBALS exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AppUrlGlobals -- same package or java.lang
-import qualified UrlGlobalsInterface -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.globals
+-}
 
-data URLGLOBALS = URLGLOBALS
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull URLGLOBALS where
-    javaNull = javaNullRecord "URLGLOBALS"
-
-instance JavaEquals URLGLOBALS where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq URLGLOBALS where
-    (==) = jrecordEquals
-
-instance JavaObjectClass URLGLOBALS where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-urlGlobalsInterface :: IORef (UrlGlobalsInterface.UrlGlobalsInterface)
-{-# NOINLINE urlGlobalsInterface #-}
-urlGlobalsInterface = unsafePerformIO (newIORef ((javaCast AppUrlGlobals.nULL_APP_URL_GLOBALS :: UrlGlobalsInterface.UrlGlobalsInterface)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO URLGLOBALS
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = URLGLOBALS header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: URLGLOBALS -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO URLGLOBALS
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: URLGLOBALS -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Globals.AppUrlGlobals as AppUrlGlobals
 
 
-init :: UrlGlobalsInterface.UrlGlobalsInterface -> IO (())
-init urlGlobalsInterface = do
-        jset URLGLOBALS.urlGlobalsInterface (urlGlobalsInterface)
-        pure ()
+jclass : String
+jclass =
+    "URLGLOBALS"
 
 
-isTestingMode :: IO (Bool)
-isTestingMode = do
-        (UrlGlobalsInterface.isTestingMode ((jget URLGLOBALS.urlGlobalsInterface)))
+jchain : List String
+jchain =
+    [ "URLGLOBALS" ]
 
 
-getWebappPath :: IO (String)
-getWebappPath = do
-        (UrlGlobalsInterface.getWebappPath ((jget URLGLOBALS.urlGlobalsInterface)))
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-getTestHtmlPath :: IO (String)
-getTestHtmlPath = do
-        (UrlGlobalsInterface.getTestHtmlPath ((jget URLGLOBALS.urlGlobalsInterface)))
+jvtable =
+    JR.vtable
+        [ ( "init_1", jm_init_1 )
+        , ( "isTestingMode_0", jm_isTestingMode_0 )
+        , ( "getWebappPath_0", jm_getWebappPath_0 )
+        , ( "getTestHtmlPath_0", jm_getTestHtmlPath_0 )
+        , ( "getMainPath_0", jm_getMainPath_0 ) ]
+        JR.noMethods
 
 
--- throws Exception
-getMainPath :: IO (String)
-getMainPath = do
-        (UrlGlobalsInterface.getMainPath ((jget URLGLOBALS.urlGlobalsInterface)))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "URLGLOBALS"
+        [ ( "jm_init_1", jm_init_1 ), ( "jm_isTestingMode_0", jm_isTestingMode_0 ), ( "jm_getWebappPath_0", jm_getWebappPath_0 ), ( "jm_getTestHtmlPath_0", jm_getTestHtmlPath_0 ), ( "jm_getMainPath_0", jm_getMainPath_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_urlGlobalsInterface", jstatic_urlGlobalsInterface ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_urlGlobalsInterface : JR.M
+jstatic_urlGlobalsInterface s =
+    JR.static "URLGLOBALS" jclinit "urlGlobalsInterface"
+        AppUrlGlobals.jstatic_NULL_APP_URL_GLOBALS
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "urlGlobalsInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setStatic "URLGLOBALS.urlGlobalsInterface" "" (JR.local "urlGlobalsInterface")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isTestingMode_0 : JR.Method
+jm_isTestingMode_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isTestingMode_0" jstatic_urlGlobalsInterface []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getWebappPath_0 : JR.Method
+jm_getWebappPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getWebappPath_0" jstatic_urlGlobalsInterface []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTestHtmlPath_0 : JR.Method
+jm_getTestHtmlPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getTestHtmlPath_0" jstatic_urlGlobalsInterface []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMainPath_0 : JR.Method
+jm_getMainPath_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getMainPath_0" jstatic_urlGlobalsInterface []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

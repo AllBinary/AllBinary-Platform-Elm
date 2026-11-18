@@ -1,79 +1,81 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
-module CustomDisplayable where
+module Org.Allbinary.Graphics.Form.CustomDisplayable exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form
+-}
 
-data CustomDisplayable = CustomDisplayable
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull CustomDisplayable where
-    javaNull = javaNullRecord "CustomDisplayable"
-
-instance JavaEquals CustomDisplayable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CustomDisplayable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CustomDisplayable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CustomDisplayable
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = CustomDisplayable header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "setTitle" (\() -> setTitle_impl this)
-    pure this
-
-initFields_ :: CustomDisplayable -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO CustomDisplayable
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CustomDisplayable -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-setTitle :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setTitle object_ a1 = jmethod object_ "setTitle" (\() -> (setTitle_impl (javaCast object_ :: CustomDisplayable))) () a1
 
-setTitle_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setTitle_super object_ a1 = (setTitle_impl (javaCast object_ :: CustomDisplayable)) a1
+jclass : String
+jclass =
+    "CustomDisplayable"
 
-setTitle_impl :: CustomDisplayable -> String -> IO (())
-setTitle_impl this title = do
-        pure ()
 
+jchain : List String
+jchain =
+    [ "CustomDisplayable" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "setTitle_1", jm_setTitle_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CustomDisplayable"
+        [ ( "jm_setTitle_1", jm_setTitle_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_setTitle_1 : JR.Method
+jm_setTitle_1 jheap jthis jargs =
+    JR.method [ ( "title", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

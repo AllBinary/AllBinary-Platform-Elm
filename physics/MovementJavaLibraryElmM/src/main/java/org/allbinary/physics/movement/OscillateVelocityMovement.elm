@@ -1,122 +1,97 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.physics.movement
-module OscillateVelocityMovement (module OscillateVelocityMovement, module BasicConstantVelocityMovement) where
+module Org.Allbinary.Physics.Movement.OscillateVelocityMovement exposing (..)
 
-import BasicConstantVelocityMovement hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, process, process_super, process_impl, oscillateMin, oscillateMax, oscillate, oscillatePositive)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicVelocityProperties -- same package or java.lang
-import qualified AllBinaryGameLayer -- org.allbinary.game.layer.AllBinaryGameLayer
-import qualified VelocityProperties -- org.allbinary.game.physics.velocity.VelocityProperties
-import qualified BasicDecimal -- org.allbinary.logic.math.BasicDecimal
-import qualified BasicConstantVelocityMovement
+{-| Generated Code Do Not Modify package org.allbinary.physics.movement
+-}
 
-data OscillateVelocityMovement = OscillateVelocityMovement
-    { header_ :: JavaHeader
-    , base :: BasicConstantVelocityMovement.BasicConstantVelocityMovement
-    , oscillateMin :: IORef (Int)
-    , oscillateMax :: IORef (Int)
-    , oscillate :: IORef (Int)
-    , oscillatePositive :: IORef (Bool)
-    }
-
-instance JavaNull OscillateVelocityMovement where
-    javaNull = javaNullRecord "OscillateVelocityMovement"
-
-instance JavaEquals OscillateVelocityMovement where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OscillateVelocityMovement where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OscillateVelocityMovement where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO OscillateVelocityMovement
-newRecord_ = do
-    base <- BasicConstantVelocityMovement.newRecord_
-    let header_ = base.header_
-    oscillateMin <- newIORef 0
-    oscillateMax <- newIORef 0
-    oscillate <- newIORef 0
-    oscillatePositive <- newIORef False
-    let this = OscillateVelocityMovement header_ base oscillateMin oscillateMax oscillate oscillatePositive
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: OscillateVelocityMovement -> IO ()
-initFields_ this = do
-    jset this.oscillateMin (0)
-    jset this.oscillateMax (0)
-    jset this.oscillate (0)
-    jset this.oscillatePositive (False)
-    pure ()
-
-new_3 :: BasicDecimal.BasicDecimal -> Int -> Int -> IO OscillateVelocityMovement
-new_3 speedBasicDecimal oscillateMin oscillateMax = do
-    this <- newRecord_
-    init_3 this speedBasicDecimal oscillateMin oscillateMax
-    pure this
-
-init_3 :: OscillateVelocityMovement -> BasicDecimal.BasicDecimal -> Int -> Int -> IO ()
-init_3 this speedBasicDecimal oscillateMin oscillateMax = do
-        BasicConstantVelocityMovement.init_2 this.base (speedBasicDecimal) (javaCast (jio (VelocityProperties.new_2 (Prelude.fromInteger (jnumericInteger (jio (BasicDecimal.getUnscaled speedBasicDecimal)))) (Prelude.fromInteger (jnumericInteger (jio (BasicDecimal.getUnscaled speedBasicDecimal)))))))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).oscillateMin (oscillateMin)
-        jset (this).oscillateMax (oscillateMax)
-        pure ()
+import JR
+import Org.Allbinary.Physics.Movement.BasicConstantVelocityMovement as BasicConstantVelocityMovement
+import Org.Allbinary.Game.Physics.Velocity.VelocityProperties as VelocityProperties
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process object_ a1 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: OscillateVelocityMovement))) () a1
+jclass : String
+jclass =
+    "OscillateVelocityMovement"
 
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_super object_ a1 = (process_impl (javaCast object_ :: OscillateVelocityMovement)) a1
 
-process_impl :: OscillateVelocityMovement -> AllBinaryGameLayer.AllBinaryGameLayer -> IO (())
-process_impl this layer = do
-        Control.Monad.void (BasicConstantVelocityMovement.process_super this.base layer)
-        if ((jget (this).oscillate) < (jget (this).oscillateMin)) then do
-            jset (this).oscillatePositive (True)
-        else when ((jget (this).oscillate) > (jget (this).oscillateMax)) $ do
-            jset (this).oscillatePositive (False)
-        if (jget (this).oscillatePositive) then do
-            jset (this).oscillate ((jget (this).oscillate) + 1)
-            Control.Monad.void (BasicVelocityProperties.addint ((jio (BasicVelocityProperties.getVelocityXBasicDecimalP ((jio (BasicConstantVelocityMovement.getVelocityProperties this)))))) 2000)
-        else do
-            jset (this).oscillate ((jget (this).oscillate) - 1)
-            Control.Monad.void (BasicVelocityProperties.subtractint ((jio (BasicVelocityProperties.getVelocityXBasicDecimalP ((jio (BasicConstantVelocityMovement.getVelocityProperties this)))))) 2000)
-        pure ()
+jchain : List String
+jchain =
+    [ "OscillateVelocityMovement" ]
+        ++ BasicConstantVelocityMovement.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicConstantVelocityMovement.jfields ++ [ ( "oscillateMin", JR.defaultOf "I" ), ( "oscillateMax", JR.defaultOf "I" ), ( "oscillate", JR.defaultOf "I" ), ( "oscillatePositive", JR.defaultOf "Z" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "process_1", jm_process_1 ) ]
+        BasicConstantVelocityMovement.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OscillateVelocityMovement"
+        [ ( "jm_process_1", jm_process_1 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "speedBasicDecimal", "" ), ( "oscillateMin", "I" ), ( "oscillateMax", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicConstantVelocityMovement.jinit_2 JR.this [ (JR.local "speedBasicDecimal"), (JR.new VelocityProperties.jnew_2 [ (JR.cast "I" (JR.invoke "getUnscaled_0" (JR.local "speedBasicDecimal") [])), (JR.cast "I" (JR.invoke "getUnscaled_0" (JR.local "speedBasicDecimal") [])) ]) ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "oscillateMin" "I" JR.this (JR.local "oscillateMin")), 
+                    JR.exec (JR.setField "oscillateMax" "I" JR.this (JR.local "oscillateMax")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_process_1 : JR.Method
+jm_process_1 jheap jthis jargs =
+    JR.method [ ( "layer", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia BasicConstantVelocityMovement.jvtable "process_1" JR.this [ (JR.local "layer") ]), 
+                    JR.ifElse (JR.map2 JR.less (JR.thisField "oscillate") (JR.thisField "oscillateMin")) (JR.run [ 
+                        JR.exec (JR.setField "oscillatePositive" "Z" JR.this (JR.bool True)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.thisField "oscillate") (JR.thisField "oscillateMax")) (JR.run [ 
+                        JR.exec (JR.setField "oscillatePositive" "Z" JR.this (JR.bool False)) ]) identity ]), 
+                    JR.ifElse (JR.thisField "oscillatePositive") (JR.run [ 
+                        JR.exec (JR.postUpdate (JR.thisField "oscillate") (\jwN68701 -> (JR.setField "oscillate" "I" JR.this (JR.lit jwN68701))) JR.increment), 
+                        JR.exec (JR.invoke "addint_1" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.invoke "getVelocityProperties_0" JR.this []) []) [ (JR.int 2000) ]) ]) (JR.run [ 
+                        JR.exec (JR.postUpdate (JR.thisField "oscillate") (\jwN68636 -> (JR.setField "oscillate" "I" JR.this (JR.lit jwN68636))) JR.decrement), 
+                        JR.exec (JR.invoke "subtractint_1" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.invoke "getVelocityProperties_0" JR.this []) []) [ (JR.int 2000) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

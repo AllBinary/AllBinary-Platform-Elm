@@ -1,156 +1,144 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module NullAnimationFactory where
+module Org.Allbinary.Animation.NullAnimationFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Animation -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified ScaleProperties -- org.allbinary.media.ScaleProperties
-import qualified AnimationInterfaceFactoryInterface
-import qualified ProceduralAnimationInterfaceFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
--- implements AnimationInterfaceFactoryInterface
--- implements ProceduralAnimationInterfaceFactoryInterface
-data NullAnimationFactory = NullAnimationFactory
-    { header_ :: JavaHeader
-    , nULL_ANIMATION :: IORef (Animation.Animation)
-    , eMPTY_ARRAY :: IORef (JavaArray (Animation.Animation))
-    }
-
-instance JavaNull NullAnimationFactory where
-    javaNull = javaNullRecord "NullAnimationFactory"
-
-instance JavaEquals NullAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NullAnimationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NullAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_NOT_FOR_USE_ANIMATION_FACTORY :: IORef (NullAnimationFactory)
-{-# NOINLINE nULL_NOT_FOR_USE_ANIMATION_FACTORY #-}
-nULL_NOT_FOR_USE_ANIMATION_FACTORY = unsafePerformIO ((new_) >>= newIORef)
-
-nULL_ANIMATION_FACTORY :: IORef (NullAnimationFactory)
-{-# NOINLINE nULL_ANIMATION_FACTORY #-}
-nULL_ANIMATION_FACTORY = unsafePerformIO ((new_) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NullAnimationFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    nULL_ANIMATION <- newIORef javaNull
-    eMPTY_ARRAY <- newIORef javaNull
-    let this = NullAnimationFactory header_ nULL_ANIMATION eMPTY_ARRAY
-    jregisterLevel header_ this
-    AnimationInterfaceFactoryInterface.registerInterface_ header_
-    ProceduralAnimationInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    jregisterMethod header_ "getInstanceAnimation" (\() -> getInstanceAnimation_impl this)
-    jregisterMethod header_ "setInitialScale" (\() -> setInitialScale_impl this)
-    pure this
-
-initFields_ :: NullAnimationFactory -> IO ()
-initFields_ this = do
-    jset this.nULL_ANIMATION =<< (Animation.new_ >>= anonymousNullAnimationFactory0_ this)
-    jset this.eMPTY_ARRAY ((jnewArray (0) javaNull))
-    pure ()
-
-new_ :: IO NullAnimationFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NullAnimationFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Animation.Animation as Animation
+import Org.Allbinary.Animation.AnimationInterfaceFactoryInterface as AnimationInterfaceFactoryInterface
+import Org.Allbinary.Animation.ProceduralAnimationInterfaceFactoryInterface as ProceduralAnimationInterfaceFactoryInterface
 
 
-getFactoryInstance :: IO (NullAnimationFactory)
-getFactoryInstance = do
-        pure ((jget NullAnimationFactory.nULL_ANIMATION_FACTORY))
+jclass : String
+jclass =
+    "NullAnimationFactory"
 
 
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: NullAnimationFactory))) () a1
-
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: NullAnimationFactory)) a1
-
-getInstance_impl :: NullAnimationFactory -> Int -> IO (Animation.Animation)
-getInstance_impl this instanceId = do
-        pure ((jget (this).nULL_ANIMATION))
+jchain : List String
+jchain =
+    [ "NullAnimationFactory" ]
+        ++ AnimationInterfaceFactoryInterface.jchain
+        ++ ProceduralAnimationInterfaceFactoryInterface.jchain
 
 
--- throws Exception
-getInstanceAnimation :: (JavaObjectClass this_) => this_ -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation object_ a1 = jmethod object_ "getInstanceAnimation" (\() -> (getInstanceAnimation_impl (javaCast object_ :: NullAnimationFactory))) () a1
-
-getInstanceAnimation_super :: (JavaObjectClass this_) => this_ -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation_super object_ a1 = (getInstanceAnimation_impl (javaCast object_ :: NullAnimationFactory)) a1
-
-getInstanceAnimation_impl :: NullAnimationFactory -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation_impl this animationInterface = do
-        pure ((jget (this).nULL_ANIMATION))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "NULL_ANIMATION", JR.defaultOf "" ), ( "EMPTY_ARRAY", JR.defaultOf "" ) ]
 
 
-setInitialScale :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale object_ a1 = jmethod object_ "setInitialScale" (\() -> (setInitialScale_impl (javaCast object_ :: NullAnimationFactory))) () a1
-
-setInitialScale_super :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_super object_ a1 = (setInitialScale_impl (javaCast object_ :: NullAnimationFactory)) a1
-
-setInitialScale_impl :: NullAnimationFactory -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_impl this scaleProperties = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getFactoryInstance_0", jm_getFactoryInstance_0 )
+        , ( "getInstance_1", jm_getInstance_1 )
+        , ( "getInstanceAnimation_1", jm_getInstanceAnimation_1 )
+        , ( "setInitialScale_1", jm_setInitialScale_1 ) ]
+        JR.noMethods
 
 
--- Java anonymous class new Animation() {...}
-anonymousNullAnimationFactory0_ (this :: NullAnimationFactory) (anonymous_ :: Animation.Animation) = do
-    jregisterMethod (jheaderOf anonymous_) "paintXY" (\() -> anonymousNullAnimationFactory0_paintXY this anonymous_)
-    pure anonymous_
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullAnimationFactory"
+        [ ( "jm_getFactoryInstance_0", jm_getFactoryInstance_0 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_getInstanceAnimation_1", jm_getInstanceAnimation_1 ), ( "jm_setInitialScale_1", jm_setInitialScale_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_NOT_FOR_USE_ANIMATION_FACTORY", jstatic_NULL_NOT_FOR_USE_ANIMATION_FACTORY ), ( "jstatic_NULL_ANIMATION_FACTORY", jstatic_NULL_ANIMATION_FACTORY ) ]
+        jheap
 
-anonymousNullAnimationFactory0_paintXY (this :: NullAnimationFactory) (anonymous_ :: Animation.Animation) (graphics :: Graphics.Graphics) (x :: Int) (y :: Int) = ( do
-            pure ()
-            pure ()
- ) :: IO (())
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_NOT_FOR_USE_ANIMATION_FACTORY : JR.M
+jstatic_NULL_NOT_FOR_USE_ANIMATION_FACTORY s =
+    JR.static "NullAnimationFactory" jclinit "NULL_NOT_FOR_USE_ANIMATION_FACTORY"
+        (JR.new jnew_0 [])
+        s
+
+
+jstatic_NULL_ANIMATION_FACTORY : JR.M
+jstatic_NULL_ANIMATION_FACTORY s =
+    JR.static "NullAnimationFactory" jclinit "NULL_ANIMATION_FACTORY"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "NULL_ANIMATION" "" JR.this (JR.anonymous "NullAnimationFactory$1" Animation.jchain Animation.jvtable Animation.jfields Animation.jinit_0 [ ( "paintXY_3", janon1_jm_paintXY_3 ) ] [] [])),
+                JR.exec (JR.setField "EMPTY_ARRAY" "" JR.this (JR.newArray "" [ (JR.int 0) ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getFactoryInstance_0 : JR.Method
+jm_getFactoryInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_NULL_ANIMATION_FACTORY ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "instanceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "NULL_ANIMATION") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceAnimation_1 : JR.Method
+jm_getInstanceAnimation_1 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "NULL_ANIMATION") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInitialScale_1 : JR.Method
+jm_setInitialScale_1 jheap jthis jargs =
+    JR.method [ ( "scaleProperties", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+janon1_jm_paintXY_3 : JR.Method
+janon1_jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

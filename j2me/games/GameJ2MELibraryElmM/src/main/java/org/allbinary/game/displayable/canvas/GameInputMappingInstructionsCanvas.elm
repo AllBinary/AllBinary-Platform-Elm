@@ -1,153 +1,137 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module GameInputMappingInstructionsCanvas (module GameInputMappingInstructionsCanvas, module GameCommandCanvas) where
+module Org.Allbinary.Game.Displayable.Canvas.GameInputMappingInstructionsCanvas exposing (..)
 
-import GameCommandCanvas hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, initCommands, initCommands_super, initCommands_impl, paint, paint_super, paint_impl, dISPLAY, cLOSE, nAME, drawStringUtil, tITLE, instructions, colorFillPaintable, anchor)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified AllBinaryGameLayerManager -- org.allbinary.game.layer.AllBinaryGameLayerManager
-import qualified ColorFillBasePaintable -- org.allbinary.game.paint.ColorFillBasePaintable
-import qualified ColorFillPaintableFactory -- org.allbinary.game.paint.ColorFillPaintableFactory
-import qualified Anchor -- org.allbinary.graphics.Anchor
-import qualified DrawStringUtil -- org.allbinary.graphics.draw.DrawStringUtil
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified GameCommandCanvas
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data GameInputMappingInstructionsCanvas = GameInputMappingInstructionsCanvas
-    { header_ :: JavaHeader
-    , base :: GameCommandCanvas.GameCommandCanvas
-    , drawStringUtil :: IORef (DrawStringUtil.DrawStringUtil)
-    , tITLE :: IORef (String)
-    , instructions :: IORef (JavaArray (String))
-    , colorFillPaintable :: IORef (ColorFillBasePaintable.ColorFillBasePaintable)
-    , anchor :: IORef (Int)
-    }
-
-instance JavaNull GameInputMappingInstructionsCanvas where
-    javaNull = javaNullRecord "GameInputMappingInstructionsCanvas"
-
-instance JavaEquals GameInputMappingInstructionsCanvas where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameInputMappingInstructionsCanvas where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameInputMappingInstructionsCanvas where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-dISPLAY :: Command.Command
-{-# NOINLINE dISPLAY #-}
-dISPLAY = unsafePerformIO ((Command.new_4 "Help" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1))
-
-cLOSE :: Command.Command
-{-# NOINLINE cLOSE #-}
-cLOSE = unsafePerformIO ((Command.new_4 "Close" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1))
-
-nAME :: String
-nAME = "GameInputMappingInstructionsCanvas"
-
-newRecord_ :: IO GameInputMappingInstructionsCanvas
-newRecord_ = do
-    base <- GameCommandCanvas.newRecord_
-    let header_ = base.header_
-    drawStringUtil <- newIORef javaNull
-    tITLE <- newIORef ""
-    instructions <- newIORef javaNull
-    colorFillPaintable <- newIORef javaNull
-    anchor <- newIORef 0
-    let this = GameInputMappingInstructionsCanvas header_ base drawStringUtil tITLE instructions colorFillPaintable anchor
-    jregisterLevel header_ this
-    jregisterMethod header_ "initCommands" (\() -> initCommands_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: GameInputMappingInstructionsCanvas -> IO ()
-initFields_ this = do
-    jset this.drawStringUtil =<< (DrawStringUtil.getInstance)
-    jset this.tITLE ("Input Instructions")
-    jset this.instructions ((jarrayFromList ["Add Input Mapping:", "1. Select the desired action by generating a currently defined input for a given action.", "(Example: Press the '1' key to select the Fire action)", "2. Make the newly desired input for the selected action.", "(Example: Press 'f' to add it to the selected action)", "Note: If the input is already mapped to another action then it will not be added. You", "will need to deleted from the other action before adding it to another.", "Warning: Not all keys map for a given platform and show as Unknown.", (jget ((jio (StringUtil.getInstance))).eMPTY_STRING), "Remove Input Mapping:", "1. Select the desired action by generating a currently defined input for a given action.", "(Example: Press the key '1' to select the Fire action)", "2. Select a mapped input for the selected action.", "(Example: Press the key '1' to select the '1' key input for the selected Fire action)", "3. Press the Delete Key."]))
-    jset this.colorFillPaintable (javaNull)
-    jset this.anchor (Anchor.tOP_LEFT)
-    pure ()
-
-new_2 :: CommandListener.CommandListener -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> IO GameInputMappingInstructionsCanvas
-new_2 commandListener allBinaryGameLayerManager = do
-    this <- newRecord_
-    init_2 this commandListener allBinaryGameLayerManager
-    pure this
-
-init_2 :: GameInputMappingInstructionsCanvas -> CommandListener.CommandListener -> AllBinaryGameLayerManager.AllBinaryGameLayerManager -> IO ()
-init_2 this commandListener allBinaryGameLayerManager = do
-        GameCommandCanvas.init_4 this.base (commandListener) (GameInputMappingInstructionsCanvas.nAME) (jio (AllBinaryGameLayerManager.getBackgroundBasicColor allBinaryGameLayerManager)) (jio (AllBinaryGameLayerManager.getForegroundBasicColor allBinaryGameLayerManager))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-        assignedValue <- (ColorFillPaintableFactory.getInstance ((jio (ColorFillPaintableFactory.getInstance))) (jio (AllBinaryGameLayerManager.getBackgroundBasicColor allBinaryGameLayerManager)) False)
-        jset (this).colorFillPaintable (assignedValue)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Anchor as Anchor
+import Org.Allbinary.Game.Paint.ColorFillPaintableFactory as ColorFillPaintableFactory
+import Javax.Microedition.Lcdui.Command as Command
+import Org.Allbinary.Graphics.Draw.DrawStringUtil as DrawStringUtil
+import Org.Allbinary.Game.Displayable.Canvas.GameCommandCanvas as GameCommandCanvas
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-initCommands :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands object_ a1 = jmethod object_ "initCommands" (\() -> (initCommands_impl (javaCast object_ :: GameInputMappingInstructionsCanvas))) () a1
-
-initCommands_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands_super object_ a1 = (initCommands_impl (javaCast object_ :: GameInputMappingInstructionsCanvas)) a1
-
-initCommands_impl :: GameInputMappingInstructionsCanvas -> CommandListener.CommandListener -> IO (())
-initCommands_impl this cmdListener = do
-        Control.Monad.void (GameCommandCanvas.removeAllCommands this)
-        Control.Monad.void (GameCommandCanvas.addCommand this (GameInputMappingInstructionsCanvas.cLOSE))
-        Control.Monad.void (GameCommandCanvas.setCommandListener this cmdListener)
-        pure ()
+jclass : String
+jclass =
+    "GameInputMappingInstructionsCanvas"
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: GameInputMappingInstructionsCanvas))) () a1
+jchain : List String
+jchain =
+    [ "GameInputMappingInstructionsCanvas" ]
+        ++ GameCommandCanvas.jchain
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: GameInputMappingInstructionsCanvas)) a1
 
-paint_impl :: GameInputMappingInstructionsCanvas -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (process ((jget (this).base.myFontProcessor)) graphics)
-        Control.Monad.void (ColorFillBasePaintable.paint ((jget (this).colorFillPaintable)) graphics)
-        halfWidth <- (getLastHalfWidth ((jget (this).base.displayInfo)))
-        let beginWidth = (((jio (Graphics.stringWidth ((jio (Graphics.getFont graphics))) (jget (this).tITLE))) `Data.Bits.shiftR` 1))
-        Control.Monad.void (Graphics.setColor graphics (jget (this).base.foregroundColor))
-        Control.Monad.void (Graphics.drawString graphics (jget (this).tITLE) (halfWidth - beginWidth) (jget (this).base.fontHeight) (jget (this).anchor))
-        Control.Monad.void (DrawStringUtil.drawCenterStrings ((jget (this).drawStringUtil)) graphics (jget (this).instructions) (jio (getLastWidth ((jget (this).base.displayInfo)))) (jget (this).base.fontHeight) halfWidth (3 * (jget (this).base.fontHeight)))
-        Control.Monad.void (GameCommandCanvas.paint_super this.base graphics)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    GameCommandCanvas.jfields ++ [ ( "drawStringUtil", JR.defaultOf "" ), ( "TITLE", JR.defaultOf "" ), ( "instructions", JR.defaultOf "" ), ( "colorFillPaintable", JR.defaultOf "" ), ( "anchor", JR.defaultOf "I" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "initCommands_1", jm_initCommands_1 )
+        , ( "paint_1", jm_paint_1 ) ]
+        GameCommandCanvas.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameInputMappingInstructionsCanvas"
+        [ ( "jm_initCommands_1", jm_initCommands_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_DISPLAY", jstatic_DISPLAY ), ( "jstatic_CLOSE", jstatic_CLOSE ), ( "jstatic_NAME", jstatic_NAME ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_DISPLAY : JR.M
+jstatic_DISPLAY s =
+    JR.static "GameInputMappingInstructionsCanvas" jclinit "DISPLAY"
+        (JR.new Command.jnew_4 [ (JR.str "Help"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])
+        s
+
+
+jstatic_CLOSE : JR.M
+jstatic_CLOSE s =
+    JR.static "GameInputMappingInstructionsCanvas" jclinit "CLOSE"
+        (JR.new Command.jnew_4 [ (JR.str "Close"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])
+        s
+
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "GameInputMappingInstructionsCanvas" jclinit "NAME"
+        (JR.str "GameInputMappingInstructionsCanvas")
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "commandListener", "" ), ( "allBinaryGameLayerManager", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect GameCommandCanvas.jinit_4 JR.this [ (JR.local "commandListener"), jstatic_NAME, (JR.invoke "getBackgroundBasicColor_0" (JR.local "allBinaryGameLayerManager") []), (JR.invoke "getForegroundBasicColor_0" (JR.local "allBinaryGameLayerManager") []) ]),
+                JR.exec (JR.setField "drawStringUtil" "" JR.this (JR.callStatic DrawStringUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "TITLE" "" JR.this (JR.str "Input Instructions")),
+                JR.exec (JR.setField "instructions" "" JR.this (JR.arrayOf "" [ (JR.str "Add Input Mapping:"), (JR.str "1. Select the desired action by generating a currently defined input for a given action."), (JR.str "(Example: Press the '1' key to select the Fire action)"), (JR.str "2. Make the newly desired input for the selected action."), (JR.str "(Example: Press 'f' to add it to the selected action)"), (JR.str "Note: If the input is already mapped to another action then it will not be added. You"), (JR.str "will need to deleted from the other action before adding it to another."), (JR.str "Warning: Not all keys map for a given platform and show as Unknown."), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.str "Remove Input Mapping:"), (JR.str "1. Select the desired action by generating a currently defined input for a given action."), (JR.str "(Example: Press the key '1' to select the Fire action)"), (JR.str "2. Select a mapped input for the selected action."), (JR.str "(Example: Press the key '1' to select the '1' key input for the selected Fire action)"), (JR.str "3. Press the Delete Key.") ])),
+                JR.exec (JR.setField "anchor" "I" JR.this Anchor.jstatic_TOP_LEFT),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.setField "colorFillPaintable" "" JR.this (JR.invoke "getInstance_2" (JR.callStatic ColorFillPaintableFactory.jm_getInstance_0 []) [ (JR.invoke "getBackgroundBasicColor_0" (JR.local "allBinaryGameLayerManager") []), (JR.bool False) ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_initCommands_1 : JR.Method
+jm_initCommands_1 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeAllCommands_0" JR.this []), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ jstatic_CLOSE ]), 
+                    JR.exec (JR.invoke "setCommandListener_1" JR.this [ (JR.local "cmdListener") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "colorFillPaintable") [ (JR.local "graphics") ]), 
+                    JR.declare "halfWidth" "I" (JR.invoke "getLastHalfWidth_0" (JR.thisField "displayInfo") []), 
+                    JR.declare "beginWidth" "I" ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.thisField "TITLE") ]) (JR.int 1))), 
+                    JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.thisField "foregroundColor") ]), 
+                    JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.thisField "TITLE"), (JR.map2 JR.sub (JR.local "halfWidth") (JR.local "beginWidth")), (JR.thisField "fontHeight"), (JR.thisField "anchor") ]), 
+                    JR.exec (JR.invoke "drawCenterStrings_6" (JR.thisField "drawStringUtil") [ (JR.local "graphics"), (JR.thisField "instructions"), (JR.invoke "getLastWidth_0" (JR.thisField "displayInfo") []), (JR.thisField "fontHeight"), (JR.local "halfWidth"), (JR.map2 JR.mul (JR.int 3) (JR.thisField "fontHeight")) ]), 
+                    JR.exec (JR.callVia GameCommandCanvas.jvtable "paint_1" JR.this [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

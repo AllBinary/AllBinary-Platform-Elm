@@ -1,106 +1,90 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.media
-module ScaleProperties where
+module Org.Allbinary.Media.ScaleProperties exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
+{-| Generated Code Do Not Modify package org.allbinary.media
+-}
 
-data ScaleProperties = ScaleProperties
-    { header_ :: JavaHeader
-    , scaleX :: IORef (Float)
-    , scaleY :: IORef (Float)
-    , scaleWidth :: IORef (Int)
-    , scaleHeight :: IORef (Int)
-    , shouldScale :: IORef (Bool)
-    }
-
-instance JavaNull ScaleProperties where
-    javaNull = javaNullRecord "ScaleProperties"
-
-instance JavaEquals ScaleProperties where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ScaleProperties where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ScaleProperties where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ScaleProperties
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-newRecord_ :: IO ScaleProperties
-newRecord_ = do
-    header_ <- newJavaHeader
-    scaleX <- newIORef 0.0
-    scaleY <- newIORef 0.0
-    scaleWidth <- newIORef 0
-    scaleHeight <- newIORef 0
-    shouldScale <- newIORef False
-    let this = ScaleProperties header_ scaleX scaleY scaleWidth scaleHeight shouldScale
-    jregisterLevel header_ this
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: ScaleProperties -> IO ()
-initFields_ this = do
-    jset this.scaleX (0.0)
-    jset this.scaleY (0.0)
-    jset this.scaleWidth (0)
-    jset this.scaleHeight (0)
-    jset this.shouldScale (False)
-    pure ()
-
-new_ :: IO ScaleProperties
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ScaleProperties -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: ScaleProperties))) ()
+jclass : String
+jclass =
+    "ScaleProperties"
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: ScaleProperties))
 
-toString_impl :: ScaleProperties -> IO (String)
-toString_impl this = do
-        (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendfloat ((jio (StringMaker.append ((jio (StringMaker.appendfloat ((jio (StringMaker.append ((jio (StringMaker.appendboolean ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonLabels.getInstance))).cOLON_SEP)))) (jget (this).shouldScale)))) "scaleX: "))) (jget (this).scaleX)))) "scaleY: "))) (jget (this).scaleY)))) "scaleWidth: "))) (jget (this).scaleWidth)))) "scaleHeight: "))) (jget (this).scaleHeight)))))
+jchain : List String
+jchain =
+    [ "ScaleProperties" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "scaleX", JR.defaultOf "F" ), ( "scaleY", JR.defaultOf "F" ), ( "scaleWidth", JR.defaultOf "I" ), ( "scaleHeight", JR.defaultOf "I" ), ( "shouldScale", JR.defaultOf "Z" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ScaleProperties"
+        [ ( "jm_toString_0", jm_toString_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ScaleProperties" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendfloat_1" (JR.invoke "append_1" (JR.invoke "appendfloat_1" (JR.invoke "append_1" (JR.invoke "appendboolean_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "COLON_SEP" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.thisField "shouldScale") ]) [ (JR.str "scaleX: ") ]) [ (JR.thisField "scaleX") ]) [ (JR.str "scaleY: ") ]) [ (JR.thisField "scaleY") ]) [ (JR.str "scaleWidth: ") ]) [ (JR.thisField "scaleWidth") ]) [ (JR.str "scaleHeight: ") ]) [ (JR.thisField "scaleHeight") ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

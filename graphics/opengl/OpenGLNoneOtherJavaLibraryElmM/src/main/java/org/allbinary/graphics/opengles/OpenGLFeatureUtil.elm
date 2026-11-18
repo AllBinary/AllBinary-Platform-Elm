@@ -1,102 +1,101 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
-module OpenGLFeatureUtil where
+module Org.Allbinary.Graphics.Opengles.OpenGLFeatureUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.graphics.opengles
+-}
 
-data OpenGLFeatureUtil = OpenGLFeatureUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull OpenGLFeatureUtil where
-    javaNull = javaNullRecord "OpenGLFeatureUtil"
-
-instance JavaEquals OpenGLFeatureUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLFeatureUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLFeatureUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: OpenGLFeatureUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OpenGLFeatureUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = OpenGLFeatureUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "isAnyThreed" (\() -> isAnyThreed_impl this)
-    pure this
-
-initFields_ :: OpenGLFeatureUtil -> IO ()
-initFields_ this = do
-    pure ()
+import JR
 
 
-getInstance :: IO (OpenGLFeatureUtil)
-getInstance = do
-        pure (OpenGLFeatureUtil.instance_)
 
-new_ :: IO OpenGLFeatureUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLFeatureUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "OpenGLFeatureUtil"
 
 
-isAnyThreed :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isAnyThreed object_ = jmethod object_ "isAnyThreed" (\() -> (isAnyThreed_impl (javaCast object_ :: OpenGLFeatureUtil))) ()
+jchain : List String
+jchain =
+    [ "OpenGLFeatureUtil" ]
 
-isAnyThreed_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isAnyThreed_super object_ = (isAnyThreed_impl (javaCast object_ :: OpenGLFeatureUtil))
 
-isAnyThreed_impl :: OpenGLFeatureUtil -> IO (Bool)
-isAnyThreed_impl this = do
-        pure (False)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "isAnyThreed_0", jm_isAnyThreed_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLFeatureUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_isAnyThreed_0", jm_isAnyThreed_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "OpenGLFeatureUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isAnyThreed_0 : JR.Method
+jm_isAnyThreed_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

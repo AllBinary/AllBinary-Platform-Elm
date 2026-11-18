@@ -1,10 +1,10 @@
-module ColorChangeEventHandler exposing (..)
+module Org.Allbinary.Graphics.Color.ColorChangeEventHandler exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics.color
 -}
 
 import JR
-import BasicEventHandler
+import Org.Allbinary.Logic.Util.Event.Handler.BasicEventHandler as BasicEventHandler
 
 
 jclass : String

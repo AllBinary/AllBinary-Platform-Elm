@@ -1,245 +1,206 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
-module ThirdPartyInApplicationPurchase where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LockableFeature -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified ThirdPartyInApplicationPurchaseInterface
-
--- implements ThirdPartyInApplicationPurchaseInterface
-data ThirdPartyInApplicationPurchase = ThirdPartyInApplicationPurchase
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ThirdPartyInApplicationPurchase where
-    javaNull = javaNullRecord "ThirdPartyInApplicationPurchase"
-
-instance JavaEquals ThirdPartyInApplicationPurchase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ThirdPartyInApplicationPurchase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ThirdPartyInApplicationPurchase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ThirdPartyInApplicationPurchase
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ThirdPartyInApplicationPurchase header_
-    jregisterLevel header_ this
-    ThirdPartyInApplicationPurchaseInterface.registerInterface_ header_
-    jregisterMethod header_ "isPurchased" (\() -> isPurchased_impl this)
-    jregisterMethod header_ "onCreate" (\() -> onCreate_impl this)
-    jregisterMethod header_ "onDestroy" (\() -> onDestroy_impl this)
-    jregisterMethod header_ "onStart" (\() -> onStart_impl this)
-    jregisterMethod header_ "onActivityResult" (\() -> onActivityResult_impl this)
-    jregisterMethod header_ "onSaveInstanceState" (\() -> onSaveInstanceState_impl this)
-    jregisterMethod header_ "onStop" (\() -> onStop_impl this)
-    jregisterMethod header_ "requestPurchase" (\() -> requestPurchase_impl this)
-    jregisterMethod header_ "requestReceipts" (\() -> requestReceipts_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "getUserName" (\() -> getUserName_impl this)
-    jregisterMethod header_ "isEnabled" (\() -> isEnabled_impl this)
-    jregisterMethod header_ "requestProducts" (\() -> requestProducts_impl this)
-    pure this
-
-initFields_ :: ThirdPartyInApplicationPurchase -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO ThirdPartyInApplicationPurchase
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ThirdPartyInApplicationPurchase -> IO ()
-init_ this = do
-    initFields_ this
-
-
-isPurchased :: (JavaObjectClass this_) => this_ -> LockableFeature.LockableFeature -> IO (Bool)
-isPurchased object_ a1 = jmethod object_ "isPurchased" (\() -> (isPurchased_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) () a1
-
-isPurchased_super :: (JavaObjectClass this_) => this_ -> LockableFeature.LockableFeature -> IO (Bool)
-isPurchased_super object_ a1 = (isPurchased_impl (javaCast object_ :: ThirdPartyInApplicationPurchase)) a1
+module Org.Allbinary.Logic.System.Security.Licensing.ThirdPartyInApplicationPurchase exposing (..)
 
-isPurchased_impl :: ThirdPartyInApplicationPurchase -> LockableFeature.LockableFeature -> IO (Bool)
-isPurchased_impl this lockableFeature = do
-        pure (False)
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.licensing
+-}
 
+import JR
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Logic.System.Security.Licensing.ThirdPartyInApplicationPurchaseInterface as ThirdPartyInApplicationPurchaseInterface
 
-onCreate :: (JavaObjectClass this_, JavaObjectClass o1, JavaObjectClass o2) => this_ -> o1 -> o2 -> IO (())
-onCreate object_ a1 a2 = jmethod object_ "onCreate" (\() -> (onCreate_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) () (jtoObject a1) (jtoObject a2)
 
-onCreate_super :: (JavaObjectClass this_, JavaObjectClass o1, JavaObjectClass o2) => this_ -> o1 -> o2 -> IO (())
-onCreate_super object_ a1 a2 = (onCreate_impl (javaCast object_ :: ThirdPartyInApplicationPurchase)) (jtoObject a1) (jtoObject a2)
+jclass : String
+jclass =
+    "ThirdPartyInApplicationPurchase"
+
+
+jchain : List String
+jchain =
+    [ "ThirdPartyInApplicationPurchase" ]
+        ++ ThirdPartyInApplicationPurchaseInterface.jchain
 
-onCreate_impl :: ThirdPartyInApplicationPurchase -> JavaObject -> JavaObject -> IO (())
-onCreate_impl this anyTypeObject_ stateObjectObject_ = do
-        let anyType = jtoObject anyTypeObject_
-        let stateObject = jtoObject stateObjectObject_
-        pure ()
 
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "isPurchased_1", jm_isPurchased_1 )
+        , ( "onCreate_2", jm_onCreate_2 )
+        , ( "onDestroy_0", jm_onDestroy_0 )
+        , ( "onStart_0", jm_onStart_0 )
+        , ( "onActivityResult_3", jm_onActivityResult_3 )
+        , ( "onSaveInstanceState_1", jm_onSaveInstanceState_1 )
+        , ( "onStop_0", jm_onStop_0 )
+        , ( "requestPurchase_1", jm_requestPurchase_1 )
+        , ( "requestReceipts_0", jm_requestReceipts_0 )
+        , ( "add_1", jm_add_1 )
+        , ( "getUserName_0", jm_getUserName_0 )
+        , ( "isEnabled_0", jm_isEnabled_0 )
+        , ( "requestProducts_0", jm_requestProducts_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ThirdPartyInApplicationPurchase"
+        [ ( "jm_isPurchased_1", jm_isPurchased_1 ), ( "jm_onCreate_2", jm_onCreate_2 ), ( "jm_onDestroy_0", jm_onDestroy_0 ), ( "jm_onStart_0", jm_onStart_0 ), ( "jm_onActivityResult_3", jm_onActivityResult_3 ), ( "jm_onSaveInstanceState_1", jm_onSaveInstanceState_1 ), ( "jm_onStop_0", jm_onStop_0 ), ( "jm_requestPurchase_1", jm_requestPurchase_1 ), ( "jm_requestReceipts_0", jm_requestReceipts_0 ), ( "jm_add_1", jm_add_1 ), ( "jm_getUserName_0", jm_getUserName_0 ), ( "jm_isEnabled_0", jm_isEnabled_0 ), ( "jm_requestProducts_0", jm_requestProducts_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_isPurchased_1 : JR.Method
+jm_isPurchased_1 jheap jthis jargs =
+    JR.method [ ( "lockableFeature", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onCreate_2 : JR.Method
+jm_onCreate_2 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ), ( "stateObject", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onDestroy_0 : JR.Method
+jm_onDestroy_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
 
-onDestroy :: (JavaObjectClass this_) => this_ -> IO (())
-onDestroy object_ = jmethod object_ "onDestroy" (\() -> (onDestroy_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) ()
-
-onDestroy_super :: (JavaObjectClass this_) => this_ -> IO (())
-onDestroy_super object_ = (onDestroy_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))
-
-onDestroy_impl :: ThirdPartyInApplicationPurchase -> IO (())
-onDestroy_impl this = do
-        pure ()
-
-
-onStart :: (JavaObjectClass this_) => this_ -> IO (())
-onStart object_ = jmethod object_ "onStart" (\() -> (onStart_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) ()
-
-onStart_super :: (JavaObjectClass this_) => this_ -> IO (())
-onStart_super object_ = (onStart_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))
-
-onStart_impl :: ThirdPartyInApplicationPurchase -> IO (())
-onStart_impl this = do
-        pure ()
-
-
-onActivityResult :: (JavaObjectClass this_, JavaObjectClass o3) => this_ -> Int -> Int -> o3 -> IO (())
-onActivityResult object_ a1 a2 a3 = jmethod object_ "onActivityResult" (\() -> (onActivityResult_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) () a1 a2 (jtoObject a3)
-
-onActivityResult_super :: (JavaObjectClass this_, JavaObjectClass o3) => this_ -> Int -> Int -> o3 -> IO (())
-onActivityResult_super object_ a1 a2 a3 = (onActivityResult_impl (javaCast object_ :: ThirdPartyInApplicationPurchase)) a1 a2 (jtoObject a3)
-
-onActivityResult_impl :: ThirdPartyInApplicationPurchase -> Int -> Int -> JavaObject -> IO (())
-onActivityResult_impl this requestCode resultCode dataObjectObject_ = do
-        let dataObject = jtoObject dataObjectObject_
-        pure ()
-
-
-onSaveInstanceState :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-onSaveInstanceState object_ a1 = jmethod object_ "onSaveInstanceState" (\() -> (onSaveInstanceState_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) () (jtoObject a1)
-
-onSaveInstanceState_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-onSaveInstanceState_super object_ a1 = (onSaveInstanceState_impl (javaCast object_ :: ThirdPartyInApplicationPurchase)) (jtoObject a1)
-
-onSaveInstanceState_impl :: ThirdPartyInApplicationPurchase -> JavaObject -> IO (())
-onSaveInstanceState_impl this anyTypeObject_ = do
-        let anyType = jtoObject anyTypeObject_
-        pure ()
-
-
-onStop :: (JavaObjectClass this_) => this_ -> IO (())
-onStop object_ = jmethod object_ "onStop" (\() -> (onStop_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) ()
-
-onStop_super :: (JavaObjectClass this_) => this_ -> IO (())
-onStop_super object_ = (onStop_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))
-
-onStop_impl :: ThirdPartyInApplicationPurchase -> IO (())
-onStop_impl this = do
-        pure ()
-
-
-requestPurchase :: (JavaObjectClass this_) => this_ -> LockableFeature.LockableFeature -> IO (())
-requestPurchase object_ a1 = jmethod object_ "requestPurchase" (\() -> (requestPurchase_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) () a1
-
-requestPurchase_super :: (JavaObjectClass this_) => this_ -> LockableFeature.LockableFeature -> IO (())
-requestPurchase_super object_ a1 = (requestPurchase_impl (javaCast object_ :: ThirdPartyInApplicationPurchase)) a1
-
-requestPurchase_impl :: ThirdPartyInApplicationPurchase -> LockableFeature.LockableFeature -> IO (())
-requestPurchase_impl this lockableFeature = do
-        pure ()
-
-
-requestReceipts :: (JavaObjectClass this_) => this_ -> IO (())
-requestReceipts object_ = jmethod object_ "requestReceipts" (\() -> (requestReceipts_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) ()
-
-requestReceipts_super :: (JavaObjectClass this_) => this_ -> IO (())
-requestReceipts_super object_ = (requestReceipts_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))
-
-requestReceipts_impl :: ThirdPartyInApplicationPurchase -> IO (())
-requestReceipts_impl this = do
-        pure ()
-
-
-add :: (JavaObjectClass this_) => this_ -> LockableFeature.LockableFeature -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> LockableFeature.LockableFeature -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: ThirdPartyInApplicationPurchase)) a1
-
-add_impl :: ThirdPartyInApplicationPurchase -> LockableFeature.LockableFeature -> IO (())
-add_impl this lockableFeature = do
-        pure ()
-
-
-getUserName :: (JavaObjectClass this_) => this_ -> IO (String)
-getUserName object_ = jmethod object_ "getUserName" (\() -> (getUserName_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) ()
-
-getUserName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getUserName_super object_ = (getUserName_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))
-
-getUserName_impl :: ThirdPartyInApplicationPurchase -> IO (String)
-getUserName_impl this = do
-        pure ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-
-
-isEnabled :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isEnabled object_ = jmethod object_ "isEnabled" (\() -> (isEnabled_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) ()
-
-isEnabled_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isEnabled_super object_ = (isEnabled_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))
-
-isEnabled_impl :: ThirdPartyInApplicationPurchase -> IO (Bool)
-isEnabled_impl this = do
-        pure (False)
-
-
-requestProducts :: (JavaObjectClass this_) => this_ -> IO (())
-requestProducts object_ = jmethod object_ "requestProducts" (\() -> (requestProducts_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))) ()
-
-requestProducts_super :: (JavaObjectClass this_) => this_ -> IO (())
-requestProducts_super object_ = (requestProducts_impl (javaCast object_ :: ThirdPartyInApplicationPurchase))
-
-requestProducts_impl :: ThirdPartyInApplicationPurchase -> IO (())
-requestProducts_impl this = do
-        pure ()
-
+jm_onStart_0 : JR.Method
+jm_onStart_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onActivityResult_3 : JR.Method
+jm_onActivityResult_3 jheap jthis jargs =
+    JR.method [ ( "requestCode", "I" ), ( "resultCode", "I" ), ( "dataObject", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onSaveInstanceState_1 : JR.Method
+jm_onSaveInstanceState_1 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onStop_0 : JR.Method
+jm_onStop_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_requestPurchase_1 : JR.Method
+jm_requestPurchase_1 jheap jthis jargs =
+    JR.method [ ( "lockableFeature", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_requestReceipts_0 : JR.Method
+jm_requestReceipts_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "lockableFeature", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getUserName_0 : JR.Method
+jm_getUserName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isEnabled_0 : JR.Method
+jm_isEnabled_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_requestProducts_0 : JR.Method
+jm_requestProducts_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

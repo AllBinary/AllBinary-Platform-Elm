@@ -1,109 +1,111 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.accelerometer
-module AccelerometerSensorFactory where
+module Org.Allbinary.Input.Accelerometer.AccelerometerSensorFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NoAccelerometerSensor -- same package or java.lang
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified SensorFeatureFactory -- org.allbinary.game.configuration.feature.SensorFeatureFactory
-import qualified AllBinaryOrientationSensor -- org.allbinary.input.gyro.AllBinaryOrientationSensor
+{-| Generated Code Do Not Modify package org.allbinary.input.accelerometer
+-}
 
-data AccelerometerSensorFactory = AccelerometerSensorFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull AccelerometerSensorFactory where
-    javaNull = javaNullRecord "AccelerometerSensorFactory"
-
-instance JavaEquals AccelerometerSensorFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AccelerometerSensorFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AccelerometerSensorFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-allBinaryAccelerometerSensor :: IORef (AllBinaryOrientationSensor.AllBinaryOrientationSensor)
-{-# NOINLINE allBinaryAccelerometerSensor #-}
-allBinaryAccelerometerSensor = unsafePerformIO (newIORef (AllBinaryOrientationSensor.nULL_ALLBINARY_ORIENTATION_SENSOR))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AccelerometerSensorFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = AccelerometerSensorFactory header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: AccelerometerSensorFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AccelerometerSensorFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AccelerometerSensorFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Input.Gyro.AllBinaryOrientationSensor as AllBinaryOrientationSensor
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Input.Accelerometer.NoAccelerometerSensor as NoAccelerometerSensor
+import Org.Allbinary.Game.Configuration.Feature.SensorFeatureFactory as SensorFeatureFactory
 
 
--- throws Exception
-init :: IO (())
-init = do
-        features <- (Features.getInstance)
-        sensorFeatureFactory <- (SensorFeatureFactory.getInstance)
-        if (jio (Features.isFeature features (jget (sensorFeatureFactory).oRIENTATION_SENSORS))) then do
-            javaThrow ((JavaException "Exception" "No Orientation Sensors"))
-        else if (jio (Features.isFeature features (jget (sensorFeatureFactory).sIMULATED_ORIENTATION_SENSORS))) then do
-            javaThrow ((JavaException "Exception" "No Simulation Sensors"))
-        else if (jio (Features.isFeature features (jget (sensorFeatureFactory).nO_ORIENTATION))) then do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: AllBinaryOrientationSensor.AllBinaryOrientationSensor) (NoAccelerometerSensor.new_))
-            jset AccelerometerSensorFactory.allBinaryAccelerometerSensor (assignedValue)
-        else do
-            javaThrow ((JavaException "Exception" "Not Such SensorFeature"))
-        pure ()
+jclass : String
+jclass =
+    "AccelerometerSensorFactory"
 
 
-getInstance :: IO (AllBinaryOrientationSensor.AllBinaryOrientationSensor)
-getInstance = do
-        pure ((jget AccelerometerSensorFactory.allBinaryAccelerometerSensor))
+jchain : List String
+jchain =
+    [ "AccelerometerSensorFactory" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 )
+        , ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AccelerometerSensorFactory"
+        [ ( "jm_init_0", jm_init_0 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_allBinaryAccelerometerSensor", jstatic_allBinaryAccelerometerSensor ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_allBinaryAccelerometerSensor : JR.M
+jstatic_allBinaryAccelerometerSensor s =
+    JR.static "AccelerometerSensorFactory" jclinit "allBinaryAccelerometerSensor"
+        AllBinaryOrientationSensor.jstatic_NULL_ALLBINARY_ORIENTATION_SENSOR
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.declare "sensorFeatureFactory" "" (JR.callStatic SensorFeatureFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "ORIENTATION_SENSORS" (JR.local "sensorFeatureFactory")) ]) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "No Orientation Sensors") ]) ]) (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "SIMULATED_ORIENTATION_SENSORS" (JR.local "sensorFeatureFactory")) ]) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "No Simulation Sensors") ]) ]) (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "NO_ORIENTATION" (JR.local "sensorFeatureFactory")) ]) (JR.run [ 
+                        JR.exec (JR.setStatic "AccelerometerSensorFactory.allBinaryAccelerometerSensor" "" (JR.new NoAccelerometerSensor.jnew_0 [])) ]) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Not Such SensorFeature") ]) ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_allBinaryAccelerometerSensor ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

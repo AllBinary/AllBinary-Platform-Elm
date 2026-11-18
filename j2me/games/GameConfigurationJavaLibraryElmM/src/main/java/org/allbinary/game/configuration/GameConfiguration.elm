@@ -1,302 +1,268 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
-module GameConfiguration where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameConfigurationSingleton -- same package or java.lang
-import qualified ABHashtable -- same package or java.lang
-import qualified GameFeatureEvent -- org.allbinary.game.configuration.event.GameFeatureEvent
-import qualified GameFeatureEventHandler -- org.allbinary.game.configuration.event.GameFeatureEventHandler
-import qualified BooleanFactory -- org.allbinary.logic.java.bool.BooleanFactory
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-
-data GameConfiguration = GameConfiguration
-    { header_ :: JavaHeader
-    , name :: IORef (String)
-    , defaultValue :: IORef (Int)
-    , value :: IORef (Int)
-    , minValue :: IORef (Int)
-    , maxValue :: IORef (Int)
-    , modifiable :: IORef (Bool)
-    }
-
-instance JavaNull GameConfiguration where
-    javaNull = javaNullRecord "GameConfiguration"
-
-instance JavaEquals GameConfiguration where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameConfiguration where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameConfiguration where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-mIN_VALUE = (Prelude.fromIntegral (((-2147483648) :: Int)) :: Int)
-
-newRecord_ :: IO GameConfiguration
-newRecord_ = do
-    header_ <- newJavaHeader
-    name <- newIORef ""
-    defaultValue <- newIORef javaNull
-    value <- newIORef javaNull
-    minValue <- newIORef javaNull
-    maxValue <- newIORef javaNull
-    modifiable <- newIORef javaNull
-    let this = GameConfiguration header_ name defaultValue value minValue maxValue modifiable
-    jregisterLevel header_ this
-    jregisterMethod header_ "setValue" (\() -> setValue_impl this)
-    jregisterMethod header_ "getValue" (\() -> getValue_impl this)
-    jregisterMethod header_ "setMaxValue" (\() -> setMaxValue_impl this)
-    jregisterMethod header_ "getMaxValue" (\() -> getMaxValue_impl this)
-    jregisterMethod header_ "setMinValue" (\() -> setMinValue_impl this)
-    jregisterMethod header_ "getMinValue" (\() -> getMinValue_impl this)
-    jregisterMethod header_ "setName" (\() -> setName_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "setDefaultValue" (\() -> setDefaultValue_impl this)
-    jregisterMethod header_ "getDefaultValue" (\() -> getDefaultValue_impl this)
-    jregisterMethod header_ "setDefault" (\() -> setDefault_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    jregisterMethod header_ "setModifiable" (\() -> setModifiable_impl this)
-    jregisterMethod header_ "isModifiable" (\() -> isModifiable_impl this)
-    pure this
-
-initFields_ :: GameConfiguration -> IO ()
-initFields_ this = do
-    jset this.name ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.defaultValue =<< (SmallIntegerSingletonFactory.getAt ((jio (SmallIntegerSingletonFactory.getInstance))) 0)
-    jset this.value (GameConfiguration.mIN_VALUE)
-    jset this.minValue ((jget (this).defaultValue))
-    jset this.maxValue ((jget (this).defaultValue))
-    jset this.modifiable ((jget ((jio (BooleanFactory.getInstance))).tRUE))
-    pure ()
-
-new_4 :: String -> Int -> Int -> Int -> IO GameConfiguration
-new_4 name defaultValue minValue maxValue = do
-    this <- newRecord_
-    init_4 this name defaultValue minValue maxValue
-    pure this
-
-init_4 :: GameConfiguration -> String -> Int -> Int -> Int -> IO ()
-init_4 this name defaultValue minValue maxValue = do
-        initFields_ this
-        Control.Monad.void (GameConfiguration.setName this name)
-        Control.Monad.void (GameConfiguration.setDefaultValue this defaultValue)
-        assignedValue <- (GameConfiguration.getDefaultValue this)
-        jset (this).value (assignedValue)
-        Control.Monad.void (GameConfiguration.setMinValue this minValue)
-        Control.Monad.void (GameConfiguration.setMaxValue this maxValue)
-        Control.Monad.void (ABHashtable.put ((jio (GameConfigurationSingleton.getHashtable ((jio (GameConfigurationSingleton.getInstance)))))) (jio (GameConfiguration.getName this)) this)
-        pure ()
-
-
--- throws Exception
-setValue :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setValue object_ a1 = jmethod object_ "setValue" (\() -> (setValue_impl (javaCast object_ :: GameConfiguration))) () a1
-
-setValue_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setValue_super object_ a1 = (setValue_impl (javaCast object_ :: GameConfiguration)) a1
-
-setValue_impl :: GameConfiguration -> Int -> IO (())
-setValue_impl this value = do
-        when ((jget (this).value) /= value) $ do
-            let oldValue = (jget (this).value)
-            jset (this).value (value)
-            Control.Monad.void (GameFeatureEventHandler.fireEvent ((jio (GameFeatureEventHandler.getInstance))) (jio (GameFeatureEvent.new_2 this (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (this).name)))) " value: from: "))) (oldValue)))) " to "))) (jget (this).value)))))))))
-        pure ()
-
-
-getValue :: (JavaObjectClass this_) => this_ -> IO (Int)
-getValue object_ = jmethod object_ "getValue" (\() -> (getValue_impl (javaCast object_ :: GameConfiguration))) ()
-
-getValue_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getValue_super object_ = (getValue_impl (javaCast object_ :: GameConfiguration))
-
-getValue_impl :: GameConfiguration -> IO (Int)
-getValue_impl this = do
-        pure ((jget (this).value))
-
-
-setMaxValue :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setMaxValue object_ a1 = jmethod object_ "setMaxValue" (\() -> (setMaxValue_impl (javaCast object_ :: GameConfiguration))) () a1
-
-setMaxValue_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setMaxValue_super object_ a1 = (setMaxValue_impl (javaCast object_ :: GameConfiguration)) a1
-
-setMaxValue_impl :: GameConfiguration -> Int -> IO (())
-setMaxValue_impl this maxValue = do
-        jset (this).maxValue (maxValue)
-        pure ()
-
-
-getMaxValue :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMaxValue object_ = jmethod object_ "getMaxValue" (\() -> (getMaxValue_impl (javaCast object_ :: GameConfiguration))) ()
-
-getMaxValue_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMaxValue_super object_ = (getMaxValue_impl (javaCast object_ :: GameConfiguration))
-
-getMaxValue_impl :: GameConfiguration -> IO (Int)
-getMaxValue_impl this = do
-        pure ((jget (this).maxValue))
-
-
-setMinValue :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setMinValue object_ a1 = jmethod object_ "setMinValue" (\() -> (setMinValue_impl (javaCast object_ :: GameConfiguration))) () a1
-
-setMinValue_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setMinValue_super object_ a1 = (setMinValue_impl (javaCast object_ :: GameConfiguration)) a1
-
-setMinValue_impl :: GameConfiguration -> Int -> IO (())
-setMinValue_impl this minValue = do
-        jset (this).minValue (minValue)
-        pure ()
-
-
-getMinValue :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinValue object_ = jmethod object_ "getMinValue" (\() -> (getMinValue_impl (javaCast object_ :: GameConfiguration))) ()
-
-getMinValue_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinValue_super object_ = (getMinValue_impl (javaCast object_ :: GameConfiguration))
-
-getMinValue_impl :: GameConfiguration -> IO (Int)
-getMinValue_impl this = do
-        pure ((jget (this).minValue))
-
-
-setName :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName object_ a1 = jmethod object_ "setName" (\() -> (setName_impl (javaCast object_ :: GameConfiguration))) () a1
-
-setName_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName_super object_ a1 = (setName_impl (javaCast object_ :: GameConfiguration)) a1
-
-setName_impl :: GameConfiguration -> String -> IO (())
-setName_impl this name = do
-        jset (this).name (name)
-        pure ()
-
-
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: GameConfiguration))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: GameConfiguration))
-
-getName_impl :: GameConfiguration -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
-
-
-setDefaultValue :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setDefaultValue object_ a1 = jmethod object_ "setDefaultValue" (\() -> (setDefaultValue_impl (javaCast object_ :: GameConfiguration))) () a1
-
-setDefaultValue_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setDefaultValue_super object_ a1 = (setDefaultValue_impl (javaCast object_ :: GameConfiguration)) a1
-
-setDefaultValue_impl :: GameConfiguration -> Int -> IO (())
-setDefaultValue_impl this defaultValue = do
-        jset (this).defaultValue (defaultValue)
-        pure ()
-
-
-getDefaultValue :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDefaultValue object_ = jmethod object_ "getDefaultValue" (\() -> (getDefaultValue_impl (javaCast object_ :: GameConfiguration))) ()
-
-getDefaultValue_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDefaultValue_super object_ = (getDefaultValue_impl (javaCast object_ :: GameConfiguration))
-
-getDefaultValue_impl :: GameConfiguration -> IO (Int)
-getDefaultValue_impl this = do
-        pure ((jget (this).defaultValue))
-
-
--- throws Exception
-setDefault :: (JavaObjectClass this_) => this_ -> IO (())
-setDefault object_ = jmethod object_ "setDefault" (\() -> (setDefault_impl (javaCast object_ :: GameConfiguration))) ()
-
-setDefault_super :: (JavaObjectClass this_) => this_ -> IO (())
-setDefault_super object_ = (setDefault_impl (javaCast object_ :: GameConfiguration))
-
-setDefault_impl :: GameConfiguration -> IO (())
-setDefault_impl this = do
-        Control.Monad.void (GameConfiguration.setValue this (jio (GameConfiguration.getDefaultValue this)))
-        pure ()
-
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: GameConfiguration))) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: GameConfiguration))
-
-toString_impl :: GameConfiguration -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "Name: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jget (this).name))
-        Control.Monad.void (StringMaker.append stringBuffer " Min: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getMinValue this)))
-        Control.Monad.void (StringMaker.append stringBuffer " Max: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getMaxValue this)))
-        Control.Monad.void (StringMaker.append stringBuffer " Value: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getValue this)))
-        Control.Monad.void (StringMaker.append stringBuffer " Default: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (GameConfiguration.getDefaultValue this)))
-        Control.Monad.void (StringMaker.append stringBuffer " Modifiable: ")
-        Control.Monad.void (StringMaker.appendboolean stringBuffer (jio (GameConfiguration.isModifiable this)))
-        (StringMaker.toString stringBuffer)
-
-
-setModifiable :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setModifiable object_ a1 = jmethod object_ "setModifiable" (\() -> (setModifiable_impl (javaCast object_ :: GameConfiguration))) () a1
-
-setModifiable_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setModifiable_super object_ a1 = (setModifiable_impl (javaCast object_ :: GameConfiguration)) a1
-
-setModifiable_impl :: GameConfiguration -> Bool -> IO (())
-setModifiable_impl this modifiable = do
-        jset (this).modifiable (modifiable)
-        pure ()
-
-
-isModifiable :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isModifiable object_ = jmethod object_ "isModifiable" (\() -> (isModifiable_impl (javaCast object_ :: GameConfiguration))) ()
-
-isModifiable_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isModifiable_super object_ = (isModifiable_impl (javaCast object_ :: GameConfiguration))
-
-isModifiable_impl :: GameConfiguration -> IO (Bool)
-isModifiable_impl this = do
-        pure ((jget (this).modifiable))
-
+module Org.Allbinary.Game.Configuration.GameConfiguration exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration
+-}
+
+import JR
+import Org.Allbinary.Logic.Java.Bool.BooleanFactory as BooleanFactory
+import Org.Allbinary.Game.Configuration.GameConfigurationSingleton as GameConfigurationSingleton
+import Org.Allbinary.Game.Configuration.Event.GameFeatureEvent as GameFeatureEvent
+import Org.Allbinary.Game.Configuration.Event.GameFeatureEventHandler as GameFeatureEventHandler
+import JInteger
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+
+
+jclass : String
+jclass =
+    "GameConfiguration"
+
+
+jchain : List String
+jchain =
+    [ "GameConfiguration" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "name", JR.defaultOf "" ), ( "defaultValue", JR.defaultOf "" ), ( "value", JR.defaultOf "" ), ( "minValue", JR.defaultOf "" ), ( "maxValue", JR.defaultOf "" ), ( "modifiable", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "setValue_1", jm_setValue_1 )
+        , ( "getValue_0", jm_getValue_0 )
+        , ( "setMaxValue_1", jm_setMaxValue_1 )
+        , ( "getMaxValue_0", jm_getMaxValue_0 )
+        , ( "setMinValue_1", jm_setMinValue_1 )
+        , ( "getMinValue_0", jm_getMinValue_0 )
+        , ( "setName_1", jm_setName_1 )
+        , ( "getName_0", jm_getName_0 )
+        , ( "setDefaultValue_1", jm_setDefaultValue_1 )
+        , ( "getDefaultValue_0", jm_getDefaultValue_0 )
+        , ( "setDefault_0", jm_setDefault_0 )
+        , ( "toString_0", jm_toString_0 )
+        , ( "setModifiable_1", jm_setModifiable_1 )
+        , ( "isModifiable_0", jm_isModifiable_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameConfiguration"
+        [ ( "jm_setValue_1", jm_setValue_1 ), ( "jm_getValue_0", jm_getValue_0 ), ( "jm_setMaxValue_1", jm_setMaxValue_1 ), ( "jm_getMaxValue_0", jm_getMaxValue_0 ), ( "jm_setMinValue_1", jm_setMinValue_1 ), ( "jm_getMinValue_0", jm_getMinValue_0 ), ( "jm_setName_1", jm_setName_1 ), ( "jm_getName_0", jm_getName_0 ), ( "jm_setDefaultValue_1", jm_setDefaultValue_1 ), ( "jm_getDefaultValue_0", jm_getDefaultValue_0 ), ( "jm_setDefault_0", jm_setDefault_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jm_setModifiable_1", jm_setModifiable_1 ), ( "jm_isModifiable_0", jm_isModifiable_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        [ ( "jstatic_MIN_VALUE", jstatic_MIN_VALUE ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_MIN_VALUE : JR.M
+jstatic_MIN_VALUE s =
+    JR.static "GameConfiguration" jclinit "MIN_VALUE"
+        (JR.cast "I" JInteger.jstatic_MIN_VALUE)
+        s
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "defaultValue", "" ), ( "minValue", "" ), ( "maxValue", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "name" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "defaultValue" "" JR.this (JR.invoke "getAt_1" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []) [ (JR.int 0) ])),
+                JR.exec (JR.setField "value" "" JR.this jstatic_MIN_VALUE),
+                JR.exec (JR.setField "minValue" "" JR.this (JR.thisField "defaultValue")),
+                JR.exec (JR.setField "maxValue" "" JR.this (JR.thisField "defaultValue")),
+                JR.exec (JR.setField "modifiable" "" JR.this (JR.field "TRUE" (JR.callStatic BooleanFactory.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setName_1" JR.this [ (JR.local "name") ]), 
+                    JR.exec (JR.invoke "setDefaultValue_1" JR.this [ (JR.local "defaultValue") ]), 
+                    JR.exec (JR.setField "value" "" JR.this (JR.invoke "getDefaultValue_0" JR.this [])), 
+                    JR.exec (JR.invoke "setMinValue_1" JR.this [ (JR.local "minValue") ]), 
+                    JR.exec (JR.invoke "setMaxValue_1" JR.this [ (JR.local "maxValue") ]), 
+                    JR.exec (JR.invoke "put_2" (JR.invoke "getHashtable_0" (JR.callStatic GameConfigurationSingleton.jm_getInstance_0 []) []) [ (JR.invoke "getName_0" JR.this []), JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_setValue_1 : JR.Method
+jm_setValue_1 jheap jthis jargs =
+    JR.method [ ( "value", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.thisField "value") (JR.local "value")) (JR.run [ 
+                        JR.declare "oldValue" "" (JR.thisField "value"), 
+                        JR.exec (JR.setField "value" "" JR.this (JR.local "value")), 
+                        JR.exec (JR.invoke "fireEvent_1" (JR.callStatic GameFeatureEventHandler.jm_getInstance_0 []) [ (JR.new GameFeatureEvent.jnew_2 [ JR.this, (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "name") ]) [ (JR.str " value: from: ") ]) [ (JR.cast "I" (JR.invoke "intValue_0" (JR.local "oldValue") [])) ]) [ (JR.str " to ") ]) [ (JR.cast "I" (JR.invoke "intValue_0" (JR.thisField "value") [])) ]) []) ]) ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getValue_0 : JR.Method
+jm_getValue_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "value") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMaxValue_1 : JR.Method
+jm_setMaxValue_1 jheap jthis jargs =
+    JR.method [ ( "maxValue", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "maxValue" "" JR.this (JR.local "maxValue")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMaxValue_0 : JR.Method
+jm_getMaxValue_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "maxValue") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setMinValue_1 : JR.Method
+jm_setMinValue_1 jheap jthis jargs =
+    JR.method [ ( "minValue", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "minValue" "" JR.this (JR.local "minValue")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMinValue_0 : JR.Method
+jm_getMinValue_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "minValue") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setName_1 : JR.Method
+jm_setName_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "name")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDefaultValue_1 : JR.Method
+jm_setDefaultValue_1 jheap jthis jargs =
+    JR.method [ ( "defaultValue", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "defaultValue" "" JR.this (JR.local "defaultValue")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDefaultValue_0 : JR.Method
+jm_getDefaultValue_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "defaultValue") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setDefault_0 : JR.Method
+jm_setDefault_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setValue_1" JR.this [ (JR.invoke "getDefaultValue_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Name: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.thisField "name") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Min: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getMinValue_0" JR.this []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Max: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getMaxValue_0" JR.this []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Value: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" JR.this []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Default: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.invoke "intValue_0" (JR.invoke "getDefaultValue_0" JR.this []) [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Modifiable: ") ]), 
+                    JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.invoke "booleanValue_0" (JR.invoke "isModifiable_0" JR.this []) []) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setModifiable_1 : JR.Method
+jm_setModifiable_1 jheap jthis jargs =
+    JR.method [ ( "modifiable", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "modifiable" "" JR.this (JR.local "modifiable")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isModifiable_0 : JR.Method
+jm_isModifiable_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "modifiable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

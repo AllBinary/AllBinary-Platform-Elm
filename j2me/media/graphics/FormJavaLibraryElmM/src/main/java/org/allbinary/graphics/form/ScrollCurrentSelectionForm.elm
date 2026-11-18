@@ -1,361 +1,287 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
-module ScrollCurrentSelectionForm (module ScrollCurrentSelectionForm, module ScrollSelectionForm) where
+module Org.Allbinary.Graphics.Form.ScrollCurrentSelectionForm exposing (..)
 
-import ScrollSelectionForm hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, init, init_super, init_impl, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, processTempHorizontalForm, processTempHorizontalForm_super, processTempHorizontalForm_impl, processHorizontalForm, processHorizontalForm_super, processHorizontalForm_impl, processVerticalForm, processVerticalForm_super, processVerticalForm_impl, getXTempHorizontalForm, getXTempHorizontalForm_super, getXTempHorizontalForm_impl, getXHorizontalForm, getXHorizontalForm_super, getXHorizontalForm_impl, getXVerticalForm, getXVerticalForm_super, getXVerticalForm_impl, getDiffX, getDiffX_super, getDiffX_impl, getDx, getDx_super, getDx_impl, getDy, getDy_super, getDy_impl, paint, paint_super, paint_impl, moveForSmallScreen, updateMyFontProcessor, myFontProcessor, processor, preItemIndexDx, dx, dy, maxWidth)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ItemIndexDx -- same package or java.lang
-import qualified ItemPaintableFactory -- same package or java.lang
-import qualified FormTypeFactory -- same package or java.lang
-import qualified VerticalFormProcessor -- same package or java.lang
-import qualified VerticalItemIndexDx -- same package or java.lang
-import qualified HorizontalFormProcessor -- same package or java.lang
-import qualified HorizontalItemIndexDx -- same package or java.lang
-import qualified TempHorizontalFormProcessor -- same package or java.lang
-import qualified TempHorizontalItemIndexDx -- same package or java.lang
-import qualified FormType -- same package or java.lang
-import qualified ItemPaintable -- same package or java.lang
-import qualified CanvasStrings -- same package or java.lang
-import qualified PaintableForm -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Processor -- org.allbinary.canvas.Processor
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified ABCustomItem -- org.allbinary.graphics.form.item.ABCustomItem
-import qualified ScrollSelectionForm
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form
+-}
 
--- implements UpdateMyFontInterface
-data ScrollCurrentSelectionForm = ScrollCurrentSelectionForm
-    { header_ :: JavaHeader
-    , base :: ScrollSelectionForm.ScrollSelectionForm
-    , moveForSmallScreen :: IORef (Bool)
-    , updateMyFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , processor :: IORef (Processor.Processor)
-    , preItemIndexDx :: IORef (ItemIndexDx.ItemIndexDx)
-    , dx :: IORef (Int)
-    , dy :: IORef (Int)
-    , maxWidth :: IORef (Int)
-    }
-
-instance JavaNull ScrollCurrentSelectionForm where
-    javaNull = javaNullRecord "ScrollCurrentSelectionForm"
-
-instance JavaEquals ScrollCurrentSelectionForm where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ScrollCurrentSelectionForm where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ScrollCurrentSelectionForm where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ScrollCurrentSelectionForm
-newRecord_ = do
-    base <- ScrollSelectionForm.newRecord_
-    let header_ = base.header_
-    moveForSmallScreen <- newIORef False
-    updateMyFontProcessor <- newIORef javaNull
-    myFontProcessor <- newIORef javaNull
-    processor <- newIORef javaNull
-    preItemIndexDx <- newIORef javaNull
-    dx <- newIORef 0
-    dy <- newIORef 0
-    maxWidth <- newIORef 0
-    let this = ScrollCurrentSelectionForm header_ base moveForSmallScreen updateMyFontProcessor myFontProcessor processor preItemIndexDx dx dy maxWidth
-    jregisterLevel header_ this
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "processTempHorizontalForm" (\() -> processTempHorizontalForm_impl this)
-    jregisterMethod header_ "processHorizontalForm" (\() -> processHorizontalForm_impl this)
-    jregisterMethod header_ "processVerticalForm" (\() -> processVerticalForm_impl this)
-    jregisterMethod header_ "getXTempHorizontalForm" (\() -> getXTempHorizontalForm_impl this)
-    jregisterMethod header_ "getXHorizontalForm" (\() -> getXHorizontalForm_impl this)
-    jregisterMethod header_ "getXVerticalForm" (\() -> getXVerticalForm_impl this)
-    jregisterMethod header_ "getDiffX" (\() -> getDiffX_impl this)
-    jregisterMethod header_ "getDx" (\() -> getDx_impl this)
-    jregisterMethod header_ "getDy" (\() -> getDy_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: ScrollCurrentSelectionForm -> IO ()
-initFields_ this = do
-    jset this.moveForSmallScreen (False)
-    jset this.updateMyFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.myFontProcessor ((jget (this).updateMyFontProcessor))
-    jset this.processor =<< (Processor.getInstance)
-    jset this.preItemIndexDx =<< (ItemIndexDx.getInstance)
-    jset this.dx (0)
-    jset this.dy (0)
-    jset this.maxWidth (0)
-    pure ()
-
-new_8 :: String -> JavaArray (ABCustomItem.ABCustomItem) -> ItemPaintableFactory.ItemPaintableFactory -> Int -> Int -> Bool -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ScrollCurrentSelectionForm
-new_8 title items formPaintableFactory border adjustedExtraBorder moveForSmallScreen backgroundBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_8 this title items formPaintableFactory border adjustedExtraBorder moveForSmallScreen backgroundBasicColor foregroundBasicColor
-    pure this
-
-init_8 :: ScrollCurrentSelectionForm -> String -> JavaArray (ABCustomItem.ABCustomItem) -> ItemPaintableFactory.ItemPaintableFactory -> Int -> Int -> Bool -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_8 this title items formPaintableFactory border adjustedExtraBorder moveForSmallScreen backgroundBasicColor foregroundBasicColor = do
-        ScrollSelectionForm.init_7 this.base (title) (items) (formPaintableFactory) (border) (adjustedExtraBorder) (backgroundBasicColor) (foregroundBasicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).moveForSmallScreen (moveForSmallScreen)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Form.FormTypeFactory as FormTypeFactory
+import Org.Allbinary.Graphics.Form.HorizontalFormProcessor as HorizontalFormProcessor
+import Org.Allbinary.Graphics.Form.HorizontalItemIndexDx as HorizontalItemIndexDx
+import Org.Allbinary.Graphics.Form.ItemIndexDx as ItemIndexDx
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Canvas.Processor as Processor
+import Org.Allbinary.Graphics.Form.ScrollSelectionForm as ScrollSelectionForm
+import Org.Allbinary.Graphics.Form.TempHorizontalFormProcessor as TempHorizontalFormProcessor
+import Org.Allbinary.Graphics.Form.TempHorizontalItemIndexDx as TempHorizontalItemIndexDx
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
+import Org.Allbinary.Graphics.Form.VerticalFormProcessor as VerticalFormProcessor
+import Org.Allbinary.Graphics.Form.VerticalItemIndexDx as VerticalItemIndexDx
 
 
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> Rectangle.Rectangle -> FormType.FormType -> IO (())
-init object_ a1 a2 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: ScrollCurrentSelectionForm))) () a1 a2
-
-init_super :: (JavaObjectClass this_) => this_ -> Rectangle.Rectangle -> FormType.FormType -> IO (())
-init_super object_ a1 a2 = (init_impl (javaCast object_ :: ScrollCurrentSelectionForm)) a1 a2
-
-init_impl :: ScrollCurrentSelectionForm -> Rectangle.Rectangle -> FormType.FormType -> IO (())
-init_impl this rectangle formType = do
-        Control.Monad.void (ScrollSelectionForm.init_super this.base rectangle formType)
-        formTypeFactory <- (FormTypeFactory.getInstance)
-        if (formType == (jget (formTypeFactory).tEMP_HORIZONTAL_FORM)) then do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: Processor.Processor) (TempHorizontalFormProcessor.new_1 this))
-            jset (this).processor (assignedValue)
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: ItemIndexDx.ItemIndexDx) (TempHorizontalItemIndexDx.new_1 this))
-            jset (this).preItemIndexDx (assignedValue)
-        else if (formType == (jget (formTypeFactory).hORIZONTAL_FORM)) then do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: Processor.Processor) (HorizontalFormProcessor.new_1 this))
-            jset (this).processor (assignedValue)
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: ItemIndexDx.ItemIndexDx) (HorizontalItemIndexDx.new_1 this))
-            jset (this).preItemIndexDx (assignedValue)
-        else if (formType == (jget (formTypeFactory).vERTICAL_CENTER_FORM)) then do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: Processor.Processor) (VerticalFormProcessor.new_1 this))
-            jset (this).processor (assignedValue)
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: ItemIndexDx.ItemIndexDx) (VerticalItemIndexDx.new_1 this))
-            jset (this).preItemIndexDx (assignedValue)
-        else if (formType == (jget (formTypeFactory).nULL_FORM_TYPE)) then do
-            pure ()
-        else do
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jget (formTypeFactory).uNK) this (jget ((jget (this).base.commonStrings)).iNIT))
-        jset (this).myFontProcessor ((jget (this).updateMyFontProcessor))
-        pure ()
+jclass : String
+jclass =
+    "ScrollCurrentSelectionForm"
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: ScrollCurrentSelectionForm))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: ScrollCurrentSelectionForm)) a1
-
-updateMeasurement_impl :: ScrollCurrentSelectionForm -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "ScrollCurrentSelectionForm" ]
+        ++ ScrollSelectionForm.jchain
+        ++ UpdateMyFontInterface.jchain
 
 
-processTempHorizontalForm :: (JavaObjectClass this_) => this_ -> IO (())
-processTempHorizontalForm object_ = jmethod object_ "processTempHorizontalForm" (\() -> (processTempHorizontalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm))) ()
-
-processTempHorizontalForm_super :: (JavaObjectClass this_) => this_ -> IO (())
-processTempHorizontalForm_super object_ = (processTempHorizontalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm))
-
-processTempHorizontalForm_impl :: ScrollCurrentSelectionForm -> IO (())
-processTempHorizontalForm_impl this = do
-        jset (this).dx ((((jget (this).base.base.x) - 30) + (((jio (Rectangle.getWidth ((jget (this).base.base.rectangle)))) `Data.Bits.shiftR` 1))))
-        jset (this).dy ((jget (this).base.base.y))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    ScrollSelectionForm.jfields ++ [ ( "moveForSmallScreen", JR.defaultOf "Z" ), ( "updateMyFontProcessor", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "processor", JR.defaultOf "" ), ( "preItemIndexDx", JR.defaultOf "" ), ( "dx", JR.defaultOf "I" ), ( "dy", JR.defaultOf "I" ), ( "maxWidth", JR.defaultOf "I" ) ]
 
 
-processHorizontalForm :: (JavaObjectClass this_) => this_ -> IO (())
-processHorizontalForm object_ = jmethod object_ "processHorizontalForm" (\() -> (processHorizontalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm))) ()
-
-processHorizontalForm_super :: (JavaObjectClass this_) => this_ -> IO (())
-processHorizontalForm_super object_ = (processHorizontalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm))
-
-processHorizontalForm_impl :: ScrollCurrentSelectionForm -> IO (())
-processHorizontalForm_impl this = do
-        size <- (ScrollSelectionForm.size this)
-        totalWidth <- newIORef (0 :: Int)
-        item <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            assignedValue <- (ScrollSelectionForm.get this index)
-            jset item (assignedValue)
-            jset totalWidth (((jget totalWidth) + ((jio (ABCustomItem.getMinimumWidth ((jget item)))) + (jget (this).base.border))))
-        jset (this).dx ((((jget (this).base.base.x) + (((jio (Rectangle.getWidth ((jget (this).base.base.rectangle)))) `Data.Bits.shiftR` 1))) - (((jget totalWidth) `Data.Bits.shiftR` 1))))
-        jset (this).dy (((jget (this).base.base.y) + (((jio (Rectangle.getHeight ((jget (this).base.base.rectangle)))) `Data.Bits.shiftR` 1))))
-        when (jget (this).moveForSmallScreen) $ do
-            let maxTitleHeight = 175
-            when ((jget (this).dy) < maxTitleHeight) $ do
-                jset (this).dy (maxTitleHeight)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "init_2", jm_init_2 )
+        , ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "processTempHorizontalForm_0", jm_processTempHorizontalForm_0 )
+        , ( "processHorizontalForm_0", jm_processHorizontalForm_0 )
+        , ( "processVerticalForm_0", jm_processVerticalForm_0 )
+        , ( "getXTempHorizontalForm_4", jm_getXTempHorizontalForm_4 )
+        , ( "getXHorizontalForm_4", jm_getXHorizontalForm_4 )
+        , ( "getXVerticalForm_4", jm_getXVerticalForm_4 )
+        , ( "getDiffX_1", jm_getDiffX_1 )
+        , ( "getDx_0", jm_getDx_0 )
+        , ( "getDy_0", jm_getDy_0 )
+        , ( "paint_1", jm_paint_1 ) ]
+        ScrollSelectionForm.jvtable
 
 
-processVerticalForm :: (JavaObjectClass this_) => this_ -> IO (())
-processVerticalForm object_ = jmethod object_ "processVerticalForm" (\() -> (processVerticalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm))) ()
-
-processVerticalForm_super :: (JavaObjectClass this_) => this_ -> IO (())
-processVerticalForm_super object_ = (processVerticalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm))
-
-processVerticalForm_impl :: ScrollCurrentSelectionForm -> IO (())
-processVerticalForm_impl this = do
-        totalHeight <- newIORef (0 :: Int)
-        size <- (ScrollSelectionForm.size this)
-        item2 <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            assignedValue <- (ScrollSelectionForm.get this index)
-            jset item2 (assignedValue)
-            when ((jget (this).maxWidth) < (jio (ABCustomItem.getMinimumWidth ((jget item2))))) $ do
-                assignedValue <- (ABCustomItem.getMinimumWidth ((jget item2)))
-                jset (this).maxWidth (assignedValue)
-            jset totalHeight (((jget totalHeight) + ((jio (ABCustomItem.getMinimumHeight ((jget item2)))) + (jget (this).base.border))))
-        jset (this).dx ((((((jio (Rectangle.getWidth ((jget (this).base.base.rectangle)))) - (jget (this).maxWidth))) / 2)))
-        if ((jio (ScrollSelectionForm.size this)) > 0) then do
-            jset (this).dy (((jget (this).base.base.y) + (((((jio (Rectangle.getHeight ((jget (this).base.base.rectangle)))) - (jget totalHeight))) / 2))))
-            when (jget (this).moveForSmallScreen) $ do
-                let maxTitleHeight = 175
-                when ((jget (this).dy) < maxTitleHeight) $ do
-                    jset (this).dy (maxTitleHeight)
-        else do
-            jset (this).dy ((jget (this).base.base.y))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ScrollCurrentSelectionForm"
+        [ ( "jm_init_2", jm_init_2 ), ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_processTempHorizontalForm_0", jm_processTempHorizontalForm_0 ), ( "jm_processHorizontalForm_0", jm_processHorizontalForm_0 ), ( "jm_processVerticalForm_0", jm_processVerticalForm_0 ), ( "jm_getXTempHorizontalForm_4", jm_getXTempHorizontalForm_4 ), ( "jm_getXHorizontalForm_4", jm_getXHorizontalForm_4 ), ( "jm_getXVerticalForm_4", jm_getXVerticalForm_4 ), ( "jm_getDiffX_1", jm_getDiffX_1 ), ( "jm_getDx_0", jm_getDx_0 ), ( "jm_getDy_0", jm_getDy_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_8", jnew_8 ), ( "jinit_8", jinit_8 ) ]
+        []
+        jheap
 
 
-getXTempHorizontalForm :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getXTempHorizontalForm object_ a1 a2 a3 a4 = jmethod object_ "getXTempHorizontalForm" (\() -> (getXTempHorizontalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm))) () a1 a2 a3 a4
-
-getXTempHorizontalForm_super :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getXTempHorizontalForm_super object_ a1 a2 a3 a4 = (getXTempHorizontalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm)) a1 a2 a3 a4
-
-getXTempHorizontalForm_impl :: ScrollCurrentSelectionForm -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getXTempHorizontalForm_impl this index item dx dy = do
-        (ScrollCurrentSelectionForm.getDiffX this item)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getXHorizontalForm :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getXHorizontalForm object_ a1 a2 a3 a4 = jmethod object_ "getXHorizontalForm" (\() -> (getXHorizontalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm))) () a1 a2 a3 a4
-
-getXHorizontalForm_super :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getXHorizontalForm_super object_ a1 a2 a3 a4 = (getXHorizontalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm)) a1 a2 a3 a4
-
-getXHorizontalForm_impl :: ScrollCurrentSelectionForm -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getXHorizontalForm_impl this index item dx dy = do
-        pure (0)
-
-
-getXVerticalForm :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getXVerticalForm object_ a1 a2 a3 a4 = jmethod object_ "getXVerticalForm" (\() -> (getXVerticalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm))) () a1 a2 a3 a4
-
-getXVerticalForm_super :: (JavaObjectClass this_) => this_ -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getXVerticalForm_super object_ a1 a2 a3 a4 = (getXVerticalForm_impl (javaCast object_ :: ScrollCurrentSelectionForm)) a1 a2 a3 a4
-
-getXVerticalForm_impl :: ScrollCurrentSelectionForm -> Int -> ABCustomItem.ABCustomItem -> Int -> Int -> IO (Int)
-getXVerticalForm_impl this index item dx dy = do
-        pure (((jio (ScrollCurrentSelectionForm.getDiffX this item)) + (jget (this).base.halfBorder)))
+jinit_8 : JR.Method
+jinit_8 jheap jthis jargs =
+    JR.method [ ( "title", "" ), ( "items", "" ), ( "formPaintableFactory", "" ), ( "border", "I" ), ( "adjustedExtraBorder", "I" ), ( "moveForSmallScreen", "Z" ), ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ScrollSelectionForm.jinit_7 JR.this [ (JR.local "title"), (JR.local "items"), (JR.local "formPaintableFactory"), (JR.local "border"), (JR.local "adjustedExtraBorder"), (JR.local "backgroundBasicColor"), (JR.local "foregroundBasicColor") ]),
+                JR.exec (JR.setField "updateMyFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")),
+                JR.exec (JR.setField "processor" "" JR.this (JR.callStatic Processor.jm_getInstance_0 [])),
+                JR.exec (JR.setField "preItemIndexDx" "" JR.this (JR.callStatic ItemIndexDx.jm_getInstance_0 [])),
+                JR.exec (JR.setField "maxWidth" "I" JR.this (JR.int 0)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "moveForSmallScreen" "Z" JR.this (JR.local "moveForSmallScreen")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getDiffX :: (JavaObjectClass this_) => this_ -> ABCustomItem.ABCustomItem -> IO (Int)
-getDiffX object_ a1 = jmethod object_ "getDiffX" (\() -> (getDiffX_impl (javaCast object_ :: ScrollCurrentSelectionForm))) () a1
-
-getDiffX_super :: (JavaObjectClass this_) => this_ -> ABCustomItem.ABCustomItem -> IO (Int)
-getDiffX_super object_ a1 = (getDiffX_impl (javaCast object_ :: ScrollCurrentSelectionForm)) a1
-
-getDiffX_impl :: ScrollCurrentSelectionForm -> ABCustomItem.ABCustomItem -> IO (Int)
-getDiffX_impl this item = do
-        pure ((((((jget (this).maxWidth) - (jio (ABCustomItem.getMinimumWidth item)))) `Data.Bits.shiftR` 1)))
+jnew_8 : JR.Method
+jnew_8 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_8 jheap jthis jargs
 
 
-getDx :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDx object_ = jmethod object_ "getDx" (\() -> (getDx_impl (javaCast object_ :: ScrollCurrentSelectionForm))) ()
+jm_init_2 : JR.Method
+jm_init_2 jheap jthis jargs =
+    JR.method [ ( "rectangle", "" ), ( "formType", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia ScrollSelectionForm.jvtable "init_2" JR.this [ (JR.local "rectangle"), (JR.local "formType") ]), 
+                    JR.declare "formTypeFactory" "" (JR.callStatic FormTypeFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "formType") (JR.field "TEMP_HORIZONTAL_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
+                        JR.exec (JR.setField "processor" "" JR.this (JR.new TempHorizontalFormProcessor.jnew_1 [ JR.this ])), 
+                        JR.exec (JR.setField "preItemIndexDx" "" JR.this (JR.new TempHorizontalItemIndexDx.jnew_1 [ JR.this ])) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "formType") (JR.field "HORIZONTAL_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
+                        JR.exec (JR.setField "processor" "" JR.this (JR.new HorizontalFormProcessor.jnew_1 [ JR.this ])), 
+                        JR.exec (JR.setField "preItemIndexDx" "" JR.this (JR.new HorizontalItemIndexDx.jnew_1 [ JR.this ])) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "formType") (JR.field "VERTICAL_CENTER_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
+                        JR.exec (JR.setField "processor" "" JR.this (JR.new VerticalFormProcessor.jnew_1 [ JR.this ])), 
+                        JR.exec (JR.setField "preItemIndexDx" "" JR.this (JR.new VerticalItemIndexDx.jnew_1 [ JR.this ])) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "formType") (JR.field "NULL_FORM_TYPE" (JR.local "formTypeFactory"))) identity (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "UNK" (JR.local "formTypeFactory")), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")) ]) ]) ]) ]) ]), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getDx_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDx_super object_ = (getDx_impl (javaCast object_ :: ScrollCurrentSelectionForm))
 
-getDx_impl :: ScrollCurrentSelectionForm -> IO (Int)
-getDx_impl this = do
-        pure ((jget (this).dx))
-
-
-getDy :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDy object_ = jmethod object_ "getDy" (\() -> (getDy_impl (javaCast object_ :: ScrollCurrentSelectionForm))) ()
-
-getDy_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getDy_super object_ = (getDy_impl (javaCast object_ :: ScrollCurrentSelectionForm))
-
-getDy_impl :: ScrollCurrentSelectionForm -> IO (Int)
-getDy_impl this = do
-        pure ((jget (this).dy))
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: ScrollCurrentSelectionForm))) () a1
+jm_processTempHorizontalForm_0 : JR.Method
+jm_processTempHorizontalForm_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "dx" "I" JR.this (JR.plus (JR.map2 JR.sub (JR.thisField "x") (JR.int 30)) ((JR.map2 JR.shr (JR.invoke "getWidth_0" (JR.thisField "rectangle") []) (JR.int 1))))), 
+                    JR.exec (JR.setField "dy" "I" JR.this (JR.thisField "y")) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: ScrollCurrentSelectionForm)) a1
 
-paint_impl :: ScrollCurrentSelectionForm -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.base.canvasStrings)).pAINT) e)
-            ) $ do
-            Control.Monad.void (Processor.process ((jget (this).processor)))
-            delta <- newIORef (0 :: Int)
-            deltaX <- newIORef =<< (ScrollCurrentSelectionForm.getDx this)
-            deltaY <- newIORef =<< (ScrollCurrentSelectionForm.getDy this)
-            size <- (ScrollSelectionForm.size this)
-            formTypeFactory <- (FormTypeFactory.getInstance)
-            item <- newIORef (javaNull)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                assignedValue <- (ScrollSelectionForm.get this index)
-                jset item (assignedValue)
-                diffX <- (ItemIndexDx.getDx ((jget (this).preItemIndexDx)) index (jget item) (jget (this).dx) (jget (this).dy))
-                if (index == (jio (ScrollSelectionForm.getSelectedIndex this))) then do
-                    assignedValue <- (ScrollSelectionForm.paintItem this graphics index (jget item) ((jget deltaX) + diffX) (jget deltaY))
-                    jset delta (assignedValue)
-                    Control.Monad.void (ItemPaintable.paint ((jget (this).base.paintable)) graphics index ((jget deltaX) + diffX) (jget deltaY))
-                else do
-                    assignedValue <- (ScrollSelectionForm.paintUnselectedItem this graphics index (jget item) ((jget deltaX) + diffX) (jget deltaY))
-                    jset delta (assignedValue)
-                    Control.Monad.void (ItemPaintable.paint ((jget (this).base.paintable)) graphics index ((jget deltaX) + diffX) (jget deltaY))
-                if ((jget (this).base.base.formType) == (jget (formTypeFactory).tEMP_HORIZONTAL_FORM)) then do
-                    pure ()
-                else if ((jget (this).base.base.formType) == (jget (formTypeFactory).hORIZONTAL_FORM)) then do
-                    jset deltaX ((jget delta))
-                else if ((jget (this).base.base.formType) == (jget (formTypeFactory).vERTICAL_CENTER_FORM)) then do
-                    jset deltaY ((jget delta))
-                else do
-                    javaThrow ((JavaException "Exception" (jget (formTypeFactory).uNK)))
-        pure ()
+jm_processHorizontalForm_0 : JR.Method
+jm_processHorizontalForm_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.invoke "size_0" JR.this []), 
+                    JR.declare "totalWidth" "I" (JR.int 0), 
+                    JR.declare "item" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69338 -> (JR.setLocal "index" "I" (JR.lit jwN69338))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "item" "" (JR.invoke "get_1" JR.this [ (JR.local "index") ])), 
+                        JR.exec (JR.setLocal "totalWidth" "I" (JR.map2 JR.add (JR.local "totalWidth") (JR.plus (JR.invoke "getMinimumWidth_0" (JR.local "item") []) (JR.thisField "border")))) ]) ], 
+                    JR.exec (JR.setField "dx" "I" JR.this (JR.map2 JR.sub (JR.plus (JR.thisField "x") ((JR.map2 JR.shr (JR.invoke "getWidth_0" (JR.thisField "rectangle") []) (JR.int 1)))) ((JR.map2 JR.shr (JR.local "totalWidth") (JR.int 1))))), 
+                    JR.exec (JR.setField "dy" "I" JR.this (JR.plus (JR.thisField "y") ((JR.map2 JR.shr (JR.invoke "getHeight_0" (JR.thisField "rectangle") []) (JR.int 1))))), 
+                    JR.ifElse (JR.thisField "moveForSmallScreen") (JR.run [ 
+                        JR.declare "maxTitleHeight" "I" (JR.int 175), 
+                        JR.ifElse (JR.map2 JR.less (JR.thisField "dy") (JR.local "maxTitleHeight")) (JR.run [ 
+                            JR.exec (JR.setField "dy" "I" JR.this (JR.local "maxTitleHeight")) ]) identity ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_processVerticalForm_0 : JR.Method
+jm_processVerticalForm_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "totalHeight" "I" (JR.int 0), 
+                    JR.declare "size" "I" (JR.invoke "size_0" JR.this []), 
+                    JR.declare "item2" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69974 -> (JR.setLocal "index" "I" (JR.lit jwN69974))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "item2" "" (JR.invoke "get_1" JR.this [ (JR.local "index") ])), 
+                        JR.ifElse (JR.map2 JR.less (JR.thisField "maxWidth") (JR.invoke "getMinimumWidth_0" (JR.local "item2") [])) (JR.run [ 
+                            JR.exec (JR.setField "maxWidth" "I" JR.this (JR.invoke "getMinimumWidth_0" (JR.local "item2") [])) ]) identity, 
+                        JR.exec (JR.setLocal "totalHeight" "I" (JR.map2 JR.add (JR.local "totalHeight") (JR.plus (JR.invoke "getMinimumHeight_0" (JR.local "item2") []) (JR.thisField "border")))) ]) ], 
+                    JR.exec (JR.setField "dx" "I" JR.this ((JR.map2 JR.div ((JR.map2 JR.sub (JR.invoke "getWidth_0" (JR.thisField "rectangle") []) (JR.thisField "maxWidth"))) (JR.int 2)))), 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "size_0" JR.this []) (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.setField "dy" "I" JR.this (JR.plus (JR.thisField "y") ((JR.map2 JR.div ((JR.map2 JR.sub (JR.invoke "getHeight_0" (JR.thisField "rectangle") []) (JR.local "totalHeight"))) (JR.int 2))))), 
+                        JR.ifElse (JR.thisField "moveForSmallScreen") (JR.run [ 
+                            JR.declare "maxTitleHeight" "I" (JR.int 175), 
+                            JR.ifElse (JR.map2 JR.less (JR.thisField "dy") (JR.local "maxTitleHeight")) (JR.run [ 
+                                JR.exec (JR.setField "dy" "I" JR.this (JR.local "maxTitleHeight")) ]) identity ]) identity ]) (JR.run [ 
+                        JR.exec (JR.setField "dy" "I" JR.this (JR.thisField "y")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getXTempHorizontalForm_4 : JR.Method
+jm_getXTempHorizontalForm_4 jheap jthis jargs =
+    JR.method [ ( "index", "I" ), ( "item", "" ), ( "dx", "I" ), ( "dy", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getDiffX_1" JR.this [ (JR.local "item") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getXHorizontalForm_4 : JR.Method
+jm_getXHorizontalForm_4 jheap jthis jargs =
+    JR.method [ ( "index", "I" ), ( "item", "" ), ( "dx", "I" ), ( "dy", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getXVerticalForm_4 : JR.Method
+jm_getXVerticalForm_4 jheap jthis jargs =
+    JR.method [ ( "index", "I" ), ( "item", "" ), ( "dx", "I" ), ( "dy", "I" ) ] "I"
+        (JR.run [ 
+                    JR.return (JR.plus (JR.invoke "getDiffX_1" JR.this [ (JR.local "item") ]) (JR.thisField "halfBorder")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDiffX_1 : JR.Method
+jm_getDiffX_1 jheap jthis jargs =
+    JR.method [ ( "item", "" ) ] "I"
+        (JR.run [ 
+                    JR.return ((JR.map2 JR.shr ((JR.map2 JR.sub (JR.thisField "maxWidth") (JR.invoke "getMinimumWidth_0" (JR.local "item") []))) (JR.int 1))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDx_0 : JR.Method
+jm_getDx_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "dx") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDy_0 : JR.Method
+jm_getDy_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "dy") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "process_0" (JR.thisField "processor") []), 
+                        JR.declare "delta" "I" (JR.int 0), 
+                        JR.declare "deltaX" "I" (JR.invoke "getDx_0" JR.this []), 
+                        JR.declare "deltaY" "I" (JR.invoke "getDy_0" JR.this []), 
+                        JR.declare "size" "I" (JR.invoke "size_0" JR.this []), 
+                        JR.declare "formTypeFactory" "" (JR.callStatic FormTypeFactory.jm_getInstance_0 []), 
+                        JR.declare "item" "" (JR.lit (JR.defaultOf "")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71954 -> (JR.setLocal "index" "I" (JR.lit jwN71954))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "item" "" (JR.invoke "get_1" JR.this [ (JR.local "index") ])), 
+                            JR.declare "diffX" "I" (JR.invoke "getDx_4" (JR.thisField "preItemIndexDx") [ (JR.local "index"), (JR.local "item"), (JR.thisField "dx"), (JR.thisField "dy") ]), 
+                            JR.ifElse (JR.map2 JR.equals (JR.local "index") (JR.invoke "getSelectedIndex_0" JR.this [])) (JR.run [ 
+                                JR.exec (JR.setLocal "delta" "I" (JR.invoke "paintItem_5" JR.this [ (JR.local "graphics"), (JR.local "index"), (JR.local "item"), (JR.map2 JR.add (JR.local "deltaX") (JR.local "diffX")), (JR.local "deltaY") ])), 
+                                JR.exec (JR.invoke "paint_4" (JR.thisField "paintable") [ (JR.local "graphics"), (JR.local "index"), (JR.map2 JR.add (JR.local "deltaX") (JR.local "diffX")), (JR.local "deltaY") ]) ]) (JR.run [ 
+                                JR.exec (JR.setLocal "delta" "I" (JR.invoke "paintUnselectedItem_5" JR.this [ (JR.local "graphics"), (JR.local "index"), (JR.local "item"), (JR.map2 JR.add (JR.local "deltaX") (JR.local "diffX")), (JR.local "deltaY") ])), 
+                                JR.exec (JR.invoke "paint_4" (JR.thisField "paintable") [ (JR.local "graphics"), (JR.local "index"), (JR.map2 JR.add (JR.local "deltaX") (JR.local "diffX")), (JR.local "deltaY") ]) ]), 
+                            JR.ifElse (JR.map2 JR.equals (JR.thisField "formType") (JR.field "TEMP_HORIZONTAL_FORM" (JR.local "formTypeFactory"))) identity (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.thisField "formType") (JR.field "HORIZONTAL_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
+                                JR.exec (JR.setLocal "deltaX" "I" (JR.local "delta")) ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.equals (JR.thisField "formType") (JR.field "VERTICAL_CENTER_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
+                                JR.exec (JR.setLocal "deltaY" "I" (JR.local "delta")) ]) (JR.run [ 
+                                JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "UNK" (JR.local "formTypeFactory")) ]) ]) ]) ]) ]) ] ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "PAINT" (JR.thisField "canvasStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

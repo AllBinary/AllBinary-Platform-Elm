@@ -1,162 +1,139 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.event
-module GameKeyEventFactory where
+module Org.Allbinary.Game.Input.Event.GameKeyEventFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified GameKeyEvent -- same package or java.lang
-import qualified GameKeyEventSourceInterface -- org.allbinary.game.input.GameKeyEventSourceInterface
-import qualified Input -- org.allbinary.game.input.Input
-import qualified InputFactory -- org.allbinary.game.input.InputFactory
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.input.event
+-}
 
-data GameKeyEventFactory = GameKeyEventFactory
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , tOUCH_BUTTON_SOURCE_ID :: IORef (Int)
-    , mOTION_GESTURE_SOURCE_ID :: IORef (Int)
-    , mAX_SOURCES :: IORef (Int)
-    , aRRAY :: IORef (JavaArray (JavaArray (GameKeyEvent.GameKeyEvent)))
-    }
-
-instance JavaNull GameKeyEventFactory where
-    javaNull = javaNullRecord "GameKeyEventFactory"
-
-instance JavaEquals GameKeyEventFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameKeyEventFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameKeyEventFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameKeyEventFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    tOUCH_BUTTON_SOURCE_ID <- newIORef 0
-    mOTION_GESTURE_SOURCE_ID <- newIORef 0
-    mAX_SOURCES <- newIORef 0
-    aRRAY <- newIORef javaNull
-    let this = GameKeyEventFactory header_ logUtil tOUCH_BUTTON_SOURCE_ID mOTION_GESTURE_SOURCE_ID mAX_SOURCES aRRAY
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "getInstanceForKey" (\() -> getInstanceForKey_impl this)
-    jregisterMethod header_ "getInstanceForInput" (\() -> getInstanceForInput_impl this)
-    pure this
-
-initFields_ :: GameKeyEventFactory -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.tOUCH_BUTTON_SOURCE_ID (2)
-    jset this.mOTION_GESTURE_SOURCE_ID (3)
-    jset this.mAX_SOURCES (4)
-    jset this.aRRAY ((jnewArray2 ((jget (this).mAX_SOURCES)) ((jget ((jio (InputFactory.getInstance))).mAX)) javaNull))
-    pure ()
+import JR
+import Org.Allbinary.Game.Input.Event.GameKeyEvent as GameKeyEvent
+import Org.Allbinary.Game.Input.InputFactory as InputFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
-getInstance :: IO (GameKeyEventFactory)
-getInstance = do
-        when ((jget GameKeyEventFactory.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset GameKeyEventFactory.instance_ (assignedValue)
-        pure ((javaCast (jget GameKeyEventFactory.instance_) :: GameKeyEventFactory))
-
-new_ :: IO GameKeyEventFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameKeyEventFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "GameKeyEventFactory"
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: GameKeyEventFactory))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: GameKeyEventFactory))
-
-init_impl :: GameKeyEventFactory -> IO (())
-init_impl this = do
-        nullUtil <- (NullUtil.getInstance)
-        let size = (jget ((jio (InputFactory.getInstance))).mAX)
-        index <- newIORef ((jget (this).mAX_SOURCES) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            index2 <- newIORef (size :: Int)
-            fix $ \loop -> when ((jpreIncrement index2 (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-                assignedValue <- (GameKeyEvent.createEvent (jget (nullUtil).nULL_OBJECT) (jget index) (jget index2))
-                jsetIndex ((jindex ((jget (this).aRRAY)) ((jget index)))) ((jget index2)) (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "GameKeyEventFactory" ]
 
 
--- throws Exception
-getInstanceForKey :: (JavaObjectClass this_) => this_ -> GameKeyEventSourceInterface.GameKeyEventSourceInterface -> Int -> IO (GameKeyEvent.GameKeyEvent)
-getInstanceForKey object_ a1 a2 = jmethod object_ "getInstanceForKey" (\() -> (getInstanceForKey_impl (javaCast object_ :: GameKeyEventFactory))) () a1 a2
-
-getInstanceForKey_super :: (JavaObjectClass this_) => this_ -> GameKeyEventSourceInterface.GameKeyEventSourceInterface -> Int -> IO (GameKeyEvent.GameKeyEvent)
-getInstanceForKey_super object_ a1 a2 = (getInstanceForKey_impl (javaCast object_ :: GameKeyEventFactory)) a1 a2
-
-getInstanceForKey_impl :: GameKeyEventFactory -> GameKeyEventSourceInterface.GameKeyEventSourceInterface -> Int -> IO (GameKeyEvent.GameKeyEvent)
-getInstanceForKey_impl this anyType key = do
-        let gameKeyEvent = (jindex ((jindex ((jget (this).aRRAY)) ((jio (GameKeyEventSourceInterface.getSourceId anyType))))) (key))
-        pure (gameKeyEvent)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "TOUCH_BUTTON_SOURCE_ID", JR.defaultOf "I" ), ( "MOTION_GESTURE_SOURCE_ID", JR.defaultOf "I" ), ( "MAX_SOURCES", JR.defaultOf "I" ), ( "ARRAY", JR.defaultOf "" ) ]
 
 
--- throws Exception
-getInstanceForInput :: (JavaObjectClass this_) => this_ -> GameKeyEventSourceInterface.GameKeyEventSourceInterface -> Input.Input -> IO (GameKeyEvent.GameKeyEvent)
-getInstanceForInput object_ a1 a2 = jmethod object_ "getInstanceForInput" (\() -> (getInstanceForInput_impl (javaCast object_ :: GameKeyEventFactory))) () a1 a2
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "getInstanceForKey_2", jm_getInstanceForKey_2 )
+        , ( "getInstanceForInput_2", jm_getInstanceForInput_2 ) ]
+        JR.noMethods
 
-getInstanceForInput_super :: (JavaObjectClass this_) => this_ -> GameKeyEventSourceInterface.GameKeyEventSourceInterface -> Input.Input -> IO (GameKeyEvent.GameKeyEvent)
-getInstanceForInput_super object_ a1 a2 = (getInstanceForInput_impl (javaCast object_ :: GameKeyEventFactory)) a1 a2
 
-getInstanceForInput_impl :: GameKeyEventFactory -> GameKeyEventSourceInterface.GameKeyEventSourceInterface -> Input.Input -> IO (GameKeyEvent.GameKeyEvent)
-getInstanceForInput_impl this anyType input = do
-        let gameKeyEvent = (jindex ((jindex ((jget (this).aRRAY)) ((jio (GameKeyEventSourceInterface.getSourceId anyType))))) ((jio (Input.getId input))))
-        pure (gameKeyEvent)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameKeyEventFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_getInstanceForKey_2", jm_getInstanceForKey_2 ), ( "jm_getInstanceForInput_2", jm_getInstanceForInput_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameKeyEventFactory" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "TOUCH_BUTTON_SOURCE_ID" "I" JR.this (JR.int 2)),
+                JR.exec (JR.setField "MOTION_GESTURE_SOURCE_ID" "I" JR.this (JR.int 3)),
+                JR.exec (JR.setField "MAX_SOURCES" "I" JR.this (JR.int 4)),
+                JR.exec (JR.setField "ARRAY" "" JR.this (JR.newArray "" [ (JR.thisField "MAX_SOURCES"), (JR.field "MAX" (JR.callStatic InputFactory.jm_getInstance_0 [])) ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "GameKeyEventFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "nullUtil" "" (JR.callStatic NullUtil.jm_getInstance_0 []), 
+                    JR.declare "size" "I" (JR.field "MAX" (JR.callStatic InputFactory.jm_getInstance_0 [])), 
+                    JR.run [ JR.declare "index" "I" (JR.thisField "MAX_SOURCES"), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67382 -> (JR.setLocal "index" "I" (JR.lit jwN67382))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.run [ JR.declare "index2" "I" (JR.local "size"), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index2") (\jwN67327 -> (JR.setLocal "index2" "I" (JR.lit jwN67327))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "ARRAY") (JR.local "index")) (\jaN67225 -> JR.andThen (JR.local "index2") (\jiN67225 -> (JR.aset (JR.lit jaN67225) (JR.lit jiN67225) (JR.callStatic GameKeyEvent.jm_createEvent_3 [ (JR.field "NULL_OBJECT" (JR.local "nullUtil")), (JR.local "index"), (JR.local "index2") ]))))) ]) ] ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceForKey_2 : JR.Method
+jm_getInstanceForKey_2 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ), ( "key", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameKeyEvent" "" (JR.aget (JR.aget (JR.thisField "ARRAY") (JR.invoke "getSourceId_0" (JR.local "anyType") [])) (JR.local "key")), 
+                    JR.return (JR.local "gameKeyEvent") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceForInput_2 : JR.Method
+jm_getInstanceForInput_2 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ), ( "input", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameKeyEvent" "" (JR.aget (JR.aget (JR.thisField "ARRAY") (JR.invoke "getSourceId_0" (JR.local "anyType") [])) (JR.invoke "getId_0" (JR.local "input") [])), 
+                    JR.return (JR.local "gameKeyEvent") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

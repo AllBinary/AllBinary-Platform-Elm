@@ -1,111 +1,97 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.paint
-module AnimationCompositePaintable (module AnimationCompositePaintable, module InitUpdatePaintable) where
+module Org.Allbinary.Graphics.Paint.AnimationCompositePaintable exposing (..)
 
-import InitUpdatePaintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, paint, paint_super, paint_impl, paintThreed, paintThreed_super, paintThreed_impl, animationInterface)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified InitUpdatePaintable
+{-| Generated Code Do Not Modify package org.allbinary.graphics.paint
+-}
 
-data AnimationCompositePaintable = AnimationCompositePaintable
-    { header_ :: JavaHeader
-    , base :: InitUpdatePaintable.InitUpdatePaintable
-    , animationInterface :: IORef (Animation.Animation)
-    }
-
-instance JavaNull AnimationCompositePaintable where
-    javaNull = javaNullRecord "AnimationCompositePaintable"
-
-instance JavaEquals AnimationCompositePaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AnimationCompositePaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AnimationCompositePaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AnimationCompositePaintable
-newRecord_ = do
-    base <- InitUpdatePaintable.newRecord_
-    let header_ = base.header_
-    animationInterface <- newIORef javaNull
-    let this = AnimationCompositePaintable header_ base animationInterface
-    jregisterLevel header_ this
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "paintThreed" (\() -> paintThreed_impl this)
-    pure this
-
-initFields_ :: AnimationCompositePaintable -> IO ()
-initFields_ this = do
-    jset this.animationInterface (javaNull)
-    pure ()
-
-new_1 :: Animation.Animation -> IO AnimationCompositePaintable
-new_1 animationInterface = do
-    this <- newRecord_
-    init_1 this animationInterface
-    pure this
-
-init_1 :: AnimationCompositePaintable -> Animation.Animation -> IO ()
-init_1 this animationInterface = do
-        InitUpdatePaintable.init_ this.base
-        initFields_ this
-        jset (this).animationInterface (animationInterface)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Paint.InitUpdatePaintable as InitUpdatePaintable
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: AnimationCompositePaintable))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: AnimationCompositePaintable)) a1
-
-paint_impl :: AnimationCompositePaintable -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (Animation.paintXY ((jget (this).animationInterface)) graphics 0 0)
-        pure ()
+jclass : String
+jclass =
+    "AnimationCompositePaintable"
 
 
-paintThreed :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed object_ a1 = jmethod object_ "paintThreed" (\() -> (paintThreed_impl (javaCast object_ :: AnimationCompositePaintable))) () a1
+jchain : List String
+jchain =
+    [ "AnimationCompositePaintable" ]
+        ++ InitUpdatePaintable.jchain
 
-paintThreed_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed_super object_ a1 = (paintThreed_impl (javaCast object_ :: AnimationCompositePaintable)) a1
 
-paintThreed_impl :: AnimationCompositePaintable -> Graphics.Graphics -> IO (())
-paintThreed_impl this graphics = do
-        Control.Monad.void (Animation.paintThreedXYZ ((jget (this).animationInterface)) graphics 0 0 0)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    InitUpdatePaintable.jfields ++ [ ( "animationInterface", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "paint_1", jm_paint_1 )
+        , ( "paintThreed_1", jm_paintThreed_1 ) ]
+        InitUpdatePaintable.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AnimationCompositePaintable"
+        [ ( "jm_paint_1", jm_paint_1 ), ( "jm_paintThreed_1", jm_paintThreed_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect InitUpdatePaintable.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "animationInterface" "" JR.this (JR.local "animationInterface")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paintXY_3" (JR.thisField "animationInterface") [ (JR.local "graphics"), (JR.int 0), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintThreed_1 : JR.Method
+jm_paintThreed_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paintThreedXYZ_4" (JR.thisField "animationInterface") [ (JR.local "graphics"), (JR.int 0), (JR.int 0), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

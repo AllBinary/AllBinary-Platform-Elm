@@ -1,116 +1,101 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.physics.velocity
-module VelocityBehaviorBase where
+module Org.Allbinary.Game.Physics.Velocity.VelocityBehaviorBase exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicVelocityProperties -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.game.physics.velocity
+-}
 
-data VelocityBehaviorBase = VelocityBehaviorBase
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull VelocityBehaviorBase where
-    javaNull = javaNullRecord "VelocityBehaviorBase"
-
-instance JavaEquals VelocityBehaviorBase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq VelocityBehaviorBase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass VelocityBehaviorBase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO VelocityBehaviorBase
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = VelocityBehaviorBase header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "reduce" (\() -> reduce_impl this)
-    jregisterMethod header_ "reduceX" (\() -> reduceX_impl this)
-    jregisterMethod header_ "reduceY" (\() -> reduceY_impl this)
-    pure this
-
-initFields_ :: VelocityBehaviorBase -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO VelocityBehaviorBase
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: VelocityBehaviorBase -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-reduce :: (JavaObjectClass this_) => this_ -> BasicVelocityProperties.BasicVelocityProperties -> Int -> Int -> IO (())
-reduce object_ a1 a2 a3 = jmethod object_ "reduce" (\() -> (reduce_impl (javaCast object_ :: VelocityBehaviorBase))) () a1 a2 a3
 
-reduce_super :: (JavaObjectClass this_) => this_ -> BasicVelocityProperties.BasicVelocityProperties -> Int -> Int -> IO (())
-reduce_super object_ a1 a2 a3 = (reduce_impl (javaCast object_ :: VelocityBehaviorBase)) a1 a2 a3
-
-reduce_impl :: VelocityBehaviorBase -> BasicVelocityProperties.BasicVelocityProperties -> Int -> Int -> IO (())
-reduce_impl this velocityProperties nominator denominator = do
-        pure ()
+jclass : String
+jclass =
+    "VelocityBehaviorBase"
 
 
-reduceX :: (JavaObjectClass this_) => this_ -> BasicVelocityProperties.BasicVelocityProperties -> Int -> Int -> IO (())
-reduceX object_ a1 a2 a3 = jmethod object_ "reduceX" (\() -> (reduceX_impl (javaCast object_ :: VelocityBehaviorBase))) () a1 a2 a3
-
-reduceX_super :: (JavaObjectClass this_) => this_ -> BasicVelocityProperties.BasicVelocityProperties -> Int -> Int -> IO (())
-reduceX_super object_ a1 a2 a3 = (reduceX_impl (javaCast object_ :: VelocityBehaviorBase)) a1 a2 a3
-
-reduceX_impl :: VelocityBehaviorBase -> BasicVelocityProperties.BasicVelocityProperties -> Int -> Int -> IO (())
-reduceX_impl this velocityProperties nominator denominator = do
-        pure ()
+jchain : List String
+jchain =
+    [ "VelocityBehaviorBase" ]
 
 
-reduceY :: (JavaObjectClass this_) => this_ -> BasicVelocityProperties.BasicVelocityProperties -> Int -> Int -> IO (())
-reduceY object_ a1 a2 a3 = jmethod object_ "reduceY" (\() -> (reduceY_impl (javaCast object_ :: VelocityBehaviorBase))) () a1 a2 a3
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-reduceY_super :: (JavaObjectClass this_) => this_ -> BasicVelocityProperties.BasicVelocityProperties -> Int -> Int -> IO (())
-reduceY_super object_ a1 a2 a3 = (reduceY_impl (javaCast object_ :: VelocityBehaviorBase)) a1 a2 a3
 
-reduceY_impl :: VelocityBehaviorBase -> BasicVelocityProperties.BasicVelocityProperties -> Int -> Int -> IO (())
-reduceY_impl this velocityProperties nominator denominator = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "reduce_3", jm_reduce_3 )
+        , ( "reduceX_3", jm_reduceX_3 )
+        , ( "reduceY_3", jm_reduceY_3 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "VelocityBehaviorBase"
+        [ ( "jm_reduce_3", jm_reduce_3 ), ( "jm_reduceX_3", jm_reduceX_3 ), ( "jm_reduceY_3", jm_reduceY_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_reduce_3 : JR.Method
+jm_reduce_3 jheap jthis jargs =
+    JR.method [ ( "velocityProperties", "" ), ( "nominator", "I" ), ( "denominator", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_reduceX_3 : JR.Method
+jm_reduceX_3 jheap jthis jargs =
+    JR.method [ ( "velocityProperties", "" ), ( "nominator", "I" ), ( "denominator", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_reduceY_3 : JR.Method
+jm_reduceY_3 jheap jthis jargs =
+    JR.method [ ( "velocityProperties", "" ), ( "nominator", "I" ), ( "denominator", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

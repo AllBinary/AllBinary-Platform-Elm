@@ -1,16 +1,16 @@
-module LogUtil exposing (..)
+module Org.Allbinary.Logic.Communication.Log.LogUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.communication.log
 -}
 
 import JR
-import CommonSeps
-import CommonStrings
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
 import JInteger
 import JSystem
-import LogFormatUtil
-import StringMaker
-import TsUtil
+import Org.Allbinary.Logic.Communication.Log.LogFormatUtil as LogFormatUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.TsUtil as TsUtil
 
 
 jclass : String

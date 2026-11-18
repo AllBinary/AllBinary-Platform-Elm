@@ -1,118 +1,99 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
-module GameStrings where
+module Org.Allbinary.Game.GameStrings exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.game
+-}
 
-data GameStrings = GameStrings
-    { header_ :: JavaHeader
-    , pROCESS_TICK :: IORef (String)
-    , oN_GAME_INITIALIZED :: IORef (String)
-    , uPDATESURFACE :: IORef (String)
-    , oN_SET_DISPLAYABLE :: IORef (String)
-    , uNPAUSE :: IORef (String)
-    , tOGGLE_MENU :: IORef (String)
-    , sET_GAME_OVER :: IORef (String)
-    , gAME_STATE :: IORef (String)
-    , sET_GAME_STATE :: IORef (String)
-    , sTOP_GAME_CANVAS_RUNNABLE_INTERFACE :: IORef (String)
-    }
-
-instance JavaNull GameStrings where
-    javaNull = javaNullRecord "GameStrings"
-
-instance JavaEquals GameStrings where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameStrings where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameStrings where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameStrings
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameStrings
-newRecord_ = do
-    header_ <- newJavaHeader
-    pROCESS_TICK <- newIORef ""
-    oN_GAME_INITIALIZED <- newIORef ""
-    uPDATESURFACE <- newIORef ""
-    oN_SET_DISPLAYABLE <- newIORef ""
-    uNPAUSE <- newIORef ""
-    tOGGLE_MENU <- newIORef ""
-    sET_GAME_OVER <- newIORef ""
-    gAME_STATE <- newIORef ""
-    sET_GAME_STATE <- newIORef ""
-    sTOP_GAME_CANVAS_RUNNABLE_INTERFACE <- newIORef ""
-    let this = GameStrings header_ pROCESS_TICK oN_GAME_INITIALIZED uPDATESURFACE oN_SET_DISPLAYABLE uNPAUSE tOGGLE_MENU sET_GAME_OVER gAME_STATE sET_GAME_STATE sTOP_GAME_CANVAS_RUNNABLE_INTERFACE
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: GameStrings -> IO ()
-initFields_ this = do
-    jset this.pROCESS_TICK ("processTick")
-    jset this.oN_GAME_INITIALIZED ("onGameInitialized")
-    jset this.uPDATESURFACE ("updateSurface")
-    jset this.oN_SET_DISPLAYABLE ("onSetDisplayable")
-    jset this.uNPAUSE ("unPause")
-    jset this.tOGGLE_MENU ("toggleMenu")
-    jset this.sET_GAME_OVER ("setGameOver")
-    jset this.gAME_STATE ("Game State: ")
-    jset this.sET_GAME_STATE ("setGameState")
-    jset this.sTOP_GAME_CANVAS_RUNNABLE_INTERFACE ("stopGameCanvasRunnableInterface")
-    pure ()
-
-new_ :: IO GameStrings
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameStrings -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (GameStrings)
-getInstance = do
-        pure (GameStrings.instance_)
 
+jclass : String
+jclass =
+    "GameStrings"
+
+
+jchain : List String
+jchain =
+    [ "GameStrings" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "PROCESS_TICK", JR.defaultOf "" ), ( "ON_GAME_INITIALIZED", JR.defaultOf "" ), ( "UPDATESURFACE", JR.defaultOf "" ), ( "ON_SET_DISPLAYABLE", JR.defaultOf "" ), ( "UNPAUSE", JR.defaultOf "" ), ( "TOGGLE_MENU", JR.defaultOf "" ), ( "SET_GAME_OVER", JR.defaultOf "" ), ( "GAME_STATE", JR.defaultOf "" ), ( "SET_GAME_STATE", JR.defaultOf "" ), ( "STOP_GAME_CANVAS_RUNNABLE_INTERFACE", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameStrings"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameStrings" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "PROCESS_TICK" "" JR.this (JR.str "processTick")),
+                JR.exec (JR.setField "ON_GAME_INITIALIZED" "" JR.this (JR.str "onGameInitialized")),
+                JR.exec (JR.setField "UPDATESURFACE" "" JR.this (JR.str "updateSurface")),
+                JR.exec (JR.setField "ON_SET_DISPLAYABLE" "" JR.this (JR.str "onSetDisplayable")),
+                JR.exec (JR.setField "UNPAUSE" "" JR.this (JR.str "unPause")),
+                JR.exec (JR.setField "TOGGLE_MENU" "" JR.this (JR.str "toggleMenu")),
+                JR.exec (JR.setField "SET_GAME_OVER" "" JR.this (JR.str "setGameOver")),
+                JR.exec (JR.setField "GAME_STATE" "" JR.this (JR.str "Game State: ")),
+                JR.exec (JR.setField "SET_GAME_STATE" "" JR.this (JR.str "setGameState")),
+                JR.exec (JR.setField "STOP_GAME_CANVAS_RUNNABLE_INTERFACE" "" JR.this (JR.str "stopGameCanvasRunnableInterface")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

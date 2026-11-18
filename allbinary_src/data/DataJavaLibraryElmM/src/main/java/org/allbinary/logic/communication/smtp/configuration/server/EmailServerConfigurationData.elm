@@ -1,93 +1,101 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.smtp.configuration.server
-module EmailServerConfigurationData where
+module Org.Allbinary.Logic.Communication.Smtp.Configuration.Server.EmailServerConfigurationData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.smtp.configuration.server
+-}
 
-data EmailServerConfigurationData = EmailServerConfigurationData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull EmailServerConfigurationData where
-    javaNull = javaNullRecord "EmailServerConfigurationData"
 
-instance JavaEquals EmailServerConfigurationData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq EmailServerConfigurationData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "EmailServerConfigurationData"
 
-instance JavaObjectClass EmailServerConfigurationData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-nAME :: String
-nAME = "EMAIL_SERVER_CONFIGURATION_NAME"
+jchain : List String
+jchain =
+    [ "EmailServerConfigurationData" ]
 
-sERVER :: String
-sERVER = "EMAIL_SERVER_CONFIGURATION_SERVER"
 
-aCCOUNT :: String
-aCCOUNT = "EMAIL_SERVER_CONFIGURATION_ACCOUNT"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-pASSWORD :: String
-pASSWORD = "EMAIL_SERVER_CONFIGURATION_PASSWORD"
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO EmailServerConfigurationData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = EmailServerConfigurationData header_
-    jregisterLevel header_ this
-    pure this
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "EmailServerConfigurationData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_SERVER", jstatic_SERVER ), ( "jstatic_ACCOUNT", jstatic_ACCOUNT ), ( "jstatic_PASSWORD", jstatic_PASSWORD ) ]
+        jheap
 
-initFields_ :: EmailServerConfigurationData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO EmailServerConfigurationData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-init_ :: EmailServerConfigurationData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "EmailServerConfigurationData" jclinit "NAME"
+        (JR.str "EMAIL_SERVER_CONFIGURATION_NAME")
+        s
+
+
+jstatic_SERVER : JR.M
+jstatic_SERVER s =
+    JR.static "EmailServerConfigurationData" jclinit "SERVER"
+        (JR.str "EMAIL_SERVER_CONFIGURATION_SERVER")
+        s
+
+
+jstatic_ACCOUNT : JR.M
+jstatic_ACCOUNT s =
+    JR.static "EmailServerConfigurationData" jclinit "ACCOUNT"
+        (JR.str "EMAIL_SERVER_CONFIGURATION_ACCOUNT")
+        s
+
+
+jstatic_PASSWORD : JR.M
+jstatic_PASSWORD s =
+    JR.static "EmailServerConfigurationData" jclinit "PASSWORD"
+        (JR.str "EMAIL_SERVER_CONFIGURATION_PASSWORD")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,234 +1,206 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module VectorExplosionGenerator where
+module Org.Allbinary.Animation.VectorExplosionGenerator exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified VectorExplosionType -- same package or java.lang
-import qualified VectorAnimationUtil -- same package or java.lang
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified RandomRotationFactory -- org.allbinary.graphics.pipeline.RandomRotationFactory
-import qualified RandomTranslation -- org.allbinary.graphics.pipeline.RandomTranslation
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified BasicArrayListS -- org.allbinary.util.BasicArrayListS
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
-data VectorExplosionGenerator = VectorExplosionGenerator
-    { header_ :: JavaHeader
-    , rANDOM :: IORef (VectorExplosionType.VectorExplosionType)
-    , rOTATION :: IORef (VectorExplosionType.VectorExplosionType)
-    , vectorAnimationUtil :: IORef (VectorAnimationUtil.VectorAnimationUtil)
-    , randomRotationFactory :: IORef (RandomRotationFactory.RandomRotationFactory)
-    }
-
-instance JavaNull VectorExplosionGenerator where
-    javaNull = javaNullRecord "VectorExplosionGenerator"
-
-instance JavaEquals VectorExplosionGenerator where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq VectorExplosionGenerator where
-    (==) = jrecordEquals
-
-instance JavaObjectClass VectorExplosionGenerator where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: VectorExplosionGenerator
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO VectorExplosionGenerator
-newRecord_ = do
-    header_ <- newJavaHeader
-    rANDOM <- newIORef javaNull
-    rOTATION <- newIORef javaNull
-    vectorAnimationUtil <- newIORef javaNull
-    randomRotationFactory <- newIORef javaNull
-    let this = VectorExplosionGenerator header_ rANDOM rOTATION vectorAnimationUtil randomRotationFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "createList" (\() -> createList_impl this)
-    jregisterMethod header_ "getInstance_3" (\() -> getInstance_3_impl this)
-    jregisterMethod header_ "getInstanceStartFrame" (\() -> getInstanceStartFrame_impl this)
-    jregisterMethod header_ "createListFromPoints" (\() -> createListFromPoints_impl this)
-    jregisterMethod header_ "createPointsBasicArrayList" (\() -> createPointsBasicArrayList_impl this)
-    pure this
-
-initFields_ :: VectorExplosionGenerator -> IO ()
-initFields_ this = do
-    jset this.rANDOM =<< (VectorExplosionType.new_)
-    jset this.rOTATION =<< (VectorExplosionType.new_)
-    jset this.vectorAnimationUtil =<< (VectorAnimationUtil.getInstance)
-    jset this.randomRotationFactory =<< (RandomRotationFactory.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Util.BasicArrayListS as BasicArrayListS
+import Org.Allbinary.Graphics.PointFactory as PointFactory
+import Org.Allbinary.Graphics.Pipeline.RandomRotationFactory as RandomRotationFactory
+import Org.Allbinary.Graphics.Pipeline.RandomTranslation as RandomTranslation
+import Org.Allbinary.Animation.VectorAnimationUtil as VectorAnimationUtil
+import Org.Allbinary.Animation.VectorExplosionType as VectorExplosionType
 
 
-getInstance :: IO (VectorExplosionGenerator)
-getInstance = do
-        pure (VectorExplosionGenerator.instance_)
-
-new_ :: IO VectorExplosionGenerator
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: VectorExplosionGenerator -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "VectorExplosionGenerator"
 
 
--- throws Exception
-createList :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Int -> VectorExplosionType.VectorExplosionType -> IO (BasicArrayList.BasicArrayList)
-createList object_ a1 a2 a3 = jmethod object_ "createList" (\() -> (createList_impl (javaCast object_ :: VectorExplosionGenerator))) () a1 a2 a3
-
-createList_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> Int -> VectorExplosionType.VectorExplosionType -> IO (BasicArrayList.BasicArrayList)
-createList_super object_ a1 a2 a3 = (createList_impl (javaCast object_ :: VectorExplosionGenerator)) a1 a2 a3
-
-createList_impl :: VectorExplosionGenerator -> BasicArrayList.BasicArrayList -> Int -> VectorExplosionType.VectorExplosionType -> IO (BasicArrayList.BasicArrayList)
-createList_impl this list howMuch type_ = do
-        point <- newIORef (javaNull)
-        size <- (BasicArrayList.size list)
-        let points = (jnewArray2 (size) (2) 0)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset point ((javaCast (jindex ((jget (list).objectArray)) (index)) :: GPoint.GPoint))
-            assignedValue <- (GPoint.getX ((jget point)))
-            jsetIndex ((jindex points (index))) (0) (assignedValue)
-            assignedValue <- (GPoint.getY ((jget point)))
-            jsetIndex ((jindex points (index))) (1) (assignedValue)
-        (VectorExplosionGenerator.createListFromPoints this list points howMuch type_)
+jchain : List String
+jchain =
+    [ "VectorExplosionGenerator" ]
 
 
--- throws Exception
-getInstance_3 :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (Int)) -> Int -> VectorExplosionType.VectorExplosionType -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstance_3 object_ a1 a2 a3 = jmethod object_ "getInstance_3" (\() -> (getInstance_3_impl (javaCast object_ :: VectorExplosionGenerator))) () a1 a2 a3
-
-getInstance_3_super :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (Int)) -> Int -> VectorExplosionType.VectorExplosionType -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstance_3_super object_ a1 a2 a3 = (getInstance_3_impl (javaCast object_ :: VectorExplosionGenerator)) a1 a2 a3
-
-getInstance_3_impl :: VectorExplosionGenerator -> JavaArray (JavaArray (Int)) -> Int -> VectorExplosionType.VectorExplosionType -> IO (JavaArray (JavaArray (JavaArray (Int))))
-getInstance_3_impl this points howMuch type_ = do
-        pointsBasicArrayList <- (VectorExplosionGenerator.getInstanceStartFrame this points howMuch type_ True)
-        let tempBasicArrayList = (javaCast (jindex ((jget (pointsBasicArrayList).objectArray)) (0)) :: BasicArrayList.BasicArrayList)
-        newPoints <- (VectorAnimationUtil.toAnimationArrayFromListOfPointListWithPointsPerFrame ((jget (this).vectorAnimationUtil)) pointsBasicArrayList (jio (BasicArrayList.size tempBasicArrayList)))
-        pure (newPoints)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "RANDOM", JR.defaultOf "" ), ( "ROTATION", JR.defaultOf "" ), ( "vectorAnimationUtil", JR.defaultOf "" ), ( "randomRotationFactory", JR.defaultOf "" ) ]
 
 
--- throws Exception
-getInstanceStartFrame :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (Int)) -> Int -> VectorExplosionType.VectorExplosionType -> Bool -> IO (BasicArrayList.BasicArrayList)
-getInstanceStartFrame object_ a1 a2 a3 a4 = jmethod object_ "getInstanceStartFrame" (\() -> (getInstanceStartFrame_impl (javaCast object_ :: VectorExplosionGenerator))) () a1 a2 a3 a4
-
-getInstanceStartFrame_super :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (Int)) -> Int -> VectorExplosionType.VectorExplosionType -> Bool -> IO (BasicArrayList.BasicArrayList)
-getInstanceStartFrame_super object_ a1 a2 a3 a4 = (getInstanceStartFrame_impl (javaCast object_ :: VectorExplosionGenerator)) a1 a2 a3 a4
-
-getInstanceStartFrame_impl :: VectorExplosionGenerator -> JavaArray (JavaArray (Int)) -> Int -> VectorExplosionType.VectorExplosionType -> Bool -> IO (BasicArrayList.BasicArrayList)
-getInstanceStartFrame_impl this points howMuch type_ startFrame = do
-        handle (\(e :: JavaException) -> do
-            javaThrow (e)
-            ) $ do
-            pointsBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListS.new_1 howMuch))
-            Control.Monad.void (BasicArrayList.add pointsBasicArrayList (jio (VectorExplosionGenerator.createPointsBasicArrayList this points)))
-            frameIndex <- newIORef (0 :: Int)
-            tempBasicArrayList <- newIORef (javaNull)
-            pointBasicArrayList <- newIORef (javaNull)
-            fix $ \loop -> when ((jget frameIndex) < howMuch) $ javaIteration (loop) $ do
-                jset tempBasicArrayList ((javaCast (jindex ((jget (pointsBasicArrayList).objectArray)) ((jget frameIndex))) :: BasicArrayList.BasicArrayList))
-                assignedValue <- (VectorExplosionGenerator.createListFromPoints this (jget tempBasicArrayList) points howMuch type_)
-                jset pointBasicArrayList (assignedValue)
-                Control.Monad.void (BasicArrayList.add pointsBasicArrayList (jget pointBasicArrayList))
-                jset frameIndex ((jget frameIndex) + 1)
-            when (Prelude.not startFrame) $ do
-                Control.Monad.void (BasicArrayList.removeAt pointsBasicArrayList 0)
-            pure (pointsBasicArrayList)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "createList_3", jm_createList_3 )
+        , ( "getInstance_3", jm_getInstance_3 )
+        , ( "getInstanceStartFrame_4", jm_getInstanceStartFrame_4 )
+        , ( "createListFromPoints_4", jm_createListFromPoints_4 )
+        , ( "createPointsBasicArrayList_1", jm_createPointsBasicArrayList_1 ) ]
+        JR.noMethods
 
 
--- throws Exception
-createListFromPoints :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> JavaArray (JavaArray (Int)) -> Int -> VectorExplosionType.VectorExplosionType -> IO (BasicArrayList.BasicArrayList)
-createListFromPoints object_ a1 a2 a3 a4 = jmethod object_ "createListFromPoints" (\() -> (createListFromPoints_impl (javaCast object_ :: VectorExplosionGenerator))) () a1 a2 a3 a4
-
-createListFromPoints_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> JavaArray (JavaArray (Int)) -> Int -> VectorExplosionType.VectorExplosionType -> IO (BasicArrayList.BasicArrayList)
-createListFromPoints_super object_ a1 a2 a3 a4 = (createListFromPoints_impl (javaCast object_ :: VectorExplosionGenerator)) a1 a2 a3 a4
-
-createListFromPoints_impl :: VectorExplosionGenerator -> BasicArrayList.BasicArrayList -> JavaArray (JavaArray (Int)) -> Int -> VectorExplosionType.VectorExplosionType -> IO (BasicArrayList.BasicArrayList)
-createListFromPoints_impl this tempBasicArrayList points howMuch type_ = do
-        index <- newIORef (0 :: Int)
-        pointBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        sectionBasicArrayList <- newIORef (javaNull)
-        fix $ \loop -> when ((jget index) < (jlength points)) $ javaIteration (loop) $ do
-            assignedValue <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            jset sectionBasicArrayList (assignedValue)
-            fix $ \loop -> when ((jindex ((jindex points ((jget index)))) (0)) /= 1000) $ javaIteration (loop) $ do
-                Control.Monad.void (BasicArrayList.add ((jget sectionBasicArrayList)) (jindex ((jget (tempBasicArrayList).objectArray)) ((jget index))))
-                jset index ((jget index) + 1)
-                when ((jget index) >= (jlength points)) $ do
-                    throwIO JavaBreak
-            assignedValue <- (RandomTranslation.getInstance (jget sectionBasicArrayList) howMuch)
-            jset sectionBasicArrayList (assignedValue)
-            when (type_ == (jget (this).rOTATION)) $ do
-                assignedValue <- (RandomRotationFactory.getInstanceList ((jget (this).randomRotationFactory)) (jget sectionBasicArrayList) howMuch)
-                jset sectionBasicArrayList (assignedValue)
-            size <- (BasicArrayList.size ((jget sectionBasicArrayList)))
-            forM_ [0 .. size - 1] $ \index2 -> javaIteration (pure ()) $ do
-                Control.Monad.void (BasicArrayList.add pointBasicArrayList (jindex ((jget ((jget sectionBasicArrayList)).objectArray)) (index2)))
-            if ((jget index) >= (jlength points)) then do
-                throwIO JavaBreak
-            else when ((jindex ((jindex points ((jget index)))) (0)) == 1000) $ do
-                Control.Monad.void (BasicArrayList.add pointBasicArrayList (jindex ((jget (tempBasicArrayList).objectArray)) ((jget index))))
-                jset index ((jget index) + 1)
-        pure (pointBasicArrayList)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "VectorExplosionGenerator"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_createList_3", jm_createList_3 ), ( "jm_getInstance_3", jm_getInstance_3 ), ( "jm_getInstanceStartFrame_4", jm_getInstanceStartFrame_4 ), ( "jm_createListFromPoints_4", jm_createListFromPoints_4 ), ( "jm_createPointsBasicArrayList_1", jm_createPointsBasicArrayList_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
--- throws Exception
-createPointsBasicArrayList :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (Int)) -> IO (BasicArrayList.BasicArrayList)
-createPointsBasicArrayList object_ a1 = jmethod object_ "createPointsBasicArrayList" (\() -> (createPointsBasicArrayList_impl (javaCast object_ :: VectorExplosionGenerator))) () a1
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-createPointsBasicArrayList_super :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (Int)) -> IO (BasicArrayList.BasicArrayList)
-createPointsBasicArrayList_super object_ a1 = (createPointsBasicArrayList_impl (javaCast object_ :: VectorExplosionGenerator)) a1
 
-createPointsBasicArrayList_impl :: VectorExplosionGenerator -> JavaArray (JavaArray (Int)) -> IO (BasicArrayList.BasicArrayList)
-createPointsBasicArrayList_impl this points = do
-        when ((jlength points) == 0) $ do
-            javaThrow ((JavaException "Exception" "Not Points Provided"))
-        firstPointBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListS.new_1 (jlength points)))
-        pointFactory <- (PointFactory.getInstance)
-        forM_ [0 .. (jlength points) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (BasicArrayList.add firstPointBasicArrayList (jio (PointFactory.createXY pointFactory (jindex ((jindex points (index))) (0)) (jindex ((jindex points (index))) (1)))))
-        pure (firstPointBasicArrayList)
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "VectorExplosionGenerator" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "RANDOM" "" JR.this (JR.new VectorExplosionType.jnew_0 [])),
+                JR.exec (JR.setField "ROTATION" "" JR.this (JR.new VectorExplosionType.jnew_0 [])),
+                JR.exec (JR.setField "vectorAnimationUtil" "" JR.this (JR.callStatic VectorAnimationUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "randomRotationFactory" "" JR.this (JR.callStatic RandomRotationFactory.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createList_3 : JR.Method
+jm_createList_3 jheap jthis jargs =
+    JR.method [ ( "list", "" ), ( "howMuch", "I" ), ( "type", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                    JR.declare "points" "" (JR.newArray "I" [ (JR.local "size"), (JR.int 2) ]), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67188 -> (JR.setLocal "index" "I" (JR.lit jwN67188))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "point" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
+                        JR.exec (JR.andThen (JR.aget (JR.local "points") (JR.local "index")) (\jaN67034 -> JR.andThen (JR.int 0) (\jiN67034 -> (JR.aset (JR.lit jaN67034) (JR.lit jiN67034) (JR.invoke "getX_0" (JR.local "point") []))))), 
+                        JR.exec (JR.andThen (JR.aget (JR.local "points") (JR.local "index")) (\jaN67087 -> JR.andThen (JR.int 1) (\jiN67087 -> (JR.aset (JR.lit jaN67087) (JR.lit jiN67087) (JR.invoke "getY_0" (JR.local "point") []))))) ]) ], 
+                    JR.return (JR.invoke "createListFromPoints_4" JR.this [ (JR.local "list"), (JR.local "points"), (JR.local "howMuch"), (JR.local "type") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_3 : JR.Method
+jm_getInstance_3 jheap jthis jargs =
+    JR.method [ ( "points", "" ), ( "howMuch", "I" ), ( "type", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "pointsBasicArrayList" "" (JR.invoke "getInstanceStartFrame_4" JR.this [ (JR.local "points"), (JR.local "howMuch"), (JR.local "type"), (JR.bool True) ]), 
+                    JR.declare "tempBasicArrayList" "" (JR.aget (JR.field "objectArray" (JR.local "pointsBasicArrayList")) (JR.int 0)), 
+                    JR.declare "newPoints" "" (JR.invoke "toAnimationArrayFromListOfPointListWithPointsPerFrame_2" (JR.thisField "vectorAnimationUtil") [ (JR.local "pointsBasicArrayList"), (JR.invoke "size_0" (JR.local "tempBasicArrayList") []) ]), 
+                    JR.return (JR.local "newPoints") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceStartFrame_4 : JR.Method
+jm_getInstanceStartFrame_4 jheap jthis jargs =
+    JR.method [ ( "points", "" ), ( "howMuch", "I" ), ( "type", "" ), ( "startFrame", "Z" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "pointsBasicArrayList" "" (JR.new BasicArrayListS.jnew_1 [ (JR.local "howMuch") ]), 
+                        JR.exec (JR.invoke "add_1" (JR.local "pointsBasicArrayList") [ (JR.invoke "createPointsBasicArrayList_1" JR.this [ (JR.local "points") ]) ]), 
+                        JR.declare "frameIndex" "I" (JR.int 0), 
+                        JR.declare "tempBasicArrayList" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "pointBasicArrayList" "" (JR.lit (JR.defaultOf "")), 
+                        JR.while (JR.map2 JR.less (JR.local "frameIndex") (JR.local "howMuch")) (JR.run [ 
+                            JR.exec (JR.setLocal "tempBasicArrayList" "" (JR.aget (JR.field "objectArray" (JR.local "pointsBasicArrayList")) (JR.local "frameIndex"))), 
+                            JR.exec (JR.setLocal "pointBasicArrayList" "" (JR.invoke "createListFromPoints_4" JR.this [ (JR.local "tempBasicArrayList"), (JR.local "points"), (JR.local "howMuch"), (JR.local "type") ])), 
+                            JR.exec (JR.invoke "add_1" (JR.local "pointsBasicArrayList") [ (JR.local "pointBasicArrayList") ]), 
+                            JR.exec (JR.postUpdate (JR.local "frameIndex") (\jwN68100 -> (JR.setLocal "frameIndex" "I" (JR.lit jwN68100))) JR.increment) ]), 
+                        JR.ifElse (JR.map JR.not_ (JR.local "startFrame")) (JR.run [ 
+                            JR.exec (JR.invoke "removeAt_1" (JR.local "pointsBasicArrayList") [ (JR.int 0) ]) ]) identity, 
+                        JR.return (JR.local "pointsBasicArrayList") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.throw (JR.local "e") ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createListFromPoints_4 : JR.Method
+jm_createListFromPoints_4 jheap jthis jargs =
+    JR.method [ ( "tempBasicArrayList", "" ), ( "points", "" ), ( "howMuch", "I" ), ( "type", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "index" "I" (JR.int 0), 
+                    JR.declare "pointBasicArrayList" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "sectionBasicArrayList" "" (JR.lit (JR.defaultOf "")), 
+                    JR.while (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "points"))) (JR.run [ 
+                        JR.exec (JR.setLocal "sectionBasicArrayList" "" (JR.new BasicArrayListD.jnew_0 [])), 
+                        JR.while (JR.map2 JR.notEquals (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.int 0)) (JR.int 1000)) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "sectionBasicArrayList") [ (JR.aget (JR.field "objectArray" (JR.local "tempBasicArrayList")) (JR.local "index")) ]), 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN68642 -> (JR.setLocal "index" "I" (JR.lit jwN68642))) JR.increment), 
+                            JR.ifElse (JR.map2 JR.greaterEquals (JR.local "index") (JR.alength (JR.local "points"))) (JR.run [ 
+                                JR.break ]) identity ]), 
+                        JR.exec (JR.setLocal "sectionBasicArrayList" "" (JR.callStatic RandomTranslation.jm_getInstance_2 [ (JR.local "sectionBasicArrayList"), (JR.local "howMuch") ])), 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "type") (JR.thisField "ROTATION")) (JR.run [ 
+                            JR.exec (JR.setLocal "sectionBasicArrayList" "" (JR.invoke "getInstanceList_2" (JR.thisField "randomRotationFactory") [ (JR.local "sectionBasicArrayList"), (JR.local "howMuch") ])) ]) identity, 
+                        JR.declare "size" "I" (JR.invoke "size_0" (JR.local "sectionBasicArrayList") []), 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN69038 -> (JR.setLocal "index2" "I" (JR.lit jwN69038))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "pointBasicArrayList") [ (JR.aget (JR.field "objectArray" (JR.local "sectionBasicArrayList")) (JR.local "index2")) ]) ]) ], 
+                        JR.ifElse (JR.map2 JR.greaterEquals (JR.local "index") (JR.alength (JR.local "points"))) (JR.run [ 
+                            JR.break ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.int 0)) (JR.int 1000)) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "pointBasicArrayList") [ (JR.aget (JR.field "objectArray" (JR.local "tempBasicArrayList")) (JR.local "index")) ]), 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN69184 -> (JR.setLocal "index" "I" (JR.lit jwN69184))) JR.increment) ]) identity ]) ]), 
+                    JR.return (JR.local "pointBasicArrayList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createPointsBasicArrayList_1 : JR.Method
+jm_createPointsBasicArrayList_1 jheap jthis jargs =
+    JR.method [ ( "points", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.alength (JR.local "points")) (JR.int 0)) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Not Points Provided") ]) ]) identity, 
+                    JR.declare "firstPointBasicArrayList" "" (JR.new BasicArrayListS.jnew_1 [ (JR.alength (JR.local "points")) ]), 
+                    JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "points"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69741 -> (JR.setLocal "index" "I" (JR.lit jwN69741))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.local "firstPointBasicArrayList") [ (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.int 0)), (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.int 1)) ]) ]) ]) ], 
+                    JR.return (JR.local "firstPointBasicArrayList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

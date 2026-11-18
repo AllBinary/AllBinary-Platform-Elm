@@ -1,13 +1,13 @@
-module KeylessBasicArrayListCache exposing (..)
+module Org.Allbinary.Logic.Util.Cache.KeylessBasicArrayListCache exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
 -}
 
 import JR
-import BasicArrayListUtil
-import IndexedBasicArrayListCache
-import LogUtil
-import StringMaker
+import Org.Allbinary.Util.BasicArrayListUtil as BasicArrayListUtil
+import Org.Allbinary.Logic.Util.Cache.IndexedBasicArrayListCache as IndexedBasicArrayListCache
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

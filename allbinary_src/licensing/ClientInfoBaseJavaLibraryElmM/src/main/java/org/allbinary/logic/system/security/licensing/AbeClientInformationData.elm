@@ -1,138 +1,106 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
-module AbeClientInformationData where
+module Org.Allbinary.Logic.System.Security.Licensing.AbeClientInformationData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.licensing
+-}
 
-data AbeClientInformationData = AbeClientInformationData
-    { header_ :: JavaHeader
-    , kEY :: IORef (String)
-    , nAME :: IORef (String)
-    , vERSION :: IORef (String)
-    , sPECIALNAME :: IORef (String)
-    , lICENSEID :: IORef (String)
-    , lICENSE_TYPE :: IORef (String)
-    , pREVIOUSLICENSEID :: IORef (String)
-    , oSNAME :: IORef (String)
-    , oSARCH :: IORef (String)
-    , oSVERSION :: IORef (String)
-    , oS :: IORef (String)
-    , hARDWARE :: IORef (String)
-    , lICENSESERVERS :: IORef (String)
-    , nEWLICENSE :: IORef (String)
-    , iSNEW :: IORef (String)
-    , sPECIAL :: IORef (String)
-    }
-
-instance JavaNull AbeClientInformationData where
-    javaNull = javaNullRecord "AbeClientInformationData"
-
-instance JavaEquals AbeClientInformationData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AbeClientInformationData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AbeClientInformationData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AbeClientInformationData
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AbeClientInformationData
-newRecord_ = do
-    header_ <- newJavaHeader
-    kEY <- newIORef ""
-    nAME <- newIORef ""
-    vERSION <- newIORef ""
-    sPECIALNAME <- newIORef ""
-    lICENSEID <- newIORef ""
-    lICENSE_TYPE <- newIORef ""
-    pREVIOUSLICENSEID <- newIORef ""
-    oSNAME <- newIORef ""
-    oSARCH <- newIORef ""
-    oSVERSION <- newIORef ""
-    oS <- newIORef ""
-    hARDWARE <- newIORef ""
-    lICENSESERVERS <- newIORef ""
-    nEWLICENSE <- newIORef ""
-    iSNEW <- newIORef ""
-    sPECIAL <- newIORef ""
-    let this = AbeClientInformationData header_ kEY nAME vERSION sPECIALNAME lICENSEID lICENSE_TYPE pREVIOUSLICENSEID oSNAME oSARCH oSVERSION oS hARDWARE lICENSESERVERS nEWLICENSE iSNEW sPECIAL
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: AbeClientInformationData -> IO ()
-initFields_ this = do
-    jset this.kEY ("KEY")
-    jset this.nAME ("NAME")
-    jset this.vERSION ("VERSION")
-    jset this.sPECIALNAME ("SPECIALNAME")
-    jset this.lICENSEID ("LICENSEID")
-    jset this.lICENSE_TYPE ("LICENSETYPE")
-    jset this.pREVIOUSLICENSEID ("PREVIOUSLICENSEID")
-    jset this.oSNAME ("OSNAME")
-    jset this.oSARCH ("OSARCH")
-    jset this.oSVERSION ("OSVERSION")
-    jset this.oS ("OS")
-    jset this.hARDWARE ("HARDWARE")
-    jset this.lICENSESERVERS ("LICENSESERVERS")
-    jset this.nEWLICENSE ("NEWLICENSE")
-    jset this.iSNEW ("ISNEW")
-    jset this.sPECIAL ("SPECIAL")
-    pure ()
+import JR
 
 
-getInstance :: IO (AbeClientInformationData)
-getInstance = do
-        pure (AbeClientInformationData.instance_)
 
-new_ :: IO AbeClientInformationData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jclass : String
+jclass =
+    "AbeClientInformationData"
 
-init_ :: AbeClientInformationData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jchain : List String
+jchain =
+    [ "AbeClientInformationData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "KEY", JR.defaultOf "" ), ( "NAME", JR.defaultOf "" ), ( "VERSION", JR.defaultOf "" ), ( "SPECIALNAME", JR.defaultOf "" ), ( "LICENSEID", JR.defaultOf "" ), ( "LICENSE_TYPE", JR.defaultOf "" ), ( "PREVIOUSLICENSEID", JR.defaultOf "" ), ( "OSNAME", JR.defaultOf "" ), ( "OSARCH", JR.defaultOf "" ), ( "OSVERSION", JR.defaultOf "" ), ( "OS", JR.defaultOf "" ), ( "HARDWARE", JR.defaultOf "" ), ( "LICENSESERVERS", JR.defaultOf "" ), ( "NEWLICENSE", JR.defaultOf "" ), ( "ISNEW", JR.defaultOf "" ), ( "SPECIAL", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbeClientInformationData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AbeClientInformationData" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "KEY" "" JR.this (JR.str "KEY")),
+                JR.exec (JR.setField "NAME" "" JR.this (JR.str "NAME")),
+                JR.exec (JR.setField "VERSION" "" JR.this (JR.str "VERSION")),
+                JR.exec (JR.setField "SPECIALNAME" "" JR.this (JR.str "SPECIALNAME")),
+                JR.exec (JR.setField "LICENSEID" "" JR.this (JR.str "LICENSEID")),
+                JR.exec (JR.setField "LICENSE_TYPE" "" JR.this (JR.str "LICENSETYPE")),
+                JR.exec (JR.setField "PREVIOUSLICENSEID" "" JR.this (JR.str "PREVIOUSLICENSEID")),
+                JR.exec (JR.setField "OSNAME" "" JR.this (JR.str "OSNAME")),
+                JR.exec (JR.setField "OSARCH" "" JR.this (JR.str "OSARCH")),
+                JR.exec (JR.setField "OSVERSION" "" JR.this (JR.str "OSVERSION")),
+                JR.exec (JR.setField "OS" "" JR.this (JR.str "OS")),
+                JR.exec (JR.setField "HARDWARE" "" JR.this (JR.str "HARDWARE")),
+                JR.exec (JR.setField "LICENSESERVERS" "" JR.this (JR.str "LICENSESERVERS")),
+                JR.exec (JR.setField "NEWLICENSE" "" JR.this (JR.str "NEWLICENSE")),
+                JR.exec (JR.setField "ISNEW" "" JR.this (JR.str "ISNEW")),
+                JR.exec (JR.setField "SPECIAL" "" JR.this (JR.str "SPECIAL")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

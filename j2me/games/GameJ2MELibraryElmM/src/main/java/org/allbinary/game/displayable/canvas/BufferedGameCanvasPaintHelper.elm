@@ -1,140 +1,118 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module BufferedGameCanvasPaintHelper (module BufferedGameCanvasPaintHelper, module ProcessPaintable) where
+module Org.Allbinary.Game.Displayable.Canvas.BufferedGameCanvasPaintHelper exposing (..)
 
-import ProcessPaintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, process, process_super, process_impl, paint, paint_super, paint_impl, gameCanvas, mAX_IMAGES, offScreenImage, previousImage, circularIndexUtil, drawCircularIndexUtil, anchor)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameCanvas -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified NullCanvas -- javax.microedition.lcdui.NullCanvas
-import qualified NullImage -- javax.microedition.lcdui.NullImage
-import qualified Anchor -- org.allbinary.graphics.Anchor
-import qualified MyCanvas -- org.allbinary.graphics.displayable.MyCanvas
-import qualified ProcessPaintable -- org.allbinary.graphics.paint.ProcessPaintable
-import qualified CircularIndexUtil -- org.allbinary.util.CircularIndexUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data BufferedGameCanvasPaintHelper = BufferedGameCanvasPaintHelper
-    { header_ :: JavaHeader
-    , base :: ProcessPaintable.ProcessPaintable
-    , gameCanvas :: IORef (Canvas.Canvas)
-    , offScreenImage :: IORef (JavaArray (Image.Image))
-    , previousImage :: IORef (Image.Image)
-    , circularIndexUtil :: IORef (CircularIndexUtil.CircularIndexUtil)
-    , drawCircularIndexUtil :: IORef (CircularIndexUtil.CircularIndexUtil)
-    , anchor :: IORef (Int)
-    }
-
-instance JavaNull BufferedGameCanvasPaintHelper where
-    javaNull = javaNullRecord "BufferedGameCanvasPaintHelper"
-
-instance JavaEquals BufferedGameCanvasPaintHelper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BufferedGameCanvasPaintHelper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BufferedGameCanvasPaintHelper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-mAX_IMAGES :: Int
-mAX_IMAGES = 4
-
-newRecord_ :: IO BufferedGameCanvasPaintHelper
-newRecord_ = do
-    base <- ProcessPaintable.newRecord_
-    let header_ = base.header_
-    gameCanvas <- newIORef javaNull
-    offScreenImage <- newIORef javaNull
-    previousImage <- newIORef javaNull
-    circularIndexUtil <- newIORef javaNull
-    drawCircularIndexUtil <- newIORef javaNull
-    anchor <- newIORef 0
-    let this = BufferedGameCanvasPaintHelper header_ base gameCanvas offScreenImage previousImage circularIndexUtil drawCircularIndexUtil anchor
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: BufferedGameCanvasPaintHelper -> IO ()
-initFields_ this = do
-    jset this.gameCanvas (NullCanvas.nULL_CANVAS)
-    jset this.offScreenImage ((jnewArray (BufferedGameCanvasPaintHelper.mAX_IMAGES) javaNull))
-    jset this.previousImage (NullImage.nULL_IMAGE)
-    jset this.circularIndexUtil =<< (CircularIndexUtil.createInstance (BufferedGameCanvasPaintHelper.mAX_IMAGES))
-    jset this.drawCircularIndexUtil =<< (CircularIndexUtil.createInstanceAt (BufferedGameCanvasPaintHelper.mAX_IMAGES - 1) (BufferedGameCanvasPaintHelper.mAX_IMAGES))
-    jset this.anchor (Anchor.tOP_LEFT)
-    pure ()
-
-new_1 :: AllBinaryGameCanvas.AllBinaryGameCanvas -> IO BufferedGameCanvasPaintHelper
-new_1 gameCanvas = do
-    this <- newRecord_
-    init_1 this gameCanvas
-    pure this
-
-init_1 :: BufferedGameCanvasPaintHelper -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO ()
-init_1 this gameCanvas = do
-        ProcessPaintable.init_ this.base
-        initFields_ this
-        javaThrow ((JavaException "Exception" "No Longer Used"))
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Anchor as Anchor
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
+import Javax.Microedition.Lcdui.NullCanvas as NullCanvas
+import Javax.Microedition.Lcdui.NullImage as NullImage
+import Org.Allbinary.Graphics.Paint.ProcessPaintable as ProcessPaintable
 
 
-process :: (JavaObjectClass this_) => this_ -> IO (())
-process object_ = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: BufferedGameCanvasPaintHelper))) ()
-
-process_super :: (JavaObjectClass this_) => this_ -> IO (())
-process_super object_ = (process_impl (javaCast object_ :: BufferedGameCanvasPaintHelper))
-
-process_impl :: BufferedGameCanvasPaintHelper -> IO (())
-process_impl this = do
-        let myCanvas = ((javaCast (jget (this).gameCanvas) :: MyCanvas.MyCanvas))
-        Control.Monad.void (MyCanvas.draw myCanvas (jio (Image.getGraphics ((jindex ((jget (this).offScreenImage)) ((jio (CircularIndexUtil.getIndex ((jget (this).circularIndexUtil))))))))))
-        Control.Monad.void (CircularIndexUtil.next ((jget (this).circularIndexUtil)))
-        Control.Monad.void (CircularIndexUtil.next ((jget (this).drawCircularIndexUtil)))
-        pure ()
+jclass : String
+jclass =
+    "BufferedGameCanvasPaintHelper"
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: BufferedGameCanvasPaintHelper))) () a1
+jchain : List String
+jchain =
+    [ "BufferedGameCanvasPaintHelper" ]
+        ++ ProcessPaintable.jchain
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: BufferedGameCanvasPaintHelper)) a1
 
-paint_impl :: BufferedGameCanvasPaintHelper -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        jset (this).previousImage ((jindex ((jget (this).offScreenImage)) ((jio (CircularIndexUtil.getIndex ((jget (this).drawCircularIndexUtil)))))))
-        Control.Monad.void (Graphics.drawImage graphics (jget (this).previousImage) 0 0 (jget (this).anchor))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    ProcessPaintable.jfields ++ [ ( "gameCanvas", JR.defaultOf "" ), ( "offScreenImage", JR.defaultOf "" ), ( "previousImage", JR.defaultOf "" ), ( "circularIndexUtil", JR.defaultOf "" ), ( "drawCircularIndexUtil", JR.defaultOf "" ), ( "anchor", JR.defaultOf "I" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "process_0", jm_process_0 )
+        , ( "paint_1", jm_paint_1 ) ]
+        ProcessPaintable.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BufferedGameCanvasPaintHelper"
+        [ ( "jm_process_0", jm_process_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_MAX_IMAGES", jstatic_MAX_IMAGES ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_MAX_IMAGES : JR.M
+jstatic_MAX_IMAGES s =
+    JR.static "BufferedGameCanvasPaintHelper" jclinit "MAX_IMAGES"
+        (JR.int 4)
+        s
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "gameCanvas", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ProcessPaintable.jinit_0 JR.this []),
+                JR.exec (JR.setField "gameCanvas" "" JR.this NullCanvas.jstatic_NULL_CANVAS),
+                JR.exec (JR.setField "offScreenImage" "" JR.this (JR.newArray "" [ jstatic_MAX_IMAGES ])),
+                JR.exec (JR.setField "previousImage" "" JR.this NullImage.jstatic_NULL_IMAGE),
+                JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ jstatic_MAX_IMAGES ])),
+                JR.exec (JR.setField "drawCircularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstanceAt_2 [ (JR.map2 JR.sub jstatic_MAX_IMAGES (JR.int 1)), jstatic_MAX_IMAGES ])),
+                JR.exec (JR.setField "anchor" "I" JR.this Anchor.jstatic_TOP_LEFT),
+                identity,
+                (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "No Longer Used") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_process_0 : JR.Method
+jm_process_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "myCanvas" "" ((JR.thisField "gameCanvas")), 
+                    JR.exec (JR.invoke "draw_1" (JR.local "myCanvas") [ (JR.invoke "getGraphics_0" (JR.aget (JR.thisField "offScreenImage") (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") [])) []) ]), 
+                    JR.exec (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []), 
+                    JR.exec (JR.invoke "next_0" (JR.thisField "drawCircularIndexUtil") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "previousImage" "" JR.this (JR.aget (JR.thisField "offScreenImage") (JR.invoke "getIndex_0" (JR.thisField "drawCircularIndexUtil") []))), 
+                    JR.exec (JR.invoke "drawImage_4" (JR.local "graphics") [ (JR.thisField "previousImage"), (JR.int 0), (JR.int 0), (JR.thisField "anchor") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

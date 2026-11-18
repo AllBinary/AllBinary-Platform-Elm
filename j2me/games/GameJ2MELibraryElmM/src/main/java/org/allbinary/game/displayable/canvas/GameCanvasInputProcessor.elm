@@ -1,185 +1,144 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module GameCanvasInputProcessor (module GameCanvasInputProcessor, module InputProcessor) where
+module Org.Allbinary.Game.Displayable.Canvas.GameCanvasInputProcessor exposing (..)
 
-import InputProcessor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, keyPressedByDevice, keyPressedByDevice_super, keyPressedByDevice_impl, keyReleasedByDevice, keyReleasedByDevice_super, keyReleasedByDevice_impl, removeGameKeyEvent, removeGameKeyEvent_super, removeGameKeyEvent_impl, logUtil, allBinaryGameCanvas, downGameKeyEventHandler, upGameKeyEventHandler, downKeyEventHandler, smallIntegerSingletonFactory, inputToGameKeyMapping, nONE, gameKeyEventFactory)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameCanvas -- same package or java.lang
-import qualified GameInputStrings -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified GameKey -- org.allbinary.game.input.GameKey
-import qualified GameKeyEventSourceInterface -- org.allbinary.game.input.GameKeyEventSourceInterface
-import qualified GameKeyFactory -- org.allbinary.game.input.GameKeyFactory
-import qualified InputProcessor -- org.allbinary.game.input.InputProcessor
-import qualified PlatformInputMappingFactory -- org.allbinary.game.input.PlatformInputMappingFactory
-import qualified DownGameKeyEventHandler -- org.allbinary.game.input.event.DownGameKeyEventHandler
-import qualified DownKeyEventHandler -- org.allbinary.game.input.event.DownKeyEventHandler
-import qualified GameKeyEvent -- org.allbinary.game.input.event.GameKeyEvent
-import qualified GameKeyEventFactory -- org.allbinary.game.input.event.GameKeyEventFactory
-import qualified UpGameKeyEventHandler -- org.allbinary.game.input.event.UpGameKeyEventHandler
-import qualified InputToGameKeyMapping -- org.allbinary.game.input.mapping.InputToGameKeyMapping
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified SmallIntegerSingletonFactory -- org.allbinary.logic.math.SmallIntegerSingletonFactory
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data GameCanvasInputProcessor = GameCanvasInputProcessor
-    { header_ :: JavaHeader
-    , base :: InputProcessor.InputProcessor
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , allBinaryGameCanvas :: IORef (AllBinaryGameCanvas.AllBinaryGameCanvas)
-    , downGameKeyEventHandler :: IORef (DownGameKeyEventHandler.DownGameKeyEventHandler)
-    , upGameKeyEventHandler :: IORef (UpGameKeyEventHandler.UpGameKeyEventHandler)
-    , downKeyEventHandler :: IORef (DownKeyEventHandler.DownKeyEventHandler)
-    , smallIntegerSingletonFactory :: IORef (SmallIntegerSingletonFactory.SmallIntegerSingletonFactory)
-    , inputToGameKeyMapping :: IORef (InputToGameKeyMapping.InputToGameKeyMapping)
-    , nONE :: IORef (GameKey.GameKey)
-    , gameKeyEventFactory :: IORef (GameKeyEventFactory.GameKeyEventFactory)
-    }
-
-instance JavaNull GameCanvasInputProcessor where
-    javaNull = javaNullRecord "GameCanvasInputProcessor"
-
-instance JavaEquals GameCanvasInputProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameCanvasInputProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameCanvasInputProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO GameCanvasInputProcessor
-newRecord_ = do
-    base <- InputProcessor.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    allBinaryGameCanvas <- newIORef javaNull
-    downGameKeyEventHandler <- newIORef javaNull
-    upGameKeyEventHandler <- newIORef javaNull
-    downKeyEventHandler <- newIORef javaNull
-    smallIntegerSingletonFactory <- newIORef javaNull
-    inputToGameKeyMapping <- newIORef javaNull
-    nONE <- newIORef javaNull
-    gameKeyEventFactory <- newIORef javaNull
-    let this = GameCanvasInputProcessor header_ base logUtil allBinaryGameCanvas downGameKeyEventHandler upGameKeyEventHandler downKeyEventHandler smallIntegerSingletonFactory inputToGameKeyMapping nONE gameKeyEventFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "keyPressedByDevice" (\() -> keyPressedByDevice_impl this)
-    jregisterMethod header_ "keyReleasedByDevice" (\() -> keyReleasedByDevice_impl this)
-    jregisterMethod header_ "removeGameKeyEvent" (\() -> removeGameKeyEvent_impl this)
-    pure this
-
-initFields_ :: GameCanvasInputProcessor -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.allBinaryGameCanvas (javaNull)
-    jset this.downGameKeyEventHandler =<< (DownGameKeyEventHandler.getInstance)
-    jset this.upGameKeyEventHandler =<< (UpGameKeyEventHandler.getInstance)
-    jset this.downKeyEventHandler =<< (DownKeyEventHandler.getInstance)
-    jset this.smallIntegerSingletonFactory =<< (SmallIntegerSingletonFactory.getInstance)
-    jset this.inputToGameKeyMapping =<< (PlatformInputMappingFactory.getInputMapping ((jio (PlatformInputMappingFactory.getPersistentInputMappingInstance ((jio (PlatformInputMappingFactory.getInstance)))))))
-    jset this.nONE ((jget ((jio (GameKeyFactory.getInstance))).nONE))
-    jset this.gameKeyEventFactory =<< (GameKeyEventFactory.getInstance)
-    pure ()
-
-new_1 :: AllBinaryGameCanvas.AllBinaryGameCanvas -> IO GameCanvasInputProcessor
-new_1 allBinaryGameCanvas = do
-    this <- newRecord_
-    init_1 this allBinaryGameCanvas
-    pure this
-
-init_1 :: GameCanvasInputProcessor -> AllBinaryGameCanvas.AllBinaryGameCanvas -> IO ()
-init_1 this allBinaryGameCanvas = do
-        InputProcessor.init_ this.base
-        initFields_ this
-        jset (this).allBinaryGameCanvas (allBinaryGameCanvas)
-        Control.Monad.void (InputToGameKeyMapping.init ((jget (this).inputToGameKeyMapping)) (jget (this).allBinaryGameCanvas))
-        pure ()
+import JR
+import Org.Allbinary.Game.Input.Event.DownGameKeyEventHandler as DownGameKeyEventHandler
+import Org.Allbinary.Game.Input.Event.DownKeyEventHandler as DownKeyEventHandler
+import Org.Allbinary.Game.Input.Event.GameKeyEventFactory as GameKeyEventFactory
+import Org.Allbinary.Game.Input.GameKeyFactory as GameKeyFactory
+import Org.Allbinary.Game.Input.InputProcessor as InputProcessor
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Input.PlatformInputMappingFactory as PlatformInputMappingFactory
+import Org.Allbinary.Logic.Math.SmallIntegerSingletonFactory as SmallIntegerSingletonFactory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Game.Input.Event.UpGameKeyEventHandler as UpGameKeyEventHandler
 
 
-keyPressedByDevice :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyPressedByDevice object_ a1 a2 = jmethod object_ "keyPressedByDevice" (\() -> (keyPressedByDevice_impl (javaCast object_ :: GameCanvasInputProcessor))) () a1 a2
-
-keyPressedByDevice_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-keyPressedByDevice_super object_ a1 a2 = (keyPressedByDevice_impl (javaCast object_ :: GameCanvasInputProcessor)) a1 a2
-
-keyPressedByDevice_impl :: GameCanvasInputProcessor -> Int -> Int -> IO (())
-keyPressedByDevice_impl this keyCode deviceId = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) "Key Event Error" this (jget ((jget (this).base.gameInputStrings)).aDD_KEY_EVENT) e)
-            ) $ do
-            gameKey <- (InputToGameKeyMapping.getInstanceForCanvas ((jget (this).inputToGameKeyMapping)) (jget (this).allBinaryGameCanvas) keyCode)
-            if (gameKey /= (jget (this).nONE)) then do
-                gameKeyEvent <- (GameKeyEventFactory.getInstanceForInput ((jget (this).gameKeyEventFactory)) (jget (this).allBinaryGameCanvas) gameKey)
-                Control.Monad.void (DownGameKeyEventHandler.fireEvent ((jget (this).downGameKeyEventHandler)) gameKeyEvent)
-                Control.Monad.void (DownGameKeyEventHandler.fireEvent ((jio (DownGameKeyEventHandler.getInstanceForDevice ((jget (this).downGameKeyEventHandler)) deviceId))) gameKeyEvent)
-            else do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.gameInputStrings)).nO_KEY)))) keyCode))))) this (jget ((jget (this).base.gameInputStrings)).aDD_KEY_EVENT))
-            keyCodeAsInteger <- (SmallIntegerSingletonFactory.getAtNoThrow ((jget (this).smallIntegerSingletonFactory)) keyCode)
-            Control.Monad.void (DownKeyEventHandler.fireEventI ((jget (this).downKeyEventHandler)) keyCodeAsInteger)
-            Control.Monad.void (DownKeyEventHandler.fireEventI ((jio (DownKeyEventHandler.getInstanceForDevice ((jget (this).downKeyEventHandler)) deviceId))) keyCodeAsInteger)
-        pure ()
+jclass : String
+jclass =
+    "GameCanvasInputProcessor"
 
 
-keyReleasedByDevice :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> Int -> Int -> IO (())
-keyReleasedByDevice object_ a1 a2 a3 = jmethod object_ "keyReleasedByDevice" (\() -> (keyReleasedByDevice_impl (javaCast object_ :: GameCanvasInputProcessor))) () a1 a2 a3
-
-keyReleasedByDevice_super :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> Int -> Int -> IO (())
-keyReleasedByDevice_super object_ a1 a2 a3 = (keyReleasedByDevice_impl (javaCast object_ :: GameCanvasInputProcessor)) a1 a2 a3
-
-keyReleasedByDevice_impl :: GameCanvasInputProcessor -> Canvas.Canvas -> Int -> Int -> IO (())
-keyReleasedByDevice_impl this canvas keyCode deviceId = do
-        Control.Monad.void (GameCanvasInputProcessor.removeGameKeyEvent this canvas keyCode deviceId False)
-        pure ()
+jchain : List String
+jchain =
+    [ "GameCanvasInputProcessor" ]
+        ++ InputProcessor.jchain
 
 
-removeGameKeyEvent :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> Int -> Int -> Bool -> IO (())
-removeGameKeyEvent object_ a1 a2 a3 a4 = jmethod object_ "removeGameKeyEvent" (\() -> (removeGameKeyEvent_impl (javaCast object_ :: GameCanvasInputProcessor))) () a1 a2 a3 a4
+jfields : List ( String, JR.JValue )
+jfields =
+    InputProcessor.jfields ++ [ ( "logUtil", JR.defaultOf "" ), ( "allBinaryGameCanvas", JR.defaultOf "" ), ( "downGameKeyEventHandler", JR.defaultOf "" ), ( "upGameKeyEventHandler", JR.defaultOf "" ), ( "downKeyEventHandler", JR.defaultOf "" ), ( "smallIntegerSingletonFactory", JR.defaultOf "" ), ( "inputToGameKeyMapping", JR.defaultOf "" ), ( "NONE", JR.defaultOf "" ), ( "gameKeyEventFactory", JR.defaultOf "" ) ]
 
-removeGameKeyEvent_super :: (JavaObjectClass this_) => this_ -> Canvas.Canvas -> Int -> Int -> Bool -> IO (())
-removeGameKeyEvent_super object_ a1 a2 a3 a4 = (removeGameKeyEvent_impl (javaCast object_ :: GameCanvasInputProcessor)) a1 a2 a3 a4
 
-removeGameKeyEvent_impl :: GameCanvasInputProcessor -> Canvas.Canvas -> Int -> Int -> Bool -> IO (())
-removeGameKeyEvent_impl this canvas keyCode deviceId repeated = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) "Key Event Error" this (jget ((jget (this).base.gameInputStrings)).rEMOVE_KEY_EVENT) e)
-            ) $ do
-            gameKey <- (InputToGameKeyMapping.getInstanceForCanvas ((jget (this).inputToGameKeyMapping)) canvas keyCode)
-            if (gameKey /= (jget (this).nONE)) then do
-                let gameKeyEventSourceInterface = (javaCast canvas :: GameKeyEventSourceInterface.GameKeyEventSourceInterface)
-                gameKeyEvent <- (GameKeyEventFactory.getInstanceForInput ((jget (this).gameKeyEventFactory)) gameKeyEventSourceInterface gameKey)
-                Control.Monad.void (UpGameKeyEventHandler.fireEvent ((jget (this).upGameKeyEventHandler)) gameKeyEvent)
-                Control.Monad.void (UpGameKeyEventHandler.fireEvent ((jio (UpGameKeyEventHandler.getInstanceForDevice ((jget (this).upGameKeyEventHandler)) deviceId))) gameKeyEvent)
-            else do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).base.gameInputStrings)).nO_KEY)))) keyCode))))) this (jget ((jget (this).base.gameInputStrings)).rEMOVE_KEY_EVENT))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "keyPressedByDevice_2", jm_keyPressedByDevice_2 )
+        , ( "keyReleasedByDevice_3", jm_keyReleasedByDevice_3 )
+        , ( "removeGameKeyEvent_4", jm_removeGameKeyEvent_4 ) ]
+        InputProcessor.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameCanvasInputProcessor"
+        [ ( "jm_keyPressedByDevice_2", jm_keyPressedByDevice_2 ), ( "jm_keyReleasedByDevice_3", jm_keyReleasedByDevice_3 ), ( "jm_removeGameKeyEvent_4", jm_removeGameKeyEvent_4 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryGameCanvas", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect InputProcessor.jinit_0 JR.this []),
+                JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "downGameKeyEventHandler" "" JR.this (JR.callStatic DownGameKeyEventHandler.jm_getInstance_0 [])),
+                JR.exec (JR.setField "upGameKeyEventHandler" "" JR.this (JR.callStatic UpGameKeyEventHandler.jm_getInstance_0 [])),
+                JR.exec (JR.setField "downKeyEventHandler" "" JR.this (JR.callStatic DownKeyEventHandler.jm_getInstance_0 [])),
+                JR.exec (JR.setField "smallIntegerSingletonFactory" "" JR.this (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "inputToGameKeyMapping" "" JR.this (JR.invoke "getInputMapping_0" (JR.invoke "getPersistentInputMappingInstance_0" (JR.callStatic PlatformInputMappingFactory.jm_getInstance_0 []) []) [])),
+                JR.exec (JR.setField "NONE" "" JR.this (JR.field "NONE" (JR.callStatic GameKeyFactory.jm_getInstance_0 []))),
+                JR.exec (JR.setField "gameKeyEventFactory" "" JR.this (JR.callStatic GameKeyEventFactory.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "allBinaryGameCanvas" "" JR.this (JR.local "allBinaryGameCanvas")), 
+                    JR.exec (JR.invoke "init_1" (JR.thisField "inputToGameKeyMapping") [ (JR.thisField "allBinaryGameCanvas") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_keyPressedByDevice_2 : JR.Method
+jm_keyPressedByDevice_2 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "gameKey" "" (JR.invoke "getInstanceForCanvas_2" (JR.thisField "inputToGameKeyMapping") [ (JR.thisField "allBinaryGameCanvas"), (JR.local "keyCode") ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "gameKey") (JR.thisField "NONE")) (JR.run [ 
+                            JR.declare "gameKeyEvent" "" (JR.invoke "getInstanceForInput_2" (JR.thisField "gameKeyEventFactory") [ (JR.thisField "allBinaryGameCanvas"), (JR.local "gameKey") ]), 
+                            JR.exec (JR.invoke "fireEvent_1" (JR.thisField "downGameKeyEventHandler") [ (JR.local "gameKeyEvent") ]), 
+                            JR.exec (JR.invoke "fireEvent_1" (JR.invoke "getInstanceForDevice_1" (JR.thisField "downGameKeyEventHandler") [ (JR.local "deviceId") ]) [ (JR.local "gameKeyEvent") ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "NO_KEY" (JR.thisField "gameInputStrings")) ]) [ (JR.local "keyCode") ]) []), JR.this, (JR.field "ADD_KEY_EVENT" (JR.thisField "gameInputStrings")) ]) ]), 
+                        JR.declare "keyCodeAsInteger" "" (JR.invoke "getAtNoThrow_1" (JR.thisField "smallIntegerSingletonFactory") [ (JR.local "keyCode") ]), 
+                        JR.exec (JR.invoke "fireEventI_1" (JR.thisField "downKeyEventHandler") [ (JR.local "keyCodeAsInteger") ]), 
+                        JR.exec (JR.invoke "fireEventI_1" (JR.invoke "getInstanceForDevice_1" (JR.thisField "downKeyEventHandler") [ (JR.local "deviceId") ]) [ (JR.local "keyCodeAsInteger") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Key Event Error"), JR.this, (JR.field "ADD_KEY_EVENT" (JR.thisField "gameInputStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_keyReleasedByDevice_3 : JR.Method
+jm_keyReleasedByDevice_3 jheap jthis jargs =
+    JR.method [ ( "canvas", "" ), ( "keyCode", "I" ), ( "deviceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeGameKeyEvent_4" JR.this [ (JR.local "canvas"), (JR.local "keyCode"), (JR.local "deviceId"), (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeGameKeyEvent_4 : JR.Method
+jm_removeGameKeyEvent_4 jheap jthis jargs =
+    JR.method [ ( "canvas", "" ), ( "keyCode", "I" ), ( "deviceId", "I" ), ( "repeated", "Z" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "gameKey" "" (JR.invoke "getInstanceForCanvas_2" (JR.thisField "inputToGameKeyMapping") [ (JR.local "canvas"), (JR.local "keyCode") ]), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "gameKey") (JR.thisField "NONE")) (JR.run [ 
+                            JR.declare "gameKeyEventSourceInterface" "" (JR.local "canvas"), 
+                            JR.declare "gameKeyEvent" "" (JR.invoke "getInstanceForInput_2" (JR.thisField "gameKeyEventFactory") [ (JR.local "gameKeyEventSourceInterface"), (JR.local "gameKey") ]), 
+                            JR.exec (JR.invoke "fireEvent_1" (JR.thisField "upGameKeyEventHandler") [ (JR.local "gameKeyEvent") ]), 
+                            JR.exec (JR.invoke "fireEvent_1" (JR.invoke "getInstanceForDevice_1" (JR.thisField "upGameKeyEventHandler") [ (JR.local "deviceId") ]) [ (JR.local "gameKeyEvent") ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "NO_KEY" (JR.thisField "gameInputStrings")) ]) [ (JR.local "keyCode") ]) []), JR.this, (JR.field "REMOVE_KEY_EVENT" (JR.thisField "gameInputStrings")) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.str "Key Event Error"), JR.this, (JR.field "REMOVE_KEY_EVENT" (JR.thisField "gameInputStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

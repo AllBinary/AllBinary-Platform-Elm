@@ -1,4 +1,4 @@
-module ResizableListenerHandler exposing (..)
+module Org.Allbinary.Graphics.ResizableListenerHandler exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics
 -}

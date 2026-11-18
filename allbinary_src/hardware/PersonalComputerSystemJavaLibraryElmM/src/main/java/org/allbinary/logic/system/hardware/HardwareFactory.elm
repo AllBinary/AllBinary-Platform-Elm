@@ -1,12 +1,12 @@
-module HardwareFactory exposing (..)
+module Org.Allbinary.Logic.System.Hardware.HardwareFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.hardware
 -}
 
 import JR
-import LinuxHardware
-import OperatingSystems
-import WindowsHardware
+import Org.Allbinary.Logic.System.Hardware.Linux.LinuxHardware as LinuxHardware
+import Org.Allbinary.Logic.System.Os.OperatingSystems as OperatingSystems
+import Org.Allbinary.Logic.System.Hardware.Windows.WindowsHardware as WindowsHardware
 
 
 jclass : String

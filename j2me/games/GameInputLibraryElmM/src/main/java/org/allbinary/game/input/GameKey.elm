@@ -1,98 +1,94 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module GameKey (module GameKey, module Input) where
+module Org.Allbinary.Game.Input.GameKey exposing (..)
 
-import Input hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, toString, toString_super, toString_impl, nULL_GAME_KEY)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified Input
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data GameKey = GameKey
-    { header_ :: JavaHeader
-    , base :: Input.Input
-    }
-
-instance JavaNull GameKey where
-    javaNull = javaNullRecord "GameKey"
-
-instance JavaEquals GameKey where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameKey where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameKey where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_GAME_KEY :: GameKey
-{-# NOINLINE nULL_GAME_KEY #-}
-nULL_GAME_KEY = unsafePerformIO ((new_2 (Prelude.negate 1) (jget ((jio (StringUtil.getInstance))).nULL_STRING)))
-
-newRecord_ :: IO GameKey
-newRecord_ = do
-    base <- Input.newRecord_
-    let header_ = base.header_
-    let this = GameKey header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: GameKey -> IO ()
-initFields_ this = do
-    pure ()
-
-new_2 :: Int -> String -> IO GameKey
-new_2 key name = do
-    this <- newRecord_
-    init_2 this key name
-    pure this
-
-init_2 :: GameKey -> Int -> String -> IO ()
-init_2 this key name = do
-        Input.init_2 this.base (key) (name)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Game.Input.Input as Input
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: GameKey))) ()
+jclass : String
+jclass =
+    "GameKey"
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: GameKey))
 
-toString_impl :: GameKey -> IO (String)
-toString_impl this = do
-        (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "GameKey "))) (jio (Input.toString_super this.base))))))
+jchain : List String
+jchain =
+    [ "GameKey" ]
+        ++ Input.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    Input.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "toString_0", jm_toString_0 ) ]
+        Input.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameKey"
+        [ ( "jm_toString_0", jm_toString_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_NULL_GAME_KEY", jstatic_NULL_GAME_KEY ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_GAME_KEY : JR.M
+jstatic_NULL_GAME_KEY s =
+    JR.static "GameKey" jclinit "NULL_GAME_KEY"
+        (JR.new jnew_2 [ (JR.map JR.neg (JR.int 1)), (JR.field "NULL_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "key", "I" ), ( "name", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Input.jinit_2 JR.this [ (JR.local "key"), (JR.local "name") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "GameKey ") ]) [ (JR.callVia Input.jvtable "toString_0" JR.this []) ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

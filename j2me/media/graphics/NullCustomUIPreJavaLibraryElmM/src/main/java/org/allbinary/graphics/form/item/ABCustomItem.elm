@@ -1,243 +1,230 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
-module ABCustomItem where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Screen -- javax.microedition.lcdui.Screen
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-
-data ABCustomItem = ABCustomItem
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ABCustomItem where
-    javaNull = javaNullRecord "ABCustomItem"
-
-instance JavaEquals ABCustomItem where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ABCustomItem where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ABCustomItem where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE nULL_CUSTOM_ITEM #-}
-nULL_CUSTOM_ITEM = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ABCustomItem
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ABCustomItem header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "setOwner" (\() -> setOwner_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    jregisterMethod header_ "paintUnselected" (\() -> paintUnselected_impl this)
-    jregisterMethod header_ "isFocusable" (\() -> isFocusable_impl this)
-    jregisterMethod header_ "getLabel" (\() -> getLabel_impl this)
-    jregisterMethod header_ "setLabel" (\() -> setLabel_impl this)
-    jregisterMethod header_ "getHeight" (\() -> getHeight_impl this)
-    jregisterMethod header_ "setHeight" (\() -> setHeight_impl this)
-    jregisterMethod header_ "getValue" (\() -> getValue_impl this)
-    jregisterMethod header_ "setValue" (\() -> setValue_impl this)
-    jregisterMethod header_ "getMinimumWidth" (\() -> getMinimumWidth_impl this)
-    jregisterMethod header_ "getMinimumHeight" (\() -> getMinimumHeight_impl this)
-    jregisterMethod header_ "preMeasurement" (\() -> preMeasurement_impl this)
-    pure this
-
-initFields_ :: ABCustomItem -> IO ()
-initFields_ this = do
-    pure ()
+module Org.Allbinary.Graphics.Form.Item.ABCustomItem exposing (..)
 
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form.item
+-}
 
-getNullInstance :: IO (ABCustomItem)
-getNullInstance = do
-        when ((jget ABCustomItem.nULL_CUSTOM_ITEM) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_3 (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (jget ((jio (BasicColorFactory.getInstance))).bLACK) (jget ((jio (BasicColorFactory.getInstance))).wHITE)))
-            jset ABCustomItem.nULL_CUSTOM_ITEM (assignedValue)
-        pure ((javaCast (jget ABCustomItem.nULL_CUSTOM_ITEM) :: ABCustomItem))
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+
 
-new_3 :: String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ABCustomItem
-new_3 label backgroundBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_3 this label backgroundBasicColor foregroundBasicColor
-    pure this
+jclass : String
+jclass =
+    "ABCustomItem"
+
+
+jchain : List String
+jchain =
+    [ "ABCustomItem" ]
 
-init_3 :: ABCustomItem -> String -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_3 this label backgroundBasicColor foregroundBasicColor = do
-        initFields_ this
-        pure ()
-        pure ()
 
-
-setOwner :: (JavaObjectClass this_) => this_ -> Screen.Screen -> IO (())
-setOwner object_ a1 = jmethod object_ "setOwner" (\() -> (setOwner_impl (javaCast object_ :: ABCustomItem))) () a1
-
-setOwner_super :: (JavaObjectClass this_) => this_ -> Screen.Screen -> IO (())
-setOwner_super object_ a1 = (setOwner_impl (javaCast object_ :: ABCustomItem)) a1
-
-setOwner_impl :: ABCustomItem -> Screen.Screen -> IO (())
-setOwner_impl this owner = do
-        pure ()
-
-
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: ABCustomItem))) () a1 a2 a3
-
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: ABCustomItem)) a1 a2 a3
-
-paintXY_impl :: ABCustomItem -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        pure ()
-
-
-paintUnselected :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintUnselected object_ a1 a2 a3 = jmethod object_ "paintUnselected" (\() -> (paintUnselected_impl (javaCast object_ :: ABCustomItem))) () a1 a2 a3
-
-paintUnselected_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintUnselected_super object_ a1 a2 a3 = (paintUnselected_impl (javaCast object_ :: ABCustomItem)) a1 a2 a3
-
-paintUnselected_impl :: ABCustomItem -> Graphics.Graphics -> Int -> Int -> IO (())
-paintUnselected_impl this graphics x y = do
-        pure ()
-
-
-isFocusable :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isFocusable object_ = jmethod object_ "isFocusable" (\() -> (isFocusable_impl (javaCast object_ :: ABCustomItem))) ()
-
-isFocusable_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isFocusable_super object_ = (isFocusable_impl (javaCast object_ :: ABCustomItem))
-
-isFocusable_impl :: ABCustomItem -> IO (Bool)
-isFocusable_impl this = do
-        pure (False)
-
-
-getLabel :: (JavaObjectClass this_) => this_ -> IO (String)
-getLabel object_ = jmethod object_ "getLabel" (\() -> (getLabel_impl (javaCast object_ :: ABCustomItem))) ()
-
-getLabel_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getLabel_super object_ = (getLabel_impl (javaCast object_ :: ABCustomItem))
-
-getLabel_impl :: ABCustomItem -> IO (String)
-getLabel_impl this = do
-        pure ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-
-
-setLabel :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setLabel object_ a1 = jmethod object_ "setLabel" (\() -> (setLabel_impl (javaCast object_ :: ABCustomItem))) () a1
-
-setLabel_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setLabel_super object_ a1 = (setLabel_impl (javaCast object_ :: ABCustomItem)) a1
-
-setLabel_impl :: ABCustomItem -> String -> IO (())
-setLabel_impl this label = do
-        pure ()
-
-
-getHeight :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight object_ = jmethod object_ "getHeight" (\() -> (getHeight_impl (javaCast object_ :: ABCustomItem))) ()
-
-getHeight_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getHeight_super object_ = (getHeight_impl (javaCast object_ :: ABCustomItem))
-
-getHeight_impl :: ABCustomItem -> IO (Int)
-getHeight_impl this = do
-        pure (0)
-
-
-setHeight :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setHeight object_ a1 = jmethod object_ "setHeight" (\() -> (setHeight_impl (javaCast object_ :: ABCustomItem))) () a1
-
-setHeight_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setHeight_super object_ a1 = (setHeight_impl (javaCast object_ :: ABCustomItem)) a1
-
-setHeight_impl :: ABCustomItem -> Int -> IO (())
-setHeight_impl this height = do
-        pure ()
-
-
-getValue :: (JavaObjectClass this_) => this_ -> IO (Float)
-getValue object_ = jmethod object_ "getValue" (\() -> (getValue_impl (javaCast object_ :: ABCustomItem))) ()
-
-getValue_super :: (JavaObjectClass this_) => this_ -> IO (Float)
-getValue_super object_ = (getValue_impl (javaCast object_ :: ABCustomItem))
-
-getValue_impl :: ABCustomItem -> IO (Float)
-getValue_impl this = do
-        pure (0.0)
-
-
-setValue :: (JavaObjectClass this_) => this_ -> Float -> IO (())
-setValue object_ a1 = jmethod object_ "setValue" (\() -> (setValue_impl (javaCast object_ :: ABCustomItem))) () a1
-
-setValue_super :: (JavaObjectClass this_) => this_ -> Float -> IO (())
-setValue_super object_ a1 = (setValue_impl (javaCast object_ :: ABCustomItem)) a1
-
-setValue_impl :: ABCustomItem -> Float -> IO (())
-setValue_impl this value = do
-        pure ()
-
-
-getMinimumWidth :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinimumWidth object_ = jmethod object_ "getMinimumWidth" (\() -> (getMinimumWidth_impl (javaCast object_ :: ABCustomItem))) ()
-
-getMinimumWidth_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinimumWidth_super object_ = (getMinimumWidth_impl (javaCast object_ :: ABCustomItem))
-
-getMinimumWidth_impl :: ABCustomItem -> IO (Int)
-getMinimumWidth_impl this = do
-        pure (0)
-
-
-getMinimumHeight :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinimumHeight object_ = jmethod object_ "getMinimumHeight" (\() -> (getMinimumHeight_impl (javaCast object_ :: ABCustomItem))) ()
-
-getMinimumHeight_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getMinimumHeight_super object_ = (getMinimumHeight_impl (javaCast object_ :: ABCustomItem))
-
-getMinimumHeight_impl :: ABCustomItem -> IO (Int)
-getMinimumHeight_impl this = do
-        pure (0)
-
-
-preMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-preMeasurement object_ a1 = jmethod object_ "preMeasurement" (\() -> (preMeasurement_impl (javaCast object_ :: ABCustomItem))) () a1
-
-preMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-preMeasurement_super object_ a1 = (preMeasurement_impl (javaCast object_ :: ABCustomItem)) a1
-
-preMeasurement_impl :: ABCustomItem -> Graphics.Graphics -> IO (())
-preMeasurement_impl this graphics = do
-        pure ()
-
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getNullInstance_0", jm_getNullInstance_0 )
+        , ( "setOwner_1", jm_setOwner_1 )
+        , ( "paintXY_3", jm_paintXY_3 )
+        , ( "paintUnselected_3", jm_paintUnselected_3 )
+        , ( "isFocusable_0", jm_isFocusable_0 )
+        , ( "getLabel_0", jm_getLabel_0 )
+        , ( "setLabel_1", jm_setLabel_1 )
+        , ( "getHeight_0", jm_getHeight_0 )
+        , ( "setHeight_1", jm_setHeight_1 )
+        , ( "getValue_0", jm_getValue_0 )
+        , ( "setValue_1", jm_setValue_1 )
+        , ( "getMinimumWidth_0", jm_getMinimumWidth_0 )
+        , ( "getMinimumHeight_0", jm_getMinimumHeight_0 )
+        , ( "preMeasurement_1", jm_preMeasurement_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ABCustomItem"
+        [ ( "jm_getNullInstance_0", jm_getNullInstance_0 ), ( "jm_setOwner_1", jm_setOwner_1 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jm_paintUnselected_3", jm_paintUnselected_3 ), ( "jm_isFocusable_0", jm_isFocusable_0 ), ( "jm_getLabel_0", jm_getLabel_0 ), ( "jm_setLabel_1", jm_setLabel_1 ), ( "jm_getHeight_0", jm_getHeight_0 ), ( "jm_setHeight_1", jm_setHeight_1 ), ( "jm_getValue_0", jm_getValue_0 ), ( "jm_setValue_1", jm_setValue_1 ), ( "jm_getMinimumWidth_0", jm_getMinimumWidth_0 ), ( "jm_getMinimumHeight_0", jm_getMinimumHeight_0 ), ( "jm_preMeasurement_1", jm_preMeasurement_1 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        [ ( "jstatic_NULL_CUSTOM_ITEM", jstatic_NULL_CUSTOM_ITEM ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_CUSTOM_ITEM : JR.M
+jstatic_NULL_CUSTOM_ITEM s =
+    JR.static "ABCustomItem" jclinit "NULL_CUSTOM_ITEM"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "label", "" ), ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_getNullInstance_0 : JR.Method
+jm_getNullInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_NULL_CUSTOM_ITEM (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "ABCustomItem.NULL_CUSTOM_ITEM" "" (JR.new jnew_3 [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.field "BLACK" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ])) ]) identity, 
+                    JR.return jstatic_NULL_CUSTOM_ITEM ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setOwner_1 : JR.Method
+jm_setOwner_1 jheap jthis jargs =
+    JR.method [ ( "owner", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintUnselected_3 : JR.Method
+jm_paintUnselected_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isFocusable_0 : JR.Method
+jm_isFocusable_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLabel_0 : JR.Method
+jm_getLabel_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLabel_1 : JR.Method
+jm_setLabel_1 jheap jthis jargs =
+    JR.method [ ( "label", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getHeight_0 : JR.Method
+jm_getHeight_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHeight_1 : JR.Method
+jm_setHeight_1 jheap jthis jargs =
+    JR.method [ ( "height", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getValue_0 : JR.Method
+jm_getValue_0 jheap jthis jargs =
+    JR.method [] "F"
+        (JR.run [ 
+                    JR.return (JR.float 0.0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setValue_1 : JR.Method
+jm_setValue_1 jheap jthis jargs =
+    JR.method [ ( "value", "F" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMinimumWidth_0 : JR.Method
+jm_getMinimumWidth_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMinimumHeight_0 : JR.Method
+jm_getMinimumHeight_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_preMeasurement_1 : JR.Method
+jm_preMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

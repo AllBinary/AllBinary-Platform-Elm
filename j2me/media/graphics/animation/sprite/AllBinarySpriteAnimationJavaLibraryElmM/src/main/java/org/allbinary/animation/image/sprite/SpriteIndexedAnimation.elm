@@ -1,334 +1,279 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
-module SpriteIndexedAnimation (module SpriteIndexedAnimation, module IndexedAnimation) where
-
-import IndexedAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getAnimationSize, getAnimationSize_super, getAnimationSize_impl, setBasicColorP, setBasicColorP_super, setBasicColorP_impl, getBasicColorP, getBasicColorP_super, getBasicColorP_impl, paintFrame, paintFrame_super, paintFrame_impl, paintXY, paintXY_super, paintXY_impl, paint, paint_super, paint_impl, nextFrame, nextFrame_super, nextFrame_impl, previousFrame, previousFrame_super, previousFrame_impl, getSize, getSize_super, getSize_impl, setFrame, setFrame_super, setFrame_impl, getFrame, getFrame_super, getFrame_impl, isLastFrame, isLastFrame_super, isLastFrame_impl, getLastFrame, getLastFrame_super, getLastFrame_impl, setSequence, setSequence_super, setSequence_impl, getSequence, getSequence_super, getSequence_impl, close, close_super, close_impl, finalize, finalize_super, finalize_impl, sprite, image, basicColorArray)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Sprite -- javax.microedition.lcdui.game.Sprite
-import qualified AnimationBehavior -- org.allbinary.animation.AnimationBehavior
-import qualified IndexedAnimation -- org.allbinary.animation.IndexedAnimation
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified ColorCompositeInterface -- org.allbinary.graphics.color.ColorCompositeInterface
-import qualified PrimitiveIntUtil -- org.allbinary.logic.math.PrimitiveIntUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonLabels -- org.allbinary.string.CommonLabels
-
--- implements ColorCompositeInterface
-data SpriteIndexedAnimation = SpriteIndexedAnimation
-    { header_ :: JavaHeader
-    , base :: IndexedAnimation.IndexedAnimation
-    , sprite :: IORef (Sprite.Sprite)
-    , image :: IORef (Image.Image)
-    , basicColorArray :: IORef (JavaArray (BasicColor.BasicColor))
-    }
-
-instance JavaNull SpriteIndexedAnimation where
-    javaNull = javaNullRecord "SpriteIndexedAnimation"
-
-instance JavaEquals SpriteIndexedAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SpriteIndexedAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SpriteIndexedAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO SpriteIndexedAnimation
-newRecord_ = do
-    base <- IndexedAnimation.newRecord_
-    let header_ = base.header_
-    sprite <- newIORef javaNull
-    image <- newIORef javaNull
-    basicColorArray <- newIORef javaNull
-    let this = SpriteIndexedAnimation header_ base sprite image basicColorArray
-    jregisterLevel header_ this
-    ColorCompositeInterface.registerInterface_ header_
-    jregisterMethod header_ "getAnimationSize" (\() -> getAnimationSize_impl this)
-    jregisterMethod header_ "setBasicColorP" (\() -> setBasicColorP_impl this)
-    jregisterMethod header_ "getBasicColorP" (\() -> getBasicColorP_impl this)
-    jregisterMethod header_ "paintFrame" (\() -> paintFrame_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "nextFrame" (\() -> nextFrame_impl this)
-    jregisterMethod header_ "previousFrame" (\() -> previousFrame_impl this)
-    jregisterMethod header_ "getSize" (\() -> getSize_impl this)
-    jregisterMethod header_ "setFrame" (\() -> setFrame_impl this)
-    jregisterMethod header_ "getFrame" (\() -> getFrame_impl this)
-    jregisterMethod header_ "isLastFrame" (\() -> isLastFrame_impl this)
-    jregisterMethod header_ "getLastFrame" (\() -> getLastFrame_impl this)
-    jregisterMethod header_ "setSequence" (\() -> setSequence_impl this)
-    jregisterMethod header_ "getSequence" (\() -> getSequence_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    jregisterMethod header_ "finalize" (\() -> finalize_impl this)
-    pure this
-
-initFields_ :: SpriteIndexedAnimation -> IO ()
-initFields_ this = do
-    jset this.sprite (javaNull)
-    jset this.image (javaNull)
-    jset this.basicColorArray (javaNull)
-    pure ()
-
-new_4 :: Sprite.Sprite -> Image.Image -> JavaArray (BasicColor.BasicColor) -> AnimationBehavior.AnimationBehavior -> IO SpriteIndexedAnimation
-new_4 sprite image basicColorArray animationBehavior = do
-    this <- newRecord_
-    init_4 this sprite image basicColorArray animationBehavior
-    pure this
-
-init_4 :: SpriteIndexedAnimation -> Sprite.Sprite -> Image.Image -> JavaArray (BasicColor.BasicColor) -> AnimationBehavior.AnimationBehavior -> IO ()
-init_4 this sprite image basicColorArray animationBehavior = do
-        IndexedAnimation.init_1 this.base (animationBehavior)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).sprite (sprite)
-        jset (this).image (image)
-        jset (this).basicColorArray (basicColorArray)
-        when (((jlength (jget (this).basicColorArray)) /= 0) && ((jio (SpriteIndexedAnimation.getSize this)) /= (jlength (jget (this).basicColorArray)))) $ do
-            javaThrow ((JavaException "Exception" (jio (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jio (CommonLabels.getInstance))).tOTAL_LABEL)))) (jio (SpriteIndexedAnimation.getSize this))))) "!="))) (jlength (jget (this).basicColorArray)))))))))
-        pure ()
-
-
--- throws Exception
-getAnimationSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize object_ = jmethod object_ "getAnimationSize" (\() -> (getAnimationSize_impl (javaCast object_ :: SpriteIndexedAnimation))) ()
-
-getAnimationSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getAnimationSize_super object_ = (getAnimationSize_impl (javaCast object_ :: SpriteIndexedAnimation))
-
-getAnimationSize_impl :: SpriteIndexedAnimation -> IO (Int)
-getAnimationSize_impl this = do
-        (SpriteIndexedAnimation.getSize this)
-
-
-setBasicColorP :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP object_ a1 = jmethod object_ "setBasicColorP" (\() -> (setBasicColorP_impl (javaCast object_ :: SpriteIndexedAnimation))) () a1
-
-setBasicColorP_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP_super object_ a1 = (setBasicColorP_impl (javaCast object_ :: SpriteIndexedAnimation)) a1
-
-setBasicColorP_impl :: SpriteIndexedAnimation -> BasicColor.BasicColor -> IO (())
-setBasicColorP_impl this basicColor = do
-        forM_ [0 .. (jlength (jget (this).basicColorArray)) - 1] $ \index -> javaIteration (pure ()) $ do
-            when (basicColor == (jindex ((jget (this).basicColorArray)) (index))) $ do
-                Control.Monad.void (SpriteIndexedAnimation.setFrame this index)
-                throwIO JavaBreak
-        pure ()
-
-
-getBasicColorP :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP object_ = jmethod object_ "getBasicColorP" (\() -> (getBasicColorP_impl (javaCast object_ :: SpriteIndexedAnimation))) ()
-
-getBasicColorP_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP_super object_ = (getBasicColorP_impl (javaCast object_ :: SpriteIndexedAnimation))
-
-getBasicColorP_impl :: SpriteIndexedAnimation -> IO (BasicColor.BasicColor)
-getBasicColorP_impl this = do
-    javaCatchReturn $ do
-        if ((jlength (jget (this).basicColorArray)) < (jio (SpriteIndexedAnimation.getFrame this))) then do
-            javaReturn ((jindex ((jget (this).basicColorArray)) ((jio (SpriteIndexedAnimation.getFrame this)))))
-        else do
-            javaReturn ((jget ((jio (BasicColorFactory.getInstance))).wHITE))
-
-
-paintFrame :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintFrame object_ a1 a2 a3 a4 = jmethod object_ "paintFrame" (\() -> (paintFrame_impl (javaCast object_ :: SpriteIndexedAnimation))) () a1 a2 a3 a4
-
-paintFrame_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintFrame_super object_ a1 a2 a3 a4 = (paintFrame_impl (javaCast object_ :: SpriteIndexedAnimation)) a1 a2 a3 a4
-
-paintFrame_impl :: SpriteIndexedAnimation -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintFrame_impl this graphics frame x y = do
-        Control.Monad.void (SpriteIndexedAnimation.setFrame this frame)
-        Control.Monad.void (Sprite.setPosition ((jget (this).sprite)) x y)
-        Control.Monad.void (Sprite.paint ((jget (this).sprite)) graphics)
-        pure ()
-
-
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: SpriteIndexedAnimation))) () a1 a2 a3
-
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: SpriteIndexedAnimation)) a1 a2 a3
-
-paintXY_impl :: SpriteIndexedAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        Control.Monad.void (Sprite.setPosition ((jget (this).sprite)) x y)
-        Control.Monad.void (Sprite.paint ((jget (this).sprite)) graphics)
-        pure ()
-
-
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: SpriteIndexedAnimation))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: SpriteIndexedAnimation)) a1
-
-paint_impl :: SpriteIndexedAnimation -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (Sprite.paint ((jget (this).sprite)) graphics)
-        pure ()
-
-
-nextFrame :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame object_ = jmethod object_ "nextFrame" (\() -> (nextFrame_impl (javaCast object_ :: SpriteIndexedAnimation))) ()
-
-nextFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-nextFrame_super object_ = (nextFrame_impl (javaCast object_ :: SpriteIndexedAnimation))
-
-nextFrame_impl :: SpriteIndexedAnimation -> IO (())
-nextFrame_impl this = do
-        Control.Monad.void (Sprite.nextFrame ((jget (this).sprite)))
-        pure ()
-
-
-previousFrame :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame object_ = jmethod object_ "previousFrame" (\() -> (previousFrame_impl (javaCast object_ :: SpriteIndexedAnimation))) ()
-
-previousFrame_super :: (JavaObjectClass this_) => this_ -> IO (())
-previousFrame_super object_ = (previousFrame_impl (javaCast object_ :: SpriteIndexedAnimation))
-
-previousFrame_impl :: SpriteIndexedAnimation -> IO (())
-previousFrame_impl this = do
-        Control.Monad.void (Sprite.prevFrame ((jget (this).sprite)))
-        pure ()
-
-
-getSize :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize object_ = jmethod object_ "getSize" (\() -> (getSize_impl (javaCast object_ :: SpriteIndexedAnimation))) ()
-
-getSize_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSize_super object_ = (getSize_impl (javaCast object_ :: SpriteIndexedAnimation))
-
-getSize_impl :: SpriteIndexedAnimation -> IO (Int)
-getSize_impl this = do
-        (Sprite.getRawFrameCount ((jget (this).sprite)))
-
-
-setFrame :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame object_ a1 = jmethod object_ "setFrame" (\() -> (setFrame_impl (javaCast object_ :: SpriteIndexedAnimation))) () a1
-
-setFrame_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setFrame_super object_ a1 = (setFrame_impl (javaCast object_ :: SpriteIndexedAnimation)) a1
-
-setFrame_impl :: SpriteIndexedAnimation -> Int -> IO (())
-setFrame_impl this frame = do
-        Control.Monad.void (Sprite.setFrame ((jget (this).sprite)) frame)
-        pure ()
-
-
-getFrame :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame object_ = jmethod object_ "getFrame" (\() -> (getFrame_impl (javaCast object_ :: SpriteIndexedAnimation))) ()
-
-getFrame_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFrame_super object_ = (getFrame_impl (javaCast object_ :: SpriteIndexedAnimation))
-
-getFrame_impl :: SpriteIndexedAnimation -> IO (Int)
-getFrame_impl this = do
-        (Sprite.getFrame ((jget (this).sprite)))
-
-
-isLastFrame :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isLastFrame object_ = jmethod object_ "isLastFrame" (\() -> (isLastFrame_impl (javaCast object_ :: SpriteIndexedAnimation))) ()
-
-isLastFrame_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isLastFrame_super object_ = (isLastFrame_impl (javaCast object_ :: SpriteIndexedAnimation))
-
-isLastFrame_impl :: SpriteIndexedAnimation -> IO (Bool)
-isLastFrame_impl this = do
-    javaCatchReturn $ do
-        if ((jio (Sprite.getFrame ((jget (this).sprite)))) == ((jio (SpriteIndexedAnimation.getSize this)) - 1)) then do
-            javaReturn (True)
-        else do
-            javaReturn (False)
-
-
-getLastFrame :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastFrame object_ = jmethod object_ "getLastFrame" (\() -> (getLastFrame_impl (javaCast object_ :: SpriteIndexedAnimation))) ()
-
-getLastFrame_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getLastFrame_super object_ = (getLastFrame_impl (javaCast object_ :: SpriteIndexedAnimation))
-
-getLastFrame_impl :: SpriteIndexedAnimation -> IO (Int)
-getLastFrame_impl this = do
-        (SpriteIndexedAnimation.getSize this)
-
-
-setSequence :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence object_ a1 = jmethod object_ "setSequence" (\() -> (setSequence_impl (javaCast object_ :: SpriteIndexedAnimation))) () a1
-
-setSequence_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int) -> IO (())
-setSequence_super object_ a1 = (setSequence_impl (javaCast object_ :: SpriteIndexedAnimation)) a1
-
-setSequence_impl :: SpriteIndexedAnimation -> JavaArray (Int) -> IO (())
-setSequence_impl this sequence = do
-        pure ()
-
-
-getSequence :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence object_ = jmethod object_ "getSequence" (\() -> (getSequence_impl (javaCast object_ :: SpriteIndexedAnimation))) ()
-
-getSequence_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Int))
-getSequence_super object_ = (getSequence_impl (javaCast object_ :: SpriteIndexedAnimation))
-
-getSequence_impl :: SpriteIndexedAnimation -> IO (JavaArray (Int))
-getSequence_impl this = do
-        (PrimitiveIntUtil.getArrayInstance)
-
-
--- throws Exception
-close :: (JavaObjectClass this_) => this_ -> IO (())
-close object_ = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: SpriteIndexedAnimation))) ()
-
-close_super :: (JavaObjectClass this_) => this_ -> IO (())
-close_super object_ = (close_impl (javaCast object_ :: SpriteIndexedAnimation))
-
-close_impl :: SpriteIndexedAnimation -> IO (())
-close_impl this = do
-        pure ()
-
-
--- throws Throwable
-finalize :: (JavaObjectClass this_) => this_ -> IO (())
-finalize object_ = jmethod object_ "finalize" (\() -> (finalize_impl (javaCast object_ :: SpriteIndexedAnimation))) ()
-
-finalize_super :: (JavaObjectClass this_) => this_ -> IO (())
-finalize_super object_ = (finalize_impl (javaCast object_ :: SpriteIndexedAnimation))
-
-finalize_impl :: SpriteIndexedAnimation -> IO (())
-finalize_impl this = do
-        pure ()
-
+module Org.Allbinary.Animation.Image.Sprite.SpriteIndexedAnimation exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.animation.image.sprite
+-}
+
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Graphics.Color.ColorCompositeInterface as ColorCompositeInterface
+import Org.Allbinary.String.CommonLabels as CommonLabels
+import Org.Allbinary.Animation.IndexedAnimation as IndexedAnimation
+import Org.Allbinary.Logic.Math.PrimitiveIntUtil as PrimitiveIntUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+
+
+jclass : String
+jclass =
+    "SpriteIndexedAnimation"
+
+
+jchain : List String
+jchain =
+    [ "SpriteIndexedAnimation" ]
+        ++ IndexedAnimation.jchain
+        ++ ColorCompositeInterface.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    IndexedAnimation.jfields ++ [ ( "sprite", JR.defaultOf "" ), ( "image", JR.defaultOf "" ), ( "basicColorArray", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getAnimationSize_0", jm_getAnimationSize_0 )
+        , ( "setBasicColorP_1", jm_setBasicColorP_1 )
+        , ( "getBasicColorP_0", jm_getBasicColorP_0 )
+        , ( "paintFrame_4", jm_paintFrame_4 )
+        , ( "paintXY_3", jm_paintXY_3 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "nextFrame_0", jm_nextFrame_0 )
+        , ( "previousFrame_0", jm_previousFrame_0 )
+        , ( "getSize_0", jm_getSize_0 )
+        , ( "setFrame_1", jm_setFrame_1 )
+        , ( "getFrame_0", jm_getFrame_0 )
+        , ( "isLastFrame_0", jm_isLastFrame_0 )
+        , ( "getLastFrame_0", jm_getLastFrame_0 )
+        , ( "setSequence_1", jm_setSequence_1 )
+        , ( "getSequence_0", jm_getSequence_0 )
+        , ( "close_0", jm_close_0 )
+        , ( "finalize_0", jm_finalize_0 ) ]
+        IndexedAnimation.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SpriteIndexedAnimation"
+        [ ( "jm_getAnimationSize_0", jm_getAnimationSize_0 ), ( "jm_setBasicColorP_1", jm_setBasicColorP_1 ), ( "jm_getBasicColorP_0", jm_getBasicColorP_0 ), ( "jm_paintFrame_4", jm_paintFrame_4 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_nextFrame_0", jm_nextFrame_0 ), ( "jm_previousFrame_0", jm_previousFrame_0 ), ( "jm_getSize_0", jm_getSize_0 ), ( "jm_setFrame_1", jm_setFrame_1 ), ( "jm_getFrame_0", jm_getFrame_0 ), ( "jm_isLastFrame_0", jm_isLastFrame_0 ), ( "jm_getLastFrame_0", jm_getLastFrame_0 ), ( "jm_setSequence_1", jm_setSequence_1 ), ( "jm_getSequence_0", jm_getSequence_0 ), ( "jm_close_0", jm_close_0 ), ( "jm_finalize_0", jm_finalize_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "sprite", "" ), ( "image", "" ), ( "basicColorArray", "" ), ( "animationBehavior", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect IndexedAnimation.jinit_1 JR.this [ (JR.local "animationBehavior") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "sprite" "" JR.this (JR.local "sprite")), 
+                    JR.exec (JR.setField "image" "" JR.this (JR.local "image")), 
+                    JR.exec (JR.setField "basicColorArray" "" JR.this (JR.local "basicColorArray")), 
+                    JR.ifElse (JR.and (JR.map2 JR.notEquals (JR.alength (JR.thisField "basicColorArray")) (JR.int 0)) (JR.map2 JR.notEquals (JR.invoke "getSize_0" JR.this []) (JR.alength (JR.thisField "basicColorArray")))) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "TOTAL_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.invoke "getSize_0" JR.this []) ]) [ (JR.str "!=") ]) [ (JR.alength (JR.thisField "basicColorArray")) ]) []) ]) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_getAnimationSize_0 : JR.Method
+jm_getAnimationSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getSize_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setBasicColorP_1 : JR.Method
+jm_setBasicColorP_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "basicColorArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68145 -> (JR.setLocal "index" "I" (JR.lit jwN68145))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "basicColor") (JR.aget (JR.thisField "basicColorArray") (JR.local "index"))) (JR.run [ 
+                            JR.exec (JR.invoke "setFrame_1" JR.this [ (JR.local "index") ]), 
+                            JR.break ]) identity ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBasicColorP_0 : JR.Method
+jm_getBasicColorP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.less (JR.alength (JR.thisField "basicColorArray")) (JR.invoke "getFrame_0" JR.this [])) (JR.run [ 
+                        JR.return (JR.aget (JR.thisField "basicColorArray") (JR.invoke "getFrame_0" JR.this [])) ]) (JR.run [ 
+                        JR.return (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintFrame_4 : JR.Method
+jm_paintFrame_4 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "frame", "I" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setFrame_1" JR.this [ (JR.local "frame") ]), 
+                    JR.exec (JR.invoke "setPosition_2" (JR.thisField "sprite") [ (JR.local "x"), (JR.local "y") ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "sprite") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setPosition_2" (JR.thisField "sprite") [ (JR.local "x"), (JR.local "y") ]), 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "sprite") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paint_1" (JR.thisField "sprite") [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_nextFrame_0 : JR.Method
+jm_nextFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "nextFrame_0" (JR.thisField "sprite") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_previousFrame_0 : JR.Method
+jm_previousFrame_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "prevFrame_0" (JR.thisField "sprite") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSize_0 : JR.Method
+jm_getSize_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getRawFrameCount_0" (JR.thisField "sprite") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFrame_1 : JR.Method
+jm_setFrame_1 jheap jthis jargs =
+    JR.method [ ( "frame", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setFrame_1" (JR.thisField "sprite") [ (JR.local "frame") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFrame_0 : JR.Method
+jm_getFrame_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getFrame_0" (JR.thisField "sprite") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isLastFrame_0 : JR.Method
+jm_isLastFrame_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "getFrame_0" (JR.thisField "sprite") []) (JR.map2 JR.sub (JR.invoke "getSize_0" JR.this []) (JR.int 1))) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLastFrame_0 : JR.Method
+jm_getLastFrame_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getSize_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setSequence_1 : JR.Method
+jm_setSequence_1 jheap jthis jargs =
+    JR.method [ ( "sequence", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSequence_0 : JR.Method
+jm_getSequence_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic PrimitiveIntUtil.jm_getArrayInstance_0 []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_close_0 : JR.Method
+jm_close_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_finalize_0 : JR.Method
+jm_finalize_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

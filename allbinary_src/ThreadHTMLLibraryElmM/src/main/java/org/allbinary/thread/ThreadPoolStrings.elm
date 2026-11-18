@@ -1,4 +1,4 @@
-module ThreadPoolStrings exposing (..)
+module Org.Allbinary.Thread.ThreadPoolStrings exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}

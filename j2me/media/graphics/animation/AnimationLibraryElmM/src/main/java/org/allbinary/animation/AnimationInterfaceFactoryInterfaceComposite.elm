@@ -1,127 +1,107 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module AnimationInterfaceFactoryInterfaceComposite where
+module Org.Allbinary.Animation.AnimationInterfaceFactoryInterfaceComposite exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NullAnimationFactory -- same package or java.lang
-import qualified Animation -- same package or java.lang
-import qualified ScaleProperties -- org.allbinary.media.ScaleProperties
-import qualified AnimationInterfaceFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
--- implements AnimationInterfaceFactoryInterface
-data AnimationInterfaceFactoryInterfaceComposite = AnimationInterfaceFactoryInterfaceComposite
-    { header_ :: JavaHeader
-    , animationInterfaceFactoryInterfaceArray :: IORef (JavaArray (AnimationInterfaceFactoryInterface.AnimationInterfaceFactoryInterface))
-    }
-
-instance JavaNull AnimationInterfaceFactoryInterfaceComposite where
-    javaNull = javaNullRecord "AnimationInterfaceFactoryInterfaceComposite"
-
-instance JavaEquals AnimationInterfaceFactoryInterfaceComposite where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AnimationInterfaceFactoryInterfaceComposite where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AnimationInterfaceFactoryInterfaceComposite where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AnimationInterfaceFactoryInterfaceComposite
-newRecord_ = do
-    header_ <- newJavaHeader
-    animationInterfaceFactoryInterfaceArray <- newIORef javaNull
-    let this = AnimationInterfaceFactoryInterfaceComposite header_ animationInterfaceFactoryInterfaceArray
-    jregisterLevel header_ this
-    AnimationInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    jregisterMethod header_ "getAnimationInterfaceFactoryInterfaceArray" (\() -> getAnimationInterfaceFactoryInterfaceArray_impl this)
-    jregisterMethod header_ "setInitialScale" (\() -> setInitialScale_impl this)
-    pure this
-
-initFields_ :: AnimationInterfaceFactoryInterfaceComposite -> IO ()
-initFields_ this = do
-    jset this.animationInterfaceFactoryInterfaceArray (javaNull)
-    pure ()
-
-new_1 :: JavaArray (AnimationInterfaceFactoryInterface.AnimationInterfaceFactoryInterface) -> IO AnimationInterfaceFactoryInterfaceComposite
-new_1 basicAnimationInterfaceFactoryInterfaceArray = do
-    this <- newRecord_
-    init_1 this basicAnimationInterfaceFactoryInterfaceArray
-    pure this
-
-init_1 :: AnimationInterfaceFactoryInterfaceComposite -> JavaArray (AnimationInterfaceFactoryInterface.AnimationInterfaceFactoryInterface) -> IO ()
-init_1 this basicAnimationInterfaceFactoryInterfaceArray = do
-        initFields_ this
-        jset (this).animationInterfaceFactoryInterfaceArray (basicAnimationInterfaceFactoryInterfaceArray)
-        pure ()
+import JR
+import Org.Allbinary.Animation.AnimationInterfaceFactoryInterface as AnimationInterfaceFactoryInterface
+import Org.Allbinary.Animation.NullAnimationFactory as NullAnimationFactory
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: AnimationInterfaceFactoryInterfaceComposite))) () a1
-
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: AnimationInterfaceFactoryInterfaceComposite)) a1
-
-getInstance_impl :: AnimationInterfaceFactoryInterfaceComposite -> Int -> IO (Animation.Animation)
-getInstance_impl this instanceId = do
-        (NullAnimationFactory.getInstance ((jio (NullAnimationFactory.getFactoryInstance))) 0)
+jclass : String
+jclass =
+    "AnimationInterfaceFactoryInterfaceComposite"
 
 
-getAnimationInterfaceFactoryInterfaceArray :: (JavaObjectClass this_) => this_ -> IO (JavaArray (AnimationInterfaceFactoryInterface.AnimationInterfaceFactoryInterface))
-getAnimationInterfaceFactoryInterfaceArray object_ = jmethod object_ "getAnimationInterfaceFactoryInterfaceArray" (\() -> (getAnimationInterfaceFactoryInterfaceArray_impl (javaCast object_ :: AnimationInterfaceFactoryInterfaceComposite))) ()
-
-getAnimationInterfaceFactoryInterfaceArray_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (AnimationInterfaceFactoryInterface.AnimationInterfaceFactoryInterface))
-getAnimationInterfaceFactoryInterfaceArray_super object_ = (getAnimationInterfaceFactoryInterfaceArray_impl (javaCast object_ :: AnimationInterfaceFactoryInterfaceComposite))
-
-getAnimationInterfaceFactoryInterfaceArray_impl :: AnimationInterfaceFactoryInterfaceComposite -> IO (JavaArray (AnimationInterfaceFactoryInterface.AnimationInterfaceFactoryInterface))
-getAnimationInterfaceFactoryInterfaceArray_impl this = do
-        pure ((jget (this).animationInterfaceFactoryInterfaceArray))
+jchain : List String
+jchain =
+    [ "AnimationInterfaceFactoryInterfaceComposite" ]
+        ++ AnimationInterfaceFactoryInterface.jchain
 
 
-setInitialScale :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale object_ a1 = jmethod object_ "setInitialScale" (\() -> (setInitialScale_impl (javaCast object_ :: AnimationInterfaceFactoryInterfaceComposite))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "animationInterfaceFactoryInterfaceArray", JR.defaultOf "" ) ]
 
-setInitialScale_super :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_super object_ a1 = (setInitialScale_impl (javaCast object_ :: AnimationInterfaceFactoryInterfaceComposite)) a1
 
-setInitialScale_impl :: AnimationInterfaceFactoryInterfaceComposite -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_impl this scaleProperties = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_1", jm_getInstance_1 )
+        , ( "getAnimationInterfaceFactoryInterfaceArray_0", jm_getAnimationInterfaceFactoryInterfaceArray_0 )
+        , ( "setInitialScale_1", jm_setInitialScale_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AnimationInterfaceFactoryInterfaceComposite"
+        [ ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_getAnimationInterfaceFactoryInterfaceArray_0", jm_getAnimationInterfaceFactoryInterfaceArray_0 ), ( "jm_setInitialScale_1", jm_setInitialScale_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "basicAnimationInterfaceFactoryInterfaceArray", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "animationInterfaceFactoryInterfaceArray" "" JR.this (JR.local "basicAnimationInterfaceFactoryInterfaceArray")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "instanceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getInstance_1" (JR.callStatic NullAnimationFactory.jm_getFactoryInstance_0 []) [ (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAnimationInterfaceFactoryInterfaceArray_0 : JR.Method
+jm_getAnimationInterfaceFactoryInterfaceArray_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "animationInterfaceFactoryInterfaceArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInitialScale_1 : JR.Method
+jm_setInitialScale_1 jheap jthis jargs =
+    JR.method [ ( "scaleProperties", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

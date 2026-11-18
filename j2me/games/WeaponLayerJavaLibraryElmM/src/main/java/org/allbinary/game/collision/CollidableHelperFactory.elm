@@ -1,93 +1,88 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision
-module CollidableHelperFactory where
+module Org.Allbinary.Game.Collision.CollidableHelperFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified SourceCollisionHelper -- same package or java.lang
-import qualified CollisionHelper -- same package or java.lang
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified GameFeatureFactory -- org.allbinary.game.configuration.feature.GameFeatureFactory
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
+{-| Generated Code Do Not Modify package org.allbinary.game.collision
+-}
 
-data CollidableHelperFactory = CollidableHelperFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull CollidableHelperFactory where
-    javaNull = javaNullRecord "CollidableHelperFactory"
-
-instance JavaEquals CollidableHelperFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CollidableHelperFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CollidableHelperFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CollidableHelperFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = CollidableHelperFactory header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: CollidableHelperFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO CollidableHelperFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CollidableHelperFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Layer.AllBinaryLayer as AllBinaryLayer
+import Org.Allbinary.Game.Collision.CollisionHelper as CollisionHelper
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Configuration.Feature.GameFeatureFactory as GameFeatureFactory
+import Org.Allbinary.Game.Collision.SourceCollisionHelper as SourceCollisionHelper
 
 
-getInstance :: IO (CollisionHelper.CollisionHelper)
-getInstance = do
-    javaCatchReturn $ do
-        if (jio (Features.isFeature ((jio (Features.getInstance))) (jget ((jio (GameFeatureFactory.getInstance))).cOLLISIONS_WITH_SOURCE))) then do
-            javaReturn =<< (CollisionHelper.new_1 (AllBinaryLayer.nULL_ALLBINARY_LAYER))
-        else do
-            javaReturn =<< (fmap (\value_ -> javaCast value_ :: CollisionHelper.CollisionHelper) (SourceCollisionHelper.new_1 (AllBinaryLayer.nULL_ALLBINARY_LAYER)))
+jclass : String
+jclass =
+    "CollidableHelperFactory"
 
+
+jchain : List String
+jchain =
+    [ "CollidableHelperFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CollidableHelperFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isFeature_1" (JR.callStatic Features.jm_getInstance_0 []) [ (JR.field "COLLISIONS_WITH_SOURCE" (JR.callStatic GameFeatureFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.return (JR.new CollisionHelper.jnew_1 [ AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER ]) ]) (JR.run [ 
+                        JR.return (JR.new SourceCollisionHelper.jnew_1 [ AllBinaryLayer.jstatic_NULL_ALLBINARY_LAYER ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

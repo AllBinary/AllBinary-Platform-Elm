@@ -1,4 +1,4 @@
-module AvianUtil exposing (..)
+module Org.Allbinary.AvianUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary
 -}

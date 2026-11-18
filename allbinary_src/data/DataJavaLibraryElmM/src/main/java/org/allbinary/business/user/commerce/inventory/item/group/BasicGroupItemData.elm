@@ -1,109 +1,142 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.inventory.item.group
-module BasicGroupItemData where
+module Org.Allbinary.Business.User.Commerce.Inventory.Item.Group.BasicGroupItemData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.inventory.item.group
+-}
 
-data BasicGroupItemData = BasicGroupItemData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull BasicGroupItemData where
-    javaNull = javaNullRecord "BasicGroupItemData"
 
-instance JavaEquals BasicGroupItemData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq BasicGroupItemData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "BasicGroupItemData"
 
-instance JavaObjectClass BasicGroupItemData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-iTEM_ONE :: String
-iTEM_ONE = "BASICGROUPITEM_ONE"
+jchain : List String
+jchain =
+    [ "BasicGroupItemData" ]
 
-iTEM_TWO :: String
-iTEM_TWO = "BASICGROUPITEM_TWO"
 
-iTEM_THREE :: String
-iTEM_THREE = "BASICGROUPITEM_THREE"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-iTEM_FOUR :: String
-iTEM_FOUR = "BASICGROUPITEM_FOUR"
 
-iTEM_FIVE :: String
-iTEM_FIVE = "BASICGROUPITEM_FIVE"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-iTEM_SIX :: String
-iTEM_SIX = "BASICGROUPITEM_SIX"
 
-iTEM_SEVEN :: String
-iTEM_SEVEN = "BASICGROUPITEM_SEVEN"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicGroupItemData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_ITEM_ONE", jstatic_ITEM_ONE ), ( "jstatic_ITEM_TWO", jstatic_ITEM_TWO ), ( "jstatic_ITEM_THREE", jstatic_ITEM_THREE ), ( "jstatic_ITEM_FOUR", jstatic_ITEM_FOUR ), ( "jstatic_ITEM_FIVE", jstatic_ITEM_FIVE ), ( "jstatic_ITEM_SIX", jstatic_ITEM_SIX ), ( "jstatic_ITEM_SEVEN", jstatic_ITEM_SEVEN ), ( "jstatic_ITEM_EIGHT", jstatic_ITEM_EIGHT ), ( "jstatic_ITEM_NINE", jstatic_ITEM_NINE ), ( "jstatic_ITEM_TEN", jstatic_ITEM_TEN ) ]
+        jheap
 
-iTEM_EIGHT :: String
-iTEM_EIGHT = "BASICGROUPITEM_EIGHT"
 
-iTEM_NINE :: String
-iTEM_NINE = "BASICGROUPITEM_NINE"
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-iTEM_TEN :: String
-iTEM_TEN = "BASICGROUPITEM_TEN"
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jstatic_ITEM_ONE : JR.M
+jstatic_ITEM_ONE s =
+    JR.static "BasicGroupItemData" jclinit "ITEM_ONE"
+        (JR.str "BASICGROUPITEM_ONE")
+        s
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO BasicGroupItemData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = BasicGroupItemData header_
-    jregisterLevel header_ this
-    pure this
+jstatic_ITEM_TWO : JR.M
+jstatic_ITEM_TWO s =
+    JR.static "BasicGroupItemData" jclinit "ITEM_TWO"
+        (JR.str "BASICGROUPITEM_TWO")
+        s
 
-initFields_ :: BasicGroupItemData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO BasicGroupItemData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jstatic_ITEM_THREE : JR.M
+jstatic_ITEM_THREE s =
+    JR.static "BasicGroupItemData" jclinit "ITEM_THREE"
+        (JR.str "BASICGROUPITEM_THREE")
+        s
 
-init_ :: BasicGroupItemData -> IO ()
-init_ this = do
-    initFields_ this
 
+jstatic_ITEM_FOUR : JR.M
+jstatic_ITEM_FOUR s =
+    JR.static "BasicGroupItemData" jclinit "ITEM_FOUR"
+        (JR.str "BASICGROUPITEM_FOUR")
+        s
+
+
+jstatic_ITEM_FIVE : JR.M
+jstatic_ITEM_FIVE s =
+    JR.static "BasicGroupItemData" jclinit "ITEM_FIVE"
+        (JR.str "BASICGROUPITEM_FIVE")
+        s
+
+
+jstatic_ITEM_SIX : JR.M
+jstatic_ITEM_SIX s =
+    JR.static "BasicGroupItemData" jclinit "ITEM_SIX"
+        (JR.str "BASICGROUPITEM_SIX")
+        s
+
+
+jstatic_ITEM_SEVEN : JR.M
+jstatic_ITEM_SEVEN s =
+    JR.static "BasicGroupItemData" jclinit "ITEM_SEVEN"
+        (JR.str "BASICGROUPITEM_SEVEN")
+        s
+
+
+jstatic_ITEM_EIGHT : JR.M
+jstatic_ITEM_EIGHT s =
+    JR.static "BasicGroupItemData" jclinit "ITEM_EIGHT"
+        (JR.str "BASICGROUPITEM_EIGHT")
+        s
+
+
+jstatic_ITEM_NINE : JR.M
+jstatic_ITEM_NINE s =
+    JR.static "BasicGroupItemData" jclinit "ITEM_NINE"
+        (JR.str "BASICGROUPITEM_NINE")
+        s
+
+
+jstatic_ITEM_TEN : JR.M
+jstatic_ITEM_TEN s =
+    JR.static "BasicGroupItemData" jclinit "ITEM_TEN"
+        (JR.str "BASICGROUPITEM_TEN")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

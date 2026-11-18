@@ -1,164 +1,132 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package javax.microedition.lcdui
-module ChoiceGroupImageFactory where
+module Javax.Microedition.Lcdui.ChoiceGroupImageFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- same package or java.lang
-import qualified MIDPUtil -- org.allbinary.MIDPUtil
+{-| Generated Code Do Not Modify package javax.microedition.lcdui
+-}
 
-data ChoiceGroupImageFactory = ChoiceGroupImageFactory
-    { header_ :: JavaHeader
-    , multiOff :: IORef (JavaArray (Int8))
-    , multiOn :: IORef (JavaArray (Int8))
-    , radioOff :: IORef (JavaArray (Int8))
-    , radioOn :: IORef (JavaArray (Int8))
-    , midpUtil :: IORef (MIDPUtil.MIDPUtil)
-    , imgMultiOffO :: IORef (Image.Image)
-    , imgMultiOnO :: IORef (Image.Image)
-    , imgRadioOffO :: IORef (Image.Image)
-    , imgRadioOnO :: IORef (Image.Image)
-    , imgMultiOff :: IORef (Image.Image)
-    , imgMultiOn :: IORef (Image.Image)
-    , imgRadioOff :: IORef (Image.Image)
-    , imgRadioOn :: IORef (Image.Image)
-    , imageArray :: IORef (JavaArray (Image.Image))
-    }
-
-instance JavaNull ChoiceGroupImageFactory where
-    javaNull = javaNullRecord "ChoiceGroupImageFactory"
-
-instance JavaEquals ChoiceGroupImageFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ChoiceGroupImageFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ChoiceGroupImageFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ChoiceGroupImageFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ChoiceGroupImageFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    multiOff <- newIORef javaNull
-    multiOn <- newIORef javaNull
-    radioOff <- newIORef javaNull
-    radioOn <- newIORef javaNull
-    midpUtil <- newIORef javaNull
-    imgMultiOffO <- newIORef javaNull
-    imgMultiOnO <- newIORef javaNull
-    imgRadioOffO <- newIORef javaNull
-    imgRadioOnO <- newIORef javaNull
-    imgMultiOff <- newIORef javaNull
-    imgMultiOn <- newIORef javaNull
-    imgRadioOff <- newIORef javaNull
-    imgRadioOn <- newIORef javaNull
-    imageArray <- newIORef javaNull
-    let this = ChoiceGroupImageFactory header_ multiOff multiOn radioOff radioOn midpUtil imgMultiOffO imgMultiOnO imgRadioOffO imgRadioOnO imgMultiOff imgMultiOn imgRadioOff imgRadioOn imageArray
-    jregisterLevel header_ this
-    jregisterMethod header_ "getImageArray" (\() -> getImageArray_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    pure this
-
-initFields_ :: ChoiceGroupImageFactory -> IO ()
-initFields_ this = do
-    jset this.multiOff ((jarrayFromList [(Prelude.fromIntegral ((Prelude.negate 119) :: Int)), 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 10, 0, 0, 0, 11, 2, 3, 0, 0, 0, 59, 0, (Prelude.fromIntegral ((Prelude.negate 12) :: Int)), (Prelude.fromIntegral ((Prelude.negate 117) :: Int)), 0, 0, 0, 6, 80, 76, 84, 69, (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), (Prelude.fromIntegral ((Prelude.negate 57) :: Int)), 75, (Prelude.fromIntegral ((Prelude.negate 33) :: Int)), (Prelude.fromIntegral ((Prelude.negate 8) :: Int)), 0, 0, 0, 30, 73, 68, 65, 84, 120, (Prelude.fromIntegral ((Prelude.negate 38) :: Int)), 99, 96, 96, 96, 96, 12, 101, (Prelude.fromIntegral ((Prelude.negate 8) :: Int)), (Prelude.fromIntegral ((Prelude.negate 51) :: Int)), (Prelude.fromIntegral ((Prelude.negate 32) :: Int)), (Prelude.fromIntegral ((Prelude.negate 64) :: Int)), 32, (Prelude.fromIntegral ((Prelude.negate 64) :: Int)), (Prelude.fromIntegral ((Prelude.negate 60) :: Int)), (Prelude.fromIntegral ((Prelude.negate 64) :: Int)), (Prelude.fromIntegral ((Prelude.negate 64) :: Int)), (Prelude.fromIntegral ((Prelude.negate 128) :: Int)), 11, 51, (Prelude.fromIntegral ((Prelude.negate 122) :: Int)), 50, (Prelude.fromIntegral ((Prelude.negate 4) :: Int)), 6, 0, 63, 116, 3, 1, 53, (Prelude.fromIntegral ((Prelude.negate 108) :: Int)), 39, (Prelude.fromIntegral ((Prelude.negate 26) :: Int)), 0, 0, 0, 0, 73, 69, 78, 68, (Prelude.fromIntegral ((Prelude.negate 82) :: Int)), 66, 96, (Prelude.fromIntegral ((Prelude.negate 126) :: Int))] :: JavaArray Int8))
-    jset this.multiOn ((jarrayFromList [(Prelude.fromIntegral ((Prelude.negate 119) :: Int)), 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 10, 0, 0, 0, 11, 2, 3, 0, 0, 0, 59, 0, (Prelude.fromIntegral ((Prelude.negate 12) :: Int)), (Prelude.fromIntegral ((Prelude.negate 117) :: Int)), 0, 0, 0, 12, 80, 76, 84, 69, (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), 106, 106, 106, 2, 2, 2, 106, (Prelude.fromIntegral ((Prelude.negate 103) :: Int)), 14, (Prelude.fromIntegral ((Prelude.negate 47) :: Int)), 0, 0, 0, 53, 73, 68, 65, 84, 120, (Prelude.fromIntegral ((Prelude.negate 38) :: Int)), 99, 96, 96, 124, (Prelude.fromIntegral ((Prelude.negate 64) :: Int)), (Prelude.fromIntegral ((Prelude.negate 16) :: Int)), (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 77) :: Int)), 3, (Prelude.fromIntegral ((Prelude.negate 45) :: Int)), 65, (Prelude.fromIntegral ((Prelude.negate 111) :: Int)), 15, 76, 12, 108, 12, 76, 12, (Prelude.fromIntegral ((Prelude.negate 4) :: Int)), 12, 76, 12, 18, 12, 76, (Prelude.fromIntegral ((Prelude.negate 68) :: Int)), 127, 24, (Prelude.fromIntegral ((Prelude.negate 104) :: Int)), 126, 45, 96, 96, (Prelude.fromIntegral ((Prelude.negate 7) :: Int)), (Prelude.fromIntegral ((Prelude.negate 11) :: Int)), (Prelude.fromIntegral ((Prelude.negate 109) :: Int)), (Prelude.fromIntegral ((Prelude.negate 127) :: Int)), (Prelude.fromIntegral ((Prelude.negate 23) :: Int)), (Prelude.fromIntegral ((Prelude.negate 65) :: Int)), 3, 3, (Prelude.fromIntegral ((Prelude.negate 29) :: Int)), 127, (Prelude.fromIntegral ((Prelude.negate 122) :: Int)), (Prelude.fromIntegral ((Prelude.negate 113) :: Int)), 0, 5, 37, 12, (Prelude.fromIntegral ((Prelude.negate 34) :: Int)), 1, (Prelude.fromIntegral ((Prelude.negate 99) :: Int)), (Prelude.fromIntegral ((Prelude.negate 83) :: Int)), 100, 0, 0, 0, 0, 73, 69, 78, 68, (Prelude.fromIntegral ((Prelude.negate 82) :: Int)), 66, 96, (Prelude.fromIntegral ((Prelude.negate 126) :: Int))] :: JavaArray Int8))
-    jset this.radioOff ((jarrayFromList [(Prelude.fromIntegral ((Prelude.negate 119) :: Int)), 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 11, 0, 0, 0, 11, 2, 3, 0, 0, 0, (Prelude.fromIntegral ((Prelude.negate 44) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 97) :: Int)), (Prelude.fromIntegral ((Prelude.negate 75) :: Int)), 0, 0, 0, 9, 80, 76, 84, 69, (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), 106, 106, 106, (Prelude.fromIntegral ((Prelude.negate 44) :: Int)), 13, (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 24) :: Int)), 0, 0, 0, 42, 73, 68, 65, 84, 120, (Prelude.fromIntegral ((Prelude.negate 38) :: Int)), 99, 96, 90, (Prelude.fromIntegral ((Prelude.negate 59) :: Int)), (Prelude.fromIntegral ((Prelude.negate 64) :: Int)), 32, (Prelude.fromIntegral ((Prelude.negate 63) :: Int)), 48, (Prelude.fromIntegral ((Prelude.negate 127) :: Int)), 65, (Prelude.fromIntegral ((Prelude.negate 127) :: Int)), 65, (Prelude.fromIntegral ((Prelude.negate 127) :: Int)), 41, (Prelude.fromIntegral ((Prelude.negate 127) :: Int)), (Prelude.fromIntegral ((Prelude.negate 31) :: Int)), 5, 19, 3, 3, 3, 50, 102, 80, 96, 80, 96, (Prelude.fromIntegral ((Prelude.negate 6) :: Int)), (Prelude.fromIntegral ((Prelude.negate 63) :: Int)), 80, (Prelude.fromIntegral ((Prelude.negate 64) :: Int)), (Prelude.fromIntegral ((Prelude.negate 64) :: Int)), (Prelude.fromIntegral ((Prelude.negate 76) :: Int)), (Prelude.fromIntegral ((Prelude.negate 118) :: Int)), 1, 0, 113, 24, 5, 61, 73, (Prelude.fromIntegral ((Prelude.negate 68) :: Int)), (Prelude.fromIntegral ((Prelude.negate 100) :: Int)), 98, 0, 0, 0, 0, 73, 69, 78, 68, (Prelude.fromIntegral ((Prelude.negate 82) :: Int)), 66, 96, (Prelude.fromIntegral ((Prelude.negate 126) :: Int))] :: JavaArray Int8))
-    jset this.radioOn ((jarrayFromList [(Prelude.fromIntegral ((Prelude.negate 119) :: Int)), 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, 11, 0, 0, 0, 11, 2, 3, 0, 0, 0, (Prelude.fromIntegral ((Prelude.negate 44) :: Int)), (Prelude.fromIntegral ((Prelude.negate 62) :: Int)), (Prelude.fromIntegral ((Prelude.negate 97) :: Int)), (Prelude.fromIntegral ((Prelude.negate 75) :: Int)), 0, 0, 0, 12, 80, 76, 84, 69, (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 1) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), (Prelude.fromIntegral ((Prelude.negate 69) :: Int)), 106, 106, 106, 2, 2, 2, 106, (Prelude.fromIntegral ((Prelude.negate 103) :: Int)), 14, (Prelude.fromIntegral ((Prelude.negate 47) :: Int)), 0, 0, 0, 50, 73, 68, 65, 84, 120, (Prelude.fromIntegral ((Prelude.negate 38) :: Int)), 5, (Prelude.fromIntegral ((Prelude.negate 63) :: Int)), 65, 13, 0, 32, 12, 4, (Prelude.fromIntegral ((Prelude.negate 63) :: Int)), (Prelude.fromIntegral ((Prelude.negate 19) :: Int)), (Prelude.fromIntegral ((Prelude.negate 11) :: Int)), (Prelude.fromIntegral ((Prelude.negate 117) :: Int)), 1, 18, 68, (Prelude.fromIntegral ((Prelude.negate 100) :: Int)), 10, 52, 19, 94, 72, 64, 17, 101, (Prelude.fromIntegral ((Prelude.negate 122) :: Int)), 44, (Prelude.fromIntegral ((Prelude.negate 44) :: Int)), (Prelude.fromIntegral ((Prelude.negate 29) :: Int)), 98, (Prelude.fromIntegral ((Prelude.negate 52) :: Int)), 89, 77, (Prelude.fromIntegral ((Prelude.negate 102) :: Int)), 40, 2, 85, (Prelude.fromIntegral ((Prelude.negate 95) :: Int)), (Prelude.fromIntegral ((Prelude.negate 73) :: Int)), (Prelude.fromIntegral ((Prelude.negate 63) :: Int)), (Prelude.fromIntegral ((Prelude.negate 104) :: Int)), (Prelude.fromIntegral ((Prelude.negate 63) :: Int)), 37, (Prelude.fromIntegral ((Prelude.negate 117) :: Int)), 15, (Prelude.fromIntegral ((Prelude.negate 40) :: Int)), 119, 10, 41, 78, 26, (Prelude.fromIntegral ((Prelude.negate 79) :: Int)), 59, 0, 0, 0, 0, 73, 69, 78, 68, (Prelude.fromIntegral ((Prelude.negate 82) :: Int)), 66, 96, (Prelude.fromIntegral ((Prelude.negate 126) :: Int))] :: JavaArray Int8))
-    jset this.midpUtil =<< (MIDPUtil.getInstance)
-    jset this.imgMultiOffO =<< (MIDPUtil.createImageFromByteArray ((jget (this).midpUtil)) (jget (this).multiOff) 0 (jlength (jget (this).multiOff)))
-    jset this.imgMultiOnO =<< (MIDPUtil.createImageFromByteArray ((jget (this).midpUtil)) (jget (this).multiOn) 0 (jlength (jget (this).multiOn)))
-    jset this.imgRadioOffO =<< (MIDPUtil.createImageFromByteArray ((jget (this).midpUtil)) (jget (this).radioOff) 0 (jlength (jget (this).radioOff)))
-    jset this.imgRadioOnO =<< (MIDPUtil.createImageFromByteArray ((jget (this).midpUtil)) (jget (this).radioOn) 0 (jlength (jget (this).radioOn)))
-    jset this.imgMultiOff ((jget (this).imgMultiOffO))
-    jset this.imgMultiOn ((jget (this).imgMultiOnO))
-    jset this.imgRadioOff ((jget (this).imgRadioOffO))
-    jset this.imgRadioOn ((jget (this).imgRadioOnO))
-    jset this.imageArray ((jarrayFromList [(jget (this).imgMultiOff), (jget (this).imgMultiOn), (jget (this).imgRadioOff), (jget (this).imgRadioOn)]))
-    pure ()
-
-new_ :: IO ChoiceGroupImageFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ChoiceGroupImageFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.MIDPUtil as MIDPUtil
 
 
-getInstance :: IO (ChoiceGroupImageFactory)
-getInstance = do
-        pure (ChoiceGroupImageFactory.instance_)
+jclass : String
+jclass =
+    "ChoiceGroupImageFactory"
 
 
-getImageArray :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Image.Image))
-getImageArray object_ = jmethod object_ "getImageArray" (\() -> (getImageArray_impl (javaCast object_ :: ChoiceGroupImageFactory))) ()
-
-getImageArray_super :: (JavaObjectClass this_) => this_ -> IO (JavaArray (Image.Image))
-getImageArray_super object_ = (getImageArray_impl (javaCast object_ :: ChoiceGroupImageFactory))
-
-getImageArray_impl :: ChoiceGroupImageFactory -> IO (JavaArray (Image.Image))
-getImageArray_impl this = do
-        pure ((jget (this).imageArray))
+jchain : List String
+jchain =
+    [ "ChoiceGroupImageFactory" ]
 
 
-init :: (JavaObjectClass this_) => this_ -> JavaArray (Image.Image) -> IO (())
-init object_ a1 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: ChoiceGroupImageFactory))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "multiOff", JR.defaultOf "" ), ( "multiOn", JR.defaultOf "" ), ( "radioOff", JR.defaultOf "" ), ( "radioOn", JR.defaultOf "" ), ( "midpUtil", JR.defaultOf "" ), ( "imgMultiOffO", JR.defaultOf "" ), ( "imgMultiOnO", JR.defaultOf "" ), ( "imgRadioOffO", JR.defaultOf "" ), ( "imgRadioOnO", JR.defaultOf "" ), ( "imgMultiOff", JR.defaultOf "" ), ( "imgMultiOn", JR.defaultOf "" ), ( "imgRadioOff", JR.defaultOf "" ), ( "imgRadioOn", JR.defaultOf "" ), ( "imageArray", JR.defaultOf "" ) ]
 
-init_super :: (JavaObjectClass this_) => this_ -> JavaArray (Image.Image) -> IO (())
-init_super object_ a1 = (init_impl (javaCast object_ :: ChoiceGroupImageFactory)) a1
 
-init_impl :: ChoiceGroupImageFactory -> JavaArray (Image.Image) -> IO (())
-init_impl this imageArray = do
-        jset (this).imgMultiOff ((jindex imageArray (0)))
-        jsetIndex ((jget (this).imageArray)) (0) ((jget (this).imgMultiOff))
-        jset (this).imgMultiOn ((jindex imageArray (1)))
-        jsetIndex ((jget (this).imageArray)) (1) ((jget (this).imgMultiOn))
-        jset (this).imgRadioOff ((jindex imageArray (2)))
-        jsetIndex ((jget (this).imageArray)) (2) ((jget (this).imgRadioOff))
-        jset (this).imgRadioOn ((jindex imageArray (3)))
-        jsetIndex ((jget (this).imageArray)) (3) ((jget (this).imgRadioOn))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getImageArray_0", jm_getImageArray_0 )
+        , ( "init_1", jm_init_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ChoiceGroupImageFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getImageArray_0", jm_getImageArray_0 ), ( "jm_init_1", jm_init_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ChoiceGroupImageFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "multiOff" "" JR.this (JR.arrayOf "B" [ (JR.cast "B" (JR.map JR.neg (JR.int 119))), (JR.int 80), (JR.int 78), (JR.int 71), (JR.int 13), (JR.int 10), (JR.int 26), (JR.int 10), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 13), (JR.int 73), (JR.int 72), (JR.int 68), (JR.int 82), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 10), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 11), (JR.int 2), (JR.int 3), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 59), (JR.int 0), (JR.cast "B" (JR.map JR.neg (JR.int 12))), (JR.cast "B" (JR.map JR.neg (JR.int 117))), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 6), (JR.int 80), (JR.int 76), (JR.int 84), (JR.int 69), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.cast "B" (JR.map JR.neg (JR.int 57))), (JR.int 75), (JR.cast "B" (JR.map JR.neg (JR.int 33))), (JR.cast "B" (JR.map JR.neg (JR.int 8))), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 30), (JR.int 73), (JR.int 68), (JR.int 65), (JR.int 84), (JR.int 120), (JR.cast "B" (JR.map JR.neg (JR.int 38))), (JR.int 99), (JR.int 96), (JR.int 96), (JR.int 96), (JR.int 96), (JR.int 12), (JR.int 101), (JR.cast "B" (JR.map JR.neg (JR.int 8))), (JR.cast "B" (JR.map JR.neg (JR.int 51))), (JR.cast "B" (JR.map JR.neg (JR.int 32))), (JR.cast "B" (JR.map JR.neg (JR.int 64))), (JR.int 32), (JR.cast "B" (JR.map JR.neg (JR.int 64))), (JR.cast "B" (JR.map JR.neg (JR.int 60))), (JR.cast "B" (JR.map JR.neg (JR.int 64))), (JR.cast "B" (JR.map JR.neg (JR.int 64))), (JR.cast "B" (JR.map JR.neg (JR.int 128))), (JR.int 11), (JR.int 51), (JR.cast "B" (JR.map JR.neg (JR.int 122))), (JR.int 50), (JR.cast "B" (JR.map JR.neg (JR.int 4))), (JR.int 6), (JR.int 0), (JR.int 63), (JR.int 116), (JR.int 3), (JR.int 1), (JR.int 53), (JR.cast "B" (JR.map JR.neg (JR.int 108))), (JR.int 39), (JR.cast "B" (JR.map JR.neg (JR.int 26))), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 73), (JR.int 69), (JR.int 78), (JR.int 68), (JR.cast "B" (JR.map JR.neg (JR.int 82))), (JR.int 66), (JR.int 96), (JR.cast "B" (JR.map JR.neg (JR.int 126))) ])),
+                JR.exec (JR.setField "multiOn" "" JR.this (JR.arrayOf "B" [ (JR.cast "B" (JR.map JR.neg (JR.int 119))), (JR.int 80), (JR.int 78), (JR.int 71), (JR.int 13), (JR.int 10), (JR.int 26), (JR.int 10), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 13), (JR.int 73), (JR.int 72), (JR.int 68), (JR.int 82), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 10), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 11), (JR.int 2), (JR.int 3), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 59), (JR.int 0), (JR.cast "B" (JR.map JR.neg (JR.int 12))), (JR.cast "B" (JR.map JR.neg (JR.int 117))), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 12), (JR.int 80), (JR.int 76), (JR.int 84), (JR.int 69), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.int 106), (JR.int 106), (JR.int 106), (JR.int 2), (JR.int 2), (JR.int 2), (JR.int 106), (JR.cast "B" (JR.map JR.neg (JR.int 103))), (JR.int 14), (JR.cast "B" (JR.map JR.neg (JR.int 47))), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 53), (JR.int 73), (JR.int 68), (JR.int 65), (JR.int 84), (JR.int 120), (JR.cast "B" (JR.map JR.neg (JR.int 38))), (JR.int 99), (JR.int 96), (JR.int 96), (JR.int 124), (JR.cast "B" (JR.map JR.neg (JR.int 64))), (JR.cast "B" (JR.map JR.neg (JR.int 16))), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 77))), (JR.int 3), (JR.cast "B" (JR.map JR.neg (JR.int 45))), (JR.int 65), (JR.cast "B" (JR.map JR.neg (JR.int 111))), (JR.int 15), (JR.int 76), (JR.int 12), (JR.int 108), (JR.int 12), (JR.int 76), (JR.int 12), (JR.cast "B" (JR.map JR.neg (JR.int 4))), (JR.int 12), (JR.int 76), (JR.int 12), (JR.int 18), (JR.int 12), (JR.int 76), (JR.cast "B" (JR.map JR.neg (JR.int 68))), (JR.int 127), (JR.int 24), (JR.cast "B" (JR.map JR.neg (JR.int 104))), (JR.int 126), (JR.int 45), (JR.int 96), (JR.int 96), (JR.cast "B" (JR.map JR.neg (JR.int 7))), (JR.cast "B" (JR.map JR.neg (JR.int 11))), (JR.cast "B" (JR.map JR.neg (JR.int 109))), (JR.cast "B" (JR.map JR.neg (JR.int 127))), (JR.cast "B" (JR.map JR.neg (JR.int 23))), (JR.cast "B" (JR.map JR.neg (JR.int 65))), (JR.int 3), (JR.int 3), (JR.cast "B" (JR.map JR.neg (JR.int 29))), (JR.int 127), (JR.cast "B" (JR.map JR.neg (JR.int 122))), (JR.cast "B" (JR.map JR.neg (JR.int 113))), (JR.int 0), (JR.int 5), (JR.int 37), (JR.int 12), (JR.cast "B" (JR.map JR.neg (JR.int 34))), (JR.int 1), (JR.cast "B" (JR.map JR.neg (JR.int 99))), (JR.cast "B" (JR.map JR.neg (JR.int 83))), (JR.int 100), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 73), (JR.int 69), (JR.int 78), (JR.int 68), (JR.cast "B" (JR.map JR.neg (JR.int 82))), (JR.int 66), (JR.int 96), (JR.cast "B" (JR.map JR.neg (JR.int 126))) ])),
+                JR.exec (JR.setField "radioOff" "" JR.this (JR.arrayOf "B" [ (JR.cast "B" (JR.map JR.neg (JR.int 119))), (JR.int 80), (JR.int 78), (JR.int 71), (JR.int 13), (JR.int 10), (JR.int 26), (JR.int 10), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 13), (JR.int 73), (JR.int 72), (JR.int 68), (JR.int 82), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 11), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 11), (JR.int 2), (JR.int 3), (JR.int 0), (JR.int 0), (JR.int 0), (JR.cast "B" (JR.map JR.neg (JR.int 44))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 97))), (JR.cast "B" (JR.map JR.neg (JR.int 75))), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 9), (JR.int 80), (JR.int 76), (JR.int 84), (JR.int 69), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.int 106), (JR.int 106), (JR.int 106), (JR.cast "B" (JR.map JR.neg (JR.int 44))), (JR.int 13), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 24))), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 42), (JR.int 73), (JR.int 68), (JR.int 65), (JR.int 84), (JR.int 120), (JR.cast "B" (JR.map JR.neg (JR.int 38))), (JR.int 99), (JR.int 96), (JR.int 90), (JR.cast "B" (JR.map JR.neg (JR.int 59))), (JR.cast "B" (JR.map JR.neg (JR.int 64))), (JR.int 32), (JR.cast "B" (JR.map JR.neg (JR.int 63))), (JR.int 48), (JR.cast "B" (JR.map JR.neg (JR.int 127))), (JR.int 65), (JR.cast "B" (JR.map JR.neg (JR.int 127))), (JR.int 65), (JR.cast "B" (JR.map JR.neg (JR.int 127))), (JR.int 41), (JR.cast "B" (JR.map JR.neg (JR.int 127))), (JR.cast "B" (JR.map JR.neg (JR.int 31))), (JR.int 5), (JR.int 19), (JR.int 3), (JR.int 3), (JR.int 3), (JR.int 50), (JR.int 102), (JR.int 80), (JR.int 96), (JR.int 80), (JR.int 96), (JR.cast "B" (JR.map JR.neg (JR.int 6))), (JR.cast "B" (JR.map JR.neg (JR.int 63))), (JR.int 80), (JR.cast "B" (JR.map JR.neg (JR.int 64))), (JR.cast "B" (JR.map JR.neg (JR.int 64))), (JR.cast "B" (JR.map JR.neg (JR.int 76))), (JR.cast "B" (JR.map JR.neg (JR.int 118))), (JR.int 1), (JR.int 0), (JR.int 113), (JR.int 24), (JR.int 5), (JR.int 61), (JR.int 73), (JR.cast "B" (JR.map JR.neg (JR.int 68))), (JR.cast "B" (JR.map JR.neg (JR.int 100))), (JR.int 98), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 73), (JR.int 69), (JR.int 78), (JR.int 68), (JR.cast "B" (JR.map JR.neg (JR.int 82))), (JR.int 66), (JR.int 96), (JR.cast "B" (JR.map JR.neg (JR.int 126))) ])),
+                JR.exec (JR.setField "radioOn" "" JR.this (JR.arrayOf "B" [ (JR.cast "B" (JR.map JR.neg (JR.int 119))), (JR.int 80), (JR.int 78), (JR.int 71), (JR.int 13), (JR.int 10), (JR.int 26), (JR.int 10), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 13), (JR.int 73), (JR.int 72), (JR.int 68), (JR.int 82), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 11), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 11), (JR.int 2), (JR.int 3), (JR.int 0), (JR.int 0), (JR.int 0), (JR.cast "B" (JR.map JR.neg (JR.int 44))), (JR.cast "B" (JR.map JR.neg (JR.int 62))), (JR.cast "B" (JR.map JR.neg (JR.int 97))), (JR.cast "B" (JR.map JR.neg (JR.int 75))), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 12), (JR.int 80), (JR.int 76), (JR.int 84), (JR.int 69), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 1))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.cast "B" (JR.map JR.neg (JR.int 69))), (JR.int 106), (JR.int 106), (JR.int 106), (JR.int 2), (JR.int 2), (JR.int 2), (JR.int 106), (JR.cast "B" (JR.map JR.neg (JR.int 103))), (JR.int 14), (JR.cast "B" (JR.map JR.neg (JR.int 47))), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 50), (JR.int 73), (JR.int 68), (JR.int 65), (JR.int 84), (JR.int 120), (JR.cast "B" (JR.map JR.neg (JR.int 38))), (JR.int 5), (JR.cast "B" (JR.map JR.neg (JR.int 63))), (JR.int 65), (JR.int 13), (JR.int 0), (JR.int 32), (JR.int 12), (JR.int 4), (JR.cast "B" (JR.map JR.neg (JR.int 63))), (JR.cast "B" (JR.map JR.neg (JR.int 19))), (JR.cast "B" (JR.map JR.neg (JR.int 11))), (JR.cast "B" (JR.map JR.neg (JR.int 117))), (JR.int 1), (JR.int 18), (JR.int 68), (JR.cast "B" (JR.map JR.neg (JR.int 100))), (JR.int 10), (JR.int 52), (JR.int 19), (JR.int 94), (JR.int 72), (JR.int 64), (JR.int 17), (JR.int 101), (JR.cast "B" (JR.map JR.neg (JR.int 122))), (JR.int 44), (JR.cast "B" (JR.map JR.neg (JR.int 44))), (JR.cast "B" (JR.map JR.neg (JR.int 29))), (JR.int 98), (JR.cast "B" (JR.map JR.neg (JR.int 52))), (JR.int 89), (JR.int 77), (JR.cast "B" (JR.map JR.neg (JR.int 102))), (JR.int 40), (JR.int 2), (JR.int 85), (JR.cast "B" (JR.map JR.neg (JR.int 95))), (JR.cast "B" (JR.map JR.neg (JR.int 73))), (JR.cast "B" (JR.map JR.neg (JR.int 63))), (JR.cast "B" (JR.map JR.neg (JR.int 104))), (JR.cast "B" (JR.map JR.neg (JR.int 63))), (JR.int 37), (JR.cast "B" (JR.map JR.neg (JR.int 117))), (JR.int 15), (JR.cast "B" (JR.map JR.neg (JR.int 40))), (JR.int 119), (JR.int 10), (JR.int 41), (JR.int 78), (JR.int 26), (JR.cast "B" (JR.map JR.neg (JR.int 79))), (JR.int 59), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 0), (JR.int 73), (JR.int 69), (JR.int 78), (JR.int 68), (JR.cast "B" (JR.map JR.neg (JR.int 82))), (JR.int 66), (JR.int 96), (JR.cast "B" (JR.map JR.neg (JR.int 126))) ])),
+                JR.exec (JR.setField "midpUtil" "" JR.this (JR.callStatic MIDPUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "imgMultiOffO" "" JR.this (JR.invoke "createImageFromByteArray_3" (JR.thisField "midpUtil") [ (JR.thisField "multiOff"), (JR.int 0), (JR.alength (JR.thisField "multiOff")) ])),
+                JR.exec (JR.setField "imgMultiOnO" "" JR.this (JR.invoke "createImageFromByteArray_3" (JR.thisField "midpUtil") [ (JR.thisField "multiOn"), (JR.int 0), (JR.alength (JR.thisField "multiOn")) ])),
+                JR.exec (JR.setField "imgRadioOffO" "" JR.this (JR.invoke "createImageFromByteArray_3" (JR.thisField "midpUtil") [ (JR.thisField "radioOff"), (JR.int 0), (JR.alength (JR.thisField "radioOff")) ])),
+                JR.exec (JR.setField "imgRadioOnO" "" JR.this (JR.invoke "createImageFromByteArray_3" (JR.thisField "midpUtil") [ (JR.thisField "radioOn"), (JR.int 0), (JR.alength (JR.thisField "radioOn")) ])),
+                JR.exec (JR.setField "imgMultiOff" "" JR.this (JR.thisField "imgMultiOffO")),
+                JR.exec (JR.setField "imgMultiOn" "" JR.this (JR.thisField "imgMultiOnO")),
+                JR.exec (JR.setField "imgRadioOff" "" JR.this (JR.thisField "imgRadioOffO")),
+                JR.exec (JR.setField "imgRadioOn" "" JR.this (JR.thisField "imgRadioOnO")),
+                JR.exec (JR.setField "imageArray" "" JR.this (JR.arrayOf "" [ (JR.thisField "imgMultiOff"), (JR.thisField "imgMultiOn"), (JR.thisField "imgRadioOff"), (JR.thisField "imgRadioOn") ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getImageArray_0 : JR.Method
+jm_getImageArray_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "imageArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "imageArray", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "imgMultiOff" "" JR.this (JR.aget (JR.local "imageArray") (JR.int 0))), 
+                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69411 -> JR.andThen (JR.int 0) (\jiN69411 -> (JR.aset (JR.lit jaN69411) (JR.lit jiN69411) (JR.thisField "imgMultiOff"))))), 
+                    JR.exec (JR.setField "imgMultiOn" "" JR.this (JR.aget (JR.local "imageArray") (JR.int 1))), 
+                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69486 -> JR.andThen (JR.int 1) (\jiN69486 -> (JR.aset (JR.lit jaN69486) (JR.lit jiN69486) (JR.thisField "imgMultiOn"))))), 
+                    JR.exec (JR.setField "imgRadioOff" "" JR.this (JR.aget (JR.local "imageArray") (JR.int 2))), 
+                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69561 -> JR.andThen (JR.int 2) (\jiN69561 -> (JR.aset (JR.lit jaN69561) (JR.lit jiN69561) (JR.thisField "imgRadioOff"))))), 
+                    JR.exec (JR.setField "imgRadioOn" "" JR.this (JR.aget (JR.local "imageArray") (JR.int 3))), 
+                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69636 -> JR.andThen (JR.int 3) (\jiN69636 -> (JR.aset (JR.lit jaN69636) (JR.lit jiN69636) (JR.thisField "imgRadioOn"))))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

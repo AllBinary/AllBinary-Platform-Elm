@@ -1,126 +1,178 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.address
-module ShippingAddressData where
+module Org.Allbinary.Business.User.Address.ShippingAddressData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.address
+-}
 
-data ShippingAddressData = ShippingAddressData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull ShippingAddressData where
-    javaNull = javaNullRecord "ShippingAddressData"
 
-instance JavaEquals ShippingAddressData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq ShippingAddressData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "ShippingAddressData"
 
-instance JavaObjectClass ShippingAddressData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-sETTOBILLINGADDRESS :: String
-sETTOBILLINGADDRESS = "Set To Billing Address"
+jchain : List String
+jchain =
+    [ "ShippingAddressData" ]
 
-sELECT :: String
-sELECT = "Select Shipping Address"
 
-sELECTNAME :: String
-sELECTNAME = "SELECTSHIPPINGADDRESS"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-mULTIPLE :: String
-mULTIPLE = "SHIPPINGADDRESSES"
 
-sHIPPINGADDRESSES :: String
-sHIPPINGADDRESSES = "SHIPPINGADDRESSES"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-sHIPPINGADDRESS :: String
-sHIPPINGADDRESS = "SHIPPINGADDRESS"
 
-iD :: String
-iD = "SHIPPINGADDRESS_ID"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ShippingAddressData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SETTOBILLINGADDRESS", jstatic_SETTOBILLINGADDRESS ), ( "jstatic_SELECT", jstatic_SELECT ), ( "jstatic_SELECTNAME", jstatic_SELECTNAME ), ( "jstatic_MULTIPLE", jstatic_MULTIPLE ), ( "jstatic_SHIPPINGADDRESSES", jstatic_SHIPPINGADDRESSES ), ( "jstatic_SHIPPINGADDRESS", jstatic_SHIPPINGADDRESS ), ( "jstatic_ID", jstatic_ID ), ( "jstatic_ADDRESS", jstatic_ADDRESS ), ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_STREET", jstatic_STREET ), ( "jstatic_CITY", jstatic_CITY ), ( "jstatic_STATE", jstatic_STATE ), ( "jstatic_CODE", jstatic_CODE ), ( "jstatic_COUNTRY", jstatic_COUNTRY ), ( "jstatic_TAX", jstatic_TAX ) ]
+        jheap
 
-aDDRESS :: String
-aDDRESS = "SHIPPINGADDRESS_ADDRESS"
 
-nAME :: String
-nAME = "SHIPPINGADDRESS_NAME"
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-sTREET :: String
-sTREET = "SHIPPINGADDRESS_STREET"
 
-cITY :: String
-cITY = "SHIPPINGADDRESS_CITY"
+jstatic_SETTOBILLINGADDRESS : JR.M
+jstatic_SETTOBILLINGADDRESS s =
+    JR.static "ShippingAddressData" jclinit "SETTOBILLINGADDRESS"
+        (JR.str "Set To Billing Address")
+        s
 
-sTATE :: String
-sTATE = "SHIPPINGADDRESS_STATE"
 
-cODE :: String
-cODE = "SHIPPINGADDRESS_CODE"
+jstatic_SELECT : JR.M
+jstatic_SELECT s =
+    JR.static "ShippingAddressData" jclinit "SELECT"
+        (JR.str "Select Shipping Address")
+        s
 
-cOUNTRY :: String
-cOUNTRY = "SHIPPINGADDRESS_COUNTRY"
 
-tAX :: String
-tAX = "SHIPPINGADDRESS_TAX"
+jstatic_SELECTNAME : JR.M
+jstatic_SELECTNAME s =
+    JR.static "ShippingAddressData" jclinit "SELECTNAME"
+        (JR.str "SELECTSHIPPINGADDRESS")
+        s
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jstatic_MULTIPLE : JR.M
+jstatic_MULTIPLE s =
+    JR.static "ShippingAddressData" jclinit "MULTIPLE"
+        (JR.str "SHIPPINGADDRESSES")
+        s
 
-newRecord_ :: IO ShippingAddressData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ShippingAddressData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: ShippingAddressData -> IO ()
-initFields_ this = do
-    pure ()
+jstatic_SHIPPINGADDRESSES : JR.M
+jstatic_SHIPPINGADDRESSES s =
+    JR.static "ShippingAddressData" jclinit "SHIPPINGADDRESSES"
+        (JR.str "SHIPPINGADDRESSES")
+        s
 
-new_ :: IO ShippingAddressData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: ShippingAddressData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jstatic_SHIPPINGADDRESS : JR.M
+jstatic_SHIPPINGADDRESS s =
+    JR.static "ShippingAddressData" jclinit "SHIPPINGADDRESS"
+        (JR.str "SHIPPINGADDRESS")
+        s
 
+
+jstatic_ID : JR.M
+jstatic_ID s =
+    JR.static "ShippingAddressData" jclinit "ID"
+        (JR.str "SHIPPINGADDRESS_ID")
+        s
+
+
+jstatic_ADDRESS : JR.M
+jstatic_ADDRESS s =
+    JR.static "ShippingAddressData" jclinit "ADDRESS"
+        (JR.str "SHIPPINGADDRESS_ADDRESS")
+        s
+
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "ShippingAddressData" jclinit "NAME"
+        (JR.str "SHIPPINGADDRESS_NAME")
+        s
+
+
+jstatic_STREET : JR.M
+jstatic_STREET s =
+    JR.static "ShippingAddressData" jclinit "STREET"
+        (JR.str "SHIPPINGADDRESS_STREET")
+        s
+
+
+jstatic_CITY : JR.M
+jstatic_CITY s =
+    JR.static "ShippingAddressData" jclinit "CITY"
+        (JR.str "SHIPPINGADDRESS_CITY")
+        s
+
+
+jstatic_STATE : JR.M
+jstatic_STATE s =
+    JR.static "ShippingAddressData" jclinit "STATE"
+        (JR.str "SHIPPINGADDRESS_STATE")
+        s
+
+
+jstatic_CODE : JR.M
+jstatic_CODE s =
+    JR.static "ShippingAddressData" jclinit "CODE"
+        (JR.str "SHIPPINGADDRESS_CODE")
+        s
+
+
+jstatic_COUNTRY : JR.M
+jstatic_COUNTRY s =
+    JR.static "ShippingAddressData" jclinit "COUNTRY"
+        (JR.str "SHIPPINGADDRESS_COUNTRY")
+        s
+
+
+jstatic_TAX : JR.M
+jstatic_TAX s =
+    JR.static "ShippingAddressData" jclinit "TAX"
+        (JR.str "SHIPPINGADDRESS_TAX")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,109 +1,103 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.resources
-module KeyValueFactory where
+module Org.Allbinary.Resources.KeyValueFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
+{-| Generated Code Do Not Modify package org.allbinary.resources
+-}
 
-data KeyValueFactory = KeyValueFactory
-    { header_ :: JavaHeader
-    , mAP :: IORef (ABHashtable.ABHashtable)
-    }
-
-instance JavaNull KeyValueFactory where
-    javaNull = javaNullRecord "KeyValueFactory"
-
-instance JavaEquals KeyValueFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq KeyValueFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass KeyValueFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: KeyValueFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO KeyValueFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    mAP <- newIORef javaNull
-    let this = KeyValueFactory header_ mAP
-    jregisterLevel header_ this
-    jregisterMethod header_ "get" (\() -> get_impl this)
-    pure this
-
-initFields_ :: KeyValueFactory -> IO ()
-initFields_ this = do
-    jset this.mAP =<< (StdUtil.createHashtable ((jio (StdUtil.getInstance))))
-    pure ()
-
-new_ :: IO KeyValueFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: KeyValueFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.StdUtil as StdUtil
 
 
-getInstance :: IO (KeyValueFactory)
-getInstance = do
-        pure (KeyValueFactory.instance_)
+jclass : String
+jclass =
+    "KeyValueFactory"
 
 
-get :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-get object_ a1 = jmethod object_ "get" (\() -> (get_impl (javaCast object_ :: KeyValueFactory))) () a1
+jchain : List String
+jchain =
+    [ "KeyValueFactory" ]
 
-get_super :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-get_super object_ a1 = (get_impl (javaCast object_ :: KeyValueFactory)) a1
 
-get_impl :: KeyValueFactory -> String -> IO (String)
-get_impl this key = do
-    javaCatchReturn $ do
-        when (Prelude.not (jio (ABHashtable.containsKey ((jget (this).mAP)) (javaCast key :: Any.Any)))) $ do
-            javaReturn (key)
-        pure ((javaCast (jio (ABHashtable.get ((jget (this).mAP)) (javaCast key :: Any.Any))) :: String))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "MAP", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "get_1", jm_get_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "KeyValueFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_get_1", jm_get_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "KeyValueFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "MAP" "" JR.this (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_get_1 : JR.Method
+jm_get_1 jheap jthis jargs =
+    JR.method [ ( "key", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "containsKey_1" (JR.thisField "MAP") [ (JR.local "key") ])) (JR.run [ 
+                        JR.return (JR.local "key") ]) identity, 
+                    JR.return (JR.invoke "get_1" (JR.thisField "MAP") [ (JR.local "key") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

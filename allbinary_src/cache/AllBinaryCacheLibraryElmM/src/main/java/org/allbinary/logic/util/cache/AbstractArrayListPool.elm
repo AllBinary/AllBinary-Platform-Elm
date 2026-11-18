@@ -1,156 +1,123 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.util.cache
-module AbstractArrayListPool where
+module Org.Allbinary.Logic.Util.Cache.AbstractArrayListPool exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CacheableInterfaceFactoryInterface -- same package or java.lang
-import qualified CacheableInterface -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified PoolInterface
+{-| Generated Code Do Not Modify package org.allbinary.logic.util.cache
+-}
 
--- implements PoolInterface
-data AbstractArrayListPool = AbstractArrayListPool
-    { header_ :: JavaHeader
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , buffers :: IORef (BasicArrayList.BasicArrayList)
-    , cacheableInterfaceFactoryInterface :: IORef (CacheableInterfaceFactoryInterface.CacheableInterfaceFactoryInterface)
-    }
-
-instance JavaNull AbstractArrayListPool where
-    javaNull = javaNullRecord "AbstractArrayListPool"
-
-instance JavaEquals AbstractArrayListPool where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AbstractArrayListPool where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AbstractArrayListPool where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AbstractArrayListPool
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonStrings <- newIORef javaNull
-    buffers <- newIORef javaNull
-    cacheableInterfaceFactoryInterface <- newIORef javaNull
-    let this = AbstractArrayListPool header_ commonStrings buffers cacheableInterfaceFactoryInterface
-    jregisterLevel header_ this
-    PoolInterface.registerInterface_ header_
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    jregisterMethod header_ "remove" (\() -> remove_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "addArray" (\() -> addArray_impl this)
-    pure this
-
-initFields_ :: AbstractArrayListPool -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.buffers =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    jset this.cacheableInterfaceFactoryInterface (javaNull)
-    pure ()
-
-new_1 :: CacheableInterfaceFactoryInterface.CacheableInterfaceFactoryInterface -> IO AbstractArrayListPool
-new_1 cacheableInterfaceFactoryInterface = do
-    this <- newRecord_
-    init_1 this cacheableInterfaceFactoryInterface
-    pure this
-
-init_1 :: AbstractArrayListPool -> CacheableInterfaceFactoryInterface.CacheableInterfaceFactoryInterface -> IO ()
-init_1 this cacheableInterfaceFactoryInterface = do
-        initFields_ this
-        jset (this).cacheableInterfaceFactoryInterface (cacheableInterfaceFactoryInterface)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Util.Cache.PoolInterface as PoolInterface
 
 
--- throws Exception
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: AbstractArrayListPool))) ()
-
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: AbstractArrayListPool))
-
-clear_impl :: AbstractArrayListPool -> IO (())
-clear_impl this = do
-        javaThrow ((JavaException "Exception" (jget ((jget (this).commonStrings)).nOT_IMPLEMENTED)))
-        pure ()
+jclass : String
+jclass =
+    "AbstractArrayListPool"
 
 
--- throws Exception
-remove :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (CacheableInterface.CacheableInterface)
-remove object_ a1 = jmethod object_ "remove" (\() -> (remove_impl (javaCast object_ :: AbstractArrayListPool))) () (jtoObject a1)
-
-remove_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (CacheableInterface.CacheableInterface)
-remove_super object_ a1 = (remove_impl (javaCast object_ :: AbstractArrayListPool)) (jtoObject a1)
-
-remove_impl :: AbstractArrayListPool -> JavaObject -> IO (CacheableInterface.CacheableInterface)
-remove_impl this keyObject_ = do
-        let key = jtoObject keyObject_
-        javaThrow ((JavaException "Exception" (jget ((jget (this).commonStrings)).nOT_IMPLEMENTED)))
+jchain : List String
+jchain =
+    [ "AbstractArrayListPool" ]
+        ++ PoolInterface.jchain
 
 
--- throws Exception
-add :: (JavaObjectClass this_) => this_ -> CacheableInterface.CacheableInterface -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: AbstractArrayListPool))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> CacheableInterface.CacheableInterface -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: AbstractArrayListPool)) a1
-
-add_impl :: AbstractArrayListPool -> CacheableInterface.CacheableInterface -> IO (())
-add_impl this cacheableInterface = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).buffers)) cacheableInterface)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonStrings", JR.defaultOf "" ), ( "buffers", JR.defaultOf "" ), ( "cacheableInterfaceFactoryInterface", JR.defaultOf "" ) ]
 
 
--- throws Exception
-addArray :: (JavaObjectClass this_) => this_ -> JavaArray (CacheableInterface.CacheableInterface) -> IO (())
-addArray object_ a1 = jmethod object_ "addArray" (\() -> (addArray_impl (javaCast object_ :: AbstractArrayListPool))) () a1
+jvtable =
+    JR.vtable
+        [ ( "clear_0", jm_clear_0 )
+        , ( "remove_1", jm_remove_1 )
+        , ( "add_1", jm_add_1 )
+        , ( "addArray_1", jm_addArray_1 ) ]
+        JR.noMethods
 
-addArray_super :: (JavaObjectClass this_) => this_ -> JavaArray (CacheableInterface.CacheableInterface) -> IO (())
-addArray_super object_ a1 = (addArray_impl (javaCast object_ :: AbstractArrayListPool)) a1
 
-addArray_impl :: AbstractArrayListPool -> JavaArray (CacheableInterface.CacheableInterface) -> IO (())
-addArray_impl this cacheableInterfaces = do
-        forM_ [0 .. (jlength cacheableInterfaces) - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (BasicArrayList.add ((jget (this).buffers)) (jindex cacheableInterfaces (index)))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AbstractArrayListPool"
+        [ ( "jm_clear_0", jm_clear_0 ), ( "jm_remove_1", jm_remove_1 ), ( "jm_add_1", jm_add_1 ), ( "jm_addArray_1", jm_addArray_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "cacheableInterfaceFactoryInterface", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "buffers" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "cacheableInterfaceFactoryInterface" "" JR.this (JR.local "cacheableInterfaceFactoryInterface")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_remove_1 : JR.Method
+jm_remove_1 jheap jthis jargs =
+    JR.method [ ( "key", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "NOT_IMPLEMENTED" (JR.thisField "commonStrings")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "cacheableInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "buffers") [ (JR.local "cacheableInterface") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addArray_1 : JR.Method
+jm_addArray_1 jheap jthis jargs =
+    JR.method [ ( "cacheableInterfaces", "" ) ] ""
+        (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "cacheableInterfaces"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66986 -> (JR.setLocal "index" "I" (JR.lit jwN66986))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.thisField "buffers") [ (JR.aget (JR.local "cacheableInterfaces") (JR.local "index")) ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,140 +1,121 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input.mapping
-module GameInputMapping where
+module Org.Allbinary.Game.Input.Mapping.GameInputMapping exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameKey -- org.allbinary.game.input.GameKey
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.input.mapping
+-}
 
-data GameInputMapping = GameInputMapping
-    { header_ :: JavaHeader
-    , name :: IORef (String)
-    , gameKey :: IORef (GameKey.GameKey)
-    }
-
-instance JavaNull GameInputMapping where
-    javaNull = javaNullRecord "GameInputMapping"
-
-instance JavaEquals GameInputMapping where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameInputMapping where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameInputMapping where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameInputMapping
-newRecord_ = do
-    header_ <- newJavaHeader
-    name <- newIORef ""
-    gameKey <- newIORef javaNull
-    let this = GameInputMapping header_ name gameKey
-    jregisterLevel header_ this
-    jregisterMethod header_ "setGameKey" (\() -> setGameKey_impl this)
-    jregisterMethod header_ "getGameKey" (\() -> getGameKey_impl this)
-    jregisterMethod header_ "setName" (\() -> setName_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    pure this
-
-initFields_ :: GameInputMapping -> IO ()
-initFields_ this = do
-    jset this.name ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.gameKey (GameKey.nULL_GAME_KEY)
-    pure ()
-
-new_2 :: String -> GameKey.GameKey -> IO GameInputMapping
-new_2 name gameKey = do
-    this <- newRecord_
-    init_2 this name gameKey
-    pure this
-
-init_2 :: GameInputMapping -> String -> GameKey.GameKey -> IO ()
-init_2 this name gameKey = do
-        initFields_ this
-        Control.Monad.void (GameInputMapping.setName this name)
-        Control.Monad.void (GameInputMapping.setGameKey this gameKey)
-        pure ()
+import JR
+import Org.Allbinary.Game.Input.GameKey as GameKey
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-setGameKey :: (JavaObjectClass this_) => this_ -> GameKey.GameKey -> IO (())
-setGameKey object_ a1 = jmethod object_ "setGameKey" (\() -> (setGameKey_impl (javaCast object_ :: GameInputMapping))) () a1
-
-setGameKey_super :: (JavaObjectClass this_) => this_ -> GameKey.GameKey -> IO (())
-setGameKey_super object_ a1 = (setGameKey_impl (javaCast object_ :: GameInputMapping)) a1
-
-setGameKey_impl :: GameInputMapping -> GameKey.GameKey -> IO (())
-setGameKey_impl this gameKey = do
-        jset (this).gameKey (gameKey)
-        pure ()
+jclass : String
+jclass =
+    "GameInputMapping"
 
 
-getGameKey :: (JavaObjectClass this_) => this_ -> IO (GameKey.GameKey)
-getGameKey object_ = jmethod object_ "getGameKey" (\() -> (getGameKey_impl (javaCast object_ :: GameInputMapping))) ()
-
-getGameKey_super :: (JavaObjectClass this_) => this_ -> IO (GameKey.GameKey)
-getGameKey_super object_ = (getGameKey_impl (javaCast object_ :: GameInputMapping))
-
-getGameKey_impl :: GameInputMapping -> IO (GameKey.GameKey)
-getGameKey_impl this = do
-        pure ((jget (this).gameKey))
+jchain : List String
+jchain =
+    [ "GameInputMapping" ]
 
 
-setName :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName object_ a1 = jmethod object_ "setName" (\() -> (setName_impl (javaCast object_ :: GameInputMapping))) () a1
-
-setName_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName_super object_ a1 = (setName_impl (javaCast object_ :: GameInputMapping)) a1
-
-setName_impl :: GameInputMapping -> String -> IO (())
-setName_impl this name = do
-        jset (this).name (name)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "name", JR.defaultOf "" ), ( "gameKey", JR.defaultOf "" ) ]
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: GameInputMapping))) ()
+jvtable =
+    JR.vtable
+        [ ( "setGameKey_1", jm_setGameKey_1 )
+        , ( "getGameKey_0", jm_getGameKey_0 )
+        , ( "setName_1", jm_setName_1 )
+        , ( "getName_0", jm_getName_0 ) ]
+        JR.noMethods
 
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: GameInputMapping))
 
-getName_impl :: GameInputMapping -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameInputMapping"
+        [ ( "jm_setGameKey_1", jm_setGameKey_1 ), ( "jm_getGameKey_0", jm_getGameKey_0 ), ( "jm_setName_1", jm_setName_1 ), ( "jm_getName_0", jm_getName_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "name", "" ), ( "gameKey", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "name" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "gameKey" "" JR.this GameKey.jstatic_NULL_GAME_KEY),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setName_1" JR.this [ (JR.local "name") ]), 
+                    JR.exec (JR.invoke "setGameKey_1" JR.this [ (JR.local "gameKey") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_setGameKey_1 : JR.Method
+jm_setGameKey_1 jheap jthis jargs =
+    JR.method [ ( "gameKey", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "gameKey" "" JR.this (JR.local "gameKey")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getGameKey_0 : JR.Method
+jm_getGameKey_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "gameKey") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setName_1 : JR.Method
+jm_setName_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "name")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,123 +1,101 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.ai
-module UpDownVectorAI (module UpDownVectorAI, module BasicAI) where
+module Org.Allbinary.Game.Ag.Ai.UpDownVectorAI exposing (..)
 
-import BasicAI hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, processAI, processAI_super, processAI_impl, velocityInterface, index)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicAI -- org.allbinary.game.ai.BasicAI
-import qualified GameInput -- org.allbinary.game.input.GameInput
-import qualified BasicVelocityProperties -- org.allbinary.game.physics.velocity.BasicVelocityProperties
-import qualified VelocityInterfaceCompositeInterface -- org.allbinary.game.physics.velocity.VelocityInterfaceCompositeInterface
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
-import qualified BasicDecimal -- org.allbinary.logic.math.BasicDecimal
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.ai
+-}
 
-data UpDownVectorAI = UpDownVectorAI
-    { header_ :: JavaHeader
-    , base :: BasicAI.BasicAI
-    , velocityInterface :: IORef (BasicVelocityProperties.BasicVelocityProperties)
-    , index :: IORef (Int)
-    }
-
-instance JavaNull UpDownVectorAI where
-    javaNull = javaNullRecord "UpDownVectorAI"
-
-instance JavaEquals UpDownVectorAI where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq UpDownVectorAI where
-    (==) = jrecordEquals
-
-instance JavaObjectClass UpDownVectorAI where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO UpDownVectorAI
-newRecord_ = do
-    base <- BasicAI.newRecord_
-    let header_ = base.header_
-    velocityInterface <- newIORef javaNull
-    index <- newIORef 0
-    let this = UpDownVectorAI header_ base velocityInterface index
-    jregisterLevel header_ this
-    jregisterMethod header_ "processAI" (\() -> processAI_impl this)
-    pure this
-
-initFields_ :: UpDownVectorAI -> IO ()
-initFields_ this = do
-    jset this.velocityInterface (javaNull)
-    jset this.index (0)
-    pure ()
-
-new_2 :: AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO UpDownVectorAI
-new_2 ownerLayerInterface gameInput = do
-    this <- newRecord_
-    init_2 this ownerLayerInterface gameInput
-    pure this
-
-init_2 :: UpDownVectorAI -> AllBinaryLayer.AllBinaryLayer -> GameInput.GameInput -> IO ()
-init_2 this ownerLayerInterface gameInput = do
-        BasicAI.init_2 this.base (ownerLayerInterface) (gameInput)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        let velocityInterfaceCompositeInterface = (javaCast (jio (BasicAI.getOwnerLayerInterface this)) :: VelocityInterfaceCompositeInterface.VelocityInterfaceCompositeInterface)
-        assignedValue <- (VelocityInterfaceCompositeInterface.getVelocityProperties velocityInterfaceCompositeInterface)
-        jset (this).velocityInterface (assignedValue)
-        Control.Monad.void (BasicVelocityProperties.setint ((jio (BasicVelocityProperties.getVelocityYBasicDecimalP ((jget (this).velocityInterface))))) 0)
-        pure ()
+import JR
+import Org.Allbinary.Game.Ai.BasicAI as BasicAI
 
 
--- throws Exception
-processAI :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI object_ a1 = jmethod object_ "processAI" (\() -> (processAI_impl (javaCast object_ :: UpDownVectorAI))) () a1
+jclass : String
+jclass =
+    "UpDownVectorAI"
 
-processAI_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_super object_ a1 = (processAI_impl (javaCast object_ :: UpDownVectorAI)) a1
 
-processAI_impl :: UpDownVectorAI -> AllBinaryLayerManager.AllBinaryLayerManager -> IO (())
-processAI_impl this allBinaryLayerManager = do
-        let y = ((jio (BasicAI.getHeight ((jio (BasicAI.getOwnerLayerInterface this))))) * 270)
-        if ((jget (this).index) < 5) then do
-            basicDecimal <- (BasicVelocityProperties.getVelocityYBasicDecimalP ((jget (this).velocityInterface)))
-            Control.Monad.void (BasicDecimal.setint basicDecimal 0)
-            Control.Monad.void (BasicDecimal.addint basicDecimal y)
-            jset (this).index ((jget (this).index) + 1)
-        else if ((jget (this).index) < 10) then do
-            basicDecimal <- (BasicVelocityProperties.getVelocityYBasicDecimalP ((jget (this).velocityInterface)))
-            Control.Monad.void (BasicDecimal.setint basicDecimal 0)
-            Control.Monad.void (BasicDecimal.subtractint basicDecimal y)
-            jset (this).index ((jget (this).index) + 1)
-        else do
-            jset (this).index (0)
-            Control.Monad.void (UpDownVectorAI.processAI this allBinaryLayerManager)
-        pure ()
+jchain : List String
+jchain =
+    [ "UpDownVectorAI" ]
+        ++ BasicAI.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicAI.jfields ++ [ ( "velocityInterface", JR.defaultOf "" ), ( "index", JR.defaultOf "I" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "processAI_1", jm_processAI_1 ) ]
+        BasicAI.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "UpDownVectorAI"
+        [ ( "jm_processAI_1", jm_processAI_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "ownerLayerInterface", "" ), ( "gameInput", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicAI.jinit_2 JR.this [ (JR.local "ownerLayerInterface"), (JR.local "gameInput") ]),
+                JR.exec (JR.setField "index" "I" JR.this (JR.int 0)),
+                identity,
+                (JR.run [ 
+                    JR.declare "velocityInterfaceCompositeInterface" "" (JR.invoke "getOwnerLayerInterface_0" JR.this []), 
+                    JR.exec (JR.setField "velocityInterface" "" JR.this (JR.invoke "getVelocityProperties_0" (JR.local "velocityInterfaceCompositeInterface") [])), 
+                    JR.exec (JR.invoke "setint_1" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.thisField "velocityInterface") []) [ (JR.int 0) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_processAI_1 : JR.Method
+jm_processAI_1 jheap jthis jargs =
+    JR.method [ ( "allBinaryLayerManager", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "y" "I" (JR.map2 JR.mul (JR.invoke "getHeight_0" (JR.invoke "getOwnerLayerInterface_0" JR.this []) []) (JR.int 270)), 
+                    JR.ifElse (JR.map2 JR.less (JR.thisField "index") (JR.int 5)) (JR.run [ 
+                        JR.declare "basicDecimal" "" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.thisField "velocityInterface") []), 
+                        JR.exec (JR.invoke "setint_1" (JR.local "basicDecimal") [ (JR.int 0) ]), 
+                        JR.exec (JR.invoke "addint_1" (JR.local "basicDecimal") [ (JR.local "y") ]), 
+                        JR.exec (JR.postUpdate (JR.thisField "index") (\jwN69371 -> (JR.setField "index" "I" JR.this (JR.lit jwN69371))) JR.increment) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.less (JR.thisField "index") (JR.int 10)) (JR.run [ 
+                        JR.declare "basicDecimal" "" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.thisField "velocityInterface") []), 
+                        JR.exec (JR.invoke "setint_1" (JR.local "basicDecimal") [ (JR.int 0) ]), 
+                        JR.exec (JR.invoke "subtractint_1" (JR.local "basicDecimal") [ (JR.local "y") ]), 
+                        JR.exec (JR.postUpdate (JR.thisField "index") (\jwN69232 -> (JR.setField "index" "I" JR.this (JR.lit jwN69232))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setField "index" "I" JR.this (JR.int 0)), 
+                        JR.exec (JR.invoke "processAI_1" JR.this [ (JR.local "allBinaryLayerManager") ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

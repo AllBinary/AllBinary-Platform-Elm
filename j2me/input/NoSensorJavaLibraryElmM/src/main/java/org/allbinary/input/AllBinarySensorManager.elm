@@ -1,155 +1,137 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input
-module AllBinarySensorManager where
+module Org.Allbinary.Input.AllBinarySensorManager exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified AccelerometerSensorFactory -- org.allbinary.input.accelerometer.AccelerometerSensorFactory
-import qualified GyroSensorFactory -- org.allbinary.input.gyro.GyroSensorFactory
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.input
+-}
 
-data AllBinarySensorManager = AllBinarySensorManager
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , oRIENTATION_SENSOR_INPUT :: IORef (String)
-    , oRIENTATION_TYPE :: IORef (String)
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull AllBinarySensorManager where
-    javaNull = javaNullRecord "AllBinarySensorManager"
-
-instance JavaEquals AllBinarySensorManager where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinarySensorManager where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinarySensorManager where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AllBinarySensorManager
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    oRIENTATION_SENSOR_INPUT <- newIORef ""
-    oRIENTATION_TYPE <- newIORef ""
-    list <- newIORef javaNull
-    let this = AllBinarySensorManager header_ logUtil commonStrings oRIENTATION_SENSOR_INPUT oRIENTATION_TYPE list
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "getSensorNamesList" (\() -> getSensorNamesList_impl this)
-    jregisterMethod header_ "shutdown" (\() -> shutdown_impl this)
-    pure this
-
-initFields_ :: AllBinarySensorManager -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.oRIENTATION_SENSOR_INPUT ("Orientation Sensor Input")
-    jset this.oRIENTATION_TYPE ("Orientation Type")
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    pure ()
+import JR
+import Org.Allbinary.Input.Accelerometer.AccelerometerSensorFactory as AccelerometerSensorFactory
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Input.Gyro.GyroSensorFactory as GyroSensorFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
-getInstance :: IO (AllBinarySensorManager)
-getInstance = do
-        when ((jget AllBinarySensorManager.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset AllBinarySensorManager.instance_ (assignedValue)
-        pure ((javaCast (jget AllBinarySensorManager.instance_) :: AllBinarySensorManager))
-
-new_ :: IO AllBinarySensorManager
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllBinarySensorManager -> IO ()
-init_ this = do
-        initFields_ this
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).cONSTRUCTOR) e)
-            ) $ do
-            Control.Monad.void (GyroSensorFactory.init)
-            Control.Monad.void (AccelerometerSensorFactory.init)
-        pure ()
+jclass : String
+jclass =
+    "AllBinarySensorManager"
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: AllBinarySensorManager))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: AllBinarySensorManager))
-
-init_impl :: AllBinarySensorManager -> IO (())
-init_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "AllBinarySensorManager" ]
 
 
-getSensorNamesList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getSensorNamesList object_ = jmethod object_ "getSensorNamesList" (\() -> (getSensorNamesList_impl (javaCast object_ :: AllBinarySensorManager))) ()
-
-getSensorNamesList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getSensorNamesList_super object_ = (getSensorNamesList_impl (javaCast object_ :: AllBinarySensorManager))
-
-getSensorNamesList_impl :: AllBinarySensorManager -> IO (BasicArrayList.BasicArrayList)
-getSensorNamesList_impl this = do
-        pure ((jget (this).list))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "ORIENTATION_SENSOR_INPUT", JR.defaultOf "" ), ( "ORIENTATION_TYPE", JR.defaultOf "" ), ( "list", JR.defaultOf "" ) ]
 
 
-shutdown :: (JavaObjectClass this_) => this_ -> IO (())
-shutdown object_ = jmethod object_ "shutdown" (\() -> (shutdown_impl (javaCast object_ :: AllBinarySensorManager))) ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "getSensorNamesList_0", jm_getSensorNamesList_0 )
+        , ( "shutdown_0", jm_shutdown_0 ) ]
+        JR.noMethods
 
-shutdown_super :: (JavaObjectClass this_) => this_ -> IO (())
-shutdown_super object_ = (shutdown_impl (javaCast object_ :: AllBinarySensorManager))
 
-shutdown_impl :: AllBinarySensorManager -> IO (())
-shutdown_impl this = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinarySensorManager"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_getSensorNamesList_0", jm_getSensorNamesList_0 ), ( "jm_shutdown_0", jm_shutdown_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AllBinarySensorManager" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "ORIENTATION_SENSOR_INPUT" "" JR.this (JR.str "Orientation Sensor Input")),
+                JR.exec (JR.setField "ORIENTATION_TYPE" "" JR.this (JR.str "Orientation Type")),
+                JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.callStatic GyroSensorFactory.jm_init_0 []), 
+                        JR.exec (JR.callStatic AccelerometerSensorFactory.jm_init_0 []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "AllBinarySensorManager.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSensorNamesList_0 : JR.Method
+jm_getSensorNamesList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "list") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_shutdown_0 : JR.Method
+jm_shutdown_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

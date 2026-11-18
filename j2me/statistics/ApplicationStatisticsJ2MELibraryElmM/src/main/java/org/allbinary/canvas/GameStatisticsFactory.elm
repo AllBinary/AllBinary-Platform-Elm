@@ -1,11 +1,11 @@
-module GameStatisticsFactory exposing (..)
+module Org.Allbinary.Canvas.GameStatisticsFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.canvas
 -}
 
 import JR
-import BaseGameStatistics
-import StringMaker
+import Org.Allbinary.Canvas.BaseGameStatistics as BaseGameStatistics
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

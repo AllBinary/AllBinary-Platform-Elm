@@ -1,284 +1,224 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module CommandFormInputProcessor (module CommandFormInputProcessor, module BasicMenuInputProcessor) where
+module Org.Allbinary.Game.Displayable.Canvas.CommandFormInputProcessor exposing (..)
 
-import BasicMenuInputProcessor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, processInput, processInput_super, processInput_impl, processCommand, processCommand_super, processCommand_impl, processInputList, processInputList_super, processInputList_impl, processMotionInputs, processMotionInputs_super, processMotionInputs_impl, processMotionInput, processMotionInput_super, processMotionInput_impl, toString, toString_super, toString_impl, mOTION_GESTURE_SOURCE_ID, cLICK_DELAY, clickTimeHelper, dOUBLE_CLICK_DELAY, doubleClickTimeHelper, isSingleKeyProcessing, form, hasPressed, pROCESS_COMMAND, nAME_LABEL)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommandRunnable -- same package or java.lang
-import qualified LogUtil -- same package or java.lang
-import qualified CommonStrings -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified GameCommandsFactory -- org.allbinary.game.commands.GameCommandsFactory
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified InputFeatureFactory -- org.allbinary.game.configuration.feature.InputFeatureFactory
-import qualified GameKeyEvent -- org.allbinary.game.input.event.GameKeyEvent
-import qualified GameKeyEventFactory -- org.allbinary.game.input.event.GameKeyEventFactory
-import qualified SWTUtil -- org.allbinary.game.layer.SWTUtil
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified MyCanvas -- org.allbinary.graphics.displayable.MyCanvas
-import qualified CommandCurrentSelectionForm -- org.allbinary.graphics.form.CommandCurrentSelectionForm
-import qualified ScrollSelectionForm -- org.allbinary.graphics.form.ScrollSelectionForm
-import qualified OpenGLFeatureFactory -- org.allbinary.graphics.opengles.OpenGLFeatureFactory
-import qualified MotionGestureInput -- org.allbinary.input.motion.gesture.MotionGestureInput
-import qualified TouchMotionGestureFactory -- org.allbinary.input.motion.gesture.TouchMotionGestureFactory
-import qualified MotionGestureEvent -- org.allbinary.input.motion.gesture.observer.MotionGestureEvent
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified PrimaryPlayerQueueFactory -- org.allbinary.media.audio.PrimaryPlayerQueueFactory
-import qualified SelectSound -- org.allbinary.media.audio.SelectSound
-import qualified PrimaryThreadPool -- org.allbinary.thread.PrimaryThreadPool
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicMenuInputProcessor
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data CommandFormInputProcessor = CommandFormInputProcessor
-    { header_ :: JavaHeader
-    , base :: BasicMenuInputProcessor.BasicMenuInputProcessor
-    , mOTION_GESTURE_SOURCE_ID :: IORef (Int)
-    , cLICK_DELAY :: IORef (Int)
-    , clickTimeHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , dOUBLE_CLICK_DELAY :: IORef (Int)
-    , doubleClickTimeHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , isSingleKeyProcessing :: IORef (Bool)
-    , form :: IORef (ScrollSelectionForm.ScrollSelectionForm)
-    , hasPressed :: IORef (Bool)
-    , pROCESS_COMMAND :: IORef (String)
-    , nAME_LABEL :: IORef (String)
-    }
-
-instance JavaNull CommandFormInputProcessor where
-    javaNull = javaNullRecord "CommandFormInputProcessor"
-
-instance JavaEquals CommandFormInputProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CommandFormInputProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CommandFormInputProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO CommandFormInputProcessor
-newRecord_ = do
-    base <- BasicMenuInputProcessor.newRecord_
-    let header_ = base.header_
-    mOTION_GESTURE_SOURCE_ID <- newIORef 0
-    cLICK_DELAY <- newIORef 0
-    clickTimeHelper <- newIORef javaNull
-    dOUBLE_CLICK_DELAY <- newIORef 0
-    doubleClickTimeHelper <- newIORef javaNull
-    isSingleKeyProcessing <- newIORef False
-    form <- newIORef javaNull
-    hasPressed <- newIORef False
-    pROCESS_COMMAND <- newIORef ""
-    nAME_LABEL <- newIORef ""
-    let this = CommandFormInputProcessor header_ base mOTION_GESTURE_SOURCE_ID cLICK_DELAY clickTimeHelper dOUBLE_CLICK_DELAY doubleClickTimeHelper isSingleKeyProcessing form hasPressed pROCESS_COMMAND nAME_LABEL
-    jregisterLevel header_ this
-    jregisterMethod header_ "processInput" (\() -> processInput_impl this)
-    jregisterMethod header_ "processCommand" (\() -> processCommand_impl this)
-    jregisterMethod header_ "processInputList" (\() -> processInputList_impl this)
-    jregisterMethod header_ "processMotionInputs" (\() -> processMotionInputs_impl this)
-    jregisterMethod header_ "processMotionInput" (\() -> processMotionInput_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: CommandFormInputProcessor -> IO ()
-initFields_ this = do
-    jset this.mOTION_GESTURE_SOURCE_ID ((jget ((jio (GameKeyEventFactory.getInstance))).mOTION_GESTURE_SOURCE_ID))
-    jset this.cLICK_DELAY (150)
-    jset this.clickTimeHelper =<< (TimeDelayHelper.new_1 (jget (this).cLICK_DELAY))
-    jset this.dOUBLE_CLICK_DELAY (1200)
-    jset this.doubleClickTimeHelper =<< (TimeDelayHelper.new_1 (jget (this).dOUBLE_CLICK_DELAY))
-    jset this.isSingleKeyProcessing =<< (InputFeatureFactory.isSingleKeyProcessing ((jio (InputFeatureFactory.getInstance))))
-    jset this.form (javaNull)
-    jset this.hasPressed (False)
-    jset this.pROCESS_COMMAND ("processCommand")
-    jset this.nAME_LABEL (" ScrollSelectionForm: ")
-    pure ()
-
-new_4 :: BasicArrayList.BasicArrayList -> Int -> MyCanvas.MyCanvas -> ScrollSelectionForm.ScrollSelectionForm -> IO CommandFormInputProcessor
-new_4 gameKeyEventList playerInputId gameCanvas form = do
-    this <- newRecord_
-    init_4 this gameKeyEventList playerInputId gameCanvas form
-    pure this
-
-init_4 :: CommandFormInputProcessor -> BasicArrayList.BasicArrayList -> Int -> MyCanvas.MyCanvas -> ScrollSelectionForm.ScrollSelectionForm -> IO ()
-init_4 this gameKeyEventList playerInputId gameCanvas form = do
-        BasicMenuInputProcessor.init_3 this.base (gameKeyEventList) (playerInputId) (javaCast gameCanvas)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).form (form)
-        pure ()
+import JR
+import Org.Allbinary.Game.Displayable.Canvas.BasicMenuInputProcessor as BasicMenuInputProcessor
+import Javax.Microedition.Lcdui.Canvas as Canvas
+import Org.Allbinary.Game.Displayable.Canvas.CommandRunnable as CommandRunnable
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Commands.GameCommandsFactory as GameCommandsFactory
+import Org.Allbinary.Game.Input.Event.GameKeyEventFactory as GameKeyEventFactory
+import Org.Allbinary.Game.Configuration.Feature.InputFeatureFactory as InputFeatureFactory
+import Org.Allbinary.Graphics.Opengles.OpenGLFeatureFactory as OpenGLFeatureFactory
+import Org.Allbinary.Media.Audio.PrimaryPlayerQueueFactory as PrimaryPlayerQueueFactory
+import Org.Allbinary.Thread.PrimaryThreadPool as PrimaryThreadPool
+import Org.Allbinary.Game.Layer.SWTUtil as SWTUtil
+import Org.Allbinary.Media.Audio.SelectSound as SelectSound
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
+import Org.Allbinary.Input.Motion.Gesture.TouchMotionGestureFactory as TouchMotionGestureFactory
 
 
--- throws Exception
-processInput :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-processInput object_ a1 = jmethod object_ "processInput" (\() -> (processInput_impl (javaCast object_ :: CommandFormInputProcessor))) () a1
-
-processInput_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Int)
-processInput_super object_ a1 = (processInput_impl (javaCast object_ :: CommandFormInputProcessor)) a1
-
-processInput_impl :: CommandFormInputProcessor -> Int -> IO (Int)
-processInput_impl this key = do
-    javaCatchReturn $ do
-        if ((((key == Canvas.lEFT) || (key == Canvas.rIGHT)) || (key == Canvas.uP)) || (key == Canvas.dOWN)) then do
-            Control.Monad.void (PrimaryPlayerQueueFactory.add ((jio (PrimaryPlayerQueueFactory.getInstance))) (jio (SelectSound.getInstance)))
-            Control.Monad.void (ScrollSelectionForm.processInputKey ((jget (this).form)) key)
-            javaReturn (1)
-        else when (key == Canvas.fIRE) $ do
-            Control.Monad.void (PrimaryPlayerQueueFactory.add ((jio (PrimaryPlayerQueueFactory.getInstance))) (jio (SelectSound.getInstance)))
-            javaReturn =<< (CommandFormInputProcessor.processCommand this)
-        pure (0)
+jclass : String
+jclass =
+    "CommandFormInputProcessor"
 
 
-processCommand :: (JavaObjectClass this_) => this_ -> IO (Int)
-processCommand object_ = jmethod object_ "processCommand" (\() -> (processCommand_impl (javaCast object_ :: CommandFormInputProcessor))) ()
-
-processCommand_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-processCommand_super object_ = (processCommand_impl (javaCast object_ :: CommandFormInputProcessor))
-
-processCommand_impl :: CommandFormInputProcessor -> IO (Int)
-processCommand_impl this = do
-    javaCatchReturn $ do
-        let commandCurrentSelectionForm = (javaCast (jget (this).form) :: CommandCurrentSelectionForm.CommandCurrentSelectionForm)
-        command <- (CommandCurrentSelectionForm.getSelectedCommand commandCurrentSelectionForm)
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (Command.toString command)) this (jget (this).pROCESS_COMMAND))
-        features <- (Features.getInstance)
-        openGLFeatureFactory <- (OpenGLFeatureFactory.getInstance)
-        if ((SWTUtil.isSWT && (jio (Features.isFeature features (jget (openGLFeatureFactory).oPENGL)))) && (command /= (jget ((jio (GameCommandsFactory.getInstance))).eXIT_COMMAND))) then do
-            Control.Monad.void (CommandRunnable.run ((jio (CommandRunnable.new_2 this command))))
-        else do
-            Control.Monad.void (PrimaryThreadPool.runTask ((jio (PrimaryThreadPool.getInstance))) (jio (CommandRunnable.new_2 this command)))
-        if (command == (jget ((jio (GameCommandsFactory.getInstance))).qUIT_COMMAND)) then do
-            javaReturn ((Prelude.negate 1))
-        else do
-            javaReturn (1)
+jchain : List String
+jchain =
+    [ "CommandFormInputProcessor" ]
+        ++ BasicMenuInputProcessor.jchain
 
 
--- throws Exception
-processInputList :: (JavaObjectClass this_) => this_ -> IO (Int)
-processInputList object_ = jmethod object_ "processInputList" (\() -> (processInputList_impl (javaCast object_ :: CommandFormInputProcessor))) ()
-
-processInputList_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-processInputList_super object_ = (processInputList_impl (javaCast object_ :: CommandFormInputProcessor))
-
-processInputList_impl :: CommandFormInputProcessor -> IO (Int)
-processInputList_impl this = do
-    javaCatchReturn $ do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (put ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.gameInputStrings)).pROCESS_INPUT) e)
-            pure ((Prelude.negate 1))
-            ) $ do
-            motionInputsIndex <- (CommandFormInputProcessor.processMotionInputs this)
-            list <- (BasicMenuInputProcessor.getGameKeyEventList this)
-            size <- (BasicArrayList.size list)
-            key <- newIORef (0 :: Int)
-            gameKeyEvent <- newIORef (javaNull)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                jset gameKeyEvent ((javaCast (jindex ((jget (list).objectArray)) (index)) :: GameKeyEvent.GameKeyEvent))
-                assignedValue <- (GameKeyEvent.getKey ((jget gameKeyEvent)))
-                jset key (assignedValue)
-                when ((jio (GameKeyEvent.getSourceId ((jget gameKeyEvent)))) /= (jget (this).mOTION_GESTURE_SOURCE_ID)) $ do
-                    when ((jio (CommandFormInputProcessor.processInput this (jget key))) == 1) $ do
-                        throwIO JavaBreak
-            Control.Monad.void (BasicMenuInputProcessor.clear this)
-            if ((size > 0) || (motionInputsIndex >= 0)) then do
-                javaReturn (1)
-            else do
-                javaReturn ((Prelude.negate 1))
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicMenuInputProcessor.jfields ++ [ ( "MOTION_GESTURE_SOURCE_ID", JR.defaultOf "I" ), ( "CLICK_DELAY", JR.defaultOf "I" ), ( "clickTimeHelper", JR.defaultOf "" ), ( "DOUBLE_CLICK_DELAY", JR.defaultOf "I" ), ( "doubleClickTimeHelper", JR.defaultOf "" ), ( "isSingleKeyProcessing", JR.defaultOf "Z" ), ( "form", JR.defaultOf "" ), ( "hasPressed", JR.defaultOf "Z" ), ( "PROCESS_COMMAND", JR.defaultOf "" ), ( "NAME_LABEL", JR.defaultOf "" ) ]
 
 
--- throws Exception
-processMotionInputs :: (JavaObjectClass this_) => this_ -> IO (Int)
-processMotionInputs object_ = jmethod object_ "processMotionInputs" (\() -> (processMotionInputs_impl (javaCast object_ :: CommandFormInputProcessor))) ()
-
-processMotionInputs_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-processMotionInputs_super object_ = (processMotionInputs_impl (javaCast object_ :: CommandFormInputProcessor))
-
-processMotionInputs_impl :: CommandFormInputProcessor -> IO (Int)
-processMotionInputs_impl this = do
-        let lastIndex = ((jio (BasicArrayList.size ((jget (this).base.motionGestureEventList)))) - 1)
-        when (lastIndex >= 0) $ do
-            let motionGestureEvent = (javaCast (jindex ((jget ((jget (this).base.motionGestureEventList)).objectArray)) (lastIndex)) :: MotionGestureEvent.MotionGestureEvent)
-            Control.Monad.void (CommandFormInputProcessor.processMotionInput this motionGestureEvent)
-        Control.Monad.void (BasicArrayList.clear ((jget (this).base.motionGestureEventList)))
-        pure (lastIndex)
+jvtable =
+    JR.vtable
+        [ ( "processInput_1", jm_processInput_1 )
+        , ( "processCommand_0", jm_processCommand_0 )
+        , ( "processInputList_0", jm_processInputList_0 )
+        , ( "processMotionInputs_0", jm_processMotionInputs_0 )
+        , ( "processMotionInput_1", jm_processMotionInput_1 )
+        , ( "toString_0", jm_toString_0 ) ]
+        BasicMenuInputProcessor.jvtable
 
 
--- throws Exception
-processMotionInput :: (JavaObjectClass this_) => this_ -> MotionGestureEvent.MotionGestureEvent -> IO (())
-processMotionInput object_ a1 = jmethod object_ "processMotionInput" (\() -> (processMotionInput_impl (javaCast object_ :: CommandFormInputProcessor))) () a1
-
-processMotionInput_super :: (JavaObjectClass this_) => this_ -> MotionGestureEvent.MotionGestureEvent -> IO (())
-processMotionInput_super object_ a1 = (processMotionInput_impl (javaCast object_ :: CommandFormInputProcessor)) a1
-
-processMotionInput_impl :: CommandFormInputProcessor -> MotionGestureEvent.MotionGestureEvent -> IO (())
-processMotionInput_impl this motionGestureEvent = do
-        touchMotionGestureFactory <- (TouchMotionGestureFactory.getInstance)
-        motionGestureInput <- (MotionGestureEvent.getMotionGesture motionGestureEvent)
-        if (motionGestureInput == (jget (touchMotionGestureFactory).rELEASED)) then do
-            point <- (MotionGestureEvent.getCurrentPoint motionGestureEvent)
-            when (jio (ScrollSelectionForm.isInForm ((jget (this).form)) point)) $ do
-                index <- (ScrollSelectionForm.getSelectedIndexForPoint ((jget (this).form)) point)
-                if (index /= (Prelude.negate 1)) then do
-                    Control.Monad.void (PrimaryPlayerQueueFactory.add ((jio (PrimaryPlayerQueueFactory.getInstance))) (jio (SelectSound.getInstance)))
-                    if (index == (jio (ScrollSelectionForm.getSelectedIndex ((jget (this).form))))) then do
-                        when (jio (TimeDelayHelper.isTimeTNT ((jget (this).clickTimeHelper)))) $ do
-                            Control.Monad.void (CommandFormInputProcessor.processCommand this)
-                    else do
-                        Control.Monad.void (ScrollSelectionForm.setSelectedIndex ((jget (this).form)) index)
-                else do
-                    pure ()
-            when (jget (this).hasPressed) $ do
-                when (Prelude.not (jio (TimeDelayHelper.isTimeTNT ((jget (this).doubleClickTimeHelper))))) $ do
-                    Control.Monad.void (putF ((jget (this).base.logUtil)) "Double Press" this (jget ((jget (this).base.gameInputStrings)).pROCESS_MOTION_INPUT))
-                    Control.Monad.void (CommandFormInputProcessor.processCommand this)
-                jset ((jget (this).doubleClickTimeHelper)).delay ((jget (this).dOUBLE_CLICK_DELAY))
-                Control.Monad.void (TimeDelayHelper.setStartTimeTNT ((jget (this).doubleClickTimeHelper)))
-            jset (this).hasPressed (False)
-        else when (motionGestureInput == (jget (touchMotionGestureFactory).pRESSED)) $ do
-            jset ((jget (this).doubleClickTimeHelper)).delay (0)
-            jset (this).hasPressed (True)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CommandFormInputProcessor"
+        [ ( "jm_processInput_1", jm_processInput_1 ), ( "jm_processCommand_0", jm_processCommand_0 ), ( "jm_processInputList_0", jm_processInputList_0 ), ( "jm_processMotionInputs_0", jm_processMotionInputs_0 ), ( "jm_processMotionInput_1", jm_processMotionInput_1 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: CommandFormInputProcessor))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: CommandFormInputProcessor))
 
-toString_impl :: CommandFormInputProcessor -> IO (String)
-toString_impl this = do
-        (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jio (BasicMenuInputProcessor.toString_super this.base))))) (jget (this).nAME_LABEL)))) (jio (ScrollSelectionForm.toString ((jget (this).form))))))))
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "gameKeyEventList", "" ), ( "playerInputId", "I" ), ( "gameCanvas", "" ), ( "form", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicMenuInputProcessor.jinit_3 JR.this [ (JR.local "gameKeyEventList"), (JR.local "playerInputId"), (JR.local "gameCanvas") ]),
+                JR.exec (JR.setField "MOTION_GESTURE_SOURCE_ID" "I" JR.this (JR.field "MOTION_GESTURE_SOURCE_ID" (JR.callStatic GameKeyEventFactory.jm_getInstance_0 []))),
+                JR.exec (JR.setField "CLICK_DELAY" "I" JR.this (JR.int 150)),
+                JR.exec (JR.setField "clickTimeHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.thisField "CLICK_DELAY") ])),
+                JR.exec (JR.setField "DOUBLE_CLICK_DELAY" "I" JR.this (JR.int 1200)),
+                JR.exec (JR.setField "doubleClickTimeHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.thisField "DOUBLE_CLICK_DELAY") ])),
+                JR.exec (JR.setField "isSingleKeyProcessing" "Z" JR.this (JR.invoke "isSingleKeyProcessing_0" (JR.callStatic InputFeatureFactory.jm_getInstance_0 []) [])),
+                JR.exec (JR.setField "hasPressed" "Z" JR.this (JR.bool False)),
+                JR.exec (JR.setField "PROCESS_COMMAND" "" JR.this (JR.str "processCommand")),
+                JR.exec (JR.setField "NAME_LABEL" "" JR.this (JR.str " ScrollSelectionForm: ")),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "form" "" JR.this (JR.local "form")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_processInput_1 : JR.Method
+jm_processInput_1 jheap jthis jargs =
+    JR.method [ ( "key", "I" ) ] "I"
+        (JR.run [ 
+                    JR.ifElse (JR.or (JR.or (JR.or (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_LEFT) (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_RIGHT)) (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_UP)) (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_DOWN)) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.callStatic PrimaryPlayerQueueFactory.jm_getInstance_0 []) [ (JR.callStatic SelectSound.jm_getInstance_0 []) ]), 
+                        JR.exec (JR.invoke "processInputKey_1" (JR.thisField "form") [ (JR.local "key") ]), 
+                        JR.return (JR.int 1) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_FIRE) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.callStatic PrimaryPlayerQueueFactory.jm_getInstance_0 []) [ (JR.callStatic SelectSound.jm_getInstance_0 []) ]), 
+                        JR.return (JR.invoke "processCommand_0" JR.this []) ]) identity ]), 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processCommand_0 : JR.Method
+jm_processCommand_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.declare "commandCurrentSelectionForm" "" (JR.thisField "form"), 
+                    JR.declare "command" "" (JR.invoke "getSelectedCommand_0" (JR.local "commandCurrentSelectionForm") []), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "command") []), JR.this, (JR.thisField "PROCESS_COMMAND") ]), 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.declare "openGLFeatureFactory" "" (JR.callStatic OpenGLFeatureFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.and (JR.and SWTUtil.jstatic_isSWT (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "OPENGL" (JR.local "openGLFeatureFactory")) ])) (JR.map2 JR.notEquals (JR.local "command") (JR.field "EXIT_COMMAND" (JR.callStatic GameCommandsFactory.jm_getInstance_0 [])))) (JR.run [ 
+                        JR.exec (JR.invoke "run_0" (JR.new CommandRunnable.jnew_2 [ JR.this, (JR.local "command") ]) []) ]) (JR.run [ 
+                        JR.exec (JR.invoke "runTask_1" (JR.callStatic PrimaryThreadPool.jm_getInstance_0 []) [ (JR.new CommandRunnable.jnew_2 [ JR.this, (JR.local "command") ]) ]) ]), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "command") (JR.field "QUIT_COMMAND" (JR.callStatic GameCommandsFactory.jm_getInstance_0 []))) (JR.run [ 
+                        JR.return (JR.map JR.neg (JR.int 1)) ]) (JR.run [ 
+                        JR.return (JR.int 1) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processInputList_0 : JR.Method
+jm_processInputList_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "motionInputsIndex" "I" (JR.invoke "processMotionInputs_0" JR.this []), 
+                        JR.declare "list" "" (JR.invoke "getGameKeyEventList_0" JR.this []), 
+                        JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                        JR.declare "key" "I" (JR.int 0), 
+                        JR.declare "gameKeyEvent" "" (JR.lit (JR.defaultOf "")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN73557 -> (JR.setLocal "index" "I" (JR.lit jwN73557))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.setLocal "gameKeyEvent" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
+                            JR.exec (JR.setLocal "key" "I" (JR.invoke "getKey_0" (JR.local "gameKeyEvent") [])), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getSourceId_0" (JR.local "gameKeyEvent") []) (JR.thisField "MOTION_GESTURE_SOURCE_ID")) (JR.run [ 
+                                JR.ifElse (JR.map2 JR.equals (JR.invoke "processInput_1" JR.this [ (JR.local "key") ]) (JR.int 1)) (JR.run [ 
+                                    JR.break ]) identity ]) identity ]) ], 
+                        JR.exec (JR.invoke "clear_0" JR.this []), 
+                        JR.ifElse (JR.or (JR.map2 JR.greater (JR.local "size") (JR.int 0)) (JR.map2 JR.greaterEquals (JR.local "motionInputsIndex") (JR.int 0))) (JR.run [ 
+                            JR.return (JR.int 1) ]) (JR.run [ 
+                            JR.return (JR.map JR.neg (JR.int 1)) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "PROCESS_INPUT" (JR.thisField "gameInputStrings")), (JR.local "e") ]), 
+                        JR.return (JR.map JR.neg (JR.int 1)) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processMotionInputs_0 : JR.Method
+jm_processMotionInputs_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.declare "lastIndex" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "motionGestureEventList") []) (JR.int 1)), 
+                    JR.ifElse (JR.map2 JR.greaterEquals (JR.local "lastIndex") (JR.int 0)) (JR.run [ 
+                        JR.declare "motionGestureEvent" "" (JR.aget (JR.field "objectArray" (JR.thisField "motionGestureEventList")) (JR.local "lastIndex")), 
+                        JR.exec (JR.invoke "processMotionInput_1" JR.this [ (JR.local "motionGestureEvent") ]) ]) identity, 
+                    JR.exec (JR.invoke "clear_0" (JR.thisField "motionGestureEventList") []), 
+                    JR.return (JR.local "lastIndex") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processMotionInput_1 : JR.Method
+jm_processMotionInput_1 jheap jthis jargs =
+    JR.method [ ( "motionGestureEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "touchMotionGestureFactory" "" (JR.callStatic TouchMotionGestureFactory.jm_getInstance_0 []), 
+                    JR.declare "motionGestureInput" "" (JR.invoke "getMotionGesture_0" (JR.local "motionGestureEvent") []), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "motionGestureInput") (JR.field "RELEASED" (JR.local "touchMotionGestureFactory"))) (JR.run [ 
+                        JR.declare "point" "" (JR.invoke "getCurrentPoint_0" (JR.local "motionGestureEvent") []), 
+                        JR.ifElse (JR.invoke "isInForm_1" (JR.thisField "form") [ (JR.local "point") ]) (JR.run [ 
+                            JR.declare "index" "I" (JR.invoke "getSelectedIndexForPoint_1" (JR.thisField "form") [ (JR.local "point") ]), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "index") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                                JR.exec (JR.invoke "add_1" (JR.callStatic PrimaryPlayerQueueFactory.jm_getInstance_0 []) [ (JR.callStatic SelectSound.jm_getInstance_0 []) ]), 
+                                JR.ifElse (JR.map2 JR.equals (JR.local "index") (JR.invoke "getSelectedIndex_0" (JR.thisField "form") [])) (JR.run [ 
+                                    JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "clickTimeHelper") []) (JR.run [ 
+                                        JR.exec (JR.invoke "processCommand_0" JR.this []) ]) identity ]) (JR.run [ 
+                                    JR.exec (JR.invoke "setSelectedIndex_1" (JR.thisField "form") [ (JR.local "index") ]) ]) ]) identity ]) identity, 
+                        JR.ifElse (JR.thisField "hasPressed") (JR.run [ 
+                            JR.ifElse (JR.map JR.not_ (JR.invoke "isTimeTNT_0" (JR.thisField "doubleClickTimeHelper") [])) (JR.run [ 
+                                JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Double Press"), JR.this, (JR.field "PROCESS_MOTION_INPUT" (JR.thisField "gameInputStrings")) ]), 
+                                JR.exec (JR.invoke "processCommand_0" JR.this []) ]) identity, 
+                            JR.exec (JR.andThen (JR.thisField "doubleClickTimeHelper") (\jtN74840 -> (JR.setField "delay" "I" (JR.lit jtN74840) (JR.thisField "DOUBLE_CLICK_DELAY")))), 
+                            JR.exec (JR.invoke "setStartTimeTNT_0" (JR.thisField "doubleClickTimeHelper") []) ]) identity, 
+                        JR.exec (JR.setField "hasPressed" "Z" JR.this (JR.bool False)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "motionGestureInput") (JR.field "PRESSED" (JR.local "touchMotionGestureFactory"))) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "doubleClickTimeHelper") (\jtN74284 -> (JR.setField "delay" "I" (JR.lit jtN74284) (JR.int 0)))), 
+                        JR.exec (JR.setField "hasPressed" "Z" JR.this (JR.bool True)) ]) identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.callVia BasicMenuInputProcessor.jvtable "toString_0" JR.this []) ]) [ (JR.thisField "NAME_LABEL") ]) [ (JR.invoke "toString_0" (JR.thisField "form") []) ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

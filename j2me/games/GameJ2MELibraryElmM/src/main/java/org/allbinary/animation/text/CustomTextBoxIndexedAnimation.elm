@@ -1,256 +1,213 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.text
-module CustomTextBoxIndexedAnimation (module CustomTextBoxIndexedAnimation, module IndexedAnimation) where
+module Org.Allbinary.Animation.Text.CustomTextBoxIndexedAnimation exposing (..)
 
-import IndexedAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, setBasicColorP, setBasicColorP_super, setBasicColorP_impl, setBackgroundBasicColorP, setBackgroundBasicColorP_super, setBackgroundBasicColorP_impl, setTextWithOnMeasure, setTextWithOnMeasure_super, setTextWithOnMeasure_impl, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, setText, setText_super, setText_impl, getText, getText_super, getText_impl, onEventRaw, onEventRaw_super, onEventRaw_impl, getFontHeight, getFontHeight_super, getFontHeight_impl, paintXY, paintXY_super, paintXY_impl, paintThreedXYZ, paintThreedXYZ_super, paintThreedXYZ_impl, getWidth, getWidth_super, getWidth_impl, customTextBox, lastText, hasChanged, textChangeListener)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TextChangeListener -- same package or java.lang
-import qualified ABTextFieldItem -- same package or java.lang
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified AnimationBehavior -- org.allbinary.animation.AnimationBehavior
-import qualified IndexedAnimation -- org.allbinary.animation.IndexedAnimation
-import qualified RawKeyEventListener -- org.allbinary.game.input.event.RawKeyEventListener
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified CustomTextBox -- org.allbinary.graphics.form.item.CustomTextBox
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified TextInterface
+{-| Generated Code Do Not Modify package org.allbinary.animation.text
+-}
 
--- implements RawKeyEventListener
--- implements UpdateMyFontInterface
--- implements TextInterface
-data CustomTextBoxIndexedAnimation = CustomTextBoxIndexedAnimation
-    { header_ :: JavaHeader
-    , base :: IndexedAnimation.IndexedAnimation
-    , customTextBox :: IORef (CustomTextBox.CustomTextBox)
-    , lastText :: IORef (String)
-    , hasChanged :: IORef (Bool)
-    , textChangeListener :: IORef (TextChangeListener.TextChangeListener)
-    }
-
-instance JavaNull CustomTextBoxIndexedAnimation where
-    javaNull = javaNullRecord "CustomTextBoxIndexedAnimation"
-
-instance JavaEquals CustomTextBoxIndexedAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CustomTextBoxIndexedAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CustomTextBoxIndexedAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO CustomTextBoxIndexedAnimation
-newRecord_ = do
-    base <- IndexedAnimation.newRecord_
-    let header_ = base.header_
-    customTextBox <- newIORef javaNull
-    lastText <- newIORef ""
-    hasChanged <- newIORef False
-    textChangeListener <- newIORef javaNull
-    let this = CustomTextBoxIndexedAnimation header_ base customTextBox lastText hasChanged textChangeListener
-    jregisterLevel header_ this
-    RawKeyEventListener.registerInterface_ header_
-    UpdateMyFontInterface.registerInterface_ header_
-    TextInterface.registerInterface_ header_
-    jregisterMethod header_ "setBasicColorP" (\() -> setBasicColorP_impl this)
-    jregisterMethod header_ "setBackgroundBasicColorP" (\() -> setBackgroundBasicColorP_impl this)
-    jregisterMethod header_ "setTextWithOnMeasure" (\() -> setTextWithOnMeasure_impl this)
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "setText" (\() -> setText_impl this)
-    jregisterMethod header_ "getText" (\() -> getText_impl this)
-    jregisterMethod header_ "onEventRaw" (\() -> onEventRaw_impl this)
-    jregisterMethod header_ "getFontHeight" (\() -> getFontHeight_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    jregisterMethod header_ "paintThreedXYZ" (\() -> paintThreedXYZ_impl this)
-    jregisterMethod header_ "getWidth" (\() -> getWidth_impl this)
-    pure this
-
-initFields_ :: CustomTextBoxIndexedAnimation -> IO ()
-initFields_ this = do
-    jset this.customTextBox (javaNull)
-    jset this.lastText ((jget ((jio (StringUtil.getInstance))).iNIT_STRING))
-    jset this.hasChanged (True)
-    jset this.textChangeListener =<< (TextChangeListener.getInstance)
-    pure ()
-
-new_1 :: CustomTextBox.CustomTextBox -> IO CustomTextBoxIndexedAnimation
-new_1 customTextBox = do
-    this <- newRecord_
-    init_1 this customTextBox
-    pure this
-
-init_1 :: CustomTextBoxIndexedAnimation -> CustomTextBox.CustomTextBox -> IO ()
-init_1 this customTextBox = do
-        IndexedAnimation.init_1 this.base (jio (AnimationBehavior.getInstance))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).customTextBox (customTextBox)
-        pure ()
+import JR
+import Org.Allbinary.Animation.AnimationBehavior as AnimationBehavior
+import Org.Allbinary.Animation.IndexedAnimation as IndexedAnimation
+import Org.Allbinary.Game.Input.Event.RawKeyEventListener as RawKeyEventListener
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Animation.Text.TextChangeListener as TextChangeListener
+import Org.Allbinary.Animation.Text.TextInterface as TextInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
 
 
-setBasicColorP :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP object_ a1 = jmethod object_ "setBasicColorP" (\() -> (setBasicColorP_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))) () a1
-
-setBasicColorP_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP_super object_ a1 = (setBasicColorP_impl (javaCast object_ :: CustomTextBoxIndexedAnimation)) a1
-
-setBasicColorP_impl :: CustomTextBoxIndexedAnimation -> BasicColor.BasicColor -> IO (())
-setBasicColorP_impl this basicColor = do
-        Control.Monad.void (ABTextFieldItem.setForegroundBasicColorP ((jio (CustomTextBox.getTextFieldItem ((jget (this).customTextBox))))) basicColor)
-        pure ()
+jclass : String
+jclass =
+    "CustomTextBoxIndexedAnimation"
 
 
-setBackgroundBasicColorP :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBackgroundBasicColorP object_ a1 = jmethod object_ "setBackgroundBasicColorP" (\() -> (setBackgroundBasicColorP_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))) () a1
-
-setBackgroundBasicColorP_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBackgroundBasicColorP_super object_ a1 = (setBackgroundBasicColorP_impl (javaCast object_ :: CustomTextBoxIndexedAnimation)) a1
-
-setBackgroundBasicColorP_impl :: CustomTextBoxIndexedAnimation -> BasicColor.BasicColor -> IO (())
-setBackgroundBasicColorP_impl this basicColor = do
-        Control.Monad.void (ABTextFieldItem.setBackgroundBasicColorP ((jio (CustomTextBox.getTextFieldItem ((jget (this).customTextBox))))) basicColor)
-        pure ()
+jchain : List String
+jchain =
+    [ "CustomTextBoxIndexedAnimation" ]
+        ++ IndexedAnimation.jchain
+        ++ RawKeyEventListener.jchain
+        ++ UpdateMyFontInterface.jchain
+        ++ TextInterface.jchain
 
 
-setTextWithOnMeasure :: (JavaObjectClass this_) => this_ -> String -> TextChangeListener.TextChangeListener -> IO (())
-setTextWithOnMeasure object_ a1 a2 = jmethod object_ "setTextWithOnMeasure" (\() -> (setTextWithOnMeasure_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))) () a1 a2
-
-setTextWithOnMeasure_super :: (JavaObjectClass this_) => this_ -> String -> TextChangeListener.TextChangeListener -> IO (())
-setTextWithOnMeasure_super object_ a1 a2 = (setTextWithOnMeasure_impl (javaCast object_ :: CustomTextBoxIndexedAnimation)) a1 a2
-
-setTextWithOnMeasure_impl :: CustomTextBoxIndexedAnimation -> String -> TextChangeListener.TextChangeListener -> IO (())
-setTextWithOnMeasure_impl this text textChangeListener = do
-        Control.Monad.void (CustomTextBoxIndexedAnimation.setText this text)
-        jset (this).textChangeListener (textChangeListener)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    IndexedAnimation.jfields ++ [ ( "customTextBox", JR.defaultOf "" ), ( "lastText", JR.defaultOf "" ), ( "hasChanged", JR.defaultOf "Z" ), ( "textChangeListener", JR.defaultOf "" ) ]
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: CustomTextBoxIndexedAnimation)) a1
-
-updateMeasurement_impl :: CustomTextBoxIndexedAnimation -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        Control.Monad.void (TextChangeListener.onMeasure ((jget (this).textChangeListener)))
-        assignedValue <- (TextChangeListener.getInstance)
-        jset (this).textChangeListener (assignedValue)
-        pure ()
-
-
-setText :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setText object_ a1 = jmethod object_ "setText" (\() -> (setText_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))) () a1
-
-setText_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setText_super object_ a1 = (setText_impl (javaCast object_ :: CustomTextBoxIndexedAnimation)) a1
-
-setText_impl :: CustomTextBoxIndexedAnimation -> String -> IO (())
-setText_impl this text = do
-        when ((jget (this).lastText) /= text) $ do
-            jset (this).hasChanged (True)
-            jset (this).lastText (text)
-            Control.Monad.void (ABTextFieldItem.setString ((jio (CustomTextBox.getTextFieldItem ((jget (this).customTextBox))))) text)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "setBasicColorP_1", jm_setBasicColorP_1 )
+        , ( "setBackgroundBasicColorP_1", jm_setBackgroundBasicColorP_1 )
+        , ( "setTextWithOnMeasure_2", jm_setTextWithOnMeasure_2 )
+        , ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "setText_1", jm_setText_1 )
+        , ( "getText_0", jm_getText_0 )
+        , ( "onEventRaw_3", jm_onEventRaw_3 )
+        , ( "getFontHeight_0", jm_getFontHeight_0 )
+        , ( "paintXY_3", jm_paintXY_3 )
+        , ( "paintThreedXYZ_4", jm_paintThreedXYZ_4 )
+        , ( "getWidth_0", jm_getWidth_0 ) ]
+        IndexedAnimation.jvtable
 
 
-getText :: (JavaObjectClass this_) => this_ -> IO (String)
-getText object_ = jmethod object_ "getText" (\() -> (getText_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))) ()
-
-getText_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getText_super object_ = (getText_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))
-
-getText_impl :: CustomTextBoxIndexedAnimation -> IO (String)
-getText_impl this = do
-        (ABTextFieldItem.getString ((jio (CustomTextBox.getTextFieldItem ((jget (this).customTextBox))))))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CustomTextBoxIndexedAnimation"
+        [ ( "jm_setBasicColorP_1", jm_setBasicColorP_1 ), ( "jm_setBackgroundBasicColorP_1", jm_setBackgroundBasicColorP_1 ), ( "jm_setTextWithOnMeasure_2", jm_setTextWithOnMeasure_2 ), ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_setText_1", jm_setText_1 ), ( "jm_getText_0", jm_getText_0 ), ( "jm_onEventRaw_3", jm_onEventRaw_3 ), ( "jm_getFontHeight_0", jm_getFontHeight_0 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jm_paintThreedXYZ_4", jm_paintThreedXYZ_4 ), ( "jm_getWidth_0", jm_getWidth_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
 
-onEventRaw :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> IO (())
-onEventRaw object_ a1 a2 a3 = jmethod object_ "onEventRaw" (\() -> (onEventRaw_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))) () a1 a2 a3
-
-onEventRaw_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Bool -> IO (())
-onEventRaw_super object_ a1 a2 a3 = (onEventRaw_impl (javaCast object_ :: CustomTextBoxIndexedAnimation)) a1 a2 a3
-
-onEventRaw_impl :: CustomTextBoxIndexedAnimation -> Int -> Int -> Bool -> IO (())
-onEventRaw_impl this keyCode deviceId repeated = do
-        Control.Monad.void (CustomTextBox.onEventRaw ((jget (this).customTextBox)) keyCode deviceId repeated)
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getFontHeight :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFontHeight object_ = jmethod object_ "getFontHeight" (\() -> (getFontHeight_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))) ()
-
-getFontHeight_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getFontHeight_super object_ = (getFontHeight_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))
-
-getFontHeight_impl :: CustomTextBoxIndexedAnimation -> IO (Int)
-getFontHeight_impl this = do
-        (ABTextFieldItem.getFontHeight ((jio (CustomTextBox.getTextFieldItem ((jget (this).customTextBox))))))
-
-
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))) () a1 a2 a3
-
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: CustomTextBoxIndexedAnimation)) a1 a2 a3
-
-paintXY_impl :: CustomTextBoxIndexedAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        Control.Monad.void (CustomTextBox.paintXY ((jget (this).customTextBox)) graphics x y)
-        pure ()
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "customTextBox", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect IndexedAnimation.jinit_1 JR.this [ (JR.callStatic AnimationBehavior.jm_getInstance_0 []) ]),
+                JR.exec (JR.setField "lastText" "" JR.this (JR.field "INIT_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "hasChanged" "Z" JR.this (JR.bool True)),
+                JR.exec (JR.setField "textChangeListener" "" JR.this (JR.callStatic TextChangeListener.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "customTextBox" "" JR.this (JR.local "customTextBox")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-paintThreedXYZ :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintThreedXYZ object_ a1 a2 a3 a4 = jmethod object_ "paintThreedXYZ" (\() -> (paintThreedXYZ_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))) () a1 a2 a3 a4
-
-paintThreedXYZ_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintThreedXYZ_super object_ a1 a2 a3 a4 = (paintThreedXYZ_impl (javaCast object_ :: CustomTextBoxIndexedAnimation)) a1 a2 a3 a4
-
-paintThreedXYZ_impl :: CustomTextBoxIndexedAnimation -> Graphics.Graphics -> Int -> Int -> Int -> IO (())
-paintThreedXYZ_impl this graphics x y z = do
-        pure ()
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
 
 
-getWidth :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth object_ = jmethod object_ "getWidth" (\() -> (getWidth_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))) ()
+jm_setBasicColorP_1 : JR.Method
+jm_setBasicColorP_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setForegroundBasicColorP_1" (JR.invoke "getTextFieldItem_0" (JR.thisField "customTextBox") []) [ (JR.local "basicColor") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getWidth_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getWidth_super object_ = (getWidth_impl (javaCast object_ :: CustomTextBoxIndexedAnimation))
 
-getWidth_impl :: CustomTextBoxIndexedAnimation -> IO (Int)
-getWidth_impl this = do
-        (IndexedAnimation.getWidth_super this.base)
+jm_setBackgroundBasicColorP_1 : JR.Method
+jm_setBackgroundBasicColorP_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setBackgroundBasicColorP_1" (JR.invoke "getTextFieldItem_0" (JR.thisField "customTextBox") []) [ (JR.local "basicColor") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_setTextWithOnMeasure_2 : JR.Method
+jm_setTextWithOnMeasure_2 jheap jthis jargs =
+    JR.method [ ( "text", "" ), ( "textChangeListener", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setText_1" JR.this [ (JR.local "text") ]), 
+                    JR.exec (JR.setField "textChangeListener" "" JR.this (JR.local "textChangeListener")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.invoke "onMeasure_0" (JR.thisField "textChangeListener") []), 
+                    JR.exec (JR.setField "textChangeListener" "" JR.this (JR.callStatic TextChangeListener.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setText_1 : JR.Method
+jm_setText_1 jheap jthis jargs =
+    JR.method [ ( "text", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.thisField "lastText") (JR.local "text")) (JR.run [ 
+                        JR.exec (JR.setField "hasChanged" "Z" JR.this (JR.bool True)), 
+                        JR.exec (JR.setField "lastText" "" JR.this (JR.local "text")), 
+                        JR.exec (JR.invoke "setString_1" (JR.invoke "getTextFieldItem_0" (JR.thisField "customTextBox") []) [ (JR.local "text") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getText_0 : JR.Method
+jm_getText_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getString_0" (JR.invoke "getTextFieldItem_0" (JR.thisField "customTextBox") []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onEventRaw_3 : JR.Method
+jm_onEventRaw_3 jheap jthis jargs =
+    JR.method [ ( "keyCode", "I" ), ( "deviceId", "I" ), ( "repeated", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "onEventRaw_3" (JR.thisField "customTextBox") [ (JR.local "keyCode"), (JR.local "deviceId"), (JR.local "repeated") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFontHeight_0 : JR.Method
+jm_getFontHeight_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.invoke "getFontHeight_0" (JR.invoke "getTextFieldItem_0" (JR.thisField "customTextBox") []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paintXY_3" (JR.thisField "customTextBox") [ (JR.local "graphics"), (JR.local "x"), (JR.local "y") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintThreedXYZ_4 : JR.Method
+jm_paintThreedXYZ_4 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getWidth_0 : JR.Method
+jm_getWidth_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.callVia IndexedAnimation.jvtable "getWidth_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

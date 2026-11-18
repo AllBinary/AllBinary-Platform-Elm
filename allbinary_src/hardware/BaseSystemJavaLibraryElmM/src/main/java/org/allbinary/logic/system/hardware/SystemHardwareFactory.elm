@@ -1,15 +1,15 @@
-module SystemHardwareFactory exposing (..)
+module Org.Allbinary.Logic.System.Hardware.SystemHardwareFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.hardware
 -}
 
 import JR
-import CommonStrings
-import HardwareFactory
-import LogUtil
-import NoHardware
-import StringMaker
-import StringUtil
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.System.Hardware.HardwareFactory as HardwareFactory
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.System.Hardware.NoHardware as NoHardware
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
 jclass : String

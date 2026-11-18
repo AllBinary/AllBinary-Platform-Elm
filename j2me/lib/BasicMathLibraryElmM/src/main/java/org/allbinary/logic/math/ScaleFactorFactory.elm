@@ -1,4 +1,4 @@
-module ScaleFactorFactory exposing (..)
+module Org.Allbinary.Logic.Math.ScaleFactorFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.math
 -}

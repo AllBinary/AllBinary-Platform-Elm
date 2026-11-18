@@ -1,98 +1,83 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.ai
-module ArtificialIntelligenceFactory where
+module Org.Allbinary.Ai.ArtificialIntelligenceFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ArtificialIntelligence -- same package or java.lang
-import qualified Any -- same package or java.lang
-import qualified ArtificialIntelligenceFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.ai
+-}
 
--- implements ArtificialIntelligenceFactoryInterface
-data ArtificialIntelligenceFactory = ArtificialIntelligenceFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ArtificialIntelligenceFactory where
-    javaNull = javaNullRecord "ArtificialIntelligenceFactory"
-
-instance JavaEquals ArtificialIntelligenceFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ArtificialIntelligenceFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ArtificialIntelligenceFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ArtificialIntelligenceFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ArtificialIntelligenceFactory header_
-    jregisterLevel header_ this
-    ArtificialIntelligenceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    pure this
-
-initFields_ :: ArtificialIntelligenceFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO ArtificialIntelligenceFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ArtificialIntelligenceFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Ai.ArtificialIntelligenceFactoryInterface as ArtificialIntelligenceFactoryInterface
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (ArtificialIntelligence.ArtificialIntelligence)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: ArtificialIntelligenceFactory))) () (jtoObject a1)
+jclass : String
+jclass =
+    "ArtificialIntelligenceFactory"
 
-getInstance_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (ArtificialIntelligence.ArtificialIntelligence)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: ArtificialIntelligenceFactory)) (jtoObject a1)
 
-getInstance_impl :: ArtificialIntelligenceFactory -> JavaObject -> IO (ArtificialIntelligence.ArtificialIntelligence)
-getInstance_impl this anyTypeObject_ = do
-        let anyType = jtoObject anyTypeObject_
-        javaThrow ((JavaException "RuntimeException" ""))
+jchain : List String
+jchain =
+    [ "ArtificialIntelligenceFactory" ]
+        ++ ArtificialIntelligenceFactoryInterface.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_1", jm_getInstance_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ArtificialIntelligenceFactory"
+        [ ( "jm_getInstance_1", jm_getInstance_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ) ] ""
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

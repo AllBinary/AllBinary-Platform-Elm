@@ -1,137 +1,130 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.math
-module LayerDistanceUtil where
+module Org.Allbinary.Math.LayerDistanceUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified MathUtil -- org.allbinary.logic.math.MathUtil
+{-| Generated Code Do Not Modify package org.allbinary.math
+-}
 
-data LayerDistanceUtil = LayerDistanceUtil
-    { header_ :: JavaHeader
-    , mathUtil :: IORef (MathUtil.MathUtil)
-    }
-
-instance JavaNull LayerDistanceUtil where
-    javaNull = javaNullRecord "LayerDistanceUtil"
-
-instance JavaEquals LayerDistanceUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LayerDistanceUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LayerDistanceUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: LayerDistanceUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LayerDistanceUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    mathUtil <- newIORef javaNull
-    let this = LayerDistanceUtil header_ mathUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "getDistance" (\() -> getDistance_impl this)
-    jregisterMethod header_ "getDistance3D" (\() -> getDistance3D_impl this)
-    jregisterMethod header_ "getDistanceAt" (\() -> getDistanceAt_impl this)
-    pure this
-
-initFields_ :: LayerDistanceUtil -> IO ()
-initFields_ this = do
-    jset this.mathUtil =<< (MathUtil.getInstance)
-    pure ()
-
-new_ :: IO LayerDistanceUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LayerDistanceUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.Math.MathUtil as MathUtil
 
 
-getInstance :: IO (LayerDistanceUtil)
-getInstance = do
-        pure (LayerDistanceUtil.instance_)
+jclass : String
+jclass =
+    "LayerDistanceUtil"
 
 
-getDistance :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> AllBinaryLayer.AllBinaryLayer -> IO (Int)
-getDistance object_ a1 a2 = jmethod object_ "getDistance" (\() -> (getDistance_impl (javaCast object_ :: LayerDistanceUtil))) () a1 a2
-
-getDistance_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> AllBinaryLayer.AllBinaryLayer -> IO (Int)
-getDistance_super object_ a1 a2 = (getDistance_impl (javaCast object_ :: LayerDistanceUtil)) a1 a2
-
-getDistance_impl :: LayerDistanceUtil -> AllBinaryLayer.AllBinaryLayer -> AllBinaryLayer.AllBinaryLayer -> IO (Int)
-getDistance_impl this layerInterface layerInterface2 = do
-        let dx = ((((jio (AllBinaryLayer.getXP layerInterface)) + (jio (AllBinaryLayer.getHalfWidth layerInterface)))) - (((jio (AllBinaryLayer.getXP layerInterface2)) + (jio (AllBinaryLayer.getHalfWidth layerInterface2)))))
-        let dy = ((((jio (AllBinaryLayer.getYP layerInterface)) + (jio (AllBinaryLayer.getHalfHeight layerInterface)))) - (((jio (AllBinaryLayer.getYP layerInterface2)) + (jio (AllBinaryLayer.getHalfHeight layerInterface2)))))
-        pure ((Prelude.fromInteger (jnumericInteger (jio (MathUtil.sqrt ((jget (this).mathUtil)) (((dx * dx)) + ((dy * dy))))))))
+jchain : List String
+jchain =
+    [ "LayerDistanceUtil" ]
 
 
-getDistance3D :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> AllBinaryLayer.AllBinaryLayer -> IO (Int)
-getDistance3D object_ a1 a2 = jmethod object_ "getDistance3D" (\() -> (getDistance3D_impl (javaCast object_ :: LayerDistanceUtil))) () a1 a2
-
-getDistance3D_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> AllBinaryLayer.AllBinaryLayer -> IO (Int)
-getDistance3D_super object_ a1 a2 = (getDistance3D_impl (javaCast object_ :: LayerDistanceUtil)) a1 a2
-
-getDistance3D_impl :: LayerDistanceUtil -> AllBinaryLayer.AllBinaryLayer -> AllBinaryLayer.AllBinaryLayer -> IO (Int)
-getDistance3D_impl this layerInterface layerInterface2 = do
-        let dx = ((((jio (AllBinaryLayer.getXP layerInterface)) + (jio (AllBinaryLayer.getHalfWidth layerInterface)))) - (((jio (AllBinaryLayer.getXP layerInterface2)) + (jio (AllBinaryLayer.getHalfWidth layerInterface2)))))
-        let dy = ((((jio (AllBinaryLayer.getYP layerInterface)) + (jio (AllBinaryLayer.getHalfHeight layerInterface)))) - (((jio (AllBinaryLayer.getYP layerInterface2)) + (jio (AllBinaryLayer.getHalfHeight layerInterface2)))))
-        let dz = ((((jio (AllBinaryLayer.getZP layerInterface)) + (jio (AllBinaryLayer.getHalfDepth layerInterface)))) - (((jio (AllBinaryLayer.getZP layerInterface2)) + (jio (AllBinaryLayer.getHalfDepth layerInterface2)))))
-        pure ((Prelude.fromInteger (jnumericInteger (jio (MathUtil.sqrt ((jget (this).mathUtil)) ((((dx * dx)) + ((dy * dy))) + ((dz * dz))))))))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "mathUtil", JR.defaultOf "" ) ]
 
 
-getDistanceAt :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> GPoint.GPoint -> IO (Int)
-getDistanceAt object_ a1 a2 = jmethod object_ "getDistanceAt" (\() -> (getDistanceAt_impl (javaCast object_ :: LayerDistanceUtil))) () a1 a2
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getDistance_2", jm_getDistance_2 )
+        , ( "getDistance3D_2", jm_getDistance3D_2 )
+        , ( "getDistanceAt_2", jm_getDistanceAt_2 ) ]
+        JR.noMethods
 
-getDistanceAt_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> GPoint.GPoint -> IO (Int)
-getDistanceAt_super object_ a1 a2 = (getDistanceAt_impl (javaCast object_ :: LayerDistanceUtil)) a1 a2
 
-getDistanceAt_impl :: LayerDistanceUtil -> AllBinaryLayer.AllBinaryLayer -> GPoint.GPoint -> IO (Int)
-getDistanceAt_impl this layerInterface point = do
-        let dx = ((jio (AllBinaryLayer.getXP layerInterface)) - (jio (GPoint.getX point)))
-        let dy = ((jio (AllBinaryLayer.getYP layerInterface)) - (jio (GPoint.getY point)))
-        pure ((Prelude.fromInteger (jnumericInteger (jio (MathUtil.sqrt ((jget (this).mathUtil)) (((dx * dx)) + ((dy * dy))))))))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LayerDistanceUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getDistance_2", jm_getDistance_2 ), ( "jm_getDistance3D_2", jm_getDistance3D_2 ), ( "jm_getDistanceAt_2", jm_getDistanceAt_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LayerDistanceUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "mathUtil" "" JR.this (JR.callStatic MathUtil.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDistance_2 : JR.Method
+jm_getDistance_2 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ), ( "layerInterface2", "" ) ] "I"
+        (JR.run [ 
+                    JR.declare "dx" "I" (JR.map2 JR.sub ((JR.map2 JR.add (JR.invoke "getXP_0" (JR.local "layerInterface") []) (JR.invoke "getHalfWidth_0" (JR.local "layerInterface") []))) ((JR.map2 JR.add (JR.invoke "getXP_0" (JR.local "layerInterface2") []) (JR.invoke "getHalfWidth_0" (JR.local "layerInterface2") [])))), 
+                    JR.declare "dy" "I" (JR.map2 JR.sub ((JR.map2 JR.add (JR.invoke "getYP_0" (JR.local "layerInterface") []) (JR.invoke "getHalfHeight_0" (JR.local "layerInterface") []))) ((JR.map2 JR.add (JR.invoke "getYP_0" (JR.local "layerInterface2") []) (JR.invoke "getHalfHeight_0" (JR.local "layerInterface2") [])))), 
+                    JR.return (JR.invoke "sqrt_1" (JR.thisField "mathUtil") [ (JR.map2 JR.add ((JR.map2 JR.mul (JR.local "dx") (JR.local "dx"))) ((JR.map2 JR.mul (JR.local "dy") (JR.local "dy")))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDistance3D_2 : JR.Method
+jm_getDistance3D_2 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ), ( "layerInterface2", "" ) ] "I"
+        (JR.run [ 
+                    JR.declare "dx" "I" (JR.map2 JR.sub ((JR.map2 JR.add (JR.invoke "getXP_0" (JR.local "layerInterface") []) (JR.invoke "getHalfWidth_0" (JR.local "layerInterface") []))) ((JR.map2 JR.add (JR.invoke "getXP_0" (JR.local "layerInterface2") []) (JR.invoke "getHalfWidth_0" (JR.local "layerInterface2") [])))), 
+                    JR.declare "dy" "I" (JR.map2 JR.sub ((JR.map2 JR.add (JR.invoke "getYP_0" (JR.local "layerInterface") []) (JR.invoke "getHalfHeight_0" (JR.local "layerInterface") []))) ((JR.map2 JR.add (JR.invoke "getYP_0" (JR.local "layerInterface2") []) (JR.invoke "getHalfHeight_0" (JR.local "layerInterface2") [])))), 
+                    JR.declare "dz" "I" (JR.map2 JR.sub ((JR.map2 JR.add (JR.invoke "getZP_0" (JR.local "layerInterface") []) (JR.invoke "getHalfDepth_0" (JR.local "layerInterface") []))) ((JR.map2 JR.add (JR.invoke "getZP_0" (JR.local "layerInterface2") []) (JR.invoke "getHalfDepth_0" (JR.local "layerInterface2") [])))), 
+                    JR.return (JR.invoke "sqrt_1" (JR.thisField "mathUtil") [ (JR.map2 JR.add (JR.map2 JR.add ((JR.map2 JR.mul (JR.local "dx") (JR.local "dx"))) ((JR.map2 JR.mul (JR.local "dy") (JR.local "dy")))) ((JR.map2 JR.mul (JR.local "dz") (JR.local "dz")))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDistanceAt_2 : JR.Method
+jm_getDistanceAt_2 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ), ( "point", "" ) ] "I"
+        (JR.run [ 
+                    JR.declare "dx" "I" (JR.map2 JR.sub (JR.invoke "getXP_0" (JR.local "layerInterface") []) (JR.invoke "getX_0" (JR.local "point") [])), 
+                    JR.declare "dy" "I" (JR.map2 JR.sub (JR.invoke "getYP_0" (JR.local "layerInterface") []) (JR.invoke "getY_0" (JR.local "point") [])), 
+                    JR.return (JR.invoke "sqrt_1" (JR.thisField "mathUtil") [ (JR.map2 JR.add ((JR.map2 JR.mul (JR.local "dx") (JR.local "dx"))) ((JR.map2 JR.mul (JR.local "dy") (JR.local "dy")))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

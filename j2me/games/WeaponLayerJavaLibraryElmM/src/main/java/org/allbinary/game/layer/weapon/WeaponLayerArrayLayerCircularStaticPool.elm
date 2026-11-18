@@ -1,161 +1,141 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.weapon
-module WeaponLayerArrayLayerCircularStaticPool where
+module Org.Allbinary.Game.Layer.Weapon.WeaponLayerArrayLayerCircularStaticPool exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified WeaponLayer -- same package or java.lang
-import qualified CircularIndexUtil -- org.allbinary.util.CircularIndexUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.weapon
+-}
 
-data WeaponLayerArrayLayerCircularStaticPool = WeaponLayerArrayLayerCircularStaticPool
-    { header_ :: JavaHeader
-    , mAX :: IORef (Int)
-    , circularIndexUtil :: IORef (CircularIndexUtil.CircularIndexUtil)
-    , wEAPONLAYER_ARRAY :: IORef (JavaArray (JavaArray (WeaponLayer.WeaponLayer)))
-    , tWO_WEAPONLAYER_ARRAY :: IORef (JavaArray (JavaArray (WeaponLayer.WeaponLayer)))
-    , tHREE_WEAPONLAYER_ARRAY :: IORef (JavaArray (JavaArray (WeaponLayer.WeaponLayer)))
-    }
-
-instance JavaNull WeaponLayerArrayLayerCircularStaticPool where
-    javaNull = javaNullRecord "WeaponLayerArrayLayerCircularStaticPool"
-
-instance JavaEquals WeaponLayerArrayLayerCircularStaticPool where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq WeaponLayerArrayLayerCircularStaticPool where
-    (==) = jrecordEquals
-
-instance JavaObjectClass WeaponLayerArrayLayerCircularStaticPool where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: WeaponLayerArrayLayerCircularStaticPool
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO WeaponLayerArrayLayerCircularStaticPool
-newRecord_ = do
-    header_ <- newJavaHeader
-    mAX <- newIORef 0
-    circularIndexUtil <- newIORef javaNull
-    wEAPONLAYER_ARRAY <- newIORef javaNull
-    tWO_WEAPONLAYER_ARRAY <- newIORef javaNull
-    tHREE_WEAPONLAYER_ARRAY <- newIORef javaNull
-    let this = WeaponLayerArrayLayerCircularStaticPool header_ mAX circularIndexUtil wEAPONLAYER_ARRAY tWO_WEAPONLAYER_ARRAY tHREE_WEAPONLAYER_ARRAY
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "getWeaponLayerArrays" (\() -> getWeaponLayerArrays_impl this)
-    jregisterMethod header_ "getInstanceArray" (\() -> getInstanceArray_impl this)
-    pure this
-
-initFields_ :: WeaponLayerArrayLayerCircularStaticPool -> IO ()
-initFields_ this = do
-    jset this.mAX (5)
-    jset this.circularIndexUtil =<< (CircularIndexUtil.createInstance (jget (this).mAX))
-    jset this.wEAPONLAYER_ARRAY (javaNull)
-    jset this.tWO_WEAPONLAYER_ARRAY (javaNull)
-    jset this.tHREE_WEAPONLAYER_ARRAY (javaNull)
-    pure ()
-
-new_ :: IO WeaponLayerArrayLayerCircularStaticPool
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: WeaponLayerArrayLayerCircularStaticPool -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
 
 
-getInstance :: IO (WeaponLayerArrayLayerCircularStaticPool)
-getInstance = do
-        pure (WeaponLayerArrayLayerCircularStaticPool.instance_)
+jclass : String
+jclass =
+    "WeaponLayerArrayLayerCircularStaticPool"
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: WeaponLayerArrayLayerCircularStaticPool))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: WeaponLayerArrayLayerCircularStaticPool))
-
-init_impl :: WeaponLayerArrayLayerCircularStaticPool -> IO (())
-init_impl this = do
-        let wEAPONLAYER_ARRAY = (jnewArray (((jget (this).mAX) * 2)) javaNull)
-        let tWO_WEAPONLAYER_ARRAY = (jnewArray ((jget (this).mAX)) javaNull)
-        let tHREE_WEAPONLAYER_ARRAY = (jnewArray ((jget (this).mAX)) javaNull)
-        forM_ [0 .. (jget (this).mAX) - 1] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex wEAPONLAYER_ARRAY (index) ((jnewArray (1) javaNull))
-            jsetIndex tWO_WEAPONLAYER_ARRAY (index) ((jnewArray (2) javaNull))
-            jsetIndex tHREE_WEAPONLAYER_ARRAY (index) ((jnewArray (3) javaNull))
-        jset (this).wEAPONLAYER_ARRAY (wEAPONLAYER_ARRAY)
-        jset (this).tWO_WEAPONLAYER_ARRAY (tWO_WEAPONLAYER_ARRAY)
-        jset (this).tHREE_WEAPONLAYER_ARRAY (tHREE_WEAPONLAYER_ARRAY)
-        pure ()
+jchain : List String
+jchain =
+    [ "WeaponLayerArrayLayerCircularStaticPool" ]
 
 
-getWeaponLayerArrays :: (JavaObjectClass this_) => this_ -> Int -> IO (JavaArray (JavaArray (WeaponLayer.WeaponLayer)))
-getWeaponLayerArrays object_ a1 = jmethod object_ "getWeaponLayerArrays" (\() -> (getWeaponLayerArrays_impl (javaCast object_ :: WeaponLayerArrayLayerCircularStaticPool))) () a1
-
-getWeaponLayerArrays_super :: (JavaObjectClass this_) => this_ -> Int -> IO (JavaArray (JavaArray (WeaponLayer.WeaponLayer)))
-getWeaponLayerArrays_super object_ a1 = (getWeaponLayerArrays_impl (javaCast object_ :: WeaponLayerArrayLayerCircularStaticPool)) a1
-
-getWeaponLayerArrays_impl :: WeaponLayerArrayLayerCircularStaticPool -> Int -> IO (JavaArray (JavaArray (WeaponLayer.WeaponLayer)))
-getWeaponLayerArrays_impl this size = do
-    javaCatchReturn $ do
-        if (size == 1) then do
-            javaReturn ((jget (this).wEAPONLAYER_ARRAY))
-        else if (size == 2) then do
-            javaReturn ((jget (this).tWO_WEAPONLAYER_ARRAY))
-        else when (size == 3) $ do
-            javaReturn ((jget (this).tHREE_WEAPONLAYER_ARRAY))
-        javaThrow ((JavaException "RuntimeException" ""))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "MAX", JR.defaultOf "I" ), ( "circularIndexUtil", JR.defaultOf "" ), ( "WEAPONLAYER_ARRAY", JR.defaultOf "" ), ( "TWO_WEAPONLAYER_ARRAY", JR.defaultOf "" ), ( "THREE_WEAPONLAYER_ARRAY", JR.defaultOf "" ) ]
 
 
--- throws Exception
-getInstanceArray :: (JavaObjectClass this_) => this_ -> Int -> IO (JavaArray (WeaponLayer.WeaponLayer))
-getInstanceArray object_ a1 = jmethod object_ "getInstanceArray" (\() -> (getInstanceArray_impl (javaCast object_ :: WeaponLayerArrayLayerCircularStaticPool))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "getWeaponLayerArrays_1", jm_getWeaponLayerArrays_1 )
+        , ( "getInstanceArray_1", jm_getInstanceArray_1 ) ]
+        JR.noMethods
 
-getInstanceArray_super :: (JavaObjectClass this_) => this_ -> Int -> IO (JavaArray (WeaponLayer.WeaponLayer))
-getInstanceArray_super object_ a1 = (getInstanceArray_impl (javaCast object_ :: WeaponLayerArrayLayerCircularStaticPool)) a1
 
-getInstanceArray_impl :: WeaponLayerArrayLayerCircularStaticPool -> Int -> IO (JavaArray (WeaponLayer.WeaponLayer))
-getInstanceArray_impl this size = do
-        let weaponLayerArray = (jindex ((jio (WeaponLayerArrayLayerCircularStaticPool.getWeaponLayerArrays this size))) ((jio (CircularIndexUtil.getIndex ((jget (this).circularIndexUtil))))))
-        Control.Monad.void (CircularIndexUtil.next ((jget (this).circularIndexUtil)))
-        pure (weaponLayerArray)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "WeaponLayerArrayLayerCircularStaticPool"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_getWeaponLayerArrays_1", jm_getWeaponLayerArrays_1 ), ( "jm_getInstanceArray_1", jm_getInstanceArray_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "WeaponLayerArrayLayerCircularStaticPool" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "MAX" "I" JR.this (JR.int 5)),
+                JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.thisField "MAX") ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "WEAPONLAYER_ARRAY" "" (JR.newArray "" [ (JR.map2 JR.mul (JR.thisField "MAX") (JR.int 2)) ]), 
+                    JR.declare "TWO_WEAPONLAYER_ARRAY" "" (JR.newArray "" [ (JR.thisField "MAX") ]), 
+                    JR.declare "THREE_WEAPONLAYER_ARRAY" "" (JR.newArray "" [ (JR.thisField "MAX") ]), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "MAX")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70169 -> (JR.setLocal "index" "I" (JR.lit jwN70169))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "WEAPONLAYER_ARRAY") (\jaN69962 -> JR.andThen (JR.local "index") (\jiN69962 -> (JR.aset (JR.lit jaN69962) (JR.lit jiN69962) (JR.newArray "" [ (JR.int 1) ]))))), 
+                        JR.exec (JR.andThen (JR.local "TWO_WEAPONLAYER_ARRAY") (\jaN70014 -> JR.andThen (JR.local "index") (\jiN70014 -> (JR.aset (JR.lit jaN70014) (JR.lit jiN70014) (JR.newArray "" [ (JR.int 2) ]))))), 
+                        JR.exec (JR.andThen (JR.local "THREE_WEAPONLAYER_ARRAY") (\jaN70066 -> JR.andThen (JR.local "index") (\jiN70066 -> (JR.aset (JR.lit jaN70066) (JR.lit jiN70066) (JR.newArray "" [ (JR.int 3) ]))))) ]) ], 
+                    JR.exec (JR.setField "WEAPONLAYER_ARRAY" "" JR.this (JR.local "WEAPONLAYER_ARRAY")), 
+                    JR.exec (JR.setField "TWO_WEAPONLAYER_ARRAY" "" JR.this (JR.local "TWO_WEAPONLAYER_ARRAY")), 
+                    JR.exec (JR.setField "THREE_WEAPONLAYER_ARRAY" "" JR.this (JR.local "THREE_WEAPONLAYER_ARRAY")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getWeaponLayerArrays_1 : JR.Method
+jm_getWeaponLayerArrays_1 jheap jthis jargs =
+    JR.method [ ( "size", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "size") (JR.int 1)) (JR.run [ 
+                        JR.return (JR.thisField "WEAPONLAYER_ARRAY") ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "size") (JR.int 2)) (JR.run [ 
+                        JR.return (JR.thisField "TWO_WEAPONLAYER_ARRAY") ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "size") (JR.int 3)) (JR.run [ 
+                        JR.return (JR.thisField "THREE_WEAPONLAYER_ARRAY") ]) identity ]) ]), 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceArray_1 : JR.Method
+jm_getInstanceArray_1 jheap jthis jargs =
+    JR.method [ ( "size", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "weaponLayerArray" "" (JR.aget (JR.invoke "getWeaponLayerArrays_1" JR.this [ (JR.local "size") ]) (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") [])), 
+                    JR.exec (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []), 
+                    JR.return (JR.local "weaponLayerArray") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

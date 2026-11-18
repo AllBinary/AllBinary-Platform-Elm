@@ -1,12 +1,12 @@
-module GPoint exposing (..)
+module Org.Allbinary.Graphics.GPoint exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics
 -}
 
 import JR
-import CommonSeps
-import PositionStrings
-import StringMaker
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Math.PositionStrings as PositionStrings
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

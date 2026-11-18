@@ -1,137 +1,131 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
-module LicenseUtil where
+module Org.Allbinary.Logic.System.Security.Licensing.LicenseUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.licensing
+-}
 
-data LicenseUtil = LicenseUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull LicenseUtil where
-    javaNull = javaNullRecord "LicenseUtil"
-
-instance JavaEquals LicenseUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LicenseUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LicenseUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: LicenseUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LicenseUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = LicenseUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "isRunning" (\() -> isRunning_impl this)
-    jregisterMethod header_ "setRunning" (\() -> setRunning_impl this)
-    jregisterMethod header_ "shouldWait" (\() -> shouldWait_impl this)
-    pure this
-
-initFields_ :: LicenseUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO LicenseUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LicenseUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (LicenseUtil)
-getInstance = do
-        pure (LicenseUtil.instance_)
+
+jclass : String
+jclass =
+    "LicenseUtil"
 
 
-init :: (JavaObjectClass this_) => this_ -> IO (())
-init object_ = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: LicenseUtil))) ()
-
-init_super :: (JavaObjectClass this_) => this_ -> IO (())
-init_super object_ = (init_impl (javaCast object_ :: LicenseUtil))
-
-init_impl :: LicenseUtil -> IO (())
-init_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "LicenseUtil" ]
 
 
-isRunning :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isRunning object_ = jmethod object_ "isRunning" (\() -> (isRunning_impl (javaCast object_ :: LicenseUtil))) ()
-
-isRunning_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isRunning_super object_ = (isRunning_impl (javaCast object_ :: LicenseUtil))
-
-isRunning_impl :: LicenseUtil -> IO (Bool)
-isRunning_impl this = do
-        pure (False)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-setRunning :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setRunning object_ a1 = jmethod object_ "setRunning" (\() -> (setRunning_impl (javaCast object_ :: LicenseUtil))) () a1
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_0", jm_init_0 )
+        , ( "isRunning_0", jm_isRunning_0 )
+        , ( "setRunning_1", jm_setRunning_1 )
+        , ( "shouldWait_1", jm_shouldWait_1 ) ]
+        JR.noMethods
 
-setRunning_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setRunning_super object_ a1 = (setRunning_impl (javaCast object_ :: LicenseUtil)) a1
 
-setRunning_impl :: LicenseUtil -> Bool -> IO (())
-setRunning_impl this running = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LicenseUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_0", jm_init_0 ), ( "jm_isRunning_0", jm_isRunning_0 ), ( "jm_setRunning_1", jm_setRunning_1 ), ( "jm_shouldWait_1", jm_shouldWait_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-shouldWait :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (Bool)
-shouldWait object_ a1 = jmethod object_ "shouldWait" (\() -> (shouldWait_impl (javaCast object_ :: LicenseUtil))) () a1
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-shouldWait_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (Bool)
-shouldWait_super object_ a1 = (shouldWait_impl (javaCast object_ :: LicenseUtil)) a1
 
-shouldWait_impl :: LicenseUtil -> CommandListener.CommandListener -> IO (Bool)
-shouldWait_impl this commandListener = do
-        (LicenseUtil.isRunning this)
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LicenseUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isRunning_0 : JR.Method
+jm_isRunning_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setRunning_1 : JR.Method
+jm_setRunning_1 jheap jthis jargs =
+    JR.method [ ( "running", "Z" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_shouldWait_1 : JR.Method
+jm_shouldWait_1 jheap jthis jargs =
+    JR.method [ ( "commandListener", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.invoke "isRunning_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

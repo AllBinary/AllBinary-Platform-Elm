@@ -1,193 +1,158 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module HighScoresCanvasLevelChangeInputProcessor (module HighScoresCanvasLevelChangeInputProcessor, module HighScoresCanvasInputProcessor) where
+module Org.Allbinary.Game.Score.HighScoresCanvasLevelChangeInputProcessor exposing (..)
 
-import HighScoresCanvasInputProcessor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, open, open_super, open_impl, close, close_super, close_impl, update, update_super, update_impl, paint, paint_super, paint_impl, displayInfoSingleton, iNSTRUCTIONS, myFontProcessor, anchor, fontHeight)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified GameInfo -- same package or java.lang
-import qualified Canvas -- javax.microedition.lcdui.Canvas
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified GameKeyEventHandler -- org.allbinary.game.input.event.GameKeyEventHandler
-import qualified GameKeyEventUtil -- org.allbinary.game.input.event.GameKeyEventUtil
-import qualified HighScoresCanvas -- org.allbinary.game.score.displayable.HighScoresCanvas
-import qualified Anchor -- org.allbinary.graphics.Anchor
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified HighScoresCanvasInputProcessor
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
--- implements UpdateMyFontInterface
-data HighScoresCanvasLevelChangeInputProcessor = HighScoresCanvasLevelChangeInputProcessor
-    { header_ :: JavaHeader
-    , base :: HighScoresCanvasInputProcessor.HighScoresCanvasInputProcessor
-    , displayInfoSingleton :: IORef (DisplayInfoSingleton.DisplayInfoSingleton)
-    , iNSTRUCTIONS :: IORef (String)
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , anchor :: IORef (Int)
-    , fontHeight :: IORef (Int)
-    }
-
-instance JavaNull HighScoresCanvasLevelChangeInputProcessor where
-    javaNull = javaNullRecord "HighScoresCanvasLevelChangeInputProcessor"
-
-instance JavaEquals HighScoresCanvasLevelChangeInputProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HighScoresCanvasLevelChangeInputProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HighScoresCanvasLevelChangeInputProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HighScoresCanvasLevelChangeInputProcessor
-newRecord_ = do
-    base <- HighScoresCanvasInputProcessor.newRecord_
-    let header_ = base.header_
-    displayInfoSingleton <- newIORef javaNull
-    iNSTRUCTIONS <- newIORef ""
-    myFontProcessor <- newIORef javaNull
-    anchor <- newIORef 0
-    fontHeight <- newIORef 0
-    let this = HighScoresCanvasLevelChangeInputProcessor header_ base displayInfoSingleton iNSTRUCTIONS myFontProcessor anchor fontHeight
-    jregisterLevel header_ this
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "open" (\() -> open_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: HighScoresCanvasLevelChangeInputProcessor -> IO ()
-initFields_ this = do
-    jset this.displayInfoSingleton =<< (DisplayInfoSingleton.getInstance)
-    jset this.iNSTRUCTIONS ("(Right = Next Track, Left = Previous Track)")
-    jset this.myFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.anchor (Anchor.tOP_LEFT)
-    jset this.fontHeight (0)
-    pure ()
-
-new_1 :: HighScoresCanvas.HighScoresCanvas -> IO HighScoresCanvasLevelChangeInputProcessor
-new_1 highScoresCanvas = do
-    this <- newRecord_
-    init_1 this highScoresCanvas
-    pure this
-
-init_1 :: HighScoresCanvasLevelChangeInputProcessor -> HighScoresCanvas.HighScoresCanvas -> IO ()
-init_1 this highScoresCanvas = do
-        HighScoresCanvasInputProcessor.init_1 this.base (highScoresCanvas)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Anchor as Anchor
+import Javax.Microedition.Lcdui.Canvas as Canvas
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Game.Input.Event.GameKeyEventHandler as GameKeyEventHandler
+import Org.Allbinary.Game.Input.Event.GameKeyEventUtil as GameKeyEventUtil
+import Org.Allbinary.Game.Score.HighScoresCanvasInputProcessor as HighScoresCanvasInputProcessor
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: HighScoresCanvasLevelChangeInputProcessor))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: HighScoresCanvasLevelChangeInputProcessor)) a1
-
-updateMeasurement_impl :: HighScoresCanvasLevelChangeInputProcessor -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        assignedValue <- (Font.getHeight font)
-        jset (this).fontHeight (assignedValue)
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "HighScoresCanvasLevelChangeInputProcessor"
 
 
-open :: (JavaObjectClass this_) => this_ -> IO (())
-open object_ = jmethod object_ "open" (\() -> (open_impl (javaCast object_ :: HighScoresCanvasLevelChangeInputProcessor))) ()
-
-open_super :: (JavaObjectClass this_) => this_ -> IO (())
-open_super object_ = (open_impl (javaCast object_ :: HighScoresCanvasLevelChangeInputProcessor))
-
-open_impl :: HighScoresCanvasLevelChangeInputProcessor -> IO (())
-open_impl this = do
-        Control.Monad.void (GameKeyEventHandler.addListener ((jio (GameKeyEventHandler.getInstance))) this)
-        pure ()
+jchain : List String
+jchain =
+    [ "HighScoresCanvasLevelChangeInputProcessor" ]
+        ++ HighScoresCanvasInputProcessor.jchain
+        ++ UpdateMyFontInterface.jchain
 
 
-close :: (JavaObjectClass this_) => this_ -> IO (())
-close object_ = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: HighScoresCanvasLevelChangeInputProcessor))) ()
-
-close_super :: (JavaObjectClass this_) => this_ -> IO (())
-close_super object_ = (close_impl (javaCast object_ :: HighScoresCanvasLevelChangeInputProcessor))
-
-close_impl :: HighScoresCanvasLevelChangeInputProcessor -> IO (())
-close_impl this = do
-        Control.Monad.void (GameKeyEventHandler.removeListener ((jio (GameKeyEventHandler.getInstance))) this)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    HighScoresCanvasInputProcessor.jfields ++ [ ( "displayInfoSingleton", JR.defaultOf "" ), ( "INSTRUCTIONS", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "anchor", JR.defaultOf "I" ), ( "fontHeight", JR.defaultOf "I" ) ]
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: HighScoresCanvasLevelChangeInputProcessor))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: HighScoresCanvasLevelChangeInputProcessor))
-
-update_impl :: HighScoresCanvasLevelChangeInputProcessor -> IO (())
-update_impl this = do
-        list <- (HighScoresCanvasInputProcessor.getGameKeyEventList this)
-        size <- (BasicArrayList.size list)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let anyType = (jindex ((jget (list).objectArray)) (index))
-            key <- (GameKeyEventUtil.getKey anyType)
-            if (key == Canvas.rIGHT) then do
-                Control.Monad.void (GameInfo.nextGameLevel ((jio (HighScoresCanvas.getGameInfo ((jio (HighScoresCanvasInputProcessor.getHighScoresCanvas this)))))))
-            else when (key == Canvas.lEFT) $ do
-                Control.Monad.void (GameInfo.previousGameLevel ((jio (HighScoresCanvas.getGameInfo ((jio (HighScoresCanvasInputProcessor.getHighScoresCanvas this)))))))
-            Control.Monad.void (HighScoresCanvas.executeUpdate ((jio (HighScoresCanvasInputProcessor.getHighScoresCanvas this))))
-        Control.Monad.void (BasicArrayList.clear list)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "open_0", jm_open_0 )
+        , ( "close_0", jm_close_0 )
+        , ( "update_0", jm_update_0 )
+        , ( "paint_1", jm_paint_1 ) ]
+        HighScoresCanvasInputProcessor.jvtable
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: HighScoresCanvasLevelChangeInputProcessor))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HighScoresCanvasLevelChangeInputProcessor"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_open_0", jm_open_0 ), ( "jm_close_0", jm_close_0 ), ( "jm_update_0", jm_update_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: HighScoresCanvasLevelChangeInputProcessor)) a1
 
-paint_impl :: HighScoresCanvasLevelChangeInputProcessor -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-        width <- (DisplayInfoSingleton.getLastWidth ((jget (this).displayInfoSingleton)))
-        let topScoresWidth = (((jio (Graphics.stringWidth ((jio (Graphics.getFont graphics))) (jget (this).iNSTRUCTIONS))) `Data.Bits.shiftR` 1))
-        Control.Monad.void (Graphics.drawString graphics (jget (this).iNSTRUCTIONS) (((width `Data.Bits.shiftR` 1)) - topScoresWidth) ((jget (this).fontHeight) * 2) (jget (this).anchor))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "highScoresCanvas", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect HighScoresCanvasInputProcessor.jinit_1 JR.this [ (JR.local "highScoresCanvas") ]),
+                JR.exec (JR.setField "displayInfoSingleton" "" JR.this (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 [])),
+                JR.exec (JR.setField "INSTRUCTIONS" "" JR.this (JR.str "(Right = Next Track, Left = Previous Track)")),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "anchor" "I" JR.this Anchor.jstatic_TOP_LEFT),
+                JR.exec (JR.setField "fontHeight" "I" JR.this (JR.int 0)),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "fontHeight" "I" JR.this (JR.invoke "getHeight_0" (JR.local "font") [])), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_open_0 : JR.Method
+jm_open_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "addListener_1" (JR.callStatic GameKeyEventHandler.jm_getInstance_0 []) [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_close_0 : JR.Method
+jm_close_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "removeListener_1" (JR.callStatic GameKeyEventHandler.jm_getInstance_0 []) [ JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "list" "" (JR.invoke "getGameKeyEventList_0" JR.this []), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72119 -> (JR.setLocal "index" "I" (JR.lit jwN72119))) JR.increment) ]) (JR.run [ 
+                        JR.declare "anyType" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
+                        JR.declare "key" "I" (JR.callStatic GameKeyEventUtil.jm_getKey_1 [ (JR.local "anyType") ]), 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_RIGHT) (JR.run [ 
+                            JR.exec (JR.invoke "nextGameLevel_0" (JR.invoke "getGameInfo_0" (JR.invoke "getHighScoresCanvas_0" JR.this []) []) []) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_LEFT) (JR.run [ 
+                            JR.exec (JR.invoke "previousGameLevel_0" (JR.invoke "getGameInfo_0" (JR.invoke "getHighScoresCanvas_0" JR.this []) []) []) ]) identity ]), 
+                        JR.exec (JR.invoke "executeUpdate_0" (JR.invoke "getHighScoresCanvas_0" JR.this []) []) ]) ], 
+                    JR.exec (JR.invoke "clear_0" (JR.local "list") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.declare "width" "I" (JR.invoke "getLastWidth_0" (JR.thisField "displayInfoSingleton") []), 
+                    JR.declare "topScoresWidth" "I" ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.thisField "INSTRUCTIONS") ]) (JR.int 1))), 
+                    JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.thisField "INSTRUCTIONS"), (JR.map2 JR.sub ((JR.map2 JR.shr (JR.local "width") (JR.int 1))) (JR.local "topScoresWidth")), (JR.map2 JR.mul (JR.thisField "fontHeight") (JR.int 2)), (JR.thisField "anchor") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

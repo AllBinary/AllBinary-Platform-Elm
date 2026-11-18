@@ -1,108 +1,104 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.layer.event
-module ScrollMapEventHandler (module ScrollMapEventHandler, module BasicEventHandler) where
+module Org.Allbinary.Layer.Event.ScrollMapEventHandler exposing (..)
 
-import BasicEventHandler hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, process, process_super, process_impl, sINGLETON)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ScrollMapEventListenerInterface -- same package or java.lang
-import qualified ScrollMapEvent -- same package or java.lang
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified EventListenerInterface -- org.allbinary.logic.util.event.EventListenerInterface
-import qualified BasicEventHandler -- org.allbinary.logic.util.event.handler.BasicEventHandler
+{-| Generated Code Do Not Modify package org.allbinary.layer.event
+-}
 
-data ScrollMapEventHandler = ScrollMapEventHandler
-    { header_ :: JavaHeader
-    , base :: BasicEventHandler.BasicEventHandler
-    }
-
-instance JavaNull ScrollMapEventHandler where
-    javaNull = javaNullRecord "ScrollMapEventHandler"
-
-instance JavaEquals ScrollMapEventHandler where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ScrollMapEventHandler where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ScrollMapEventHandler where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-sINGLETON :: IORef (ScrollMapEventHandler)
-{-# NOINLINE sINGLETON #-}
-sINGLETON = unsafePerformIO ((new_) >>= newIORef)
-
-newRecord_ :: IO ScrollMapEventHandler
-newRecord_ = do
-    base <- BasicEventHandler.newRecord_
-    let header_ = base.header_
-    let this = ScrollMapEventHandler header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: ScrollMapEventHandler -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO ScrollMapEventHandler
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ScrollMapEventHandler -> IO ()
-init_ this = do
-        BasicEventHandler.init_ this.base
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.Util.Event.Handler.BasicEventHandler as BasicEventHandler
 
 
-getInstance :: IO (ScrollMapEventHandler)
-getInstance = do
-        pure ((jget ScrollMapEventHandler.sINGLETON))
+jclass : String
+jclass =
+    "ScrollMapEventHandler"
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> EventListenerInterface.EventListenerInterface -> IO (())
-process object_ a1 a2 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: ScrollMapEventHandler))) () a1 a2
+jchain : List String
+jchain =
+    [ "ScrollMapEventHandler" ]
+        ++ BasicEventHandler.jchain
 
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> EventListenerInterface.EventListenerInterface -> IO (())
-process_super object_ a1 a2 = (process_impl (javaCast object_ :: ScrollMapEventHandler)) a1 a2
 
-process_impl :: ScrollMapEventHandler -> AllBinaryEventObject.AllBinaryEventObject -> EventListenerInterface.EventListenerInterface -> IO (())
-process_impl this eventObject eventListenerInterface = do
-        let scrollMapEventListenerInterface = ((javaCast eventListenerInterface :: ScrollMapEventListenerInterface.ScrollMapEventListenerInterface))
-        Control.Monad.void (ScrollMapEventListenerInterface.onMoveEvent scrollMapEventListenerInterface (javaCast eventObject :: ScrollMapEvent.ScrollMapEvent))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicEventHandler.jfields ++ []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "process_2", jm_process_2 ) ]
+        BasicEventHandler.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ScrollMapEventHandler"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_process_2", jm_process_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_SINGLETON", jstatic_SINGLETON ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_SINGLETON : JR.M
+jstatic_SINGLETON s =
+    JR.static "ScrollMapEventHandler" jclinit "SINGLETON"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect BasicEventHandler.jinit_0 JR.this []),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_SINGLETON ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_2 : JR.Method
+jm_process_2 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ), ( "eventListenerInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "scrollMapEventListenerInterface" "" ((JR.local "eventListenerInterface")), 
+                    JR.exec (JR.invoke "onMoveEvent_1" (JR.local "scrollMapEventListenerInterface") [ (JR.local "eventObject") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

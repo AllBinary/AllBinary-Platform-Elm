@@ -1,144 +1,122 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
-module GameScrollMenuPaintable (module GameScrollMenuPaintable, module BasicGameDemoPaintable) where
+module Org.Allbinary.Game.Paint.GameScrollMenuPaintable exposing (..)
 
-import BasicGameDemoPaintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, setState, setState_super, setState_impl, onEvent, onEvent_super, onEvent_impl, setColor, setColor_super, setColor_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified MainGameDemoStatePaintable -- same package or java.lang
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified ColorChangeEventHandler -- org.allbinary.graphics.color.ColorChangeEventHandler
-import qualified ColorChangeListener -- org.allbinary.graphics.color.ColorChangeListener
-import qualified FormPaintable -- org.allbinary.graphics.form.FormPaintable
-import qualified ScrollSelectionForm -- org.allbinary.graphics.form.ScrollSelectionForm
-import qualified ABStringComponent -- org.allbinary.graphics.form.item.ABStringComponent
-import qualified ABTextItem -- org.allbinary.graphics.form.item.ABTextItem
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified BasicGameDemoPaintable
+{-| Generated Code Do Not Modify package org.allbinary.game.paint
+-}
 
--- implements ColorChangeListener
-data GameScrollMenuPaintable = GameScrollMenuPaintable
-    { header_ :: JavaHeader
-    , base :: BasicGameDemoPaintable.BasicGameDemoPaintable
-    }
-
-instance JavaNull GameScrollMenuPaintable where
-    javaNull = javaNullRecord "GameScrollMenuPaintable"
-
-instance JavaEquals GameScrollMenuPaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameScrollMenuPaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameScrollMenuPaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO GameScrollMenuPaintable
-newRecord_ = do
-    base <- BasicGameDemoPaintable.newRecord_
-    let header_ = base.header_
-    let this = GameScrollMenuPaintable header_ base
-    jregisterLevel header_ this
-    ColorChangeListener.registerInterface_ header_
-    jregisterMethod header_ "setState" (\() -> setState_impl this)
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "setColor" (\() -> setColor_impl this)
-    pure this
-
-initFields_ :: GameScrollMenuPaintable -> IO ()
-initFields_ this = do
-    pure ()
-
-new_4 :: Paintable.Paintable -> Paintable.Paintable -> Paintable.Paintable -> BasicColor.BasicColor -> IO GameScrollMenuPaintable
-new_4 mainDemoStatePaintable ownershipPaintable helpPaintableInterface basicColor = do
-    this <- newRecord_
-    init_4 this mainDemoStatePaintable ownershipPaintable helpPaintableInterface basicColor
-    pure this
-
-init_4 :: GameScrollMenuPaintable -> Paintable.Paintable -> Paintable.Paintable -> Paintable.Paintable -> BasicColor.BasicColor -> IO ()
-init_4 this mainDemoStatePaintable ownershipPaintable helpPaintableInterface basicColor = do
-        BasicGameDemoPaintable.init_3 this.base (mainDemoStatePaintable) (ownershipPaintable) (helpPaintableInterface)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (GameScrollMenuPaintable.setColor this basicColor)
-        Control.Monad.void (ColorChangeEventHandler.addListenerInterface ((jio (ColorChangeEventHandler.getInstance))) this)
-        pure ()
+import JR
+import Org.Allbinary.Game.Paint.BasicGameDemoPaintable as BasicGameDemoPaintable
+import Org.Allbinary.Graphics.Color.ColorChangeEventHandler as ColorChangeEventHandler
+import Org.Allbinary.Graphics.Color.ColorChangeListener as ColorChangeListener
 
 
-setState :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setState object_ a1 = jmethod object_ "setState" (\() -> (setState_impl (javaCast object_ :: GameScrollMenuPaintable))) () a1
-
-setState_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setState_super object_ a1 = (setState_impl (javaCast object_ :: GameScrollMenuPaintable)) a1
-
-setState_impl :: GameScrollMenuPaintable -> Int -> IO (())
-setState_impl this state = do
-        Control.Monad.void (BasicGameDemoPaintable.setCurrentStatePaintable this (jio (BasicGameDemoPaintable.getMainDemoStatePaintable this)))
-        pure ()
+jclass : String
+jclass =
+    "GameScrollMenuPaintable"
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: GameScrollMenuPaintable))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: GameScrollMenuPaintable)) a1
-
-onEvent_impl :: GameScrollMenuPaintable -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        pure ()
+jchain : List String
+jchain =
+    [ "GameScrollMenuPaintable" ]
+        ++ BasicGameDemoPaintable.jchain
+        ++ ColorChangeListener.jchain
 
 
-setColor :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setColor object_ a1 = jmethod object_ "setColor" (\() -> (setColor_impl (javaCast object_ :: GameScrollMenuPaintable))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicGameDemoPaintable.jfields ++ []
 
-setColor_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setColor_super object_ a1 = (setColor_impl (javaCast object_ :: GameScrollMenuPaintable)) a1
 
-setColor_impl :: GameScrollMenuPaintable -> BasicColor.BasicColor -> IO (())
-setColor_impl this basicColor = do
-        let mainGameDemoStatePaintable = (javaCast (jio (BasicGameDemoPaintable.getMainDemoStatePaintable this)) :: MainGameDemoStatePaintable.MainGameDemoStatePaintable)
-        let formPaintable = (javaCast (jio (MainGameDemoStatePaintable.getMenuPaintableInterface mainGameDemoStatePaintable)) :: FormPaintable.FormPaintable)
-        let scrollSelectionForm = (javaCast (jio (FormPaintable.getForm formPaintable)) :: ScrollSelectionForm.ScrollSelectionForm)
-        Control.Monad.void (Paintable.setBasicColorP ((jio (MainGameDemoStatePaintable.getOwnershipPaintableInterface mainGameDemoStatePaintable))) basicColor)
-        Control.Monad.void (ScrollSelectionForm.setButtonBasicColor scrollSelectionForm basicColor)
-        item <- newIORef (javaNull)
-        stringComponent <- newIORef (javaNull)
-        forM_ [((jio (ScrollSelectionForm.size scrollSelectionForm)) - 1), ((jio (ScrollSelectionForm.size scrollSelectionForm)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jset item ((javaCast (jio (ScrollSelectionForm.get scrollSelectionForm index)) :: ABTextItem.ABTextItem))
-            assignedValue <- (ABTextItem.getLabelStringComponent ((jget item)))
-            jset stringComponent (assignedValue)
-            when ((jget stringComponent) /= javaNull) $ do
-                Control.Monad.void (ABStringComponent.setForegroundBasicColor ((jget stringComponent)) basicColor)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "setState_1", jm_setState_1 )
+        , ( "onEvent_1", jm_onEvent_1 )
+        , ( "setColor_1", jm_setColor_1 ) ]
+        BasicGameDemoPaintable.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameScrollMenuPaintable"
+        [ ( "jm_setState_1", jm_setState_1 ), ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_setColor_1", jm_setColor_1 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "mainDemoStatePaintable", "" ), ( "ownershipPaintable", "" ), ( "helpPaintableInterface", "" ), ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicGameDemoPaintable.jinit_3 JR.this [ (JR.local "mainDemoStatePaintable"), (JR.local "ownershipPaintable"), (JR.local "helpPaintableInterface") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setColor_1" JR.this [ (JR.local "basicColor") ]), 
+                    JR.exec (JR.invoke "addListenerInterface_1" (JR.callStatic ColorChangeEventHandler.jm_getInstance_0 []) [ JR.this ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_setState_1 : JR.Method
+jm_setState_1 jheap jthis jargs =
+    JR.method [ ( "state", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setCurrentStatePaintable_1" JR.this [ (JR.invoke "getMainDemoStatePaintable_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setColor_1 : JR.Method
+jm_setColor_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "mainGameDemoStatePaintable" "" (JR.invoke "getMainDemoStatePaintable_0" JR.this []), 
+                    JR.declare "formPaintable" "" (JR.invoke "getMenuPaintableInterface_0" (JR.local "mainGameDemoStatePaintable") []), 
+                    JR.declare "scrollSelectionForm" "" (JR.invoke "getForm_0" (JR.local "formPaintable") []), 
+                    JR.exec (JR.invoke "setBasicColorP_1" (JR.invoke "getOwnershipPaintableInterface_0" (JR.local "mainGameDemoStatePaintable") []) [ (JR.local "basicColor") ]), 
+                    JR.exec (JR.invoke "setButtonBasicColor_1" (JR.local "scrollSelectionForm") [ (JR.local "basicColor") ]), 
+                    JR.declare "item" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "stringComponent" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "scrollSelectionForm") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68877 -> (JR.setLocal "index" "I" (JR.lit jwN68877))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "item" "" (JR.invoke "get_1" (JR.local "scrollSelectionForm") [ (JR.local "index") ])), 
+                        JR.exec (JR.setLocal "stringComponent" "" (JR.invoke "getLabelStringComponent_0" (JR.local "item") [])), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "stringComponent") JR.null) (JR.run [ 
+                            JR.exec (JR.invoke "setForegroundBasicColor_1" (JR.local "stringComponent") [ (JR.local "basicColor") ]) ]) identity ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,166 +1,134 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.combat.damage
-module PtsDamageFloaters (module PtsDamageFloaters, module DamageFloaters) where
+module Org.Allbinary.Game.Combat.Damage.PtsDamageFloaters exposing (..)
 
-import DamageFloaters hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, add, add_super, add_impl, paint, paint_super, paint_impl, basicSetColorUtil, layerInterface, lastDamage, lastDamageString, lastDamageStringSizeArray, circularIndexUtil, primitiveLongUtil, basicColorArrayIndexer, myRandomFactory)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified MyRandomFactory -- org.allbinary.game.rand.MyRandomFactory
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorArrayIndexer -- org.allbinary.graphics.color.BasicColorArrayIndexer
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified BasicColorSetUtil -- org.allbinary.graphics.color.BasicColorSetUtil
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified CharArrayFactory -- org.allbinary.logic.java.character.CharArrayFactory
-import qualified PrimitiveLongUtil -- org.allbinary.logic.math.PrimitiveLongUtil
-import qualified CircularIndexUtil -- org.allbinary.util.CircularIndexUtil
-import qualified ViewPosition -- org.allbinary.view.ViewPosition
-import qualified ViewPositionBase -- org.allbinary.view.ViewPositionBase
-import qualified DamageFloaters
+{-| Generated Code Do Not Modify package org.allbinary.game.combat.damage
+-}
 
-data PtsDamageFloaters = PtsDamageFloaters
-    { header_ :: JavaHeader
-    , base :: DamageFloaters.DamageFloaters
-    , basicSetColorUtil :: IORef (BasicColorSetUtil.BasicColorSetUtil)
-    , layerInterface :: IORef (AllBinaryLayer.AllBinaryLayer)
-    , lastDamage :: IORef (JavaArray (Int))
-    , lastDamageString :: IORef (JavaArray (JavaArray (Char)))
-    , lastDamageStringSizeArray :: IORef (JavaArray (Int))
-    , circularIndexUtil :: IORef (CircularIndexUtil.CircularIndexUtil)
-    , primitiveLongUtil :: IORef (PrimitiveLongUtil.PrimitiveLongUtil)
-    , myRandomFactory :: IORef (MyRandomFactory.MyRandomFactory)
-    }
-
-instance JavaNull PtsDamageFloaters where
-    javaNull = javaNullRecord "PtsDamageFloaters"
-
-instance JavaEquals PtsDamageFloaters where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PtsDamageFloaters where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PtsDamageFloaters where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-basicColorArrayIndexer :: BasicColorArrayIndexer.BasicColorArrayIndexer
-{-# NOINLINE basicColorArrayIndexer #-}
-basicColorArrayIndexer = unsafePerformIO ((BasicColorArrayIndexer.new_1 (jarrayFromList [(jget ((jio (BasicColorFactory.getInstance))).wHITE), (jget ((jio (BasicColorFactory.getInstance))).rED), (jget ((jio (BasicColorFactory.getInstance))).yELLOW), (jget ((jio (BasicColorFactory.getInstance))).bLUE)])))
-
-newRecord_ :: IO PtsDamageFloaters
-newRecord_ = do
-    base <- DamageFloaters.newRecord_
-    let header_ = base.header_
-    basicSetColorUtil <- newIORef javaNull
-    layerInterface <- newIORef javaNull
-    lastDamage <- newIORef javaNull
-    lastDamageString <- newIORef javaNull
-    lastDamageStringSizeArray <- newIORef javaNull
-    circularIndexUtil <- newIORef javaNull
-    primitiveLongUtil <- newIORef javaNull
-    myRandomFactory <- newIORef javaNull
-    let this = PtsDamageFloaters header_ base basicSetColorUtil layerInterface lastDamage lastDamageString lastDamageStringSizeArray circularIndexUtil primitiveLongUtil myRandomFactory
-    jregisterLevel header_ this
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: PtsDamageFloaters -> IO ()
-initFields_ this = do
-    jset this.basicSetColorUtil =<< (BasicColorSetUtil.getInstance)
-    jset this.layerInterface (javaNull)
-    jset this.lastDamage ((jnewArray (5) 0))
-    jset this.lastDamageString ((jnewArray2 (5) (0) '\0'))
-    jset this.lastDamageStringSizeArray ((jnewArray (5) 0))
-    jset this.circularIndexUtil =<< (CircularIndexUtil.createInstance 5)
-    jset this.primitiveLongUtil (javaNull)
-    jset this.myRandomFactory =<< (MyRandomFactory.getInstance)
-    pure ()
-
-new_1 :: AllBinaryLayer.AllBinaryLayer -> IO PtsDamageFloaters
-new_1 layerInterface = do
-    this <- newRecord_
-    init_1 this layerInterface
-    pure this
-
-init_1 :: PtsDamageFloaters -> AllBinaryLayer.AllBinaryLayer -> IO ()
-init_1 this layerInterface = do
-        DamageFloaters.init_ this.base
-        initFields_ this
-        assignedValue <- (PrimitiveLongUtil.createPowerOfTen 100000)
-        jset (this).primitiveLongUtil (assignedValue)
-        jset (this).layerInterface (layerInterface)
-        cHAR_ARRAY <- (CharArrayFactory.getZeroCharArray ((jio (CharArrayFactory.getInstance))))
-        forM_ [((jlength (jget (this).lastDamageString)) - 1), ((jlength (jget (this).lastDamageString)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex ((jget (this).lastDamageString)) (index) (cHAR_ARRAY)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorArrayIndexer as BasicColorArrayIndexer
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Graphics.Color.BasicColorSetUtil as BasicColorSetUtil
+import Org.Allbinary.Logic.Java.Character.CharArrayFactory as CharArrayFactory
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
+import Org.Allbinary.Game.Combat.Damage.DamageFloaters as DamageFloaters
+import Org.Allbinary.Game.Rand.MyRandomFactory as MyRandomFactory
+import Org.Allbinary.Logic.Math.PrimitiveLongUtil as PrimitiveLongUtil
 
 
-add :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: PtsDamageFloaters))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: PtsDamageFloaters)) a1
-
-add_impl :: PtsDamageFloaters -> Int -> IO (())
-add_impl this damage = do
-        index <- (CircularIndexUtil.getIndex ((jget (this).circularIndexUtil)))
-        jsetIndex ((jget (this).lastDamage)) (index) (damage)
-        assignedValue <- (PrimitiveLongUtil.getCharArray ((jget (this).primitiveLongUtil)) (jindex ((jget (this).lastDamage)) (index)))
-        jsetIndex ((jget (this).lastDamageString)) (index) (assignedValue)
-        assignedValue <- (PrimitiveLongUtil.getCurrentTotalDigits ((jget (this).primitiveLongUtil)))
-        jsetIndex ((jget (this).lastDamageStringSizeArray)) (index) (assignedValue)
-        Control.Monad.void (CircularIndexUtil.next ((jget (this).circularIndexUtil)))
-        pure ()
+jclass : String
+jclass =
+    "PtsDamageFloaters"
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: PtsDamageFloaters))) () a1
+jchain : List String
+jchain =
+    [ "PtsDamageFloaters" ]
+        ++ DamageFloaters.jchain
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: PtsDamageFloaters)) a1
 
-paint_impl :: PtsDamageFloaters -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        viewPosition <- (AllBinaryLayer.getViewPosition ((jget (this).layerInterface)))
-        x <- (ViewPositionBase.getX viewPosition)
-        y <- (ViewPositionBase.getY viewPosition)
-        forM_ [((jlength (jget (this).lastDamage)) - 1), ((jlength (jget (this).lastDamage)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            when ((jindex ((jget (this).lastDamage)) (index)) /= 0) $ do
-                let delta = (10 * ((index + 2)))
-                Control.Monad.void (BasicColorSetUtil.setBasicColorP ((jget (this).basicSetColorUtil)) graphics (jio (BasicColorArrayIndexer.get PtsDamageFloaters.basicColorArrayIndexer)))
-                Control.Monad.void (Graphics.drawChars graphics (jindex ((jget (this).lastDamageString)) (index)) 0 (jindex ((jget (this).lastDamageStringSizeArray)) (index)) (x - (jio (MyRandomFactory.getNextInt ((jget (this).myRandomFactory)) delta))) (y - delta) 0)
-                Control.Monad.void (BasicColorArrayIndexer.next PtsDamageFloaters.basicColorArrayIndexer)
-            jsetIndex ((jget (this).lastDamage)) (index) (0)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    DamageFloaters.jfields ++ [ ( "basicSetColorUtil", JR.defaultOf "" ), ( "layerInterface", JR.defaultOf "" ), ( "lastDamage", JR.defaultOf "" ), ( "lastDamageString", JR.defaultOf "" ), ( "lastDamageStringSizeArray", JR.defaultOf "" ), ( "circularIndexUtil", JR.defaultOf "" ), ( "primitiveLongUtil", JR.defaultOf "" ), ( "myRandomFactory", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "add_1", jm_add_1 )
+        , ( "paint_1", jm_paint_1 ) ]
+        DamageFloaters.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PtsDamageFloaters"
+        [ ( "jm_add_1", jm_add_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_basicColorArrayIndexer", jstatic_basicColorArrayIndexer ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_basicColorArrayIndexer : JR.M
+jstatic_basicColorArrayIndexer s =
+    JR.static "PtsDamageFloaters" jclinit "basicColorArrayIndexer"
+        (JR.new BasicColorArrayIndexer.jnew_1 [ (JR.arrayOf "" [ (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.field "RED" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.field "YELLOW" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.field "BLUE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ]) ])
+        s
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect DamageFloaters.jinit_0 JR.this []),
+                JR.exec (JR.setField "basicSetColorUtil" "" JR.this (JR.callStatic BasicColorSetUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "lastDamage" "" JR.this (JR.newArray "I" [ (JR.int 5) ])),
+                JR.exec (JR.setField "lastDamageString" "" JR.this (JR.newArray "C" [ (JR.int 5), (JR.int 0) ])),
+                JR.exec (JR.setField "lastDamageStringSizeArray" "" JR.this (JR.newArray "I" [ (JR.int 5) ])),
+                JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.int 5) ])),
+                JR.exec (JR.setField "myRandomFactory" "" JR.this (JR.callStatic MyRandomFactory.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "primitiveLongUtil" "" JR.this (JR.callStatic PrimitiveLongUtil.jm_createPowerOfTen_1 [ (JR.int 100000) ])), 
+                    JR.exec (JR.setField "layerInterface" "" JR.this (JR.local "layerInterface")), 
+                    JR.declare "CHAR_ARRAY" "" (JR.invoke "getZeroCharArray_0" (JR.callStatic CharArrayFactory.jm_getInstance_0 []) []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "lastDamageString")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68484 -> (JR.setLocal "index" "I" (JR.lit jwN68484))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "lastDamageString") (\jaN68376 -> JR.andThen (JR.local "index") (\jiN68376 -> (JR.aset (JR.lit jaN68376) (JR.lit jiN68376) (JR.local "CHAR_ARRAY"))))) ]) ] ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "damage", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "index" "I" (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") []), 
+                    JR.exec (JR.andThen (JR.thisField "lastDamage") (\jaN68590 -> JR.andThen (JR.local "index") (\jiN68590 -> (JR.aset (JR.lit jaN68590) (JR.lit jiN68590) (JR.local "damage"))))), 
+                    JR.exec (JR.andThen (JR.thisField "lastDamageString") (\jaN68630 -> JR.andThen (JR.local "index") (\jiN68630 -> (JR.aset (JR.lit jaN68630) (JR.lit jiN68630) (JR.invoke "getCharArray_1" (JR.thisField "primitiveLongUtil") [ (JR.aget (JR.thisField "lastDamage") (JR.local "index")) ]))))), 
+                    JR.exec (JR.andThen (JR.thisField "lastDamageStringSizeArray") (\jaN68707 -> JR.andThen (JR.local "index") (\jiN68707 -> (JR.aset (JR.lit jaN68707) (JR.lit jiN68707) (JR.invoke "getCurrentTotalDigits_0" (JR.thisField "primitiveLongUtil") []))))), 
+                    JR.exec (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "viewPosition" "" (JR.invoke "getViewPosition_0" (JR.thisField "layerInterface") []), 
+                    JR.declare "x" "I" (JR.invoke "getX_0" (JR.local "viewPosition") []), 
+                    JR.declare "y" "I" (JR.invoke "getY_0" (JR.local "viewPosition") []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "lastDamage")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69467 -> (JR.setLocal "index" "I" (JR.lit jwN69467))) JR.decrement) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.thisField "lastDamage") (JR.local "index")) (JR.int 0)) (JR.run [ 
+                            JR.declare "delta" "I" (JR.map2 JR.mul (JR.int 10) ((JR.map2 JR.add (JR.local "index") (JR.int 2)))), 
+                            JR.exec (JR.invoke "setBasicColorP_2" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.invoke "get_0" jstatic_basicColorArrayIndexer []) ]), 
+                            JR.exec (JR.invoke "drawChars_6" (JR.local "graphics") [ (JR.aget (JR.thisField "lastDamageString") (JR.local "index")), (JR.int 0), (JR.aget (JR.thisField "lastDamageStringSizeArray") (JR.local "index")), (JR.map2 JR.sub (JR.local "x") (JR.invoke "getNextInt_1" (JR.thisField "myRandomFactory") [ (JR.local "delta") ])), (JR.map2 JR.sub (JR.local "y") (JR.local "delta")), (JR.int 0) ]), 
+                            JR.exec (JR.invoke "next_0" jstatic_basicColorArrayIndexer []) ]) identity, 
+                        JR.exec (JR.andThen (JR.thisField "lastDamage") (\jaN69363 -> JR.andThen (JR.local "index") (\jiN69363 -> (JR.aset (JR.lit jaN69363) (JR.lit jiN69363) (JR.int 0))))) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

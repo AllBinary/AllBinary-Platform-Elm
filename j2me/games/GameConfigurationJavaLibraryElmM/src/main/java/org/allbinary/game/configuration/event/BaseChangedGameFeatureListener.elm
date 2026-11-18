@@ -1,208 +1,174 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.event
-module BaseChangedGameFeatureListener where
+module Org.Allbinary.Game.Configuration.Event.BaseChangedGameFeatureListener exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameFeatureEvent -- same package or java.lang
-import qualified Feature -- org.allbinary.game.configuration.feature.Feature
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified GameFeatureUtil -- org.allbinary.game.configuration.feature.GameFeatureUtil
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified AllBinaryEventObject -- org.allbinary.logic.util.event.AllBinaryEventObject
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified GameFeatureListenerInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.event
+-}
 
--- implements GameFeatureListenerInterface
-data BaseChangedGameFeatureListener = BaseChangedGameFeatureListener
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , gameFeatureUtil :: IORef (GameFeatureUtil.GameFeatureUtil)
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    , changed :: IORef (Bool)
-    }
-
-instance JavaNull BaseChangedGameFeatureListener where
-    javaNull = javaNullRecord "BaseChangedGameFeatureListener"
-
-instance JavaEquals BaseChangedGameFeatureListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BaseChangedGameFeatureListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BaseChangedGameFeatureListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BaseChangedGameFeatureListener
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    gameFeatureUtil <- newIORef javaNull
-    list <- newIORef javaNull
-    changed <- newIORef False
-    let this = BaseChangedGameFeatureListener header_ logUtil gameFeatureUtil list changed
-    jregisterLevel header_ this
-    GameFeatureListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "onEvent" (\() -> onEvent_impl this)
-    jregisterMethod header_ "onGameFeatureChange" (\() -> onGameFeatureChange_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "remove" (\() -> remove_impl this)
-    jregisterMethod header_ "setChanged" (\() -> setChanged_impl this)
-    jregisterMethod header_ "isChangedFeature" (\() -> isChangedFeature_impl this)
-    jregisterMethod header_ "isChanged" (\() -> isChanged_impl this)
-    pure this
-
-initFields_ :: BaseChangedGameFeatureListener -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.gameFeatureUtil =<< (GameFeatureUtil.getInstance)
-    jset this.list =<< (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-    jset this.changed (True)
-    pure ()
-
-new_ :: IO BaseChangedGameFeatureListener
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BaseChangedGameFeatureListener -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Game.Configuration.Event.GameFeatureListenerInterface as GameFeatureListenerInterface
+import Org.Allbinary.Game.Configuration.Feature.GameFeatureUtil as GameFeatureUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-onEvent :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent object_ a1 = jmethod object_ "onEvent" (\() -> (onEvent_impl (javaCast object_ :: BaseChangedGameFeatureListener))) () a1
-
-onEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_super object_ a1 = (onEvent_impl (javaCast object_ :: BaseChangedGameFeatureListener)) a1
-
-onEvent_impl :: BaseChangedGameFeatureListener -> AllBinaryEventObject.AllBinaryEventObject -> IO (())
-onEvent_impl this eventObject = do
-        Control.Monad.void (ForcedLogUtil.log (jget ((jio (CommonStrings.getInstance))).nOT_IMPLEMENTED) this)
-        pure ()
+jclass : String
+jclass =
+    "BaseChangedGameFeatureListener"
 
 
-onGameFeatureChange :: (JavaObjectClass this_) => this_ -> GameFeatureEvent.GameFeatureEvent -> IO (())
-onGameFeatureChange object_ a1 = jmethod object_ "onGameFeatureChange" (\() -> (onGameFeatureChange_impl (javaCast object_ :: BaseChangedGameFeatureListener))) () a1
-
-onGameFeatureChange_super :: (JavaObjectClass this_) => this_ -> GameFeatureEvent.GameFeatureEvent -> IO (())
-onGameFeatureChange_super object_ a1 = (onGameFeatureChange_impl (javaCast object_ :: BaseChangedGameFeatureListener)) a1
-
-onGameFeatureChange_impl :: BaseChangedGameFeatureListener -> GameFeatureEvent.GameFeatureEvent -> IO (())
-onGameFeatureChange_impl this gameFeatureEvent = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget ((jget (this).gameFeatureUtil)).gAME_FEATURE_CHANGED)))) (jio (GameFeatureEvent.getWhatChanged gameFeatureEvent))))))) this (jget ((jget (this).gameFeatureUtil)).oN_GAME_FEATURE_CHANGE))
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) (jio (GameFeatureEvent.getGameOption gameFeatureEvent)))
-        Control.Monad.void (BaseChangedGameFeatureListener.setChanged this True)
-        pure ()
+jchain : List String
+jchain =
+    [ "BaseChangedGameFeatureListener" ]
+        ++ GameFeatureListenerInterface.jchain
 
 
-add :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-add object_ a1 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: BaseChangedGameFeatureListener))) () a1
-
-add_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-add_super object_ a1 = (add_impl (javaCast object_ :: BaseChangedGameFeatureListener)) a1
-
-add_impl :: BaseChangedGameFeatureListener -> Feature.Feature -> IO (())
-add_impl this gameFeature = do
-        Control.Monad.void (BasicArrayList.add ((jget (this).list)) gameFeature)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "gameFeatureUtil", JR.defaultOf "" ), ( "list", JR.defaultOf "" ), ( "changed", JR.defaultOf "Z" ) ]
 
 
-remove :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-remove object_ a1 = jmethod object_ "remove" (\() -> (remove_impl (javaCast object_ :: BaseChangedGameFeatureListener))) () a1
-
-remove_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-remove_super object_ a1 = (remove_impl (javaCast object_ :: BaseChangedGameFeatureListener)) a1
-
-remove_impl :: BaseChangedGameFeatureListener -> Feature.Feature -> IO (())
-remove_impl this gameFeature = do
-        Control.Monad.void (BasicArrayList.remove ((jget (this).list)) gameFeature)
-        pure ()
-
-
-setChanged :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setChanged object_ a1 = jmethod object_ "setChanged" (\() -> (setChanged_impl (javaCast object_ :: BaseChangedGameFeatureListener))) () a1
-
-setChanged_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setChanged_super object_ a1 = (setChanged_impl (javaCast object_ :: BaseChangedGameFeatureListener)) a1
-
-setChanged_impl :: BaseChangedGameFeatureListener -> Bool -> IO (())
-setChanged_impl this initialized = do
-        jset (this).changed (initialized)
-        when (Prelude.not (jio (BaseChangedGameFeatureListener.isChanged this))) $ do
-            Control.Monad.void (BasicArrayList.clear ((jget (this).list)))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "onEvent_1", jm_onEvent_1 )
+        , ( "onGameFeatureChange_1", jm_onGameFeatureChange_1 )
+        , ( "add_1", jm_add_1 )
+        , ( "remove_1", jm_remove_1 )
+        , ( "setChanged_1", jm_setChanged_1 )
+        , ( "isChangedFeature_1", jm_isChangedFeature_1 )
+        , ( "isChanged_0", jm_isChanged_0 ) ]
+        JR.noMethods
 
 
-isChangedFeature :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (Bool)
-isChangedFeature object_ a1 = jmethod object_ "isChangedFeature" (\() -> (isChangedFeature_impl (javaCast object_ :: BaseChangedGameFeatureListener))) () a1
-
-isChangedFeature_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (Bool)
-isChangedFeature_super object_ a1 = (isChangedFeature_impl (javaCast object_ :: BaseChangedGameFeatureListener)) a1
-
-isChangedFeature_impl :: BaseChangedGameFeatureListener -> Feature.Feature -> IO (Bool)
-isChangedFeature_impl this gameFeature = do
-        isChanged <- (BasicArrayList.contains ((jget (this).list)) gameFeature)
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "GameFeature: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (StringUtil.toString ((jio (StringUtil.getInstance))) gameFeature)))
-        Control.Monad.void (StringMaker.append stringBuffer " isFeature: ")
-        Control.Monad.void (StringMaker.appendboolean stringBuffer (jio (Features.isFeature ((jio (Features.getInstance))) gameFeature)))
-        Control.Monad.void (StringMaker.append stringBuffer " isChanged: ")
-        Control.Monad.void (StringMaker.appendboolean stringBuffer isChanged)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString stringBuffer)) this "isChanged")
-        pure (isChanged)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BaseChangedGameFeatureListener"
+        [ ( "jm_onEvent_1", jm_onEvent_1 ), ( "jm_onGameFeatureChange_1", jm_onGameFeatureChange_1 ), ( "jm_add_1", jm_add_1 ), ( "jm_remove_1", jm_remove_1 ), ( "jm_setChanged_1", jm_setChanged_1 ), ( "jm_isChangedFeature_1", jm_isChangedFeature_1 ), ( "jm_isChanged_0", jm_isChanged_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
 
-isChanged :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isChanged object_ = jmethod object_ "isChanged" (\() -> (isChanged_impl (javaCast object_ :: BaseChangedGameFeatureListener))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-isChanged_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isChanged_super object_ = (isChanged_impl (javaCast object_ :: BaseChangedGameFeatureListener))
 
-isChanged_impl :: BaseChangedGameFeatureListener -> IO (Bool)
-isChanged_impl this = do
-        pure ((jget (this).changed))
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "gameFeatureUtil" "" JR.this (JR.callStatic GameFeatureUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "list" "" JR.this (JR.new BasicArrayListD.jnew_0 [])),
+                JR.exec (JR.setField "changed" "Z" JR.this (JR.bool True)),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_onEvent_1 : JR.Method
+jm_onEvent_1 jheap jthis jargs =
+    JR.method [ ( "eventObject", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.field "NOT_IMPLEMENTED" (JR.callStatic CommonStrings.jm_getInstance_0 [])), JR.this ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onGameFeatureChange_1 : JR.Method
+jm_onGameFeatureChange_1 jheap jthis jargs =
+    JR.method [ ( "gameFeatureEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "GAME_FEATURE_CHANGED" (JR.thisField "gameFeatureUtil")) ]) [ (JR.invoke "getWhatChanged_0" (JR.local "gameFeatureEvent") []) ]) []), JR.this, (JR.field "ON_GAME_FEATURE_CHANGE" (JR.thisField "gameFeatureUtil")) ]), 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.invoke "getGameOption_0" (JR.local "gameFeatureEvent") []) ]), 
+                    JR.exec (JR.invoke "setChanged_1" JR.this [ (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_1 : JR.Method
+jm_add_1 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "gameFeature") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_remove_1 : JR.Method
+jm_remove_1 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "remove_1" (JR.thisField "list") [ (JR.local "gameFeature") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setChanged_1 : JR.Method
+jm_setChanged_1 jheap jthis jargs =
+    JR.method [ ( "initialized", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "changed" "Z" JR.this (JR.local "initialized")), 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isChanged_0" JR.this [])) (JR.run [ 
+                        JR.exec (JR.invoke "clear_0" (JR.thisField "list") []) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isChangedFeature_1 : JR.Method
+jm_isChangedFeature_1 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "isChanged" "Z" (JR.invoke "contains_1" (JR.thisField "list") [ (JR.local "gameFeature") ]), 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "GameFeature: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "gameFeature") ]) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " isFeature: ") ]), 
+                    JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.invoke "isFeature_1" (JR.callStatic Features.jm_getInstance_0 []) [ (JR.local "gameFeature") ]) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " isChanged: ") ]), 
+                    JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.local "isChanged") ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "isChanged") ]), 
+                    JR.return (JR.local "isChanged") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isChanged_0 : JR.Method
+jm_isChanged_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "changed") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

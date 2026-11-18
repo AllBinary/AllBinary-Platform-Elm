@@ -1,242 +1,175 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module StartIntermissionPaintable (module StartIntermissionPaintable, module InitUpdatePaintable) where
+module Org.Allbinary.Game.Displayable.Canvas.StartIntermissionPaintable exposing (..)
 
-import InitUpdatePaintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, paint, paint_super, paint_impl, update, update_super, update_impl, setBasicColorP, setBasicColorP_super, setBasicColorP_impl, getBasicColorP, getBasicColorP_super, getBasicColorP_impl, fontDebugFactory, basicSetColorUtil, gameCanvas, stringArray, fontSize, font, lastWidth, updateMyFontProcessor, myFontProcessor, basicColor, color, lineYOffsetArray, hasChanged, anchor, fontHeightP, bEGIN_LEVEL, eMPTY_STRING)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryGameCanvas -- same package or java.lang
-import qualified GameInfo -- same package or java.lang
-import qualified AllBinaryGameLayerManager -- same package or java.lang
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Anchor -- org.allbinary.graphics.Anchor
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified BasicColorSetUtil -- org.allbinary.graphics.color.BasicColorSetUtil
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified FontDebugFactory -- org.allbinary.graphics.font.FontDebugFactory
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified InitUpdatePaintable -- org.allbinary.graphics.paint.InitUpdatePaintable
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
--- implements UpdateMyFontInterface
-data StartIntermissionPaintable = StartIntermissionPaintable
-    { header_ :: JavaHeader
-    , base :: InitUpdatePaintable.InitUpdatePaintable
-    , fontDebugFactory :: IORef (FontDebugFactory.FontDebugFactory)
-    , basicSetColorUtil :: IORef (BasicColorSetUtil.BasicColorSetUtil)
-    , gameCanvas :: IORef (AllBinaryGameCanvas.AllBinaryGameCanvas)
-    , stringArray :: IORef (JavaArray (String))
-    , fontSize :: IORef (Int)
-    , font :: IORef (Font.Font)
-    , lastWidth :: IORef (JavaArray (Int))
-    , updateMyFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , basicColor :: IORef (BasicColor.BasicColor)
-    , color :: IORef (Int)
-    , lineYOffsetArray :: IORef (JavaArray (Int))
-    , hasChanged :: IORef (Bool)
-    , anchor :: IORef (Int)
-    , fontHeightP :: IORef (Int)
-    , bEGIN_LEVEL :: IORef (String)
-    , eMPTY_STRING :: IORef (String)
-    }
-
-instance JavaNull StartIntermissionPaintable where
-    javaNull = javaNullRecord "StartIntermissionPaintable"
-
-instance JavaEquals StartIntermissionPaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq StartIntermissionPaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass StartIntermissionPaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO StartIntermissionPaintable
-newRecord_ = do
-    base <- InitUpdatePaintable.newRecord_
-    let header_ = base.header_
-    fontDebugFactory <- newIORef javaNull
-    basicSetColorUtil <- newIORef javaNull
-    gameCanvas <- newIORef javaNull
-    stringArray <- newIORef javaNull
-    fontSize <- newIORef 0
-    font <- newIORef javaNull
-    lastWidth <- newIORef javaNull
-    updateMyFontProcessor <- newIORef javaNull
-    myFontProcessor <- newIORef javaNull
-    basicColor <- newIORef javaNull
-    color <- newIORef 0
-    lineYOffsetArray <- newIORef javaNull
-    hasChanged <- newIORef False
-    anchor <- newIORef 0
-    fontHeightP <- newIORef 0
-    bEGIN_LEVEL <- newIORef ""
-    eMPTY_STRING <- newIORef ""
-    let this = StartIntermissionPaintable header_ base fontDebugFactory basicSetColorUtil gameCanvas stringArray fontSize font lastWidth updateMyFontProcessor myFontProcessor basicColor color lineYOffsetArray hasChanged anchor fontHeightP bEGIN_LEVEL eMPTY_STRING
-    jregisterLevel header_ this
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "setBasicColorP" (\() -> setBasicColorP_impl this)
-    jregisterMethod header_ "getBasicColorP" (\() -> getBasicColorP_impl this)
-    pure this
-
-initFields_ :: StartIntermissionPaintable -> IO ()
-initFields_ this = do
-    jset this.fontDebugFactory =<< (FontDebugFactory.getInstance)
-    jset this.basicSetColorUtil =<< (BasicColorSetUtil.getInstance)
-    jset this.gameCanvas (javaNull)
-    jset this.stringArray (javaNull)
-    jset this.fontSize (0)
-    jset this.font (javaNull)
-    jset this.lastWidth (javaNull)
-    jset this.updateMyFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.myFontProcessor ((jget (this).updateMyFontProcessor))
-    jset this.basicColor ((jget ((jio (BasicColorFactory.getInstance))).bLACK))
-    jset this.color (0)
-    jset this.lineYOffsetArray ((jget ((jio (NullUtil.getInstance))).nULL_INT_ARRAY))
-    jset this.hasChanged (True)
-    jset this.anchor (Anchor.tOP_LEFT)
-    jset this.fontHeightP (0)
-    jset this.bEGIN_LEVEL ("Begin Level ")
-    jset this.eMPTY_STRING ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    pure ()
-
-new_4 :: AllBinaryGameCanvas.AllBinaryGameCanvas -> JavaArray (String) -> BasicColor.BasicColor -> Font.Font -> IO StartIntermissionPaintable
-new_4 gameCanvas stringArray basicColor font = do
-    this <- newRecord_
-    init_4 this gameCanvas stringArray basicColor font
-    pure this
-
-init_4 :: StartIntermissionPaintable -> AllBinaryGameCanvas.AllBinaryGameCanvas -> JavaArray (String) -> BasicColor.BasicColor -> Font.Font -> IO ()
-init_4 this gameCanvas stringArray basicColor font = do
-        InitUpdatePaintable.init_ this.base
-        initFields_ this
-        jset (this).gameCanvas (gameCanvas)
-        jset (this).stringArray (stringArray)
-        jset (this).lastWidth ((jnewArray ((jlength (jget (this).stringArray))) 0))
-        Control.Monad.void (StartIntermissionPaintable.setBasicColorP this basicColor)
-        assignedValue <- (BasicColor.intValue basicColor)
-        jset (this).color (assignedValue)
-        assignedValue <- (Font.getSize font)
-        jset (this).fontSize (assignedValue)
-        jset (this).font (font)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Anchor as Anchor
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Graphics.Color.BasicColorSetUtil as BasicColorSetUtil
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Graphics.Font.FontDebugFactory as FontDebugFactory
+import Org.Allbinary.Graphics.Paint.InitUpdatePaintable as InitUpdatePaintable
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: StartIntermissionPaintable))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: StartIntermissionPaintable)) a1
-
-updateMeasurement_impl :: StartIntermissionPaintable -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        assignedValue <- (Font.getHeight font)
-        jset (this).fontHeightP (assignedValue)
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "StartIntermissionPaintable"
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: StartIntermissionPaintable))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: StartIntermissionPaintable)) a1
-
-paint_impl :: StartIntermissionPaintable -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-        existingFont <- (Graphics.getFont graphics)
-        Control.Monad.void (FontDebugFactory.setFont ((jget (this).fontDebugFactory)) (jget (this).font) graphics)
-        displayInfo <- (DisplayInfoSingleton.getInstance)
-        Control.Monad.void (BasicColorSetUtil.setBasicColorP3 ((jget (this).basicSetColorUtil)) graphics (jget (this).basicColor) (jget (this).color))
-        beginWidth <- newIORef (0 :: Int)
-        forM_ [((jlength (jget (this).lineYOffsetArray)) - 1), ((jlength (jget (this).lineYOffsetArray)) - 1) + (-1) .. 0] $ \index -> javaIteration (pure ()) $ do
-            when (jget (this).hasChanged) $ do
-                jsetIndex ((jget (this).lastWidth)) (index) ((((jio (Graphics.stringWidth ((jio (Graphics.getFont graphics))) (jindex ((jget (this).stringArray)) (index)))) `Data.Bits.shiftR` 1)))
-            jset beginWidth ((jindex ((jget (this).lastWidth)) (index)))
-            Control.Monad.void (Graphics.drawString graphics (jindex ((jget (this).stringArray)) (index)) ((jio (DisplayInfoSingleton.getLastHalfWidth displayInfo)) - (jget beginWidth)) ((jio (DisplayInfoSingleton.getLastHalfHeight displayInfo)) - (jindex ((jget (this).lineYOffsetArray)) (index))) (jget (this).anchor))
-        jset (this).hasChanged (False)
-        Control.Monad.void (FontDebugFactory.setFont ((jget (this).fontDebugFactory)) existingFont graphics)
-        pure ()
+jchain : List String
+jchain =
+    [ "StartIntermissionPaintable" ]
+        ++ InitUpdatePaintable.jchain
+        ++ UpdateMyFontInterface.jchain
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: StartIntermissionPaintable))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: StartIntermissionPaintable))
-
-update_impl :: StartIntermissionPaintable -> IO (())
-update_impl this = do
-        level <- (GameInfo.getCurrentLevel ((jio (AllBinaryGameLayerManager.getGameInfo ((jio (AllBinaryGameCanvas.getLayerManager ((jget (this).gameCanvas)))))))))
-        assignedValue <- (StringMaker.toString ((jio (StringMaker.appendint ((jio (StringMaker.append ((jio (StringMaker.new_))) (jget (this).bEGIN_LEVEL)))) level))))
-        jsetIndex ((jget (this).stringArray)) (0) (assignedValue)
-        forM_ [((jlength (jget (this).stringArray)) - 1), ((jlength (jget (this).stringArray)) - 1) + (-1) .. 1] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex ((jget (this).stringArray)) (index) ((jget (this).eMPTY_STRING))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    InitUpdatePaintable.jfields ++ [ ( "fontDebugFactory", JR.defaultOf "" ), ( "basicSetColorUtil", JR.defaultOf "" ), ( "gameCanvas", JR.defaultOf "" ), ( "stringArray", JR.defaultOf "" ), ( "fontSize", JR.defaultOf "I" ), ( "font", JR.defaultOf "" ), ( "lastWidth", JR.defaultOf "" ), ( "updateMyFontProcessor", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "basicColor", JR.defaultOf "" ), ( "color", JR.defaultOf "I" ), ( "lineYOffsetArray", JR.defaultOf "" ), ( "hasChanged", JR.defaultOf "Z" ), ( "anchor", JR.defaultOf "I" ), ( "fontHeightP", JR.defaultOf "I" ), ( "BEGIN_LEVEL", JR.defaultOf "" ), ( "EMPTY_STRING", JR.defaultOf "" ) ]
 
 
-setBasicColorP :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP object_ a1 = jmethod object_ "setBasicColorP" (\() -> (setBasicColorP_impl (javaCast object_ :: StartIntermissionPaintable))) () a1
-
-setBasicColorP_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setBasicColorP_super object_ a1 = (setBasicColorP_impl (javaCast object_ :: StartIntermissionPaintable)) a1
-
-setBasicColorP_impl :: StartIntermissionPaintable -> BasicColor.BasicColor -> IO (())
-setBasicColorP_impl this basicColor = do
-        jset (this).basicColor (basicColor)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "update_0", jm_update_0 )
+        , ( "setBasicColorP_1", jm_setBasicColorP_1 )
+        , ( "getBasicColorP_0", jm_getBasicColorP_0 ) ]
+        InitUpdatePaintable.jvtable
 
 
-getBasicColorP :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP object_ = jmethod object_ "getBasicColorP" (\() -> (getBasicColorP_impl (javaCast object_ :: StartIntermissionPaintable))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "StartIntermissionPaintable"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_update_0", jm_update_0 ), ( "jm_setBasicColorP_1", jm_setBasicColorP_1 ), ( "jm_getBasicColorP_0", jm_getBasicColorP_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
 
-getBasicColorP_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBasicColorP_super object_ = (getBasicColorP_impl (javaCast object_ :: StartIntermissionPaintable))
 
-getBasicColorP_impl :: StartIntermissionPaintable -> IO (BasicColor.BasicColor)
-getBasicColorP_impl this = do
-        pure ((jget (this).basicColor))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "gameCanvas", "" ), ( "stringArray", "" ), ( "basicColor", "" ), ( "font", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect InitUpdatePaintable.jinit_0 JR.this []),
+                JR.exec (JR.setField "fontDebugFactory" "" JR.this (JR.callStatic FontDebugFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "basicSetColorUtil" "" JR.this (JR.callStatic BasicColorSetUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "updateMyFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")),
+                JR.exec (JR.setField "basicColor" "" JR.this (JR.field "BLACK" (JR.callStatic BasicColorFactory.jm_getInstance_0 []))),
+                JR.exec (JR.setField "lineYOffsetArray" "" JR.this (JR.field "NULL_INT_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "hasChanged" "Z" JR.this (JR.bool True)),
+                JR.exec (JR.setField "anchor" "I" JR.this Anchor.jstatic_TOP_LEFT),
+                JR.exec (JR.setField "BEGIN_LEVEL" "" JR.this (JR.str "Begin Level ")),
+                JR.exec (JR.setField "EMPTY_STRING" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "gameCanvas" "" JR.this (JR.local "gameCanvas")), 
+                    JR.exec (JR.setField "stringArray" "" JR.this (JR.local "stringArray")), 
+                    JR.exec (JR.setField "lastWidth" "" JR.this (JR.newArray "I" [ (JR.alength (JR.thisField "stringArray")) ])), 
+                    JR.exec (JR.invoke "setBasicColorP_1" JR.this [ (JR.local "basicColor") ]), 
+                    JR.exec (JR.setField "color" "I" JR.this (JR.invoke "intValue_0" (JR.local "basicColor") [])), 
+                    JR.exec (JR.setField "fontSize" "I" JR.this (JR.invoke "getSize_0" (JR.local "font") [])), 
+                    JR.exec (JR.setField "font" "" JR.this (JR.local "font")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "fontHeightP" "I" JR.this (JR.invoke "getHeight_0" (JR.local "font") [])), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.declare "existingFont" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.invoke "setFont_2" (JR.thisField "fontDebugFactory") [ (JR.thisField "font"), (JR.local "graphics") ]), 
+                    JR.declare "displayInfo" "" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "setBasicColorP3_3" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.thisField "basicColor"), (JR.thisField "color") ]), 
+                    JR.declare "beginWidth" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "lineYOffsetArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75719 -> (JR.setLocal "index" "I" (JR.lit jwN75719))) JR.decrement) ]) (JR.run [ 
+                        JR.ifElse (JR.thisField "hasChanged") (JR.run [ 
+                            JR.exec (JR.andThen (JR.thisField "lastWidth") (\jaN75383 -> JR.andThen (JR.local "index") (\jiN75383 -> (JR.aset (JR.lit jaN75383) (JR.lit jiN75383) ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.aget (JR.thisField "stringArray") (JR.local "index")) ]) (JR.int 1))))))) ]) identity, 
+                        JR.exec (JR.setLocal "beginWidth" "I" (JR.aget (JR.thisField "lastWidth") (JR.local "index"))), 
+                        JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.aget (JR.thisField "stringArray") (JR.local "index")), (JR.map2 JR.sub (JR.invoke "getLastHalfWidth_0" (JR.local "displayInfo") []) (JR.local "beginWidth")), (JR.map2 JR.sub (JR.invoke "getLastHalfHeight_0" (JR.local "displayInfo") []) (JR.aget (JR.thisField "lineYOffsetArray") (JR.local "index"))), (JR.thisField "anchor") ]) ]) ], 
+                    JR.exec (JR.setField "hasChanged" "Z" JR.this (JR.bool False)), 
+                    JR.exec (JR.invoke "setFont_2" (JR.thisField "fontDebugFactory") [ (JR.local "existingFont"), (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "level" "I" (JR.invoke "getCurrentLevel_0" (JR.invoke "getGameInfo_0" (JR.invoke "getLayerManager_0" (JR.thisField "gameCanvas") []) []) []), 
+                    JR.exec (JR.andThen (JR.thisField "stringArray") (\jaN76013 -> JR.andThen (JR.int 0) (\jiN76013 -> (JR.aset (JR.lit jaN76013) (JR.lit jiN76013) (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "BEGIN_LEVEL") ]) [ (JR.local "level") ]) []))))), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "stringArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 1)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN76221 -> (JR.setLocal "index" "I" (JR.lit jwN76221))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "stringArray") (\jaN76110 -> JR.andThen (JR.local "index") (\jiN76110 -> (JR.aset (JR.lit jaN76110) (JR.lit jiN76110) (JR.thisField "EMPTY_STRING"))))) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setBasicColorP_1 : JR.Method
+jm_setBasicColorP_1 jheap jthis jargs =
+    JR.method [ ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "basicColor" "" JR.this (JR.local "basicColor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getBasicColorP_0 : JR.Method
+jm_getBasicColorP_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "basicColor") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,100 +1,87 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form
-module HorizontalFormProcessor (module HorizontalFormProcessor, module Processor) where
+module Org.Allbinary.Graphics.Form.HorizontalFormProcessor exposing (..)
 
-import Processor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, process, process_super, process_impl, scrollCurrentSelectionForm)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ScrollCurrentSelectionForm -- same package or java.lang
-import qualified Processor -- org.allbinary.canvas.Processor
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form
+-}
 
-data HorizontalFormProcessor = HorizontalFormProcessor
-    { header_ :: JavaHeader
-    , base :: Processor.Processor
-    , scrollCurrentSelectionForm :: IORef (ScrollCurrentSelectionForm.ScrollCurrentSelectionForm)
-    }
-
-instance JavaNull HorizontalFormProcessor where
-    javaNull = javaNullRecord "HorizontalFormProcessor"
-
-instance JavaEquals HorizontalFormProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq HorizontalFormProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass HorizontalFormProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO HorizontalFormProcessor
-newRecord_ = do
-    base <- Processor.newRecord_
-    let header_ = base.header_
-    scrollCurrentSelectionForm <- newIORef javaNull
-    let this = HorizontalFormProcessor header_ base scrollCurrentSelectionForm
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    pure this
-
-initFields_ :: HorizontalFormProcessor -> IO ()
-initFields_ this = do
-    jset this.scrollCurrentSelectionForm (javaNull)
-    pure ()
-
-new_1 :: ScrollCurrentSelectionForm.ScrollCurrentSelectionForm -> IO HorizontalFormProcessor
-new_1 scrollCurrentSelectionForm = do
-    this <- newRecord_
-    init_1 this scrollCurrentSelectionForm
-    pure this
-
-init_1 :: HorizontalFormProcessor -> ScrollCurrentSelectionForm.ScrollCurrentSelectionForm -> IO ()
-init_1 this scrollCurrentSelectionForm = do
-        Processor.init_ this.base
-        initFields_ this
-        jset (this).scrollCurrentSelectionForm (scrollCurrentSelectionForm)
-        pure ()
+import JR
+import Org.Allbinary.Canvas.Processor as Processor
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> IO (())
-process object_ = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: HorizontalFormProcessor))) ()
+jclass : String
+jclass =
+    "HorizontalFormProcessor"
 
-process_super :: (JavaObjectClass this_) => this_ -> IO (())
-process_super object_ = (process_impl (javaCast object_ :: HorizontalFormProcessor))
 
-process_impl :: HorizontalFormProcessor -> IO (())
-process_impl this = do
-        Control.Monad.void (ScrollCurrentSelectionForm.processHorizontalForm ((jget (this).scrollCurrentSelectionForm)))
-        assignedValue <- (Processor.getInstance)
-        jset ((jget (this).scrollCurrentSelectionForm)).processor (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "HorizontalFormProcessor" ]
+        ++ Processor.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    Processor.jfields ++ [ ( "scrollCurrentSelectionForm", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "process_0", jm_process_0 ) ]
+        Processor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "HorizontalFormProcessor"
+        [ ( "jm_process_0", jm_process_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "scrollCurrentSelectionForm", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect Processor.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "scrollCurrentSelectionForm" "" JR.this (JR.local "scrollCurrentSelectionForm")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_process_0 : JR.Method
+jm_process_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "processHorizontalForm_0" (JR.thisField "scrollCurrentSelectionForm") []), 
+                    JR.exec (JR.andThen (JR.thisField "scrollCurrentSelectionForm") (\jtN67227 -> (JR.setField "processor" "" (JR.lit jtN67227) (JR.callStatic Processor.jm_getInstance_0 [])))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

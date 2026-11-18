@@ -1,157 +1,140 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module GameInputProcessor where
+module Org.Allbinary.Game.Input.GameInputProcessor exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GameKeyEvent -- org.allbinary.game.input.event.GameKeyEvent
-import qualified AllBinaryLayerManager -- org.allbinary.layer.AllBinaryLayerManager
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data GameInputProcessor = GameInputProcessor
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull GameInputProcessor where
-    javaNull = javaNullRecord "GameInputProcessor"
-
-instance JavaEquals GameInputProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameInputProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameInputProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: GameInputProcessor
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameInputProcessor
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = GameInputProcessor header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "processEvent" (\() -> processEvent_impl this)
-    jregisterMethod header_ "processReleasedEvent" (\() -> processReleasedEvent_impl this)
-    jregisterMethod header_ "processAnalog" (\() -> processAnalog_impl this)
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "processReleased" (\() -> processReleased_impl this)
-    pure this
-
-initFields_ :: GameInputProcessor -> IO ()
-initFields_ this = do
-    pure ()
+import JR
 
 
-getInstance :: IO (GameInputProcessor)
-getInstance = do
-        pure (GameInputProcessor.instance_)
 
-new_ :: IO GameInputProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameInputProcessor -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "GameInputProcessor"
 
 
--- throws Exception
-processEvent :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> GameKeyEvent.GameKeyEvent -> IO (())
-processEvent object_ a1 a2 = jmethod object_ "processEvent" (\() -> (processEvent_impl (javaCast object_ :: GameInputProcessor))) () a1 a2
-
-processEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> GameKeyEvent.GameKeyEvent -> IO (())
-processEvent_super object_ a1 a2 = (processEvent_impl (javaCast object_ :: GameInputProcessor)) a1 a2
-
-processEvent_impl :: GameInputProcessor -> AllBinaryLayerManager.AllBinaryLayerManager -> GameKeyEvent.GameKeyEvent -> IO (())
-processEvent_impl this allbinaryLayerManager gameKeyEvent = do
-        pure ()
+jchain : List String
+jchain =
+    [ "GameInputProcessor" ]
 
 
--- throws Exception
-processReleasedEvent :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> GameKeyEvent.GameKeyEvent -> IO (())
-processReleasedEvent object_ a1 a2 = jmethod object_ "processReleasedEvent" (\() -> (processReleasedEvent_impl (javaCast object_ :: GameInputProcessor))) () a1 a2
-
-processReleasedEvent_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> GameKeyEvent.GameKeyEvent -> IO (())
-processReleasedEvent_super object_ a1 a2 = (processReleasedEvent_impl (javaCast object_ :: GameInputProcessor)) a1 a2
-
-processReleasedEvent_impl :: GameInputProcessor -> AllBinaryLayerManager.AllBinaryLayerManager -> GameKeyEvent.GameKeyEvent -> IO (())
-processReleasedEvent_impl this allbinaryLayerManager gameKeyEvent = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
--- throws Exception
-processAnalog :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> GameKeyEvent.GameKeyEvent -> Int -> IO (())
-processAnalog object_ a1 a2 a3 = jmethod object_ "processAnalog" (\() -> (processAnalog_impl (javaCast object_ :: GameInputProcessor))) () a1 a2 a3
-
-processAnalog_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> GameKeyEvent.GameKeyEvent -> Int -> IO (())
-processAnalog_super object_ a1 a2 a3 = (processAnalog_impl (javaCast object_ :: GameInputProcessor)) a1 a2 a3
-
-processAnalog_impl :: GameInputProcessor -> AllBinaryLayerManager.AllBinaryLayerManager -> GameKeyEvent.GameKeyEvent -> Int -> IO (())
-processAnalog_impl this allbinaryLayerManager gameKeyEvent analogValue = do
-        pure ()
-
-
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> Int -> IO (())
-process object_ a1 a2 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: GameInputProcessor))) () a1 a2
-
-process_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> Int -> IO (())
-process_super object_ a1 a2 = (process_impl (javaCast object_ :: GameInputProcessor)) a1 a2
-
-process_impl :: GameInputProcessor -> AllBinaryLayerManager.AllBinaryLayerManager -> Int -> IO (())
-process_impl this allbinaryLayerManager keyAsInteger = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "processEvent_2", jm_processEvent_2 )
+        , ( "processReleasedEvent_2", jm_processReleasedEvent_2 )
+        , ( "processAnalog_3", jm_processAnalog_3 )
+        , ( "process_2", jm_process_2 )
+        , ( "processReleased_2", jm_processReleased_2 ) ]
+        JR.noMethods
 
 
--- throws Exception
-processReleased :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> Int -> IO (())
-processReleased object_ a1 a2 = jmethod object_ "processReleased" (\() -> (processReleased_impl (javaCast object_ :: GameInputProcessor))) () a1 a2
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameInputProcessor"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_processEvent_2", jm_processEvent_2 ), ( "jm_processReleasedEvent_2", jm_processReleasedEvent_2 ), ( "jm_processAnalog_3", jm_processAnalog_3 ), ( "jm_process_2", jm_process_2 ), ( "jm_processReleased_2", jm_processReleased_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
-processReleased_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayerManager.AllBinaryLayerManager -> Int -> IO (())
-processReleased_super object_ a1 a2 = (processReleased_impl (javaCast object_ :: GameInputProcessor)) a1 a2
 
-processReleased_impl :: GameInputProcessor -> AllBinaryLayerManager.AllBinaryLayerManager -> Int -> IO (())
-processReleased_impl this allbinaryLayerManager keyAsInteger = do
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameInputProcessor" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processEvent_2 : JR.Method
+jm_processEvent_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "gameKeyEvent", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processReleasedEvent_2 : JR.Method
+jm_processReleasedEvent_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "gameKeyEvent", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processAnalog_3 : JR.Method
+jm_processAnalog_3 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "gameKeyEvent", "" ), ( "analogValue", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_2 : JR.Method
+jm_process_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "keyAsInteger", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_processReleased_2 : JR.Method
+jm_processReleased_2 jheap jthis jargs =
+    JR.method [ ( "allbinaryLayerManager", "" ), ( "keyAsInteger", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

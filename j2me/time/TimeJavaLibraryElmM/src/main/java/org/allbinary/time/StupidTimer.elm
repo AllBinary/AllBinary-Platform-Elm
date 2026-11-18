@@ -1,16 +1,16 @@
-module StupidTimer exposing (..)
+module Org.Allbinary.Time.StupidTimer exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.time
 -}
 
 import JR
-import CommonStrings
-import LogUtil
-import NullUtil
-import PreLogUtil
-import StringMaker
-import StringUtil
-import ThreadObjectUtil
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Thread.ThreadObjectUtil as ThreadObjectUtil
 
 
 jclass : String

@@ -1,4 +1,4 @@
-module StringUtil exposing (..)
+module Org.Allbinary.Logic.String.StringUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.string
 -}

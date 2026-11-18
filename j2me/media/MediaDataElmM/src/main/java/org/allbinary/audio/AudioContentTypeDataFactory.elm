@@ -1,109 +1,96 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.audio
-module AudioContentTypeDataFactory where
+module Org.Allbinary.Audio.AudioContentTypeDataFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AudioContentTypeData -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.audio
+-}
 
-data AudioContentTypeDataFactory = AudioContentTypeDataFactory
-    { header_ :: JavaHeader
-    , mIME_AUDIO_TONE :: IORef (AudioContentTypeData.AudioContentTypeData)
-    , mIME_AUDIO_AMR :: IORef (AudioContentTypeData.AudioContentTypeData)
-    , mIME_AUDIO_AMR_WB :: IORef (AudioContentTypeData.AudioContentTypeData)
-    , mIME_AUDIO_WAV :: IORef (AudioContentTypeData.AudioContentTypeData)
-    , mIME_AUDIO_MIDI :: IORef (AudioContentTypeData.AudioContentTypeData)
-    , mIME_AUDIO_SP_MIDI :: IORef (AudioContentTypeData.AudioContentTypeData)
-    }
-
-instance JavaNull AudioContentTypeDataFactory where
-    javaNull = javaNullRecord "AudioContentTypeDataFactory"
-
-instance JavaEquals AudioContentTypeDataFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AudioContentTypeDataFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AudioContentTypeDataFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: AudioContentTypeDataFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AudioContentTypeDataFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    mIME_AUDIO_TONE <- newIORef javaNull
-    mIME_AUDIO_AMR <- newIORef javaNull
-    mIME_AUDIO_AMR_WB <- newIORef javaNull
-    mIME_AUDIO_WAV <- newIORef javaNull
-    mIME_AUDIO_MIDI <- newIORef javaNull
-    mIME_AUDIO_SP_MIDI <- newIORef javaNull
-    let this = AudioContentTypeDataFactory header_ mIME_AUDIO_TONE mIME_AUDIO_AMR mIME_AUDIO_AMR_WB mIME_AUDIO_WAV mIME_AUDIO_MIDI mIME_AUDIO_SP_MIDI
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: AudioContentTypeDataFactory -> IO ()
-initFields_ this = do
-    jset this.mIME_AUDIO_TONE =<< (AudioContentTypeData.new_1 "audio/x-tone-seq")
-    jset this.mIME_AUDIO_AMR =<< (AudioContentTypeData.new_1 "audio/amr")
-    jset this.mIME_AUDIO_AMR_WB =<< (AudioContentTypeData.new_1 "audio/amr-wb")
-    jset this.mIME_AUDIO_WAV =<< (AudioContentTypeData.new_1 "audio/x-wav")
-    jset this.mIME_AUDIO_MIDI =<< (AudioContentTypeData.new_1 "audio/midi")
-    jset this.mIME_AUDIO_SP_MIDI =<< (AudioContentTypeData.new_1 "audio/sp-midi")
-    pure ()
+import JR
+import Org.Allbinary.Audio.AudioContentTypeData as AudioContentTypeData
 
 
-getInstance :: IO (AudioContentTypeDataFactory)
-getInstance = do
-        pure (AudioContentTypeDataFactory.instance_)
+jclass : String
+jclass =
+    "AudioContentTypeDataFactory"
 
-new_ :: IO AudioContentTypeDataFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: AudioContentTypeDataFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jchain : List String
+jchain =
+    [ "AudioContentTypeDataFactory" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "MIME_AUDIO_TONE", JR.defaultOf "" ), ( "MIME_AUDIO_AMR", JR.defaultOf "" ), ( "MIME_AUDIO_AMR_WB", JR.defaultOf "" ), ( "MIME_AUDIO_WAV", JR.defaultOf "" ), ( "MIME_AUDIO_MIDI", JR.defaultOf "" ), ( "MIME_AUDIO_SP_MIDI", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AudioContentTypeDataFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "AudioContentTypeDataFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "MIME_AUDIO_TONE" "" JR.this (JR.new AudioContentTypeData.jnew_1 [ (JR.str "audio/x-tone-seq") ])),
+                JR.exec (JR.setField "MIME_AUDIO_AMR" "" JR.this (JR.new AudioContentTypeData.jnew_1 [ (JR.str "audio/amr") ])),
+                JR.exec (JR.setField "MIME_AUDIO_AMR_WB" "" JR.this (JR.new AudioContentTypeData.jnew_1 [ (JR.str "audio/amr-wb") ])),
+                JR.exec (JR.setField "MIME_AUDIO_WAV" "" JR.this (JR.new AudioContentTypeData.jnew_1 [ (JR.str "audio/x-wav") ])),
+                JR.exec (JR.setField "MIME_AUDIO_MIDI" "" JR.this (JR.new AudioContentTypeData.jnew_1 [ (JR.str "audio/midi") ])),
+                JR.exec (JR.setField "MIME_AUDIO_SP_MIDI" "" JR.this (JR.new AudioContentTypeData.jnew_1 [ (JR.str "audio/sp-midi") ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

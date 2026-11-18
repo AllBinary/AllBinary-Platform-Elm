@@ -1,217 +1,308 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.money.payment.gateway
-module PaymentGatewayData where
+module Org.Allbinary.Business.User.Commerce.Money.Payment.Gateway.PaymentGatewayData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.money.payment.gateway
+-}
 
-data PaymentGatewayData = PaymentGatewayData
-    { header_ :: JavaHeader
-    , key :: IORef (String)
-    }
-
-instance JavaNull PaymentGatewayData where
-    javaNull = javaNullRecord "PaymentGatewayData"
-
-instance JavaEquals PaymentGatewayData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PaymentGatewayData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PaymentGatewayData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-cRYPTNUM :: Int
-cRYPTNUM = 5
-
-iD :: PaymentGatewayData
-{-# NOINLINE iD #-}
-iD = unsafePerformIO ((new_1 "PAYMENTGATEWAY_ID"))
-
-nAME :: PaymentGatewayData
-{-# NOINLINE nAME #-}
-nAME = unsafePerformIO ((new_1 "PAYMENTGATEWAY_NAME"))
-
-vALUE :: PaymentGatewayData
-{-# NOINLINE vALUE #-}
-vALUE = unsafePerformIO ((new_1 "PAYMENTGATEWAY_VALUE"))
-
-pAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE :: PaymentGatewayData
-{-# NOINLINE pAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE #-}
-pAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE = unsafePerformIO ((new_1 "PAYMENTGATEWAY_PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE"))
-
-pAYMENTPROCESSORINTERFACEFACTORYINTERFACE :: PaymentGatewayData
-{-# NOINLINE pAYMENTPROCESSORINTERFACEFACTORYINTERFACE #-}
-pAYMENTPROCESSORINTERFACEFACTORYINTERFACE = unsafePerformIO ((new_1 "PAYMENTGATEWAY_PAYMENTPROCESSORINTERFACEFACTORYINTERFACE"))
-
-mODE :: PaymentGatewayData
-{-# NOINLINE mODE #-}
-mODE = unsafePerformIO ((new_1 "MODE"))
-
-sERVERPROTOCOL :: PaymentGatewayData
-{-# NOINLINE sERVERPROTOCOL #-}
-sERVERPROTOCOL = unsafePerformIO ((new_1 "SERVERPROTOCOL"))
-
-sERVER :: PaymentGatewayData
-{-# NOINLINE sERVER #-}
-sERVER = unsafePerformIO ((new_1 "SERVER"))
-
-sERVERPORT :: PaymentGatewayData
-{-# NOINLINE sERVERPORT #-}
-sERVERPORT = unsafePerformIO ((new_1 "SERVERPORT"))
-
-sERVERPATH :: PaymentGatewayData
-{-# NOINLINE sERVERPATH #-}
-sERVERPATH = unsafePerformIO ((new_1 "SERVERPATH"))
-
-tESTPROTOCOL :: PaymentGatewayData
-{-# NOINLINE tESTPROTOCOL #-}
-tESTPROTOCOL = unsafePerformIO ((new_1 "TESTSERVERPROTOCOL"))
-
-tESTSERVER :: PaymentGatewayData
-{-# NOINLINE tESTSERVER #-}
-tESTSERVER = unsafePerformIO ((new_1 "TESTSERVER"))
-
-tESTPORT :: PaymentGatewayData
-{-# NOINLINE tESTPORT #-}
-tESTPORT = unsafePerformIO ((new_1 "TESTPORT"))
-
-tESTPATH :: PaymentGatewayData
-{-# NOINLINE tESTPATH #-}
-tESTPATH = unsafePerformIO ((new_1 "TESTSERVERPATH"))
-
-tIMEOUT :: PaymentGatewayData
-{-# NOINLINE tIMEOUT #-}
-tIMEOUT = unsafePerformIO ((new_1 "TIMEOUT"))
-
-pROXYPROTOCOL :: PaymentGatewayData
-{-# NOINLINE pROXYPROTOCOL #-}
-pROXYPROTOCOL = unsafePerformIO ((new_1 "PROXYPROTOCOL"))
-
-pROXYSERVER :: PaymentGatewayData
-{-# NOINLINE pROXYSERVER #-}
-pROXYSERVER = unsafePerformIO ((new_1 "PROXYSERVER"))
-
-pROXYPATH :: PaymentGatewayData
-{-# NOINLINE pROXYPATH #-}
-pROXYPATH = unsafePerformIO ((new_1 "PROXYPATH"))
-
-pROXYUSERNAME :: PaymentGatewayData
-{-# NOINLINE pROXYUSERNAME #-}
-pROXYUSERNAME = unsafePerformIO ((new_1 "PROXYUSERNAME"))
-
-pROXYPASSWORD :: PaymentGatewayData
-{-# NOINLINE pROXYPASSWORD #-}
-pROXYPASSWORD = unsafePerformIO ((new_1 "PROXYPASSWORD"))
-
-pROXYPORT :: PaymentGatewayData
-{-# NOINLINE pROXYPORT #-}
-pROXYPORT = unsafePerformIO ((new_1 "PROXYPORT"))
-
-pROXYTIMEOUT :: PaymentGatewayData
-{-# NOINLINE pROXYTIMEOUT #-}
-pROXYTIMEOUT = unsafePerformIO ((new_1 "PROXYTIMEOUT"))
-
-sPECIAL1 :: PaymentGatewayData
-{-# NOINLINE sPECIAL1 #-}
-sPECIAL1 = unsafePerformIO ((new_1 "SPECIAL1"))
-
-sPECIAL2 :: PaymentGatewayData
-{-# NOINLINE sPECIAL2 #-}
-sPECIAL2 = unsafePerformIO ((new_1 "SPECIAL2"))
-
-sPECIAL3 :: PaymentGatewayData
-{-# NOINLINE sPECIAL3 #-}
-sPECIAL3 = unsafePerformIO ((new_1 "SPECIAL3"))
-
-sPECIAL4 :: PaymentGatewayData
-{-# NOINLINE sPECIAL4 #-}
-sPECIAL4 = unsafePerformIO ((new_1 "SPECIAL4"))
-
-sPECIAL5 :: PaymentGatewayData
-{-# NOINLINE sPECIAL5 #-}
-sPECIAL5 = unsafePerformIO ((new_1 "SPECIAL5"))
-
-sPECIAL6 :: PaymentGatewayData
-{-# NOINLINE sPECIAL6 #-}
-sPECIAL6 = unsafePerformIO ((new_1 "SPECIAL6"))
-
-sPECIAL7 :: PaymentGatewayData
-{-# NOINLINE sPECIAL7 #-}
-sPECIAL7 = unsafePerformIO ((new_1 "SPECIAL7"))
-
-sPECIAL8 :: PaymentGatewayData
-{-# NOINLINE sPECIAL8 #-}
-sPECIAL8 = unsafePerformIO ((new_1 "SPECIAL8"))
-
-sPECIAL9 :: PaymentGatewayData
-{-# NOINLINE sPECIAL9 #-}
-sPECIAL9 = unsafePerformIO ((new_1 "SPECIAL9"))
-
-newRecord_ :: IO PaymentGatewayData
-newRecord_ = do
-    header_ <- newJavaHeader
-    key <- newIORef ""
-    let this = PaymentGatewayData header_ key
-    jregisterLevel header_ this
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: PaymentGatewayData -> IO ()
-initFields_ this = do
-    jset this.key (javaNull)
-    pure ()
-
-new_1 :: String -> IO PaymentGatewayData
-new_1 value = do
-    this <- newRecord_
-    init_1 this value
-    pure this
-
-init_1 :: PaymentGatewayData -> String -> IO ()
-init_1 this value = do
-        initFields_ this
-        jset (this).key (value)
-        pure ()
+import JR
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: PaymentGatewayData))) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: PaymentGatewayData))
+jclass : String
+jclass =
+    "PaymentGatewayData"
 
-toString_impl :: PaymentGatewayData -> IO (String)
-toString_impl this = do
-        pure ((jget (this).key))
 
+jchain : List String
+jchain =
+    [ "PaymentGatewayData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "key", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PaymentGatewayData"
+        [ ( "jm_toString_0", jm_toString_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_CRYPTNUM", jstatic_CRYPTNUM ), ( "jstatic_ID", jstatic_ID ), ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_VALUE", jstatic_VALUE ), ( "jstatic_PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE", jstatic_PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE ), ( "jstatic_PAYMENTPROCESSORINTERFACEFACTORYINTERFACE", jstatic_PAYMENTPROCESSORINTERFACEFACTORYINTERFACE ), ( "jstatic_MODE", jstatic_MODE ), ( "jstatic_SERVERPROTOCOL", jstatic_SERVERPROTOCOL ), ( "jstatic_SERVER", jstatic_SERVER ), ( "jstatic_SERVERPORT", jstatic_SERVERPORT ), ( "jstatic_SERVERPATH", jstatic_SERVERPATH ), ( "jstatic_TESTPROTOCOL", jstatic_TESTPROTOCOL ), ( "jstatic_TESTSERVER", jstatic_TESTSERVER ), ( "jstatic_TESTPORT", jstatic_TESTPORT ), ( "jstatic_TESTPATH", jstatic_TESTPATH ), ( "jstatic_TIMEOUT", jstatic_TIMEOUT ), ( "jstatic_PROXYPROTOCOL", jstatic_PROXYPROTOCOL ), ( "jstatic_PROXYSERVER", jstatic_PROXYSERVER ), ( "jstatic_PROXYPATH", jstatic_PROXYPATH ), ( "jstatic_PROXYUSERNAME", jstatic_PROXYUSERNAME ), ( "jstatic_PROXYPASSWORD", jstatic_PROXYPASSWORD ), ( "jstatic_PROXYPORT", jstatic_PROXYPORT ), ( "jstatic_PROXYTIMEOUT", jstatic_PROXYTIMEOUT ), ( "jstatic_SPECIAL1", jstatic_SPECIAL1 ), ( "jstatic_SPECIAL2", jstatic_SPECIAL2 ), ( "jstatic_SPECIAL3", jstatic_SPECIAL3 ), ( "jstatic_SPECIAL4", jstatic_SPECIAL4 ), ( "jstatic_SPECIAL5", jstatic_SPECIAL5 ), ( "jstatic_SPECIAL6", jstatic_SPECIAL6 ), ( "jstatic_SPECIAL7", jstatic_SPECIAL7 ), ( "jstatic_SPECIAL8", jstatic_SPECIAL8 ), ( "jstatic_SPECIAL9", jstatic_SPECIAL9 ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_CRYPTNUM : JR.M
+jstatic_CRYPTNUM s =
+    JR.static "PaymentGatewayData" jclinit "CRYPTNUM"
+        (JR.int 5)
+        s
+
+
+jstatic_ID : JR.M
+jstatic_ID s =
+    JR.static "PaymentGatewayData" jclinit "ID"
+        (JR.new jnew_1 [ (JR.str "PAYMENTGATEWAY_ID") ])
+        s
+
+
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "PaymentGatewayData" jclinit "NAME"
+        (JR.new jnew_1 [ (JR.str "PAYMENTGATEWAY_NAME") ])
+        s
+
+
+jstatic_VALUE : JR.M
+jstatic_VALUE s =
+    JR.static "PaymentGatewayData" jclinit "VALUE"
+        (JR.new jnew_1 [ (JR.str "PAYMENTGATEWAY_VALUE") ])
+        s
+
+
+jstatic_PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE : JR.M
+jstatic_PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE s =
+    JR.static "PaymentGatewayData" jclinit "PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE"
+        (JR.new jnew_1 [ (JR.str "PAYMENTGATEWAY_PAYMENTTRANSACTIONINTERFACEFACTORYINTERFACE") ])
+        s
+
+
+jstatic_PAYMENTPROCESSORINTERFACEFACTORYINTERFACE : JR.M
+jstatic_PAYMENTPROCESSORINTERFACEFACTORYINTERFACE s =
+    JR.static "PaymentGatewayData" jclinit "PAYMENTPROCESSORINTERFACEFACTORYINTERFACE"
+        (JR.new jnew_1 [ (JR.str "PAYMENTGATEWAY_PAYMENTPROCESSORINTERFACEFACTORYINTERFACE") ])
+        s
+
+
+jstatic_MODE : JR.M
+jstatic_MODE s =
+    JR.static "PaymentGatewayData" jclinit "MODE"
+        (JR.new jnew_1 [ (JR.str "MODE") ])
+        s
+
+
+jstatic_SERVERPROTOCOL : JR.M
+jstatic_SERVERPROTOCOL s =
+    JR.static "PaymentGatewayData" jclinit "SERVERPROTOCOL"
+        (JR.new jnew_1 [ (JR.str "SERVERPROTOCOL") ])
+        s
+
+
+jstatic_SERVER : JR.M
+jstatic_SERVER s =
+    JR.static "PaymentGatewayData" jclinit "SERVER"
+        (JR.new jnew_1 [ (JR.str "SERVER") ])
+        s
+
+
+jstatic_SERVERPORT : JR.M
+jstatic_SERVERPORT s =
+    JR.static "PaymentGatewayData" jclinit "SERVERPORT"
+        (JR.new jnew_1 [ (JR.str "SERVERPORT") ])
+        s
+
+
+jstatic_SERVERPATH : JR.M
+jstatic_SERVERPATH s =
+    JR.static "PaymentGatewayData" jclinit "SERVERPATH"
+        (JR.new jnew_1 [ (JR.str "SERVERPATH") ])
+        s
+
+
+jstatic_TESTPROTOCOL : JR.M
+jstatic_TESTPROTOCOL s =
+    JR.static "PaymentGatewayData" jclinit "TESTPROTOCOL"
+        (JR.new jnew_1 [ (JR.str "TESTSERVERPROTOCOL") ])
+        s
+
+
+jstatic_TESTSERVER : JR.M
+jstatic_TESTSERVER s =
+    JR.static "PaymentGatewayData" jclinit "TESTSERVER"
+        (JR.new jnew_1 [ (JR.str "TESTSERVER") ])
+        s
+
+
+jstatic_TESTPORT : JR.M
+jstatic_TESTPORT s =
+    JR.static "PaymentGatewayData" jclinit "TESTPORT"
+        (JR.new jnew_1 [ (JR.str "TESTPORT") ])
+        s
+
+
+jstatic_TESTPATH : JR.M
+jstatic_TESTPATH s =
+    JR.static "PaymentGatewayData" jclinit "TESTPATH"
+        (JR.new jnew_1 [ (JR.str "TESTSERVERPATH") ])
+        s
+
+
+jstatic_TIMEOUT : JR.M
+jstatic_TIMEOUT s =
+    JR.static "PaymentGatewayData" jclinit "TIMEOUT"
+        (JR.new jnew_1 [ (JR.str "TIMEOUT") ])
+        s
+
+
+jstatic_PROXYPROTOCOL : JR.M
+jstatic_PROXYPROTOCOL s =
+    JR.static "PaymentGatewayData" jclinit "PROXYPROTOCOL"
+        (JR.new jnew_1 [ (JR.str "PROXYPROTOCOL") ])
+        s
+
+
+jstatic_PROXYSERVER : JR.M
+jstatic_PROXYSERVER s =
+    JR.static "PaymentGatewayData" jclinit "PROXYSERVER"
+        (JR.new jnew_1 [ (JR.str "PROXYSERVER") ])
+        s
+
+
+jstatic_PROXYPATH : JR.M
+jstatic_PROXYPATH s =
+    JR.static "PaymentGatewayData" jclinit "PROXYPATH"
+        (JR.new jnew_1 [ (JR.str "PROXYPATH") ])
+        s
+
+
+jstatic_PROXYUSERNAME : JR.M
+jstatic_PROXYUSERNAME s =
+    JR.static "PaymentGatewayData" jclinit "PROXYUSERNAME"
+        (JR.new jnew_1 [ (JR.str "PROXYUSERNAME") ])
+        s
+
+
+jstatic_PROXYPASSWORD : JR.M
+jstatic_PROXYPASSWORD s =
+    JR.static "PaymentGatewayData" jclinit "PROXYPASSWORD"
+        (JR.new jnew_1 [ (JR.str "PROXYPASSWORD") ])
+        s
+
+
+jstatic_PROXYPORT : JR.M
+jstatic_PROXYPORT s =
+    JR.static "PaymentGatewayData" jclinit "PROXYPORT"
+        (JR.new jnew_1 [ (JR.str "PROXYPORT") ])
+        s
+
+
+jstatic_PROXYTIMEOUT : JR.M
+jstatic_PROXYTIMEOUT s =
+    JR.static "PaymentGatewayData" jclinit "PROXYTIMEOUT"
+        (JR.new jnew_1 [ (JR.str "PROXYTIMEOUT") ])
+        s
+
+
+jstatic_SPECIAL1 : JR.M
+jstatic_SPECIAL1 s =
+    JR.static "PaymentGatewayData" jclinit "SPECIAL1"
+        (JR.new jnew_1 [ (JR.str "SPECIAL1") ])
+        s
+
+
+jstatic_SPECIAL2 : JR.M
+jstatic_SPECIAL2 s =
+    JR.static "PaymentGatewayData" jclinit "SPECIAL2"
+        (JR.new jnew_1 [ (JR.str "SPECIAL2") ])
+        s
+
+
+jstatic_SPECIAL3 : JR.M
+jstatic_SPECIAL3 s =
+    JR.static "PaymentGatewayData" jclinit "SPECIAL3"
+        (JR.new jnew_1 [ (JR.str "SPECIAL3") ])
+        s
+
+
+jstatic_SPECIAL4 : JR.M
+jstatic_SPECIAL4 s =
+    JR.static "PaymentGatewayData" jclinit "SPECIAL4"
+        (JR.new jnew_1 [ (JR.str "SPECIAL4") ])
+        s
+
+
+jstatic_SPECIAL5 : JR.M
+jstatic_SPECIAL5 s =
+    JR.static "PaymentGatewayData" jclinit "SPECIAL5"
+        (JR.new jnew_1 [ (JR.str "SPECIAL5") ])
+        s
+
+
+jstatic_SPECIAL6 : JR.M
+jstatic_SPECIAL6 s =
+    JR.static "PaymentGatewayData" jclinit "SPECIAL6"
+        (JR.new jnew_1 [ (JR.str "SPECIAL6") ])
+        s
+
+
+jstatic_SPECIAL7 : JR.M
+jstatic_SPECIAL7 s =
+    JR.static "PaymentGatewayData" jclinit "SPECIAL7"
+        (JR.new jnew_1 [ (JR.str "SPECIAL7") ])
+        s
+
+
+jstatic_SPECIAL8 : JR.M
+jstatic_SPECIAL8 s =
+    JR.static "PaymentGatewayData" jclinit "SPECIAL8"
+        (JR.new jnew_1 [ (JR.str "SPECIAL8") ])
+        s
+
+
+jstatic_SPECIAL9 : JR.M
+jstatic_SPECIAL9 s =
+    JR.static "PaymentGatewayData" jclinit "SPECIAL9"
+        (JR.new jnew_1 [ (JR.str "SPECIAL9") ])
+        s
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "value", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "key" "" JR.this (JR.local "value")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "key") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

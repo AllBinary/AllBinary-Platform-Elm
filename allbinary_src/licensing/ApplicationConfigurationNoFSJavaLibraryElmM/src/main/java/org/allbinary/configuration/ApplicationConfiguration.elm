@@ -1,245 +1,232 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.configuration
-module ApplicationConfiguration where
+module Org.Allbinary.Configuration.ApplicationConfiguration exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Feature -- org.allbinary.game.configuration.feature.Feature
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified MainFeatureFactory -- org.allbinary.game.configuration.feature.MainFeatureFactory
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.configuration
+-}
 
-data ApplicationConfiguration = ApplicationConfiguration
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , fullscreen :: IORef (Bool)
-    , showTitleBar :: IORef (Bool)
-    , progressBarView :: IORef (Bool)
-    }
-
-instance JavaNull ApplicationConfiguration where
-    javaNull = javaNullRecord "ApplicationConfiguration"
-
-instance JavaEquals ApplicationConfiguration where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ApplicationConfiguration where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ApplicationConfiguration where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-newRecord_ :: IO ApplicationConfiguration
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    fullscreen <- newIORef False
-    showTitleBar <- newIORef False
-    progressBarView <- newIORef False
-    let this = ApplicationConfiguration header_ logUtil fullscreen showTitleBar progressBarView
-    jregisterLevel header_ this
-    jregisterMethod header_ "read" (\() -> read_impl this)
-    jregisterMethod header_ "write" (\() -> write_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "setFullscreen" (\() -> setFullscreen_impl this)
-    jregisterMethod header_ "isFullscreen" (\() -> isFullscreen_impl this)
-    jregisterMethod header_ "setShowTitleBar" (\() -> setShowTitleBar_impl this)
-    jregisterMethod header_ "isShowTitleBar" (\() -> isShowTitleBar_impl this)
-    jregisterMethod header_ "setProgressBarView" (\() -> setProgressBarView_impl this)
-    jregisterMethod header_ "isProgressBarView" (\() -> isProgressBarView_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: ApplicationConfiguration -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.fullscreen (True)
-    jset this.showTitleBar (False)
-    jset this.progressBarView (False)
-    pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Game.Configuration.Feature.MainFeatureFactory as MainFeatureFactory
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (ApplicationConfiguration)
-getInstance = do
-        when ((jget ApplicationConfiguration.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset ApplicationConfiguration.instance_ (assignedValue)
-        pure ((javaCast (jget ApplicationConfiguration.instance_) :: ApplicationConfiguration))
-
-new_ :: IO ApplicationConfiguration
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ApplicationConfiguration -> IO ()
-init_ this = do
-        initFields_ this
-        handle (\(e :: JavaException) -> do
-            commonStrings <- (CommonStrings.getInstance)
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (commonStrings).eXCEPTION) this (jget (commonStrings).cONSTRUCTOR) e)
-            ) $ do
-            Control.Monad.void (ApplicationConfiguration.read this)
-        pure ()
+jclass : String
+jclass =
+    "ApplicationConfiguration"
 
 
--- throws Exception
-read :: (JavaObjectClass this_) => this_ -> IO (())
-read object_ = jmethod object_ "read" (\() -> (read_impl (javaCast object_ :: ApplicationConfiguration))) ()
-
-read_super :: (JavaObjectClass this_) => this_ -> IO (())
-read_super object_ = (read_impl (javaCast object_ :: ApplicationConfiguration))
-
-read_impl :: ApplicationConfiguration -> IO (())
-read_impl this = do
-        Control.Monad.void (ApplicationConfiguration.setFullscreen this True)
-        Control.Monad.void (ApplicationConfiguration.setProgressBarView this False)
-        Control.Monad.void (ApplicationConfiguration.setShowTitleBar this False)
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ("Read Configuration: " ++ (jio (ApplicationConfiguration.toString this))) this "read")
-        pure ()
+jchain : List String
+jchain =
+    [ "ApplicationConfiguration" ]
 
 
--- throws Exception
-write :: (JavaObjectClass this_) => this_ -> IO (())
-write object_ = jmethod object_ "write" (\() -> (write_impl (javaCast object_ :: ApplicationConfiguration))) ()
-
-write_super :: (JavaObjectClass this_) => this_ -> IO (())
-write_super object_ = (write_impl (javaCast object_ :: ApplicationConfiguration))
-
-write_impl :: ApplicationConfiguration -> IO (())
-write_impl this = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "fullscreen", JR.defaultOf "Z" ), ( "showTitleBar", JR.defaultOf "Z" ), ( "progressBarView", JR.defaultOf "Z" ) ]
 
 
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-update object_ a1 = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: ApplicationConfiguration))) () a1
-
-update_super :: (JavaObjectClass this_) => this_ -> Feature.Feature -> IO (())
-update_super object_ a1 = (update_impl (javaCast object_ :: ApplicationConfiguration)) a1
-
-update_impl :: ApplicationConfiguration -> Feature.Feature -> IO (())
-update_impl this gameFeature = do
-        when (gameFeature == (jget ((jio (MainFeatureFactory.getInstance))).fULL_SCREEN)) $ do
-            features <- (Features.getInstance)
-            if (jio (Features.isFeature features gameFeature)) then do
-                when (Prelude.not (jio (ApplicationConfiguration.isFullscreen this))) $ do
-                    Control.Monad.void (ApplicationConfiguration.setFullscreen this True)
-                    Control.Monad.void (ApplicationConfiguration.write this)
-            else do
-                when (jio (ApplicationConfiguration.isFullscreen this)) $ do
-                    Control.Monad.void (ApplicationConfiguration.setFullscreen this False)
-                    Control.Monad.void (ApplicationConfiguration.write this)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "read_0", jm_read_0 )
+        , ( "write_0", jm_write_0 )
+        , ( "update_1", jm_update_1 )
+        , ( "setFullscreen_1", jm_setFullscreen_1 )
+        , ( "isFullscreen_0", jm_isFullscreen_0 )
+        , ( "setShowTitleBar_1", jm_setShowTitleBar_1 )
+        , ( "isShowTitleBar_0", jm_isShowTitleBar_0 )
+        , ( "setProgressBarView_1", jm_setProgressBarView_1 )
+        , ( "isProgressBarView_0", jm_isProgressBarView_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
 
-setFullscreen :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setFullscreen object_ a1 = jmethod object_ "setFullscreen" (\() -> (setFullscreen_impl (javaCast object_ :: ApplicationConfiguration))) () a1
-
-setFullscreen_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setFullscreen_super object_ a1 = (setFullscreen_impl (javaCast object_ :: ApplicationConfiguration)) a1
-
-setFullscreen_impl :: ApplicationConfiguration -> Bool -> IO (())
-setFullscreen_impl this fullscreen = do
-        jset (this).fullscreen (fullscreen)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ApplicationConfiguration"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_read_0", jm_read_0 ), ( "jm_write_0", jm_write_0 ), ( "jm_update_1", jm_update_1 ), ( "jm_setFullscreen_1", jm_setFullscreen_1 ), ( "jm_isFullscreen_0", jm_isFullscreen_0 ), ( "jm_setShowTitleBar_1", jm_setShowTitleBar_1 ), ( "jm_isShowTitleBar_0", jm_isShowTitleBar_0 ), ( "jm_setProgressBarView_1", jm_setProgressBarView_1 ), ( "jm_isProgressBarView_0", jm_isProgressBarView_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-isFullscreen :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isFullscreen object_ = jmethod object_ "isFullscreen" (\() -> (isFullscreen_impl (javaCast object_ :: ApplicationConfiguration))) ()
-
-isFullscreen_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isFullscreen_super object_ = (isFullscreen_impl (javaCast object_ :: ApplicationConfiguration))
-
-isFullscreen_impl :: ApplicationConfiguration -> IO (Bool)
-isFullscreen_impl this = do
-        pure ((jget (this).fullscreen))
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setShowTitleBar :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setShowTitleBar object_ a1 = jmethod object_ "setShowTitleBar" (\() -> (setShowTitleBar_impl (javaCast object_ :: ApplicationConfiguration))) () a1
-
-setShowTitleBar_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setShowTitleBar_super object_ a1 = (setShowTitleBar_impl (javaCast object_ :: ApplicationConfiguration)) a1
-
-setShowTitleBar_impl :: ApplicationConfiguration -> Bool -> IO (())
-setShowTitleBar_impl this showTitleBar = do
-        jset (this).showTitleBar (showTitleBar)
-        pure ()
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ApplicationConfiguration" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
 
 
-isShowTitleBar :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isShowTitleBar object_ = jmethod object_ "isShowTitleBar" (\() -> (isShowTitleBar_impl (javaCast object_ :: ApplicationConfiguration))) ()
-
-isShowTitleBar_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isShowTitleBar_super object_ = (isShowTitleBar_impl (javaCast object_ :: ApplicationConfiguration))
-
-isShowTitleBar_impl :: ApplicationConfiguration -> IO (Bool)
-isShowTitleBar_impl this = do
-        pure ((jget (this).showTitleBar))
-
-
-setProgressBarView :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setProgressBarView object_ a1 = jmethod object_ "setProgressBarView" (\() -> (setProgressBarView_impl (javaCast object_ :: ApplicationConfiguration))) () a1
-
-setProgressBarView_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setProgressBarView_super object_ a1 = (setProgressBarView_impl (javaCast object_ :: ApplicationConfiguration)) a1
-
-setProgressBarView_impl :: ApplicationConfiguration -> Bool -> IO (())
-setProgressBarView_impl this progressBarView = do
-        jset (this).progressBarView (progressBarView)
-        pure ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "fullscreen" "Z" JR.this (JR.bool True)),
+                JR.exec (JR.setField "showTitleBar" "Z" JR.this (JR.bool False)),
+                JR.exec (JR.setField "progressBarView" "Z" JR.this (JR.bool False)),
+                identity,
+                (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "read_0" JR.this []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.local "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.local "commonStrings")), (JR.local "e") ]) ]) ) ] identity ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-isProgressBarView :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isProgressBarView object_ = jmethod object_ "isProgressBarView" (\() -> (isProgressBarView_impl (javaCast object_ :: ApplicationConfiguration))) ()
-
-isProgressBarView_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isProgressBarView_super object_ = (isProgressBarView_impl (javaCast object_ :: ApplicationConfiguration))
-
-isProgressBarView_impl :: ApplicationConfiguration -> IO (Bool)
-isProgressBarView_impl this = do
-        pure ((jget (this).progressBarView))
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: ApplicationConfiguration))) ()
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "ApplicationConfiguration.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: ApplicationConfiguration))
 
-toString_impl :: ApplicationConfiguration -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "isFullscreen: ")
-        Control.Monad.void (StringMaker.appendboolean stringBuffer (jio (ApplicationConfiguration.isFullscreen this)))
-        Control.Monad.void (StringMaker.append stringBuffer " isProgressBarView: ")
-        Control.Monad.void (StringMaker.appendboolean stringBuffer (jio (ApplicationConfiguration.isProgressBarView this)))
-        Control.Monad.void (StringMaker.append stringBuffer " isShowTitleBar: ")
-        Control.Monad.void (StringMaker.appendboolean stringBuffer (jio (ApplicationConfiguration.isShowTitleBar this)))
-        (StringMaker.toString stringBuffer)
+jm_read_0 : JR.Method
+jm_read_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setFullscreen_1" JR.this [ (JR.bool True) ]), 
+                    JR.exec (JR.invoke "setProgressBarView_1" JR.this [ (JR.bool False) ]), 
+                    JR.exec (JR.invoke "setShowTitleBar_1" JR.this [ (JR.bool False) ]), 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "Read Configuration: ") (JR.invoke "toString_0" JR.this [])), JR.this, (JR.str "read") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_write_0 : JR.Method
+jm_write_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_1 : JR.Method
+jm_update_1 jheap jthis jargs =
+    JR.method [ ( "gameFeature", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "gameFeature") (JR.field "FULL_SCREEN" (JR.callStatic MainFeatureFactory.jm_getInstance_0 []))) (JR.run [ 
+                        JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                        JR.ifElse (JR.invoke "isFeature_1" (JR.local "features") [ (JR.local "gameFeature") ]) (JR.run [ 
+                            JR.ifElse (JR.map JR.not_ (JR.invoke "isFullscreen_0" JR.this [])) (JR.run [ 
+                                JR.exec (JR.invoke "setFullscreen_1" JR.this [ (JR.bool True) ]), 
+                                JR.exec (JR.invoke "write_0" JR.this []) ]) identity ]) (JR.run [ 
+                            JR.ifElse (JR.invoke "isFullscreen_0" JR.this []) (JR.run [ 
+                                JR.exec (JR.invoke "setFullscreen_1" JR.this [ (JR.bool False) ]), 
+                                JR.exec (JR.invoke "write_0" JR.this []) ]) identity ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFullscreen_1 : JR.Method
+jm_setFullscreen_1 jheap jthis jargs =
+    JR.method [ ( "fullscreen", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "fullscreen" "Z" JR.this (JR.local "fullscreen")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isFullscreen_0 : JR.Method
+jm_isFullscreen_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "fullscreen") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setShowTitleBar_1 : JR.Method
+jm_setShowTitleBar_1 jheap jthis jargs =
+    JR.method [ ( "showTitleBar", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "showTitleBar" "Z" JR.this (JR.local "showTitleBar")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isShowTitleBar_0 : JR.Method
+jm_isShowTitleBar_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "showTitleBar") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setProgressBarView_1 : JR.Method
+jm_setProgressBarView_1 jheap jthis jargs =
+    JR.method [ ( "progressBarView", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "progressBarView" "Z" JR.this (JR.local "progressBarView")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isProgressBarView_0 : JR.Method
+jm_isProgressBarView_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "progressBarView") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "isFullscreen: ") ]), 
+                    JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.invoke "isFullscreen_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " isProgressBarView: ") ]), 
+                    JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.invoke "isProgressBarView_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " isShowTitleBar: ") ]), 
+                    JR.exec (JR.invoke "appendboolean_1" (JR.local "stringBuffer") [ (JR.invoke "isShowTitleBar_0" JR.this []) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

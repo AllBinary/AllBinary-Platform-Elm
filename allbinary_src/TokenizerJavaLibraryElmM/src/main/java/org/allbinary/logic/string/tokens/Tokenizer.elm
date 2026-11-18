@@ -1,191 +1,163 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.string.tokens
-module Tokenizer where
+module Org.Allbinary.Logic.String.Tokens.Tokenizer exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified ABHashtable -- org.allbinary.util.ABHashtable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.logic.string.tokens
+-}
 
-data Tokenizer = Tokenizer
-    { header_ :: JavaHeader
-    , sep :: IORef (String)
-    , endSep :: IORef (String)
-    }
-
-instance JavaNull Tokenizer where
-    javaNull = javaNullRecord "Tokenizer"
-
-instance JavaEquals Tokenizer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Tokenizer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Tokenizer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO Tokenizer
-newRecord_ = do
-    header_ <- newJavaHeader
-    sep <- newIORef ""
-    endSep <- newIORef ""
-    let this = Tokenizer header_ sep endSep
-    jregisterLevel header_ this
-    jregisterMethod header_ "setSep" (\() -> setSep_impl this)
-    jregisterMethod header_ "setEndSep" (\() -> setEndSep_impl this)
-    jregisterMethod header_ "getInsideSep" (\() -> getInsideSep_impl this)
-    jregisterMethod header_ "getTokensFromString" (\() -> getTokensFromString_impl this)
-    jregisterMethod header_ "getTokens" (\() -> getTokens_impl this)
-    pure this
-
-initFields_ :: Tokenizer -> IO ()
-initFields_ this = do
-    jset this.sep (javaNull)
-    jset this.endSep ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    pure ()
-
-new_1 :: String -> IO Tokenizer
-new_1 sep = do
-    this <- newRecord_
-    init_1 this sep
-    pure this
-
-init_1 :: Tokenizer -> String -> IO ()
-init_1 this sep = do
-        initFields_ this
-        when ((jio (TsUtil.compareTo ((jio (TsUtil.getInstance))) sep (jget ((jio (StringUtil.getInstance))).eMPTY_STRING))) == 0) $ do
-            javaThrow ((JavaException "Exception" "Sep provided is not valid"))
-        jset (this).sep (sep)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.TsUtil as TsUtil
 
 
-setSep :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setSep object_ a1 = jmethod object_ "setSep" (\() -> (setSep_impl (javaCast object_ :: Tokenizer))) () a1
-
-setSep_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setSep_super object_ a1 = (setSep_impl (javaCast object_ :: Tokenizer)) a1
-
-setSep_impl :: Tokenizer -> String -> IO (())
-setSep_impl this sep = do
-        jset (this).sep (sep)
-        pure ()
+jclass : String
+jclass =
+    "Tokenizer"
 
 
-setEndSep :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setEndSep object_ a1 = jmethod object_ "setEndSep" (\() -> (setEndSep_impl (javaCast object_ :: Tokenizer))) () a1
-
-setEndSep_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setEndSep_super object_ a1 = (setEndSep_impl (javaCast object_ :: Tokenizer)) a1
-
-setEndSep_impl :: Tokenizer -> String -> IO (())
-setEndSep_impl this endSep = do
-        jset (this).endSep (endSep)
-        pure ()
+jchain : List String
+jchain =
+    [ "Tokenizer" ]
 
 
-getInsideSep :: (JavaObjectClass this_) => this_ -> String -> IO (BasicArrayList.BasicArrayList)
-getInsideSep object_ a1 = jmethod object_ "getInsideSep" (\() -> (getInsideSep_impl (javaCast object_ :: Tokenizer))) () a1
-
-getInsideSep_super :: (JavaObjectClass this_) => this_ -> String -> IO (BasicArrayList.BasicArrayList)
-getInsideSep_super object_ a1 = (getInsideSep_impl (javaCast object_ :: Tokenizer)) a1
-
-getInsideSep_impl :: Tokenizer -> String -> IO (BasicArrayList.BasicArrayList)
-getInsideSep_impl this string = do
-        tokenList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        index <- newIORef (0 :: Int)
-        let size = (Prelude.length string)
-        fix $ \loop -> when ((jget index) < size) $ javaIteration (loop) $ do
-            jset index ((jstringIndexOf string (jget (this).sep) (jget index)))
-            if ((jget index) /= (Prelude.negate 1)) then do
-                let end = (jstringIndexOf string (jget (this).endSep) ((jget index) + (Prelude.length (jget (this).sep))))
-                if (end /= (Prelude.negate 1)) then do
-                    Control.Monad.void (BasicArrayList.add tokenList (Prelude.take (((end - (((Prelude.length (jget (this).endSep)) - 1)))) - (((jget index) + (Prelude.length (jget (this).sep))))) (Prelude.drop (((jget index) + (Prelude.length (jget (this).sep)))) string)))
-                    jset index ((end + (Prelude.length (jget (this).endSep))))
-                else do
-                    pure ()
-            else do
-                throwIO JavaBreak
-        pure (tokenList)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "sep", JR.defaultOf "" ), ( "endSep", JR.defaultOf "" ) ]
 
 
-getTokensFromString :: (JavaObjectClass this_) => this_ -> String -> BasicArrayList.BasicArrayList -> IO (BasicArrayList.BasicArrayList)
-getTokensFromString object_ a1 a2 = jmethod object_ "getTokensFromString" (\() -> (getTokensFromString_impl (javaCast object_ :: Tokenizer))) () a1 a2
-
-getTokensFromString_super :: (JavaObjectClass this_) => this_ -> String -> BasicArrayList.BasicArrayList -> IO (BasicArrayList.BasicArrayList)
-getTokensFromString_super object_ a1 a2 = (getTokensFromString_impl (javaCast object_ :: Tokenizer)) a1 a2
-
-getTokensFromString_impl :: Tokenizer -> String -> BasicArrayList.BasicArrayList -> IO (BasicArrayList.BasicArrayList)
-getTokensFromString_impl this string tokenVector = do
-        index <- newIORef (0 :: Int)
-        end <- newIORef (0 :: Int)
-        fix $ \loop -> when ((jget index) < (Prelude.length string)) $ javaIteration (loop) $ do
-            jset end ((jstringIndexOf string (jget (this).sep) (jget index)))
-            if ((jget end) /= (Prelude.negate 1)) then do
-                Control.Monad.void (BasicArrayList.add tokenVector (Prelude.take (((jget end)) - ((jget index))) (Prelude.drop ((jget index)) string)))
-                jset index (((jget end) + (Prelude.length (jget (this).sep))))
-            else do
-                Control.Monad.void (BasicArrayList.add tokenVector (Prelude.take (((Prelude.length string)) - ((jget index))) (Prelude.drop ((jget index)) string)))
-                throwIO JavaBreak
-        pure (tokenVector)
+jvtable =
+    JR.vtable
+        [ ( "setSep_1", jm_setSep_1 )
+        , ( "setEndSep_1", jm_setEndSep_1 )
+        , ( "getInsideSep_1", jm_getInsideSep_1 )
+        , ( "getTokensFromString_2", jm_getTokensFromString_2 )
+        , ( "getTokens_1", jm_getTokens_1 ) ]
+        JR.noMethods
 
 
-getTokens :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (ABHashtable.ABHashtable)
-getTokens object_ a1 = jmethod object_ "getTokens" (\() -> (getTokens_impl (javaCast object_ :: Tokenizer))) () a1
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Tokenizer"
+        [ ( "jm_setSep_1", jm_setSep_1 ), ( "jm_setEndSep_1", jm_setEndSep_1 ), ( "jm_getInsideSep_1", jm_getInsideSep_1 ), ( "jm_getTokensFromString_2", jm_getTokensFromString_2 ), ( "jm_getTokens_1", jm_getTokens_1 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
-getTokens_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (ABHashtable.ABHashtable)
-getTokens_super object_ a1 = (getTokens_impl (javaCast object_ :: Tokenizer)) a1
 
-getTokens_impl :: Tokenizer -> BasicArrayList.BasicArrayList -> IO (ABHashtable.ABHashtable)
-getTokens_impl this stringVector = do
-        tokenHashtable <- (StdUtil.createHashtable ((jio (StdUtil.getInstance))))
-        string <- newIORef ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-        end <- newIORef (0 :: Int)
-        size <- (BasicArrayList.size stringVector)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset string ((javaCast (jindex ((jget (stringVector).objectArray)) (index)) :: String))
-            jset end ((jstringIndexOf (jget string) (jget (this).sep) 0))
-            when ((jget end) >= 0) $ do
-                Control.Monad.void (ABHashtable.put tokenHashtable (Prelude.take (((jget end)) - (0)) (Prelude.drop (0) (jget string))) (Prelude.take (((Prelude.length (jget string))) - (((jget end) + 1))) (Prelude.drop (((jget end) + 1)) (jget string))))
-        pure (tokenHashtable)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "sep", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "endSep" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_2" (JR.callStatic TsUtil.jm_getInstance_0 []) [ (JR.local "sep"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]) (JR.int 0)) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Sep provided is not valid") ]) ]) identity, 
+                    JR.exec (JR.setField "sep" "" JR.this (JR.local "sep")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_setSep_1 : JR.Method
+jm_setSep_1 jheap jthis jargs =
+    JR.method [ ( "sep", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "sep" "" JR.this (JR.local "sep")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setEndSep_1 : JR.Method
+jm_setEndSep_1 jheap jthis jargs =
+    JR.method [ ( "endSep", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "endSep" "" JR.this (JR.local "endSep")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInsideSep_1 : JR.Method
+jm_getInsideSep_1 jheap jthis jargs =
+    JR.method [ ( "string", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "tokenList" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "index" "I" (JR.int 0), 
+                    JR.declare "size" "I" (JR.invoke "length_0" (JR.local "string") []), 
+                    JR.while (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ 
+                        JR.exec (JR.setLocal "index" "I" (JR.invoke "indexOf_2" (JR.local "string") [ (JR.thisField "sep"), (JR.local "index") ])), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "index") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                            JR.declare "end" "I" (JR.invoke "indexOf_2" (JR.local "string") [ (JR.thisField "endSep"), (JR.map2 JR.add (JR.local "index") (JR.invoke "length_0" (JR.thisField "sep") [])) ]), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "end") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                                JR.exec (JR.invoke "add_1" (JR.local "tokenList") [ (JR.invoke "substring_2" (JR.local "string") [ (JR.map2 JR.add (JR.local "index") (JR.invoke "length_0" (JR.thisField "sep") [])), (JR.map2 JR.sub (JR.local "end") ((JR.map2 JR.sub (JR.invoke "length_0" (JR.thisField "endSep") []) (JR.int 1)))) ]) ]), 
+                                JR.exec (JR.setLocal "index" "I" (JR.map2 JR.add (JR.local "end") (JR.invoke "length_0" (JR.thisField "endSep") []))) ]) identity ]) (JR.run [ 
+                            JR.break ]) ]), 
+                    JR.return (JR.local "tokenList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTokensFromString_2 : JR.Method
+jm_getTokensFromString_2 jheap jthis jargs =
+    JR.method [ ( "string", "" ), ( "tokenVector", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "index" "I" (JR.int 0), 
+                    JR.declare "end" "I" (JR.int 0), 
+                    JR.while (JR.map2 JR.less (JR.local "index") (JR.invoke "length_0" (JR.local "string") [])) (JR.run [ 
+                        JR.exec (JR.setLocal "end" "I" (JR.invoke "indexOf_2" (JR.local "string") [ (JR.thisField "sep"), (JR.local "index") ])), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.local "end") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "tokenVector") [ (JR.invoke "substring_2" (JR.local "string") [ (JR.local "index"), (JR.local "end") ]) ]), 
+                            JR.exec (JR.setLocal "index" "I" (JR.map2 JR.add (JR.local "end") (JR.invoke "length_0" (JR.thisField "sep") []))) ]) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "tokenVector") [ (JR.invoke "substring_2" (JR.local "string") [ (JR.local "index"), (JR.invoke "length_0" (JR.local "string") []) ]) ]), 
+                            JR.break ]) ]), 
+                    JR.return (JR.local "tokenVector") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTokens_1 : JR.Method
+jm_getTokens_1 jheap jthis jargs =
+    JR.method [ ( "stringVector", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "tokenHashtable" "" (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) []), 
+                    JR.declare "string" "" (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), 
+                    JR.declare "end" "I" (JR.int 0), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "stringVector") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68335 -> (JR.setLocal "index" "I" (JR.lit jwN68335))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "string" "" (JR.aget (JR.field "objectArray" (JR.local "stringVector")) (JR.local "index"))), 
+                        JR.exec (JR.setLocal "end" "I" (JR.invoke "indexOf_1" (JR.local "string") [ (JR.thisField "sep") ])), 
+                        JR.ifElse (JR.map2 JR.greaterEquals (JR.local "end") (JR.int 0)) (JR.run [ 
+                            JR.exec (JR.invoke "put_2" (JR.local "tokenHashtable") [ (JR.invoke "substring_2" (JR.local "string") [ (JR.int 0), (JR.local "end") ]), (JR.invoke "substring_2" (JR.local "string") [ (JR.map2 JR.add (JR.local "end") (JR.int 1)), (JR.invoke "length_0" (JR.local "string") []) ]) ]) ]) identity ]) ], 
+                    JR.return (JR.local "tokenHashtable") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

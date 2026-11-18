@@ -1,148 +1,227 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user
-module UserData where
+module Org.Allbinary.Business.User.UserData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user
+-}
 
-data UserData = UserData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull UserData where
-    javaNull = javaNullRecord "UserData"
 
-instance JavaEquals UserData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq UserData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "UserData"
 
-instance JavaObjectClass UserData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-mAXLEN :: IORef (Int)
-{-# NOINLINE mAXLEN #-}
-mAXLEN = unsafePerformIO (newIORef (250))
+jchain : List String
+jchain =
+    [ "UserData" ]
 
-nAME :: String
-nAME = "USER_NAME"
 
-uSERNAME :: String
-uSERNAME = "CUSTOMER_USER_NAME"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-pASSWORD :: String
-pASSWORD = "CUSTOMER_PASSWORD"
 
-pREFIXNAME :: String
-pREFIXNAME = "CUSTOMER_PREFIX_NAME"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-fIRSTNAME :: String
-fIRSTNAME = "CUSTOMER_FIRST_NAME"
 
-lASTNAME :: String
-lASTNAME = "CUSTOMER_LAST_NAME"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "UserData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_MAXLEN", jstatic_MAXLEN ), ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_USERNAME", jstatic_USERNAME ), ( "jstatic_PASSWORD", jstatic_PASSWORD ), ( "jstatic_PREFIXNAME", jstatic_PREFIXNAME ), ( "jstatic_FIRSTNAME", jstatic_FIRSTNAME ), ( "jstatic_LASTNAME", jstatic_LASTNAME ), ( "jstatic_MIDDLENAME", jstatic_MIDDLENAME ), ( "jstatic_SUFFIXNAME", jstatic_SUFFIXNAME ), ( "jstatic_COMPANY", jstatic_COMPANY ), ( "jstatic_POSITIONATCOMPANY", jstatic_POSITIONATCOMPANY ), ( "jstatic_MAINEMAIL", jstatic_MAINEMAIL ), ( "jstatic_SECONDARYEMAIL", jstatic_SECONDARYEMAIL ), ( "jstatic_HOMEPHONE", jstatic_HOMEPHONE ), ( "jstatic_CELLPHONE", jstatic_CELLPHONE ), ( "jstatic_WORKPHONE", jstatic_WORKPHONE ), ( "jstatic_OTHERCONTACT", jstatic_OTHERCONTACT ), ( "jstatic_ELECTRONICDEVICE", jstatic_ELECTRONICDEVICE ), ( "jstatic_FAX", jstatic_FAX ), ( "jstatic_SECRET", jstatic_SECRET ), ( "jstatic_PERMISSIONS", jstatic_PERMISSIONS ), ( "jstatic_CONFIGURATION", jstatic_CONFIGURATION ) ]
+        jheap
 
-mIDDLENAME :: String
-mIDDLENAME = "CUSTOMER_MIDDLE_NAME"
 
-sUFFIXNAME :: String
-sUFFIXNAME = "CUSTOMER_SUFFIX_NAME"
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-cOMPANY :: String
-cOMPANY = "CUSTOMER_COMPANY"
 
-pOSITIONATCOMPANY :: String
-pOSITIONATCOMPANY = "CUSTOMER_POSITION_AT_COMPANY"
+jstatic_MAXLEN : JR.M
+jstatic_MAXLEN s =
+    JR.static "UserData" jclinit "MAXLEN"
+        (JR.int 250)
+        s
 
-mAINEMAIL :: String
-mAINEMAIL = "CUSTOMER_MAIN_EMAIL"
 
-sECONDARYEMAIL :: String
-sECONDARYEMAIL = "CUSTOMER_SECONDARY_EMAIL"
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "UserData" jclinit "NAME"
+        (JR.str "USER_NAME")
+        s
 
-hOMEPHONE :: String
-hOMEPHONE = "CUSTOMER_HOME_PHONE"
 
-cELLPHONE :: String
-cELLPHONE = "CUSTOMER_CELL_PHONE"
+jstatic_USERNAME : JR.M
+jstatic_USERNAME s =
+    JR.static "UserData" jclinit "USERNAME"
+        (JR.str "CUSTOMER_USER_NAME")
+        s
 
-wORKPHONE :: String
-wORKPHONE = "CUSTOMER_WORK_PHONE"
 
-oTHERCONTACT :: String
-oTHERCONTACT = "CUSTOMER_OTHER_CONTACT"
+jstatic_PASSWORD : JR.M
+jstatic_PASSWORD s =
+    JR.static "UserData" jclinit "PASSWORD"
+        (JR.str "CUSTOMER_PASSWORD")
+        s
 
-eLECTRONICDEVICE :: String
-eLECTRONICDEVICE = "CUSTOMER_ELECTRONIC_DEVICE"
 
-fAX :: String
-fAX = "CUSTOMER_FAX"
+jstatic_PREFIXNAME : JR.M
+jstatic_PREFIXNAME s =
+    JR.static "UserData" jclinit "PREFIXNAME"
+        (JR.str "CUSTOMER_PREFIX_NAME")
+        s
 
-sECRET :: String
-sECRET = "CUSTOMER_SECRET"
 
-pERMISSIONS :: String
-pERMISSIONS = "CUSTOMER_PERMISSIONS"
+jstatic_FIRSTNAME : JR.M
+jstatic_FIRSTNAME s =
+    JR.static "UserData" jclinit "FIRSTNAME"
+        (JR.str "CUSTOMER_FIRST_NAME")
+        s
 
-cONFIGURATION :: String
-cONFIGURATION = "CUSTOMER_CONFIGURATION"
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jstatic_LASTNAME : JR.M
+jstatic_LASTNAME s =
+    JR.static "UserData" jclinit "LASTNAME"
+        (JR.str "CUSTOMER_LAST_NAME")
+        s
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO UserData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = UserData header_
-    jregisterLevel header_ this
-    pure this
+jstatic_MIDDLENAME : JR.M
+jstatic_MIDDLENAME s =
+    JR.static "UserData" jclinit "MIDDLENAME"
+        (JR.str "CUSTOMER_MIDDLE_NAME")
+        s
 
-initFields_ :: UserData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO UserData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jstatic_SUFFIXNAME : JR.M
+jstatic_SUFFIXNAME s =
+    JR.static "UserData" jclinit "SUFFIXNAME"
+        (JR.str "CUSTOMER_SUFFIX_NAME")
+        s
 
-init_ :: UserData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jstatic_COMPANY : JR.M
+jstatic_COMPANY s =
+    JR.static "UserData" jclinit "COMPANY"
+        (JR.str "CUSTOMER_COMPANY")
+        s
+
+
+jstatic_POSITIONATCOMPANY : JR.M
+jstatic_POSITIONATCOMPANY s =
+    JR.static "UserData" jclinit "POSITIONATCOMPANY"
+        (JR.str "CUSTOMER_POSITION_AT_COMPANY")
+        s
+
+
+jstatic_MAINEMAIL : JR.M
+jstatic_MAINEMAIL s =
+    JR.static "UserData" jclinit "MAINEMAIL"
+        (JR.str "CUSTOMER_MAIN_EMAIL")
+        s
+
+
+jstatic_SECONDARYEMAIL : JR.M
+jstatic_SECONDARYEMAIL s =
+    JR.static "UserData" jclinit "SECONDARYEMAIL"
+        (JR.str "CUSTOMER_SECONDARY_EMAIL")
+        s
+
+
+jstatic_HOMEPHONE : JR.M
+jstatic_HOMEPHONE s =
+    JR.static "UserData" jclinit "HOMEPHONE"
+        (JR.str "CUSTOMER_HOME_PHONE")
+        s
+
+
+jstatic_CELLPHONE : JR.M
+jstatic_CELLPHONE s =
+    JR.static "UserData" jclinit "CELLPHONE"
+        (JR.str "CUSTOMER_CELL_PHONE")
+        s
+
+
+jstatic_WORKPHONE : JR.M
+jstatic_WORKPHONE s =
+    JR.static "UserData" jclinit "WORKPHONE"
+        (JR.str "CUSTOMER_WORK_PHONE")
+        s
+
+
+jstatic_OTHERCONTACT : JR.M
+jstatic_OTHERCONTACT s =
+    JR.static "UserData" jclinit "OTHERCONTACT"
+        (JR.str "CUSTOMER_OTHER_CONTACT")
+        s
+
+
+jstatic_ELECTRONICDEVICE : JR.M
+jstatic_ELECTRONICDEVICE s =
+    JR.static "UserData" jclinit "ELECTRONICDEVICE"
+        (JR.str "CUSTOMER_ELECTRONIC_DEVICE")
+        s
+
+
+jstatic_FAX : JR.M
+jstatic_FAX s =
+    JR.static "UserData" jclinit "FAX"
+        (JR.str "CUSTOMER_FAX")
+        s
+
+
+jstatic_SECRET : JR.M
+jstatic_SECRET s =
+    JR.static "UserData" jclinit "SECRET"
+        (JR.str "CUSTOMER_SECRET")
+        s
+
+
+jstatic_PERMISSIONS : JR.M
+jstatic_PERMISSIONS s =
+    JR.static "UserData" jclinit "PERMISSIONS"
+        (JR.str "CUSTOMER_PERMISSIONS")
+        s
+
+
+jstatic_CONFIGURATION : JR.M
+jstatic_CONFIGURATION s =
+    JR.static "UserData" jclinit "CONFIGURATION"
+        (JR.str "CUSTOMER_CONFIGURATION")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

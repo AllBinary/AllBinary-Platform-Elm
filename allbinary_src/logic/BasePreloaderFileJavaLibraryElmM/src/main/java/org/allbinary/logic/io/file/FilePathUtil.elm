@@ -1,97 +1,91 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
-module FilePathUtil where
+module Org.Allbinary.Logic.Io.File.FilePathUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified FilePathData -- same package or java.lang
-import qualified AbPathData -- org.allbinary.logic.io.path.AbPathData
-import qualified StringValidationUtil -- org.allbinary.logic.string.StringValidationUtil
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file
+-}
 
-data FilePathUtil = FilePathUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull FilePathUtil where
-    javaNull = javaNullRecord "FilePathUtil"
-
-instance JavaEquals FilePathUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FilePathUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FilePathUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO FilePathUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = FilePathUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: FilePathUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO FilePathUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: FilePathUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Logic.Io.Path.AbPathData as AbPathData
+import Org.Allbinary.Logic.Io.File.FilePathData as FilePathData
+import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
 
 
-adjust :: String -> IO (String)
-adjust path = do
-    path <- newIORef path
-    javaCatchReturn $ do
-        abPathData <- (AbPathData.getInstance)
-        stringValidationUtil <- (StringValidationUtil.getInstance)
-        filePathData <- (FilePathData.getInstance)
-        when (jio (StringValidationUtil.isEmpty stringValidationUtil (jget path))) $ do
-            javaReturn ((jget (filePathData).pATH_START))
-        jset path ((jstringReplace (jget path) (jget (abPathData).sEPARATORCHAR) (jget (filePathData).sEPARATORCHAR)))
-        pure ((jget path))
+jclass : String
+jclass =
+    "FilePathUtil"
 
+
+jchain : List String
+jchain =
+    [ "FilePathUtil" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "adjust_1", jm_adjust_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FilePathUtil"
+        [ ( "jm_adjust_1", jm_adjust_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_adjust_1 : JR.Method
+jm_adjust_1 jheap jthis jargs =
+    JR.method [ ( "path", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "abPathData" "" (JR.callStatic AbPathData.jm_getInstance_0 []), 
+                    JR.declare "stringValidationUtil" "" (JR.callStatic StringValidationUtil.jm_getInstance_0 []), 
+                    JR.declare "filePathData" "" (JR.callStatic FilePathData.jm_getInstance_0 []), 
+                    JR.ifElse (JR.invoke "isEmpty_1" (JR.local "stringValidationUtil") [ (JR.local "path") ]) (JR.run [ 
+                        JR.return (JR.field "PATH_START" (JR.local "filePathData")) ]) identity, 
+                    JR.exec (JR.setLocal "path" "" (JR.invoke "replace_2" (JR.local "path") [ (JR.field "SEPARATORCHAR" (JR.local "abPathData")), (JR.field "SEPARATORCHAR" (JR.local "filePathData")) ])), 
+                    JR.return (JR.local "path") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,96 +1,108 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.control.contraints.display.browser
-module DisplayInBrowserContraintsData where
+module Org.Allbinary.Logic.Control.Contraints.Display.Browser.DisplayInBrowserContraintsData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.control.contraints.display.browser
+-}
 
-data DisplayInBrowserContraintsData = DisplayInBrowserContraintsData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull DisplayInBrowserContraintsData where
-    javaNull = javaNullRecord "DisplayInBrowserContraintsData"
 
-instance JavaEquals DisplayInBrowserContraintsData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq DisplayInBrowserContraintsData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "DisplayInBrowserContraintsData"
 
-instance JavaObjectClass DisplayInBrowserContraintsData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-nAME :: String
-nAME = "DISPLAYBROWSERCONSTRAINTS_NAME"
+jchain : List String
+jchain =
+    [ "DisplayInBrowserContraintsData" ]
 
-fRAMEABLE :: String
-fRAMEABLE = "DISPLAYBROWSERCONSTRAINTS_FRAMEABLE"
 
-mOUNTABLE :: String
-mOUNTABLE = "DISPLAYBROWSERCONSTRAINTS_MOUNTABLE"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-qUICKFRAMEABLE :: String
-qUICKFRAMEABLE = "DISPLAYBROWSERCONSTRAINTS_QUICKFRAMEABLE"
 
-mOUNTABLELINK :: String
-mOUNTABLELINK = "DISPLAYBROWSERCONSTRAINTS_MOUNTABLELINK"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DisplayInBrowserContraintsData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NAME", jstatic_NAME ), ( "jstatic_FRAMEABLE", jstatic_FRAMEABLE ), ( "jstatic_MOUNTABLE", jstatic_MOUNTABLE ), ( "jstatic_QUICKFRAMEABLE", jstatic_QUICKFRAMEABLE ), ( "jstatic_MOUNTABLELINK", jstatic_MOUNTABLELINK ) ]
+        jheap
 
-newRecord_ :: IO DisplayInBrowserContraintsData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = DisplayInBrowserContraintsData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: DisplayInBrowserContraintsData -> IO ()
-initFields_ this = do
-    pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-new_ :: IO DisplayInBrowserContraintsData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: DisplayInBrowserContraintsData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jstatic_NAME : JR.M
+jstatic_NAME s =
+    JR.static "DisplayInBrowserContraintsData" jclinit "NAME"
+        (JR.str "DISPLAYBROWSERCONSTRAINTS_NAME")
+        s
 
+
+jstatic_FRAMEABLE : JR.M
+jstatic_FRAMEABLE s =
+    JR.static "DisplayInBrowserContraintsData" jclinit "FRAMEABLE"
+        (JR.str "DISPLAYBROWSERCONSTRAINTS_FRAMEABLE")
+        s
+
+
+jstatic_MOUNTABLE : JR.M
+jstatic_MOUNTABLE s =
+    JR.static "DisplayInBrowserContraintsData" jclinit "MOUNTABLE"
+        (JR.str "DISPLAYBROWSERCONSTRAINTS_MOUNTABLE")
+        s
+
+
+jstatic_QUICKFRAMEABLE : JR.M
+jstatic_QUICKFRAMEABLE s =
+    JR.static "DisplayInBrowserContraintsData" jclinit "QUICKFRAMEABLE"
+        (JR.str "DISPLAYBROWSERCONSTRAINTS_QUICKFRAMEABLE")
+        s
+
+
+jstatic_MOUNTABLELINK : JR.M
+jstatic_MOUNTABLELINK s =
+    JR.static "DisplayInBrowserContraintsData" jclinit "MOUNTABLELINK"
+        (JR.str "DISPLAYBROWSERCONSTRAINTS_MOUNTABLELINK")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

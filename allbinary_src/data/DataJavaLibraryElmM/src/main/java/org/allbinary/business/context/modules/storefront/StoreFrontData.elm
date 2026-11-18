@@ -1,190 +1,123 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.context.modules.storefront
-module StoreFrontData where
+module Org.Allbinary.Business.Context.Modules.Storefront.StoreFrontData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.context.modules.storefront
+-}
 
-data StoreFrontData = StoreFrontData
-    { header_ :: JavaHeader
-    , cANCEL :: IORef (String)
-    , sELECT :: IORef (String)
-    , iNSTALL :: IORef (String)
-    , iNSTALL_COMPLETE :: IORef (String)
-    , nAME :: IORef (String)
-    , cURRENTHOSTNAME :: IORef (String)
-    , cURRENTHOSTNAMEPATH :: IORef (String)
-    , cURRENTHOMEHOSTNAME :: IORef (String)
-    , cURRENTHOMEHOSTNAMEPATH :: IORef (String)
-    , hOMEHOSTNAME :: IORef (String)
-    , hOMEHOSTNAMEPATH :: IORef (String)
-    , hOSTNAME :: IORef (String)
-    , hOSTNAMEPATH :: IORef (String)
-    , tESTHOMEHOSTNAME :: IORef (String)
-    , tESTHOMEHOSTNAMEPATH :: IORef (String)
-    , tESTHOSTNAME :: IORef (String)
-    , tESTHOSTNAMEPATH :: IORef (String)
-    , iMAGEPATH :: IORef (String)
-    , sTATICPATH :: IORef (String)
-    , cATEGORYPATH :: IORef (String)
-    , iNVENTORYCONTROL :: IORef (String)
-    , cONFIGURATION :: IORef (String)
-    , sUBSTORES :: IORef (String)
-    , tAGLOCATION :: IORef (String)
-    , pACKAGELOCATION :: IORef (String)
-    , fTP :: IORef (String)
-    , fTPPATH :: IORef (String)
-    , fTPUSERNAME :: IORef (String)
-    , fTPPASSWORD :: IORef (String)
-    , tESTFTP :: IORef (String)
-    , tESTFTPPATH :: IORef (String)
-    , tESTFTPUSERNAME :: IORef (String)
-    , tESTFTPPASSWORD :: IORef (String)
-    , sELECTSTORENAME :: IORef (String)
-    }
-
-instance JavaNull StoreFrontData where
-    javaNull = javaNullRecord "StoreFrontData"
-
-instance JavaEquals StoreFrontData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq StoreFrontData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass StoreFrontData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: StoreFrontData
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO StoreFrontData
-newRecord_ = do
-    header_ <- newJavaHeader
-    cANCEL <- newIORef ""
-    sELECT <- newIORef ""
-    iNSTALL <- newIORef ""
-    iNSTALL_COMPLETE <- newIORef ""
-    nAME <- newIORef ""
-    cURRENTHOSTNAME <- newIORef ""
-    cURRENTHOSTNAMEPATH <- newIORef ""
-    cURRENTHOMEHOSTNAME <- newIORef ""
-    cURRENTHOMEHOSTNAMEPATH <- newIORef ""
-    hOMEHOSTNAME <- newIORef ""
-    hOMEHOSTNAMEPATH <- newIORef ""
-    hOSTNAME <- newIORef ""
-    hOSTNAMEPATH <- newIORef ""
-    tESTHOMEHOSTNAME <- newIORef ""
-    tESTHOMEHOSTNAMEPATH <- newIORef ""
-    tESTHOSTNAME <- newIORef ""
-    tESTHOSTNAMEPATH <- newIORef ""
-    iMAGEPATH <- newIORef ""
-    sTATICPATH <- newIORef ""
-    cATEGORYPATH <- newIORef ""
-    iNVENTORYCONTROL <- newIORef ""
-    cONFIGURATION <- newIORef ""
-    sUBSTORES <- newIORef ""
-    tAGLOCATION <- newIORef ""
-    pACKAGELOCATION <- newIORef ""
-    fTP <- newIORef ""
-    fTPPATH <- newIORef ""
-    fTPUSERNAME <- newIORef ""
-    fTPPASSWORD <- newIORef ""
-    tESTFTP <- newIORef ""
-    tESTFTPPATH <- newIORef ""
-    tESTFTPUSERNAME <- newIORef ""
-    tESTFTPPASSWORD <- newIORef ""
-    sELECTSTORENAME <- newIORef ""
-    let this = StoreFrontData header_ cANCEL sELECT iNSTALL iNSTALL_COMPLETE nAME cURRENTHOSTNAME cURRENTHOSTNAMEPATH cURRENTHOMEHOSTNAME cURRENTHOMEHOSTNAMEPATH hOMEHOSTNAME hOMEHOSTNAMEPATH hOSTNAME hOSTNAMEPATH tESTHOMEHOSTNAME tESTHOMEHOSTNAMEPATH tESTHOSTNAME tESTHOSTNAMEPATH iMAGEPATH sTATICPATH cATEGORYPATH iNVENTORYCONTROL cONFIGURATION sUBSTORES tAGLOCATION pACKAGELOCATION fTP fTPPATH fTPUSERNAME fTPPASSWORD tESTFTP tESTFTPPATH tESTFTPUSERNAME tESTFTPPASSWORD sELECTSTORENAME
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: StoreFrontData -> IO ()
-initFields_ this = do
-    jset this.cANCEL ("Cancel Store Front")
-    jset this.sELECT ("Select Store Front")
-    jset this.iNSTALL ("Install Store Front")
-    jset this.iNSTALL_COMPLETE ("Install Store Front Complete")
-    jset this.nAME ("STOREFRONT_NAME")
-    jset this.cURRENTHOSTNAME ("STOREFRONT_CURRENTHOSTNAME")
-    jset this.cURRENTHOSTNAMEPATH ("STOREFRONT_CURRENTHOSTNAMEPATH")
-    jset this.cURRENTHOMEHOSTNAME ("STOREFRONT_CURRENTHOMEHOSTNAME")
-    jset this.cURRENTHOMEHOSTNAMEPATH ("STOREFRONT_CURRENTHOMEHOSTNAMEPATH")
-    jset this.hOMEHOSTNAME ("STOREFRONT_HOMEHOSTNAME")
-    jset this.hOMEHOSTNAMEPATH ("STOREFRONT_HOMEHOSTNAMEPATH")
-    jset this.hOSTNAME ("STOREFRONT_HOSTNAME")
-    jset this.hOSTNAMEPATH ("STOREFRONT_HOSTNAMEPATH")
-    jset this.tESTHOMEHOSTNAME ("STOREFRONT_TESTHOMEHOSTNAME")
-    jset this.tESTHOMEHOSTNAMEPATH ("STOREFRONT_TESTHOMEHOSTNAMEPATH")
-    jset this.tESTHOSTNAME ("STOREFRONT_TESTHOSTNAME")
-    jset this.tESTHOSTNAMEPATH ("STOREFRONT_TESTHOSTNAMEPATH")
-    jset this.iMAGEPATH ("STOREFRONT_IMAGEPATH")
-    jset this.sTATICPATH ("STOREFRONT_STATICPATH")
-    jset this.cATEGORYPATH ("STOREFRONT_CATEGORYPATH")
-    jset this.iNVENTORYCONTROL ("STOREFRONT_INVENTORYCONTROL")
-    jset this.cONFIGURATION ("STOREFRONT_CONFIGURATION")
-    jset this.sUBSTORES ("STOREFRONT_SUBSTORES")
-    jset this.tAGLOCATION ("STOREFRONT_TAGLOCATION")
-    jset this.pACKAGELOCATION ("STOREFRONT_PACKAGELOCATION")
-    jset this.fTP ("STOREFRONT_FTP")
-    jset this.fTPPATH ("STOREFRONT_FTPPATH")
-    jset this.fTPUSERNAME ("STOREFRONT_FTPUSERNAME")
-    jset this.fTPPASSWORD ("STOREFRONT_FTPPASSWORD")
-    jset this.tESTFTP ("STOREFRONT_TESTFTP")
-    jset this.tESTFTPPATH ("STOREFRONT_TESTFTPPATH")
-    jset this.tESTFTPUSERNAME ("STOREFRONT_TESTFTPUSERNAME")
-    jset this.tESTFTPPASSWORD ("STOREFRONT_TESTFTPPASSWORD")
-    jset this.sELECTSTORENAME ("STOREFRONT_SELECTSTORENAME")
-    pure ()
-
-new_ :: IO StoreFrontData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: StoreFrontData -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (StoreFrontData)
-getInstance = do
-        pure (StoreFrontData.instance_)
 
+jclass : String
+jclass =
+    "StoreFrontData"
+
+
+jchain : List String
+jchain =
+    [ "StoreFrontData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "CANCEL", JR.defaultOf "" ), ( "SELECT", JR.defaultOf "" ), ( "INSTALL", JR.defaultOf "" ), ( "INSTALL_COMPLETE", JR.defaultOf "" ), ( "NAME", JR.defaultOf "" ), ( "CURRENTHOSTNAME", JR.defaultOf "" ), ( "CURRENTHOSTNAMEPATH", JR.defaultOf "" ), ( "CURRENTHOMEHOSTNAME", JR.defaultOf "" ), ( "CURRENTHOMEHOSTNAMEPATH", JR.defaultOf "" ), ( "HOMEHOSTNAME", JR.defaultOf "" ), ( "HOMEHOSTNAMEPATH", JR.defaultOf "" ), ( "HOSTNAME", JR.defaultOf "" ), ( "HOSTNAMEPATH", JR.defaultOf "" ), ( "TESTHOMEHOSTNAME", JR.defaultOf "" ), ( "TESTHOMEHOSTNAMEPATH", JR.defaultOf "" ), ( "TESTHOSTNAME", JR.defaultOf "" ), ( "TESTHOSTNAMEPATH", JR.defaultOf "" ), ( "IMAGEPATH", JR.defaultOf "" ), ( "STATICPATH", JR.defaultOf "" ), ( "CATEGORYPATH", JR.defaultOf "" ), ( "INVENTORYCONTROL", JR.defaultOf "" ), ( "CONFIGURATION", JR.defaultOf "" ), ( "SUBSTORES", JR.defaultOf "" ), ( "TAGLOCATION", JR.defaultOf "" ), ( "PACKAGELOCATION", JR.defaultOf "" ), ( "FTP", JR.defaultOf "" ), ( "FTPPATH", JR.defaultOf "" ), ( "FTPUSERNAME", JR.defaultOf "" ), ( "FTPPASSWORD", JR.defaultOf "" ), ( "TESTFTP", JR.defaultOf "" ), ( "TESTFTPPATH", JR.defaultOf "" ), ( "TESTFTPUSERNAME", JR.defaultOf "" ), ( "TESTFTPPASSWORD", JR.defaultOf "" ), ( "SELECTSTORENAME", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "StoreFrontData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "StoreFrontData" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "CANCEL" "" JR.this (JR.str "Cancel Store Front")),
+                JR.exec (JR.setField "SELECT" "" JR.this (JR.str "Select Store Front")),
+                JR.exec (JR.setField "INSTALL" "" JR.this (JR.str "Install Store Front")),
+                JR.exec (JR.setField "INSTALL_COMPLETE" "" JR.this (JR.str "Install Store Front Complete")),
+                JR.exec (JR.setField "NAME" "" JR.this (JR.str "STOREFRONT_NAME")),
+                JR.exec (JR.setField "CURRENTHOSTNAME" "" JR.this (JR.str "STOREFRONT_CURRENTHOSTNAME")),
+                JR.exec (JR.setField "CURRENTHOSTNAMEPATH" "" JR.this (JR.str "STOREFRONT_CURRENTHOSTNAMEPATH")),
+                JR.exec (JR.setField "CURRENTHOMEHOSTNAME" "" JR.this (JR.str "STOREFRONT_CURRENTHOMEHOSTNAME")),
+                JR.exec (JR.setField "CURRENTHOMEHOSTNAMEPATH" "" JR.this (JR.str "STOREFRONT_CURRENTHOMEHOSTNAMEPATH")),
+                JR.exec (JR.setField "HOMEHOSTNAME" "" JR.this (JR.str "STOREFRONT_HOMEHOSTNAME")),
+                JR.exec (JR.setField "HOMEHOSTNAMEPATH" "" JR.this (JR.str "STOREFRONT_HOMEHOSTNAMEPATH")),
+                JR.exec (JR.setField "HOSTNAME" "" JR.this (JR.str "STOREFRONT_HOSTNAME")),
+                JR.exec (JR.setField "HOSTNAMEPATH" "" JR.this (JR.str "STOREFRONT_HOSTNAMEPATH")),
+                JR.exec (JR.setField "TESTHOMEHOSTNAME" "" JR.this (JR.str "STOREFRONT_TESTHOMEHOSTNAME")),
+                JR.exec (JR.setField "TESTHOMEHOSTNAMEPATH" "" JR.this (JR.str "STOREFRONT_TESTHOMEHOSTNAMEPATH")),
+                JR.exec (JR.setField "TESTHOSTNAME" "" JR.this (JR.str "STOREFRONT_TESTHOSTNAME")),
+                JR.exec (JR.setField "TESTHOSTNAMEPATH" "" JR.this (JR.str "STOREFRONT_TESTHOSTNAMEPATH")),
+                JR.exec (JR.setField "IMAGEPATH" "" JR.this (JR.str "STOREFRONT_IMAGEPATH")),
+                JR.exec (JR.setField "STATICPATH" "" JR.this (JR.str "STOREFRONT_STATICPATH")),
+                JR.exec (JR.setField "CATEGORYPATH" "" JR.this (JR.str "STOREFRONT_CATEGORYPATH")),
+                JR.exec (JR.setField "INVENTORYCONTROL" "" JR.this (JR.str "STOREFRONT_INVENTORYCONTROL")),
+                JR.exec (JR.setField "CONFIGURATION" "" JR.this (JR.str "STOREFRONT_CONFIGURATION")),
+                JR.exec (JR.setField "SUBSTORES" "" JR.this (JR.str "STOREFRONT_SUBSTORES")),
+                JR.exec (JR.setField "TAGLOCATION" "" JR.this (JR.str "STOREFRONT_TAGLOCATION")),
+                JR.exec (JR.setField "PACKAGELOCATION" "" JR.this (JR.str "STOREFRONT_PACKAGELOCATION")),
+                JR.exec (JR.setField "FTP" "" JR.this (JR.str "STOREFRONT_FTP")),
+                JR.exec (JR.setField "FTPPATH" "" JR.this (JR.str "STOREFRONT_FTPPATH")),
+                JR.exec (JR.setField "FTPUSERNAME" "" JR.this (JR.str "STOREFRONT_FTPUSERNAME")),
+                JR.exec (JR.setField "FTPPASSWORD" "" JR.this (JR.str "STOREFRONT_FTPPASSWORD")),
+                JR.exec (JR.setField "TESTFTP" "" JR.this (JR.str "STOREFRONT_TESTFTP")),
+                JR.exec (JR.setField "TESTFTPPATH" "" JR.this (JR.str "STOREFRONT_TESTFTPPATH")),
+                JR.exec (JR.setField "TESTFTPUSERNAME" "" JR.this (JR.str "STOREFRONT_TESTFTPUSERNAME")),
+                JR.exec (JR.setField "TESTFTPPASSWORD" "" JR.this (JR.str "STOREFRONT_TESTFTPPASSWORD")),
+                JR.exec (JR.setField "SELECTSTORENAME" "" JR.this (JR.str "STOREFRONT_SELECTSTORENAME")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

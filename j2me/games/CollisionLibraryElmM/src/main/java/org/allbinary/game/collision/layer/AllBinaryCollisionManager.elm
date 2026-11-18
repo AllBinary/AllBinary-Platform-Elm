@@ -1,130 +1,120 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.collision.layer
-module AllBinaryCollisionManager where
+module Org.Allbinary.Game.Collision.Layer.AllBinaryCollisionManager exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CollidableBaseBehavior -- org.allbinary.game.collision.CollidableBaseBehavior
-import qualified CollidableInterfaceCompositeInterface -- org.allbinary.game.collision.CollidableInterfaceCompositeInterface
-import qualified CollidableCompositeLayer -- org.allbinary.game.layer.CollidableCompositeLayer
-import qualified LayerManager -- org.allbinary.layer.LayerManager
+{-| Generated Code Do Not Modify package org.allbinary.game.collision.layer
+-}
 
-data AllBinaryCollisionManager = AllBinaryCollisionManager
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull AllBinaryCollisionManager where
-    javaNull = javaNullRecord "AllBinaryCollisionManager"
-
-instance JavaEquals AllBinaryCollisionManager where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryCollisionManager where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryCollisionManager where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-allBinaryCollisionManager :: IORef (AllBinaryCollisionManager)
-{-# NOINLINE allBinaryCollisionManager #-}
-allBinaryCollisionManager = unsafePerformIO ((new_) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO AllBinaryCollisionManager
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = AllBinaryCollisionManager header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "process" (\() -> process_impl this)
-    jregisterMethod header_ "collide" (\() -> collide_impl this)
-    pure this
-
-initFields_ :: AllBinaryCollisionManager -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO AllBinaryCollisionManager
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllBinaryCollisionManager -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
 
 
-getInstance :: IO (AllBinaryCollisionManager)
-getInstance = do
-        pure ((jget AllBinaryCollisionManager.allBinaryCollisionManager))
+
+jclass : String
+jclass =
+    "AllBinaryCollisionManager"
 
 
--- throws Exception
-process :: (JavaObjectClass this_) => this_ -> LayerManager.LayerManager -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> Int -> IO (())
-process object_ a1 a2 a3 = jmethod object_ "process" (\() -> (process_impl (javaCast object_ :: AllBinaryCollisionManager))) () a1 a2 a3
-
-process_super :: (JavaObjectClass this_) => this_ -> LayerManager.LayerManager -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> Int -> IO (())
-process_super object_ a1 a2 a3 = (process_impl (javaCast object_ :: AllBinaryCollisionManager)) a1 a2 a3
-
-process_impl :: AllBinaryCollisionManager -> LayerManager.LayerManager -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> Int -> IO (())
-process_impl this layerManager collidableInterfaceCompositeInterface startIndex = do
-        size <- (LayerManager.getSize layerManager)
-        forM_ [(startIndex + 1) .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let collidableInterfaceCompositeInterface2 = (javaCast (jio (LayerManager.getLayerAt layerManager index)) :: CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface)
-            Control.Monad.void (AllBinaryCollisionManager.collide this layerManager collidableInterfaceCompositeInterface collidableInterfaceCompositeInterface2)
-        pure ()
+jchain : List String
+jchain =
+    [ "AllBinaryCollisionManager" ]
 
 
--- throws Exception
-collide :: (JavaObjectClass this_) => this_ -> LayerManager.LayerManager -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> IO (())
-collide object_ a1 a2 a3 = jmethod object_ "collide" (\() -> (collide_impl (javaCast object_ :: AllBinaryCollisionManager))) () a1 a2 a3
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-collide_super :: (JavaObjectClass this_) => this_ -> LayerManager.LayerManager -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> IO (())
-collide_super object_ a1 a2 a3 = (collide_impl (javaCast object_ :: AllBinaryCollisionManager)) a1 a2 a3
 
-collide_impl :: AllBinaryCollisionManager -> LayerManager.LayerManager -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> CollidableInterfaceCompositeInterface.CollidableInterfaceCompositeInterface -> IO (())
-collide_impl this layerManager collidableInterfaceCompositeInterface collidableInterfaceCompositeInterface2 = do
-        collidableBase2 <- (CollidableInterfaceCompositeInterface.getCollidableInferface collidableInterfaceCompositeInterface2)
-        collidableBase <- (CollidableInterfaceCompositeInterface.getCollidableInferface collidableInterfaceCompositeInterface)
-        when (jio (CollidableBaseBehavior.isCollidable collidableBase2 (javaCast collidableInterfaceCompositeInterface :: CollidableCompositeLayer.CollidableCompositeLayer))) $ do
-            when (jio (CollidableBaseBehavior.isCollisionInterface collidableBase (javaCast collidableInterfaceCompositeInterface :: CollidableCompositeLayer.CollidableCompositeLayer) collidableInterfaceCompositeInterface2)) $ do
-                Control.Monad.void (CollidableBaseBehavior.collideInterface collidableBase (javaCast collidableInterfaceCompositeInterface :: CollidableCompositeLayer.CollidableCompositeLayer) collidableInterfaceCompositeInterface2)
-                Control.Monad.void (CollidableBaseBehavior.collideInterface collidableBase2 (javaCast collidableInterfaceCompositeInterface :: CollidableCompositeLayer.CollidableCompositeLayer) collidableInterfaceCompositeInterface)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "process_3", jm_process_3 )
+        , ( "collide_3", jm_collide_3 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryCollisionManager"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_process_3", jm_process_3 ), ( "jm_collide_3", jm_collide_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_allBinaryCollisionManager", jstatic_allBinaryCollisionManager ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_allBinaryCollisionManager : JR.M
+jstatic_allBinaryCollisionManager s =
+    JR.static "AllBinaryCollisionManager" jclinit "allBinaryCollisionManager"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_allBinaryCollisionManager ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_process_3 : JR.Method
+jm_process_3 jheap jthis jargs =
+    JR.method [ ( "layerManager", "" ), ( "collidableInterfaceCompositeInterface", "" ), ( "startIndex", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.invoke "getSize_0" (JR.local "layerManager") []), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.add (JR.local "startIndex") (JR.int 1)), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68266 -> (JR.setLocal "index" "I" (JR.lit jwN68266))) JR.increment) ]) (JR.run [ 
+                        JR.declare "collidableInterfaceCompositeInterface2" "" (JR.invoke "getLayerAt_1" (JR.local "layerManager") [ (JR.local "index") ]), 
+                        JR.exec (JR.invoke "collide_3" JR.this [ (JR.local "layerManager"), (JR.local "collidableInterfaceCompositeInterface"), (JR.local "collidableInterfaceCompositeInterface2") ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_collide_3 : JR.Method
+jm_collide_3 jheap jthis jargs =
+    JR.method [ ( "layerManager", "" ), ( "collidableInterfaceCompositeInterface", "" ), ( "collidableInterfaceCompositeInterface2", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "collidableBase2" "" (JR.invoke "getCollidableInferface_0" (JR.local "collidableInterfaceCompositeInterface2") []), 
+                    JR.declare "collidableBase" "" (JR.invoke "getCollidableInferface_0" (JR.local "collidableInterfaceCompositeInterface") []), 
+                    JR.ifElse (JR.invoke "isCollidable_1" (JR.local "collidableBase2") [ (JR.local "collidableInterfaceCompositeInterface") ]) (JR.run [ 
+                        JR.ifElse (JR.invoke "isCollisionInterface_2" (JR.local "collidableBase") [ (JR.local "collidableInterfaceCompositeInterface"), (JR.local "collidableInterfaceCompositeInterface2") ]) (JR.run [ 
+                            JR.exec (JR.invoke "collideInterface_2" (JR.local "collidableBase") [ (JR.local "collidableInterfaceCompositeInterface"), (JR.local "collidableInterfaceCompositeInterface2") ]), 
+                            JR.exec (JR.invoke "collideInterface_2" (JR.local "collidableBase2") [ (JR.local "collidableInterfaceCompositeInterface"), (JR.local "collidableInterfaceCompositeInterface") ]) ]) identity ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

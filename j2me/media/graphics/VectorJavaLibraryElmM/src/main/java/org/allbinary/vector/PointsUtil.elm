@@ -1,144 +1,140 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.vector
-module PointsUtil where
+module Org.Allbinary.Vector.PointsUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.vector
+-}
 
-data PointsUtil = PointsUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull PointsUtil where
-    javaNull = javaNullRecord "PointsUtil"
-
-instance JavaEquals PointsUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PointsUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PointsUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: PointsUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PointsUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = PointsUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "adjustXY" (\() -> adjustXY_impl this)
-    jregisterMethod header_ "adjust" (\() -> adjust_impl this)
-    jregisterMethod header_ "adjust_3" (\() -> adjust_3_impl this)
-    pure this
-
-initFields_ :: PointsUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO PointsUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PointsUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (PointsUtil)
-getInstance = do
-        pure (PointsUtil.instance_)
+
+jclass : String
+jclass =
+    "PointsUtil"
 
 
-adjustXY :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (JavaArray (Int))) -> Int -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-adjustXY object_ a1 a2 a3 = jmethod object_ "adjustXY" (\() -> (adjustXY_impl (javaCast object_ :: PointsUtil))) () a1 a2 a3
-
-adjustXY_super :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (JavaArray (Int))) -> Int -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-adjustXY_super object_ a1 a2 a3 = (adjustXY_impl (javaCast object_ :: PointsUtil)) a1 a2 a3
-
-adjustXY_impl :: PointsUtil -> JavaArray (JavaArray (JavaArray (Int))) -> Int -> Int -> IO (JavaArray (JavaArray (JavaArray (Int))))
-adjustXY_impl this points x y = do
-        let size = (jlength points)
-        let newPoints = (jnewArray3 (size) (0) (0) 0)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let size2 = (jlength (jindex points (index)))
-            jsetIndex newPoints (index) ((jnewArray2 (size2) (2) 0))
-            forM_ [0 .. size2 - 1] $ \index2 -> javaIteration (pure ()) $ do
-                if ((jindex ((jindex ((jindex points (index))) (index2))) (0)) /= 1000) then do
-                    jsetIndex ((jindex ((jindex newPoints (index))) (index2))) (0) (((jindex ((jindex ((jindex points (index))) (index2))) (0)) + x))
-                    jsetIndex ((jindex ((jindex newPoints (index))) (index2))) (1) (((jindex ((jindex ((jindex points (index))) (index2))) (1)) + y))
-                else do
-                    jsetIndex ((jindex ((jindex newPoints (index))) (index2))) (0) (1000)
-                    jsetIndex ((jindex ((jindex newPoints (index))) (index2))) (1) (1000)
-        pure (newPoints)
+jchain : List String
+jchain =
+    [ "PointsUtil" ]
 
 
-adjust :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (Int)) -> Int -> IO (JavaArray (JavaArray (Int)))
-adjust object_ a1 a2 = jmethod object_ "adjust" (\() -> (adjust_impl (javaCast object_ :: PointsUtil))) () a1 a2
-
-adjust_super :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (Int)) -> Int -> IO (JavaArray (JavaArray (Int)))
-adjust_super object_ a1 a2 = (adjust_impl (javaCast object_ :: PointsUtil)) a1 a2
-
-adjust_impl :: PointsUtil -> JavaArray (JavaArray (Int)) -> Int -> IO (JavaArray (JavaArray (Int)))
-adjust_impl this points both = do
-        (PointsUtil.adjust_3 this points both both)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-adjust_3 :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (Int)) -> Int -> Int -> IO (JavaArray (JavaArray (Int)))
-adjust_3 object_ a1 a2 a3 = jmethod object_ "adjust_3" (\() -> (adjust_3_impl (javaCast object_ :: PointsUtil))) () a1 a2 a3
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "adjustXY_3", jm_adjustXY_3 )
+        , ( "adjust_2", jm_adjust_2 )
+        , ( "adjust_3", jm_adjust_3 ) ]
+        JR.noMethods
 
-adjust_3_super :: (JavaObjectClass this_) => this_ -> JavaArray (JavaArray (Int)) -> Int -> Int -> IO (JavaArray (JavaArray (Int)))
-adjust_3_super object_ a1 a2 a3 = (adjust_3_impl (javaCast object_ :: PointsUtil)) a1 a2 a3
 
-adjust_3_impl :: PointsUtil -> JavaArray (JavaArray (Int)) -> Int -> Int -> IO (JavaArray (JavaArray (Int)))
-adjust_3_impl this points x y = do
-        let newPoints = (jnewArray2 ((jlength points)) (2) 0)
-        forM_ [0 .. (jlength points) - 1] $ \index2 -> javaIteration (pure ()) $ do
-            if ((jindex ((jindex points (index2))) (0)) /= 1000) then do
-                jsetIndex ((jindex newPoints (index2))) (0) (((jindex ((jindex points (index2))) (0)) + x))
-                jsetIndex ((jindex newPoints (index2))) (1) (((jindex ((jindex points (index2))) (1)) + y))
-            else do
-                jsetIndex ((jindex newPoints (index2))) (0) (1000)
-                jsetIndex ((jindex newPoints (index2))) (1) (1000)
-        pure (newPoints)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PointsUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_adjustXY_3", jm_adjustXY_3 ), ( "jm_adjust_2", jm_adjust_2 ), ( "jm_adjust_3", jm_adjust_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "PointsUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_adjustXY_3 : JR.Method
+jm_adjustXY_3 jheap jthis jargs =
+    JR.method [ ( "points", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "size" "I" (JR.alength (JR.local "points")), 
+                    JR.declare "newPoints" "" (JR.newArray "I" [ (JR.local "size"), (JR.int 0), (JR.int 0) ]), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66502 -> (JR.setLocal "index" "I" (JR.lit jwN66502))) JR.increment) ]) (JR.run [ 
+                        JR.declare "size2" "I" (JR.alength (JR.aget (JR.local "points") (JR.local "index"))), 
+                        JR.exec (JR.andThen (JR.local "newPoints") (\jaN65935 -> JR.andThen (JR.local "index") (\jiN65935 -> (JR.aset (JR.lit jaN65935) (JR.lit jiN65935) (JR.newArray "I" [ (JR.local "size2"), (JR.int 2) ]))))), 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN66432 -> (JR.setLocal "index2" "I" (JR.lit jwN66432))) JR.increment) ]) (JR.run [ 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "index2")) (JR.int 0)) (JR.int 1000)) (JR.run [ 
+                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66173 -> JR.andThen (JR.int 0) (\jiN66173 -> (JR.aset (JR.lit jaN66173) (JR.lit jiN66173) (JR.plus (JR.aget (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "index2")) (JR.int 0)) (JR.local "x")))))), 
+                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66275 -> JR.andThen (JR.int 1) (\jiN66275 -> (JR.aset (JR.lit jaN66275) (JR.lit jiN66275) (JR.plus (JR.aget (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "index2")) (JR.int 1)) (JR.local "y")))))) ]) (JR.run [ 
+                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66060 -> JR.andThen (JR.int 0) (\jiN66060 -> (JR.aset (JR.lit jaN66060) (JR.lit jiN66060) (JR.int 1000))))), 
+                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66113 -> JR.andThen (JR.int 1) (\jiN66113 -> (JR.aset (JR.lit jaN66113) (JR.lit jiN66113) (JR.int 1000))))) ]) ]) ] ]) ], 
+                    JR.return (JR.local "newPoints") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_adjust_2 : JR.Method
+jm_adjust_2 jheap jthis jargs =
+    JR.method [ ( "points", "" ), ( "both", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "adjust_3" JR.this [ (JR.local "points"), (JR.local "both"), (JR.local "both") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_adjust_3 : JR.Method
+jm_adjust_3 jheap jthis jargs =
+    JR.method [ ( "points", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "newPoints" "" (JR.newArray "I" [ (JR.alength (JR.local "points")), (JR.int 2) ]), 
+                    JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.alength (JR.local "points"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN67201 -> (JR.setLocal "index2" "I" (JR.lit jwN67201))) JR.increment) ]) (JR.run [ 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.aget (JR.local "points") (JR.local "index2")) (JR.int 0)) (JR.int 1000)) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN66986 -> JR.andThen (JR.int 0) (\jiN66986 -> (JR.aset (JR.lit jaN66986) (JR.lit jiN66986) (JR.plus (JR.aget (JR.aget (JR.local "points") (JR.local "index2")) (JR.int 0)) (JR.local "x")))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN67064 -> JR.andThen (JR.int 1) (\jiN67064 -> (JR.aset (JR.lit jaN67064) (JR.lit jiN67064) (JR.plus (JR.aget (JR.aget (JR.local "points") (JR.local "index2")) (JR.int 1)) (JR.local "y")))))) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN66897 -> JR.andThen (JR.int 0) (\jiN66897 -> (JR.aset (JR.lit jaN66897) (JR.lit jiN66897) (JR.int 1000))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN66938 -> JR.andThen (JR.int 1) (\jiN66938 -> (JR.aset (JR.lit jaN66938) (JR.lit jiN66938) (JR.int 1000))))) ]) ]) ], 
+                    JR.return (JR.local "newPoints") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

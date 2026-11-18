@@ -1,108 +1,96 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.context.modules.storefront.statistics.orders.history
-module StoreFrontOrdersHistoryStatisticsData where
+module Org.Allbinary.Business.Context.Modules.Storefront.Statistics.Orders.History.StoreFrontOrdersHistoryStatisticsData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.context.modules.storefront.statistics.orders.history
+-}
 
-data StoreFrontOrdersHistoryStatisticsData = StoreFrontOrdersHistoryStatisticsData
-    { header_ :: JavaHeader
-    , nAME :: IORef (String)
-    , nUMBEROFORDERS :: IORef (String)
-    , sUBTOTAL :: IORef (String)
-    , sHIPPINGCOST :: IORef (String)
-    , tAXES :: IORef (String)
-    , tOTAL :: IORef (String)
-    }
-
-instance JavaNull StoreFrontOrdersHistoryStatisticsData where
-    javaNull = javaNullRecord "StoreFrontOrdersHistoryStatisticsData"
-
-instance JavaEquals StoreFrontOrdersHistoryStatisticsData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq StoreFrontOrdersHistoryStatisticsData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass StoreFrontOrdersHistoryStatisticsData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: StoreFrontOrdersHistoryStatisticsData
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO StoreFrontOrdersHistoryStatisticsData
-newRecord_ = do
-    header_ <- newJavaHeader
-    nAME <- newIORef ""
-    nUMBEROFORDERS <- newIORef ""
-    sUBTOTAL <- newIORef ""
-    sHIPPINGCOST <- newIORef ""
-    tAXES <- newIORef ""
-    tOTAL <- newIORef ""
-    let this = StoreFrontOrdersHistoryStatisticsData header_ nAME nUMBEROFORDERS sUBTOTAL sHIPPINGCOST tAXES tOTAL
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: StoreFrontOrdersHistoryStatisticsData -> IO ()
-initFields_ this = do
-    jset this.nAME ("STOREFRONT_ORDERS_HISTORY_STATISTICS_NAME")
-    jset this.nUMBEROFORDERS ("STOREFRONT_ORDERS_HISTORY_STATISTICS_NUMBER_OF_ORDERS")
-    jset this.sUBTOTAL ("STOREFRONT_ORDERS_HISTORY_STATISTICS_SUBTOTAL")
-    jset this.sHIPPINGCOST ("STOREFRONT_ORDERS_HISTORY_STATISTICS_SHIPPINGCOST")
-    jset this.tAXES ("STOREFRONT_ORDERS_HISTORY_STATISTICS_TAXES")
-    jset this.tOTAL ("STOREFRONT_ORDERS_HISTORY_STATISTICS_TOTAL")
-    pure ()
+import JR
 
 
-getInstance :: IO (StoreFrontOrdersHistoryStatisticsData)
-getInstance = do
-        pure (StoreFrontOrdersHistoryStatisticsData.instance_)
 
-new_ :: IO StoreFrontOrdersHistoryStatisticsData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jclass : String
+jclass =
+    "StoreFrontOrdersHistoryStatisticsData"
 
-init_ :: StoreFrontOrdersHistoryStatisticsData -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
 
+jchain : List String
+jchain =
+    [ "StoreFrontOrdersHistoryStatisticsData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "NAME", JR.defaultOf "" ), ( "NUMBEROFORDERS", JR.defaultOf "" ), ( "SUBTOTAL", JR.defaultOf "" ), ( "SHIPPINGCOST", JR.defaultOf "" ), ( "TAXES", JR.defaultOf "" ), ( "TOTAL", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "StoreFrontOrdersHistoryStatisticsData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "StoreFrontOrdersHistoryStatisticsData" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "NAME" "" JR.this (JR.str "STOREFRONT_ORDERS_HISTORY_STATISTICS_NAME")),
+                JR.exec (JR.setField "NUMBEROFORDERS" "" JR.this (JR.str "STOREFRONT_ORDERS_HISTORY_STATISTICS_NUMBER_OF_ORDERS")),
+                JR.exec (JR.setField "SUBTOTAL" "" JR.this (JR.str "STOREFRONT_ORDERS_HISTORY_STATISTICS_SUBTOTAL")),
+                JR.exec (JR.setField "SHIPPINGCOST" "" JR.this (JR.str "STOREFRONT_ORDERS_HISTORY_STATISTICS_SHIPPINGCOST")),
+                JR.exec (JR.setField "TAXES" "" JR.this (JR.str "STOREFRONT_ORDERS_HISTORY_STATISTICS_TAXES")),
+                JR.exec (JR.setField "TOTAL" "" JR.this (JR.str "STOREFRONT_ORDERS_HISTORY_STATISTICS_TOTAL")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

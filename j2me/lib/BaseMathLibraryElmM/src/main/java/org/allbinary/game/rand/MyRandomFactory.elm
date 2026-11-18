@@ -1,15 +1,15 @@
-module MyRandomFactory exposing (..)
+module Org.Allbinary.Game.Rand.MyRandomFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.game.rand
 -}
 
 import JR
-import CommonSeps
+import Org.Allbinary.String.CommonSeps as CommonSeps
 import JInteger
 import JRandom
 import JSystem
-import MathUtil
-import StringMaker
+import Org.Allbinary.Logic.Math.MathUtil as MathUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

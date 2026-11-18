@@ -1,102 +1,87 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.math.permutations
-module ComparableObject where
+module Org.Allbinary.Logic.Math.Permutations.ComparableObject exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified TsUtil -- org.allbinary.TsUtil
-import qualified Comparable
+{-| Generated Code Do Not Modify package org.allbinary.logic.math.permutations
+-}
 
--- implements Comparable
-data ComparableObject = ComparableObject
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ComparableObject where
-    javaNull = javaNullRecord "ComparableObject"
-
-instance JavaEquals ComparableObject where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ComparableObject where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ComparableObject where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ComparableObject
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ComparableObject header_
-    jregisterLevel header_ this
-    Comparable.registerInterface_ header_
-    jregisterMethod header_ "compareTo" (\() -> compareTo_impl this)
-    pure this
-
-initFields_ :: ComparableObject -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO ComparableObject
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ComparableObject -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.TsUtil as TsUtil
 
 
-compareTo :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Int)
-compareTo object_ a1 = jmethod object_ "compareTo" (\() -> (compareTo_impl (javaCast object_ :: ComparableObject))) () (jtoObject a1)
+jclass : String
+jclass =
+    "ComparableObject"
 
-compareTo_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (Int)
-compareTo_super object_ a1 = (compareTo_impl (javaCast object_ :: ComparableObject)) (jtoObject a1)
 
-compareTo_impl :: ComparableObject -> JavaObject -> IO (Int)
-compareTo_impl this anyTypeObject_ = do
-    let anyType = jtoObject anyTypeObject_
-    javaCatchReturn $ do
-        if ((jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) this)) < (jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) anyType))) then do
-            javaReturn ((Prelude.negate 1))
-        else when ((jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) this)) > (jio (TsUtil.hashCode ((jio (TsUtil.getInstance))) anyType))) $ do
-            javaReturn (1)
-        pure (0)
+jchain : List String
+jchain =
+    [ "ComparableObject" ]
+        ++ [ "Comparable" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "compareTo_1", jm_compareTo_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ComparableObject"
+        [ ( "jm_compareTo_1", jm_compareTo_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_compareTo_1 : JR.Method
+jm_compareTo_1 jheap jthis jargs =
+    JR.method [ ( "anyType", "" ) ] "I"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.less (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ JR.this ]) (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ (JR.local "anyType") ])) (JR.run [ 
+                        JR.return (JR.map JR.neg (JR.int 1)) ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ JR.this ]) (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ (JR.local "anyType") ])) (JR.run [ 
+                        JR.return (JR.int 1) ]) identity ]), 
+                    JR.return (JR.int 0) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

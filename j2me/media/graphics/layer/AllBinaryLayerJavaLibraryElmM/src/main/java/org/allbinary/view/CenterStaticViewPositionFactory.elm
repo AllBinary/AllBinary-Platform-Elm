@@ -1,97 +1,85 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.view
-module CenterStaticViewPositionFactory where
+module Org.Allbinary.View.CenterStaticViewPositionFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StaticViewPosition -- same package or java.lang
-import qualified ViewPositionBase -- same package or java.lang
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
+{-| Generated Code Do Not Modify package org.allbinary.view
+-}
 
-data CenterStaticViewPositionFactory = CenterStaticViewPositionFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull CenterStaticViewPositionFactory where
-    javaNull = javaNullRecord "CenterStaticViewPositionFactory"
-
-instance JavaEquals CenterStaticViewPositionFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CenterStaticViewPositionFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CenterStaticViewPositionFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CenterStaticViewPositionFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = CenterStaticViewPositionFactory header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    pure this
-
-initFields_ :: CenterStaticViewPositionFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO CenterStaticViewPositionFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CenterStaticViewPositionFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.View.StaticViewPosition as StaticViewPosition
 
 
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (ViewPositionBase.ViewPositionBase)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: CenterStaticViewPositionFactory))) () a1
+jclass : String
+jclass =
+    "CenterStaticViewPositionFactory"
 
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (ViewPositionBase.ViewPositionBase)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: CenterStaticViewPositionFactory)) a1
 
-getInstance_impl :: CenterStaticViewPositionFactory -> Int -> IO (ViewPositionBase.ViewPositionBase)
-getInstance_impl this z = do
-        displayInfoSingleton <- (DisplayInfoSingleton.getInstance)
-        (fmap (\value_ -> javaCast value_ :: ViewPositionBase.ViewPositionBase) (StaticViewPosition.new_3 (((jio (DisplayInfoSingleton.getLastWidth displayInfoSingleton)) `Data.Bits.shiftR` 1)) (((jio (DisplayInfoSingleton.getLastHeight displayInfoSingleton)) `Data.Bits.shiftR` 1)) z))
+jchain : List String
+jchain =
+    [ "CenterStaticViewPositionFactory" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_1", jm_getInstance_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CenterStaticViewPositionFactory"
+        [ ( "jm_getInstance_1", jm_getInstance_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "z", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "displayInfoSingleton" "" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []), 
+                    JR.return (JR.new StaticViewPosition.jnew_3 [ ((JR.map2 JR.shr (JR.invoke "getLastWidth_0" (JR.local "displayInfoSingleton") []) (JR.int 1))), ((JR.map2 JR.shr (JR.invoke "getLastHeight_0" (JR.local "displayInfoSingleton") []) (JR.int 1))), (JR.local "z") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

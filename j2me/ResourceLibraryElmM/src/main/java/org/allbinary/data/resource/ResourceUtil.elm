@@ -1,193 +1,176 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.data.resource
-module ResourceUtil where
+module Org.Allbinary.Data.Resource.ResourceUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified ClassLoader -- same package or java.lang
-import qualified Thread -- same package or java.lang
-import qualified Class -- same package or java.lang
-import qualified InputStream -- java.io.InputStream
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.data.resource
+-}
 
-data ResourceUtil = ResourceUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull ResourceUtil where
-    javaNull = javaNullRecord "ResourceUtil"
-
-instance JavaEquals ResourceUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ResourceUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ResourceUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE classLoader #-}
-classLoader = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-instance_ :: ResourceUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ResourceUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    let this = ResourceUtil header_ logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "setLoadingPaths" (\() -> setLoadingPaths_impl this)
-    jregisterMethod header_ "setClassLoader" (\() -> setClassLoader_impl this)
-    jregisterMethod header_ "getResourceAsStream" (\() -> getResourceAsStream_impl this)
-    jregisterMethod header_ "getResourceAsStreamAtStart" (\() -> getResourceAsStreamAtStart_impl this)
-    jregisterMethod header_ "addResource" (\() -> addResource_impl this)
-    pure this
-
-initFields_ :: ResourceUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JThread
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (ResourceUtil)
-getInstance = do
-        pure (ResourceUtil.instance_)
-
-new_ :: IO ResourceUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ResourceUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "ResourceUtil"
 
 
-setLoadingPaths :: (JavaObjectClass this_) => this_ -> String -> String -> IO (())
-setLoadingPaths object_ a1 a2 = jmethod object_ "setLoadingPaths" (\() -> (setLoadingPaths_impl (javaCast object_ :: ResourceUtil))) () a1 a2
-
-setLoadingPaths_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (())
-setLoadingPaths_super object_ a1 a2 = (setLoadingPaths_impl (javaCast object_ :: ResourceUtil)) a1 a2
-
-setLoadingPaths_impl :: ResourceUtil -> String -> String -> IO (())
-setLoadingPaths_impl this path ext = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jio (CommonStrings.getInstance))).nOT_IMPLEMENTED) this "setLoadingPaths")
-        pure ()
+jchain : List String
+jchain =
+    [ "ResourceUtil" ]
 
 
-setClassLoader :: (JavaObjectClass this_) => this_ -> ClassLoader.ClassLoader -> IO (())
-setClassLoader object_ a1 = jmethod object_ "setClassLoader" (\() -> (setClassLoader_impl (javaCast object_ :: ResourceUtil))) () a1
-
-setClassLoader_super :: (JavaObjectClass this_) => this_ -> ClassLoader.ClassLoader -> IO (())
-setClassLoader_super object_ a1 = (setClassLoader_impl (javaCast object_ :: ResourceUtil)) a1
-
-setClassLoader_impl :: ResourceUtil -> ClassLoader.ClassLoader -> IO (())
-setClassLoader_impl this classLoader = do
-        Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "Resource Loader: "))) (jio (Class.getName ((jio (jobjectGetClass classLoader)))))))))) this "setClassLoader")
-        jset ResourceUtil.classLoader ((jtoObject classLoader))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ) ]
 
 
--- throws Exception
-getResourceAsStream :: (JavaObjectClass this_) => this_ -> String -> IO (InputStream.InputStream)
-getResourceAsStream object_ a1 = jmethod object_ "getResourceAsStream" (\() -> (getResourceAsStream_impl (javaCast object_ :: ResourceUtil))) () a1
-
-getResourceAsStream_super :: (JavaObjectClass this_) => this_ -> String -> IO (InputStream.InputStream)
-getResourceAsStream_super object_ a1 = (getResourceAsStream_impl (javaCast object_ :: ResourceUtil)) a1
-
-getResourceAsStream_impl :: ResourceUtil -> String -> IO (InputStream.InputStream)
-getResourceAsStream_impl this resource = do
-        inputStream <- newIORef =<< (ResourceUtil.getResourceAsStreamAtStart this resource 2)
-        when ((jget inputStream) == javaNull) $ do
-            assignedValue <- (ResourceUtil.getResourceAsStreamAtStart this resource 1)
-            jset inputStream (assignedValue)
-            when ((jget inputStream) == javaNull) $ do
-                javaThrow ((JavaException "Exception" (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "Unable to obtain: "))) resource)))))))
-        pure ((jget inputStream))
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "setLoadingPaths_2", jm_setLoadingPaths_2 )
+        , ( "setClassLoader_1", jm_setClassLoader_1 )
+        , ( "getResourceAsStream_1", jm_getResourceAsStream_1 )
+        , ( "getResourceAsStreamAtStart_2", jm_getResourceAsStreamAtStart_2 )
+        , ( "addResource_2", jm_addResource_2 ) ]
+        JR.noMethods
 
 
--- throws Exception
-getResourceAsStreamAtStart :: (JavaObjectClass this_) => this_ -> String -> Int -> IO (InputStream.InputStream)
-getResourceAsStreamAtStart object_ a1 a2 = jmethod object_ "getResourceAsStreamAtStart" (\() -> (getResourceAsStreamAtStart_impl (javaCast object_ :: ResourceUtil))) () a1 a2
-
-getResourceAsStreamAtStart_super :: (JavaObjectClass this_) => this_ -> String -> Int -> IO (InputStream.InputStream)
-getResourceAsStreamAtStart_super object_ a1 a2 = (getResourceAsStreamAtStart_impl (javaCast object_ :: ResourceUtil)) a1 a2
-
-getResourceAsStreamAtStart_impl :: ResourceUtil -> String -> Int -> IO (InputStream.InputStream)
-getResourceAsStreamAtStart_impl this resource startIndex = do
-    javaCatchReturn $ do
-        commonSeps <- (CommonSeps.getInstance)
-        let index = (jstringIndexOf resource (jget (commonSeps).cOLON) 0)
-        let resourcePath = (Prelude.drop (index + startIndex) resource)
-        inputStream <- newIORef =<< (Class.getResourceAsStream ((jio (jobjectGetClass resource))) resourcePath)
-        when ((jget inputStream) /= javaNull) $ do
-            javaReturn ((jget inputStream))
-        let classLoader = (javaCast (jget ResourceUtil.classLoader) :: ClassLoader.ClassLoader)
-        assignedValue <- (ClassLoader.getResourceAsStream classLoader resourcePath)
-        jset inputStream (assignedValue)
-        when ((jget inputStream) /= javaNull) $ do
-            javaReturn ((jget inputStream))
-        assignedValue <- (ClassLoader.getResourceAsStream ((jio (Thread.getContextClassLoader ((jio (Thread.currentThread)))))) resourcePath)
-        jset inputStream (assignedValue)
-        when ((jget inputStream) /= javaNull) $ do
-            javaReturn ((jget inputStream))
-        pure ((jget inputStream))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ResourceUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_setLoadingPaths_2", jm_setLoadingPaths_2 ), ( "jm_setClassLoader_1", jm_setClassLoader_1 ), ( "jm_getResourceAsStream_1", jm_getResourceAsStream_1 ), ( "jm_getResourceAsStreamAtStart_2", jm_getResourceAsStreamAtStart_2 ), ( "jm_addResource_2", jm_addResource_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_classLoader", jstatic_classLoader ), ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-addResource :: (JavaObjectClass this_) => this_ -> String -> Int -> IO (())
-addResource object_ a1 a2 = jmethod object_ "addResource" (\() -> (addResource_impl (javaCast object_ :: ResourceUtil))) () a1 a2
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-addResource_super :: (JavaObjectClass this_) => this_ -> String -> Int -> IO (())
-addResource_super object_ a1 a2 = (addResource_impl (javaCast object_ :: ResourceUtil)) a1 a2
 
-addResource_impl :: ResourceUtil -> String -> Int -> IO (())
-addResource_impl this resource value = do
-        pure ()
+jstatic_classLoader : JR.M
+jstatic_classLoader s =
+    JR.static "ResourceUtil" jclinit "classLoader"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ResourceUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLoadingPaths_2 : JR.Method
+jm_setLoadingPaths_2 jheap jthis jargs =
+    JR.method [ ( "path", "" ), ( "ext", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "NOT_IMPLEMENTED" (JR.callStatic CommonStrings.jm_getInstance_0 [])), JR.this, (JR.str "setLoadingPaths") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setClassLoader_1 : JR.Method
+jm_setClassLoader_1 jheap jthis jargs =
+    JR.method [ ( "classLoader", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Resource Loader: ") ]) [ (JR.invoke "getName_0" (JR.getClass (JR.local "classLoader")) []) ]) []), JR.this, (JR.str "setClassLoader") ]), 
+                    JR.exec (JR.setStatic "ResourceUtil.classLoader" "" (JR.local "classLoader")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getResourceAsStream_1 : JR.Method
+jm_getResourceAsStream_1 jheap jthis jargs =
+    JR.method [ ( "resource", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "inputStream" "" (JR.invoke "getResourceAsStreamAtStart_2" JR.this [ (JR.local "resource"), (JR.int 2) ]), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "inputStream") JR.null) (JR.run [ 
+                        JR.exec (JR.setLocal "inputStream" "" (JR.invoke "getResourceAsStreamAtStart_2" JR.this [ (JR.local "resource"), (JR.int 1) ])), 
+                        JR.ifElse (JR.map2 JR.equals (JR.local "inputStream") JR.null) (JR.run [ 
+                            JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Unable to obtain: ") ]) [ (JR.local "resource") ]) []) ]) ]) identity ]) identity, 
+                    JR.return (JR.local "inputStream") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getResourceAsStreamAtStart_2 : JR.Method
+jm_getResourceAsStreamAtStart_2 jheap jthis jargs =
+    JR.method [ ( "resource", "" ), ( "startIndex", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
+                    JR.declare "index" "I" (JR.invoke "indexOf_1" (JR.local "resource") [ (JR.field "COLON" (JR.local "commonSeps")) ]), 
+                    JR.declare "resourcePath" "" (JR.invoke "substring_1" (JR.local "resource") [ (JR.map2 JR.add (JR.local "index") (JR.local "startIndex")) ]), 
+                    JR.declare "inputStream" "" (JR.invoke "getResourceAsStream_1" (JR.getClass (JR.local "resource")) [ (JR.local "resourcePath") ]), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "inputStream") JR.null) (JR.run [ 
+                        JR.return (JR.local "inputStream") ]) identity, 
+                    JR.declare "classLoader" "" jstatic_classLoader, 
+                    JR.exec (JR.setLocal "inputStream" "" (JR.invoke "getResourceAsStream_1" (JR.local "classLoader") [ (JR.local "resourcePath") ])), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "inputStream") JR.null) (JR.run [ 
+                        JR.return (JR.local "inputStream") ]) identity, 
+                    JR.exec (JR.setLocal "inputStream" "" (JR.invoke "getResourceAsStream_1" (JR.invoke "getContextClassLoader_0" (JR.callStatic JThread.jm_currentThread_0 []) []) [ (JR.local "resourcePath") ])), 
+                    JR.ifElse (JR.map2 JR.notEquals (JR.local "inputStream") JR.null) (JR.run [ 
+                        JR.return (JR.local "inputStream") ]) identity, 
+                    JR.return (JR.local "inputStream") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addResource_2 : JR.Method
+jm_addResource_2 jheap jthis jargs =
+    JR.method [ ( "resource", "" ), ( "value", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

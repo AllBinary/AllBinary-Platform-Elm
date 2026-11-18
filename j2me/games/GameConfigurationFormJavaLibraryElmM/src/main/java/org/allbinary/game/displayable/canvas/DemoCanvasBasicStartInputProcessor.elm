@@ -1,109 +1,97 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module DemoCanvasBasicStartInputProcessor (module DemoCanvasBasicStartInputProcessor, module BasicMenuInputProcessor) where
+module Org.Allbinary.Game.Displayable.Canvas.DemoCanvasBasicStartInputProcessor exposing (..)
 
-import BasicMenuInputProcessor hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, processInputList, processInputList_super, processInputList_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicMenuInputProcessor -- same package or java.lang
-import qualified NullCanvas -- javax.microedition.lcdui.NullCanvas
-import qualified RunnableCanvas -- org.allbinary.canvas.RunnableCanvas
-import qualified GameCommandsFactory -- org.allbinary.game.commands.GameCommandsFactory
-import qualified GameInputStrings -- org.allbinary.game.input.GameInputStrings
-import qualified GameKeyEvent -- org.allbinary.game.input.event.GameKeyEvent
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicMenuInputProcessor
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
-data DemoCanvasBasicStartInputProcessor = DemoCanvasBasicStartInputProcessor
-    { header_ :: JavaHeader
-    , base :: BasicMenuInputProcessor.BasicMenuInputProcessor
-    }
-
-instance JavaNull DemoCanvasBasicStartInputProcessor where
-    javaNull = javaNullRecord "DemoCanvasBasicStartInputProcessor"
-
-instance JavaEquals DemoCanvasBasicStartInputProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DemoCanvasBasicStartInputProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DemoCanvasBasicStartInputProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO DemoCanvasBasicStartInputProcessor
-newRecord_ = do
-    base <- BasicMenuInputProcessor.newRecord_
-    let header_ = base.header_
-    let this = DemoCanvasBasicStartInputProcessor header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "processInputList" (\() -> processInputList_impl this)
-    pure this
-
-initFields_ :: DemoCanvasBasicStartInputProcessor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_2 :: BasicArrayList.BasicArrayList -> RunnableCanvas.RunnableCanvas -> IO DemoCanvasBasicStartInputProcessor
-new_2 gameKeyEventList gameCanvas = do
-    this <- newRecord_
-    init_2 this gameKeyEventList gameCanvas
-    pure this
-
-init_2 :: DemoCanvasBasicStartInputProcessor -> BasicArrayList.BasicArrayList -> RunnableCanvas.RunnableCanvas -> IO ()
-init_2 this gameKeyEventList gameCanvas = do
-        BasicMenuInputProcessor.init_3 this.base (gameKeyEventList) (Prelude.negate 1) (gameCanvas)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Game.Displayable.Canvas.BasicMenuInputProcessor as BasicMenuInputProcessor
+import Org.Allbinary.Game.Commands.GameCommandsFactory as GameCommandsFactory
+import Org.Allbinary.Game.Input.GameInputStrings as GameInputStrings
+import Javax.Microedition.Lcdui.NullCanvas as NullCanvas
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
--- throws Exception
-processInputList :: (JavaObjectClass this_) => this_ -> IO (Int)
-processInputList object_ = jmethod object_ "processInputList" (\() -> (processInputList_impl (javaCast object_ :: DemoCanvasBasicStartInputProcessor))) ()
+jclass : String
+jclass =
+    "DemoCanvasBasicStartInputProcessor"
 
-processInputList_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-processInputList_super object_ = (processInputList_impl (javaCast object_ :: DemoCanvasBasicStartInputProcessor))
 
-processInputList_impl :: DemoCanvasBasicStartInputProcessor -> IO (Int)
-processInputList_impl this = do
-        list <- (BasicMenuInputProcessor.getGameKeyEventList this)
-        size <- (BasicArrayList.size list)
-        gameKeyEvent <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset gameKeyEvent ((javaCast (jindex ((jget (list).objectArray)) (index)) :: GameKeyEvent.GameKeyEvent))
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) "Start GameKey: "))) (jio (StringUtil.toString ((jio (StringUtil.getInstance))) (jget gameKeyEvent)))))))) this (jget ((jio (GameInputStrings.getInstance))).pROCESS_INPUT))
-        Control.Monad.void (BasicMenuInputProcessor.commandAction ((jio (BasicMenuInputProcessor.getCustomCommandListener ((jio (BasicMenuInputProcessor.getCanvas this)))))) (jget ((jio (GameCommandsFactory.getInstance))).sTART_COMMAND) (NullCanvas.nULL_CANVAS))
-        pure (size)
+jchain : List String
+jchain =
+    [ "DemoCanvasBasicStartInputProcessor" ]
+        ++ BasicMenuInputProcessor.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicMenuInputProcessor.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "processInputList_0", jm_processInputList_0 ) ]
+        BasicMenuInputProcessor.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DemoCanvasBasicStartInputProcessor"
+        [ ( "jm_processInputList_0", jm_processInputList_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "gameKeyEventList", "" ), ( "gameCanvas", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicMenuInputProcessor.jinit_3 JR.this [ (JR.local "gameKeyEventList"), (JR.map JR.neg (JR.int 1)), (JR.local "gameCanvas") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_processInputList_0 : JR.Method
+jm_processInputList_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.declare "list" "" (JR.invoke "getGameKeyEventList_0" JR.this []), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                    JR.declare "gameKeyEvent" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69585 -> (JR.setLocal "index" "I" (JR.lit jwN69585))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "gameKeyEvent" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Start GameKey: ") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "gameKeyEvent") ]) ]) []), JR.this, (JR.field "PROCESS_INPUT" (JR.callStatic GameInputStrings.jm_getInstance_0 [])) ]) ]) ], 
+                    JR.exec (JR.invoke "commandAction_2" (JR.invoke "getCustomCommandListener_0" (JR.invoke "getCanvas_0" JR.this []) []) [ (JR.field "START_COMMAND" (JR.callStatic GameCommandsFactory.jm_getInstance_0 [])), NullCanvas.jstatic_NULL_CANVAS ]), 
+                    JR.return (JR.local "size") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

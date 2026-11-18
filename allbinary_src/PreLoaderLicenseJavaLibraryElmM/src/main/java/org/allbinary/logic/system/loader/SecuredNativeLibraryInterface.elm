@@ -1,115 +1,58 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.loader
-module SecuredNativeLibraryInterface where
+module Org.Allbinary.Logic.System.Loader.SecuredNativeLibraryInterface exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.loader
+-}
 
--- Java interface: the classes that implement it have these functions
-data SecuredNativeLibraryInterface = SecuredNativeLibraryInterface
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull SecuredNativeLibraryInterface where
-    javaNull = javaNullRecord "SecuredNativeLibraryInterface"
-
-instance JavaEquals SecuredNativeLibraryInterface where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SecuredNativeLibraryInterface where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SecuredNativeLibraryInterface where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-fromHeader_ :: JavaHeader -> SecuredNativeLibraryInterface
-fromHeader_ header = SecuredNativeLibraryInterface header
-
-registerInterface_ :: JavaHeader -> IO ()
-registerInterface_ header = do
-    jregisterLevel header (SecuredNativeLibraryInterface header)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+import JR
 
 
--- throws Exception
-load :: (JavaObjectClass this_) => this_ -> IO (())
-load object_ = jmethod object_ "load" (\() -> (load_impl (javaCast object_ :: SecuredNativeLibraryInterface))) ()
 
-load_super :: (JavaObjectClass this_) => this_ -> IO (())
-load_super object_ = (load_impl (javaCast object_ :: SecuredNativeLibraryInterface))
-
-load_impl :: SecuredNativeLibraryInterface -> IO (())
-load_impl this = javaAbstractMethod "load"
+jclass : String
+jclass =
+    "SecuredNativeLibraryInterface"
 
 
--- throws Exception
-unload :: (JavaObjectClass this_) => this_ -> IO (())
-unload object_ = jmethod object_ "unload" (\() -> (unload_impl (javaCast object_ :: SecuredNativeLibraryInterface))) ()
-
-unload_super :: (JavaObjectClass this_) => this_ -> IO (())
-unload_super object_ = (unload_impl (javaCast object_ :: SecuredNativeLibraryInterface))
-
-unload_impl :: SecuredNativeLibraryInterface -> IO (())
-unload_impl this = javaAbstractMethod "unload"
+jchain : List String
+jchain =
+    [ "SecuredNativeLibraryInterface" ]
 
 
-unlock :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-unlock object_ a1 = jmethod object_ "unlock" (\() -> (unlock_impl (javaCast object_ :: SecuredNativeLibraryInterface))) () a1
-
-unlock_super :: (JavaObjectClass this_) => this_ -> String -> IO (Bool)
-unlock_super object_ a1 = (unlock_impl (javaCast object_ :: SecuredNativeLibraryInterface)) a1
-
-unlock_impl :: SecuredNativeLibraryInterface -> String -> IO (Bool)
-unlock_impl this key = javaAbstractMethod "unlock"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-getLibraryName :: (JavaObjectClass this_) => this_ -> IO (String)
-getLibraryName object_ = jmethod object_ "getLibraryName" (\() -> (getLibraryName_impl (javaCast object_ :: SecuredNativeLibraryInterface))) ()
-
-getLibraryName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getLibraryName_super object_ = (getLibraryName_impl (javaCast object_ :: SecuredNativeLibraryInterface))
-
-getLibraryName_impl :: SecuredNativeLibraryInterface -> IO (String)
-getLibraryName_impl this = javaAbstractMethod "getLibraryName"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: SecuredNativeLibraryInterface))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SecuredNativeLibraryInterface"
+        []
+        []
+        jheap
 
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: SecuredNativeLibraryInterface))
 
-getName_impl :: SecuredNativeLibraryInterface -> IO (String)
-getName_impl this = javaAbstractMethod "getName"
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

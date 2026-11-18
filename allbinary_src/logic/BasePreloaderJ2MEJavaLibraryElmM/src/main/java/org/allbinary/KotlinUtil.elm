@@ -1,10 +1,10 @@
-module KotlinUtil exposing (..)
+module Org.Allbinary.KotlinUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary
 -}
 
 import JR
-import StringUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
 jclass : String

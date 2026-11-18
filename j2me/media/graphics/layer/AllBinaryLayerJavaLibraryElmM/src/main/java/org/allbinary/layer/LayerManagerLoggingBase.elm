@@ -1,142 +1,121 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
--- 
--- Generated Code Do Not Modify
--- package org.allbinary.layer
-module LayerManagerLoggingBase where
+module Org.Allbinary.Layer.LayerManagerLoggingBase exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryLayer -- same package or java.lang
-import qualified LayerManager -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.layer
+-}
 
-data LayerManagerLoggingBase = LayerManagerLoggingBase
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull LayerManagerLoggingBase where
-    javaNull = javaNullRecord "LayerManagerLoggingBase"
-
-instance JavaEquals LayerManagerLoggingBase where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LayerManagerLoggingBase where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LayerManagerLoggingBase where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LayerManagerLoggingBase
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = LayerManagerLoggingBase header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "append" (\() -> append_impl this)
-    jregisterMethod header_ "appendAt" (\() -> appendAt_impl this)
-    jregisterMethod header_ "remove" (\() -> remove_impl this)
-    jregisterMethod header_ "removeResult" (\() -> removeResult_impl this)
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    pure this
-
-initFields_ :: LayerManagerLoggingBase -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO LayerManagerLoggingBase
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LayerManagerLoggingBase -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
--- throws Exception
-append :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append object_ a1 = jmethod object_ "append" (\() -> (append_impl (javaCast object_ :: LayerManagerLoggingBase))) () a1
 
-append_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append_super object_ a1 = (append_impl (javaCast object_ :: LayerManagerLoggingBase)) a1
-
-append_impl :: LayerManagerLoggingBase -> AllBinaryLayer.AllBinaryLayer -> IO (())
-append_impl this layerInterface = do
-        pure ()
+jclass : String
+jclass =
+    "LayerManagerLoggingBase"
 
 
-appendAt :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt object_ a1 a2 = jmethod object_ "appendAt" (\() -> (appendAt_impl (javaCast object_ :: LayerManagerLoggingBase))) () a1 a2
-
-appendAt_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt_super object_ a1 a2 = (appendAt_impl (javaCast object_ :: LayerManagerLoggingBase)) a1 a2
-
-appendAt_impl :: LayerManagerLoggingBase -> AllBinaryLayer.AllBinaryLayer -> Int -> IO (())
-appendAt_impl this layerInterface index = do
-        pure ()
+jchain : List String
+jchain =
+    [ "LayerManagerLoggingBase" ]
 
 
-remove :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove object_ a1 = jmethod object_ "remove" (\() -> (remove_impl (javaCast object_ :: LayerManagerLoggingBase))) () a1
-
-remove_super :: (JavaObjectClass this_) => this_ -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove_super object_ a1 = (remove_impl (javaCast object_ :: LayerManagerLoggingBase)) a1
-
-remove_impl :: LayerManagerLoggingBase -> AllBinaryLayer.AllBinaryLayer -> IO (())
-remove_impl this layerInterface = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-removeResult :: (JavaObjectClass this_) => this_ -> LayerManager.LayerManager -> AllBinaryLayer.AllBinaryLayer -> Bool -> IO (())
-removeResult object_ a1 a2 a3 = jmethod object_ "removeResult" (\() -> (removeResult_impl (javaCast object_ :: LayerManagerLoggingBase))) () a1 a2 a3
+jvtable =
+    JR.vtable
+        [ ( "append_1", jm_append_1 )
+        , ( "appendAt_2", jm_appendAt_2 )
+        , ( "remove_1", jm_remove_1 )
+        , ( "removeResult_3", jm_removeResult_3 )
+        , ( "clear_0", jm_clear_0 ) ]
+        JR.noMethods
 
-removeResult_super :: (JavaObjectClass this_) => this_ -> LayerManager.LayerManager -> AllBinaryLayer.AllBinaryLayer -> Bool -> IO (())
-removeResult_super object_ a1 a2 a3 = (removeResult_impl (javaCast object_ :: LayerManagerLoggingBase)) a1 a2 a3
 
-removeResult_impl :: LayerManagerLoggingBase -> LayerManager.LayerManager -> AllBinaryLayer.AllBinaryLayer -> Bool -> IO (())
-removeResult_impl this layerManager layerInterface result = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LayerManagerLoggingBase"
+        [ ( "jm_append_1", jm_append_1 ), ( "jm_appendAt_2", jm_appendAt_2 ), ( "jm_remove_1", jm_remove_1 ), ( "jm_removeResult_3", jm_removeResult_3 ), ( "jm_clear_0", jm_clear_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
 
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: LayerManagerLoggingBase))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: LayerManagerLoggingBase))
 
-clear_impl :: LayerManagerLoggingBase -> IO (())
-clear_impl this = do
-        pure ()
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_append_1 : JR.Method
+jm_append_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_appendAt_2 : JR.Method
+jm_appendAt_2 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ), ( "index", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_remove_1 : JR.Method
+jm_remove_1 jheap jthis jargs =
+    JR.method [ ( "layerInterface", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_removeResult_3 : JR.Method
+jm_removeResult_3 jheap jthis jargs =
+    JR.method [ ( "layerManager", "" ), ( "layerInterface", "" ), ( "result", "Z" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

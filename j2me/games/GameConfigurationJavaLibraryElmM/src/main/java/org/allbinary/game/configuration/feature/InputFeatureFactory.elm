@@ -1,124 +1,110 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration.feature
-module InputFeatureFactory where
+module Org.Allbinary.Game.Configuration.Feature.InputFeatureFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified InputFeature -- same package or java.lang
-import qualified Features -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration.feature
+-}
 
-data InputFeatureFactory = InputFeatureFactory
-    { header_ :: JavaHeader
-    , rEMOVE_DUPLICATE_KEY_PRESSES :: IORef (InputFeature.InputFeature)
-    , iNPUT_MAPPING :: IORef (InputFeature.InputFeature)
-    , mULTI_KEY_PRESS :: IORef (InputFeature.InputFeature)
-    , sINGLE_KEY_REPEAT_PRESS :: IORef (InputFeature.InputFeature)
-    , sINGLE_KEY_PRESS :: IORef (InputFeature.InputFeature)
-    }
-
-instance JavaNull InputFeatureFactory where
-    javaNull = javaNullRecord "InputFeatureFactory"
-
-instance JavaEquals InputFeatureFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq InputFeatureFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass InputFeatureFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: InputFeatureFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO InputFeatureFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    rEMOVE_DUPLICATE_KEY_PRESSES <- newIORef javaNull
-    iNPUT_MAPPING <- newIORef javaNull
-    mULTI_KEY_PRESS <- newIORef javaNull
-    sINGLE_KEY_REPEAT_PRESS <- newIORef javaNull
-    sINGLE_KEY_PRESS <- newIORef javaNull
-    let this = InputFeatureFactory header_ rEMOVE_DUPLICATE_KEY_PRESSES iNPUT_MAPPING mULTI_KEY_PRESS sINGLE_KEY_REPEAT_PRESS sINGLE_KEY_PRESS
-    jregisterLevel header_ this
-    jregisterMethod header_ "isSingleKeyProcessing" (\() -> isSingleKeyProcessing_impl this)
-    pure this
-
-initFields_ :: InputFeatureFactory -> IO ()
-initFields_ this = do
-    jset this.rEMOVE_DUPLICATE_KEY_PRESSES =<< (InputFeature.new_1 "Remove Duplicate Key Presses")
-    jset this.iNPUT_MAPPING =<< (InputFeature.new_1 "Input Mapping")
-    jset this.mULTI_KEY_PRESS =<< (InputFeature.new_1 "Multi Key Press")
-    jset this.sINGLE_KEY_REPEAT_PRESS =<< (InputFeature.new_1 "Single Key Repeat Press")
-    jset this.sINGLE_KEY_PRESS =<< (InputFeature.new_1 "Single Key Press")
-    pure ()
+import JR
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Configuration.Feature.InputFeature as InputFeature
 
 
-getInstance :: IO (InputFeatureFactory)
-getInstance = do
-        pure (InputFeatureFactory.instance_)
-
-new_ :: IO InputFeatureFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: InputFeatureFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "InputFeatureFactory"
 
 
-isSingleKeyProcessing :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isSingleKeyProcessing object_ = jmethod object_ "isSingleKeyProcessing" (\() -> (isSingleKeyProcessing_impl (javaCast object_ :: InputFeatureFactory))) ()
+jchain : List String
+jchain =
+    [ "InputFeatureFactory" ]
 
-isSingleKeyProcessing_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isSingleKeyProcessing_super object_ = (isSingleKeyProcessing_impl (javaCast object_ :: InputFeatureFactory))
 
-isSingleKeyProcessing_impl :: InputFeatureFactory -> IO (Bool)
-isSingleKeyProcessing_impl this = do
-    javaCatchReturn $ do
-        features <- (Features.getInstance)
-        if ((jio (Features.isFeature features (javaCast (jget (this).sINGLE_KEY_REPEAT_PRESS)))) || (jio (Features.isFeature features (javaCast (jget (this).sINGLE_KEY_PRESS))))) then do
-            javaReturn (True)
-        else do
-            javaReturn (False)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "REMOVE_DUPLICATE_KEY_PRESSES", JR.defaultOf "" ), ( "INPUT_MAPPING", JR.defaultOf "" ), ( "MULTI_KEY_PRESS", JR.defaultOf "" ), ( "SINGLE_KEY_REPEAT_PRESS", JR.defaultOf "" ), ( "SINGLE_KEY_PRESS", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "isSingleKeyProcessing_0", jm_isSingleKeyProcessing_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "InputFeatureFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_isSingleKeyProcessing_0", jm_isSingleKeyProcessing_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "InputFeatureFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "REMOVE_DUPLICATE_KEY_PRESSES" "" JR.this (JR.new InputFeature.jnew_1 [ (JR.str "Remove Duplicate Key Presses") ])),
+                JR.exec (JR.setField "INPUT_MAPPING" "" JR.this (JR.new InputFeature.jnew_1 [ (JR.str "Input Mapping") ])),
+                JR.exec (JR.setField "MULTI_KEY_PRESS" "" JR.this (JR.new InputFeature.jnew_1 [ (JR.str "Multi Key Press") ])),
+                JR.exec (JR.setField "SINGLE_KEY_REPEAT_PRESS" "" JR.this (JR.new InputFeature.jnew_1 [ (JR.str "Single Key Repeat Press") ])),
+                JR.exec (JR.setField "SINGLE_KEY_PRESS" "" JR.this (JR.new InputFeature.jnew_1 [ (JR.str "Single Key Press") ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isSingleKeyProcessing_0 : JR.Method
+jm_isSingleKeyProcessing_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
+                    JR.ifElse (JR.or (JR.invoke "isFeature_1" (JR.local "features") [ (JR.thisField "SINGLE_KEY_REPEAT_PRESS") ]) (JR.invoke "isFeature_1" (JR.local "features") [ (JR.thisField "SINGLE_KEY_PRESS") ])) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

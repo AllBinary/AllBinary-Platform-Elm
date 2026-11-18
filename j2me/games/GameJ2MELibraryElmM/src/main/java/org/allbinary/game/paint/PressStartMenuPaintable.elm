@@ -1,193 +1,150 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.paint
-module PressStartMenuPaintable (module PressStartMenuPaintable, module Paintable) where
+module Org.Allbinary.Game.Paint.PressStartMenuPaintable exposing (..)
 
-import Paintable hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, paint, paint_super, paint_impl, setFlash, setFlash_super, setFlash_impl, isFlash, isFlash_super, isFlash_impl, displayInfo, pRESS_START, kEY_START, mENU_START, myFontProcessor, startString, timeDelayHelper, flash, anchor, beginWidth, line)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified AppletUtil -- org.allbinary.AppletUtil
-import qualified Anchor -- org.allbinary.graphics.Anchor
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified Paintable -- org.allbinary.graphics.paint.Paintable
-import qualified TouchScreenFactory -- org.allbinary.input.motion.button.TouchScreenFactory
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
+{-| Generated Code Do Not Modify package org.allbinary.game.paint
+-}
 
--- implements UpdateMyFontInterface
-data PressStartMenuPaintable = PressStartMenuPaintable
-    { header_ :: JavaHeader
-    , base :: Paintable.Paintable
-    , displayInfo :: IORef (DisplayInfoSingleton.DisplayInfoSingleton)
-    , pRESS_START :: IORef (String)
-    , kEY_START :: IORef (String)
-    , mENU_START :: IORef (String)
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , startString :: IORef (String)
-    , timeDelayHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , flash :: IORef (Bool)
-    , anchor :: IORef (Int)
-    , beginWidth :: IORef (Int)
-    , line :: IORef (Int)
-    }
-
-instance JavaNull PressStartMenuPaintable where
-    javaNull = javaNullRecord "PressStartMenuPaintable"
-
-instance JavaEquals PressStartMenuPaintable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PressStartMenuPaintable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PressStartMenuPaintable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO PressStartMenuPaintable
-newRecord_ = do
-    base <- Paintable.newRecord_
-    let header_ = base.header_
-    displayInfo <- newIORef javaNull
-    pRESS_START <- newIORef ""
-    kEY_START <- newIORef ""
-    mENU_START <- newIORef ""
-    myFontProcessor <- newIORef javaNull
-    startString <- newIORef ""
-    timeDelayHelper <- newIORef javaNull
-    flash <- newIORef False
-    anchor <- newIORef 0
-    beginWidth <- newIORef 0
-    line <- newIORef 0
-    let this = PressStartMenuPaintable header_ base displayInfo pRESS_START kEY_START mENU_START myFontProcessor startString timeDelayHelper flash anchor beginWidth line
-    jregisterLevel header_ this
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "setFlash" (\() -> setFlash_impl this)
-    jregisterMethod header_ "isFlash" (\() -> isFlash_impl this)
-    pure this
-
-initFields_ :: PressStartMenuPaintable -> IO ()
-initFields_ this = do
-    jset this.displayInfo =<< (DisplayInfoSingleton.getInstance)
-    jset this.pRESS_START ("Press Screen To Start")
-    jset this.kEY_START ("Press or Click F2 To Begin")
-    jset this.mENU_START ("Press Start From The Menu To Begin")
-    jset this.myFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.startString ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    jset this.timeDelayHelper =<< (TimeDelayHelper.new_1 1100)
-    jset this.flash (False)
-    jset this.anchor (Anchor.tOP_LEFT)
-    jset this.beginWidth (0)
-    jset this.line (0)
-    pure ()
-
-new_ :: IO PressStartMenuPaintable
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: PressStartMenuPaintable -> IO ()
-init_ this = do
-        Paintable.init_ this.base
-        initFields_ this
-        if (jio (TouchScreenFactory.isTouch ((jio (TouchScreenFactory.getInstance))))) then do
-            jset (this).startString ((jget (this).pRESS_START))
-        else if (jio (AppletUtil.isAppletLoader this)) then do
-            jset (this).startString ((jget (this).kEY_START))
-        else do
-            jset (this).startString ((jget (this).mENU_START))
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Anchor as Anchor
+import Org.Allbinary.AppletUtil as AppletUtil
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Graphics.Paint.Paintable as Paintable
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
+import Org.Allbinary.Input.Motion.Button.TouchScreenFactory as TouchScreenFactory
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: PressStartMenuPaintable))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: PressStartMenuPaintable)) a1
-
-updateMeasurement_impl :: PressStartMenuPaintable -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        jset (this).beginWidth ((((jio (Graphics.stringWidth ((jio (Graphics.getFont graphics))) (jget (this).startString))) `Data.Bits.shiftR` 1)))
-        jset (this).line ((((4 * (jio (MyFontProcessor.defaultCharWidth font)))) + (((jio (Font.getHeight font)) `Data.Bits.shiftR` 1))))
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "PressStartMenuPaintable"
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: PressStartMenuPaintable))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: PressStartMenuPaintable)) a1
-
-paint_impl :: PressStartMenuPaintable -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        when (jio (TimeDelayHelper.isTimeTNT ((jget (this).timeDelayHelper)))) $ do
-            if (jio (PressStartMenuPaintable.isFlash this)) then do
-                Control.Monad.void (PressStartMenuPaintable.setFlash this False)
-            else do
-                Control.Monad.void (PressStartMenuPaintable.setFlash this True)
-        when (jio (PressStartMenuPaintable.isFlash this)) $ do
-            Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-            Control.Monad.void (Graphics.drawString graphics (jget (this).startString) ((jio (DisplayInfoSingleton.getLastHalfWidth ((jget this.displayInfo)))) - (jget this.beginWidth)) ((jio (DisplayInfoSingleton.getLastHeight ((jget this.displayInfo)))) - (jget this.line)) (jget (this).anchor))
-        pure ()
+jchain : List String
+jchain =
+    [ "PressStartMenuPaintable" ]
+        ++ Paintable.jchain
+        ++ UpdateMyFontInterface.jchain
 
 
-setFlash :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setFlash object_ a1 = jmethod object_ "setFlash" (\() -> (setFlash_impl (javaCast object_ :: PressStartMenuPaintable))) () a1
-
-setFlash_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setFlash_super object_ a1 = (setFlash_impl (javaCast object_ :: PressStartMenuPaintable)) a1
-
-setFlash_impl :: PressStartMenuPaintable -> Bool -> IO (())
-setFlash_impl this flash = do
-        jset (this).flash (flash)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    Paintable.jfields ++ [ ( "displayInfo", JR.defaultOf "" ), ( "PRESS_START", JR.defaultOf "" ), ( "KEY_START", JR.defaultOf "" ), ( "MENU_START", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "startString", JR.defaultOf "" ), ( "timeDelayHelper", JR.defaultOf "" ), ( "flash", JR.defaultOf "Z" ), ( "anchor", JR.defaultOf "I" ), ( "beginWidth", JR.defaultOf "I" ), ( "line", JR.defaultOf "I" ) ]
 
 
-isFlash :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isFlash object_ = jmethod object_ "isFlash" (\() -> (isFlash_impl (javaCast object_ :: PressStartMenuPaintable))) ()
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "setFlash_1", jm_setFlash_1 )
+        , ( "isFlash_0", jm_isFlash_0 ) ]
+        Paintable.jvtable
 
-isFlash_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isFlash_super object_ = (isFlash_impl (javaCast object_ :: PressStartMenuPaintable))
 
-isFlash_impl :: PressStartMenuPaintable -> IO (Bool)
-isFlash_impl this = do
-        pure ((jget (this).flash))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PressStartMenuPaintable"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_setFlash_1", jm_setFlash_1 ), ( "jm_isFlash_0", jm_isFlash_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect Paintable.jinit_0 JR.this []),
+                JR.exec (JR.setField "displayInfo" "" JR.this (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 [])),
+                JR.exec (JR.setField "PRESS_START" "" JR.this (JR.str "Press Screen To Start")),
+                JR.exec (JR.setField "KEY_START" "" JR.this (JR.str "Press or Click F2 To Begin")),
+                JR.exec (JR.setField "MENU_START" "" JR.this (JR.str "Press Start From The Menu To Begin")),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "startString" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                JR.exec (JR.setField "timeDelayHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 1100) ])),
+                JR.exec (JR.setField "anchor" "I" JR.this Anchor.jstatic_TOP_LEFT),
+                identity,
+                (JR.run [ 
+                    JR.ifElse (JR.invoke "isTouch_0" (JR.callStatic TouchScreenFactory.jm_getInstance_0 []) []) (JR.run [ 
+                        JR.exec (JR.setField "startString" "" JR.this (JR.thisField "PRESS_START")) ]) (JR.run [ 
+                    JR.ifElse (JR.callStatic AppletUtil.jm_isAppletLoader_1 [ JR.this ]) (JR.run [ 
+                        JR.exec (JR.setField "startString" "" JR.this (JR.thisField "KEY_START")) ]) (JR.run [ 
+                        JR.exec (JR.setField "startString" "" JR.this (JR.thisField "MENU_START")) ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "beginWidth" "I" JR.this ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.thisField "startString") ]) (JR.int 1)))), 
+                    JR.exec (JR.setField "line" "I" JR.this (JR.plus ((JR.map2 JR.mul (JR.int 4) (JR.callStatic MyFontProcessor.jm_defaultCharWidth_1 [ (JR.local "font") ]))) ((JR.map2 JR.shr (JR.invoke "getHeight_0" (JR.local "font") []) (JR.int 1))))), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "timeDelayHelper") []) (JR.run [ 
+                        JR.ifElse (JR.invoke "isFlash_0" JR.this []) (JR.run [ 
+                            JR.exec (JR.invoke "setFlash_1" JR.this [ (JR.bool False) ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "setFlash_1" JR.this [ (JR.bool True) ]) ]) ]) identity, 
+                    JR.ifElse (JR.invoke "isFlash_0" JR.this []) (JR.run [ 
+                        JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                        JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.thisField "startString"), (JR.map2 JR.sub (JR.invoke "getLastHalfWidth_0" (JR.thisField "displayInfo") []) (JR.thisField "beginWidth")), (JR.map2 JR.sub (JR.invoke "getLastHeight_0" (JR.thisField "displayInfo") []) (JR.thisField "line")), (JR.thisField "anchor") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setFlash_1 : JR.Method
+jm_setFlash_1 jheap jthis jargs =
+    JR.method [ ( "flash", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "flash" "Z" JR.this (JR.local "flash")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isFlash_0 : JR.Method
+jm_isFlash_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.thisField "flash") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

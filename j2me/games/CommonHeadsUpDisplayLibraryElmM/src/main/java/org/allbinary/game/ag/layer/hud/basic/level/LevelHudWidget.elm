@@ -1,241 +1,196 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.level
-module LevelHudWidget (module LevelHudWidget, module BasicHud) where
+module Org.Allbinary.Game.Ag.Layer.Hud.Basic.Level.LevelHudWidget exposing (..)
 
-import BasicHud hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createHud, createHud_super, createHud_impl, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, update, update_super, update_impl, setLevel, setLevel_super, setLevel_impl, nextLevel, nextLevel_super, nextLevel_impl, previousLevel, previousLevel_super, previousLevel_impl, isComplete, isComplete_super, isComplete_impl, paint, paint_super, paint_impl, paintThreed, paintThreed_super, paintThreed_impl, level, maxlevel, levelString, levelNumberCharArray, levelNumberTotalDigits, offset, primitiveLongUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified BasicHud -- org.allbinary.game.graphics.hud.BasicHud
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified PaintableInterface -- org.allbinary.graphics.paint.PaintableInterface
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified PrimitiveLongUtil -- org.allbinary.logic.math.PrimitiveLongUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.hud.basic.level
+-}
 
--- implements PaintableInterface
-data LevelHudWidget = LevelHudWidget
-    { header_ :: JavaHeader
-    , base :: BasicHud.BasicHud
-    , level :: IORef (Int)
-    , maxlevel :: IORef (Int)
-    , levelString :: IORef (JavaArray (Char))
-    , levelNumberCharArray :: IORef (JavaArray (Char))
-    , levelNumberTotalDigits :: IORef (Int)
-    , offset :: IORef (Int)
-    , primitiveLongUtil :: IORef (PrimitiveLongUtil.PrimitiveLongUtil)
-    }
-
-instance JavaNull LevelHudWidget where
-    javaNull = javaNullRecord "LevelHudWidget"
-
-instance JavaEquals LevelHudWidget where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LevelHudWidget where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LevelHudWidget where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO LevelHudWidget
-newRecord_ = do
-    base <- BasicHud.newRecord_
-    let header_ = base.header_
-    level <- newIORef 0
-    maxlevel <- newIORef 0
-    levelString <- newIORef javaNull
-    levelNumberCharArray <- newIORef javaNull
-    levelNumberTotalDigits <- newIORef 0
-    offset <- newIORef 0
-    primitiveLongUtil <- newIORef javaNull
-    let this = LevelHudWidget header_ base level maxlevel levelString levelNumberCharArray levelNumberTotalDigits offset primitiveLongUtil
-    jregisterLevel header_ this
-    PaintableInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "setLevel" (\() -> setLevel_impl this)
-    jregisterMethod header_ "nextLevel" (\() -> nextLevel_impl this)
-    jregisterMethod header_ "previousLevel" (\() -> previousLevel_impl this)
-    jregisterMethod header_ "isComplete" (\() -> isComplete_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "paintThreed" (\() -> paintThreed_impl this)
-    pure this
-
-initFields_ :: LevelHudWidget -> IO ()
-initFields_ this = do
-    jset this.level (0)
-    jset this.maxlevel (0)
-    jset this.levelString (javaNull)
-    jset this.levelNumberCharArray ((jget ((jio (NullUtil.getInstance))).nULL_CHAR_ARRAY))
-    jset this.levelNumberTotalDigits (0)
-    jset this.offset (0)
-    jset this.primitiveLongUtil (javaNull)
-    pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Game.Graphics.Hud.BasicHud as BasicHud
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Graphics.Paint.PaintableInterface as PaintableInterface
+import Org.Allbinary.Logic.Math.PrimitiveLongUtil as PrimitiveLongUtil
 
 
--- throws Exception
-createHud :: Int -> Int -> Int -> IO (LevelHudWidget)
-createHud maxlevel location direction = do
-        (new_3 maxlevel location direction)
-
-new_3 :: Int -> Int -> Int -> IO LevelHudWidget
-new_3 maxlevel location direction = do
-    this <- newRecord_
-    init_3 this maxlevel location direction
-    pure this
-
-init_3 :: LevelHudWidget -> Int -> Int -> Int -> IO ()
-init_3 this maxlevel location direction = do
-        BasicHud.init_4 this.base (location) (direction) (2) (jget ((jio (BasicColorFactory.getInstance))).gREY)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        assignedValue <- (PrimitiveLongUtil.createPowerOfTen 1000)
-        jset (this).primitiveLongUtil (assignedValue)
-        let lEVEL = "Lv "
-        assignedValue <- (jtoCharArray lEVEL)
-        jset (this).levelString (assignedValue)
-        jset (this).maxlevel (maxlevel)
-        jset (this).level (maxlevel)
-        Control.Monad.void (LevelHudWidget.update this)
-        jset (this).base.updateMaxHeight (14)
-        pure ()
+jclass : String
+jclass =
+    "LevelHudWidget"
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: LevelHudWidget))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: LevelHudWidget)) a1
-
-updateMeasurement_impl :: LevelHudWidget -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        jset (this).base.updateMaxWidth (((jio (Font.getSize font)) * 4))
-        jset (this).offset (((jio (Font.charsWidth font (jget (this).levelString) 0 (jlength (jget (this).levelString)))) + (jio (Font.getSize font))))
-        Control.Monad.void (BasicHud.updateMeasurement_super this.base graphics)
-        pure ()
+jchain : List String
+jchain =
+    [ "LevelHudWidget" ]
+        ++ BasicHud.jchain
+        ++ PaintableInterface.jchain
 
 
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: LevelHudWidget))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: LevelHudWidget))
-
-update_impl :: LevelHudWidget -> IO (())
-update_impl this = do
-        assignedValue <- (PrimitiveLongUtil.getCharArray ((jget (this).primitiveLongUtil)) (jget (this).level))
-        jset (this).levelNumberCharArray (assignedValue)
-        assignedValue <- (PrimitiveLongUtil.getCurrentTotalDigits ((jget (this).primitiveLongUtil)))
-        jset (this).levelNumberTotalDigits (assignedValue)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicHud.jfields ++ [ ( "level", JR.defaultOf "I" ), ( "maxlevel", JR.defaultOf "I" ), ( "levelString", JR.defaultOf "" ), ( "levelNumberCharArray", JR.defaultOf "" ), ( "levelNumberTotalDigits", JR.defaultOf "I" ), ( "offset", JR.defaultOf "I" ), ( "primitiveLongUtil", JR.defaultOf "" ) ]
 
 
-setLevel :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLevel object_ a1 = jmethod object_ "setLevel" (\() -> (setLevel_impl (javaCast object_ :: LevelHudWidget))) () a1
-
-setLevel_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setLevel_super object_ a1 = (setLevel_impl (javaCast object_ :: LevelHudWidget)) a1
-
-setLevel_impl :: LevelHudWidget -> Int -> IO (())
-setLevel_impl this level = do
-        jset (this).level (level)
-        Control.Monad.void (LevelHudWidget.update this)
-        pure ()
-
-
-nextLevel :: (JavaObjectClass this_) => this_ -> IO (())
-nextLevel object_ = jmethod object_ "nextLevel" (\() -> (nextLevel_impl (javaCast object_ :: LevelHudWidget))) ()
-
-nextLevel_super :: (JavaObjectClass this_) => this_ -> IO (())
-nextLevel_super object_ = (nextLevel_impl (javaCast object_ :: LevelHudWidget))
-
-nextLevel_impl :: LevelHudWidget -> IO (())
-nextLevel_impl this = do
-        jset (this).level ((jget (this).level) + 1)
-        Control.Monad.void (LevelHudWidget.update this)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "createHud_3", jm_createHud_3 )
+        , ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "update_0", jm_update_0 )
+        , ( "setLevel_1", jm_setLevel_1 )
+        , ( "nextLevel_0", jm_nextLevel_0 )
+        , ( "previousLevel_0", jm_previousLevel_0 )
+        , ( "isComplete_0", jm_isComplete_0 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "paintThreed_1", jm_paintThreed_1 ) ]
+        BasicHud.jvtable
 
 
-previousLevel :: (JavaObjectClass this_) => this_ -> IO (())
-previousLevel object_ = jmethod object_ "previousLevel" (\() -> (previousLevel_impl (javaCast object_ :: LevelHudWidget))) ()
-
-previousLevel_super :: (JavaObjectClass this_) => this_ -> IO (())
-previousLevel_super object_ = (previousLevel_impl (javaCast object_ :: LevelHudWidget))
-
-previousLevel_impl :: LevelHudWidget -> IO (())
-previousLevel_impl this = do
-        jset (this).level ((jget (this).level) - 1)
-        when ((jget (this).level) < 0) $ do
-            jset (this).level (0)
-        Control.Monad.void (LevelHudWidget.update this)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LevelHudWidget"
+        [ ( "jm_createHud_3", jm_createHud_3 ), ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_update_0", jm_update_0 ), ( "jm_setLevel_1", jm_setLevel_1 ), ( "jm_nextLevel_0", jm_nextLevel_0 ), ( "jm_previousLevel_0", jm_previousLevel_0 ), ( "jm_isComplete_0", jm_isComplete_0 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_paintThreed_1", jm_paintThreed_1 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
 
 
-isComplete :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isComplete object_ = jmethod object_ "isComplete" (\() -> (isComplete_impl (javaCast object_ :: LevelHudWidget))) ()
-
-isComplete_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isComplete_super object_ = (isComplete_impl (javaCast object_ :: LevelHudWidget))
-
-isComplete_impl :: LevelHudWidget -> IO (Bool)
-isComplete_impl this = do
-    javaCatchReturn $ do
-        if ((jget (this).level) <= (jget (this).maxlevel)) then do
-            javaReturn (False)
-        else do
-            javaReturn (True)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: LevelHudWidget))) () a1
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "maxlevel", "I" ), ( "location", "I" ), ( "direction", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicHud.jinit_4 JR.this [ (JR.local "location"), (JR.local "direction"), (JR.int 2), (JR.field "GREY" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ]),
+                JR.exec (JR.setField "levelNumberCharArray" "" JR.this (JR.field "NULL_CHAR_ARRAY" (JR.callStatic NullUtil.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "primitiveLongUtil" "" JR.this (JR.callStatic PrimitiveLongUtil.jm_createPowerOfTen_1 [ (JR.int 1000) ])), 
+                    JR.declare "LEVEL" "" (JR.str "Lv "), 
+                    JR.exec (JR.setField "levelString" "" JR.this (JR.invoke "toCharArray_0" (JR.local "LEVEL") [])), 
+                    JR.exec (JR.setField "maxlevel" "I" JR.this (JR.local "maxlevel")), 
+                    JR.exec (JR.setField "level" "I" JR.this (JR.local "maxlevel")), 
+                    JR.exec (JR.invoke "update_0" JR.this []), 
+                    JR.exec (JR.setField "updateMaxHeight" "" JR.this (JR.int 14)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: LevelHudWidget)) a1
 
-paint_impl :: LevelHudWidget -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (BasicHud.paintDX_super this.base graphics (jget (this).levelString) 0 (jlength (jget (this).levelString)) (jget (this).levelNumberCharArray) 0 (jget (this).levelNumberTotalDigits) (jget (this).offset))
-        pure ()
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
 
 
-paintThreed :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed object_ a1 = jmethod object_ "paintThreed" (\() -> (paintThreed_impl (javaCast object_ :: LevelHudWidget))) () a1
+jm_createHud_3 : JR.Method
+jm_createHud_3 jheap jthis jargs =
+    JR.method [ ( "maxlevel", "I" ), ( "location", "I" ), ( "direction", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_3 [ (JR.local "maxlevel"), (JR.local "location"), (JR.local "direction") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
-paintThreed_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed_super object_ a1 = (paintThreed_impl (javaCast object_ :: LevelHudWidget)) a1
 
-paintThreed_impl :: LevelHudWidget -> Graphics.Graphics -> IO (())
-paintThreed_impl this graphics = do
-        pure ()
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "updateMaxWidth" "" JR.this (JR.map2 JR.mul (JR.invoke "getSize_0" (JR.local "font") []) (JR.int 4))), 
+                    JR.exec (JR.setField "offset" "I" JR.this (JR.plus (JR.invoke "charsWidth_3" (JR.local "font") [ (JR.thisField "levelString"), (JR.int 0), (JR.alength (JR.thisField "levelString")) ]) (JR.invoke "getSize_0" (JR.local "font") []))), 
+                    JR.exec (JR.callVia BasicHud.jvtable "updateMeasurement_1" JR.this [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "levelNumberCharArray" "" JR.this (JR.invoke "getCharArray_1" (JR.thisField "primitiveLongUtil") [ (JR.thisField "level") ])), 
+                    JR.exec (JR.setField "levelNumberTotalDigits" "I" JR.this (JR.invoke "getCurrentTotalDigits_0" (JR.thisField "primitiveLongUtil") [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setLevel_1 : JR.Method
+jm_setLevel_1 jheap jthis jargs =
+    JR.method [ ( "level", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "level" "I" JR.this (JR.local "level")), 
+                    JR.exec (JR.invoke "update_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_nextLevel_0 : JR.Method
+jm_nextLevel_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.postUpdate (JR.thisField "level") (\jwN68956 -> (JR.setField "level" "I" JR.this (JR.lit jwN68956))) JR.increment), 
+                    JR.exec (JR.invoke "update_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_previousLevel_0 : JR.Method
+jm_previousLevel_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.postUpdate (JR.thisField "level") (\jwN69016 -> (JR.setField "level" "I" JR.this (JR.lit jwN69016))) JR.decrement), 
+                    JR.ifElse (JR.map2 JR.less (JR.thisField "level") (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.setField "level" "I" JR.this (JR.int 0)) ]) identity, 
+                    JR.exec (JR.invoke "update_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isComplete_0 : JR.Method
+jm_isComplete_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.lessEquals (JR.thisField "level") (JR.thisField "maxlevel")) (JR.run [ 
+                        JR.return (JR.bool False) ]) (JR.run [ 
+                        JR.return (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia BasicHud.jvtable "paintDX_8" JR.this [ (JR.local "graphics"), (JR.thisField "levelString"), (JR.int 0), (JR.alength (JR.thisField "levelString")), (JR.thisField "levelNumberCharArray"), (JR.int 0), (JR.thisField "levelNumberTotalDigits"), (JR.thisField "offset") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintThreed_1 : JR.Method
+jm_paintThreed_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

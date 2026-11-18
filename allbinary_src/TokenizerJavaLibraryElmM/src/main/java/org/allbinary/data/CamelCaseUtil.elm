@@ -1,122 +1,117 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.data
-module CamelCaseUtil where
+module Org.Allbinary.Data.CamelCaseUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified StringValidationUtil -- org.allbinary.logic.string.StringValidationUtil
-import qualified Tokenizer -- org.allbinary.logic.string.tokens.Tokenizer
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.data
+-}
 
-data CamelCaseUtil = CamelCaseUtil
-    { header_ :: JavaHeader
-    , commonSeps :: IORef (CommonSeps.CommonSeps)
-    }
-
-instance JavaNull CamelCaseUtil where
-    javaNull = javaNullRecord "CamelCaseUtil"
-
-instance JavaEquals CamelCaseUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CamelCaseUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CamelCaseUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: CamelCaseUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CamelCaseUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    commonSeps <- newIORef javaNull
-    let this = CamelCaseUtil header_ commonSeps
-    jregisterLevel header_ this
-    jregisterMethod header_ "getAsCamelCase" (\() -> getAsCamelCase_impl this)
-    pure this
-
-initFields_ :: CamelCaseUtil -> IO ()
-initFields_ this = do
-    jset this.commonSeps =<< (CommonSeps.getInstance)
-    pure ()
-
-new_ :: IO CamelCaseUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: CamelCaseUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import JCharacter
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
+import Org.Allbinary.Logic.String.Tokens.Tokenizer as Tokenizer
 
 
-getInstance :: IO (CamelCaseUtil)
-getInstance = do
-        pure (CamelCaseUtil.instance_)
+jclass : String
+jclass =
+    "CamelCaseUtil"
 
 
--- throws Exception
-getAsCamelCase :: (JavaObjectClass this_) => this_ -> String -> StringMaker.StringMaker -> IO (String)
-getAsCamelCase object_ a1 a2 = jmethod object_ "getAsCamelCase" (\() -> (getAsCamelCase_impl (javaCast object_ :: CamelCaseUtil))) () a1 a2
+jchain : List String
+jchain =
+    [ "CamelCaseUtil" ]
 
-getAsCamelCase_super :: (JavaObjectClass this_) => this_ -> String -> StringMaker.StringMaker -> IO (String)
-getAsCamelCase_super object_ a1 a2 = (getAsCamelCase_impl (javaCast object_ :: CamelCaseUtil)) a1 a2
 
-getAsCamelCase_impl :: CamelCaseUtil -> String -> StringMaker.StringMaker -> IO (String)
-getAsCamelCase_impl this string stringBuilder = do
-        stringValidationUtil <- (StringValidationUtil.getInstance)
-        Control.Monad.void (StringMaker.delete stringBuilder 0 (jio (StringMaker.length stringBuilder)))
-        list <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        tokenizer <- (Tokenizer.new_1 (jget ((jget (this).commonSeps)).uNDERSCORE))
-        Control.Monad.void (Tokenizer.getTokensFromString tokenizer string list)
-        size <- (BasicArrayList.size list)
-        word <- newIORef ("")
-        forM_ [0 .. size - 1] $ \i -> javaIteration (pure ()) $ do
-            jset word ((javaCast (jio (BasicArrayList.get list i)) :: String))
-            jset word ((if (jio (StringValidationUtil.isEmpty stringValidationUtil (jget word))) then (jget word) else (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.appendchar ((jio (StringMaker.new_))) (Data.Char.toUpper ((jget word) Prelude.!! 0))))) (Prelude.map Data.Char.toLower (Prelude.drop 1 (jget word))))))))))
-            Control.Monad.void (StringMaker.append stringBuilder (jget word))
-        (StringMaker.toString stringBuilder)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "commonSeps", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getAsCamelCase_2", jm_getAsCamelCase_2 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CamelCaseUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getAsCamelCase_2", jm_getAsCamelCase_2 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "CamelCaseUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "commonSeps" "" JR.this (JR.callStatic CommonSeps.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAsCamelCase_2 : JR.Method
+jm_getAsCamelCase_2 jheap jthis jargs =
+    JR.method [ ( "string", "" ), ( "stringBuilder", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringValidationUtil" "" (JR.callStatic StringValidationUtil.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "delete_2" (JR.local "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuilder") []) ]), 
+                    JR.declare "list" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "tokenizer" "" (JR.new Tokenizer.jnew_1 [ (JR.field "UNDERSCORE" (JR.thisField "commonSeps")) ]), 
+                    JR.exec (JR.invoke "getTokensFromString_2" (JR.local "tokenizer") [ (JR.local "string"), (JR.local "list") ]), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                    JR.declare "word" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN67516 -> (JR.setLocal "i" "I" (JR.lit jwN67516))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "word" "" (JR.invoke "get_1" (JR.local "list") [ (JR.local "i") ])), 
+                        JR.exec (JR.setLocal "word" "" (JR.cond (JR.invoke "isEmpty_1" (JR.local "stringValidationUtil") [ (JR.local "word") ]) (JR.local "word") (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "appendchar_1" (JR.new StringMaker.jnew_0 []) [ (JR.callStatic JCharacter.jm_toUpperCase_1 [ (JR.invoke "charAt_1" (JR.local "word") [ (JR.int 0) ]) ]) ]) [ (JR.invoke "toLowerCase_0" (JR.invoke "substring_1" (JR.local "word") [ (JR.int 1) ]) []) ]) []))), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuilder") [ (JR.local "word") ]) ]) ], 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuilder") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

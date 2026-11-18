@@ -1,10 +1,10 @@
-module SolarisOS exposing (..)
+module Org.Allbinary.Logic.System.Os.Solaris.SolarisOS exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.os.solaris
 -}
 
 import JR
-import GenericOperatingSystem
+import Org.Allbinary.Logic.System.Os.GenericOperatingSystem as GenericOperatingSystem
 
 
 jclass : String

@@ -1,87 +1,86 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2025 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package javax.microedition.lcdui
-module NullImage where
+module Javax.Microedition.Lcdui.NullImage exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Image -- same package or java.lang
+{-| Generated Code Do Not Modify package javax.microedition.lcdui
+-}
 
-data NullImage = NullImage
-    { header_ :: JavaHeader
-    }
+import JR
+import Javax.Microedition.Lcdui.Image as Image
 
-instance JavaNull NullImage where
-    javaNull = javaNullRecord "NullImage"
 
-instance JavaEquals NullImage where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "NullImage"
 
-instance Eq NullImage where
-    (==) = jrecordEquals
 
-instance JavaObjectClass NullImage where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "NullImage" ]
 
-nULL_IMAGE_ARRAY :: JavaArray (Image.Image)
-nULL_IMAGE_ARRAY = (jnewArray (0) javaNull)
 
-nULL_IMAGE :: Image.Image
-{-# NOINLINE nULL_IMAGE #-}
-nULL_IMAGE = unsafePerformIO ((Image.new_))
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-newRecord_ :: IO NullImage
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = NullImage header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: NullImage -> IO ()
-initFields_ this = do
-    pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NullImage"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_NULL_IMAGE_ARRAY", jstatic_NULL_IMAGE_ARRAY ), ( "jstatic_NULL_IMAGE", jstatic_NULL_IMAGE ) ]
+        jheap
 
-new_ :: IO NullImage
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: NullImage -> IO ()
-init_ this = do
-    initFields_ this
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_NULL_IMAGE_ARRAY : JR.M
+jstatic_NULL_IMAGE_ARRAY s =
+    JR.static "NullImage" jclinit "NULL_IMAGE_ARRAY"
+        (JR.newArray "" [ (JR.int 0) ])
+        s
+
+
+jstatic_NULL_IMAGE : JR.M
+jstatic_NULL_IMAGE s =
+    JR.static "NullImage" jclinit "NULL_IMAGE"
+        (JR.new Image.jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

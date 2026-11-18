@@ -1,161 +1,133 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file.directory
-module SubDirectory where
+module Org.Allbinary.Logic.Io.File.Directory.SubDirectory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Directory -- same package or java.lang
-import qualified FileFilter -- java.io.FileFilter
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file.directory
+-}
 
-data SubDirectory = SubDirectory
-    { header_ :: JavaHeader
-    , directory :: IORef (Directory.Directory)
-    }
-
-instance JavaNull SubDirectory where
-    javaNull = javaNullRecord "SubDirectory"
-
-instance JavaEquals SubDirectory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SubDirectory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SubDirectory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: SubDirectory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-newRecord_ :: IO SubDirectory
-newRecord_ = do
-    header_ <- newJavaHeader
-    directory <- newIORef javaNull
-    let this = SubDirectory header_ directory
-    jregisterLevel header_ this
-    jregisterMethod header_ "search_overload1" (\() -> search_overload1_impl this)
-    jregisterMethod header_ "search_1" (\() -> search_1_impl this)
-    jregisterMethod header_ "search_overload2" (\() -> search_overload2_impl this)
-    jregisterMethod header_ "search_overload3" (\() -> search_overload3_impl this)
-    pure this
-
-initFields_ :: SubDirectory -> IO ()
-initFields_ this = do
-    jset this.directory =<< (Directory.getInstance)
-    pure ()
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
+import Org.Allbinary.Logic.Io.File.Directory.Directory as Directory
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getInstance :: IO (SubDirectory)
-getInstance = do
-        pure (SubDirectory.instance_)
-
-new_ :: IO SubDirectory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: SubDirectory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "SubDirectory"
 
 
--- Java overloads of search: calls the overload for the types of the arguments
-search :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search this a1 a2
-    | jisInstanceOf a1 (javaNull :: FileFilter.FileFilter) = search_overload1 this (javaCast a1 :: FileFilter.FileFilter) a2
-    | jisInstanceOf a1 (javaNull :: String) = search_overload2 this (javaCast a1 :: String) a2
-    | jisInstanceOf a1 (javaNull :: Int) = search_overload3 this (javaCast a1 :: Int) a2
-    | otherwise = search_overload3 this (javaCast a1 :: Int) a2
-
-search_overload1 :: (JavaObjectClass this_) => this_ -> FileFilter.FileFilter -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_overload1 object_ a1 a2 = jmethod object_ "search_overload1" (\() -> (search_overload1_impl (javaCast object_ :: SubDirectory))) () a1 a2
-
-search_overload1_super :: (JavaObjectClass this_) => this_ -> FileFilter.FileFilter -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_overload1_super object_ a1 a2 = (search_overload1_impl (javaCast object_ :: SubDirectory)) a1 a2
-
-search_overload1_impl :: SubDirectory -> FileFilter.FileFilter -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_overload1_impl this fileFilter file = do
-        (Directory.search_3 ((jget (this).directory)) fileFilter file True)
+jchain : List String
+jchain =
+    [ "SubDirectory" ]
 
 
-search_1 :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_1 object_ a1 = jmethod object_ "search_1" (\() -> (search_1_impl (javaCast object_ :: SubDirectory))) () a1
-
-search_1_super :: (JavaObjectClass this_) => this_ -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_1_super object_ a1 = (search_1_impl (javaCast object_ :: SubDirectory)) a1
-
-search_1_impl :: SubDirectory -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_1_impl this file = do
-        (Directory.search ((jget (this).directory)) file True)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "directory", JR.defaultOf "" ) ]
 
 
-search_overload2 :: (JavaObjectClass this_) => this_ -> String -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_overload2 object_ a1 a2 = jmethod object_ "search_overload2" (\() -> (search_overload2_impl (javaCast object_ :: SubDirectory))) () a1 a2
-
-search_overload2_super :: (JavaObjectClass this_) => this_ -> String -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_overload2_super object_ a1 a2 = (search_overload2_impl (javaCast object_ :: SubDirectory)) a1 a2
-
-search_overload2_impl :: SubDirectory -> String -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_overload2_impl this searchValue file = do
-        (Directory.search_3 ((jget (this).directory)) searchValue file True)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "search_2", jm_search_2 )
+        , ( "search_1", jm_search_1 )
+        , ( "toString_1", jm_toString_1 ) ]
+        JR.noMethods
 
 
-search_overload3 :: (JavaObjectClass this_) => this_ -> Int -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_overload3 object_ a1 a2 = jmethod object_ "search_overload3" (\() -> (search_overload3_impl (javaCast object_ :: SubDirectory))) () a1 a2
-
-search_overload3_super :: (JavaObjectClass this_) => this_ -> Int -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_overload3_super object_ a1 a2 = (search_overload3_impl (javaCast object_ :: SubDirectory)) a1 a2
-
-search_overload3_impl :: SubDirectory -> Int -> AbFile.AbFile -> IO (BasicArrayList.BasicArrayList)
-search_overload3_impl this level file = do
-        (Directory.search_3 ((jget (this).directory)) level file True)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SubDirectory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_search_2", jm_search_2 ), ( "jm_search_1", jm_search_1 ), ( "jm_toString_1", jm_toString_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
-toString :: BasicArrayList.BasicArrayList -> IO (String)
-toString files = do
-        stringBuffer <- (StringMaker.new_)
-        let nEW_LINE = (jget ((jio (CommonSeps.getInstance))).nEW_LINE)
-        size <- (BasicArrayList.size files)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            let file = (javaCast (jio (BasicArrayList.get files index)) :: AbFile.AbFile)
-            Control.Monad.void (StringMaker.append stringBuffer (jio (AbFile.getPath file)))
-            Control.Monad.void (StringMaker.append stringBuffer nEW_LINE)
-        (StringMaker.toString stringBuffer)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "SubDirectory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "directory" "" JR.this (JR.callStatic Directory.jm_getInstance_0 [])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_search_2 : JR.Method
+jm_search_2 jheap jthis jargs =
+    JR.method [ ( "fileFilter", "" ), ( "file", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "search_3" (JR.thisField "directory") [ (JR.local "fileFilter"), (JR.local "file"), (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_search_1 : JR.Method
+jm_search_1 jheap jthis jargs =
+    JR.method [ ( "file", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "search_2" (JR.thisField "directory") [ (JR.local "file"), (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_1 : JR.Method
+jm_toString_1 jheap jthis jargs =
+    JR.method [ ( "files", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "NEW_LINE" "" (JR.field "NEW_LINE" (JR.callStatic CommonSeps.jm_getInstance_0 [])), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "files") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67839 -> (JR.setLocal "index" "I" (JR.lit jwN67839))) JR.increment) ]) (JR.run [ 
+                        JR.declare "file" "" (JR.invoke "get_1" (JR.local "files") [ (JR.local "index") ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "file") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "NEW_LINE") ]) ]) ], 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

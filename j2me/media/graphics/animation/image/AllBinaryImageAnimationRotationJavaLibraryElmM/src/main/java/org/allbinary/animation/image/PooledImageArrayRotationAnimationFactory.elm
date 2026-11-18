@@ -1,146 +1,131 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image
-module PooledImageArrayRotationAnimationFactory where
+module Org.Allbinary.Animation.Image.PooledImageArrayRotationAnimationFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified ImageArrayRotationAnimationInfo -- same package or java.lang
-import qualified AdjustedImageArrayRotationAnimation -- same package or java.lang
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified AnimationBehaviorFactory -- org.allbinary.animation.AnimationBehaviorFactory
-import qualified AnimationInterfaceFactoryInterface -- org.allbinary.animation.AnimationInterfaceFactoryInterface
-import qualified GameConfigurationCentral -- org.allbinary.game.configuration.GameConfigurationCentral
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified AngleFactory -- org.allbinary.math.AngleFactory
-import qualified ScaleProperties -- org.allbinary.media.ScaleProperties
-import qualified ImageToRotationImageArrayUtil -- org.allbinary.media.image.ImageToRotationImageArrayUtil
+{-| Generated Code Do Not Modify package org.allbinary.animation.image
+-}
 
--- implements AnimationInterfaceFactoryInterface
-data PooledImageArrayRotationAnimationFactory = PooledImageArrayRotationAnimationFactory
-    { header_ :: JavaHeader
-    , allBinaryImageRotationAnimationInfo :: IORef (Any.Any)
-    , animationBehaviorFactory :: IORef (AnimationBehaviorFactory.AnimationBehaviorFactory)
-    }
-
-instance JavaNull PooledImageArrayRotationAnimationFactory where
-    javaNull = javaNullRecord "PooledImageArrayRotationAnimationFactory"
-
-instance JavaEquals PooledImageArrayRotationAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq PooledImageArrayRotationAnimationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass PooledImageArrayRotationAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO PooledImageArrayRotationAnimationFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    allBinaryImageRotationAnimationInfo <- newIORef javaNull
-    animationBehaviorFactory <- newIORef javaNull
-    let this = PooledImageArrayRotationAnimationFactory header_ allBinaryImageRotationAnimationInfo animationBehaviorFactory
-    jregisterLevel header_ this
-    AnimationInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    jregisterMethod header_ "setInitialScale" (\() -> setInitialScale_impl this)
-    pure this
-
-initFields_ :: PooledImageArrayRotationAnimationFactory -> IO ()
-initFields_ this = do
-    jset this.allBinaryImageRotationAnimationInfo ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT))
-    jset this.animationBehaviorFactory (javaNull)
-    pure ()
+import JR
+import Org.Allbinary.Animation.Image.AdjustedImageArrayRotationAnimation as AdjustedImageArrayRotationAnimation
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Animation.AnimationInterfaceFactoryInterface as AnimationInterfaceFactoryInterface
+import Org.Allbinary.Game.Configuration.GameConfigurationCentral as GameConfigurationCentral
+import Org.Allbinary.Animation.Image.ImageArrayRotationAnimationInfo as ImageArrayRotationAnimationInfo
+import Org.Allbinary.Media.Image.ImageToRotationImageArrayUtil as ImageToRotationImageArrayUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
--- throws Exception
-createFactory :: Image.Image -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO (PooledImageArrayRotationAnimationFactory)
-createFactory image animationBehaviorFactory = do
-        let totalAngle = (Prelude.fromInteger (jnumericInteger (jget ((jio (AngleFactory.getInstance))).tOTAL_ANGLE)))
-        let angleIncrement = ((totalAngle / (jio (GameConfigurationCentral.getGameControlFidelity ((jio (GameConfigurationCentral.getInstance)))))))
-        (new_7 image (jio (Image.getWidth image)) (jio (Image.getHeight image)) (Prelude.negate (((jio (Image.getWidth image)) `Data.Bits.shiftR` 2))) (Prelude.negate (((jio (Image.getHeight image)) `Data.Bits.shiftR` 2))) angleIncrement animationBehaviorFactory)
+jclass : String
+jclass =
+    "PooledImageArrayRotationAnimationFactory"
 
 
--- throws Exception
-createDXY :: Image.Image -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO (PooledImageArrayRotationAnimationFactory)
-createDXY image dx dy animationBehaviorFactory = do
-        let totalAngle = (Prelude.fromInteger (jnumericInteger (jget ((jio (AngleFactory.getInstance))).tOTAL_ANGLE)))
-        let angleIncrement = ((totalAngle / (jio (GameConfigurationCentral.getGameControlFidelity ((jio (GameConfigurationCentral.getInstance)))))))
-        (new_7 image (jio (Image.getWidth image)) (jio (Image.getHeight image)) dx dy angleIncrement animationBehaviorFactory)
-
-new_7 :: Image.Image -> Int -> Int -> Int -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO PooledImageArrayRotationAnimationFactory
-new_7 image width height dx dy angleIncrement animationBehaviorFactory = do
-    this <- newRecord_
-    init_7 this image width height dx dy angleIncrement animationBehaviorFactory
-    pure this
-
-init_7 :: PooledImageArrayRotationAnimationFactory -> Image.Image -> Int -> Int -> Int -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ()
-init_7 this image width height dx dy angleIncrement animationBehaviorFactory = do
-        initFields_ this
-        jset (this).animationBehaviorFactory (animationBehaviorFactory)
-        let totalAngle = (Prelude.fromInteger (jnumericInteger (jget ((jio (AngleFactory.getInstance))).tOTAL_ANGLE)))
-        imageArray <- (ImageToRotationImageArrayUtil.generate ((jio (ImageToRotationImageArrayUtil.getInstance))) image angleIncrement totalAngle)
-        assignedValue <- (fmap jtoObject (ImageArrayRotationAnimationInfo.new_5 imageArray angleIncrement totalAngle dx dy))
-        jset (this).allBinaryImageRotationAnimationInfo (assignedValue)
-        pure ()
+jchain : List String
+jchain =
+    [ "PooledImageArrayRotationAnimationFactory" ]
+        ++ AnimationInterfaceFactoryInterface.jchain
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: PooledImageArrayRotationAnimationFactory))) () a1
-
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: PooledImageArrayRotationAnimationFactory)) a1
-
-getInstance_impl :: PooledImageArrayRotationAnimationFactory -> Int -> IO (Animation.Animation)
-getInstance_impl this instanceId = do
-        (fmap (\value_ -> javaCast value_ :: Animation.Animation) (AdjustedImageArrayRotationAnimation.createAdjustedImageArrayRotationAnimationInfo (jget (this).allBinaryImageRotationAnimationInfo) (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).animationBehaviorFactory))))))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "allBinaryImageRotationAnimationInfo", JR.defaultOf "" ), ( "animationBehaviorFactory", JR.defaultOf "" ) ]
 
 
-setInitialScale :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale object_ a1 = jmethod object_ "setInitialScale" (\() -> (setInitialScale_impl (javaCast object_ :: PooledImageArrayRotationAnimationFactory))) () a1
+jvtable =
+    JR.vtable
+        [ ( "createFactory_2", jm_createFactory_2 )
+        , ( "createDXY_4", jm_createDXY_4 )
+        , ( "getInstance_1", jm_getInstance_1 )
+        , ( "setInitialScale_1", jm_setInitialScale_1 ) ]
+        JR.noMethods
 
-setInitialScale_super :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_super object_ a1 = (setInitialScale_impl (javaCast object_ :: PooledImageArrayRotationAnimationFactory)) a1
 
-setInitialScale_impl :: PooledImageArrayRotationAnimationFactory -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_impl this scaleProperties = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PooledImageArrayRotationAnimationFactory"
+        [ ( "jm_createFactory_2", jm_createFactory_2 ), ( "jm_createDXY_4", jm_createDXY_4 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_setInitialScale_1", jm_setInitialScale_1 ), ( "jnew_7", jnew_7 ), ( "jinit_7", jinit_7 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_7 : JR.Method
+jinit_7 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "width", "I" ), ( "height", "I" ), ( "dx", "I" ), ( "dy", "I" ), ( "angleIncrement", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "allBinaryImageRotationAnimationInfo" "" JR.this (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "animationBehaviorFactory" "" JR.this (JR.local "animationBehaviorFactory")), 
+                    JR.declare "totalAngle" "I" (JR.cast "I" (JR.field "TOTAL_ANGLE" (JR.callStatic AngleFactory.jm_getInstance_0 []))), 
+                    JR.declare "imageArray" "" (JR.invoke "generate_3" (JR.callStatic ImageToRotationImageArrayUtil.jm_getInstance_0 []) [ (JR.local "image"), (JR.local "angleIncrement"), (JR.local "totalAngle") ]), 
+                    JR.exec (JR.setField "allBinaryImageRotationAnimationInfo" "" JR.this (JR.new ImageArrayRotationAnimationInfo.jnew_5 [ (JR.local "imageArray"), (JR.local "angleIncrement"), (JR.local "totalAngle"), (JR.local "dx"), (JR.local "dy") ])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_7 : JR.Method
+jnew_7 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_7 jheap jthis jargs
+
+
+jm_createFactory_2 : JR.Method
+jm_createFactory_2 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "totalAngle" "I" (JR.cast "I" (JR.field "TOTAL_ANGLE" (JR.callStatic AngleFactory.jm_getInstance_0 []))), 
+                    JR.declare "angleIncrement" "I" ((JR.map2 JR.div (JR.local "totalAngle") (JR.invoke "getGameControlFidelity_0" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 []) []))), 
+                    JR.return (JR.new jnew_7 [ (JR.local "image"), (JR.invoke "getWidth_0" (JR.local "image") []), (JR.invoke "getHeight_0" (JR.local "image") []), (JR.map JR.neg ((JR.map2 JR.shr (JR.invoke "getWidth_0" (JR.local "image") []) (JR.int 2)))), (JR.map JR.neg ((JR.map2 JR.shr (JR.invoke "getHeight_0" (JR.local "image") []) (JR.int 2)))), (JR.local "angleIncrement"), (JR.local "animationBehaviorFactory") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createDXY_4 : JR.Method
+jm_createDXY_4 jheap jthis jargs =
+    JR.method [ ( "image", "" ), ( "dx", "I" ), ( "dy", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "totalAngle" "I" (JR.cast "I" (JR.field "TOTAL_ANGLE" (JR.callStatic AngleFactory.jm_getInstance_0 []))), 
+                    JR.declare "angleIncrement" "I" ((JR.map2 JR.div (JR.local "totalAngle") (JR.invoke "getGameControlFidelity_0" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 []) []))), 
+                    JR.return (JR.new jnew_7 [ (JR.local "image"), (JR.invoke "getWidth_0" (JR.local "image") []), (JR.invoke "getHeight_0" (JR.local "image") []), (JR.local "dx"), (JR.local "dy"), (JR.local "angleIncrement"), (JR.local "animationBehaviorFactory") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "instanceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic AdjustedImageArrayRotationAnimation.jm_createAdjustedImageArrayRotationAnimationInfo_2 [ (JR.thisField "allBinaryImageRotationAnimationInfo"), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInitialScale_1 : JR.Method
+jm_setInitialScale_1 jheap jthis jargs =
+    JR.method [ ( "scaleProperties", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

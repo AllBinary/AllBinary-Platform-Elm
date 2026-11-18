@@ -1,4 +1,4 @@
-module BooleanFactory exposing (..)
+module Org.Allbinary.Logic.Java.Bool.BooleanFactory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.java.bool
 -}

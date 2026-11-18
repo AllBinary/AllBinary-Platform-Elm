@@ -1,123 +1,111 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
-module BasicNeededTouchButtonsBuilder (module BasicNeededTouchButtonsBuilder, module BaseTouchInput) where
+module Org.Allbinary.Input.Motion.Button.BasicNeededTouchButtonsBuilder exposing (..)
 
-import BaseTouchInput hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getList, getList_super, getList_impl, logUtil)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified TouchButtonLocationHelper -- same package or java.lang
-import qualified BasicTouchButtonCellPositionFactory -- same package or java.lang
-import qualified CommonButtons -- same package or java.lang
-import qualified TouchButton -- same package or java.lang
-import qualified BasicTouchInputFactory -- same package or java.lang
-import qualified CommonStrings -- same package or java.lang
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified NullAnimationFactory -- org.allbinary.animation.NullAnimationFactory
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified BasicArrayListUtil -- org.allbinary.util.BasicArrayListUtil
-import qualified BaseTouchInput
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.button
+-}
 
-data BasicNeededTouchButtonsBuilder = BasicNeededTouchButtonsBuilder
-    { header_ :: JavaHeader
-    , base :: BaseTouchInput.BaseTouchInput
-    , logUtil :: IORef (LogUtil.LogUtil)
-    }
-
-instance JavaNull BasicNeededTouchButtonsBuilder where
-    javaNull = javaNullRecord "BasicNeededTouchButtonsBuilder"
-
-instance JavaEquals BasicNeededTouchButtonsBuilder where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicNeededTouchButtonsBuilder where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicNeededTouchButtonsBuilder where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO BasicNeededTouchButtonsBuilder
-newRecord_ = do
-    base <- BaseTouchInput.newRecord_
-    let header_ = base.header_
-    logUtil <- newIORef javaNull
-    let this = BasicNeededTouchButtonsBuilder header_ base logUtil
-    jregisterLevel header_ this
-    jregisterMethod header_ "getList" (\() -> getList_impl this)
-    pure this
-
-initFields_ :: BasicNeededTouchButtonsBuilder -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    pure ()
-
-new_ :: IO BasicNeededTouchButtonsBuilder
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: BasicNeededTouchButtonsBuilder -> IO ()
-init_ this = do
-    BaseTouchInput.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Input.Motion.Button.BaseTouchInput as BaseTouchInput
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Util.BasicArrayListUtil as BasicArrayListUtil
+import Org.Allbinary.Input.Motion.Button.BasicTouchButtonCellPositionFactory as BasicTouchButtonCellPositionFactory
+import Org.Allbinary.Input.Motion.Button.BasicTouchInputFactory as BasicTouchInputFactory
+import Org.Allbinary.Input.Motion.Button.CommonButtons as CommonButtons
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Animation.NullAnimationFactory as NullAnimationFactory
+import Org.Allbinary.Input.Motion.Button.TouchButton as TouchButton
+import Org.Allbinary.Input.Motion.Button.TouchButtonLocationHelper as TouchButtonLocationHelper
 
 
-getList :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList object_ = jmethod object_ "getList" (\() -> (getList_impl (javaCast object_ :: BasicNeededTouchButtonsBuilder))) ()
+jclass : String
+jclass =
+    "BasicNeededTouchButtonsBuilder"
 
-getList_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getList_super object_ = (getList_impl (javaCast object_ :: BasicNeededTouchButtonsBuilder))
 
-getList_impl :: BasicNeededTouchButtonsBuilder -> IO (BasicArrayList.BasicArrayList)
-getList_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).base.commonStrings)).eXCEPTION) this (jget ((jget (this).base.commonStrings)).gET_LIST) e)
-            (BasicArrayListUtil.getImmutableInstance ((jio (BasicArrayListUtil.getInstance))))
-            ) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-            list <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            touchButtonLocationHelper <- (TouchButtonLocationHelper.new_)
-            basicTouchButtonCellPositionFactory <- (BasicTouchButtonCellPositionFactory.new_)
-            commonButtons <- (CommonButtons.getInstance)
-            animationInterface <- (NullAnimationFactory.getInstance ((jio (NullAnimationFactory.getFactoryInstance))) 0)
-            uP <- (TouchButton.new_7 (jget ((jio (BasicTouchInputFactory.getInstance))).uP) animationInterface animationInterface (jget (commonButtons).nORMAL_BUTTON) (jget (basicTouchButtonCellPositionFactory).sECOND_FROM_BOTTOM_LEFT) (jio (TouchButtonLocationHelper.getColumnsRemainderHalf touchButtonLocationHelper)) (jio (TouchButtonLocationHelper.getRowsRemainderHalf touchButtonLocationHelper)))
-            dOWN <- (TouchButton.new_7 (jget ((jio (BasicTouchInputFactory.getInstance))).dOWN) animationInterface animationInterface (jget (commonButtons).nORMAL_BUTTON) (jget (basicTouchButtonCellPositionFactory).bOTTOM_LEFT) (jio (TouchButtonLocationHelper.getColumnsRemainderHalf touchButtonLocationHelper)) (jio (TouchButtonLocationHelper.getRowsRemainderHalf touchButtonLocationHelper)))
-            lEFT <- (TouchButton.new_7 (jget ((jio (BasicTouchInputFactory.getInstance))).lEFT) animationInterface animationInterface (jget (commonButtons).nORMAL_BUTTON) (jget (basicTouchButtonCellPositionFactory).bOTTOM_SECOND_FROM_RIGHT) (jio (TouchButtonLocationHelper.getColumnsRemainderHalf touchButtonLocationHelper)) (jio (TouchButtonLocationHelper.getRowsRemainderHalf touchButtonLocationHelper)))
-            rIGHT <- (TouchButton.new_7 (jget ((jio (BasicTouchInputFactory.getInstance))).rIGHT) animationInterface animationInterface (jget (commonButtons).nORMAL_BUTTON) (jget (basicTouchButtonCellPositionFactory).bOTTOM_RIGHT) (jio (TouchButtonLocationHelper.getColumnsRemainderHalf touchButtonLocationHelper)) (jio (TouchButtonLocationHelper.getRowsRemainderHalf touchButtonLocationHelper)))
-            Control.Monad.void (BasicArrayList.add list uP)
-            Control.Monad.void (BasicArrayList.add list dOWN)
-            Control.Monad.void (BasicArrayList.add list lEFT)
-            Control.Monad.void (BasicArrayList.add list rIGHT)
-            pure (list)
+jchain : List String
+jchain =
+    [ "BasicNeededTouchButtonsBuilder" ]
+        ++ BaseTouchInput.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    BaseTouchInput.jfields ++ [ ( "logUtil", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getList_0", jm_getList_0 ) ]
+        BaseTouchInput.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicNeededTouchButtonsBuilder"
+        [ ( "jm_getList_0", jm_getList_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect BaseTouchInput.jinit_0 JR.this []),
+            JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getList_0 : JR.Method
+jm_getList_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]), 
+                        JR.declare "list" "" (JR.new BasicArrayListD.jnew_0 []), 
+                        JR.declare "touchButtonLocationHelper" "" (JR.new TouchButtonLocationHelper.jnew_0 []), 
+                        JR.declare "basicTouchButtonCellPositionFactory" "" (JR.new BasicTouchButtonCellPositionFactory.jnew_0 []), 
+                        JR.declare "commonButtons" "" (JR.callStatic CommonButtons.jm_getInstance_0 []), 
+                        JR.declare "animationInterface" "" (JR.invoke "getInstance_1" (JR.callStatic NullAnimationFactory.jm_getFactoryInstance_0 []) [ (JR.int 0) ]), 
+                        JR.declare "UP" "" (JR.new TouchButton.jnew_7 [ (JR.field "UP" (JR.callStatic BasicTouchInputFactory.jm_getInstance_0 [])), (JR.local "animationInterface"), (JR.local "animationInterface"), (JR.field "NORMAL_BUTTON" (JR.local "commonButtons")), (JR.field "SECOND_FROM_BOTTOM_LEFT" (JR.local "basicTouchButtonCellPositionFactory")), (JR.invoke "getColumnsRemainderHalf_0" (JR.local "touchButtonLocationHelper") []), (JR.invoke "getRowsRemainderHalf_0" (JR.local "touchButtonLocationHelper") []) ]), 
+                        JR.declare "DOWN" "" (JR.new TouchButton.jnew_7 [ (JR.field "DOWN" (JR.callStatic BasicTouchInputFactory.jm_getInstance_0 [])), (JR.local "animationInterface"), (JR.local "animationInterface"), (JR.field "NORMAL_BUTTON" (JR.local "commonButtons")), (JR.field "BOTTOM_LEFT" (JR.local "basicTouchButtonCellPositionFactory")), (JR.invoke "getColumnsRemainderHalf_0" (JR.local "touchButtonLocationHelper") []), (JR.invoke "getRowsRemainderHalf_0" (JR.local "touchButtonLocationHelper") []) ]), 
+                        JR.declare "LEFT" "" (JR.new TouchButton.jnew_7 [ (JR.field "LEFT" (JR.callStatic BasicTouchInputFactory.jm_getInstance_0 [])), (JR.local "animationInterface"), (JR.local "animationInterface"), (JR.field "NORMAL_BUTTON" (JR.local "commonButtons")), (JR.field "BOTTOM_SECOND_FROM_RIGHT" (JR.local "basicTouchButtonCellPositionFactory")), (JR.invoke "getColumnsRemainderHalf_0" (JR.local "touchButtonLocationHelper") []), (JR.invoke "getRowsRemainderHalf_0" (JR.local "touchButtonLocationHelper") []) ]), 
+                        JR.declare "RIGHT" "" (JR.new TouchButton.jnew_7 [ (JR.field "RIGHT" (JR.callStatic BasicTouchInputFactory.jm_getInstance_0 [])), (JR.local "animationInterface"), (JR.local "animationInterface"), (JR.field "NORMAL_BUTTON" (JR.local "commonButtons")), (JR.field "BOTTOM_RIGHT" (JR.local "basicTouchButtonCellPositionFactory")), (JR.invoke "getColumnsRemainderHalf_0" (JR.local "touchButtonLocationHelper") []), (JR.invoke "getRowsRemainderHalf_0" (JR.local "touchButtonLocationHelper") []) ]), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.local "UP") ]), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.local "DOWN") ]), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.local "LEFT") ]), 
+                        JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.local "RIGHT") ]), 
+                        JR.return (JR.local "list") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "GET_LIST" (JR.thisField "commonStrings")), (JR.local "e") ]), 
+                        JR.return (JR.invoke "getImmutableInstance_0" (JR.callStatic BasicArrayListUtil.jm_getInstance_0 []) []) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,100 +1,103 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.weapon.mine
-module MineLayerCircularStaticPool where
+module Org.Allbinary.Game.Ag.Layer.Weapon.Mine.MineLayerCircularStaticPool exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified MineCountedPickedUpLayerInterfaceFactory -- same package or java.lang
-import qualified MineLayerFactory -- same package or java.lang
-import qualified WeaponLayerCircularPool -- org.allbinary.game.layer.weapon.WeaponLayerCircularPool
-import qualified ViewPositionFactoryInterface -- org.allbinary.view.ViewPositionFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.weapon.mine
+-}
 
-data MineLayerCircularStaticPool = MineLayerCircularStaticPool
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull MineLayerCircularStaticPool where
-    javaNull = javaNullRecord "MineLayerCircularStaticPool"
-
-instance JavaEquals MineLayerCircularStaticPool where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq MineLayerCircularStaticPool where
-    (==) = jrecordEquals
-
-instance JavaObjectClass MineLayerCircularStaticPool where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-wEAPON_LAYER_CIRCULAR_STATIC_POOL :: IORef (WeaponLayerCircularPool.WeaponLayerCircularPool)
-{-# NOINLINE wEAPON_LAYER_CIRCULAR_STATIC_POOL #-}
-wEAPON_LAYER_CIRCULAR_STATIC_POOL = unsafePerformIO ((WeaponLayerCircularPool.new_) >>= newIORef)
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO MineLayerCircularStaticPool
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = MineLayerCircularStaticPool header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: MineLayerCircularStaticPool -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO MineLayerCircularStaticPool
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: MineLayerCircularStaticPool -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Ag.Layer.Weapon.Mine.MineCountedPickedUpLayerInterfaceFactory as MineCountedPickedUpLayerInterfaceFactory
+import Org.Allbinary.Game.Ag.Layer.Weapon.Mine.MineLayerFactory as MineLayerFactory
+import Org.Allbinary.Game.Layer.Weapon.WeaponLayerCircularPool as WeaponLayerCircularPool
 
 
--- throws Exception
-init :: ViewPositionFactoryInterface.ViewPositionFactoryInterface -> IO (())
-init viewPositionFactoryInterface = do
-        Control.Monad.void (MineCountedPickedUpLayerInterfaceFactory.init)
-        Control.Monad.void (WeaponLayerCircularPool.initAllBinaryLayerCircularPool ((jget MineLayerCircularStaticPool.wEAPON_LAYER_CIRCULAR_STATIC_POOL)) (jio (MineLayerFactory.new_1 viewPositionFactoryInterface)) 20)
-        pure ()
+jclass : String
+jclass =
+    "MineLayerCircularStaticPool"
 
 
-getInstance :: IO (WeaponLayerCircularPool.WeaponLayerCircularPool)
-getInstance = do
-        pure ((jget MineLayerCircularStaticPool.wEAPON_LAYER_CIRCULAR_STATIC_POOL))
+jchain : List String
+jchain =
+    [ "MineLayerCircularStaticPool" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "init_1", jm_init_1 )
+        , ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "MineLayerCircularStaticPool"
+        [ ( "jm_init_1", jm_init_1 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_WEAPON_LAYER_CIRCULAR_STATIC_POOL", jstatic_WEAPON_LAYER_CIRCULAR_STATIC_POOL ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_WEAPON_LAYER_CIRCULAR_STATIC_POOL : JR.M
+jstatic_WEAPON_LAYER_CIRCULAR_STATIC_POOL s =
+    JR.static "MineLayerCircularStaticPool" jclinit "WEAPON_LAYER_CIRCULAR_STATIC_POOL"
+        (JR.new WeaponLayerCircularPool.jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "viewPositionFactoryInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callStatic MineCountedPickedUpLayerInterfaceFactory.jm_init_0 []), 
+                    JR.exec (JR.invoke "initAllBinaryLayerCircularPool_2" jstatic_WEAPON_LAYER_CIRCULAR_STATIC_POOL [ (JR.new MineLayerFactory.jnew_1 [ (JR.local "viewPositionFactoryInterface") ]), (JR.int 20) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_WEAPON_LAYER_CIRCULAR_STATIC_POOL ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

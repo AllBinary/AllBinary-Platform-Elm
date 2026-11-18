@@ -1,291 +1,238 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.string.regex.replace
-module Replace where
+module Org.Allbinary.Logic.String.Regex.Replace.Replace exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified HashMap -- java.util.HashMap
-import qualified J2SEUtil -- org.allbinary.J2SEUtil
-import qualified AppUrlGlobals -- org.allbinary.globals.AppUrlGlobals
-import qualified URLGLOBALS -- org.allbinary.globals.URLGLOBALS
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified LogConfigTypes -- org.allbinary.logic.communication.log.config.type.LogConfigTypes
+{-| Generated Code Do Not Modify package org.allbinary.logic.string.regex.replace
+-}
 
-data Replace = Replace
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , j2seUtil :: IORef (J2SEUtil.J2SEUtil)
-    , rEPLACERS_ :: IORef (String)
-    , aLL :: IORef (String)
-    , fOUND_KEY :: IORef (String)
-    , hashMap :: IORef (HashMap.HashMap)
-    }
-
-instance JavaNull Replace where
-    javaNull = javaNullRecord "Replace"
-
-instance JavaEquals Replace where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Replace where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Replace where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO Replace
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    j2seUtil <- newIORef javaNull
-    rEPLACERS_ <- newIORef ""
-    aLL <- newIORef ""
-    fOUND_KEY <- newIORef ""
-    hashMap <- newIORef javaNull
-    let this = Replace header_ logUtil j2seUtil rEPLACERS_ aLL fOUND_KEY hashMap
-    jregisterLevel header_ this
-    jregisterMethod header_ "all" (\() -> all_impl this)
-    jregisterMethod header_ "upTo" (\() -> upTo_impl this)
-    jregisterMethod header_ "line" (\() -> line_impl this)
-    pure this
-
-initFields_ :: Replace -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.j2seUtil =<< (J2SEUtil.getInstance)
-    jset this.rEPLACERS_ ("Replacers: ")
-    jset this.aLL ("all")
-    jset this.fOUND_KEY ("found key total: ")
-    jset this.hashMap (javaNull)
-    pure ()
-
--- Java overloaded constructors with 2 parameters: call the overload for the types of the arguments
-new_2 :: (JavaObjectClass o1, JavaObjectClass o2) => o1 -> o2 -> IO Replace
-new_2 a1 a2
-    | jisInstanceOf a1 (javaNull :: String) && jisInstanceOf a2 (javaNull :: String) = new_2_overload1 (javaCast a1 :: String) (javaCast a2 :: String)
-    | jisInstanceOf a1 (javaNull :: JavaArray (String)) && jisInstanceOf a2 (javaNull :: JavaArray (String)) = new_2_overload2 (javaCast a1 :: JavaArray (String)) (javaCast a2 :: JavaArray (String))
-    | otherwise = new_2_overload2 (javaCast a1 :: JavaArray (String)) (javaCast a2 :: JavaArray (String))
-
-init_2 :: (JavaObjectClass o1, JavaObjectClass o2) => Replace -> o1 -> o2 -> IO ()
-init_2 this a1 a2
-    | jisInstanceOf a1 (javaNull :: String) && jisInstanceOf a2 (javaNull :: String) = init_2_overload1 this (javaCast a1 :: String) (javaCast a2 :: String)
-    | jisInstanceOf a1 (javaNull :: JavaArray (String)) && jisInstanceOf a2 (javaNull :: JavaArray (String)) = init_2_overload2 this (javaCast a1 :: JavaArray (String)) (javaCast a2 :: JavaArray (String))
-    | otherwise = init_2_overload2 this (javaCast a1 :: JavaArray (String)) (javaCast a2 :: JavaArray (String))
+import JR
+import Org.Allbinary.Globals.AppUrlGlobals as AppUrlGlobals
+import Org.Allbinary.J2SEUtil as J2SEUtil
+import JInteger
+import JSystem
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
+import Org.Allbinary.Logic.StdUtil as StdUtil
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Globals.URLGLOBALS as URLGLOBALS
 
 
-new_2_overload1 :: String -> String -> IO Replace
-new_2_overload1 key value = do
-    this <- newRecord_
-    init_2_overload1 this key value
-    pure this
-
-init_2_overload1 :: Replace -> String -> String -> IO ()
-init_2_overload1 this key value = do
-        initFields_ this
-        assignedValue <- (StdUtil.createHashMap ((jio (StdUtil.getInstance))))
-        jset (this).hashMap (assignedValue)
-        Control.Monad.void (HashMap.put ((jget (this).hashMap)) (jarrayFromList [key]) (jarrayFromList [value]))
-        pure ()
-
-new_2_overload2 :: JavaArray (String) -> JavaArray (String) -> IO Replace
-new_2_overload2 keys values = do
-    this <- newRecord_
-    init_2_overload2 this keys values
-    pure this
-
-init_2_overload2 :: Replace -> JavaArray (String) -> JavaArray (String) -> IO ()
-init_2_overload2 this keys values = do
-        initFields_ this
-        assignedValue <- (StdUtil.createHashMap ((jio (StdUtil.getInstance))))
-        jset (this).hashMap (assignedValue)
-        Control.Monad.void (HashMap.put ((jget (this).hashMap)) keys values)
-        pure ()
-
-new_1 :: HashMap.HashMap -> IO Replace
-new_1 hashMap = do
-    this <- newRecord_
-    init_1 this hashMap
-    pure this
-
-init_1 :: Replace -> HashMap.HashMap -> IO ()
-init_1 this hashMap = do
-        initFields_ this
-        jset (this).hashMap (hashMap)
-        pure ()
+jclass : String
+jclass =
+    "Replace"
 
 
-all :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-all object_ a1 = jmethod object_ "all" (\() -> (all_impl (javaCast object_ :: Replace))) () a1
-
-all_super :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-all_super object_ a1 = (all_impl (javaCast object_ :: Replace)) a1
-
-all_impl :: Replace -> String -> IO (String)
-all_impl this replace = do
-        (Replace.upTo this replace ((-2147483648) :: Int))
+jchain : List String
+jchain =
+    [ "Replace" ]
 
 
-upTo :: (JavaObjectClass this_) => this_ -> String -> Int -> IO (String)
-upTo object_ a1 a2 = jmethod object_ "upTo" (\() -> (upTo_impl (javaCast object_ :: Replace))) () a1 a2
-
-upTo_super :: (JavaObjectClass this_) => this_ -> String -> Int -> IO (String)
-upTo_super object_ a1 a2 = (upTo_impl (javaCast object_ :: Replace)) a1 a2
-
-upTo_impl :: Replace -> String -> Int -> IO (String)
-upTo_impl this replace total = do
-        replace <- newIORef replace
-        newStringBuffer <- (StringMaker.new_)
-        totalNumberOfReplaces <- newIORef (0 :: Int)
-        keys <- newIORef (javaNull)
-        values <- newIORef (javaNull)
-        keyArray <- (J2SEUtil.getHashMapAsArray ((jget (this).j2seUtil)) (jget (this).hashMap))
-        let size = (jlength keyArray)
-        forM_ [0 .. size - 1] $ \index2 -> javaIteration (pure ()) $ do
-            jset keys ((javaCast (jindex keyArray (index2)) :: JavaArray (String)))
-            jset values ((javaCast (jio (HashMap.get ((jget (this).hashMap)) (jget keys))) :: JavaArray (String)))
-            foundTotal <- newIORef (0 :: Int64)
-            index <- newIORef (0 :: Int)
-            nextKey <- newIORef ("")
-            end <- newIORef (0 :: Int)
-            nextSecondKey <- newIORef ("")
-            begin2 <- newIORef (0 :: Int)
-            fix $ \loop -> when ((jget index) < (Prelude.length (jget replace))) $ javaIteration (loop) $ do
-                let begin = (jstringIndexOf (jget replace) (jindex ((jget keys)) (0)) (jget index))
-                if (begin /= (Prelude.negate 1)) then do
-                    jset foundTotal ((jget foundTotal) + 1)
-                    when (((jget foundTotal) `rem` 100) == 0) $ do
-                        Control.Monad.void (putStrLn (javaToString ((jget (this).fOUND_KEY) ++ javaToString (jget foundTotal))))
-                    jset nextKey ((jindex ((jget keys)) (0)))
-                    jset end ((begin + (Prelude.length (jget nextKey))))
-                    Control.Monad.void (StringMaker.delete newStringBuffer 0 (jio (StringMaker.length newStringBuffer)))
-                    Control.Monad.void (StringMaker.append newStringBuffer (Prelude.take ((begin) - (0)) (Prelude.drop (0) (jget replace))))
-                    Control.Monad.void (StringMaker.append newStringBuffer (jindex ((jget values)) (0)))
-                    assignedValue <- (StringMaker.length newStringBuffer)
-                    jset index (assignedValue)
-                    Control.Monad.void (StringMaker.append newStringBuffer (Prelude.take (((Prelude.length (jget replace))) - ((jget end))) (Prelude.drop ((jget end)) (jget replace))))
-                    assignedValue <- (StringMaker.toString newStringBuffer)
-                    jset replace (assignedValue)
-                    when ((jlength (jget keys)) > 1) $ do
-                        jset nextSecondKey ((jindex ((jget keys)) (1)))
-                        jset begin2 ((jstringIndexOf (jget replace) (jget nextSecondKey) (jget index)))
-                        when ((jget begin2) /= (Prelude.negate 1)) $ do
-                            let end2 = ((jget begin2) + (Prelude.length (jget nextSecondKey)))
-                            Control.Monad.void (StringMaker.delete newStringBuffer 0 (jio (StringMaker.length newStringBuffer)))
-                            Control.Monad.void (StringMaker.append newStringBuffer (Prelude.take (((jget begin2)) - (0)) (Prelude.drop (0) (jget replace))))
-                            Control.Monad.void (StringMaker.append newStringBuffer (jindex ((jget values)) (1)))
-                            assignedValue <- (StringMaker.length newStringBuffer)
-                            jset index (assignedValue)
-                            Control.Monad.void (StringMaker.append newStringBuffer (Prelude.take (((Prelude.length (jget replace))) - (end2)) (Prelude.drop (end2) (jget replace))))
-                            assignedValue <- (StringMaker.toString newStringBuffer)
-                            jset replace (assignedValue)
-                    jset totalNumberOfReplaces ((jget totalNumberOfReplaces) + 1)
-                    when ((total /= ((-2147483648) :: Int)) && ((jget totalNumberOfReplaces) >= total)) $ do
-                        throwIO JavaBreak
-                else do
-                    throwIO JavaBreak
-        when ((jget totalNumberOfReplaces) > 0) $ do
-            when (jio (contains LogConfigTypes.lOGGING (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).rEPLACE))) $ do
-                Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ("Total Number Of Replaces: " ++ javaToString (jget totalNumberOfReplaces)) this (jget (this).aLL))
-        pure ((jget replace))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "j2seUtil", JR.defaultOf "" ), ( "REPLACERS_", JR.defaultOf "" ), ( "ALL", JR.defaultOf "" ), ( "FOUND_KEY", JR.defaultOf "" ), ( "hashMap", JR.defaultOf "" ) ]
 
 
-line :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-line object_ a1 = jmethod object_ "line" (\() -> (line_impl (javaCast object_ :: Replace))) () a1
-
-line_super :: (JavaObjectClass this_) => this_ -> String -> IO (String)
-line_super object_ a1 = (line_impl (javaCast object_ :: Replace)) a1
-
-line_impl :: Replace -> String -> IO (String)
-line_impl this replace = do
-        replace <- newIORef replace
-        newStringBuffer <- (StringMaker.new_)
-        totalNumberOfReplaces <- newIORef (0 :: Int)
-        key <- newIORef ("")
-        value <- newIORef ("")
-        keyArray <- (J2SEUtil.getHashMapAsArray ((jget (this).j2seUtil)) (jget (this).hashMap))
-        let size = (jlength keyArray)
-        forM_ [0 .. size - 1] $ \index2 -> javaIteration (pure ()) $ do
-            jset key ((javaCast (jindex keyArray (index2)) :: String))
-            jset value ((javaCast (jio (HashMap.get ((jget (this).hashMap)) (jget key))) :: String))
-            index <- newIORef (0 :: Int)
-            fix $ \loop -> when ((jget index) < (Prelude.length (jget replace))) $ javaIteration (loop) $ do
-                Control.Monad.void (StringMaker.delete newStringBuffer 0 (jio (StringMaker.length newStringBuffer)))
-                let begin = (jstringIndexOf (jget replace) (jget key) (jget index))
-                if (begin /= (Prelude.negate 1)) then do
-                    Control.Monad.void (putStrLn (javaToString (jget (this).fOUND_KEY)))
-                    let end = ((jstringIndexOf (jget replace) '\n' (begin + (Prelude.length (jget key)))) + 1)
-                    when (end >= 0) $ do
-                        Control.Monad.void (StringMaker.append newStringBuffer (Prelude.take ((begin) - (0)) (Prelude.drop (0) (jget replace))))
-                        assignedValue <- (StringMaker.length newStringBuffer)
-                        jset index (assignedValue)
-                        Control.Monad.void (StringMaker.append newStringBuffer (Prelude.take (((Prelude.length (jget replace))) - (end)) (Prelude.drop (end) (jget replace))))
-                        assignedValue <- (StringMaker.toString newStringBuffer)
-                        jset replace (assignedValue)
-                        jset totalNumberOfReplaces ((jget totalNumberOfReplaces) + 1)
-                else do
-                    throwIO JavaBreak
-        when (jio (contains LogConfigTypes.lOGGING (jget ((jio (getInstance ((jget ((jget ((jget ((jget ((jget ((jget (org.allbinary).logic)).communication)).log)).config)).type_)).logConfigTypeFactory))))).rEPLACE))) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) ("Total Number Of Replaces: " ++ javaToString (jget totalNumberOfReplaces)) this (jget (this).aLL))
-        pure ((jget replace))
+jvtable =
+    JR.vtable
+        [ ( "all_1", jm_all_1 )
+        , ( "upTo_2", jm_upTo_2 )
+        , ( "line_1", jm_line_1 )
+        , ( "main_1", jm_main_1 ) ]
+        JR.noMethods
 
 
-main :: JavaArray (String) -> IO (())
-main args = do
-        handle (\(e :: JavaException) -> do
-            pure ()
-            ) $ do
-            stringUtil <- (StringUtil.getInstance)
-            appUrlGlobals <- (AppUrlGlobals.new_)
-            Control.Monad.void (AppUrlGlobals.setWebappPath appUrlGlobals "G:/mnt/bc/mydev/work/allbinary_src/ToolsJavaLibrary/tools")
-            Control.Monad.void (URLGLOBALS.init appUrlGlobals)
-            testString <- newIORef ("\"super gun\" big tank \"goodgunriflegun")
-            replace <- (new_2 "gun" "abcdefghijklmnopqrstuxwxyzabcdefghijklmnopqrstuxwxyz")
-            Control.Monad.void (putStrLn (javaToString ("Old String: " ++ (jget testString))))
-            assignedValue <- (Replace.all replace (jget testString))
-            jset testString (assignedValue)
-            Control.Monad.void (putStrLn (javaToString ("New String: " ++ (jget testString))))
-            replaceCat <- (new_2 "abcdefghijklmnopqrstuxwxyzabcdefghijklmnopqrstuxwxyz" (jget (stringUtil).eMPTY_STRING))
-            assignedValue <- (Replace.all replaceCat (jget testString))
-            jset testString (assignedValue)
-            Control.Monad.void (putStrLn (javaToString ("New String: " ++ (jget testString))))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Replace"
+        [ ( "jm_all_1", jm_all_1 ), ( "jm_upTo_2", jm_upTo_2 ), ( "jm_line_1", jm_line_1 ), ( "jm_main_1", jm_main_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "key", "" ), ( "value", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "j2seUtil" "" JR.this (JR.callStatic J2SEUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "REPLACERS_" "" JR.this (JR.str "Replacers: ")),
+                JR.exec (JR.setField "ALL" "" JR.this (JR.str "all")),
+                JR.exec (JR.setField "FOUND_KEY" "" JR.this (JR.str "found key total: ")),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "hashMap" "" JR.this (JR.invoke "createHashMap_0" (JR.callStatic StdUtil.jm_getInstance_0 []) [])), 
+                    JR.exec (JR.invoke "put_2" (JR.thisField "hashMap") [ (JR.arrayOf "" [ (JR.local "key") ]), (JR.arrayOf "" [ (JR.local "value") ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "hashMap", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "j2seUtil" "" JR.this (JR.callStatic J2SEUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "REPLACERS_" "" JR.this (JR.str "Replacers: ")),
+                JR.exec (JR.setField "ALL" "" JR.this (JR.str "all")),
+                JR.exec (JR.setField "FOUND_KEY" "" JR.this (JR.str "found key total: ")),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "hashMap" "" JR.this (JR.local "hashMap")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_all_1 : JR.Method
+jm_all_1 jheap jthis jargs =
+    JR.method [ ( "replace", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "upTo_2" JR.this [ (JR.local "replace"), JInteger.jstatic_MIN_VALUE ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_upTo_2 : JR.Method
+jm_upTo_2 jheap jthis jargs =
+    JR.method [ ( "replace", "" ), ( "total", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "newStringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "totalNumberOfReplaces" "I" (JR.int 0), 
+                    JR.declare "keys" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "values" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "keyArray" "" (JR.invoke "getHashMapAsArray_1" (JR.thisField "j2seUtil") [ (JR.thisField "hashMap") ]), 
+                    JR.declare "size" "I" (JR.alength (JR.local "keyArray")), 
+                    JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN69711 -> (JR.setLocal "index2" "I" (JR.lit jwN69711))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "keys" "" (JR.aget (JR.local "keyArray") (JR.local "index2"))), 
+                        JR.exec (JR.setLocal "values" "" (JR.invoke "get_1" (JR.thisField "hashMap") [ (JR.local "keys") ])), 
+                        JR.declare "foundTotal" "J" (JR.long 0), 
+                        JR.declare "index" "I" (JR.int 0), 
+                        JR.declare "nextKey" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "end" "I" (JR.lit (JR.defaultOf "I")), 
+                        JR.declare "nextSecondKey" "" (JR.lit (JR.defaultOf "")), 
+                        JR.declare "begin2" "I" (JR.lit (JR.defaultOf "I")), 
+                        JR.while (JR.map2 JR.less (JR.local "index") (JR.invoke "length_0" (JR.local "replace") [])) (JR.run [ 
+                            JR.declare "begin" "I" (JR.invoke "indexOf_2" (JR.local "replace") [ (JR.aget (JR.local "keys") (JR.int 0)), (JR.local "index") ]), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "begin") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                                JR.exec (JR.postUpdate (JR.local "foundTotal") (\jwN68601 -> (JR.setLocal "foundTotal" "J" (JR.lit jwN68601))) JR.increment), 
+                                JR.ifElse (JR.map2 JR.equals (JR.map2 JR.rem (JR.local "foundTotal") (JR.long 100)) (JR.long 0)) (JR.run [ 
+                                    JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.thisField "FOUND_KEY") (JR.local "foundTotal")) ]) ]) identity, 
+                                JR.exec (JR.setLocal "nextKey" "" (JR.aget (JR.local "keys") (JR.int 0))), 
+                                JR.exec (JR.setLocal "end" "I" (JR.map2 JR.add (JR.local "begin") (JR.invoke "length_0" (JR.local "nextKey") []))), 
+                                JR.exec (JR.invoke "delete_2" (JR.local "newStringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "newStringBuffer") []) ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "newStringBuffer") [ (JR.invoke "substring_2" (JR.local "replace") [ (JR.int 0), (JR.local "begin") ]) ]), 
+                                JR.exec (JR.invoke "append_1" (JR.local "newStringBuffer") [ (JR.aget (JR.local "values") (JR.int 0)) ]), 
+                                JR.exec (JR.setLocal "index" "I" (JR.invoke "length_0" (JR.local "newStringBuffer") [])), 
+                                JR.exec (JR.invoke "append_1" (JR.local "newStringBuffer") [ (JR.invoke "substring_2" (JR.local "replace") [ (JR.local "end"), (JR.invoke "length_0" (JR.local "replace") []) ]) ]), 
+                                JR.exec (JR.setLocal "replace" "" (JR.invoke "toString_0" (JR.local "newStringBuffer") [])), 
+                                JR.ifElse (JR.map2 JR.greater (JR.alength (JR.local "keys")) (JR.int 1)) (JR.run [ 
+                                    JR.exec (JR.setLocal "nextSecondKey" "" (JR.aget (JR.local "keys") (JR.int 1))), 
+                                    JR.exec (JR.setLocal "begin2" "I" (JR.invoke "indexOf_2" (JR.local "replace") [ (JR.local "nextSecondKey"), (JR.local "index") ])), 
+                                    JR.ifElse (JR.map2 JR.notEquals (JR.local "begin2") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                                        JR.declare "end2" "I" (JR.map2 JR.add (JR.local "begin2") (JR.invoke "length_0" (JR.local "nextSecondKey") [])), 
+                                        JR.exec (JR.invoke "delete_2" (JR.local "newStringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "newStringBuffer") []) ]), 
+                                        JR.exec (JR.invoke "append_1" (JR.local "newStringBuffer") [ (JR.invoke "substring_2" (JR.local "replace") [ (JR.int 0), (JR.local "begin2") ]) ]), 
+                                        JR.exec (JR.invoke "append_1" (JR.local "newStringBuffer") [ (JR.aget (JR.local "values") (JR.int 1)) ]), 
+                                        JR.exec (JR.setLocal "index" "I" (JR.invoke "length_0" (JR.local "newStringBuffer") [])), 
+                                        JR.exec (JR.invoke "append_1" (JR.local "newStringBuffer") [ (JR.invoke "substring_2" (JR.local "replace") [ (JR.local "end2"), (JR.invoke "length_0" (JR.local "replace") []) ]) ]), 
+                                        JR.exec (JR.setLocal "replace" "" (JR.invoke "toString_0" (JR.local "newStringBuffer") [])) ]) identity ]) identity, 
+                                JR.exec (JR.postUpdate (JR.local "totalNumberOfReplaces") (\jwN69542 -> (JR.setLocal "totalNumberOfReplaces" "I" (JR.lit jwN69542))) JR.increment), 
+                                JR.ifElse (JR.and (JR.map2 JR.notEquals (JR.local "total") JInteger.jstatic_MIN_VALUE) (JR.map2 JR.greaterEquals (JR.local "totalNumberOfReplaces") (JR.local "total"))) (JR.run [ 
+                                    JR.break ]) identity ]) (JR.run [ 
+                                JR.break ]) ]) ]) ], 
+                    JR.ifElse (JR.map2 JR.greater (JR.local "totalNumberOfReplaces") (JR.int 0)) (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "REPLACE" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "Total Number Of Replaces: ") (JR.local "totalNumberOfReplaces")), JR.this, (JR.thisField "ALL") ]) ]) identity ]) identity, 
+                    JR.return (JR.local "replace") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_line_1 : JR.Method
+jm_line_1 jheap jthis jargs =
+    JR.method [ ( "replace", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "newStringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.declare "totalNumberOfReplaces" "I" (JR.int 0), 
+                    JR.declare "key" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "value" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "keyArray" "" (JR.invoke "getHashMapAsArray_1" (JR.thisField "j2seUtil") [ (JR.thisField "hashMap") ]), 
+                    JR.declare "size" "I" (JR.alength (JR.local "keyArray")), 
+                    JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN71014 -> (JR.setLocal "index2" "I" (JR.lit jwN71014))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "key" "" (JR.aget (JR.local "keyArray") (JR.local "index2"))), 
+                        JR.exec (JR.setLocal "value" "" (JR.invoke "get_1" (JR.thisField "hashMap") [ (JR.local "key") ])), 
+                        JR.declare "index" "I" (JR.int 0), 
+                        JR.while (JR.map2 JR.less (JR.local "index") (JR.invoke "length_0" (JR.local "replace") [])) (JR.run [ 
+                            JR.exec (JR.invoke "delete_2" (JR.local "newStringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "newStringBuffer") []) ]), 
+                            JR.declare "begin" "I" (JR.invoke "indexOf_2" (JR.local "replace") [ (JR.local "key"), (JR.local "index") ]), 
+                            JR.ifElse (JR.map2 JR.notEquals (JR.local "begin") (JR.map JR.neg (JR.int 1))) (JR.run [ 
+                                JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.thisField "FOUND_KEY") ]), 
+                                JR.declare "end" "I" (JR.plus (JR.invoke "indexOf_2" (JR.local "replace") [ (JR.char 10), (JR.map2 JR.add (JR.local "begin") (JR.invoke "length_0" (JR.local "key") [])) ]) (JR.int 1)), 
+                                JR.ifElse (JR.map2 JR.greaterEquals (JR.local "end") (JR.int 0)) (JR.run [ 
+                                    JR.exec (JR.invoke "append_1" (JR.local "newStringBuffer") [ (JR.invoke "substring_2" (JR.local "replace") [ (JR.int 0), (JR.local "begin") ]) ]), 
+                                    JR.exec (JR.setLocal "index" "I" (JR.invoke "length_0" (JR.local "newStringBuffer") [])), 
+                                    JR.exec (JR.invoke "append_1" (JR.local "newStringBuffer") [ (JR.invoke "substring_2" (JR.local "replace") [ (JR.local "end"), (JR.invoke "length_0" (JR.local "replace") []) ]) ]), 
+                                    JR.exec (JR.setLocal "replace" "" (JR.invoke "toString_0" (JR.local "newStringBuffer") [])), 
+                                    JR.exec (JR.postUpdate (JR.local "totalNumberOfReplaces") (\jwN70911 -> (JR.setLocal "totalNumberOfReplaces" "I" (JR.lit jwN70911))) JR.increment) ]) identity ]) (JR.run [ 
+                                JR.break ]) ]) ]) ], 
+                    JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "REPLACE" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "Total Number Of Replaces: ") (JR.local "totalNumberOfReplaces")), JR.this, (JR.thisField "ALL") ]) ]) identity, 
+                    JR.return (JR.local "replace") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_main_1 : JR.Method
+jm_main_1 jheap jthis jargs =
+    JR.method [ ( "args", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "stringUtil" "" (JR.callStatic StringUtil.jm_getInstance_0 []), 
+                        JR.declare "appUrlGlobals" "" (JR.new AppUrlGlobals.jnew_0 []), 
+                        JR.exec (JR.invoke "setWebappPath_1" (JR.local "appUrlGlobals") [ (JR.str "G:/mnt/bc/mydev/work/allbinary_src/ToolsJavaLibrary/tools") ]), 
+                        JR.exec (JR.callStatic URLGLOBALS.jm_init_1 [ (JR.local "appUrlGlobals") ]), 
+                        JR.declare "testString" "" (JR.str "\"super gun\" big tank \"goodgunriflegun"), 
+                        JR.declare "replace" "" (JR.new jnew_2 [ (JR.str "gun"), (JR.str "abcdefghijklmnopqrstuxwxyzabcdefghijklmnopqrstuxwxyz") ]), 
+                        JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.str "Old String: ") (JR.local "testString")) ]), 
+                        JR.exec (JR.setLocal "testString" "" (JR.invoke "all_1" (JR.local "replace") [ (JR.local "testString") ])), 
+                        JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.str "New String: ") (JR.local "testString")) ]), 
+                        JR.declare "replaceCat" "" (JR.new jnew_2 [ (JR.str "abcdefghijklmnopqrstuxwxyzabcdefghijklmnopqrstuxwxyz"), (JR.field "EMPTY_STRING" (JR.local "stringUtil")) ]), 
+                        JR.exec (JR.setLocal "testString" "" (JR.invoke "all_1" (JR.local "replaceCat") [ (JR.local "testString") ])), 
+                        JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.str "New String: ") (JR.local "testString")) ]) ]) [ ( [ "Exception" ], "e", identity ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,241 +1,199 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.pipeline
-module BasicGraphicsPipeline where
+module Org.Allbinary.Graphics.Pipeline.BasicGraphicsPipeline exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified Angle -- org.allbinary.math.Angle
-import qualified NoDecimalTrigTable -- org.allbinary.math.NoDecimalTrigTable
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.graphics.pipeline
+-}
 
-data BasicGraphicsPipeline = BasicGraphicsPipeline
-    { header_ :: JavaHeader
-    , pointBasicArrayList :: IORef (BasicArrayList.BasicArrayList)
-    , noDecimalTrigTable :: IORef (NoDecimalTrigTable.NoDecimalTrigTable)
-    }
-
-instance JavaNull BasicGraphicsPipeline where
-    javaNull = javaNullRecord "BasicGraphicsPipeline"
-
-instance JavaEquals BasicGraphicsPipeline where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq BasicGraphicsPipeline where
-    (==) = jrecordEquals
-
-instance JavaObjectClass BasicGraphicsPipeline where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO BasicGraphicsPipeline
-newRecord_ = do
-    header_ <- newJavaHeader
-    pointBasicArrayList <- newIORef javaNull
-    noDecimalTrigTable <- newIORef javaNull
-    let this = BasicGraphicsPipeline header_ pointBasicArrayList noDecimalTrigTable
-    jregisterLevel header_ this
-    jregisterMethod header_ "setInitMatrix" (\() -> setInitMatrix_impl this)
-    jregisterMethod header_ "createMatrix" (\() -> createMatrix_impl this)
-    jregisterMethod header_ "translate" (\() -> translate_impl this)
-    jregisterMethod header_ "rotateToAngle" (\() -> rotateToAngle_impl this)
-    jregisterMethod header_ "rotate" (\() -> rotate_impl this)
-    jregisterMethod header_ "mirror" (\() -> mirror_impl this)
-    jregisterMethod header_ "getMatrix" (\() -> getMatrix_impl this)
-    pure this
-
-initFields_ :: BasicGraphicsPipeline -> IO ()
-initFields_ this = do
-    jset this.pointBasicArrayList (javaNull)
-    jset this.noDecimalTrigTable =<< (NoDecimalTrigTable.getInstance)
-    pure ()
-
-new_1 :: BasicArrayList.BasicArrayList -> IO BasicGraphicsPipeline
-new_1 points = do
-    this <- newRecord_
-    init_1 this points
-    pure this
-
-init_1 :: BasicGraphicsPipeline -> BasicArrayList.BasicArrayList -> IO ()
-init_1 this points = do
-        initFields_ this
-        jset (this).pointBasicArrayList (points)
-        pure ()
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Math.NoDecimalTrigTable as NoDecimalTrigTable
+import Org.Allbinary.Graphics.PointFactory as PointFactory
 
 
-setInitMatrix :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setInitMatrix object_ a1 = jmethod object_ "setInitMatrix" (\() -> (setInitMatrix_impl (javaCast object_ :: BasicGraphicsPipeline))) () a1
-
-setInitMatrix_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> IO (())
-setInitMatrix_super object_ a1 = (setInitMatrix_impl (javaCast object_ :: BasicGraphicsPipeline)) a1
-
-setInitMatrix_impl :: BasicGraphicsPipeline -> BasicArrayList.BasicArrayList -> IO (())
-setInitMatrix_impl this points = do
-        jset (this).pointBasicArrayList (points)
-        pure ()
+jclass : String
+jclass =
+    "BasicGraphicsPipeline"
 
 
-createMatrix :: (JavaObjectClass this_) => this_ -> IO (())
-createMatrix object_ = jmethod object_ "createMatrix" (\() -> (createMatrix_impl (javaCast object_ :: BasicGraphicsPipeline))) ()
-
-createMatrix_super :: (JavaObjectClass this_) => this_ -> IO (())
-createMatrix_super object_ = (createMatrix_impl (javaCast object_ :: BasicGraphicsPipeline))
-
-createMatrix_impl :: BasicGraphicsPipeline -> IO (())
-createMatrix_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "BasicGraphicsPipeline" ]
 
 
--- throws Exception
-translate :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-translate object_ a1 a2 = jmethod object_ "translate" (\() -> (translate_impl (javaCast object_ :: BasicGraphicsPipeline))) () a1 a2
-
-translate_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-translate_super object_ a1 a2 = (translate_impl (javaCast object_ :: BasicGraphicsPipeline)) a1 a2
-
-translate_impl :: BasicGraphicsPipeline -> Int -> Int -> IO (())
-translate_impl this x y = do
-        newBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        size <- (BasicArrayList.size ((jget (this).pointBasicArrayList)))
-        pointFactory <- (PointFactory.getInstance)
-        secondPoint <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset secondPoint ((javaCast (jindex ((jget ((jget (this).pointBasicArrayList)).objectArray)) (index)) :: GPoint.GPoint))
-            if ((jio (GPoint.getX ((jget secondPoint)))) /= 1000) then do
-                Control.Monad.void (BasicArrayList.add newBasicArrayList (jio (PointFactory.createXY pointFactory ((jio (GPoint.getX ((jget secondPoint)))) + x) ((jio (GPoint.getY ((jget secondPoint)))) + y))))
-            else do
-                Control.Monad.void (BasicArrayList.add newBasicArrayList (jget secondPoint))
-        jset (this).pointBasicArrayList (newBasicArrayList)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "pointBasicArrayList", JR.defaultOf "" ), ( "noDecimalTrigTable", JR.defaultOf "" ) ]
 
 
--- throws Exception
-rotateToAngle :: (JavaObjectClass this_) => this_ -> Angle.Angle -> IO (())
-rotateToAngle object_ a1 = jmethod object_ "rotateToAngle" (\() -> (rotateToAngle_impl (javaCast object_ :: BasicGraphicsPipeline))) () a1
-
-rotateToAngle_super :: (JavaObjectClass this_) => this_ -> Angle.Angle -> IO (())
-rotateToAngle_super object_ a1 = (rotateToAngle_impl (javaCast object_ :: BasicGraphicsPipeline)) a1
-
-rotateToAngle_impl :: BasicGraphicsPipeline -> Angle.Angle -> IO (())
-rotateToAngle_impl this angle = do
-        Control.Monad.void (BasicGraphicsPipeline.rotate this (Prelude.fromInteger (jnumericInteger (jio (Angle.getValue angle)))))
-        pure ()
-
-
--- throws Exception
-rotate :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-rotate object_ a1 = jmethod object_ "rotate" (\() -> (rotate_impl (javaCast object_ :: BasicGraphicsPipeline))) () a1
-
-rotate_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-rotate_super object_ a1 = (rotate_impl (javaCast object_ :: BasicGraphicsPipeline)) a1
-
-rotate_impl :: BasicGraphicsPipeline -> Int -> IO (())
-rotate_impl this angle = do
-        newBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        secondPoint <- newIORef (javaNull)
-        y <- newIORef (0 :: Int64)
-        secondX <- newIORef (0 :: Int64)
-        secondY <- newIORef (0 :: Int64)
-        point <- newIORef (javaNull)
-        pointFactory <- (PointFactory.getInstance)
-        size <- (BasicArrayList.size ((jget (this).pointBasicArrayList)))
-        sin <- newIORef (0 :: Int64)
-        cos <- newIORef (0 :: Int64)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset secondPoint ((javaCast (jindex ((jget ((jget (this).pointBasicArrayList)).objectArray)) (index)) :: GPoint.GPoint))
-            if ((jio (GPoint.getX ((jget secondPoint)))) /= 1000) then do
-                assignedValue <- (NoDecimalTrigTable.sin ((jget (this).noDecimalTrigTable)) angle)
-                jset sin (assignedValue)
-                assignedValue <- (NoDecimalTrigTable.cos ((jget (this).noDecimalTrigTable)) angle)
-                jset cos (assignedValue)
-                jset y (((jio (GPoint.getY ((jget secondPoint)))) * (jget sin)))
-                jset secondX (((((jio (GPoint.getX ((jget secondPoint)))) * (jget cos))) - (jget y)))
-                jset secondY (((((jio (GPoint.getX ((jget secondPoint)))) * (jget sin))) + (((jio (GPoint.getY ((jget secondPoint)))) * (jget cos)))))
-                assignedValue <- (PointFactory.createXY pointFactory ((Prelude.fromIntegral (jget secondX)) `quot` 10000) ((Prelude.fromIntegral (jget secondY)) `quot` 10000))
-                jset point (assignedValue)
-                Control.Monad.void (BasicArrayList.add newBasicArrayList (jget point))
-            else do
-                Control.Monad.void (BasicArrayList.add newBasicArrayList (jget secondPoint))
-        jset (this).pointBasicArrayList (newBasicArrayList)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "setInitMatrix_1", jm_setInitMatrix_1 )
+        , ( "createMatrix_0", jm_createMatrix_0 )
+        , ( "translate_2", jm_translate_2 )
+        , ( "rotateToAngle_1", jm_rotateToAngle_1 )
+        , ( "rotate_1", jm_rotate_1 )
+        , ( "mirror_1", jm_mirror_1 )
+        , ( "getMatrix_0", jm_getMatrix_0 ) ]
+        JR.noMethods
 
 
--- throws Exception
-mirror :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-mirror object_ a1 = jmethod object_ "mirror" (\() -> (mirror_impl (javaCast object_ :: BasicGraphicsPipeline))) () a1
-
-mirror_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-mirror_super object_ a1 = (mirror_impl (javaCast object_ :: BasicGraphicsPipeline)) a1
-
-mirror_impl :: BasicGraphicsPipeline -> Int -> IO (())
-mirror_impl this width = do
-        pointFactory <- (PointFactory.getInstance)
-        let halfWidth = ((width `Data.Bits.shiftR` 1))
-        newBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        secondPoint <- newIORef (javaNull)
-        newX <- newIORef (0 :: Int)
-        point <- newIORef (javaNull)
-        size <- (BasicArrayList.size ((jget (this).pointBasicArrayList)))
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset secondPoint ((javaCast (jindex ((jget ((jget (this).pointBasicArrayList)).objectArray)) (index)) :: GPoint.GPoint))
-            if ((jio (GPoint.getX ((jget secondPoint)))) /= 1000) then do
-                jset newX (0)
-                if ((jio (GPoint.getX ((jget secondPoint)))) > halfWidth) then do
-                    jset newX ((halfWidth - (((jio (GPoint.getX ((jget secondPoint)))) - halfWidth))))
-                else do
-                    jset newX ((halfWidth + ((halfWidth - (jio (GPoint.getX ((jget secondPoint))))))))
-                assignedValue <- (PointFactory.createXY pointFactory (jget newX) (jio (GPoint.getY ((jget secondPoint)))))
-                jset point (assignedValue)
-                Control.Monad.void (BasicArrayList.add newBasicArrayList (jget point))
-            else do
-                Control.Monad.void (BasicArrayList.add newBasicArrayList (jget secondPoint))
-        jset (this).pointBasicArrayList (newBasicArrayList)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicGraphicsPipeline"
+        [ ( "jm_setInitMatrix_1", jm_setInitMatrix_1 ), ( "jm_createMatrix_0", jm_createMatrix_0 ), ( "jm_translate_2", jm_translate_2 ), ( "jm_rotateToAngle_1", jm_rotateToAngle_1 ), ( "jm_rotate_1", jm_rotate_1 ), ( "jm_mirror_1", jm_mirror_1 ), ( "jm_getMatrix_0", jm_getMatrix_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
 
-getMatrix :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getMatrix object_ = jmethod object_ "getMatrix" (\() -> (getMatrix_impl (javaCast object_ :: BasicGraphicsPipeline))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-getMatrix_super :: (JavaObjectClass this_) => this_ -> IO (BasicArrayList.BasicArrayList)
-getMatrix_super object_ = (getMatrix_impl (javaCast object_ :: BasicGraphicsPipeline))
 
-getMatrix_impl :: BasicGraphicsPipeline -> IO (BasicArrayList.BasicArrayList)
-getMatrix_impl this = do
-        pure ((jget (this).pointBasicArrayList))
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "points", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "noDecimalTrigTable" "" JR.this (JR.callStatic NoDecimalTrigTable.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "pointBasicArrayList" "" JR.this (JR.local "points")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_setInitMatrix_1 : JR.Method
+jm_setInitMatrix_1 jheap jthis jargs =
+    JR.method [ ( "points", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "pointBasicArrayList" "" JR.this (JR.local "points")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createMatrix_0 : JR.Method
+jm_createMatrix_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_translate_2 : JR.Method
+jm_translate_2 jheap jthis jargs =
+    JR.method [ ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "newBasicArrayList" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "pointBasicArrayList") []), 
+                    JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
+                    JR.declare "secondPoint" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67039 -> (JR.setLocal "index" "I" (JR.lit jwN67039))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "secondPoint" "" (JR.aget (JR.field "objectArray" (JR.thisField "pointBasicArrayList")) (JR.local "index"))), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getX_0" (JR.local "secondPoint") []) (JR.int 1000)) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "newBasicArrayList") [ (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.map2 JR.add (JR.invoke "getX_0" (JR.local "secondPoint") []) (JR.local "x")), (JR.map2 JR.add (JR.invoke "getY_0" (JR.local "secondPoint") []) (JR.local "y")) ]) ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "newBasicArrayList") [ (JR.local "secondPoint") ]) ]) ]) ], 
+                    JR.exec (JR.setField "pointBasicArrayList" "" JR.this (JR.local "newBasicArrayList")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_rotateToAngle_1 : JR.Method
+jm_rotateToAngle_1 jheap jthis jargs =
+    JR.method [ ( "angle", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "rotate_1" JR.this [ (JR.cast "I" (JR.invoke "getValue_0" (JR.local "angle") [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_rotate_1 : JR.Method
+jm_rotate_1 jheap jthis jargs =
+    JR.method [ ( "angle", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "newBasicArrayList" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "secondPoint" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "y" "J" (JR.lit (JR.defaultOf "J")), 
+                    JR.declare "secondX" "J" (JR.lit (JR.defaultOf "J")), 
+                    JR.declare "secondY" "J" (JR.lit (JR.defaultOf "J")), 
+                    JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "pointBasicArrayList") []), 
+                    JR.declare "sin" "J" (JR.lit (JR.defaultOf "J")), 
+                    JR.declare "cos" "J" (JR.lit (JR.defaultOf "J")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68201 -> (JR.setLocal "index" "I" (JR.lit jwN68201))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "secondPoint" "" (JR.aget (JR.field "objectArray" (JR.thisField "pointBasicArrayList")) (JR.local "index"))), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getX_0" (JR.local "secondPoint") []) (JR.int 1000)) (JR.run [ 
+                            JR.exec (JR.setLocal "sin" "J" (JR.invoke "sin_1" (JR.thisField "noDecimalTrigTable") [ (JR.local "angle") ])), 
+                            JR.exec (JR.setLocal "cos" "J" (JR.invoke "cos_1" (JR.thisField "noDecimalTrigTable") [ (JR.local "angle") ])), 
+                            JR.exec (JR.setLocal "y" "J" (JR.map2 JR.mul (JR.cast "J" (JR.invoke "getY_0" (JR.local "secondPoint") [])) (JR.local "sin"))), 
+                            JR.exec (JR.setLocal "secondX" "J" (JR.map2 JR.sub ((JR.map2 JR.mul (JR.cast "J" (JR.invoke "getX_0" (JR.local "secondPoint") [])) (JR.local "cos"))) (JR.local "y"))), 
+                            JR.exec (JR.setLocal "secondY" "J" (JR.map2 JR.add ((JR.map2 JR.mul (JR.cast "J" (JR.invoke "getX_0" (JR.local "secondPoint") [])) (JR.local "sin"))) ((JR.map2 JR.mul (JR.cast "J" (JR.invoke "getY_0" (JR.local "secondPoint") [])) (JR.local "cos"))))), 
+                            JR.exec (JR.setLocal "point" "" (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.map2 JR.div (JR.cast "I" (JR.local "secondX")) (JR.int 10000)), (JR.map2 JR.div (JR.cast "I" (JR.local "secondY")) (JR.int 10000)) ])), 
+                            JR.exec (JR.invoke "add_1" (JR.local "newBasicArrayList") [ (JR.local "point") ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "newBasicArrayList") [ (JR.local "secondPoint") ]) ]) ]) ], 
+                    JR.exec (JR.setField "pointBasicArrayList" "" JR.this (JR.local "newBasicArrayList")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_mirror_1 : JR.Method
+jm_mirror_1 jheap jthis jargs =
+    JR.method [ ( "width", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
+                    JR.declare "halfWidth" "I" ((JR.map2 JR.shr (JR.local "width") (JR.int 1))), 
+                    JR.declare "newBasicArrayList" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "secondPoint" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "newX" "I" (JR.lit (JR.defaultOf "I")), 
+                    JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "pointBasicArrayList") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69055 -> (JR.setLocal "index" "I" (JR.lit jwN69055))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "secondPoint" "" (JR.aget (JR.field "objectArray" (JR.thisField "pointBasicArrayList")) (JR.local "index"))), 
+                        JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getX_0" (JR.local "secondPoint") []) (JR.int 1000)) (JR.run [ 
+                            JR.exec (JR.setLocal "newX" "I" (JR.int 0)), 
+                            JR.ifElse (JR.map2 JR.greater (JR.invoke "getX_0" (JR.local "secondPoint") []) (JR.local "halfWidth")) (JR.run [ 
+                                JR.exec (JR.setLocal "newX" "I" (JR.map2 JR.sub (JR.local "halfWidth") ((JR.map2 JR.sub (JR.invoke "getX_0" (JR.local "secondPoint") []) (JR.local "halfWidth"))))) ]) (JR.run [ 
+                                JR.exec (JR.setLocal "newX" "I" (JR.map2 JR.add (JR.local "halfWidth") ((JR.map2 JR.sub (JR.local "halfWidth") (JR.invoke "getX_0" (JR.local "secondPoint") []))))) ]), 
+                            JR.exec (JR.setLocal "point" "" (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.local "newX"), (JR.invoke "getY_0" (JR.local "secondPoint") []) ])), 
+                            JR.exec (JR.invoke "add_1" (JR.local "newBasicArrayList") [ (JR.local "point") ]) ]) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "newBasicArrayList") [ (JR.local "secondPoint") ]) ]) ]) ], 
+                    JR.exec (JR.setField "pointBasicArrayList" "" JR.this (JR.local "newBasicArrayList")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getMatrix_0 : JR.Method
+jm_getMatrix_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "pointBasicArrayList") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

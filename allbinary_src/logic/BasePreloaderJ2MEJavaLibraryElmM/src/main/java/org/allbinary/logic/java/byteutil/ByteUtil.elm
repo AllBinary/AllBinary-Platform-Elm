@@ -1,4 +1,4 @@
-module ByteUtil exposing (..)
+module Org.Allbinary.Logic.Java.Byteutil.ByteUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.java.byteutil
 -}

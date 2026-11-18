@@ -1,10 +1,10 @@
-module ColorCompositeInterface exposing (..)
+module Org.Allbinary.Graphics.Color.ColorCompositeInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics.color
 -}
 
 import JR
-import BasicColorCompositeSetterInterface
+import Org.Allbinary.Graphics.Color.BasicColorCompositeSetterInterface as BasicColorCompositeSetterInterface
 
 
 jclass : String

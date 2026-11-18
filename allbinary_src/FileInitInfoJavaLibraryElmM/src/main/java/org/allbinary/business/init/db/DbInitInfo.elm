@@ -1,339 +1,292 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.business.init.db
-module DbInitInfo (module DbInitInfo, module DbConnectionInfo) where
+module Org.Allbinary.Business.Init.Db.DbInitInfo exposing (..)
 
-import DbConnectionInfo hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getUrl, getUrl_super, getUrl_impl, write, write_super, write_impl, load, load_super, load_impl, setHasRead, setHasRead_super, setHasRead_impl, updateIfNeeded, updateIfNeeded_super, updateIfNeeded_impl, getName, getName_super, getName_impl, getUserName, getUserName_super, getUserName_impl, getPassword, getPassword_super, getPassword_impl, getSchema, getSchema_super, getSchema_impl, getServer, getServer_super, getServer_impl, getPort, getPort_super, getPort_impl, commonStrings, directory, httpData, gET_URL, pACKAGE, initFileName, hasRead)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified FREEBLISKET_PATH_GLOBALS -- org.allbinary.globals.FREEBLISKET_PATH_GLOBALS
-import qualified URLGLOBALS -- org.allbinary.globals.URLGLOBALS
-import qualified HttpData -- org.allbinary.logic.communication.http.HttpData
-import qualified PreLogUtil -- org.allbinary.logic.communication.log.PreLogUtil
-import qualified LogConfigTypeFactory -- org.allbinary.logic.communication.log.config.type.LogConfigTypeFactory
-import qualified LogConfigTypes -- org.allbinary.logic.communication.log.config.type.LogConfigTypes
-import qualified AbDataInputStream -- org.allbinary.logic.io.AbDataInputStream
-import qualified AbDataOutputStream -- org.allbinary.logic.io.AbDataOutputStream
-import qualified AbFileInputStream -- org.allbinary.logic.io.AbFileInputStream
-import qualified DataOutputStreamFactory -- org.allbinary.logic.io.DataOutputStreamFactory
-import qualified StreamUtil -- org.allbinary.logic.io.StreamUtil
-import qualified AbFile -- org.allbinary.logic.io.file.AbFile
-import qualified Directory -- org.allbinary.logic.io.file.directory.Directory
-import qualified AbPath -- org.allbinary.logic.io.path.AbPath
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified DatabaseEncoder -- org.allbinary.logic.system.security.crypt.DatabaseEncoder
-import qualified WeakCrypt -- org.allbinary.logic.system.security.crypt.WeakCrypt
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified DbConnectionInfo
+{-| Generated Code Do Not Modify package org.allbinary.business.init.db
+-}
 
-data DbInitInfo = DbInitInfo
-    { header_ :: JavaHeader
-    , base :: DbConnectionInfo.DbConnectionInfo
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , directory :: IORef (Directory.Directory)
-    , httpData :: IORef (HttpData.HttpData)
-    , gET_URL :: IORef (String)
-    , pACKAGE :: IORef (String)
-    , initFileName :: IORef (String)
-    , hasRead :: IORef (Bool)
-    }
-
-instance JavaNull DbInitInfo where
-    javaNull = javaNullRecord "DbInitInfo"
-
-instance JavaEquals DbInitInfo where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DbInitInfo where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DbInitInfo where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO DbInitInfo
-newRecord_ = do
-    base <- DbConnectionInfo.newRecord_
-    let header_ = base.header_
-    commonStrings <- newIORef javaNull
-    directory <- newIORef javaNull
-    httpData <- newIORef javaNull
-    gET_URL <- newIORef ""
-    pACKAGE <- newIORef ""
-    initFileName <- newIORef ""
-    hasRead <- newIORef False
-    let this = DbInitInfo header_ base commonStrings directory httpData gET_URL pACKAGE initFileName hasRead
-    jregisterLevel header_ this
-    jregisterMethod header_ "getUrl" (\() -> getUrl_impl this)
-    jregisterMethod header_ "write" (\() -> write_impl this)
-    jregisterMethod header_ "load" (\() -> load_impl this)
-    jregisterMethod header_ "setHasRead" (\() -> setHasRead_impl this)
-    jregisterMethod header_ "updateIfNeeded" (\() -> updateIfNeeded_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "getUserName" (\() -> getUserName_impl this)
-    jregisterMethod header_ "getPassword" (\() -> getPassword_impl this)
-    jregisterMethod header_ "getSchema" (\() -> getSchema_impl this)
-    jregisterMethod header_ "getServer" (\() -> getServer_impl this)
-    jregisterMethod header_ "getPort" (\() -> getPort_impl this)
-    pure this
-
-initFields_ :: DbInitInfo -> IO ()
-initFields_ this = do
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.directory =<< (Directory.getInstance)
-    jset this.httpData =<< (HttpData.getInstance)
-    jset this.gET_URL ("getUrl")
-    jset this.pACKAGE ((jget ((jio (FREEBLISKET_PATH_GLOBALS.getInstance))).dBINITPATH))
-    jset this.initFileName (javaNull)
-    jset this.hasRead (False)
-    pure ()
-
-new_2 :: String -> Bool -> IO DbInitInfo
-new_2 initFileName read = do
-    this <- newRecord_
-    init_2 this initFileName read
-    pure this
-
-init_2 :: DbInitInfo -> String -> Bool -> IO ()
-init_2 this initFileName read = do
-        DbConnectionInfo.init_ this.base
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).initFileName (initFileName)
-        if read then do
-            Control.Monad.void (DbInitInfo.updateIfNeeded this)
-        else do
-            Control.Monad.void (DbInitInfo.setHasRead this True)
-        pure ()
+import JR
+import Org.Allbinary.Logic.Io.AbDataInputStream as AbDataInputStream
+import Org.Allbinary.Logic.Io.File.AbFile as AbFile
+import Org.Allbinary.Logic.Io.AbFileInputStream as AbFileInputStream
+import Org.Allbinary.Logic.Io.Path.AbPath as AbPath
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.Io.DataOutputStreamFactory as DataOutputStreamFactory
+import Org.Allbinary.Logic.System.Security.Crypt.DatabaseEncoder as DatabaseEncoder
+import Org.Allbinary.Business.Init.Db.DbConnectionInfo as DbConnectionInfo
+import Org.Allbinary.Logic.Io.File.Directory.Directory as Directory
+import Org.Allbinary.Globals.FREEBLISKET_PATH_GLOBALS as FREEBLISKET_PATH_GLOBALS
+import Org.Allbinary.Logic.Communication.Http.HttpData as HttpData
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypeFactory as LogConfigTypeFactory
+import Org.Allbinary.Logic.Communication.Log.Config.Type.LogConfigTypes as LogConfigTypes
+import Org.Allbinary.Logic.Communication.Log.PreLogUtil as PreLogUtil
+import Org.Allbinary.Logic.Io.StreamUtil as StreamUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Globals.URLGLOBALS as URLGLOBALS
+import Org.Allbinary.Logic.System.Security.Crypt.WeakCrypt as WeakCrypt
 
 
-getUrl :: (JavaObjectClass this_) => this_ -> IO (String)
-getUrl object_ = jmethod object_ "getUrl" (\() -> (getUrl_impl (javaCast object_ :: DbInitInfo))) ()
-
-getUrl_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getUrl_super object_ = (getUrl_impl (javaCast object_ :: DbInitInfo))
-
-getUrl_impl :: DbInitInfo -> IO (String)
-getUrl_impl this = do
-        url <- (DbConnectionInfo.getUrl_super this.base)
-        when (jio (contains LogConfigTypes.lOGGING (jget ((jio (LogConfigTypeFactory.getInstance))).pRELOADER))) $ do
-            Control.Monad.void (PreLogUtil.put (javaToString (jget ((jget (this).httpData)).uRL_LABEL) ++ url) this (jget this.gET_URL))
-        pure (url)
+jclass : String
+jclass =
+    "DbInitInfo"
 
 
--- throws Exception
-write :: (JavaObjectClass this_) => this_ -> IO (())
-write object_ = jmethod object_ "write" (\() -> (write_impl (javaCast object_ :: DbInitInfo))) ()
-
-write_super :: (JavaObjectClass this_) => this_ -> IO (())
-write_super object_ = (write_impl (javaCast object_ :: DbInitInfo))
-
-write_impl :: DbInitInfo -> IO (())
-write_impl this = do
-        pATH <- (AbPath.new_2 (javaToString (jio (URLGLOBALS.getWebappPath)) ++ (jget (this).pACKAGE)) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-        Control.Monad.void (Directory.create ((jget (this).directory)) pATH)
-        fILEABPATH <- (AbPath.new_2 (javaToString (jio (URLGLOBALS.getWebappPath)) ++ (jget (this).pACKAGE)) (jget (this).initFileName))
-        handle (\(e :: JavaException) -> do
-            when (jio (contains LogConfigTypes.lOGGING (jget ((jio (LogConfigTypeFactory.getInstance))).pRELOADERERROR))) $ do
-                Control.Monad.void (PreLogUtil.putOE ("Failed Write: " ++ (jio (AbPath.toString fILEABPATH))) this "write" e)
-            ) $ do
-            newFile <- (AbFile.createAbFileFromAbPath fILEABPATH)
-            Control.Monad.void (AbFile.createNewFile newFile)
-            dataOutputStream <- (DataOutputStreamFactory.getInstanceForAbFile ((jio (DataOutputStreamFactory.getInstance))) newFile)
-            flip finally (do
-                Control.Monad.void (StreamUtil.close ((jio (StreamUtil.getInstance))) dataOutputStream)
-                ) $ do
-                cryptedJdbcDriver <- (WeakCrypt.getBytes ((jio (WeakCrypt.encrypt ((jio (WeakCrypt.new_1 1))) (jio (DbConnectionInfo.getJdbcDriver this))))))
-                cryptedName <- (WeakCrypt.getBytes ((jio (WeakCrypt.encrypt ((jio (WeakCrypt.new_1 2))) (jio (DbInitInfo.getName this))))))
-                cryptedUserName <- (WeakCrypt.getBytes ((jio (WeakCrypt.encrypt ((jio (WeakCrypt.new_1 3))) (jio (DbInitInfo.getUserName this))))))
-                cryptedPassword <- (WeakCrypt.getBytes ((jio (WeakCrypt.encrypt ((jio (WeakCrypt.new_1 4))) (jio (DbInitInfo.getPassword this))))))
-                cryptedSchema <- (WeakCrypt.getBytes ((jio (WeakCrypt.encrypt ((jio (WeakCrypt.new_1 5))) (jio (DbInitInfo.getSchema this))))))
-                cryptedServer <- (WeakCrypt.getBytes ((jio (WeakCrypt.encrypt ((jio (WeakCrypt.new_1 6))) (jio (DbInitInfo.getServer this))))))
-                cryptedPort <- (WeakCrypt.getBytes ((jio (WeakCrypt.encrypt ((jio (WeakCrypt.new_1 7))) (jio (DbInitInfo.getPort this))))))
-                Control.Monad.void (AbDataOutputStream.writeUTF dataOutputStream (jio (DatabaseEncoder.encode cryptedJdbcDriver)))
-                Control.Monad.void (AbDataOutputStream.writeUTF dataOutputStream (jio (DatabaseEncoder.encode cryptedName)))
-                Control.Monad.void (AbDataOutputStream.writeUTF dataOutputStream (jio (DatabaseEncoder.encode cryptedUserName)))
-                Control.Monad.void (AbDataOutputStream.writeUTF dataOutputStream (jio (DatabaseEncoder.encode cryptedPassword)))
-                Control.Monad.void (AbDataOutputStream.writeUTF dataOutputStream (jio (DatabaseEncoder.encode cryptedSchema)))
-                Control.Monad.void (AbDataOutputStream.writeUTF dataOutputStream (jio (DatabaseEncoder.encode cryptedServer)))
-                Control.Monad.void (AbDataOutputStream.writeUTF dataOutputStream (jio (DatabaseEncoder.encode cryptedPort)))
-                jset (this).hasRead (False)
-        pure ()
+jchain : List String
+jchain =
+    [ "DbInitInfo" ]
+        ++ DbConnectionInfo.jchain
 
 
--- throws Exception
-load :: (JavaObjectClass this_) => this_ -> IO (())
-load object_ = jmethod object_ "load" (\() -> (load_impl (javaCast object_ :: DbInitInfo))) ()
-
-load_super :: (JavaObjectClass this_) => this_ -> IO (())
-load_super object_ = (load_impl (javaCast object_ :: DbInitInfo))
-
-load_impl :: DbInitInfo -> IO (())
-load_impl this = do
-        fILEABPATH <- (AbPath.new_2 (javaToString (jio (URLGLOBALS.getWebappPath)) ++ (jget (this).pACKAGE)) (jget (this).initFileName))
-        handle (\(e :: JavaException) -> do
-            when (jio (contains LogConfigTypes.lOGGING (jget ((jio (LogConfigTypeFactory.getInstance))).pRELOADERERROR))) $ do
-                Control.Monad.void (PreLogUtil.putOE ("Failed Loading: " ++ (jio (AbPath.toString fILEABPATH))) this (jget ((jget (this).commonStrings)).lOAD) e)
-            ) $ do
-            file <- (AbFile.createAbFileFromAbPath fILEABPATH)
-            if (jio (AbFile.isFile file)) then do
-                iFile <- (AbFileInputStream.createFromAbFile file)
-                iData <- (AbDataInputStream.new_1 iFile)
-                flip finally (do
-                    Control.Monad.void (StreamUtil.close ((jio (StreamUtil.getInstance))) iData)
-                    ) $ do
-                    decryptedJdbcDriver <- (jnewString (jio (DatabaseEncoder.decode (jio (AbDataInputStream.readUTF iData)))))
-                    decryptedName <- (jnewString (jio (DatabaseEncoder.decode (jio (AbDataInputStream.readUTF iData)))))
-                    decryptedUserName <- (jnewString (jio (DatabaseEncoder.decode (jio (AbDataInputStream.readUTF iData)))))
-                    decryptedPassword <- (jnewString (jio (DatabaseEncoder.decode (jio (AbDataInputStream.readUTF iData)))))
-                    decryptedSchema <- (jnewString (jio (DatabaseEncoder.decode (jio (AbDataInputStream.readUTF iData)))))
-                    decryptedServer <- (jnewString (jio (DatabaseEncoder.decode (jio (AbDataInputStream.readUTF iData)))))
-                    decryptedPort <- (jnewString (jio (DatabaseEncoder.decode (jio (AbDataInputStream.readUTF iData)))))
-                    Control.Monad.void (DbConnectionInfo.setJdbcDriver this (jio (WeakCrypt.decrypt ((jio (WeakCrypt.new_1 1))) decryptedJdbcDriver)))
-                    Control.Monad.void (DbConnectionInfo.setName this (jio (WeakCrypt.decrypt ((jio (WeakCrypt.new_1 2))) decryptedName)))
-                    Control.Monad.void (DbConnectionInfo.setUserName this (jio (WeakCrypt.decrypt ((jio (WeakCrypt.new_1 3))) decryptedUserName)))
-                    Control.Monad.void (DbConnectionInfo.setPassword this (jio (WeakCrypt.decrypt ((jio (WeakCrypt.new_1 4))) decryptedPassword)))
-                    Control.Monad.void (DbConnectionInfo.setSchema this (jio (WeakCrypt.decrypt ((jio (WeakCrypt.new_1 5))) decryptedSchema)))
-                    Control.Monad.void (DbConnectionInfo.setServer this (jio (WeakCrypt.decrypt ((jio (WeakCrypt.new_1 6))) decryptedServer)))
-                    Control.Monad.void (DbConnectionInfo.setPort this (jio (WeakCrypt.decrypt ((jio (WeakCrypt.new_1 7))) decryptedPort)))
-                    stringUtil <- (StringUtil.getInstance)
-                    pure ()
-            else do
-                jset (this).hasRead (False)
-                when (jio (contains LogConfigTypes.lOGGING (jget ((jio (LogConfigTypeFactory.getInstance))).pRELOADER))) $ do
-                    Control.Monad.void (PreLogUtil.put ("Not a File - Failed Loading: " ++ (jio (AbPath.toString fILEABPATH))) this (jget ((jget (this).commonStrings)).lOAD))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    DbConnectionInfo.jfields ++ [ ( "commonStrings", JR.defaultOf "" ), ( "directory", JR.defaultOf "" ), ( "httpData", JR.defaultOf "" ), ( "GET_URL", JR.defaultOf "" ), ( "PACKAGE", JR.defaultOf "" ), ( "initFileName", JR.defaultOf "" ), ( "hasRead", JR.defaultOf "Z" ) ]
 
 
-setHasRead :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setHasRead object_ a1 = jmethod object_ "setHasRead" (\() -> (setHasRead_impl (javaCast object_ :: DbInitInfo))) () a1
-
-setHasRead_super :: (JavaObjectClass this_) => this_ -> Bool -> IO (())
-setHasRead_super object_ a1 = (setHasRead_impl (javaCast object_ :: DbInitInfo)) a1
-
-setHasRead_impl :: DbInitInfo -> Bool -> IO (())
-setHasRead_impl this value = do
-        jset (this).hasRead (value)
-        pure ()
-
-
-updateIfNeeded :: (JavaObjectClass this_) => this_ -> IO (())
-updateIfNeeded object_ = jmethod object_ "updateIfNeeded" (\() -> (updateIfNeeded_impl (javaCast object_ :: DbInitInfo))) ()
-
-updateIfNeeded_super :: (JavaObjectClass this_) => this_ -> IO (())
-updateIfNeeded_super object_ = (updateIfNeeded_impl (javaCast object_ :: DbInitInfo))
-
-updateIfNeeded_impl :: DbInitInfo -> IO (())
-updateIfNeeded_impl this = do
-        handle (\(e :: JavaException) -> do
-            when (jio (contains LogConfigTypes.lOGGING (jget ((jio (LogConfigTypeFactory.getInstance))).pRELOADERERROR))) $ do
-                Control.Monad.void (PreLogUtil.putOE (jget ((jget (this).commonStrings)).eXCEPTION) this "updateIfNeeded" e)
-            ) $ do
-            when (Prelude.not (jget (this).hasRead)) $ do
-                jset (this).hasRead (True)
-                Control.Monad.void (DbInitInfo.load this)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getUrl_0", jm_getUrl_0 )
+        , ( "write_0", jm_write_0 )
+        , ( "load_0", jm_load_0 )
+        , ( "setHasRead_1", jm_setHasRead_1 )
+        , ( "updateIfNeeded_0", jm_updateIfNeeded_0 )
+        , ( "getName_0", jm_getName_0 )
+        , ( "getUserName_0", jm_getUserName_0 )
+        , ( "getPassword_0", jm_getPassword_0 )
+        , ( "getSchema_0", jm_getSchema_0 )
+        , ( "getServer_0", jm_getServer_0 )
+        , ( "getPort_0", jm_getPort_0 ) ]
+        DbConnectionInfo.jvtable
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: DbInitInfo))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: DbInitInfo))
-
-getName_impl :: DbInitInfo -> IO (String)
-getName_impl this = do
-        Control.Monad.void (DbInitInfo.updateIfNeeded this)
-        when (jio (contains LogConfigTypes.lOGGING (jget ((jio (LogConfigTypeFactory.getInstance))).pRELOADER))) $ do
-            Control.Monad.void (PreLogUtil.put ("Name: " ++ (jio (DbConnectionInfo.getName_super this.base))) this "getName")
-        (DbConnectionInfo.getName_super this.base)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DbInitInfo"
+        [ ( "jm_getUrl_0", jm_getUrl_0 ), ( "jm_write_0", jm_write_0 ), ( "jm_load_0", jm_load_0 ), ( "jm_setHasRead_1", jm_setHasRead_1 ), ( "jm_updateIfNeeded_0", jm_updateIfNeeded_0 ), ( "jm_getName_0", jm_getName_0 ), ( "jm_getUserName_0", jm_getUserName_0 ), ( "jm_getPassword_0", jm_getPassword_0 ), ( "jm_getSchema_0", jm_getSchema_0 ), ( "jm_getServer_0", jm_getServer_0 ), ( "jm_getPort_0", jm_getPort_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
 
-getUserName :: (JavaObjectClass this_) => this_ -> IO (String)
-getUserName object_ = jmethod object_ "getUserName" (\() -> (getUserName_impl (javaCast object_ :: DbInitInfo))) ()
-
-getUserName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getUserName_super object_ = (getUserName_impl (javaCast object_ :: DbInitInfo))
-
-getUserName_impl :: DbInitInfo -> IO (String)
-getUserName_impl this = do
-        Control.Monad.void (DbInitInfo.updateIfNeeded this)
-        when (jio (contains LogConfigTypes.lOGGING (jget ((jio (LogConfigTypeFactory.getInstance))).pRELOADER))) $ do
-            Control.Monad.void (PreLogUtil.put ("Name: " ++ (jio (DbConnectionInfo.getUserName_super this.base))) this "getUserName")
-        (DbConnectionInfo.getUserName_super this.base)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getPassword :: (JavaObjectClass this_) => this_ -> IO (String)
-getPassword object_ = jmethod object_ "getPassword" (\() -> (getPassword_impl (javaCast object_ :: DbInitInfo))) ()
-
-getPassword_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getPassword_super object_ = (getPassword_impl (javaCast object_ :: DbInitInfo))
-
-getPassword_impl :: DbInitInfo -> IO (String)
-getPassword_impl this = do
-        Control.Monad.void (DbInitInfo.updateIfNeeded this)
-        (DbConnectionInfo.getPassword_super this.base)
-
-
-getSchema :: (JavaObjectClass this_) => this_ -> IO (String)
-getSchema object_ = jmethod object_ "getSchema" (\() -> (getSchema_impl (javaCast object_ :: DbInitInfo))) ()
-
-getSchema_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getSchema_super object_ = (getSchema_impl (javaCast object_ :: DbInitInfo))
-
-getSchema_impl :: DbInitInfo -> IO (String)
-getSchema_impl this = do
-        Control.Monad.void (DbInitInfo.updateIfNeeded this)
-        (DbConnectionInfo.getSchema_super this.base)
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "initFileName", "" ), ( "read", "Z" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect DbConnectionInfo.jinit_0 JR.this []),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "directory" "" JR.this (JR.callStatic Directory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "httpData" "" JR.this (JR.callStatic HttpData.jm_getInstance_0 [])),
+                JR.exec (JR.setField "GET_URL" "" JR.this (JR.str "getUrl")),
+                JR.exec (JR.setField "PACKAGE" "" JR.this (JR.field "DBINITPATH" (JR.callStatic FREEBLISKET_PATH_GLOBALS.jm_getInstance_0 []))),
+                JR.exec (JR.setField "hasRead" "Z" JR.this (JR.bool False)),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "initFileName" "" JR.this (JR.local "initFileName")), 
+                    JR.ifElse (JR.local "read") (JR.run [ 
+                        JR.exec (JR.invoke "updateIfNeeded_0" JR.this []) ]) (JR.run [ 
+                        JR.exec (JR.invoke "setHasRead_1" JR.this [ (JR.bool True) ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getServer :: (JavaObjectClass this_) => this_ -> IO (String)
-getServer object_ = jmethod object_ "getServer" (\() -> (getServer_impl (javaCast object_ :: DbInitInfo))) ()
-
-getServer_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getServer_super object_ = (getServer_impl (javaCast object_ :: DbInitInfo))
-
-getServer_impl :: DbInitInfo -> IO (String)
-getServer_impl this = do
-        Control.Monad.void (DbInitInfo.updateIfNeeded this)
-        (DbConnectionInfo.getServer_super this.base)
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
 
 
-getPort :: (JavaObjectClass this_) => this_ -> IO (String)
-getPort object_ = jmethod object_ "getPort" (\() -> (getPort_impl (javaCast object_ :: DbInitInfo))) ()
+jm_getUrl_0 : JR.Method
+jm_getUrl_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "url" "" (JR.callVia DbConnectionInfo.jvtable "getUrl_0" JR.this []), 
+                    JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "PRELOADER" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.concat (JR.field "URL_LABEL" (JR.thisField "httpData")) (JR.local "url")), JR.this, (JR.thisField "GET_URL") ]) ]) identity, 
+                    JR.return (JR.local "url") ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getPort_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getPort_super object_ = (getPort_impl (javaCast object_ :: DbInitInfo))
 
-getPort_impl :: DbInitInfo -> IO (String)
-getPort_impl this = do
-        Control.Monad.void (DbInitInfo.updateIfNeeded this)
-        (DbConnectionInfo.getPort_super this.base)
+jm_write_0 : JR.Method
+jm_write_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "PATH" "" (JR.new AbPath.jnew_2 [ (JR.concat (JR.callStatic URLGLOBALS.jm_getWebappPath_0 []) (JR.thisField "PACKAGE")), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]), 
+                    JR.exec (JR.invoke "create_1" (JR.thisField "directory") [ (JR.local "PATH") ]), 
+                    JR.declare "FILEABPATH" "" (JR.new AbPath.jnew_2 [ (JR.concat (JR.callStatic URLGLOBALS.jm_getWebappPath_0 []) (JR.thisField "PACKAGE")), (JR.thisField "initFileName") ]), 
+                    JR.try (JR.run [ 
+                        JR.declare "newFile" "" (JR.callStatic AbFile.jm_createAbFileFromAbPath_1 [ (JR.local "FILEABPATH") ]), 
+                        JR.exec (JR.invoke "createNewFile_0" (JR.local "newFile") []), 
+                        JR.declare "dataOutputStream" "" (JR.invoke "getInstanceForAbFile_1" (JR.callStatic DataOutputStreamFactory.jm_getInstance_0 []) [ (JR.local "newFile") ]), 
+                        JR.try (JR.run [ 
+                            JR.declare "cryptedJdbcDriver" "" (JR.invoke "getBytes_0" (JR.invoke "encrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 1) ]) [ (JR.invoke "getJdbcDriver_0" JR.this []) ]) []), 
+                            JR.declare "cryptedName" "" (JR.invoke "getBytes_0" (JR.invoke "encrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 2) ]) [ (JR.invoke "getName_0" JR.this []) ]) []), 
+                            JR.declare "cryptedUserName" "" (JR.invoke "getBytes_0" (JR.invoke "encrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 3) ]) [ (JR.invoke "getUserName_0" JR.this []) ]) []), 
+                            JR.declare "cryptedPassword" "" (JR.invoke "getBytes_0" (JR.invoke "encrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 4) ]) [ (JR.invoke "getPassword_0" JR.this []) ]) []), 
+                            JR.declare "cryptedSchema" "" (JR.invoke "getBytes_0" (JR.invoke "encrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 5) ]) [ (JR.invoke "getSchema_0" JR.this []) ]) []), 
+                            JR.declare "cryptedServer" "" (JR.invoke "getBytes_0" (JR.invoke "encrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 6) ]) [ (JR.invoke "getServer_0" JR.this []) ]) []), 
+                            JR.declare "cryptedPort" "" (JR.invoke "getBytes_0" (JR.invoke "encrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 7) ]) [ (JR.invoke "getPort_0" JR.this []) ]) []), 
+                            JR.exec (JR.invoke "writeUTF_1" (JR.local "dataOutputStream") [ (JR.callStatic DatabaseEncoder.jm_encode_1 [ (JR.local "cryptedJdbcDriver") ]) ]), 
+                            JR.exec (JR.invoke "writeUTF_1" (JR.local "dataOutputStream") [ (JR.callStatic DatabaseEncoder.jm_encode_1 [ (JR.local "cryptedName") ]) ]), 
+                            JR.exec (JR.invoke "writeUTF_1" (JR.local "dataOutputStream") [ (JR.callStatic DatabaseEncoder.jm_encode_1 [ (JR.local "cryptedUserName") ]) ]), 
+                            JR.exec (JR.invoke "writeUTF_1" (JR.local "dataOutputStream") [ (JR.callStatic DatabaseEncoder.jm_encode_1 [ (JR.local "cryptedPassword") ]) ]), 
+                            JR.exec (JR.invoke "writeUTF_1" (JR.local "dataOutputStream") [ (JR.callStatic DatabaseEncoder.jm_encode_1 [ (JR.local "cryptedSchema") ]) ]), 
+                            JR.exec (JR.invoke "writeUTF_1" (JR.local "dataOutputStream") [ (JR.callStatic DatabaseEncoder.jm_encode_1 [ (JR.local "cryptedServer") ]) ]), 
+                            JR.exec (JR.invoke "writeUTF_1" (JR.local "dataOutputStream") [ (JR.callStatic DatabaseEncoder.jm_encode_1 [ (JR.local "cryptedPort") ]) ]), 
+                            JR.exec (JR.setField "hasRead" "Z" JR.this (JR.bool False)) ]) [  ] (JR.run [ 
+                            JR.exec (JR.invoke "close_1" (JR.callStatic StreamUtil.jm_getInstance_0 []) [ (JR.local "dataOutputStream") ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "PRELOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.concat (JR.str "Failed Write: ") (JR.invoke "toString_0" (JR.local "FILEABPATH") [])), JR.this, (JR.str "write"), (JR.local "e") ]) ]) identity ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_load_0 : JR.Method
+jm_load_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "FILEABPATH" "" (JR.new AbPath.jnew_2 [ (JR.concat (JR.callStatic URLGLOBALS.jm_getWebappPath_0 []) (JR.thisField "PACKAGE")), (JR.thisField "initFileName") ]), 
+                    JR.try (JR.run [ 
+                        JR.declare "file" "" (JR.callStatic AbFile.jm_createAbFileFromAbPath_1 [ (JR.local "FILEABPATH") ]), 
+                        JR.ifElse (JR.invoke "isFile_0" (JR.local "file") []) (JR.run [ 
+                            JR.declare "iFile" "" (JR.callStatic AbFileInputStream.jm_createFromAbFile_1 [ (JR.local "file") ]), 
+                            JR.declare "iData" "" (JR.new AbDataInputStream.jnew_1 [ (JR.local "iFile") ]), 
+                            JR.try (JR.run [ 
+                                JR.declare "decryptedJdbcDriver" "" (JR.withState JR.newString [ (JR.callStatic DatabaseEncoder.jm_decode_1 [ (JR.invoke "readUTF_0" (JR.local "iData") []) ]) ]), 
+                                JR.declare "decryptedName" "" (JR.withState JR.newString [ (JR.callStatic DatabaseEncoder.jm_decode_1 [ (JR.invoke "readUTF_0" (JR.local "iData") []) ]) ]), 
+                                JR.declare "decryptedUserName" "" (JR.withState JR.newString [ (JR.callStatic DatabaseEncoder.jm_decode_1 [ (JR.invoke "readUTF_0" (JR.local "iData") []) ]) ]), 
+                                JR.declare "decryptedPassword" "" (JR.withState JR.newString [ (JR.callStatic DatabaseEncoder.jm_decode_1 [ (JR.invoke "readUTF_0" (JR.local "iData") []) ]) ]), 
+                                JR.declare "decryptedSchema" "" (JR.withState JR.newString [ (JR.callStatic DatabaseEncoder.jm_decode_1 [ (JR.invoke "readUTF_0" (JR.local "iData") []) ]) ]), 
+                                JR.declare "decryptedServer" "" (JR.withState JR.newString [ (JR.callStatic DatabaseEncoder.jm_decode_1 [ (JR.invoke "readUTF_0" (JR.local "iData") []) ]) ]), 
+                                JR.declare "decryptedPort" "" (JR.withState JR.newString [ (JR.callStatic DatabaseEncoder.jm_decode_1 [ (JR.invoke "readUTF_0" (JR.local "iData") []) ]) ]), 
+                                JR.exec (JR.invoke "setJdbcDriver_1" JR.this [ (JR.invoke "decrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 1) ]) [ (JR.local "decryptedJdbcDriver") ]) ]), 
+                                JR.exec (JR.invoke "setName_1" JR.this [ (JR.invoke "decrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 2) ]) [ (JR.local "decryptedName") ]) ]), 
+                                JR.exec (JR.invoke "setUserName_1" JR.this [ (JR.invoke "decrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 3) ]) [ (JR.local "decryptedUserName") ]) ]), 
+                                JR.exec (JR.invoke "setPassword_1" JR.this [ (JR.invoke "decrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 4) ]) [ (JR.local "decryptedPassword") ]) ]), 
+                                JR.exec (JR.invoke "setSchema_1" JR.this [ (JR.invoke "decrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 5) ]) [ (JR.local "decryptedSchema") ]) ]), 
+                                JR.exec (JR.invoke "setServer_1" JR.this [ (JR.invoke "decrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 6) ]) [ (JR.local "decryptedServer") ]) ]), 
+                                JR.exec (JR.invoke "setPort_1" JR.this [ (JR.invoke "decrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 7) ]) [ (JR.local "decryptedPort") ]) ]), 
+                                JR.declare "stringUtil" "" (JR.callStatic StringUtil.jm_getInstance_0 []) ]) [  ] (JR.run [ 
+                                JR.exec (JR.invoke "close_1" (JR.callStatic StreamUtil.jm_getInstance_0 []) [ (JR.local "iData") ]) ]) ]) (JR.run [ 
+                            JR.exec (JR.setField "hasRead" "Z" JR.this (JR.bool False)), 
+                            JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "PRELOADER" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                                JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.concat (JR.str "Not a File - Failed Loading: ") (JR.invoke "toString_0" (JR.local "FILEABPATH") [])), JR.this, (JR.field "LOAD" (JR.thisField "commonStrings")) ]) ]) identity ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "PRELOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.concat (JR.str "Failed Loading: ") (JR.invoke "toString_0" (JR.local "FILEABPATH") [])), JR.this, (JR.field "LOAD" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) identity ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setHasRead_1 : JR.Method
+jm_setHasRead_1 jheap jthis jargs =
+    JR.method [ ( "value", "Z" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "hasRead" "Z" JR.this (JR.local "value")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateIfNeeded_0 : JR.Method
+jm_updateIfNeeded_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.ifElse (JR.map JR.not_ (JR.thisField "hasRead")) (JR.run [ 
+                            JR.exec (JR.setField "hasRead" "Z" JR.this (JR.bool True)), 
+                            JR.exec (JR.invoke "load_0" JR.this []) ]) identity ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "PRELOADERERROR" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                            JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "updateIfNeeded"), (JR.local "e") ]) ]) identity ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "updateIfNeeded_0" JR.this []), 
+                    JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "PRELOADER" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.concat (JR.str "Name: ") (JR.callVia DbConnectionInfo.jvtable "getName_0" JR.this [])), JR.this, (JR.str "getName") ]) ]) identity, 
+                    JR.return (JR.callVia DbConnectionInfo.jvtable "getName_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getUserName_0 : JR.Method
+jm_getUserName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "updateIfNeeded_0" JR.this []), 
+                    JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "PRELOADER" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
+                        JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.concat (JR.str "Name: ") (JR.callVia DbConnectionInfo.jvtable "getUserName_0" JR.this [])), JR.this, (JR.str "getUserName") ]) ]) identity, 
+                    JR.return (JR.callVia DbConnectionInfo.jvtable "getUserName_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPassword_0 : JR.Method
+jm_getPassword_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "updateIfNeeded_0" JR.this []), 
+                    JR.return (JR.callVia DbConnectionInfo.jvtable "getPassword_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSchema_0 : JR.Method
+jm_getSchema_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "updateIfNeeded_0" JR.this []), 
+                    JR.return (JR.callVia DbConnectionInfo.jvtable "getSchema_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getServer_0 : JR.Method
+jm_getServer_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "updateIfNeeded_0" JR.this []), 
+                    JR.return (JR.callVia DbConnectionInfo.jvtable "getServer_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getPort_0 : JR.Method
+jm_getPort_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "updateIfNeeded_0" JR.this []), 
+                    JR.return (JR.callVia DbConnectionInfo.jvtable "getPort_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

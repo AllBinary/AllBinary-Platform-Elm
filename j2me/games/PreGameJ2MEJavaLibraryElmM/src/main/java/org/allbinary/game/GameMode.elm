@@ -1,128 +1,128 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game
-module GameMode where
+module Org.Allbinary.Game.GameMode exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.game
+-}
 
-data GameMode = GameMode
-    { header_ :: JavaHeader
-    , name :: IORef (String)
-    }
-
-instance JavaNull GameMode where
-    javaNull = javaNullRecord "GameMode"
-
-instance JavaEquals GameMode where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameMode where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameMode where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nONE :: IORef (GameMode)
-{-# NOINLINE nONE #-}
-nONE = unsafePerformIO ((new_1 (jget ((jio (StringUtil.getInstance))).nULL_STRING)) >>= newIORef)
-
-sERVER :: IORef (GameMode)
-{-# NOINLINE sERVER #-}
-sERVER = unsafePerformIO ((new_1 "Server") >>= newIORef)
-
-cLIENT :: IORef (GameMode)
-{-# NOINLINE cLIENT #-}
-cLIENT = unsafePerformIO ((new_1 "Client") >>= newIORef)
-
-newRecord_ :: IO GameMode
-newRecord_ = do
-    header_ <- newJavaHeader
-    name <- newIORef ""
-    let this = GameMode header_ name
-    jregisterLevel header_ this
-    jregisterMethod header_ "setName" (\() -> setName_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: GameMode -> IO ()
-initFields_ this = do
-    jset this.name ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    pure ()
-
-new_1 :: String -> IO GameMode
-new_1 name = do
-    this <- newRecord_
-    init_1 this name
-    pure this
-
-init_1 :: GameMode -> String -> IO ()
-init_1 this name = do
-        initFields_ this
-        Control.Monad.void (GameMode.setName this name)
-        pure ()
+import JR
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-setName :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName object_ a1 = jmethod object_ "setName" (\() -> (setName_impl (javaCast object_ :: GameMode))) () a1
-
-setName_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName_super object_ a1 = (setName_impl (javaCast object_ :: GameMode)) a1
-
-setName_impl :: GameMode -> String -> IO (())
-setName_impl this name = do
-        jset (this).name (name)
-        pure ()
+jclass : String
+jclass =
+    "GameMode"
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: GameMode))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: GameMode))
-
-getName_impl :: GameMode -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jchain : List String
+jchain =
+    [ "GameMode" ]
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: GameMode))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "name", JR.defaultOf "" ) ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: GameMode))
 
-toString_impl :: GameMode -> IO (String)
-toString_impl this = do
-        (GameMode.getName this)
+jvtable =
+    JR.vtable
+        [ ( "setName_1", jm_setName_1 )
+        , ( "getName_0", jm_getName_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameMode"
+        [ ( "jm_setName_1", jm_setName_1 ), ( "jm_getName_0", jm_getName_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        [ ( "jstatic_NONE", jstatic_NONE ), ( "jstatic_SERVER", jstatic_SERVER ), ( "jstatic_CLIENT", jstatic_CLIENT ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NONE : JR.M
+jstatic_NONE s =
+    JR.static "GameMode" jclinit "NONE"
+        (JR.new jnew_1 [ (JR.field "NULL_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ])
+        s
+
+
+jstatic_SERVER : JR.M
+jstatic_SERVER s =
+    JR.static "GameMode" jclinit "SERVER"
+        (JR.new jnew_1 [ (JR.str "Server") ])
+        s
+
+
+jstatic_CLIENT : JR.M
+jstatic_CLIENT s =
+    JR.static "GameMode" jclinit "CLIENT"
+        (JR.new jnew_1 [ (JR.str "Client") ])
+        s
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "name" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setName_1" JR.this [ (JR.local "name") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_setName_1 : JR.Method
+jm_setName_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "name")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "getName_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,152 +1,141 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.vector
-module AdjustedCircleAnimation (module AdjustedCircleAnimation, module CircleAnimation) where
+module Org.Allbinary.Animation.Vector.AdjustedCircleAnimation exposing (..)
 
-import CircleAnimation hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createAnimation, createAnimation_super, createAnimation_impl, createW, createW_super, createW_impl, initXY, initXY_super, initXY_impl, init, init_super, init_impl, paintXY, paintXY_super, paintXY_impl, xAdjustment, yAdjustment)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicColorSetUtil -- same package or java.lang
-import qualified Animation -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified AndroidUtil -- org.allbinary.AndroidUtil
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified CircleAnimation
+{-| Generated Code Do Not Modify package org.allbinary.animation.vector
+-}
 
-data AdjustedCircleAnimation = AdjustedCircleAnimation
-    { header_ :: JavaHeader
-    , base :: CircleAnimation.CircleAnimation
-    , xAdjustment :: IORef (Int)
-    , yAdjustment :: IORef (Int)
-    }
-
-instance JavaNull AdjustedCircleAnimation where
-    javaNull = javaNullRecord "AdjustedCircleAnimation"
-
-instance JavaEquals AdjustedCircleAnimation where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AdjustedCircleAnimation where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AdjustedCircleAnimation where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AdjustedCircleAnimation
-newRecord_ = do
-    base <- CircleAnimation.newRecord_
-    let header_ = base.header_
-    xAdjustment <- newIORef 0
-    yAdjustment <- newIORef 0
-    let this = AdjustedCircleAnimation header_ base xAdjustment yAdjustment
-    jregisterLevel header_ this
-    jregisterMethod header_ "initXY" (\() -> initXY_impl this)
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "paintXY" (\() -> paintXY_impl this)
-    pure this
-
-initFields_ :: AdjustedCircleAnimation -> IO ()
-initFields_ this = do
-    jset this.xAdjustment (0)
-    jset this.yAdjustment (0)
-    pure ()
+import JR
+import Org.Allbinary.AndroidUtil as AndroidUtil
+import Org.Allbinary.Animation.Vector.CircleAnimation as CircleAnimation
 
 
-createAnimation :: Int -> Int -> Int -> Int -> BasicColor.BasicColor -> IO (AdjustedCircleAnimation)
-createAnimation width height xAdjustment yAdjustment basicColor = do
-        adjustedCircleAnimation <- (new_3 width height basicColor)
-        Control.Monad.void (AdjustedCircleAnimation.initXY adjustedCircleAnimation xAdjustment yAdjustment)
-        pure (adjustedCircleAnimation)
+jclass : String
+jclass =
+    "AdjustedCircleAnimation"
 
 
-createW :: Int -> Int -> Int -> BasicColor.BasicColor -> IO (AdjustedCircleAnimation)
-createW width height innerWidth basicColor = do
-        adjustedCircleAnimation <- (new_3 width height basicColor)
-        Control.Monad.void (AdjustedCircleAnimation.init adjustedCircleAnimation innerWidth)
-        pure (adjustedCircleAnimation)
-
-new_3 :: Int -> Int -> BasicColor.BasicColor -> IO AdjustedCircleAnimation
-new_3 width height basicColor = do
-    this <- newRecord_
-    init_3 this width height basicColor
-    pure this
-
-init_3 :: AdjustedCircleAnimation -> Int -> Int -> BasicColor.BasicColor -> IO ()
-init_3 this width height basicColor = do
-        CircleAnimation.init_3 this.base (width) (height) (basicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+jchain : List String
+jchain =
+    [ "AdjustedCircleAnimation" ]
+        ++ CircleAnimation.jchain
 
 
-initXY :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-initXY object_ a1 a2 = jmethod object_ "initXY" (\() -> (initXY_impl (javaCast object_ :: AdjustedCircleAnimation))) () a1 a2
-
-initXY_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-initXY_super object_ a1 a2 = (initXY_impl (javaCast object_ :: AdjustedCircleAnimation)) a1 a2
-
-initXY_impl :: AdjustedCircleAnimation -> Int -> Int -> IO (())
-initXY_impl this xAdjustment yAdjustment = do
-        jset (this).xAdjustment (xAdjustment)
-        jset (this).yAdjustment (yAdjustment)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    CircleAnimation.jfields ++ [ ( "xAdjustment", JR.defaultOf "I" ), ( "yAdjustment", JR.defaultOf "I" ) ]
 
 
-init :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-init object_ a1 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: AdjustedCircleAnimation))) () a1
-
-init_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-init_super object_ a1 = (init_impl (javaCast object_ :: AdjustedCircleAnimation)) a1
-
-init_impl :: AdjustedCircleAnimation -> Int -> IO (())
-init_impl this innerWidth = do
-        if (jio (AndroidUtil.isAndroid)) then do
-            let widthPortion = ((((((innerWidth `quot` 3)) * 10)) `quot` 7))
-            jset (this).xAdjustment ((Prelude.negate (((((jget (this).base.width) `Data.Bits.shiftR` 1)) - widthPortion))))
-            jset (this).yAdjustment ((jget (this).xAdjustment))
-        else do
-            jset (this).xAdjustment ((Prelude.negate (((((jget (this).base.width) `Data.Bits.shiftR` 1)) - innerWidth))))
-            jset (this).yAdjustment ((jget (this).xAdjustment))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "createAnimation_5", jm_createAnimation_5 )
+        , ( "createW_4", jm_createW_4 )
+        , ( "initXY_2", jm_initXY_2 )
+        , ( "init_1", jm_init_1 )
+        , ( "paintXY_3", jm_paintXY_3 ) ]
+        CircleAnimation.jvtable
 
 
-paintXY :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY object_ a1 a2 a3 = jmethod object_ "paintXY" (\() -> (paintXY_impl (javaCast object_ :: AdjustedCircleAnimation))) () a1 a2 a3
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AdjustedCircleAnimation"
+        [ ( "jm_createAnimation_5", jm_createAnimation_5 ), ( "jm_createW_4", jm_createW_4 ), ( "jm_initXY_2", jm_initXY_2 ), ( "jm_init_1", jm_init_1 ), ( "jm_paintXY_3", jm_paintXY_3 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        []
+        jheap
 
-paintXY_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_super object_ a1 a2 a3 = (paintXY_impl (javaCast object_ :: AdjustedCircleAnimation)) a1 a2 a3
 
-paintXY_impl :: AdjustedCircleAnimation -> Graphics.Graphics -> Int -> Int -> IO (())
-paintXY_impl this graphics x y = do
-        Control.Monad.void (BasicColorSetUtil.setBasicColorP3 ((jget (this).base.base.basicSetColorUtil)) graphics (jio (CircleAnimation.getBasicColorP this)) (jio (CircleAnimation.getColor this)))
-        Control.Monad.void (Graphics.drawArc graphics (x + (jget (this).xAdjustment)) (y + (jget (this).yAdjustment)) (jget (this).base.width) (jget (this).base.height) 0 (jget (this).base.tOTAL_ANGLE))
-        pure ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ), ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect CircleAnimation.jinit_3 JR.this [ (JR.local "width"), (JR.local "height"), (JR.local "basicColor") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_createAnimation_5 : JR.Method
+jm_createAnimation_5 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ), ( "xAdjustment", "I" ), ( "yAdjustment", "I" ), ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "adjustedCircleAnimation" "" (JR.new jnew_3 [ (JR.local "width"), (JR.local "height"), (JR.local "basicColor") ]), 
+                    JR.exec (JR.invoke "initXY_2" (JR.local "adjustedCircleAnimation") [ (JR.local "xAdjustment"), (JR.local "yAdjustment") ]), 
+                    JR.return (JR.local "adjustedCircleAnimation") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createW_4 : JR.Method
+jm_createW_4 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ), ( "innerWidth", "I" ), ( "basicColor", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "adjustedCircleAnimation" "" (JR.new jnew_3 [ (JR.local "width"), (JR.local "height"), (JR.local "basicColor") ]), 
+                    JR.exec (JR.invoke "init_1" (JR.local "adjustedCircleAnimation") [ (JR.local "innerWidth") ]), 
+                    JR.return (JR.local "adjustedCircleAnimation") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initXY_2 : JR.Method
+jm_initXY_2 jheap jthis jargs =
+    JR.method [ ( "xAdjustment", "I" ), ( "yAdjustment", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "xAdjustment" "I" JR.this (JR.local "xAdjustment")), 
+                    JR.exec (JR.setField "yAdjustment" "I" JR.this (JR.local "yAdjustment")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "innerWidth", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.callStatic AndroidUtil.jm_isAndroid_0 []) (JR.run [ 
+                        JR.declare "widthPortion" "I" ((JR.map2 JR.div ((JR.map2 JR.mul ((JR.map2 JR.div (JR.local "innerWidth") (JR.int 3))) (JR.int 10))) (JR.int 7))), 
+                        JR.exec (JR.setField "xAdjustment" "I" JR.this (JR.map JR.neg ((JR.map2 JR.sub ((JR.map2 JR.shr (JR.thisField "width") (JR.int 1))) (JR.local "widthPortion"))))), 
+                        JR.exec (JR.setField "yAdjustment" "I" JR.this (JR.thisField "xAdjustment")) ]) (JR.run [ 
+                        JR.exec (JR.setField "xAdjustment" "I" JR.this (JR.map JR.neg ((JR.map2 JR.sub ((JR.map2 JR.shr (JR.thisField "width") (JR.int 1))) (JR.local "innerWidth"))))), 
+                        JR.exec (JR.setField "yAdjustment" "I" JR.this (JR.thisField "xAdjustment")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintXY_3 : JR.Method
+jm_paintXY_3 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setBasicColorP3_3" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.invoke "getBasicColorP_0" JR.this []), (JR.invoke "getColor_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "drawArc_6" (JR.local "graphics") [ (JR.map2 JR.add (JR.local "x") (JR.thisField "xAdjustment")), (JR.map2 JR.add (JR.local "y") (JR.thisField "yAdjustment")), (JR.thisField "width"), (JR.thisField "height"), (JR.int 0), (JR.thisField "TOTAL_ANGLE") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

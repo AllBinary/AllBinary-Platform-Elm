@@ -1,116 +1,108 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
-module LicenseTypeFactory where
+module Org.Allbinary.Logic.System.Security.Licensing.LicenseTypeFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LicenseType -- same package or java.lang
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.licensing
+-}
 
-data LicenseTypeFactory = LicenseTypeFactory
-    { header_ :: JavaHeader
-    , uNKNOWN :: IORef (LicenseType.LicenseType)
-    , dEMO :: IORef (LicenseType.LicenseType)
-    , nORMAL :: IORef (LicenseType.LicenseType)
-    }
-
-instance JavaNull LicenseTypeFactory where
-    javaNull = javaNullRecord "LicenseTypeFactory"
-
-instance JavaEquals LicenseTypeFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LicenseTypeFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LicenseTypeFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: LicenseTypeFactory
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LicenseTypeFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    uNKNOWN <- newIORef javaNull
-    dEMO <- newIORef javaNull
-    nORMAL <- newIORef javaNull
-    let this = LicenseTypeFactory header_ uNKNOWN dEMO nORMAL
-    jregisterLevel header_ this
-    jregisterMethod header_ "getInstance_1" (\() -> getInstance_1_impl this)
-    pure this
-
-initFields_ :: LicenseTypeFactory -> IO ()
-initFields_ this = do
-    jset this.uNKNOWN =<< (LicenseType.new_1 (jget ((jio (CommonStrings.getInstance))).uNKNOWN))
-    jset this.dEMO =<< (LicenseType.new_1 "Demo")
-    jset this.nORMAL =<< (LicenseType.new_1 "Normal")
-    pure ()
-
-new_ :: IO LicenseTypeFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LicenseTypeFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.System.Security.Licensing.LicenseType as LicenseType
 
 
-getInstance :: IO (LicenseTypeFactory)
-getInstance = do
-        pure (LicenseTypeFactory.instance_)
+jclass : String
+jclass =
+    "LicenseTypeFactory"
 
 
-getInstance_1 :: (JavaObjectClass this_) => this_ -> String -> IO (LicenseType.LicenseType)
-getInstance_1 object_ a1 = jmethod object_ "getInstance_1" (\() -> (getInstance_1_impl (javaCast object_ :: LicenseTypeFactory))) () a1
+jchain : List String
+jchain =
+    [ "LicenseTypeFactory" ]
 
-getInstance_1_super :: (JavaObjectClass this_) => this_ -> String -> IO (LicenseType.LicenseType)
-getInstance_1_super object_ a1 = (getInstance_1_impl (javaCast object_ :: LicenseTypeFactory)) a1
 
-getInstance_1_impl :: LicenseTypeFactory -> String -> IO (LicenseType.LicenseType)
-getInstance_1_impl this name = do
-    javaCatchReturn $ do
-        if ((Prelude.fromEnum (Prelude.compare (jio (LicenseType.getName ((jget (this).dEMO)))) name) - 1) == 0) then do
-            javaReturn ((jget (this).dEMO))
-        else when ((Prelude.fromEnum (Prelude.compare (jio (LicenseType.getName ((jget (this).nORMAL)))) name) - 1) == 0) $ do
-            javaReturn ((jget (this).nORMAL))
-        pure ((jget (this).uNKNOWN))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "UNKNOWN", JR.defaultOf "" ), ( "DEMO", JR.defaultOf "" ), ( "NORMAL", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getInstance_1", jm_getInstance_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LicenseTypeFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LicenseTypeFactory" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "UNKNOWN" "" JR.this (JR.new LicenseType.jnew_1 [ (JR.field "UNKNOWN" (JR.callStatic CommonStrings.jm_getInstance_0 [])) ])),
+                JR.exec (JR.setField "DEMO" "" JR.this (JR.new LicenseType.jnew_1 [ (JR.str "Demo") ])),
+                JR.exec (JR.setField "NORMAL" "" JR.this (JR.new LicenseType.jnew_1 [ (JR.str "Normal") ])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getName_0" (JR.thisField "DEMO") []) [ (JR.local "name") ]) (JR.int 0)) (JR.run [ 
+                        JR.return (JR.thisField "DEMO") ]) (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getName_0" (JR.thisField "NORMAL") []) [ (JR.local "name") ]) (JR.int 0)) (JR.run [ 
+                        JR.return (JR.thisField "NORMAL") ]) identity ]), 
+                    JR.return (JR.thisField "UNKNOWN") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

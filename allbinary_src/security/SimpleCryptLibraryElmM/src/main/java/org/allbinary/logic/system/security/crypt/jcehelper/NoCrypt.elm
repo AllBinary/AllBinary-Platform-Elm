@@ -1,106 +1,94 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.crypt.jcehelper
-module NoCrypt where
+module Org.Allbinary.Logic.System.Security.Crypt.Jcehelper.NoCrypt exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CryptInterface -- org.allbinary.init.crypt.jcehelper.CryptInterface
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.crypt.jcehelper
+-}
 
--- implements CryptInterface
-data NoCrypt = NoCrypt
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull NoCrypt where
-    javaNull = javaNullRecord "NoCrypt"
-
-instance JavaEquals NoCrypt where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NoCrypt where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NoCrypt where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO NoCrypt
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = NoCrypt header_
-    jregisterLevel header_ this
-    CryptInterface.registerInterface_ header_
-    jregisterMethod header_ "encrypt" (\() -> encrypt_impl this)
-    jregisterMethod header_ "decrypt" (\() -> decrypt_impl this)
-    pure this
-
-initFields_ :: NoCrypt -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO NoCrypt
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NoCrypt -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Init.Crypt.Jcehelper.CryptInterface as CryptInterface
 
 
-encrypt :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (JavaArray (Int8))
-encrypt object_ a1 = jmethod object_ "encrypt" (\() -> (encrypt_impl (javaCast object_ :: NoCrypt))) () a1
-
-encrypt_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (JavaArray (Int8))
-encrypt_super object_ a1 = (encrypt_impl (javaCast object_ :: NoCrypt)) a1
-
-encrypt_impl :: NoCrypt -> JavaArray (Int8) -> IO (JavaArray (Int8))
-encrypt_impl this array = do
-        pure (array)
+jclass : String
+jclass =
+    "NoCrypt"
 
 
-decrypt :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (JavaArray (Int8))
-decrypt object_ a1 = jmethod object_ "decrypt" (\() -> (decrypt_impl (javaCast object_ :: NoCrypt))) () a1
+jchain : List String
+jchain =
+    [ "NoCrypt" ]
+        ++ CryptInterface.jchain
 
-decrypt_super :: (JavaObjectClass this_) => this_ -> JavaArray (Int8) -> IO (JavaArray (Int8))
-decrypt_super object_ a1 = (decrypt_impl (javaCast object_ :: NoCrypt)) a1
 
-decrypt_impl :: NoCrypt -> JavaArray (Int8) -> IO (JavaArray (Int8))
-decrypt_impl this array = do
-        pure (array)
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
+
+jvtable =
+    JR.vtable
+        [ ( "encrypt_1", jm_encrypt_1 )
+        , ( "decrypt_1", jm_decrypt_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NoCrypt"
+        [ ( "jm_encrypt_1", jm_encrypt_1 ), ( "jm_decrypt_1", jm_decrypt_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_encrypt_1 : JR.Method
+jm_encrypt_1 jheap jthis jargs =
+    JR.method [ ( "array", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.local "array") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_decrypt_1 : JR.Method
+jm_decrypt_1 jheap jthis jargs =
+    JR.method [ ( "array", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.local "array") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

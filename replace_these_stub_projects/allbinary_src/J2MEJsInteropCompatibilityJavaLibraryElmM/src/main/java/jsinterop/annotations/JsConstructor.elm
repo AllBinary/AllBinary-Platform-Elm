@@ -1,4 +1,4 @@
-module JsConstructor exposing (..)
+module Jsinterop.Annotations.JsConstructor exposing (..)
 
 {-| Generated Code Do Not Modify package jsinterop.annotations
 -}

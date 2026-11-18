@@ -1,873 +1,913 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package javax.microedition.khronos.opengles
-module GL11 (module GL11, module GL10) where
+module Javax.Microedition.Khronos.Opengles.GL11 exposing (..)
 
-import GL10 hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, glBindBuffer, glBindBuffer_super, glBindBuffer_impl, glBufferData, glBufferData_super, glBufferData_impl, glBufferSubData, glBufferSubData_super, glBufferSubData_impl, glClipPlanef, glClipPlanef_super, glClipPlanef_impl, glClipPlanef_2, glClipPlanef_2_super, glClipPlanef_2_impl, glClipPlanef, glColor4ub, glColor4ub_super, glColor4ub_impl, glColorPointer, glColorPointer_super, glColorPointer_impl, glDeleteBuffers, glDeleteBuffers_super, glDeleteBuffers_impl, glDeleteBuffers_2, glDeleteBuffers_2_super, glDeleteBuffers_2_impl, glDeleteBuffers, glDrawElements, glDrawElements_super, glDrawElements_impl, glGenBuffers, glGenBuffers_super, glGenBuffers_impl, glGenBuffers_2, glGenBuffers_2_super, glGenBuffers_2_impl, glGenBuffers, glGetBufferParameteriv, glGetBufferParameteriv_super, glGetBufferParameteriv_impl, glGetBufferParameteriv_3, glGetBufferParameteriv_3_super, glGetBufferParameteriv_3_impl, glGetBufferParameteriv, glGetClipPlanef, glGetClipPlanef_super, glGetClipPlanef_impl, glGetClipPlanef_2, glGetClipPlanef_2_super, glGetClipPlanef_2_impl, glGetClipPlanef, glGetFloatv, glGetFloatv_super, glGetFloatv_impl, glGetFloatv_2, glGetFloatv_2_super, glGetFloatv_2_impl, glGetFloatv, glGetLightfv, glGetLightfv_super, glGetLightfv_impl, glGetLightfv_3, glGetLightfv_3_super, glGetLightfv_3_impl, glGetLightfv, glGetMaterialfv, glGetMaterialfv_super, glGetMaterialfv_impl, glGetMaterialfv_3, glGetMaterialfv_3_super, glGetMaterialfv_3_impl, glGetMaterialfv, glGetTexEnviv, glGetTexEnviv_super, glGetTexEnviv_impl, glGetTexEnviv_3, glGetTexEnviv_3_super, glGetTexEnviv_3_impl, glGetTexEnviv, glGetTexParameterfv, glGetTexParameterfv_super, glGetTexParameterfv_impl, glGetTexParameterfv_3, glGetTexParameterfv_3_super, glGetTexParameterfv_3_impl, glGetTexParameterfv, glGetTexParameteriv, glGetTexParameteriv_super, glGetTexParameteriv_impl, glGetTexParameteriv_3, glGetTexParameteriv_3_super, glGetTexParameteriv_3_impl, glGetTexParameteriv, glIsBuffer, glIsBuffer_super, glIsBuffer_impl, glIsEnabled, glIsEnabled_super, glIsEnabled_impl, glIsTexture, glIsTexture_super, glIsTexture_impl, glNormalPointer, glNormalPointer_super, glNormalPointer_impl, glPointParameterf, glPointParameterf_super, glPointParameterf_impl, glPointParameterfv, glPointParameterfv_super, glPointParameterfv_impl, glPointParameterfv_2, glPointParameterfv_2_super, glPointParameterfv_2_impl, glPointParameterfv, glTexCoordPointer, glTexCoordPointer_super, glTexCoordPointer_impl, glTexEnvi, glTexEnvi_super, glTexEnvi_impl, glTexEnviv, glTexEnviv_super, glTexEnviv_impl, glTexEnviv_3, glTexEnviv_3_super, glTexEnviv_3_impl, glTexEnviv, glTexParameterfv, glTexParameterfv_super, glTexParameterfv_impl, glTexParameterfv_3, glTexParameterfv_3_super, glTexParameterfv_3_impl, glTexParameterfv, glTexParameteri, glTexParameteri_super, glTexParameteri_impl, glTexParameteriv, glTexParameteriv_super, glTexParameteriv_impl, glTexParameteriv_3, glTexParameteriv_3_super, glTexParameteriv_3_impl, glTexParameteriv, glVertexPointer, glVertexPointer_super, glVertexPointer_impl, gL_ACTIVE_TEXTURE, gL_ADD_SIGNED, gL_ALPHA_SCALE, gL_ALPHA_TEST_FUNC, gL_ALPHA_TEST_REF, gL_ARRAY_BUFFER, gL_ARRAY_BUFFER_BINDING, gL_BLEND_DST, gL_BLEND_SRC, gL_BUFFER_ACCESS, gL_BUFFER_SIZE, gL_BUFFER_USAGE, gL_CLIENT_ACTIVE_TEXTURE, gL_CLIP_PLANE0, gL_CLIP_PLANE1, gL_CLIP_PLANE2, gL_CLIP_PLANE3, gL_CLIP_PLANE4, gL_CLIP_PLANE5, gL_COLOR_ARRAY_BUFFER_BINDING, gL_COLOR_ARRAY_POINTER, gL_COLOR_ARRAY_SIZE, gL_COLOR_ARRAY_STRIDE, gL_COLOR_ARRAY_TYPE, gL_COLOR_CLEAR_VALUE, gL_COLOR_WRITEMASK, gL_COMBINE, gL_COMBINE_ALPHA, gL_COMBINE_RGB, gL_CONSTANT, gL_COORD_REPLACE_OES, gL_CULL_FACE_MODE, gL_CURRENT_COLOR, gL_CURRENT_NORMAL, gL_CURRENT_TEXTURE_COORDS, gL_DEPTH_CLEAR_VALUE, gL_DEPTH_FUNC, gL_DEPTH_RANGE, gL_DEPTH_WRITEMASK, gL_DOT3_RGB, gL_DOT3_RGBA, gL_DYNAMIC_DRAW, gL_ELEMENT_ARRAY_BUFFER, gL_ELEMENT_ARRAY_BUFFER_BINDING, gL_FRONT_FACE, gL_GENERATE_MIPMAP, gL_GENERATE_MIPMAP_HINT, gL_INTERPOLATE, gL_LINE_WIDTH, gL_LOGIC_OP_MODE, gL_MATRIX_MODE, gL_MAX_CLIP_PLANES, gL_MODELVIEW_MATRIX, gL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES, gL_MODELVIEW_STACK_DEPTH, gL_NORMAL_ARRAY_BUFFER_BINDING, gL_NORMAL_ARRAY_POINTER, gL_NORMAL_ARRAY_STRIDE, gL_NORMAL_ARRAY_TYPE, gL_OPERAND0_ALPHA, gL_OPERAND0_RGB, gL_OPERAND1_ALPHA, gL_OPERAND1_RGB, gL_OPERAND2_ALPHA, gL_OPERAND2_RGB, gL_POINT_DISTANCE_ATTENUATION, gL_POINT_FADE_THRESHOLD_SIZE, gL_POINT_SIZE, gL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES, gL_POINT_SIZE_ARRAY_OES, gL_POINT_SIZE_ARRAY_POINTER_OES, gL_POINT_SIZE_ARRAY_STRIDE_OES, gL_POINT_SIZE_ARRAY_TYPE_OES, gL_POINT_SIZE_MAX, gL_POINT_SIZE_MIN, gL_POINT_SPRITE_OES, gL_POLYGON_OFFSET_FACTOR, gL_POLYGON_OFFSET_UNITS, gL_PREVIOUS, gL_PRIMARY_COLOR, gL_PROJECTION_MATRIX, gL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES, gL_PROJECTION_STACK_DEPTH, gL_RGB_SCALE, gL_SAMPLE_BUFFERS, gL_SAMPLE_COVERAGE_INVERT, gL_SAMPLE_COVERAGE_VALUE, gL_SAMPLES, gL_SCISSOR_BOX, gL_SHADE_MODEL, gL_SRC0_ALPHA, gL_SRC0_RGB, gL_SRC1_ALPHA, gL_SRC1_RGB, gL_SRC2_ALPHA, gL_SRC2_RGB, gL_STATIC_DRAW, gL_STENCIL_CLEAR_VALUE, gL_STENCIL_FAIL, gL_STENCIL_FUNC, gL_STENCIL_PASS_DEPTH_FAIL, gL_STENCIL_PASS_DEPTH_PASS, gL_STENCIL_REF, gL_STENCIL_VALUE_MASK, gL_STENCIL_WRITEMASK, gL_SUBTRACT, gL_TEXTURE_BINDING_2D, gL_TEXTURE_COORD_ARRAY_BUFFER_BINDING, gL_TEXTURE_COORD_ARRAY_POINTER, gL_TEXTURE_COORD_ARRAY_SIZE, gL_TEXTURE_COORD_ARRAY_STRIDE, gL_TEXTURE_COORD_ARRAY_TYPE, gL_TEXTURE_MATRIX, gL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES, gL_TEXTURE_STACK_DEPTH, gL_VERTEX_ARRAY_BUFFER_BINDING, gL_VERTEX_ARRAY_POINTER, gL_VERTEX_ARRAY_SIZE, gL_VERTEX_ARRAY_STRIDE, gL_VERTEX_ARRAY_TYPE, gL_VIEWPORT, gL_WRITE_ONLY, toString)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Buffer -- same package or java.lang
-import qualified FloatBuffer -- same package or java.lang
-import qualified IntBuffer -- same package or java.lang
-import qualified GL10
+{-| Generated Code Do Not Modify package javax.microedition.khronos.opengles
+-}
 
--- Java interface: the classes that implement it have these functions
-data GL11 = GL11
-    { header_ :: JavaHeader
-    }
+import JR
+import Javax.Microedition.Khronos.Opengles.GL10 as GL10
 
-instance JavaNull GL11 where
-    javaNull = javaNullRecord "GL11"
 
-instance JavaEquals GL11 where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "GL11"
 
-instance Eq GL11 where
-    (==) = jrecordEquals
 
-instance JavaObjectClass GL11 where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "GL11" ]
+        ++ GL10.jchain
 
-gL_ACTIVE_TEXTURE :: Int
-gL_ACTIVE_TEXTURE = 34016
 
-gL_ADD_SIGNED :: Int
-gL_ADD_SIGNED = 34164
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-gL_ALPHA_SCALE :: Int
-gL_ALPHA_SCALE = 3356
 
-gL_ALPHA_TEST_FUNC :: Int
-gL_ALPHA_TEST_FUNC = 3009
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-gL_ALPHA_TEST_REF :: Int
-gL_ALPHA_TEST_REF = 3010
 
-gL_ARRAY_BUFFER :: Int
-gL_ARRAY_BUFFER = 34962
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GL11"
+        []
+        [ ( "jstatic_GL_ACTIVE_TEXTURE", jstatic_GL_ACTIVE_TEXTURE ), ( "jstatic_GL_ADD_SIGNED", jstatic_GL_ADD_SIGNED ), ( "jstatic_GL_ALPHA_SCALE", jstatic_GL_ALPHA_SCALE ), ( "jstatic_GL_ALPHA_TEST_FUNC", jstatic_GL_ALPHA_TEST_FUNC ), ( "jstatic_GL_ALPHA_TEST_REF", jstatic_GL_ALPHA_TEST_REF ), ( "jstatic_GL_ARRAY_BUFFER", jstatic_GL_ARRAY_BUFFER ), ( "jstatic_GL_ARRAY_BUFFER_BINDING", jstatic_GL_ARRAY_BUFFER_BINDING ), ( "jstatic_GL_BLEND_DST", jstatic_GL_BLEND_DST ), ( "jstatic_GL_BLEND_SRC", jstatic_GL_BLEND_SRC ), ( "jstatic_GL_BUFFER_ACCESS", jstatic_GL_BUFFER_ACCESS ), ( "jstatic_GL_BUFFER_SIZE", jstatic_GL_BUFFER_SIZE ), ( "jstatic_GL_BUFFER_USAGE", jstatic_GL_BUFFER_USAGE ), ( "jstatic_GL_CLIENT_ACTIVE_TEXTURE", jstatic_GL_CLIENT_ACTIVE_TEXTURE ), ( "jstatic_GL_CLIP_PLANE0", jstatic_GL_CLIP_PLANE0 ), ( "jstatic_GL_CLIP_PLANE1", jstatic_GL_CLIP_PLANE1 ), ( "jstatic_GL_CLIP_PLANE2", jstatic_GL_CLIP_PLANE2 ), ( "jstatic_GL_CLIP_PLANE3", jstatic_GL_CLIP_PLANE3 ), ( "jstatic_GL_CLIP_PLANE4", jstatic_GL_CLIP_PLANE4 ), ( "jstatic_GL_CLIP_PLANE5", jstatic_GL_CLIP_PLANE5 ), ( "jstatic_GL_COLOR_ARRAY_BUFFER_BINDING", jstatic_GL_COLOR_ARRAY_BUFFER_BINDING ), ( "jstatic_GL_COLOR_ARRAY_POINTER", jstatic_GL_COLOR_ARRAY_POINTER ), ( "jstatic_GL_COLOR_ARRAY_SIZE", jstatic_GL_COLOR_ARRAY_SIZE ), ( "jstatic_GL_COLOR_ARRAY_STRIDE", jstatic_GL_COLOR_ARRAY_STRIDE ), ( "jstatic_GL_COLOR_ARRAY_TYPE", jstatic_GL_COLOR_ARRAY_TYPE ), ( "jstatic_GL_COLOR_CLEAR_VALUE", jstatic_GL_COLOR_CLEAR_VALUE ), ( "jstatic_GL_COLOR_WRITEMASK", jstatic_GL_COLOR_WRITEMASK ), ( "jstatic_GL_COMBINE", jstatic_GL_COMBINE ), ( "jstatic_GL_COMBINE_ALPHA", jstatic_GL_COMBINE_ALPHA ), ( "jstatic_GL_COMBINE_RGB", jstatic_GL_COMBINE_RGB ), ( "jstatic_GL_CONSTANT", jstatic_GL_CONSTANT ), ( "jstatic_GL_COORD_REPLACE_OES", jstatic_GL_COORD_REPLACE_OES ), ( "jstatic_GL_CULL_FACE_MODE", jstatic_GL_CULL_FACE_MODE ), ( "jstatic_GL_CURRENT_COLOR", jstatic_GL_CURRENT_COLOR ), ( "jstatic_GL_CURRENT_NORMAL", jstatic_GL_CURRENT_NORMAL ), ( "jstatic_GL_CURRENT_TEXTURE_COORDS", jstatic_GL_CURRENT_TEXTURE_COORDS ), ( "jstatic_GL_DEPTH_CLEAR_VALUE", jstatic_GL_DEPTH_CLEAR_VALUE ), ( "jstatic_GL_DEPTH_FUNC", jstatic_GL_DEPTH_FUNC ), ( "jstatic_GL_DEPTH_RANGE", jstatic_GL_DEPTH_RANGE ), ( "jstatic_GL_DEPTH_WRITEMASK", jstatic_GL_DEPTH_WRITEMASK ), ( "jstatic_GL_DOT3_RGB", jstatic_GL_DOT3_RGB ), ( "jstatic_GL_DOT3_RGBA", jstatic_GL_DOT3_RGBA ), ( "jstatic_GL_DYNAMIC_DRAW", jstatic_GL_DYNAMIC_DRAW ), ( "jstatic_GL_ELEMENT_ARRAY_BUFFER", jstatic_GL_ELEMENT_ARRAY_BUFFER ), ( "jstatic_GL_ELEMENT_ARRAY_BUFFER_BINDING", jstatic_GL_ELEMENT_ARRAY_BUFFER_BINDING ), ( "jstatic_GL_FRONT_FACE", jstatic_GL_FRONT_FACE ), ( "jstatic_GL_GENERATE_MIPMAP", jstatic_GL_GENERATE_MIPMAP ), ( "jstatic_GL_GENERATE_MIPMAP_HINT", jstatic_GL_GENERATE_MIPMAP_HINT ), ( "jstatic_GL_INTERPOLATE", jstatic_GL_INTERPOLATE ), ( "jstatic_GL_LINE_WIDTH", jstatic_GL_LINE_WIDTH ), ( "jstatic_GL_LOGIC_OP_MODE", jstatic_GL_LOGIC_OP_MODE ), ( "jstatic_GL_MATRIX_MODE", jstatic_GL_MATRIX_MODE ), ( "jstatic_GL_MAX_CLIP_PLANES", jstatic_GL_MAX_CLIP_PLANES ), ( "jstatic_GL_MODELVIEW_MATRIX", jstatic_GL_MODELVIEW_MATRIX ), ( "jstatic_GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES", jstatic_GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES ), ( "jstatic_GL_MODELVIEW_STACK_DEPTH", jstatic_GL_MODELVIEW_STACK_DEPTH ), ( "jstatic_GL_NORMAL_ARRAY_BUFFER_BINDING", jstatic_GL_NORMAL_ARRAY_BUFFER_BINDING ), ( "jstatic_GL_NORMAL_ARRAY_POINTER", jstatic_GL_NORMAL_ARRAY_POINTER ), ( "jstatic_GL_NORMAL_ARRAY_STRIDE", jstatic_GL_NORMAL_ARRAY_STRIDE ), ( "jstatic_GL_NORMAL_ARRAY_TYPE", jstatic_GL_NORMAL_ARRAY_TYPE ), ( "jstatic_GL_OPERAND0_ALPHA", jstatic_GL_OPERAND0_ALPHA ), ( "jstatic_GL_OPERAND0_RGB", jstatic_GL_OPERAND0_RGB ), ( "jstatic_GL_OPERAND1_ALPHA", jstatic_GL_OPERAND1_ALPHA ), ( "jstatic_GL_OPERAND1_RGB", jstatic_GL_OPERAND1_RGB ), ( "jstatic_GL_OPERAND2_ALPHA", jstatic_GL_OPERAND2_ALPHA ), ( "jstatic_GL_OPERAND2_RGB", jstatic_GL_OPERAND2_RGB ), ( "jstatic_GL_POINT_DISTANCE_ATTENUATION", jstatic_GL_POINT_DISTANCE_ATTENUATION ), ( "jstatic_GL_POINT_FADE_THRESHOLD_SIZE", jstatic_GL_POINT_FADE_THRESHOLD_SIZE ), ( "jstatic_GL_POINT_SIZE", jstatic_GL_POINT_SIZE ), ( "jstatic_GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES", jstatic_GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES ), ( "jstatic_GL_POINT_SIZE_ARRAY_OES", jstatic_GL_POINT_SIZE_ARRAY_OES ), ( "jstatic_GL_POINT_SIZE_ARRAY_POINTER_OES", jstatic_GL_POINT_SIZE_ARRAY_POINTER_OES ), ( "jstatic_GL_POINT_SIZE_ARRAY_STRIDE_OES", jstatic_GL_POINT_SIZE_ARRAY_STRIDE_OES ), ( "jstatic_GL_POINT_SIZE_ARRAY_TYPE_OES", jstatic_GL_POINT_SIZE_ARRAY_TYPE_OES ), ( "jstatic_GL_POINT_SIZE_MAX", jstatic_GL_POINT_SIZE_MAX ), ( "jstatic_GL_POINT_SIZE_MIN", jstatic_GL_POINT_SIZE_MIN ), ( "jstatic_GL_POINT_SPRITE_OES", jstatic_GL_POINT_SPRITE_OES ), ( "jstatic_GL_POLYGON_OFFSET_FACTOR", jstatic_GL_POLYGON_OFFSET_FACTOR ), ( "jstatic_GL_POLYGON_OFFSET_UNITS", jstatic_GL_POLYGON_OFFSET_UNITS ), ( "jstatic_GL_PREVIOUS", jstatic_GL_PREVIOUS ), ( "jstatic_GL_PRIMARY_COLOR", jstatic_GL_PRIMARY_COLOR ), ( "jstatic_GL_PROJECTION_MATRIX", jstatic_GL_PROJECTION_MATRIX ), ( "jstatic_GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES", jstatic_GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES ), ( "jstatic_GL_PROJECTION_STACK_DEPTH", jstatic_GL_PROJECTION_STACK_DEPTH ), ( "jstatic_GL_RGB_SCALE", jstatic_GL_RGB_SCALE ), ( "jstatic_GL_SAMPLE_BUFFERS", jstatic_GL_SAMPLE_BUFFERS ), ( "jstatic_GL_SAMPLE_COVERAGE_INVERT", jstatic_GL_SAMPLE_COVERAGE_INVERT ), ( "jstatic_GL_SAMPLE_COVERAGE_VALUE", jstatic_GL_SAMPLE_COVERAGE_VALUE ), ( "jstatic_GL_SAMPLES", jstatic_GL_SAMPLES ), ( "jstatic_GL_SCISSOR_BOX", jstatic_GL_SCISSOR_BOX ), ( "jstatic_GL_SHADE_MODEL", jstatic_GL_SHADE_MODEL ), ( "jstatic_GL_SRC0_ALPHA", jstatic_GL_SRC0_ALPHA ), ( "jstatic_GL_SRC0_RGB", jstatic_GL_SRC0_RGB ), ( "jstatic_GL_SRC1_ALPHA", jstatic_GL_SRC1_ALPHA ), ( "jstatic_GL_SRC1_RGB", jstatic_GL_SRC1_RGB ), ( "jstatic_GL_SRC2_ALPHA", jstatic_GL_SRC2_ALPHA ), ( "jstatic_GL_SRC2_RGB", jstatic_GL_SRC2_RGB ), ( "jstatic_GL_STATIC_DRAW", jstatic_GL_STATIC_DRAW ), ( "jstatic_GL_STENCIL_CLEAR_VALUE", jstatic_GL_STENCIL_CLEAR_VALUE ), ( "jstatic_GL_STENCIL_FAIL", jstatic_GL_STENCIL_FAIL ), ( "jstatic_GL_STENCIL_FUNC", jstatic_GL_STENCIL_FUNC ), ( "jstatic_GL_STENCIL_PASS_DEPTH_FAIL", jstatic_GL_STENCIL_PASS_DEPTH_FAIL ), ( "jstatic_GL_STENCIL_PASS_DEPTH_PASS", jstatic_GL_STENCIL_PASS_DEPTH_PASS ), ( "jstatic_GL_STENCIL_REF", jstatic_GL_STENCIL_REF ), ( "jstatic_GL_STENCIL_VALUE_MASK", jstatic_GL_STENCIL_VALUE_MASK ), ( "jstatic_GL_STENCIL_WRITEMASK", jstatic_GL_STENCIL_WRITEMASK ), ( "jstatic_GL_SUBTRACT", jstatic_GL_SUBTRACT ), ( "jstatic_GL_TEXTURE_BINDING_2D", jstatic_GL_TEXTURE_BINDING_2D ), ( "jstatic_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING", jstatic_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING ), ( "jstatic_GL_TEXTURE_COORD_ARRAY_POINTER", jstatic_GL_TEXTURE_COORD_ARRAY_POINTER ), ( "jstatic_GL_TEXTURE_COORD_ARRAY_SIZE", jstatic_GL_TEXTURE_COORD_ARRAY_SIZE ), ( "jstatic_GL_TEXTURE_COORD_ARRAY_STRIDE", jstatic_GL_TEXTURE_COORD_ARRAY_STRIDE ), ( "jstatic_GL_TEXTURE_COORD_ARRAY_TYPE", jstatic_GL_TEXTURE_COORD_ARRAY_TYPE ), ( "jstatic_GL_TEXTURE_MATRIX", jstatic_GL_TEXTURE_MATRIX ), ( "jstatic_GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES", jstatic_GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES ), ( "jstatic_GL_TEXTURE_STACK_DEPTH", jstatic_GL_TEXTURE_STACK_DEPTH ), ( "jstatic_GL_VERTEX_ARRAY_BUFFER_BINDING", jstatic_GL_VERTEX_ARRAY_BUFFER_BINDING ), ( "jstatic_GL_VERTEX_ARRAY_POINTER", jstatic_GL_VERTEX_ARRAY_POINTER ), ( "jstatic_GL_VERTEX_ARRAY_SIZE", jstatic_GL_VERTEX_ARRAY_SIZE ), ( "jstatic_GL_VERTEX_ARRAY_STRIDE", jstatic_GL_VERTEX_ARRAY_STRIDE ), ( "jstatic_GL_VERTEX_ARRAY_TYPE", jstatic_GL_VERTEX_ARRAY_TYPE ), ( "jstatic_GL_VIEWPORT", jstatic_GL_VIEWPORT ), ( "jstatic_GL_WRITE_ONLY", jstatic_GL_WRITE_ONLY ) ]
+        jheap
 
-gL_ARRAY_BUFFER_BINDING :: Int
-gL_ARRAY_BUFFER_BINDING = 34964
 
-gL_BLEND_DST :: Int
-gL_BLEND_DST = 3040
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-gL_BLEND_SRC :: Int
-gL_BLEND_SRC = 3041
 
-gL_BUFFER_ACCESS :: Int
-gL_BUFFER_ACCESS = 35003
+jstatic_GL_ACTIVE_TEXTURE : JR.M
+jstatic_GL_ACTIVE_TEXTURE s =
+    JR.static "GL11" jclinit "GL_ACTIVE_TEXTURE"
+        (JR.int 34016)
+        s
 
-gL_BUFFER_SIZE :: Int
-gL_BUFFER_SIZE = 34660
 
-gL_BUFFER_USAGE :: Int
-gL_BUFFER_USAGE = 34661
+jstatic_GL_ADD_SIGNED : JR.M
+jstatic_GL_ADD_SIGNED s =
+    JR.static "GL11" jclinit "GL_ADD_SIGNED"
+        (JR.int 34164)
+        s
 
-gL_CLIENT_ACTIVE_TEXTURE :: Int
-gL_CLIENT_ACTIVE_TEXTURE = 34017
 
-gL_CLIP_PLANE0 :: Int
-gL_CLIP_PLANE0 = 12288
+jstatic_GL_ALPHA_SCALE : JR.M
+jstatic_GL_ALPHA_SCALE s =
+    JR.static "GL11" jclinit "GL_ALPHA_SCALE"
+        (JR.int 3356)
+        s
 
-gL_CLIP_PLANE1 :: Int
-gL_CLIP_PLANE1 = 12289
 
-gL_CLIP_PLANE2 :: Int
-gL_CLIP_PLANE2 = 12290
+jstatic_GL_ALPHA_TEST_FUNC : JR.M
+jstatic_GL_ALPHA_TEST_FUNC s =
+    JR.static "GL11" jclinit "GL_ALPHA_TEST_FUNC"
+        (JR.int 3009)
+        s
 
-gL_CLIP_PLANE3 :: Int
-gL_CLIP_PLANE3 = 12291
 
-gL_CLIP_PLANE4 :: Int
-gL_CLIP_PLANE4 = 12292
+jstatic_GL_ALPHA_TEST_REF : JR.M
+jstatic_GL_ALPHA_TEST_REF s =
+    JR.static "GL11" jclinit "GL_ALPHA_TEST_REF"
+        (JR.int 3010)
+        s
 
-gL_CLIP_PLANE5 :: Int
-gL_CLIP_PLANE5 = 12293
 
-gL_COLOR_ARRAY_BUFFER_BINDING :: Int
-gL_COLOR_ARRAY_BUFFER_BINDING = 34968
+jstatic_GL_ARRAY_BUFFER : JR.M
+jstatic_GL_ARRAY_BUFFER s =
+    JR.static "GL11" jclinit "GL_ARRAY_BUFFER"
+        (JR.int 34962)
+        s
 
-gL_COLOR_ARRAY_POINTER :: Int
-gL_COLOR_ARRAY_POINTER = 32912
 
-gL_COLOR_ARRAY_SIZE :: Int
-gL_COLOR_ARRAY_SIZE = 32897
+jstatic_GL_ARRAY_BUFFER_BINDING : JR.M
+jstatic_GL_ARRAY_BUFFER_BINDING s =
+    JR.static "GL11" jclinit "GL_ARRAY_BUFFER_BINDING"
+        (JR.int 34964)
+        s
 
-gL_COLOR_ARRAY_STRIDE :: Int
-gL_COLOR_ARRAY_STRIDE = 32899
 
-gL_COLOR_ARRAY_TYPE :: Int
-gL_COLOR_ARRAY_TYPE = 32898
+jstatic_GL_BLEND_DST : JR.M
+jstatic_GL_BLEND_DST s =
+    JR.static "GL11" jclinit "GL_BLEND_DST"
+        (JR.int 3040)
+        s
 
-gL_COLOR_CLEAR_VALUE :: Int
-gL_COLOR_CLEAR_VALUE = 3106
 
-gL_COLOR_WRITEMASK :: Int
-gL_COLOR_WRITEMASK = 3107
+jstatic_GL_BLEND_SRC : JR.M
+jstatic_GL_BLEND_SRC s =
+    JR.static "GL11" jclinit "GL_BLEND_SRC"
+        (JR.int 3041)
+        s
 
-gL_COMBINE :: Int
-gL_COMBINE = 34160
 
-gL_COMBINE_ALPHA :: Int
-gL_COMBINE_ALPHA = 34162
+jstatic_GL_BUFFER_ACCESS : JR.M
+jstatic_GL_BUFFER_ACCESS s =
+    JR.static "GL11" jclinit "GL_BUFFER_ACCESS"
+        (JR.int 35003)
+        s
 
-gL_COMBINE_RGB :: Int
-gL_COMBINE_RGB = 34161
 
-gL_CONSTANT :: Int
-gL_CONSTANT = 34166
+jstatic_GL_BUFFER_SIZE : JR.M
+jstatic_GL_BUFFER_SIZE s =
+    JR.static "GL11" jclinit "GL_BUFFER_SIZE"
+        (JR.int 34660)
+        s
 
-gL_COORD_REPLACE_OES :: Int
-gL_COORD_REPLACE_OES = 34914
 
-gL_CULL_FACE_MODE :: Int
-gL_CULL_FACE_MODE = 2885
+jstatic_GL_BUFFER_USAGE : JR.M
+jstatic_GL_BUFFER_USAGE s =
+    JR.static "GL11" jclinit "GL_BUFFER_USAGE"
+        (JR.int 34661)
+        s
 
-gL_CURRENT_COLOR :: Int
-gL_CURRENT_COLOR = 2816
 
-gL_CURRENT_NORMAL :: Int
-gL_CURRENT_NORMAL = 2818
+jstatic_GL_CLIENT_ACTIVE_TEXTURE : JR.M
+jstatic_GL_CLIENT_ACTIVE_TEXTURE s =
+    JR.static "GL11" jclinit "GL_CLIENT_ACTIVE_TEXTURE"
+        (JR.int 34017)
+        s
 
-gL_CURRENT_TEXTURE_COORDS :: Int
-gL_CURRENT_TEXTURE_COORDS = 2819
 
-gL_DEPTH_CLEAR_VALUE :: Int
-gL_DEPTH_CLEAR_VALUE = 2931
+jstatic_GL_CLIP_PLANE0 : JR.M
+jstatic_GL_CLIP_PLANE0 s =
+    JR.static "GL11" jclinit "GL_CLIP_PLANE0"
+        (JR.int 12288)
+        s
 
-gL_DEPTH_FUNC :: Int
-gL_DEPTH_FUNC = 2932
 
-gL_DEPTH_RANGE :: Int
-gL_DEPTH_RANGE = 2928
+jstatic_GL_CLIP_PLANE1 : JR.M
+jstatic_GL_CLIP_PLANE1 s =
+    JR.static "GL11" jclinit "GL_CLIP_PLANE1"
+        (JR.int 12289)
+        s
 
-gL_DEPTH_WRITEMASK :: Int
-gL_DEPTH_WRITEMASK = 2930
 
-gL_DOT3_RGB :: Int
-gL_DOT3_RGB = 34478
+jstatic_GL_CLIP_PLANE2 : JR.M
+jstatic_GL_CLIP_PLANE2 s =
+    JR.static "GL11" jclinit "GL_CLIP_PLANE2"
+        (JR.int 12290)
+        s
 
-gL_DOT3_RGBA :: Int
-gL_DOT3_RGBA = 34479
 
-gL_DYNAMIC_DRAW :: Int
-gL_DYNAMIC_DRAW = 35048
+jstatic_GL_CLIP_PLANE3 : JR.M
+jstatic_GL_CLIP_PLANE3 s =
+    JR.static "GL11" jclinit "GL_CLIP_PLANE3"
+        (JR.int 12291)
+        s
 
-gL_ELEMENT_ARRAY_BUFFER :: Int
-gL_ELEMENT_ARRAY_BUFFER = 34963
 
-gL_ELEMENT_ARRAY_BUFFER_BINDING :: Int
-gL_ELEMENT_ARRAY_BUFFER_BINDING = 34965
+jstatic_GL_CLIP_PLANE4 : JR.M
+jstatic_GL_CLIP_PLANE4 s =
+    JR.static "GL11" jclinit "GL_CLIP_PLANE4"
+        (JR.int 12292)
+        s
 
-gL_FRONT_FACE :: Int
-gL_FRONT_FACE = 2886
 
-gL_GENERATE_MIPMAP :: Int
-gL_GENERATE_MIPMAP = 33169
+jstatic_GL_CLIP_PLANE5 : JR.M
+jstatic_GL_CLIP_PLANE5 s =
+    JR.static "GL11" jclinit "GL_CLIP_PLANE5"
+        (JR.int 12293)
+        s
 
-gL_GENERATE_MIPMAP_HINT :: Int
-gL_GENERATE_MIPMAP_HINT = 33170
 
-gL_INTERPOLATE :: Int
-gL_INTERPOLATE = 34165
+jstatic_GL_COLOR_ARRAY_BUFFER_BINDING : JR.M
+jstatic_GL_COLOR_ARRAY_BUFFER_BINDING s =
+    JR.static "GL11" jclinit "GL_COLOR_ARRAY_BUFFER_BINDING"
+        (JR.int 34968)
+        s
 
-gL_LINE_WIDTH :: Int
-gL_LINE_WIDTH = 2849
 
-gL_LOGIC_OP_MODE :: Int
-gL_LOGIC_OP_MODE = 3056
+jstatic_GL_COLOR_ARRAY_POINTER : JR.M
+jstatic_GL_COLOR_ARRAY_POINTER s =
+    JR.static "GL11" jclinit "GL_COLOR_ARRAY_POINTER"
+        (JR.int 32912)
+        s
 
-gL_MATRIX_MODE :: Int
-gL_MATRIX_MODE = 2976
 
-gL_MAX_CLIP_PLANES :: Int
-gL_MAX_CLIP_PLANES = 3378
+jstatic_GL_COLOR_ARRAY_SIZE : JR.M
+jstatic_GL_COLOR_ARRAY_SIZE s =
+    JR.static "GL11" jclinit "GL_COLOR_ARRAY_SIZE"
+        (JR.int 32897)
+        s
 
-gL_MODELVIEW_MATRIX :: Int
-gL_MODELVIEW_MATRIX = 2982
 
-gL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES :: Int
-gL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES = 35213
+jstatic_GL_COLOR_ARRAY_STRIDE : JR.M
+jstatic_GL_COLOR_ARRAY_STRIDE s =
+    JR.static "GL11" jclinit "GL_COLOR_ARRAY_STRIDE"
+        (JR.int 32899)
+        s
 
-gL_MODELVIEW_STACK_DEPTH :: Int
-gL_MODELVIEW_STACK_DEPTH = 2979
 
-gL_NORMAL_ARRAY_BUFFER_BINDING :: Int
-gL_NORMAL_ARRAY_BUFFER_BINDING = 34967
+jstatic_GL_COLOR_ARRAY_TYPE : JR.M
+jstatic_GL_COLOR_ARRAY_TYPE s =
+    JR.static "GL11" jclinit "GL_COLOR_ARRAY_TYPE"
+        (JR.int 32898)
+        s
 
-gL_NORMAL_ARRAY_POINTER :: Int
-gL_NORMAL_ARRAY_POINTER = 32911
 
-gL_NORMAL_ARRAY_STRIDE :: Int
-gL_NORMAL_ARRAY_STRIDE = 32895
+jstatic_GL_COLOR_CLEAR_VALUE : JR.M
+jstatic_GL_COLOR_CLEAR_VALUE s =
+    JR.static "GL11" jclinit "GL_COLOR_CLEAR_VALUE"
+        (JR.int 3106)
+        s
 
-gL_NORMAL_ARRAY_TYPE :: Int
-gL_NORMAL_ARRAY_TYPE = 32894
 
-gL_OPERAND0_ALPHA :: Int
-gL_OPERAND0_ALPHA = 34200
+jstatic_GL_COLOR_WRITEMASK : JR.M
+jstatic_GL_COLOR_WRITEMASK s =
+    JR.static "GL11" jclinit "GL_COLOR_WRITEMASK"
+        (JR.int 3107)
+        s
 
-gL_OPERAND0_RGB :: Int
-gL_OPERAND0_RGB = 34192
 
-gL_OPERAND1_ALPHA :: Int
-gL_OPERAND1_ALPHA = 34201
+jstatic_GL_COMBINE : JR.M
+jstatic_GL_COMBINE s =
+    JR.static "GL11" jclinit "GL_COMBINE"
+        (JR.int 34160)
+        s
 
-gL_OPERAND1_RGB :: Int
-gL_OPERAND1_RGB = 34193
 
-gL_OPERAND2_ALPHA :: Int
-gL_OPERAND2_ALPHA = 34202
+jstatic_GL_COMBINE_ALPHA : JR.M
+jstatic_GL_COMBINE_ALPHA s =
+    JR.static "GL11" jclinit "GL_COMBINE_ALPHA"
+        (JR.int 34162)
+        s
 
-gL_OPERAND2_RGB :: Int
-gL_OPERAND2_RGB = 34194
 
-gL_POINT_DISTANCE_ATTENUATION :: Int
-gL_POINT_DISTANCE_ATTENUATION = 33065
+jstatic_GL_COMBINE_RGB : JR.M
+jstatic_GL_COMBINE_RGB s =
+    JR.static "GL11" jclinit "GL_COMBINE_RGB"
+        (JR.int 34161)
+        s
 
-gL_POINT_FADE_THRESHOLD_SIZE :: Int
-gL_POINT_FADE_THRESHOLD_SIZE = 33064
 
-gL_POINT_SIZE :: Int
-gL_POINT_SIZE = 2833
+jstatic_GL_CONSTANT : JR.M
+jstatic_GL_CONSTANT s =
+    JR.static "GL11" jclinit "GL_CONSTANT"
+        (JR.int 34166)
+        s
 
-gL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES :: Int
-gL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES = 35743
 
-gL_POINT_SIZE_ARRAY_OES :: Int
-gL_POINT_SIZE_ARRAY_OES = 35740
+jstatic_GL_COORD_REPLACE_OES : JR.M
+jstatic_GL_COORD_REPLACE_OES s =
+    JR.static "GL11" jclinit "GL_COORD_REPLACE_OES"
+        (JR.int 34914)
+        s
 
-gL_POINT_SIZE_ARRAY_POINTER_OES :: Int
-gL_POINT_SIZE_ARRAY_POINTER_OES = 35212
 
-gL_POINT_SIZE_ARRAY_STRIDE_OES :: Int
-gL_POINT_SIZE_ARRAY_STRIDE_OES = 35211
+jstatic_GL_CULL_FACE_MODE : JR.M
+jstatic_GL_CULL_FACE_MODE s =
+    JR.static "GL11" jclinit "GL_CULL_FACE_MODE"
+        (JR.int 2885)
+        s
 
-gL_POINT_SIZE_ARRAY_TYPE_OES :: Int
-gL_POINT_SIZE_ARRAY_TYPE_OES = 35210
 
-gL_POINT_SIZE_MAX :: Int
-gL_POINT_SIZE_MAX = 33063
+jstatic_GL_CURRENT_COLOR : JR.M
+jstatic_GL_CURRENT_COLOR s =
+    JR.static "GL11" jclinit "GL_CURRENT_COLOR"
+        (JR.int 2816)
+        s
 
-gL_POINT_SIZE_MIN :: Int
-gL_POINT_SIZE_MIN = 33062
 
-gL_POINT_SPRITE_OES :: Int
-gL_POINT_SPRITE_OES = 34913
+jstatic_GL_CURRENT_NORMAL : JR.M
+jstatic_GL_CURRENT_NORMAL s =
+    JR.static "GL11" jclinit "GL_CURRENT_NORMAL"
+        (JR.int 2818)
+        s
 
-gL_POLYGON_OFFSET_FACTOR :: Int
-gL_POLYGON_OFFSET_FACTOR = 32824
 
-gL_POLYGON_OFFSET_UNITS :: Int
-gL_POLYGON_OFFSET_UNITS = 10752
+jstatic_GL_CURRENT_TEXTURE_COORDS : JR.M
+jstatic_GL_CURRENT_TEXTURE_COORDS s =
+    JR.static "GL11" jclinit "GL_CURRENT_TEXTURE_COORDS"
+        (JR.int 2819)
+        s
 
-gL_PREVIOUS :: Int
-gL_PREVIOUS = 34168
 
-gL_PRIMARY_COLOR :: Int
-gL_PRIMARY_COLOR = 34167
+jstatic_GL_DEPTH_CLEAR_VALUE : JR.M
+jstatic_GL_DEPTH_CLEAR_VALUE s =
+    JR.static "GL11" jclinit "GL_DEPTH_CLEAR_VALUE"
+        (JR.int 2931)
+        s
 
-gL_PROJECTION_MATRIX :: Int
-gL_PROJECTION_MATRIX = 2983
 
-gL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES :: Int
-gL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES = 35214
+jstatic_GL_DEPTH_FUNC : JR.M
+jstatic_GL_DEPTH_FUNC s =
+    JR.static "GL11" jclinit "GL_DEPTH_FUNC"
+        (JR.int 2932)
+        s
 
-gL_PROJECTION_STACK_DEPTH :: Int
-gL_PROJECTION_STACK_DEPTH = 2980
 
-gL_RGB_SCALE :: Int
-gL_RGB_SCALE = 34163
+jstatic_GL_DEPTH_RANGE : JR.M
+jstatic_GL_DEPTH_RANGE s =
+    JR.static "GL11" jclinit "GL_DEPTH_RANGE"
+        (JR.int 2928)
+        s
 
-gL_SAMPLE_BUFFERS :: Int
-gL_SAMPLE_BUFFERS = 32936
 
-gL_SAMPLE_COVERAGE_INVERT :: Int
-gL_SAMPLE_COVERAGE_INVERT = 32939
+jstatic_GL_DEPTH_WRITEMASK : JR.M
+jstatic_GL_DEPTH_WRITEMASK s =
+    JR.static "GL11" jclinit "GL_DEPTH_WRITEMASK"
+        (JR.int 2930)
+        s
 
-gL_SAMPLE_COVERAGE_VALUE :: Int
-gL_SAMPLE_COVERAGE_VALUE = 32938
 
-gL_SAMPLES :: Int
-gL_SAMPLES = 32937
+jstatic_GL_DOT3_RGB : JR.M
+jstatic_GL_DOT3_RGB s =
+    JR.static "GL11" jclinit "GL_DOT3_RGB"
+        (JR.int 34478)
+        s
 
-gL_SCISSOR_BOX :: Int
-gL_SCISSOR_BOX = 3088
 
-gL_SHADE_MODEL :: Int
-gL_SHADE_MODEL = 2900
+jstatic_GL_DOT3_RGBA : JR.M
+jstatic_GL_DOT3_RGBA s =
+    JR.static "GL11" jclinit "GL_DOT3_RGBA"
+        (JR.int 34479)
+        s
 
-gL_SRC0_ALPHA :: Int
-gL_SRC0_ALPHA = 34184
 
-gL_SRC0_RGB :: Int
-gL_SRC0_RGB = 34176
+jstatic_GL_DYNAMIC_DRAW : JR.M
+jstatic_GL_DYNAMIC_DRAW s =
+    JR.static "GL11" jclinit "GL_DYNAMIC_DRAW"
+        (JR.int 35048)
+        s
 
-gL_SRC1_ALPHA :: Int
-gL_SRC1_ALPHA = 34185
 
-gL_SRC1_RGB :: Int
-gL_SRC1_RGB = 34177
+jstatic_GL_ELEMENT_ARRAY_BUFFER : JR.M
+jstatic_GL_ELEMENT_ARRAY_BUFFER s =
+    JR.static "GL11" jclinit "GL_ELEMENT_ARRAY_BUFFER"
+        (JR.int 34963)
+        s
 
-gL_SRC2_ALPHA :: Int
-gL_SRC2_ALPHA = 34186
 
-gL_SRC2_RGB :: Int
-gL_SRC2_RGB = 34178
+jstatic_GL_ELEMENT_ARRAY_BUFFER_BINDING : JR.M
+jstatic_GL_ELEMENT_ARRAY_BUFFER_BINDING s =
+    JR.static "GL11" jclinit "GL_ELEMENT_ARRAY_BUFFER_BINDING"
+        (JR.int 34965)
+        s
 
-gL_STATIC_DRAW :: Int
-gL_STATIC_DRAW = 35044
 
-gL_STENCIL_CLEAR_VALUE :: Int
-gL_STENCIL_CLEAR_VALUE = 2961
+jstatic_GL_FRONT_FACE : JR.M
+jstatic_GL_FRONT_FACE s =
+    JR.static "GL11" jclinit "GL_FRONT_FACE"
+        (JR.int 2886)
+        s
 
-gL_STENCIL_FAIL :: Int
-gL_STENCIL_FAIL = 2964
 
-gL_STENCIL_FUNC :: Int
-gL_STENCIL_FUNC = 2962
+jstatic_GL_GENERATE_MIPMAP : JR.M
+jstatic_GL_GENERATE_MIPMAP s =
+    JR.static "GL11" jclinit "GL_GENERATE_MIPMAP"
+        (JR.int 33169)
+        s
 
-gL_STENCIL_PASS_DEPTH_FAIL :: Int
-gL_STENCIL_PASS_DEPTH_FAIL = 2965
 
-gL_STENCIL_PASS_DEPTH_PASS :: Int
-gL_STENCIL_PASS_DEPTH_PASS = 2966
+jstatic_GL_GENERATE_MIPMAP_HINT : JR.M
+jstatic_GL_GENERATE_MIPMAP_HINT s =
+    JR.static "GL11" jclinit "GL_GENERATE_MIPMAP_HINT"
+        (JR.int 33170)
+        s
 
-gL_STENCIL_REF :: Int
-gL_STENCIL_REF = 2967
 
-gL_STENCIL_VALUE_MASK :: Int
-gL_STENCIL_VALUE_MASK = 2963
+jstatic_GL_INTERPOLATE : JR.M
+jstatic_GL_INTERPOLATE s =
+    JR.static "GL11" jclinit "GL_INTERPOLATE"
+        (JR.int 34165)
+        s
 
-gL_STENCIL_WRITEMASK :: Int
-gL_STENCIL_WRITEMASK = 2968
 
-gL_SUBTRACT :: Int
-gL_SUBTRACT = 34023
+jstatic_GL_LINE_WIDTH : JR.M
+jstatic_GL_LINE_WIDTH s =
+    JR.static "GL11" jclinit "GL_LINE_WIDTH"
+        (JR.int 2849)
+        s
 
-gL_TEXTURE_BINDING_2D :: Int
-gL_TEXTURE_BINDING_2D = 32873
 
-gL_TEXTURE_COORD_ARRAY_BUFFER_BINDING :: Int
-gL_TEXTURE_COORD_ARRAY_BUFFER_BINDING = 34970
+jstatic_GL_LOGIC_OP_MODE : JR.M
+jstatic_GL_LOGIC_OP_MODE s =
+    JR.static "GL11" jclinit "GL_LOGIC_OP_MODE"
+        (JR.int 3056)
+        s
 
-gL_TEXTURE_COORD_ARRAY_POINTER :: Int
-gL_TEXTURE_COORD_ARRAY_POINTER = 32914
 
-gL_TEXTURE_COORD_ARRAY_SIZE :: Int
-gL_TEXTURE_COORD_ARRAY_SIZE = 32904
+jstatic_GL_MATRIX_MODE : JR.M
+jstatic_GL_MATRIX_MODE s =
+    JR.static "GL11" jclinit "GL_MATRIX_MODE"
+        (JR.int 2976)
+        s
 
-gL_TEXTURE_COORD_ARRAY_STRIDE :: Int
-gL_TEXTURE_COORD_ARRAY_STRIDE = 32906
 
-gL_TEXTURE_COORD_ARRAY_TYPE :: Int
-gL_TEXTURE_COORD_ARRAY_TYPE = 32905
+jstatic_GL_MAX_CLIP_PLANES : JR.M
+jstatic_GL_MAX_CLIP_PLANES s =
+    JR.static "GL11" jclinit "GL_MAX_CLIP_PLANES"
+        (JR.int 3378)
+        s
 
-gL_TEXTURE_MATRIX :: Int
-gL_TEXTURE_MATRIX = 2984
 
-gL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES :: Int
-gL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES = 35215
+jstatic_GL_MODELVIEW_MATRIX : JR.M
+jstatic_GL_MODELVIEW_MATRIX s =
+    JR.static "GL11" jclinit "GL_MODELVIEW_MATRIX"
+        (JR.int 2982)
+        s
 
-gL_TEXTURE_STACK_DEPTH :: Int
-gL_TEXTURE_STACK_DEPTH = 2981
 
-gL_VERTEX_ARRAY_BUFFER_BINDING :: Int
-gL_VERTEX_ARRAY_BUFFER_BINDING = 34966
+jstatic_GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES : JR.M
+jstatic_GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES s =
+    JR.static "GL11" jclinit "GL_MODELVIEW_MATRIX_FLOAT_AS_INT_BITS_OES"
+        (JR.int 35213)
+        s
 
-gL_VERTEX_ARRAY_POINTER :: Int
-gL_VERTEX_ARRAY_POINTER = 32910
 
-gL_VERTEX_ARRAY_SIZE :: Int
-gL_VERTEX_ARRAY_SIZE = 32890
+jstatic_GL_MODELVIEW_STACK_DEPTH : JR.M
+jstatic_GL_MODELVIEW_STACK_DEPTH s =
+    JR.static "GL11" jclinit "GL_MODELVIEW_STACK_DEPTH"
+        (JR.int 2979)
+        s
 
-gL_VERTEX_ARRAY_STRIDE :: Int
-gL_VERTEX_ARRAY_STRIDE = 32892
 
-gL_VERTEX_ARRAY_TYPE :: Int
-gL_VERTEX_ARRAY_TYPE = 32891
+jstatic_GL_NORMAL_ARRAY_BUFFER_BINDING : JR.M
+jstatic_GL_NORMAL_ARRAY_BUFFER_BINDING s =
+    JR.static "GL11" jclinit "GL_NORMAL_ARRAY_BUFFER_BINDING"
+        (JR.int 34967)
+        s
 
-gL_VIEWPORT :: Int
-gL_VIEWPORT = 2978
 
-gL_WRITE_ONLY :: Int
-gL_WRITE_ONLY = 35001
+jstatic_GL_NORMAL_ARRAY_POINTER : JR.M
+jstatic_GL_NORMAL_ARRAY_POINTER s =
+    JR.static "GL11" jclinit "GL_NORMAL_ARRAY_POINTER"
+        (JR.int 32911)
+        s
 
-fromHeader_ :: JavaHeader -> GL11
-fromHeader_ header = GL11 header
 
-registerInterface_ :: JavaHeader -> IO ()
-registerInterface_ header = do
-    jregisterLevel header (GL11 header)
-    GL10.registerInterface_ header
+jstatic_GL_NORMAL_ARRAY_STRIDE : JR.M
+jstatic_GL_NORMAL_ARRAY_STRIDE s =
+    JR.static "GL11" jclinit "GL_NORMAL_ARRAY_STRIDE"
+        (JR.int 32895)
+        s
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
+jstatic_GL_NORMAL_ARRAY_TYPE : JR.M
+jstatic_GL_NORMAL_ARRAY_TYPE s =
+    JR.static "GL11" jclinit "GL_NORMAL_ARRAY_TYPE"
+        (JR.int 32894)
+        s
 
-glBindBuffer :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-glBindBuffer object_ a1 a2 = jmethod object_ "glBindBuffer" (\() -> (glBindBuffer_impl (javaCast object_ :: GL11))) () a1 a2
 
-glBindBuffer_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-glBindBuffer_super object_ a1 a2 = (glBindBuffer_impl (javaCast object_ :: GL11)) a1 a2
+jstatic_GL_OPERAND0_ALPHA : JR.M
+jstatic_GL_OPERAND0_ALPHA s =
+    JR.static "GL11" jclinit "GL_OPERAND0_ALPHA"
+        (JR.int 34200)
+        s
 
-glBindBuffer_impl :: GL11 -> Int -> Int -> IO (())
-glBindBuffer_impl this target buffer = javaAbstractMethod "glBindBuffer"
 
+jstatic_GL_OPERAND0_RGB : JR.M
+jstatic_GL_OPERAND0_RGB s =
+    JR.static "GL11" jclinit "GL_OPERAND0_RGB"
+        (JR.int 34192)
+        s
 
-glBufferData :: (JavaObjectClass this_) => this_ -> Int -> Int -> Buffer.Buffer -> Int -> IO (())
-glBufferData object_ a1 a2 a3 a4 = jmethod object_ "glBufferData" (\() -> (glBufferData_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
 
-glBufferData_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Buffer.Buffer -> Int -> IO (())
-glBufferData_super object_ a1 a2 a3 a4 = (glBufferData_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
+jstatic_GL_OPERAND1_ALPHA : JR.M
+jstatic_GL_OPERAND1_ALPHA s =
+    JR.static "GL11" jclinit "GL_OPERAND1_ALPHA"
+        (JR.int 34201)
+        s
 
-glBufferData_impl :: GL11 -> Int -> Int -> Buffer.Buffer -> Int -> IO (())
-glBufferData_impl this target size data_ usage = javaAbstractMethod "glBufferData"
 
+jstatic_GL_OPERAND1_RGB : JR.M
+jstatic_GL_OPERAND1_RGB s =
+    JR.static "GL11" jclinit "GL_OPERAND1_RGB"
+        (JR.int 34193)
+        s
 
-glBufferSubData :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Buffer.Buffer -> IO (())
-glBufferSubData object_ a1 a2 a3 a4 = jmethod object_ "glBufferSubData" (\() -> (glBufferSubData_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
 
-glBufferSubData_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Buffer.Buffer -> IO (())
-glBufferSubData_super object_ a1 a2 a3 a4 = (glBufferSubData_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
+jstatic_GL_OPERAND2_ALPHA : JR.M
+jstatic_GL_OPERAND2_ALPHA s =
+    JR.static "GL11" jclinit "GL_OPERAND2_ALPHA"
+        (JR.int 34202)
+        s
 
-glBufferSubData_impl :: GL11 -> Int -> Int -> Int -> Buffer.Buffer -> IO (())
-glBufferSubData_impl this target offset size data_ = javaAbstractMethod "glBufferSubData"
 
+jstatic_GL_OPERAND2_RGB : JR.M
+jstatic_GL_OPERAND2_RGB s =
+    JR.static "GL11" jclinit "GL_OPERAND2_RGB"
+        (JR.int 34194)
+        s
 
-glClipPlanef :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Float) -> Int -> IO (())
-glClipPlanef object_ a1 a2 a3 = jmethod object_ "glClipPlanef" (\() -> (glClipPlanef_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glClipPlanef_super :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Float) -> Int -> IO (())
-glClipPlanef_super object_ a1 a2 a3 = (glClipPlanef_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_POINT_DISTANCE_ATTENUATION : JR.M
+jstatic_GL_POINT_DISTANCE_ATTENUATION s =
+    JR.static "GL11" jclinit "GL_POINT_DISTANCE_ATTENUATION"
+        (JR.int 33065)
+        s
 
-glClipPlanef_impl :: GL11 -> Int -> JavaArray (Float) -> Int -> IO (())
-glClipPlanef_impl this plane equation offset = javaAbstractMethod "glClipPlanef"
 
+jstatic_GL_POINT_FADE_THRESHOLD_SIZE : JR.M
+jstatic_GL_POINT_FADE_THRESHOLD_SIZE s =
+    JR.static "GL11" jclinit "GL_POINT_FADE_THRESHOLD_SIZE"
+        (JR.int 33064)
+        s
 
-glClipPlanef_2 :: (JavaObjectClass this_) => this_ -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glClipPlanef_2 object_ a1 a2 = jmethod object_ "glClipPlanef_2" (\() -> (glClipPlanef_2_impl (javaCast object_ :: GL11))) () a1 a2
 
-glClipPlanef_2_super :: (JavaObjectClass this_) => this_ -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glClipPlanef_2_super object_ a1 a2 = (glClipPlanef_2_impl (javaCast object_ :: GL11)) a1 a2
+jstatic_GL_POINT_SIZE : JR.M
+jstatic_GL_POINT_SIZE s =
+    JR.static "GL11" jclinit "GL_POINT_SIZE"
+        (JR.int 2833)
+        s
 
-glClipPlanef_2_impl :: GL11 -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glClipPlanef_2_impl this plane equation = javaAbstractMethod "glClipPlanef"
 
+jstatic_GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES : JR.M
+jstatic_GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES s =
+    JR.static "GL11" jclinit "GL_POINT_SIZE_ARRAY_BUFFER_BINDING_OES"
+        (JR.int 35743)
+        s
 
-glColor4ub :: (JavaObjectClass this_) => this_ -> Int8 -> Int8 -> Int8 -> Int8 -> IO (())
-glColor4ub object_ a1 a2 a3 a4 = jmethod object_ "glColor4ub" (\() -> (glColor4ub_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
 
-glColor4ub_super :: (JavaObjectClass this_) => this_ -> Int8 -> Int8 -> Int8 -> Int8 -> IO (())
-glColor4ub_super object_ a1 a2 a3 a4 = (glColor4ub_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
+jstatic_GL_POINT_SIZE_ARRAY_OES : JR.M
+jstatic_GL_POINT_SIZE_ARRAY_OES s =
+    JR.static "GL11" jclinit "GL_POINT_SIZE_ARRAY_OES"
+        (JR.int 35740)
+        s
 
-glColor4ub_impl :: GL11 -> Int8 -> Int8 -> Int8 -> Int8 -> IO (())
-glColor4ub_impl this red green blue alpha = javaAbstractMethod "glColor4ub"
 
+jstatic_GL_POINT_SIZE_ARRAY_POINTER_OES : JR.M
+jstatic_GL_POINT_SIZE_ARRAY_POINTER_OES s =
+    JR.static "GL11" jclinit "GL_POINT_SIZE_ARRAY_POINTER_OES"
+        (JR.int 35212)
+        s
 
-glColorPointer :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-glColorPointer object_ a1 a2 a3 a4 = jmethod object_ "glColorPointer" (\() -> (glColorPointer_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
 
-glColorPointer_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-glColorPointer_super object_ a1 a2 a3 a4 = (glColorPointer_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
+jstatic_GL_POINT_SIZE_ARRAY_STRIDE_OES : JR.M
+jstatic_GL_POINT_SIZE_ARRAY_STRIDE_OES s =
+    JR.static "GL11" jclinit "GL_POINT_SIZE_ARRAY_STRIDE_OES"
+        (JR.int 35211)
+        s
 
-glColorPointer_impl :: GL11 -> Int -> Int -> Int -> Int -> IO (())
-glColorPointer_impl this size type_ stride offset = javaAbstractMethod "glColorPointer"
 
+jstatic_GL_POINT_SIZE_ARRAY_TYPE_OES : JR.M
+jstatic_GL_POINT_SIZE_ARRAY_TYPE_OES s =
+    JR.static "GL11" jclinit "GL_POINT_SIZE_ARRAY_TYPE_OES"
+        (JR.int 35210)
+        s
 
-glDeleteBuffers :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Int) -> Int -> IO (())
-glDeleteBuffers object_ a1 a2 a3 = jmethod object_ "glDeleteBuffers" (\() -> (glDeleteBuffers_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glDeleteBuffers_super :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Int) -> Int -> IO (())
-glDeleteBuffers_super object_ a1 a2 a3 = (glDeleteBuffers_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_POINT_SIZE_MAX : JR.M
+jstatic_GL_POINT_SIZE_MAX s =
+    JR.static "GL11" jclinit "GL_POINT_SIZE_MAX"
+        (JR.int 33063)
+        s
 
-glDeleteBuffers_impl :: GL11 -> Int -> JavaArray (Int) -> Int -> IO (())
-glDeleteBuffers_impl this n buffers offset = javaAbstractMethod "glDeleteBuffers"
 
+jstatic_GL_POINT_SIZE_MIN : JR.M
+jstatic_GL_POINT_SIZE_MIN s =
+    JR.static "GL11" jclinit "GL_POINT_SIZE_MIN"
+        (JR.int 33062)
+        s
 
-glDeleteBuffers_2 :: (JavaObjectClass this_) => this_ -> Int -> IntBuffer.IntBuffer -> IO (())
-glDeleteBuffers_2 object_ a1 a2 = jmethod object_ "glDeleteBuffers_2" (\() -> (glDeleteBuffers_2_impl (javaCast object_ :: GL11))) () a1 a2
 
-glDeleteBuffers_2_super :: (JavaObjectClass this_) => this_ -> Int -> IntBuffer.IntBuffer -> IO (())
-glDeleteBuffers_2_super object_ a1 a2 = (glDeleteBuffers_2_impl (javaCast object_ :: GL11)) a1 a2
+jstatic_GL_POINT_SPRITE_OES : JR.M
+jstatic_GL_POINT_SPRITE_OES s =
+    JR.static "GL11" jclinit "GL_POINT_SPRITE_OES"
+        (JR.int 34913)
+        s
 
-glDeleteBuffers_2_impl :: GL11 -> Int -> IntBuffer.IntBuffer -> IO (())
-glDeleteBuffers_2_impl this n buffers = javaAbstractMethod "glDeleteBuffers"
 
+jstatic_GL_POLYGON_OFFSET_FACTOR : JR.M
+jstatic_GL_POLYGON_OFFSET_FACTOR s =
+    JR.static "GL11" jclinit "GL_POLYGON_OFFSET_FACTOR"
+        (JR.int 32824)
+        s
 
-glDrawElements :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-glDrawElements object_ a1 a2 a3 a4 = jmethod object_ "glDrawElements" (\() -> (glDrawElements_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
 
-glDrawElements_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-glDrawElements_super object_ a1 a2 a3 a4 = (glDrawElements_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
+jstatic_GL_POLYGON_OFFSET_UNITS : JR.M
+jstatic_GL_POLYGON_OFFSET_UNITS s =
+    JR.static "GL11" jclinit "GL_POLYGON_OFFSET_UNITS"
+        (JR.int 10752)
+        s
 
-glDrawElements_impl :: GL11 -> Int -> Int -> Int -> Int -> IO (())
-glDrawElements_impl this mode count type_ offset = javaAbstractMethod "glDrawElements"
 
+jstatic_GL_PREVIOUS : JR.M
+jstatic_GL_PREVIOUS s =
+    JR.static "GL11" jclinit "GL_PREVIOUS"
+        (JR.int 34168)
+        s
 
-glGenBuffers :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Int) -> Int -> IO (())
-glGenBuffers object_ a1 a2 a3 = jmethod object_ "glGenBuffers" (\() -> (glGenBuffers_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glGenBuffers_super :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Int) -> Int -> IO (())
-glGenBuffers_super object_ a1 a2 a3 = (glGenBuffers_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_PRIMARY_COLOR : JR.M
+jstatic_GL_PRIMARY_COLOR s =
+    JR.static "GL11" jclinit "GL_PRIMARY_COLOR"
+        (JR.int 34167)
+        s
 
-glGenBuffers_impl :: GL11 -> Int -> JavaArray (Int) -> Int -> IO (())
-glGenBuffers_impl this n buffers offset = javaAbstractMethod "glGenBuffers"
 
+jstatic_GL_PROJECTION_MATRIX : JR.M
+jstatic_GL_PROJECTION_MATRIX s =
+    JR.static "GL11" jclinit "GL_PROJECTION_MATRIX"
+        (JR.int 2983)
+        s
 
-glGenBuffers_2 :: (JavaObjectClass this_) => this_ -> Int -> IntBuffer.IntBuffer -> IO (())
-glGenBuffers_2 object_ a1 a2 = jmethod object_ "glGenBuffers_2" (\() -> (glGenBuffers_2_impl (javaCast object_ :: GL11))) () a1 a2
 
-glGenBuffers_2_super :: (JavaObjectClass this_) => this_ -> Int -> IntBuffer.IntBuffer -> IO (())
-glGenBuffers_2_super object_ a1 a2 = (glGenBuffers_2_impl (javaCast object_ :: GL11)) a1 a2
+jstatic_GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES : JR.M
+jstatic_GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES s =
+    JR.static "GL11" jclinit "GL_PROJECTION_MATRIX_FLOAT_AS_INT_BITS_OES"
+        (JR.int 35214)
+        s
 
-glGenBuffers_2_impl :: GL11 -> Int -> IntBuffer.IntBuffer -> IO (())
-glGenBuffers_2_impl this n buffers = javaAbstractMethod "glGenBuffers"
 
+jstatic_GL_PROJECTION_STACK_DEPTH : JR.M
+jstatic_GL_PROJECTION_STACK_DEPTH s =
+    JR.static "GL11" jclinit "GL_PROJECTION_STACK_DEPTH"
+        (JR.int 2980)
+        s
 
-glGetBufferParameteriv :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glGetBufferParameteriv object_ a1 a2 a3 a4 = jmethod object_ "glGetBufferParameteriv" (\() -> (glGetBufferParameteriv_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
 
-glGetBufferParameteriv_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glGetBufferParameteriv_super object_ a1 a2 a3 a4 = (glGetBufferParameteriv_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
+jstatic_GL_RGB_SCALE : JR.M
+jstatic_GL_RGB_SCALE s =
+    JR.static "GL11" jclinit "GL_RGB_SCALE"
+        (JR.int 34163)
+        s
 
-glGetBufferParameteriv_impl :: GL11 -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glGetBufferParameteriv_impl this target pname params offset = javaAbstractMethod "glGetBufferParameteriv"
 
+jstatic_GL_SAMPLE_BUFFERS : JR.M
+jstatic_GL_SAMPLE_BUFFERS s =
+    JR.static "GL11" jclinit "GL_SAMPLE_BUFFERS"
+        (JR.int 32936)
+        s
 
-glGetBufferParameteriv_3 :: (JavaObjectClass this_) => this_ -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glGetBufferParameteriv_3 object_ a1 a2 a3 = jmethod object_ "glGetBufferParameteriv_3" (\() -> (glGetBufferParameteriv_3_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glGetBufferParameteriv_3_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glGetBufferParameteriv_3_super object_ a1 a2 a3 = (glGetBufferParameteriv_3_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_SAMPLE_COVERAGE_INVERT : JR.M
+jstatic_GL_SAMPLE_COVERAGE_INVERT s =
+    JR.static "GL11" jclinit "GL_SAMPLE_COVERAGE_INVERT"
+        (JR.int 32939)
+        s
 
-glGetBufferParameteriv_3_impl :: GL11 -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glGetBufferParameteriv_3_impl this target pname params = javaAbstractMethod "glGetBufferParameteriv"
 
+jstatic_GL_SAMPLE_COVERAGE_VALUE : JR.M
+jstatic_GL_SAMPLE_COVERAGE_VALUE s =
+    JR.static "GL11" jclinit "GL_SAMPLE_COVERAGE_VALUE"
+        (JR.int 32938)
+        s
 
-glGetClipPlanef :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetClipPlanef object_ a1 a2 a3 = jmethod object_ "glGetClipPlanef" (\() -> (glGetClipPlanef_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glGetClipPlanef_super :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetClipPlanef_super object_ a1 a2 a3 = (glGetClipPlanef_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_SAMPLES : JR.M
+jstatic_GL_SAMPLES s =
+    JR.static "GL11" jclinit "GL_SAMPLES"
+        (JR.int 32937)
+        s
 
-glGetClipPlanef_impl :: GL11 -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetClipPlanef_impl this pname eqn offset = javaAbstractMethod "glGetClipPlanef"
 
+jstatic_GL_SCISSOR_BOX : JR.M
+jstatic_GL_SCISSOR_BOX s =
+    JR.static "GL11" jclinit "GL_SCISSOR_BOX"
+        (JR.int 3088)
+        s
 
-glGetClipPlanef_2 :: (JavaObjectClass this_) => this_ -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetClipPlanef_2 object_ a1 a2 = jmethod object_ "glGetClipPlanef_2" (\() -> (glGetClipPlanef_2_impl (javaCast object_ :: GL11))) () a1 a2
 
-glGetClipPlanef_2_super :: (JavaObjectClass this_) => this_ -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetClipPlanef_2_super object_ a1 a2 = (glGetClipPlanef_2_impl (javaCast object_ :: GL11)) a1 a2
+jstatic_GL_SHADE_MODEL : JR.M
+jstatic_GL_SHADE_MODEL s =
+    JR.static "GL11" jclinit "GL_SHADE_MODEL"
+        (JR.int 2900)
+        s
 
-glGetClipPlanef_2_impl :: GL11 -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetClipPlanef_2_impl this pname eqn = javaAbstractMethod "glGetClipPlanef"
 
+jstatic_GL_SRC0_ALPHA : JR.M
+jstatic_GL_SRC0_ALPHA s =
+    JR.static "GL11" jclinit "GL_SRC0_ALPHA"
+        (JR.int 34184)
+        s
 
-glGetFloatv :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetFloatv object_ a1 a2 a3 = jmethod object_ "glGetFloatv" (\() -> (glGetFloatv_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glGetFloatv_super :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetFloatv_super object_ a1 a2 a3 = (glGetFloatv_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_SRC0_RGB : JR.M
+jstatic_GL_SRC0_RGB s =
+    JR.static "GL11" jclinit "GL_SRC0_RGB"
+        (JR.int 34176)
+        s
 
-glGetFloatv_impl :: GL11 -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetFloatv_impl this pname params offset = javaAbstractMethod "glGetFloatv"
 
+jstatic_GL_SRC1_ALPHA : JR.M
+jstatic_GL_SRC1_ALPHA s =
+    JR.static "GL11" jclinit "GL_SRC1_ALPHA"
+        (JR.int 34185)
+        s
 
-glGetFloatv_2 :: (JavaObjectClass this_) => this_ -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetFloatv_2 object_ a1 a2 = jmethod object_ "glGetFloatv_2" (\() -> (glGetFloatv_2_impl (javaCast object_ :: GL11))) () a1 a2
 
-glGetFloatv_2_super :: (JavaObjectClass this_) => this_ -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetFloatv_2_super object_ a1 a2 = (glGetFloatv_2_impl (javaCast object_ :: GL11)) a1 a2
+jstatic_GL_SRC1_RGB : JR.M
+jstatic_GL_SRC1_RGB s =
+    JR.static "GL11" jclinit "GL_SRC1_RGB"
+        (JR.int 34177)
+        s
 
-glGetFloatv_2_impl :: GL11 -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetFloatv_2_impl this pname params = javaAbstractMethod "glGetFloatv"
 
+jstatic_GL_SRC2_ALPHA : JR.M
+jstatic_GL_SRC2_ALPHA s =
+    JR.static "GL11" jclinit "GL_SRC2_ALPHA"
+        (JR.int 34186)
+        s
 
-glGetLightfv :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetLightfv object_ a1 a2 a3 a4 = jmethod object_ "glGetLightfv" (\() -> (glGetLightfv_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
 
-glGetLightfv_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetLightfv_super object_ a1 a2 a3 a4 = (glGetLightfv_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
+jstatic_GL_SRC2_RGB : JR.M
+jstatic_GL_SRC2_RGB s =
+    JR.static "GL11" jclinit "GL_SRC2_RGB"
+        (JR.int 34178)
+        s
 
-glGetLightfv_impl :: GL11 -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetLightfv_impl this light pname params offset = javaAbstractMethod "glGetLightfv"
 
+jstatic_GL_STATIC_DRAW : JR.M
+jstatic_GL_STATIC_DRAW s =
+    JR.static "GL11" jclinit "GL_STATIC_DRAW"
+        (JR.int 35044)
+        s
 
-glGetLightfv_3 :: (JavaObjectClass this_) => this_ -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetLightfv_3 object_ a1 a2 a3 = jmethod object_ "glGetLightfv_3" (\() -> (glGetLightfv_3_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glGetLightfv_3_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetLightfv_3_super object_ a1 a2 a3 = (glGetLightfv_3_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_STENCIL_CLEAR_VALUE : JR.M
+jstatic_GL_STENCIL_CLEAR_VALUE s =
+    JR.static "GL11" jclinit "GL_STENCIL_CLEAR_VALUE"
+        (JR.int 2961)
+        s
 
-glGetLightfv_3_impl :: GL11 -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetLightfv_3_impl this light pname params = javaAbstractMethod "glGetLightfv"
 
+jstatic_GL_STENCIL_FAIL : JR.M
+jstatic_GL_STENCIL_FAIL s =
+    JR.static "GL11" jclinit "GL_STENCIL_FAIL"
+        (JR.int 2964)
+        s
 
-glGetMaterialfv :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetMaterialfv object_ a1 a2 a3 a4 = jmethod object_ "glGetMaterialfv" (\() -> (glGetMaterialfv_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
 
-glGetMaterialfv_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetMaterialfv_super object_ a1 a2 a3 a4 = (glGetMaterialfv_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
+jstatic_GL_STENCIL_FUNC : JR.M
+jstatic_GL_STENCIL_FUNC s =
+    JR.static "GL11" jclinit "GL_STENCIL_FUNC"
+        (JR.int 2962)
+        s
 
-glGetMaterialfv_impl :: GL11 -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetMaterialfv_impl this face pname params offset = javaAbstractMethod "glGetMaterialfv"
 
+jstatic_GL_STENCIL_PASS_DEPTH_FAIL : JR.M
+jstatic_GL_STENCIL_PASS_DEPTH_FAIL s =
+    JR.static "GL11" jclinit "GL_STENCIL_PASS_DEPTH_FAIL"
+        (JR.int 2965)
+        s
 
-glGetMaterialfv_3 :: (JavaObjectClass this_) => this_ -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetMaterialfv_3 object_ a1 a2 a3 = jmethod object_ "glGetMaterialfv_3" (\() -> (glGetMaterialfv_3_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glGetMaterialfv_3_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetMaterialfv_3_super object_ a1 a2 a3 = (glGetMaterialfv_3_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_STENCIL_PASS_DEPTH_PASS : JR.M
+jstatic_GL_STENCIL_PASS_DEPTH_PASS s =
+    JR.static "GL11" jclinit "GL_STENCIL_PASS_DEPTH_PASS"
+        (JR.int 2966)
+        s
 
-glGetMaterialfv_3_impl :: GL11 -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetMaterialfv_3_impl this face pname params = javaAbstractMethod "glGetMaterialfv"
 
+jstatic_GL_STENCIL_REF : JR.M
+jstatic_GL_STENCIL_REF s =
+    JR.static "GL11" jclinit "GL_STENCIL_REF"
+        (JR.int 2967)
+        s
 
-glGetTexEnviv :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glGetTexEnviv object_ a1 a2 a3 a4 = jmethod object_ "glGetTexEnviv" (\() -> (glGetTexEnviv_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
 
-glGetTexEnviv_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glGetTexEnviv_super object_ a1 a2 a3 a4 = (glGetTexEnviv_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
+jstatic_GL_STENCIL_VALUE_MASK : JR.M
+jstatic_GL_STENCIL_VALUE_MASK s =
+    JR.static "GL11" jclinit "GL_STENCIL_VALUE_MASK"
+        (JR.int 2963)
+        s
 
-glGetTexEnviv_impl :: GL11 -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glGetTexEnviv_impl this env pname params offset = javaAbstractMethod "glGetTexEnviv"
 
+jstatic_GL_STENCIL_WRITEMASK : JR.M
+jstatic_GL_STENCIL_WRITEMASK s =
+    JR.static "GL11" jclinit "GL_STENCIL_WRITEMASK"
+        (JR.int 2968)
+        s
 
-glGetTexEnviv_3 :: (JavaObjectClass this_) => this_ -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glGetTexEnviv_3 object_ a1 a2 a3 = jmethod object_ "glGetTexEnviv_3" (\() -> (glGetTexEnviv_3_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glGetTexEnviv_3_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glGetTexEnviv_3_super object_ a1 a2 a3 = (glGetTexEnviv_3_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_SUBTRACT : JR.M
+jstatic_GL_SUBTRACT s =
+    JR.static "GL11" jclinit "GL_SUBTRACT"
+        (JR.int 34023)
+        s
 
-glGetTexEnviv_3_impl :: GL11 -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glGetTexEnviv_3_impl this env pname params = javaAbstractMethod "glGetTexEnviv"
 
+jstatic_GL_TEXTURE_BINDING_2D : JR.M
+jstatic_GL_TEXTURE_BINDING_2D s =
+    JR.static "GL11" jclinit "GL_TEXTURE_BINDING_2D"
+        (JR.int 32873)
+        s
 
-glGetTexParameterfv :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetTexParameterfv object_ a1 a2 a3 a4 = jmethod object_ "glGetTexParameterfv" (\() -> (glGetTexParameterfv_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
 
-glGetTexParameterfv_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetTexParameterfv_super object_ a1 a2 a3 a4 = (glGetTexParameterfv_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
+jstatic_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING : JR.M
+jstatic_GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING s =
+    JR.static "GL11" jclinit "GL_TEXTURE_COORD_ARRAY_BUFFER_BINDING"
+        (JR.int 34970)
+        s
 
-glGetTexParameterfv_impl :: GL11 -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glGetTexParameterfv_impl this target pname params offset = javaAbstractMethod "glGetTexParameterfv"
 
+jstatic_GL_TEXTURE_COORD_ARRAY_POINTER : JR.M
+jstatic_GL_TEXTURE_COORD_ARRAY_POINTER s =
+    JR.static "GL11" jclinit "GL_TEXTURE_COORD_ARRAY_POINTER"
+        (JR.int 32914)
+        s
 
-glGetTexParameterfv_3 :: (JavaObjectClass this_) => this_ -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetTexParameterfv_3 object_ a1 a2 a3 = jmethod object_ "glGetTexParameterfv_3" (\() -> (glGetTexParameterfv_3_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glGetTexParameterfv_3_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetTexParameterfv_3_super object_ a1 a2 a3 = (glGetTexParameterfv_3_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_TEXTURE_COORD_ARRAY_SIZE : JR.M
+jstatic_GL_TEXTURE_COORD_ARRAY_SIZE s =
+    JR.static "GL11" jclinit "GL_TEXTURE_COORD_ARRAY_SIZE"
+        (JR.int 32904)
+        s
 
-glGetTexParameterfv_3_impl :: GL11 -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glGetTexParameterfv_3_impl this target pname params = javaAbstractMethod "glGetTexParameterfv"
 
+jstatic_GL_TEXTURE_COORD_ARRAY_STRIDE : JR.M
+jstatic_GL_TEXTURE_COORD_ARRAY_STRIDE s =
+    JR.static "GL11" jclinit "GL_TEXTURE_COORD_ARRAY_STRIDE"
+        (JR.int 32906)
+        s
 
-glGetTexParameteriv :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glGetTexParameteriv object_ a1 a2 a3 a4 = jmethod object_ "glGetTexParameteriv" (\() -> (glGetTexParameteriv_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
 
-glGetTexParameteriv_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glGetTexParameteriv_super object_ a1 a2 a3 a4 = (glGetTexParameteriv_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
+jstatic_GL_TEXTURE_COORD_ARRAY_TYPE : JR.M
+jstatic_GL_TEXTURE_COORD_ARRAY_TYPE s =
+    JR.static "GL11" jclinit "GL_TEXTURE_COORD_ARRAY_TYPE"
+        (JR.int 32905)
+        s
 
-glGetTexParameteriv_impl :: GL11 -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glGetTexParameteriv_impl this target pname params offset = javaAbstractMethod "glGetTexParameteriv"
 
+jstatic_GL_TEXTURE_MATRIX : JR.M
+jstatic_GL_TEXTURE_MATRIX s =
+    JR.static "GL11" jclinit "GL_TEXTURE_MATRIX"
+        (JR.int 2984)
+        s
 
-glGetTexParameteriv_3 :: (JavaObjectClass this_) => this_ -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glGetTexParameteriv_3 object_ a1 a2 a3 = jmethod object_ "glGetTexParameteriv_3" (\() -> (glGetTexParameteriv_3_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glGetTexParameteriv_3_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glGetTexParameteriv_3_super object_ a1 a2 a3 = (glGetTexParameteriv_3_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES : JR.M
+jstatic_GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES s =
+    JR.static "GL11" jclinit "GL_TEXTURE_MATRIX_FLOAT_AS_INT_BITS_OES"
+        (JR.int 35215)
+        s
 
-glGetTexParameteriv_3_impl :: GL11 -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glGetTexParameteriv_3_impl this target pname params = javaAbstractMethod "glGetTexParameteriv"
 
+jstatic_GL_TEXTURE_STACK_DEPTH : JR.M
+jstatic_GL_TEXTURE_STACK_DEPTH s =
+    JR.static "GL11" jclinit "GL_TEXTURE_STACK_DEPTH"
+        (JR.int 2981)
+        s
 
-glIsBuffer :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-glIsBuffer object_ a1 = jmethod object_ "glIsBuffer" (\() -> (glIsBuffer_impl (javaCast object_ :: GL11))) () a1
 
-glIsBuffer_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-glIsBuffer_super object_ a1 = (glIsBuffer_impl (javaCast object_ :: GL11)) a1
+jstatic_GL_VERTEX_ARRAY_BUFFER_BINDING : JR.M
+jstatic_GL_VERTEX_ARRAY_BUFFER_BINDING s =
+    JR.static "GL11" jclinit "GL_VERTEX_ARRAY_BUFFER_BINDING"
+        (JR.int 34966)
+        s
 
-glIsBuffer_impl :: GL11 -> Int -> IO (Bool)
-glIsBuffer_impl this buffer = javaAbstractMethod "glIsBuffer"
 
+jstatic_GL_VERTEX_ARRAY_POINTER : JR.M
+jstatic_GL_VERTEX_ARRAY_POINTER s =
+    JR.static "GL11" jclinit "GL_VERTEX_ARRAY_POINTER"
+        (JR.int 32910)
+        s
 
-glIsEnabled :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-glIsEnabled object_ a1 = jmethod object_ "glIsEnabled" (\() -> (glIsEnabled_impl (javaCast object_ :: GL11))) () a1
 
-glIsEnabled_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-glIsEnabled_super object_ a1 = (glIsEnabled_impl (javaCast object_ :: GL11)) a1
+jstatic_GL_VERTEX_ARRAY_SIZE : JR.M
+jstatic_GL_VERTEX_ARRAY_SIZE s =
+    JR.static "GL11" jclinit "GL_VERTEX_ARRAY_SIZE"
+        (JR.int 32890)
+        s
 
-glIsEnabled_impl :: GL11 -> Int -> IO (Bool)
-glIsEnabled_impl this cap = javaAbstractMethod "glIsEnabled"
 
+jstatic_GL_VERTEX_ARRAY_STRIDE : JR.M
+jstatic_GL_VERTEX_ARRAY_STRIDE s =
+    JR.static "GL11" jclinit "GL_VERTEX_ARRAY_STRIDE"
+        (JR.int 32892)
+        s
 
-glIsTexture :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-glIsTexture object_ a1 = jmethod object_ "glIsTexture" (\() -> (glIsTexture_impl (javaCast object_ :: GL11))) () a1
 
-glIsTexture_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-glIsTexture_super object_ a1 = (glIsTexture_impl (javaCast object_ :: GL11)) a1
+jstatic_GL_VERTEX_ARRAY_TYPE : JR.M
+jstatic_GL_VERTEX_ARRAY_TYPE s =
+    JR.static "GL11" jclinit "GL_VERTEX_ARRAY_TYPE"
+        (JR.int 32891)
+        s
 
-glIsTexture_impl :: GL11 -> Int -> IO (Bool)
-glIsTexture_impl this texture = javaAbstractMethod "glIsTexture"
 
+jstatic_GL_VIEWPORT : JR.M
+jstatic_GL_VIEWPORT s =
+    JR.static "GL11" jclinit "GL_VIEWPORT"
+        (JR.int 2978)
+        s
 
-glNormalPointer :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-glNormalPointer object_ a1 a2 a3 = jmethod object_ "glNormalPointer" (\() -> (glNormalPointer_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glNormalPointer_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-glNormalPointer_super object_ a1 a2 a3 = (glNormalPointer_impl (javaCast object_ :: GL11)) a1 a2 a3
+jstatic_GL_WRITE_ONLY : JR.M
+jstatic_GL_WRITE_ONLY s =
+    JR.static "GL11" jclinit "GL_WRITE_ONLY"
+        (JR.int 35001)
+        s
 
-glNormalPointer_impl :: GL11 -> Int -> Int -> Int -> IO (())
-glNormalPointer_impl this type_ stride offset = javaAbstractMethod "glNormalPointer"
 
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
 
-glPointParameterf :: (JavaObjectClass this_) => this_ -> Int -> Float -> IO (())
-glPointParameterf object_ a1 a2 = jmethod object_ "glPointParameterf" (\() -> (glPointParameterf_impl (javaCast object_ :: GL11))) () a1 a2
 
-glPointParameterf_super :: (JavaObjectClass this_) => this_ -> Int -> Float -> IO (())
-glPointParameterf_super object_ a1 a2 = (glPointParameterf_impl (javaCast object_ :: GL11)) a1 a2
+type alias Model =
+    JR.Model
 
-glPointParameterf_impl :: GL11 -> Int -> Float -> IO (())
-glPointParameterf_impl this pname param = javaAbstractMethod "glPointParameterf"
 
+type alias Msg =
+    JR.Msg
 
-glPointParameterfv :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Float) -> Int -> IO (())
-glPointParameterfv object_ a1 a2 a3 = jmethod object_ "glPointParameterfv" (\() -> (glPointParameterfv_impl (javaCast object_ :: GL11))) () a1 a2 a3
 
-glPointParameterfv_super :: (JavaObjectClass this_) => this_ -> Int -> JavaArray (Float) -> Int -> IO (())
-glPointParameterfv_super object_ a1 a2 a3 = (glPointParameterfv_impl (javaCast object_ :: GL11)) a1 a2 a3
-
-glPointParameterfv_impl :: GL11 -> Int -> JavaArray (Float) -> Int -> IO (())
-glPointParameterfv_impl this pname params offset = javaAbstractMethod "glPointParameterfv"
-
-
-glPointParameterfv_2 :: (JavaObjectClass this_) => this_ -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glPointParameterfv_2 object_ a1 a2 = jmethod object_ "glPointParameterfv_2" (\() -> (glPointParameterfv_2_impl (javaCast object_ :: GL11))) () a1 a2
-
-glPointParameterfv_2_super :: (JavaObjectClass this_) => this_ -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glPointParameterfv_2_super object_ a1 a2 = (glPointParameterfv_2_impl (javaCast object_ :: GL11)) a1 a2
-
-glPointParameterfv_2_impl :: GL11 -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glPointParameterfv_2_impl this pname params = javaAbstractMethod "glPointParameterfv"
-
-
-glTexCoordPointer :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-glTexCoordPointer object_ a1 a2 a3 a4 = jmethod object_ "glTexCoordPointer" (\() -> (glTexCoordPointer_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
-
-glTexCoordPointer_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-glTexCoordPointer_super object_ a1 a2 a3 a4 = (glTexCoordPointer_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
-
-glTexCoordPointer_impl :: GL11 -> Int -> Int -> Int -> Int -> IO (())
-glTexCoordPointer_impl this size type_ stride offset = javaAbstractMethod "glTexCoordPointer"
-
-
-glTexEnvi :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-glTexEnvi object_ a1 a2 a3 = jmethod object_ "glTexEnvi" (\() -> (glTexEnvi_impl (javaCast object_ :: GL11))) () a1 a2 a3
-
-glTexEnvi_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-glTexEnvi_super object_ a1 a2 a3 = (glTexEnvi_impl (javaCast object_ :: GL11)) a1 a2 a3
-
-glTexEnvi_impl :: GL11 -> Int -> Int -> Int -> IO (())
-glTexEnvi_impl this target pname param = javaAbstractMethod "glTexEnvi"
-
-
-glTexEnviv :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glTexEnviv object_ a1 a2 a3 a4 = jmethod object_ "glTexEnviv" (\() -> (glTexEnviv_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
-
-glTexEnviv_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glTexEnviv_super object_ a1 a2 a3 a4 = (glTexEnviv_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
-
-glTexEnviv_impl :: GL11 -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glTexEnviv_impl this target pname params offset = javaAbstractMethod "glTexEnviv"
-
-
-glTexEnviv_3 :: (JavaObjectClass this_) => this_ -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glTexEnviv_3 object_ a1 a2 a3 = jmethod object_ "glTexEnviv_3" (\() -> (glTexEnviv_3_impl (javaCast object_ :: GL11))) () a1 a2 a3
-
-glTexEnviv_3_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glTexEnviv_3_super object_ a1 a2 a3 = (glTexEnviv_3_impl (javaCast object_ :: GL11)) a1 a2 a3
-
-glTexEnviv_3_impl :: GL11 -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glTexEnviv_3_impl this target pname params = javaAbstractMethod "glTexEnviv"
-
-
-glTexParameterfv :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glTexParameterfv object_ a1 a2 a3 a4 = jmethod object_ "glTexParameterfv" (\() -> (glTexParameterfv_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
-
-glTexParameterfv_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glTexParameterfv_super object_ a1 a2 a3 a4 = (glTexParameterfv_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
-
-glTexParameterfv_impl :: GL11 -> Int -> Int -> JavaArray (Float) -> Int -> IO (())
-glTexParameterfv_impl this target pname params offset = javaAbstractMethod "glTexParameterfv"
-
-
-glTexParameterfv_3 :: (JavaObjectClass this_) => this_ -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glTexParameterfv_3 object_ a1 a2 a3 = jmethod object_ "glTexParameterfv_3" (\() -> (glTexParameterfv_3_impl (javaCast object_ :: GL11))) () a1 a2 a3
-
-glTexParameterfv_3_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glTexParameterfv_3_super object_ a1 a2 a3 = (glTexParameterfv_3_impl (javaCast object_ :: GL11)) a1 a2 a3
-
-glTexParameterfv_3_impl :: GL11 -> Int -> Int -> FloatBuffer.FloatBuffer -> IO (())
-glTexParameterfv_3_impl this target pname params = javaAbstractMethod "glTexParameterfv"
-
-
-glTexParameteri :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-glTexParameteri object_ a1 a2 a3 = jmethod object_ "glTexParameteri" (\() -> (glTexParameteri_impl (javaCast object_ :: GL11))) () a1 a2 a3
-
-glTexParameteri_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-glTexParameteri_super object_ a1 a2 a3 = (glTexParameteri_impl (javaCast object_ :: GL11)) a1 a2 a3
-
-glTexParameteri_impl :: GL11 -> Int -> Int -> Int -> IO (())
-glTexParameteri_impl this target pname param = javaAbstractMethod "glTexParameteri"
-
-
-glTexParameteriv :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glTexParameteriv object_ a1 a2 a3 a4 = jmethod object_ "glTexParameteriv" (\() -> (glTexParameteriv_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
-
-glTexParameteriv_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glTexParameteriv_super object_ a1 a2 a3 a4 = (glTexParameteriv_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
-
-glTexParameteriv_impl :: GL11 -> Int -> Int -> JavaArray (Int) -> Int -> IO (())
-glTexParameteriv_impl this target pname params offset = javaAbstractMethod "glTexParameteriv"
-
-
-glTexParameteriv_3 :: (JavaObjectClass this_) => this_ -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glTexParameteriv_3 object_ a1 a2 a3 = jmethod object_ "glTexParameteriv_3" (\() -> (glTexParameteriv_3_impl (javaCast object_ :: GL11))) () a1 a2 a3
-
-glTexParameteriv_3_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glTexParameteriv_3_super object_ a1 a2 a3 = (glTexParameteriv_3_impl (javaCast object_ :: GL11)) a1 a2 a3
-
-glTexParameteriv_3_impl :: GL11 -> Int -> Int -> IntBuffer.IntBuffer -> IO (())
-glTexParameteriv_3_impl this target pname params = javaAbstractMethod "glTexParameteriv"
-
-
-glVertexPointer :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-glVertexPointer object_ a1 a2 a3 a4 = jmethod object_ "glVertexPointer" (\() -> (glVertexPointer_impl (javaCast object_ :: GL11))) () a1 a2 a3 a4
-
-glVertexPointer_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> Int -> IO (())
-glVertexPointer_super object_ a1 a2 a3 a4 = (glVertexPointer_impl (javaCast object_ :: GL11)) a1 a2 a3 a4
-
-glVertexPointer_impl :: GL11 -> Int -> Int -> Int -> Int -> IO (())
-glVertexPointer_impl this size type_ stride offset = javaAbstractMethod "glVertexPointer"
-
+update : Msg -> Model -> Model
+update =
+    JR.update
 

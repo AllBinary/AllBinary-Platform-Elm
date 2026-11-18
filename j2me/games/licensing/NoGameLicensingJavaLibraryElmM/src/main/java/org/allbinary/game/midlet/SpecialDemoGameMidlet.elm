@@ -1,110 +1,96 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.midlet
-module SpecialDemoGameMidlet (module SpecialDemoGameMidlet, module DemoGameMidlet) where
+module Org.Allbinary.Game.Midlet.SpecialDemoGameMidlet exposing (..)
 
-import DemoGameMidlet hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, initView, initView_super, initView_impl, preInit, preInit_super, preInit_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LicenseLoadingType -- same package or java.lang
-import qualified LicensedDemoSetupFactory -- same package or java.lang
-import qualified LicenseCheckRunnableFactory -- same package or java.lang
-import qualified ClientInformationFactory -- org.allbinary.logic.system.security.licensing.ClientInformationFactory
-import qualified LicenseServerInitFileUtil -- org.allbinary.logic.system.security.licensing.LicenseServerInitFileUtil
-import qualified DemoGameMidlet
+{-| Generated Code Do Not Modify package org.allbinary.game.midlet
+-}
 
-data SpecialDemoGameMidlet = SpecialDemoGameMidlet
-    { header_ :: JavaHeader
-    , base :: DemoGameMidlet.DemoGameMidlet
-    }
-
-instance JavaNull SpecialDemoGameMidlet where
-    javaNull = javaNullRecord "SpecialDemoGameMidlet"
-
-instance JavaEquals SpecialDemoGameMidlet where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SpecialDemoGameMidlet where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SpecialDemoGameMidlet where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO SpecialDemoGameMidlet
-newRecord_ = do
-    base <- DemoGameMidlet.newRecord_
-    let header_ = base.header_
-    let this = SpecialDemoGameMidlet header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "initView" (\() -> initView_impl this)
-    jregisterMethod header_ "preInit" (\() -> preInit_impl this)
-    pure this
-
-initFields_ :: SpecialDemoGameMidlet -> IO ()
-initFields_ this = do
-    pure ()
-
-new_4 :: ClientInformationFactory.ClientInformationFactory -> LicenseLoadingType.LicenseLoadingType -> LicensedDemoSetupFactory.LicensedDemoSetupFactory -> LicenseCheckRunnableFactory.LicenseCheckRunnableFactory -> IO SpecialDemoGameMidlet
-new_4 clientInformationFactory licenseLoadingType demoSetupFactory licenseCheckRunnableFactory = do
-    this <- newRecord_
-    init_4 this clientInformationFactory licenseLoadingType demoSetupFactory licenseCheckRunnableFactory
-    pure this
-
-init_4 :: SpecialDemoGameMidlet -> ClientInformationFactory.ClientInformationFactory -> LicenseLoadingType.LicenseLoadingType -> LicensedDemoSetupFactory.LicensedDemoSetupFactory -> LicenseCheckRunnableFactory.LicenseCheckRunnableFactory -> IO ()
-init_4 this clientInformationFactory licenseLoadingType demoSetupFactory licenseCheckRunnableFactory = do
-        DemoGameMidlet.init_1 this.base (clientInformationFactory)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Game.Midlet.DemoGameMidlet as DemoGameMidlet
+import Org.Allbinary.Logic.System.Security.Licensing.LicenseServerInitFileUtil as LicenseServerInitFileUtil
 
 
-initView :: (JavaObjectClass this_) => this_ -> IO (())
-initView object_ = jmethod object_ "initView" (\() -> (initView_impl (javaCast object_ :: SpecialDemoGameMidlet))) ()
-
-initView_super :: (JavaObjectClass this_) => this_ -> IO (())
-initView_super object_ = (initView_impl (javaCast object_ :: SpecialDemoGameMidlet))
-
-initView_impl :: SpecialDemoGameMidlet -> IO (())
-initView_impl this = do
-        pure ()
+jclass : String
+jclass =
+    "SpecialDemoGameMidlet"
 
 
-preInit :: (JavaObjectClass this_) => this_ -> IO (())
-preInit object_ = jmethod object_ "preInit" (\() -> (preInit_impl (javaCast object_ :: SpecialDemoGameMidlet))) ()
+jchain : List String
+jchain =
+    [ "SpecialDemoGameMidlet" ]
+        ++ DemoGameMidlet.jchain
 
-preInit_super :: (JavaObjectClass this_) => this_ -> IO (())
-preInit_super object_ = (preInit_impl (javaCast object_ :: SpecialDemoGameMidlet))
 
-preInit_impl :: SpecialDemoGameMidlet -> IO (())
-preInit_impl this = do
-        Control.Monad.void (LicenseServerInitFileUtil.init ((jio (LicenseServerInitFileUtil.new_))))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    DemoGameMidlet.jfields ++ []
 
+
+jvtable =
+    JR.vtable
+        [ ( "initView_0", jm_initView_0 )
+        , ( "preInit_0", jm_preInit_0 ) ]
+        DemoGameMidlet.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SpecialDemoGameMidlet"
+        [ ( "jm_initView_0", jm_initView_0 ), ( "jm_preInit_0", jm_preInit_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "clientInformationFactory", "" ), ( "licenseLoadingType", "" ), ( "demoSetupFactory", "" ), ( "licenseCheckRunnableFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect DemoGameMidlet.jinit_1 JR.this [ (JR.local "clientInformationFactory") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_initView_0 : JR.Method
+jm_initView_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_preInit_0 : JR.Method
+jm_preInit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "init_0" (JR.new LicenseServerInitFileUtil.jnew_0 []) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

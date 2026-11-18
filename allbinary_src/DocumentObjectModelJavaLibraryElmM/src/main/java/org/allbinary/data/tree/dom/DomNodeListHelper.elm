@@ -1,93 +1,87 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.data.tree.dom
-module DomNodeListHelper where
+module Org.Allbinary.Data.Tree.Dom.DomNodeListHelper exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DomNodeHelper -- same package or java.lang
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
-import qualified StdUtil -- org.allbinary.logic.StdUtil
-import qualified NodeList -- org.w3c.dom.NodeList
+{-| Generated Code Do Not Modify package org.allbinary.data.tree.dom
+-}
 
-data DomNodeListHelper = DomNodeListHelper
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull DomNodeListHelper where
-    javaNull = javaNullRecord "DomNodeListHelper"
-
-instance JavaEquals DomNodeListHelper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq DomNodeListHelper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass DomNodeListHelper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO DomNodeListHelper
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = DomNodeListHelper header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: DomNodeListHelper -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO DomNodeListHelper
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: DomNodeListHelper -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Data.Tree.Dom.DomNodeHelper as DomNodeHelper
 
 
-getVector :: NodeList.NodeList -> IO (BasicArrayList.BasicArrayList)
-getVector nodeList = do
-        vector <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-        size <- (NodeList.getLength nodeList)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            Control.Monad.void (BasicArrayList.add vector (jio (DomNodeHelper.getTextNodeValue (jio (NodeList.item nodeList index)))))
-        pure (vector)
+jclass : String
+jclass =
+    "DomNodeListHelper"
 
+
+jchain : List String
+jchain =
+    [ "DomNodeListHelper" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getVector_1", jm_getVector_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DomNodeListHelper"
+        [ ( "jm_getVector_1", jm_getVector_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getVector_1 : JR.Method
+jm_getVector_1 jheap jthis jargs =
+    JR.method [ ( "nodeList", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "vector" "" (JR.new BasicArrayListD.jnew_0 []), 
+                    JR.declare "size" "I" (JR.invoke "getLength_0" (JR.local "nodeList") []), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66344 -> (JR.setLocal "index" "I" (JR.lit jwN66344))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.invoke "add_1" (JR.local "vector") [ (JR.callStatic DomNodeHelper.jm_getTextNodeValue_1 [ (JR.invoke "item_1" (JR.local "nodeList") [ (JR.local "index") ]) ]) ]) ]) ], 
+                    JR.return (JR.local "vector") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

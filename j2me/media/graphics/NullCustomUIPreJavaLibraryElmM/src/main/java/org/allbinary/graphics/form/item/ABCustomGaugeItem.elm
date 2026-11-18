@@ -1,75 +1,84 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
-module ABCustomGaugeItem (module ABCustomGaugeItem, module ABCustomItem) where
+module Org.Allbinary.Graphics.Form.Item.ABCustomGaugeItem exposing (..)
 
-import ABCustomItem hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, nULL_GAUGE_ITEM)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified ABCustomItem
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form.item
+-}
 
-data ABCustomGaugeItem = ABCustomGaugeItem
-    { header_ :: JavaHeader
-    , base :: ABCustomItem.ABCustomItem
-    }
+import JR
+import Org.Allbinary.Graphics.Form.Item.ABCustomItem as ABCustomItem
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
-instance JavaNull ABCustomGaugeItem where
-    javaNull = javaNullRecord "ABCustomGaugeItem"
 
-instance JavaEquals ABCustomGaugeItem where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "ABCustomGaugeItem"
 
-instance Eq ABCustomGaugeItem where
-    (==) = jrecordEquals
 
-instance JavaObjectClass ABCustomGaugeItem where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "ABCustomGaugeItem" ]
+        ++ ABCustomItem.jchain
 
-nULL_GAUGE_ITEM :: ABCustomGaugeItem
-{-# NOINLINE nULL_GAUGE_ITEM #-}
-nULL_GAUGE_ITEM = unsafePerformIO ((new_5 (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) 1 0 (jget ((jio (BasicColorFactory.getInstance))).bLACK) (jget ((jio (BasicColorFactory.getInstance))).wHITE)))
 
-newRecord_ :: IO ABCustomGaugeItem
-newRecord_ = do
-    base <- ABCustomItem.newRecord_
-    let header_ = base.header_
-    let this = ABCustomGaugeItem header_ base
-    jregisterLevel header_ this
-    pure this
+jfields : List ( String, JR.JValue )
+jfields =
+    ABCustomItem.jfields ++ []
 
-initFields_ :: ABCustomGaugeItem -> IO ()
-initFields_ this = do
-    pure ()
 
-new_5 :: String -> Int -> Int -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ABCustomGaugeItem
-new_5 label maxValue initialValue backgroundBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_5 this label maxValue initialValue backgroundBasicColor foregroundBasicColor
-    pure this
+jvtable =
+    JR.vtable
+        []
+        ABCustomItem.jvtable
 
-init_5 :: ABCustomGaugeItem -> String -> Int -> Int -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_5 this label maxValue initialValue backgroundBasicColor foregroundBasicColor = do
-        ABCustomItem.init_3 this.base (label) (backgroundBasicColor) (foregroundBasicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
 
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ABCustomGaugeItem"
+        [ ( "jnew_5", jnew_5 ), ( "jinit_5", jinit_5 ) ]
+        [ ( "jstatic_NULL_GAUGE_ITEM", jstatic_NULL_GAUGE_ITEM ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_GAUGE_ITEM : JR.M
+jstatic_NULL_GAUGE_ITEM s =
+    JR.static "ABCustomGaugeItem" jclinit "NULL_GAUGE_ITEM"
+        (JR.new jnew_5 [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.int 1), (JR.int 0), (JR.field "BLACK" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ])
+        s
+
+
+jinit_5 : JR.Method
+jinit_5 jheap jthis jargs =
+    JR.method [ ( "label", "" ), ( "maxValue", "I" ), ( "initialValue", "I" ), ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect ABCustomItem.jinit_3 JR.this [ (JR.local "label"), (JR.local "backgroundBasicColor"), (JR.local "foregroundBasicColor") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_5 : JR.Method
+jnew_5 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_5 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

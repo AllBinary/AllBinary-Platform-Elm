@@ -1,106 +1,100 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.score
-module ScoreHudWidget (module ScoreHudWidget, module NumberStringHud) where
+module Org.Allbinary.Game.Ag.Layer.Hud.Basic.Score.ScoreHudWidget exposing (..)
 
-import NumberStringHud hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, updateMeasurement, updateMeasurement_super, updateMeasurement_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified NumberStringHud -- org.allbinary.game.ag.layer.hud.basic.NumberStringHud
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.hud.basic.score
+-}
 
-data ScoreHudWidget = ScoreHudWidget
-    { header_ :: JavaHeader
-    , base :: NumberStringHud.NumberStringHud
-    }
-
-instance JavaNull ScoreHudWidget where
-    javaNull = javaNullRecord "ScoreHudWidget"
-
-instance JavaEquals ScoreHudWidget where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ScoreHudWidget where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ScoreHudWidget where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO ScoreHudWidget
-newRecord_ = do
-    base <- NumberStringHud.newRecord_
-    let header_ = base.header_
-    let this = ScoreHudWidget header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    pure this
-
-initFields_ :: ScoreHudWidget -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Game.Ag.Layer.Hud.Basic.NumberStringHud as NumberStringHud
 
 
--- throws Exception
-getInstance :: Int -> Int -> Int -> IO (ScoreHudWidget)
-getInstance maxscore location direction = do
-        (new_5 maxscore location direction 2 (jget ((jio (BasicColorFactory.getInstance))).gREY))
-
-new_5 :: Int -> Int -> Int -> Int -> BasicColor.BasicColor -> IO ScoreHudWidget
-new_5 maxscore location direction bufferZone basicColor = do
-    this <- newRecord_
-    init_5 this maxscore location direction bufferZone basicColor
-    pure this
-
-init_5 :: ScoreHudWidget -> Int -> Int -> Int -> Int -> BasicColor.BasicColor -> IO ()
-init_5 this maxscore location direction bufferZone basicColor = do
-        NumberStringHud.init_6 this.base ("Pts ") (maxscore) (location) (direction) (bufferZone) (basicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).base.updateMaxHeight (14)
-        pure ()
+jclass : String
+jclass =
+    "ScoreHudWidget"
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: ScoreHudWidget))) () a1
+jchain : List String
+jchain =
+    [ "ScoreHudWidget" ]
+        ++ NumberStringHud.jchain
 
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: ScoreHudWidget)) a1
 
-updateMeasurement_impl :: ScoreHudWidget -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        jset (this).base.updateMaxWidth (((jio (Font.getSize font)) * 5))
-        Control.Monad.void (NumberStringHud.updateMeasurement_super this.base graphics)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    NumberStringHud.jfields ++ []
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_3", jm_getInstance_3 )
+        , ( "updateMeasurement_1", jm_updateMeasurement_1 ) ]
+        NumberStringHud.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ScoreHudWidget"
+        [ ( "jm_getInstance_3", jm_getInstance_3 ), ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jnew_5", jnew_5 ), ( "jinit_5", jinit_5 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_5 : JR.Method
+jinit_5 jheap jthis jargs =
+    JR.method [ ( "maxscore", "I" ), ( "location", "I" ), ( "direction", "I" ), ( "bufferZone", "I" ), ( "basicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect NumberStringHud.jinit_6 JR.this [ (JR.str "Pts "), (JR.local "maxscore"), (JR.local "location"), (JR.local "direction"), (JR.local "bufferZone"), (JR.local "basicColor") ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "updateMaxHeight" "" JR.this (JR.int 14)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_5 : JR.Method
+jnew_5 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_5 jheap jthis jargs
+
+
+jm_getInstance_3 : JR.Method
+jm_getInstance_3 jheap jthis jargs =
+    JR.method [ ( "maxscore", "I" ), ( "location", "I" ), ( "direction", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_5 [ (JR.local "maxscore"), (JR.local "location"), (JR.local "direction"), (JR.int 2), (JR.field "GREY" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "updateMaxWidth" "" JR.this (JR.map2 JR.mul (JR.invoke "getSize_0" (JR.local "font") []) (JR.int 5))), 
+                    JR.exec (JR.callVia NumberStringHud.jvtable "updateMeasurement_1" JR.this [ (JR.local "graphics") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

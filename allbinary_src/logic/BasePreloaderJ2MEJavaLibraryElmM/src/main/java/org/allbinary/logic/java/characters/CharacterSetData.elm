@@ -1,4 +1,4 @@
-module CharacterSetData exposing (..)
+module Org.Allbinary.Logic.Java.Characters.CharacterSetData exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.java.characters
 -}

@@ -1,109 +1,96 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.context.modules.storefront
-module StoreFrontsData where
+module Org.Allbinary.Business.Context.Modules.Storefront.StoreFrontsData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.context.modules.storefront
+-}
 
-data StoreFrontsData = StoreFrontsData
-    { header_ :: JavaHeader
-    , tYPE :: IORef (String)
-    , rETAIL :: IORef (String)
-    , sUBSCRIPTION :: IORef (String)
-    , aUCTION :: IORef (String)
-    , nEWS :: IORef (String)
-    , bLOG :: IORef (String)
-    , fORUM :: IORef (String)
-    }
-
-instance JavaNull StoreFrontsData where
-    javaNull = javaNullRecord "StoreFrontsData"
-
-instance JavaEquals StoreFrontsData where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq StoreFrontsData where
-    (==) = jrecordEquals
-
-instance JavaObjectClass StoreFrontsData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: StoreFrontsData
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO StoreFrontsData
-newRecord_ = do
-    header_ <- newJavaHeader
-    tYPE <- newIORef ""
-    rETAIL <- newIORef ""
-    sUBSCRIPTION <- newIORef ""
-    aUCTION <- newIORef ""
-    nEWS <- newIORef ""
-    bLOG <- newIORef ""
-    fORUM <- newIORef ""
-    let this = StoreFrontsData header_ tYPE rETAIL sUBSCRIPTION aUCTION nEWS bLOG fORUM
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: StoreFrontsData -> IO ()
-initFields_ this = do
-    jset this.tYPE ("STOREFRONTS_TYPE")
-    jset this.rETAIL ("STOREFRONTS_RETAIL")
-    jset this.sUBSCRIPTION ("STOREFRONTS_SUBSCRIPTION")
-    jset this.aUCTION ("STOREFRONTS_AUCTION")
-    jset this.nEWS ("STOREFRONTS_NEWS")
-    jset this.bLOG ("STOREFRONTS_BLOG")
-    jset this.fORUM ("STOREFRONTS_FORUM")
-    pure ()
-
-new_ :: IO StoreFrontsData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: StoreFrontsData -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (StoreFrontsData)
-getInstance = do
-        pure (StoreFrontsData.instance_)
 
+jclass : String
+jclass =
+    "StoreFrontsData"
+
+
+jchain : List String
+jchain =
+    [ "StoreFrontsData" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "TYPE", JR.defaultOf "" ), ( "RETAIL", JR.defaultOf "" ), ( "SUBSCRIPTION", JR.defaultOf "" ), ( "AUCTION", JR.defaultOf "" ), ( "NEWS", JR.defaultOf "" ), ( "BLOG", JR.defaultOf "" ), ( "FORUM", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "StoreFrontsData"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "StoreFrontsData" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "TYPE" "" JR.this (JR.str "STOREFRONTS_TYPE")),
+                JR.exec (JR.setField "RETAIL" "" JR.this (JR.str "STOREFRONTS_RETAIL")),
+                JR.exec (JR.setField "SUBSCRIPTION" "" JR.this (JR.str "STOREFRONTS_SUBSCRIPTION")),
+                JR.exec (JR.setField "AUCTION" "" JR.this (JR.str "STOREFRONTS_AUCTION")),
+                JR.exec (JR.setField "NEWS" "" JR.this (JR.str "STOREFRONTS_NEWS")),
+                JR.exec (JR.setField "BLOG" "" JR.this (JR.str "STOREFRONTS_BLOG")),
+                JR.exec (JR.setField "FORUM" "" JR.this (JR.str "STOREFRONTS_FORUM")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

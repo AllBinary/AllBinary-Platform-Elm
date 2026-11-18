@@ -1,179 +1,123 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.commands
-module GameCommandsFactory where
+module Org.Allbinary.Game.Commands.GameCommandsFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified CanvasStrings -- org.allbinary.graphics.displayable.CanvasStrings
-import qualified NullUtil -- org.allbinary.logic.NullUtil
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.game.commands
+-}
 
-data GameCommandsFactory = GameCommandsFactory
-    { header_ :: JavaHeader
-    , tOGGLE_FULLSCREEN :: IORef (Command.Command)
-    , tOGGLE_KEYBOARD :: IORef (Command.Command)
-    , sET_MENU_DISPLAYABLE :: IORef (Command.Command)
-    , aPPLICATION_UPDATE :: IORef (Command.Command)
-    , dISPLAY_ABOUT :: IORef (Command.Command)
-    , oPEN_WEB_URL :: IORef (Command.Command)
-    , cLOSE_OPTIONS :: IORef (Command.Command)
-    , dISPLAY_OPTIONS :: IORef (Command.Command)
-    , sTART_TRACE :: IORef (Command.Command)
-    , sTOP_TRACE :: IORef (Command.Command)
-    , dEFAULT_OPTIONS :: IORef (Command.Command)
-    , sHOW_GAME_CANVAS :: IORef (Command.Command)
-    , cLOSE_AND_SHOW_GAME_CANVAS :: IORef (Command.Command)
-    , qUIT_COMMAND :: IORef (Command.Command)
-    , rESTART_COMMAND :: IORef (Command.Command)
-    , dISPLAY_SAVE_FORM :: IORef (Command.Command)
-    , sAVE :: IORef (Command.Command)
-    , dISPLAY_LOAD_FORM :: IORef (Command.Command)
-    , lOAD_FILE :: IORef (Command.Command)
-    , dELETE_FILE :: IORef (Command.Command)
-    , eXIT_COMMAND :: IORef (Command.Command)
-    , eXIT_WITHOUT_PROGRESS_COMMAND :: IORef (Command.Command)
-    , sTART_COMMAND :: IORef (Command.Command)
-    , cONTINUE_COMMAND :: IORef (Command.Command)
-    , sELECT_COMMAND :: IORef (Command.Command)
-    , fEATURE_UPDATE :: IORef (Command.Command)
-    , bUY_COMMAND :: IORef (Command.Command)
-    }
-
-instance JavaNull GameCommandsFactory where
-    javaNull = javaNullRecord "GameCommandsFactory"
-
-instance JavaEquals GameCommandsFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameCommandsFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameCommandsFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameCommandsFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    tOGGLE_FULLSCREEN <- newIORef javaNull
-    tOGGLE_KEYBOARD <- newIORef javaNull
-    sET_MENU_DISPLAYABLE <- newIORef javaNull
-    aPPLICATION_UPDATE <- newIORef javaNull
-    dISPLAY_ABOUT <- newIORef javaNull
-    oPEN_WEB_URL <- newIORef javaNull
-    cLOSE_OPTIONS <- newIORef javaNull
-    dISPLAY_OPTIONS <- newIORef javaNull
-    sTART_TRACE <- newIORef javaNull
-    sTOP_TRACE <- newIORef javaNull
-    dEFAULT_OPTIONS <- newIORef javaNull
-    sHOW_GAME_CANVAS <- newIORef javaNull
-    cLOSE_AND_SHOW_GAME_CANVAS <- newIORef javaNull
-    qUIT_COMMAND <- newIORef javaNull
-    rESTART_COMMAND <- newIORef javaNull
-    dISPLAY_SAVE_FORM <- newIORef javaNull
-    sAVE <- newIORef javaNull
-    dISPLAY_LOAD_FORM <- newIORef javaNull
-    lOAD_FILE <- newIORef javaNull
-    dELETE_FILE <- newIORef javaNull
-    eXIT_COMMAND <- newIORef javaNull
-    eXIT_WITHOUT_PROGRESS_COMMAND <- newIORef javaNull
-    sTART_COMMAND <- newIORef javaNull
-    cONTINUE_COMMAND <- newIORef javaNull
-    sELECT_COMMAND <- newIORef javaNull
-    fEATURE_UPDATE <- newIORef javaNull
-    bUY_COMMAND <- newIORef javaNull
-    let this = GameCommandsFactory header_ tOGGLE_FULLSCREEN tOGGLE_KEYBOARD sET_MENU_DISPLAYABLE aPPLICATION_UPDATE dISPLAY_ABOUT oPEN_WEB_URL cLOSE_OPTIONS dISPLAY_OPTIONS sTART_TRACE sTOP_TRACE dEFAULT_OPTIONS sHOW_GAME_CANVAS cLOSE_AND_SHOW_GAME_CANVAS qUIT_COMMAND rESTART_COMMAND dISPLAY_SAVE_FORM sAVE dISPLAY_LOAD_FORM lOAD_FILE dELETE_FILE eXIT_COMMAND eXIT_WITHOUT_PROGRESS_COMMAND sTART_COMMAND cONTINUE_COMMAND sELECT_COMMAND fEATURE_UPDATE bUY_COMMAND
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: GameCommandsFactory -> IO ()
-initFields_ this = do
-    jset this.tOGGLE_FULLSCREEN =<< (Command.new_4 "Toggle FullScreen" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.tOGGLE_KEYBOARD =<< (Command.new_4 "Keyboard" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.sET_MENU_DISPLAYABLE =<< (Command.new_4 "Set Menu Displayable" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.aPPLICATION_UPDATE =<< (Command.new_4 (jget ((jio (CommonStrings.getInstance))).uPDATE) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.dISPLAY_ABOUT =<< (Command.new_4 (jget ((jio (CanvasStrings.getInstance))).aBOUT) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 2)
-    jset this.oPEN_WEB_URL =<< (Command.new_4 "Open Web URL" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 2)
-    jset this.cLOSE_OPTIONS =<< (Command.new_4 "Back" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.dISPLAY_OPTIONS =<< (Command.new_4 (jget ((jio (CanvasStrings.getInstance))).oPTIONS) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 2)
-    jset this.sTART_TRACE =<< (Command.new_4 "Start Trace" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.sTOP_TRACE =<< (Command.new_4 "Stop Trace" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.dEFAULT_OPTIONS =<< (Command.new_4 "Default" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.sHOW_GAME_CANVAS =<< (Command.new_4 "Back to Game" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.cLOSE_AND_SHOW_GAME_CANVAS =<< (Command.new_4 "Back" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.qUIT_COMMAND =<< (Command.new_4 "Quit" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sTOP) 1)
-    jset this.rESTART_COMMAND =<< (Command.new_4 "Restart" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 0)
-    jset this.dISPLAY_SAVE_FORM =<< (Command.new_4 "Save To" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 3)
-    jset this.sAVE =<< (Command.new_4 "Save" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 3)
-    jset this.dISPLAY_LOAD_FORM =<< (Command.new_4 "Load" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 3)
-    jset this.lOAD_FILE =<< (Command.new_4 "Load File" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 3)
-    jset this.dELETE_FILE =<< (Command.new_4 "Delete File" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.eXIT_COMMAND =<< (Command.new_4 "Exit" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.eXIT) 2)
-    jset this.eXIT_WITHOUT_PROGRESS_COMMAND =<< (Command.new_4 "Exit Without Progress" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.eXIT) 2)
-    jset this.sTART_COMMAND =<< (Command.new_4 (jget ((jio (CommonStrings.getInstance))).sTART) (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.cONTINUE_COMMAND =<< (Command.new_4 "Continue" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.sELECT_COMMAND =<< (Command.new_4 "Select" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.fEATURE_UPDATE =<< (Command.new_4 "Feature Update" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    jset this.bUY_COMMAND =<< (Command.new_4 "BUY" (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (Command.sCREEN) 1)
-    pure ()
+import JR
+import Org.Allbinary.Graphics.Displayable.CanvasStrings as CanvasStrings
+import Javax.Microedition.Lcdui.Command as Command
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Logic.NullUtil as NullUtil
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getInstance :: IO (GameCommandsFactory)
-getInstance = do
-        when ((jget GameCommandsFactory.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset GameCommandsFactory.instance_ (assignedValue)
-        pure ((javaCast (jget GameCommandsFactory.instance_) :: GameCommandsFactory))
+jclass : String
+jclass =
+    "GameCommandsFactory"
 
-new_ :: IO GameCommandsFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: GameCommandsFactory -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jchain : List String
+jchain =
+    [ "GameCommandsFactory" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "TOGGLE_FULLSCREEN", JR.defaultOf "" ), ( "TOGGLE_KEYBOARD", JR.defaultOf "" ), ( "SET_MENU_DISPLAYABLE", JR.defaultOf "" ), ( "APPLICATION_UPDATE", JR.defaultOf "" ), ( "DISPLAY_ABOUT", JR.defaultOf "" ), ( "OPEN_WEB_URL", JR.defaultOf "" ), ( "CLOSE_OPTIONS", JR.defaultOf "" ), ( "DISPLAY_OPTIONS", JR.defaultOf "" ), ( "START_TRACE", JR.defaultOf "" ), ( "STOP_TRACE", JR.defaultOf "" ), ( "DEFAULT_OPTIONS", JR.defaultOf "" ), ( "SHOW_GAME_CANVAS", JR.defaultOf "" ), ( "CLOSE_AND_SHOW_GAME_CANVAS", JR.defaultOf "" ), ( "QUIT_COMMAND", JR.defaultOf "" ), ( "RESTART_COMMAND", JR.defaultOf "" ), ( "DISPLAY_SAVE_FORM", JR.defaultOf "" ), ( "SAVE", JR.defaultOf "" ), ( "DISPLAY_LOAD_FORM", JR.defaultOf "" ), ( "LOAD_FILE", JR.defaultOf "" ), ( "DELETE_FILE", JR.defaultOf "" ), ( "EXIT_COMMAND", JR.defaultOf "" ), ( "EXIT_WITHOUT_PROGRESS_COMMAND", JR.defaultOf "" ), ( "START_COMMAND", JR.defaultOf "" ), ( "CONTINUE_COMMAND", JR.defaultOf "" ), ( "SELECT_COMMAND", JR.defaultOf "" ), ( "FEATURE_UPDATE", JR.defaultOf "" ), ( "BUY_COMMAND", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameCommandsFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "GameCommandsFactory" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "TOGGLE_FULLSCREEN" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Toggle FullScreen"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "TOGGLE_KEYBOARD" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Keyboard"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "SET_MENU_DISPLAYABLE" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Set Menu Displayable"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "APPLICATION_UPDATE" "" JR.this (JR.new Command.jnew_4 [ (JR.field "UPDATE" (JR.callStatic CommonStrings.jm_getInstance_0 [])), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "DISPLAY_ABOUT" "" JR.this (JR.new Command.jnew_4 [ (JR.field "ABOUT" (JR.callStatic CanvasStrings.jm_getInstance_0 [])), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 2) ])),
+                JR.exec (JR.setField "OPEN_WEB_URL" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Open Web URL"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 2) ])),
+                JR.exec (JR.setField "CLOSE_OPTIONS" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Back"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "DISPLAY_OPTIONS" "" JR.this (JR.new Command.jnew_4 [ (JR.field "OPTIONS" (JR.callStatic CanvasStrings.jm_getInstance_0 [])), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 2) ])),
+                JR.exec (JR.setField "START_TRACE" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Start Trace"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "STOP_TRACE" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Stop Trace"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "DEFAULT_OPTIONS" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Default"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "SHOW_GAME_CANVAS" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Back to Game"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "CLOSE_AND_SHOW_GAME_CANVAS" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Back"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "QUIT_COMMAND" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Quit"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_STOP, (JR.int 1) ])),
+                JR.exec (JR.setField "RESTART_COMMAND" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Restart"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 0) ])),
+                JR.exec (JR.setField "DISPLAY_SAVE_FORM" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Save To"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 3) ])),
+                JR.exec (JR.setField "SAVE" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Save"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 3) ])),
+                JR.exec (JR.setField "DISPLAY_LOAD_FORM" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Load"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 3) ])),
+                JR.exec (JR.setField "LOAD_FILE" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Load File"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 3) ])),
+                JR.exec (JR.setField "DELETE_FILE" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Delete File"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "EXIT_COMMAND" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Exit"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_EXIT, (JR.int 2) ])),
+                JR.exec (JR.setField "EXIT_WITHOUT_PROGRESS_COMMAND" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Exit Without Progress"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_EXIT, (JR.int 2) ])),
+                JR.exec (JR.setField "START_COMMAND" "" JR.this (JR.new Command.jnew_4 [ (JR.field "START" (JR.callStatic CommonStrings.jm_getInstance_0 [])), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "CONTINUE_COMMAND" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Continue"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "SELECT_COMMAND" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Select"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "FEATURE_UPDATE" "" JR.this (JR.new Command.jnew_4 [ (JR.str "Feature Update"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                JR.exec (JR.setField "BUY_COMMAND" "" JR.this (JR.new Command.jnew_4 [ (JR.str "BUY"), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), Command.jstatic_SCREEN, (JR.int 1) ])),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "GameCommandsFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

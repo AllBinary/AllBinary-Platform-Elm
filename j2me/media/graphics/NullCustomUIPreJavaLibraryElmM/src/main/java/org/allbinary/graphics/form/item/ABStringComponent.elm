@@ -1,111 +1,111 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.form.item
-module ABStringComponent where
+module Org.Allbinary.Graphics.Form.Item.ABStringComponent exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
+{-| Generated Code Do Not Modify package org.allbinary.graphics.form.item
+-}
 
-data ABStringComponent = ABStringComponent
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull ABStringComponent where
-    javaNull = javaNullRecord "ABStringComponent"
-
-instance JavaEquals ABStringComponent where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ABStringComponent where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ABStringComponent where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_STRING_COMPONENT :: ABStringComponent
-{-# NOINLINE nULL_STRING_COMPONENT #-}
-nULL_STRING_COMPONENT = unsafePerformIO ((new_2 (jget ((jio (BasicColorFactory.getInstance))).bLACK) (jget ((jio (BasicColorFactory.getInstance))).wHITE)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ABStringComponent
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = ABStringComponent header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "getBackgroundBasicColor" (\() -> getBackgroundBasicColor_impl this)
-    jregisterMethod header_ "getForegroundBasicColor" (\() -> getForegroundBasicColor_impl this)
-    jregisterMethod header_ "setForegroundBasicColor" (\() -> setForegroundBasicColor_impl this)
-    pure this
-
-initFields_ :: ABStringComponent -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
 
 
-getBackgroundBasicColor :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBackgroundBasicColor object_ = jmethod object_ "getBackgroundBasicColor" (\() -> (getBackgroundBasicColor_impl (javaCast object_ :: ABStringComponent))) ()
-
-getBackgroundBasicColor_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getBackgroundBasicColor_super object_ = (getBackgroundBasicColor_impl (javaCast object_ :: ABStringComponent))
-
-getBackgroundBasicColor_impl :: ABStringComponent -> IO (BasicColor.BasicColor)
-getBackgroundBasicColor_impl this = do
-        pure ((jget ((jio (BasicColorFactory.getInstance))).wHITE))
-
-new_2 :: BasicColor.BasicColor -> BasicColor.BasicColor -> IO ABStringComponent
-new_2 backgroundBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_2 this backgroundBasicColor foregroundBasicColor
-    pure this
-
-init_2 :: ABStringComponent -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_2 this backgroundBasicColor foregroundBasicColor = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "ABStringComponent"
 
 
-getForegroundBasicColor :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getForegroundBasicColor object_ = jmethod object_ "getForegroundBasicColor" (\() -> (getForegroundBasicColor_impl (javaCast object_ :: ABStringComponent))) ()
-
-getForegroundBasicColor_super :: (JavaObjectClass this_) => this_ -> IO (BasicColor.BasicColor)
-getForegroundBasicColor_super object_ = (getForegroundBasicColor_impl (javaCast object_ :: ABStringComponent))
-
-getForegroundBasicColor_impl :: ABStringComponent -> IO (BasicColor.BasicColor)
-getForegroundBasicColor_impl this = do
-        pure ((jget ((jio (BasicColorFactory.getInstance))).wHITE))
+jchain : List String
+jchain =
+    [ "ABStringComponent" ]
 
 
-setForegroundBasicColor :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setForegroundBasicColor object_ a1 = jmethod object_ "setForegroundBasicColor" (\() -> (setForegroundBasicColor_impl (javaCast object_ :: ABStringComponent))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-setForegroundBasicColor_super :: (JavaObjectClass this_) => this_ -> BasicColor.BasicColor -> IO (())
-setForegroundBasicColor_super object_ a1 = (setForegroundBasicColor_impl (javaCast object_ :: ABStringComponent)) a1
 
-setForegroundBasicColor_impl :: ABStringComponent -> BasicColor.BasicColor -> IO (())
-setForegroundBasicColor_impl this foregroundBasicColor = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getBackgroundBasicColor_0", jm_getBackgroundBasicColor_0 )
+        , ( "getForegroundBasicColor_0", jm_getForegroundBasicColor_0 )
+        , ( "setForegroundBasicColor_1", jm_setForegroundBasicColor_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ABStringComponent"
+        [ ( "jm_getBackgroundBasicColor_0", jm_getBackgroundBasicColor_0 ), ( "jm_getForegroundBasicColor_0", jm_getForegroundBasicColor_0 ), ( "jm_setForegroundBasicColor_1", jm_setForegroundBasicColor_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        [ ( "jstatic_NULL_STRING_COMPONENT", jstatic_NULL_STRING_COMPONENT ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_STRING_COMPONENT : JR.M
+jstatic_NULL_STRING_COMPONENT s =
+    JR.static "ABStringComponent" jclinit "NULL_STRING_COMPONENT"
+        (JR.new jnew_2 [ (JR.field "BLACK" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])), (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ])
+        s
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "backgroundBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getBackgroundBasicColor_0 : JR.Method
+jm_getBackgroundBasicColor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getForegroundBasicColor_0 : JR.Method
+jm_getForegroundBasicColor_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setForegroundBasicColor_1 : JR.Method
+jm_setForegroundBasicColor_1 jheap jthis jargs =
+    JR.method [ ( "foregroundBasicColor", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,100 +1,98 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer
-module GameLayerUtil where
+module Org.Allbinary.Game.Layer.GameLayerUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified ViewPositionBase -- org.allbinary.view.ViewPositionBase
+{-| Generated Code Do Not Modify package org.allbinary.game.layer
+-}
 
-data GameLayerUtil = GameLayerUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull GameLayerUtil where
-    javaNull = javaNullRecord "GameLayerUtil"
-
-instance JavaEquals GameLayerUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameLayerUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameLayerUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GameLayerUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = GameLayerUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: GameLayerUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO GameLayerUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameLayerUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
 
 
-isOnScreen :: AllBinaryLayer.AllBinaryLayer -> IO (Bool)
-isOnScreen layer = do
-        displayInfo <- (DisplayInfoSingleton.getInstance)
-        viewPosition <- (AllBinaryLayer.getViewPosition layer)
-        (GameLayerUtil.isInside (jio (ViewPositionBase.getX viewPosition)) (jio (ViewPositionBase.getY viewPosition)) (jio (ViewPositionBase.getX2 viewPosition)) (jio (ViewPositionBase.getY2 viewPosition)) 0 0 (jio (DisplayInfoSingleton.getLastWidth displayInfo)) (jio (DisplayInfoSingleton.getLastHeight displayInfo)))
+jclass : String
+jclass =
+    "GameLayerUtil"
 
 
-isInside :: Int -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> IO (Bool)
-isInside rectX1 rectY1 rectX2 rectY2 rect2X1 rect2Y1 rect2X2 rect2Y2 = do
-    javaCatchReturn $ do
-        if ((((rectX1 > rect2X1) && (rectX2 < rect2X2)) && (rectY1 > rect2Y1)) && (rectY2 < rect2Y2)) then do
-            javaReturn (True)
-        else do
-            javaReturn (False)
+jchain : List String
+jchain =
+    [ "GameLayerUtil" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "isOnScreen_1", jm_isOnScreen_1 )
+        , ( "isInside_8", jm_isInside_8 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameLayerUtil"
+        [ ( "jm_isOnScreen_1", jm_isOnScreen_1 ), ( "jm_isInside_8", jm_isInside_8 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_isOnScreen_1 : JR.Method
+jm_isOnScreen_1 jheap jthis jargs =
+    JR.method [ ( "layer", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "displayInfo" "" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []), 
+                    JR.declare "viewPosition" "" (JR.invoke "getViewPosition_0" (JR.local "layer") []), 
+                    JR.return (JR.callStatic jm_isInside_8 [ (JR.invoke "getX_0" (JR.local "viewPosition") []), (JR.invoke "getY_0" (JR.local "viewPosition") []), (JR.invoke "getX2_0" (JR.local "viewPosition") []), (JR.invoke "getY2_0" (JR.local "viewPosition") []), (JR.int 0), (JR.int 0), (JR.invoke "getLastWidth_0" (JR.local "displayInfo") []), (JR.invoke "getLastHeight_0" (JR.local "displayInfo") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isInside_8 : JR.Method
+jm_isInside_8 jheap jthis jargs =
+    JR.method [ ( "rectX1", "I" ), ( "rectY1", "I" ), ( "rectX2", "I" ), ( "rectY2", "I" ), ( "rect2X1", "I" ), ( "rect2Y1", "I" ), ( "rect2X2", "I" ), ( "rect2Y2", "I" ) ] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.and (JR.and (JR.and (JR.map2 JR.greater (JR.local "rectX1") (JR.local "rect2X1")) (JR.map2 JR.less (JR.local "rectX2") (JR.local "rect2X2"))) (JR.map2 JR.greater (JR.local "rectY1") (JR.local "rect2Y1"))) (JR.map2 JR.less (JR.local "rectY2") (JR.local "rect2Y2"))) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

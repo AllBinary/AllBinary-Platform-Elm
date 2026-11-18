@@ -1,155 +1,141 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
-module TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory (module TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory, module BaseResourceAnimationInterfaceFactoryInterfaceFactory) where
+module Org.Allbinary.Input.Motion.Button.TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory exposing (..)
 
-import BaseResourceAnimationInterfaceFactoryInterfaceFactory hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, createFactory, createFactory_super, createFactory_impl, init, init_super, init_impl, initImageCache, initImageCache_super, initImageCache_impl, isLoadingLevel, isLoadingLevel_super, isLoadingLevel_impl, isFeature, isFeature_super, isFeature_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified BaseResourceAnimationInterfaceFactoryInterfaceFactory -- org.allbinary.animation.resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified ResourceLoadingLevelFactory -- org.allbinary.game.resource.ResourceLoadingLevelFactory
-import qualified OpenGLFeatureFactory -- org.allbinary.graphics.opengles.OpenGLFeatureFactory
-import qualified ImageCache -- org.allbinary.image.ImageCache
-import qualified ImageCacheFactory -- org.allbinary.image.ImageCacheFactory
-import qualified StdUtil -- org.allbinary.logic.StdUtil
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.button
+-}
 
-data TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory = TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory
-    { header_ :: JavaHeader
-    , base :: BaseResourceAnimationInterfaceFactoryInterfaceFactory.BaseResourceAnimationInterfaceFactoryInterfaceFactory
-    }
-
-instance JavaNull TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory where
-    javaNull = javaNullRecord "TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory"
-
-instance JavaEquals TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory
-newRecord_ = do
-    base <- BaseResourceAnimationInterfaceFactoryInterfaceFactory.newRecord_
-    let header_ = base.header_
-    let this = TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "initImageCache" (\() -> initImageCache_impl this)
-    jregisterMethod header_ "isLoadingLevel" (\() -> isLoadingLevel_impl this)
-    jregisterMethod header_ "isFeature" (\() -> isFeature_impl this)
-    pure this
-
-initFields_ :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory -> IO ()
-initFields_ this = do
-    pure ()
+import JR
+import Org.Allbinary.Animation.Resource.BaseResourceAnimationInterfaceFactoryInterfaceFactory as BaseResourceAnimationInterfaceFactoryInterfaceFactory
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Image.ImageCacheFactory as ImageCacheFactory
+import Org.Allbinary.Graphics.Opengles.OpenGLFeatureFactory as OpenGLFeatureFactory
+import Org.Allbinary.Game.Resource.ResourceLoadingLevelFactory as ResourceLoadingLevelFactory
+import Org.Allbinary.Logic.StdUtil as StdUtil
 
 
-createFactory :: IO (TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory)
-createFactory = do
-        (new_1 "TouchButton Animations")
-
-new_1 :: String -> IO TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory
-new_1 name = do
-    this <- newRecord_
-    init_1 this name
-    pure this
-
-init_1 :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory -> String -> IO ()
-init_1 this name = do
-        BaseResourceAnimationInterfaceFactoryInterfaceFactory.init_4 this.base (name) (jio (StdUtil.createHashtable ((jio (StdUtil.getInstance))))) (jio (StdUtil.createHashtable ((jio (StdUtil.getInstance))))) (jio (StdUtil.createHashtable ((jio (StdUtil.getInstance)))))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+jclass : String
+jclass =
+    "TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory"
 
 
--- throws Exception
-init :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-init object_ a1 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory))) () a1
-
-init_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-init_super object_ a1 = (init_impl (javaCast object_ :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory)) a1
-
-init_impl :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory -> Int -> IO (())
-init_impl this level = do
-        Control.Monad.void (TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory.initImageCache this (jio (ImageCacheFactory.getInstance)) level)
-        pure ()
+jchain : List String
+jchain =
+    [ "TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory" ]
+        ++ BaseResourceAnimationInterfaceFactoryInterfaceFactory.jchain
 
 
--- throws Exception
-initImageCache :: (JavaObjectClass this_) => this_ -> ImageCache.ImageCache -> Int -> IO (())
-initImageCache object_ a1 a2 = jmethod object_ "initImageCache" (\() -> (initImageCache_impl (javaCast object_ :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory))) () a1 a2
-
-initImageCache_super :: (JavaObjectClass this_) => this_ -> ImageCache.ImageCache -> Int -> IO (())
-initImageCache_super object_ a1 a2 = (initImageCache_impl (javaCast object_ :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory)) a1 a2
-
-initImageCache_impl :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory -> ImageCache.ImageCache -> Int -> IO (())
-initImageCache_impl this imageCache level = do
-    javaCatchReturn $ do
-        when (jio (BaseResourceAnimationInterfaceFactoryInterfaceFactory.isInitialized this)) $ do
-            javaReturn (())
-        Control.Monad.void (BaseResourceAnimationInterfaceFactoryInterfaceFactory.init_super this.base level)
-    pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BaseResourceAnimationInterfaceFactoryInterfaceFactory.jfields ++ []
 
 
-isLoadingLevel :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-isLoadingLevel object_ a1 = jmethod object_ "isLoadingLevel" (\() -> (isLoadingLevel_impl (javaCast object_ :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory))) () a1
-
-isLoadingLevel_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Bool)
-isLoadingLevel_super object_ a1 = (isLoadingLevel_impl (javaCast object_ :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory)) a1
-
-isLoadingLevel_impl :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory -> Int -> IO (Bool)
-isLoadingLevel_impl this level = do
-    javaCatchReturn $ do
-        resourceLoadingLevelFactory <- (ResourceLoadingLevelFactory.getInstance)
-        if (level == (jio (getLevel ((jget (resourceLoadingLevelFactory).lOAD_TOUCH))))) then do
-            javaReturn (True)
-        else do
-            javaReturn =<< (BaseResourceAnimationInterfaceFactoryInterfaceFactory.isLoadingLevel_super this.base level)
+jvtable =
+    JR.vtable
+        [ ( "createFactory_0", jm_createFactory_0 )
+        , ( "init_1", jm_init_1 )
+        , ( "initImageCache_2", jm_initImageCache_2 )
+        , ( "isLoadingLevel_1", jm_isLoadingLevel_1 )
+        , ( "isFeature_0", jm_isFeature_0 ) ]
+        BaseResourceAnimationInterfaceFactoryInterfaceFactory.jvtable
 
 
-isFeature :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isFeature object_ = jmethod object_ "isFeature" (\() -> (isFeature_impl (javaCast object_ :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory"
+        [ ( "jm_createFactory_0", jm_createFactory_0 ), ( "jm_init_1", jm_init_1 ), ( "jm_initImageCache_2", jm_initImageCache_2 ), ( "jm_isLoadingLevel_1", jm_isLoadingLevel_1 ), ( "jm_isFeature_0", jm_isFeature_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
 
-isFeature_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isFeature_super object_ = (isFeature_impl (javaCast object_ :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory))
 
-isFeature_impl :: TouchButtonResourceAnimationInterfaceFactoryInterfaceFactory -> IO (Bool)
-isFeature_impl this = do
-    javaCatchReturn $ do
-        if (Prelude.not (jio (Features.isDefault ((jio (Features.getInstance))) (jget ((jio (OpenGLFeatureFactory.getInstance))).oPENGL)))) then do
-            javaReturn (True)
-        else do
-            javaReturn (False)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "name", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BaseResourceAnimationInterfaceFactoryInterfaceFactory.jinit_4 JR.this [ (JR.local "name"), (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) []), (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) []), (JR.invoke "createHashtable_0" (JR.callStatic StdUtil.jm_getInstance_0 []) []) ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_createFactory_0 : JR.Method
+jm_createFactory_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.new jnew_1 [ (JR.str "TouchButton Animations") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_1 : JR.Method
+jm_init_1 jheap jthis jargs =
+    JR.method [ ( "level", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "initImageCache_2" JR.this [ (JR.callStatic ImageCacheFactory.jm_getInstance_0 []), (JR.local "level") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initImageCache_2 : JR.Method
+jm_initImageCache_2 jheap jthis jargs =
+    JR.method [ ( "imageCache", "" ), ( "level", "I" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isInitialized_0" JR.this []) (JR.run [ 
+                        JR.returnVoid ]) identity, 
+                    JR.exec (JR.callVia BaseResourceAnimationInterfaceFactoryInterfaceFactory.jvtable "init_1" JR.this [ (JR.local "level") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isLoadingLevel_1 : JR.Method
+jm_isLoadingLevel_1 jheap jthis jargs =
+    JR.method [ ( "level", "I" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "resourceLoadingLevelFactory" "" (JR.callStatic ResourceLoadingLevelFactory.jm_getInstance_0 []), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "level") (JR.invoke "getLevel_0" (JR.field "LOAD_TOUCH" (JR.local "resourceLoadingLevelFactory")) [])) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.callVia BaseResourceAnimationInterfaceFactoryInterfaceFactory.jvtable "isLoadingLevel_1" JR.this [ (JR.local "level") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isFeature_0 : JR.Method
+jm_isFeature_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isDefault_1" (JR.callStatic Features.jm_getInstance_0 []) [ (JR.field "OPENGL" (JR.callStatic OpenGLFeatureFactory.jm_getInstance_0 [])) ])) (JR.run [ 
+                        JR.return (JR.bool True) ]) (JR.run [ 
+                        JR.return (JR.bool False) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

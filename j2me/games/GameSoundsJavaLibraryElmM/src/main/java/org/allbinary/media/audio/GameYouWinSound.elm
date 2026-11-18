@@ -1,90 +1,92 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.audio
-module GameYouWinSound (module GameYouWinSound, module CompositeSound) where
+module Org.Allbinary.Media.Audio.GameYouWinSound exposing (..)
 
-import CompositeSound hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, getInstance, getInstance_super, getInstance_impl, soundInterface)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Sound -- same package or java.lang
-import qualified CompositeSound
+{-| Generated Code Do Not Modify package org.allbinary.media.audio
+-}
 
-data GameYouWinSound = GameYouWinSound
-    { header_ :: JavaHeader
-    , base :: CompositeSound.CompositeSound
-    }
-
-instance JavaNull GameYouWinSound where
-    javaNull = javaNullRecord "GameYouWinSound"
-
-instance JavaEquals GameYouWinSound where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameYouWinSound where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameYouWinSound where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-soundInterface :: IORef (Sound.Sound)
-{-# NOINLINE soundInterface #-}
-soundInterface = unsafePerformIO ((fmap (\value_ -> javaCast value_ :: Sound.Sound) (new_)) >>= newIORef)
-
-newRecord_ :: IO GameYouWinSound
-newRecord_ = do
-    base <- CompositeSound.newRecord_
-    let header_ = base.header_
-    let this = GameYouWinSound header_ base
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: GameYouWinSound -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO GameYouWinSound
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GameYouWinSound -> IO ()
-init_ this = do
-        CompositeSound.init_1 this.base ("resource:/wav/youwin.wav")
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Media.Audio.CompositeSound as CompositeSound
 
 
-getInstance :: IO (Sound.Sound)
-getInstance = do
-        pure ((jget GameYouWinSound.soundInterface))
+jclass : String
+jclass =
+    "GameYouWinSound"
 
+
+jchain : List String
+jchain =
+    [ "GameYouWinSound" ]
+        ++ CompositeSound.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    CompositeSound.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        CompositeSound.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameYouWinSound"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_soundInterface", jstatic_soundInterface ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_soundInterface : JR.M
+jstatic_soundInterface s =
+    JR.static "GameYouWinSound" jclinit "soundInterface"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect CompositeSound.jinit_1 JR.this [ (JR.str "resource:/wav/youwin.wav") ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_soundInterface ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

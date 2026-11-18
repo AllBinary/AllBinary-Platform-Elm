@@ -1,11 +1,11 @@
-module Memory exposing (..)
+module Org.Allbinary.System.Memory exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.system
 -}
 
 import JR
 import JRuntime
-import StringMaker
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
 jclass : String

@@ -1,145 +1,126 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2011 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation
-module RotationAnimationFactory where
+module Org.Allbinary.Animation.RotationAnimationFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified NullRotationAnimation -- same package or java.lang
-import qualified AnimationBehavior -- same package or java.lang
-import qualified Animation -- same package or java.lang
-import qualified GameConfigurationCentral -- org.allbinary.game.configuration.GameConfigurationCentral
-import qualified AngleFactory -- org.allbinary.math.AngleFactory
-import qualified AngleInfo -- org.allbinary.math.AngleInfo
-import qualified ScaleProperties -- org.allbinary.media.ScaleProperties
-import qualified AnimationInterfaceFactoryInterface
-import qualified ProceduralAnimationInterfaceFactoryInterface
+{-| Generated Code Do Not Modify package org.allbinary.animation
+-}
 
--- implements AnimationInterfaceFactoryInterface
--- implements ProceduralAnimationInterfaceFactoryInterface
-data RotationAnimationFactory = RotationAnimationFactory
-    { header_ :: JavaHeader
-    , totalAngle :: IORef (Int16)
-    , angleIncrement :: IORef (Int16)
-    }
-
-instance JavaNull RotationAnimationFactory where
-    javaNull = javaNullRecord "RotationAnimationFactory"
-
-instance JavaEquals RotationAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RotationAnimationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RotationAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO RotationAnimationFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    totalAngle <- newIORef 0
-    angleIncrement <- newIORef 0
-    let this = RotationAnimationFactory header_ totalAngle angleIncrement
-    jregisterLevel header_ this
-    AnimationInterfaceFactoryInterface.registerInterface_ header_
-    ProceduralAnimationInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    jregisterMethod header_ "getInstanceAnimation" (\() -> getInstanceAnimation_impl this)
-    jregisterMethod header_ "setInitialScale" (\() -> setInitialScale_impl this)
-    pure this
-
-initFields_ :: RotationAnimationFactory -> IO ()
-initFields_ this = do
-    jset this.totalAngle (0)
-    jset this.angleIncrement (0)
-    pure ()
+import JR
+import Org.Allbinary.Math.AngleFactory as AngleFactory
+import Org.Allbinary.Math.AngleInfo as AngleInfo
+import Org.Allbinary.Animation.AnimationBehavior as AnimationBehavior
+import Org.Allbinary.Animation.AnimationInterfaceFactoryInterface as AnimationInterfaceFactoryInterface
+import Org.Allbinary.Game.Configuration.GameConfigurationCentral as GameConfigurationCentral
+import Org.Allbinary.Animation.NullRotationAnimation as NullRotationAnimation
+import Org.Allbinary.Animation.ProceduralAnimationInterfaceFactoryInterface as ProceduralAnimationInterfaceFactoryInterface
 
 
-createFactory :: IO (RotationAnimationFactory)
-createFactory = do
-        let totalAngle = (jget ((jio (AngleFactory.getInstance))).tOTAL_ANGLE)
-        (new_2 totalAngle (Prelude.fromInteger (jnumericInteger ((totalAngle / (jio (GameConfigurationCentral.getGameControlFidelity ((jio (GameConfigurationCentral.getInstance))))))))))
-
-new_2 :: Int16 -> Int16 -> IO RotationAnimationFactory
-new_2 totalAngle angleIncrement = do
-    this <- newRecord_
-    init_2 this totalAngle angleIncrement
-    pure this
-
-init_2 :: RotationAnimationFactory -> Int16 -> Int16 -> IO ()
-init_2 this totalAngle angleIncrement = do
-        initFields_ this
-        jset (this).totalAngle (totalAngle)
-        jset (this).angleIncrement (angleIncrement)
-        pure ()
+jclass : String
+jclass =
+    "RotationAnimationFactory"
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: RotationAnimationFactory))) () a1
-
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: RotationAnimationFactory)) a1
-
-getInstance_impl :: RotationAnimationFactory -> Int -> IO (Animation.Animation)
-getInstance_impl this instanceId = do
-        (fmap (\value_ -> javaCast value_ :: Animation.Animation) (NullRotationAnimation.createTotalAngle (jio (AngleInfo.getInstance (jget (this).angleIncrement))) (jget (this).totalAngle) (jio (AnimationBehavior.getInstance))))
+jchain : List String
+jchain =
+    [ "RotationAnimationFactory" ]
+        ++ AnimationInterfaceFactoryInterface.jchain
+        ++ ProceduralAnimationInterfaceFactoryInterface.jchain
 
 
--- throws Exception
-getInstanceAnimation :: (JavaObjectClass this_) => this_ -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation object_ a1 = jmethod object_ "getInstanceAnimation" (\() -> (getInstanceAnimation_impl (javaCast object_ :: RotationAnimationFactory))) () a1
-
-getInstanceAnimation_super :: (JavaObjectClass this_) => this_ -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation_super object_ a1 = (getInstanceAnimation_impl (javaCast object_ :: RotationAnimationFactory)) a1
-
-getInstanceAnimation_impl :: RotationAnimationFactory -> Animation.Animation -> IO (Animation.Animation)
-getInstanceAnimation_impl this animationInterface = do
-        (fmap (\value_ -> javaCast value_ :: Animation.Animation) (NullRotationAnimation.createTotalAngle (jio (AngleInfo.getInstance (jget (this).angleIncrement))) (jget (this).totalAngle) (jio (AnimationBehavior.getInstance))))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "totalAngle", JR.defaultOf "S" ), ( "angleIncrement", JR.defaultOf "S" ) ]
 
 
-setInitialScale :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale object_ a1 = jmethod object_ "setInitialScale" (\() -> (setInitialScale_impl (javaCast object_ :: RotationAnimationFactory))) () a1
+jvtable =
+    JR.vtable
+        [ ( "createFactory_0", jm_createFactory_0 )
+        , ( "getInstance_1", jm_getInstance_1 )
+        , ( "getInstanceAnimation_1", jm_getInstanceAnimation_1 )
+        , ( "setInitialScale_1", jm_setInitialScale_1 ) ]
+        JR.noMethods
 
-setInitialScale_super :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_super object_ a1 = (setInitialScale_impl (javaCast object_ :: RotationAnimationFactory)) a1
 
-setInitialScale_impl :: RotationAnimationFactory -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_impl this scaleProperties = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RotationAnimationFactory"
+        [ ( "jm_createFactory_0", jm_createFactory_0 ), ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_getInstanceAnimation_1", jm_getInstanceAnimation_1 ), ( "jm_setInitialScale_1", jm_setInitialScale_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "totalAngle", "S" ), ( "angleIncrement", "S" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "totalAngle" "S" JR.this (JR.local "totalAngle")), 
+                    JR.exec (JR.setField "angleIncrement" "S" JR.this (JR.local "angleIncrement")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_createFactory_0 : JR.Method
+jm_createFactory_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "totalAngle" "S" (JR.field "TOTAL_ANGLE" (JR.callStatic AngleFactory.jm_getInstance_0 [])), 
+                    JR.return (JR.new jnew_2 [ (JR.local "totalAngle"), (JR.cast "S" ((JR.map2 JR.div (JR.cast "I" (JR.local "totalAngle")) (JR.invoke "getGameControlFidelity_0" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 []) [])))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "instanceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic NullRotationAnimation.jm_createTotalAngle_3 [ (JR.callStatic AngleInfo.jm_getInstance_1 [ (JR.thisField "angleIncrement") ]), (JR.thisField "totalAngle"), (JR.callStatic AnimationBehavior.jm_getInstance_0 []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstanceAnimation_1 : JR.Method
+jm_getInstanceAnimation_1 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.callStatic NullRotationAnimation.jm_createTotalAngle_3 [ (JR.callStatic AngleInfo.jm_getInstance_1 [ (JR.thisField "angleIncrement") ]), (JR.thisField "totalAngle"), (JR.callStatic AnimationBehavior.jm_getInstance_0 []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInitialScale_1 : JR.Method
+jm_setInitialScale_1 jheap jthis jargs =
+    JR.method [ ( "scaleProperties", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

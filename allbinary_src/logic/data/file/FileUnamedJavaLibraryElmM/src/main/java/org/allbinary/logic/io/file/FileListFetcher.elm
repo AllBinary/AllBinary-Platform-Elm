@@ -1,259 +1,191 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.logic.io.file
-module FileListFetcher where
+module Org.Allbinary.Logic.Io.File.FileListFetcher exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AbFile -- same package or java.lang
-import qualified DirectoryBooleanFileVisitor -- org.allbinary.logic.io.file.directory.DirectoryBooleanFileVisitor
-import qualified DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor -- org.allbinary.logic.io.file.directory.DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor
-import qualified DirectoryOrIncludeFileExtensionBooleanFileVisitor -- org.allbinary.logic.io.file.directory.DirectoryOrIncludeFileExtensionBooleanFileVisitor
-import qualified SubDirectory -- org.allbinary.logic.io.file.directory.SubDirectory
-import qualified VisitorFileFilter -- org.allbinary.logic.io.file.filter.VisitorFileFilter
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
-import qualified BasicArrayListD -- org.allbinary.util.BasicArrayListD
+{-| Generated Code Do Not Modify package org.allbinary.logic.io.file
+-}
 
-data FileListFetcher = FileListFetcher
-    { header_ :: JavaHeader
-    , subDirectory :: IORef (SubDirectory.SubDirectory)
-    }
-
-instance JavaNull FileListFetcher where
-    javaNull = javaNullRecord "FileListFetcher"
-
-instance JavaEquals FileListFetcher where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq FileListFetcher where
-    (==) = jrecordEquals
-
-instance JavaObjectClass FileListFetcher where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: FileListFetcher
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO FileListFetcher
-newRecord_ = do
-    header_ <- newJavaHeader
-    subDirectory <- newIORef javaNull
-    let this = FileListFetcher header_ subDirectory
-    jregisterLevel header_ this
-    jregisterMethod header_ "getFiles" (\() -> getFiles_impl this)
-    jregisterMethod header_ "getFiles_2_overload1" (\() -> getFiles_2_overload1_impl this)
-    jregisterMethod header_ "getFiles_2_overload2" (\() -> getFiles_2_overload2_impl this)
-    jregisterMethod header_ "getFiles_3" (\() -> getFiles_3_impl this)
-    jregisterMethod header_ "getTrackedFiles_overload1" (\() -> getTrackedFiles_overload1_impl this)
-    jregisterMethod header_ "getTrackedFiles_overload2" (\() -> getTrackedFiles_overload2_impl this)
-    jregisterMethod header_ "getDirectories" (\() -> getDirectories_impl this)
-    pure this
-
-initFields_ :: FileListFetcher -> IO ()
-initFields_ this = do
-    jset this.subDirectory =<< (SubDirectory.getInstance)
-    pure ()
-
-new_ :: IO FileListFetcher
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: FileListFetcher -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.Io.File.AbFile as AbFile
+import Org.Allbinary.Util.BasicArrayListD as BasicArrayListD
+import Org.Allbinary.Logic.Io.File.Directory.DirectoryBooleanFileVisitor as DirectoryBooleanFileVisitor
+import Org.Allbinary.Logic.Io.File.Directory.DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor as DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor
+import Org.Allbinary.Logic.Io.File.Directory.DirectoryOrIncludeFileExtensionBooleanFileVisitor as DirectoryOrIncludeFileExtensionBooleanFileVisitor
+import JSystem
+import Org.Allbinary.Logic.Io.File.Directory.SubDirectory as SubDirectory
+import Org.Allbinary.Logic.Io.File.Filter.VisitorFileFilter as VisitorFileFilter
 
 
-getInstance :: IO (FileListFetcher)
-getInstance = do
-        pure (FileListFetcher.instance_)
+jclass : String
+jclass =
+    "FileListFetcher"
 
 
-getFiles :: (JavaObjectClass this_) => this_ -> String -> IO (BasicArrayList.BasicArrayList)
-getFiles object_ a1 = jmethod object_ "getFiles" (\() -> (getFiles_impl (javaCast object_ :: FileListFetcher))) () a1
-
-getFiles_super :: (JavaObjectClass this_) => this_ -> String -> IO (BasicArrayList.BasicArrayList)
-getFiles_super object_ a1 = (getFiles_impl (javaCast object_ :: FileListFetcher)) a1
-
-getFiles_impl :: FileListFetcher -> String -> IO (BasicArrayList.BasicArrayList)
-getFiles_impl this path = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (hPutStrLn System.IO.stderr (Prelude.show e))
-            Control.Monad.void (putStrLn (javaToString ((("Error: " ++ javaToString e) ++ "\nMsg: ") ++ (Control.Exception.displayException e))))
-            ) $ do
-            files <- (SubDirectory.search ((jget (this).subDirectory)) (jio (AbFile.createAbFile path)))
-            pure (files)
-        pure (javaNull)
+jchain : List String
+jchain =
+    [ "FileListFetcher" ]
 
 
--- Java overloads of getFiles: calls the overload for the types of the arguments
-getFiles_2 :: (JavaObjectClass this_, JavaObjectClass o2) => this_ -> String -> o2 -> IO (BasicArrayList.BasicArrayList)
-getFiles_2 this a1 a2
-    | jisInstanceOf a2 (javaNull :: JavaArray (String)) = getFiles_2_overload1 this a1 (javaCast a2 :: JavaArray (String))
-    | jisInstanceOf a2 (javaNull :: String) = getFiles_2_overload2 this a1 (javaCast a2 :: String)
-    | otherwise = getFiles_2_overload2 this a1 (javaCast a2 :: String)
-
-getFiles_2_overload1 :: (JavaObjectClass this_) => this_ -> String -> JavaArray (String) -> IO (BasicArrayList.BasicArrayList)
-getFiles_2_overload1 object_ a1 a2 = jmethod object_ "getFiles_2_overload1" (\() -> (getFiles_2_overload1_impl (javaCast object_ :: FileListFetcher))) () a1 a2
-
-getFiles_2_overload1_super :: (JavaObjectClass this_) => this_ -> String -> JavaArray (String) -> IO (BasicArrayList.BasicArrayList)
-getFiles_2_overload1_super object_ a1 a2 = (getFiles_2_overload1_impl (javaCast object_ :: FileListFetcher)) a1 a2
-
-getFiles_2_overload1_impl :: FileListFetcher -> String -> JavaArray (String) -> IO (BasicArrayList.BasicArrayList)
-getFiles_2_overload1_impl this path includeExtensions = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (hPutStrLn System.IO.stderr (Prelude.show e))
-            Control.Monad.void (putStrLn (javaToString ((("Error: " ++ javaToString e) ++ "\nMsg: ") ++ (Control.Exception.displayException e))))
-            ) $ do
-            includeExtensionBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            let size = (jlength includeExtensions)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                Control.Monad.void (BasicArrayList.add includeExtensionBasicArrayList (jindex includeExtensions (index)))
-            visitorFileFilter <- (VisitorFileFilter.new_1 (javaCast (jio (DirectoryOrIncludeFileExtensionBooleanFileVisitor.new_1 includeExtensionBasicArrayList))))
-            files <- (SubDirectory.search ((jget (this).subDirectory)) visitorFileFilter (jio (AbFile.createAbFile path)))
-            pure (files)
-        pure (javaNull)
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "subDirectory", JR.defaultOf "" ) ]
 
 
-getFiles_2_overload2 :: (JavaObjectClass this_) => this_ -> String -> String -> IO (BasicArrayList.BasicArrayList)
-getFiles_2_overload2 object_ a1 a2 = jmethod object_ "getFiles_2_overload2" (\() -> (getFiles_2_overload2_impl (javaCast object_ :: FileListFetcher))) () a1 a2
-
-getFiles_2_overload2_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (BasicArrayList.BasicArrayList)
-getFiles_2_overload2_super object_ a1 a2 = (getFiles_2_overload2_impl (javaCast object_ :: FileListFetcher)) a1 a2
-
-getFiles_2_overload2_impl :: FileListFetcher -> String -> String -> IO (BasicArrayList.BasicArrayList)
-getFiles_2_overload2_impl this path includeExtension = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (hPutStrLn System.IO.stderr (Prelude.show e))
-            Control.Monad.void (putStrLn (javaToString ((("Error: " ++ javaToString e) ++ "\nMsg: ") ++ (Control.Exception.displayException e))))
-            ) $ do
-            includeExtensionBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            Control.Monad.void (BasicArrayList.add includeExtensionBasicArrayList includeExtension)
-            visitorFileFilter <- (VisitorFileFilter.new_1 (javaCast (jio (DirectoryOrIncludeFileExtensionBooleanFileVisitor.new_1 includeExtensionBasicArrayList))))
-            files <- (SubDirectory.search ((jget (this).subDirectory)) visitorFileFilter (jio (AbFile.createAbFile path)))
-            pure (files)
-        pure (javaNull)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "getFiles_1", jm_getFiles_1 )
+        , ( "getFiles_2", jm_getFiles_2 )
+        , ( "getFiles_3", jm_getFiles_3 )
+        , ( "getTrackedFiles_2", jm_getTrackedFiles_2 )
+        , ( "getDirectories_1", jm_getDirectories_1 ) ]
+        JR.noMethods
 
 
-getFiles_3 :: (JavaObjectClass this_) => this_ -> String -> String -> String -> IO (BasicArrayList.BasicArrayList)
-getFiles_3 object_ a1 a2 a3 = jmethod object_ "getFiles_3" (\() -> (getFiles_3_impl (javaCast object_ :: FileListFetcher))) () a1 a2 a3
-
-getFiles_3_super :: (JavaObjectClass this_) => this_ -> String -> String -> String -> IO (BasicArrayList.BasicArrayList)
-getFiles_3_super object_ a1 a2 a3 = (getFiles_3_impl (javaCast object_ :: FileListFetcher)) a1 a2 a3
-
-getFiles_3_impl :: FileListFetcher -> String -> String -> String -> IO (BasicArrayList.BasicArrayList)
-getFiles_3_impl this path pathIncludes includeExtension = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (hPutStrLn System.IO.stderr (Prelude.show e))
-            Control.Monad.void (putStrLn (javaToString ((("Error: " ++ javaToString e) ++ "\nMsg: ") ++ (Control.Exception.displayException e))))
-            ) $ do
-            includeExtensionBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            Control.Monad.void (BasicArrayList.add includeExtensionBasicArrayList includeExtension)
-            visitorFileFilter <- (VisitorFileFilter.new_1 (javaCast (jio (DirectoryOrIncludeFileExtensionBooleanFileVisitor.new_2 includeExtensionBasicArrayList pathIncludes))))
-            files <- (SubDirectory.search ((jget (this).subDirectory)) visitorFileFilter (jio (AbFile.createAbFile path)))
-            pure (files)
-        pure (javaNull)
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "FileListFetcher"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_getFiles_1", jm_getFiles_1 ), ( "jm_getFiles_2", jm_getFiles_2 ), ( "jm_getFiles_3", jm_getFiles_3 ), ( "jm_getTrackedFiles_2", jm_getTrackedFiles_2 ), ( "jm_getDirectories_1", jm_getDirectories_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
 
--- Java overloads of getTrackedFiles: calls the overload for the types of the arguments
-getTrackedFiles :: (JavaObjectClass this_, JavaObjectClass o2) => this_ -> String -> o2 -> IO (BasicArrayList.BasicArrayList)
-getTrackedFiles this a1 a2
-    | jisInstanceOf a2 (javaNull :: JavaArray (String)) = getTrackedFiles_overload1 this a1 (javaCast a2 :: JavaArray (String))
-    | jisInstanceOf a2 (javaNull :: String) = getTrackedFiles_overload2 this a1 (javaCast a2 :: String)
-    | otherwise = getTrackedFiles_overload2 this a1 (javaCast a2 :: String)
-
-getTrackedFiles_overload1 :: (JavaObjectClass this_) => this_ -> String -> JavaArray (String) -> IO (BasicArrayList.BasicArrayList)
-getTrackedFiles_overload1 object_ a1 a2 = jmethod object_ "getTrackedFiles_overload1" (\() -> (getTrackedFiles_overload1_impl (javaCast object_ :: FileListFetcher))) () a1 a2
-
-getTrackedFiles_overload1_super :: (JavaObjectClass this_) => this_ -> String -> JavaArray (String) -> IO (BasicArrayList.BasicArrayList)
-getTrackedFiles_overload1_super object_ a1 a2 = (getTrackedFiles_overload1_impl (javaCast object_ :: FileListFetcher)) a1 a2
-
-getTrackedFiles_overload1_impl :: FileListFetcher -> String -> JavaArray (String) -> IO (BasicArrayList.BasicArrayList)
-getTrackedFiles_overload1_impl this path includeExtensions = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (hPutStrLn System.IO.stderr (Prelude.show e))
-            Control.Monad.void (putStrLn (javaToString ((("Error: " ++ javaToString e) ++ "\nMsg: ") ++ (Control.Exception.displayException e))))
-            ) $ do
-            includeExtensionBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            let size = (jlength includeExtensions)
-            forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-                Control.Monad.void (BasicArrayList.add includeExtensionBasicArrayList (jindex includeExtensions (index)))
-            visitorFileFilter <- (VisitorFileFilter.new_1 (javaCast (jio (DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor.new_1 includeExtensionBasicArrayList))))
-            files <- (SubDirectory.search ((jget (this).subDirectory)) visitorFileFilter (jio (AbFile.createAbFile path)))
-            pure (files)
-        pure (javaNull)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-getTrackedFiles_overload2 :: (JavaObjectClass this_) => this_ -> String -> String -> IO (BasicArrayList.BasicArrayList)
-getTrackedFiles_overload2 object_ a1 a2 = jmethod object_ "getTrackedFiles_overload2" (\() -> (getTrackedFiles_overload2_impl (javaCast object_ :: FileListFetcher))) () a1 a2
-
-getTrackedFiles_overload2_super :: (JavaObjectClass this_) => this_ -> String -> String -> IO (BasicArrayList.BasicArrayList)
-getTrackedFiles_overload2_super object_ a1 a2 = (getTrackedFiles_overload2_impl (javaCast object_ :: FileListFetcher)) a1 a2
-
-getTrackedFiles_overload2_impl :: FileListFetcher -> String -> String -> IO (BasicArrayList.BasicArrayList)
-getTrackedFiles_overload2_impl this path includeExtension = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (hPutStrLn System.IO.stderr (Prelude.show e))
-            Control.Monad.void (putStrLn (javaToString ((("Error: " ++ javaToString e) ++ "\nMsg: ") ++ (Control.Exception.displayException e))))
-            ) $ do
-            includeExtensionBasicArrayList <- (fmap (\value_ -> javaCast value_ :: BasicArrayList.BasicArrayList) (BasicArrayListD.new_))
-            Control.Monad.void (BasicArrayList.add includeExtensionBasicArrayList includeExtension)
-            visitorFileFilter <- (VisitorFileFilter.new_1 (javaCast (jio (DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor.new_1 includeExtensionBasicArrayList))))
-            files <- (SubDirectory.search ((jget (this).subDirectory)) visitorFileFilter (jio (AbFile.createAbFile path)))
-            pure (files)
-        pure (javaNull)
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "FileListFetcher" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
 
 
-getDirectories :: (JavaObjectClass this_) => this_ -> String -> IO (BasicArrayList.BasicArrayList)
-getDirectories object_ a1 = jmethod object_ "getDirectories" (\() -> (getDirectories_impl (javaCast object_ :: FileListFetcher))) () a1
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "subDirectory" "" JR.this (JR.callStatic SubDirectory.jm_getInstance_0 [])),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
 
-getDirectories_super :: (JavaObjectClass this_) => this_ -> String -> IO (BasicArrayList.BasicArrayList)
-getDirectories_super object_ a1 = (getDirectories_impl (javaCast object_ :: FileListFetcher)) a1
 
-getDirectories_impl :: FileListFetcher -> String -> IO (BasicArrayList.BasicArrayList)
-getDirectories_impl this path = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (hPutStrLn System.IO.stderr (Prelude.show e))
-            Control.Monad.void (putStrLn (javaToString ((("Error: " ++ javaToString e) ++ "\nMsg: ") ++ (Control.Exception.displayException e))))
-            ) $ do
-            visitorFileFilter <- (VisitorFileFilter.new_1 (javaCast (jio (DirectoryBooleanFileVisitor.new_))))
-            files <- (SubDirectory.search ((jget (this).subDirectory)) visitorFileFilter (jio (AbFile.createAbFile path)))
-            pure (files)
-        pure (javaNull)
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
 
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFiles_1 : JR.Method
+jm_getFiles_1 jheap jthis jargs =
+    JR.method [ ( "path", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "files" "" (JR.invoke "search_1" (JR.thisField "subDirectory") [ (JR.callStatic AbFile.jm_createAbFile_1 [ (JR.local "path") ]) ]), 
+                        JR.return (JR.local "files") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "printStackTrace_0" (JR.local "e") []), 
+                        JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.concat (JR.concat (JR.str "Error: ") (JR.local "e")) (JR.str "\nMsg: ")) (JR.invoke "getMessage_0" (JR.local "e") [])) ]) ]) ) ] identity, 
+                    JR.return JR.null ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFiles_2 : JR.Method
+jm_getFiles_2 jheap jthis jargs =
+    JR.method [ ( "path", "" ), ( "includeExtensions", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "includeExtensionBasicArrayList" "" (JR.new BasicArrayListD.jnew_0 []), 
+                        JR.declare "size" "I" (JR.alength (JR.local "includeExtensions")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68092 -> (JR.setLocal "index" "I" (JR.lit jwN68092))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "includeExtensionBasicArrayList") [ (JR.aget (JR.local "includeExtensions") (JR.local "index")) ]) ]) ], 
+                        JR.declare "visitorFileFilter" "" (JR.new VisitorFileFilter.jnew_1 [ (JR.new DirectoryOrIncludeFileExtensionBooleanFileVisitor.jnew_1 [ (JR.local "includeExtensionBasicArrayList") ]) ]), 
+                        JR.declare "files" "" (JR.invoke "search_2" (JR.thisField "subDirectory") [ (JR.local "visitorFileFilter"), (JR.callStatic AbFile.jm_createAbFile_1 [ (JR.local "path") ]) ]), 
+                        JR.return (JR.local "files") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "printStackTrace_0" (JR.local "e") []), 
+                        JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.concat (JR.concat (JR.str "Error: ") (JR.local "e")) (JR.str "\nMsg: ")) (JR.invoke "getMessage_0" (JR.local "e") [])) ]) ]) ) ] identity, 
+                    JR.return JR.null ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getFiles_3 : JR.Method
+jm_getFiles_3 jheap jthis jargs =
+    JR.method [ ( "path", "" ), ( "pathIncludes", "" ), ( "includeExtension", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "includeExtensionBasicArrayList" "" (JR.new BasicArrayListD.jnew_0 []), 
+                        JR.exec (JR.invoke "add_1" (JR.local "includeExtensionBasicArrayList") [ (JR.local "includeExtension") ]), 
+                        JR.declare "visitorFileFilter" "" (JR.new VisitorFileFilter.jnew_1 [ (JR.new DirectoryOrIncludeFileExtensionBooleanFileVisitor.jnew_2 [ (JR.local "includeExtensionBasicArrayList"), (JR.local "pathIncludes") ]) ]), 
+                        JR.declare "files" "" (JR.invoke "search_2" (JR.thisField "subDirectory") [ (JR.local "visitorFileFilter"), (JR.callStatic AbFile.jm_createAbFile_1 [ (JR.local "path") ]) ]), 
+                        JR.return (JR.local "files") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "printStackTrace_0" (JR.local "e") []), 
+                        JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.concat (JR.concat (JR.str "Error: ") (JR.local "e")) (JR.str "\nMsg: ")) (JR.invoke "getMessage_0" (JR.local "e") [])) ]) ]) ) ] identity, 
+                    JR.return JR.null ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTrackedFiles_2 : JR.Method
+jm_getTrackedFiles_2 jheap jthis jargs =
+    JR.method [ ( "path", "" ), ( "includeExtensions", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "includeExtensionBasicArrayList" "" (JR.new BasicArrayListD.jnew_0 []), 
+                        JR.declare "size" "I" (JR.alength (JR.local "includeExtensions")), 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69701 -> (JR.setLocal "index" "I" (JR.lit jwN69701))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.invoke "add_1" (JR.local "includeExtensionBasicArrayList") [ (JR.aget (JR.local "includeExtensions") (JR.local "index")) ]) ]) ], 
+                        JR.declare "visitorFileFilter" "" (JR.new VisitorFileFilter.jnew_1 [ (JR.new DirectoryOrIncludeFileExtensionAndTrackedBooleanFileVisitor.jnew_1 [ (JR.local "includeExtensionBasicArrayList") ]) ]), 
+                        JR.declare "files" "" (JR.invoke "search_2" (JR.thisField "subDirectory") [ (JR.local "visitorFileFilter"), (JR.callStatic AbFile.jm_createAbFile_1 [ (JR.local "path") ]) ]), 
+                        JR.return (JR.local "files") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "printStackTrace_0" (JR.local "e") []), 
+                        JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.concat (JR.concat (JR.str "Error: ") (JR.local "e")) (JR.str "\nMsg: ")) (JR.invoke "getMessage_0" (JR.local "e") [])) ]) ]) ) ] identity, 
+                    JR.return JR.null ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getDirectories_1 : JR.Method
+jm_getDirectories_1 jheap jthis jargs =
+    JR.method [ ( "path", "" ) ] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.declare "visitorFileFilter" "" (JR.new VisitorFileFilter.jnew_1 [ (JR.new DirectoryBooleanFileVisitor.jnew_0 []) ]), 
+                        JR.declare "files" "" (JR.invoke "search_2" (JR.thisField "subDirectory") [ (JR.local "visitorFileFilter"), (JR.callStatic AbFile.jm_createAbFile_1 [ (JR.local "path") ]) ]), 
+                        JR.return (JR.local "files") ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "printStackTrace_0" (JR.local "e") []), 
+                        JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.concat (JR.concat (JR.str "Error: ") (JR.local "e")) (JR.str "\nMsg: ")) (JR.invoke "getMessage_0" (JR.local "e") [])) ]) ]) ) ] identity, 
+                    JR.return JR.null ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

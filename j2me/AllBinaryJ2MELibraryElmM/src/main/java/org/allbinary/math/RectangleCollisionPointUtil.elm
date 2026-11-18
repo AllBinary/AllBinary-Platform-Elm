@@ -1,110 +1,106 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.math
-module RectangleCollisionPointUtil where
+module Org.Allbinary.Math.RectangleCollisionPointUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified RectangleCollisionUtil -- same package or java.lang
-import qualified GPoint -- org.allbinary.graphics.GPoint
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.math
+-}
 
-data RectangleCollisionPointUtil = RectangleCollisionPointUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull RectangleCollisionPointUtil where
-    javaNull = javaNullRecord "RectangleCollisionPointUtil"
-
-instance JavaEquals RectangleCollisionPointUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RectangleCollisionPointUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RectangleCollisionPointUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO RectangleCollisionPointUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = RectangleCollisionPointUtil header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: RectangleCollisionPointUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO RectangleCollisionPointUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: RectangleCollisionPointUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+import JR
+import Org.Allbinary.Math.RectangleCollisionUtil as RectangleCollisionUtil
 
 
-allPointsInside :: Int -> Int -> Int -> Int -> BasicArrayList.BasicArrayList -> IO (Bool)
-allPointsInside rectX1 rectY1 rectX2 rectY2 list = do
-    javaCatchReturn $ do
-        rectangleCollisionUtil <- (RectangleCollisionUtil.getInstance)
-        point <- newIORef (javaNull)
-        index <- newIORef =<< (BasicArrayList.size list)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            jset point ((javaCast (jindex ((jget (list).objectArray)) ((jget index))) :: GPoint.GPoint))
-            when (Prelude.not (jio (RectangleCollisionUtil.isInside rectangleCollisionUtil rectX1 rectY1 rectX2 rectY2 (jio (GPoint.getX ((jget point)))) (jio (GPoint.getY ((jget point))))))) $ do
-                javaReturn (False)
-        pure (True)
+jclass : String
+jclass =
+    "RectangleCollisionPointUtil"
 
 
-allPointsInsideCell :: Int -> Int -> Int -> Int -> BasicArrayList.BasicArrayList -> Int -> Int -> IO (Bool)
-allPointsInsideCell rectX1 rectY1 rectX2 rectY2 list xCellSize yCellSize = do
-    javaCatchReturn $ do
-        rectangleCollisionUtil <- (RectangleCollisionUtil.getInstance)
-        point <- newIORef (javaNull)
-        index <- newIORef =<< (BasicArrayList.size list)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            jset point ((javaCast (jindex ((jget (list).objectArray)) ((jget index))) :: GPoint.GPoint))
-            when (Prelude.not (jio (RectangleCollisionUtil.isInside rectangleCollisionUtil rectX1 rectY1 rectX2 rectY2 ((jio (GPoint.getX ((jget point)))) * xCellSize) ((jio (GPoint.getY ((jget point)))) * yCellSize)))) $ do
-                javaReturn (False)
-        pure (True)
+jchain : List String
+jchain =
+    [ "RectangleCollisionPointUtil" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "allPointsInside_5", jm_allPointsInside_5 )
+        , ( "allPointsInsideCell_7", jm_allPointsInsideCell_7 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RectangleCollisionPointUtil"
+        [ ( "jm_allPointsInside_5", jm_allPointsInside_5 ), ( "jm_allPointsInsideCell_7", jm_allPointsInsideCell_7 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_allPointsInside_5 : JR.Method
+jm_allPointsInside_5 jheap jthis jargs =
+    JR.method [ ( "rectX1", "I" ), ( "rectY1", "I" ), ( "rectX2", "I" ), ( "rectY2", "I" ), ( "list", "" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "rectangleCollisionUtil" "" (JR.callStatic RectangleCollisionUtil.jm_getInstance_0 []), 
+                    JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66332 -> (JR.setLocal "index" "I" (JR.lit jwN66332))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.setLocal "point" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "isInside_6" (JR.local "rectangleCollisionUtil") [ (JR.local "rectX1"), (JR.local "rectY1"), (JR.local "rectX2"), (JR.local "rectY2"), (JR.invoke "getX_0" (JR.local "point") []), (JR.invoke "getY_0" (JR.local "point") []) ])) (JR.run [ 
+                            JR.return (JR.bool False) ]) identity ]) ], 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_allPointsInsideCell_7 : JR.Method
+jm_allPointsInsideCell_7 jheap jthis jargs =
+    JR.method [ ( "rectX1", "I" ), ( "rectY1", "I" ), ( "rectX2", "I" ), ( "rectY2", "I" ), ( "list", "" ), ( "xCellSize", "I" ), ( "yCellSize", "I" ) ] "Z"
+        (JR.run [ 
+                    JR.declare "rectangleCollisionUtil" "" (JR.callStatic RectangleCollisionUtil.jm_getInstance_0 []), 
+                    JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66780 -> (JR.setLocal "index" "I" (JR.lit jwN66780))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.setLocal "point" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
+                        JR.ifElse (JR.map JR.not_ (JR.invoke "isInside_6" (JR.local "rectangleCollisionUtil") [ (JR.local "rectX1"), (JR.local "rectY1"), (JR.local "rectX2"), (JR.local "rectY2"), (JR.map2 JR.mul (JR.invoke "getX_0" (JR.local "point") []) (JR.local "xCellSize")), (JR.map2 JR.mul (JR.invoke "getY_0" (JR.local "point") []) (JR.local "yCellSize")) ])) (JR.run [ 
+                            JR.return (JR.bool False) ]) identity ]) ], 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

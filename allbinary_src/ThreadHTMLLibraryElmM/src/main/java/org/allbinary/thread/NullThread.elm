@@ -1,12 +1,12 @@
-module NullThread exposing (..)
+module Org.Allbinary.Thread.NullThread exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}
 
 import JR
 import JThread
-import NullRunnable
-import StringUtil
+import Org.Allbinary.Thread.NullRunnable as NullRunnable
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
 jclass : String

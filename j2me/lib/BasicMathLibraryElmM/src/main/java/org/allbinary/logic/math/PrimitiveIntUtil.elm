@@ -1,10 +1,10 @@
-module PrimitiveIntUtil exposing (..)
+module Org.Allbinary.Logic.Math.PrimitiveIntUtil exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.math
 -}
 
 import JR
-import NullUtil
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
 jclass : String

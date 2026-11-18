@@ -1,257 +1,223 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.configuration
-module GameDifficultyOptions (module GameDifficultyOptions, module CommandForm) where
+module Org.Allbinary.Game.Configuration.GameDifficultyOptions exposing (..)
 
-import CommandForm hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, open, open_super, open_impl, close, close_super, close_impl, save, save_super, save_impl, initCommands, initCommands_super, initCommands_impl, update, update_super, update_impl, add, add_super, add_impl, getChoiceGroup, getChoiceGroup_super, getChoiceGroup_impl, setSelectedId, setSelectedId_super, setSelectedId_impl, getSelectedId, getSelectedId_super, getSelectedId_impl, getSelectedText, getSelectedText_super, getSelectedText_impl, meUtil, list)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified Choice -- javax.microedition.lcdui.Choice
-import qualified ChoiceGroup -- javax.microedition.lcdui.ChoiceGroup
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified NullImage -- javax.microedition.lcdui.NullImage
-import qualified MIDPUtil -- org.allbinary.MIDPUtil
-import qualified GameCommandsFactory -- org.allbinary.game.commands.GameCommandsFactory
-import qualified GameDifficultyFactory -- org.allbinary.game.configuration.persistance.GameDifficultyFactory
-import qualified BasicColor -- org.allbinary.graphics.color.BasicColor
-import qualified CommandForm -- org.allbinary.graphics.displayable.screen.CommandForm
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified BasicArrayList -- org.allbinary.util.BasicArrayList
+{-| Generated Code Do Not Modify package org.allbinary.game.configuration
+-}
 
-data GameDifficultyOptions = GameDifficultyOptions
-    { header_ :: JavaHeader
-    , base :: CommandForm.CommandForm
-    , meUtil :: IORef (MIDPUtil.MIDPUtil)
-    , list :: IORef (BasicArrayList.BasicArrayList)
-    }
-
-instance JavaNull GameDifficultyOptions where
-    javaNull = javaNullRecord "GameDifficultyOptions"
-
-instance JavaEquals GameDifficultyOptions where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GameDifficultyOptions where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GameDifficultyOptions where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO GameDifficultyOptions
-newRecord_ = do
-    base <- CommandForm.newRecord_
-    let header_ = base.header_
-    meUtil <- newIORef javaNull
-    list <- newIORef javaNull
-    let this = GameDifficultyOptions header_ base meUtil list
-    jregisterLevel header_ this
-    jregisterMethod header_ "open" (\() -> open_impl this)
-    jregisterMethod header_ "close" (\() -> close_impl this)
-    jregisterMethod header_ "save" (\() -> save_impl this)
-    jregisterMethod header_ "initCommands" (\() -> initCommands_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    jregisterMethod header_ "add" (\() -> add_impl this)
-    jregisterMethod header_ "getChoiceGroup" (\() -> getChoiceGroup_impl this)
-    jregisterMethod header_ "setSelectedId" (\() -> setSelectedId_impl this)
-    jregisterMethod header_ "getSelectedId" (\() -> getSelectedId_impl this)
-    jregisterMethod header_ "getSelectedText" (\() -> getSelectedText_impl this)
-    pure this
-
-initFields_ :: GameDifficultyOptions -> IO ()
-initFields_ this = do
-    jset this.meUtil =<< (MIDPUtil.getInstance)
-    jset this.list (javaNull)
-    pure ()
-
-new_5 :: CommandListener.CommandListener -> String -> BasicArrayList.BasicArrayList -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO GameDifficultyOptions
-new_5 commandListener title list backgrounBasicColor foregroundBasicColor = do
-    this <- newRecord_
-    init_5 this commandListener title list backgrounBasicColor foregroundBasicColor
-    pure this
-
-init_5 :: GameDifficultyOptions -> CommandListener.CommandListener -> String -> BasicArrayList.BasicArrayList -> BasicColor.BasicColor -> BasicColor.BasicColor -> IO ()
-init_5 this commandListener title list backgrounBasicColor foregroundBasicColor = do
-        CommandForm.init_4 this.base (commandListener) (title) (backgrounBasicColor) (foregroundBasicColor)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        Control.Monad.void (putF ((jget (this).base.logUtil)) (jget ((jget (this).base.commonStrings)).sTART) this (jget ((jget (this).base.commonStrings)).cONSTRUCTOR))
-        jset (this).list (list)
-        Control.Monad.void (GameDifficultyOptions.update this)
-        Control.Monad.void (GameDifficultyOptions.initCommands this commandListener)
-        gameDifficultyFactory <- (GameDifficultyFactory.getInstance)
-        Control.Monad.void (GameDifficultyOptions.setSelectedId this (jio (GameDifficultyFactory.getLevel gameDifficultyFactory)))
-        pure ()
+import JR
+import Javax.Microedition.Lcdui.Choice as Choice
+import Javax.Microedition.Lcdui.ChoiceGroup as ChoiceGroup
+import Org.Allbinary.Graphics.Displayable.Screen.CommandForm as CommandForm
+import Org.Allbinary.Game.Commands.GameCommandsFactory as GameCommandsFactory
+import Org.Allbinary.Game.Configuration.Persistance.GameDifficultyFactory as GameDifficultyFactory
+import JInteger
+import Org.Allbinary.MIDPUtil as MIDPUtil
+import Javax.Microedition.Lcdui.NullImage as NullImage
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-open :: (JavaObjectClass this_) => this_ -> IO (())
-open object_ = jmethod object_ "open" (\() -> (open_impl (javaCast object_ :: GameDifficultyOptions))) ()
-
-open_super :: (JavaObjectClass this_) => this_ -> IO (())
-open_super object_ = (open_impl (javaCast object_ :: GameDifficultyOptions))
-
-open_impl :: GameDifficultyOptions -> IO (())
-open_impl this = do
-        Control.Monad.void (CommandForm.open_super this.base)
-        pure ()
+jclass : String
+jclass =
+    "GameDifficultyOptions"
 
 
--- throws Exception
-close :: (JavaObjectClass this_) => this_ -> IO (())
-close object_ = jmethod object_ "close" (\() -> (close_impl (javaCast object_ :: GameDifficultyOptions))) ()
-
-close_super :: (JavaObjectClass this_) => this_ -> IO (())
-close_super object_ = (close_impl (javaCast object_ :: GameDifficultyOptions))
-
-close_impl :: GameDifficultyOptions -> IO (())
-close_impl this = do
-        Control.Monad.void (CommandForm.close_super this.base)
-        Control.Monad.void (GameDifficultyOptions.save this)
-        pure ()
+jchain : List String
+jchain =
+    [ "GameDifficultyOptions" ]
+        ++ CommandForm.jchain
 
 
--- throws Exception
-save :: (JavaObjectClass this_) => this_ -> IO (())
-save object_ = jmethod object_ "save" (\() -> (save_impl (javaCast object_ :: GameDifficultyOptions))) ()
-
-save_super :: (JavaObjectClass this_) => this_ -> IO (())
-save_super object_ = (save_impl (javaCast object_ :: GameDifficultyOptions))
-
-save_impl :: GameDifficultyOptions -> IO (())
-save_impl this = do
-        gameDifficultyFactory <- (GameDifficultyFactory.getInstance)
-        Control.Monad.void (GameDifficultyFactory.setLevel gameDifficultyFactory (jio (GameDifficultyOptions.getSelectedId this)))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    CommandForm.jfields ++ [ ( "meUtil", JR.defaultOf "" ), ( "list", JR.defaultOf "" ) ]
 
 
-initCommands :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands object_ a1 = jmethod object_ "initCommands" (\() -> (initCommands_impl (javaCast object_ :: GameDifficultyOptions))) () a1
-
-initCommands_super :: (JavaObjectClass this_) => this_ -> CommandListener.CommandListener -> IO (())
-initCommands_super object_ a1 = (initCommands_impl (javaCast object_ :: GameDifficultyOptions)) a1
-
-initCommands_impl :: GameDifficultyOptions -> CommandListener.CommandListener -> IO (())
-initCommands_impl this cmdListener = do
-        gameCommandsFactory <- (GameCommandsFactory.getInstance)
-        Control.Monad.void (CommandForm.removeAllCommands this)
-        Control.Monad.void (CommandForm.addCommand this (jget (gameCommandsFactory).cLOSE_AND_SHOW_GAME_CANVAS))
-        Control.Monad.void (CommandForm.setCommandListener this cmdListener)
-        pure ()
-
-
--- throws Exception
-update :: (JavaObjectClass this_) => this_ -> IO (())
-update object_ = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: GameDifficultyOptions))) ()
-
-update_super :: (JavaObjectClass this_) => this_ -> IO (())
-update_super object_ = (update_impl (javaCast object_ :: GameDifficultyOptions))
-
-update_impl :: GameDifficultyOptions -> IO (())
-update_impl this = do
-        Control.Monad.void (CommandForm.deleteAll this)
-        Control.Monad.void (GameDifficultyOptions.add this (jget (this).list) "Difficulty" (Choice.eXCLUSIVE))
-        Control.Monad.void (CommandForm.update_super this.base)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "open_0", jm_open_0 )
+        , ( "close_0", jm_close_0 )
+        , ( "save_0", jm_save_0 )
+        , ( "initCommands_1", jm_initCommands_1 )
+        , ( "update_0", jm_update_0 )
+        , ( "add_3", jm_add_3 )
+        , ( "getChoiceGroup_3", jm_getChoiceGroup_3 )
+        , ( "setSelectedId_1", jm_setSelectedId_1 )
+        , ( "getSelectedId_0", jm_getSelectedId_0 )
+        , ( "getSelectedText_0", jm_getSelectedText_0 ) ]
+        CommandForm.jvtable
 
 
-add :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> String -> Int -> IO (())
-add object_ a1 a2 a3 = jmethod object_ "add" (\() -> (add_impl (javaCast object_ :: GameDifficultyOptions))) () a1 a2 a3
-
-add_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> String -> Int -> IO (())
-add_super object_ a1 a2 a3 = (add_impl (javaCast object_ :: GameDifficultyOptions)) a1 a2 a3
-
-add_impl :: GameDifficultyOptions -> BasicArrayList.BasicArrayList -> String -> Int -> IO (())
-add_impl this list name option = do
-        choiceGroup <- (GameDifficultyOptions.getChoiceGroup this list name option)
-        when ((jio (BasicArrayList.size list)) > 0) $ do
-            Control.Monad.void (ChoiceGroup.setSelectedIndex choiceGroup 0 True)
-        Control.Monad.void (MIDPUtil.appendItem ((jget (this).meUtil)) this choiceGroup)
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GameDifficultyOptions"
+        [ ( "jm_open_0", jm_open_0 ), ( "jm_close_0", jm_close_0 ), ( "jm_save_0", jm_save_0 ), ( "jm_initCommands_1", jm_initCommands_1 ), ( "jm_update_0", jm_update_0 ), ( "jm_add_3", jm_add_3 ), ( "jm_getChoiceGroup_3", jm_getChoiceGroup_3 ), ( "jm_setSelectedId_1", jm_setSelectedId_1 ), ( "jm_getSelectedId_0", jm_getSelectedId_0 ), ( "jm_getSelectedText_0", jm_getSelectedText_0 ), ( "jnew_5", jnew_5 ), ( "jinit_5", jinit_5 ) ]
+        []
+        jheap
 
 
-getChoiceGroup :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> String -> Int -> IO (ChoiceGroup.ChoiceGroup)
-getChoiceGroup object_ a1 a2 a3 = jmethod object_ "getChoiceGroup" (\() -> (getChoiceGroup_impl (javaCast object_ :: GameDifficultyOptions))) () a1 a2 a3
-
-getChoiceGroup_super :: (JavaObjectClass this_) => this_ -> BasicArrayList.BasicArrayList -> String -> Int -> IO (ChoiceGroup.ChoiceGroup)
-getChoiceGroup_super object_ a1 a2 a3 = (getChoiceGroup_impl (javaCast object_ :: GameDifficultyOptions)) a1 a2 a3
-
-getChoiceGroup_impl :: GameDifficultyOptions -> BasicArrayList.BasicArrayList -> String -> Int -> IO (ChoiceGroup.ChoiceGroup)
-getChoiceGroup_impl this list name option = do
-        let mETHOD_NAME = "addChoiceGroup"
-        let nAME = "Adding Choice: "
-        choiceGroup <- (ChoiceGroup.new_4 name option (jio (StringUtil.getArrayInstance ((jio (StringUtil.getInstance))))) (NullImage.nULL_IMAGE_ARRAY))
-        size <- (BasicArrayList.size list)
-        anyType <- newIORef (javaNull)
-        forM_ [0 .. size - 1] $ \index -> javaIteration (pure ()) $ do
-            jset anyType ((jindex ((jget (list).objectArray)) (index)))
-            Control.Monad.void (putF ((jget (this).base.logUtil)) (jio (StringMaker.toString ((jio (StringMaker.append ((jio (StringMaker.append ((jio (StringMaker.new_))) nAME))) (jio (Any.toString ((jget anyType))))))))) this mETHOD_NAME)
-            Control.Monad.void (ChoiceGroup.append choiceGroup (jio (Any.toString ((jget anyType)))) (NullImage.nULL_IMAGE))
-        pure (choiceGroup)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
 
-setSelectedId :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setSelectedId object_ a1 = jmethod object_ "setSelectedId" (\() -> (setSelectedId_impl (javaCast object_ :: GameDifficultyOptions))) () a1
-
-setSelectedId_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setSelectedId_super object_ a1 = (setSelectedId_impl (javaCast object_ :: GameDifficultyOptions)) a1
-
-setSelectedId_impl :: GameDifficultyOptions -> Int -> IO (())
-setSelectedId_impl this id = do
-        let choiceGroup = (javaCast (jio (CommandForm.get this 0)) :: ChoiceGroup.ChoiceGroup)
-        Control.Monad.void (ChoiceGroup.setSelectedIndex choiceGroup id True)
-        pure ()
-
-
-getSelectedId :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSelectedId object_ = jmethod object_ "getSelectedId" (\() -> (getSelectedId_impl (javaCast object_ :: GameDifficultyOptions))) ()
-
-getSelectedId_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSelectedId_super object_ = (getSelectedId_impl (javaCast object_ :: GameDifficultyOptions))
-
-getSelectedId_impl :: GameDifficultyOptions -> IO (Int)
-getSelectedId_impl this = do
-        let choiceGroup = (javaCast (jio (CommandForm.get this 0)) :: ChoiceGroup.ChoiceGroup)
-        (ChoiceGroup.getSelectedIndex choiceGroup)
+jinit_5 : JR.Method
+jinit_5 jheap jthis jargs =
+    JR.method [ ( "commandListener", "" ), ( "title", "" ), ( "list", "" ), ( "backgrounBasicColor", "" ), ( "foregroundBasicColor", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect CommandForm.jinit_4 JR.this [ (JR.local "commandListener"), (JR.local "title"), (JR.local "backgrounBasicColor"), (JR.local "foregroundBasicColor") ]),
+                JR.exec (JR.setField "meUtil" "" JR.this (JR.callStatic MIDPUtil.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START" (JR.thisField "commonStrings")), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]), 
+                    JR.exec (JR.setField "list" "" JR.this (JR.local "list")), 
+                    JR.exec (JR.invoke "update_0" JR.this []), 
+                    JR.exec (JR.invoke "initCommands_1" JR.this [ (JR.local "commandListener") ]), 
+                    JR.declare "gameDifficultyFactory" "" (JR.callStatic GameDifficultyFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "setSelectedId_1" JR.this [ (JR.invoke "getLevel_0" (JR.local "gameDifficultyFactory") []) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
 
-getSelectedText :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSelectedText object_ = jmethod object_ "getSelectedText" (\() -> (getSelectedText_impl (javaCast object_ :: GameDifficultyOptions))) ()
+jnew_5 : JR.Method
+jnew_5 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_5 jheap jthis jargs
 
-getSelectedText_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getSelectedText_super object_ = (getSelectedText_impl (javaCast object_ :: GameDifficultyOptions))
 
-getSelectedText_impl :: GameDifficultyOptions -> IO (Int)
-getSelectedText_impl this = do
-        let choiceGroup = (javaCast (jio (CommandForm.get this 0)) :: ChoiceGroup.ChoiceGroup)
-        let value = ((jio (ChoiceGroup.getString choiceGroup (jio (ChoiceGroup.getSelectedIndex choiceGroup)))))
-        pure (value)
+jm_open_0 : JR.Method
+jm_open_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia CommandForm.jvtable "open_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jm_close_0 : JR.Method
+jm_close_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia CommandForm.jvtable "close_0" JR.this []), 
+                    JR.exec (JR.invoke "save_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_save_0 : JR.Method
+jm_save_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "gameDifficultyFactory" "" (JR.callStatic GameDifficultyFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "setLevel_1" (JR.local "gameDifficultyFactory") [ (JR.invoke "getSelectedId_0" JR.this []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_initCommands_1 : JR.Method
+jm_initCommands_1 jheap jthis jargs =
+    JR.method [ ( "cmdListener", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "gameCommandsFactory" "" (JR.callStatic GameCommandsFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "removeAllCommands_0" JR.this []), 
+                    JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.field "CLOSE_AND_SHOW_GAME_CANVAS" (JR.local "gameCommandsFactory")) ]), 
+                    JR.exec (JR.invoke "setCommandListener_1" JR.this [ (JR.local "cmdListener") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_0 : JR.Method
+jm_update_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "deleteAll_0" JR.this []), 
+                    JR.exec (JR.invoke "add_3" JR.this [ (JR.thisField "list"), (JR.str "Difficulty"), Choice.jstatic_EXCLUSIVE ]), 
+                    JR.exec (JR.callVia CommandForm.jvtable "update_0" JR.this []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_add_3 : JR.Method
+jm_add_3 jheap jthis jargs =
+    JR.method [ ( "list", "" ), ( "name", "" ), ( "option", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "choiceGroup" "" (JR.invoke "getChoiceGroup_3" JR.this [ (JR.local "list"), (JR.local "name"), (JR.local "option") ]), 
+                    JR.ifElse (JR.map2 JR.greater (JR.invoke "size_0" (JR.local "list") []) (JR.int 0)) (JR.run [ 
+                        JR.exec (JR.invoke "setSelectedIndex_2" (JR.local "choiceGroup") [ (JR.int 0), (JR.bool True) ]) ]) identity, 
+                    JR.exec (JR.invoke "appendItem_2" (JR.thisField "meUtil") [ JR.this, (JR.local "choiceGroup") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getChoiceGroup_3 : JR.Method
+jm_getChoiceGroup_3 jheap jthis jargs =
+    JR.method [ ( "list", "" ), ( "name", "" ), ( "option", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "METHOD_NAME" "" (JR.str "addChoiceGroup"), 
+                    JR.declare "NAME" "" (JR.str "Adding Choice: "), 
+                    JR.declare "choiceGroup" "" (JR.new ChoiceGroup.jnew_4 [ (JR.local "name"), (JR.local "option"), (JR.invoke "getArrayInstance_0" (JR.callStatic StringUtil.jm_getInstance_0 []) []), NullImage.jstatic_NULL_IMAGE_ARRAY ]), 
+                    JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
+                    JR.declare "anyType" "" (JR.lit (JR.defaultOf "")), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69200 -> (JR.setLocal "index" "I" (JR.lit jwN69200))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.setLocal "anyType" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.local "NAME") ]) [ (JR.invoke "toString_0" (JR.local "anyType") []) ]) []), JR.this, (JR.local "METHOD_NAME") ]), 
+                        JR.exec (JR.invoke "append_2" (JR.local "choiceGroup") [ (JR.invoke "toString_0" (JR.local "anyType") []), NullImage.jstatic_NULL_IMAGE ]) ]) ], 
+                    JR.return (JR.local "choiceGroup") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setSelectedId_1 : JR.Method
+jm_setSelectedId_1 jheap jthis jargs =
+    JR.method [ ( "id", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "choiceGroup" "" (JR.invoke "get_1" JR.this [ (JR.int 0) ]), 
+                    JR.exec (JR.invoke "setSelectedIndex_2" (JR.local "choiceGroup") [ (JR.local "id"), (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSelectedId_0 : JR.Method
+jm_getSelectedId_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.declare "choiceGroup" "" (JR.invoke "get_1" JR.this [ (JR.int 0) ]), 
+                    JR.return (JR.invoke "getSelectedIndex_0" (JR.local "choiceGroup") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getSelectedText_0 : JR.Method
+jm_getSelectedText_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.declare "choiceGroup" "" (JR.invoke "get_1" JR.this [ (JR.int 0) ]), 
+                    JR.declare "value" "I" (JR.invoke "intValue_0" (JR.callStatic JInteger.jm_valueOf_1 [ (JR.invoke "getString_1" (JR.local "choiceGroup") [ (JR.invoke "getSelectedIndex_0" (JR.local "choiceGroup") []) ]) ]) []), 
+                    JR.return (JR.local "value") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

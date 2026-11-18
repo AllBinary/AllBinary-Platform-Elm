@@ -1,182 +1,124 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.logic.communication.sql
-module SqlStrings where
+module Org.Allbinary.Logic.Communication.Sql.SqlStrings exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommonSeps -- org.allbinary.string.CommonSeps
+{-| Generated Code Do Not Modify package org.allbinary.logic.communication.sql
+-}
 
-data SqlStrings = SqlStrings
-    { header_ :: JavaHeader
-    , cREATE_DATABASE :: IORef (String)
-    , dROP_TABLE :: IORef (String)
-    , cREATE_TABLE :: IORef (String)
-    , sTART :: IORef (String)
-    , sELECT :: IORef (String)
-    , fROM :: IORef (String)
-    , sELECT_ALL :: IORef (String)
-    , wHERE :: IORef (String)
-    , aND :: IORef (String)
-    , uPDATE :: IORef (String)
-    , sET :: IORef (String)
-    , sELECT_ALL_FROM :: IORef (String)
-    , dELETE :: IORef (String)
-    , lIKE_QUOTE :: IORef (String)
-    , iNSERT_INTO :: IORef (String)
-    , vALUES :: IORef (String)
-    , oRDER_BY :: IORef (String)
-    , cOUNT :: IORef (String)
-    , aSC :: IORef (String)
-    , dESC :: IORef (String)
-    , pRIMARY_KEY :: IORef (String)
-    , eND :: IORef (String)
-    , eQUAL_QUOTE :: IORef (String)
-    , cLOSE_QUOTE :: IORef (String)
-    , eQUAL_QUOTE_NO_SPACE :: IORef (String)
-    , eSCAPE :: IORef (String)
-    , dOUBLE_ESCAPE :: IORef (String)
-    , mORE_THAN_QUOTE :: IORef (String)
-    , lESS_THAN_QUOTE :: IORef (String)
-    , sINGLE_QUOTE_COMMA_SEP :: IORef (String)
-    , iD :: IORef (String)
-    , sQL_STATEMENT_LABEL :: IORef (String)
-    , cOLUMN_VALUE :: IORef (String)
-    , cREATE_RETURN :: IORef (String)
-    , fIELD_VALUE :: IORef (String)
-    }
-
-instance JavaNull SqlStrings where
-    javaNull = javaNullRecord "SqlStrings"
-
-instance JavaEquals SqlStrings where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SqlStrings where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SqlStrings where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: SqlStrings
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO SqlStrings
-newRecord_ = do
-    header_ <- newJavaHeader
-    cREATE_DATABASE <- newIORef ""
-    dROP_TABLE <- newIORef ""
-    cREATE_TABLE <- newIORef ""
-    sTART <- newIORef ""
-    sELECT <- newIORef ""
-    fROM <- newIORef ""
-    sELECT_ALL <- newIORef ""
-    wHERE <- newIORef ""
-    aND <- newIORef ""
-    uPDATE <- newIORef ""
-    sET <- newIORef ""
-    sELECT_ALL_FROM <- newIORef ""
-    dELETE <- newIORef ""
-    lIKE_QUOTE <- newIORef ""
-    iNSERT_INTO <- newIORef ""
-    vALUES <- newIORef ""
-    oRDER_BY <- newIORef ""
-    cOUNT <- newIORef ""
-    aSC <- newIORef ""
-    dESC <- newIORef ""
-    pRIMARY_KEY <- newIORef ""
-    eND <- newIORef ""
-    eQUAL_QUOTE <- newIORef ""
-    cLOSE_QUOTE <- newIORef ""
-    eQUAL_QUOTE_NO_SPACE <- newIORef ""
-    eSCAPE <- newIORef ""
-    dOUBLE_ESCAPE <- newIORef ""
-    mORE_THAN_QUOTE <- newIORef ""
-    lESS_THAN_QUOTE <- newIORef ""
-    sINGLE_QUOTE_COMMA_SEP <- newIORef ""
-    iD <- newIORef ""
-    sQL_STATEMENT_LABEL <- newIORef ""
-    cOLUMN_VALUE <- newIORef ""
-    cREATE_RETURN <- newIORef ""
-    fIELD_VALUE <- newIORef ""
-    let this = SqlStrings header_ cREATE_DATABASE dROP_TABLE cREATE_TABLE sTART sELECT fROM sELECT_ALL wHERE aND uPDATE sET sELECT_ALL_FROM dELETE lIKE_QUOTE iNSERT_INTO vALUES oRDER_BY cOUNT aSC dESC pRIMARY_KEY eND eQUAL_QUOTE cLOSE_QUOTE eQUAL_QUOTE_NO_SPACE eSCAPE dOUBLE_ESCAPE mORE_THAN_QUOTE lESS_THAN_QUOTE sINGLE_QUOTE_COMMA_SEP iD sQL_STATEMENT_LABEL cOLUMN_VALUE cREATE_RETURN fIELD_VALUE
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: SqlStrings -> IO ()
-initFields_ this = do
-    jset this.cREATE_DATABASE ("CREATE DATABASE ")
-    jset this.dROP_TABLE ("DROP TABLE ")
-    jset this.cREATE_TABLE ("CREATE TABLE ")
-    jset this.sTART (" (")
-    jset this.sELECT ("SELECT ")
-    jset this.fROM (" FROM ")
-    jset this.sELECT_ALL ("SELECT *")
-    jset this.wHERE (" WHERE ")
-    jset this.aND (" AND ")
-    jset this.uPDATE ("UPDATE ")
-    jset this.sET (" SET ")
-    jset this.sELECT_ALL_FROM (((jget (this).sELECT_ALL) ++ (jget (this).fROM)))
-    jset this.dELETE ("DELETE")
-    jset this.lIKE_QUOTE (" LIKE \"")
-    jset this.iNSERT_INTO ("INSERT INTO ")
-    jset this.vALUES (" VALUES ('")
-    jset this.oRDER_BY ("ORDER BY")
-    jset this.cOUNT ("COUNT(")
-    jset this.aSC ("ASC")
-    jset this.dESC ("DESC")
-    jset this.pRIMARY_KEY ("PRIMARY KEY(")
-    jset this.eND (") )")
-    jset this.eQUAL_QUOTE (" = \"")
-    jset this.cLOSE_QUOTE ((jget ((jio (CommonSeps.getInstance))).qUOTE))
-    jset this.eQUAL_QUOTE_NO_SPACE ("=\"")
-    jset this.eSCAPE ("\\")
-    jset this.dOUBLE_ESCAPE ("\\\\")
-    jset this.mORE_THAN_QUOTE (" > \"")
-    jset this.lESS_THAN_QUOTE (" < \"")
-    jset this.sINGLE_QUOTE_COMMA_SEP ("','")
-    jset this.iD ("ID")
-    jset this.sQL_STATEMENT_LABEL ("SQL Statement: ")
-    jset this.cOLUMN_VALUE ("\nColumn Value: ")
-    jset this.cREATE_RETURN (" Created Successfully")
-    jset this.fIELD_VALUE ("\nField Value: ")
-    pure ()
-
-new_ :: IO SqlStrings
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: SqlStrings -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.String.CommonSeps as CommonSeps
 
 
-getInstance :: IO (SqlStrings)
-getInstance = do
-        pure (SqlStrings.instance_)
+jclass : String
+jclass =
+    "SqlStrings"
 
+
+jchain : List String
+jchain =
+    [ "SqlStrings" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "CREATE_DATABASE", JR.defaultOf "" ), ( "DROP_TABLE", JR.defaultOf "" ), ( "CREATE_TABLE", JR.defaultOf "" ), ( "START", JR.defaultOf "" ), ( "SELECT", JR.defaultOf "" ), ( "FROM", JR.defaultOf "" ), ( "SELECT_ALL", JR.defaultOf "" ), ( "WHERE", JR.defaultOf "" ), ( "AND", JR.defaultOf "" ), ( "UPDATE", JR.defaultOf "" ), ( "SET", JR.defaultOf "" ), ( "SELECT_ALL_FROM", JR.defaultOf "" ), ( "DELETE", JR.defaultOf "" ), ( "LIKE_QUOTE", JR.defaultOf "" ), ( "INSERT_INTO", JR.defaultOf "" ), ( "VALUES", JR.defaultOf "" ), ( "ORDER_BY", JR.defaultOf "" ), ( "COUNT", JR.defaultOf "" ), ( "ASC", JR.defaultOf "" ), ( "DESC", JR.defaultOf "" ), ( "PRIMARY_KEY", JR.defaultOf "" ), ( "END", JR.defaultOf "" ), ( "EQUAL_QUOTE", JR.defaultOf "" ), ( "CLOSE_QUOTE", JR.defaultOf "" ), ( "EQUAL_QUOTE_NO_SPACE", JR.defaultOf "" ), ( "ESCAPE", JR.defaultOf "" ), ( "DOUBLE_ESCAPE", JR.defaultOf "" ), ( "MORE_THAN_QUOTE", JR.defaultOf "" ), ( "LESS_THAN_QUOTE", JR.defaultOf "" ), ( "SINGLE_QUOTE_COMMA_SEP", JR.defaultOf "" ), ( "ID", JR.defaultOf "" ), ( "SQL_STATEMENT_LABEL", JR.defaultOf "" ), ( "COLUMN_VALUE", JR.defaultOf "" ), ( "CREATE_RETURN", JR.defaultOf "" ), ( "FIELD_VALUE", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SqlStrings"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "SqlStrings" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "CREATE_DATABASE" "" JR.this (JR.str "CREATE DATABASE ")),
+                JR.exec (JR.setField "DROP_TABLE" "" JR.this (JR.str "DROP TABLE ")),
+                JR.exec (JR.setField "CREATE_TABLE" "" JR.this (JR.str "CREATE TABLE ")),
+                JR.exec (JR.setField "START" "" JR.this (JR.str " (")),
+                JR.exec (JR.setField "SELECT" "" JR.this (JR.str "SELECT ")),
+                JR.exec (JR.setField "FROM" "" JR.this (JR.str " FROM ")),
+                JR.exec (JR.setField "SELECT_ALL" "" JR.this (JR.str "SELECT *")),
+                JR.exec (JR.setField "WHERE" "" JR.this (JR.str " WHERE ")),
+                JR.exec (JR.setField "AND" "" JR.this (JR.str " AND ")),
+                JR.exec (JR.setField "UPDATE" "" JR.this (JR.str "UPDATE ")),
+                JR.exec (JR.setField "SET" "" JR.this (JR.str " SET ")),
+                JR.exec (JR.setField "SELECT_ALL_FROM" "" JR.this (JR.concat (JR.thisField "SELECT_ALL") (JR.thisField "FROM"))),
+                JR.exec (JR.setField "DELETE" "" JR.this (JR.str "DELETE")),
+                JR.exec (JR.setField "LIKE_QUOTE" "" JR.this (JR.str " LIKE \"")),
+                JR.exec (JR.setField "INSERT_INTO" "" JR.this (JR.str "INSERT INTO ")),
+                JR.exec (JR.setField "VALUES" "" JR.this (JR.str " VALUES ('")),
+                JR.exec (JR.setField "ORDER_BY" "" JR.this (JR.str "ORDER BY")),
+                JR.exec (JR.setField "COUNT" "" JR.this (JR.str "COUNT(")),
+                JR.exec (JR.setField "ASC" "" JR.this (JR.str "ASC")),
+                JR.exec (JR.setField "DESC" "" JR.this (JR.str "DESC")),
+                JR.exec (JR.setField "PRIMARY_KEY" "" JR.this (JR.str "PRIMARY KEY(")),
+                JR.exec (JR.setField "END" "" JR.this (JR.str ") )")),
+                JR.exec (JR.setField "EQUAL_QUOTE" "" JR.this (JR.str " = \"")),
+                JR.exec (JR.setField "CLOSE_QUOTE" "" JR.this (JR.field "QUOTE" (JR.callStatic CommonSeps.jm_getInstance_0 []))),
+                JR.exec (JR.setField "EQUAL_QUOTE_NO_SPACE" "" JR.this (JR.str "=\"")),
+                JR.exec (JR.setField "ESCAPE" "" JR.this (JR.str "\\")),
+                JR.exec (JR.setField "DOUBLE_ESCAPE" "" JR.this (JR.str "\\\\")),
+                JR.exec (JR.setField "MORE_THAN_QUOTE" "" JR.this (JR.str " > \"")),
+                JR.exec (JR.setField "LESS_THAN_QUOTE" "" JR.this (JR.str " < \"")),
+                JR.exec (JR.setField "SINGLE_QUOTE_COMMA_SEP" "" JR.this (JR.str "','")),
+                JR.exec (JR.setField "ID" "" JR.this (JR.str "ID")),
+                JR.exec (JR.setField "SQL_STATEMENT_LABEL" "" JR.this (JR.str "SQL Statement: ")),
+                JR.exec (JR.setField "COLUMN_VALUE" "" JR.this (JR.str "\nColumn Value: ")),
+                JR.exec (JR.setField "CREATE_RETURN" "" JR.this (JR.str " Created Successfully")),
+                JR.exec (JR.setField "FIELD_VALUE" "" JR.this (JR.str "\nField Value: ")),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

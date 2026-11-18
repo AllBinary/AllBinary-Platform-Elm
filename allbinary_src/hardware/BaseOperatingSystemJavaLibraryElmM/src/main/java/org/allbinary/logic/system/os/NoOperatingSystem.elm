@@ -1,10 +1,10 @@
-module NoOperatingSystem exposing (..)
+module Org.Allbinary.Logic.System.Os.NoOperatingSystem exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.os
 -}
 
 import JR
-import GenericOperatingSystem
+import Org.Allbinary.Logic.System.Os.GenericOperatingSystem as GenericOperatingSystem
 
 
 jclass : String

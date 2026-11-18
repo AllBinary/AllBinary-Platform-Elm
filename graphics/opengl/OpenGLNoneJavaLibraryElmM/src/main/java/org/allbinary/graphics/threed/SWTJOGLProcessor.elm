@@ -1,339 +1,297 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.threed
-module SWTJOGLProcessor where
-
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified RatioProcessor -- same package or java.lang
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified MIDlet -- javax.microedition.midlet.MIDlet
-import qualified Runnable
-
--- implements Runnable
-data SWTJOGLProcessor = SWTJOGLProcessor
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull SWTJOGLProcessor where
-    javaNull = javaNullRecord "SWTJOGLProcessor"
-
-instance JavaEquals SWTJOGLProcessor where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq SWTJOGLProcessor where
-    (==) = jrecordEquals
-
-instance JavaObjectClass SWTJOGLProcessor where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: SWTJOGLProcessor
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO SWTJOGLProcessor
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = SWTJOGLProcessor header_
-    jregisterLevel header_ this
-    Runnable.registerInterface_ header_
-    jregisterMethod header_ "init" (\() -> init_impl this)
-    jregisterMethod header_ "isHolderCreated" (\() -> isHolderCreated_impl this)
-    jregisterMethod header_ "setRenderer" (\() -> setRenderer_impl this)
-    jregisterMethod header_ "isJOGL" (\() -> isJOGL_impl this)
-    jregisterMethod header_ "createSurface" (\() -> createSurface_impl this)
-    jregisterMethod header_ "onSurfaceCreated" (\() -> onSurfaceCreated_impl this)
-    jregisterMethod header_ "onSurfaceChangedForEvent" (\() -> onSurfaceChangedForEvent_impl this)
-    jregisterMethod header_ "onSurfaceChanged" (\() -> onSurfaceChanged_impl this)
-    jregisterMethod header_ "onSurfaceChangedWH" (\() -> onSurfaceChangedWH_impl this)
-    jregisterMethod header_ "addListener" (\() -> addListener_impl this)
-    jregisterMethod header_ "addListeners" (\() -> addListeners_impl this)
-    jregisterMethod header_ "run" (\() -> run_impl this)
-    jregisterMethod header_ "clear" (\() -> clear_impl this)
-    jregisterMethod header_ "setCustom" (\() -> setCustom_impl this)
-    jregisterMethod header_ "setRatioProcessor" (\() -> setRatioProcessor_impl this)
-    jregisterMethod header_ "isPortraitRatioProcessor" (\() -> isPortraitRatioProcessor_impl this)
-    jregisterMethod header_ "charWidth" (\() -> charWidth_impl this)
-    jregisterMethod header_ "charsWidth" (\() -> charsWidth_impl this)
-    jregisterMethod header_ "stringWidth" (\() -> stringWidth_impl this)
-    jregisterMethod header_ "substringWidth" (\() -> substringWidth_impl this)
-    pure this
-
-initFields_ :: SWTJOGLProcessor -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO SWTJOGLProcessor
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+module Org.Allbinary.Graphics.Threed.SWTJOGLProcessor exposing (..)
+
+{-| Generated Code Do Not Modify package org.allbinary.graphics.threed
+-}
 
-init_ :: SWTJOGLProcessor -> IO ()
-init_ this = do
-    initFields_ this
-
-
-getInstance :: IO (SWTJOGLProcessor)
-getInstance = do
-        pure (SWTJOGLProcessor.instance_)
-
-
-init :: (JavaObjectClass this_, JavaObjectClass o1, JavaObjectClass o2) => this_ -> o1 -> o2 -> IO (())
-init object_ a1 a2 = jmethod object_ "init" (\() -> (init_impl (javaCast object_ :: SWTJOGLProcessor))) () (jtoObject a1) (jtoObject a2)
-
-init_super :: (JavaObjectClass this_, JavaObjectClass o1, JavaObjectClass o2) => this_ -> o1 -> o2 -> IO (())
-init_super object_ a1 a2 = (init_impl (javaCast object_ :: SWTJOGLProcessor)) (jtoObject a1) (jtoObject a2)
-
-init_impl :: SWTJOGLProcessor -> JavaObject -> JavaObject -> IO (())
-init_impl this displayObject_ compObject_ = do
-        let display = jtoObject displayObject_
-        let comp = jtoObject compObject_
-        pure ()
-
-
-isHolderCreated :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isHolderCreated object_ = jmethod object_ "isHolderCreated" (\() -> (isHolderCreated_impl (javaCast object_ :: SWTJOGLProcessor))) ()
-
-isHolderCreated_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isHolderCreated_super object_ = (isHolderCreated_impl (javaCast object_ :: SWTJOGLProcessor))
-
-isHolderCreated_impl :: SWTJOGLProcessor -> IO (Bool)
-isHolderCreated_impl this = do
-        pure (True)
-
-
-setRenderer :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-setRenderer object_ a1 = jmethod object_ "setRenderer" (\() -> (setRenderer_impl (javaCast object_ :: SWTJOGLProcessor))) () (jtoObject a1)
-
-setRenderer_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-setRenderer_super object_ a1 = (setRenderer_impl (javaCast object_ :: SWTJOGLProcessor)) (jtoObject a1)
-
-setRenderer_impl :: SWTJOGLProcessor -> JavaObject -> IO (())
-setRenderer_impl this rendererObject_ = do
-        let renderer = jtoObject rendererObject_
-        pure ()
-
-
-isJOGL :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isJOGL object_ = jmethod object_ "isJOGL" (\() -> (isJOGL_impl (javaCast object_ :: SWTJOGLProcessor))) ()
-
-isJOGL_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isJOGL_super object_ = (isJOGL_impl (javaCast object_ :: SWTJOGLProcessor))
-
-isJOGL_impl :: SWTJOGLProcessor -> IO (Bool)
-isJOGL_impl this = do
-        pure (False)
-
-
-createSurface :: (JavaObjectClass this_) => this_ -> IO (())
-createSurface object_ = jmethod object_ "createSurface" (\() -> (createSurface_impl (javaCast object_ :: SWTJOGLProcessor))) ()
-
-createSurface_super :: (JavaObjectClass this_) => this_ -> IO (())
-createSurface_super object_ = (createSurface_impl (javaCast object_ :: SWTJOGLProcessor))
-
-createSurface_impl :: SWTJOGLProcessor -> IO (())
-createSurface_impl this = do
-        pure ()
-
-
-onSurfaceCreated :: (JavaObjectClass this_) => this_ -> IO (())
-onSurfaceCreated object_ = jmethod object_ "onSurfaceCreated" (\() -> (onSurfaceCreated_impl (javaCast object_ :: SWTJOGLProcessor))) ()
-
-onSurfaceCreated_super :: (JavaObjectClass this_) => this_ -> IO (())
-onSurfaceCreated_super object_ = (onSurfaceCreated_impl (javaCast object_ :: SWTJOGLProcessor))
-
-onSurfaceCreated_impl :: SWTJOGLProcessor -> IO (())
-onSurfaceCreated_impl this = do
-        pure ()
-
-
-onSurfaceChangedForEvent :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-onSurfaceChangedForEvent object_ a1 = jmethod object_ "onSurfaceChangedForEvent" (\() -> (onSurfaceChangedForEvent_impl (javaCast object_ :: SWTJOGLProcessor))) () (jtoObject a1)
-
-onSurfaceChangedForEvent_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-onSurfaceChangedForEvent_super object_ a1 = (onSurfaceChangedForEvent_impl (javaCast object_ :: SWTJOGLProcessor)) (jtoObject a1)
-
-onSurfaceChangedForEvent_impl :: SWTJOGLProcessor -> JavaObject -> IO (())
-onSurfaceChangedForEvent_impl this eventObject_ = do
-        let event = jtoObject eventObject_
-        pure ()
-
-
-onSurfaceChanged :: (JavaObjectClass this_) => this_ -> IO (())
-onSurfaceChanged object_ = jmethod object_ "onSurfaceChanged" (\() -> (onSurfaceChanged_impl (javaCast object_ :: SWTJOGLProcessor))) ()
-
-onSurfaceChanged_super :: (JavaObjectClass this_) => this_ -> IO (())
-onSurfaceChanged_super object_ = (onSurfaceChanged_impl (javaCast object_ :: SWTJOGLProcessor))
-
-onSurfaceChanged_impl :: SWTJOGLProcessor -> IO (())
-onSurfaceChanged_impl this = do
-        pure ()
-
-
-onSurfaceChangedWH :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-onSurfaceChangedWH object_ a1 a2 = jmethod object_ "onSurfaceChangedWH" (\() -> (onSurfaceChangedWH_impl (javaCast object_ :: SWTJOGLProcessor))) () a1 a2
-
-onSurfaceChangedWH_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> IO (())
-onSurfaceChangedWH_super object_ a1 a2 = (onSurfaceChangedWH_impl (javaCast object_ :: SWTJOGLProcessor)) a1 a2
-
-onSurfaceChangedWH_impl :: SWTJOGLProcessor -> Int -> Int -> IO (())
-onSurfaceChangedWH_impl this width height = do
-        pure ()
-
-
-addListener :: (JavaObjectClass this_) => this_ -> IO (())
-addListener object_ = jmethod object_ "addListener" (\() -> (addListener_impl (javaCast object_ :: SWTJOGLProcessor))) ()
-
-addListener_super :: (JavaObjectClass this_) => this_ -> IO (())
-addListener_super object_ = (addListener_impl (javaCast object_ :: SWTJOGLProcessor))
-
-addListener_impl :: SWTJOGLProcessor -> IO (())
-addListener_impl this = do
-        pure ()
-
-
-addListeners :: (JavaObjectClass this_) => this_ -> MIDlet.MIDlet -> IO (())
-addListeners object_ a1 = jmethod object_ "addListeners" (\() -> (addListeners_impl (javaCast object_ :: SWTJOGLProcessor))) () a1
-
-addListeners_super :: (JavaObjectClass this_) => this_ -> MIDlet.MIDlet -> IO (())
-addListeners_super object_ a1 = (addListeners_impl (javaCast object_ :: SWTJOGLProcessor)) a1
-
-addListeners_impl :: SWTJOGLProcessor -> MIDlet.MIDlet -> IO (())
-addListeners_impl this midlet = do
-        pure ()
-
-
-run :: (JavaObjectClass this_) => this_ -> IO (())
-run object_ = jmethod object_ "run" (\() -> (run_impl (javaCast object_ :: SWTJOGLProcessor))) ()
-
-run_super :: (JavaObjectClass this_) => this_ -> IO (())
-run_super object_ = (run_impl (javaCast object_ :: SWTJOGLProcessor))
-
-run_impl :: SWTJOGLProcessor -> IO (())
-run_impl this = do
-        pure ()
-
-
-clear :: (JavaObjectClass this_) => this_ -> IO (())
-clear object_ = jmethod object_ "clear" (\() -> (clear_impl (javaCast object_ :: SWTJOGLProcessor))) ()
-
-clear_super :: (JavaObjectClass this_) => this_ -> IO (())
-clear_super object_ = (clear_impl (javaCast object_ :: SWTJOGLProcessor))
-
-clear_impl :: SWTJOGLProcessor -> IO (())
-clear_impl this = do
-        pure ()
-
-
-setCustom :: (JavaObjectClass this_) => this_ -> Int -> Int -> Float -> IO (())
-setCustom object_ a1 a2 a3 = jmethod object_ "setCustom" (\() -> (setCustom_impl (javaCast object_ :: SWTJOGLProcessor))) () a1 a2 a3
-
-setCustom_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Float -> IO (())
-setCustom_super object_ a1 a2 a3 = (setCustom_impl (javaCast object_ :: SWTJOGLProcessor)) a1 a2 a3
-
-setCustom_impl :: SWTJOGLProcessor -> Int -> Int -> Float -> IO (())
-setCustom_impl this width height ratio = do
-        pure ()
-
-
-setRatioProcessor :: (JavaObjectClass this_) => this_ -> RatioProcessor.RatioProcessor -> IO (())
-setRatioProcessor object_ a1 = jmethod object_ "setRatioProcessor" (\() -> (setRatioProcessor_impl (javaCast object_ :: SWTJOGLProcessor))) () a1
-
-setRatioProcessor_super :: (JavaObjectClass this_) => this_ -> RatioProcessor.RatioProcessor -> IO (())
-setRatioProcessor_super object_ a1 = (setRatioProcessor_impl (javaCast object_ :: SWTJOGLProcessor)) a1
-
-setRatioProcessor_impl :: SWTJOGLProcessor -> RatioProcessor.RatioProcessor -> IO (())
-setRatioProcessor_impl this ratioProcessor = do
-        pure ()
-
-
-isPortraitRatioProcessor :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isPortraitRatioProcessor object_ = jmethod object_ "isPortraitRatioProcessor" (\() -> (isPortraitRatioProcessor_impl (javaCast object_ :: SWTJOGLProcessor))) ()
-
-isPortraitRatioProcessor_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isPortraitRatioProcessor_super object_ = (isPortraitRatioProcessor_impl (javaCast object_ :: SWTJOGLProcessor))
-
-isPortraitRatioProcessor_impl :: SWTJOGLProcessor -> IO (Bool)
-isPortraitRatioProcessor_impl this = do
-        pure (True)
-
-
-charWidth :: (JavaObjectClass this_) => this_ -> Font.Font -> Char -> IO (Int)
-charWidth object_ a1 a2 = jmethod object_ "charWidth" (\() -> (charWidth_impl (javaCast object_ :: SWTJOGLProcessor))) () a1 a2
-
-charWidth_super :: (JavaObjectClass this_) => this_ -> Font.Font -> Char -> IO (Int)
-charWidth_super object_ a1 a2 = (charWidth_impl (javaCast object_ :: SWTJOGLProcessor)) a1 a2
-
-charWidth_impl :: SWTJOGLProcessor -> Font.Font -> Char -> IO (Int)
-charWidth_impl this font ch = do
-        javaThrow ((JavaException "RuntimeException" ""))
-
-
-charsWidth :: (JavaObjectClass this_) => this_ -> Font.Font -> JavaArray (Char) -> Int -> Int -> IO (Int)
-charsWidth object_ a1 a2 a3 a4 = jmethod object_ "charsWidth" (\() -> (charsWidth_impl (javaCast object_ :: SWTJOGLProcessor))) () a1 a2 a3 a4
-
-charsWidth_super :: (JavaObjectClass this_) => this_ -> Font.Font -> JavaArray (Char) -> Int -> Int -> IO (Int)
-charsWidth_super object_ a1 a2 a3 a4 = (charsWidth_impl (javaCast object_ :: SWTJOGLProcessor)) a1 a2 a3 a4
-
-charsWidth_impl :: SWTJOGLProcessor -> Font.Font -> JavaArray (Char) -> Int -> Int -> IO (Int)
-charsWidth_impl this font ch offset length = do
-        javaThrow ((JavaException "RuntimeException" ""))
-
-
-stringWidth :: (JavaObjectClass this_) => this_ -> Font.Font -> String -> IO (Int)
-stringWidth object_ a1 a2 = jmethod object_ "stringWidth" (\() -> (stringWidth_impl (javaCast object_ :: SWTJOGLProcessor))) () a1 a2
-
-stringWidth_super :: (JavaObjectClass this_) => this_ -> Font.Font -> String -> IO (Int)
-stringWidth_super object_ a1 a2 = (stringWidth_impl (javaCast object_ :: SWTJOGLProcessor)) a1 a2
-
-stringWidth_impl :: SWTJOGLProcessor -> Font.Font -> String -> IO (Int)
-stringWidth_impl this font str = do
-        javaThrow ((JavaException "RuntimeException" ""))
-
-
-substringWidth :: (JavaObjectClass this_) => this_ -> Font.Font -> String -> Int -> Int -> IO (Int)
-substringWidth object_ a1 a2 a3 a4 = jmethod object_ "substringWidth" (\() -> (substringWidth_impl (javaCast object_ :: SWTJOGLProcessor))) () a1 a2 a3 a4
-
-substringWidth_super :: (JavaObjectClass this_) => this_ -> Font.Font -> String -> Int -> Int -> IO (Int)
-substringWidth_super object_ a1 a2 a3 a4 = (substringWidth_impl (javaCast object_ :: SWTJOGLProcessor)) a1 a2 a3 a4
-
-substringWidth_impl :: SWTJOGLProcessor -> Font.Font -> String -> Int -> Int -> IO (Int)
-substringWidth_impl this font str offset len = do
-        javaThrow ((JavaException "RuntimeException" ""))
-
+import JR
+import JRunnable
+
+
+jclass : String
+jclass =
+    "SWTJOGLProcessor"
+
+
+jchain : List String
+jchain =
+    [ "SWTJOGLProcessor" ]
+        ++ JRunnable.jchain
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "init_2", jm_init_2 )
+        , ( "isHolderCreated_0", jm_isHolderCreated_0 )
+        , ( "setRenderer_1", jm_setRenderer_1 )
+        , ( "isJOGL_0", jm_isJOGL_0 )
+        , ( "createSurface_0", jm_createSurface_0 )
+        , ( "onSurfaceCreated_0", jm_onSurfaceCreated_0 )
+        , ( "onSurfaceChangedForEvent_1", jm_onSurfaceChangedForEvent_1 )
+        , ( "onSurfaceChanged_0", jm_onSurfaceChanged_0 )
+        , ( "onSurfaceChangedWH_2", jm_onSurfaceChangedWH_2 )
+        , ( "addListener_0", jm_addListener_0 )
+        , ( "addListeners_1", jm_addListeners_1 )
+        , ( "run_0", jm_run_0 )
+        , ( "clear_0", jm_clear_0 )
+        , ( "setCustom_3", jm_setCustom_3 )
+        , ( "setRatioProcessor_1", jm_setRatioProcessor_1 )
+        , ( "isPortraitRatioProcessor_0", jm_isPortraitRatioProcessor_0 )
+        , ( "charWidth_2", jm_charWidth_2 )
+        , ( "charsWidth_4", jm_charsWidth_4 )
+        , ( "stringWidth_2", jm_stringWidth_2 )
+        , ( "substringWidth_4", jm_substringWidth_4 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "SWTJOGLProcessor"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_init_2", jm_init_2 ), ( "jm_isHolderCreated_0", jm_isHolderCreated_0 ), ( "jm_setRenderer_1", jm_setRenderer_1 ), ( "jm_isJOGL_0", jm_isJOGL_0 ), ( "jm_createSurface_0", jm_createSurface_0 ), ( "jm_onSurfaceCreated_0", jm_onSurfaceCreated_0 ), ( "jm_onSurfaceChangedForEvent_1", jm_onSurfaceChangedForEvent_1 ), ( "jm_onSurfaceChanged_0", jm_onSurfaceChanged_0 ), ( "jm_onSurfaceChangedWH_2", jm_onSurfaceChangedWH_2 ), ( "jm_addListener_0", jm_addListener_0 ), ( "jm_addListeners_1", jm_addListeners_1 ), ( "jm_run_0", jm_run_0 ), ( "jm_clear_0", jm_clear_0 ), ( "jm_setCustom_3", jm_setCustom_3 ), ( "jm_setRatioProcessor_1", jm_setRatioProcessor_1 ), ( "jm_isPortraitRatioProcessor_0", jm_isPortraitRatioProcessor_0 ), ( "jm_charWidth_2", jm_charWidth_2 ), ( "jm_charsWidth_4", jm_charsWidth_4 ), ( "jm_stringWidth_2", jm_stringWidth_2 ), ( "jm_substringWidth_4", jm_substringWidth_4 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "SWTJOGLProcessor" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_init_2 : JR.Method
+jm_init_2 jheap jthis jargs =
+    JR.method [ ( "display", "" ), ( "comp", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isHolderCreated_0 : JR.Method
+jm_isHolderCreated_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setRenderer_1 : JR.Method
+jm_setRenderer_1 jheap jthis jargs =
+    JR.method [ ( "renderer", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isJOGL_0 : JR.Method
+jm_isJOGL_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool False) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createSurface_0 : JR.Method
+jm_createSurface_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onSurfaceCreated_0 : JR.Method
+jm_onSurfaceCreated_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onSurfaceChangedForEvent_1 : JR.Method
+jm_onSurfaceChangedForEvent_1 jheap jthis jargs =
+    JR.method [ ( "event", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onSurfaceChanged_0 : JR.Method
+jm_onSurfaceChanged_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onSurfaceChangedWH_2 : JR.Method
+jm_onSurfaceChangedWH_2 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addListener_0 : JR.Method
+jm_addListener_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_addListeners_1 : JR.Method
+jm_addListeners_1 jheap jthis jargs =
+    JR.method [ ( "midlet", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_run_0 : JR.Method
+jm_run_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_clear_0 : JR.Method
+jm_clear_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setCustom_3 : JR.Method
+jm_setCustom_3 jheap jthis jargs =
+    JR.method [ ( "width", "I" ), ( "height", "I" ), ( "ratio", "F" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setRatioProcessor_1 : JR.Method
+jm_setRatioProcessor_1 jheap jthis jargs =
+    JR.method [ ( "ratioProcessor", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isPortraitRatioProcessor_0 : JR.Method
+jm_isPortraitRatioProcessor_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_charWidth_2 : JR.Method
+jm_charWidth_2 jheap jthis jargs =
+    JR.method [ ( "font", "" ), ( "ch", "C" ) ] "I"
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_charsWidth_4 : JR.Method
+jm_charsWidth_4 jheap jthis jargs =
+    JR.method [ ( "font", "" ), ( "ch", "" ), ( "offset", "I" ), ( "length", "I" ) ] "I"
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_stringWidth_2 : JR.Method
+jm_stringWidth_2 jheap jthis jargs =
+    JR.method [ ( "font", "" ), ( "str", "" ) ] "I"
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_substringWidth_4 : JR.Method
+jm_substringWidth_4 jheap jthis jargs =
+    JR.method [ ( "font", "" ), ( "str", "" ), ( "offset", "I" ), ( "len", "I" ) ] "I"
+        (JR.run [ 
+                    JR.throw (JR.new (JR.newThrowable "RuntimeException" [ "RuntimeException", "Exception" ]) []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

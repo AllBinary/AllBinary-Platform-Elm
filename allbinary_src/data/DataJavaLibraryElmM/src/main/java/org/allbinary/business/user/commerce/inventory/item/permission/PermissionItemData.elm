@@ -1,97 +1,114 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.inventory.item.permission
-module PermissionItemData where
+module Org.Allbinary.Business.User.Commerce.Inventory.Item.Permission.PermissionItemData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.inventory.item.permission
+-}
 
-data PermissionItemData = PermissionItemData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull PermissionItemData where
-    javaNull = javaNullRecord "PermissionItemData"
 
-instance JavaEquals PermissionItemData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq PermissionItemData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "PermissionItemData"
 
-instance JavaObjectClass PermissionItemData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-wHO :: String
-wHO = "PERMISSIONSITEM_WHO"
+jchain : List String
+jchain =
+    [ "PermissionItemData" ]
 
-wHAT :: String
-wHAT = "PERMISSIONSITEM_WHAT"
 
-tYPE :: String
-tYPE = "PERMISSIONSITEM_TYPE"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-sTART_TIME :: String
-sTART_TIME = "PERMISSIONSITEM_START_TIME"
 
-eND_TIME :: String
-eND_TIME = "PERMISSIONSITEM_END_TIME"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-rEMOTE_ADDR :: String
-rEMOTE_ADDR = "PERMISSIONSITEM_REMOTE_ADDR"
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "PermissionItemData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_WHO", jstatic_WHO ), ( "jstatic_WHAT", jstatic_WHAT ), ( "jstatic_TYPE", jstatic_TYPE ), ( "jstatic_START_TIME", jstatic_START_TIME ), ( "jstatic_END_TIME", jstatic_END_TIME ), ( "jstatic_REMOTE_ADDR", jstatic_REMOTE_ADDR ) ]
+        jheap
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
 
-newRecord_ :: IO PermissionItemData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = PermissionItemData header_
-    jregisterLevel header_ this
-    pure this
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-initFields_ :: PermissionItemData -> IO ()
-initFields_ this = do
-    pure ()
 
-new_ :: IO PermissionItemData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
+jstatic_WHO : JR.M
+jstatic_WHO s =
+    JR.static "PermissionItemData" jclinit "WHO"
+        (JR.str "PERMISSIONSITEM_WHO")
+        s
 
-init_ :: PermissionItemData -> IO ()
-init_ this = do
-    initFields_ this
 
+jstatic_WHAT : JR.M
+jstatic_WHAT s =
+    JR.static "PermissionItemData" jclinit "WHAT"
+        (JR.str "PERMISSIONSITEM_WHAT")
+        s
+
+
+jstatic_TYPE : JR.M
+jstatic_TYPE s =
+    JR.static "PermissionItemData" jclinit "TYPE"
+        (JR.str "PERMISSIONSITEM_TYPE")
+        s
+
+
+jstatic_START_TIME : JR.M
+jstatic_START_TIME s =
+    JR.static "PermissionItemData" jclinit "START_TIME"
+        (JR.str "PERMISSIONSITEM_START_TIME")
+        s
+
+
+jstatic_END_TIME : JR.M
+jstatic_END_TIME s =
+    JR.static "PermissionItemData" jclinit "END_TIME"
+        (JR.str "PERMISSIONSITEM_END_TIME")
+        s
+
+
+jstatic_REMOTE_ADDR : JR.M
+jstatic_REMOTE_ADDR s =
+    JR.static "PermissionItemData" jclinit "REMOTE_ADDR"
+        (JR.str "PERMISSIONSITEM_REMOTE_ADDR")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

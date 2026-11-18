@@ -1,186 +1,159 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media.image
-module ImageCopyUtil where
+module Org.Allbinary.Media.Image.ImageCopyUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified ImageCreationUtil -- same package or java.lang
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Features -- org.allbinary.game.configuration.feature.Features
-import qualified GameFeatureFactory -- org.allbinary.game.configuration.feature.GameFeatureFactory
-import qualified Anchor -- org.allbinary.graphics.Anchor
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
+{-| Generated Code Do Not Modify package org.allbinary.media.image
+-}
 
-data ImageCopyUtil = ImageCopyUtil
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , imageCreationUtil :: IORef (ImageCreationUtil.ImageCreationUtil)
-    , anchor :: IORef (Int)
-    , gameFeatureFactory :: IORef (GameFeatureFactory.GameFeatureFactory)
-    , features :: IORef (Features.Features)
-    , nO_COPY :: IORef (String)
-    }
-
-instance JavaNull ImageCopyUtil where
-    javaNull = javaNullRecord "ImageCopyUtil"
-
-instance JavaEquals ImageCopyUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageCopyUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageCopyUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: ImageCopyUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ImageCopyUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    imageCreationUtil <- newIORef javaNull
-    anchor <- newIORef 0
-    gameFeatureFactory <- newIORef javaNull
-    features <- newIORef javaNull
-    nO_COPY <- newIORef ""
-    let this = ImageCopyUtil header_ logUtil commonStrings imageCreationUtil anchor gameFeatureFactory features nO_COPY
-    jregisterLevel header_ this
-    jregisterMethod header_ "createImageForRotation" (\() -> createImageForRotation_impl this)
-    jregisterMethod header_ "createImage" (\() -> createImage_impl this)
-    jregisterMethod header_ "createImageScale" (\() -> createImageScale_impl this)
-    pure this
-
-initFields_ :: ImageCopyUtil -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.imageCreationUtil =<< (ImageCreationUtil.getInstance)
-    jset this.anchor (Anchor.tOP_LEFT)
-    jset this.gameFeatureFactory =<< (GameFeatureFactory.getInstance)
-    jset this.features =<< (Features.getInstance)
-    jset this.nO_COPY ("J2ME does not need to copy images after initial loading")
-    pure ()
+import JR
+import Org.Allbinary.Graphics.Anchor as Anchor
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import Org.Allbinary.Game.Configuration.Feature.Features as Features
+import Org.Allbinary.Game.Configuration.Feature.GameFeatureFactory as GameFeatureFactory
+import Org.Allbinary.Media.Image.ImageCreationUtil as ImageCreationUtil
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-getInstance :: IO (ImageCopyUtil)
-getInstance = do
-        pure (ImageCopyUtil.instance_)
-
-new_ :: IO ImageCopyUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: ImageCopyUtil -> IO ()
-init_ this = do
-        initFields_ this
-        pure ()
-        pure ()
+jclass : String
+jclass =
+    "ImageCopyUtil"
 
 
--- throws Exception
-createImageForRotation :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (Image.Image)
-createImageForRotation object_ a1 = jmethod object_ "createImageForRotation" (\() -> (createImageForRotation_impl (javaCast object_ :: ImageCopyUtil))) () a1
-
-createImageForRotation_super :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (Image.Image)
-createImageForRotation_super object_ a1 = (createImageForRotation_impl (javaCast object_ :: ImageCopyUtil)) a1
-
-createImageForRotation_impl :: ImageCopyUtil -> Image.Image -> IO (Image.Image)
-createImageForRotation_impl this originalImage = do
-        (ImageCopyUtil.createImage this originalImage)
+jchain : List String
+jchain =
+    [ "ImageCopyUtil" ]
 
 
--- throws Exception
-createImage :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (Image.Image)
-createImage object_ a1 = jmethod object_ "createImage" (\() -> (createImage_impl (javaCast object_ :: ImageCopyUtil))) () a1
-
-createImage_super :: (JavaObjectClass this_) => this_ -> Image.Image -> IO (Image.Image)
-createImage_super object_ a1 = (createImage_impl (javaCast object_ :: ImageCopyUtil)) a1
-
-createImage_impl :: ImageCopyUtil -> Image.Image -> IO (Image.Image)
-createImage_impl this originalImage = do
-    javaCatchReturn $ do
-        when (Prelude.not (jio (Features.isFeature ((jget (this).features)) (jget ((jget (this).gameFeatureFactory)).pOST_IMAGE_LOADING_MODIFICATION)))) $ do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (this).nO_COPY) this (jget ((jget (this).commonStrings)).cONSTRUCTOR) (JavaException "Exception" ""))
-            javaReturn (originalImage)
-        image <- (ImageCreationUtil.createImageWH ((jget (this).imageCreationUtil)) (jio (Image.getWidth originalImage)) (jio (Image.getHeight originalImage)))
-        if (jio (Image.isMutable image)) then do
-            Control.Monad.void (Image.drawImage ((jio (Image.getGraphics image))) originalImage 0 0 (jget (this).anchor))
-            javaReturn (image)
-        else do
-            javaThrow ((JavaException "Exception" "Not Mutable"))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "imageCreationUtil", JR.defaultOf "" ), ( "anchor", JR.defaultOf "I" ), ( "gameFeatureFactory", JR.defaultOf "" ), ( "features", JR.defaultOf "" ), ( "NO_COPY", JR.defaultOf "" ) ]
 
 
--- throws Exception
-createImageScale :: (JavaObjectClass this_) => this_ -> Image.Image -> Float -> Bool -> IO (Image.Image)
-createImageScale object_ a1 a2 a3 = jmethod object_ "createImageScale" (\() -> (createImageScale_impl (javaCast object_ :: ImageCopyUtil))) () a1 a2 a3
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "createImageForRotation_1", jm_createImageForRotation_1 )
+        , ( "createImage_1", jm_createImage_1 )
+        , ( "createImageScale_3", jm_createImageScale_3 ) ]
+        JR.noMethods
 
-createImageScale_super :: (JavaObjectClass this_) => this_ -> Image.Image -> Float -> Bool -> IO (Image.Image)
-createImageScale_super object_ a1 a2 a3 = (createImageScale_impl (javaCast object_ :: ImageCopyUtil)) a1 a2 a3
 
-createImageScale_impl :: ImageCopyUtil -> Image.Image -> Float -> Bool -> IO (Image.Image)
-createImageScale_impl this originalImage canvasScale resize = do
-    javaCatchReturn $ do
-        when (Prelude.not (jio (Features.isFeature ((jget (this).features)) (jget ((jget (this).gameFeatureFactory)).pOST_IMAGE_LOADING_MODIFICATION)))) $ do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget (this).nO_COPY) this (jget ((jget (this).commonStrings)).cONSTRUCTOR) (JavaException "Exception" ""))
-            javaReturn (originalImage)
-        newWidth <- newIORef ((Prelude.fromInteger (jnumericInteger (((jio (Image.getWidth originalImage)) * canvasScale)))) :: Int)
-        newHeight <- newIORef ((Prelude.fromInteger (jnumericInteger (((jio (Image.getHeight originalImage)) * canvasScale)))) :: Int)
-        when resize $ do
-            when ((jget newWidth) < (jget newHeight)) $ do
-                jset newWidth ((jget newHeight))
-            when ((jget newHeight) < (jget newWidth)) $ do
-                jset newHeight ((jget newWidth))
-        image <- (ImageCreationUtil.createImageWH ((jget (this).imageCreationUtil)) (jget newWidth) (jget newHeight))
-        if (jio (Image.isMutable image)) then do
-            let halfWidthDelta = ((((jget newWidth) - (jio (Image.getWidth originalImage)))) / 2)
-            let halfHeightDelta = ((((jget newHeight) - (jio (Image.getHeight originalImage)))) / 2)
-            graphics <- (Image.getGraphics image)
-            Control.Monad.void (Graphics.drawImage graphics originalImage halfWidthDelta halfHeightDelta (jget (this).anchor))
-            javaReturn (image)
-        else do
-            javaThrow ((JavaException "Exception" "Not Mutable"))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageCopyUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_createImageForRotation_1", jm_createImageForRotation_1 ), ( "jm_createImage_1", jm_createImage_1 ), ( "jm_createImageScale_3", jm_createImageScale_3 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "ImageCopyUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                JR.exec (JR.setField "imageCreationUtil" "" JR.this (JR.callStatic ImageCreationUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "anchor" "I" JR.this Anchor.jstatic_TOP_LEFT),
+                JR.exec (JR.setField "gameFeatureFactory" "" JR.this (JR.callStatic GameFeatureFactory.jm_getInstance_0 [])),
+                JR.exec (JR.setField "features" "" JR.this (JR.callStatic Features.jm_getInstance_0 [])),
+                JR.exec (JR.setField "NO_COPY" "" JR.this (JR.str "J2ME does not need to copy images after initial loading")),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImageForRotation_1 : JR.Method
+jm_createImageForRotation_1 jheap jthis jargs =
+    JR.method [ ( "originalImage", "" ) ] ""
+        (JR.run [ 
+                    JR.return (JR.invoke "createImage_1" JR.this [ (JR.local "originalImage") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImage_1 : JR.Method
+jm_createImage_1 jheap jthis jargs =
+    JR.method [ ( "originalImage", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isFeature_1" (JR.thisField "features") [ (JR.field "POST_IMAGE_LOADING_MODIFICATION" (JR.thisField "gameFeatureFactory")) ])) (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.thisField "NO_COPY"), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")), (JR.new (JR.newThrowable "Exception" [ "Exception" ]) []) ]), 
+                        JR.return (JR.local "originalImage") ]) identity, 
+                    JR.declare "image" "" (JR.invoke "createImageWH_2" (JR.thisField "imageCreationUtil") [ (JR.invoke "getWidth_0" (JR.local "originalImage") []), (JR.invoke "getHeight_0" (JR.local "originalImage") []) ]), 
+                    JR.ifElse (JR.invoke "isMutable_0" (JR.local "image") []) (JR.run [ 
+                        JR.exec (JR.invoke "drawImage_4" (JR.invoke "getGraphics_0" (JR.local "image") []) [ (JR.local "originalImage"), (JR.int 0), (JR.int 0), (JR.thisField "anchor") ]), 
+                        JR.return (JR.local "image") ]) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Not Mutable") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_createImageScale_3 : JR.Method
+jm_createImageScale_3 jheap jthis jargs =
+    JR.method [ ( "originalImage", "" ), ( "canvasScale", "F" ), ( "resize", "Z" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map JR.not_ (JR.invoke "isFeature_1" (JR.thisField "features") [ (JR.field "POST_IMAGE_LOADING_MODIFICATION" (JR.thisField "gameFeatureFactory")) ])) (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.thisField "NO_COPY"), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")), (JR.new (JR.newThrowable "Exception" [ "Exception" ]) []) ]), 
+                        JR.return (JR.local "originalImage") ]) identity, 
+                    JR.declare "newWidth" "I" (JR.cast "I" ((JR.map2 JR.mul (JR.invoke "getWidth_0" (JR.local "originalImage") []) (JR.local "canvasScale")))), 
+                    JR.declare "newHeight" "I" (JR.cast "I" ((JR.map2 JR.mul (JR.invoke "getHeight_0" (JR.local "originalImage") []) (JR.local "canvasScale")))), 
+                    JR.ifElse (JR.local "resize") (JR.run [ 
+                        JR.ifElse (JR.map2 JR.less (JR.local "newWidth") (JR.local "newHeight")) (JR.run [ 
+                            JR.exec (JR.setLocal "newWidth" "I" (JR.local "newHeight")) ]) identity, 
+                        JR.ifElse (JR.map2 JR.less (JR.local "newHeight") (JR.local "newWidth")) (JR.run [ 
+                            JR.exec (JR.setLocal "newHeight" "I" (JR.local "newWidth")) ]) identity ]) identity, 
+                    JR.declare "image" "" (JR.invoke "createImageWH_2" (JR.thisField "imageCreationUtil") [ (JR.local "newWidth"), (JR.local "newHeight") ]), 
+                    JR.ifElse (JR.invoke "isMutable_0" (JR.local "image") []) (JR.run [ 
+                        JR.declare "halfWidthDelta" "I" (JR.map2 JR.div ((JR.map2 JR.sub (JR.local "newWidth") (JR.invoke "getWidth_0" (JR.local "originalImage") []))) (JR.int 2)), 
+                        JR.declare "halfHeightDelta" "I" (JR.map2 JR.div ((JR.map2 JR.sub (JR.local "newHeight") (JR.invoke "getHeight_0" (JR.local "originalImage") []))) (JR.int 2)), 
+                        JR.declare "graphics" "" (JR.invoke "getGraphics_0" (JR.local "image") []), 
+                        JR.exec (JR.invoke "drawImage_4" (JR.local "graphics") [ (JR.local "originalImage"), (JR.local "halfWidthDelta"), (JR.local "halfHeightDelta"), (JR.thisField "anchor") ]), 
+                        JR.return (JR.local "image") ]) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Not Mutable") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,4 +1,4 @@
-module NullThread exposing (..)
+module Org.Allbinary.Thread.NullThread exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.thread
 -}

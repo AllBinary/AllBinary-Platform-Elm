@@ -1,4 +1,4 @@
-module HardwareInterface exposing (..)
+module Org.Allbinary.Logic.System.Hardware.HardwareInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.system.hardware
 -}

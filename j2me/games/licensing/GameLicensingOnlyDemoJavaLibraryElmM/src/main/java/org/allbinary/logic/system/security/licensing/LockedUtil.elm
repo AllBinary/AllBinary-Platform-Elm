@@ -1,116 +1,112 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.logic.system.security.licensing
-module LockedUtil where
+module Org.Allbinary.Logic.System.Security.Licensing.LockedUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified LockableFeature -- same package or java.lang
-import qualified LockedUtilInterface
+{-| Generated Code Do Not Modify package org.allbinary.logic.system.security.licensing
+-}
 
--- implements LockedUtilInterface
-data LockedUtil = LockedUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull LockedUtil where
-    javaNull = javaNullRecord "LockedUtil"
-
-instance JavaEquals LockedUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LockedUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LockedUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: LockedUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LockedUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = LockedUtil header_
-    jregisterLevel header_ this
-    LockedUtilInterface.registerInterface_ header_
-    jregisterMethod header_ "isLocked" (\() -> isLocked_impl this)
-    jregisterMethod header_ "isLockedFeature" (\() -> isLockedFeature_impl this)
-    pure this
-
-initFields_ :: LockedUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO LockedUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LockedUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Logic.System.Security.Licensing.LockedUtilInterface as LockedUtilInterface
 
 
-getInstance :: IO (LockedUtil)
-getInstance = do
-        pure (LockedUtil.instance_)
+jclass : String
+jclass =
+    "LockedUtil"
 
 
-isLocked :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isLocked object_ = jmethod object_ "isLocked" (\() -> (isLocked_impl (javaCast object_ :: LockedUtil))) ()
-
-isLocked_super :: (JavaObjectClass this_) => this_ -> IO (Bool)
-isLocked_super object_ = (isLocked_impl (javaCast object_ :: LockedUtil))
-
-isLocked_impl :: LockedUtil -> IO (Bool)
-isLocked_impl this = do
-        pure (True)
+jchain : List String
+jchain =
+    [ "LockedUtil" ]
+        ++ LockedUtilInterface.jchain
 
 
-isLockedFeature :: (JavaObjectClass this_) => this_ -> LockableFeature.LockableFeature -> IO (Bool)
-isLockedFeature object_ a1 = jmethod object_ "isLockedFeature" (\() -> (isLockedFeature_impl (javaCast object_ :: LockedUtil))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-isLockedFeature_super :: (JavaObjectClass this_) => this_ -> LockableFeature.LockableFeature -> IO (Bool)
-isLockedFeature_super object_ a1 = (isLockedFeature_impl (javaCast object_ :: LockedUtil)) a1
 
-isLockedFeature_impl :: LockedUtil -> LockableFeature.LockableFeature -> IO (Bool)
-isLockedFeature_impl this lockableFeatrue = do
-        pure (True)
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "isLocked_0", jm_isLocked_0 )
+        , ( "isLockedFeature_1", jm_isLockedFeature_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LockedUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_isLocked_0", jm_isLocked_0 ), ( "jm_isLockedFeature_1", jm_isLockedFeature_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LockedUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isLocked_0 : JR.Method
+jm_isLocked_0 jheap jthis jargs =
+    JR.method [] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_isLockedFeature_1 : JR.Method
+jm_isLockedFeature_1 jheap jthis jargs =
+    JR.method [ ( "lockableFeatrue", "" ) ] "Z"
+        (JR.run [ 
+                    JR.return (JR.bool True) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

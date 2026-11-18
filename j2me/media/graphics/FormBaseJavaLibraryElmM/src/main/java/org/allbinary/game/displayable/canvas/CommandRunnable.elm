@@ -1,123 +1,96 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.displayable.canvas
-module CommandRunnable where
+module Org.Allbinary.Game.Displayable.Canvas.CommandRunnable exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommandFormInputProcessor -- same package or java.lang
-import qualified Command -- javax.microedition.lcdui.Command
-import qualified CommandListener -- javax.microedition.lcdui.CommandListener
-import qualified MyCanvas -- org.allbinary.graphics.displayable.MyCanvas
-import qualified LogUtil -- org.allbinary.logic.communication.log.LogUtil
-import qualified CommonStrings -- org.allbinary.string.CommonStrings
-import qualified Runnable
+{-| Generated Code Do Not Modify package org.allbinary.game.displayable.canvas
+-}
 
--- implements Runnable
-data CommandRunnable = CommandRunnable
-    { header_ :: JavaHeader
-    , logUtil :: IORef (LogUtil.LogUtil)
-    , commonStrings :: IORef (CommonStrings.CommonStrings)
-    , commandFormInputProcessor :: IORef (CommandFormInputProcessor.CommandFormInputProcessor)
-    , command :: IORef (Command.Command)
-    }
-
-instance JavaNull CommandRunnable where
-    javaNull = javaNullRecord "CommandRunnable"
-
-instance JavaEquals CommandRunnable where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq CommandRunnable where
-    (==) = jrecordEquals
-
-instance JavaObjectClass CommandRunnable where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO CommandRunnable
-newRecord_ = do
-    header_ <- newJavaHeader
-    logUtil <- newIORef javaNull
-    commonStrings <- newIORef javaNull
-    commandFormInputProcessor <- newIORef javaNull
-    command <- newIORef javaNull
-    let this = CommandRunnable header_ logUtil commonStrings commandFormInputProcessor command
-    jregisterLevel header_ this
-    Runnable.registerInterface_ header_
-    jregisterMethod header_ "run" (\() -> run_impl this)
-    pure this
-
-initFields_ :: CommandRunnable -> IO ()
-initFields_ this = do
-    jset this.logUtil =<< (LogUtil.getInstance)
-    jset this.commonStrings =<< (CommonStrings.getInstance)
-    jset this.commandFormInputProcessor (javaNull)
-    jset this.command (javaNull)
-    pure ()
-
-new_2 :: CommandFormInputProcessor.CommandFormInputProcessor -> Command.Command -> IO CommandRunnable
-new_2 commandFormInputProcessor command = do
-    this <- newRecord_
-    init_2 this commandFormInputProcessor command
-    pure this
-
-init_2 :: CommandRunnable -> CommandFormInputProcessor.CommandFormInputProcessor -> Command.Command -> IO ()
-init_2 this commandFormInputProcessor command = do
-        initFields_ this
-        jset (this).commandFormInputProcessor (commandFormInputProcessor)
-        jset (this).command (command)
-        pure ()
+import JR
+import Org.Allbinary.String.CommonStrings as CommonStrings
+import JRunnable
+import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 
 
-run :: (JavaObjectClass this_) => this_ -> IO (())
-run object_ = jmethod object_ "run" (\() -> (run_impl (javaCast object_ :: CommandRunnable))) ()
+jclass : String
+jclass =
+    "CommandRunnable"
 
-run_super :: (JavaObjectClass this_) => this_ -> IO (())
-run_super object_ = (run_impl (javaCast object_ :: CommandRunnable))
 
-run_impl :: CommandRunnable -> IO (())
-run_impl this = do
-        handle (\(e :: JavaException) -> do
-            Control.Monad.void (LogUtil.put ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eXCEPTION) this (jget ((jget (this).commonStrings)).rUN) e)
-            ) $ do
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).sTART_RUNNABLE) this (jget ((jget (this).commonStrings)).rUN))
-            canvas <- (CommandFormInputProcessor.getCanvas ((jget (this).commandFormInputProcessor)))
-            commandListener <- (MyCanvas.getCustomCommandListener canvas)
-            Control.Monad.void (CommandListener.commandAction commandListener (jget (this).command) canvas)
-            Control.Monad.void (LogUtil.putF ((jget (this).logUtil)) (jget ((jget (this).commonStrings)).eND_RUNNABLE) this (jget ((jget (this).commonStrings)).rUN))
-        pure ()
+jchain : List String
+jchain =
+    [ "CommandRunnable" ]
+        ++ JRunnable.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "logUtil", JR.defaultOf "" ), ( "commonStrings", JR.defaultOf "" ), ( "commandFormInputProcessor", JR.defaultOf "" ), ( "command", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "run_0", jm_run_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "CommandRunnable"
+        [ ( "jm_run_0", jm_run_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "commandFormInputProcessor", "" ), ( "command", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "logUtil" "" JR.this (JR.callStatic LogUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "commonStrings" "" JR.this (JR.callStatic CommonStrings.jm_getInstance_0 [])),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "commandFormInputProcessor" "" JR.this (JR.local "commandFormInputProcessor")), 
+                    JR.exec (JR.setField "command" "" JR.this (JR.local "command")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_run_0 : JR.Method
+jm_run_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.try (JR.run [ 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "START_RUNNABLE" (JR.thisField "commonStrings")), JR.this, (JR.field "RUN" (JR.thisField "commonStrings")) ]), 
+                        JR.declare "canvas" "" (JR.invoke "getCanvas_0" (JR.thisField "commandFormInputProcessor") []), 
+                        JR.declare "commandListener" "" (JR.invoke "getCustomCommandListener_0" (JR.local "canvas") []), 
+                        JR.exec (JR.invoke "commandAction_2" (JR.local "commandListener") [ (JR.thisField "command"), (JR.local "canvas") ]), 
+                        JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.field "END_RUNNABLE" (JR.thisField "commonStrings")), JR.this, (JR.field "RUN" (JR.thisField "commonStrings")) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                        JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "RUN" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

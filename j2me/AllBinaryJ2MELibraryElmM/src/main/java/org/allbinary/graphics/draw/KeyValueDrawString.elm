@@ -1,148 +1,117 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.draw
-module KeyValueDrawString where
+module Org.Allbinary.Graphics.Draw.KeyValueDrawString exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.graphics.draw
+-}
 
--- implements UpdateMyFontInterface
-data KeyValueDrawString = KeyValueDrawString
-    { header_ :: JavaHeader
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , lABEL :: IORef (String)
-    , labelX :: IORef (Int)
-    , valueX :: IORef (Int)
-    , value :: IORef (String)
-    }
-
-instance JavaNull KeyValueDrawString where
-    javaNull = javaNullRecord "KeyValueDrawString"
-
-instance JavaEquals KeyValueDrawString where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq KeyValueDrawString where
-    (==) = jrecordEquals
-
-instance JavaObjectClass KeyValueDrawString where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO KeyValueDrawString
-newRecord_ = do
-    header_ <- newJavaHeader
-    myFontProcessor <- newIORef javaNull
-    lABEL <- newIORef ""
-    labelX <- newIORef 0
-    valueX <- newIORef 0
-    value <- newIORef ""
-    let this = KeyValueDrawString header_ myFontProcessor lABEL labelX valueX value
-    jregisterLevel header_ this
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "update" (\() -> update_impl this)
-    pure this
-
-initFields_ :: KeyValueDrawString -> IO ()
-initFields_ this = do
-    jset this.myFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 (javaCast this)))
-    jset this.lABEL (javaNull)
-    jset this.labelX (0)
-    jset this.valueX (0)
-    jset this.value ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    pure ()
-
-new_2 :: String -> Int -> IO KeyValueDrawString
-new_2 label x = do
-    this <- newRecord_
-    init_2 this label x
-    pure this
-
-init_2 :: KeyValueDrawString -> String -> Int -> IO ()
-init_2 this label x = do
-        initFields_ this
-        jset (this).lABEL (label)
-        jset (this).labelX (x)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: KeyValueDrawString))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: KeyValueDrawString)) a1
-
-updateMeasurement_impl :: KeyValueDrawString -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        let labelWidth = ((jio (Graphics.stringWidth ((jio (Graphics.getFont graphics))) (jget (this).lABEL))) - (Prelude.length (jget (this).lABEL)))
-        jset (this).valueX ((labelWidth + (jget (this).labelX)))
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "KeyValueDrawString"
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> IO (())
-paint object_ a1 a2 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: KeyValueDrawString))) () a1 a2
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> Int -> IO (())
-paint_super object_ a1 a2 = (paint_impl (javaCast object_ :: KeyValueDrawString)) a1 a2
-
-paint_impl :: KeyValueDrawString -> Graphics.Graphics -> Int -> IO (())
-paint_impl this graphics y = do
-        Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-        Control.Monad.void (Graphics.drawString graphics (jget (this).lABEL) (jget (this).labelX) y 0)
-        Control.Monad.void (Graphics.drawString graphics (jget (this).value) (jget (this).valueX) y 0)
-        pure ()
+jchain : List String
+jchain =
+    [ "KeyValueDrawString" ]
+        ++ UpdateMyFontInterface.jchain
 
 
-update :: (JavaObjectClass this_) => this_ -> String -> IO (())
-update object_ a1 = jmethod object_ "update" (\() -> (update_impl (javaCast object_ :: KeyValueDrawString))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "myFontProcessor", JR.defaultOf "" ), ( "LABEL", JR.defaultOf "" ), ( "labelX", JR.defaultOf "I" ), ( "valueX", JR.defaultOf "I" ), ( "value", JR.defaultOf "" ) ]
 
-update_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-update_super object_ a1 = (update_impl (javaCast object_ :: KeyValueDrawString)) a1
 
-update_impl :: KeyValueDrawString -> String -> IO (())
-update_impl this value = do
-        jset (this).value (value)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "paint_2", jm_paint_2 )
+        , ( "update_1", jm_update_1 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "KeyValueDrawString"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_paint_2", jm_paint_2 ), ( "jm_update_1", jm_update_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "label", "" ), ( "x", "I" ) ] ""
+        (JR.run [ JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "value" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "LABEL" "" JR.this (JR.local "label")), 
+                    JR.exec (JR.setField "labelX" "I" JR.this (JR.local "x")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "labelWidth" "I" (JR.map2 JR.sub (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.thisField "LABEL") ]) (JR.invoke "length_0" (JR.thisField "LABEL") [])), 
+                    JR.exec (JR.setField "valueX" "I" JR.this (JR.map2 JR.add (JR.local "labelWidth") (JR.thisField "labelX"))), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_2 : JR.Method
+jm_paint_2 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ), ( "y", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.thisField "LABEL"), (JR.thisField "labelX"), (JR.local "y"), (JR.int 0) ]), 
+                    JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.thisField "value"), (JR.thisField "valueX"), (JR.local "y"), (JR.int 0) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_update_1 : JR.Method
+jm_update_1 jheap jthis jargs =
+    JR.method [ ( "value", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "value" "" JR.this (JR.local "value")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

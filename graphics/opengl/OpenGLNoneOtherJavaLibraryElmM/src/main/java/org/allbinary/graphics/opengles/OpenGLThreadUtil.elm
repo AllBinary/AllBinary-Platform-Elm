@@ -1,114 +1,119 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- Generated Code Do Not Modify
--- package org.allbinary.graphics.opengles
-module OpenGLThreadUtil where
+module Org.Allbinary.Graphics.Opengles.OpenGLThreadUtil exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.graphics.opengles
+-}
 
-data OpenGLThreadUtil = OpenGLThreadUtil
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull OpenGLThreadUtil where
-    javaNull = javaNullRecord "OpenGLThreadUtil"
-
-instance JavaEquals OpenGLThreadUtil where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq OpenGLThreadUtil where
-    (==) = jrecordEquals
-
-instance JavaObjectClass OpenGLThreadUtil where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-instance_ :: OpenGLThreadUtil
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO ((new_))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO OpenGLThreadUtil
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = OpenGLThreadUtil header_
-    jregisterLevel header_ this
-    jregisterMethod header_ "set" (\() -> set_impl this)
-    jregisterMethod header_ "onPause" (\() -> onPause_impl this)
-    jregisterMethod header_ "onResume" (\() -> onResume_impl this)
-    pure this
-
-initFields_ :: OpenGLThreadUtil -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO OpenGLThreadUtil
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: OpenGLThreadUtil -> IO ()
-init_ this = do
-    initFields_ this
+import JR
 
 
-getInstance :: IO (OpenGLThreadUtil)
-getInstance = do
-        pure (OpenGLThreadUtil.instance_)
+
+jclass : String
+jclass =
+    "OpenGLThreadUtil"
 
 
-set :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-set object_ a1 = jmethod object_ "set" (\() -> (set_impl (javaCast object_ :: OpenGLThreadUtil))) () (jtoObject a1)
-
-set_super :: (JavaObjectClass this_, JavaObjectClass o1) => this_ -> o1 -> IO (())
-set_super object_ a1 = (set_impl (javaCast object_ :: OpenGLThreadUtil)) (jtoObject a1)
-
-set_impl :: OpenGLThreadUtil -> JavaObject -> IO (())
-set_impl this glSurfaceViewObject_ = do
-        let glSurfaceView = jtoObject glSurfaceViewObject_
-        pure ()
+jchain : List String
+jchain =
+    [ "OpenGLThreadUtil" ]
 
 
-onPause :: (JavaObjectClass this_) => this_ -> IO (())
-onPause object_ = jmethod object_ "onPause" (\() -> (onPause_impl (javaCast object_ :: OpenGLThreadUtil))) ()
-
-onPause_super :: (JavaObjectClass this_) => this_ -> IO (())
-onPause_super object_ = (onPause_impl (javaCast object_ :: OpenGLThreadUtil))
-
-onPause_impl :: OpenGLThreadUtil -> IO (())
-onPause_impl this = do
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
 
-onResume :: (JavaObjectClass this_) => this_ -> IO (())
-onResume object_ = jmethod object_ "onResume" (\() -> (onResume_impl (javaCast object_ :: OpenGLThreadUtil))) ()
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 )
+        , ( "set_1", jm_set_1 )
+        , ( "onPause_0", jm_onPause_0 )
+        , ( "onResume_0", jm_onResume_0 ) ]
+        JR.noMethods
 
-onResume_super :: (JavaObjectClass this_) => this_ -> IO (())
-onResume_super object_ = (onResume_impl (javaCast object_ :: OpenGLThreadUtil))
 
-onResume_impl :: OpenGLThreadUtil -> IO (())
-onResume_impl this = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "OpenGLThreadUtil"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_set_1", jm_set_1 ), ( "jm_onPause_0", jm_onPause_0 ), ( "jm_onResume_0", jm_onResume_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "OpenGLThreadUtil" jclinit "instance"
+        (JR.new jnew_0 [])
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_set_1 : JR.Method
+jm_set_1 jheap jthis jargs =
+    JR.method [ ( "glSurfaceView", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onPause_0 : JR.Method
+jm_onPause_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onResume_0 : JR.Method
+jm_onResume_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

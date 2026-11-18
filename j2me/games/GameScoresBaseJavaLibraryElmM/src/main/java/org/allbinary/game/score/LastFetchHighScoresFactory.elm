@@ -1,97 +1,93 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
--- 
--- AllBinary Open License Version 1 
--- Copyright (c) 2022 AllBinary 
---  
--- By agreeing to this license you and any business entity you represent are 
--- legally bound to the AllBinary Open License Version 1 legal agreement. 
---  
--- You may obtain the AllBinary Open License Version 1 legal agreement from 
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository. 
---  
--- Created By: Travis Berthelot 
---   
--- Generated Code Do Not Modify
--- package org.allbinary.game.score
-module LastFetchHighScoresFactory where
+module Org.Allbinary.Game.Score.LastFetchHighScoresFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Any -- same package or java.lang
-import qualified NoHighScoresFactory -- same package or java.lang
-import qualified HighScores -- same package or java.lang
-import qualified NullUtil -- org.allbinary.logic.NullUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.score
+-}
 
-data LastFetchHighScoresFactory = LastFetchHighScoresFactory
-    { header_ :: JavaHeader
-    , highScoresArray :: IORef (JavaArray (HighScores.HighScores))
-    }
-
-instance JavaNull LastFetchHighScoresFactory where
-    javaNull = javaNullRecord "LastFetchHighScoresFactory"
-
-instance JavaEquals LastFetchHighScoresFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LastFetchHighScoresFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LastFetchHighScoresFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-{-# NOINLINE instance_ #-}
-instance_ = unsafePerformIO (newIORef ((jget ((jio (NullUtil.getInstance))).nULL_OBJECT)))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO LastFetchHighScoresFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    highScoresArray <- newIORef javaNull
-    let this = LastFetchHighScoresFactory header_ highScoresArray
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: LastFetchHighScoresFactory -> IO ()
-initFields_ this = do
-    jset this.highScoresArray ((jget ((jio (NoHighScoresFactory.getInstance))).nO_HIGH_SCORES))
-    pure ()
-
-new_ :: IO LastFetchHighScoresFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: LastFetchHighScoresFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Game.Score.NoHighScoresFactory as NoHighScoresFactory
+import Org.Allbinary.Logic.NullUtil as NullUtil
 
 
-getInstance :: IO (LastFetchHighScoresFactory)
-getInstance = do
-        when ((jget LastFetchHighScoresFactory.instance_) == (jget ((jio (NullUtil.getInstance))).nULL_OBJECT)) $ do
-            assignedValue <- (fmap jtoObject (new_))
-            jset LastFetchHighScoresFactory.instance_ (assignedValue)
-        pure ((javaCast (jget LastFetchHighScoresFactory.instance_) :: LastFetchHighScoresFactory))
+jclass : String
+jclass =
+    "LastFetchHighScoresFactory"
 
+
+jchain : List String
+jchain =
+    [ "LastFetchHighScoresFactory" ]
+
+
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "highScoresArray", JR.defaultOf "" ) ]
+
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LastFetchHighScoresFactory"
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_instance", jstatic_instance ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_instance : JR.M
+jstatic_instance s =
+    JR.static "LastFetchHighScoresFactory" jclinit "instance"
+        (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.setField "highScoresArray" "" JR.this (JR.field "NO_HIGH_SCORES" (JR.callStatic NoHighScoresFactory.jm_getInstance_0 []))),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals jstatic_instance (JR.field "NULL_OBJECT" (JR.callStatic NullUtil.jm_getInstance_0 []))) (JR.run [ 
+                        JR.exec (JR.setStatic "LastFetchHighScoresFactory.instance" "" (JR.new jnew_0 [])) ]) identity, 
+                    JR.return jstatic_instance ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

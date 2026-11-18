@@ -1,151 +1,136 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.input
-module Input where
+module Org.Allbinary.Game.Input.Input exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
+{-| Generated Code Do Not Modify package org.allbinary.game.input
+-}
 
-data Input = Input
-    { header_ :: JavaHeader
-    , id :: IORef (Int)
-    , name :: IORef (String)
-    }
-
-instance JavaNull Input where
-    javaNull = javaNullRecord "Input"
-
-instance JavaEquals Input where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq Input where
-    (==) = jrecordEquals
-
-instance JavaObjectClass Input where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO Input
-newRecord_ = do
-    header_ <- newJavaHeader
-    id <- newIORef 0
-    name <- newIORef ""
-    let this = Input header_ id name
-    jregisterLevel header_ this
-    jregisterMethod header_ "getId" (\() -> getId_impl this)
-    jregisterMethod header_ "setId" (\() -> setId_impl this)
-    jregisterMethod header_ "getName" (\() -> getName_impl this)
-    jregisterMethod header_ "setName" (\() -> setName_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: Input -> IO ()
-initFields_ this = do
-    jset this.id (0)
-    jset this.name ((jget ((jio (StringUtil.getInstance))).eMPTY_STRING))
-    pure ()
-
-new_2 :: Int -> String -> IO Input
-new_2 id name = do
-    this <- newRecord_
-    init_2 this id name
-    pure this
-
-init_2 :: Input -> Int -> String -> IO ()
-init_2 this id name = do
-        initFields_ this
-        Control.Monad.void (Input.setId this id)
-        Control.Monad.void (Input.setName this name)
-        pure ()
+import JR
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
 
 
-getId :: (JavaObjectClass this_) => this_ -> IO (Int)
-getId object_ = jmethod object_ "getId" (\() -> (getId_impl (javaCast object_ :: Input))) ()
-
-getId_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getId_super object_ = (getId_impl (javaCast object_ :: Input))
-
-getId_impl :: Input -> IO (Int)
-getId_impl this = do
-        pure ((jget (this).id))
+jclass : String
+jclass =
+    "Input"
 
 
-setId :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setId object_ a1 = jmethod object_ "setId" (\() -> (setId_impl (javaCast object_ :: Input))) () a1
-
-setId_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setId_super object_ a1 = (setId_impl (javaCast object_ :: Input)) a1
-
-setId_impl :: Input -> Int -> IO (())
-setId_impl this key = do
-        jset (this).id (key)
-        pure ()
+jchain : List String
+jchain =
+    [ "Input" ]
 
 
-getName :: (JavaObjectClass this_) => this_ -> IO (String)
-getName object_ = jmethod object_ "getName" (\() -> (getName_impl (javaCast object_ :: Input))) ()
-
-getName_super :: (JavaObjectClass this_) => this_ -> IO (String)
-getName_super object_ = (getName_impl (javaCast object_ :: Input))
-
-getName_impl :: Input -> IO (String)
-getName_impl this = do
-        pure ((jget (this).name))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "id", JR.defaultOf "I" ), ( "name", JR.defaultOf "" ) ]
 
 
-setName :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName object_ a1 = jmethod object_ "setName" (\() -> (setName_impl (javaCast object_ :: Input))) () a1
-
-setName_super :: (JavaObjectClass this_) => this_ -> String -> IO (())
-setName_super object_ a1 = (setName_impl (javaCast object_ :: Input)) a1
-
-setName_impl :: Input -> String -> IO (())
-setName_impl this keyName = do
-        jset (this).name (keyName)
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "getId_0", jm_getId_0 )
+        , ( "setId_1", jm_setId_1 )
+        , ( "getName_0", jm_getName_0 )
+        , ( "setName_1", jm_setName_1 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: Input))) ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "Input"
+        [ ( "jm_getId_0", jm_getId_0 ), ( "jm_setId_1", jm_setId_1 ), ( "jm_getName_0", jm_getName_0 ), ( "jm_setName_1", jm_setName_1 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: Input))
 
-toString_impl :: Input -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "Name: ")
-        Control.Monad.void (StringMaker.append stringBuffer (jio (Input.getName this)))
-        Control.Monad.void (StringMaker.append stringBuffer " Id: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jio (Input.getId this)))
-        (StringMaker.toString stringBuffer)
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "id", "I" ), ( "name", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "name" "" JR.this (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 []))),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setId_1" JR.this [ (JR.local "id") ]), 
+                    JR.exec (JR.invoke "setName_1" JR.this [ (JR.local "name") ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+jm_getId_0 : JR.Method
+jm_getId_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "id") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setId_1 : JR.Method
+jm_setId_1 jheap jthis jargs =
+    JR.method [ ( "key", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "id" "I" JR.this (JR.local "key")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getName_0 : JR.Method
+jm_getName_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "name") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setName_1 : JR.Method
+jm_setName_1 jheap jthis jargs =
+    JR.method [ ( "keyName", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "name" "" JR.this (JR.local "keyName")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Name: ") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" JR.this []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " Id: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "getId_0" JR.this []) ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

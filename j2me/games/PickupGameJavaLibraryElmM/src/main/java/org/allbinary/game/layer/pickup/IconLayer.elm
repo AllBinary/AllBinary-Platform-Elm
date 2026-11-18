@@ -1,133 +1,120 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.layer.pickup
-module IconLayer (module IconLayer, module AllBinaryLayer) where
+module Org.Allbinary.Game.Layer.Pickup.IconLayer exposing (..)
 
-import AllBinaryLayer hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, paint, paint_super, paint_impl, paintThreed, paintThreed_super, paintThreed_impl, getAnimationInterface, getAnimationInterface_super, getAnimationInterface_impl, nULL_ICON_LAYER, animationInterface)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified NullAnimationFactory -- org.allbinary.animation.NullAnimationFactory
-import qualified PointFactory -- org.allbinary.graphics.PointFactory
-import qualified Rectangle -- org.allbinary.graphics.Rectangle
-import qualified AllBinaryLayer -- org.allbinary.layer.AllBinaryLayer
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified ViewPosition -- org.allbinary.view.ViewPosition
+{-| Generated Code Do Not Modify package org.allbinary.game.layer.pickup
+-}
 
-data IconLayer = IconLayer
-    { header_ :: JavaHeader
-    , base :: AllBinaryLayer.AllBinaryLayer
-    , animationInterface :: IORef (Animation.Animation)
-    }
-
-instance JavaNull IconLayer where
-    javaNull = javaNullRecord "IconLayer"
-
-instance JavaEquals IconLayer where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq IconLayer where
-    (==) = jrecordEquals
-
-instance JavaObjectClass IconLayer where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-nULL_ICON_LAYER :: IconLayer
-{-# NOINLINE nULL_ICON_LAYER #-}
-nULL_ICON_LAYER = unsafePerformIO ((new_3 (jio (NullAnimationFactory.getInstance ((jio (NullAnimationFactory.getFactoryInstance))) 0)) 0 0))
-
-newRecord_ :: IO IconLayer
-newRecord_ = do
-    base <- AllBinaryLayer.newRecord_
-    let header_ = base.header_
-    animationInterface <- newIORef javaNull
-    let this = IconLayer header_ base animationInterface
-    jregisterLevel header_ this
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "paintThreed" (\() -> paintThreed_impl this)
-    jregisterMethod header_ "getAnimationInterface" (\() -> getAnimationInterface_impl this)
-    pure this
-
-initFields_ :: IconLayer -> IO ()
-initFields_ this = do
-    jset this.animationInterface (javaNull)
-    pure ()
-
-new_3 :: Animation.Animation -> Int -> Int -> IO IconLayer
-new_3 animationInterface width height = do
-    this <- newRecord_
-    init_3 this animationInterface width height
-    pure this
-
-init_3 :: IconLayer -> Animation.Animation -> Int -> Int -> IO ()
-init_3 this animationInterface width height = do
-        AllBinaryLayer.init_3 this.base (jget ((jio (StringUtil.getInstance))).eMPTY_STRING) (jio (Rectangle.new_3 (jget ((jio (PointFactory.getInstance))).zERO_ZERO) width height)) (jio (ViewPosition.getInstanceD))
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).animationInterface (animationInterface)
-        pure ()
+import JR
+import Org.Allbinary.Layer.AllBinaryLayer as AllBinaryLayer
+import Org.Allbinary.Animation.NullAnimationFactory as NullAnimationFactory
+import Org.Allbinary.Graphics.PointFactory as PointFactory
+import Org.Allbinary.Graphics.Rectangle as Rectangle
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.View.ViewPosition as ViewPosition
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: IconLayer))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: IconLayer)) a1
-
-paint_impl :: IconLayer -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (Animation.paintXY ((jget (this).animationInterface)) graphics (jget (this).base.x) (jget (this).base.y))
-        pure ()
+jclass : String
+jclass =
+    "IconLayer"
 
 
-paintThreed :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed object_ a1 = jmethod object_ "paintThreed" (\() -> (paintThreed_impl (javaCast object_ :: IconLayer))) () a1
-
-paintThreed_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed_super object_ a1 = (paintThreed_impl (javaCast object_ :: IconLayer)) a1
-
-paintThreed_impl :: IconLayer -> Graphics.Graphics -> IO (())
-paintThreed_impl this graphics = do
-        Control.Monad.void (Animation.paintThreedXYZ ((jget (this).animationInterface)) graphics (jget (this).base.x) (jget (this).base.y) (jget (this).base.z))
-        pure ()
+jchain : List String
+jchain =
+    [ "IconLayer" ]
+        ++ AllBinaryLayer.jchain
 
 
-getAnimationInterface :: (JavaObjectClass this_) => this_ -> IO (Animation.Animation)
-getAnimationInterface object_ = jmethod object_ "getAnimationInterface" (\() -> (getAnimationInterface_impl (javaCast object_ :: IconLayer))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinaryLayer.jfields ++ [ ( "animationInterface", JR.defaultOf "" ) ]
 
-getAnimationInterface_super :: (JavaObjectClass this_) => this_ -> IO (Animation.Animation)
-getAnimationInterface_super object_ = (getAnimationInterface_impl (javaCast object_ :: IconLayer))
 
-getAnimationInterface_impl :: IconLayer -> IO (Animation.Animation)
-getAnimationInterface_impl this = do
-        pure ((jget (this).animationInterface))
+jvtable =
+    JR.vtable
+        [ ( "paint_1", jm_paint_1 )
+        , ( "paintThreed_1", jm_paintThreed_1 )
+        , ( "getAnimationInterface_0", jm_getAnimationInterface_0 ) ]
+        AllBinaryLayer.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "IconLayer"
+        [ ( "jm_paint_1", jm_paint_1 ), ( "jm_paintThreed_1", jm_paintThreed_1 ), ( "jm_getAnimationInterface_0", jm_getAnimationInterface_0 ), ( "jnew_3", jnew_3 ), ( "jinit_3", jinit_3 ) ]
+        [ ( "jstatic_NULL_ICON_LAYER", jstatic_NULL_ICON_LAYER ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_NULL_ICON_LAYER : JR.M
+jstatic_NULL_ICON_LAYER s =
+    JR.static "IconLayer" jclinit "NULL_ICON_LAYER"
+        (JR.new jnew_3 [ (JR.invoke "getInstance_1" (JR.callStatic NullAnimationFactory.jm_getFactoryInstance_0 []) [ (JR.int 0) ]), (JR.int 0), (JR.int 0) ])
+        s
+
+
+jinit_3 : JR.Method
+jinit_3 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ), ( "width", "I" ), ( "height", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinaryLayer.jinit_3 JR.this [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])), (JR.new Rectangle.jnew_3 [ (JR.field "ZERO_ZERO" (JR.callStatic PointFactory.jm_getInstance_0 [])), (JR.local "width"), (JR.local "height") ]), (JR.callStatic ViewPosition.jm_getInstanceD_0 []) ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "animationInterface" "" JR.this (JR.local "animationInterface")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_3 : JR.Method
+jnew_3 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_3 jheap jthis jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paintXY_3" (JR.thisField "animationInterface") [ (JR.local "graphics"), (JR.thisField "x"), (JR.thisField "y") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintThreed_1 : JR.Method
+jm_paintThreed_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "paintThreedXYZ_4" (JR.thisField "animationInterface") [ (JR.local "graphics"), (JR.thisField "x"), (JR.thisField "y"), (JR.thisField "z") ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getAnimationInterface_0 : JR.Method
+jm_getAnimationInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "animationInterface") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

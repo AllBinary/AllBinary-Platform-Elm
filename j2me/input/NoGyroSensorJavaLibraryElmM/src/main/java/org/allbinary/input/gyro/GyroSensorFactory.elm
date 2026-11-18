@@ -1,98 +1,101 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.gyro
-module GyroSensorFactory where
+module Org.Allbinary.Input.Gyro.GyroSensorFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified AllBinaryOrientationSensor -- same package or java.lang
-import qualified NoGyroSensor -- same package or java.lang
+{-| Generated Code Do Not Modify package org.allbinary.input.gyro
+-}
 
-data GyroSensorFactory = GyroSensorFactory
-    { header_ :: JavaHeader
-    }
-
-instance JavaNull GyroSensorFactory where
-    javaNull = javaNullRecord "GyroSensorFactory"
-
-instance JavaEquals GyroSensorFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq GyroSensorFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass GyroSensorFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-allBinaryGyroSensor :: IORef (AllBinaryOrientationSensor.AllBinaryOrientationSensor)
-{-# NOINLINE allBinaryGyroSensor #-}
-allBinaryGyroSensor = unsafePerformIO (newIORef (AllBinaryOrientationSensor.nULL_ALLBINARY_ORIENTATION_SENSOR))
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO GyroSensorFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = GyroSensorFactory header_
-    jregisterLevel header_ this
-    pure this
-
-initFields_ :: GyroSensorFactory -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO GyroSensorFactory
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: GyroSensorFactory -> IO ()
-init_ this = do
-    initFields_ this
+import JR
+import Org.Allbinary.Input.Gyro.AllBinaryOrientationSensor as AllBinaryOrientationSensor
+import Org.Allbinary.Input.Gyro.NoGyroSensor as NoGyroSensor
 
 
--- throws Exception
-init :: IO (())
-init = do
-        assignedValue <- (fmap (\value_ -> javaCast value_ :: AllBinaryOrientationSensor.AllBinaryOrientationSensor) (NoGyroSensor.new_))
-        jset GyroSensorFactory.allBinaryGyroSensor (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "GyroSensorFactory"
 
 
-getInstance :: IO (AllBinaryOrientationSensor.AllBinaryOrientationSensor)
-getInstance = do
-        pure ((jget GyroSensorFactory.allBinaryGyroSensor))
+jchain : List String
+jchain =
+    [ "GyroSensorFactory" ]
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    []
+
+
+jvtable =
+    JR.vtable
+        [ ( "init_0", jm_init_0 )
+        , ( "getInstance_0", jm_getInstance_0 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "GyroSensorFactory"
+        [ ( "jm_init_0", jm_init_0 ), ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_allBinaryGyroSensor", jstatic_allBinaryGyroSensor ) ]
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jstatic_allBinaryGyroSensor : JR.M
+jstatic_allBinaryGyroSensor s =
+    JR.static "GyroSensorFactory" jclinit "allBinaryGyroSensor"
+        AllBinaryOrientationSensor.jstatic_NULL_ALLBINARY_ORIENTATION_SENSOR
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_init_0 : JR.Method
+jm_init_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.exec (JR.setStatic "GyroSensorFactory.allBinaryGyroSensor" "" (JR.new NoGyroSensor.jnew_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getInstance_0 : JR.Method
+jm_getInstance_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return jstatic_allBinaryGyroSensor ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

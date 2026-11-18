@@ -1,200 +1,172 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.input.motion.button
-module TouchButtonLocationHelper where
+module Org.Allbinary.Input.Motion.Button.TouchButtonLocationHelper exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified CommonButtons -- same package or java.lang
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified StringMaker -- org.allbinary.logic.string.StringMaker
+{-| Generated Code Do Not Modify package org.allbinary.input.motion.button
+-}
 
-data TouchButtonLocationHelper = TouchButtonLocationHelper
-    { header_ :: JavaHeader
-    , totalColumns :: IORef (Int)
-    , totalRows :: IORef (Int)
-    , columnsRemainder :: IORef (Int)
-    , rowsRemainder :: IORef (Int)
-    , columnsRemainderHalf :: IORef (Int)
-    , rowsRemainderHalf :: IORef (Int)
-    }
-
-instance JavaNull TouchButtonLocationHelper where
-    javaNull = javaNullRecord "TouchButtonLocationHelper"
-
-instance JavaEquals TouchButtonLocationHelper where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq TouchButtonLocationHelper where
-    (==) = jrecordEquals
-
-instance JavaObjectClass TouchButtonLocationHelper where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO TouchButtonLocationHelper
-newRecord_ = do
-    header_ <- newJavaHeader
-    totalColumns <- newIORef 0
-    totalRows <- newIORef 0
-    columnsRemainder <- newIORef 0
-    rowsRemainder <- newIORef 0
-    columnsRemainderHalf <- newIORef 0
-    rowsRemainderHalf <- newIORef 0
-    let this = TouchButtonLocationHelper header_ totalColumns totalRows columnsRemainder rowsRemainder columnsRemainderHalf rowsRemainderHalf
-    jregisterLevel header_ this
-    jregisterMethod header_ "getTotalColumns" (\() -> getTotalColumns_impl this)
-    jregisterMethod header_ "getTotalRows" (\() -> getTotalRows_impl this)
-    jregisterMethod header_ "getColumnsRemainder" (\() -> getColumnsRemainder_impl this)
-    jregisterMethod header_ "getRowsRemainder" (\() -> getRowsRemainder_impl this)
-    jregisterMethod header_ "getColumnsRemainderHalf" (\() -> getColumnsRemainderHalf_impl this)
-    jregisterMethod header_ "getRowsRemainderHalf" (\() -> getRowsRemainderHalf_impl this)
-    jregisterMethod header_ "toString" (\() -> toString_impl this)
-    pure this
-
-initFields_ :: TouchButtonLocationHelper -> IO ()
-initFields_ this = do
-    jset this.totalColumns (0)
-    jset this.totalRows (0)
-    jset this.columnsRemainder (0)
-    jset this.rowsRemainder (0)
-    jset this.columnsRemainderHalf (0)
-    jset this.rowsRemainderHalf (0)
-    pure ()
-
-new_ :: IO TouchButtonLocationHelper
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: TouchButtonLocationHelper -> IO ()
-init_ this = do
-        initFields_ this
-        let buttonSize = (jget ((jio (CommonButtons.getInstance))).sTANDARD_BUTTON_SIZE)
-        displayInfo <- (DisplayInfoSingleton.getInstance)
-        jset (this).totalColumns ((Prelude.round ((Prelude.realToFrac (jnumericDouble (jio (DisplayInfoSingleton.getLastWidth displayInfo)))) / (Prelude.fromIntegral buttonSize))))
-        jset (this).totalRows ((Prelude.round ((Prelude.realToFrac (jnumericDouble (jio (DisplayInfoSingleton.getLastHeight displayInfo)))) / (Prelude.fromIntegral buttonSize))))
-        jset (this).columnsRemainder (((jio (DisplayInfoSingleton.getLastWidth displayInfo)) `rem` buttonSize))
-        jset (this).columnsRemainderHalf ((((jget (this).columnsRemainder) `Data.Bits.shiftR` 1)))
-        jset (this).rowsRemainder (((jio (DisplayInfoSingleton.getLastHeight displayInfo)) `rem` buttonSize))
-        jset (this).rowsRemainderHalf ((((jget (this).rowsRemainder) `Data.Bits.shiftR` 1)))
-        pure ()
+import JR
+import Org.Allbinary.Input.Motion.Button.CommonButtons as CommonButtons
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
-getTotalColumns :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotalColumns object_ = jmethod object_ "getTotalColumns" (\() -> (getTotalColumns_impl (javaCast object_ :: TouchButtonLocationHelper))) ()
-
-getTotalColumns_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotalColumns_super object_ = (getTotalColumns_impl (javaCast object_ :: TouchButtonLocationHelper))
-
-getTotalColumns_impl :: TouchButtonLocationHelper -> IO (Int)
-getTotalColumns_impl this = do
-        pure ((jget (this).totalColumns))
+jclass : String
+jclass =
+    "TouchButtonLocationHelper"
 
 
-getTotalRows :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotalRows object_ = jmethod object_ "getTotalRows" (\() -> (getTotalRows_impl (javaCast object_ :: TouchButtonLocationHelper))) ()
-
-getTotalRows_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getTotalRows_super object_ = (getTotalRows_impl (javaCast object_ :: TouchButtonLocationHelper))
-
-getTotalRows_impl :: TouchButtonLocationHelper -> IO (Int)
-getTotalRows_impl this = do
-        pure ((jget (this).totalRows))
+jchain : List String
+jchain =
+    [ "TouchButtonLocationHelper" ]
 
 
-getColumnsRemainder :: (JavaObjectClass this_) => this_ -> IO (Int)
-getColumnsRemainder object_ = jmethod object_ "getColumnsRemainder" (\() -> (getColumnsRemainder_impl (javaCast object_ :: TouchButtonLocationHelper))) ()
-
-getColumnsRemainder_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getColumnsRemainder_super object_ = (getColumnsRemainder_impl (javaCast object_ :: TouchButtonLocationHelper))
-
-getColumnsRemainder_impl :: TouchButtonLocationHelper -> IO (Int)
-getColumnsRemainder_impl this = do
-        pure ((jget (this).columnsRemainder))
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "totalColumns", JR.defaultOf "I" ), ( "totalRows", JR.defaultOf "I" ), ( "columnsRemainder", JR.defaultOf "I" ), ( "rowsRemainder", JR.defaultOf "I" ), ( "columnsRemainderHalf", JR.defaultOf "I" ), ( "rowsRemainderHalf", JR.defaultOf "I" ) ]
 
 
-getRowsRemainder :: (JavaObjectClass this_) => this_ -> IO (Int)
-getRowsRemainder object_ = jmethod object_ "getRowsRemainder" (\() -> (getRowsRemainder_impl (javaCast object_ :: TouchButtonLocationHelper))) ()
-
-getRowsRemainder_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getRowsRemainder_super object_ = (getRowsRemainder_impl (javaCast object_ :: TouchButtonLocationHelper))
-
-getRowsRemainder_impl :: TouchButtonLocationHelper -> IO (Int)
-getRowsRemainder_impl this = do
-        pure ((jget (this).rowsRemainder))
-
-
-getColumnsRemainderHalf :: (JavaObjectClass this_) => this_ -> IO (Int)
-getColumnsRemainderHalf object_ = jmethod object_ "getColumnsRemainderHalf" (\() -> (getColumnsRemainderHalf_impl (javaCast object_ :: TouchButtonLocationHelper))) ()
-
-getColumnsRemainderHalf_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getColumnsRemainderHalf_super object_ = (getColumnsRemainderHalf_impl (javaCast object_ :: TouchButtonLocationHelper))
-
-getColumnsRemainderHalf_impl :: TouchButtonLocationHelper -> IO (Int)
-getColumnsRemainderHalf_impl this = do
-        pure ((jget (this).columnsRemainderHalf))
+jvtable =
+    JR.vtable
+        [ ( "getTotalColumns_0", jm_getTotalColumns_0 )
+        , ( "getTotalRows_0", jm_getTotalRows_0 )
+        , ( "getColumnsRemainder_0", jm_getColumnsRemainder_0 )
+        , ( "getRowsRemainder_0", jm_getRowsRemainder_0 )
+        , ( "getColumnsRemainderHalf_0", jm_getColumnsRemainderHalf_0 )
+        , ( "getRowsRemainderHalf_0", jm_getRowsRemainderHalf_0 )
+        , ( "toString_0", jm_toString_0 ) ]
+        JR.noMethods
 
 
-getRowsRemainderHalf :: (JavaObjectClass this_) => this_ -> IO (Int)
-getRowsRemainderHalf object_ = jmethod object_ "getRowsRemainderHalf" (\() -> (getRowsRemainderHalf_impl (javaCast object_ :: TouchButtonLocationHelper))) ()
-
-getRowsRemainderHalf_super :: (JavaObjectClass this_) => this_ -> IO (Int)
-getRowsRemainderHalf_super object_ = (getRowsRemainderHalf_impl (javaCast object_ :: TouchButtonLocationHelper))
-
-getRowsRemainderHalf_impl :: TouchButtonLocationHelper -> IO (Int)
-getRowsRemainderHalf_impl this = do
-        pure ((jget (this).rowsRemainderHalf))
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "TouchButtonLocationHelper"
+        [ ( "jm_getTotalColumns_0", jm_getTotalColumns_0 ), ( "jm_getTotalRows_0", jm_getTotalRows_0 ), ( "jm_getColumnsRemainder_0", jm_getColumnsRemainder_0 ), ( "jm_getRowsRemainder_0", jm_getRowsRemainder_0 ), ( "jm_getColumnsRemainderHalf_0", jm_getColumnsRemainderHalf_0 ), ( "jm_getRowsRemainderHalf_0", jm_getRowsRemainderHalf_0 ), ( "jm_toString_0", jm_toString_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
 
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> (toString_impl (javaCast object_ :: TouchButtonLocationHelper))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = (toString_impl (javaCast object_ :: TouchButtonLocationHelper))
 
-toString_impl :: TouchButtonLocationHelper -> IO (String)
-toString_impl this = do
-        stringBuffer <- (StringMaker.new_)
-        Control.Monad.void (StringMaker.append stringBuffer "totalColumns: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jget (this).totalColumns))
-        Control.Monad.void (StringMaker.append stringBuffer " totalRows: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jget (this).totalRows))
-        Control.Monad.void (StringMaker.append stringBuffer " columnsRemainder: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jget (this).columnsRemainder))
-        Control.Monad.void (StringMaker.append stringBuffer " rowsRemainder: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jget (this).rowsRemainder))
-        Control.Monad.void (StringMaker.append stringBuffer " columnsRemainderHalf: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jget (this).columnsRemainderHalf))
-        Control.Monad.void (StringMaker.append stringBuffer " rowsRemainderHalf: ")
-        Control.Monad.void (StringMaker.appendint stringBuffer (jget (this).rowsRemainderHalf))
-        (StringMaker.toString stringBuffer)
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.declare "buttonSize" "I" (JR.field "STANDARD_BUTTON_SIZE" (JR.callStatic CommonButtons.jm_getInstance_0 [])), 
+                    JR.declare "displayInfo" "" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []), 
+                    JR.exec (JR.setField "totalColumns" "I" JR.this (JR.math "round" [ (JR.map2 JR.div (JR.cast "F" (JR.invoke "getLastWidth_0" (JR.local "displayInfo") [])) (JR.cast "F" (JR.local "buttonSize"))) ])), 
+                    JR.exec (JR.setField "totalRows" "I" JR.this (JR.math "round" [ (JR.map2 JR.div (JR.cast "F" (JR.invoke "getLastHeight_0" (JR.local "displayInfo") [])) (JR.cast "F" (JR.local "buttonSize"))) ])), 
+                    JR.exec (JR.setField "columnsRemainder" "I" JR.this (JR.map2 JR.rem (JR.invoke "getLastWidth_0" (JR.local "displayInfo") []) (JR.local "buttonSize"))), 
+                    JR.exec (JR.setField "columnsRemainderHalf" "I" JR.this ((JR.map2 JR.shr (JR.thisField "columnsRemainder") (JR.int 1)))), 
+                    JR.exec (JR.setField "rowsRemainder" "I" JR.this (JR.map2 JR.rem (JR.invoke "getLastHeight_0" (JR.local "displayInfo") []) (JR.local "buttonSize"))), 
+                    JR.exec (JR.setField "rowsRemainderHalf" "I" JR.this ((JR.map2 JR.shr (JR.thisField "rowsRemainder") (JR.int 1)))) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_getTotalColumns_0 : JR.Method
+jm_getTotalColumns_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "totalColumns") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getTotalRows_0 : JR.Method
+jm_getTotalRows_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "totalRows") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getColumnsRemainder_0 : JR.Method
+jm_getColumnsRemainder_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "columnsRemainder") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRowsRemainder_0 : JR.Method
+jm_getRowsRemainder_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "rowsRemainder") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getColumnsRemainderHalf_0 : JR.Method
+jm_getColumnsRemainderHalf_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "columnsRemainderHalf") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getRowsRemainderHalf_0 : JR.Method
+jm_getRowsRemainderHalf_0 jheap jthis jargs =
+    JR.method [] "I"
+        (JR.run [ 
+                    JR.return (JR.thisField "rowsRemainderHalf") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_toString_0 : JR.Method
+jm_toString_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "totalColumns: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.thisField "totalColumns") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " totalRows: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.thisField "totalRows") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " columnsRemainder: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.thisField "columnsRemainder") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " rowsRemainder: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.thisField "rowsRemainder") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " columnsRemainderHalf: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.thisField "columnsRemainderHalf") ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " rowsRemainderHalf: ") ]), 
+                    JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.thisField "rowsRemainderHalf") ]), 
+                    JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

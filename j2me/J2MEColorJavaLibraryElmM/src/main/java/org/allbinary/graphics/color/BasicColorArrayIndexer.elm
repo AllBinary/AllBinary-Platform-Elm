@@ -1,10 +1,10 @@
-module BasicColorArrayIndexer exposing (..)
+module Org.Allbinary.Graphics.Color.BasicColorArrayIndexer exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.graphics.color
 -}
 
 import JR
-import CircularIndexUtil
+import Org.Allbinary.Util.CircularIndexUtil as CircularIndexUtil
 
 
 jclass : String

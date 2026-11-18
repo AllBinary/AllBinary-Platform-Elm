@@ -1,152 +1,124 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.media
-module AllBinaryVisualDebugVibration (module AllBinaryVisualDebugVibration, module AllBinaryVibrationME) where
+module Org.Allbinary.Media.AllBinaryVisualDebugVibration exposing (..)
 
-import AllBinaryVibrationME hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, vibrate, vibrate_super, vibrate_impl, paint, paint_super, paint_impl, displayInfoSingleton, timeDelayHelper, vIBRATING, myFontProcessor, anchor, width)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Font -- javax.microedition.lcdui.Font
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Anchor -- org.allbinary.graphics.Anchor
-import qualified DisplayInfoSingleton -- org.allbinary.graphics.displayable.DisplayInfoSingleton
-import qualified MyFontProcessor -- org.allbinary.graphics.font.MyFontProcessor
-import qualified UpdateMyFontInterface -- org.allbinary.graphics.font.UpdateMyFontInterface
-import qualified UpdateMyFontProcessor -- org.allbinary.graphics.font.UpdateMyFontProcessor
-import qualified TimeDelayHelper -- org.allbinary.time.TimeDelayHelper
-import qualified AllBinaryVibrationME
+{-| Generated Code Do Not Modify package org.allbinary.media
+-}
 
--- implements UpdateMyFontInterface
-data AllBinaryVisualDebugVibration = AllBinaryVisualDebugVibration
-    { header_ :: JavaHeader
-    , base :: AllBinaryVibrationME.AllBinaryVibrationME
-    , displayInfoSingleton :: IORef (DisplayInfoSingleton.DisplayInfoSingleton)
-    , timeDelayHelper :: IORef (TimeDelayHelper.TimeDelayHelper)
-    , vIBRATING :: IORef (String)
-    , myFontProcessor :: IORef (MyFontProcessor.MyFontProcessor)
-    , anchor :: IORef (Int)
-    , width :: IORef (Int)
-    }
-
-instance JavaNull AllBinaryVisualDebugVibration where
-    javaNull = javaNullRecord "AllBinaryVisualDebugVibration"
-
-instance JavaEquals AllBinaryVisualDebugVibration where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq AllBinaryVisualDebugVibration where
-    (==) = jrecordEquals
-
-instance JavaObjectClass AllBinaryVisualDebugVibration where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO AllBinaryVisualDebugVibration
-newRecord_ = do
-    base <- AllBinaryVibrationME.newRecord_
-    let header_ = base.header_
-    displayInfoSingleton <- newIORef javaNull
-    timeDelayHelper <- newIORef javaNull
-    vIBRATING <- newIORef ""
-    myFontProcessor <- newIORef javaNull
-    anchor <- newIORef 0
-    width <- newIORef 0
-    let this = AllBinaryVisualDebugVibration header_ base displayInfoSingleton timeDelayHelper vIBRATING myFontProcessor anchor width
-    jregisterLevel header_ this
-    UpdateMyFontInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "vibrate" (\() -> vibrate_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    pure this
-
-initFields_ :: AllBinaryVisualDebugVibration -> IO ()
-initFields_ this = do
-    jset this.displayInfoSingleton =<< (DisplayInfoSingleton.getInstance)
-    jset this.timeDelayHelper =<< (TimeDelayHelper.new_1 (2147483647 :: Int))
-    jset this.vIBRATING ("Vibrating")
-    jset this.myFontProcessor =<< (fmap (\value_ -> javaCast value_ :: MyFontProcessor.MyFontProcessor) (UpdateMyFontProcessor.new_1 this))
-    jset this.anchor (Anchor.tOP_LEFT)
-    jset this.width (0)
-    pure ()
-
-new_ :: IO AllBinaryVisualDebugVibration
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: AllBinaryVisualDebugVibration -> IO ()
-init_ this = do
-    AllBinaryVibrationME.init_ this.base
-    initFields_ this
+import JR
+import Org.Allbinary.Media.AllBinaryVibrationME as AllBinaryVibrationME
+import Org.Allbinary.Graphics.Anchor as Anchor
+import Org.Allbinary.Graphics.Displayable.DisplayInfoSingleton as DisplayInfoSingleton
+import JInteger
+import Org.Allbinary.Graphics.Font.MyFontProcessor as MyFontProcessor
+import Org.Allbinary.Time.TimeDelayHelper as TimeDelayHelper
+import Org.Allbinary.Graphics.Font.UpdateMyFontInterface as UpdateMyFontInterface
+import Org.Allbinary.Graphics.Font.UpdateMyFontProcessor as UpdateMyFontProcessor
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: AllBinaryVisualDebugVibration))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: AllBinaryVisualDebugVibration)) a1
-
-updateMeasurement_impl :: AllBinaryVisualDebugVibration -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        font <- (Graphics.getFont graphics)
-        assignedValue <- (Font.stringWidth font (jget (this).vIBRATING))
-        jset (this).width (assignedValue)
-        assignedValue <- (MyFontProcessor.getInstance)
-        jset (this).myFontProcessor (assignedValue)
-        pure ()
+jclass : String
+jclass =
+    "AllBinaryVisualDebugVibration"
 
 
-vibrate :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-vibrate object_ a1 a2 a3 = jmethod object_ "vibrate" (\() -> (vibrate_impl (javaCast object_ :: AllBinaryVisualDebugVibration))) () a1 a2 a3
-
-vibrate_super :: (JavaObjectClass this_) => this_ -> Int -> Int -> Int -> IO (())
-vibrate_super object_ a1 a2 a3 = (vibrate_impl (javaCast object_ :: AllBinaryVisualDebugVibration)) a1 a2 a3
-
-vibrate_impl :: AllBinaryVisualDebugVibration -> Int -> Int -> Int -> IO (())
-vibrate_impl this duration type_ volume = do
-        jset ((jget (this).timeDelayHelper)).delay (duration)
-        pure ()
+jchain : List String
+jchain =
+    [ "AllBinaryVisualDebugVibration" ]
+        ++ AllBinaryVibrationME.jchain
+        ++ UpdateMyFontInterface.jchain
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: AllBinaryVisualDebugVibration))) () a1
+jfields : List ( String, JR.JValue )
+jfields =
+    AllBinaryVibrationME.jfields ++ [ ( "displayInfoSingleton", JR.defaultOf "" ), ( "timeDelayHelper", JR.defaultOf "" ), ( "VIBRATING", JR.defaultOf "" ), ( "myFontProcessor", JR.defaultOf "" ), ( "anchor", JR.defaultOf "I" ), ( "width", JR.defaultOf "I" ) ]
 
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: AllBinaryVisualDebugVibration)) a1
 
-paint_impl :: AllBinaryVisualDebugVibration -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        when (jio (TimeDelayHelper.isTimeTNT ((jget (this).timeDelayHelper)))) $ do
-            jset ((jget (this).timeDelayHelper)).delay ((2147483647 :: Int))
-            Control.Monad.void (MyFontProcessor.process ((jget (this).myFontProcessor)) graphics)
-            Control.Monad.void (Graphics.drawString graphics (jget (this).vIBRATING) ((jio (DisplayInfoSingleton.getLastHalfWidth ((jget (this).displayInfoSingleton)))) - (((jget this.width) `Data.Bits.shiftR` 1))) 0 (jget (this).anchor))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "vibrate_3", jm_vibrate_3 )
+        , ( "paint_1", jm_paint_1 ) ]
+        AllBinaryVibrationME.jvtable
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "AllBinaryVisualDebugVibration"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_vibrate_3", jm_vibrate_3 ), ( "jm_paint_1", jm_paint_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect AllBinaryVibrationME.jinit_0 JR.this []),
+            JR.exec (JR.setField "displayInfoSingleton" "" JR.this (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 [])),
+                JR.exec (JR.setField "timeDelayHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ JInteger.jstatic_MAX_VALUE ])),
+                JR.exec (JR.setField "VIBRATING" "" JR.this (JR.str "Vibrating")),
+                JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.new UpdateMyFontProcessor.jnew_1 [ JR.this ])),
+                JR.exec (JR.setField "anchor" "I" JR.this Anchor.jstatic_TOP_LEFT),
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
+                    JR.exec (JR.setField "width" "I" JR.this (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.thisField "VIBRATING") ])), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_vibrate_3 : JR.Method
+jm_vibrate_3 jheap jthis jargs =
+    JR.method [ ( "duration", "I" ), ( "type", "I" ), ( "volume", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN67830 -> (JR.setField "delay" "I" (JR.lit jtN67830) (JR.local "duration")))) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "timeDelayHelper") []) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN67992 -> (JR.setField "delay" "I" (JR.lit jtN67992) JInteger.jstatic_MAX_VALUE))), 
+                        JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                        JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.thisField "VIBRATING"), (JR.map2 JR.sub (JR.invoke "getLastHalfWidth_0" (JR.thisField "displayInfoSingleton") []) ((JR.map2 JR.shr (JR.thisField "width") (JR.int 1)))), (JR.int 0), (JR.thisField "anchor") ]) ]) identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

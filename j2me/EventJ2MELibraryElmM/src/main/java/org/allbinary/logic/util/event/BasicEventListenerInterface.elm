@@ -1,10 +1,10 @@
-module BasicEventListenerInterface exposing (..)
+module Org.Allbinary.Logic.Util.Event.BasicEventListenerInterface exposing (..)
 
 {-| Generated Code Do Not Modify package org.allbinary.logic.util.event
 -}
 
 import JR
-import EventListenerInterface
+import Org.Allbinary.Logic.Util.Event.EventListenerInterface as EventListenerInterface
 
 
 jclass : String

@@ -1,186 +1,127 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---   
--- Generated Code Do Not Modify
--- package org.allbinary.animation.image.sprite
-module ImageCaptionIndexedAnimationFactory where
+module Org.Allbinary.Animation.Image.Sprite.ImageCaptionIndexedAnimationFactory exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified SpriteIndexedAnimation -- same package or java.lang
-import qualified Image -- javax.microedition.lcdui.Image
-import qualified Sprite -- javax.microedition.lcdui.game.Sprite
-import qualified Player -- javax.microedition.media.Player
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified AnimationBehaviorFactory -- org.allbinary.animation.AnimationBehaviorFactory
-import qualified AnimationInterfaceFactoryInterface -- org.allbinary.animation.AnimationInterfaceFactoryInterface
-import qualified IndexedAnimation -- org.allbinary.animation.IndexedAnimation
-import qualified CaptionIndexedAnimation -- org.allbinary.animation.caption.CaptionIndexedAnimation
-import qualified ImageAnimation -- org.allbinary.animation.image.ImageAnimation
-import qualified BasicColorUtil -- org.allbinary.graphics.color.BasicColorUtil
-import qualified AnimationFactoryImageScaleUtil -- org.allbinary.image.AnimationFactoryImageScaleUtil
-import qualified AnimationFactorySpriteScaleUtil -- org.allbinary.image.sprite.AnimationFactorySpriteScaleUtil
-import qualified ForcedLogUtil -- org.allbinary.logic.communication.log.ForcedLogUtil
-import qualified ScaleProperties -- org.allbinary.media.ScaleProperties
-import qualified Sound -- org.allbinary.media.audio.Sound
+{-| Generated Code Do Not Modify package org.allbinary.animation.image.sprite
+-}
 
--- implements AnimationInterfaceFactoryInterface
-data ImageCaptionIndexedAnimationFactory = ImageCaptionIndexedAnimationFactory
-    { header_ :: JavaHeader
-    , animationFactoryImageScaleUtil :: IORef (AnimationFactoryImageScaleUtil.AnimationFactoryImageScaleUtil)
-    , animationFactorySpriteScaleUtil :: IORef (AnimationFactorySpriteScaleUtil.AnimationFactorySpriteScaleUtil)
-    , captionImage :: IORef (Image.Image)
-    , spriteMovieImage :: IORef (Image.Image)
-    , frameWidth :: IORef (Int)
-    , frameHeight :: IORef (Int)
-    , captionDx :: IORef (Int)
-    , captionDy :: IORef (Int)
-    , dx :: IORef (Int)
-    , dy :: IORef (Int)
-    , time :: IORef (Int)
-    , soundInterface :: IORef (Sound.Sound)
-    , scaleProperties :: IORef (ScaleProperties.ScaleProperties)
-    , animationBehaviorFactory :: IORef (AnimationBehaviorFactory.AnimationBehaviorFactory)
-    }
-
-instance JavaNull ImageCaptionIndexedAnimationFactory where
-    javaNull = javaNullRecord "ImageCaptionIndexedAnimationFactory"
-
-instance JavaEquals ImageCaptionIndexedAnimationFactory where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq ImageCaptionIndexedAnimationFactory where
-    (==) = jrecordEquals
-
-instance JavaObjectClass ImageCaptionIndexedAnimationFactory where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO ImageCaptionIndexedAnimationFactory
-newRecord_ = do
-    header_ <- newJavaHeader
-    animationFactoryImageScaleUtil <- newIORef javaNull
-    animationFactorySpriteScaleUtil <- newIORef javaNull
-    captionImage <- newIORef javaNull
-    spriteMovieImage <- newIORef javaNull
-    frameWidth <- newIORef 0
-    frameHeight <- newIORef 0
-    captionDx <- newIORef 0
-    captionDy <- newIORef 0
-    dx <- newIORef 0
-    dy <- newIORef 0
-    time <- newIORef 0
-    soundInterface <- newIORef javaNull
-    scaleProperties <- newIORef javaNull
-    animationBehaviorFactory <- newIORef javaNull
-    let this = ImageCaptionIndexedAnimationFactory header_ animationFactoryImageScaleUtil animationFactorySpriteScaleUtil captionImage spriteMovieImage frameWidth frameHeight captionDx captionDy dx dy time soundInterface scaleProperties animationBehaviorFactory
-    jregisterLevel header_ this
-    AnimationInterfaceFactoryInterface.registerInterface_ header_
-    jregisterMethod header_ "getInstance" (\() -> getInstance_impl this)
-    jregisterMethod header_ "setInitialScale" (\() -> setInitialScale_impl this)
-    pure this
-
-initFields_ :: ImageCaptionIndexedAnimationFactory -> IO ()
-initFields_ this = do
-    jset this.animationFactoryImageScaleUtil =<< (AnimationFactoryImageScaleUtil.getInstance)
-    jset this.animationFactorySpriteScaleUtil =<< (AnimationFactorySpriteScaleUtil.getInstance)
-    jset this.captionImage (javaNull)
-    jset this.spriteMovieImage (javaNull)
-    jset this.frameWidth (0)
-    jset this.frameHeight (0)
-    jset this.captionDx (0)
-    jset this.captionDy (0)
-    jset this.dx (0)
-    jset this.dy (0)
-    jset this.time (0)
-    jset this.soundInterface (javaNull)
-    jset this.scaleProperties (ScaleProperties.instance_)
-    jset this.animationBehaviorFactory (javaNull)
-    pure ()
-
-new_11 :: Image.Image -> Image.Image -> Sound.Sound -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ImageCaptionIndexedAnimationFactory
-new_11 captionImage spriteMovieImage soundInterface frameWidth frameHeight captionDx captionDy dx dy time animationBehaviorFactory = do
-    this <- newRecord_
-    init_11 this captionImage spriteMovieImage soundInterface frameWidth frameHeight captionDx captionDy dx dy time animationBehaviorFactory
-    pure this
-
-init_11 :: ImageCaptionIndexedAnimationFactory -> Image.Image -> Image.Image -> Sound.Sound -> Int -> Int -> Int -> Int -> Int -> Int -> Int -> AnimationBehaviorFactory.AnimationBehaviorFactory -> IO ()
-init_11 this captionImage spriteMovieImage soundInterface frameWidth frameHeight captionDx captionDy dx dy time animationBehaviorFactory = do
-        initFields_ this
-        when (animationBehaviorFactory == (jio (AnimationBehaviorFactory.getInstance))) $ do
-            Control.Monad.void (ForcedLogUtil.log "Using default AnimationBehaviorFactory with IndexedAnimationFactory" this)
-        jset (this).captionImage (captionImage)
-        jset (this).spriteMovieImage (spriteMovieImage)
-        jset (this).frameWidth (frameWidth)
-        jset (this).frameHeight (frameHeight)
-        jset (this).captionDx (captionDx)
-        jset (this).captionDy (captionDy)
-        jset (this).dx (dx)
-        jset (this).dy (dy)
-        jset (this).time (time)
-        jset (this).soundInterface (soundInterface)
-        jset (this).animationBehaviorFactory (animationBehaviorFactory)
-        pure ()
+import JR
+import Org.Allbinary.Animation.AnimationBehaviorFactory as AnimationBehaviorFactory
+import Org.Allbinary.Image.AnimationFactoryImageScaleUtil as AnimationFactoryImageScaleUtil
+import Org.Allbinary.Image.Sprite.AnimationFactorySpriteScaleUtil as AnimationFactorySpriteScaleUtil
+import Org.Allbinary.Animation.AnimationInterfaceFactoryInterface as AnimationInterfaceFactoryInterface
+import Org.Allbinary.Graphics.Color.BasicColorUtil as BasicColorUtil
+import Org.Allbinary.Animation.Caption.CaptionIndexedAnimation as CaptionIndexedAnimation
+import Org.Allbinary.Logic.Communication.Log.ForcedLogUtil as ForcedLogUtil
+import Org.Allbinary.Animation.Image.ImageAnimation as ImageAnimation
+import Org.Allbinary.Media.ScaleProperties as ScaleProperties
+import Org.Allbinary.Animation.Image.Sprite.SpriteIndexedAnimation as SpriteIndexedAnimation
 
 
--- throws Exception
-getInstance :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance object_ a1 = jmethod object_ "getInstance" (\() -> (getInstance_impl (javaCast object_ :: ImageCaptionIndexedAnimationFactory))) () a1
-
-getInstance_super :: (JavaObjectClass this_) => this_ -> Int -> IO (Animation.Animation)
-getInstance_super object_ a1 = (getInstance_impl (javaCast object_ :: ImageCaptionIndexedAnimationFactory)) a1
-
-getInstance_impl :: ImageCaptionIndexedAnimationFactory -> Int -> IO (Animation.Animation)
-getInstance_impl this instanceId = do
-        scaledImage <- (AnimationFactoryImageScaleUtil.createImage ((jget (this).animationFactoryImageScaleUtil)) (jget (this).captionImage) (jio (Image.getWidth ((jget (this).captionImage)))) (jio (Image.getHeight ((jget (this).captionImage)))) (jget ((jget (this).scaleProperties)).scaleWidth) (jget ((jget (this).scaleProperties)).scaleHeight))
-        animationInterface <- (fmap (\value_ -> javaCast value_ :: Animation.Animation) (ImageAnimation.new_2 scaledImage (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).animationBehaviorFactory))))))
-        sprite <- (AnimationFactorySpriteScaleUtil.createImage ((jget (this).animationFactorySpriteScaleUtil)) (jget (this).spriteMovieImage) (jget (this).frameWidth) (jget (this).frameHeight) (jget ((jget (this).scaleProperties)).scaleWidth) (jget ((jget (this).scaleProperties)).scaleHeight))
-        movieIndexedAnimationInterface <- (fmap (\value_ -> javaCast value_ :: IndexedAnimation.IndexedAnimation) (SpriteIndexedAnimation.new_4 sprite (jget (this).spriteMovieImage) (jget ((jio (BasicColorUtil.getInstance))).zERO_ARRAY) (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).animationBehaviorFactory))))))
-        player <- (Sound.getPlayerP ((jget (this).soundInterface)))
-        when (player == javaNull) $ do
-            javaThrow ((JavaException "Exception" "Sound Was not Initialized"))
-        (fmap (\value_ -> javaCast value_ :: Animation.Animation) (CaptionIndexedAnimation.new_9 animationInterface movieIndexedAnimationInterface player (jget (this).captionDx) (jget (this).captionDy) (jget (this).dx) (jget (this).dy) (jget (this).time) (jio (AnimationBehaviorFactory.getOrCreateInstance ((jget (this).animationBehaviorFactory))))))
+jclass : String
+jclass =
+    "ImageCaptionIndexedAnimationFactory"
 
 
-setInitialScale :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale object_ a1 = jmethod object_ "setInitialScale" (\() -> (setInitialScale_impl (javaCast object_ :: ImageCaptionIndexedAnimationFactory))) () a1
+jchain : List String
+jchain =
+    [ "ImageCaptionIndexedAnimationFactory" ]
+        ++ AnimationInterfaceFactoryInterface.jchain
 
-setInitialScale_super :: (JavaObjectClass this_) => this_ -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_super object_ a1 = (setInitialScale_impl (javaCast object_ :: ImageCaptionIndexedAnimationFactory)) a1
 
-setInitialScale_impl :: ImageCaptionIndexedAnimationFactory -> ScaleProperties.ScaleProperties -> IO (())
-setInitialScale_impl this scaleProperties = do
-        jset (this).scaleProperties (scaleProperties)
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "animationFactoryImageScaleUtil", JR.defaultOf "" ), ( "animationFactorySpriteScaleUtil", JR.defaultOf "" ), ( "captionImage", JR.defaultOf "" ), ( "spriteMovieImage", JR.defaultOf "" ), ( "frameWidth", JR.defaultOf "I" ), ( "frameHeight", JR.defaultOf "I" ), ( "captionDx", JR.defaultOf "I" ), ( "captionDy", JR.defaultOf "I" ), ( "dx", JR.defaultOf "I" ), ( "dy", JR.defaultOf "I" ), ( "time", JR.defaultOf "I" ), ( "soundInterface", JR.defaultOf "" ), ( "scaleProperties", JR.defaultOf "" ), ( "animationBehaviorFactory", JR.defaultOf "" ) ]
 
+
+jvtable =
+    JR.vtable
+        [ ( "getInstance_1", jm_getInstance_1 )
+        , ( "setInitialScale_1", jm_setInitialScale_1 ) ]
+        JR.noMethods
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "ImageCaptionIndexedAnimationFactory"
+        [ ( "jm_getInstance_1", jm_getInstance_1 ), ( "jm_setInitialScale_1", jm_setInitialScale_1 ), ( "jnew_11", jnew_11 ), ( "jinit_11", jinit_11 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_11 : JR.Method
+jinit_11 jheap jthis jargs =
+    JR.method [ ( "captionImage", "" ), ( "spriteMovieImage", "" ), ( "soundInterface", "" ), ( "frameWidth", "I" ), ( "frameHeight", "I" ), ( "captionDx", "I" ), ( "captionDy", "I" ), ( "dx", "I" ), ( "dy", "I" ), ( "time", "I" ), ( "animationBehaviorFactory", "" ) ] ""
+        (JR.run [ JR.exec (JR.setField "animationFactoryImageScaleUtil" "" JR.this (JR.callStatic AnimationFactoryImageScaleUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "animationFactorySpriteScaleUtil" "" JR.this (JR.callStatic AnimationFactorySpriteScaleUtil.jm_getInstance_0 [])),
+                JR.exec (JR.setField "scaleProperties" "" JR.this ScaleProperties.jstatic_instance),
+                identity,
+                (JR.run [ 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "animationBehaviorFactory") (JR.callStatic AnimationBehaviorFactory.jm_getInstance_0 [])) (JR.run [ 
+                        JR.exec (JR.callStatic ForcedLogUtil.jm_log_2 [ (JR.str "Using default AnimationBehaviorFactory with IndexedAnimationFactory"), JR.this ]) ]) identity, 
+                    JR.exec (JR.setField "captionImage" "" JR.this (JR.local "captionImage")), 
+                    JR.exec (JR.setField "spriteMovieImage" "" JR.this (JR.local "spriteMovieImage")), 
+                    JR.exec (JR.setField "frameWidth" "I" JR.this (JR.local "frameWidth")), 
+                    JR.exec (JR.setField "frameHeight" "I" JR.this (JR.local "frameHeight")), 
+                    JR.exec (JR.setField "captionDx" "I" JR.this (JR.local "captionDx")), 
+                    JR.exec (JR.setField "captionDy" "I" JR.this (JR.local "captionDy")), 
+                    JR.exec (JR.setField "dx" "I" JR.this (JR.local "dx")), 
+                    JR.exec (JR.setField "dy" "I" JR.this (JR.local "dy")), 
+                    JR.exec (JR.setField "time" "I" JR.this (JR.local "time")), 
+                    JR.exec (JR.setField "soundInterface" "" JR.this (JR.local "soundInterface")), 
+                    JR.exec (JR.setField "animationBehaviorFactory" "" JR.this (JR.local "animationBehaviorFactory")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_11 : JR.Method
+jnew_11 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_11 jheap jthis jargs
+
+
+jm_getInstance_1 : JR.Method
+jm_getInstance_1 jheap jthis jargs =
+    JR.method [ ( "instanceId", "I" ) ] ""
+        (JR.run [ 
+                    JR.declare "scaledImage" "" (JR.invoke "createImage_5" (JR.thisField "animationFactoryImageScaleUtil") [ (JR.thisField "captionImage"), (JR.invoke "getWidth_0" (JR.thisField "captionImage") []), (JR.invoke "getHeight_0" (JR.thisField "captionImage") []), (JR.field "scaleWidth" (JR.thisField "scaleProperties")), (JR.field "scaleHeight" (JR.thisField "scaleProperties")) ]), 
+                    JR.declare "animationInterface" "" (JR.new ImageAnimation.jnew_2 [ (JR.local "scaledImage"), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]), 
+                    JR.declare "sprite" "" (JR.invoke "createImage_5" (JR.thisField "animationFactorySpriteScaleUtil") [ (JR.thisField "spriteMovieImage"), (JR.thisField "frameWidth"), (JR.thisField "frameHeight"), (JR.field "scaleWidth" (JR.thisField "scaleProperties")), (JR.field "scaleHeight" (JR.thisField "scaleProperties")) ]), 
+                    JR.declare "movieIndexedAnimationInterface" "" (JR.new SpriteIndexedAnimation.jnew_4 [ (JR.local "sprite"), (JR.thisField "spriteMovieImage"), (JR.field "ZERO_ARRAY" (JR.callStatic BasicColorUtil.jm_getInstance_0 [])), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]), 
+                    JR.declare "player" "" (JR.invoke "getPlayerP_0" (JR.thisField "soundInterface") []), 
+                    JR.ifElse (JR.map2 JR.equals (JR.local "player") JR.null) (JR.run [ 
+                        JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Sound Was not Initialized") ]) ]) identity, 
+                    JR.return (JR.new CaptionIndexedAnimation.jnew_9 [ (JR.local "animationInterface"), (JR.local "movieIndexedAnimationInterface"), (JR.local "player"), (JR.thisField "captionDx"), (JR.thisField "captionDy"), (JR.thisField "dx"), (JR.thisField "dy"), (JR.thisField "time"), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setInitialScale_1 : JR.Method
+jm_setInitialScale_1 jheap jthis jargs =
+    JR.method [ ( "scaleProperties", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.setField "scaleProperties" "" JR.this (JR.local "scaleProperties")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

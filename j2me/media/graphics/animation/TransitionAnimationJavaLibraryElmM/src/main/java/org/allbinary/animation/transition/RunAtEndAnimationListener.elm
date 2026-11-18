@@ -1,124 +1,104 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.animation.transition
-module RunAtEndAnimationListener where
+module Org.Allbinary.Animation.Transition.RunAtEndAnimationListener exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Runnable -- same package or java.lang
-import qualified AnimationListenerInterface
+{-| Generated Code Do Not Modify package org.allbinary.animation.transition
+-}
 
--- implements AnimationListenerInterface
-data RunAtEndAnimationListener = RunAtEndAnimationListener
-    { header_ :: JavaHeader
-    , runnable :: IORef (Runnable.Runnable)
-    }
-
-instance JavaNull RunAtEndAnimationListener where
-    javaNull = javaNullRecord "RunAtEndAnimationListener"
-
-instance JavaEquals RunAtEndAnimationListener where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq RunAtEndAnimationListener where
-    (==) = jrecordEquals
-
-instance JavaObjectClass RunAtEndAnimationListener where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
-
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
-
-newRecord_ :: IO RunAtEndAnimationListener
-newRecord_ = do
-    header_ <- newJavaHeader
-    runnable <- newIORef javaNull
-    let this = RunAtEndAnimationListener header_ runnable
-    jregisterLevel header_ this
-    AnimationListenerInterface.registerInterface_ header_
-    jregisterMethod header_ "onPlatformAnimationStart" (\() -> onPlatformAnimationStart_impl this)
-    jregisterMethod header_ "onPlatformAnimationEnd" (\() -> onPlatformAnimationEnd_impl this)
-    jregisterMethod header_ "onPlatformAnimationRepeat" (\() -> onPlatformAnimationRepeat_impl this)
-    pure this
-
-initFields_ :: RunAtEndAnimationListener -> IO ()
-initFields_ this = do
-    jset this.runnable (javaNull)
-    pure ()
-
-new_1 :: Runnable.Runnable -> IO RunAtEndAnimationListener
-new_1 runnable = do
-    this <- newRecord_
-    init_1 this runnable
-    pure this
-
-init_1 :: RunAtEndAnimationListener -> Runnable.Runnable -> IO ()
-init_1 this runnable = do
-        initFields_ this
-        jset (this).runnable (runnable)
-        pure ()
+import JR
+import Org.Allbinary.Animation.Transition.AnimationListenerInterface as AnimationListenerInterface
 
 
-onPlatformAnimationStart :: (JavaObjectClass this_) => this_ -> IO (())
-onPlatformAnimationStart object_ = jmethod object_ "onPlatformAnimationStart" (\() -> (onPlatformAnimationStart_impl (javaCast object_ :: RunAtEndAnimationListener))) ()
-
-onPlatformAnimationStart_super :: (JavaObjectClass this_) => this_ -> IO (())
-onPlatformAnimationStart_super object_ = (onPlatformAnimationStart_impl (javaCast object_ :: RunAtEndAnimationListener))
-
-onPlatformAnimationStart_impl :: RunAtEndAnimationListener -> IO (())
-onPlatformAnimationStart_impl this = do
-        pure ()
+jclass : String
+jclass =
+    "RunAtEndAnimationListener"
 
 
-onPlatformAnimationEnd :: (JavaObjectClass this_) => this_ -> IO (())
-onPlatformAnimationEnd object_ = jmethod object_ "onPlatformAnimationEnd" (\() -> (onPlatformAnimationEnd_impl (javaCast object_ :: RunAtEndAnimationListener))) ()
-
-onPlatformAnimationEnd_super :: (JavaObjectClass this_) => this_ -> IO (())
-onPlatformAnimationEnd_super object_ = (onPlatformAnimationEnd_impl (javaCast object_ :: RunAtEndAnimationListener))
-
-onPlatformAnimationEnd_impl :: RunAtEndAnimationListener -> IO (())
-onPlatformAnimationEnd_impl this = do
-        pure ()
+jchain : List String
+jchain =
+    [ "RunAtEndAnimationListener" ]
+        ++ AnimationListenerInterface.jchain
 
 
-onPlatformAnimationRepeat :: (JavaObjectClass this_) => this_ -> IO (())
-onPlatformAnimationRepeat object_ = jmethod object_ "onPlatformAnimationRepeat" (\() -> (onPlatformAnimationRepeat_impl (javaCast object_ :: RunAtEndAnimationListener))) ()
+jfields : List ( String, JR.JValue )
+jfields =
+    [ ( "runnable", JR.defaultOf "" ) ]
 
-onPlatformAnimationRepeat_super :: (JavaObjectClass this_) => this_ -> IO (())
-onPlatformAnimationRepeat_super object_ = (onPlatformAnimationRepeat_impl (javaCast object_ :: RunAtEndAnimationListener))
 
-onPlatformAnimationRepeat_impl :: RunAtEndAnimationListener -> IO (())
-onPlatformAnimationRepeat_impl this = do
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "onPlatformAnimationStart_0", jm_onPlatformAnimationStart_0 )
+        , ( "onPlatformAnimationEnd_0", jm_onPlatformAnimationEnd_0 )
+        , ( "onPlatformAnimationRepeat_0", jm_onPlatformAnimationRepeat_0 ) ]
+        JR.noMethods
 
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "RunAtEndAnimationListener"
+        [ ( "jm_onPlatformAnimationStart_0", jm_onPlatformAnimationStart_0 ), ( "jm_onPlatformAnimationEnd_0", jm_onPlatformAnimationEnd_0 ), ( "jm_onPlatformAnimationRepeat_0", jm_onPlatformAnimationRepeat_0 ), ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "runnable", "" ) ] ""
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "runnable" "" JR.this (JR.local "runnable")) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jm_onPlatformAnimationStart_0 : JR.Method
+jm_onPlatformAnimationStart_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onPlatformAnimationEnd_0 : JR.Method
+jm_onPlatformAnimationEnd_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onPlatformAnimationRepeat_0 : JR.Method
+jm_onPlatformAnimationRepeat_0 jheap jthis jargs =
+    JR.method [] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

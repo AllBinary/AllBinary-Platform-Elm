@@ -1,97 +1,94 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.installer
-module DynamicInitDb (module DynamicInitDb, module InitDb) where
+module Org.Allbinary.Business.Installer.DynamicInitDb exposing (..)
 
-import InitDb hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified DatabaseConnectionInfoInterface -- org.allbinary.business.init.db.DatabaseConnectionInfoInterface
-import qualified InitDbHelperFactory -- org.allbinary.business.init.db.InitDbHelperFactory
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified LicensingException -- org.allbinary.logic.system.security.licensing.LicensingException
-import qualified InitDb
+{-| Generated Code Do Not Modify package org.allbinary.business.installer
+-}
 
-data DynamicInitDb = DynamicInitDb
-    { header_ :: JavaHeader
-    , base :: InitDb.InitDb
-    }
+import JR
+import Org.Allbinary.Business.Installer.InitDb as InitDb
+import Org.Allbinary.Business.Init.Db.InitDbHelperFactory as InitDbHelperFactory
 
-instance JavaNull DynamicInitDb where
-    javaNull = javaNullRecord "DynamicInitDb"
 
-instance JavaEquals DynamicInitDb where
-    javaEquals object object2 = object.header_ == object2.header_
+jclass : String
+jclass =
+    "DynamicInitDb"
 
-instance Eq DynamicInitDb where
-    (==) = jrecordEquals
 
-instance JavaObjectClass DynamicInitDb where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
+jchain : List String
+jchain =
+    [ "DynamicInitDb" ]
+        ++ InitDb.jchain
 
-newRecord_ :: IO DynamicInitDb
-newRecord_ = do
-    base <- InitDb.newRecord_
-    let header_ = base.header_
-    let this = DynamicInitDb header_ base
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: DynamicInitDb -> IO ()
-initFields_ this = do
-    pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    InitDb.jfields ++ []
 
-new_1 :: AbeClientInformationInterface.AbeClientInformationInterface -> IO DynamicInitDb
-new_1 abeClientInformation = do
-    this <- newRecord_
-    init_1 this abeClientInformation
-    pure this
 
-init_1 :: DynamicInitDb -> AbeClientInformationInterface.AbeClientInformationInterface -> IO ()
-init_1 this abeClientInformation = do
-        InitDb.init_ this.base
-        initFields_ this
-        Control.Monad.void (InitDb.setHelper this (jio (InitDbHelperFactory.getInstance_1 abeClientInformation)))
-        pure ()
+jvtable =
+    JR.vtable
+        []
+        InitDb.jvtable
 
-new_2 :: AbeClientInformationInterface.AbeClientInformationInterface -> DatabaseConnectionInfoInterface.DatabaseConnectionInfoInterface -> IO DynamicInitDb
-new_2 abeClientInformation databaseConnectionInfoInterface = do
-    this <- newRecord_
-    init_2 this abeClientInformation databaseConnectionInfoInterface
-    pure this
 
-init_2 :: DynamicInitDb -> AbeClientInformationInterface.AbeClientInformationInterface -> DatabaseConnectionInfoInterface.DatabaseConnectionInfoInterface -> IO ()
-init_2 this abeClientInformation databaseConnectionInfoInterface = do
-        InitDb.init_ this.base
-        initFields_ this
-        Control.Monad.void (InitDb.setHelper this (jio (InitDbHelperFactory.getInstance abeClientInformation databaseConnectionInfoInterface)))
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "DynamicInitDb"
+        [ ( "jnew_1", jnew_1 ), ( "jinit_1", jinit_1 ), ( "jnew_2", jnew_2 ), ( "jinit_2", jinit_2 ) ]
+        []
+        jheap
 
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_1 : JR.Method
+jinit_1 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect InitDb.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setHelper_1" JR.this [ (JR.callStatic InitDbHelperFactory.jm_getInstance_1 [ (JR.local "abeClientInformation") ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_1 : JR.Method
+jnew_1 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_1 jheap jthis jargs
+
+
+jinit_2 : JR.Method
+jinit_2 jheap jthis jargs =
+    JR.method [ ( "abeClientInformation", "" ), ( "databaseConnectionInfoInterface", "" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect InitDb.jinit_0 JR.this []),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.invoke "setHelper_1" JR.this [ (JR.callStatic InitDbHelperFactory.jm_getInstance_2 [ (JR.local "abeClientInformation"), (JR.local "databaseConnectionInfoInterface") ]) ]) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_2 : JR.Method
+jnew_2 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_2 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

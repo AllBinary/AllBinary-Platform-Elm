@@ -1,142 +1,219 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.business.user.commerce.inventory.item.option
-module BasicOptionItemData where
+module Org.Allbinary.Business.User.Commerce.Inventory.Item.Option.BasicOptionItemData exposing (..)
 
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
+{-| Generated Code Do Not Modify package org.allbinary.business.user.commerce.inventory.item.option
+-}
 
-data BasicOptionItemData = BasicOptionItemData
-    { header_ :: JavaHeader
-    }
+import JR
 
-instance JavaNull BasicOptionItemData where
-    javaNull = javaNullRecord "BasicOptionItemData"
 
-instance JavaEquals BasicOptionItemData where
-    javaEquals object object2 = object.header_ == object2.header_
 
-instance Eq BasicOptionItemData where
-    (==) = jrecordEquals
+jclass : String
+jclass =
+    "BasicOptionItemData"
 
-instance JavaObjectClass BasicOptionItemData where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
 
-oPTION_ONE_TITLE :: String
-oPTION_ONE_TITLE = "BASICOPTIONITEM_OPTION_ONE_TITLE"
+jchain : List String
+jchain =
+    [ "BasicOptionItemData" ]
 
-dEFAULT_OPTION_ITEM :: String
-dEFAULT_OPTION_ITEM = "BASICOPTIONITEM_DEFAULT_OPTION_ITEM"
 
-dEFAULT_OPTION_VALUE :: String
-dEFAULT_OPTION_VALUE = "BASICOPTIONITEM_DEFAULT_OPTION_VALUE"
+jfields : List ( String, JR.JValue )
+jfields =
+    []
 
-oPTION_ONE_ONE_ITEM :: String
-oPTION_ONE_ONE_ITEM = "BASICOPTIONITEM_OPTION_ONE_ONE_ITEM"
 
-oPTION_ONE_ONE_VALUE :: String
-oPTION_ONE_ONE_VALUE = "BASICOPTIONITEM_OPTION_ONE_ONE_VALUE"
+jvtable =
+    JR.vtable
+        []
+        JR.noMethods
 
-oPTION_ONE_TWO_ITEM :: String
-oPTION_ONE_TWO_ITEM = "BASICOPTIONITEM_OPTION_ONE_TWO_ITEM"
 
-oPTION_ONE_TWO_VALUE :: String
-oPTION_ONE_TWO_VALUE = "BASICOPTIONITEM_OPTION_ONE_TWO_VALUE"
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "BasicOptionItemData"
+        [ ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jstatic_OPTION_ONE_TITLE", jstatic_OPTION_ONE_TITLE ), ( "jstatic_DEFAULT_OPTION_ITEM", jstatic_DEFAULT_OPTION_ITEM ), ( "jstatic_DEFAULT_OPTION_VALUE", jstatic_DEFAULT_OPTION_VALUE ), ( "jstatic_OPTION_ONE_ONE_ITEM", jstatic_OPTION_ONE_ONE_ITEM ), ( "jstatic_OPTION_ONE_ONE_VALUE", jstatic_OPTION_ONE_ONE_VALUE ), ( "jstatic_OPTION_ONE_TWO_ITEM", jstatic_OPTION_ONE_TWO_ITEM ), ( "jstatic_OPTION_ONE_TWO_VALUE", jstatic_OPTION_ONE_TWO_VALUE ), ( "jstatic_OPTION_ONE_THREE_ITEM", jstatic_OPTION_ONE_THREE_ITEM ), ( "jstatic_OPTION_ONE_THREE_VALUE", jstatic_OPTION_ONE_THREE_VALUE ), ( "jstatic_OPTION_ONE_FOUR_ITEM", jstatic_OPTION_ONE_FOUR_ITEM ), ( "jstatic_OPTION_ONE_FOUR_VALUE", jstatic_OPTION_ONE_FOUR_VALUE ), ( "jstatic_OPTION_ONE_FIVE_ITEM", jstatic_OPTION_ONE_FIVE_ITEM ), ( "jstatic_OPTION_ONE_FIVE_VALUE", jstatic_OPTION_ONE_FIVE_VALUE ), ( "jstatic_OPTION_ONE_SIX_ITEM", jstatic_OPTION_ONE_SIX_ITEM ), ( "jstatic_OPTION_ONE_SIX_VALUE", jstatic_OPTION_ONE_SIX_VALUE ), ( "jstatic_OPTION_ONE_SEVEN_ITEM", jstatic_OPTION_ONE_SEVEN_ITEM ), ( "jstatic_OPTION_ONE_SEVEN_VALUE", jstatic_OPTION_ONE_SEVEN_VALUE ), ( "jstatic_OPTION_ONE_EIGHT_ITEM", jstatic_OPTION_ONE_EIGHT_ITEM ), ( "jstatic_OPTION_ONE_EIGHT_VALUE", jstatic_OPTION_ONE_EIGHT_VALUE ), ( "jstatic_OPTION_ONE_NINE_ITEM", jstatic_OPTION_ONE_NINE_ITEM ), ( "jstatic_OPTION_ONE_NINE_VALUE", jstatic_OPTION_ONE_NINE_VALUE ) ]
+        jheap
 
-oPTION_ONE_THREE_ITEM :: String
-oPTION_ONE_THREE_ITEM = "BASICOPTIONITEM_OPTION_ONE_THREE_ITEM"
 
-oPTION_ONE_THREE_VALUE :: String
-oPTION_ONE_THREE_VALUE = "BASICOPTIONITEM_OPTION_ONE_THREE_VALUE"
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-oPTION_ONE_FOUR_ITEM :: String
-oPTION_ONE_FOUR_ITEM = "BASICOPTIONITEM_OPTION_ONE_FOUR_ITEM"
 
-oPTION_ONE_FOUR_VALUE :: String
-oPTION_ONE_FOUR_VALUE = "BASICOPTIONITEM_OPTION_ONE_FOUR_VALUE"
+jstatic_OPTION_ONE_TITLE : JR.M
+jstatic_OPTION_ONE_TITLE s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_TITLE"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_TITLE")
+        s
 
-oPTION_ONE_FIVE_ITEM :: String
-oPTION_ONE_FIVE_ITEM = "BASICOPTIONITEM_OPTION_ONE_FIVE_ITEM"
 
-oPTION_ONE_FIVE_VALUE :: String
-oPTION_ONE_FIVE_VALUE = "BASICOPTIONITEM_OPTION_ONE_FIVE_VALUE"
+jstatic_DEFAULT_OPTION_ITEM : JR.M
+jstatic_DEFAULT_OPTION_ITEM s =
+    JR.static "BasicOptionItemData" jclinit "DEFAULT_OPTION_ITEM"
+        (JR.str "BASICOPTIONITEM_DEFAULT_OPTION_ITEM")
+        s
 
-oPTION_ONE_SIX_ITEM :: String
-oPTION_ONE_SIX_ITEM = "BASICOPTIONITEM_OPTION_ONE_SIX_ITEM"
 
-oPTION_ONE_SIX_VALUE :: String
-oPTION_ONE_SIX_VALUE = "BASICOPTIONITEM_OPTION_ONE_SIX_VALUE"
+jstatic_DEFAULT_OPTION_VALUE : JR.M
+jstatic_DEFAULT_OPTION_VALUE s =
+    JR.static "BasicOptionItemData" jclinit "DEFAULT_OPTION_VALUE"
+        (JR.str "BASICOPTIONITEM_DEFAULT_OPTION_VALUE")
+        s
 
-oPTION_ONE_SEVEN_ITEM :: String
-oPTION_ONE_SEVEN_ITEM = "BASICOPTIONITEM_OPTION_ONE_SEVEN_ITEM"
 
-oPTION_ONE_SEVEN_VALUE :: String
-oPTION_ONE_SEVEN_VALUE = "BASICOPTIONITEM_OPTION_ONE_SEVEN_VALUE"
+jstatic_OPTION_ONE_ONE_ITEM : JR.M
+jstatic_OPTION_ONE_ONE_ITEM s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_ONE_ITEM"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_ONE_ITEM")
+        s
 
-oPTION_ONE_EIGHT_ITEM :: String
-oPTION_ONE_EIGHT_ITEM = "BASICOPTIONITEM_OPTION_ONE_EIGHT_ITEM"
 
-oPTION_ONE_EIGHT_VALUE :: String
-oPTION_ONE_EIGHT_VALUE = "BASICOPTIONITEM_OPTION_ONE_EIGHT_VALUE"
+jstatic_OPTION_ONE_ONE_VALUE : JR.M
+jstatic_OPTION_ONE_ONE_VALUE s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_ONE_VALUE"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_ONE_VALUE")
+        s
 
-oPTION_ONE_NINE_ITEM :: String
-oPTION_ONE_NINE_ITEM = "BASICOPTIONITEM_OPTION_ONE_NINE_ITEM"
 
-oPTION_ONE_NINE_VALUE :: String
-oPTION_ONE_NINE_VALUE = "BASICOPTIONITEM_OPTION_ONE_NINE_VALUE"
+jstatic_OPTION_ONE_TWO_ITEM : JR.M
+jstatic_OPTION_ONE_TWO_ITEM s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_TWO_ITEM"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_TWO_ITEM")
+        s
 
-toString :: (JavaObjectClass this_) => this_ -> IO (String)
-toString object_ = jmethod object_ "toString" (\() -> jobjectToString object_) ()
 
-toString_super :: (JavaObjectClass this_) => this_ -> IO (String)
-toString_super object_ = jobjectToString object_
+jstatic_OPTION_ONE_TWO_VALUE : JR.M
+jstatic_OPTION_ONE_TWO_VALUE s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_TWO_VALUE"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_TWO_VALUE")
+        s
 
-newRecord_ :: IO BasicOptionItemData
-newRecord_ = do
-    header_ <- newJavaHeader
-    let this = BasicOptionItemData header_
-    jregisterLevel header_ this
-    pure this
 
-initFields_ :: BasicOptionItemData -> IO ()
-initFields_ this = do
-    pure ()
+jstatic_OPTION_ONE_THREE_ITEM : JR.M
+jstatic_OPTION_ONE_THREE_ITEM s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_THREE_ITEM"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_THREE_ITEM")
+        s
 
-new_ :: IO BasicOptionItemData
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
 
-init_ :: BasicOptionItemData -> IO ()
-init_ this = do
-    initFields_ this
+jstatic_OPTION_ONE_THREE_VALUE : JR.M
+jstatic_OPTION_ONE_THREE_VALUE s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_THREE_VALUE"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_THREE_VALUE")
+        s
 
+
+jstatic_OPTION_ONE_FOUR_ITEM : JR.M
+jstatic_OPTION_ONE_FOUR_ITEM s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_FOUR_ITEM"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_FOUR_ITEM")
+        s
+
+
+jstatic_OPTION_ONE_FOUR_VALUE : JR.M
+jstatic_OPTION_ONE_FOUR_VALUE s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_FOUR_VALUE"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_FOUR_VALUE")
+        s
+
+
+jstatic_OPTION_ONE_FIVE_ITEM : JR.M
+jstatic_OPTION_ONE_FIVE_ITEM s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_FIVE_ITEM"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_FIVE_ITEM")
+        s
+
+
+jstatic_OPTION_ONE_FIVE_VALUE : JR.M
+jstatic_OPTION_ONE_FIVE_VALUE s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_FIVE_VALUE"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_FIVE_VALUE")
+        s
+
+
+jstatic_OPTION_ONE_SIX_ITEM : JR.M
+jstatic_OPTION_ONE_SIX_ITEM s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_SIX_ITEM"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_SIX_ITEM")
+        s
+
+
+jstatic_OPTION_ONE_SIX_VALUE : JR.M
+jstatic_OPTION_ONE_SIX_VALUE s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_SIX_VALUE"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_SIX_VALUE")
+        s
+
+
+jstatic_OPTION_ONE_SEVEN_ITEM : JR.M
+jstatic_OPTION_ONE_SEVEN_ITEM s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_SEVEN_ITEM"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_SEVEN_ITEM")
+        s
+
+
+jstatic_OPTION_ONE_SEVEN_VALUE : JR.M
+jstatic_OPTION_ONE_SEVEN_VALUE s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_SEVEN_VALUE"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_SEVEN_VALUE")
+        s
+
+
+jstatic_OPTION_ONE_EIGHT_ITEM : JR.M
+jstatic_OPTION_ONE_EIGHT_ITEM s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_EIGHT_ITEM"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_EIGHT_ITEM")
+        s
+
+
+jstatic_OPTION_ONE_EIGHT_VALUE : JR.M
+jstatic_OPTION_ONE_EIGHT_VALUE s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_EIGHT_VALUE"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_EIGHT_VALUE")
+        s
+
+
+jstatic_OPTION_ONE_NINE_ITEM : JR.M
+jstatic_OPTION_ONE_NINE_ITEM s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_NINE_ITEM"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_NINE_ITEM")
+        s
+
+
+jstatic_OPTION_ONE_NINE_VALUE : JR.M
+jstatic_OPTION_ONE_NINE_VALUE s =
+    JR.static "BasicOptionItemData" jclinit "OPTION_ONE_NINE_VALUE"
+        (JR.str "BASICOPTIONITEM_OPTION_ONE_NINE_VALUE")
+        s
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

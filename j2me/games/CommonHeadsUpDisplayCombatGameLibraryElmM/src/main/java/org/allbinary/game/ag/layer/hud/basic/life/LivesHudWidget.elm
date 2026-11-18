@@ -1,187 +1,155 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.game.ag.layer.hud.basic.life
-module LivesHudWidget (module LivesHudWidget, module BasicHud) where
+module Org.Allbinary.Game.Ag.Layer.Hud.Basic.Life.LivesHudWidget exposing (..)
 
-import BasicHud hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, updateMeasurement, updateMeasurement_super, updateMeasurement_impl, onDisplayChangeEvent, onDisplayChangeEvent_super, onDisplayChangeEvent_impl, setX, setX_super, setX_impl, paint, paint_super, paint_impl, paintThreed, paintThreed_super, paintThreed_impl, getLifeInterface, getLifeInterface_super, getLifeInterface_impl, lifeInterface, xArray, animationInterface)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified Graphics -- javax.microedition.lcdui.Graphics
-import qualified Animation -- org.allbinary.animation.Animation
-import qualified Life -- org.allbinary.game.ag.life.Life
-import qualified BasicHud -- org.allbinary.game.graphics.hud.BasicHud
-import qualified BasicColorFactory -- org.allbinary.graphics.color.BasicColorFactory
-import qualified DisplayChangeEvent -- org.allbinary.graphics.displayable.event.DisplayChangeEvent
-import qualified PaintableInterface -- org.allbinary.graphics.paint.PaintableInterface
+{-| Generated Code Do Not Modify package org.allbinary.game.ag.layer.hud.basic.life
+-}
 
--- implements PaintableInterface
-data LivesHudWidget = LivesHudWidget
-    { header_ :: JavaHeader
-    , base :: BasicHud.BasicHud
-    , lifeInterface :: IORef (Life.Life)
-    , xArray :: IORef (JavaArray (Int))
-    , animationInterface :: IORef (Animation.Animation)
-    }
-
-instance JavaNull LivesHudWidget where
-    javaNull = javaNullRecord "LivesHudWidget"
-
-instance JavaEquals LivesHudWidget where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq LivesHudWidget where
-    (==) = jrecordEquals
-
-instance JavaObjectClass LivesHudWidget where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO LivesHudWidget
-newRecord_ = do
-    base <- BasicHud.newRecord_
-    let header_ = base.header_
-    lifeInterface <- newIORef javaNull
-    xArray <- newIORef javaNull
-    animationInterface <- newIORef javaNull
-    let this = LivesHudWidget header_ base lifeInterface xArray animationInterface
-    jregisterLevel header_ this
-    PaintableInterface.registerInterface_ header_
-    jregisterMethod header_ "updateMeasurement" (\() -> updateMeasurement_impl this)
-    jregisterMethod header_ "onDisplayChangeEvent" (\() -> onDisplayChangeEvent_impl this)
-    jregisterMethod header_ "setX" (\() -> setX_impl this)
-    jregisterMethod header_ "paint" (\() -> paint_impl this)
-    jregisterMethod header_ "paintThreed" (\() -> paintThreed_impl this)
-    jregisterMethod header_ "getLifeInterface" (\() -> getLifeInterface_impl this)
-    pure this
-
-initFields_ :: LivesHudWidget -> IO ()
-initFields_ this = do
-    jset this.lifeInterface (javaNull)
-    jset this.xArray (javaNull)
-    jset this.animationInterface (javaNull)
-    pure ()
-
-new_4 :: Animation.Animation -> Life.Life -> Int -> Int -> IO LivesHudWidget
-new_4 animationInterface lifeInterface location direction = do
-    this <- newRecord_
-    init_4 this animationInterface lifeInterface location direction
-    pure this
-
-init_4 :: LivesHudWidget -> Animation.Animation -> Life.Life -> Int -> Int -> IO ()
-init_4 this animationInterface lifeInterface location direction = do
-        BasicHud.init_4 this.base (location) (direction) (2) (jget ((jio (BasicColorFactory.getInstance))).wHITE)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        jset (this).lifeInterface (lifeInterface)
-        let size = (Prelude.fromInteger (jnumericInteger (jio (Life.getMaxlives ((jio (LivesHudWidget.getLifeInterface this)))))))
-        jset (this).xArray ((jnewArray (size) 0))
-        jset (this).animationInterface (animationInterface)
-        jset (this).base.updateMaxWidth (((jio (Life.getMaxlives ((jget (this).lifeInterface)))) * 16))
-        jset (this).base.updateMaxHeight (16)
-        pure ()
+import JR
+import Org.Allbinary.Graphics.Color.BasicColorFactory as BasicColorFactory
+import Org.Allbinary.Game.Graphics.Hud.BasicHud as BasicHud
+import Org.Allbinary.Graphics.Paint.PaintableInterface as PaintableInterface
 
 
-updateMeasurement :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement object_ a1 = jmethod object_ "updateMeasurement" (\() -> (updateMeasurement_impl (javaCast object_ :: LivesHudWidget))) () a1
-
-updateMeasurement_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-updateMeasurement_super object_ a1 = (updateMeasurement_impl (javaCast object_ :: LivesHudWidget)) a1
-
-updateMeasurement_impl :: LivesHudWidget -> Graphics.Graphics -> IO (())
-updateMeasurement_impl this graphics = do
-        Control.Monad.void (BasicHud.updateMeasurement_super this.base graphics)
-        let maxLives = (Prelude.fromInteger (jnumericInteger (jio (Life.getMaxlives ((jio (LivesHudWidget.getLifeInterface this)))))))
-        forM_ [0 .. maxLives - 1] $ \index -> javaIteration (pure ()) $ do
-            jsetIndex ((jget (this).xArray)) (index) (((jio (BasicHud.getX this)) + ((index * 16))))
-        pure ()
+jclass : String
+jclass =
+    "LivesHudWidget"
 
 
-onDisplayChangeEvent :: (JavaObjectClass this_) => this_ -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent object_ a1 = jmethod object_ "onDisplayChangeEvent" (\() -> (onDisplayChangeEvent_impl (javaCast object_ :: LivesHudWidget))) () a1
-
-onDisplayChangeEvent_super :: (JavaObjectClass this_) => this_ -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent_super object_ a1 = (onDisplayChangeEvent_impl (javaCast object_ :: LivesHudWidget)) a1
-
-onDisplayChangeEvent_impl :: LivesHudWidget -> DisplayChangeEvent.DisplayChangeEvent -> IO (())
-onDisplayChangeEvent_impl this displayChangeEvent = do
-        Control.Monad.void (BasicHud.onDisplayChangeEvent_super this.base displayChangeEvent)
-        jset (this).base.myFontProcessor ((jget (this).base.updateMyFontProcessor))
-        pure ()
+jchain : List String
+jchain =
+    [ "LivesHudWidget" ]
+        ++ BasicHud.jchain
+        ++ PaintableInterface.jchain
 
 
-setX :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setX object_ a1 = jmethod object_ "setX" (\() -> (setX_impl (javaCast object_ :: LivesHudWidget))) () a1
-
-setX_super :: (JavaObjectClass this_) => this_ -> Int -> IO (())
-setX_super object_ a1 = (setX_impl (javaCast object_ :: LivesHudWidget)) a1
-
-setX_impl :: LivesHudWidget -> Int -> IO (())
-setX_impl this x = do
-        Control.Monad.void (BasicHud.setX_super this.base x)
-        jset (this).base.myFontProcessor ((jget (this).base.updateMyFontProcessor))
-        pure ()
+jfields : List ( String, JR.JValue )
+jfields =
+    BasicHud.jfields ++ [ ( "lifeInterface", JR.defaultOf "" ), ( "xArray", JR.defaultOf "" ), ( "animationInterface", JR.defaultOf "" ) ]
 
 
-paint :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint object_ a1 = jmethod object_ "paint" (\() -> (paint_impl (javaCast object_ :: LivesHudWidget))) () a1
-
-paint_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paint_super object_ a1 = (paint_impl (javaCast object_ :: LivesHudWidget)) a1
-
-paint_impl :: LivesHudWidget -> Graphics.Graphics -> IO (())
-paint_impl this graphics = do
-        Control.Monad.void (process ((jget (this).base.myFontProcessor)) graphics)
-        index <- newIORef ((Prelude.fromInteger (jnumericInteger (jio (Life.get ((jio (LivesHudWidget.getLifeInterface this))))))) :: Int)
-        fix $ \loop -> when ((jpreIncrement index (Prelude.subtract 1)) >= 0) $ javaIteration (do { loop }) $ do
-            Control.Monad.void (Animation.paintXY ((jget (this).animationInterface)) graphics (jindex ((jget (this).xArray)) ((jget index))) (jio (BasicHud.getY this)))
-        pure ()
+jvtable =
+    JR.vtable
+        [ ( "updateMeasurement_1", jm_updateMeasurement_1 )
+        , ( "onDisplayChangeEvent_1", jm_onDisplayChangeEvent_1 )
+        , ( "setX_1", jm_setX_1 )
+        , ( "paint_1", jm_paint_1 )
+        , ( "paintThreed_1", jm_paintThreed_1 )
+        , ( "getLifeInterface_0", jm_getLifeInterface_0 ) ]
+        BasicHud.jvtable
 
 
-paintThreed :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed object_ a1 = jmethod object_ "paintThreed" (\() -> (paintThreed_impl (javaCast object_ :: LivesHudWidget))) () a1
-
-paintThreed_super :: (JavaObjectClass this_) => this_ -> Graphics.Graphics -> IO (())
-paintThreed_super object_ a1 = (paintThreed_impl (javaCast object_ :: LivesHudWidget)) a1
-
-paintThreed_impl :: LivesHudWidget -> Graphics.Graphics -> IO (())
-paintThreed_impl this graphics = do
-        pure ()
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "LivesHudWidget"
+        [ ( "jm_updateMeasurement_1", jm_updateMeasurement_1 ), ( "jm_onDisplayChangeEvent_1", jm_onDisplayChangeEvent_1 ), ( "jm_setX_1", jm_setX_1 ), ( "jm_paint_1", jm_paint_1 ), ( "jm_paintThreed_1", jm_paintThreed_1 ), ( "jm_getLifeInterface_0", jm_getLifeInterface_0 ), ( "jnew_4", jnew_4 ), ( "jinit_4", jinit_4 ) ]
+        []
+        jheap
 
 
-getLifeInterface :: (JavaObjectClass this_) => this_ -> IO (Life.Life)
-getLifeInterface object_ = jmethod object_ "getLifeInterface" (\() -> (getLifeInterface_impl (javaCast object_ :: LivesHudWidget))) ()
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
 
-getLifeInterface_super :: (JavaObjectClass this_) => this_ -> IO (Life.Life)
-getLifeInterface_super object_ = (getLifeInterface_impl (javaCast object_ :: LivesHudWidget))
 
-getLifeInterface_impl :: LivesHudWidget -> IO (Life.Life)
-getLifeInterface_impl this = do
-        pure ((jget (this).lifeInterface))
+jinit_4 : JR.Method
+jinit_4 jheap jthis jargs =
+    JR.method [ ( "animationInterface", "" ), ( "lifeInterface", "" ), ( "location", "I" ), ( "direction", "I" ) ] ""
+        (JR.run [ JR.exec (JR.callDirect BasicHud.jinit_4 JR.this [ (JR.local "location"), (JR.local "direction"), (JR.int 2), (JR.field "WHITE" (JR.callStatic BasicColorFactory.jm_getInstance_0 [])) ]),
+                identity,
+                (JR.run [ 
+                    JR.exec (JR.setField "lifeInterface" "" JR.this (JR.local "lifeInterface")), 
+                    JR.declare "size" "I" (JR.cast "I" (JR.invoke "getMaxlives_0" (JR.invoke "getLifeInterface_0" JR.this []) [])), 
+                    JR.exec (JR.setField "xArray" "" JR.this (JR.newArray "I" [ (JR.local "size") ])), 
+                    JR.exec (JR.setField "animationInterface" "" JR.this (JR.local "animationInterface")), 
+                    JR.exec (JR.setField "updateMaxWidth" "" JR.this (JR.map2 JR.mul (JR.cast "I" (JR.invoke "getMaxlives_0" (JR.thisField "lifeInterface") [])) (JR.int 16))), 
+                    JR.exec (JR.setField "updateMaxHeight" "" JR.this (JR.int 16)) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
 
+
+jnew_4 : JR.Method
+jnew_4 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_4 jheap jthis jargs
+
+
+jm_updateMeasurement_1 : JR.Method
+jm_updateMeasurement_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia BasicHud.jvtable "updateMeasurement_1" JR.this [ (JR.local "graphics") ]), 
+                    JR.declare "maxLives" "I" (JR.cast "I" (JR.invoke "getMaxlives_0" (JR.invoke "getLifeInterface_0" JR.this []) [])), 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "maxLives")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68635 -> (JR.setLocal "index" "I" (JR.lit jwN68635))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "xArray") (\jaN68514 -> JR.andThen (JR.local "index") (\jiN68514 -> (JR.aset (JR.lit jaN68514) (JR.lit jiN68514) (JR.map2 JR.add (JR.invoke "getX_0" JR.this []) ((JR.map2 JR.mul (JR.local "index") (JR.int 16)))))))) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_onDisplayChangeEvent_1 : JR.Method
+jm_onDisplayChangeEvent_1 jheap jthis jargs =
+    JR.method [ ( "displayChangeEvent", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia BasicHud.jvtable "onDisplayChangeEvent_1" JR.this [ (JR.local "displayChangeEvent") ]), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_setX_1 : JR.Method
+jm_setX_1 jheap jthis jargs =
+    JR.method [ ( "x", "I" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.callVia BasicHud.jvtable "setX_1" JR.this [ (JR.local "x") ]), 
+                    JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paint_1 : JR.Method
+jm_paint_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
+                    JR.run [ JR.declare "index" "I" (JR.cast "I" (JR.invoke "get_0" (JR.invoke "getLifeInterface_0" JR.this []) [])), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69051 -> (JR.setLocal "index" "I" (JR.lit jwN69051))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.invoke "paintXY_3" (JR.thisField "animationInterface") [ (JR.local "graphics"), (JR.aget (JR.thisField "xArray") (JR.local "index")), (JR.invoke "getY_0" JR.this []) ]) ]) ] ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_paintThreed_1 : JR.Method
+jm_paintThreed_1 jheap jthis jargs =
+    JR.method [ ( "graphics", "" ) ] ""
+        identity
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jm_getLifeInterface_0 : JR.Method
+jm_getLifeInterface_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ 
+                    JR.return (JR.thisField "lifeInterface") ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

@@ -1,95 +1,86 @@
-{-# LANGUAGE OverloadedRecordDot, ScopedTypeVariables, DuplicateRecordFields #-}
-{-# OPTIONS_GHC -fno-cse -fno-full-laziness #-}
---
--- AllBinary Open License Version 1
--- Copyright (c) 2011 AllBinary
--- 
--- By agreeing to this license you and any business entity you represent are
--- legally bound to the AllBinary Open License Version 1 legal agreement.
--- 
--- You may obtain the AllBinary Open License Version 1 legal agreement from
--- AllBinary or the root directory of AllBinary's AllBinary Platform repository.
--- 
--- Created By: Travis Berthelot
---  
--- Generated Code Do Not Modify
--- package org.allbinary.thirdparty.store
-module NoThirdPartyStore (module NoThirdPartyStore, module ThirdPartyStore) where
+module Org.Allbinary.Thirdparty.Store.NoThirdPartyStore exposing (..)
 
-import ThirdPartyStore hiding (new_, init_, newRecord_, initFields_, header_, base, staticInit_, instanceInit_, registerInterface_, fromHeader_, instance_, new_1, new_2, new_3, new_4, new_5, new_6, new_7, new_8, new_9, init_1, init_2, init_3, init_4, init_5, init_6, init_7, init_8, init_9, authorize, authorize_super, authorize_impl)
-import AllBinaryJava
-import Data.IORef
-import Data.Bits
-import Data.Char hiding (GeneralCategory (..))
-import Data.Int
-import Data.Word
-import Data.List hiding (List)
-import Data.Function (fix)
-import Control.Monad
-import Control.Exception
-import Control.Concurrent (threadDelay)
-import Numeric (showHex)
-import System.IO
-import System.IO.Unsafe (unsafePerformIO)
-import qualified GHC.Float
-import qualified StringUtil -- org.allbinary.logic.string.StringUtil
-import qualified AbeClientInformationInterface -- org.allbinary.logic.system.security.licensing.AbeClientInformationInterface
-import qualified ThirdPartyStore
+{-| Generated Code Do Not Modify package org.allbinary.thirdparty.store
+-}
 
-data NoThirdPartyStore = NoThirdPartyStore
-    { header_ :: JavaHeader
-    , base :: ThirdPartyStore.ThirdPartyStore
-    }
-
-instance JavaNull NoThirdPartyStore where
-    javaNull = javaNullRecord "NoThirdPartyStore"
-
-instance JavaEquals NoThirdPartyStore where
-    javaEquals object object2 = object.header_ == object2.header_
-
-instance Eq NoThirdPartyStore where
-    (==) = jrecordEquals
-
-instance JavaObjectClass NoThirdPartyStore where
-    jisNull = jrecordIsNull
-    jheaderMaybe object = if jrecordIsNull object then Nothing else Just object.header_
-
-newRecord_ :: IO NoThirdPartyStore
-newRecord_ = do
-    base <- ThirdPartyStore.newRecord_
-    let header_ = base.header_
-    let this = NoThirdPartyStore header_ base
-    jregisterLevel header_ this
-    jregisterMethod header_ "authorize" (\() -> authorize_impl this)
-    pure this
-
-initFields_ :: NoThirdPartyStore -> IO ()
-initFields_ this = do
-    pure ()
-
-new_ :: IO NoThirdPartyStore
-new_ = do
-    this <- newRecord_
-    init_ this
-    pure this
-
-init_ :: NoThirdPartyStore -> IO ()
-init_ this = do
-        ThirdPartyStore.init_1 this.base (jget ((jio (StringUtil.getInstance))).eMPTY_STRING)
-        initFields_ this
-        pure () -- super(...) is in the record above
-        pure ()
+import JR
+import Org.Allbinary.Logic.String.StringUtil as StringUtil
+import Org.Allbinary.Thirdparty.Store.ThirdPartyStore as ThirdPartyStore
 
 
-authorize :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-authorize object_ a1 = jmethod object_ "authorize" (\() -> (authorize_impl (javaCast object_ :: NoThirdPartyStore))) () a1
+jclass : String
+jclass =
+    "NoThirdPartyStore"
 
-authorize_super :: (JavaObjectClass this_) => this_ -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-authorize_super object_ a1 = (authorize_impl (javaCast object_ :: NoThirdPartyStore)) a1
 
-authorize_impl :: NoThirdPartyStore -> AbeClientInformationInterface.AbeClientInformationInterface -> IO (())
-authorize_impl this clientInformationInterface = do
-        Control.Monad.void (ThirdPartyStore.setAuthorized this True)
-        pure ()
+jchain : List String
+jchain =
+    [ "NoThirdPartyStore" ]
+        ++ ThirdPartyStore.jchain
 
+
+jfields : List ( String, JR.JValue )
+jfields =
+    ThirdPartyStore.jfields ++ []
+
+
+jvtable =
+    JR.vtable
+        [ ( "authorize_1", jm_authorize_1 ) ]
+        ThirdPartyStore.jvtable
+
+
+jregister : JR.Heap -> JR.Heap
+jregister jheap =
+    JR.register "NoThirdPartyStore"
+        [ ( "jm_authorize_1", jm_authorize_1 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        []
+        jheap
+
+
+jclinit : JR.S
+jclinit =
+    JR.run [ JR.registerIn jregister ]
+
+
+jinit_0 : JR.Method
+jinit_0 jheap jthis jargs =
+    JR.method [] ""
+        (JR.run [ JR.exec (JR.callDirect ThirdPartyStore.jinit_1 JR.this [ (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]),
+                identity,
+                identity ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+jnew_0 : JR.Method
+jnew_0 jheap jthis jargs =
+    JR.construct jclass jchain jvtable jfields jinit_0 jheap jthis jargs
+
+
+jm_authorize_1 : JR.Method
+jm_authorize_1 jheap jthis jargs =
+    JR.method [ ( "clientInformationInterface", "" ) ] ""
+        (JR.run [ 
+                    JR.exec (JR.invoke "setAuthorized_1" JR.this [ (JR.bool True) ]) ])
+        (jregister jheap)
+        jthis
+        jargs
+
+
+-- The Elm Architecture: the Model holds the heap and an object of the class and a Msg calls one of its methods
+
+
+type alias Model =
+    JR.Model
+
+
+type alias Msg =
+    JR.Msg
+
+
+update : Msg -> Model -> Model
+update =
+    JR.update
 

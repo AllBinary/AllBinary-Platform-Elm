@@ -190,10 +190,10 @@ jm_close_0 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "disposalUtil" "" (JR.callStatic DisposalUtil.jm_getInstance_0 []), 
                     JR.declare "size2" "I" (JR.alength (JR.thisField "imageArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69924 -> (JR.setLocal "index" "I" (JR.lit jwN69924))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69795 -> (JR.setLocal "index" "I" (JR.lit jwN69795))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "disposeImage_1" (JR.local "disposalUtil") [ (JR.aget (JR.thisField "imageArray") (JR.local "index")) ]) ]) ], 
                     JR.declare "size" "I" (JR.alength (JR.thisField "originalImageArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70093 -> (JR.setLocal "index" "I" (JR.lit jwN70093))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69964 -> (JR.setLocal "index" "I" (JR.lit jwN69964))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "disposeImage_1" (JR.local "disposalUtil") [ (JR.aget (JR.thisField "originalImageArray") (JR.local "index")) ]) ]) ], 
                     JR.exec (JR.invoke "disposeImage_1" (JR.local "disposalUtil") [ (JR.thisField "currentImage") ]) ])
         (jregister jheap)
@@ -207,10 +207,10 @@ jm_finalize_0 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "disposalUtil" "" (JR.callStatic DisposalUtil.jm_getInstance_0 []), 
                     JR.declare "size2" "I" (JR.alength (JR.thisField "imageArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70382 -> (JR.setLocal "index" "I" (JR.lit jwN70382))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70253 -> (JR.setLocal "index" "I" (JR.lit jwN70253))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "disposeImage_1" (JR.local "disposalUtil") [ (JR.aget (JR.thisField "imageArray") (JR.local "index")) ]) ]) ], 
                     JR.declare "size" "I" (JR.alength (JR.thisField "originalImageArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70551 -> (JR.setLocal "index" "I" (JR.lit jwN70551))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70422 -> (JR.setLocal "index" "I" (JR.lit jwN70422))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "disposeImage_1" (JR.local "disposalUtil") [ (JR.aget (JR.thisField "originalImageArray") (JR.local "index")) ]) ]) ], 
                     JR.exec (JR.invoke "disposeImage_1" (JR.local "disposalUtil") [ (JR.thisField "currentImage") ]) ])
         (jregister jheap)

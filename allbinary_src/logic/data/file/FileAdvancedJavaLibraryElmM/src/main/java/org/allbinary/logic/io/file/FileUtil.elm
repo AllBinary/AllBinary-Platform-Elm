@@ -352,7 +352,7 @@ jm_copyDirectoryPortion_6 jheap jthis jargs =
                     JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "FILE" (JR.thisField "logConfigTypeFactory")) ]) (JR.run [ 
                         JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copySomeFilesToDirectory()") ]) ]) identity, 
                     JR.declare "nextFile" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "end")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN78752 -> (JR.setLocal "index" "I" (JR.lit jwN78752))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "end")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN78201 -> (JR.setLocal "index" "I" (JR.lit jwN78201))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "nextFile" "" (JR.invoke "get_1" (JR.local "fileList") [ (JR.local "index") ])), 
                         JR.ifElse (JR.invoke "isDirectory_0" (JR.local "nextFile") []) identity (JR.run [ 
                             JR.declare "path" "" (JR.invoke "getPath_0" (JR.new AbPath.jnew_2 [ (JR.invoke "getPath_0" (JR.local "nextFile") []), (JR.field "EMPTY_STRING" (JR.callStatic StringUtil.jm_getInstance_0 [])) ]) []), 
@@ -395,7 +395,7 @@ jm_copyDirectory_2 jheap jthis jargs =
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "to") []) ]), 
                             JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), (JR.callStatic jm_getInstance_0 []), (JR.str "copyDirectory") ]) ]) identity, 
                         JR.declare "file" "" (JR.lit (JR.defaultOf "")), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN80429 -> (JR.setLocal "index" "I" (JR.lit jwN80429))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN79766 -> (JR.setLocal "index" "I" (JR.lit jwN79766))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "file" "" (JR.aget (JR.local "fileArray") (JR.local "index"))), 
                             JR.ifElse (JR.invoke "isFile_0" (JR.local "file") []) (JR.run [ 
                                 JR.exec (JR.invoke "copyFile_2" JR.this [ (JR.local "file"), (JR.callStatic AbFile.jm_createAbFilePathAndName_2 [ (JR.invoke "toString_0" (JR.local "newDirectoryAbPath") []), (JR.invoke "getName_0" (JR.local "file") []) ]) ]) ]) (JR.run [ 
@@ -421,7 +421,7 @@ jm_shouldSkip_2 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "size" "I" (JR.alength (JR.local "skipFiles")), 
                     JR.declare "skipFile" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN84537 -> (JR.setLocal "index" "I" (JR.lit jwN84537))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN83354 -> (JR.setLocal "index" "I" (JR.lit jwN83354))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "skipFile" "" (JR.aget (JR.local "skipFiles") (JR.local "index"))), 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getPath_0" (JR.local "file") []) [ (JR.local "skipFile") ]) (JR.int 0)) (JR.run [ 
                             JR.return (JR.bool True) ]) identity ]) ], 

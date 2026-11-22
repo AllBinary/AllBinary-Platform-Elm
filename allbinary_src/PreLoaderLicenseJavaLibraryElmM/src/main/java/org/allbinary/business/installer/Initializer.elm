@@ -98,7 +98,7 @@ jinit_1 jheap jthis jargs =
                     JR.declare "keys" "" (JR.invoke "keySet_0" (JR.local "map") []), 
                     JR.declare "keyArray" "" (JR.invoke "toArray_0" (JR.local "keys") []), 
                     JR.declare "size" "I" (JR.alength (JR.local "keyArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70614 -> (JR.setLocal "index" "I" (JR.lit jwN70614))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70704 -> (JR.setLocal "index" "I" (JR.lit jwN70704))) JR.increment) ]) (JR.run [ 
                         JR.declare "key" "" (JR.aget (JR.local "keyArray") (JR.local "index")), 
                         JR.declare "values" "" (JR.invoke "get_1" (JR.local "map") [ (JR.local "key") ]), 
                         JR.exec (JR.invoke "put_2" (JR.local "hashMap") [ (JR.withState JR.newString [ (JR.local "key") ]), (JR.withState JR.newString [ (JR.aget (JR.local "values") (JR.int 0)) ]) ]), 

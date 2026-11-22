@@ -83,7 +83,7 @@ jm_toTransformInfoPropertiesHashMap_0 jheap jthis jargs =
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "transformInfoNodeVector") []), 
                         JR.declare "node" "" (JR.lit (JR.defaultOf "")), 
                         JR.declare "transformInfoProperties" "" (JR.lit (JR.defaultOf "")), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69350 -> (JR.setLocal "index" "I" (JR.lit jwN69350))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69328 -> (JR.setLocal "index" "I" (JR.lit jwN69328))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "node" "" (JR.invoke "get_1" (JR.local "transformInfoNodeVector") [ (JR.local "index") ])), 
                             JR.exec (JR.setLocal "transformInfoProperties" "" (JR.invoke "getInstance_1" (JR.callStatic TransformInfoPropertiesFactory.jm_getInstance_0 []) [ (JR.local "node") ])), 
                             JR.exec (JR.invoke "put_2" (JR.local "transformInfoPropertiesHashMap") [ (JR.invoke "getName_0" (JR.local "transformInfoProperties") []), (JR.local "transformInfoProperties") ]) ]) ], 

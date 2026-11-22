@@ -101,12 +101,12 @@ jm_isNumber_1 jheap jthis jargs =
     JR.method [ ( "value", "" ) ] "Z"
         (JR.run [ 
                     JR.declare "numberOfDecimalPoints" "I" (JR.int 0), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.invoke "length_0" (JR.local "value") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66492 -> (JR.setLocal "index" "I" (JR.lit jwN66492))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.invoke "length_0" (JR.local "value") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66504 -> (JR.setLocal "index" "I" (JR.lit jwN66504))) JR.increment) ]) (JR.run [ 
                         JR.declare "digit" "C" (JR.invoke "charAt_1" (JR.local "value") [ (JR.local "index") ]), 
                         JR.ifElse (JR.and (JR.map JR.not_ (JR.invoke "isNumberFromChar_1" JR.this [ (JR.local "digit") ])) (JR.map2 JR.notEquals (JR.local "digit") (JR.char 46))) (JR.run [ 
                             JR.return (JR.bool False) ]) identity, 
                         JR.ifElse (JR.map2 JR.equals (JR.local "digit") (JR.char 46)) (JR.run [ 
-                            JR.exec (JR.postUpdate (JR.local "numberOfDecimalPoints") (\jwN66380 -> (JR.setLocal "numberOfDecimalPoints" "I" (JR.lit jwN66380))) JR.increment), 
+                            JR.exec (JR.postUpdate (JR.local "numberOfDecimalPoints") (\jwN66392 -> (JR.setLocal "numberOfDecimalPoints" "I" (JR.lit jwN66392))) JR.increment), 
                             JR.ifElse (JR.map2 JR.greater (JR.local "numberOfDecimalPoints") (JR.int 1)) (JR.run [ 
                                 JR.return (JR.bool False) ]) identity ]) identity ]) ], 
                     JR.return (JR.bool True) ])

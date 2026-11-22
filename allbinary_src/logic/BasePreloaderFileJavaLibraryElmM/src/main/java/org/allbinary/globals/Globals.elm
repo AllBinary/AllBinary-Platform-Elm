@@ -10,6 +10,7 @@ import Org.Allbinary.String.CommonStrings as CommonStrings
 import Org.Allbinary.Logic.Communication.Log.LogUtil as LogUtil
 import Org.Allbinary.Logic.String.StringMaker as StringMaker
 import Org.Allbinary.Logic.String.StringValidationUtil as StringValidationUtil
+import Org.Allbinary.Globals.URLGLOBALS as URLGLOBALS
 import Org.Allbinary.Logic.System.Loader.WebappClassLoaderInfo as WebappClassLoaderInfo
 
 
@@ -88,7 +89,7 @@ jm_init_2 jheap jthis jargs =
                     JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
                     JR.declare "appUrlGlobals" "" (JR.new AppUrlGlobals.jnew_0 []), 
                     JR.exec (JR.invoke "setWebappPath_1" (JR.local "appUrlGlobals") [ (JR.local "pathString") ]), 
-                    JR.exec (JR.invoke "init_1" (JR.thisField "URLGLOBALS") [ (JR.local "appUrlGlobals") ]), 
+                    JR.exec (JR.callStatic URLGLOBALS.jm_init_1 [ (JR.local "appUrlGlobals") ]), 
                     JR.exec (JR.callStatic WebappClassLoaderInfo.jm_setLoader_1 [ (JR.local "classLoader") ]), 
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Setting Up AllBinary System Configuration Args: ") ]), 
@@ -104,11 +105,11 @@ jm_init_2 jheap jthis jargs =
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "EQUALS" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
-                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getWebappPath_0" (JR.thisField "URLGLOBALS") []) ]), 
+                        JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.callStatic URLGLOBALS.jm_getWebappPath_0 []) ]), 
                         JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "INIT" (JR.local "commonStrings")) ]) ]) identity, 
                     JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Webapp Path Set To: ") ]), 
-                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getWebappPath_0" (JR.thisField "URLGLOBALS") []) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.callStatic URLGLOBALS.jm_getWebappPath_0 []) ]), 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.field "INIT" (JR.local "commonStrings")) ]) ])
         (jregister jheap)
         jthis

@@ -118,8 +118,8 @@ jm_init_2 : JR.Method
 jm_init_2 jheap jthis jargs =
     JR.method [ ( "dx", "I" ), ( "dy", "I" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69026 -> (JR.setField "dx" "I" (JR.lit jtN69026) (JR.local "dx")))), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69062 -> (JR.setField "dy" "I" (JR.lit jtN69062) (JR.local "dy")))) ])
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN68999 -> (JR.setField "dx" "I" (JR.lit jtN68999) (JR.local "dx")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69035 -> (JR.setField "dy" "I" (JR.lit jtN69035) (JR.local "dy")))) ])
         (jregister jheap)
         jthis
         jargs
@@ -130,7 +130,7 @@ jm_initW_1 jheap jthis jargs =
     JR.method [ ( "dx", "I" ) ] ""
         (JR.run [ 
                     JR.exec (JR.invoke "init_2" JR.this [ (JR.local "dx"), (JR.int 0) ]), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69196 -> (JR.setField "dx" "I" (JR.lit jtN69196) (JR.map2 JR.add (JR.field "dx" (JR.lit jtN69196)) (JR.map JR.neg ((JR.map2 JR.shr (JR.field "width" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 2)))))))) ])
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69169 -> (JR.setField "dx" "I" (JR.lit jtN69169) (JR.map2 JR.add (JR.field "dx" (JR.lit jtN69169)) (JR.map JR.neg ((JR.map2 JR.shr (JR.field "width" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 2)))))))) ])
         (jregister jheap)
         jthis
         jargs

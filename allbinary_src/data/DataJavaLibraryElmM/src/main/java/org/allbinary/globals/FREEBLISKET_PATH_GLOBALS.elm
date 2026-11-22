@@ -5,6 +5,7 @@ module Org.Allbinary.Globals.FREEBLISKET_PATH_GLOBALS exposing (..)
 
 import JR
 import Org.Allbinary.Logic.Io.Path.AbPathData as AbPathData
+import Org.Allbinary.Globals.PATH_GLOBALS as PATH_GLOBALS
 import Org.Allbinary.Logic.String.StringMaker as StringMaker
 
 
@@ -55,8 +56,8 @@ jinit_0 jheap jthis jargs =
         (JR.run [ JR.exec (JR.setField "TEMPLATEPATH" "" JR.this (JR.concat (JR.str "template") (JR.field "SEPARATOR" (JR.callStatic AbPathData.jm_getInstance_0 [])))),
                 JR.exec (JR.setField "STYLEPATH" "" JR.this (JR.concat (JR.concat (JR.thisField "TEMPLATEPATH") (JR.str "style")) (JR.field "SEPARATOR" (JR.callStatic AbPathData.jm_getInstance_0 [])))),
                 JR.exec (JR.setField "THEMEPATH" "" JR.this (JR.concat (JR.concat (JR.thisField "STYLEPATH") (JR.str "theme")) (JR.field "SEPARATOR" (JR.callStatic AbPathData.jm_getInstance_0 [])))),
-                JR.exec (JR.setField "DBINITPATH" "" JR.this (JR.concat (JR.concat (JR.field "INIT_PATH" (JR.invoke "getInstance_0" (JR.thisField "PATH_GLOBALS") [])) (JR.str "db")) (JR.field "SEPARATOR" (JR.callStatic AbPathData.jm_getInstance_0 [])))),
-                JR.exec (JR.setField "LINEDATAPATH" "" JR.this (JR.concat (JR.concat (JR.field "INIT_PATH" (JR.invoke "getInstance_0" (JR.thisField "PATH_GLOBALS") [])) (JR.str "lineData")) (JR.field "SEPARATOR" (JR.callStatic AbPathData.jm_getInstance_0 [])))),
+                JR.exec (JR.setField "DBINITPATH" "" JR.this (JR.concat (JR.concat (JR.field "INIT_PATH" (JR.callStatic PATH_GLOBALS.jm_getInstance_0 [])) (JR.str "db")) (JR.field "SEPARATOR" (JR.callStatic AbPathData.jm_getInstance_0 [])))),
+                JR.exec (JR.setField "LINEDATAPATH" "" JR.this (JR.concat (JR.concat (JR.field "INIT_PATH" (JR.callStatic PATH_GLOBALS.jm_getInstance_0 [])) (JR.str "lineData")) (JR.field "SEPARATOR" (JR.callStatic AbPathData.jm_getInstance_0 [])))),
                 JR.exec (JR.setField "LICENSEERRORPAGE" "" JR.this (JR.str "LicensingError.jsp")),
                 JR.exec (JR.setField "ERRORPAGE" "" JR.this (JR.str "Error.jsp")),
                 identity,
@@ -66,7 +67,7 @@ jinit_0 jheap jthis jargs =
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SEPARATOR" (JR.callStatic AbPathData.jm_getInstance_0 [])) ]), 
                     JR.exec (JR.setField "INSTALLPATH" "" JR.this (JR.invoke "toString_0" (JR.local "stringBuffer") [])), 
                     JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
-                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "INIT_PATH" (JR.invoke "getInstance_0" (JR.thisField "PATH_GLOBALS") [])) ]), 
+                    JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "INIT_PATH" (JR.callStatic PATH_GLOBALS.jm_getInstance_0 [])) ]), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "views") ]), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SEPARATOR" (JR.callStatic AbPathData.jm_getInstance_0 [])) ]), 
                     JR.exec (JR.setField "XSLPATH" "" JR.this (JR.invoke "toString_0" (JR.local "stringBuffer") [])), 

@@ -24,15 +24,14 @@ jfields =
 
 jvtable =
     JR.vtable
-        [ ( "getInstance_0", jm_getInstance_0 )
-        , ( "TouchScreenTypeFactory_0", jm_TouchScreenTypeFactory_0 ) ]
+        [ ( "getInstance_0", jm_getInstance_0 ) ]
         JR.noMethods
 
 
 jregister : JR.Heap -> JR.Heap
 jregister jheap =
     JR.register "TouchScreenTypeFactory"
-        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jm_TouchScreenTypeFactory_0", jm_TouchScreenTypeFactory_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
+        [ ( "jm_getInstance_0", jm_getInstance_0 ), ( "jnew_0", jnew_0 ), ( "jinit_0", jinit_0 ) ]
         [ ( "jstatic_instance", jstatic_instance ) ]
         jheap
 
@@ -52,7 +51,10 @@ jstatic_instance s =
 jinit_0 : JR.Method
 jinit_0 jheap jthis jargs =
     JR.method [] ""
-        (JR.run [ identity ])
+        (JR.run [ identity,
+                (JR.run [ 
+                    JR.declare "touchScreenFactory" "" (JR.callStatic TouchScreenFactory.jm_getInstance_0 []), 
+                    JR.exec (JR.invoke "setTouch_1" (JR.local "touchScreenFactory") [ (JR.bool False) ]) ]) ])
         (jregister jheap)
         jthis
         jargs
@@ -68,17 +70,6 @@ jm_getInstance_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.return jstatic_instance ])
-        (jregister jheap)
-        jthis
-        jargs
-
-
-jm_TouchScreenTypeFactory_0 : JR.Method
-jm_TouchScreenTypeFactory_0 jheap jthis jargs =
-    JR.method [] ""
-        (JR.run [ 
-                    JR.declare "touchScreenFactory" "" (JR.callStatic TouchScreenFactory.jm_getInstance_0 []), 
-                    JR.exec (JR.invoke "setTouch_1" (JR.local "touchScreenFactory") [ (JR.bool False) ]) ])
         (jregister jheap)
         jthis
         jargs

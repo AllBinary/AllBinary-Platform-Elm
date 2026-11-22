@@ -94,7 +94,8 @@
         <module>../../input/platform/pc/GameInputPCJavaLibraryElmM</module>
         <module>../../input/platform/pc/GameInputPCKeyOnlyJavaLibraryElmM</module>
         <module>../../input/platform/pc/GameInputPCMotionJavaLibraryElmM</module>
-        <module>../../input/platform/pc/GameInputSwtJavaLibraryElmM</module>
+        <!-- Web: SWT input is desktop only -->
+        <!--<module>../../input/platform/pc/GameInputSwtJavaLibraryElmM</module>-->
 
         <module>../../input/AllBinaryGyroSensorJavaLibraryElmM</module>
         <module>../../input/MotionGestureJavaLibraryElmM</module>
@@ -179,7 +180,8 @@
 
         <module>../../../graphics/opengl/NoSWTJavaLibraryElmM</module>
         <module>../../../graphics/opengl/SWTWithoutJOGLJavaLibraryElmM</module>
-        <module>../SWTJavaLibraryElmM</module>
+        <!-- Web: SWT is desktop only -->
+        <!--<module>../SWTJavaLibraryElmM</module>-->
         <module>../GameJ2MELibraryElmM</module>
         
         <!--

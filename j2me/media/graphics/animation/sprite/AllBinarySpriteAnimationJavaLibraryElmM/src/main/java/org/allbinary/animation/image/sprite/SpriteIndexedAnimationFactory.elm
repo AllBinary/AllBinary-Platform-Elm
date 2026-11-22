@@ -110,10 +110,10 @@ jm_initHWH_0 : JR.Method
 jm_initHWH_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69101 -> (JR.setField "dx" "I" (JR.lit jtN69101) (JR.map JR.neg ((JR.map2 JR.shr (JR.field "width" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 2))))))), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69170 -> (JR.setField "dy" "I" (JR.lit jtN69170) (JR.map JR.neg ((JR.map2 JR.shr (JR.field "height" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 2))))))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69074 -> (JR.setField "dx" "I" (JR.lit jtN69074) (JR.map JR.neg ((JR.map2 JR.shr (JR.field "width" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 2))))))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69143 -> (JR.setField "dy" "I" (JR.lit jtN69143) (JR.map JR.neg ((JR.map2 JR.shr (JR.field "height" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 2))))))), 
                     JR.ifElse (JR.callStatic AndroidUtil.jm_isAndroid_0 []) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69259 -> (JR.setField "dx" "I" (JR.lit jtN69259) (JR.map2 JR.add (JR.field "dx" (JR.lit jtN69259)) (JR.int 3))))) ]) identity ])
+                        JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69232 -> (JR.setField "dx" "I" (JR.lit jtN69232) (JR.map2 JR.add (JR.field "dx" (JR.lit jtN69232)) (JR.int 3))))) ]) identity ])
         (jregister jheap)
         jthis
         jargs

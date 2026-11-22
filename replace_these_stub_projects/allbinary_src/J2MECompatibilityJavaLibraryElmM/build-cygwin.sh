@@ -142,11 +142,12 @@ use_by_name() {
 }
 
 # The newest sources jar first: an older jar can have a module of an older conversion. The microemu for polyglot jars
-# (org/microemu) have the javax.microedition modules.
+# (org/microemu) have the javax.microedition modules. Modules of an org.allbinary sub-group (org.allbinary.game
+# GameResourceNone, org.allbinary.data BaseData) are one folder deeper.
 jars=()
 while IFS= read -r jar; do
     jars+=("$jar")
-done < <(ls -t "$repository"/org/allbinary/*Elm/*/*-sources.jar "$repository"/org/microemu/*Elm/*/*-sources.jar 2>/dev/null)
+done < <(ls -t "$repository"/org/allbinary/*Elm/*/*-sources.jar "$repository"/org/allbinary/*/*Elm/*/*-sources.jar "$repository"/org/microemu/*Elm/*/*-sources.jar 2>/dev/null)
 
 # The .elm entries of every jar (jar|entry) in the order of jars, made once when a module is missing
 entries="$object_dir/jar-entries.txt"

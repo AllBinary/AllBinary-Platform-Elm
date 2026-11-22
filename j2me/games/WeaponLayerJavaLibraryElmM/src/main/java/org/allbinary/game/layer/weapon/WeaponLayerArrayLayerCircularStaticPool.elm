@@ -56,6 +56,9 @@ jinit_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ JR.exec (JR.setField "MAX" "I" JR.this (JR.int 5)),
                 JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.thisField "MAX") ])),
+                JR.exec (JR.setField "WEAPONLAYER_ARRAY" "" JR.this (JR.newArray "" [ (JR.map2 JR.mul (JR.thisField "MAX") (JR.int 2)) ])),
+                JR.exec (JR.setField "TWO_WEAPONLAYER_ARRAY" "" JR.this (JR.newArray "" [ (JR.thisField "MAX") ])),
+                JR.exec (JR.setField "THREE_WEAPONLAYER_ARRAY" "" JR.this (JR.newArray "" [ (JR.thisField "MAX") ])),
                 identity ])
         (jregister jheap)
         jthis
@@ -81,16 +84,13 @@ jm_init_0 : JR.Method
 jm_init_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.declare "WEAPONLAYER_ARRAY" "" (JR.newArray "" [ (JR.map2 JR.mul (JR.thisField "MAX") (JR.int 2)) ]), 
-                    JR.declare "TWO_WEAPONLAYER_ARRAY" "" (JR.newArray "" [ (JR.thisField "MAX") ]), 
-                    JR.declare "THREE_WEAPONLAYER_ARRAY" "" (JR.newArray "" [ (JR.thisField "MAX") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "MAX")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70169 -> (JR.setLocal "index" "I" (JR.lit jwN70169))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "WEAPONLAYER_ARRAY") (\jaN69962 -> JR.andThen (JR.local "index") (\jiN69962 -> (JR.aset (JR.lit jaN69962) (JR.lit jiN69962) (JR.newArray "" [ (JR.int 1) ]))))), 
-                        JR.exec (JR.andThen (JR.local "TWO_WEAPONLAYER_ARRAY") (\jaN70014 -> JR.andThen (JR.local "index") (\jiN70014 -> (JR.aset (JR.lit jaN70014) (JR.lit jiN70014) (JR.newArray "" [ (JR.int 2) ]))))), 
-                        JR.exec (JR.andThen (JR.local "THREE_WEAPONLAYER_ARRAY") (\jaN70066 -> JR.andThen (JR.local "index") (\jiN70066 -> (JR.aset (JR.lit jaN70066) (JR.lit jiN70066) (JR.newArray "" [ (JR.int 3) ]))))) ]) ], 
-                    JR.exec (JR.setField "WEAPONLAYER_ARRAY" "" JR.this (JR.local "WEAPONLAYER_ARRAY")), 
-                    JR.exec (JR.setField "TWO_WEAPONLAYER_ARRAY" "" JR.this (JR.local "TWO_WEAPONLAYER_ARRAY")), 
-                    JR.exec (JR.setField "THREE_WEAPONLAYER_ARRAY" "" JR.this (JR.local "THREE_WEAPONLAYER_ARRAY")) ])
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "MAX")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70046 -> (JR.setLocal "index" "I" (JR.lit jwN70046))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "WEAPONLAYER_ARRAY") (\jaN69830 -> JR.andThen (JR.local "index") (\jiN69830 -> (JR.aset (JR.lit jaN69830) (JR.lit jiN69830) (JR.newArray "" [ (JR.int 1) ]))))), 
+                        JR.exec (JR.andThen (JR.thisField "TWO_WEAPONLAYER_ARRAY") (\jaN69885 -> JR.andThen (JR.local "index") (\jiN69885 -> (JR.aset (JR.lit jaN69885) (JR.lit jiN69885) (JR.newArray "" [ (JR.int 2) ]))))), 
+                        JR.exec (JR.andThen (JR.thisField "THREE_WEAPONLAYER_ARRAY") (\jaN69940 -> JR.andThen (JR.local "index") (\jiN69940 -> (JR.aset (JR.lit jaN69940) (JR.lit jiN69940) (JR.newArray "" [ (JR.int 3) ]))))) ]) ], 
+                    JR.exec (JR.setField "WEAPONLAYER_ARRAY" "" JR.this (JR.thisField "WEAPONLAYER_ARRAY")), 
+                    JR.exec (JR.setField "TWO_WEAPONLAYER_ARRAY" "" JR.this (JR.thisField "TWO_WEAPONLAYER_ARRAY")), 
+                    JR.exec (JR.setField "THREE_WEAPONLAYER_ARRAY" "" JR.this (JR.thisField "THREE_WEAPONLAYER_ARRAY")) ])
         (jregister jheap)
         jthis
         jargs

@@ -61,7 +61,8 @@
         <!--
         <module>../../graphics/animation/image/ImageHTMLJavaLibraryElmM</module>
         -->
-        <module>../../graphics/animation/image/ImageJ2SEJavaLibraryElmM</module>
+        <!-- Web: J2SE/Swing image, desktop only -->
+        <!--<module>../../graphics/animation/image/ImageJ2SEJavaLibraryElmM</module>-->
         <!--
         <module>../../graphics/animation/image/ImageAndroidJavaLibraryElmM</module>
         -->

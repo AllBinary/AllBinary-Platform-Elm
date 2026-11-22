@@ -48,9 +48,11 @@
         <module>./j2me/media/graphics/animation/image/AllBinaryHTMLImageAnimationRotationJavaLibraryElmM</module>
         <module>./j2me/media/graphics/animation/image/AllBinaryHTML2ImageAnimationRotationJavaLibraryElmM</module>
         -->
-        <module>./j2me/media/graphics/animation/image/AllBinaryJ2SEImageAnimationRotationJavaLibraryElmM</module>
+        <!-- Web: J2SE/Swing image, desktop only -->
+        <!--<module>./j2me/media/graphics/animation/image/AllBinaryJ2SEImageAnimationRotationJavaLibraryElmM</module>-->
         <module>./j2me/games/Resources/sounds/release/GameSoundsJ2SEOggResourcesJavaLibraryElmM</module>
-        <module>./graphics/opengl/AllBinaryJOGLResourcesJavaLibraryElmM</module>
+        <!-- Web: JOGL (desktop OpenGL) is desktop only -->
+        <!--<module>./graphics/opengl/AllBinaryJOGLResourcesJavaLibraryElmM</module>-->
 
     </modules>
 

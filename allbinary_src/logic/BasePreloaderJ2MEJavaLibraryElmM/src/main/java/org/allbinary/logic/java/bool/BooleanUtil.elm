@@ -119,7 +119,7 @@ jm_toStringFromBooleanArray_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
                     JR.declare "size" "I" (JR.alength (JR.local "booleanArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67239 -> (JR.setLocal "index" "I" (JR.lit jwN67239))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67251 -> (JR.setLocal "index" "I" (JR.lit jwN67251))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "appendboolean_1" (JR.local "stringMaker") [ (JR.aget (JR.local "booleanArray") (JR.local "index")) ]) ]) ], 
                     JR.return (JR.invoke "toString_0" (JR.local "stringMaker") []) ])
         (jregister jheap)

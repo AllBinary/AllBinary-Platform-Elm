@@ -68,8 +68,8 @@ jinit_0 jheap jthis jargs =
                 identity,
                 (JR.run [ 
                     JR.declare "size" "I" (JR.alength (JR.thisField "inputIntegerArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67335 -> (JR.setLocal "index" "I" (JR.lit jwN67335))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "inputIntegerArray") (\jaN67240 -> JR.andThen (JR.local "index") (\jiN67240 -> (JR.aset (JR.lit jaN67240) (JR.lit jiN67240) (JR.thisField "NO_INPUT"))))) ]) ] ]) ])
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67343 -> (JR.setLocal "index" "I" (JR.lit jwN67343))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "inputIntegerArray") (\jaN67248 -> JR.andThen (JR.local "index") (\jiN67248 -> (JR.aset (JR.lit jaN67248) (JR.lit jiN67248) (JR.thisField "NO_INPUT"))))) ]) ] ]) ])
         (jregister jheap)
         jthis
         jargs
@@ -96,7 +96,7 @@ jm_add_2 : JR.Method
 jm_add_2 jheap jthis jargs =
     JR.method [ ( "id", "I" ), ( "input", "" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "inputIntegerArray") (\jaN67375 -> JR.andThen (JR.local "id") (\jiN67375 -> (JR.aset (JR.lit jaN67375) (JR.lit jiN67375) (JR.local "input"))))) ])
+                    JR.exec (JR.andThen (JR.thisField "inputIntegerArray") (\jaN67383 -> JR.andThen (JR.local "id") (\jiN67383 -> (JR.aset (JR.lit jaN67383) (JR.lit jiN67383) (JR.local "input"))))) ])
         (jregister jheap)
         jthis
         jargs

@@ -76,7 +76,7 @@ jm_setFrame_1 : JR.Method
 jm_setFrame_1 jheap jthis jargs =
     JR.method [ ( "frameIndex", "I" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66954 -> (JR.setLocal "index" "I" (JR.lit jwN66954))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66970 -> (JR.setLocal "index" "I" (JR.lit jwN66970))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "setFrame_1" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "frameIndex") ]) ]) ] ])
         (jregister jheap)
         jthis
@@ -117,7 +117,7 @@ jm_previousFrame_0 : JR.Method
 jm_previousFrame_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67337 -> (JR.setLocal "index" "I" (JR.lit jwN67337))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67353 -> (JR.setLocal "index" "I" (JR.lit jwN67353))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "previousFrame_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) []) ]) ] ])
         (jregister jheap)
         jthis
@@ -128,7 +128,7 @@ jm_nextFrame_0 : JR.Method
 jm_nextFrame_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67482 -> (JR.setLocal "index" "I" (JR.lit jwN67482))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67498 -> (JR.setLocal "index" "I" (JR.lit jwN67498))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "nextFrame_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) []) ]) ] ])
         (jregister jheap)
         jthis
@@ -158,7 +158,7 @@ jm_paintXY_3 : JR.Method
 jm_paintXY_3 jheap jthis jargs =
     JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67787 -> (JR.setLocal "index" "I" (JR.lit jwN67787))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67803 -> (JR.setLocal "index" "I" (JR.lit jwN67803))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "paintXY_3" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "graphics"), (JR.local "x"), (JR.local "y") ]) ]) ] ])
         (jregister jheap)
         jthis
@@ -169,7 +169,7 @@ jm_paintThreedXYZ_4 : JR.Method
 jm_paintThreedXYZ_4 jheap jthis jargs =
     JR.method [ ( "graphics", "" ), ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68034 -> (JR.setLocal "index" "I" (JR.lit jwN68034))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68050 -> (JR.setLocal "index" "I" (JR.lit jwN68050))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "paintThreedXYZ_4" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "graphics"), (JR.local "x"), (JR.local "y"), (JR.local "z") ]) ]) ] ])
         (jregister jheap)
         jthis
@@ -180,7 +180,7 @@ jm_set_1 : JR.Method
 jm_set_1 jheap jthis jargs =
     JR.method [ ( "gl", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68277 -> (JR.setLocal "index" "I" (JR.lit jwN68277))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68293 -> (JR.setLocal "index" "I" (JR.lit jwN68293))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "set_1" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "gl") ]) ]) ] ])
         (jregister jheap)
         jthis

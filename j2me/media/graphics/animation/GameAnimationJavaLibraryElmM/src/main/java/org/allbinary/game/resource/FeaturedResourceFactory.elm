@@ -85,7 +85,7 @@ jm_init_1 jheap jthis jargs =
     JR.method [ ( "level", "I" ) ] ""
         (JR.run [ 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "list") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68621 -> (JR.setLocal "index" "I" (JR.lit jwN68621))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68640 -> (JR.setLocal "index" "I" (JR.lit jwN68640))) JR.increment) ]) (JR.run [ 
                         JR.declare "featureInterface" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")), 
                         JR.declare "isLoadingLevel" "Z" (JR.invoke "isLoadingLevel_1" (JR.local "featureInterface") [ (JR.local "level") ]), 
                         JR.declare "isFeature" "Z" (JR.invoke "isFeature_0" (JR.local "featureInterface") []), 

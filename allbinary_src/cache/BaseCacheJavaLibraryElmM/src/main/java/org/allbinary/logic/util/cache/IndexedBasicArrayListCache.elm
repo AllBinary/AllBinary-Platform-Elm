@@ -89,7 +89,7 @@ jm_init_1 jheap jthis jargs =
         (JR.run [ 
                     JR.ifElse (JR.map2 JR.less (JR.thisField "size") (JR.local "size")) (JR.run [ 
                         JR.exec (JR.invoke "ensureCapacity_1" (JR.thisField "list") [ (JR.local "size") ]), 
-                        JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.thisField "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66779 -> (JR.setLocal "index" "I" (JR.lit jwN66779))) JR.decrement) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.thisField "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66785 -> (JR.setLocal "index" "I" (JR.lit jwN66785))) JR.decrement) ]) (JR.run [ 
                             JR.exec (JR.invoke "addDefault_0" JR.this []) ]) ], 
                         JR.exec (JR.setField "size" "I" JR.this (JR.local "size")) ]) identity ])
         (jregister jheap)

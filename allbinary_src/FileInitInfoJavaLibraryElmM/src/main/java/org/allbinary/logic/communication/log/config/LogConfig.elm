@@ -237,7 +237,7 @@ jm_getTypeVector_0 jheap jthis jargs =
                     JR.declare "logConfigTypesNode" "" (JR.invoke "item_1" (JR.local "logConfigTypesNodeList") [ (JR.int 0) ]), 
                     JR.declare "logConfigTypeNodeVector" "" (JR.callStatic DomSearchHelper.jm_getAllNodes_2 [ (JR.field "NAME" (JR.callStatic LogConfigTypeData.jm_getInstance_0 [])), (JR.invoke "getChildNodes_0" (JR.local "logConfigTypesNode") []) ]), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "logConfigTypeNodeVector") []), 
-                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN70443 -> (JR.setLocal "i" "I" (JR.lit jwN70443))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN70468 -> (JR.setLocal "i" "I" (JR.lit jwN70468))) JR.increment) ]) (JR.run [ 
                         JR.declare "node" "" (JR.invoke "get_1" (JR.local "logConfigTypeNodeVector") [ (JR.local "i") ]), 
                         JR.declare "logType" "" (JR.callStatic LogConfigTypes.jm_getInstance_1 [ (JR.local "node") ]), 
                         JR.exec (JR.invoke "add_1" (JR.local "logKeyVector") [ (JR.local "logType") ]) ]) ], 

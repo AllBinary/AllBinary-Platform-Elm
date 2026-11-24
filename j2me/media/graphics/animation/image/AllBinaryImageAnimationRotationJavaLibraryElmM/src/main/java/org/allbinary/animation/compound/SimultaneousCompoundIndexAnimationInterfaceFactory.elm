@@ -69,8 +69,8 @@ jm_getInstance_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "size" "I" (JR.alength (JR.thisField "basicAnimationInterfaceFactoryInterfaceArray")), 
                     JR.declare "animationInterfaceArray" "" (JR.newArray "" [ (JR.local "size") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67343 -> (JR.setLocal "index" "I" (JR.lit jwN67343))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "animationInterfaceArray") (\jaN67212 -> JR.andThen (JR.local "index") (\jiN67212 -> (JR.aset (JR.lit jaN67212) (JR.lit jiN67212) (JR.invoke "getInstance_1" (JR.aget (JR.thisField "basicAnimationInterfaceFactoryInterfaceArray") (JR.local "index")) [ (JR.local "instanceId") ]))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67363 -> (JR.setLocal "index" "I" (JR.lit jwN67363))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "animationInterfaceArray") (\jaN67232 -> JR.andThen (JR.local "index") (\jiN67232 -> (JR.aset (JR.lit jaN67232) (JR.lit jiN67232) (JR.invoke "getInstance_1" (JR.aget (JR.thisField "basicAnimationInterfaceFactoryInterfaceArray") (JR.local "index")) [ (JR.local "instanceId") ]))))) ]) ], 
                     JR.return (JR.invoke "getOrCreate_1" JR.this [ (JR.local "animationInterfaceArray") ]) ])
         (jregister jheap)
         jthis

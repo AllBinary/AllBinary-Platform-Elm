@@ -58,8 +58,8 @@ jinit_3 jheap jthis jargs =
                     JR.exec (JR.setField "keys" "" JR.this (JR.newArray "" [ (JR.invoke "size_0" (JR.local "hashtable") []) ])), 
                     JR.declare "objectArray" "" (JR.invoke "getKeysAsArray_1" (JR.callStatic HashtableUtil.jm_getInstance_0 []) [ (JR.local "hashtable") ]), 
                     JR.declare "size" "I" (JR.alength (JR.local "objectArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68642 -> (JR.setLocal "index" "I" (JR.lit jwN68642))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "keys") (\jaN68499 -> JR.andThen (JR.local "index") (\jiN68499 -> (JR.aset (JR.lit jaN68499) (JR.lit jiN68499) (JR.invoke "get_1" (JR.local "hashtable") [ (JR.aget (JR.local "objectArray") (JR.local "index")) ]))))) ]) ] ]) ])
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68682 -> (JR.setLocal "index" "I" (JR.lit jwN68682))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "keys") (\jaN68539 -> JR.andThen (JR.local "index") (\jiN68539 -> (JR.aset (JR.lit jaN68539) (JR.lit jiN68539) (JR.invoke "get_1" (JR.local "hashtable") [ (JR.aget (JR.local "objectArray") (JR.local "index")) ]))))) ]) ] ]) ])
         (jregister jheap)
         jthis
         jargs
@@ -75,7 +75,7 @@ jm_processAI_1 jheap jthis jargs =
     JR.method [ ( "allBinaryLayerManager", "" ) ] ""
         (JR.run [ 
                     JR.ifElse (JR.thisField "on") (JR.run [ 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "keys"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68894 -> (JR.setLocal "index" "I" (JR.lit jwN68894))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "keys"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68934 -> (JR.setLocal "index" "I" (JR.lit jwN68934))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.callVia BasicAI.jvtable "processKeyAI_1" JR.this [ (JR.invoke "intValue_0" (JR.aget (JR.thisField "keys") (JR.local "index")) []) ]) ]) ] ]) identity ])
         (jregister jheap)
         jthis

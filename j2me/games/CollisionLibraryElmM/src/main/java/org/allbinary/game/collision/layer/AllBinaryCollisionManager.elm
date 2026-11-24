@@ -80,7 +80,7 @@ jm_process_3 jheap jthis jargs =
     JR.method [ ( "layerManager", "" ), ( "collidableInterfaceCompositeInterface", "" ), ( "startIndex", "I" ) ] ""
         (JR.run [ 
                     JR.declare "size" "I" (JR.invoke "getSize_0" (JR.local "layerManager") []), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.add (JR.local "startIndex") (JR.int 1)), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68266 -> (JR.setLocal "index" "I" (JR.lit jwN68266))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.add (JR.local "startIndex") (JR.int 1)), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68303 -> (JR.setLocal "index" "I" (JR.lit jwN68303))) JR.increment) ]) (JR.run [ 
                         JR.declare "collidableInterfaceCompositeInterface2" "" (JR.invoke "getLayerAt_1" (JR.local "layerManager") [ (JR.local "index") ]), 
                         JR.exec (JR.invoke "collide_3" JR.this [ (JR.local "layerManager"), (JR.local "collidableInterfaceCompositeInterface"), (JR.local "collidableInterfaceCompositeInterface2") ]) ]) ] ])
         (jregister jheap)

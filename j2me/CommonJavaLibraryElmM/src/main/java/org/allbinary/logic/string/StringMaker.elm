@@ -91,7 +91,7 @@ jm_appendchar_1 jheap jthis jargs =
     JR.method [ ( "c", "C" ) ] ""
         (JR.run [ 
                     JR.exec (JR.invoke "ensureCapacity_1" JR.this [ (JR.map2 JR.add (JR.thisField "currentLength") (JR.int 1)) ]), 
-                    JR.exec (JR.andThen (JR.thisField "charArray") (\jaN66178 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN66185 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN66185))) JR.increment) (\jiN66178 -> (JR.aset (JR.lit jaN66178) (JR.lit jiN66178) (JR.local "c"))))), 
+                    JR.exec (JR.andThen (JR.thisField "charArray") (\jaN66179 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN66186 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN66186))) JR.increment) (\jiN66179 -> (JR.aset (JR.lit jaN66179) (JR.lit jiN66179) (JR.local "c"))))), 
                     JR.return JR.this ])
         (jregister jheap)
         jthis
@@ -103,8 +103,8 @@ jm_appendCharArray_3 jheap jthis jargs =
     JR.method [ ( "charArray", "" ), ( "start", "I" ), ( "end", "I" ) ] ""
         (JR.run [ 
                     JR.exec (JR.invoke "ensureCapacity_1" JR.this [ (JR.map2 JR.add (JR.thisField "currentLength") ((JR.map2 JR.sub (JR.local "end") (JR.local "start")))) ]), 
-                    JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "end")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66480 -> (JR.setLocal "index" "I" (JR.lit jwN66480))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN66368 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN66375 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN66375))) JR.increment) (\jiN66368 -> (JR.aset (JR.lit jaN66368) (JR.lit jiN66368) (JR.aget (JR.local "charArray") (JR.local "index")))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "end")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66481 -> (JR.setLocal "index" "I" (JR.lit jwN66481))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN66369 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN66376 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN66376))) JR.increment) (\jiN66369 -> (JR.aset (JR.lit jaN66369) (JR.lit jiN66369) (JR.aget (JR.local "charArray") (JR.local "index")))))) ]) ], 
                     JR.return JR.this ])
         (jregister jheap)
         jthis
@@ -172,16 +172,16 @@ jm_appendboolean_1 jheap jthis jargs =
         (JR.run [ 
                     JR.ifElse (JR.local "bool") (JR.run [ 
                         JR.exec (JR.invoke "ensureCapacity_1" JR.this [ (JR.map2 JR.add (JR.thisField "currentLength") (JR.int 4)) ]), 
-                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67526 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67533 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67533))) JR.increment) (\jiN67526 -> (JR.aset (JR.lit jaN67526) (JR.lit jiN67526) (JR.char 116))))), 
-                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67570 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67577 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67577))) JR.increment) (\jiN67570 -> (JR.aset (JR.lit jaN67570) (JR.lit jiN67570) (JR.char 114))))), 
-                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67614 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67621 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67621))) JR.increment) (\jiN67614 -> (JR.aset (JR.lit jaN67614) (JR.lit jiN67614) (JR.char 117))))), 
-                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67658 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67665 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67665))) JR.increment) (\jiN67658 -> (JR.aset (JR.lit jaN67658) (JR.lit jiN67658) (JR.char 101))))) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67527 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67534 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67534))) JR.increment) (\jiN67527 -> (JR.aset (JR.lit jaN67527) (JR.lit jiN67527) (JR.char 116))))), 
+                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67571 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67578 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67578))) JR.increment) (\jiN67571 -> (JR.aset (JR.lit jaN67571) (JR.lit jiN67571) (JR.char 114))))), 
+                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67615 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67622 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67622))) JR.increment) (\jiN67615 -> (JR.aset (JR.lit jaN67615) (JR.lit jiN67615) (JR.char 117))))), 
+                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67659 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67666 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67666))) JR.increment) (\jiN67659 -> (JR.aset (JR.lit jaN67659) (JR.lit jiN67659) (JR.char 101))))) ]) (JR.run [ 
                         JR.exec (JR.invoke "ensureCapacity_1" JR.this [ (JR.map2 JR.add (JR.thisField "currentLength") (JR.int 5)) ]), 
-                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67261 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67268 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67268))) JR.increment) (\jiN67261 -> (JR.aset (JR.lit jaN67261) (JR.lit jiN67261) (JR.char 102))))), 
-                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67305 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67312 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67312))) JR.increment) (\jiN67305 -> (JR.aset (JR.lit jaN67305) (JR.lit jiN67305) (JR.char 97))))), 
-                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67349 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67356 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67356))) JR.increment) (\jiN67349 -> (JR.aset (JR.lit jaN67349) (JR.lit jiN67349) (JR.char 108))))), 
-                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67393 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67400 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67400))) JR.increment) (\jiN67393 -> (JR.aset (JR.lit jaN67393) (JR.lit jiN67393) (JR.char 115))))), 
-                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67437 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67444 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67444))) JR.increment) (\jiN67437 -> (JR.aset (JR.lit jaN67437) (JR.lit jiN67437) (JR.char 101))))) ]), 
+                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67262 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67269 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67269))) JR.increment) (\jiN67262 -> (JR.aset (JR.lit jaN67262) (JR.lit jiN67262) (JR.char 102))))), 
+                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67306 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67313 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67313))) JR.increment) (\jiN67306 -> (JR.aset (JR.lit jaN67306) (JR.lit jiN67306) (JR.char 97))))), 
+                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67350 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67357 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67357))) JR.increment) (\jiN67350 -> (JR.aset (JR.lit jaN67350) (JR.lit jiN67350) (JR.char 108))))), 
+                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67394 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67401 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67401))) JR.increment) (\jiN67394 -> (JR.aset (JR.lit jaN67394) (JR.lit jiN67394) (JR.char 115))))), 
+                        JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67438 -> JR.andThen (JR.postUpdate (JR.thisField "currentLength") (\jwN67445 -> (JR.setField "currentLength" "I" JR.this (JR.lit jwN67445))) JR.increment) (\jiN67438 -> (JR.aset (JR.lit jaN67438) (JR.lit jiN67438) (JR.char 101))))) ]), 
                     JR.return JR.this ])
         (jregister jheap)
         jthis

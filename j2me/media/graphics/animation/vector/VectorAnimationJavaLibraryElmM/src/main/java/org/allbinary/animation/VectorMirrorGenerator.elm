@@ -92,14 +92,14 @@ jm_getInstance_2 jheap jthis jargs =
                         JR.declare "size2" "I" (JR.lit (JR.defaultOf "I")), 
                         JR.declare "size" "I" (JR.alength (JR.local "points")), 
                         JR.declare "pointsBasicArrayList" "" (JR.new BasicArrayListS.jnew_1 [ (JR.local "size") ]), 
-                        JR.run [ JR.declare "frame" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "frame") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "frame") (\jwN67773 -> (JR.setLocal "frame" "I" (JR.lit jwN67773))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "frame" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "frame") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "frame") (\jwN67786 -> (JR.setLocal "frame" "I" (JR.lit jwN67786))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "nextPoints" "" (JR.aget (JR.local "points") (JR.local "frame"))), 
                             JR.exec (JR.setLocal "size2" "I" (JR.alength (JR.local "nextPoints"))), 
                             JR.exec (JR.setLocal "pointBasicArrayList" "" (JR.new BasicArrayListS.jnew_1 [ (JR.local "size2") ])), 
-                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67676 -> (JR.setLocal "index" "I" (JR.lit jwN67676))) JR.increment) ]) (JR.run [ 
+                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67689 -> (JR.setLocal "index" "I" (JR.lit jwN67689))) JR.increment) ]) (JR.run [ 
                                 JR.exec (JR.invoke "add_1" (JR.local "pointBasicArrayList") [ (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.aget (JR.aget (JR.local "nextPoints") (JR.local "index")) (JR.int 0)), (JR.aget (JR.aget (JR.local "nextPoints") (JR.local "index")) (JR.int 1)) ]) ]) ]) ], 
                             JR.exec (JR.invoke "add_1" (JR.local "pointsBasicArrayList") [ (JR.local "pointBasicArrayList") ]) ]) ], 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "points"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67940 -> (JR.setLocal "index" "I" (JR.lit jwN67940))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "points"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67953 -> (JR.setLocal "index" "I" (JR.lit jwN67953))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.invoke "add_1" (JR.local "pointsBasicArrayList") [ (JR.invoke "getInstance_2" JR.this [ (JR.aget (JR.field "objectArray" (JR.local "pointsBasicArrayList")) (JR.local "index")), (JR.local "width") ]) ]) ]) ], 
                         JR.declare "newPoints" "" (JR.invoke "toAnimationArrayFromListOfPointList_1" (JR.thisField "vectorAnimationUtil") [ (JR.local "pointsBasicArrayList") ]), 
                         JR.return (JR.local "newPoints") ]) [ ( [ "Exception" ], "e", (JR.run [ 

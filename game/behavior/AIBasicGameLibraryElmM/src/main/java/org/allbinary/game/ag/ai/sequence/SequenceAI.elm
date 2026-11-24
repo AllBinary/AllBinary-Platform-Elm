@@ -88,7 +88,7 @@ jm_next_0 : JR.Method
 jm_next_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.exec (JR.postUpdate (JR.thisField "index") (\jwN68796 -> (JR.setField "index" "I" JR.this (JR.lit jwN68796))) JR.increment), 
+                    JR.exec (JR.postUpdate (JR.thisField "index") (\jwN68837 -> (JR.setField "index" "I" JR.this (JR.lit jwN68837))) JR.increment), 
                     JR.declare "artificialIntelligenceInterface" "" (JR.invoke "getSelectedArtificialIntelligenceInterface_0" JR.this []), 
                     JR.ifElse (JR.map2 JR.equals (JR.invoke "getId_0" (JR.local "artificialIntelligenceInterface") []) ArtificialIntelligence.jstatic_AI_ID) (JR.run [ 
                         JR.declare "artificialIntelligenceTransitionInterface" "" (JR.local "artificialIntelligenceInterface"), 

@@ -136,7 +136,7 @@ jm_fireEvent_1 : JR.Method
 jm_fireEvent_1 jheap jthis jargs =
     JR.method [ ( "eventObject", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68022 -> (JR.setLocal "index" "I" (JR.lit jwN68022))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68043 -> (JR.setLocal "index" "I" (JR.lit jwN68043))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.try (JR.run [ 
                             JR.declare "terrainEventListener" "" (JR.invoke "get_1" (JR.thisField "list") [ (JR.local "index") ]), 
                             JR.exec (JR.invoke "onTerrainEvent_1" (JR.local "terrainEventListener") [ (JR.local "eventObject") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 

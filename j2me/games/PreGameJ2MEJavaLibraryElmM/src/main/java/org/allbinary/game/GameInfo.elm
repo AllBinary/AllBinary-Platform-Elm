@@ -177,7 +177,7 @@ jm_nextGameLevel_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.ifElse (JR.map2 JR.less (JR.invoke "getCurrentLevel_0" JR.this []) (JR.invoke "getHighestLevel_0" JR.this [])) (JR.run [ 
-                        JR.exec (JR.postUpdate (JR.thisField "currentLevel") (\jwN68161 -> (JR.setField "currentLevel" "I" JR.this (JR.lit jwN68161))) JR.increment) ]) identity, 
+                        JR.exec (JR.postUpdate (JR.thisField "currentLevel") (\jwN68179 -> (JR.setField "currentLevel" "I" JR.this (JR.lit jwN68179))) JR.increment) ]) identity, 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "NEXT" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.thisField "NEW_LEVEL") ]) [ (JR.invoke "getCurrentLevel_0" JR.this []) ]) []), JR.this, (JR.thisField "NEXT_GAME_LEVEL") ]) ])
         (jregister jheap)
         jthis
@@ -189,7 +189,7 @@ jm_previousGameLevel_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.ifElse (JR.map2 JR.greater (JR.invoke "getCurrentLevel_0" JR.this []) (JR.int 1)) (JR.run [ 
-                    JR.exec (JR.postUpdate (JR.thisField "currentLevel") (\jwN68406 -> (JR.setField "currentLevel" "I" JR.this (JR.lit jwN68406))) JR.decrement) ]) identity ])
+                    JR.exec (JR.postUpdate (JR.thisField "currentLevel") (\jwN68424 -> (JR.setField "currentLevel" "I" JR.this (JR.lit jwN68424))) JR.decrement) ]) identity ])
         (jregister jheap)
         jthis
         jargs

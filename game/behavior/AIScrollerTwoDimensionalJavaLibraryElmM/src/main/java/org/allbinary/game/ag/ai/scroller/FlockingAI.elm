@@ -79,7 +79,7 @@ jm_processAI_1 jheap jthis jargs =
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
                     JR.declare "allBinaryLayer" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "ownerLayerInterface" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71818 -> (JR.setLocal "index" "I" (JR.lit jwN71818))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71899 -> (JR.setLocal "index" "I" (JR.lit jwN71899))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "allBinaryLayer" "" (JR.invoke "get_1" (JR.local "list") [ (JR.local "index") ])), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getType_0" (JR.local "allBinaryLayer") []) (JR.callStatic WeaponLayer.jm_getStaticType_0 [])) (JR.run [ 
                             JR.declare "distance" "I" (JR.invoke "getXYDistance_1" JR.this [ (JR.local "allBinaryLayer") ]), 

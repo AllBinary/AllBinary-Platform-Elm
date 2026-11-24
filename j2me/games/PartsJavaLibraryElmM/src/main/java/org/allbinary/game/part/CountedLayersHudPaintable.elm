@@ -109,7 +109,7 @@ jm_paint_1 jheap jthis jargs =
                     JR.declare "pickedUpLayerInterfaceFactoryInterface" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "layerInterface" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "charArray" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.thisField "startIndex"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70517 -> (JR.setLocal "index" "I" (JR.lit jwN70517))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.thisField "startIndex"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70558 -> (JR.setLocal "index" "I" (JR.lit jwN70558))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "countedLayerInterfaceFactory" "" (JR.aget (JR.thisField "partInterfaceArray") (JR.local "index"))), 
                         JR.ifElse (JR.map2 JR.greater (JR.invoke "getTotal_0" (JR.local "countedLayerInterfaceFactory") []) (JR.int 0)) (JR.run [ 
                             JR.exec (JR.setLocal "pickedUpLayerInterfaceFactoryInterface" "" (JR.invoke "getCountedPickedUpLayerInterfaceFactory_0" (JR.local "countedLayerInterfaceFactory") [])), 
@@ -121,7 +121,7 @@ jm_paint_1 jheap jthis jargs =
                             JR.exec (JR.invoke "paint_1" (JR.local "countedLayerInterfaceFactory") [ (JR.local "graphics") ]), 
                             JR.exec (JR.setLocal "charArray" "" (JR.invoke "getTotalString_0" (JR.local "countedLayerInterfaceFactory") [])), 
                             JR.exec (JR.invoke "drawChars_6" (JR.local "graphics") [ (JR.local "charArray"), (JR.int 0), (JR.alength (JR.local "charArray")), (JR.map2 JR.sub (JR.local "widthEdge") (JR.invoke "getXOffset_0" (JR.local "countedLayerInterfaceFactory") [])), (JR.local "y"), (JR.int 0) ]), 
-                            JR.exec (JR.postUpdate (JR.local "count") (\jwN70442 -> (JR.setLocal "count" "I" (JR.lit jwN70442))) JR.increment) ]) identity ]) ], 
+                            JR.exec (JR.postUpdate (JR.local "count") (\jwN70483 -> (JR.setLocal "count" "I" (JR.lit jwN70483))) JR.increment) ]) identity ]) ], 
                     JR.ifElse (JR.map2 JR.greater (JR.local "count") (JR.int 0)) (JR.run [ 
                         JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.thisField "countedPartsBorder") ]), 
                         JR.exec (JR.invoke "drawRect_4" (JR.local "graphics") [ (JR.map2 JR.sub (JR.local "lastWidth") ((JR.map2 JR.add jstatic_XXStringWidth (JR.thisField "dropSize")))), (JR.int 40), (JR.map2 JR.add jstatic_XXStringWidth (JR.thisField "dropSize")), (JR.map2 JR.add ((JR.map2 JR.mul (JR.local "count") (JR.thisField "height"))) (JR.int 3)) ]) ]) identity ])

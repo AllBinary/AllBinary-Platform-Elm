@@ -91,7 +91,7 @@ jm_initAll_2 jheap jthis jargs =
                     JR.declare "index" "I" (JR.int 0), 
                     JR.declare "portion" "I" (JR.int 120), 
                     JR.declare "onDemandResources" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "onDemandIndex" "I" (JR.invoke "size_0" (JR.thisField "onDemandResourcesFactory") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "onDemandIndex") (\jwN68620 -> (JR.setLocal "onDemandIndex" "I" (JR.lit jwN68620))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "onDemandIndex" "I" (JR.invoke "size_0" (JR.thisField "onDemandResourcesFactory") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "onDemandIndex") (\jwN68647 -> (JR.setLocal "onDemandIndex" "I" (JR.lit jwN68647))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.setLocal "onDemandResources" "" (JR.invoke "remove_1" (JR.thisField "onDemandResourcesFactory") [ (JR.local "onDemandIndex") ])), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.local "onDemandResources") OnDemandResources.jstatic_NULL_ON_DEMAND_RESOURCES) (JR.run [ 
                             JR.exec (JR.setLocal "index" "I" (JR.invoke "initAt_5" (JR.local "onDemandResources") [ (JR.local "imageCache"), (JR.thisField "resourceAnimationInterfaceFactoryInterfaceFactory"), (JR.local "portion"), (JR.local "loadingString"), (JR.local "index") ])) ]) identity ]) ] ])
@@ -110,7 +110,7 @@ jm_initLevel_4 jheap jthis jargs =
                     JR.declare "onDemandArray" "" (JR.invoke "getOnDemandResources_0" (JR.local "layerPlacementInterfaceBasicArrayListFactoryInterface") []), 
                     JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START" (JR.local "commonStrings")) ]) [ (JR.alength (JR.local "onDemandArray")) ]) []), JR.this, (JR.str "initLevel") ]), 
                     JR.declare "onDemandResources" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "onDemandIndex" "I" (JR.alength (JR.local "onDemandArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "onDemandIndex") (\jwN69260 -> (JR.setLocal "onDemandIndex" "I" (JR.lit jwN69260))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "onDemandIndex" "I" (JR.alength (JR.local "onDemandArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "onDemandIndex") (\jwN69287 -> (JR.setLocal "onDemandIndex" "I" (JR.lit jwN69287))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.setLocal "onDemandResources" "" (JR.invoke "remove_1" (JR.thisField "onDemandResourcesFactory") [ (JR.aget (JR.local "onDemandArray") (JR.local "onDemandIndex")) ])), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.local "onDemandResources") OnDemandResources.jstatic_NULL_ON_DEMAND_RESOURCES) (JR.run [ 
                             JR.exec (JR.setLocal "index" "I" (JR.invoke "initAt_5" (JR.local "onDemandResources") [ (JR.local "imageCache"), (JR.thisField "resourceAnimationInterfaceFactoryInterfaceFactory"), (JR.local "portion"), (JR.local "loadingString"), (JR.local "index") ])) ]) identity ]) ] ])

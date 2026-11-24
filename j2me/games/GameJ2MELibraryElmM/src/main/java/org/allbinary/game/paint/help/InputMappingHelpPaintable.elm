@@ -115,46 +115,46 @@ jm_updateMeasurement_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "font" "" (JR.invoke "getFont_0" (JR.local "graphics") []), 
                     JR.declare "updateMyFontProperties" "" (JR.new UpdateMyFontProperties.jnew_0 []), 
-                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70586 -> (JR.setField "charHeight" "I" (JR.lit jtN70586) (JR.invoke "getHeight_0" (JR.local "font") [])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70622 -> (JR.setField "charHeight" "I" (JR.lit jtN70622) (JR.invoke "getHeight_0" (JR.local "font") [])))), 
                     JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
                     JR.declare "inputInfo" "" (JR.thisField "inputInfo"), 
                     JR.declare "size" "I" (JR.alength (JR.local "inputInfo")), 
-                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70769 -> (JR.setField "actionStringArray" "" (JR.lit jtN70769) (JR.newArray "" [ (JR.local "size") ])))), 
-                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70821 -> (JR.setField "keymappingBeginWidthArray" "" (JR.lit jtN70821) (JR.newArray "I" [ (JR.local "size") ])))), 
-                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70869 -> (JR.setField "actionStringDeltaXArray" "" (JR.lit jtN70869) (JR.newArray "I" [ (JR.local "size") ])))), 
-                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70917 -> (JR.setField "inputDeltaXArray" "" (JR.lit jtN70917) (JR.newArray "I" [ (JR.local "size"), (JR.int 0) ])))), 
-                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70973 -> (JR.setField "sepArray" "" (JR.lit jtN70973) (JR.newArray "" [ (JR.local "size"), (JR.int 0) ])))), 
-                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN71033 -> (JR.setField "sepWidthArray" "" (JR.lit jtN71033) (JR.newArray "I" [ (JR.local "size"), (JR.int 0) ])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70805 -> (JR.setField "actionStringArray" "" (JR.lit jtN70805) (JR.newArray "" [ (JR.local "size") ])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70857 -> (JR.setField "keymappingBeginWidthArray" "" (JR.lit jtN70857) (JR.newArray "I" [ (JR.local "size") ])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70905 -> (JR.setField "actionStringDeltaXArray" "" (JR.lit jtN70905) (JR.newArray "I" [ (JR.local "size") ])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN70953 -> (JR.setField "inputDeltaXArray" "" (JR.lit jtN70953) (JR.newArray "I" [ (JR.local "size"), (JR.int 0) ])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN71009 -> (JR.setField "sepArray" "" (JR.lit jtN71009) (JR.newArray "" [ (JR.local "size"), (JR.int 0) ])))), 
+                    JR.exec (JR.andThen (JR.local "updateMyFontProperties") (\jtN71069 -> (JR.setField "sepWidthArray" "" (JR.lit jtN71069) (JR.newArray "I" [ (JR.local "size"), (JR.int 0) ])))), 
                     JR.declare "list" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "keyMappings" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "actionString" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "input" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "size2" "I" (JR.int 0), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72854 -> (JR.setLocal "index" "I" (JR.lit jwN72854))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72890 -> (JR.setLocal "index" "I" (JR.lit jwN72890))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "list" "" (JR.aget (JR.thisField "keyMappingArray") (JR.local "index"))), 
                         JR.exec (JR.setLocal "keyMappings" "" (JR.invoke "get_1" JR.this [ (JR.local "list") ])), 
                         JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
                         JR.exec (JR.setLocal "actionString" "" (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.aget (JR.local "inputInfo") (JR.local "index")) ]) [ (JR.field "COLON" (JR.thisField "commonSeps")) ]) [ (JR.field "SPACE" (JR.thisField "commonSeps")) ]) [ (JR.field "SPACE" (JR.thisField "commonSeps")) ]) [])), 
-                        JR.exec (JR.andThen (JR.field "actionStringArray" (JR.local "updateMyFontProperties")) (\jaN71503 -> JR.andThen (JR.local "index") (\jiN71503 -> (JR.aset (JR.lit jaN71503) (JR.lit jiN71503) (JR.local "actionString"))))), 
+                        JR.exec (JR.andThen (JR.field "actionStringArray" (JR.local "updateMyFontProperties")) (\jaN71539 -> JR.andThen (JR.local "index") (\jiN71539 -> (JR.aset (JR.lit jaN71539) (JR.lit jiN71539) (JR.local "actionString"))))), 
                         JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
-                        JR.exec (JR.andThen (JR.field "keymappingBeginWidthArray" (JR.local "updateMyFontProperties")) (\jaN71595 -> JR.andThen (JR.local "index") (\jiN71595 -> (JR.aset (JR.lit jaN71595) (JR.lit jiN71595) ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.aget (JR.field "actionStringArray" (JR.local "updateMyFontProperties")) (JR.local "index")) ]) [ (JR.local "keyMappings") ]) []) ]) (JR.int 1))))))), 
-                        JR.exec (JR.andThen (JR.field "actionStringDeltaXArray" (JR.local "updateMyFontProperties")) (\jaN71738 -> JR.andThen (JR.local "index") (\jiN71738 -> (JR.aset (JR.lit jaN71738) (JR.lit jiN71738) (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.local "actionString") ]))))), 
+                        JR.exec (JR.andThen (JR.field "keymappingBeginWidthArray" (JR.local "updateMyFontProperties")) (\jaN71631 -> JR.andThen (JR.local "index") (\jiN71631 -> (JR.aset (JR.lit jaN71631) (JR.lit jiN71631) ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.aget (JR.field "actionStringArray" (JR.local "updateMyFontProperties")) (JR.local "index")) ]) [ (JR.local "keyMappings") ]) []) ]) (JR.int 1))))))), 
+                        JR.exec (JR.andThen (JR.field "actionStringDeltaXArray" (JR.local "updateMyFontProperties")) (\jaN71774 -> JR.andThen (JR.local "index") (\jiN71774 -> (JR.aset (JR.lit jaN71774) (JR.lit jiN71774) (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.local "actionString") ]))))), 
                         JR.exec (JR.setLocal "size2" "I" (JR.invoke "size_0" (JR.local "list") [])), 
-                        JR.exec (JR.andThen (JR.field "inputDeltaXArray" (JR.local "updateMyFontProperties")) (\jaN71835 -> JR.andThen (JR.local "index") (\jiN71835 -> (JR.aset (JR.lit jaN71835) (JR.lit jiN71835) (JR.newArray "I" [ (JR.local "size2") ]))))), 
-                        JR.exec (JR.andThen (JR.field "sepArray" (JR.local "updateMyFontProperties")) (\jaN71895 -> JR.andThen (JR.local "index") (\jiN71895 -> (JR.aset (JR.lit jaN71895) (JR.lit jiN71895) (JR.newArray "" [ (JR.local "size2") ]))))), 
-                        JR.exec (JR.andThen (JR.field "sepWidthArray" (JR.local "updateMyFontProperties")) (\jaN71959 -> JR.andThen (JR.local "index") (\jiN71959 -> (JR.aset (JR.lit jaN71959) (JR.lit jiN71959) (JR.newArray "I" [ (JR.local "size2") ]))))), 
-                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN72788 -> (JR.setLocal "index2" "I" (JR.lit jwN72788))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.field "inputDeltaXArray" (JR.local "updateMyFontProperties")) (\jaN71871 -> JR.andThen (JR.local "index") (\jiN71871 -> (JR.aset (JR.lit jaN71871) (JR.lit jiN71871) (JR.newArray "I" [ (JR.local "size2") ]))))), 
+                        JR.exec (JR.andThen (JR.field "sepArray" (JR.local "updateMyFontProperties")) (\jaN71931 -> JR.andThen (JR.local "index") (\jiN71931 -> (JR.aset (JR.lit jaN71931) (JR.lit jiN71931) (JR.newArray "" [ (JR.local "size2") ]))))), 
+                        JR.exec (JR.andThen (JR.field "sepWidthArray" (JR.local "updateMyFontProperties")) (\jaN71995 -> JR.andThen (JR.local "index") (\jiN71995 -> (JR.aset (JR.lit jaN71995) (JR.lit jiN71995) (JR.newArray "I" [ (JR.local "size2") ]))))), 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN72824 -> (JR.setLocal "index2" "I" (JR.lit jwN72824))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "input" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index2"))), 
-                            JR.exec (JR.andThen (JR.aget (JR.field "inputDeltaXArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72084 -> JR.andThen (JR.local "index2") (\jiN72084 -> (JR.aset (JR.lit jaN72084) (JR.lit jiN72084) (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.invoke "getName_0" (JR.local "input") []) ]))))), 
-                            JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72168 -> JR.andThen (JR.local "index2") (\jiN72168 -> (JR.aset (JR.lit jaN72168) (JR.lit jiN72168) (JR.thisField "EMPTY_STRING"))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.field "inputDeltaXArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72120 -> JR.andThen (JR.local "index2") (\jiN72120 -> (JR.aset (JR.lit jaN72120) (JR.lit jiN72120) (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.invoke "getName_0" (JR.local "input") []) ]))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72204 -> JR.andThen (JR.local "index2") (\jiN72204 -> (JR.aset (JR.lit jaN72204) (JR.lit jiN72204) (JR.thisField "EMPTY_STRING"))))), 
                             JR.ifElse (JR.map2 JR.less (JR.map2 JR.add (JR.local "index2") (JR.int 1)) (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ 
                                 JR.ifElse (JR.map2 JR.equals (JR.invoke "size_0" (JR.local "list") []) (JR.int 2)) (JR.run [ 
-                                    JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72497 -> JR.andThen (JR.local "index2") (\jiN72497 -> (JR.aset (JR.lit jaN72497) (JR.lit jiN72497) jstatic_AND)))) ]) (JR.run [ 
+                                    JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72533 -> JR.andThen (JR.local "index2") (\jiN72533 -> (JR.aset (JR.lit jaN72533) (JR.lit jiN72533) jstatic_AND)))) ]) (JR.run [ 
                                     JR.ifElse (JR.map2 JR.equals (JR.map2 JR.add (JR.local "index2") (JR.int 2)) (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ 
-                                        JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72422 -> JR.andThen (JR.local "index2") (\jiN72422 -> (JR.aset (JR.lit jaN72422) (JR.lit jiN72422) jstatic_MORE_THAN_TWO_IN_LIST_AND)))) ]) (JR.run [ 
-                                        JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72350 -> JR.andThen (JR.local "index2") (\jiN72350 -> (JR.aset (JR.lit jaN72350) (JR.lit jiN72350) jstatic_SEP)))) ]) ]) ]) identity, 
+                                        JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72458 -> JR.andThen (JR.local "index2") (\jiN72458 -> (JR.aset (JR.lit jaN72458) (JR.lit jiN72458) jstatic_MORE_THAN_TWO_IN_LIST_AND)))) ]) (JR.run [ 
+                                        JR.exec (JR.andThen (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72386 -> JR.andThen (JR.local "index2") (\jiN72386 -> (JR.aset (JR.lit jaN72386) (JR.lit jiN72386) jstatic_SEP)))) ]) ]) ]) identity, 
                             JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (JR.local "index2")) (JR.thisField "EMPTY_STRING")) (JR.run [ 
-                                JR.exec (JR.andThen (JR.aget (JR.field "sepWidthArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72629 -> JR.andThen (JR.local "index2") (\jiN72629 -> (JR.aset (JR.lit jaN72629) (JR.lit jiN72629) (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.aget (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (JR.local "index2")) ]))))) ]) identity ]) ] ]) ], 
+                                JR.exec (JR.andThen (JR.aget (JR.field "sepWidthArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (\jaN72665 -> JR.andThen (JR.local "index2") (\jiN72665 -> (JR.aset (JR.lit jaN72665) (JR.lit jiN72665) (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.aget (JR.aget (JR.field "sepArray" (JR.local "updateMyFontProperties")) (JR.local "index")) (JR.local "index2")) ]))))) ]) identity ]) ] ]) ], 
                     JR.exec (JR.setField "updateMyFontProperties" "" JR.this (JR.local "updateMyFontProperties")), 
                     JR.exec (JR.callVia HelpPaintable.jvtable "updateMeasurement_1" JR.this [ (JR.local "graphics") ]) ])
         (jregister jheap)
@@ -177,26 +177,26 @@ jm_update_2 jheap jthis jargs =
                     JR.declare "gameInputMapping" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "gameKey" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "list" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN74769 -> (JR.setLocal "index" "I" (JR.lit jwN74769))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN74805 -> (JR.setLocal "index" "I" (JR.lit jwN74805))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "gameInputMapping" "" (JR.aget (JR.thisField "gameInputMappingArray") (JR.local "index"))), 
                         JR.exec (JR.setLocal "gameKey" "" (JR.invoke "getGameKey_0" (JR.local "gameInputMapping") [])), 
                         JR.exec (JR.setLocal "list" "" (JR.invoke "getMappedInput_1" (JR.invoke "getInputMapping_0" (JR.local "gameKeyMapping") []) [ (JR.local "gameKey") ])), 
                         JR.declare "size2" "I" (JR.invoke "size_0" (JR.local "list") []), 
-                        JR.exec (JR.andThen (JR.local "inputBasicColorArray") (\jaN73878 -> JR.andThen (JR.local "index") (\jiN73878 -> (JR.aset (JR.lit jaN73878) (JR.lit jiN73878) (JR.newArray "" [ (JR.local "size2") ]))))), 
-                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN74042 -> (JR.setLocal "index2" "I" (JR.lit jwN74042))) JR.increment) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.aget (JR.local "inputBasicColorArray") (JR.local "index")) (\jaN73942 -> JR.andThen (JR.local "index2") (\jiN73942 -> (JR.aset (JR.lit jaN73942) (JR.lit jiN73942) (JR.thisField "basicColor"))))) ]) ], 
+                        JR.exec (JR.andThen (JR.local "inputBasicColorArray") (\jaN73914 -> JR.andThen (JR.local "index") (\jiN73914 -> (JR.aset (JR.lit jaN73914) (JR.lit jiN73914) (JR.newArray "" [ (JR.local "size2") ]))))), 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN74078 -> (JR.setLocal "index2" "I" (JR.lit jwN74078))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.local "inputBasicColorArray") (JR.local "index")) (\jaN73978 -> JR.andThen (JR.local "index2") (\jiN73978 -> (JR.aset (JR.lit jaN73978) (JR.lit jiN73978) (JR.thisField "basicColor"))))) ]) ], 
                         JR.ifElse (JR.map2 JR.equals (JR.local "gameKey") (JR.local "selectedGameKey")) (JR.run [ 
                             JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
                             JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.str "Found: selected GameKey: ") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "selectedGameKey") ]) ]) []), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")) ]), 
-                            JR.exec (JR.andThen (JR.local "actionBasicColor") (\jaN74299 -> JR.andThen (JR.local "index") (\jiN74299 -> (JR.aset (JR.lit jaN74299) (JR.lit jiN74299) (JR.thisField "selectedBasicColor"))))), 
+                            JR.exec (JR.andThen (JR.local "actionBasicColor") (\jaN74335 -> JR.andThen (JR.local "index") (\jiN74335 -> (JR.aset (JR.lit jaN74335) (JR.lit jiN74335) (JR.thisField "selectedBasicColor"))))), 
                             JR.declare "indexOfSelectedInput" "I" (JR.invoke "indexOf_1" (JR.local "list") [ (JR.local "selectedInput") ]), 
                             JR.ifElse (JR.map2 JR.greaterEquals (JR.local "indexOfSelectedInput") (JR.int 0)) (JR.run [ 
                                 JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
                                 JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.str "Found: selected Input: ") ]) [ (JR.invoke "toString_1" (JR.thisField "stringUtil") [ (JR.local "selectedInput") ]) ]) []), JR.this, (JR.field "UPDATE" (JR.thisField "commonStrings")) ]), 
-                                JR.exec (JR.andThen (JR.aget (JR.local "inputBasicColorArray") (JR.local "index")) (\jaN74577 -> JR.andThen (JR.local "indexOfSelectedInput") (\jiN74577 -> (JR.aset (JR.lit jaN74577) (JR.lit jiN74577) (JR.thisField "selectedBasicColor"))))) ]) identity ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.local "actionBasicColor") (\jaN74089 -> JR.andThen (JR.local "index") (\jiN74089 -> (JR.aset (JR.lit jaN74089) (JR.lit jiN74089) (JR.thisField "basicColor"))))) ]), 
-                        JR.exec (JR.andThen (JR.local "keyInfo") (\jaN74635 -> JR.andThen (JR.local "index") (\jiN74635 -> (JR.aset (JR.lit jaN74635) (JR.lit jiN74635) (JR.invoke "getName_0" (JR.local "gameInputMapping") []))))), 
-                        JR.exec (JR.andThen (JR.local "keyMappingArray") (\jaN74684 -> JR.andThen (JR.local "index") (\jiN74684 -> (JR.aset (JR.lit jaN74684) (JR.lit jiN74684) (JR.local "list"))))) ]) ], 
+                                JR.exec (JR.andThen (JR.aget (JR.local "inputBasicColorArray") (JR.local "index")) (\jaN74613 -> JR.andThen (JR.local "indexOfSelectedInput") (\jiN74613 -> (JR.aset (JR.lit jaN74613) (JR.lit jiN74613) (JR.thisField "selectedBasicColor"))))) ]) identity ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.local "actionBasicColor") (\jaN74125 -> JR.andThen (JR.local "index") (\jiN74125 -> (JR.aset (JR.lit jaN74125) (JR.lit jiN74125) (JR.thisField "basicColor"))))) ]), 
+                        JR.exec (JR.andThen (JR.local "keyInfo") (\jaN74671 -> JR.andThen (JR.local "index") (\jiN74671 -> (JR.aset (JR.lit jaN74671) (JR.lit jiN74671) (JR.invoke "getName_0" (JR.local "gameInputMapping") []))))), 
+                        JR.exec (JR.andThen (JR.local "keyMappingArray") (\jaN74720 -> JR.andThen (JR.local "index") (\jiN74720 -> (JR.aset (JR.lit jaN74720) (JR.lit jiN74720) (JR.local "list"))))) ]) ], 
                     JR.exec (JR.setField "keyMappingArray" "" JR.this (JR.local "keyMappingArray")), 
                     JR.exec (JR.setField "actionBasicColor" "" JR.this (JR.local "actionBasicColor")), 
                     JR.exec (JR.setField "inputBasicColorArray" "" JR.this (JR.local "inputBasicColorArray")), 
@@ -214,7 +214,7 @@ jm_get_1 jheap jthis jargs =
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
                     JR.declare "key" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "keyList") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75544 -> (JR.setLocal "index" "I" (JR.lit jwN75544))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75580 -> (JR.setLocal "index" "I" (JR.lit jwN75580))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "key" "" (JR.aget (JR.field "objectArray" (JR.local "keyList")) (JR.local "index"))), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.local "key") []) ]), 
                         JR.ifElse (JR.map2 JR.less (JR.map2 JR.add (JR.local "index") (JR.int 1)) (JR.invoke "size_0" (JR.local "keyList") [])) (JR.run [ 
@@ -247,7 +247,7 @@ jm_paint_1 jheap jthis jargs =
                     JR.declare "list" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "sep" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "beginWidth" "I" (JR.lit (JR.defaultOf "I")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN77266 -> (JR.setLocal "index" "I" (JR.lit jwN77266))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN77302 -> (JR.setLocal "index" "I" (JR.lit jwN77302))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "y" "I" (JR.map2 JR.mul ((JR.map2 JR.add (JR.local "index") (JR.int 3))) (JR.field "charHeight" (JR.thisField "updateMyFontProperties")))), 
                         JR.exec (JR.setLocal "deltaX" "I" (JR.int 0)), 
                         JR.exec (JR.setLocal "list" "" (JR.aget (JR.thisField "keyMappingArray") (JR.local "index"))), 
@@ -257,7 +257,7 @@ jm_paint_1 jheap jthis jargs =
                         JR.exec (JR.setLocal "actionString" "" (JR.aget (JR.field "actionStringArray" (JR.thisField "updateMyFontProperties")) (JR.local "index"))), 
                         JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.local "actionString"), (JR.map2 JR.add (JR.map2 JR.sub (JR.local "halfWidth") (JR.local "beginWidth")) (JR.local "deltaX")), (JR.local "y"), (JR.thisField "anchor") ]), 
                         JR.exec (JR.setLocal "deltaX" "I" (JR.map2 JR.add (JR.local "deltaX") (JR.aget (JR.field "actionStringDeltaXArray" (JR.thisField "updateMyFontProperties")) (JR.local "index")))), 
-                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN77200 -> (JR.setLocal "index2" "I" (JR.lit jwN77200))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN77236 -> (JR.setLocal "index2" "I" (JR.lit jwN77236))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "input" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index2"))), 
                             JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.invoke "intValue_0" (JR.aget (JR.aget (JR.thisField "inputBasicColorArray") (JR.local "index")) (JR.local "index2")) []) ]), 
                             JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.invoke "getName_0" (JR.local "input") []), (JR.map2 JR.add (JR.map2 JR.sub (JR.local "halfWidth") (JR.local "beginWidth")) (JR.local "deltaX")), (JR.local "y"), (JR.thisField "anchor") ]), 

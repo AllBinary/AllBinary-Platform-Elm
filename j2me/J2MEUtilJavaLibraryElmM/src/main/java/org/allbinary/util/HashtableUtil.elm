@@ -102,7 +102,7 @@ jm_getKeysAsArray_1 jheap jthis jargs =
                     JR.declare "index" "I" (JR.int 0), 
                     JR.declare "enumeration" "" (JR.invoke "keys_0" (JR.local "hashtable") []), 
                     JR.while (JR.invoke "hasMoreElements_1" (JR.thisField "enumerationUtil") [ (JR.local "enumeration") ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "objectArray") (\jaN66749 -> JR.andThen (JR.postUpdate (JR.local "index") (\jwN66756 -> (JR.setLocal "index" "I" (JR.lit jwN66756))) JR.increment) (\jiN66749 -> (JR.aset (JR.lit jaN66749) (JR.lit jiN66749) (JR.invoke "nextElement_1" (JR.thisField "enumerationUtil") [ (JR.local "enumeration") ]))))) ]), 
+                        JR.exec (JR.andThen (JR.local "objectArray") (\jaN66755 -> JR.andThen (JR.postUpdate (JR.local "index") (\jwN66762 -> (JR.setLocal "index" "I" (JR.lit jwN66762))) JR.increment) (\jiN66755 -> (JR.aset (JR.lit jaN66755) (JR.lit jiN66755) (JR.invoke "nextElement_1" (JR.thisField "enumerationUtil") [ (JR.local "enumeration") ]))))) ]), 
                     JR.return (JR.local "objectArray") ])
         (jregister jheap)
         jthis

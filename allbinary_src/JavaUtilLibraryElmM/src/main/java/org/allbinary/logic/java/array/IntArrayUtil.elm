@@ -61,7 +61,7 @@ jm_toString_1 jheap jthis jargs =
     JR.method [ ( "array", "" ) ] ""
         (JR.run [ 
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "array"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN65997 -> (JR.setLocal "index" "I" (JR.lit jwN65997))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "array"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN65999 -> (JR.setLocal "index" "I" (JR.lit jwN65999))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.aget (JR.local "array") (JR.local "index")) ]), 
                         JR.ifElse (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "array"))) (JR.run [ 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str ", ") ]) ]) identity ]) ], 

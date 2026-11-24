@@ -61,9 +61,9 @@ jm_getInstance_3 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "size" "I" (JR.invoke "getAnimationSize_0" (JR.local "sequentialAnimationInterface") []), 
                     JR.declare "imageArray" "" (JR.newArray "" [ (JR.local "size") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66821 -> (JR.setLocal "index" "I" (JR.lit jwN66821))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66836 -> (JR.setLocal "index" "I" (JR.lit jwN66836))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "setFrame_1" (JR.local "sequentialAnimationInterface") [ (JR.local "index") ]), 
-                        JR.exec (JR.andThen (JR.local "imageArray") (\jaN66693 -> JR.andThen (JR.local "index") (\jiN66693 -> (JR.aset (JR.lit jaN66693) (JR.lit jiN66693) (JR.invoke "getInstanceWH_3" (JR.callStatic AnimationFrameToImageUtil.jm_getInstance_0 []) [ (JR.local "width"), (JR.local "height"), (JR.local "sequentialAnimationInterface") ]))))) ]) ], 
+                        JR.exec (JR.andThen (JR.local "imageArray") (\jaN66708 -> JR.andThen (JR.local "index") (\jiN66708 -> (JR.aset (JR.lit jaN66708) (JR.lit jiN66708) (JR.invoke "getInstanceWH_3" (JR.callStatic AnimationFrameToImageUtil.jm_getInstance_0 []) [ (JR.local "width"), (JR.local "height"), (JR.local "sequentialAnimationInterface") ]))))) ]) ], 
                     JR.return (JR.local "imageArray") ])
         (jregister jheap)
         jthis

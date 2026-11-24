@@ -63,7 +63,7 @@ jm_release_2 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "nextTouchButtonInput" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "gameKeyEvent" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.field "currentlyPressedTouchButtonSingleton" (JR.thisField "touchButtonRecognizer")) []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67063 -> (JR.setLocal "index" "I" (JR.lit jwN67063))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.field "currentlyPressedTouchButtonSingleton" (JR.thisField "touchButtonRecognizer")) []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67080 -> (JR.setLocal "index" "I" (JR.lit jwN67080))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.setLocal "nextTouchButtonInput" "" (JR.invoke "get_1" (JR.field "currentlyPressedTouchButtonSingleton" (JR.thisField "touchButtonRecognizer")) [ (JR.local "index") ])), 
                         JR.exec (JR.setLocal "gameKeyEvent" "" (JR.invoke "getGameKeyEvent_0" (JR.local "nextTouchButtonInput") [])), 
                         JR.exec (JR.invoke "fireEvent_1" (JR.field "upGameKeyEventHandler" (JR.thisField "touchButtonRecognizer")) [ (JR.local "gameKeyEvent") ]), 

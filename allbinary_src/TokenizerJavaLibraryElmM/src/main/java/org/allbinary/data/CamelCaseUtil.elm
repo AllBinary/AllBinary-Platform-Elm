@@ -90,7 +90,7 @@ jm_getAsCamelCase_2 jheap jthis jargs =
                     JR.exec (JR.invoke "getTokensFromString_2" (JR.local "tokenizer") [ (JR.local "string"), (JR.local "list") ]), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
                     JR.declare "word" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN67516 -> (JR.setLocal "i" "I" (JR.lit jwN67516))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN67528 -> (JR.setLocal "i" "I" (JR.lit jwN67528))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "word" "" (JR.invoke "get_1" (JR.local "list") [ (JR.local "i") ])), 
                         JR.exec (JR.setLocal "word" "" (JR.cond (JR.invoke "isEmpty_1" (JR.local "stringValidationUtil") [ (JR.local "word") ]) (JR.local "word") (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "appendchar_1" (JR.new StringMaker.jnew_0 []) [ (JR.callStatic JCharacter.jm_toUpperCase_1 [ (JR.invoke "charAt_1" (JR.local "word") [ (JR.int 0) ]) ]) ]) [ (JR.invoke "toLowerCase_0" (JR.invoke "substring_1" (JR.local "word") [ (JR.int 1) ]) []) ]) []))), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuilder") [ (JR.local "word") ]) ]) ], 

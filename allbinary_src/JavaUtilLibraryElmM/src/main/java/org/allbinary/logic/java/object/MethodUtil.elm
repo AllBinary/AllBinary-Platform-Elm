@@ -65,7 +65,7 @@ jm_viewAll_2 jheap jthis jargs =
                     JR.declare "method" "" (JR.invoke "getMethods_0" (JR.local "myClass") []), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Methods: ") ]), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "lineBreak") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "method"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66295 -> (JR.setLocal "index" "I" (JR.lit jwN66295))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "method"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66298 -> (JR.setLocal "index" "I" (JR.lit jwN66298))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.invoke "getReturnType_0" (JR.aget (JR.local "method") (JR.local "index")) []) []) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " ") ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.aget (JR.local "method") (JR.local "index")) []) ]), 

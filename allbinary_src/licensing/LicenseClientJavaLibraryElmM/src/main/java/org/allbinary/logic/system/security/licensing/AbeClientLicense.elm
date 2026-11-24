@@ -73,7 +73,7 @@ jinit_1 jheap jthis jargs =
                     JR.declare "vector" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.field "LICENSESERVERS" (JR.local "abeClientInformationData")) ]), 
                     JR.exec (JR.setField "servers" "" JR.this (JR.new BasicArrayListD.jnew_0 [])), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "vector") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67636 -> (JR.setLocal "index" "I" (JR.lit jwN67636))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67654 -> (JR.setLocal "index" "I" (JR.lit jwN67654))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "add_1" (JR.thisField "servers") [ (JR.invoke "get_1" (JR.local "vector") [ (JR.local "index") ]) ]) ]) ], 
                     JR.declare "stringUtil" "" (JR.callStatic StringUtil.jm_getInstance_0 []), 
                     JR.exec (JR.invoke "setSpecial_1" JR.this [ (JR.invoke "getNonNull_1" (JR.local "stringUtil") [ (JR.invoke "get_1" (JR.local "hashtable") [ (JR.field "SPECIAL" (JR.local "abeClientInformationData")) ]) ]) ]), 
@@ -172,7 +172,7 @@ jm_toString_0 jheap jthis jargs =
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "BREAK") ]), 
                     JR.declare "serverVector" "" (JR.invoke "getServers_0" JR.this []), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "serverVector") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69354 -> (JR.setLocal "index" "I" (JR.lit jwN69354))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69372 -> (JR.setLocal "index" "I" (JR.lit jwN69372))) JR.increment) ]) (JR.run [ 
                         JR.declare "nextServerString" "" (JR.invoke "get_1" (JR.local "serverVector") [ (JR.local "index") ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Server: ") ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "nextServerString") ]), 

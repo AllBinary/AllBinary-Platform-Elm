@@ -107,7 +107,7 @@ jm_getRectangleXY_3 jheap jthis jargs =
                     JR.declare "list" "" (JR.invoke "getList_0" JR.this []), 
                     JR.declare "scale" "I" (JR.invoke "intValue_0" (JR.invoke "getValue_0" (JR.field "SCALE" (JR.callStatic GameConfigurationCentral.jm_getInstance_0 [])) []) []), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.invoke "getList_0" JR.this []) []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68704 -> (JR.setLocal "index" "I" (JR.lit jwN68704))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68734 -> (JR.setLocal "index" "I" (JR.lit jwN68734))) JR.increment) ]) (JR.run [ 
                         JR.declare "featureInterface" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                         JR.ifElse (JR.invoke "isFeature_0" (JR.local "featureInterface") []) (JR.run [ 
                             JR.declare "rectangle" "" (JR.invoke "getRectangle_1" (JR.local "featureInterface") [ (JR.local "resource") ]), 
@@ -148,7 +148,7 @@ jm_getBasicAnimationInterfaceFactoryInstance_1 jheap jthis jargs =
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.invoke "getList_0" JR.this []) []), 
                     JR.declare "featureInterface" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "animationInterfaceFactoryInterface" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69559 -> (JR.setLocal "index" "I" (JR.lit jwN69559))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69589 -> (JR.setLocal "index" "I" (JR.lit jwN69589))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "featureInterface" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                         JR.ifElse (JR.invoke "isFeature_0" (JR.local "featureInterface") []) (JR.run [ 
                             JR.exec (JR.invoke "add_1" (JR.local "resourceTypeAvailableList") [ (JR.local "featureInterface") ]), 
@@ -168,12 +168,12 @@ jm_getBasicAnimationInterfaceFactoryInstance_1 jheap jthis jargs =
                         JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "size") ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "FOR_FACTORIES") ]), 
                         JR.declare "size2" "I" (JR.invoke "size_0" (JR.local "resourceTypeAvailableList") []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70698 -> (JR.setLocal "index" "I" (JR.lit jwN70698))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70728 -> (JR.setLocal "index" "I" (JR.lit jwN70728))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.invoke "get_1" (JR.local "resourceTypeAvailableList") [ (JR.local "index") ]) []) ]), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) ]) ], 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "FOR_RESOURCE") ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "resource") ]), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71132 -> (JR.setLocal "index" "I" (JR.lit jwN71132))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71162 -> (JR.setLocal "index" "I" (JR.lit jwN71162))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "NEW_LINE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]), 
                             JR.exec (JR.setLocal "featureInterface" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                             JR.ifElse (JR.invoke "isFeature_0" (JR.local "featureInterface") []) (JR.run [ 
@@ -183,7 +183,7 @@ jm_getBasicAnimationInterfaceFactoryInstance_1 jheap jthis jargs =
                                 JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "RESOURCES_LABEL") ]) ]) identity ]) ], 
                         JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.invoke "toString_0" (JR.local "stringBuffer") []) ]) ]) (JR.run [ 
                         JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69855 -> (JR.setLocal "index" "I" (JR.lit jwN69855))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69885 -> (JR.setLocal "index" "I" (JR.lit jwN69885))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "featureInterface" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.local "featureInterface") []) ]), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) ]) ], 

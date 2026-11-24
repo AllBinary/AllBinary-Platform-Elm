@@ -65,8 +65,8 @@ jm_initAllBinaryLayerCircularPool_2 jheap jthis jargs =
         (JR.run [ 
                     JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.local "total") ])), 
                     JR.exec (JR.setField "OBJECT_ARRAY" "" JR.this (JR.newArray "" [ (JR.local "total") ])), 
-                    JR.run [ JR.declare "localIndex" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "localIndex") (JR.local "total")) (JR.run [ JR.exec (JR.postUpdate (JR.local "localIndex") (\jwN66585 -> (JR.setLocal "localIndex" "I" (JR.lit jwN66585))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "OBJECT_ARRAY") (\jaN66489 -> JR.andThen (JR.local "localIndex") (\jiN66489 -> (JR.aset (JR.lit jaN66489) (JR.lit jiN66489) (JR.invoke "getInstance_0" (JR.local "allbinaryLayerFactoryInterface") []))))) ]) ] ])
+                    JR.run [ JR.declare "localIndex" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "localIndex") (JR.local "total")) (JR.run [ JR.exec (JR.postUpdate (JR.local "localIndex") (\jwN66596 -> (JR.setLocal "localIndex" "I" (JR.lit jwN66596))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "OBJECT_ARRAY") (\jaN66500 -> JR.andThen (JR.local "localIndex") (\jiN66500 -> (JR.aset (JR.lit jaN66500) (JR.lit jiN66500) (JR.invoke "getInstance_0" (JR.local "allbinaryLayerFactoryInterface") []))))) ]) ] ])
         (jregister jheap)
         jthis
         jargs

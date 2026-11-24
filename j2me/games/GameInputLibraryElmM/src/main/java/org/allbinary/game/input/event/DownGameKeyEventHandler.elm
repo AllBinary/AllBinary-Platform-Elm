@@ -115,7 +115,7 @@ jm_removeAllListeners_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.exec (JR.callVia DownGameKeyEventHandlerBase.jvtable "removeAllListeners_0" JR.this []), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength jstatic_instanceArray) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67237 -> (JR.setLocal "index" "I" (JR.lit jwN67237))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength jstatic_instanceArray) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67247 -> (JR.setLocal "index" "I" (JR.lit jwN67247))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.invoke "removeAllListeners_0" (JR.aget jstatic_instanceArray (JR.local "index")) []) ]) ] ])
         (jregister jheap)
         jthis
@@ -127,7 +127,7 @@ jm_removeListenerSingleThreaded_1 jheap jthis jargs =
     JR.method [ ( "eventListenerInterface", "" ) ] ""
         (JR.run [ 
                     JR.exec (JR.callVia DownGameKeyEventHandlerBase.jvtable "removeListenerSingleThreaded_1" JR.this [ (JR.local "eventListenerInterface") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength jstatic_instanceArray) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67449 -> (JR.setLocal "index" "I" (JR.lit jwN67449))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength jstatic_instanceArray) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67459 -> (JR.setLocal "index" "I" (JR.lit jwN67459))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.invoke "removeListenerSingleThreaded_1" (JR.aget jstatic_instanceArray (JR.local "index")) [ (JR.local "eventListenerInterface") ]) ]) ] ])
         (jregister jheap)
         jthis
@@ -139,7 +139,7 @@ jm_removeListener_1 jheap jthis jargs =
     JR.method [ ( "eventListenerInterface", "" ) ] ""
         (JR.run [ 
                     JR.exec (JR.callVia DownGameKeyEventHandlerBase.jvtable "removeListener_1" JR.this [ (JR.local "eventListenerInterface") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength jstatic_instanceArray) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67681 -> (JR.setLocal "index" "I" (JR.lit jwN67681))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength jstatic_instanceArray) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67691 -> (JR.setLocal "index" "I" (JR.lit jwN67691))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.invoke "removeListener_1" (JR.aget jstatic_instanceArray (JR.local "index")) [ (JR.local "eventListenerInterface") ]) ]) ] ])
         (jregister jheap)
         jthis

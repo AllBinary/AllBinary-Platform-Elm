@@ -73,9 +73,9 @@ jm_process_1 jheap jthis jargs =
                         JR.exec (JR.setField "oscillatePositive" "Z" JR.this (JR.bool False)), 
                         JR.exec (JR.invoke "subtractint_1" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.invoke "getVelocityProperties_0" JR.this []) []) [ (JR.int 3000) ]) ]) identity ]), 
                     JR.ifElse (JR.thisField "oscillatePositive") (JR.run [ 
-                        JR.exec (JR.postUpdate (JR.thisField "oscillate") (\jwN68777 -> (JR.setField "oscillate" "I" JR.this (JR.lit jwN68777))) JR.increment), 
+                        JR.exec (JR.postUpdate (JR.thisField "oscillate") (\jwN68812 -> (JR.setField "oscillate" "I" JR.this (JR.lit jwN68812))) JR.increment), 
                         JR.exec (JR.invoke "addint_1" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.invoke "getVelocityProperties_0" JR.this []) []) [ (JR.int 5000) ]) ]) (JR.run [ 
-                        JR.exec (JR.postUpdate (JR.thisField "oscillate") (\jwN68712 -> (JR.setField "oscillate" "I" JR.this (JR.lit jwN68712))) JR.decrement), 
+                        JR.exec (JR.postUpdate (JR.thisField "oscillate") (\jwN68747 -> (JR.setField "oscillate" "I" JR.this (JR.lit jwN68747))) JR.decrement), 
                         JR.exec (JR.invoke "subtractint_1" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.invoke "getVelocityProperties_0" JR.this []) []) [ (JR.int 5000) ]) ]) ])
         (jregister jheap)
         jthis

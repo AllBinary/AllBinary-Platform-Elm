@@ -62,10 +62,10 @@ jm_init_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "noInputProcessor" "" (JR.callStatic GameInputProcessor.jm_getInstance_0 []), 
                     JR.declare "total" "I" (JR.field "MAX" (JR.callStatic InputFactory.jm_getInstance_0 [])), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "total")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66388 -> (JR.setLocal "index" "I" (JR.lit jwN66388))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "total")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66394 -> (JR.setLocal "index" "I" (JR.lit jwN66394))) JR.increment) ]) (JR.run [ 
                         JR.declare "inputProcessorCanBeNull" "" (JR.aget (JR.local "inputProcessorArray") (JR.local "index")), 
                         JR.ifElse (JR.map2 JR.equals (JR.local "inputProcessorCanBeNull") JR.null) (JR.run [ 
-                            JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN66300 -> JR.andThen (JR.local "index") (\jiN66300 -> (JR.aset (JR.lit jaN66300) (JR.lit jiN66300) (JR.local "noInputProcessor"))))) ]) identity ]) ] ])
+                            JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN66306 -> JR.andThen (JR.local "index") (\jiN66306 -> (JR.aset (JR.lit jaN66306) (JR.lit jiN66306) (JR.local "noInputProcessor"))))) ]) identity ]) ] ])
         (jregister jheap)
         jthis
         jargs

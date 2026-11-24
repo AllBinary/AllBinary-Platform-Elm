@@ -216,7 +216,7 @@ jm_load_0 jheap jthis jargs =
                                     JR.declare "list" "" (JR.invoke "getList_0" JR.this []), 
                                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
                                     JR.declare "lastIndex" "I" (JR.local "size"), 
-                                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN73926 -> (JR.setLocal "index" "I" (JR.lit jwN73926))) JR.increment) ]) (JR.run [ 
+                                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN73959 -> (JR.setLocal "index" "I" (JR.lit jwN73959))) JR.increment) ]) (JR.run [ 
                                         JR.declare "highScore" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                                         JR.ifElse (JR.map2 JR.equals (JR.invoke "compare_2" (JR.thisField "recordComparatorInterface") [ (JR.invoke "getAsBytes_0" (JR.local "newHighScore") []), (JR.invoke "getAsBytes_0" (JR.local "highScore") []) ]) RecordComparator.jstatic_PRECEDES) (JR.run [ 
                                             JR.exec (JR.setLocal "lastIndex" "I" (JR.local "index")), 
@@ -261,7 +261,7 @@ jm_isBestScore_1 jheap jthis jargs =
                             JR.return (JR.bool True) ]) (JR.run [ 
                             JR.declare "list" "" (JR.invoke "getList_0" JR.this []), 
                             JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
-                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75166 -> (JR.setLocal "index" "I" (JR.lit jwN75166))) JR.increment) ]) (JR.run [ 
+                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75199 -> (JR.setLocal "index" "I" (JR.lit jwN75199))) JR.increment) ]) (JR.run [ 
                                 JR.declare "highScore" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                                 JR.ifElse (JR.map2 JR.equals (JR.invoke "compare_2" (JR.thisField "recordComparatorInterface") [ (JR.invoke "getAsBytes_0" (JR.local "newHighScore") []), (JR.invoke "getAsBytes_0" (JR.local "highScore") []) ]) RecordComparator.jstatic_FOLLOWS) (JR.run [ 
                                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Obtained a High Score"), JR.this, (JR.str "isBestScore") ]), 
@@ -283,7 +283,7 @@ jm_toString_0 jheap jthis jargs =
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.callVia HighScores.jvtable "toString_0" JR.this []) ]), 
                     JR.declare "list" "" (JR.invoke "getList_0" JR.this []), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75868 -> (JR.setLocal "index" "I" (JR.lit jwN75868))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75901 -> (JR.setLocal "index" "I" (JR.lit jwN75901))) JR.increment) ]) (JR.run [ 
                         JR.declare "highScore" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getScoreString_0" (JR.local "highScore") []) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) ]) ], 

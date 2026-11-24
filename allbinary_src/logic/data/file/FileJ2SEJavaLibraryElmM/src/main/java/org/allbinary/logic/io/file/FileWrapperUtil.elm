@@ -63,8 +63,8 @@ jm_wrapFiles_1 jheap jthis jargs =
         (JR.run [ 
                     JR.try (JR.run [ 
                         JR.declare "abFileArray" "" (JR.newArray "" [ (JR.alength (JR.local "files")) ]), 
-                        JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.local "files")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66431 -> (JR.setLocal "index" "I" (JR.lit jwN66431))) JR.decrement) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.local "abFileArray") (\jaN66290 -> JR.andThen (JR.local "index") (\jiN66290 -> (JR.aset (JR.lit jaN66290) (JR.lit jiN66290) (JR.new AbFile.jnew_1 [ (JR.aget (JR.local "files") (JR.local "index")) ]))))) ]) ], 
+                        JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.local "files")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66435 -> (JR.setLocal "index" "I" (JR.lit jwN66435))) JR.decrement) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.local "abFileArray") (\jaN66294 -> JR.andThen (JR.local "index") (\jiN66294 -> (JR.aset (JR.lit jaN66294) (JR.lit jiN66294) (JR.new AbFile.jnew_1 [ (JR.aget (JR.local "files") (JR.local "index")) ]))))) ]) ], 
                         JR.return (JR.local "abFileArray") ]) [ ( [ "Exception" ], "e", (JR.run [ 
                         JR.exec (JR.callStatic PreLogUtil.jm_putSE_4 [ (JR.str "Exception Wrapping Files"), (JR.str "FileWrapperUtil"), (JR.str "wrapFiles"), (JR.local "e") ]), 
                         JR.return (JR.newArray "" [ (JR.int 0) ]) ]) ) ] identity ])

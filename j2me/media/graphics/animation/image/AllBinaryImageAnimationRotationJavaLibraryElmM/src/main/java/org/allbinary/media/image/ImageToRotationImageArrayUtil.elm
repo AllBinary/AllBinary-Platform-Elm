@@ -81,9 +81,9 @@ jm_generate_3 jheap jthis jargs =
                     JR.declare "imageRotationUtil" "" (JR.callStatic ImageRotationUtil.jm_getInstance_0 []), 
                     JR.declare "totalFrames" "I" (JR.map2 JR.div (JR.local "totalAngle") (JR.local "angleIncrement")), 
                     JR.declare "imageArray" "" (JR.newArray "" [ (JR.local "totalFrames") ]), 
-                    JR.exec (JR.andThen (JR.local "imageArray") (\jaN65976 -> JR.andThen (JR.int 0) (\jiN65976 -> (JR.aset (JR.lit jaN65976) (JR.lit jiN65976) (JR.local "image"))))), 
-                    JR.run [ JR.declare "index" "I" (JR.int 1), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "totalFrames")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66146 -> (JR.setLocal "index" "I" (JR.lit jwN66146))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "imageArray") (\jaN66017 -> JR.andThen (JR.local "index") (\jiN66017 -> (JR.aset (JR.lit jaN66017) (JR.lit jiN66017) (JR.invoke "createRotatedImage_2" (JR.local "imageRotationUtil") [ (JR.local "image"), (JR.map2 JR.mul (JR.local "index") (JR.local "angleIncrement")) ]))))) ]) ], 
+                    JR.exec (JR.andThen (JR.local "imageArray") (\jaN65978 -> JR.andThen (JR.int 0) (\jiN65978 -> (JR.aset (JR.lit jaN65978) (JR.lit jiN65978) (JR.local "image"))))), 
+                    JR.run [ JR.declare "index" "I" (JR.int 1), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "totalFrames")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66148 -> (JR.setLocal "index" "I" (JR.lit jwN66148))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "imageArray") (\jaN66019 -> JR.andThen (JR.local "index") (\jiN66019 -> (JR.aset (JR.lit jaN66019) (JR.lit jiN66019) (JR.invoke "createRotatedImage_2" (JR.local "imageRotationUtil") [ (JR.local "image"), (JR.map2 JR.mul (JR.local "index") (JR.local "angleIncrement")) ]))))) ]) ], 
                     JR.return (JR.local "imageArray") ])
         (jregister jheap)
         jthis

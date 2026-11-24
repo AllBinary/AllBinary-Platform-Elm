@@ -97,7 +97,7 @@ jm_drawCenterStrings_6 jheap jthis jargs =
     JR.method [ ( "graphics", "" ), ( "stringArray", "" ), ( "maxWidth", "I" ), ( "charHeight", "I" ), ( "x", "I" ), ( "y", "I" ) ] ""
         (JR.run [ 
                     JR.declare "extraLines" "I" (JR.int 0), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "stringArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68047 -> (JR.setLocal "index" "I" (JR.lit jwN68047))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "stringArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68056 -> (JR.setLocal "index" "I" (JR.lit jwN68056))) JR.increment) ]) (JR.run [ 
                         JR.declare "string" "" (JR.aget (JR.local "stringArray") (JR.local "index")), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.local "string") (JR.thisField "EMPTY_STRING")) (JR.run [ 
                             JR.declare "width" "I" (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.local "string") ]), 
@@ -113,13 +113,13 @@ jm_drawCenterStrings_6 jheap jthis jargs =
                                     JR.exec (JR.setLocal "currentLength" "I" (JR.map2 JR.sub (JR.local "size") (JR.local "offset"))) ]) identity, 
                                 JR.ifElse (JR.map2 JR.notEquals (JR.map2 JR.add (JR.local "offset") (JR.local "currentLength")) (JR.local "size")) (JR.run [ 
                                     JR.while (JR.and (JR.map2 JR.greater (JR.local "currentLength") (JR.int 0)) (JR.map2 JR.notEquals (JR.invoke "charAt_1" (JR.aget (JR.local "stringArray") (JR.local "index")) [ (JR.map2 JR.add (JR.local "offset") (JR.local "currentLength")) ]) (JR.char 32))) (JR.run [ 
-                                        JR.exec (JR.postUpdate (JR.local "currentLength") (\jwN67599 -> (JR.setLocal "currentLength" "I" (JR.lit jwN67599))) JR.decrement) ]), 
+                                        JR.exec (JR.postUpdate (JR.local "currentLength") (\jwN67608 -> (JR.setLocal "currentLength" "I" (JR.lit jwN67608))) JR.decrement) ]), 
                                     JR.ifElse (JR.map2 JR.lessEquals (JR.local "currentLength") (JR.int 4)) (JR.run [ 
                                         JR.exec (JR.setLocal "currentLength" "I" (JR.local "linePortion")) ]) identity ]) identity, 
-                                JR.exec (JR.invoke "drawCenterString_6" JR.this [ (JR.local "graphics"), (JR.local "string"), (JR.local "offset"), (JR.local "currentLength"), (JR.local "x"), (JR.map2 JR.add (JR.local "y") ((JR.map2 JR.mul ((JR.map2 JR.add (JR.local "index") (JR.postUpdate (JR.local "extraLines") (\jwN67848 -> (JR.setLocal "extraLines" "I" (JR.lit jwN67848))) JR.increment))) (JR.local "charHeight")))) ]), 
+                                JR.exec (JR.invoke "drawCenterString_6" JR.this [ (JR.local "graphics"), (JR.local "string"), (JR.local "offset"), (JR.local "currentLength"), (JR.local "x"), (JR.map2 JR.add (JR.local "y") ((JR.map2 JR.mul ((JR.map2 JR.add (JR.local "index") (JR.postUpdate (JR.local "extraLines") (\jwN67857 -> (JR.setLocal "extraLines" "I" (JR.lit jwN67857))) JR.increment))) (JR.local "charHeight")))) ]), 
                                 JR.exec (JR.setLocal "offset" "I" (JR.map2 JR.add (JR.local "offset") (JR.local "currentLength"))), 
                                 JR.exec (JR.setLocal "currentLength" "I" (JR.local "linePortion")) ]), 
-                            JR.exec (JR.postUpdate (JR.local "extraLines") (\jwN67971 -> (JR.setLocal "extraLines" "I" (JR.lit jwN67971))) JR.decrement) ]) identity ]) ] ])
+                            JR.exec (JR.postUpdate (JR.local "extraLines") (\jwN67980 -> (JR.setLocal "extraLines" "I" (JR.lit jwN67980))) JR.decrement) ]) identity ]) ] ])
         (jregister jheap)
         jthis
         jargs

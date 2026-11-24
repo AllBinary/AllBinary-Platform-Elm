@@ -85,7 +85,7 @@ jm_left_0 : JR.Method
 jm_left_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.exec (JR.postUpdate (JR.thisField "testValue") (\jwN65847 -> (JR.setField "testValue" "I" JR.this (JR.lit jwN65847))) JR.increment) ])
+                    JR.exec (JR.postUpdate (JR.thisField "testValue") (\jwN65850 -> (JR.setField "testValue" "I" JR.this (JR.lit jwN65850))) JR.increment) ])
         (jregister jheap)
         jthis
         jargs
@@ -95,7 +95,7 @@ jm_right_0 : JR.Method
 jm_right_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.exec (JR.postUpdate (JR.thisField "testValue") (\jwN65903 -> (JR.setField "testValue" "I" JR.this (JR.lit jwN65903))) JR.decrement) ])
+                    JR.exec (JR.postUpdate (JR.thisField "testValue") (\jwN65906 -> (JR.setField "testValue" "I" JR.this (JR.lit jwN65906))) JR.decrement) ])
         (jregister jheap)
         jthis
         jargs

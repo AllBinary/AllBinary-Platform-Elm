@@ -83,7 +83,7 @@ jm_next_0 jheap jthis jargs =
         (JR.run [ 
                     JR.ifElse (JR.map2 JR.greaterEquals (JR.thisField "index") (JR.thisField "lastIndex")) (JR.run [ 
                         JR.exec (JR.setField "index" "I" JR.this (JR.int 0)) ]) (JR.run [ 
-                        JR.exec (JR.postUpdate (JR.thisField "index") (\jwN66321 -> (JR.setField "index" "I" JR.this (JR.lit jwN66321))) JR.increment) ]), 
+                        JR.exec (JR.postUpdate (JR.thisField "index") (\jwN66324 -> (JR.setField "index" "I" JR.this (JR.lit jwN66324))) JR.increment) ]), 
                     JR.return (JR.thisField "index") ])
         (jregister jheap)
         jthis
@@ -96,7 +96,7 @@ jm_previous_0 jheap jthis jargs =
         (JR.run [ 
                     JR.ifElse (JR.map2 JR.less (JR.thisField "index") (JR.int 1)) (JR.run [ 
                         JR.exec (JR.setField "index" "I" JR.this (JR.thisField "lastIndex")) ]) (JR.run [ 
-                        JR.exec (JR.postUpdate (JR.thisField "index") (\jwN66459 -> (JR.setField "index" "I" JR.this (JR.lit jwN66459))) JR.decrement) ]), 
+                        JR.exec (JR.postUpdate (JR.thisField "index") (\jwN66462 -> (JR.setField "index" "I" JR.this (JR.lit jwN66462))) JR.decrement) ]), 
                     JR.return (JR.thisField "index") ])
         (jregister jheap)
         jthis

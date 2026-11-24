@@ -119,7 +119,7 @@ jm_setGameKey_1 : JR.Method
 jm_setGameKey_1 jheap jthis jargs =
     JR.method [ ( "gameKey", "" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "intKeyToGameKey") (\jaN67610 -> JR.andThen (JR.invoke "getId_0" (JR.local "gameKey") []) (\jiN67610 -> (JR.aset (JR.lit jaN67610) (JR.lit jiN67610) (JR.local "gameKey"))))) ])
+                    JR.exec (JR.andThen (JR.thisField "intKeyToGameKey") (\jaN67618 -> JR.andThen (JR.invoke "getId_0" (JR.local "gameKey") []) (\jiN67618 -> (JR.aset (JR.lit jaN67618) (JR.lit jiN67618) (JR.local "gameKey"))))) ])
         (jregister jheap)
         jthis
         jargs

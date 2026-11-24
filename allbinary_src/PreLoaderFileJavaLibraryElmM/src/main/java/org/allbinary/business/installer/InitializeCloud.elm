@@ -113,7 +113,7 @@ jm_initialize_5 jheap jthis jargs =
                             JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "end") ]), 
                             JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "initialize()") ]), 
                             JR.declare "nextFile" "" (JR.lit (JR.defaultOf "")), 
-                            JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "end")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70244 -> (JR.setLocal "index" "I" (JR.lit jwN70244))) JR.increment) ]) (JR.run [ 
+                            JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "end")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70266 -> (JR.setLocal "index" "I" (JR.lit jwN70266))) JR.increment) ]) (JR.run [ 
                                 JR.exec (JR.setLocal "nextFile" "" (JR.invoke "get_1" (JR.local "fileBasicArrayList") [ (JR.local "index") ])), 
                                 JR.ifElse (JR.invoke "isDirectory_0" (JR.local "nextFile") []) identity (JR.run [ 
                                     JR.exec (JR.invoke "copyToCloud_6" (JR.callStatic FileUtil.jm_getInstance_0 []) [ (JR.local "nextFile"), (JR.local "path"), (JR.local "realPath"), (JR.local "cloud"), (JR.local "overwriteNewer"), (JR.local "overwriteAll") ]) ]) ]) ], 

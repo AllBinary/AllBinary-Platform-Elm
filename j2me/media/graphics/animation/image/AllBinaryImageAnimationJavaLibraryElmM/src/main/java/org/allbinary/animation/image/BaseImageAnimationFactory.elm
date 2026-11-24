@@ -65,12 +65,12 @@ jinit_7 jheap jthis jargs =
                 (JR.run [ 
                     JR.exec (JR.setField "animationFactoryInitializationVisitor" "" JR.this (JR.new AnimationFactoryInitializationVisitor.jnew_0 [])), 
                     JR.exec (JR.setField "image" "" JR.this (JR.local "image")), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67512 -> (JR.setField "width" "I" (JR.lit jtN67512) (JR.local "width")))), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67548 -> (JR.setField "height" "I" (JR.lit jtN67548) (JR.local "height")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67533 -> (JR.setField "width" "I" (JR.lit jtN67533) (JR.local "width")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67569 -> (JR.setField "height" "I" (JR.lit jtN67569) (JR.local "height")))), 
                     JR.exec (JR.setField "animationBehaviorFactory" "" JR.this (JR.local "animationBehaviorFactory")), 
                     JR.exec (JR.setField "sequenceArray" "" JR.this (JR.local "sequenceArray")), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67640 -> (JR.setField "dx" "I" (JR.lit jtN67640) (JR.local "dx")))), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67676 -> (JR.setField "dy" "I" (JR.lit jtN67676) (JR.local "dy")))) ]) ])
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67661 -> (JR.setField "dx" "I" (JR.lit jtN67661) (JR.local "dx")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN67697 -> (JR.setField "dy" "I" (JR.lit jtN67697) (JR.local "dy")))) ]) ])
         (jregister jheap)
         jthis
         jargs
@@ -127,8 +127,8 @@ jm_setInitialScale_1 jheap jthis jargs =
         (JR.run [ 
                     JR.exec (JR.setField "scaleProperties" "" JR.this (JR.local "scaleProperties")), 
                     JR.ifElse (JR.field "shouldScale" (JR.thisField "scaleProperties")) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN68172 -> (JR.setField "scaleWidth" "I" (JR.lit jtN68172) (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.field "width" (JR.thisField "animationFactoryInitializationVisitor"))) (JR.field "scaleX" (JR.thisField "scaleProperties")))))))), 
-                        JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN68255 -> (JR.setField "scaleHeight" "I" (JR.lit jtN68255) (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.field "height" (JR.thisField "animationFactoryInitializationVisitor"))) (JR.field "scaleY" (JR.thisField "scaleProperties")))))))) ]) identity ])
+                        JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN68193 -> (JR.setField "scaleWidth" "I" (JR.lit jtN68193) (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.field "width" (JR.thisField "animationFactoryInitializationVisitor"))) (JR.field "scaleX" (JR.thisField "scaleProperties")))))))), 
+                        JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN68276 -> (JR.setField "scaleHeight" "I" (JR.lit jtN68276) (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.field "height" (JR.thisField "animationFactoryInitializationVisitor"))) (JR.field "scaleY" (JR.thisField "scaleProperties")))))))) ]) identity ])
         (jregister jheap)
         jthis
         jargs

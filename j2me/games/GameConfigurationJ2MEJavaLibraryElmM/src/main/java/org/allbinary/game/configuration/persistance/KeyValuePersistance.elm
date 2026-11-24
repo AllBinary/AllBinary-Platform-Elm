@@ -113,7 +113,7 @@ jm_loadAllSize_2 jheap jthis jargs =
                                 JR.exec (JR.setLocal "byteArrayInputStream" "" (JR.new JByteArrayInputStream.jnew_1 [ (JR.local "recordAsBytes") ])), 
                                 JR.exec (JR.setLocal "inputStream" "" (JR.new JDataInputStream.jnew_1 [ (JR.local "byteArrayInputStream") ])), 
                                 JR.exec (JR.setLocal "hashtable" "" (JR.new ABHashtable.jnew_0 [])), 
-                                JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69119 -> (JR.setLocal "index" "I" (JR.lit jwN69119))) JR.increment) ]) (JR.run [ 
+                                JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69141 -> (JR.setLocal "index" "I" (JR.lit jwN69141))) JR.increment) ]) (JR.run [ 
                                     JR.exec (JR.setLocal "name" "" (JR.invoke "readUTF_0" (JR.local "inputStream") [])), 
                                     JR.exec (JR.invoke "readUTF_0" (JR.local "inputStream") []), 
                                     JR.exec (JR.setLocal "value" "" (JR.invoke "readUTF_0" (JR.local "inputStream") [])), 
@@ -144,7 +144,7 @@ jm_save_2 jheap jthis jargs =
                         JR.declare "objectArray" "" (JR.invoke "getKeysAsArray_1" (JR.callStatic HashtableUtil.jm_getInstance_0 []) [ (JR.local "hashtable") ]), 
                         JR.declare "anyType" "" (JR.lit (JR.defaultOf "")), 
                         JR.declare "size" "I" (JR.alength (JR.local "objectArray")), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70356 -> (JR.setLocal "index" "I" (JR.lit jwN70356))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70378 -> (JR.setLocal "index" "I" (JR.lit jwN70378))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.aget (JR.local "objectArray") (JR.local "index")) ]), 
                             JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.field "EQUALS" (JR.local "commonSeps")) ]), 
                             JR.exec (JR.setLocal "anyType" "" (JR.aget (JR.local "objectArray") (JR.local "index"))), 

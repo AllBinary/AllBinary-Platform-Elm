@@ -164,10 +164,10 @@ jm_getFirstAvailableCountedLayerInterfaceFactory_1 jheap jthis jargs =
                     JR.declare "size" "I" (JR.alength (JR.local "partInterfaceArray")), 
                     JR.declare "nextCountedLayerInterfaceFactory" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "countedPickedUpLayerInterfaceFactory" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.thisField "countedIndex"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72375 -> (JR.setLocal "index" "I" (JR.lit jwN72375))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.thisField "countedIndex"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72440 -> (JR.setLocal "index" "I" (JR.lit jwN72440))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "nextCountedLayerInterfaceFactory" "" (JR.aget (JR.invoke "getPartInterfaceArray_0" (JR.local "collidableDestroyableDamageableLayer") []) (JR.local "index"))), 
                         JR.exec (JR.setLocal "countedPickedUpLayerInterfaceFactory" "" (JR.invoke "getCountedPickedUpLayerInterfaceFactory_0" (JR.local "nextCountedLayerInterfaceFactory") [])), 
-                        JR.run [ JR.declare "index2" "I" (JR.alength (JR.local "pickedUpLayerTypeArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index2") (\jwN72260 -> (JR.setLocal "index2" "I" (JR.lit jwN72260))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.run [ JR.declare "index2" "I" (JR.alength (JR.local "pickedUpLayerTypeArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index2") (\jwN72325 -> (JR.setLocal "index2" "I" (JR.lit jwN72325))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                             JR.ifElse (JR.map2 JR.equals (JR.invoke "getPickedUpLayerType_0" (JR.local "countedPickedUpLayerInterfaceFactory") []) (JR.aget (JR.local "pickedUpLayerTypeArray") (JR.local "index2"))) (JR.run [ 
                                 JR.ifElse (JR.map2 JR.greater (JR.invoke "getTotal_0" (JR.local "nextCountedLayerInterfaceFactory") []) (JR.int 0)) (JR.run [ 
                                     JR.return (JR.local "nextCountedLayerInterfaceFactory") ]) identity ]) identity ]) ] ]) ], 
@@ -186,12 +186,12 @@ jm_getCountedLayerInterfaceFactoryForSlot_1 jheap jthis jargs =
                     JR.declare "partInterfaceArray" "" (JR.invoke "getPartInterfaceArray_0" (JR.local "collidableDestroyableDamageableLayer") []), 
                     JR.declare "size" "I" (JR.alength (JR.local "partInterfaceArray")), 
                     JR.declare "nextCountedLayerInterfaceFactory" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.thisField "countedIndex"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72904 -> (JR.setLocal "index" "I" (JR.lit jwN72904))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.thisField "countedIndex"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72969 -> (JR.setLocal "index" "I" (JR.lit jwN72969))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "nextCountedLayerInterfaceFactory" "" (JR.aget (JR.invoke "getPartInterfaceArray_0" (JR.local "collidableDestroyableDamageableLayer") []) (JR.local "index"))), 
                         JR.ifElse (JR.map2 JR.greater (JR.invoke "getTotal_0" (JR.local "nextCountedLayerInterfaceFactory") []) (JR.int 0)) (JR.run [ 
                             JR.ifElse (JR.map2 JR.equals (JR.local "currentSlot") (JR.local "slotIndex")) (JR.run [ 
                                 JR.return (JR.local "nextCountedLayerInterfaceFactory") ]) (JR.run [ 
-                                JR.exec (JR.postUpdate (JR.local "currentSlot") (\jwN72807 -> (JR.setLocal "currentSlot" "I" (JR.lit jwN72807))) JR.increment) ]) ]) identity ]) ], 
+                                JR.exec (JR.postUpdate (JR.local "currentSlot") (\jwN72872 -> (JR.setLocal "currentSlot" "I" (JR.lit jwN72872))) JR.increment) ]) ]) identity ]) ], 
                     JR.return CountedLayerInterfaceFactoryPart.jstatic_NULL_COUNTED_LAYER_INTERFACE_FACTORY ])
         (jregister jheap)
         jthis

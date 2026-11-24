@@ -108,7 +108,7 @@ jm_trackedFiles_3 jheap jthis jargs =
                     JR.declare "files" "" (JR.new JArrayList.jnew_0 []), 
                     JR.declare "start" "I" (JR.int 0), 
                     JR.declare "relativePath" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "output"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68443 -> (JR.setLocal "index" "I" (JR.lit jwN68443))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "output"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68452 -> (JR.setLocal "index" "I" (JR.lit jwN68452))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.cast "I" (JR.aget (JR.local "output") (JR.local "index"))) (JR.int 0)) (JR.run [ 
                             JR.exec (JR.setLocal "relativePath" "" (JR.withState JR.newString [ (JR.local "output"), (JR.local "start"), (JR.map2 JR.sub (JR.local "index") (JR.local "start")), (JR.namedStatic "StandardCharsets.jstatic_UTF_8") ])), 
                             JR.ifElse (JR.invoke "endsWith_1" (JR.local "relativePath") [ (JR.local "suffix") ]) (JR.run [ 

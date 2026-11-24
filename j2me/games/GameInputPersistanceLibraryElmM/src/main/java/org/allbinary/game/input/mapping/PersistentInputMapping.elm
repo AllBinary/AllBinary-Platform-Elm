@@ -188,13 +188,13 @@ jm_init_1 jheap jthis jargs =
                     JR.declare "enumeration" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "mappedToInput" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "gameActionInput" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70702 -> (JR.setLocal "index" "I" (JR.lit jwN70702))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70733 -> (JR.setLocal "index" "I" (JR.lit jwN70733))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "hashtable" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                         JR.exec (JR.setLocal "enumeration" "" (JR.invoke "keys_0" (JR.local "hashtable") [])), 
                         JR.while (JR.invoke "hasMoreElements_1" (JR.thisField "enumerationUtil") [ (JR.local "enumeration") ]) (JR.run [ 
                             JR.exec (JR.setLocal "mappedToInput" "" (JR.invoke "nextElement_1" (JR.thisField "enumerationUtil") [ (JR.local "enumeration") ])), 
                             JR.exec (JR.setLocal "gameActionInput" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.local "mappedToInput") ])), 
-                            JR.exec (JR.postUpdate (JR.local "totalMappedTo") (\jwN70558 -> (JR.setLocal "totalMappedTo" "I" (JR.lit jwN70558))) JR.increment), 
+                            JR.exec (JR.postUpdate (JR.local "totalMappedTo") (\jwN70589 -> (JR.setLocal "totalMappedTo" "I" (JR.lit jwN70589))) JR.increment), 
                             JR.exec (JR.invoke "add_2" (JR.invoke "getInputMapping_0" JR.this []) [ (JR.local "gameActionInput"), (JR.local "mappedToInput") ]) ]) ]) ], 
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "End - Total Loaded Keys Mapped: ") ]), 

@@ -130,7 +130,7 @@ jm_fireEventForInteger_1 : JR.Method
 jm_fireEventForInteger_1 jheap jthis jargs =
     JR.method [ ( "eventObject", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67862 -> (JR.setLocal "index" "I" (JR.lit jwN67862))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67882 -> (JR.setLocal "index" "I" (JR.lit jwN67882))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.try (JR.run [ 
                             JR.declare "playerGameInput" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")), 
                             JR.exec (JR.invoke "onUpKeyEvent_1" (JR.local "playerGameInput") [ (JR.local "eventObject") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
@@ -142,7 +142,7 @@ jm_fireEventForInteger_1 jheap jthis jargs =
                             JR.exec (JR.setLocal "eventListenerInterface" "" (JR.invoke "get_1" (JR.thisField "eventListenerInterfaceList") [ (JR.local "index") ])), 
                             JR.exec (JR.invoke "processForInteger_2" JR.this [ (JR.local "eventObject"), (JR.local "eventListenerInterface") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
                             JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "FIRE_EVENT" (JR.callStatic EventStrings.jm_getInstance_0 [])), (JR.local "e") ]) ]) ) ] identity, 
-                        JR.exec (JR.postUpdate (JR.local "index") (\jwN68202 -> (JR.setLocal "index" "I" (JR.lit jwN68202))) JR.increment) ]) ])
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN68222 -> (JR.setLocal "index" "I" (JR.lit jwN68222))) JR.increment) ]) ])
         (jregister jheap)
         jthis
         jargs
@@ -167,7 +167,7 @@ jm_toString_0 jheap jthis jargs =
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.callVia BasicEventHandler.jvtable "toString_0" JR.this []) ]), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_TOTAL_LISTENERS ]), 
                     JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "size_0" (JR.thisField "list") []) ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.invoke "size_0" (JR.thisField "list") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69069 -> (JR.setLocal "index" "I" (JR.lit jwN69069))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.invoke "size_0" (JR.thisField "list") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69089 -> (JR.setLocal "index" "I" (JR.lit jwN69089))) JR.increment) ]) (JR.run [ 
                         JR.try (JR.run [ 
                             JR.declare "eventListenerInterface" "" (JR.invoke "get_1" (JR.thisField "list") [ (JR.local "index") ]), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_LISTENER_LABEL ]), 

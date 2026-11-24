@@ -216,10 +216,10 @@ jm_reverse_1 jheap jthis jargs =
                     JR.declare "length" "I" (JR.map2 JR.sub (JR.alength (JR.local "intArray")) (JR.int 1)), 
                     JR.declare "temp" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "size" "I" (JR.map2 JR.div (JR.local "length") (JR.int 2)), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.lessEquals (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69196 -> (JR.setLocal "index" "I" (JR.lit jwN69196))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.lessEquals (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69201 -> (JR.setLocal "index" "I" (JR.lit jwN69201))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "temp" "I" (JR.aget (JR.local "intArray") (JR.local "index"))), 
-                        JR.exec (JR.andThen (JR.local "intArray") (\jaN69036 -> JR.andThen (JR.local "index") (\jiN69036 -> (JR.aset (JR.lit jaN69036) (JR.lit jiN69036) (JR.aget (JR.local "intArray") (JR.map2 JR.sub (JR.local "length") (JR.local "index"))))))), 
-                        JR.exec (JR.andThen (JR.local "intArray") (\jaN69098 -> JR.andThen (JR.map2 JR.sub (JR.local "length") (JR.local "index")) (\jiN69098 -> (JR.aset (JR.lit jaN69098) (JR.lit jiN69098) (JR.local "temp"))))) ]) ] ])
+                        JR.exec (JR.andThen (JR.local "intArray") (\jaN69041 -> JR.andThen (JR.local "index") (\jiN69041 -> (JR.aset (JR.lit jaN69041) (JR.lit jiN69041) (JR.aget (JR.local "intArray") (JR.map2 JR.sub (JR.local "length") (JR.local "index"))))))), 
+                        JR.exec (JR.andThen (JR.local "intArray") (\jaN69103 -> JR.andThen (JR.map2 JR.sub (JR.local "length") (JR.local "index")) (\jiN69103 -> (JR.aset (JR.lit jaN69103) (JR.lit jiN69103) (JR.local "temp"))))) ]) ] ])
         (jregister jheap)
         jthis
         jargs
@@ -233,13 +233,13 @@ jm_flip_3 jheap jthis jargs =
                     JR.declare "temp" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "index" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "rowIndex" "I" (JR.lit (JR.defaultOf "I")), 
-                    JR.run [ JR.declare "y" "I" (JR.int 0), JR.for (JR.map2 JR.lessEquals (JR.local "y") (JR.map2 JR.div (JR.local "length") (JR.int 2))) (JR.run [ JR.exec (JR.postUpdate (JR.local "y") (\jwN69796 -> (JR.setLocal "y" "I" (JR.lit jwN69796))) JR.increment) ]) (JR.run [ 
-                        JR.run [ JR.declare "x" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "x") (JR.local "width")) (JR.run [ JR.exec (JR.postUpdate (JR.local "x") (\jwN69721 -> (JR.setLocal "x" "I" (JR.lit jwN69721))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "y" "I" (JR.int 0), JR.for (JR.map2 JR.lessEquals (JR.local "y") (JR.map2 JR.div (JR.local "length") (JR.int 2))) (JR.run [ JR.exec (JR.postUpdate (JR.local "y") (\jwN69801 -> (JR.setLocal "y" "I" (JR.lit jwN69801))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "x" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "x") (JR.local "width")) (JR.run [ JR.exec (JR.postUpdate (JR.local "x") (\jwN69726 -> (JR.setLocal "x" "I" (JR.lit jwN69726))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "rowIndex" "I" ((JR.map2 JR.mul ((JR.map2 JR.sub (JR.local "length") (JR.local "y"))) (JR.local "width")))), 
                             JR.exec (JR.setLocal "index" "I" (JR.map2 JR.add (JR.local "x") ((JR.map2 JR.mul (JR.local "y") (JR.local "width"))))), 
                             JR.exec (JR.setLocal "temp" "I" (JR.aget (JR.local "intArray") (JR.local "index"))), 
-                            JR.exec (JR.andThen (JR.local "intArray") (\jaN69561 -> JR.andThen (JR.local "index") (\jiN69561 -> (JR.aset (JR.lit jaN69561) (JR.lit jiN69561) (JR.aget (JR.local "intArray") (JR.map2 JR.add (JR.local "rowIndex") (JR.local "x"))))))), 
-                            JR.exec (JR.andThen (JR.local "intArray") (\jaN69623 -> JR.andThen (JR.map2 JR.add (JR.local "rowIndex") (JR.local "x")) (\jiN69623 -> (JR.aset (JR.lit jaN69623) (JR.lit jiN69623) (JR.local "temp"))))) ]) ] ]) ] ])
+                            JR.exec (JR.andThen (JR.local "intArray") (\jaN69566 -> JR.andThen (JR.local "index") (\jiN69566 -> (JR.aset (JR.lit jaN69566) (JR.lit jiN69566) (JR.aget (JR.local "intArray") (JR.map2 JR.add (JR.local "rowIndex") (JR.local "x"))))))), 
+                            JR.exec (JR.andThen (JR.local "intArray") (\jaN69628 -> JR.andThen (JR.map2 JR.add (JR.local "rowIndex") (JR.local "x")) (\jiN69628 -> (JR.aset (JR.lit jaN69628) (JR.lit jiN69628) (JR.local "temp"))))) ]) ] ]) ] ])
         (jregister jheap)
         jthis
         jargs
@@ -253,9 +253,9 @@ jm_toStringFromTwoDimensionaArray_1 jheap jthis jargs =
                     JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
                     JR.declare "endIndex" "I" (JR.alength (JR.local "twoDimensionalIntArray")), 
                     JR.declare "endIndex2" "I" (JR.alength (JR.aget (JR.local "twoDimensionalIntArray") (JR.int 0))), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "endIndex")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70455 -> (JR.setLocal "index" "I" (JR.lit jwN70455))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "endIndex")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70460 -> (JR.setLocal "index" "I" (JR.lit jwN70460))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "BRACE_OPEN" (JR.local "commonSeps")) ]), 
-                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "endIndex2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN70311 -> (JR.setLocal "index2" "I" (JR.lit jwN70311))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "endIndex2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN70316 -> (JR.setLocal "index2" "I" (JR.lit jwN70316))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.cast "I" (JR.aget (JR.aget (JR.local "twoDimensionalIntArray") (JR.local "index")) (JR.local "index2"))) ]), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonSeps")) ]) ]) ], 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "BRACE_CLOSE" (JR.local "commonSeps")) ]), 
@@ -272,7 +272,7 @@ jm_toStringFromObjectArray_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
                     JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "objectArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70836 -> (JR.setLocal "index" "I" (JR.lit jwN70836))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "objectArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70841 -> (JR.setLocal "index" "I" (JR.lit jwN70841))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.aget (JR.local "objectArray") (JR.local "index")) ]) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonSeps")) ]) ]) ], 
                     JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
@@ -287,7 +287,7 @@ jm_toStringFromByteArray_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
                     JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "byteArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71189 -> (JR.setLocal "index" "I" (JR.lit jwN71189))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "byteArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71194 -> (JR.setLocal "index" "I" (JR.lit jwN71194))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "appendbyte_1" (JR.local "stringBuffer") [ (JR.aget (JR.local "byteArray") (JR.local "index")) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA_SEP" (JR.local "commonSeps")) ]) ]) ], 
                     JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])

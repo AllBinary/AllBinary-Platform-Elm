@@ -61,7 +61,7 @@ jm_isBlank_1 jheap jthis jargs =
     JR.method [ ( "string", "" ) ] "Z"
         (JR.run [ 
                     JR.declare "len" "I" (JR.invoke "length_0" (JR.local "string") []), 
-                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "len")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN65830 -> (JR.setLocal "i" "I" (JR.lit jwN65830))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "len")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN65831 -> (JR.setLocal "i" "I" (JR.lit jwN65831))) JR.increment) ]) (JR.run [ 
                         JR.declare "c" "C" (JR.invoke "charAt_1" (JR.local "string") [ (JR.local "i") ]), 
                         JR.ifElse (JR.map2 JR.equals (JR.callStatic JCharacter.jm_isWhitespace_1 [ (JR.local "c") ]) (JR.bool False)) (JR.run [ 
                             JR.return (JR.bool False) ]) identity ]) ], 

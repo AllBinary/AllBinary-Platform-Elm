@@ -102,7 +102,7 @@ jm_getCharArray_1 jheap jthis jargs =
                         JR.declare "digit" "I" (JR.map2 JR.div ((JR.map2 JR.sub (JR.local "value") (JR.local "lastValue"))) (JR.local "div")), 
                         JR.ifElse (JR.and (JR.map2 JR.greaterEquals (JR.local "digit") (JR.int 0)) (JR.map2 JR.less (JR.local "digit") (JR.int 10))) (JR.run [ 
                             JR.ifElse (JR.and (JR.map2 JR.equals (JR.local "digit") (JR.int 0)) (JR.map2 JR.equals (JR.local "index") (JR.int 0))) identity (JR.run [ 
-                                JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67645 -> JR.andThen (JR.postUpdate (JR.local "index") (\jwN67652 -> (JR.setLocal "index" "I" (JR.lit jwN67652))) JR.increment) (\jiN67645 -> (JR.aset (JR.lit jaN67645) (JR.lit jiN67645) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.local "digit")))))) ]), 
+                                JR.exec (JR.andThen (JR.thisField "charArray") (\jaN67652 -> JR.andThen (JR.postUpdate (JR.local "index") (\jwN67659 -> (JR.setLocal "index" "I" (JR.lit jwN67659))) JR.increment) (\jiN67652 -> (JR.aset (JR.lit jaN67652) (JR.lit jiN67652) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.local "digit")))))) ]), 
                             JR.exec (JR.setLocal "lastValue" "I" (JR.map2 JR.add (JR.local "lastValue") (JR.map2 JR.mul (JR.local "digit") (JR.local "div")))) ]) identity, 
                         JR.exec (JR.setLocal "div" "I" (JR.map2 JR.div (JR.local "div") (JR.int 10))) ]), 
                     JR.exec (JR.invoke "setCurrentTotalDigits_1" JR.this [ (JR.local "index") ]), 

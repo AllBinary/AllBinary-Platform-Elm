@@ -106,7 +106,7 @@ jm_clear_0 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "groupList" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "list") []), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68874 -> (JR.setLocal "index" "I" (JR.lit jwN68874))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68907 -> (JR.setLocal "index" "I" (JR.lit jwN68907))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.setLocal "groupList" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index"))), 
                         JR.exec (JR.invoke "clear_0" (JR.local "groupList") []) ]) ] ])
         (jregister jheap)
@@ -176,7 +176,7 @@ jm_areAllOtherGroupsEmpty_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "id" "I" (JR.cast "I" (JR.invoke "getGroupId_0" (JR.local "groupInterface") [])), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "list") []), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70027 -> (JR.setLocal "index" "I" (JR.lit jwN70027))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70060 -> (JR.setLocal "index" "I" (JR.lit jwN70060))) JR.decrement) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.notEquals (JR.local "id") (JR.local "index")) (JR.run [ 
                             JR.declare "groupSize" "I" (JR.invoke "getGroupSizeById_1" JR.this [ (JR.local "index") ]), 
                             JR.ifElse (JR.map2 JR.notEquals (JR.local "groupSize") (JR.int 0)) (JR.run [ 
@@ -196,10 +196,10 @@ jm_isIdInList_2 jheap jthis jargs =
                     JR.declare "groupInterfaceArray" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "groupInterface" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "groupId" "I" (JR.lit (JR.defaultOf "I")), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70599 -> (JR.setLocal "index" "I" (JR.lit jwN70599))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70632 -> (JR.setLocal "index" "I" (JR.lit jwN70632))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.setLocal "groupInterfaceArray" "" (JR.aget (JR.field "objectArray" (JR.local "excludeGroupList")) (JR.local "index"))), 
                         JR.declare "size2" "I" (JR.alength (JR.local "groupInterfaceArray")), 
-                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN70524 -> (JR.setLocal "index2" "I" (JR.lit jwN70524))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN70557 -> (JR.setLocal "index2" "I" (JR.lit jwN70557))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "groupInterface" "" (JR.aget (JR.local "groupInterfaceArray") (JR.local "index2"))), 
                             JR.exec (JR.setLocal "groupId" "I" (JR.cast "I" (JR.invoke "getGroupId_0" (JR.local "groupInterface") []))), 
                             JR.ifElse (JR.map2 JR.equals (JR.local "groupId") (JR.local "id")) (JR.run [ 
@@ -215,7 +215,7 @@ jm_areAllOtherGroupsLessThan_2 jheap jthis jargs =
     JR.method [ ( "excludeGroupList", "" ), ( "maxSize", "I" ) ] "Z"
         (JR.run [ 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "list") []), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70951 -> (JR.setLocal "index" "I" (JR.lit jwN70951))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70984 -> (JR.setLocal "index" "I" (JR.lit jwN70984))) JR.decrement) ]) (JR.run [ 
                         JR.ifElse (JR.map JR.not_ (JR.invoke "isIdInList_2" JR.this [ (JR.local "index"), (JR.local "excludeGroupList") ])) (JR.run [ 
                             JR.declare "groupSize" "I" (JR.invoke "getGroupSizeById_1" JR.this [ (JR.local "index") ]), 
                             JR.ifElse (JR.map2 JR.greaterEquals (JR.local "groupSize") (JR.local "maxSize")) (JR.run [ 
@@ -256,7 +256,7 @@ jm_onCreateLayerManagerEvent_1 jheap jthis jargs =
                     JR.declare "size" "I" (JR.alength (JR.local "groupInterfaceArray")), 
                     JR.declare "id" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "groupList" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71871 -> (JR.setLocal "index" "I" (JR.lit jwN71871))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71904 -> (JR.setLocal "index" "I" (JR.lit jwN71904))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "id" "I" (JR.cast "I" (JR.invoke "getGroupId_0" (JR.aget (JR.local "groupInterfaceArray") (JR.local "index")) []))), 
                         JR.exec (JR.setLocal "groupList" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "id"))), 
                         JR.ifElse (JR.map2 JR.equals (JR.local "groupList") JR.null) (JR.run [ 
@@ -277,7 +277,7 @@ jm_onDeleteLayerManagerEvent_1 jheap jthis jargs =
                     JR.declare "size" "I" (JR.alength (JR.local "groupInterfaceArray")), 
                     JR.declare "id" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "groupList" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72372 -> (JR.setLocal "index" "I" (JR.lit jwN72372))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72405 -> (JR.setLocal "index" "I" (JR.lit jwN72405))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "id" "I" (JR.cast "I" (JR.invoke "getGroupId_0" (JR.aget (JR.local "groupInterfaceArray") (JR.local "index")) []))), 
                         JR.exec (JR.setLocal "groupList" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "id"))), 
                         JR.exec (JR.invoke "remove_1" (JR.local "groupList") [ (JR.local "layerInterface") ]) ]) ] ])
@@ -295,7 +295,7 @@ jm_log_0 jheap jthis jargs =
                     JR.declare "SPACE" "" (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])), 
                     JR.declare "TOTAL_LABEL" "" (JR.field "TOTAL_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "list") []), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN73046 -> (JR.setLocal "index" "I" (JR.lit jwN73046))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN73079 -> (JR.setLocal "index" "I" (JR.lit jwN73079))) JR.decrement) ]) (JR.run [ 
                         JR.declare "groupList" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "GROUP") ]), 
                         JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "index") ]), 

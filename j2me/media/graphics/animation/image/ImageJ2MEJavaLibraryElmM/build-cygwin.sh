@@ -160,6 +160,20 @@ jar_entries() {
     done
 }
 
+# Modules of a deeper org.allbinary sub-group (org.allbinary.media.image ImageJ2ME, org.allbinary.game.ai) are two or
+# three folders deeper. Listing those folders takes tens of seconds, so their jars are added to the entries, newest
+# first, only the first time a missing module is not in the jars above.
+deep_loaded=""
+deep_entries() {
+    [ -n "$deep_loaded" ] && return 0
+    deep_loaded=1
+    local jar
+    while IFS= read -r jar; do
+        jars+=("$jar")
+        unzip -Z1 "$jar" 2>/dev/null | grep -E '\.elm$' | sed "s|^|$jar\||" >> "$entries"
+    done < <(ls -t "$repository"/org/allbinary/*/*/*Elm/*/*-sources.jar "$repository"/org/allbinary/*/*/*/*Elm/*/*-sources.jar 2>/dev/null)
+}
+
 # true when every module a module file imports is in the project or in a jar
 imports_found() {
     local module path
@@ -185,6 +199,7 @@ while [ "$status" != "0" ] && [ "$round" -lt 40 ]; do
             # NoHardware and of PersonalComputerSystem), so the first jar whose module has all of its imports is used,
             # or the newest jar when none has.
             path="${missing//.//}.elm"
+            grep -q -i -E "[|/]${path//./\\.}\$" "$entries" || deep_entries
             chosen=""
             candidate="$object_dir/candidate.elm"
             while IFS='|' read -r jar entry; do

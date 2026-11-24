@@ -64,7 +64,7 @@ jm_process_2 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "analogLocationInputList" "" (JR.invoke "getList_0" (JR.callStatic AnalogLocationInputFactory.jm_getInstance_0 []) []), 
                     JR.declare "analogLocationInput" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "analogLocationInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67809 -> (JR.setLocal "index" "I" (JR.lit jwN67809))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "analogLocationInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67835 -> (JR.setLocal "index" "I" (JR.lit jwN67835))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.setLocal "analogLocationInput" "" (JR.invoke "get_1" (JR.local "analogLocationInputList") [ (JR.local "index") ])), 
                         JR.exec (JR.invoke "process_2" (JR.local "analogLocationInputProcessor") [ (JR.local "allbinaryLayerManager"), (JR.local "analogLocationInput") ]) ]) ] ])
         (jregister jheap)

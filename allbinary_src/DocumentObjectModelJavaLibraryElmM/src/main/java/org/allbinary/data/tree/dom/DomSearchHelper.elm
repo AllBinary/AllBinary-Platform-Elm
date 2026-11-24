@@ -65,7 +65,7 @@ jm_getNodeNoThrow_2 jheap jthis jargs =
     JR.method [ ( "nodeName", "" ), ( "nodeList", "" ) ] ""
         (JR.run [ 
                     JR.declare "numberOfNodes" "I" (JR.invoke "getLength_0" (JR.local "nodeList") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfNodes")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66299 -> (JR.setLocal "index" "I" (JR.lit jwN66299))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfNodes")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66304 -> (JR.setLocal "index" "I" (JR.lit jwN66304))) JR.increment) ]) (JR.run [ 
                         JR.declare "node" "" (JR.invoke "item_1" (JR.local "nodeList") [ (JR.local "index") ]), 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getNodeName_0" (JR.local "node") []) [ (JR.local "nodeName") ]) (JR.int 0)) (JR.run [ 
                             JR.return (JR.local "node") ]) identity ]) ], 
@@ -118,7 +118,7 @@ jm_getAllNodesNoThrow_2 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "nodeVector" "" (JR.new BasicArrayListD.jnew_0 []), 
                     JR.declare "numberOfNodes" "I" (JR.invoke "getLength_0" (JR.local "nodeList") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfNodes")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67297 -> (JR.setLocal "index" "I" (JR.lit jwN67297))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfNodes")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67302 -> (JR.setLocal "index" "I" (JR.lit jwN67302))) JR.increment) ]) (JR.run [ 
                         JR.declare "node" "" (JR.invoke "item_1" (JR.local "nodeList") [ (JR.local "index") ]), 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getNodeName_0" (JR.local "node") []) [ (JR.local "nodeName") ]) (JR.int 0)) (JR.run [ 
                             JR.exec (JR.invoke "add_1" (JR.local "nodeVector") [ (JR.local "node") ]) ]) identity ]) ], 

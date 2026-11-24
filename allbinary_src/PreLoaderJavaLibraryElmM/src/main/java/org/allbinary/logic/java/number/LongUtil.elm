@@ -66,7 +66,7 @@ jm_fillIn_1 jheap jthis jargs =
                     JR.ifElse (JR.map2 JR.less (JR.invoke "length_0" (JR.local "frameStringBuffer") []) LongData.jstatic_MAX_LONG_LENGTH) (JR.run [ 
                         JR.declare "commonPhoneStrings" "" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 []), 
                         JR.declare "size" "I" (JR.map2 JR.sub LongData.jstatic_MAX_LONG_LENGTH (JR.invoke "length_0" (JR.local "frameStringBuffer") [])), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66218 -> (JR.setLocal "index" "I" (JR.lit jwN66218))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66222 -> (JR.setLocal "index" "I" (JR.lit jwN66222))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.invoke "append_1" (JR.local "frameStringBuffer") [ (JR.field "ZERO" (JR.local "commonPhoneStrings")) ]) ]) ] ]) identity, 
                     JR.exec (JR.invoke "append_1" (JR.local "frameStringBuffer") [ (JR.local "end") ]), 
                     JR.return (JR.invoke "toString_0" (JR.local "frameStringBuffer") []) ])

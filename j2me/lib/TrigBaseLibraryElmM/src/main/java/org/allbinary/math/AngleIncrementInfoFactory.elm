@@ -84,7 +84,7 @@ jm_getAt_1 jheap jthis jargs =
                     JR.declare "angleIncrementInfoCanBeNull" "" (JR.aget (JR.thisField "angleIncrementInfo") (JR.local "halfAngleIncrement")), 
                     JR.ifElse (JR.map2 JR.equals (JR.local "angleIncrementInfoCanBeNull") JR.null) (JR.run [ 
                         JR.exec (JR.setLocal "angleIncrementInfo" "" (JR.new AngleIncrementInfo.jnew_1 [ (JR.local "angleIncrement") ])), 
-                        JR.exec (JR.andThen (JR.thisField "angleIncrementInfo") (\jaN66363 -> JR.andThen (JR.local "halfAngleIncrement") (\jiN66363 -> (JR.aset (JR.lit jaN66363) (JR.lit jiN66363) (JR.local "angleIncrementInfo"))))), 
+                        JR.exec (JR.andThen (JR.thisField "angleIncrementInfo") (\jaN66370 -> JR.andThen (JR.local "halfAngleIncrement") (\jiN66370 -> (JR.aset (JR.lit jaN66370) (JR.lit jiN66370) (JR.local "angleIncrementInfo"))))), 
                         JR.return (JR.local "angleIncrementInfo") ]) (JR.run [ 
                         JR.exec (JR.setLocal "angleIncrementInfo" "" (JR.local "angleIncrementInfoCanBeNull")) ]), 
                     JR.return (JR.local "angleIncrementInfo") ])

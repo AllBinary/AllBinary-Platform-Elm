@@ -89,7 +89,7 @@ jm_nextFrame_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.declare "indexedAnimationBehavior" "" ((JR.thisField "animationBehaviorP")), 
-                    JR.exec (JR.andThen (JR.local "indexedAnimationBehavior") (\jtN66933 -> (JR.postUpdate (JR.field "loopIndex" (JR.lit jtN66933)) (\jwN66933 -> (JR.setField "loopIndex" "I" (JR.lit jtN66933) (JR.lit jwN66933))) JR.increment))) ])
+                    JR.exec (JR.andThen (JR.local "indexedAnimationBehavior") (\jtN66949 -> (JR.postUpdate (JR.field "loopIndex" (JR.lit jtN66949)) (\jwN66949 -> (JR.setField "loopIndex" "I" (JR.lit jtN66949) (JR.lit jwN66949))) JR.increment))) ])
         (jregister jheap)
         jthis
         jargs

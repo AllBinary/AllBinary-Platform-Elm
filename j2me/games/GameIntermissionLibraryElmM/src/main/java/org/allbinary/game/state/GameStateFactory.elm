@@ -86,7 +86,7 @@ jm_createGameState_1 : JR.Method
 jm_createGameState_1 jheap jthis jargs =
     JR.method [ ( "name", "" ) ] ""
         (JR.run [ 
-                    JR.return (JR.new GameState.jnew_2 [ (JR.local "name"), (JR.postUpdate (JR.thisField "index") (\jwN66259 -> (JR.setField "index" "I" JR.this (JR.lit jwN66259))) JR.increment) ]) ])
+                    JR.return (JR.new GameState.jnew_2 [ (JR.local "name"), (JR.postUpdate (JR.thisField "index") (\jwN66262 -> (JR.setField "index" "I" JR.this (JR.lit jwN66262))) JR.increment) ]) ])
         (jregister jheap)
         jthis
         jargs

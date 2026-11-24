@@ -131,7 +131,7 @@ jm_getChoiceGroup_3 jheap jthis jargs =
                     JR.declare "ADDING_CHOICE" "" (JR.str "Adding Choice: "), 
                     JR.declare "choiceGroup" "" (JR.new ChoiceGroup.jnew_4 [ (JR.local "name"), (JR.local "option"), (JR.invoke "getArrayInstance_0" (JR.callStatic StringUtil.jm_getInstance_0 []) []), NullImage.jstatic_NULL_IMAGE_ARRAY ]), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69453 -> (JR.setLocal "index" "I" (JR.lit jwN69453))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69477 -> (JR.setLocal "index" "I" (JR.lit jwN69477))) JR.increment) ]) (JR.run [ 
                         JR.declare "anyType" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                         JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.local "ADDING_CHOICE") ]) [ (JR.invoke "toString_0" (JR.local "anyType") []) ]) []), JR.this, (JR.local "METHOD_NAME") ]), 
                         JR.exec (JR.invoke "append_2" (JR.local "choiceGroup") [ (JR.invoke "toString_0" (JR.local "anyType") []), NullImage.jstatic_NULL_IMAGE ]) ]) ], 

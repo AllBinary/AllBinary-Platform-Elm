@@ -76,10 +76,10 @@ jm_init_2 : JR.Method
 jm_init_2 jheap jthis jargs =
     JR.method [ ( "x", "I" ), ( "y", "I" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66551 -> JR.andThen (JR.int 0) (\jiN66551 -> (JR.aset (JR.lit jaN66551) (JR.lit jiN66551) (JR.local "x"))))), 
-                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66595 -> JR.andThen (JR.int 1) (\jiN66595 -> (JR.aset (JR.lit jaN66595) (JR.lit jiN66595) (JR.local "y"))))), 
-                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN66639 -> JR.andThen (JR.int 0) (\jiN66639 -> (JR.aset (JR.lit jaN66639) (JR.lit jiN66639) (JR.local "x"))))), 
-                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN66683 -> JR.andThen (JR.int 1) (\jiN66683 -> (JR.aset (JR.lit jaN66683) (JR.lit jiN66683) (JR.local "y"))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66562 -> JR.andThen (JR.int 0) (\jiN66562 -> (JR.aset (JR.lit jaN66562) (JR.lit jiN66562) (JR.local "x"))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66606 -> JR.andThen (JR.int 1) (\jiN66606 -> (JR.aset (JR.lit jaN66606) (JR.lit jiN66606) (JR.local "y"))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN66650 -> JR.andThen (JR.int 0) (\jiN66650 -> (JR.aset (JR.lit jaN66650) (JR.lit jiN66650) (JR.local "x"))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN66694 -> JR.andThen (JR.int 1) (\jiN66694 -> (JR.aset (JR.lit jaN66694) (JR.lit jiN66694) (JR.local "y"))))), 
                     JR.exec (JR.setField "tempLine" "" JR.this (JR.thisField "line")), 
                     JR.exec (JR.setField "line" "" JR.this (JR.thisField "newLine")), 
                     JR.exec (JR.setField "newLine" "" JR.this (JR.thisField "tempLine")) ])
@@ -92,10 +92,10 @@ jm_setPosition_3 : JR.Method
 jm_setPosition_3 jheap jthis jargs =
     JR.method [ ( "x", "I" ), ( "y", "I" ), ( "z", "I" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66874 -> JR.andThen (JR.int 0) (\jiN66874 -> (JR.aset (JR.lit jaN66874) (JR.lit jiN66874) (JR.aget (JR.aget (JR.thisField "line") (JR.int 1)) (JR.int 0)))))), 
-                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66937 -> JR.andThen (JR.int 1) (\jiN66937 -> (JR.aset (JR.lit jaN66937) (JR.lit jiN66937) (JR.aget (JR.aget (JR.thisField "line") (JR.int 1)) (JR.int 1)))))), 
-                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN67000 -> JR.andThen (JR.int 0) (\jiN67000 -> (JR.aset (JR.lit jaN67000) (JR.lit jiN67000) (JR.local "x"))))), 
-                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN67044 -> JR.andThen (JR.int 1) (\jiN67044 -> (JR.aset (JR.lit jaN67044) (JR.lit jiN67044) (JR.local "y"))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66885 -> JR.andThen (JR.int 0) (\jiN66885 -> (JR.aset (JR.lit jaN66885) (JR.lit jiN66885) (JR.aget (JR.aget (JR.thisField "line") (JR.int 1)) (JR.int 0)))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 0)) (\jaN66948 -> JR.andThen (JR.int 1) (\jiN66948 -> (JR.aset (JR.lit jaN66948) (JR.lit jiN66948) (JR.aget (JR.aget (JR.thisField "line") (JR.int 1)) (JR.int 1)))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN67011 -> JR.andThen (JR.int 0) (\jiN67011 -> (JR.aset (JR.lit jaN67011) (JR.lit jiN67011) (JR.local "x"))))), 
+                    JR.exec (JR.andThen (JR.aget (JR.thisField "newLine") (JR.int 1)) (\jaN67055 -> JR.andThen (JR.int 1) (\jiN67055 -> (JR.aset (JR.lit jaN67055) (JR.lit jiN67055) (JR.local "y"))))), 
                     JR.exec (JR.setField "tempLine" "" JR.this (JR.thisField "line")), 
                     JR.exec (JR.setField "line" "" JR.this (JR.thisField "newLine")), 
                     JR.exec (JR.setField "newLine" "" JR.this (JR.thisField "tempLine")) ])

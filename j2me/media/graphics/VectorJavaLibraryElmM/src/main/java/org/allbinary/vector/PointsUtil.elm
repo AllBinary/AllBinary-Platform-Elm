@@ -81,15 +81,15 @@ jm_adjustXY_3 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "size" "I" (JR.alength (JR.local "points")), 
                     JR.declare "newPoints" "" (JR.newArray "I" [ (JR.local "size"), (JR.int 0), (JR.int 0) ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66502 -> (JR.setLocal "index" "I" (JR.lit jwN66502))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66503 -> (JR.setLocal "index" "I" (JR.lit jwN66503))) JR.increment) ]) (JR.run [ 
                         JR.declare "size2" "I" (JR.alength (JR.aget (JR.local "points") (JR.local "index"))), 
-                        JR.exec (JR.andThen (JR.local "newPoints") (\jaN65935 -> JR.andThen (JR.local "index") (\jiN65935 -> (JR.aset (JR.lit jaN65935) (JR.lit jiN65935) (JR.newArray "I" [ (JR.local "size2"), (JR.int 2) ]))))), 
-                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN66432 -> (JR.setLocal "index2" "I" (JR.lit jwN66432))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "newPoints") (\jaN65936 -> JR.andThen (JR.local "index") (\jiN65936 -> (JR.aset (JR.lit jaN65936) (JR.lit jiN65936) (JR.newArray "I" [ (JR.local "size2"), (JR.int 2) ]))))), 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN66433 -> (JR.setLocal "index2" "I" (JR.lit jwN66433))) JR.increment) ]) (JR.run [ 
                             JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "index2")) (JR.int 0)) (JR.int 1000)) (JR.run [ 
-                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66173 -> JR.andThen (JR.int 0) (\jiN66173 -> (JR.aset (JR.lit jaN66173) (JR.lit jiN66173) (JR.plus (JR.aget (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "index2")) (JR.int 0)) (JR.local "x")))))), 
-                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66275 -> JR.andThen (JR.int 1) (\jiN66275 -> (JR.aset (JR.lit jaN66275) (JR.lit jiN66275) (JR.plus (JR.aget (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "index2")) (JR.int 1)) (JR.local "y")))))) ]) (JR.run [ 
-                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66060 -> JR.andThen (JR.int 0) (\jiN66060 -> (JR.aset (JR.lit jaN66060) (JR.lit jiN66060) (JR.int 1000))))), 
-                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66113 -> JR.andThen (JR.int 1) (\jiN66113 -> (JR.aset (JR.lit jaN66113) (JR.lit jiN66113) (JR.int 1000))))) ]) ]) ] ]) ], 
+                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66174 -> JR.andThen (JR.int 0) (\jiN66174 -> (JR.aset (JR.lit jaN66174) (JR.lit jiN66174) (JR.plus (JR.aget (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "index2")) (JR.int 0)) (JR.local "x")))))), 
+                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66276 -> JR.andThen (JR.int 1) (\jiN66276 -> (JR.aset (JR.lit jaN66276) (JR.lit jiN66276) (JR.plus (JR.aget (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.local "index2")) (JR.int 1)) (JR.local "y")))))) ]) (JR.run [ 
+                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66061 -> JR.andThen (JR.int 0) (\jiN66061 -> (JR.aset (JR.lit jaN66061) (JR.lit jiN66061) (JR.int 1000))))), 
+                                JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "newPoints") (JR.local "index")) (JR.local "index2")) (\jaN66114 -> JR.andThen (JR.int 1) (\jiN66114 -> (JR.aset (JR.lit jaN66114) (JR.lit jiN66114) (JR.int 1000))))) ]) ]) ] ]) ], 
                     JR.return (JR.local "newPoints") ])
         (jregister jheap)
         jthis
@@ -111,12 +111,12 @@ jm_adjust_3 jheap jthis jargs =
     JR.method [ ( "points", "" ), ( "x", "I" ), ( "y", "I" ) ] ""
         (JR.run [ 
                     JR.declare "newPoints" "" (JR.newArray "I" [ (JR.alength (JR.local "points")), (JR.int 2) ]), 
-                    JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.alength (JR.local "points"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN67201 -> (JR.setLocal "index2" "I" (JR.lit jwN67201))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.alength (JR.local "points"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN67202 -> (JR.setLocal "index2" "I" (JR.lit jwN67202))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.aget (JR.local "points") (JR.local "index2")) (JR.int 0)) (JR.int 1000)) (JR.run [ 
-                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN66986 -> JR.andThen (JR.int 0) (\jiN66986 -> (JR.aset (JR.lit jaN66986) (JR.lit jiN66986) (JR.plus (JR.aget (JR.aget (JR.local "points") (JR.local "index2")) (JR.int 0)) (JR.local "x")))))), 
-                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN67064 -> JR.andThen (JR.int 1) (\jiN67064 -> (JR.aset (JR.lit jaN67064) (JR.lit jiN67064) (JR.plus (JR.aget (JR.aget (JR.local "points") (JR.local "index2")) (JR.int 1)) (JR.local "y")))))) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN66897 -> JR.andThen (JR.int 0) (\jiN66897 -> (JR.aset (JR.lit jaN66897) (JR.lit jiN66897) (JR.int 1000))))), 
-                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN66938 -> JR.andThen (JR.int 1) (\jiN66938 -> (JR.aset (JR.lit jaN66938) (JR.lit jiN66938) (JR.int 1000))))) ]) ]) ], 
+                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN66987 -> JR.andThen (JR.int 0) (\jiN66987 -> (JR.aset (JR.lit jaN66987) (JR.lit jiN66987) (JR.plus (JR.aget (JR.aget (JR.local "points") (JR.local "index2")) (JR.int 0)) (JR.local "x")))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN67065 -> JR.andThen (JR.int 1) (\jiN67065 -> (JR.aset (JR.lit jaN67065) (JR.lit jiN67065) (JR.plus (JR.aget (JR.aget (JR.local "points") (JR.local "index2")) (JR.int 1)) (JR.local "y")))))) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN66898 -> JR.andThen (JR.int 0) (\jiN66898 -> (JR.aset (JR.lit jaN66898) (JR.lit jiN66898) (JR.int 1000))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.local "newPoints") (JR.local "index2")) (\jaN66939 -> JR.andThen (JR.int 1) (\jiN66939 -> (JR.aset (JR.lit jaN66939) (JR.lit jiN66939) (JR.int 1000))))) ]) ]) ], 
                     JR.return (JR.local "newPoints") ])
         (jregister jheap)
         jthis

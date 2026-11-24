@@ -85,7 +85,7 @@ jm_getLevelString_1 : JR.Method
 jm_getLevelString_1 jheap jthis jargs =
     JR.method [ ( "level", "I" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "RESOURCE_LOADING_LEVEL_ARRAY"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66507 -> (JR.setLocal "index" "I" (JR.lit jwN66507))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "RESOURCE_LOADING_LEVEL_ARRAY"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66509 -> (JR.setLocal "index" "I" (JR.lit jwN66509))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.local "level") (JR.invoke "getLevel_0" (JR.aget (JR.thisField "RESOURCE_LOADING_LEVEL_ARRAY") (JR.local "index")) [])) (JR.run [ 
                             JR.return (JR.invoke "getName_0" (JR.aget (JR.thisField "RESOURCE_LOADING_LEVEL_ARRAY") (JR.local "index")) []) ]) identity ]) ], 
                     JR.return (JR.callStatic JInteger.jm_toString_1 [ (JR.local "level") ]) ])

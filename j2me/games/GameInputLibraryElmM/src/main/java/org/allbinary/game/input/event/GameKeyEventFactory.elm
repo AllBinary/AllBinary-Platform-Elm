@@ -92,9 +92,9 @@ jm_init_0 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "nullUtil" "" (JR.callStatic NullUtil.jm_getInstance_0 []), 
                     JR.declare "size" "I" (JR.field "MAX" (JR.callStatic InputFactory.jm_getInstance_0 [])), 
-                    JR.run [ JR.declare "index" "I" (JR.thisField "MAX_SOURCES"), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67382 -> (JR.setLocal "index" "I" (JR.lit jwN67382))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
-                        JR.run [ JR.declare "index2" "I" (JR.local "size"), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index2") (\jwN67327 -> (JR.setLocal "index2" "I" (JR.lit jwN67327))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "ARRAY") (JR.local "index")) (\jaN67225 -> JR.andThen (JR.local "index2") (\jiN67225 -> (JR.aset (JR.lit jaN67225) (JR.lit jiN67225) (JR.callStatic GameKeyEvent.jm_createEvent_3 [ (JR.field "NULL_OBJECT" (JR.local "nullUtil")), (JR.local "index"), (JR.local "index2") ]))))) ]) ] ]) ] ])
+                    JR.run [ JR.declare "index" "I" (JR.thisField "MAX_SOURCES"), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67392 -> (JR.setLocal "index" "I" (JR.lit jwN67392))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.run [ JR.declare "index2" "I" (JR.local "size"), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index2") (\jwN67337 -> (JR.setLocal "index2" "I" (JR.lit jwN67337))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "ARRAY") (JR.local "index")) (\jaN67235 -> JR.andThen (JR.local "index2") (\jiN67235 -> (JR.aset (JR.lit jaN67235) (JR.lit jiN67235) (JR.callStatic GameKeyEvent.jm_createEvent_3 [ (JR.field "NULL_OBJECT" (JR.local "nullUtil")), (JR.local "index"), (JR.local "index2") ]))))) ]) ] ]) ] ])
         (jregister jheap)
         jthis
         jargs

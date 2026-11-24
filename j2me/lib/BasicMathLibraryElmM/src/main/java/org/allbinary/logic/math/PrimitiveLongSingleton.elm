@@ -83,7 +83,7 @@ jm_getNumberFromChar_1 jheap jthis jargs =
     JR.method [ ( "numberAsChar", "C" ) ] "B"
         (JR.run [ 
                     JR.declare "size" "I" (JR.alength (JR.thisField "NUMBER_CHAR_ARRAY")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66519 -> (JR.setLocal "index" "I" (JR.lit jwN66519))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66521 -> (JR.setLocal "index" "I" (JR.lit jwN66521))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.aget (JR.thisField "NUMBER_CHAR_ARRAY") (JR.local "index")) (JR.local "numberAsChar")) (JR.run [ 
                             JR.return (JR.aget (JR.thisField "NUMBER_ARRAY") (JR.local "index")) ]) identity ]) ], 
                     JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.invoke "toString_0" (JR.invoke "appendchar_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "numberAsChar was not in array: ") ]) [ (JR.local "numberAsChar") ]) []) ]) ])

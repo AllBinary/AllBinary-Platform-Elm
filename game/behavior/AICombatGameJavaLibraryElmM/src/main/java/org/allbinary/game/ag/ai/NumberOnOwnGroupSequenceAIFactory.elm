@@ -67,7 +67,7 @@ jm_getInstance_4 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "integerArray" "" (JR.field "NUMBER_ON_SAME_TEAM_SEQUENCE" (JR.callStatic NumberInSameGroupSequence.jm_getInstance_0 [])), 
                     JR.declare "list" "" (JR.new BasicArrayListD.jnew_0 []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "integerArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68388 -> (JR.setLocal "index" "I" (JR.lit jwN68388))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "integerArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68422 -> (JR.setLocal "index" "I" (JR.lit jwN68422))) JR.increment) ]) (JR.run [ 
                         JR.declare "integerCanBeNull" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.aget (JR.local "integerArray") (JR.local "index")) ]), 
                         JR.ifElse (JR.map2 JR.equals (JR.local "integerCanBeNull") JR.null) (JR.run [ 
                             JR.break ]) identity, 
@@ -85,8 +85,8 @@ jm_getInstance_4 jheap jthis jargs =
                     JR.ifElse (JR.map2 JR.less (JR.map2 JR.sub (JR.alength (JR.local "artificialIntelligenceInterface")) (JR.int 1)) (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ 
                         JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "Too Many AI properties.") ]) ]) identity, 
                     JR.declare "numberOnSameTeam" "" (JR.newArray "" [ (JR.invoke "size_0" (JR.local "list") []) ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "numberOnSameTeam"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69082 -> (JR.setLocal "index" "I" (JR.lit jwN69082))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "numberOnSameTeam") (\jaN68957 -> JR.andThen (JR.local "index") (\jiN68957 -> (JR.aset (JR.lit jaN68957) (JR.lit jiN68957) (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "numberOnSameTeam"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69116 -> (JR.setLocal "index" "I" (JR.lit jwN69116))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "numberOnSameTeam") (\jaN68991 -> JR.andThen (JR.local "index") (\jiN68991 -> (JR.aset (JR.lit jaN68991) (JR.lit jiN68991) (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")))))) ]) ], 
                     JR.return (JR.new NumberOnOwnGroupSequenceAI.jnew_4 [ (JR.local "numberOnSameTeam"), (JR.local "artificialIntelligenceInterface"), (JR.local "ownerLayerInterface"), (JR.local "gameInput") ]) ])
         (jregister jheap)
         jthis

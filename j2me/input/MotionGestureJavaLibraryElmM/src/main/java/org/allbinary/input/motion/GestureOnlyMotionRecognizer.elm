@@ -66,7 +66,7 @@ jinit_0 jheap jthis jargs =
         (JR.run [ JR.exec (JR.callDirect MotionRecognizer.jinit_0 JR.this []),
                 identity,
                 (JR.run [ 
-                    JR.exec (JR.setField "id" "I" JR.this (JR.postUpdate jstatic_index (\jwN66696 -> (JR.setStatic "GestureOnlyMotionRecognizer.index" "I" (JR.lit jwN66696))) JR.increment)), 
+                    JR.exec (JR.setField "id" "I" JR.this (JR.postUpdate jstatic_index (\jwN66711 -> (JR.setStatic "GestureOnlyMotionRecognizer.index" "I" (JR.lit jwN66711))) JR.increment)), 
                     JR.exec (JR.setField "motionGestureRecognizer" "" JR.this (JR.new MotionGestureRecognizer.jnew_1 [ (JR.thisField "id") ])) ]) ])
         (jregister jheap)
         jthis

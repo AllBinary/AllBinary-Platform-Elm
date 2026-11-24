@@ -130,7 +130,7 @@ jm_fireEvent_1 : JR.Method
 jm_fireEvent_1 jheap jthis jargs =
     JR.method [ ( "eventObject", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68038 -> (JR.setLocal "index" "I" (JR.lit jwN68038))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68059 -> (JR.setLocal "index" "I" (JR.lit jwN68059))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.try (JR.run [ 
                             JR.declare "playerGameInput" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")), 
                             JR.exec (JR.invoke "onDownGameKeyEvent_1" (JR.local "playerGameInput") [ (JR.local "eventObject") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
@@ -169,7 +169,7 @@ jm_toString_0 jheap jthis jargs =
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ jstatic_LISTENER_LABEL ]), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.local "eventListenerInterface") []) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
                             JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "TOSTRING" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] identity, 
-                        JR.exec (JR.postUpdate (JR.local "index") (\jwN68989 -> (JR.setLocal "index" "I" (JR.lit jwN68989))) JR.increment) ]), 
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN69010 -> (JR.setLocal "index" "I" (JR.lit jwN69010))) JR.increment) ]), 
                     JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
         (jregister jheap)
         jthis

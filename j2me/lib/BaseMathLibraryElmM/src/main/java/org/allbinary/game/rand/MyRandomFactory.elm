@@ -150,12 +150,12 @@ jm_shuffleTotal_2 jheap jthis jargs =
                     JR.declare "randomIndex" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "randomIndex2" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "value" "I" (JR.lit (JR.defaultOf "I")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "shuffleTotal")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67446 -> (JR.setLocal "index" "I" (JR.lit jwN67446))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "shuffleTotal")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67450 -> (JR.setLocal "index" "I" (JR.lit jwN67450))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "randomIndex" "I" (JR.invoke "getAbsoluteNextIntAllowZero_1" JR.this [ (JR.local "size") ])), 
                         JR.exec (JR.setLocal "randomIndex2" "I" (JR.invoke "getAbsoluteNextIntAllowZero_1" JR.this [ (JR.local "size") ])), 
                         JR.exec (JR.setLocal "value" "I" (JR.aget (JR.local "intArray") (JR.local "randomIndex"))), 
-                        JR.exec (JR.andThen (JR.local "intArray") (\jaN67312 -> JR.andThen (JR.local "randomIndex") (\jiN67312 -> (JR.aset (JR.lit jaN67312) (JR.lit jiN67312) (JR.aget (JR.local "intArray") (JR.local "randomIndex2")))))), 
-                        JR.exec (JR.andThen (JR.local "intArray") (\jaN67361 -> JR.andThen (JR.local "randomIndex2") (\jiN67361 -> (JR.aset (JR.lit jaN67361) (JR.lit jiN67361) (JR.local "value"))))) ]) ] ])
+                        JR.exec (JR.andThen (JR.local "intArray") (\jaN67316 -> JR.andThen (JR.local "randomIndex") (\jiN67316 -> (JR.aset (JR.lit jaN67316) (JR.lit jiN67316) (JR.aget (JR.local "intArray") (JR.local "randomIndex2")))))), 
+                        JR.exec (JR.andThen (JR.local "intArray") (\jaN67365 -> JR.andThen (JR.local "randomIndex2") (\jiN67365 -> (JR.aset (JR.lit jaN67365) (JR.lit jiN67365) (JR.local "value"))))) ]) ] ])
         (jregister jheap)
         jthis
         jargs
@@ -180,15 +180,15 @@ jm_shuffle2Total_3 jheap jthis jargs =
                     JR.declare "randomIndex2" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "value" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "value2" "I" (JR.lit (JR.defaultOf "I")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "shuffleTotal")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68214 -> (JR.setLocal "index" "I" (JR.lit jwN68214))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "shuffleTotal")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68218 -> (JR.setLocal "index" "I" (JR.lit jwN68218))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "randomIndex" "I" (JR.invoke "getAbsoluteNextIntAllowZero_1" JR.this [ (JR.local "size") ])), 
                         JR.exec (JR.setLocal "randomIndex2" "I" (JR.invoke "getAbsoluteNextIntAllowZero_1" JR.this [ (JR.local "size") ])), 
                         JR.exec (JR.setLocal "value" "I" (JR.aget (JR.local "intArray") (JR.local "randomIndex"))), 
                         JR.exec (JR.setLocal "value2" "I" (JR.aget (JR.local "intArray2") (JR.local "randomIndex"))), 
-                        JR.exec (JR.andThen (JR.local "intArray") (\jaN67994 -> JR.andThen (JR.local "randomIndex") (\jiN67994 -> (JR.aset (JR.lit jaN67994) (JR.lit jiN67994) (JR.aget (JR.local "intArray") (JR.local "randomIndex2")))))), 
-                        JR.exec (JR.andThen (JR.local "intArray") (\jaN68043 -> JR.andThen (JR.local "randomIndex2") (\jiN68043 -> (JR.aset (JR.lit jaN68043) (JR.lit jiN68043) (JR.local "value"))))), 
-                        JR.exec (JR.andThen (JR.local "intArray2") (\jaN68080 -> JR.andThen (JR.local "randomIndex") (\jiN68080 -> (JR.aset (JR.lit jaN68080) (JR.lit jiN68080) (JR.aget (JR.local "intArray2") (JR.local "randomIndex2")))))), 
-                        JR.exec (JR.andThen (JR.local "intArray2") (\jaN68129 -> JR.andThen (JR.local "randomIndex2") (\jiN68129 -> (JR.aset (JR.lit jaN68129) (JR.lit jiN68129) (JR.local "value2"))))) ]) ] ])
+                        JR.exec (JR.andThen (JR.local "intArray") (\jaN67998 -> JR.andThen (JR.local "randomIndex") (\jiN67998 -> (JR.aset (JR.lit jaN67998) (JR.lit jiN67998) (JR.aget (JR.local "intArray") (JR.local "randomIndex2")))))), 
+                        JR.exec (JR.andThen (JR.local "intArray") (\jaN68047 -> JR.andThen (JR.local "randomIndex2") (\jiN68047 -> (JR.aset (JR.lit jaN68047) (JR.lit jiN68047) (JR.local "value"))))), 
+                        JR.exec (JR.andThen (JR.local "intArray2") (\jaN68084 -> JR.andThen (JR.local "randomIndex") (\jiN68084 -> (JR.aset (JR.lit jaN68084) (JR.lit jiN68084) (JR.aget (JR.local "intArray2") (JR.local "randomIndex2")))))), 
+                        JR.exec (JR.andThen (JR.local "intArray2") (\jaN68133 -> JR.andThen (JR.local "randomIndex2") (\jiN68133 -> (JR.aset (JR.lit jaN68133) (JR.lit jiN68133) (JR.local "value2"))))) ]) ] ])
         (jregister jheap)
         jthis
         jargs
@@ -202,28 +202,28 @@ jm_main_1 jheap jthis jargs =
                     JR.declare "stringBuilder" "" (JR.new StringMaker.jnew_0 []), 
                     JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
                     JR.declare "size2" "I" (JR.int 100), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68650 -> (JR.setLocal "index" "I" (JR.lit jwN68650))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68654 -> (JR.setLocal "index" "I" (JR.lit jwN68654))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.local "stringBuilder") [ (JR.invoke "getAbsoluteNextInt_1" (JR.local "randomFactory") [ (JR.int 3) ]) ]) [ (JR.field "COMMA" (JR.local "commonSeps")) ]) ]) ], 
                     JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.invoke "toString_0" (JR.local "stringBuilder") []) ]), 
                     JR.exec (JR.invoke "delete_2" (JR.local "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuilder") []) ]), 
                     JR.declare "intArray" "" (JR.newArray "I" [ (JR.int 52) ]), 
                     JR.declare "intArray2" "" (JR.newArray "I" [ (JR.int 52) ]), 
                     JR.declare "size" "I" (JR.alength (JR.local "intArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69042 -> (JR.setLocal "index" "I" (JR.lit jwN69042))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "intArray") (\jaN68920 -> JR.andThen (JR.local "index") (\jiN68920 -> (JR.aset (JR.lit jaN68920) (JR.lit jiN68920) (JR.local "index"))))), 
-                        JR.exec (JR.andThen (JR.local "intArray2") (\jaN68957 -> JR.andThen (JR.local "index") (\jiN68957 -> (JR.aset (JR.lit jaN68957) (JR.lit jiN68957) (JR.local "index"))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69046 -> (JR.setLocal "index" "I" (JR.lit jwN69046))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "intArray") (\jaN68924 -> JR.andThen (JR.local "index") (\jiN68924 -> (JR.aset (JR.lit jaN68924) (JR.lit jiN68924) (JR.local "index"))))), 
+                        JR.exec (JR.andThen (JR.local "intArray2") (\jaN68961 -> JR.andThen (JR.local "index") (\jiN68961 -> (JR.aset (JR.lit jaN68961) (JR.lit jiN68961) (JR.local "index"))))) ]) ], 
                     JR.exec (JR.invoke "shuffle2_2" (JR.local "randomFactory") [ (JR.local "intArray"), (JR.local "intArray2") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69225 -> (JR.setLocal "index" "I" (JR.lit jwN69225))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69229 -> (JR.setLocal "index" "I" (JR.lit jwN69229))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.local "stringBuilder") [ (JR.aget (JR.local "intArray") (JR.local "index")) ]) [ (JR.field "COMMA" (JR.local "commonSeps")) ]) ]) ], 
                     JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.invoke "toString_0" (JR.local "stringBuilder") []) ]), 
                     JR.exec (JR.invoke "delete_2" (JR.local "stringBuilder") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuilder") []) ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69459 -> (JR.setLocal "index" "I" (JR.lit jwN69459))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69463 -> (JR.setLocal "index" "I" (JR.lit jwN69463))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.local "stringBuilder") [ (JR.aget (JR.local "intArray2") (JR.local "index")) ]) [ (JR.field "COMMA" (JR.local "commonSeps")) ]) ]) ], 
                     JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.invoke "toString_0" (JR.local "stringBuilder") []) ]), 
                     JR.declare "found" "Z" (JR.lit (JR.defaultOf "Z")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69800 -> (JR.setLocal "index" "I" (JR.lit jwN69800))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69804 -> (JR.setLocal "index" "I" (JR.lit jwN69804))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "found" "Z" (JR.bool False)), 
-                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN69701 -> (JR.setLocal "index2" "I" (JR.lit jwN69701))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN69705 -> (JR.setLocal "index2" "I" (JR.lit jwN69705))) JR.increment) ]) (JR.run [ 
                             JR.ifElse (JR.map2 JR.equals (JR.aget (JR.local "intArray") (JR.local "index2")) (JR.local "index")) (JR.run [ 
                                 JR.exec (JR.setLocal "found" "Z" (JR.bool True)) ]) identity ]) ], 
                         JR.ifElse (JR.map JR.not_ (JR.local "found")) (JR.run [ 

@@ -63,7 +63,7 @@ jm_allPointsInside_5 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "rectangleCollisionUtil" "" (JR.callStatic RectangleCollisionUtil.jm_getInstance_0 []), 
                     JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66332 -> (JR.setLocal "index" "I" (JR.lit jwN66332))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66337 -> (JR.setLocal "index" "I" (JR.lit jwN66337))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.setLocal "point" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                         JR.ifElse (JR.map JR.not_ (JR.invoke "isInside_6" (JR.local "rectangleCollisionUtil") [ (JR.local "rectX1"), (JR.local "rectY1"), (JR.local "rectX2"), (JR.local "rectY2"), (JR.invoke "getX_0" (JR.local "point") []), (JR.invoke "getY_0" (JR.local "point") []) ])) (JR.run [ 
                             JR.return (JR.bool False) ]) identity ]) ], 
@@ -79,7 +79,7 @@ jm_allPointsInsideCell_7 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "rectangleCollisionUtil" "" (JR.callStatic RectangleCollisionUtil.jm_getInstance_0 []), 
                     JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66780 -> (JR.setLocal "index" "I" (JR.lit jwN66780))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66785 -> (JR.setLocal "index" "I" (JR.lit jwN66785))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.setLocal "point" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                         JR.ifElse (JR.map JR.not_ (JR.invoke "isInside_6" (JR.local "rectangleCollisionUtil") [ (JR.local "rectX1"), (JR.local "rectY1"), (JR.local "rectX2"), (JR.local "rectY2"), (JR.map2 JR.mul (JR.invoke "getX_0" (JR.local "point") []) (JR.local "xCellSize")), (JR.map2 JR.mul (JR.invoke "getY_0" (JR.local "point") []) (JR.local "yCellSize")) ])) (JR.run [ 
                             JR.return (JR.bool False) ]) identity ]) ], 

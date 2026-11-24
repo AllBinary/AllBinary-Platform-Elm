@@ -84,11 +84,11 @@ jm_update_0 jheap jthis jargs =
                     JR.declare "keys" "" (JR.thisField "keys"), 
                     JR.declare "size" "I" (JR.alength (JR.local "keys")), 
                     JR.ifElse (JR.invoke "isOn_0" JR.this []) (JR.run [ 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69336 -> (JR.setLocal "index" "I" (JR.lit jwN69336))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69378 -> (JR.setLocal "index" "I" (JR.lit jwN69378))) JR.increment) ]) (JR.run [ 
                             JR.declare "key" "I" (JR.invoke "intValue_0" (JR.aget (JR.local "keys") (JR.local "index")) []), 
                             JR.ifElse (JR.map2 JR.notEquals (JR.local "key") (JR.map JR.neg (JR.int 1))) (JR.run [ 
                                 JR.exec (JR.invoke "add_1" (JR.local "gameInput") [ (JR.invoke "getInstanceForKey_2" (JR.thisField "gameKeyEventFactory") [ JR.this, (JR.local "key") ]) ]) ]) identity ]) ] ]) (JR.run [ 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69115 -> (JR.setLocal "index" "I" (JR.lit jwN69115))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69157 -> (JR.setLocal "index" "I" (JR.lit jwN69157))) JR.increment) ]) (JR.run [ 
                             JR.declare "key" "I" (JR.invoke "intValue_0" (JR.aget (JR.local "keys") (JR.local "index")) []), 
                             JR.ifElse (JR.map2 JR.notEquals (JR.local "key") (JR.map JR.neg (JR.int 1))) (JR.run [ 
                                 JR.exec (JR.invoke "addForRemoval_1" (JR.local "gameInput") [ (JR.invoke "getInstanceForKey_2" (JR.thisField "gameKeyEventFactory") [ JR.this, (JR.local "key") ]) ]) ]) identity ]) ] ]) ])

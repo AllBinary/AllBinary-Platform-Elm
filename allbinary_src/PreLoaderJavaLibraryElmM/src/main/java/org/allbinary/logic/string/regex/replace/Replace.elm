@@ -117,7 +117,7 @@ jm_upTo_2 jheap jthis jargs =
                     JR.declare "values" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "keyArray" "" (JR.invoke "getHashMapAsArray_1" (JR.thisField "j2seUtil") [ (JR.thisField "hashMap") ]), 
                     JR.declare "size" "I" (JR.alength (JR.local "keyArray")), 
-                    JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN69756 -> (JR.setLocal "index2" "I" (JR.lit jwN69756))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN69774 -> (JR.setLocal "index2" "I" (JR.lit jwN69774))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "keys" "" (JR.aget (JR.local "keyArray") (JR.local "index2"))), 
                         JR.exec (JR.setLocal "values" "" (JR.invoke "get_1" (JR.thisField "hashMap") [ (JR.local "keys") ])), 
                         JR.declare "foundTotal" "J" (JR.long 0), 
@@ -129,7 +129,7 @@ jm_upTo_2 jheap jthis jargs =
                         JR.while (JR.map2 JR.less (JR.local "index") (JR.invoke "length_0" (JR.local "replace") [])) (JR.run [ 
                             JR.declare "begin" "I" (JR.invoke "indexOf_2" (JR.local "replace") [ (JR.aget (JR.local "keys") (JR.int 0)), (JR.local "index") ]), 
                             JR.ifElse (JR.map2 JR.notEquals (JR.local "begin") (JR.map JR.neg (JR.int 1))) (JR.run [ 
-                                JR.exec (JR.postUpdate (JR.local "foundTotal") (\jwN68646 -> (JR.setLocal "foundTotal" "J" (JR.lit jwN68646))) JR.increment), 
+                                JR.exec (JR.postUpdate (JR.local "foundTotal") (\jwN68664 -> (JR.setLocal "foundTotal" "J" (JR.lit jwN68664))) JR.increment), 
                                 JR.ifElse (JR.map2 JR.equals (JR.map2 JR.rem (JR.local "foundTotal") (JR.long 100)) (JR.long 0)) (JR.run [ 
                                     JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.concat (JR.thisField "FOUND_KEY") (JR.local "foundTotal")) ]) ]) identity, 
                                 JR.exec (JR.setLocal "nextKey" "" (JR.aget (JR.local "keys") (JR.int 0))), 
@@ -151,7 +151,7 @@ jm_upTo_2 jheap jthis jargs =
                                         JR.exec (JR.setLocal "index" "I" (JR.invoke "length_0" (JR.local "newStringBuffer") [])), 
                                         JR.exec (JR.invoke "append_1" (JR.local "newStringBuffer") [ (JR.invoke "substring_2" (JR.local "replace") [ (JR.local "end2"), (JR.invoke "length_0" (JR.local "replace") []) ]) ]), 
                                         JR.exec (JR.setLocal "replace" "" (JR.invoke "toString_0" (JR.local "newStringBuffer") [])) ]) identity ]) identity, 
-                                JR.exec (JR.postUpdate (JR.local "totalNumberOfReplaces") (\jwN69587 -> (JR.setLocal "totalNumberOfReplaces" "I" (JR.lit jwN69587))) JR.increment), 
+                                JR.exec (JR.postUpdate (JR.local "totalNumberOfReplaces") (\jwN69605 -> (JR.setLocal "totalNumberOfReplaces" "I" (JR.lit jwN69605))) JR.increment), 
                                 JR.ifElse (JR.and (JR.map2 JR.notEquals (JR.local "total") JInteger.jstatic_MIN_VALUE) (JR.map2 JR.greaterEquals (JR.local "totalNumberOfReplaces") (JR.local "total"))) (JR.run [ 
                                     JR.break ]) identity ]) (JR.run [ 
                                 JR.break ]) ]) ]) ], 
@@ -174,7 +174,7 @@ jm_line_1 jheap jthis jargs =
                     JR.declare "value" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "keyArray" "" (JR.invoke "getHashMapAsArray_1" (JR.thisField "j2seUtil") [ (JR.thisField "hashMap") ]), 
                     JR.declare "size" "I" (JR.alength (JR.local "keyArray")), 
-                    JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN71003 -> (JR.setLocal "index2" "I" (JR.lit jwN71003))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN71021 -> (JR.setLocal "index2" "I" (JR.lit jwN71021))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "key" "" (JR.aget (JR.local "keyArray") (JR.local "index2"))), 
                         JR.exec (JR.setLocal "value" "" (JR.invoke "get_1" (JR.thisField "hashMap") [ (JR.local "key") ])), 
                         JR.declare "index" "I" (JR.int 0), 
@@ -189,7 +189,7 @@ jm_line_1 jheap jthis jargs =
                                     JR.exec (JR.setLocal "index" "I" (JR.invoke "length_0" (JR.local "newStringBuffer") [])), 
                                     JR.exec (JR.invoke "append_1" (JR.local "newStringBuffer") [ (JR.invoke "substring_2" (JR.local "replace") [ (JR.local "end"), (JR.invoke "length_0" (JR.local "replace") []) ]) ]), 
                                     JR.exec (JR.setLocal "replace" "" (JR.invoke "toString_0" (JR.local "newStringBuffer") [])), 
-                                    JR.exec (JR.postUpdate (JR.local "totalNumberOfReplaces") (\jwN70900 -> (JR.setLocal "totalNumberOfReplaces" "I" (JR.lit jwN70900))) JR.increment) ]) identity ]) (JR.run [ 
+                                    JR.exec (JR.postUpdate (JR.local "totalNumberOfReplaces") (\jwN70918 -> (JR.setLocal "totalNumberOfReplaces" "I" (JR.lit jwN70918))) JR.increment) ]) identity ]) (JR.run [ 
                                 JR.break ]) ]) ]) ], 
                     JR.ifElse (JR.invoke "contains_1" LogConfigTypes.jstatic_LOGGING [ (JR.field "REPLACE" (JR.callStatic LogConfigTypeFactory.jm_getInstance_0 [])) ]) (JR.run [ 
                         JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "Total Number Of Replaces: ") (JR.local "totalNumberOfReplaces")), JR.this, (JR.thisField "ALL") ]) ]) identity, 

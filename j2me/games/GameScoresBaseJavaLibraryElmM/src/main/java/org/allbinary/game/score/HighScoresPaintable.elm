@@ -128,14 +128,14 @@ jm_paint_1 jheap jthis jargs =
                         JR.declare "nextScoreWidth" "I" (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.invoke "getScoreString_0" (JR.local "highScore") []) ]), 
                         JR.ifElse (JR.map2 JR.greater (JR.local "nextScoreWidth") (JR.local "largestSecondColumnWidth")) (JR.run [ 
                             JR.exec (JR.setLocal "largestSecondColumnWidth" "I" (JR.local "nextScoreWidth")) ]) identity, 
-                        JR.exec (JR.postUpdate (JR.local "vectorIndex") (\jwN70024 -> (JR.setLocal "vectorIndex" "I" (JR.lit jwN70024))) JR.increment) ]), 
+                        JR.exec (JR.postUpdate (JR.local "vectorIndex") (\jwN70052 -> (JR.setLocal "vectorIndex" "I" (JR.lit jwN70052))) JR.increment) ]), 
                     JR.exec (JR.setLocal "vectorIndex" "I" (JR.int 0)), 
                     JR.while (JR.and (JR.map2 JR.less (JR.local "vectorIndex") (JR.local "size")) (JR.map2 JR.less (JR.map2 JR.mul (JR.local "charHeight") (JR.local "index")) (JR.map2 JR.sub (JR.local "height") ((JR.map2 JR.mul (JR.local "charHeight") (JR.int 2)))))) (JR.run [ 
                         JR.exec (JR.setLocal "highScore" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "vectorIndex"))), 
                         JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.invoke "getName_0" (JR.local "highScore") []), (JR.int 10), (JR.map2 JR.mul (JR.local "charHeight") (JR.local "index")), (JR.thisField "anchor") ]), 
                         JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.invoke "getScoreString_0" (JR.local "highScore") []), (JR.map2 JR.sub (JR.map2 JR.sub (JR.local "width") (JR.int 10)) (JR.local "largestSecondColumnWidth")), (JR.map2 JR.mul (JR.local "charHeight") (JR.local "index")), (JR.thisField "anchor") ]), 
-                        JR.exec (JR.postUpdate (JR.local "index") (\jwN70396 -> (JR.setLocal "index" "I" (JR.lit jwN70396))) JR.increment), 
-                        JR.exec (JR.postUpdate (JR.local "vectorIndex") (\jwN70413 -> (JR.setLocal "vectorIndex" "I" (JR.lit jwN70413))) JR.increment) ]) ])
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN70424 -> (JR.setLocal "index" "I" (JR.lit jwN70424))) JR.increment), 
+                        JR.exec (JR.postUpdate (JR.local "vectorIndex") (\jwN70441 -> (JR.setLocal "vectorIndex" "I" (JR.lit jwN70441))) JR.increment) ]) ])
         (jregister jheap)
         jthis
         jargs

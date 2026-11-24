@@ -72,7 +72,7 @@ jm_encode_1 jheap jthis jargs =
                     JR.try (JR.run [ 
                         JR.declare "array" "" (JR.local "value"), 
                         JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "array"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67300 -> (JR.setLocal "index" "I" (JR.lit jwN67300))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "array"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67313 -> (JR.setLocal "index" "I" (JR.lit jwN67313))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.cast "B" (JR.aget (JR.local "array") (JR.local "index"))) []) ]), 
                             JR.ifElse (JR.map2 JR.less (JR.local "index") (JR.map2 JR.sub (JR.alength (JR.local "array")) (JR.int 1))) (JR.run [ 
                                 JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) ]) identity ]) ], 
@@ -95,9 +95,9 @@ jm_decode_1 jheap jthis jargs =
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "vector") []), 
                         JR.declare "decode" "" (JR.newArray "B" [ (JR.local "size") ]), 
                         JR.declare "byteOfData" "" (JR.lit (JR.defaultOf "")), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68026 -> (JR.setLocal "index" "I" (JR.lit jwN68026))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68039 -> (JR.setLocal "index" "I" (JR.lit jwN68039))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "byteOfData" "" (JR.aget (JR.field "objectArray" (JR.local "vector")) (JR.local "index"))), 
-                            JR.exec (JR.andThen (JR.local "decode") (\jaN67922 -> JR.andThen (JR.local "index") (\jiN67922 -> (JR.aset (JR.lit jaN67922) (JR.lit jiN67922) (JR.callStatic JByte.jm_parseByte_1 [ (JR.local "byteOfData") ]))))) ]) ], 
+                            JR.exec (JR.andThen (JR.local "decode") (\jaN67935 -> JR.andThen (JR.local "index") (\jiN67935 -> (JR.aset (JR.lit jaN67935) (JR.lit jiN67935) (JR.callStatic JByte.jm_parseByte_1 [ (JR.local "byteOfData") ]))))) ]) ], 
                         JR.return (JR.local "decode") ]) [ ( [ "Exception" ], "e", (JR.run [ 
                         JR.declare "commonStrings" "" (JR.callStatic CommonStrings.jm_getInstance_0 []), 
                         JR.exec (JR.callStatic PreLogUtil.jm_putSE_4 [ (JR.field "EXCEPTION" (JR.local "commonStrings")), (JR.str "DatabaseEncoder"), (JR.str "decode"), (JR.local "e") ]), 

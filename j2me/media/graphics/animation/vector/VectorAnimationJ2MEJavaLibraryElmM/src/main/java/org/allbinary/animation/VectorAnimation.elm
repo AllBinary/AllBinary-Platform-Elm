@@ -92,9 +92,9 @@ jm_createVectorAnimation_3 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "currentPoints" "" (JR.newArray "I" [ (JR.int 1), (JR.alength (JR.local "currentPoints2")), (JR.int 2) ]), 
                     JR.declare "size" "I" (JR.alength (JR.local "currentPoints2")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67348 -> (JR.setLocal "index" "I" (JR.lit jwN67348))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "currentPoints") (JR.int 0)) (JR.local "index")) (\jaN67154 -> JR.andThen (JR.int 0) (\jiN67154 -> (JR.aset (JR.lit jaN67154) (JR.lit jiN67154) (JR.aget (JR.aget (JR.local "currentPoints2") (JR.local "index")) (JR.int 0)))))), 
-                        JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "currentPoints") (JR.int 0)) (JR.local "index")) (\jaN67227 -> JR.andThen (JR.int 1) (\jiN67227 -> (JR.aset (JR.lit jaN67227) (JR.lit jiN67227) (JR.aget (JR.aget (JR.local "currentPoints2") (JR.local "index")) (JR.int 1)))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67369 -> (JR.setLocal "index" "I" (JR.lit jwN67369))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "currentPoints") (JR.int 0)) (JR.local "index")) (\jaN67175 -> JR.andThen (JR.int 0) (\jiN67175 -> (JR.aset (JR.lit jaN67175) (JR.lit jiN67175) (JR.aget (JR.aget (JR.local "currentPoints2") (JR.local "index")) (JR.int 0)))))), 
+                        JR.exec (JR.andThen (JR.aget (JR.aget (JR.local "currentPoints") (JR.int 0)) (JR.local "index")) (\jaN67248 -> JR.andThen (JR.int 1) (\jiN67248 -> (JR.aset (JR.lit jaN67248) (JR.lit jiN67248) (JR.aget (JR.aget (JR.local "currentPoints2") (JR.local "index")) (JR.int 1)))))) ]) ], 
                     JR.return (JR.new jnew_3 [ (JR.local "currentPoints"), (JR.local "basicColor"), (JR.local "animationBehavior") ]) ])
         (jregister jheap)
         jthis
@@ -244,14 +244,14 @@ jm_paintVectors_3 jheap jthis jargs =
                         JR.declare "currentPointsFrame" "" (JR.aget (JR.thisField "currentPoints") (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") [])), 
                         JR.declare "size" "I" (JR.alength (JR.local "currentPointsFrame")), 
                         JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 2)), 
-                        JR.while (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69683 -> (JR.setLocal "index" "I" (JR.lit jwN69683))) JR.decrement) (JR.int 0)) (JR.run [ 
+                        JR.while (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69704 -> (JR.setLocal "index" "I" (JR.lit jwN69704))) JR.decrement) (JR.int 0)) (JR.run [ 
                             JR.exec (JR.setLocal "nextPoint" "" (JR.aget (JR.local "currentPointsFrame") (JR.local "index"))), 
                             JR.exec (JR.setLocal "point" "" (JR.aget (JR.local "currentPointsFrame") (JR.map2 JR.add (JR.local "index") (JR.int 1)))), 
                             JR.exec (JR.setLocal "nextPointX" "I" (JR.aget (JR.local "nextPoint") (JR.int 0))), 
                             JR.exec (JR.setLocal "nextPointY" "I" (JR.aget (JR.local "nextPoint") (JR.int 1))), 
                             JR.ifElse (JR.map2 JR.notEquals (JR.local "nextPointX") (JR.int 1000)) (JR.run [ 
                                 JR.exec (JR.invoke "drawLine_4" (JR.local "graphics") [ (JR.map2 JR.add (JR.aget (JR.local "point") (JR.int 0)) (JR.local "x")), (JR.map2 JR.add (JR.aget (JR.local "point") (JR.int 1)) (JR.local "y")), (JR.map2 JR.add (JR.local "nextPointX") (JR.local "x")), (JR.map2 JR.add (JR.local "nextPointY") (JR.local "y")) ]) ]) (JR.run [ 
-                                JR.exec (JR.postUpdate (JR.local "index") (\jwN69526 -> (JR.setLocal "index" "I" (JR.lit jwN69526))) JR.decrement) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
+                                JR.exec (JR.postUpdate (JR.local "index") (\jwN69547 -> (JR.setLocal "index" "I" (JR.lit jwN69547))) JR.decrement) ]) ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
                         JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "paintVectors"), (JR.local "e") ]) ]) ) ] identity ])
         (jregister jheap)
         jthis

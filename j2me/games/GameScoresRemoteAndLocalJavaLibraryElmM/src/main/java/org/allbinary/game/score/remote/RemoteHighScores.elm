@@ -138,7 +138,7 @@ jm_update_1 jheap jthis jargs =
                     JR.declare "vector" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.field "HIGH_SCORES" (JR.callStatic RemoteHighScoresData.jm_getInstance_0 [])) ]), 
                     JR.ifElse (JR.map2 JR.notEquals (JR.local "vector") JR.null) (JR.run [ 
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "vector") []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70908 -> (JR.setLocal "index" "I" (JR.lit jwN70908))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70940 -> (JR.setLocal "index" "I" (JR.lit jwN70940))) JR.increment) ]) (JR.run [ 
                             JR.declare "highScoreVector" "" (JR.invoke "get_1" (JR.local "vector") [ (JR.local "index") ]), 
                             JR.declare "displayName" "" (JR.invoke "get_1" (JR.local "highScoreVector") [ (JR.int 0) ]), 
                             JR.declare "score" "" (JR.invoke "get_1" (JR.local "highScoreVector") [ (JR.int 1) ]), 

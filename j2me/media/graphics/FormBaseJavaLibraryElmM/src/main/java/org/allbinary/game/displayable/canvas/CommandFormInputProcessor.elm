@@ -134,7 +134,7 @@ jm_processInputList_0 jheap jthis jargs =
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
                         JR.declare "key" "I" (JR.int 0), 
                         JR.declare "gameKeyEvent" "" (JR.lit (JR.defaultOf "")), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN73557 -> (JR.setLocal "index" "I" (JR.lit jwN73557))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN73635 -> (JR.setLocal "index" "I" (JR.lit jwN73635))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "gameKeyEvent" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                             JR.exec (JR.setLocal "key" "I" (JR.invoke "getKey_0" (JR.local "gameKeyEvent") [])), 
                             JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getSourceId_0" (JR.local "gameKeyEvent") []) (JR.thisField "MOTION_GESTURE_SOURCE_ID")) (JR.run [ 
@@ -186,11 +186,11 @@ jm_processMotionInput_1 jheap jthis jargs =
                             JR.ifElse (JR.map JR.not_ (JR.invoke "isTimeTNT_0" (JR.thisField "doubleClickTimeHelper") [])) (JR.run [ 
                                 JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Double Press"), JR.this, (JR.field "PROCESS_MOTION_INPUT" (JR.thisField "gameInputStrings")) ]), 
                                 JR.exec (JR.invoke "processCommand_0" JR.this []) ]) identity, 
-                            JR.exec (JR.andThen (JR.thisField "doubleClickTimeHelper") (\jtN74840 -> (JR.setField "delay" "I" (JR.lit jtN74840) (JR.thisField "DOUBLE_CLICK_DELAY")))), 
+                            JR.exec (JR.andThen (JR.thisField "doubleClickTimeHelper") (\jtN74918 -> (JR.setField "delay" "I" (JR.lit jtN74918) (JR.thisField "DOUBLE_CLICK_DELAY")))), 
                             JR.exec (JR.invoke "setStartTimeTNT_0" (JR.thisField "doubleClickTimeHelper") []) ]) identity, 
                         JR.exec (JR.setField "hasPressed" "Z" JR.this (JR.bool False)) ]) (JR.run [ 
                     JR.ifElse (JR.map2 JR.equals (JR.local "motionGestureInput") (JR.field "PRESSED" (JR.local "touchMotionGestureFactory"))) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "doubleClickTimeHelper") (\jtN74284 -> (JR.setField "delay" "I" (JR.lit jtN74284) (JR.int 0)))), 
+                        JR.exec (JR.andThen (JR.thisField "doubleClickTimeHelper") (\jtN74362 -> (JR.setField "delay" "I" (JR.lit jtN74362) (JR.int 0)))), 
                         JR.exec (JR.setField "hasPressed" "Z" JR.this (JR.bool True)) ]) identity ]) ])
         (jregister jheap)
         jthis

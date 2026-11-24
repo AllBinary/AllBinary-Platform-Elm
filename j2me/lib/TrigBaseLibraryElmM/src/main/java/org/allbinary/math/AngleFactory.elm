@@ -74,21 +74,21 @@ jinit_0 jheap jthis jargs =
                     JR.declare "commonPhoneStrings" "" (JR.callStatic CommonPhoneStrings.jm_getInstance_0 []), 
                     JR.declare "total" "S" (JR.cast "S" (JR.alength (JR.thisField "angleArray"))), 
                     JR.exec (JR.setField "UP" "" JR.this (JR.new NamedAngle.jnew_2 [ (JR.cast "S" (JR.int 0)), (JR.field "UP" (JR.local "commonPhoneStrings")) ])), 
-                    JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN67620 -> JR.andThen (JR.int 0) (\jiN67620 -> (JR.aset (JR.lit jaN67620) (JR.lit jiN67620) (JR.thisField "UP"))))), 
-                    JR.run [ JR.declare "index" "I" (JR.int 1), JR.for (JR.map2 JR.less (JR.local "index") (JR.int 90)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67774 -> (JR.setLocal "index" "I" (JR.lit jwN67774))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN67667 -> JR.andThen (JR.local "index") (\jiN67667 -> (JR.aset (JR.lit jaN67667) (JR.lit jiN67667) (JR.new Angle.jnew_1 [ (JR.cast "S" (JR.local "index")) ]))))) ]) ], 
+                    JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN67630 -> JR.andThen (JR.int 0) (\jiN67630 -> (JR.aset (JR.lit jaN67630) (JR.lit jiN67630) (JR.thisField "UP"))))), 
+                    JR.run [ JR.declare "index" "I" (JR.int 1), JR.for (JR.map2 JR.less (JR.local "index") (JR.int 90)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67784 -> (JR.setLocal "index" "I" (JR.lit jwN67784))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN67677 -> JR.andThen (JR.local "index") (\jiN67677 -> (JR.aset (JR.lit jaN67677) (JR.lit jiN67677) (JR.new Angle.jnew_1 [ (JR.cast "S" (JR.local "index")) ]))))) ]) ], 
                     JR.exec (JR.setField "RIGHT" "" JR.this (JR.new NamedAngle.jnew_2 [ (JR.cast "S" (JR.int 90)), (JR.field "RIGHT" (JR.local "commonPhoneStrings")) ])), 
-                    JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN67855 -> JR.andThen (JR.int 90) (\jiN67855 -> (JR.aset (JR.lit jaN67855) (JR.lit jiN67855) (JR.thisField "RIGHT"))))), 
-                    JR.run [ JR.declare "index" "I" (JR.int 91), JR.for (JR.map2 JR.less (JR.local "index") (JR.int 180)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68009 -> (JR.setLocal "index" "I" (JR.lit jwN68009))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN67902 -> JR.andThen (JR.local "index") (\jiN67902 -> (JR.aset (JR.lit jaN67902) (JR.lit jiN67902) (JR.new Angle.jnew_1 [ (JR.cast "S" (JR.local "index")) ]))))) ]) ], 
+                    JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN67865 -> JR.andThen (JR.int 90) (\jiN67865 -> (JR.aset (JR.lit jaN67865) (JR.lit jiN67865) (JR.thisField "RIGHT"))))), 
+                    JR.run [ JR.declare "index" "I" (JR.int 91), JR.for (JR.map2 JR.less (JR.local "index") (JR.int 180)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68019 -> (JR.setLocal "index" "I" (JR.lit jwN68019))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN67912 -> JR.andThen (JR.local "index") (\jiN67912 -> (JR.aset (JR.lit jaN67912) (JR.lit jiN67912) (JR.new Angle.jnew_1 [ (JR.cast "S" (JR.local "index")) ]))))) ]) ], 
                     JR.exec (JR.setField "DOWN" "" JR.this (JR.new NamedAngle.jnew_2 [ (JR.cast "S" (JR.int 180)), (JR.field "DOWN" (JR.local "commonPhoneStrings")) ])), 
-                    JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN68090 -> JR.andThen (JR.int 180) (\jiN68090 -> (JR.aset (JR.lit jaN68090) (JR.lit jiN68090) (JR.thisField "DOWN"))))), 
-                    JR.run [ JR.declare "index" "I" (JR.int 181), JR.for (JR.map2 JR.less (JR.local "index") (JR.int 270)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68244 -> (JR.setLocal "index" "I" (JR.lit jwN68244))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN68137 -> JR.andThen (JR.local "index") (\jiN68137 -> (JR.aset (JR.lit jaN68137) (JR.lit jiN68137) (JR.new Angle.jnew_1 [ (JR.cast "S" (JR.local "index")) ]))))) ]) ], 
+                    JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN68100 -> JR.andThen (JR.int 180) (\jiN68100 -> (JR.aset (JR.lit jaN68100) (JR.lit jiN68100) (JR.thisField "DOWN"))))), 
+                    JR.run [ JR.declare "index" "I" (JR.int 181), JR.for (JR.map2 JR.less (JR.local "index") (JR.int 270)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68254 -> (JR.setLocal "index" "I" (JR.lit jwN68254))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN68147 -> JR.andThen (JR.local "index") (\jiN68147 -> (JR.aset (JR.lit jaN68147) (JR.lit jiN68147) (JR.new Angle.jnew_1 [ (JR.cast "S" (JR.local "index")) ]))))) ]) ], 
                     JR.exec (JR.setField "LEFT" "" JR.this (JR.new NamedAngle.jnew_2 [ (JR.cast "S" (JR.int 270)), (JR.field "LEFT" (JR.local "commonPhoneStrings")) ])), 
-                    JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN68325 -> JR.andThen (JR.int 270) (\jiN68325 -> (JR.aset (JR.lit jaN68325) (JR.lit jiN68325) (JR.thisField "LEFT"))))), 
-                    JR.run [ JR.declare "index" "I" (JR.int 271), JR.for (JR.map2 JR.less (JR.local "index") (JR.cast "I" (JR.local "total"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68483 -> (JR.setLocal "index" "I" (JR.lit jwN68483))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN68372 -> JR.andThen (JR.local "index") (\jiN68372 -> (JR.aset (JR.lit jaN68372) (JR.lit jiN68372) (JR.new Angle.jnew_1 [ (JR.cast "S" (JR.local "index")) ]))))) ]) ] ]) ])
+                    JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN68335 -> JR.andThen (JR.int 270) (\jiN68335 -> (JR.aset (JR.lit jaN68335) (JR.lit jiN68335) (JR.thisField "LEFT"))))), 
+                    JR.run [ JR.declare "index" "I" (JR.int 271), JR.for (JR.map2 JR.less (JR.local "index") (JR.cast "I" (JR.local "total"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68493 -> (JR.setLocal "index" "I" (JR.lit jwN68493))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "angleArray") (\jaN68382 -> JR.andThen (JR.local "index") (\jiN68382 -> (JR.aset (JR.lit jaN68382) (JR.lit jiN68382) (JR.new Angle.jnew_1 [ (JR.cast "S" (JR.local "index")) ]))))) ]) ] ]) ])
         (jregister jheap)
         jthis
         jargs
@@ -154,7 +154,7 @@ jm_main_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
                     JR.declare "angleFactory" "" (JR.callStatic jm_getInstance_0 []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.int 360)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69483 -> (JR.setLocal "index" "I" (JR.lit jwN69483))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.int 360)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69493 -> (JR.setLocal "index" "I" (JR.lit jwN69493))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.invoke "appendshort_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.local "stringMaker") [ (JR.local "index") ]) [ (JR.field "FORWARD_SLASH" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.invoke "getValue_0" (JR.invoke "getClosestDirection_1" (JR.local "angleFactory") [ (JR.local "index") ]) []) ]) [ (JR.field "NEW_LINE" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) ]) ], 
                     JR.exec (JR.invoke "putF_3" (JR.callStatic LogUtil.jm_getInstance_0 []) [ (JR.invoke "toString_0" (JR.local "stringMaker") []), (JR.str "main"), (JR.str "main") ]) ])
         (jregister jheap)

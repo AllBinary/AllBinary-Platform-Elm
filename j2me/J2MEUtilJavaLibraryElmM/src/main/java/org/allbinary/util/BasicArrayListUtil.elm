@@ -116,7 +116,7 @@ jm_reverse_1 jheap jthis jargs =
                     JR.declare "temp" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "size" "I" (JR.map2 JR.div (JR.local "lastMinusOneIndex") (JR.int 2)), 
                     JR.declare "secondSwapIndex" "I" (JR.lit (JR.defaultOf "I")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.lessEquals (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67564 -> (JR.setLocal "index" "I" (JR.lit jwN67564))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.lessEquals (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67575 -> (JR.setLocal "index" "I" (JR.lit jwN67575))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "secondSwapIndex" "I" (JR.map2 JR.sub (JR.local "lastMinusOneIndex") (JR.local "index"))), 
                         JR.exec (JR.setLocal "temp" "" (JR.invoke "removeAt_1" (JR.local "list") [ (JR.local "index") ])), 
                         JR.exec (JR.invoke "addAt_2" (JR.local "list") [ (JR.local "index"), (JR.invoke "removeAt_1" (JR.local "list") [ (JR.local "secondSwapIndex") ]) ]), 
@@ -135,7 +135,7 @@ jm_log_1 jheap jthis jargs =
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "TOTAL_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]), 
                     JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "size") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68048 -> (JR.setLocal "index" "I" (JR.lit jwN68048))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68059 -> (JR.setLocal "index" "I" (JR.lit jwN68059))) JR.decrement) ]) (JR.run [ 
                         JR.declare "usedList" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "S_LABEL") ]), 
                         JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.invoke "size_0" (JR.local "usedList") []) ]) ]) ], 

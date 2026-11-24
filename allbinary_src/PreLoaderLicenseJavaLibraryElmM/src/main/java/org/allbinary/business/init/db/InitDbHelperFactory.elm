@@ -70,8 +70,8 @@ jm_getInstance_2 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "params" "" (JR.newArray "" [ (JR.int 1) ]), 
                     JR.declare "classes" "" (JR.newArray "" [ (JR.int 1) ]), 
-                    JR.exec (JR.andThen (JR.local "classes") (\jaN66591 -> JR.andThen (JR.int 0) (\jiN66591 -> (JR.aset (JR.lit jaN66591) (JR.lit jiN66591) (JR.lit (JR.JClass "DatabaseConnectionInfoInterface")))))), 
-                    JR.exec (JR.andThen (JR.local "params") (\jaN66632 -> JR.andThen (JR.int 0) (\jiN66632 -> (JR.aset (JR.lit jaN66632) (JR.lit jiN66632) (JR.local "databaseConnectionInfoInterface"))))), 
+                    JR.exec (JR.andThen (JR.local "classes") (\jaN66601 -> JR.andThen (JR.int 0) (\jiN66601 -> (JR.aset (JR.lit jaN66601) (JR.lit jiN66601) (JR.lit (JR.JClass "DatabaseConnectionInfoInterface")))))), 
+                    JR.exec (JR.andThen (JR.local "params") (\jaN66642 -> JR.andThen (JR.int 0) (\jiN66642 -> (JR.aset (JR.lit jaN66642) (JR.lit jiN66642) (JR.local "databaseConnectionInfoInterface"))))), 
                     JR.declare "anyType" "" (JR.invoke "getInstance_4" (JR.callStatic AbeFactory.jm_getInstance_0 []) [ (JR.local "abeClientInformation"), jstatic_CLASSNAME, (JR.local "classes"), (JR.local "params") ]), 
                     JR.return (JR.local "anyType") ])
         (jregister jheap)

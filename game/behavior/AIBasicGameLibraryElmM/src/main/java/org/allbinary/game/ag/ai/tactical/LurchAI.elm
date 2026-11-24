@@ -112,7 +112,7 @@ jm_accelerate_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.ifElse (JR.map2 JR.less (JR.thisField "currentSpeed") (JR.int 20)) (JR.run [ 
-                        JR.exec (JR.postUpdate (JR.thisField "currentSpeed") (\jwN69931 -> (JR.setField "currentSpeed" "I" JR.this (JR.lit jwN69931))) JR.increment) ]) identity ])
+                        JR.exec (JR.postUpdate (JR.thisField "currentSpeed") (\jwN69974 -> (JR.setField "currentSpeed" "I" JR.this (JR.lit jwN69974))) JR.increment) ]) identity ])
         (jregister jheap)
         jthis
         jargs

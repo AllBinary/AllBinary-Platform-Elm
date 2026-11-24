@@ -76,7 +76,7 @@ jm_isSupported_1 jheap jthis jargs =
     JR.method [ ( "mediaFileType", "" ) ] "Z"
         (JR.run [ 
                     JR.exec (JR.setLocal "mediaFileType" "" (JR.invoke "toLowerCase_0" (JR.local "mediaFileType") [])), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66549 -> (JR.setLocal "index" "I" (JR.lit jwN66549))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66554 -> (JR.setLocal "index" "I" (JR.lit jwN66554))) JR.decrement) ]) (JR.run [ 
                         JR.declare "name" "" (JR.invoke "get_1" (JR.thisField "list") [ (JR.local "index") ]), 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.local "mediaFileType") [ (JR.local "name") ]) (JR.int 0)) (JR.run [ 
                             JR.return (JR.bool True) ]) identity ]) ], 

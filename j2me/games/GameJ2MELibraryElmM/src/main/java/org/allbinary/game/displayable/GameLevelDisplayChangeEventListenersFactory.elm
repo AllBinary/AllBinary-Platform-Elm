@@ -93,7 +93,7 @@ jm_clear_0 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "displayChangeEventHandler" "" (JR.callStatic DisplayChangeEventHandler.jm_getInstance_0 []), 
                     JR.declare "displayChangeEventListener" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67104 -> (JR.setLocal "index" "I" (JR.lit jwN67104))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67117 -> (JR.setLocal "index" "I" (JR.lit jwN67117))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.setLocal "displayChangeEventListener" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index"))), 
                         JR.exec (JR.invoke "removeListener_1" (JR.local "displayChangeEventHandler") [ (JR.local "displayChangeEventListener") ]) ]) ], 
                     JR.exec (JR.invoke "clear_0" (JR.thisField "list") []) ])

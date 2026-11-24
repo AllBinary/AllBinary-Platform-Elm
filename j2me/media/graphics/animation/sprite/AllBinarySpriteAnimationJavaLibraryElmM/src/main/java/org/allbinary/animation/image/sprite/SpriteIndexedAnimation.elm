@@ -99,7 +99,7 @@ jm_setBasicColorP_1 : JR.Method
 jm_setBasicColorP_1 jheap jthis jargs =
     JR.method [ ( "basicColor", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "basicColorArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68145 -> (JR.setLocal "index" "I" (JR.lit jwN68145))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "basicColorArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68165 -> (JR.setLocal "index" "I" (JR.lit jwN68165))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.local "basicColor") (JR.aget (JR.thisField "basicColorArray") (JR.local "index"))) (JR.run [ 
                             JR.exec (JR.invoke "setFrame_1" JR.this [ (JR.local "index") ]), 
                             JR.break ]) identity ]) ] ])

@@ -95,7 +95,7 @@ jm_print_2 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "commonSeps" "" (JR.callStatic CommonSeps.jm_getInstance_0 []), 
                     JR.declare "size" "I" (JR.alength (JR.local "data")), 
-                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN66827 -> (JR.setLocal "i" "I" (JR.lit jwN66827))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN66833 -> (JR.setLocal "i" "I" (JR.lit jwN66833))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "appendint_1" (JR.local "stringBuilder") [ (JR.aget (JR.local "data") (JR.local "i")) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuilder") [ (JR.field "SPACE" (JR.local "commonSeps")) ]) ]) ], 
                     JR.exec (JR.invoke "println_1" JSystem.jstatic_out [ (JR.invoke "toString_0" (JR.local "stringBuilder") []) ]) ])

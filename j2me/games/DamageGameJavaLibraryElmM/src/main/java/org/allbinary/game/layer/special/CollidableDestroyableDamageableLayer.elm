@@ -538,7 +538,7 @@ jm_toStringAppend_1 jheap jthis jargs =
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "NEW_LINE" (JR.local "commonSeps")) ]), 
                     JR.declare "groupInterfaceArray" "" (JR.invoke "getGroupInterface_0" JR.this []), 
                     JR.declare "size" "I" (JR.alength (JR.local "groupInterfaceArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN77587 -> (JR.setLocal "index" "I" (JR.lit jwN77587))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN77679 -> (JR.setLocal "index" "I" (JR.lit jwN77679))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "toString_0" (JR.aget (JR.local "groupInterfaceArray") (JR.local "index")) []) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "COMMA" (JR.local "commonSeps")) ]) ]) ], 
                     JR.declare "pickupBehavior" "" (JR.invoke "getPickupBehavior_0" JR.this []), 

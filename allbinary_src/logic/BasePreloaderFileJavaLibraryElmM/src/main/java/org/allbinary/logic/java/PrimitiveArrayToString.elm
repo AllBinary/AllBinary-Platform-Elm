@@ -60,7 +60,7 @@ jm_toString_1 jheap jthis jargs =
     JR.method [ ( "floats", "" ) ] ""
         (JR.run [ 
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "floats"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN65899 -> (JR.setLocal "index" "I" (JR.lit jwN65899))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "floats"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN65901 -> (JR.setLocal "index" "I" (JR.lit jwN65901))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "appendfloat_1" (JR.local "stringBuffer") [ (JR.aget (JR.local "floats") (JR.local "index")) ]) ]) ], 
                     JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ])
         (jregister jheap)

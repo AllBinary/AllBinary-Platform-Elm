@@ -103,13 +103,13 @@ jm_init_1 jheap jthis jargs =
     JR.method [ ( "imageArray", "" ) ] ""
         (JR.run [ 
                     JR.exec (JR.setField "imgMultiOff" "" JR.this (JR.aget (JR.local "imageArray") (JR.int 0))), 
-                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69411 -> JR.andThen (JR.int 0) (\jiN69411 -> (JR.aset (JR.lit jaN69411) (JR.lit jiN69411) (JR.thisField "imgMultiOff"))))), 
+                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69413 -> JR.andThen (JR.int 0) (\jiN69413 -> (JR.aset (JR.lit jaN69413) (JR.lit jiN69413) (JR.thisField "imgMultiOff"))))), 
                     JR.exec (JR.setField "imgMultiOn" "" JR.this (JR.aget (JR.local "imageArray") (JR.int 1))), 
-                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69486 -> JR.andThen (JR.int 1) (\jiN69486 -> (JR.aset (JR.lit jaN69486) (JR.lit jiN69486) (JR.thisField "imgMultiOn"))))), 
+                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69488 -> JR.andThen (JR.int 1) (\jiN69488 -> (JR.aset (JR.lit jaN69488) (JR.lit jiN69488) (JR.thisField "imgMultiOn"))))), 
                     JR.exec (JR.setField "imgRadioOff" "" JR.this (JR.aget (JR.local "imageArray") (JR.int 2))), 
-                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69561 -> JR.andThen (JR.int 2) (\jiN69561 -> (JR.aset (JR.lit jaN69561) (JR.lit jiN69561) (JR.thisField "imgRadioOff"))))), 
+                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69563 -> JR.andThen (JR.int 2) (\jiN69563 -> (JR.aset (JR.lit jaN69563) (JR.lit jiN69563) (JR.thisField "imgRadioOff"))))), 
                     JR.exec (JR.setField "imgRadioOn" "" JR.this (JR.aget (JR.local "imageArray") (JR.int 3))), 
-                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69636 -> JR.andThen (JR.int 3) (\jiN69636 -> (JR.aset (JR.lit jaN69636) (JR.lit jiN69636) (JR.thisField "imgRadioOn"))))) ])
+                    JR.exec (JR.andThen (JR.thisField "imageArray") (\jaN69638 -> JR.andThen (JR.int 3) (\jiN69638 -> (JR.aset (JR.lit jaN69638) (JR.lit jiN69638) (JR.thisField "imgRadioOn"))))) ])
         (jregister jheap)
         jthis
         jargs

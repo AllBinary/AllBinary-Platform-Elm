@@ -99,7 +99,7 @@ jm_process_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "layerManager" "" (JR.invoke "getLayerManager_0" JR.this []), 
                     JR.declare "size" "I" (JR.invoke "getSize_0" (JR.local "layerManager") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68298 -> (JR.setLocal "index" "I" (JR.lit jwN68298))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68327 -> (JR.setLocal "index" "I" (JR.lit jwN68327))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "processAt_3" JR.this [ (JR.local "allBinaryLayerManager"), (JR.invoke "getLayerAt_1" (JR.local "layerManager") [ (JR.local "index") ]), (JR.local "index") ]) ]) ] ])
         (jregister jheap)
         jthis

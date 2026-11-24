@@ -81,7 +81,7 @@ jm_init_0 jheap jthis jargs =
                     JR.declare "indexInteger" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "indexString" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
-                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.alength (JR.local "soundInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN70650 -> (JR.setLocal "i" "I" (JR.lit jwN70650))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.alength (JR.local "soundInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN70690 -> (JR.setLocal "i" "I" (JR.lit jwN70690))) JR.increment) ]) (JR.run [ 
                         JR.declare "soundInterface" "" (JR.aget (JR.local "soundInterfaceArray") (JR.local "i")), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.local "soundInterface") JR.null) (JR.run [ 
                             JR.exec (JR.setLocal "indexInteger" "" (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.local "i") ])), 
@@ -109,7 +109,7 @@ jm_stopAll_0 jheap jthis jargs =
                     JR.declare "soundInterfaceArray" "" (JR.invoke "getSoundInterfaceArray_0" (JR.thisField "soundsFactoryInterface") []), 
                     JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
                     JR.declare "player" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "soundInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71252 -> (JR.setLocal "index" "I" (JR.lit jwN71252))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "soundInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71292 -> (JR.setLocal "index" "I" (JR.lit jwN71292))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.local "soundInterfaceArray") (JR.local "index")) JR.null) (JR.run [ 
                             JR.exec (JR.setLocal "player" "" (JR.invoke "getPlayerP_0" (JR.aget (JR.local "soundInterfaceArray") (JR.local "index")) [])), 
                             JR.ifElse (JR.map2 JR.notEquals (JR.local "player") JR.null) (JR.run [ 
@@ -128,7 +128,7 @@ jm_closeAll_0 jheap jthis jargs =
                     JR.declare "soundInterfaceArray" "" (JR.invoke "getSoundInterfaceArray_0" (JR.thisField "soundsFactoryInterface") []), 
                     JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
                     JR.declare "player" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "soundInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71757 -> (JR.setLocal "index" "I" (JR.lit jwN71757))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "soundInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71797 -> (JR.setLocal "index" "I" (JR.lit jwN71797))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.local "soundInterfaceArray") (JR.local "index")) JR.null) (JR.run [ 
                             JR.exec (JR.setLocal "player" "" (JR.invoke "getPlayerP_0" (JR.aget (JR.local "soundInterfaceArray") (JR.local "index")) [])), 
                             JR.ifElse (JR.map2 JR.notEquals (JR.local "player") JR.null) (JR.run [ 

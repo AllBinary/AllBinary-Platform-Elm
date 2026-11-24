@@ -106,7 +106,7 @@ jm_processAI_1 jheap jthis jargs =
                             JR.ifElse (JR.map2 JR.greater (JR.thisField "firedIndex") (JR.local "FIRE")) (JR.run [ 
                                 JR.exec (JR.setField "firedIndex" "I" JR.this (JR.int 0)), 
                                 JR.exec (JR.setField "firingX" "I" JR.this JInteger.jstatic_MIN_VALUE) ]) identity, 
-                            JR.exec (JR.postUpdate (JR.thisField "firedIndex") (\jwN71634 -> (JR.setField "firedIndex" "I" JR.this (JR.lit jwN71634))) JR.increment) ]) identity ]) identity ])
+                            JR.exec (JR.postUpdate (JR.thisField "firedIndex") (\jwN71691 -> (JR.setField "firedIndex" "I" JR.this (JR.lit jwN71691))) JR.increment) ]) identity ]) identity ])
         (jregister jheap)
         jthis
         jargs

@@ -81,7 +81,7 @@ jm_processAI_1 jheap jthis jargs =
                             JR.exec (JR.setField "i_random" "I" JR.this (JR.invoke "getAbsoluteNextInt_1" (JR.thisField "myRandomFactory") [ (JR.invoke "getMax_0" (JR.thisField "inputProbability") []) ])), 
                             JR.declare "size" "I" (JR.alength (JR.thisField "keyArray")), 
                             JR.declare "likelyhoodIntegerKeyArray" "" (JR.lit (JR.defaultOf "")), 
-                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70094 -> (JR.setLocal "index" "I" (JR.lit jwN70094))) JR.increment) ]) (JR.run [ 
+                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70141 -> (JR.setLocal "index" "I" (JR.lit jwN70141))) JR.increment) ]) (JR.run [ 
                                 JR.declare "key" "I" (JR.aget (JR.thisField "keyArray") (JR.local "index")), 
                                 JR.exec (JR.setLocal "likelyhoodIntegerKeyArray" "" (JR.aget (JR.local "likelyhoodIntegerArray") (JR.local "key"))), 
                                 JR.ifElse (JR.and (JR.map2 JR.greaterEquals (JR.alength (JR.local "likelyhoodIntegerArray")) (JR.local "key")) (JR.map2 JR.notEquals (JR.aget (JR.local "likelyhoodIntegerKeyArray") (JR.int 0)) JR.null)) (JR.run [ 

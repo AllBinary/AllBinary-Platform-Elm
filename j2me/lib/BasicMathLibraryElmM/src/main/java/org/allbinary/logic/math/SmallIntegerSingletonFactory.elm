@@ -133,10 +133,10 @@ jm_initWithRange_2 : JR.Method
 jm_initWithRange_2 jheap jthis jargs =
     JR.method [ ( "value", "I" ), ( "negativeValue", "I" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "value") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.thisField "lastMin")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67469 -> (JR.setLocal "index" "I" (JR.lit jwN67469))) JR.decrement) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "INTEGER_ARRAY") (\jaN67334 -> JR.andThen (JR.map2 JR.add (JR.local "index") (JR.thisField "NEGATIVE_MAX")) (\jiN67334 -> (JR.aset (JR.lit jaN67334) (JR.lit jiN67334) (JR.cast "I" (JR.local "index")))))) ]) ], 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "negativeValue") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.thisField "lastNegativeMin")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67619 -> (JR.setLocal "index" "I" (JR.lit jwN67619))) JR.decrement) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "INTEGER_ARRAY") (\jaN67495 -> JR.andThen (JR.local "index") (\jiN67495 -> (JR.aset (JR.lit jaN67495) (JR.lit jiN67495) (JR.cast "I" (JR.map JR.neg (JR.local "index"))))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "value") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.thisField "lastMin")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67475 -> (JR.setLocal "index" "I" (JR.lit jwN67475))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "INTEGER_ARRAY") (\jaN67340 -> JR.andThen (JR.map2 JR.add (JR.local "index") (JR.thisField "NEGATIVE_MAX")) (\jiN67340 -> (JR.aset (JR.lit jaN67340) (JR.lit jiN67340) (JR.cast "I" (JR.local "index")))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "negativeValue") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.thisField "lastNegativeMin")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67625 -> (JR.setLocal "index" "I" (JR.lit jwN67625))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "INTEGER_ARRAY") (\jaN67501 -> JR.andThen (JR.local "index") (\jiN67501 -> (JR.aset (JR.lit jaN67501) (JR.lit jiN67501) (JR.cast "I" (JR.map JR.neg (JR.local "index"))))))) ]) ], 
                     JR.ifElse (JR.map2 JR.less (JR.thisField "lastMin") (JR.local "value")) (JR.run [ 
                         JR.exec (JR.setField "lastMin" "I" JR.this (JR.local "value")), 
                         JR.exec (JR.setField "MIN" "I" JR.this (JR.local "value")) ]) identity, 
@@ -152,10 +152,10 @@ jm_init_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.ifElse (JR.or (JR.map2 JR.less (JR.thisField "lastMin") (JR.thisField "POSITIVE_MAX")) (JR.map2 JR.less (JR.thisField "lastNegativeMin") (JR.thisField "NEGATIVE_MAX"))) (JR.run [ 
-                        JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.thisField "POSITIVE_MAX") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.thisField "lastMin")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68058 -> (JR.setLocal "index" "I" (JR.lit jwN68058))) JR.decrement) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.thisField "INTEGER_ARRAY") (\jaN67920 -> JR.andThen (JR.map2 JR.add (JR.local "index") (JR.thisField "NEGATIVE_MAX")) (\jiN67920 -> (JR.aset (JR.lit jaN67920) (JR.lit jiN67920) (JR.cast "I" (JR.local "index")))))) ]) ], 
-                        JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.thisField "NEGATIVE_MAX") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.thisField "lastNegativeMin")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68211 -> (JR.setLocal "index" "I" (JR.lit jwN68211))) JR.decrement) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.thisField "INTEGER_ARRAY") (\jaN68084 -> JR.andThen (JR.local "index") (\jiN68084 -> (JR.aset (JR.lit jaN68084) (JR.lit jiN68084) (JR.cast "I" (JR.map JR.neg (JR.local "index"))))))) ]) ], 
+                        JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.thisField "POSITIVE_MAX") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.thisField "lastMin")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68064 -> (JR.setLocal "index" "I" (JR.lit jwN68064))) JR.decrement) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.thisField "INTEGER_ARRAY") (\jaN67926 -> JR.andThen (JR.map2 JR.add (JR.local "index") (JR.thisField "NEGATIVE_MAX")) (\jiN67926 -> (JR.aset (JR.lit jaN67926) (JR.lit jiN67926) (JR.cast "I" (JR.local "index")))))) ]) ], 
+                        JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.thisField "NEGATIVE_MAX") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.thisField "lastNegativeMin")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68217 -> (JR.setLocal "index" "I" (JR.lit jwN68217))) JR.decrement) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.thisField "INTEGER_ARRAY") (\jaN68090 -> JR.andThen (JR.local "index") (\jiN68090 -> (JR.aset (JR.lit jaN68090) (JR.lit jiN68090) (JR.cast "I" (JR.map JR.neg (JR.local "index"))))))) ]) ], 
                         JR.exec (JR.setField "lastMin" "I" JR.this (JR.thisField "POSITIVE_MAX")), 
                         JR.exec (JR.setField "MIN" "I" JR.this (JR.thisField "lastMin")), 
                         JR.exec (JR.setField "lastNegativeMin" "I" JR.this (JR.thisField "NEGATIVE_MAX")) ]) identity ])
@@ -205,7 +205,7 @@ jm_getString_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "i" "I" (JR.map2 JR.add (JR.local "index") (JR.thisField "NEGATIVE_MAX")), 
                     JR.ifElse (JR.map2 JR.equals (JR.aget (JR.thisField "STRING_ARRAY") (JR.local "i")) JR.null) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN68971 -> JR.andThen (JR.local "i") (\jiN68971 -> (JR.aset (JR.lit jaN68971) (JR.lit jiN68971) (JR.invoke "toString_0" (JR.aget (JR.thisField "INTEGER_ARRAY") (JR.local "i")) []))))) ]) identity, 
+                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN68977 -> JR.andThen (JR.local "i") (\jiN68977 -> (JR.aset (JR.lit jaN68977) (JR.lit jiN68977) (JR.invoke "toString_0" (JR.aget (JR.thisField "INTEGER_ARRAY") (JR.local "i")) []))))) ]) identity, 
                     JR.return (JR.aget (JR.thisField "STRING_ARRAY") (JR.local "i")) ])
         (jregister jheap)
         jthis

@@ -94,7 +94,7 @@ jm_updateAll_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START_LABEL" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.invoke "size_0" (JR.thisField "eventList") []) ]) []), JR.this, (JR.str "updateAll") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "eventList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67666 -> (JR.setLocal "index" "I" (JR.lit jwN67666))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "eventList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67688 -> (JR.setLocal "index" "I" (JR.lit jwN67688))) JR.decrement) ]) (JR.run [ 
                         JR.declare "gameKeyCompleteMotionGestureInputEvent" "" (JR.aget (JR.field "objectArray" (JR.thisField "eventList")) (JR.local "index")), 
                         JR.exec (JR.invoke "update_0" (JR.local "gameKeyCompleteMotionGestureInputEvent") []) ]) ] ])
         (jregister jheap)

@@ -75,7 +75,7 @@ jm_getInstance_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.declare "inputFactory" "" (JR.callStatic InputFactory.jm_getInstance_0 []), 
-                    JR.declare "input" "" (JR.invoke "getInstanceById_1" (JR.local "inputFactory") [ (JR.postUpdate jstatic_index (\jwN67076 -> (JR.setStatic "MotionEventFactory.index" "I" (JR.lit jwN67076))) JR.increment) ]), 
+                    JR.declare "input" "" (JR.invoke "getInstanceById_1" (JR.local "inputFactory") [ (JR.postUpdate jstatic_index (\jwN67088 -> (JR.setStatic "MotionEventFactory.index" "I" (JR.lit jwN67088))) JR.increment) ]), 
                     JR.ifElse (JR.map2 JR.equals (JR.local "input") (JR.field "NO_INPUT" (JR.local "inputFactory"))) (JR.run [ 
                         JR.return (JR.new MotionGestureEvent.jnew_3 [ (JR.thisField "source"), (JR.thisField "id"), (JR.field "NO_MOTION" (JR.callStatic TouchMotionGestureFactory.jm_getInstance_0 [])) ]) ]) (JR.run [ 
                         JR.return (JR.new MotionGestureEvent.jnew_3 [ (JR.thisField "source"), (JR.thisField "id"), (JR.local "input") ]) ]) ])

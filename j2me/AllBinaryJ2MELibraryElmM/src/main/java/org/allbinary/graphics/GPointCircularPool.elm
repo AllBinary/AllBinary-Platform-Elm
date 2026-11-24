@@ -52,8 +52,8 @@ jinit_1 jheap jthis jargs =
                 (JR.run [ 
                     JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.local "size") ])), 
                     JR.exec (JR.setField "OBJECT_ARRAY" "" JR.this (JR.newArray "" [ (JR.local "size") ])), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66174 -> (JR.setLocal "index" "I" (JR.lit jwN66174))) JR.decrement) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "OBJECT_ARRAY") (\jaN66058 -> JR.andThen (JR.local "index") (\jiN66058 -> (JR.aset (JR.lit jaN66058) (JR.lit jiN66058) (JR.callStatic CustomGPoint.jm_getInstance3_2 [ (JR.int 0), (JR.int 0) ]))))) ]) ] ]) ])
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66179 -> (JR.setLocal "index" "I" (JR.lit jwN66179))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "OBJECT_ARRAY") (\jaN66063 -> JR.andThen (JR.local "index") (\jiN66063 -> (JR.aset (JR.lit jaN66063) (JR.lit jiN66063) (JR.callStatic CustomGPoint.jm_getInstance3_2 [ (JR.int 0), (JR.int 0) ]))))) ]) ] ]) ])
         (jregister jheap)
         jthis
         jargs

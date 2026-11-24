@@ -89,8 +89,8 @@ jm_update_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.ifElse (JR.map2 JR.notEquals (JR.thisField "xArray") JR.null) (JR.run [ 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "xArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69079 -> (JR.setLocal "index" "I" (JR.lit jwN69079))) JR.increment) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.thisField "xArray") (\jaN68947 -> JR.andThen (JR.local "index") (\jiN68947 -> (JR.aset (JR.lit jaN68947) (JR.lit jiN68947) (JR.map2 JR.add (JR.invoke "getX_0" JR.this []) ((JR.map2 JR.mul (JR.local "index") (JR.int 16)))))))) ]) ] ]) identity ])
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "xArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69104 -> (JR.setLocal "index" "I" (JR.lit jwN69104))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.thisField "xArray") (\jaN68972 -> JR.andThen (JR.local "index") (\jiN68972 -> (JR.aset (JR.lit jaN68972) (JR.lit jiN68972) (JR.map2 JR.add (JR.invoke "getX_0" JR.this []) ((JR.map2 JR.mul (JR.local "index") (JR.int 16)))))))) ]) ] ]) identity ])
         (jregister jheap)
         jthis
         jargs
@@ -130,7 +130,7 @@ jm_paint_1 jheap jthis jargs =
     JR.method [ ( "graphics", "" ) ] ""
         (JR.run [ 
                     JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "max")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70109 -> (JR.setLocal "index" "I" (JR.lit jwN70109))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "max")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70134 -> (JR.setLocal "index" "I" (JR.lit jwN70134))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.invoke "isTime_1" (JR.thisField "timeDelayHelper") [ (JR.field "startTime" (JR.thisField "gameTickTimeDelayHelper")) ]) (JR.run [ 
                             JR.exec (JR.invoke "paintXY_3" (JR.thisField "animationInterface") [ (JR.local "graphics"), (JR.aget (JR.thisField "xArray") (JR.local "index")), (JR.invoke "getY_0" JR.this []) ]) ]) identity ]) ] ])
         (jregister jheap)

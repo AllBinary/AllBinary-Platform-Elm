@@ -78,7 +78,7 @@ jm_getInstance_3 jheap jthis jargs =
                     JR.ifElse (JR.and (JR.map JR.not_ (JR.local "isLargeEnoughDisplayForBigMenu")) (JR.map2 JR.greater (JR.local "size") (JR.int 3))) (JR.run [ 
                         JR.exec (JR.setLocal "priorityLimit" "I" (JR.int 3)) ]) identity, 
                     JR.declare "command" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69045 -> (JR.setLocal "index" "I" (JR.lit jwN69045))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69074 -> (JR.setLocal "index" "I" (JR.lit jwN69074))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "command" "" (JR.invoke "elementAt_2" (JR.local "vectorUtil") [ (JR.local "vector"), (JR.local "index") ])), 
                         JR.ifElse (JR.map2 JR.less (JR.invoke "getPriority_0" (JR.local "command") []) (JR.local "priorityLimit")) (JR.run [ 
                             JR.declare "aBoolean" "" (JR.invoke "visit_1" (JR.thisField "visitorInterface") [ (JR.local "command") ]), 
@@ -87,8 +87,8 @@ jm_getInstance_3 jheap jthis jargs =
                                 JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.local "textItem") ]) ]) identity ]) identity ]) ], 
                     JR.declare "textItemArray" "" (JR.newArray "" [ (JR.invoke "size_0" (JR.thisField "list") []) ]), 
                     JR.declare "size2" "I" (JR.alength (JR.local "textItemArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69314 -> (JR.setLocal "index" "I" (JR.lit jwN69314))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "textItemArray") (\jaN69194 -> JR.andThen (JR.local "index") (\jiN69194 -> (JR.aset (JR.lit jaN69194) (JR.lit jiN69194) (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size2")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69343 -> (JR.setLocal "index" "I" (JR.lit jwN69343))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "textItemArray") (\jaN69223 -> JR.andThen (JR.local "index") (\jiN69223 -> (JR.aset (JR.lit jaN69223) (JR.lit jiN69223) (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")))))) ]) ], 
                     JR.return (JR.local "textItemArray") ])
         (jregister jheap)
         jthis

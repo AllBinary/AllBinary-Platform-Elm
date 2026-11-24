@@ -156,7 +156,7 @@ jm_updateChallange_2 jheap jthis jargs =
                         JR.exec (JR.invoke "setValue_1" (JR.field "DURABILITY_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral")) [ (JR.invoke "getValue_0" (JR.local "gameConfiguration") []) ]), 
                         JR.exec (JR.invoke "setValue_1" (JR.field "SPEED_CHALLENGE_LEVEL" (JR.local "gameConfigurationCentral")) [ (JR.invoke "getValue_0" (JR.local "gameConfiguration") []) ]), 
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "gameOptionsForm") []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70174 -> (JR.setLocal "index" "I" (JR.lit jwN70174))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70194 -> (JR.setLocal "index" "I" (JR.lit jwN70194))) JR.increment) ]) (JR.run [ 
                             JR.declare "item" "" (JR.invoke "get_1" (JR.local "gameOptionsForm") [ (JR.local "index") ]), 
                             JR.ifElse (JR.instanceOf "GameConfigurationGauge" (JR.local "item")) (JR.run [ 
                                 JR.declare "gauge" "" (JR.local "item"), 

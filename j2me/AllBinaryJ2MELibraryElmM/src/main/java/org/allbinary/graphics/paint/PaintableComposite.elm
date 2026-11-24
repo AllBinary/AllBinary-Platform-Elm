@@ -64,7 +64,7 @@ jm_paint_1 : JR.Method
 jm_paint_1 jheap jthis jargs =
     JR.method [ ( "graphics", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "paintableArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN65949 -> (JR.setLocal "index" "I" (JR.lit jwN65949))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "paintableArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN65952 -> (JR.setLocal "index" "I" (JR.lit jwN65952))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.invoke "paint_1" (JR.aget (JR.thisField "paintableArray") (JR.local "index")) [ (JR.local "graphics") ]) ]) ] ])
         (jregister jheap)
         jthis
@@ -75,7 +75,7 @@ jm_paintThreed_1 : JR.Method
 jm_paintThreed_1 jheap jthis jargs =
     JR.method [ ( "graphics", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "paintableArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66152 -> (JR.setLocal "index" "I" (JR.lit jwN66152))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "paintableArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66155 -> (JR.setLocal "index" "I" (JR.lit jwN66155))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.invoke "paintThreed_1" (JR.aget (JR.thisField "paintableArray") (JR.local "index")) [ (JR.local "graphics") ]) ]) ] ])
         (jregister jheap)
         jthis

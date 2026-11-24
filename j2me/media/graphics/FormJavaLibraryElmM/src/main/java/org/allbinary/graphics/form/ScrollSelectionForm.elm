@@ -303,7 +303,7 @@ jm_getItemIndex_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "nextItem" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "size" "I" (JR.invoke "size_0" JR.this []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72692 -> (JR.setLocal "index" "I" (JR.lit jwN72692))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72724 -> (JR.setLocal "index" "I" (JR.lit jwN72724))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "nextItem" "" (JR.invoke "get_1" JR.this [ (JR.local "index") ])), 
                         JR.ifElse (JR.map2 JR.equals (JR.local "nextItem") (JR.local "item")) (JR.run [ 
                             JR.return (JR.local "index") ]) identity ]) ], 
@@ -344,7 +344,7 @@ jm_getSelectedIndexForPoint_1 jheap jthis jargs =
                     JR.declare "width" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "height" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "diffX" "I" (JR.lit (JR.defaultOf "I")), 
-                    JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN74609 -> (JR.setLocal "index" "I" (JR.lit jwN74609))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN74641 -> (JR.setLocal "index" "I" (JR.lit jwN74641))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "item" "" (JR.invoke "get_1" JR.this [ (JR.local "index") ])), 
                         JR.exec (JR.setLocal "width" "I" (JR.invoke "getMinimumWidth_0" (JR.local "item") [])), 
                         JR.exec (JR.setLocal "height" "I" (JR.invoke "getMinimumHeight_0" (JR.local "item") [])), 
@@ -384,14 +384,14 @@ jm_processInputKey_1 jheap jthis jargs =
                     JR.declare "index" "I" (JR.invoke "getSelectedIndex_0" JR.this []), 
                     JR.ifElse (JR.or (JR.map2 JR.equals (JR.thisField "formType") (JR.field "HORIZONTAL_FORM" (JR.local "formTypeFactory"))) (JR.map2 JR.equals (JR.thisField "formType") (JR.field "TEMP_HORIZONTAL_FORM" (JR.local "formTypeFactory")))) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.local "gameKeyCode") Canvas.jstatic_RIGHT) (JR.run [ 
-                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75245 -> (JR.setLocal "index" "I" (JR.lit jwN75245))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75277 -> (JR.setLocal "index" "I" (JR.lit jwN75277))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.local "gameKeyCode") Canvas.jstatic_LEFT) (JR.run [ 
-                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75220 -> (JR.setLocal "index" "I" (JR.lit jwN75220))) JR.decrement) ]) identity ]) ]) (JR.run [ 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75252 -> (JR.setLocal "index" "I" (JR.lit jwN75252))) JR.decrement) ]) identity ]) ]) (JR.run [ 
                     JR.ifElse (JR.map2 JR.equals (JR.thisField "formType") (JR.field "VERTICAL_CENTER_FORM" (JR.local "formTypeFactory"))) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.local "gameKeyCode") Canvas.jstatic_DOWN) (JR.run [ 
-                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75123 -> (JR.setLocal "index" "I" (JR.lit jwN75123))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75155 -> (JR.setLocal "index" "I" (JR.lit jwN75155))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.local "gameKeyCode") Canvas.jstatic_UP) (JR.run [ 
-                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75098 -> (JR.setLocal "index" "I" (JR.lit jwN75098))) JR.decrement) ]) identity ]) ]) (JR.run [ 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN75130 -> (JR.setLocal "index" "I" (JR.lit jwN75130))) JR.decrement) ]) identity ]) ]) (JR.run [ 
                     JR.ifElse (JR.map2 JR.equals (JR.thisField "formType") (JR.field "NULL_FORM_TYPE" (JR.local "formTypeFactory"))) identity (JR.run [ 
                         JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.field "UNK" (JR.local "formTypeFactory")) ]) ]) ]) ]), 
                     JR.declare "max" "I" (JR.map2 JR.sub (JR.invoke "size_0" JR.this []) (JR.int 1)), 

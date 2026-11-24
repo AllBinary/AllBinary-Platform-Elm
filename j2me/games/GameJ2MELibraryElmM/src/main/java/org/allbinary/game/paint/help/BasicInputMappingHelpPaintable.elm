@@ -79,12 +79,12 @@ jm_update_2 jheap jthis jargs =
                     JR.declare "gameInputMapping" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "gameKey" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "list" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69557 -> (JR.setLocal "index" "I" (JR.lit jwN69557))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69587 -> (JR.setLocal "index" "I" (JR.lit jwN69587))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "gameInputMapping" "" (JR.aget (JR.thisField "gameInputMappingArray") (JR.local "index"))), 
                         JR.exec (JR.setLocal "gameKey" "" (JR.invoke "getGameKey_0" (JR.local "gameInputMapping") [])), 
                         JR.exec (JR.setLocal "list" "" (JR.invoke "getMappedInput_1" (JR.invoke "getInputMapping_0" (JR.local "gameKeyMapping") []) [ (JR.local "gameKey") ])), 
                         JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
-                        JR.exec (JR.andThen (JR.local "keyInfo") (\jaN69385 -> JR.andThen (JR.local "index") (\jiN69385 -> (JR.aset (JR.lit jaN69385) (JR.lit jiN69385) (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.invoke "getName_0" (JR.local "gameInputMapping") []) ]) [ (JR.local "EQUAL") ]) [ (JR.invoke "get_1" JR.this [ (JR.local "list") ]) ]) []))))) ]) ], 
+                        JR.exec (JR.andThen (JR.local "keyInfo") (\jaN69415 -> JR.andThen (JR.local "index") (\jiN69415 -> (JR.aset (JR.lit jaN69415) (JR.lit jiN69415) (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.invoke "getName_0" (JR.local "gameInputMapping") []) ]) [ (JR.local "EQUAL") ]) [ (JR.invoke "get_1" JR.this [ (JR.local "list") ]) ]) []))))) ]) ], 
                     JR.exec (JR.callVia HelpPaintable.jvtable "setInputInfoP_1" JR.this [ (JR.local "keyInfo") ]) ])
         (jregister jheap)
         jthis
@@ -100,7 +100,7 @@ jm_get_1 jheap jthis jargs =
                     JR.declare "AND" "" (JR.str "and "), 
                     JR.declare "key" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "keyList") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70355 -> (JR.setLocal "index" "I" (JR.lit jwN70355))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70385 -> (JR.setLocal "index" "I" (JR.lit jwN70385))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "key" "" (JR.aget (JR.field "objectArray" (JR.local "keyList")) (JR.local "index"))), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.local "key") []) ]), 
                         JR.ifElse (JR.map2 JR.less (JR.map2 JR.add (JR.local "index") (JR.int 1)) (JR.invoke "size_0" (JR.local "keyList") [])) (JR.run [ 

@@ -84,9 +84,9 @@ jm_add_1 : JR.Method
 jm_add_1 jheap jthis jargs =
     JR.method [ ( "basicDefaultColor", "" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "BASIC_COLOR_ARRAY") (\jaN66368 -> JR.andThen (JR.thisField "colorIndex") (\jiN66368 -> (JR.aset (JR.lit jaN66368) (JR.lit jiN66368) (JR.local "basicDefaultColor"))))), 
-                    JR.exec (JR.andThen (JR.thisField "INDEX_TO_COLOR") (\jaN66411 -> JR.andThen (JR.thisField "colorIndex") (\jiN66411 -> (JR.aset (JR.lit jaN66411) (JR.lit jiN66411) (JR.invoke "intValue_0" (JR.local "basicDefaultColor") []))))), 
-                    JR.exec (JR.postUpdate (JR.thisField "colorIndex") (\jwN66462 -> (JR.setField "colorIndex" "I" JR.this (JR.lit jwN66462))) JR.increment) ])
+                    JR.exec (JR.andThen (JR.thisField "BASIC_COLOR_ARRAY") (\jaN66372 -> JR.andThen (JR.thisField "colorIndex") (\jiN66372 -> (JR.aset (JR.lit jaN66372) (JR.lit jiN66372) (JR.local "basicDefaultColor"))))), 
+                    JR.exec (JR.andThen (JR.thisField "INDEX_TO_COLOR") (\jaN66415 -> JR.andThen (JR.thisField "colorIndex") (\jiN66415 -> (JR.aset (JR.lit jaN66415) (JR.lit jiN66415) (JR.invoke "intValue_0" (JR.local "basicDefaultColor") []))))), 
+                    JR.exec (JR.postUpdate (JR.thisField "colorIndex") (\jwN66466 -> (JR.setField "colorIndex" "I" JR.this (JR.lit jwN66466))) JR.increment) ])
         (jregister jheap)
         jthis
         jargs
@@ -97,7 +97,7 @@ jm_getAndOrCreate_1 jheap jthis jargs =
     JR.method [ ( "colorAsInt", "I" ) ] ""
         (JR.run [ 
                     JR.declare "basicColor" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "SIZE")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66694 -> (JR.setLocal "index" "I" (JR.lit jwN66694))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "SIZE")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66698 -> (JR.setLocal "index" "I" (JR.lit jwN66698))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.aget (JR.thisField "INDEX_TO_COLOR") (JR.local "index")) (JR.local "colorAsInt")) (JR.run [ 
                             JR.return (JR.aget (JR.thisField "BASIC_COLOR_ARRAY") (JR.local "index")) ]) identity ]) ], 
                     JR.declare "ALPHA_MASK" "I" (JR.int (JR.i32 0xFF000000)), 

@@ -55,7 +55,7 @@ jinit_4 jheap jthis jargs =
                 identity,
                 (JR.run [ 
                     JR.exec (JR.setField "animationInterfaceArray" "" JR.this (JR.local "animationInterfaceArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "animationInterfaceArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68528 -> (JR.setLocal "index" "I" (JR.lit jwN68528))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "animationInterfaceArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68562 -> (JR.setLocal "index" "I" (JR.lit jwN68562))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.invoke "setFrame_1" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.map2 JR.sub (JR.invoke "getSize_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) []) (JR.int 1)) ]) ]) ], 
                     JR.exec (JR.setField "layerInterface" "" JR.this (JR.local "layerInterface")), 
                     JR.exec (JR.setField "circularIndexUtil" "" JR.this (JR.callStatic CircularIndexUtil.jm_createInstance_1 [ (JR.alength (JR.thisField "animationInterfaceArray")) ])), 
@@ -91,7 +91,7 @@ jm_paint_1 jheap jthis jargs =
                         JR.declare "viewPosition" "" (JR.invoke "getViewPosition_0" (JR.thisField "layerInterface") []), 
                         JR.declare "x" "I" (JR.invoke "getX_0" (JR.local "viewPosition") []), 
                         JR.declare "y" "I" (JR.invoke "getY_0" (JR.local "viewPosition") []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "animationInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69440 -> (JR.setLocal "index" "I" (JR.lit jwN69440))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "animationInterfaceArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69474 -> (JR.setLocal "index" "I" (JR.lit jwN69474))) JR.increment) ]) (JR.run [ 
                             JR.declare "animationInterface" "" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")), 
                             JR.ifElse (JR.map2 JR.less (JR.invoke "getFrame_0" (JR.local "animationInterface") []) (JR.map2 JR.sub (JR.invoke "getAnimationSize_0" (JR.local "animationInterface") []) (JR.int 1))) (JR.run [ 
                                 JR.declare "delta" "I" (JR.map2 JR.mul (JR.invoke "getFrame_0" (JR.local "animationInterface") []) (JR.int 20)), 

@@ -67,7 +67,7 @@ jm_paint_1 jheap jthis jargs =
         (JR.run [ 
                     JR.exec (JR.invoke "paint_1" (JR.thisField "colorFillPaintable") [ (JR.local "graphics") ]), 
                     JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.thisField "foregroundColor") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "paintableArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71149 -> (JR.setLocal "index" "I" (JR.lit jwN71149))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "paintableArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71220 -> (JR.setLocal "index" "I" (JR.lit jwN71220))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.invoke "paint_1" (JR.aget (JR.thisField "paintableArray") (JR.local "index")) [ (JR.local "graphics") ]) ]) ], 
                     JR.exec (JR.callVia GameCommandCanvas.jvtable "paint_1" JR.this [ (JR.local "graphics") ]) ])
         (jregister jheap)

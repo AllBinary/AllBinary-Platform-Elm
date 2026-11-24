@@ -124,7 +124,7 @@ jm_paintXYNoUpdate_3 jheap jthis jargs =
         (JR.run [ 
                     JR.exec (JR.invoke "setBasicColorP3_3" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.invoke "getBasicColorP_0" JR.this []), (JR.invoke "getColor_0" JR.this []) ]), 
                     JR.declare "size" "I" (JR.alength (JR.thisField "textArrayP")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68976 -> (JR.setLocal "index" "I" (JR.lit jwN68976))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69003 -> (JR.setLocal "index" "I" (JR.lit jwN69003))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.aget (JR.thisField "textArrayP") (JR.local "index")), (JR.local "x"), (JR.map2 JR.add (JR.map2 JR.add (JR.local "y") (JR.thisField "offsetY")) ((JR.map2 JR.mul (JR.local "index") (JR.thisField "fontHeight")))), (JR.thisField "anchor") ]) ]) ] ])
         (jregister jheap)
         jthis
@@ -160,12 +160,12 @@ jm_setText_1 jheap jthis jargs =
                             JR.exec (JR.invoke "add_1" (JR.local "list") [ (JR.invoke "substring_2" (JR.local "text") [ (JR.local "startIndex"), (JR.local "endIndex") ]) ]), 
                             JR.ifElse (JR.map2 JR.less (JR.local "index") (JR.int 0)) (JR.run [ 
                                 JR.break ]) identity, 
-                            JR.exec (JR.postUpdate (JR.local "index") (\jwN69619 -> (JR.setLocal "index" "I" (JR.lit jwN69619))) JR.increment) ]) ]) identity, 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN69646 -> (JR.setLocal "index" "I" (JR.lit jwN69646))) JR.increment) ]) ]) identity, 
                     JR.ifElse (JR.map2 JR.greater (JR.invoke "size_0" (JR.local "list") []) (JR.int 0)) (JR.run [ 
                         JR.declare "textArray" "" (JR.newArray "" [ (JR.invoke "size_0" (JR.local "list") []) ]), 
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69991 -> (JR.setLocal "index" "I" (JR.lit jwN69991))) JR.increment) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.local "textArray") (\jaN69875 -> JR.andThen (JR.local "index") (\jiN69875 -> (JR.aset (JR.lit jaN69875) (JR.lit jiN69875) (JR.invoke "get_1" (JR.local "list") [ (JR.local "index") ]))))) ]) ], 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70018 -> (JR.setLocal "index" "I" (JR.lit jwN70018))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.local "textArray") (\jaN69902 -> JR.andThen (JR.local "index") (\jiN69902 -> (JR.aset (JR.lit jaN69902) (JR.lit jiN69902) (JR.invoke "get_1" (JR.local "list") [ (JR.local "index") ]))))) ]) ], 
                         JR.exec (JR.setField "textArrayP" "" JR.this (JR.local "textArray")) ]) (JR.run [ 
                         JR.exec (JR.setField "textArrayP" "" JR.this (JR.field "ONE_EMPTY_STRING_ARRAY" (JR.callStatic StringUtil.jm_getInstance_0 []))) ]), 
                     JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.thisField "updateMyFontProcessor")) ])

@@ -81,7 +81,7 @@ jm_getRole_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "roleVector" "" (JR.invoke "getAll_0" JR.this []), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "roleVector") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66496 -> (JR.setLocal "index" "I" (JR.lit jwN66496))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66502 -> (JR.setLocal "index" "I" (JR.lit jwN66502))) JR.increment) ]) (JR.run [ 
                         JR.declare "userRole" "" (JR.invoke "get_1" (JR.local "roleVector") [ (JR.local "index") ]), 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.local "role") [ (JR.invoke "toString_0" (JR.local "userRole") []) ]) (JR.int 0)) (JR.run [ 
                             JR.return (JR.local "userRole") ]) identity ]) ], 

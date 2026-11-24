@@ -75,7 +75,7 @@ jinit_2 jheap jthis jargs =
                 identity,
                 (JR.run [ 
                     JR.exec (JR.setField "player" "" JR.this (JR.local "player")), 
-                    JR.exec (JR.andThen (JR.thisField "timeElapsedHelper") (\jtN66862 -> (JR.setField "delay" "I" (JR.lit jtN66862) (JR.local "repeatTime")))) ]) ])
+                    JR.exec (JR.andThen (JR.thisField "timeElapsedHelper") (\jtN66870 -> (JR.setField "delay" "I" (JR.lit jtN66870) (JR.local "repeatTime")))) ]) ])
         (jregister jheap)
         jthis
         jargs

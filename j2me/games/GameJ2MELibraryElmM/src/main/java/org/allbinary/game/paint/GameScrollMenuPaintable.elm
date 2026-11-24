@@ -95,7 +95,7 @@ jm_setColor_1 jheap jthis jargs =
                     JR.exec (JR.invoke "setButtonBasicColor_1" (JR.local "scrollSelectionForm") [ (JR.local "basicColor") ]), 
                     JR.declare "item" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "stringComponent" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "scrollSelectionForm") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68877 -> (JR.setLocal "index" "I" (JR.lit jwN68877))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "scrollSelectionForm") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68915 -> (JR.setLocal "index" "I" (JR.lit jwN68915))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.setLocal "item" "" (JR.invoke "get_1" (JR.local "scrollSelectionForm") [ (JR.local "index") ])), 
                         JR.exec (JR.setLocal "stringComponent" "" (JR.invoke "getLabelStringComponent_0" (JR.local "item") [])), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.local "stringComponent") JR.null) (JR.run [ 

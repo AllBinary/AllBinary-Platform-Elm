@@ -54,7 +54,7 @@ jinit_6 jheap jthis jargs =
                 JR.exec (JR.setField "timeDelayHelper" "" JR.this (JR.new TimeDelayHelper.jnew_1 [ (JR.int 0) ])),
                 identity,
                 (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN70718 -> (JR.setField "delay" "I" (JR.lit jtN70718) (JR.local "timeDelay")))) ]) ])
+                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN70793 -> (JR.setField "delay" "I" (JR.lit jtN70793) (JR.local "timeDelay")))) ]) ])
         (jregister jheap)
         jthis
         jargs

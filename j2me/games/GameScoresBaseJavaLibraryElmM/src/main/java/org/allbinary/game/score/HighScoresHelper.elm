@@ -82,7 +82,7 @@ jm_getNextHighScores_0 jheap jthis jargs =
                     JR.while (JR.and ((JR.or (JR.map2 JR.less (JR.invoke "getTotal_0" (JR.local "highScores") []) (JR.int 1)) (JR.map2 JR.equals (JR.thisField "lastIndex") (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") [])))) (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "highScoresArrayP")))) (JR.run [ 
                         JR.exec (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []), 
                         JR.exec (JR.setLocal "highScores" "" (JR.aget (JR.thisField "highScoresArrayP") (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") []))), 
-                        JR.exec (JR.postUpdate (JR.local "index") (\jwN66606 -> (JR.setLocal "index" "I" (JR.lit jwN66606))) JR.increment) ]), 
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN66615 -> (JR.setLocal "index" "I" (JR.lit jwN66615))) JR.increment) ]), 
                     JR.exec (JR.setField "lastIndex" "I" JR.this (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") [])), 
                     JR.return (JR.local "highScores") ])
         (jregister jheap)
@@ -98,7 +98,7 @@ jm_isAnyHighScores_0 jheap jthis jargs =
                         JR.return (JR.bool False) ]) identity, 
                     JR.declare "anyScores" "Z" (JR.bool False), 
                     JR.declare "highScores" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "highScoresArrayP")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67118 -> (JR.setLocal "index" "I" (JR.lit jwN67118))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "highScoresArrayP")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67127 -> (JR.setLocal "index" "I" (JR.lit jwN67127))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.setLocal "highScores" "" (JR.aget (JR.thisField "highScoresArrayP") (JR.local "index"))), 
                         JR.ifElse (JR.map2 JR.greater (JR.invoke "getTotal_0" (JR.local "highScores") []) (JR.int 0)) (JR.run [ 
                             JR.exec (JR.setLocal "anyScores" "Z" (JR.bool True)) ]) identity ]) ], 

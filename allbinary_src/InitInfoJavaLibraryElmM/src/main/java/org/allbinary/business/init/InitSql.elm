@@ -163,7 +163,7 @@ jm_getRow_1 jheap jthis jargs =
                         JR.declare "set" "" (JR.invoke "keySet_0" (JR.local "keysAndValues") []), 
                         JR.declare "keyArray" "" (JR.invoke "toArray_0" (JR.local "set") []), 
                         JR.declare "size" "I" (JR.alength (JR.local "keyArray")), 
-                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN71373 -> (JR.setLocal "i" "I" (JR.lit jwN71373))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN71397 -> (JR.setLocal "i" "I" (JR.lit jwN71397))) JR.increment) ]) (JR.run [ 
                             JR.declare "key" "" (JR.aget (JR.local "keyArray") (JR.local "i")), 
                             JR.declare "value" "" (JR.withState JR.newString [ (JR.invoke "get_1" (JR.local "keysAndValues") [ (JR.local "key") ]) ]), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "key") ]), 
@@ -180,7 +180,7 @@ jm_getRow_1 jheap jthis jargs =
                         JR.while (JR.invoke "next_0" (JR.local "rset") []) (JR.run [ 
                             JR.exec (JR.setLocal "result" "" (JR.invoke "createHashMap_0" (JR.thisField "stdUtil") [])), 
                             JR.declare "columnCount" "I" (JR.invoke "getColumnCount_0" (JR.local "resultSetMetaData") []), 
-                            JR.run [ JR.declare "index" "I" (JR.int 1), JR.for (JR.map2 JR.lessEquals (JR.local "index") (JR.local "columnCount")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71952 -> (JR.setLocal "index" "I" (JR.lit jwN71952))) JR.increment) ]) (JR.run [ 
+                            JR.run [ JR.declare "index" "I" (JR.int 1), JR.for (JR.map2 JR.lessEquals (JR.local "index") (JR.local "columnCount")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71976 -> (JR.setLocal "index" "I" (JR.lit jwN71976))) JR.increment) ]) (JR.run [ 
                                 JR.declare "columnName" "" (JR.invoke "getColumnName_1" (JR.local "resultSetMetaData") [ (JR.local "index") ]), 
                                 JR.declare "field" "" (JR.invoke "getString_1" (JR.local "rset") [ (JR.local "columnName") ]), 
                                 JR.exec (JR.invoke "put_2" (JR.local "result") [ (JR.local "columnName"), (JR.local "field") ]) ]) ], 
@@ -209,7 +209,7 @@ jm_updateWhere_3 jheap jthis jargs =
                     JR.try (JR.run [ 
                         JR.declare "columnArray" "" (JR.invoke "toArray_0" (JR.invoke "keySet_0" (JR.local "updatedKeyValuePairs") []) []), 
                         JR.declare "size" "I" (JR.alength (JR.local "columnArray")), 
-                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN73275 -> (JR.setLocal "i" "I" (JR.lit jwN73275))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN73299 -> (JR.setLocal "i" "I" (JR.lit jwN73299))) JR.increment) ]) (JR.run [ 
                             JR.declare "columnName" "" (JR.invoke "toString_0" (JR.aget (JR.local "columnArray") (JR.local "i")) []), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SPACE" (JR.thisField "commonSeps")) ]), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "columnName") ]), 
@@ -247,7 +247,7 @@ jm_insert_1 jheap jthis jargs =
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "VALUES" (JR.thisField "sqlStrings")) ]), 
                     JR.try (JR.run [ 
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "values") []), 
-                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.map2 JR.sub (JR.local "size") (JR.int 1))) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN74385 -> (JR.setLocal "i" "I" (JR.lit jwN74385))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.map2 JR.sub (JR.local "size") (JR.int 1))) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN74409 -> (JR.setLocal "i" "I" (JR.lit jwN74409))) JR.increment) ]) (JR.run [ 
                             JR.declare "value" "" (JR.invoke "getValue_1" JR.this [ (JR.invoke "get_1" (JR.local "values") [ (JR.local "i") ]) ]), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "value") ]), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.field "SINGLE_QUOTE_COMMA_SEP" (JR.thisField "sqlStrings")) ]) ]) ], 

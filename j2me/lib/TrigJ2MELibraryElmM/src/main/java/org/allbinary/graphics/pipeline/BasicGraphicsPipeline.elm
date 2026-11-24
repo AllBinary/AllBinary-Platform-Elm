@@ -93,7 +93,7 @@ jm_translate_2 jheap jthis jargs =
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "pointBasicArrayList") []), 
                     JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
                     JR.declare "secondPoint" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67039 -> (JR.setLocal "index" "I" (JR.lit jwN67039))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67049 -> (JR.setLocal "index" "I" (JR.lit jwN67049))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "secondPoint" "" (JR.aget (JR.field "objectArray" (JR.thisField "pointBasicArrayList")) (JR.local "index"))), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getX_0" (JR.local "secondPoint") []) (JR.int 1000)) (JR.run [ 
                             JR.exec (JR.invoke "add_1" (JR.local "newBasicArrayList") [ (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.map2 JR.add (JR.invoke "getX_0" (JR.local "secondPoint") []) (JR.local "x")), (JR.map2 JR.add (JR.invoke "getY_0" (JR.local "secondPoint") []) (JR.local "y")) ]) ]) ]) (JR.run [ 
@@ -128,7 +128,7 @@ jm_rotate_1 jheap jthis jargs =
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "pointBasicArrayList") []), 
                     JR.declare "sin" "J" (JR.lit (JR.defaultOf "J")), 
                     JR.declare "cos" "J" (JR.lit (JR.defaultOf "J")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68201 -> (JR.setLocal "index" "I" (JR.lit jwN68201))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68211 -> (JR.setLocal "index" "I" (JR.lit jwN68211))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "secondPoint" "" (JR.aget (JR.field "objectArray" (JR.thisField "pointBasicArrayList")) (JR.local "index"))), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getX_0" (JR.local "secondPoint") []) (JR.int 1000)) (JR.run [ 
                             JR.exec (JR.setLocal "sin" "J" (JR.invoke "sin_1" (JR.thisField "noDecimalTrigTable") [ (JR.local "angle") ])), 
@@ -156,7 +156,7 @@ jm_mirror_1 jheap jthis jargs =
                     JR.declare "newX" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "pointBasicArrayList") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69055 -> (JR.setLocal "index" "I" (JR.lit jwN69055))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69065 -> (JR.setLocal "index" "I" (JR.lit jwN69065))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "secondPoint" "" (JR.aget (JR.field "objectArray" (JR.thisField "pointBasicArrayList")) (JR.local "index"))), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getX_0" (JR.local "secondPoint") []) (JR.int 1000)) (JR.run [ 
                             JR.exec (JR.setLocal "newX" "I" (JR.int 0)), 

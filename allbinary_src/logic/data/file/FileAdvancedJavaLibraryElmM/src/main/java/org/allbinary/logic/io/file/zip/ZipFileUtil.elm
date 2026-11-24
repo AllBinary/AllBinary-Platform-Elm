@@ -100,7 +100,7 @@ jm_create_2 jheap jthis jargs =
                         JR.declare "fileInputStream" "" (JR.lit (JR.defaultOf "")), 
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "fileBasicArrayList") []), 
                         JR.declare "current" "I" (JR.int 0), 
-                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN69612 -> (JR.setLocal "i" "I" (JR.lit jwN69612))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN69630 -> (JR.setLocal "i" "I" (JR.lit jwN69630))) JR.increment) ]) (JR.run [ 
                             JR.declare "file" "" (JR.invoke "get_1" (JR.local "fileBasicArrayList") [ (JR.local "i") ]), 
                             JR.ifElse (JR.invoke "isDirectory_0" (JR.local "file") []) identity (JR.run [ 
                             JR.ifElse (JR.invoke "isFile_0" (JR.local "file") []) (JR.run [ 
@@ -116,7 +116,7 @@ jm_create_2 jheap jthis jargs =
                                     JR.exec (JR.invoke "closeEntry_0" (JR.local "outputStream") []), 
                                     JR.exec (JR.invoke "close_1" (JR.local "streamUtil") [ (JR.local "fileInputStream") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
                                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "Skipping File (Probably Local): ") (JR.invoke "getPath_0" (JR.local "file") [])), JR.this, (JR.str "create()") ]) ]) ) ] identity ]) identity ]), 
-                            JR.exec (JR.postUpdate (JR.local "current") (\jwN69547 -> (JR.setLocal "current" "I" (JR.lit jwN69547))) JR.increment) ]) ], 
+                            JR.exec (JR.postUpdate (JR.local "current") (\jwN69565 -> (JR.setLocal "current" "I" (JR.lit jwN69565))) JR.increment) ]) ], 
                         JR.exec (JR.invoke "close_1" (JR.local "streamUtil") [ (JR.local "outputStream") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
                         JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.str "create"), (JR.local "e") ]) ]) ) ] identity ])
         (jregister jheap)

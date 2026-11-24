@@ -75,7 +75,7 @@ jm_run_0 jheap jthis jargs =
                         JR.declare "isHTML" "Z" (JR.callStatic J2MEUtil.jm_isHTML_0 []), 
                         JR.ifElse (JR.map JR.not_ (JR.local "isHTML")) (JR.run [ 
                             JR.while (JR.map JR.not_ (JR.field "hasPainted" (JR.local "highScoresCanvas"))) identity, 
-                            JR.exec (JR.andThen (JR.local "highScoresCanvas") (\jtN70825 -> (JR.setField "hasPainted" "Z" (JR.lit jtN70825) (JR.bool False)))) ]) identity, 
+                            JR.exec (JR.andThen (JR.local "highScoresCanvas") (\jtN70894 -> (JR.setField "hasPainted" "Z" (JR.lit jtN70894) (JR.bool False)))) ]) identity, 
                         JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
                         JR.declare "systemWrapper" "" (JR.callStatic ABSystemWrapper.jm_getInstance_0 []), 
                         JR.declare "currentTimeMillis" "J" (JR.invoke "currentTimeMillis_0" (JR.local "systemWrapper") []), 

@@ -71,7 +71,7 @@ jm_processAt_3 jheap jthis jargs =
                         JR.declare "size" "I" (JR.invoke "getSize_0" (JR.local "layerManager") []), 
                         JR.declare "collidableInterfaceCompositeInterface2" "" (JR.lit (JR.defaultOf "")), 
                         JR.declare "collidableBase2" "" (JR.lit (JR.defaultOf "")), 
-                        JR.run [ JR.declare "index" "I" (JR.map2 JR.add (JR.local "startIndex") (JR.int 1)), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68999 -> (JR.setLocal "index" "I" (JR.lit jwN68999))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.map2 JR.add (JR.local "startIndex") (JR.int 1)), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69045 -> (JR.setLocal "index" "I" (JR.lit jwN69045))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "collidableInterfaceCompositeInterface2" "" (JR.invoke "getLayerAt_1" (JR.local "layerManager") [ (JR.local "index") ])), 
                             JR.exec (JR.setLocal "collidableBase2" "" (JR.invoke "getCollidableInferface_0" (JR.local "collidableInterfaceCompositeInterface2") [])), 
                             JR.ifElse (JR.and (JR.invoke "isCollidable_1" (JR.local "collidableBase2") [ (JR.local "collidableInterfaceCompositeInterface") ]) (JR.invoke "isCollision_2" (JR.local "collidableBase") [ (JR.local "collidableInterfaceCompositeInterface"), (JR.local "collidableInterfaceCompositeInterface2") ])) (JR.run [ 

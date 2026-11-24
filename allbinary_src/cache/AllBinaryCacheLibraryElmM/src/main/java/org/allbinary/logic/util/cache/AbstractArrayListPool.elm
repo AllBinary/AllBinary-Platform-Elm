@@ -99,7 +99,7 @@ jm_addArray_1 : JR.Method
 jm_addArray_1 jheap jthis jargs =
     JR.method [ ( "cacheableInterfaces", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "cacheableInterfaces"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66986 -> (JR.setLocal "index" "I" (JR.lit jwN66986))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "cacheableInterfaces"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66996 -> (JR.setLocal "index" "I" (JR.lit jwN66996))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "add_1" (JR.thisField "buffers") [ (JR.aget (JR.local "cacheableInterfaces") (JR.local "index")) ]) ]) ] ])
         (jregister jheap)
         jthis

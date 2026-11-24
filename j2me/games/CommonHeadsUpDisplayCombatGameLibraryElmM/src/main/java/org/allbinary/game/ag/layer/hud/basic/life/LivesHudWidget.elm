@@ -78,8 +78,8 @@ jm_updateMeasurement_1 jheap jthis jargs =
         (JR.run [ 
                     JR.exec (JR.callVia BasicHud.jvtable "updateMeasurement_1" JR.this [ (JR.local "graphics") ]), 
                     JR.declare "maxLives" "I" (JR.cast "I" (JR.invoke "getMaxlives_0" (JR.invoke "getLifeInterface_0" JR.this []) [])), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "maxLives")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68635 -> (JR.setLocal "index" "I" (JR.lit jwN68635))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "xArray") (\jaN68514 -> JR.andThen (JR.local "index") (\jiN68514 -> (JR.aset (JR.lit jaN68514) (JR.lit jiN68514) (JR.map2 JR.add (JR.invoke "getX_0" JR.this []) ((JR.map2 JR.mul (JR.local "index") (JR.int 16)))))))) ]) ] ])
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "maxLives")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68657 -> (JR.setLocal "index" "I" (JR.lit jwN68657))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "xArray") (\jaN68536 -> JR.andThen (JR.local "index") (\jiN68536 -> (JR.aset (JR.lit jaN68536) (JR.lit jiN68536) (JR.map2 JR.add (JR.invoke "getX_0" JR.this []) ((JR.map2 JR.mul (JR.local "index") (JR.int 16)))))))) ]) ] ])
         (jregister jheap)
         jthis
         jargs
@@ -112,7 +112,7 @@ jm_paint_1 jheap jthis jargs =
     JR.method [ ( "graphics", "" ) ] ""
         (JR.run [ 
                     JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.cast "I" (JR.invoke "get_0" (JR.invoke "getLifeInterface_0" JR.this []) [])), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69051 -> (JR.setLocal "index" "I" (JR.lit jwN69051))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.cast "I" (JR.invoke "get_0" (JR.invoke "getLifeInterface_0" JR.this []) [])), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69073 -> (JR.setLocal "index" "I" (JR.lit jwN69073))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "paintXY_3" (JR.thisField "animationInterface") [ (JR.local "graphics"), (JR.aget (JR.thisField "xArray") (JR.local "index")), (JR.invoke "getY_0" JR.this []) ]) ]) ] ])
         (jregister jheap)
         jthis

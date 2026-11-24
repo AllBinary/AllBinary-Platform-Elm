@@ -92,7 +92,7 @@ jm_deleteAll_1 jheap jthis jargs =
     JR.method [ ( "abeClientInformation", "" ) ] ""
         (JR.run [ 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "idList") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67950 -> (JR.setLocal "index" "I" (JR.lit jwN67950))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67967 -> (JR.setLocal "index" "I" (JR.lit jwN67967))) JR.increment) ]) (JR.run [ 
                         JR.declare "integer" "" (JR.aget (JR.field "objectArray" (JR.thisField "idList")) (JR.local "index")), 
                         JR.exec (JR.invoke "delete_2" JR.this [ (JR.local "abeClientInformation"), (JR.invoke "intValue_0" (JR.local "integer") []) ]) ]) ], 
                     JR.exec (JR.invoke "clear_0" JR.this []) ])

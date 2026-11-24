@@ -118,7 +118,7 @@ jm_deleteAll_2 jheap jthis jargs =
     JR.method [ ( "abeClientInformation", "" ), ( "gameInfo", "" ) ] ""
         (JR.run [ 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "nameBasicArrayList") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68936 -> (JR.setLocal "index" "I" (JR.lit jwN68936))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68963 -> (JR.setLocal "index" "I" (JR.lit jwN68963))) JR.increment) ]) (JR.run [ 
                         JR.declare "integer" "" (JR.aget (JR.field "objectArray" (JR.thisField "nameBasicArrayList")) (JR.local "index")), 
                         JR.exec (JR.invoke "delete_3" JR.this [ (JR.local "abeClientInformation"), (JR.local "gameInfo"), (JR.invoke "intValue_0" (JR.local "integer") []) ]) ]) ], 
                     JR.exec (JR.invoke "clear_0" JR.this []) ])

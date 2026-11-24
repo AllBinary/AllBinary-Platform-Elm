@@ -88,7 +88,7 @@ jm_fetchHighScoresPreload_3 jheap jthis jargs =
     JR.method [ ( "gameInfo", "" ), ( "highScoresResultsListener", "" ), ( "preload", "Z" ) ] ""
         (JR.run [ 
                     JR.try (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "highScoresArray") (\jaN68318 -> JR.andThen (JR.int 0) (\jiN68318 -> (JR.aset (JR.lit jaN68318) (JR.lit jiN68318) (JR.callStatic RecordStoreHighScores.jm_getInstance_6 [ (JR.thisField "abeClientInformation"), (JR.local "gameInfo"), (JR.thisField "TOP"), (JR.thisField "PERSONAL_HIGH_SCORES"), (JR.thisField "SCORES"), (JR.new ScoreComparator.jnew_1 [ (JR.bool True) ]) ]))))), 
+                        JR.exec (JR.andThen (JR.thisField "highScoresArray") (\jaN68346 -> JR.andThen (JR.int 0) (\jiN68346 -> (JR.aset (JR.lit jaN68346) (JR.lit jiN68346) (JR.callStatic RecordStoreHighScores.jm_getInstance_6 [ (JR.thisField "abeClientInformation"), (JR.local "gameInfo"), (JR.thisField "TOP"), (JR.thisField "PERSONAL_HIGH_SCORES"), (JR.thisField "SCORES"), (JR.new ScoreComparator.jnew_1 [ (JR.bool True) ]) ]))))), 
                         JR.exec (JR.invoke "setHighScoresArray_1" (JR.local "highScoresResultsListener") [ (JR.thisField "highScoresArray") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
                         JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.thisField "FETCH"), (JR.local "e") ]) ]) ) ] identity ])
         (jregister jheap)

@@ -156,14 +156,14 @@ jm_loadFileAsListReturnLine_4 jheap jthis jargs =
                     JR.while (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ 
                         JR.exec (JR.setLocal "startIndex" "I" (JR.local "index")), 
                         JR.while (JR.and (JR.map2 JR.less (JR.local "index") (JR.map2 JR.sub (JR.local "size") (JR.int 1))) (JR.map2 JR.notEquals (JR.aget (JR.local "byteArray") (JR.local "index")) (JR.cast "B" (JR.char 10)))) (JR.run [ 
-                            JR.exec (JR.postUpdate (JR.local "index") (\jwN68527 -> (JR.setLocal "index" "I" (JR.lit jwN68527))) JR.increment) ]), 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN68541 -> (JR.setLocal "index" "I" (JR.lit jwN68541))) JR.increment) ]), 
                         JR.ifElse (JR.map2 JR.equals (JR.local "includeReturnLine") (JR.int 0)) (JR.run [ 
                             JR.ifElse (JR.and (JR.map2 JR.greater (JR.local "index") (JR.int 0)) (JR.map2 JR.equals (JR.aget (JR.local "byteArray") (JR.map2 JR.sub (JR.local "index") (JR.int 1))) (JR.cast "B" (JR.char 13)))) (JR.run [ 
                                 JR.exec (JR.setLocal "returnLine" "I" (JR.int 1)) ]) (JR.run [ 
                                 JR.exec (JR.setLocal "returnLine" "I" (JR.int 0)) ]) ]) identity, 
                         JR.declare "s" "" (JR.withState JR.newString [ (JR.local "byteArray"), (JR.local "startIndex"), ((JR.map2 JR.sub (JR.map2 JR.sub (JR.map2 JR.add (JR.local "index") (JR.local "includeReturnLine")) (JR.local "returnLine")) (JR.local "startIndex"))) ]), 
                         JR.exec (JR.invoke "add_1" (JR.local "stringList") [ (JR.local "s") ]), 
-                        JR.exec (JR.postUpdate (JR.local "index") (\jwN68922 -> (JR.setLocal "index" "I" (JR.lit jwN68922))) JR.increment) ]), 
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN68936 -> (JR.setLocal "index" "I" (JR.lit jwN68936))) JR.increment) ]), 
                     JR.return (JR.local "stringList") ])
         (jregister jheap)
         jthis
@@ -176,7 +176,7 @@ jm_createStringFromArrayOfStrings_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "stringMaker" "" (JR.new StringMaker.jnew_0 []), 
                     JR.declare "size" "I" (JR.alength (JR.local "stringArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69296 -> (JR.setLocal "index" "I" (JR.lit jwN69296))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69310 -> (JR.setLocal "index" "I" (JR.lit jwN69310))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.aget (JR.local "stringArray") (JR.local "index")) ]) ]) ], 
                     JR.return (JR.invoke "toString_0" (JR.local "stringMaker") []) ])
         (jregister jheap)

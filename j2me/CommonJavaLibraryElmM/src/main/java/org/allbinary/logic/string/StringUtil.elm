@@ -109,9 +109,9 @@ jm_count_2 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "count" "I" (JR.int 0), 
                     JR.declare "size" "I" (JR.invoke "length_0" (JR.local "string") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66607 -> (JR.setLocal "index" "I" (JR.lit jwN66607))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66608 -> (JR.setLocal "index" "I" (JR.lit jwN66608))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "charAt_1" (JR.local "string") [ (JR.local "index") ]) (JR.local "aChar")) (JR.run [ 
-                            JR.exec (JR.postUpdate (JR.local "count") (\jwN66539 -> (JR.setLocal "count" "I" (JR.lit jwN66539))) JR.increment) ]) identity ]) ], 
+                            JR.exec (JR.postUpdate (JR.local "count") (\jwN66540 -> (JR.setLocal "count" "I" (JR.lit jwN66540))) JR.increment) ]) identity ]) ], 
                     JR.return (JR.local "count") ])
         (jregister jheap)
         jthis

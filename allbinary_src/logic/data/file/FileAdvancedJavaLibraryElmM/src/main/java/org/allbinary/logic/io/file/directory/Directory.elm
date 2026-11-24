@@ -123,7 +123,7 @@ jm_search_3 jheap jthis jargs =
                         JR.ifElse (JR.map2 JR.equals (JR.local "files") JR.null) (JR.run [ 
                             JR.return (JR.local "fileList") ]) identity, 
                         JR.declare "size" "I" (JR.alength (JR.local "files")), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69016 -> (JR.setLocal "index" "I" (JR.lit jwN69016))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69030 -> (JR.setLocal "index" "I" (JR.lit jwN69030))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.invoke "add_1" (JR.local "fileList") [ (JR.aget (JR.local "files") (JR.local "index")) ]), 
                             JR.ifElse (JR.local "isRecursiveSearch") (JR.run [ 
                                 JR.exec (JR.setLocal "recursiveFileList" "" (JR.invoke "search_3" JR.this [ (JR.local "fileFilter"), (JR.aget (JR.local "files") (JR.local "index")), (JR.local "isRecursiveSearch") ])), 

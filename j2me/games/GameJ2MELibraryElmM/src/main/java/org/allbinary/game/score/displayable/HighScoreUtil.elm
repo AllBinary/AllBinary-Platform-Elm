@@ -117,7 +117,7 @@ jm_saveHighScore_0 jheap jthis jargs =
                         JR.returnVoid ]) identity, 
                     JR.declare "highScores" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "highScoresAsString" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70576 -> (JR.setLocal "index" "I" (JR.lit jwN70576))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70608 -> (JR.setLocal "index" "I" (JR.lit jwN70608))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "highScores" "" (JR.aget (JR.thisField "highScoresArray") (JR.local "index"))), 
                         JR.exec (JR.invoke "addHighScore_1" (JR.local "highScores") [ (JR.thisField "highScore") ]), 
                         JR.exec (JR.setLocal "highScoresAsString" "" (JR.invoke "toString_0" (JR.local "highScores") [])), 

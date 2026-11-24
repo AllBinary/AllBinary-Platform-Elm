@@ -102,7 +102,7 @@ jm_write_0 jheap jthis jargs =
                             JR.ifElse (JR.map2 JR.equals (JR.local "b") (JR.map JR.neg (JR.int 1))) (JR.run [ 
                                 JR.break ]) identity, 
                             JR.exec (JR.invoke "write_1" (JR.local "fileOutputStream") [ (JR.local "b") ]), 
-                            JR.exec (JR.postUpdate (JR.local "index") (\jwN68338 -> (JR.setLocal "index" "I" (JR.lit jwN68338))) JR.increment) ]), 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN68354 -> (JR.setLocal "index" "I" (JR.lit jwN68354))) JR.increment) ]), 
                         JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.concat (JR.str "Wrote Bytes: ") (JR.local "index")), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")) ]), 
                         JR.exec (JR.invoke "flush_0" (JR.local "fileOutputStream") []) ]) [ ( [ "Exception" ], "e", (JR.run [ 
                         JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")), (JR.local "e") ]) ]) ) ] (JR.run [ 

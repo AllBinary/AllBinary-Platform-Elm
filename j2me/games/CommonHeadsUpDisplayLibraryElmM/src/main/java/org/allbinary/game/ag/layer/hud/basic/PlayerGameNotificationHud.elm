@@ -189,7 +189,7 @@ jm_setAndRemoveProcess_0 jheap jthis jargs =
                     JR.declare "iTime" "I" (JR.map2 JR.mul (JR.invoke "intValue_0" (JR.local "time") []) (JR.int 1000)), 
                     JR.ifElse (JR.map2 JR.equals (JR.local "iTime") (JR.int 0)) (JR.run [ 
                         JR.exec (JR.setLocal "iTime" "I" (JR.int 500)) ]) identity, 
-                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN72845 -> (JR.setField "delay" "I" (JR.lit jtN72845) (JR.local "iTime")))), 
+                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN72891 -> (JR.setField "delay" "I" (JR.lit jtN72891) (JR.local "iTime")))), 
                     JR.exec (JR.invoke "setBasicColorP_1" JR.this [ (JR.invoke "removeAt_1" (JR.field "colorList" (JR.thisField "gameNotification")) [ (JR.int 0) ]) ]) ])
         (jregister jheap)
         jthis
@@ -217,7 +217,7 @@ jm_setNextUnremoveableProcess_0 jheap jthis jargs =
                     JR.exec (JR.invoke "setX_1" (JR.thisField "point") [ (JR.invoke "getX_0" JR.this []) ]), 
                     JR.exec (JR.invoke "setY_1" (JR.thisField "point") [ (JR.invoke "getY_0" JR.this []) ]), 
                     JR.declare "time" "" (JR.aget (JR.field "objectArray" (JR.field "timeList" (JR.thisField "permanentGameNotification"))) (JR.local "index")), 
-                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN73432 -> (JR.setField "delay" "I" (JR.lit jtN73432) (JR.map2 JR.mul (JR.invoke "intValue_0" (JR.local "time") []) (JR.int 1000))))), 
+                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN73478 -> (JR.setField "delay" "I" (JR.lit jtN73478) (JR.map2 JR.mul (JR.invoke "intValue_0" (JR.local "time") []) (JR.int 1000))))), 
                     JR.exec (JR.invoke "setBasicColorP_1" JR.this [ (JR.aget (JR.field "objectArray" (JR.field "colorList" (JR.thisField "permanentGameNotification"))) (JR.local "index")) ]), 
                     JR.exec (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []) ])
         (jregister jheap)

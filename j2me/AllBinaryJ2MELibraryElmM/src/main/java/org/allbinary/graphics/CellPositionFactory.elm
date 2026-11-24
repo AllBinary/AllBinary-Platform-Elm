@@ -98,8 +98,8 @@ jm_init_2 jheap jthis jargs =
                     JR.exec (JR.setField "cellPositionArray" "" JR.this (JR.newArray "" [ (JR.local "columns"), (JR.local "rows") ])), 
                     JR.exec (JR.setField "columns" "I" JR.this (JR.local "columns")), 
                     JR.exec (JR.setField "rows" "I" JR.this (JR.local "rows")), 
-                    JR.run [ JR.declare "column" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "column") (JR.local "columns")) (JR.run [ JR.exec (JR.postUpdate (JR.local "column") (\jwN67323 -> (JR.setLocal "column" "I" (JR.lit jwN67323))) JR.increment) ]) (JR.run [ 
-                        JR.run [ JR.declare "row" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "row") (JR.local "rows")) (JR.run [ JR.exec (JR.postUpdate (JR.local "row") (\jwN67257 -> (JR.setLocal "row" "I" (JR.lit jwN67257))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "column" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "column") (JR.local "columns")) (JR.run [ JR.exec (JR.postUpdate (JR.local "column") (\jwN67330 -> (JR.setLocal "column" "I" (JR.lit jwN67330))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "row" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "row") (JR.local "rows")) (JR.run [ JR.exec (JR.postUpdate (JR.local "row") (\jwN67264 -> (JR.setLocal "row" "I" (JR.lit jwN67264))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.invoke "createInstance_2" JR.this [ (JR.local "column"), (JR.local "row") ]) ]) ] ]) ] ])
         (jregister jheap)
         jthis
@@ -127,7 +127,7 @@ jm_createInstance_2 jheap jthis jargs =
                     JR.declare "cellPositionCanBeNull" "" (JR.aget (JR.aget (JR.thisField "cellPositionArray") (JR.local "i_column")) (JR.local "i_row")), 
                     JR.ifElse (JR.map2 JR.equals (JR.local "cellPositionCanBeNull") JR.null) (JR.run [ 
                         JR.exec (JR.setLocal "cellPositionCanBeNull" "" (JR.new CellPosition.jnew_4 [ (JR.local "i_column"), (JR.local "i_row"), (JR.thisField "columns"), (JR.thisField "rows") ])), 
-                        JR.exec (JR.andThen (JR.aget (JR.thisField "cellPositionArray") (JR.local "i_column")) (\jaN67971 -> JR.andThen (JR.local "i_row") (\jiN67971 -> (JR.aset (JR.lit jaN67971) (JR.lit jiN67971) (JR.local "cellPositionCanBeNull"))))) ]) identity, 
+                        JR.exec (JR.andThen (JR.aget (JR.thisField "cellPositionArray") (JR.local "i_column")) (\jaN67978 -> JR.andThen (JR.local "i_row") (\jiN67978 -> (JR.aset (JR.lit jaN67978) (JR.lit jiN67978) (JR.local "cellPositionCanBeNull"))))) ]) identity, 
                     JR.return (JR.local "cellPositionCanBeNull") ])
         (jregister jheap)
         jthis

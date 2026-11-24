@@ -255,7 +255,7 @@ jm_update_1 jheap jthis jargs =
         (JR.run [ 
                     JR.ifElse (JR.invoke "equals_1" (JR.invoke "getType_0" (JR.local "event") []) [ (JR.field "STOP" (JR.namedStatic "LineEvent.jstatic_Type")) ]) (JR.run [ 
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "listenersList") []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70798 -> (JR.setLocal "index" "I" (JR.lit jwN70798))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70819 -> (JR.setLocal "index" "I" (JR.lit jwN70819))) JR.increment) ]) (JR.run [ 
                             JR.declare "listener" "" (JR.invoke "get_1" (JR.thisField "listenersList") [ (JR.local "size") ]), 
                             JR.exec (JR.invoke "playerUpdate_3" (JR.local "listener") [ JR.this, PlayerListener.jstatic_END_OF_MEDIA, JR.null ]) ]) ] ]) identity ])
         (jregister jheap)

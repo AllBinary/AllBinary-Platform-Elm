@@ -64,7 +64,7 @@ jm_processAI_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "artificialIntelligenceInterfaceArray" "" (JR.invoke "getArtificialIntelligenceInterface_0" JR.this []), 
                     JR.declare "size" "I" (JR.alength (JR.local "artificialIntelligenceInterfaceArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68467 -> (JR.setLocal "index" "I" (JR.lit jwN68467))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68506 -> (JR.setLocal "index" "I" (JR.lit jwN68506))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "setIndex_1" JR.this [ (JR.local "index") ]), 
                         JR.exec (JR.callVia SequenceAI.jvtable "processAI_1" JR.this [ (JR.local "allBinaryLayerManager") ]) ]) ] ])
         (jregister jheap)

@@ -316,7 +316,7 @@ jm_initCommands_1 jheap jthis jargs =
                     JR.exec (JR.invoke "removeAllCommands_0" JR.this []), 
                     JR.declare "commandArray" "" (JR.invoke "getCustomCommands_0" JR.this []), 
                     JR.declare "size" "I" (JR.alength (JR.local "commandArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN85920 -> (JR.setLocal "index" "I" (JR.lit jwN85920))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN86144 -> (JR.setLocal "index" "I" (JR.lit jwN86144))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "addCommand_1" JR.this [ (JR.aget (JR.local "commandArray") (JR.local "index")) ]) ]) ], 
                     JR.exec (JR.callStatic CustomGameMenuUtil.jm_add_1 [ JR.this ]), 
                     JR.exec (JR.invoke "setCommandListener_1" JR.this [ (JR.local "cmdListener") ]) ])

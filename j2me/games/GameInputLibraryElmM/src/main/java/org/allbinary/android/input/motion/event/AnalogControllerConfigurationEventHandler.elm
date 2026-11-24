@@ -120,7 +120,7 @@ jm_fireEvent_1 : JR.Method
 jm_fireEvent_1 jheap jthis jargs =
     JR.method [ ( "eventObject", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67477 -> (JR.setLocal "index" "I" (JR.lit jwN67477))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67491 -> (JR.setLocal "index" "I" (JR.lit jwN67491))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.try (JR.run [ 
                             JR.declare "playerGameInput" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")), 
                             JR.exec (JR.invoke "onAnalogControllerConfigurationEvent_1" (JR.local "playerGameInput") [ (JR.local "eventObject") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 

@@ -102,7 +102,7 @@ jm_getWhithoutDashesAndSkipNumberOnlyTokens_1 jheap jthis jargs =
                             JR.declare "keywords" "" (JR.invoke "get_1" (JR.local "stringVector") [ (JR.local "index") ]), 
                             JR.declare "tokenizer" "" (JR.new Tokenizer.jnew_1 [ (JR.field "COMMA" (JR.local "commonSeps")) ]), 
                             JR.declare "keywordVector" "" (JR.invoke "getTokensFromString_2" (JR.local "tokenizer") [ (JR.local "keywords"), (JR.new BasicArrayListD.jnew_0 []) ]), 
-                            JR.run [ JR.declare "forIndex" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "forIndex") (JR.invoke "size_0" (JR.local "keywordVector") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "forIndex") (\jwN68578 -> (JR.setLocal "forIndex" "I" (JR.lit jwN68578))) JR.increment) ]) (JR.run [ 
+                            JR.run [ JR.declare "forIndex" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "forIndex") (JR.invoke "size_0" (JR.local "keywordVector") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "forIndex") (\jwN68591 -> (JR.setLocal "forIndex" "I" (JR.lit jwN68591))) JR.increment) ]) (JR.run [ 
                                 JR.declare "cleanString" "" (JR.invoke "get_1" (JR.local "keywordVector") [ (JR.local "forIndex") ]), 
                                 JR.exec (JR.setLocal "cleanString" "" (JR.invoke "trim_0" (JR.local "cleanString") [])), 
                                 JR.ifElse (JR.map2 JR.notEquals (JR.invoke "indexOf_1" (JR.local "cleanString") [ (JR.char 45) ]) (JR.map JR.neg (JR.int 1))) (JR.run [ 
@@ -111,11 +111,11 @@ jm_getWhithoutDashesAndSkipNumberOnlyTokens_1 jheap jthis jargs =
                                 JR.ifElse (JR.map2 JR.notEquals (JR.invoke "indexOf_1" (JR.local "cleanString") [ (JR.char 32) ]) (JR.map JR.neg (JR.int 1))) (JR.run [ 
                                     JR.declare "spaceTokenizer" "" (JR.new Tokenizer.jnew_1 [ (JR.field "SPACE" (JR.local "commonSeps")) ]), 
                                     JR.declare "subKeywordVector" "" (JR.invoke "getTokensFromString_2" (JR.local "spaceTokenizer") [ (JR.local "cleanString"), (JR.new BasicArrayListD.jnew_0 []) ]), 
-                                    JR.run [ JR.declare "spaceIndex" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "spaceIndex") (JR.invoke "size_0" (JR.local "subKeywordVector") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "spaceIndex") (\jwN68501 -> (JR.setLocal "spaceIndex" "I" (JR.lit jwN68501))) JR.increment) ]) (JR.run [ 
+                                    JR.run [ JR.declare "spaceIndex" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "spaceIndex") (JR.invoke "size_0" (JR.local "subKeywordVector") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "spaceIndex") (\jwN68514 -> (JR.setLocal "spaceIndex" "I" (JR.lit jwN68514))) JR.increment) ]) (JR.run [ 
                                         JR.declare "subCleanString" "" (JR.invoke "get_1" (JR.local "subKeywordVector") [ (JR.local "spaceIndex") ]), 
                                         JR.ifElse (JR.and (JR.map JR.not_ (JR.invoke "isSpecialCharacter_1" JR.this [ (JR.local "subCleanString") ])) (JR.map JR.not_ (JR.invoke "numberOnly_1" JR.this [ (JR.local "subCleanString") ]))) (JR.run [ 
                                             JR.exec (JR.invoke "add_1" (JR.local "hashSet") [ (JR.local "subCleanString") ]) ]) identity ]) ] ]) identity ]) ], 
-                            JR.exec (JR.postUpdate (JR.local "index") (\jwN68596 -> (JR.setLocal "index" "I" (JR.lit jwN68596))) JR.increment) ]), 
+                            JR.exec (JR.postUpdate (JR.local "index") (\jwN68609 -> (JR.setLocal "index" "I" (JR.lit jwN68609))) JR.increment) ]), 
                         JR.return (JR.local "hashSet") ]) [ ( [ "Exception" ], "e", (JR.run [ 
                         JR.throw (JR.local "e") ]) ) ] identity ])
         (jregister jheap)
@@ -140,7 +140,7 @@ jm_isSpecialCharacter_1 : JR.Method
 jm_isSpecialCharacter_1 jheap jthis jargs =
     JR.method [ ( "subCleaningString", "" ) ] "Z"
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.invoke "size_0" (JR.thisField "specialCharacters") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69055 -> (JR.setLocal "index" "I" (JR.lit jwN69055))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.invoke "size_0" (JR.thisField "specialCharacters") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69068 -> (JR.setLocal "index" "I" (JR.lit jwN69068))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.local "subCleaningString") [ (JR.invoke "get_1" (JR.thisField "specialCharacters") [ (JR.local "index") ]) ]) (JR.int 0)) (JR.run [ 
                         JR.return (JR.bool True) ]) identity ]) ], 
                     JR.return (JR.bool False) ])

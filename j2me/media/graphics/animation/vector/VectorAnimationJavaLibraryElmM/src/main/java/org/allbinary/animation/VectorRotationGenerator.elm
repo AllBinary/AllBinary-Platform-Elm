@@ -107,7 +107,7 @@ jm_getInstanceFrames_4 jheap jthis jargs =
                         JR.declare "pointBasicArrayList" "" (JR.new BasicArrayListS.jnew_1 [ (JR.alength (JR.local "points")) ]), 
                         JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
                         JR.declare "size" "I" (JR.alength (JR.local "points")), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68154 -> (JR.setLocal "index" "I" (JR.lit jwN68154))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68172 -> (JR.setLocal "index" "I" (JR.lit jwN68172))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.invoke "add_1" (JR.local "pointBasicArrayList") [ (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.int 0)), (JR.aget (JR.aget (JR.local "points") (JR.local "index")) (JR.int 1)) ]) ]) ]) ], 
                         JR.declare "index" "I" (JR.int 0), 
                         JR.while (JR.map2 JR.less (JR.local "index") (JR.cast "I" (JR.local "totalAngle"))) (JR.run [ 

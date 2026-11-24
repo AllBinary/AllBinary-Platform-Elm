@@ -106,7 +106,7 @@ jm_toString_1 jheap jthis jargs =
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
                     JR.declare "NEW_LINE" "" (JR.field "NEW_LINE" (JR.callStatic CommonSeps.jm_getInstance_0 [])), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "files") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67839 -> (JR.setLocal "index" "I" (JR.lit jwN67839))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67847 -> (JR.setLocal "index" "I" (JR.lit jwN67847))) JR.increment) ]) (JR.run [ 
                         JR.declare "file" "" (JR.invoke "get_1" (JR.local "files") [ (JR.local "index") ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getPath_0" (JR.local "file") []) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "NEW_LINE") ]) ]) ], 

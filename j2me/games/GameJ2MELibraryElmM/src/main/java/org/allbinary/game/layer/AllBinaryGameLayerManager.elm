@@ -83,8 +83,8 @@ jinit_3 jheap jthis jargs =
                     JR.exec (JR.setField "backgroundBasicColor" "" JR.this (JR.local "backgroundBasicColor")), 
                     JR.exec (JR.setField "foregroundBasicColor" "" JR.this (JR.local "foregroundBasicColor")), 
                     JR.declare "itemColorFactory" "" (JR.callStatic ItemColorFactory.jm_getInstance_0 []), 
-                    JR.exec (JR.andThen (JR.local "itemColorFactory") (\jtN69206 -> (JR.setField "INVERT_PAINT" "I" (JR.lit jtN69206) (JR.invoke "intValue_0" (JR.thisField "backgroundBasicColor") [])))), 
-                    JR.exec (JR.andThen (JR.local "itemColorFactory") (\jtN69250 -> (JR.setField "PAINT" "I" (JR.lit jtN69250) (JR.invoke "intValue_0" (JR.thisField "foregroundBasicColor") [])))), 
+                    JR.exec (JR.andThen (JR.local "itemColorFactory") (\jtN69248 -> (JR.setField "INVERT_PAINT" "I" (JR.lit jtN69248) (JR.invoke "intValue_0" (JR.thisField "backgroundBasicColor") [])))), 
+                    JR.exec (JR.andThen (JR.local "itemColorFactory") (\jtN69292 -> (JR.setField "PAINT" "I" (JR.lit jtN69292) (JR.invoke "intValue_0" (JR.thisField "foregroundBasicColor") [])))), 
                     JR.exec (JR.setField "gameInfo" "" JR.this (JR.local "gameInfo")) ]) ])
         (jregister jheap)
         jthis
@@ -142,7 +142,7 @@ jm_setBackgroundBasicColor_1 jheap jthis jargs =
     JR.method [ ( "backgroundBasicColor", "" ) ] ""
         (JR.run [ 
                     JR.exec (JR.setField "backgroundBasicColor" "" JR.this (JR.local "backgroundBasicColor")), 
-                    JR.exec (JR.andThen (JR.callStatic ItemColorFactory.jm_getInstance_0 []) (\jtN69550 -> (JR.setField "INVERT_PAINT" "I" (JR.lit jtN69550) (JR.invoke "intValue_0" (JR.thisField "backgroundBasicColor") [])))) ])
+                    JR.exec (JR.andThen (JR.callStatic ItemColorFactory.jm_getInstance_0 []) (\jtN69592 -> (JR.setField "INVERT_PAINT" "I" (JR.lit jtN69592) (JR.invoke "intValue_0" (JR.thisField "backgroundBasicColor") [])))) ])
         (jregister jheap)
         jthis
         jargs
@@ -163,7 +163,7 @@ jm_setForegroundBasicColor_1 jheap jthis jargs =
     JR.method [ ( "foregroundBasicColor", "" ) ] ""
         (JR.run [ 
                     JR.exec (JR.setField "foregroundBasicColor" "" JR.this (JR.local "foregroundBasicColor")), 
-                    JR.exec (JR.andThen (JR.callStatic ItemColorFactory.jm_getInstance_0 []) (\jtN69727 -> (JR.setField "PAINT" "I" (JR.lit jtN69727) (JR.invoke "intValue_0" (JR.thisField "foregroundBasicColor") [])))) ])
+                    JR.exec (JR.andThen (JR.callStatic ItemColorFactory.jm_getInstance_0 []) (\jtN69769 -> (JR.setField "PAINT" "I" (JR.lit jtN69769) (JR.invoke "intValue_0" (JR.thisField "foregroundBasicColor") [])))) ])
         (jregister jheap)
         jthis
         jargs
@@ -195,8 +195,8 @@ jm_setLayerProcessorList_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "layerProcessorInterfaceArray" "" (JR.newArray "" [ (JR.invoke "size_0" (JR.local "list") []) ]), 
                     JR.declare "size" "I" (JR.alength (JR.local "layerProcessorInterfaceArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70194 -> (JR.setLocal "index" "I" (JR.lit jwN70194))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "layerProcessorInterfaceArray") (\jaN70077 -> JR.andThen (JR.local "index") (\jiN70077 -> (JR.aset (JR.lit jaN70077) (JR.lit jiN70077) (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70236 -> (JR.setLocal "index" "I" (JR.lit jwN70236))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "layerProcessorInterfaceArray") (\jaN70119 -> JR.andThen (JR.local "index") (\jiN70119 -> (JR.aset (JR.lit jaN70119) (JR.lit jiN70119) (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")))))) ]) ], 
                     JR.exec (JR.invoke "setLayerProcessorArray_1" JR.this [ (JR.local "layerProcessorInterfaceArray") ]) ])
         (jregister jheap)
         jthis

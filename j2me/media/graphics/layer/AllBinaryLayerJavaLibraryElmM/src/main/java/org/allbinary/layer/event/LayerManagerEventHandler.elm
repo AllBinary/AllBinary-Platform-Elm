@@ -123,7 +123,7 @@ jm_fireEvent_1 : JR.Method
 jm_fireEvent_1 jheap jthis jargs =
     JR.method [ ( "eventObject", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68111 -> (JR.setLocal "index" "I" (JR.lit jwN68111))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68133 -> (JR.setLocal "index" "I" (JR.lit jwN68133))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.try (JR.run [ 
                             JR.declare "layerManagerEventListener" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")), 
                             JR.exec (JR.invoke "onCreateLayerManagerEvent_1" (JR.local "layerManagerEventListener") [ (JR.local "eventObject") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
@@ -138,7 +138,7 @@ jm_fireDeleteEvent_1 : JR.Method
 jm_fireDeleteEvent_1 jheap jthis jargs =
     JR.method [ ( "eventObject", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68603 -> (JR.setLocal "index" "I" (JR.lit jwN68603))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68625 -> (JR.setLocal "index" "I" (JR.lit jwN68625))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.try (JR.run [ 
                             JR.declare "layerManagerEventListener" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "index")), 
                             JR.exec (JR.invoke "onDeleteLayerManagerEvent_1" (JR.local "layerManagerEventListener") [ (JR.local "eventObject") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
@@ -153,7 +153,7 @@ jm_fireDeleteEvent_1 jheap jthis jargs =
                             JR.exec (JR.setLocal "layerManagerEventListenerInterface" "" ((JR.local "eventListenerInterface"))), 
                             JR.exec (JR.invoke "onDeleteLayerManagerEvent_1" (JR.local "layerManagerEventListenerInterface") [ (JR.local "eventObject") ]) ]) [ ( [ "Exception" ], "e", (JR.run [ 
                             JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "FIRE_EVENT" (JR.callStatic EventStrings.jm_getInstance_0 [])), (JR.local "e") ]) ]) ) ] identity, 
-                        JR.exec (JR.postUpdate (JR.local "listenerIndex") (\jwN69063 -> (JR.setLocal "listenerIndex" "I" (JR.lit jwN69063))) JR.increment) ]) ])
+                        JR.exec (JR.postUpdate (JR.local "listenerIndex") (\jwN69085 -> (JR.setLocal "listenerIndex" "I" (JR.lit jwN69085))) JR.increment) ]) ])
         (jregister jheap)
         jthis
         jargs

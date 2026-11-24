@@ -120,7 +120,7 @@ jm_nextFrame_0 : JR.Method
 jm_nextFrame_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.exec (JR.postUpdate (JR.thisField "totalFrames") (\jwN66957 -> (JR.setField "totalFrames" "J" JR.this (JR.lit jwN66957))) JR.increment) ])
+                    JR.exec (JR.postUpdate (JR.thisField "totalFrames") (\jwN66966 -> (JR.setField "totalFrames" "J" JR.this (JR.lit jwN66966))) JR.increment) ])
         (jregister jheap)
         jthis
         jargs
@@ -130,7 +130,7 @@ jm_nextRefresh_0 : JR.Method
 jm_nextRefresh_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.exec (JR.postUpdate (JR.thisField "totalRefreshes") (\jwN67002 -> (JR.setField "totalRefreshes" "J" JR.this (JR.lit jwN67002))) JR.increment) ])
+                    JR.exec (JR.postUpdate (JR.thisField "totalRefreshes") (\jwN67011 -> (JR.setField "totalRefreshes" "J" JR.this (JR.lit jwN67011))) JR.increment) ])
         (jregister jheap)
         jthis
         jargs
@@ -169,26 +169,26 @@ jm_to2DCharArray_0 jheap jthis jargs =
                     JR.ifElse (JR.and (JR.map2 JR.greater (JR.local "totalTime") (JR.long 0)) (JR.invoke "isTime_1" (JR.thisField "updateDelayHelper") [ (JR.field "startTime" (JR.thisField "gameTickTimeDelayHelper")) ])) (JR.run [ 
                         JR.declare "framesPerSec" "I" (JR.cast "I" ((JR.map2 JR.div (JR.thisField "totalFrames") (JR.local "totalTime")))), 
                         JR.ifElse (JR.map2 JR.less (JR.local "framesPerSec") (JR.int 10)) (JR.run [ 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68573 -> JR.andThen (JR.int 0) (\jiN68573 -> (JR.aset (JR.lit jaN68573) (JR.lit jiN68573) (JR.thisField "SPACE_CHAR"))))), 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68620 -> JR.andThen (JR.int 1) (\jiN68620 -> (JR.aset (JR.lit jaN68620) (JR.lit jiN68620) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.local "framesPerSec")))))) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68582 -> JR.andThen (JR.int 0) (\jiN68582 -> (JR.aset (JR.lit jaN68582) (JR.lit jiN68582) (JR.thisField "SPACE_CHAR"))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68629 -> JR.andThen (JR.int 1) (\jiN68629 -> (JR.aset (JR.lit jaN68629) (JR.lit jiN68629) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.local "framesPerSec")))))) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.less (JR.local "framesPerSec") (JR.int 100)) (JR.run [ 
                             JR.declare "tens" "I" (JR.map2 JR.div (JR.local "framesPerSec") (JR.int 10)), 
                             JR.declare "removeTens" "I" (JR.map2 JR.mul (JR.local "tens") (JR.int 10)), 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68418 -> JR.andThen (JR.int 0) (\jiN68418 -> (JR.aset (JR.lit jaN68418) (JR.lit jiN68418) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.local "tens")))))), 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68485 -> JR.andThen (JR.int 1) (\jiN68485 -> (JR.aset (JR.lit jaN68485) (JR.lit jiN68485) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.map2 JR.sub (JR.local "framesPerSec") (JR.local "removeTens"))))))) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68237 -> JR.andThen (JR.int 0) (\jiN68237 -> (JR.aset (JR.lit jaN68237) (JR.lit jiN68237) (JR.thisField "PLUS_CHAR"))))), 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68284 -> JR.andThen (JR.int 1) (\jiN68284 -> (JR.aset (JR.lit jaN68284) (JR.lit jiN68284) (JR.thisField "PLUS_CHAR"))))) ]) ]), 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68427 -> JR.andThen (JR.int 0) (\jiN68427 -> (JR.aset (JR.lit jaN68427) (JR.lit jiN68427) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.local "tens")))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68494 -> JR.andThen (JR.int 1) (\jiN68494 -> (JR.aset (JR.lit jaN68494) (JR.lit jiN68494) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.map2 JR.sub (JR.local "framesPerSec") (JR.local "removeTens"))))))) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68246 -> JR.andThen (JR.int 0) (\jiN68246 -> (JR.aset (JR.lit jaN68246) (JR.lit jiN68246) (JR.thisField "PLUS_CHAR"))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 1)) (\jaN68293 -> JR.andThen (JR.int 1) (\jiN68293 -> (JR.aset (JR.lit jaN68293) (JR.lit jiN68293) (JR.thisField "PLUS_CHAR"))))) ]) ]), 
                         JR.declare "refreshesPerSec" "I" (JR.cast "I" ((JR.map2 JR.div (JR.thisField "totalRefreshes") (JR.local "totalTime")))), 
                         JR.ifElse (JR.map2 JR.less (JR.local "refreshesPerSec") (JR.int 10)) (JR.run [ 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN69139 -> JR.andThen (JR.int 0) (\jiN69139 -> (JR.aset (JR.lit jaN69139) (JR.lit jiN69139) (JR.thisField "X_CHAR"))))), 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN69186 -> JR.andThen (JR.int 1) (\jiN69186 -> (JR.aset (JR.lit jaN69186) (JR.lit jiN69186) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.local "refreshesPerSec")))))) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN69148 -> JR.andThen (JR.int 0) (\jiN69148 -> (JR.aset (JR.lit jaN69148) (JR.lit jiN69148) (JR.thisField "X_CHAR"))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN69195 -> JR.andThen (JR.int 1) (\jiN69195 -> (JR.aset (JR.lit jaN69195) (JR.lit jiN69195) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.local "refreshesPerSec")))))) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.less (JR.local "refreshesPerSec") (JR.int 100)) (JR.run [ 
                             JR.declare "tens" "I" (JR.map2 JR.div (JR.local "refreshesPerSec") (JR.int 10)), 
                             JR.declare "removeTens" "I" (JR.map2 JR.mul (JR.local "tens") (JR.int 10)), 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN68975 -> JR.andThen (JR.int 0) (\jiN68975 -> (JR.aset (JR.lit jaN68975) (JR.lit jiN68975) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.map2 JR.div (JR.local "refreshesPerSec") (JR.int 10))))))), 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN69051 -> JR.andThen (JR.int 1) (\jiN69051 -> (JR.aset (JR.lit jaN69051) (JR.lit jiN69051) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.map2 JR.sub (JR.local "refreshesPerSec") (JR.local "removeTens"))))))) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN68794 -> JR.andThen (JR.int 0) (\jiN68794 -> (JR.aset (JR.lit jaN68794) (JR.lit jiN68794) (JR.thisField "PLUS_CHAR"))))), 
-                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN68841 -> JR.andThen (JR.int 1) (\jiN68841 -> (JR.aset (JR.lit jaN68841) (JR.lit jiN68841) (JR.thisField "PLUS_CHAR"))))) ]) ]) ]) identity, 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN68984 -> JR.andThen (JR.int 0) (\jiN68984 -> (JR.aset (JR.lit jaN68984) (JR.lit jiN68984) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.map2 JR.div (JR.local "refreshesPerSec") (JR.int 10))))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN69060 -> JR.andThen (JR.int 1) (\jiN69060 -> (JR.aset (JR.lit jaN69060) (JR.lit jiN69060) (JR.aget (JR.field "NUMBER_CHAR_ARRAY" (JR.thisField "primitiveLongSingleton")) (JR.map2 JR.sub (JR.local "refreshesPerSec") (JR.local "removeTens"))))))) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN68803 -> JR.andThen (JR.int 0) (\jiN68803 -> (JR.aset (JR.lit jaN68803) (JR.lit jiN68803) (JR.thisField "PLUS_CHAR"))))), 
+                            JR.exec (JR.andThen (JR.aget (JR.thisField "CHAR_ARRAY") (JR.int 3)) (\jaN68850 -> JR.andThen (JR.int 1) (\jiN68850 -> (JR.aset (JR.lit jaN68850) (JR.lit jiN68850) (JR.thisField "PLUS_CHAR"))))) ]) ]) ]) identity, 
                     JR.return (JR.thisField "CHAR_ARRAY") ])
         (jregister jheap)
         jthis
@@ -202,17 +202,17 @@ jm_toStringArray_0 jheap jthis jargs =
                     JR.declare "totalTime" "J" (JR.invoke "getElapsed_1" (JR.thisField "timeDelayHelper") [ (JR.field "startTime" (JR.thisField "gameTickTimeDelayHelper")) ]), 
                     JR.exec (JR.setLocal "totalTime" "J" ((JR.map2 JR.div (JR.local "totalTime") (JR.long 10000)))), 
                     JR.ifElse (JR.map2 JR.greater (JR.local "totalTime") (JR.long 0)) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69662 -> JR.andThen (JR.int 1) (\jiN69662 -> (JR.aset (JR.lit jaN69662) (JR.lit jiN69662) (JR.callStatic JLong.jm_toString_1 [ (JR.local "totalTime") ]))))), 
-                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69717 -> JR.andThen (JR.int 3) (\jiN69717 -> (JR.aset (JR.lit jaN69717) (JR.lit jiN69717) (JR.callStatic JLong.jm_toString_1 [ (JR.thisField "totalFrames") ]))))), 
-                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69775 -> JR.andThen (JR.int 5) (\jiN69775 -> (JR.aset (JR.lit jaN69775) (JR.lit jiN69775) (JR.callStatic JLong.jm_toString_1 [ (JR.map2 JR.div (JR.thisField "totalFrames") (JR.local "totalTime")) ]))))), 
-                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69846 -> JR.andThen (JR.int 7) (\jiN69846 -> (JR.aset (JR.lit jaN69846) (JR.lit jiN69846) (JR.callStatic JLong.jm_toString_1 [ (JR.thisField "totalRefreshes") ]))))), 
-                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69904 -> JR.andThen (JR.int 9) (\jiN69904 -> (JR.aset (JR.lit jaN69904) (JR.lit jiN69904) (JR.callStatic JLong.jm_toString_1 [ (JR.map2 JR.div (JR.thisField "totalRefreshes") (JR.local "totalTime")) ]))))) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69671 -> JR.andThen (JR.int 1) (\jiN69671 -> (JR.aset (JR.lit jaN69671) (JR.lit jiN69671) (JR.callStatic JLong.jm_toString_1 [ (JR.local "totalTime") ]))))), 
+                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69726 -> JR.andThen (JR.int 3) (\jiN69726 -> (JR.aset (JR.lit jaN69726) (JR.lit jiN69726) (JR.callStatic JLong.jm_toString_1 [ (JR.thisField "totalFrames") ]))))), 
+                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69784 -> JR.andThen (JR.int 5) (\jiN69784 -> (JR.aset (JR.lit jaN69784) (JR.lit jiN69784) (JR.callStatic JLong.jm_toString_1 [ (JR.map2 JR.div (JR.thisField "totalFrames") (JR.local "totalTime")) ]))))), 
+                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69855 -> JR.andThen (JR.int 7) (\jiN69855 -> (JR.aset (JR.lit jaN69855) (JR.lit jiN69855) (JR.callStatic JLong.jm_toString_1 [ (JR.thisField "totalRefreshes") ]))))), 
+                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69913 -> JR.andThen (JR.int 9) (\jiN69913 -> (JR.aset (JR.lit jaN69913) (JR.lit jiN69913) (JR.callStatic JLong.jm_toString_1 [ (JR.map2 JR.div (JR.thisField "totalRefreshes") (JR.local "totalTime")) ]))))) ]) (JR.run [ 
                         JR.declare "string" "" (JR.thisField "EMPTY_STRING"), 
-                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69475 -> JR.andThen (JR.int 1) (\jiN69475 -> (JR.aset (JR.lit jaN69475) (JR.lit jiN69475) (JR.local "string"))))), 
-                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69511 -> JR.andThen (JR.int 3) (\jiN69511 -> (JR.aset (JR.lit jaN69511) (JR.lit jiN69511) (JR.local "string"))))), 
-                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69547 -> JR.andThen (JR.int 5) (\jiN69547 -> (JR.aset (JR.lit jaN69547) (JR.lit jiN69547) (JR.local "string"))))), 
-                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69583 -> JR.andThen (JR.int 7) (\jiN69583 -> (JR.aset (JR.lit jaN69583) (JR.lit jiN69583) (JR.local "string"))))), 
-                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69619 -> JR.andThen (JR.int 9) (\jiN69619 -> (JR.aset (JR.lit jaN69619) (JR.lit jiN69619) (JR.local "string"))))) ]), 
+                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69484 -> JR.andThen (JR.int 1) (\jiN69484 -> (JR.aset (JR.lit jaN69484) (JR.lit jiN69484) (JR.local "string"))))), 
+                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69520 -> JR.andThen (JR.int 3) (\jiN69520 -> (JR.aset (JR.lit jaN69520) (JR.lit jiN69520) (JR.local "string"))))), 
+                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69556 -> JR.andThen (JR.int 5) (\jiN69556 -> (JR.aset (JR.lit jaN69556) (JR.lit jiN69556) (JR.local "string"))))), 
+                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69592 -> JR.andThen (JR.int 7) (\jiN69592 -> (JR.aset (JR.lit jaN69592) (JR.lit jiN69592) (JR.local "string"))))), 
+                        JR.exec (JR.andThen (JR.thisField "STRING_ARRAY") (\jaN69628 -> JR.andThen (JR.int 9) (\jiN69628 -> (JR.aset (JR.lit jaN69628) (JR.lit jiN69628) (JR.local "string"))))) ]), 
                     JR.return (JR.thisField "STRING_ARRAY") ])
         (jregister jheap)
         jthis

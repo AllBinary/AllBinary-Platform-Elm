@@ -97,7 +97,7 @@ jm_getChoiceGroup_3 jheap jthis jargs =
                     JR.declare "ADD_CHOICE" "" (JR.str ": Adding Choice: "), 
                     JR.declare "GET_CHOICE_GROUP" "" (JR.str "getChoiceGroup"), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68690 -> (JR.setLocal "index" "I" (JR.lit jwN68690))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68715 -> (JR.setLocal "index" "I" (JR.lit jwN68715))) JR.increment) ]) (JR.run [ 
                         JR.declare "gameFeature" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                         JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
                         JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.local "name") ]) [ (JR.local "ADD_CHOICE") ]) [ (JR.invoke "toString_0" (JR.local "gameFeature") []) ]) []), JR.this, (JR.local "GET_CHOICE_GROUP") ]), 
@@ -120,7 +120,7 @@ jm_addChoiceGroup_3 jheap jthis jargs =
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "hashtable") []), 
                     JR.declare "objectArray" "" (JR.invoke "getKeysAsArray_1" (JR.callStatic HashtableUtil.jm_getInstance_0 []) [ (JR.local "hashtable") ]), 
                     JR.declare "name" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69399 -> (JR.setLocal "index" "I" (JR.lit jwN69399))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69424 -> (JR.setLocal "index" "I" (JR.lit jwN69424))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "name" "" (JR.aget (JR.local "objectArray") (JR.local "index"))), 
                         JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
                         JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.local "ADDING_CHOICE_GROUP") ]) [ (JR.local "name") ]) []), JR.this, (JR.local "ADD_CHOICE_GROUP") ]), 
@@ -135,7 +135,7 @@ jm_setDefault_1 jheap jthis jargs =
     JR.method [ ( "form", "" ) ] ""
         (JR.run [ 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "form") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69852 -> (JR.setLocal "index" "I" (JR.lit jwN69852))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69877 -> (JR.setLocal "index" "I" (JR.lit jwN69877))) JR.increment) ]) (JR.run [ 
                         JR.declare "item" "" (JR.invoke "get_1" (JR.local "form") [ (JR.local "index") ]), 
                         JR.ifElse (JR.instanceOf "GameConfigurationGauge" (JR.local "item")) (JR.run [ 
                             JR.exec (JR.invoke "setDefault_1" (JR.callStatic GameConfigurationUtil.jm_getInstance_0 []) [ (JR.local "item") ]) ]) (JR.run [ 

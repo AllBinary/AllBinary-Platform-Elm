@@ -84,10 +84,10 @@ jm_init_0 : JR.Method
 jm_init_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "MAX")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70046 -> (JR.setLocal "index" "I" (JR.lit jwN70046))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "WEAPONLAYER_ARRAY") (\jaN69830 -> JR.andThen (JR.local "index") (\jiN69830 -> (JR.aset (JR.lit jaN69830) (JR.lit jiN69830) (JR.newArray "" [ (JR.int 1) ]))))), 
-                        JR.exec (JR.andThen (JR.thisField "TWO_WEAPONLAYER_ARRAY") (\jaN69885 -> JR.andThen (JR.local "index") (\jiN69885 -> (JR.aset (JR.lit jaN69885) (JR.lit jiN69885) (JR.newArray "" [ (JR.int 2) ]))))), 
-                        JR.exec (JR.andThen (JR.thisField "THREE_WEAPONLAYER_ARRAY") (\jaN69940 -> JR.andThen (JR.local "index") (\jiN69940 -> (JR.aset (JR.lit jaN69940) (JR.lit jiN69940) (JR.newArray "" [ (JR.int 3) ]))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "MAX")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70104 -> (JR.setLocal "index" "I" (JR.lit jwN70104))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "WEAPONLAYER_ARRAY") (\jaN69888 -> JR.andThen (JR.local "index") (\jiN69888 -> (JR.aset (JR.lit jaN69888) (JR.lit jiN69888) (JR.newArray "" [ (JR.int 1) ]))))), 
+                        JR.exec (JR.andThen (JR.thisField "TWO_WEAPONLAYER_ARRAY") (\jaN69943 -> JR.andThen (JR.local "index") (\jiN69943 -> (JR.aset (JR.lit jaN69943) (JR.lit jiN69943) (JR.newArray "" [ (JR.int 2) ]))))), 
+                        JR.exec (JR.andThen (JR.thisField "THREE_WEAPONLAYER_ARRAY") (\jaN69998 -> JR.andThen (JR.local "index") (\jiN69998 -> (JR.aset (JR.lit jaN69998) (JR.lit jiN69998) (JR.newArray "" [ (JR.int 3) ]))))) ]) ], 
                     JR.exec (JR.setField "WEAPONLAYER_ARRAY" "" JR.this (JR.thisField "WEAPONLAYER_ARRAY")), 
                     JR.exec (JR.setField "TWO_WEAPONLAYER_ARRAY" "" JR.this (JR.thisField "TWO_WEAPONLAYER_ARRAY")), 
                     JR.exec (JR.setField "THREE_WEAPONLAYER_ARRAY" "" JR.this (JR.thisField "THREE_WEAPONLAYER_ARRAY")) ])

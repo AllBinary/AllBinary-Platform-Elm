@@ -55,8 +55,8 @@ jinit_7 jheap jthis jargs =
                 identity,
                 (JR.run [ 
                     JR.exec (JR.setField "angleIncrement" "S" JR.this (JR.local "angleIncrement")), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN68078 -> (JR.setField "dx" "I" (JR.lit jtN68078) (JR.local "dx")))), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN68118 -> (JR.setField "dy" "I" (JR.lit jtN68118) (JR.local "dy")))) ]) ])
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN68115 -> (JR.setField "dx" "I" (JR.lit jtN68115) (JR.local "dx")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN68155 -> (JR.setField "dy" "I" (JR.lit jtN68155) (JR.local "dy")))) ]) ])
         (jregister jheap)
         jthis
         jargs

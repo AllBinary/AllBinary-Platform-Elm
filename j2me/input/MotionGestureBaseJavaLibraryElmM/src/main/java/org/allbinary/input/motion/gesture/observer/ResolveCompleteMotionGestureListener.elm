@@ -73,7 +73,7 @@ jm_onMotionGestureCompleted_1 jheap jthis jargs =
                     JR.declare "configuration" "" (JR.callStatic MotionGestureConfigurationFactory.jm_getInstance_0 []), 
                     JR.declare "commandActionsList" "" (JR.invoke "getAssociateCommandActionsList_0" (JR.local "configuration") []), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "commandActionsList") []), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68602 -> (JR.setLocal "index" "I" (JR.lit jwN68602))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68634 -> (JR.setLocal "index" "I" (JR.lit jwN68634))) JR.decrement) ]) (JR.run [ 
                         JR.declare "association" "" (JR.aget (JR.field "objectArray" (JR.local "commandActionsList")) (JR.local "index")), 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "isMotionGestureArrayEquals_1" (JR.local "association") [ (JR.local "list") ]) (JR.bool True)) (JR.run [ 
                             JR.declare "completeMotionGestureInputEvent" "" (JR.invoke "getCommandAction_0" (JR.local "association") []), 

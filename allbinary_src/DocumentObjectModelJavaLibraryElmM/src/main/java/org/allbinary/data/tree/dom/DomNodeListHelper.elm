@@ -62,7 +62,7 @@ jm_getVector_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "vector" "" (JR.new BasicArrayListD.jnew_0 []), 
                     JR.declare "size" "I" (JR.invoke "getLength_0" (JR.local "nodeList") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66344 -> (JR.setLocal "index" "I" (JR.lit jwN66344))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66355 -> (JR.setLocal "index" "I" (JR.lit jwN66355))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "add_1" (JR.local "vector") [ (JR.callStatic DomNodeHelper.jm_getTextNodeValue_1 [ (JR.invoke "item_1" (JR.local "nodeList") [ (JR.local "index") ]) ]) ]) ]) ], 
                     JR.return (JR.local "vector") ])
         (jregister jheap)

@@ -113,7 +113,7 @@ jm_setFiringDirectionForTargetIfInRange_0 jheap jthis jargs =
                     JR.declare "lastTrackingLayerInterface" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "directionCompositeInterface" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "trackingList") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71162 -> (JR.setLocal "index" "I" (JR.lit jwN71162))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71213 -> (JR.setLocal "index" "I" (JR.lit jwN71213))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "lastTrackingEvent" "" (JR.invoke "get_1" (JR.thisField "trackingList") [ (JR.int 0) ])), 
                         JR.exec (JR.setLocal "lastTrackingLayerInterface" "" (JR.invoke "getLayerInterface_0" (JR.local "lastTrackingEvent") [])), 
                         JR.declare "x" "I" (JR.invoke "getXP_0" (JR.local "lastTrackingLayerInterface") []), 

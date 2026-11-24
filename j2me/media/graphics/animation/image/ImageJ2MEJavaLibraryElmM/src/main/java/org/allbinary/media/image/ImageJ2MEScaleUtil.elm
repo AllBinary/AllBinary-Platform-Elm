@@ -80,8 +80,8 @@ jm_scaleArray_3 jheap jthis jargs =
     JR.method [ ( "images", "" ), ( "width", "I" ), ( "height", "I" ) ] ""
         (JR.run [ 
                     JR.declare "scaledImages" "" (JR.newArray "" [ (JR.alength (JR.local "images")) ]), 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.local "images")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN65951 -> (JR.setLocal "index" "I" (JR.lit jwN65951))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "scaledImages") (\jaN65869 -> JR.andThen (JR.local "index") (\jiN65869 -> (JR.aset (JR.lit jaN65869) (JR.lit jiN65869) (JR.invoke "scale_3" JR.this [ (JR.aget (JR.local "images") (JR.local "index")), (JR.local "width"), (JR.local "height") ]))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.local "images")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN65952 -> (JR.setLocal "index" "I" (JR.lit jwN65952))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "scaledImages") (\jaN65870 -> JR.andThen (JR.local "index") (\jiN65870 -> (JR.aset (JR.lit jaN65870) (JR.lit jiN65870) (JR.invoke "scale_3" JR.this [ (JR.aget (JR.local "images") (JR.local "index")), (JR.local "width"), (JR.local "height") ]))))) ]) ], 
                     JR.return (JR.local "scaledImages") ])
         (jregister jheap)
         jthis
@@ -102,11 +102,11 @@ jm_scale_3 jheap jthis jargs =
                     JR.declare "scaledIndex" "I" (JR.map2 JR.sub (JR.alength (JR.local "scaledData")) (JR.int 1)), 
                     JR.declare "dx" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "dy" "I" (JR.lit (JR.defaultOf "I")), 
-                    JR.run [ JR.declare "index" "I" (JR.local "height"), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66964 -> (JR.setLocal "index" "I" (JR.lit jwN66964))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.local "height"), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66965 -> (JR.setLocal "index" "I" (JR.lit jwN66965))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.setLocal "dy" "I" (JR.map2 JR.shr ((JR.map2 JR.mul (JR.local "index") (JR.local "heightRatioFactor"))) (JR.int 3))), 
-                        JR.run [ JR.declare "index2" "I" (JR.local "width"), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index2") (\jwN66909 -> (JR.setLocal "index2" "I" (JR.lit jwN66909))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.run [ JR.declare "index2" "I" (JR.local "width"), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index2") (\jwN66910 -> (JR.setLocal "index2" "I" (JR.lit jwN66910))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                             JR.exec (JR.setLocal "dx" "I" (JR.map2 JR.shr ((JR.map2 JR.mul (JR.local "index2") (JR.local "widthRatioFactor"))) (JR.int 3))), 
-                            JR.exec (JR.andThen (JR.local "scaledData") (\jaN66822 -> JR.andThen (JR.postUpdate (JR.local "scaledIndex") (\jwN66829 -> (JR.setLocal "scaledIndex" "I" (JR.lit jwN66829))) JR.decrement) (\jiN66822 -> (JR.aset (JR.lit jaN66822) (JR.lit jiN66822) (JR.aget (JR.local "originalData") (JR.map2 JR.add ((JR.map2 JR.mul (JR.local "sourceWidth") (JR.local "dy"))) (JR.local "dx"))))))) ]) ] ]) ], 
+                            JR.exec (JR.andThen (JR.local "scaledData") (\jaN66823 -> JR.andThen (JR.postUpdate (JR.local "scaledIndex") (\jwN66830 -> (JR.setLocal "scaledIndex" "I" (JR.lit jwN66830))) JR.decrement) (\jiN66823 -> (JR.aset (JR.lit jaN66823) (JR.lit jiN66823) (JR.aget (JR.local "originalData") (JR.map2 JR.add ((JR.map2 JR.mul (JR.local "sourceWidth") (JR.local "dy"))) (JR.local "dx"))))))) ]) ] ]) ], 
                     JR.declare "scaledImage" "" (JR.callStatic Image.jm_createRGBImage_4 [ (JR.local "scaledData"), (JR.local "width"), (JR.local "height"), (JR.bool True) ]), 
                     JR.return (JR.local "scaledImage") ])
         (jregister jheap)

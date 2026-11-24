@@ -114,10 +114,10 @@ jm_initDXY_2 : JR.Method
 jm_initDXY_2 jheap jthis jargs =
     JR.method [ ( "dx", "I" ), ( "dy", "I" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69329 -> (JR.setField "dx" "I" (JR.lit jtN69329) (JR.local "dx")))), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69365 -> (JR.setField "dy" "I" (JR.lit jtN69365) (JR.local "dy")))), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69401 -> (JR.setField "originalDx" "I" (JR.lit jtN69401) (JR.local "dx")))), 
-                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69437 -> (JR.setField "originalDy" "I" (JR.lit jtN69437) (JR.local "dy")))) ])
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69370 -> (JR.setField "dx" "I" (JR.lit jtN69370) (JR.local "dx")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69406 -> (JR.setField "dy" "I" (JR.lit jtN69406) (JR.local "dy")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69442 -> (JR.setField "originalDx" "I" (JR.lit jtN69442) (JR.local "dx")))), 
+                    JR.exec (JR.andThen (JR.thisField "animationFactoryInitializationVisitor") (\jtN69478 -> (JR.setField "originalDy" "I" (JR.lit jtN69478) (JR.local "dy")))) ])
         (jregister jheap)
         jthis
         jargs
@@ -130,8 +130,8 @@ jm_getInstance_1 jheap jthis jargs =
                     JR.declare "scaledImageArray" "" (JR.newArray "" [ (JR.alength (JR.thisField "imageArray")) ]), 
                     JR.declare "size" "I" (JR.alength (JR.local "scaledImageArray")), 
                     JR.declare "image" "" (JR.invoke "getImage_0" JR.this []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69894 -> (JR.setLocal "index" "I" (JR.lit jwN69894))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "scaledImageArray") (\jaN69717 -> JR.andThen (JR.local "index") (\jiN69717 -> (JR.aset (JR.lit jaN69717) (JR.lit jiN69717) (JR.invoke "createImage_5" (JR.thisField "animationFactoryImageScaleUtil") [ (JR.local "image"), (JR.invoke "getWidth_0" (JR.local "image") []), (JR.invoke "getHeight_0" (JR.local "image") []), (JR.field "scaleWidth" (JR.thisField "scaleProperties")), (JR.field "scaleHeight" (JR.thisField "scaleProperties")) ]))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69935 -> (JR.setLocal "index" "I" (JR.lit jwN69935))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.local "scaledImageArray") (\jaN69758 -> JR.andThen (JR.local "index") (\jiN69758 -> (JR.aset (JR.lit jaN69758) (JR.lit jiN69758) (JR.invoke "createImage_5" (JR.thisField "animationFactoryImageScaleUtil") [ (JR.local "image"), (JR.invoke "getWidth_0" (JR.local "image") []), (JR.invoke "getHeight_0" (JR.local "image") []), (JR.field "scaleWidth" (JR.thisField "scaleProperties")), (JR.field "scaleHeight" (JR.thisField "scaleProperties")) ]))))) ]) ], 
                     JR.ifElse (JR.or (JR.map2 JR.notEquals (JR.field "dx" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 0)) (JR.map2 JR.notEquals (JR.field "dy" (JR.thisField "animationFactoryInitializationVisitor")) (JR.int 0))) (JR.run [ 
                         JR.exec (JR.invoke "processAdjust_1" (JR.thisField "animationFactoryImageScaleUtil") [ JR.this ]), 
                         JR.return (JR.new AdjustedImageArrayRotationAnimation.jnew_6 [ (JR.local "scaledImageArray"), (JR.callStatic AngleInfo.jm_getInstance_1 [ (JR.cast "S" (JR.invoke "getAngleIncrement_0" JR.this [])) ]), (JR.cast "I" (JR.field "TOTAL_ANGLE" (JR.callStatic AngleFactory.jm_getInstance_0 []))), (JR.field "dx" (JR.thisField "animationFactoryInitializationVisitor")), (JR.field "dy" (JR.thisField "animationFactoryInitializationVisitor")), (JR.invoke "getOrCreateInstance_0" (JR.thisField "animationBehaviorFactory") []) ]) ]) (JR.run [ 

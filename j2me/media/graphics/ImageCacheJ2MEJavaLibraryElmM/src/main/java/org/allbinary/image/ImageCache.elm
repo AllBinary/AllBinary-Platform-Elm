@@ -100,7 +100,7 @@ jm_getIndex_1 jheap jthis jargs =
                     JR.declare "gdResources" "" (JR.callStatic GDResources.jm_getInstance_0 []), 
                     JR.declare "resourceStringArray" "" (JR.field "resourceStringArray" (JR.local "gdResources")), 
                     JR.declare "size" "I" (JR.alength (JR.local "resourceStringArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67641 -> (JR.setLocal "index" "I" (JR.lit jwN67641))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67657 -> (JR.setLocal "index" "I" (JR.lit jwN67657))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.aget (JR.local "resourceStringArray") (JR.local "index")) (JR.local "key")) (JR.run [ 
                             JR.return (JR.local "index") ]) identity ]) ], 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "unable to find key: ") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "key") ]) ]) []), JR.this, (JR.field "RUN" (JR.thisField "commonStrings")) ]), 
@@ -126,9 +126,9 @@ jm_get_3 jheap jthis jargs =
                         JR.ifElse (JR.map2 JR.greater (JR.thisField "nextIndex") (JR.map2 JR.sub (JR.alength (JR.local "widths")) (JR.int 1))) (JR.run [ 
                             JR.ifElse (JR.map2 JR.equals (JR.local "foundIndex") (JR.map JR.neg (JR.int 1))) (JR.run [ 
                                 JR.exec (JR.setLocal "foundIndex" "I" (JR.thisField "nextIndex")), 
-                                JR.exec (JR.andThen (JR.local "widths") (\jaN68351 -> JR.andThen (JR.thisField "nextIndex") (\jiN68351 -> (JR.aset (JR.lit jaN68351) (JR.lit jiN68351) (JR.local "width"))))), 
-                                JR.exec (JR.andThen (JR.thisField "heights") (\jaN68391 -> JR.andThen (JR.thisField "nextIndex") (\jiN68391 -> (JR.aset (JR.lit jaN68391) (JR.lit jiN68391) (JR.local "height"))))), 
-                                JR.exec (JR.postUpdate (JR.thisField "nextIndex") (\jwN68434 -> (JR.setField "nextIndex" "" JR.this (JR.lit jwN68434))) JR.increment) ]) identity, 
+                                JR.exec (JR.andThen (JR.local "widths") (\jaN68367 -> JR.andThen (JR.thisField "nextIndex") (\jiN68367 -> (JR.aset (JR.lit jaN68367) (JR.lit jiN68367) (JR.local "width"))))), 
+                                JR.exec (JR.andThen (JR.thisField "heights") (\jaN68407 -> JR.andThen (JR.thisField "nextIndex") (\jiN68407 -> (JR.aset (JR.lit jaN68407) (JR.lit jiN68407) (JR.local "height"))))), 
+                                JR.exec (JR.postUpdate (JR.thisField "nextIndex") (\jwN68450 -> (JR.setField "nextIndex" "" JR.this (JR.lit jwN68450))) JR.increment) ]) identity, 
                             JR.exec (JR.invoke "add_1" (JR.aget (JR.thisField "listOfList") (JR.local "foundIndex")) [ (JR.local "image") ]) ]) identity ]) identity, 
                     JR.return (JR.local "image") ])
         (jregister jheap)

@@ -88,8 +88,8 @@ jm_xor_2 jheap jthis jargs =
                     JR.declare "currentByte" "B" (JR.lit (JR.defaultOf "B")), 
                     JR.while (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ 
                         JR.exec (JR.setLocal "currentByte" "B" (JR.aget (JR.local "array") (JR.local "index"))), 
-                        JR.exec (JR.andThen (JR.local "bytes") (\jaN65985 -> JR.andThen (JR.local "index") (\jiN65985 -> (JR.aset (JR.lit jaN65985) (JR.lit jiN65985) (JR.cast "B" ((JR.map2 JR.bxor (JR.local "currentByte") (JR.local "mask")))))))), 
-                        JR.exec (JR.postUpdate (JR.local "index") (\jwN66051 -> (JR.setLocal "index" "I" (JR.lit jwN66051))) JR.increment) ]), 
+                        JR.exec (JR.andThen (JR.local "bytes") (\jaN65986 -> JR.andThen (JR.local "index") (\jiN65986 -> (JR.aset (JR.lit jaN65986) (JR.lit jiN65986) (JR.cast "B" ((JR.map2 JR.bxor (JR.local "currentByte") (JR.local "mask")))))))), 
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN66052 -> (JR.setLocal "index" "I" (JR.lit jwN66052))) JR.increment) ]), 
                     JR.return (JR.local "bytes") ])
         (jregister jheap)
         jthis
@@ -104,8 +104,8 @@ jm_not_1 jheap jthis jargs =
                     JR.declare "size" "I" (JR.alength (JR.local "array")), 
                     JR.declare "index" "I" (JR.int 0), 
                     JR.while (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "bytes") (\jaN66334 -> JR.andThen (JR.local "index") (\jiN66334 -> (JR.aset (JR.lit jaN66334) (JR.lit jiN66334) (JR.cast "B" (JR.map JR.bnot (JR.aget (JR.local "array") (JR.local "index")))))))), 
-                        JR.exec (JR.postUpdate (JR.local "index") (\jwN66396 -> (JR.setLocal "index" "I" (JR.lit jwN66396))) JR.increment) ]), 
+                        JR.exec (JR.andThen (JR.local "bytes") (\jaN66335 -> JR.andThen (JR.local "index") (\jiN66335 -> (JR.aset (JR.lit jaN66335) (JR.lit jiN66335) (JR.cast "B" (JR.map JR.bnot (JR.aget (JR.local "array") (JR.local "index")))))))), 
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN66397 -> (JR.setLocal "index" "I" (JR.lit jwN66397))) JR.increment) ]), 
                     JR.return (JR.local "bytes") ])
         (jregister jheap)
         jthis
@@ -146,7 +146,7 @@ jm_compare_2 jheap jthis jargs =
                     JR.ifElse (JR.map2 JR.notEquals (JR.alength (JR.local "newByteArray")) (JR.alength (JR.local "oldByteArray"))) (JR.run [ 
                         JR.return (JR.bool False) ]) identity, 
                     JR.declare "size" "I" (JR.alength (JR.local "newByteArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67214 -> (JR.setLocal "index" "I" (JR.lit jwN67214))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67215 -> (JR.setLocal "index" "I" (JR.lit jwN67215))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.local "newByteArray") (JR.local "index")) (JR.aget (JR.local "oldByteArray") (JR.local "index"))) (JR.run [ 
                             JR.return (JR.bool False) ]) identity ]) ], 
                     JR.return (JR.bool True) ])
@@ -160,17 +160,17 @@ jm_compareWithStats_4 jheap jthis jargs =
     JR.method [ ( "newByteArray", "" ), ( "newSize", "I" ), ( "oldByteArray", "" ), ( "stats", "" ) ] "Z"
         (JR.run [ 
                     JR.ifElse (JR.map2 JR.notEquals (JR.local "newSize") (JR.alength (JR.local "oldByteArray"))) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "stats") (\jaN67396 -> JR.andThen (JR.int 0) (\jiN67396 -> (JR.aset (JR.lit jaN67396) (JR.lit jiN67396) (JR.map JR.neg (JR.int 1)))))), 
-                        JR.exec (JR.andThen (JR.local "stats") (\jaN67430 -> JR.andThen (JR.int 2) (\jiN67430 -> (JR.aset (JR.lit jaN67430) (JR.lit jiN67430) (JR.local "newSize"))))), 
-                        JR.exec (JR.andThen (JR.local "stats") (\jaN67463 -> JR.andThen (JR.int 3) (\jiN67463 -> (JR.aset (JR.lit jaN67463) (JR.lit jiN67463) (JR.alength (JR.local "oldByteArray")))))), 
+                        JR.exec (JR.andThen (JR.local "stats") (\jaN67397 -> JR.andThen (JR.int 0) (\jiN67397 -> (JR.aset (JR.lit jaN67397) (JR.lit jiN67397) (JR.map JR.neg (JR.int 1)))))), 
+                        JR.exec (JR.andThen (JR.local "stats") (\jaN67431 -> JR.andThen (JR.int 2) (\jiN67431 -> (JR.aset (JR.lit jaN67431) (JR.lit jiN67431) (JR.local "newSize"))))), 
+                        JR.exec (JR.andThen (JR.local "stats") (\jaN67464 -> JR.andThen (JR.int 3) (\jiN67464 -> (JR.aset (JR.lit jaN67464) (JR.lit jiN67464) (JR.alength (JR.local "oldByteArray")))))), 
                         JR.return (JR.bool False) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "stats") (\jaN67356 -> JR.andThen (JR.int 0) (\jiN67356 -> (JR.aset (JR.lit jaN67356) (JR.lit jiN67356) (JR.local "newSize"))))) ]), 
-                    JR.exec (JR.andThen (JR.local "stats") (\jaN67515 -> JR.andThen (JR.int 1) (\jiN67515 -> (JR.aset (JR.lit jaN67515) (JR.lit jiN67515) (JR.int 0))))), 
+                        JR.exec (JR.andThen (JR.local "stats") (\jaN67357 -> JR.andThen (JR.int 0) (\jiN67357 -> (JR.aset (JR.lit jaN67357) (JR.lit jiN67357) (JR.local "newSize"))))) ]), 
+                    JR.exec (JR.andThen (JR.local "stats") (\jaN67516 -> JR.andThen (JR.int 1) (\jiN67516 -> (JR.aset (JR.lit jaN67516) (JR.lit jiN67516) (JR.int 0))))), 
                     JR.declare "size" "I" (JR.local "newSize"), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67727 -> (JR.setLocal "index" "I" (JR.lit jwN67727))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67728 -> (JR.setLocal "index" "I" (JR.lit jwN67728))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.local "newByteArray") (JR.local "index")) (JR.aget (JR.local "oldByteArray") (JR.local "index"))) (JR.run [ 
                             JR.return (JR.bool False) ]) identity, 
-                        JR.exec (JR.andThen (JR.local "stats") (\jaN67654 -> JR.andThen (JR.int 1) (\jiN67654 -> (JR.postUpdate (JR.aget (JR.lit jaN67654) (JR.lit jiN67654)) (\jwN67654 -> (JR.aset (JR.lit jaN67654) (JR.lit jiN67654) (JR.lit jwN67654))) JR.increment)))) ]) ], 
+                        JR.exec (JR.andThen (JR.local "stats") (\jaN67655 -> JR.andThen (JR.int 1) (\jiN67655 -> (JR.postUpdate (JR.aget (JR.lit jaN67655) (JR.lit jiN67655)) (\jwN67655 -> (JR.aset (JR.lit jaN67655) (JR.lit jiN67655) (JR.lit jwN67655))) JR.increment)))) ]) ], 
                     JR.return (JR.bool True) ])
         (jregister jheap)
         jthis

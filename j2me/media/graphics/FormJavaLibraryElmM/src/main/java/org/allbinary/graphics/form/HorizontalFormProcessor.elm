@@ -64,7 +64,7 @@ jm_process_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.exec (JR.invoke "processHorizontalForm_0" (JR.thisField "scrollCurrentSelectionForm") []), 
-                    JR.exec (JR.andThen (JR.thisField "scrollCurrentSelectionForm") (\jtN67227 -> (JR.setField "processor" "" (JR.lit jtN67227) (JR.callStatic Processor.jm_getInstance_0 [])))) ])
+                    JR.exec (JR.andThen (JR.thisField "scrollCurrentSelectionForm") (\jtN67248 -> (JR.setField "processor" "" (JR.lit jtN67248) (JR.callStatic Processor.jm_getInstance_0 [])))) ])
         (jregister jheap)
         jthis
         jargs

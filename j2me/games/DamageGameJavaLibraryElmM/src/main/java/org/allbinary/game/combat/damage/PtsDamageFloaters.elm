@@ -72,8 +72,8 @@ jinit_1 jheap jthis jargs =
                     JR.exec (JR.setField "primitiveLongUtil" "" JR.this (JR.callStatic PrimitiveLongUtil.jm_createPowerOfTen_1 [ (JR.int 100000) ])), 
                     JR.exec (JR.setField "layerInterface" "" JR.this (JR.local "layerInterface")), 
                     JR.declare "CHAR_ARRAY" "" (JR.invoke "getZeroCharArray_0" (JR.callStatic CharArrayFactory.jm_getInstance_0 []) []), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "lastDamageString")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68484 -> (JR.setLocal "index" "I" (JR.lit jwN68484))) JR.decrement) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "lastDamageString") (\jaN68376 -> JR.andThen (JR.local "index") (\jiN68376 -> (JR.aset (JR.lit jaN68376) (JR.lit jiN68376) (JR.local "CHAR_ARRAY"))))) ]) ] ]) ])
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "lastDamageString")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68512 -> (JR.setLocal "index" "I" (JR.lit jwN68512))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "lastDamageString") (\jaN68404 -> JR.andThen (JR.local "index") (\jiN68404 -> (JR.aset (JR.lit jaN68404) (JR.lit jiN68404) (JR.local "CHAR_ARRAY"))))) ]) ] ]) ])
         (jregister jheap)
         jthis
         jargs
@@ -89,9 +89,9 @@ jm_add_1 jheap jthis jargs =
     JR.method [ ( "damage", "I" ) ] ""
         (JR.run [ 
                     JR.declare "index" "I" (JR.invoke "getIndex_0" (JR.thisField "circularIndexUtil") []), 
-                    JR.exec (JR.andThen (JR.thisField "lastDamage") (\jaN68590 -> JR.andThen (JR.local "index") (\jiN68590 -> (JR.aset (JR.lit jaN68590) (JR.lit jiN68590) (JR.local "damage"))))), 
-                    JR.exec (JR.andThen (JR.thisField "lastDamageString") (\jaN68630 -> JR.andThen (JR.local "index") (\jiN68630 -> (JR.aset (JR.lit jaN68630) (JR.lit jiN68630) (JR.invoke "getCharArray_1" (JR.thisField "primitiveLongUtil") [ (JR.aget (JR.thisField "lastDamage") (JR.local "index")) ]))))), 
-                    JR.exec (JR.andThen (JR.thisField "lastDamageStringSizeArray") (\jaN68707 -> JR.andThen (JR.local "index") (\jiN68707 -> (JR.aset (JR.lit jaN68707) (JR.lit jiN68707) (JR.invoke "getCurrentTotalDigits_0" (JR.thisField "primitiveLongUtil") []))))), 
+                    JR.exec (JR.andThen (JR.thisField "lastDamage") (\jaN68618 -> JR.andThen (JR.local "index") (\jiN68618 -> (JR.aset (JR.lit jaN68618) (JR.lit jiN68618) (JR.local "damage"))))), 
+                    JR.exec (JR.andThen (JR.thisField "lastDamageString") (\jaN68658 -> JR.andThen (JR.local "index") (\jiN68658 -> (JR.aset (JR.lit jaN68658) (JR.lit jiN68658) (JR.invoke "getCharArray_1" (JR.thisField "primitiveLongUtil") [ (JR.aget (JR.thisField "lastDamage") (JR.local "index")) ]))))), 
+                    JR.exec (JR.andThen (JR.thisField "lastDamageStringSizeArray") (\jaN68735 -> JR.andThen (JR.local "index") (\jiN68735 -> (JR.aset (JR.lit jaN68735) (JR.lit jiN68735) (JR.invoke "getCurrentTotalDigits_0" (JR.thisField "primitiveLongUtil") []))))), 
                     JR.exec (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []) ])
         (jregister jheap)
         jthis
@@ -105,13 +105,13 @@ jm_paint_1 jheap jthis jargs =
                     JR.declare "viewPosition" "" (JR.invoke "getViewPosition_0" (JR.thisField "layerInterface") []), 
                     JR.declare "x" "I" (JR.invoke "getX_0" (JR.local "viewPosition") []), 
                     JR.declare "y" "I" (JR.invoke "getY_0" (JR.local "viewPosition") []), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "lastDamage")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69467 -> (JR.setLocal "index" "I" (JR.lit jwN69467))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "lastDamage")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69495 -> (JR.setLocal "index" "I" (JR.lit jwN69495))) JR.decrement) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.thisField "lastDamage") (JR.local "index")) (JR.int 0)) (JR.run [ 
                             JR.declare "delta" "I" (JR.map2 JR.mul (JR.int 10) ((JR.map2 JR.add (JR.local "index") (JR.int 2)))), 
                             JR.exec (JR.invoke "setBasicColorP_2" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.invoke "get_0" jstatic_basicColorArrayIndexer []) ]), 
                             JR.exec (JR.invoke "drawChars_6" (JR.local "graphics") [ (JR.aget (JR.thisField "lastDamageString") (JR.local "index")), (JR.int 0), (JR.aget (JR.thisField "lastDamageStringSizeArray") (JR.local "index")), (JR.map2 JR.sub (JR.local "x") (JR.invoke "getNextInt_1" (JR.thisField "myRandomFactory") [ (JR.local "delta") ])), (JR.map2 JR.sub (JR.local "y") (JR.local "delta")), (JR.int 0) ]), 
                             JR.exec (JR.invoke "next_0" jstatic_basicColorArrayIndexer []) ]) identity, 
-                        JR.exec (JR.andThen (JR.thisField "lastDamage") (\jaN69363 -> JR.andThen (JR.local "index") (\jiN69363 -> (JR.aset (JR.lit jaN69363) (JR.lit jiN69363) (JR.int 0))))) ]) ] ])
+                        JR.exec (JR.andThen (JR.thisField "lastDamage") (\jaN69391 -> JR.andThen (JR.local "index") (\jiN69391 -> (JR.aset (JR.lit jaN69391) (JR.lit jiN69391) (JR.int 0))))) ]) ] ])
         (jregister jheap)
         jthis
         jargs

@@ -105,7 +105,7 @@ jm_processInputList_0 jheap jthis jargs =
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
                         JR.declare "key" "I" (JR.int 0), 
                         JR.declare "gameKeyEvent" "" (JR.lit (JR.defaultOf "")), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75395 -> (JR.setLocal "index" "I" (JR.lit jwN75395))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75511 -> (JR.setLocal "index" "I" (JR.lit jwN75511))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "gameKeyEvent" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                             JR.ifElse (JR.map2 JR.notEquals (JR.local "gameKeyEvent") JR.null) (JR.run [ 
                                 JR.exec (JR.setLocal "key" "I" (JR.invoke "getKey_0" (JR.local "gameKeyEvent") [])), 

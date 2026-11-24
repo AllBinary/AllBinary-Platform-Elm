@@ -109,7 +109,7 @@ jm_isMotionGestureArrayEquals_1 jheap jthis jargs =
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "aList") []), 
                     JR.ifElse (JR.map2 JR.notEquals (JR.invoke "size_0" (JR.thisField "list") []) (JR.local "size")) (JR.run [ 
                         JR.return (JR.bool False) ]) identity, 
-                    JR.run [ JR.declare "i" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "i") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN66867 -> (JR.setLocal "i" "I" (JR.lit jwN66867))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "i" "I" (JR.map2 JR.sub (JR.local "size") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "i") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN66877 -> (JR.setLocal "i" "I" (JR.lit jwN66877))) JR.decrement) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.field "objectArray" (JR.local "aList")) (JR.local "i")) (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.local "i"))) (JR.run [ 
                             JR.return (JR.bool False) ]) identity ]) ], 
                     JR.return (JR.bool True) ])

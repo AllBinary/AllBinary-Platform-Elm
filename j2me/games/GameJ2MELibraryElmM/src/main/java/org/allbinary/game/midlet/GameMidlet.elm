@@ -539,7 +539,7 @@ jm_commandAction_2 jheap jthis jargs =
                             JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Submitted Score"), JR.this, (JR.thisField "COMMAND_ACTION") ]), 
                             JR.ifElse (JR.instanceOf "HighScoreTextBox" (JR.local "displayable")) (JR.run [ 
                                 JR.declare "highScoreTextBox" "" (JR.local "displayable"), 
-                                JR.exec (JR.andThen (JR.local "highScoreTextBox") (\jtN91684 -> (JR.setField "submitted" "Z" (JR.lit jtN91684) (JR.bool True)))) ]) identity, 
+                                JR.exec (JR.andThen (JR.local "highScoreTextBox") (\jtN91943 -> (JR.setField "submitted" "Z" (JR.lit jtN91943) (JR.bool True)))) ]) identity, 
                             JR.exec (JR.invoke "setHighScoreSubmitted_1" (JR.local "allbinaryGameCanvasRunnableInterface") [ (JR.bool True) ]), 
                             JR.exec (JR.invoke "commandAction_2" JR.this [ (JR.field "CLOSE_AND_SHOW_GAME_CANVAS" (JR.local "gameCommandsFactory")), (JR.local "displayable") ]) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.local "command") (JR.field "DISPLAY_ABOUT" (JR.local "gameCommandsFactory"))) (JR.run [ 

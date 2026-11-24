@@ -100,10 +100,10 @@ jm_initAnimations_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.declare "nullAnimation" "" (JR.invoke "getInstance_1" (JR.callStatic NullAnimationFactory.jm_getFactoryInstance_0 []) [ (JR.int 0) ]), 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "selectedAnimationArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69135 -> (JR.setLocal "index" "I" (JR.lit jwN69135))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "selectedAnimationArray") (\jaN69092 -> JR.andThen (JR.local "index") (\jiN69092 -> (JR.aset (JR.lit jaN69092) (JR.lit jiN69092) (JR.local "nullAnimation"))))) ]) ], 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "unSelectedAnimationArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69249 -> (JR.setLocal "index" "I" (JR.lit jwN69249))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "unSelectedAnimationArray") (\jaN69206 -> JR.andThen (JR.local "index") (\jiN69206 -> (JR.aset (JR.lit jaN69206) (JR.lit jiN69206) (JR.local "nullAnimation"))))) ]) ] ])
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "selectedAnimationArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69178 -> (JR.setLocal "index" "I" (JR.lit jwN69178))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "selectedAnimationArray") (\jaN69135 -> JR.andThen (JR.local "index") (\jiN69135 -> (JR.aset (JR.lit jaN69135) (JR.lit jiN69135) (JR.local "nullAnimation"))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "unSelectedAnimationArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69292 -> (JR.setLocal "index" "I" (JR.lit jwN69292))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "unSelectedAnimationArray") (\jaN69249 -> JR.andThen (JR.local "index") (\jiN69249 -> (JR.aset (JR.lit jaN69249) (JR.lit jiN69249) (JR.local "nullAnimation"))))) ]) ] ])
         (jregister jheap)
         jthis
         jargs
@@ -113,7 +113,7 @@ jm_addAll_1 : JR.Method
 jm_addAll_1 jheap jthis jargs =
     JR.method [ ( "items", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.local "items")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69394 -> (JR.setLocal "index" "I" (JR.lit jwN69394))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.local "items")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69437 -> (JR.setLocal "index" "I" (JR.lit jwN69437))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "addAt_2" JR.this [ (JR.local "index"), (JR.aget (JR.local "items") (JR.local "index")) ]) ]) ] ])
         (jregister jheap)
         jthis
@@ -134,12 +134,12 @@ jm_addAt_2 jheap jthis jargs =
                     JR.declare "rectWidth" "I" (JR.map2 JR.sub (JR.plus (JR.local "width") (JR.thisField "border")) (JR.local "adjustedBorder")), 
                     JR.declare "rectHeight" "I" (JR.map2 JR.sub (JR.plus (JR.local "height") (JR.thisField "border")) (JR.local "adjustedBorder")), 
                     JR.ifElse (JR.or (JR.callStatic J2MEUtil.jm_isJ2ME_0 []) (JR.callStatic J2MEUtil.jm_isHTML_0 [])) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "selectedAnimationArray") (\jaN70106 -> JR.andThen (JR.local "index") (\jiN70106 -> (JR.aset (JR.lit jaN70106) (JR.lit jiN70106) (JR.new RectangleAdjustedAnimation.jnew_5 [ (JR.local "rectWidth"), (JR.local "rectHeight"), (JR.local "offset"), (JR.local "offset"), (JR.local "selectedButtonColor") ]))))) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "selectedAnimationArray") (\jaN70012 -> JR.andThen (JR.local "index") (\jiN70012 -> (JR.aset (JR.lit jaN70012) (JR.lit jiN70012) (JR.new RectangleFilledAdjustedAnimation.jnew_5 [ (JR.local "rectWidth"), (JR.local "rectHeight"), (JR.local "offset"), (JR.local "offset"), (JR.local "selectedButtonColor") ]))))) ]), 
+                        JR.exec (JR.andThen (JR.thisField "selectedAnimationArray") (\jaN70149 -> JR.andThen (JR.local "index") (\jiN70149 -> (JR.aset (JR.lit jaN70149) (JR.lit jiN70149) (JR.new RectangleAdjustedAnimation.jnew_5 [ (JR.local "rectWidth"), (JR.local "rectHeight"), (JR.local "offset"), (JR.local "offset"), (JR.local "selectedButtonColor") ]))))) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "selectedAnimationArray") (\jaN70055 -> JR.andThen (JR.local "index") (\jiN70055 -> (JR.aset (JR.lit jaN70055) (JR.lit jiN70055) (JR.new RectangleFilledAdjustedAnimation.jnew_5 [ (JR.local "rectWidth"), (JR.local "rectHeight"), (JR.local "offset"), (JR.local "offset"), (JR.local "selectedButtonColor") ]))))) ]), 
                     JR.exec (JR.setLocal "adjustedBorder" "I" (JR.int 4)), 
                     JR.ifElse (JR.or (JR.callStatic J2MEUtil.jm_isJ2ME_0 []) (JR.callStatic J2MEUtil.jm_isHTML_0 [])) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "unSelectedAnimationArray") (\jaN70360 -> JR.andThen (JR.local "index") (\jiN70360 -> (JR.aset (JR.lit jaN70360) (JR.lit jiN70360) (JR.new RectangleAdjustedAnimation.jnew_5 [ (JR.local "rectWidth"), (JR.local "rectHeight"), (JR.local "offset"), (JR.local "offset"), (JR.local "buttonColor") ]))))) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "unSelectedAnimationArray") (\jaN70266 -> JR.andThen (JR.local "index") (\jiN70266 -> (JR.aset (JR.lit jaN70266) (JR.lit jiN70266) (JR.new RectangleFilledAdjustedAnimation.jnew_5 [ (JR.local "rectWidth"), (JR.local "rectHeight"), (JR.local "offset"), (JR.local "offset"), (JR.local "buttonColor") ]))))) ]) ])
+                        JR.exec (JR.andThen (JR.thisField "unSelectedAnimationArray") (\jaN70403 -> JR.andThen (JR.local "index") (\jiN70403 -> (JR.aset (JR.lit jaN70403) (JR.lit jiN70403) (JR.new RectangleAdjustedAnimation.jnew_5 [ (JR.local "rectWidth"), (JR.local "rectHeight"), (JR.local "offset"), (JR.local "offset"), (JR.local "buttonColor") ]))))) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "unSelectedAnimationArray") (\jaN70309 -> JR.andThen (JR.local "index") (\jiN70309 -> (JR.aset (JR.lit jaN70309) (JR.lit jiN70309) (JR.new RectangleFilledAdjustedAnimation.jnew_5 [ (JR.local "rectWidth"), (JR.local "rectHeight"), (JR.local "offset"), (JR.local "offset"), (JR.local "buttonColor") ]))))) ]) ])
         (jregister jheap)
         jthis
         jargs
@@ -149,7 +149,7 @@ jm_updateAll_2 : JR.Method
 jm_updateAll_2 jheap jthis jargs =
     JR.method [ ( "graphics", "" ), ( "items", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.local "items")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN70622 -> (JR.setLocal "index" "I" (JR.lit jwN70622))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.local "items")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN70665 -> (JR.setLocal "index" "I" (JR.lit jwN70665))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "preMeasurement_1" (JR.aget (JR.local "items") (JR.local "index")) [ (JR.local "graphics") ]), 
                         JR.exec (JR.invoke "updateAt_2" JR.this [ (JR.local "index"), (JR.aget (JR.local "items") (JR.local "index")) ]) ]) ] ])
         (jregister jheap)

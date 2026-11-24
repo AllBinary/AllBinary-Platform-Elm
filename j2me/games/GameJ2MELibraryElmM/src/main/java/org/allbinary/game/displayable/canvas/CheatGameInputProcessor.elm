@@ -81,7 +81,7 @@ jm_update_0 jheap jthis jargs =
                         JR.declare "gameLayerManager" "" (JR.invoke "getLayerManager_0" (JR.thisField "gameCanvas") []), 
                         JR.declare "list" "" (JR.invoke "getGameKeyEventList_0" JR.this []), 
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN76025 -> (JR.setLocal "index" "I" (JR.lit jwN76025))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN76154 -> (JR.setLocal "index" "I" (JR.lit jwN76154))) JR.increment) ]) (JR.run [ 
                             JR.declare "anyType" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                             JR.declare "key" "I" (JR.callStatic GameKeyEventUtil.jm_getKey_1 [ (JR.local "anyType") ]), 
                             JR.ifElse (JR.map2 JR.equals (JR.local "key") (JR.invoke "getId_0" (JR.field "LEVEL_DOWN" (JR.thisField "gameKeyFactory")) [])) (JR.run [ 

@@ -68,7 +68,7 @@ jm_getFirstChildElement_1 jheap jthis jargs =
                     JR.declare "node" "" (JR.invoke "getFirstChild_0" (JR.local "parentNode") []), 
                     JR.ifElse (JR.and (JR.map2 JR.notEquals (JR.local "node") JR.null) (JR.map2 JR.notEquals (JR.invoke "getNodeType_0" (JR.local "node") []) (JR.namedStatic "Node.jstatic_ELEMENT_NODE"))) (JR.run [ 
                         JR.declare "nodeList" "" (JR.invoke "getChildNodes_0" (JR.local "parentNode") []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.invoke "getLength_0" (JR.local "nodeList") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66454 -> (JR.setLocal "index" "I" (JR.lit jwN66454))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.invoke "getLength_0" (JR.local "nodeList") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66459 -> (JR.setLocal "index" "I" (JR.lit jwN66459))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "node" "" (JR.invoke "item_1" (JR.local "nodeList") [ (JR.local "index") ])), 
                             JR.ifElse (JR.map2 JR.equals (JR.invoke "getNodeType_0" (JR.local "node") []) (JR.int 1)) (JR.run [ 
                                 JR.break ]) identity ]) ] ]) identity, 
@@ -108,7 +108,7 @@ jm_getTextNodesValue_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
                     JR.declare "nodeList" "" (JR.invoke "getChildNodes_0" (JR.local "node") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.invoke "getLength_0" (JR.local "nodeList") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67217 -> (JR.setLocal "index" "I" (JR.lit jwN67217))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.invoke "getLength_0" (JR.local "nodeList") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67222 -> (JR.setLocal "index" "I" (JR.lit jwN67222))) JR.increment) ]) (JR.run [ 
                         JR.declare "nodeTextNode" "" (JR.invoke "item_1" (JR.local "nodeList") [ (JR.local "index") ]), 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "getNodeType_0" (JR.local "nodeTextNode") []) (JR.namedStatic "Node.jstatic_TEXT_NODE")) (JR.run [ 
                             JR.ifElse (JR.map2 JR.notEquals (JR.local "nodeTextNode") JR.null) (JR.run [ 

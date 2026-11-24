@@ -110,7 +110,7 @@ jm_getInstance_1 jheap jthis jargs =
                     JR.declare "availableLogConfigTypes" "" LogConfigType.jstatic_availableLogConfigTypes, 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "availableLogConfigTypes") []), 
                     JR.declare "logConfigType" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68164 -> (JR.setLocal "index" "I" (JR.lit jwN68164))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68177 -> (JR.setLocal "index" "I" (JR.lit jwN68177))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "logConfigType" "" (JR.invoke "get_1" (JR.local "availableLogConfigTypes") [ (JR.local "index") ])), 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getName_0" (JR.local "logConfigType") []) [ (JR.local "name") ]) (JR.int 0)) (JR.run [ 
                             JR.return (JR.local "logConfigType") ]) identity ]) ], 

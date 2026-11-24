@@ -70,7 +70,7 @@ jm_processList_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
                     JR.declare "layerPlacementInterface" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67704 -> (JR.setLocal "index" "I" (JR.lit jwN67704))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67729 -> (JR.setLocal "index" "I" (JR.lit jwN67729))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "layerPlacementInterface" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                         JR.exec (JR.invoke "process_1" JR.this [ (JR.local "layerPlacementInterface") ]) ]) ] ])
         (jregister jheap)

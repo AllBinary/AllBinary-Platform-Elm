@@ -105,7 +105,7 @@ jm_setDefault_1 jheap jthis jargs =
                     JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "total") ]), 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.local "METHOD_NAME") ]), 
                     JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "selectedArray_return"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68603 -> (JR.setLocal "index" "I" (JR.lit jwN68603))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "selectedArray_return"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68618 -> (JR.setLocal "index" "I" (JR.lit jwN68618))) JR.increment) ]) (JR.run [ 
                         JR.declare "isSelected" "Z" (JR.aget (JR.local "selectedArray_return") (JR.local "index")), 
                         JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "SELECTED_ARRAY_RETURN") ]), 
@@ -139,7 +139,7 @@ jm_updateMultiple_1 jheap jthis jargs =
                     JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "total") ]), 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.local "METHOD_NAME") ]), 
                     JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "selectedArray_return"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69702 -> (JR.setLocal "index" "I" (JR.lit jwN69702))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "selectedArray_return"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69717 -> (JR.setLocal "index" "I" (JR.lit jwN69717))) JR.increment) ]) (JR.run [ 
                         JR.declare "isSelected" "Z" (JR.aget (JR.local "selectedArray_return") (JR.local "index")), 
                         JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "SELECTED_ARRAY_RETURN") ]), 
@@ -171,7 +171,7 @@ jm_updateExclusiveForChoiceGroup_1 jheap jthis jargs =
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Exclusive Total Choices: 1==") ]), 
                     JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "total") ]), 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.local "METHOD_NAME") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "selectedArray_return"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70575 -> (JR.setLocal "index" "I" (JR.lit jwN70575))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "selectedArray_return"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70590 -> (JR.setLocal "index" "I" (JR.lit jwN70590))) JR.increment) ]) (JR.run [ 
                         JR.declare "isSelected" "Z" (JR.aget (JR.local "selectedArray_return") (JR.local "index")), 
                         JR.exec (JR.invoke "delete_2" (JR.local "stringBuffer") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringBuffer") []) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "SELECTED_ARRAY_RETURN") ]), 
@@ -214,7 +214,7 @@ jm_updateExclusive_1 jheap jthis jargs =
                     JR.declare "basicArrayList" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "anyType" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "size" "I" (JR.alength (JR.local "objectArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71569 -> (JR.setLocal "index" "I" (JR.lit jwN71569))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71584 -> (JR.setLocal "index" "I" (JR.lit jwN71584))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "anyType" "" (JR.aget (JR.local "objectArray") (JR.local "index"))), 
                         JR.exec (JR.setLocal "basicArrayList" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.local "anyType") ])), 
                         JR.exec (JR.invoke "updateExclusiveList_2" JR.this [ (JR.local "gameFeature"), (JR.local "basicArrayList") ]) ]) ] ])
@@ -231,7 +231,7 @@ jm_updateExclusiveList_2 jheap jthis jargs =
                         JR.declare "features" "" (JR.callStatic Features.jm_getInstance_0 []), 
                         JR.declare "addIndex" "I" (JR.invoke "indexOf_1" (JR.local "list") [ (JR.local "gameFeature") ]), 
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72038 -> (JR.setLocal "index" "I" (JR.lit jwN72038))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72053 -> (JR.setLocal "index" "I" (JR.lit jwN72053))) JR.increment) ]) (JR.run [ 
                             JR.ifElse (JR.map2 JR.notEquals (JR.local "addIndex") (JR.local "index")) (JR.run [ 
                                 JR.exec (JR.invoke "remove_1" (JR.local "features") [ (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")) ]) ]) (JR.run [ 
                                 JR.exec (JR.invoke "add_1" (JR.local "features") [ (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")) ]) ]) ]) ] ]) identity ])

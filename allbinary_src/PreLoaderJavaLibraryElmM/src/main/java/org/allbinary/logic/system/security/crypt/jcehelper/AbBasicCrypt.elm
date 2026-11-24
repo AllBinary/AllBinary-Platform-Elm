@@ -96,10 +96,10 @@ jm_encrypt_1 jheap jthis jargs =
                         JR.declare "encrypted" "" (JR.invoke "doFinal_1" (JR.thisField "cipher") [ (JR.local "array") ]), 
                         JR.declare "result" "" (JR.newArray "B" [ (JR.map2 JR.add (JR.alength (JR.local "ivArray")) (JR.alength (JR.local "encrypted"))) ]), 
                         JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.concat (JR.str "ivArray Length: ") (JR.alength (JR.local "ivArray"))), JR.this, (JR.str "encrypt") ]), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "ivArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67614 -> (JR.setLocal "index" "I" (JR.lit jwN67614))) JR.increment) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.local "result") (\jaN67505 -> JR.andThen (JR.local "index") (\jiN67505 -> (JR.aset (JR.lit jaN67505) (JR.lit jiN67505) (JR.aget (JR.local "ivArray") (JR.local "index")))))) ]) ], 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "encrypted"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67766 -> (JR.setLocal "index" "I" (JR.lit jwN67766))) JR.increment) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.local "result") (\jaN67640 -> JR.andThen (JR.map2 JR.add (JR.local "index") (JR.alength (JR.local "ivArray"))) (\jiN67640 -> (JR.aset (JR.lit jaN67640) (JR.lit jiN67640) (JR.aget (JR.local "encrypted") (JR.local "index")))))) ]) ], 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "ivArray"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67619 -> (JR.setLocal "index" "I" (JR.lit jwN67619))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.local "result") (\jaN67510 -> JR.andThen (JR.local "index") (\jiN67510 -> (JR.aset (JR.lit jaN67510) (JR.lit jiN67510) (JR.aget (JR.local "ivArray") (JR.local "index")))))) ]) ], 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "encrypted"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67771 -> (JR.setLocal "index" "I" (JR.lit jwN67771))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.local "result") (\jaN67645 -> JR.andThen (JR.map2 JR.add (JR.local "index") (JR.alength (JR.local "ivArray"))) (\jiN67645 -> (JR.aset (JR.lit jaN67645) (JR.lit jiN67645) (JR.aget (JR.local "encrypted") (JR.local "index")))))) ]) ], 
                         JR.return (JR.local "result") ]) [ ( [ "Exception" ], "e", (JR.run [ 
                         JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.str "Encrypt Failed"), JR.this, (JR.str "encrypt"), (JR.local "e") ]), 
                         JR.return JR.null ]) ) ] identity ])
@@ -115,12 +115,12 @@ jm_decrypt_1 jheap jthis jargs =
                     JR.try (JR.run [ 
                         JR.exec (JR.invoke "init_2" (JR.thisField "cipher") [ (JR.namedStatic "Cipher.jstatic_DECRYPT_MODE"), (JR.thisField "secretKey") ]), 
                         JR.declare "ivArray" "" (JR.newArray "B" [ (JR.int 8) ]), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.int 8)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68145 -> (JR.setLocal "index" "I" (JR.lit jwN68145))) JR.increment) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.local "ivArray") (\jaN68052 -> JR.andThen (JR.local "index") (\jiN68052 -> (JR.aset (JR.lit jaN68052) (JR.lit jiN68052) (JR.aget (JR.local "array") (JR.local "index")))))) ]) ], 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.int 8)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68150 -> (JR.setLocal "index" "I" (JR.lit jwN68150))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.local "ivArray") (\jaN68057 -> JR.andThen (JR.local "index") (\jiN68057 -> (JR.aset (JR.lit jaN68057) (JR.lit jiN68057) (JR.aget (JR.local "array") (JR.local "index")))))) ]) ], 
                         JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.concat (JR.str "ivArray Length: ") (JR.alength (JR.local "ivArray"))), JR.this, (JR.str "encrypt") ]), 
                         JR.declare "result" "" (JR.newArray "B" [ (JR.map2 JR.sub (JR.alength (JR.local "array")) (JR.alength (JR.local "ivArray"))) ]), 
-                        JR.run [ JR.declare "index" "I" (JR.alength (JR.local "ivArray")), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "array"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68452 -> (JR.setLocal "index" "I" (JR.lit jwN68452))) JR.increment) ]) (JR.run [ 
-                            JR.exec (JR.andThen (JR.local "result") (\jaN68314 -> JR.andThen (JR.map2 JR.sub (JR.local "index") (JR.alength (JR.local "ivArray"))) (\jiN68314 -> (JR.aset (JR.lit jaN68314) (JR.lit jiN68314) (JR.aget (JR.local "array") (JR.local "index")))))) ]) ], 
+                        JR.run [ JR.declare "index" "I" (JR.alength (JR.local "ivArray")), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "array"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68457 -> (JR.setLocal "index" "I" (JR.lit jwN68457))) JR.increment) ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.local "result") (\jaN68319 -> JR.andThen (JR.map2 JR.sub (JR.local "index") (JR.alength (JR.local "ivArray"))) (\jiN68319 -> (JR.aset (JR.lit jaN68319) (JR.lit jiN68319) (JR.aget (JR.local "array") (JR.local "index")))))) ]) ], 
                         JR.declare "decrypted" "" (JR.invoke "doFinal_1" (JR.thisField "cipher") [ (JR.local "result") ]), 
                         JR.return (JR.local "result") ]) [ ( [ "Exception" ], "e", (JR.run [ 
                         JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.str "decrypt Failed"), JR.this, (JR.str "decrypt"), (JR.local "e") ]), 

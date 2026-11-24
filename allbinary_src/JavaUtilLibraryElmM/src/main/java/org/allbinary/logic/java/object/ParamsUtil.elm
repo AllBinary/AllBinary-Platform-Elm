@@ -62,7 +62,7 @@ jm_viewParams_1 jheap jthis jargs =
         (JR.run [ 
                     JR.ifElse (JR.map2 JR.notEquals (JR.local "params") JR.null) (JR.run [ 
                         JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "params"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN65985 -> (JR.setLocal "index" "I" (JR.lit jwN65985))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "params"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN65987 -> (JR.setLocal "index" "I" (JR.lit jwN65987))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " ") ]), 
                             JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.aget (JR.local "params") (JR.local "index")) []) ]) ]) ], 
                         JR.return (JR.invoke "toString_0" (JR.local "stringBuffer") []) ]) (JR.run [ 

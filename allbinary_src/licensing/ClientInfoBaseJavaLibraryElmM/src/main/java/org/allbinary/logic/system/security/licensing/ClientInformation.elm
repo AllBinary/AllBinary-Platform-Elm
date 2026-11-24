@@ -226,9 +226,9 @@ jm_isLargerOrDifferentServerList_1 jheap jthis jargs =
                     JR.declare "currentSize" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "licenseServers") []) (JR.int 1)), 
                     JR.ifElse (JR.map2 JR.greater (JR.local "size") (JR.local "currentSize")) (JR.run [ 
                         JR.return (JR.bool True) ]) identity, 
-                    JR.run [ JR.declare "index" "I" (JR.local "size"), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70650 -> (JR.setLocal "index" "I" (JR.lit jwN70650))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.local "size"), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70675 -> (JR.setLocal "index" "I" (JR.lit jwN70675))) JR.decrement) ]) (JR.run [ 
                         JR.declare "newServerName" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
-                        JR.run [ JR.declare "index2" "I" (JR.local "currentSize"), JR.for (JR.map2 JR.greaterEquals (JR.local "index2") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN70584 -> (JR.setLocal "index2" "I" (JR.lit jwN70584))) JR.decrement) ]) (JR.run [ 
+                        JR.run [ JR.declare "index2" "I" (JR.local "currentSize"), JR.for (JR.map2 JR.greaterEquals (JR.local "index2") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN70609 -> (JR.setLocal "index2" "I" (JR.lit jwN70609))) JR.decrement) ]) (JR.run [ 
                             JR.declare "nextOldServerName" "" (JR.aget (JR.field "objectArray" (JR.thisField "licenseServers")) (JR.local "index")), 
                             JR.ifElse (JR.map2 JR.notEquals (JR.invoke "compareTo_2" (JR.thisField "tsUtil") [ (JR.local "newServerName"), (JR.local "nextOldServerName") ]) (JR.int 0)) (JR.run [ 
                                 JR.return (JR.bool True) ]) identity ]) ] ]) ], 

@@ -98,7 +98,7 @@ jm_log_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.declare "size" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68308 -> (JR.setLocal "index" "I" (JR.lit jwN68308))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68339 -> (JR.setLocal "index" "I" (JR.lit jwN68339))) JR.increment) ]) (JR.run [ 
                         JR.declare "layerProcessorInterface" "" (JR.aget (JR.thisField "basicLayerProcessorArray") (JR.local "index")) ]) ] ])
         (jregister jheap)
         jthis
@@ -136,7 +136,7 @@ jm_appendProcessors_1 jheap jthis jargs =
                     JR.exec (JR.invoke "setLayerInterface_1" (JR.thisField "createLayerManagerEvent") [ (JR.local "layerInterface") ]), 
                     JR.exec (JR.invoke "fireEvent_1" (JR.thisField "layerManagerEventHandler") [ (JR.thisField "createLayerManagerEvent") ]), 
                     JR.declare "layerProcessorInterface" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68949 -> (JR.setLocal "index" "I" (JR.lit jwN68949))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68980 -> (JR.setLocal "index" "I" (JR.lit jwN68980))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.setLocal "layerProcessorInterface" "" (JR.aget (JR.thisField "basicLayerProcessorArray") (JR.local "index"))), 
                         JR.ifElse (JR.invoke "isProcessorLayer_1" (JR.local "layerProcessorInterface") [ (JR.local "layerInterface") ]) (JR.run [ 
                             JR.exec (JR.invoke "append_1" (JR.invoke "getLayerManager_0" (JR.local "layerProcessorInterface") []) [ (JR.local "layerInterface") ]) ]) identity ]) ] ])
@@ -152,7 +152,7 @@ jm_remove_1 jheap jthis jargs =
                     JR.exec (JR.invoke "setLayerInterface_1" (JR.thisField "deleteLayerManagerEvent") [ (JR.local "layerInterface") ]), 
                     JR.exec (JR.invoke "fireDeleteEvent_1" (JR.thisField "layerManagerEventHandler") [ (JR.thisField "deleteLayerManagerEvent") ]), 
                     JR.declare "layerProcessorInterface" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69275 -> (JR.setLocal "index" "I" (JR.lit jwN69275))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN69306 -> (JR.setLocal "index" "I" (JR.lit jwN69306))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.setLocal "layerProcessorInterface" "" (JR.aget (JR.thisField "basicLayerProcessorArray") (JR.local "index"))), 
                         JR.exec (JR.invoke "remove_1" (JR.invoke "getLayerManager_0" (JR.local "layerProcessorInterface") []) [ (JR.local "layerInterface") ]) ]) ], 
                     JR.exec (JR.callVia LayerManager.jvtable "remove_1" JR.this [ (JR.local "layerInterface") ]) ])
@@ -167,7 +167,7 @@ jm_process_0 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "layerProcessorInterface" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "size" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69641 -> (JR.setLocal "index" "I" (JR.lit jwN69641))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69672 -> (JR.setLocal "index" "I" (JR.lit jwN69672))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "layerProcessorInterface" "" (JR.aget (JR.thisField "basicLayerProcessorArray") (JR.local "index"))), 
                         JR.exec (JR.invoke "process_1" (JR.local "layerProcessorInterface") [ JR.this ]) ]) ] ])
         (jregister jheap)
@@ -181,7 +181,7 @@ jm_cleanup_0 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "layerProcessorInterface" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "size" "I" (JR.alength (JR.thisField "basicLayerProcessorArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69892 -> (JR.setLocal "index" "I" (JR.lit jwN69892))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69923 -> (JR.setLocal "index" "I" (JR.lit jwN69923))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "layerProcessorInterface" "" (JR.aget (JR.thisField "basicLayerProcessorArray") (JR.local "index"))), 
                         JR.exec (JR.invoke "cleanup_0" (JR.invoke "getLayerManager_0" (JR.local "layerProcessorInterface") []) []) ]) ], 
                     JR.exec (JR.callVia LayerManager.jvtable "cleanup_0" JR.this []) ])

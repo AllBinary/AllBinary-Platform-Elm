@@ -188,7 +188,7 @@ jm_paint_1 jheap jthis jargs =
                         JR.exec (JR.invoke "paint_1" (JR.thisField "rectPaintable") [ (JR.local "graphics") ]), 
                         JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.invoke "getTitle_0" JR.this []), (JR.thisField "x"), (JR.map2 JR.sub (JR.thisField "y") (JR.thisField "fontHeight")), (JR.int 0) ]), 
                         JR.declare "item" "" (JR.lit (JR.defaultOf "")), 
-                        JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71183 -> (JR.setLocal "index" "I" (JR.lit jwN71183))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71216 -> (JR.setLocal "index" "I" (JR.lit jwN71216))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "item" "" (JR.invoke "get_1" JR.this [ (JR.local "index") ])), 
                             JR.ifElse (JR.map2 JR.greaterEquals (JR.local "dx") (JR.invoke "getMaxX_0" (JR.thisField "rectangle") [])) (JR.run [ 
                                 JR.ifElse (JR.thisField "logged") identity (JR.run [ 

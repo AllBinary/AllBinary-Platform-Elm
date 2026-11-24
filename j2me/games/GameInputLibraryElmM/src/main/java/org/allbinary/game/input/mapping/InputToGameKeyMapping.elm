@@ -110,8 +110,8 @@ jm_clear_0 : JR.Method
 jm_clear_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "platformToGameKeyMapping")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68416 -> (JR.setLocal "index" "I" (JR.lit jwN68416))) JR.decrement) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "platformToGameKeyMapping") (\jaN68297 -> JR.andThen (JR.local "index") (\jiN68297 -> (JR.aset (JR.lit jaN68297) (JR.lit jiN68297) (JR.field "NONE" (JR.thisField "gameKeyFactory")))))) ]) ] ])
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "platformToGameKeyMapping")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68435 -> (JR.setLocal "index" "I" (JR.lit jwN68435))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "platformToGameKeyMapping") (\jaN68316 -> JR.andThen (JR.local "index") (\jiN68316 -> (JR.aset (JR.lit jaN68316) (JR.lit jiN68316) (JR.field "NONE" (JR.thisField "gameKeyFactory")))))) ]) ] ])
         (jregister jheap)
         jthis
         jargs
@@ -132,7 +132,7 @@ jm_addMapping_1 : JR.Method
 jm_addMapping_1 jheap jthis jargs =
     JR.method [ ( "inputToGameKeyMapping", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "getMaxMappable_0" (JR.local "inputToGameKeyMapping") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68763 -> (JR.setLocal "index" "I" (JR.lit jwN68763))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "getMaxMappable_0" (JR.local "inputToGameKeyMapping") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68782 -> (JR.setLocal "index" "I" (JR.lit jwN68782))) JR.decrement) ]) (JR.run [ 
                         JR.declare "input" "" (JR.invoke "getInstance_1" (JR.local "inputToGameKeyMapping") [ (JR.local "index") ]), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.local "input") (JR.field "NONE" (JR.thisField "gameKeyFactory"))) (JR.run [ 
                             JR.exec (JR.invoke "addAll_2" JR.this [ (JR.local "input"), (JR.invoke "getMappedInput_1" (JR.local "inputToGameKeyMapping") [ (JR.local "input") ]) ]) ]) identity ]) ] ])
@@ -145,7 +145,7 @@ jm_addAll_2 : JR.Method
 jm_addAll_2 jheap jthis jargs =
     JR.method [ ( "input", "" ), ( "list", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69026 -> (JR.setLocal "index" "I" (JR.lit jwN69026))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69045 -> (JR.setLocal "index" "I" (JR.lit jwN69045))) JR.decrement) ]) (JR.run [ 
                         JR.declare "mappedToInput" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                         JR.exec (JR.invoke "add_2" JR.this [ (JR.local "input"), (JR.local "mappedToInput") ]) ]) ] ])
         (jregister jheap)
@@ -182,7 +182,7 @@ jm_set_2 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "id" "I" (JR.invoke "getId_0" (JR.local "mappedToInput") []), 
                     JR.ifElse (JR.and (JR.map2 JR.greaterEquals (JR.local "id") (JR.int 0)) (JR.map2 JR.less (JR.local "id") (JR.alength (JR.thisField "platformToGameKeyMapping")))) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "platformToGameKeyMapping") (\jaN69699 -> JR.andThen (JR.local "id") (\jiN69699 -> (JR.aset (JR.lit jaN69699) (JR.lit jiN69699) (JR.local "input"))))) ]) identity ])
+                        JR.exec (JR.andThen (JR.thisField "platformToGameKeyMapping") (\jaN69718 -> JR.andThen (JR.local "id") (\jiN69718 -> (JR.aset (JR.lit jaN69718) (JR.lit jiN69718) (JR.local "input"))))) ]) identity ])
         (jregister jheap)
         jthis
         jargs
@@ -204,7 +204,7 @@ jm_getReverseInstance_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "list" "" (JR.new BasicArrayListD.jnew_0 []), 
                     JR.declare "inputFactory" "" (JR.callStatic InputFactory.jm_getInstance_0 []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "platformToGameKeyMapping"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70192 -> (JR.setLocal "index" "I" (JR.lit jwN70192))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "platformToGameKeyMapping"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70211 -> (JR.setLocal "index" "I" (JR.lit jwN70211))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "getId_0" (JR.aget (JR.thisField "platformToGameKeyMapping") (JR.local "index")) []) (JR.local "id")) (JR.run [ 
                             JR.declare "input" "" (JR.invoke "getInstanceById_1" (JR.local "inputFactory") [ (JR.local "index") ]), 
                             JR.ifElse (JR.map2 JR.notEquals (JR.local "input") JR.null) (JR.run [ 
@@ -221,10 +221,10 @@ jm_initGameKey_2 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "key" "I" (JR.invoke "getKeyCode_1" (JR.local "canvas") [ (JR.invoke "getId_0" (JR.local "gameKey") []) ]), 
                     JR.ifElse (JR.and (JR.map2 JR.less (JR.local "key") (JR.int 0)) (JR.map2 JR.less (JR.map JR.neg (JR.local "key")) (JR.alength (JR.thisField "negativePlatformToGameKeyMapping")))) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "negativePlatformToGameKeyMapping") (\jaN70688 -> JR.andThen (JR.map JR.neg (JR.local "key")) (\jiN70688 -> (JR.aset (JR.lit jaN70688) (JR.lit jiN70688) (JR.local "gameKey"))))) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "negativePlatformToGameKeyMapping") (\jaN70707 -> JR.andThen (JR.map JR.neg (JR.local "key")) (\jiN70707 -> (JR.aset (JR.lit jaN70707) (JR.lit jiN70707) (JR.local "gameKey"))))) ]) (JR.run [ 
                     JR.ifElse (JR.map2 JR.greater (JR.local "key") (JR.int 0)) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.aget (JR.thisField "platformToGameKeyMapping") (JR.local "key")) (JR.field "NONE" (JR.thisField "gameKeyFactory"))) (JR.run [ 
-                            JR.exec (JR.andThen (JR.thisField "platformToGameKeyMapping") (\jaN70637 -> JR.andThen (JR.local "key") (\jiN70637 -> (JR.aset (JR.lit jaN70637) (JR.lit jiN70637) (JR.local "gameKey"))))) ]) identity ]) (JR.run [ 
+                            JR.exec (JR.andThen (JR.thisField "platformToGameKeyMapping") (\jaN70656 -> JR.andThen (JR.local "key") (\jiN70656 -> (JR.aset (JR.lit jaN70656) (JR.lit jiN70656) (JR.local "gameKey"))))) ]) identity ]) (JR.run [ 
                         JR.exec (JR.callStatic PreLogUtil.jm_putOE_4 [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.invoke "toString_0" (JR.local "gameKey") []) ]) [ (JR.field "COLON_SEP" (JR.callStatic CommonSeps.jm_getInstance_0 [])) ]) [ (JR.local "key") ]) []), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")), (JR.new (JR.newThrowable "Exception" [ "Exception" ]) []) ]) ]) ]) ])
         (jregister jheap)
         jthis
@@ -237,7 +237,7 @@ jm_getSmallestCanvasGameKeyCode_1 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "nextKey" "I" (JR.int 0), 
                     JR.declare "smallestKey" "I" (JR.int 0), 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "mappedGameKeys")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN71002 -> (JR.setLocal "index" "I" (JR.lit jwN71002))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "mappedGameKeys")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN71021 -> (JR.setLocal "index" "I" (JR.lit jwN71021))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.setLocal "nextKey" "I" (JR.invoke "getKeyCode_1" (JR.local "canvas") [ (JR.invoke "getId_0" (JR.aget (JR.thisField "mappedGameKeys") (JR.local "index")) []) ])), 
                         JR.ifElse (JR.map2 JR.less (JR.local "nextKey") (JR.local "smallestKey")) (JR.run [ 
                             JR.exec (JR.setLocal "smallestKey" "I" (JR.local "nextKey")) ]) identity ]) ], 
@@ -255,14 +255,14 @@ jm_init_1 jheap jthis jargs =
                         JR.declare "negativePlatformToGameKeyMapping" "" (JR.newArray "" [ (JR.int 0) ]), 
                         JR.declare "smallestKey" "I" (JR.invoke "getSmallestCanvasGameKeyCode_1" JR.this [ (JR.local "canvas") ]), 
                         JR.ifElse (JR.map2 JR.less (JR.local "smallestKey") (JR.int 0)) (JR.run [ 
-                            JR.exec (JR.postUpdate (JR.local "smallestKey") (\jwN71267 -> (JR.setLocal "smallestKey" "I" (JR.lit jwN71267))) JR.decrement), 
+                            JR.exec (JR.postUpdate (JR.local "smallestKey") (\jwN71286 -> (JR.setLocal "smallestKey" "I" (JR.lit jwN71286))) JR.decrement), 
                             JR.ifElse (JR.map2 JR.less (JR.local "smallestKey") (JR.map JR.neg (JR.int 256))) (JR.run [ 
                                 JR.exec (JR.setLocal "smallestKey" "I" (JR.map JR.neg (JR.int 256))) ]) identity, 
                             JR.exec (JR.setLocal "negativePlatformToGameKeyMapping" "" (JR.newArray "" [ (JR.map JR.neg (JR.local "smallestKey")) ])), 
-                            JR.run [ JR.declare "index" "I" (JR.alength (JR.local "negativePlatformToGameKeyMapping")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN71451 -> (JR.setLocal "index" "I" (JR.lit jwN71451))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
-                                JR.exec (JR.andThen (JR.local "negativePlatformToGameKeyMapping") (\jaN71400 -> JR.andThen (JR.local "index") (\jiN71400 -> (JR.aset (JR.lit jaN71400) (JR.lit jiN71400) (JR.field "NONE" (JR.thisField "gameKeyFactory")))))) ]) ], 
+                            JR.run [ JR.declare "index" "I" (JR.alength (JR.local "negativePlatformToGameKeyMapping")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN71470 -> (JR.setLocal "index" "I" (JR.lit jwN71470))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                                JR.exec (JR.andThen (JR.local "negativePlatformToGameKeyMapping") (\jaN71419 -> JR.andThen (JR.local "index") (\jiN71419 -> (JR.aset (JR.lit jaN71419) (JR.lit jiN71419) (JR.field "NONE" (JR.thisField "gameKeyFactory")))))) ]) ], 
                             JR.exec (JR.setField "negativePlatformToGameKeyMapping" "" JR.this (JR.local "negativePlatformToGameKeyMapping")) ]) identity, 
-                        JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "mappedGameKeys")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN71602 -> (JR.setLocal "index" "I" (JR.lit jwN71602))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "mappedGameKeys")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN71621 -> (JR.setLocal "index" "I" (JR.lit jwN71621))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                             JR.exec (JR.invoke "initGameKey_2" JR.this [ (JR.local "canvas"), (JR.aget (JR.thisField "mappedGameKeys") (JR.local "index")) ]) ]) ] ]) [ ( [ "Throwable" ], "t", (JR.run [ 
                         JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.field "EXCEPTION" (JR.thisField "commonStrings")), JR.this, (JR.field "INIT" (JR.thisField "commonStrings")), (JR.local "t") ]) ]) ) ] identity ])
         (jregister jheap)

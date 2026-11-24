@@ -328,7 +328,7 @@ jm_set_1 : JR.Method
 jm_set_1 jheap jthis jargs =
     JR.method [ ( "gl", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN70383 -> (JR.setLocal "index" "I" (JR.lit jwN70383))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength (JR.thisField "animationInterfaceArray")), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN70412 -> (JR.setLocal "index" "I" (JR.lit jwN70412))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "set_1" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "gl") ]) ]) ] ])
         (jregister jheap)
         jthis

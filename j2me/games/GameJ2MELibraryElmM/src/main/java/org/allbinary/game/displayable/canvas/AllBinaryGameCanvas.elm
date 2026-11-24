@@ -612,7 +612,7 @@ jm_updateMenu2_0 jheap jthis jargs =
                     JR.declare "commandTextItemArrayFactory" "" (JR.invoke "getCommandTextItemArrayFactory_0" (JR.local "gameLimitedCommandTextItemArrayFactory") []), 
                     JR.declare "items" "" (JR.invoke "getInstance_3" (JR.local "commandTextItemArrayFactory") [ (JR.invoke "getCommandStack_0" JR.this []), (JR.invoke "getBackgroundBasicColor_0" (JR.thisField "gameLayerManager") []), (JR.invoke "getForegroundBasicColor_0" (JR.thisField "gameLayerManager") []) ]), 
                     JR.declare "size" "I" (JR.alength (JR.local "items")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN94408 -> (JR.setLocal "index" "I" (JR.lit jwN94408))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN94699 -> (JR.setLocal "index" "I" (JR.lit jwN94699))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.local "scrollSelectionForm") [ (JR.aget (JR.local "items") (JR.local "index")) ]) ]) ], 
                     JR.declare "formType" "" (JR.invoke "getFormType_0" (JR.callStatic FormTypeFactory.jm_getInstance_0 []) []), 
                     JR.declare "rectangle" "" (JR.invoke "createFormRectangle_0" (JR.thisField "formUtil") []), 
@@ -1178,7 +1178,7 @@ jm_removeAllGameKeyInputListeners2_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.str "Remove PlayerInput Listeners"), JR.this, (JR.str "removeAllGameKeyInputListeners") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "localPlayerGameInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN103341 -> (JR.setLocal "index" "I" (JR.lit jwN103341))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "localPlayerGameInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN103632 -> (JR.setLocal "index" "I" (JR.lit jwN103632))) JR.decrement) ]) (JR.run [ 
                         JR.declare "playerGameInput" "" (JR.invoke "get_1" (JR.thisField "localPlayerGameInputList") [ (JR.local "index") ]), 
                         JR.exec (JR.invoke "removeKeyInputListener_1" JR.this [ (JR.local "playerGameInput") ]), 
                         JR.exec (JR.invoke "removeNonAIInputGameKeyEvents_0" (JR.local "playerGameInput") []) ]) ] ])
@@ -1323,7 +1323,7 @@ jm_buildGame2_0 jheap jthis jargs =
         (JR.run [ 
                     JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "ENABLE_PLAYER_GAME_INPUTS" (JR.thisField "gameInputStrings")) ]) [ (JR.invoke "size_0" (JR.thisField "localPlayerGameInputList") []) ]) []), JR.this, (JR.thisField "BUILD_GAME") ]), 
                     JR.declare "playerGameInput" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "localPlayerGameInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN106041 -> (JR.setLocal "index" "I" (JR.lit jwN106041))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "localPlayerGameInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN106332 -> (JR.setLocal "index" "I" (JR.lit jwN106332))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.setLocal "playerGameInput" "" (JR.invoke "get_1" (JR.thisField "localPlayerGameInputList") [ (JR.local "index") ])), 
                         JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "ENABLE_PLAYER_GAME_INPUT" (JR.thisField "gameInputStrings")) ]) [ (JR.invoke "toString_0" (JR.local "playerGameInput") []) ]) []), JR.this, (JR.thisField "BUILD_GAME") ]), 
                         JR.exec (JR.invoke "removeNonAIInputGameKeyEvents_0" (JR.local "playerGameInput") []), 
@@ -1974,7 +1974,7 @@ jm_clearPlayerGameInputList_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.declare "playerGameInput" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "localPlayerGameInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN115314 -> (JR.setLocal "index" "I" (JR.lit jwN115314))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.thisField "localPlayerGameInputList") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN115605 -> (JR.setLocal "index" "I" (JR.lit jwN115605))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.setLocal "playerGameInput" "" (JR.invoke "get_1" (JR.thisField "localPlayerGameInputList") [ (JR.local "index") ])), 
                         JR.exec (JR.invoke "removeListener_1" (JR.thisField "gameKeyEventHandler") [ (JR.local "playerGameInput") ]) ]) ], 
                     JR.exec (JR.invoke "clear_0" (JR.thisField "localPlayerGameInputList") []) ])

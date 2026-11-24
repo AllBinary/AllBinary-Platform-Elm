@@ -69,7 +69,7 @@ jm_viewAll_2 jheap jthis jargs =
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "lineBreak") ]), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Interfaces: ") ]), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "lineBreak") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "interfaces"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66332 -> (JR.setLocal "index" "I" (JR.lit jwN66332))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "interfaces"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66335 -> (JR.setLocal "index" "I" (JR.lit jwN66335))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "Interface: ") ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.aget (JR.local "interfaces") (JR.local "index")) []) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.local "lineBreak") ]) ]) ], 
@@ -84,7 +84,7 @@ jm_getClass_2 jheap jthis jargs =
     JR.method [ ( "interfaceName", "" ), ( "interfaces", "" ) ] ""
         (JR.run [ 
                     JR.ifElse (JR.and (JR.and (JR.map2 JR.notEquals (JR.local "interfaceName") JR.null) (JR.map2 JR.notEquals (JR.local "interfaces") JR.null)) (JR.map2 JR.greater (JR.alength (JR.local "interfaces")) (JR.int 0))) (JR.run [ 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "interfaces"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66685 -> (JR.setLocal "index" "I" (JR.lit jwN66685))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "interfaces"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66688 -> (JR.setLocal "index" "I" (JR.lit jwN66688))) JR.increment) ]) (JR.run [ 
                             JR.ifElse (JR.map2 JR.greaterEquals (JR.invoke "indexOf_1" (JR.invoke "getName_0" (JR.aget (JR.local "interfaces") (JR.local "index")) []) [ (JR.local "interfaceName") ]) (JR.int 0)) (JR.run [ 
                                 JR.return (JR.aget (JR.local "interfaces") (JR.local "index")) ]) identity ]) ] ]) identity, 
                     JR.return JR.null ])
@@ -98,7 +98,7 @@ jm_isImplemented_2 jheap jthis jargs =
     JR.method [ ( "clazz", "" ), ( "anyType", "" ) ] "Z"
         (JR.run [ 
                     JR.declare "classes" "" (JR.invoke "getInterfaces_0" (JR.getClass (JR.local "anyType")) []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "classes"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66999 -> (JR.setLocal "index" "I" (JR.lit jwN66999))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "classes"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67002 -> (JR.setLocal "index" "I" (JR.lit jwN67002))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "compareTo_1" (JR.invoke "getName_0" (JR.local "clazz") []) [ (JR.invoke "getName_0" (JR.aget (JR.local "classes") (JR.local "index")) []) ]) (JR.int 0)) (JR.run [ 
                         JR.return (JR.bool True) ]) identity ]) ], 
                     JR.return (JR.bool False) ])
@@ -114,7 +114,7 @@ jm_isImplementedView_2 jheap jthis jargs =
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
                     JR.declare "classes" "" (JR.invoke "getInterfaces_0" (JR.getClass (JR.local "anyType")) []), 
                     JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str "isImplementedView: \n") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "classes"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67781 -> (JR.setLocal "index" "I" (JR.lit jwN67781))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.local "classes"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67784 -> (JR.setLocal "index" "I" (JR.lit jwN67784))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.local "clazz") []) ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.str " should be = ") ]), 
                         JR.exec (JR.invoke "append_1" (JR.local "stringBuffer") [ (JR.invoke "getName_0" (JR.aget (JR.local "classes") (JR.local "index")) []) ]), 

@@ -88,7 +88,7 @@ jm_vibrate_3 : JR.Method
 jm_vibrate_3 jheap jthis jargs =
     JR.method [ ( "duration", "I" ), ( "type", "I" ), ( "volume", "I" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN67830 -> (JR.setField "delay" "I" (JR.lit jtN67830) (JR.local "duration")))) ])
+                    JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN67847 -> (JR.setField "delay" "I" (JR.lit jtN67847) (JR.local "duration")))) ])
         (jregister jheap)
         jthis
         jargs
@@ -99,7 +99,7 @@ jm_paint_1 jheap jthis jargs =
     JR.method [ ( "graphics", "" ) ] ""
         (JR.run [ 
                     JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "timeDelayHelper") []) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN67992 -> (JR.setField "delay" "I" (JR.lit jtN67992) JInteger.jstatic_MAX_VALUE))), 
+                        JR.exec (JR.andThen (JR.thisField "timeDelayHelper") (\jtN68009 -> (JR.setField "delay" "I" (JR.lit jtN68009) JInteger.jstatic_MAX_VALUE))), 
                         JR.exec (JR.invoke "process_1" (JR.thisField "myFontProcessor") [ (JR.local "graphics") ]), 
                         JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.thisField "VIBRATING"), (JR.map2 JR.sub (JR.invoke "getLastHalfWidth_0" (JR.thisField "displayInfoSingleton") []) ((JR.map2 JR.shr (JR.thisField "width") (JR.int 1)))), (JR.int 0), (JR.thisField "anchor") ]) ]) identity ])
         (jregister jheap)

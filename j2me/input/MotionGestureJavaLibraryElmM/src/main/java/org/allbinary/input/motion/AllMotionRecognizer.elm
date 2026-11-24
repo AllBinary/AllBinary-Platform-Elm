@@ -73,7 +73,7 @@ jinit_0 jheap jthis jargs =
                 JR.exec (JR.setField "touchButtonProcessing" "Z" JR.this (JR.bool False)),
                 identity,
                 (JR.run [ 
-                    JR.exec (JR.setField "id" "I" JR.this (JR.postUpdate jstatic_index (\jwN67585 -> (JR.setStatic "AllMotionRecognizer.index" "I" (JR.lit jwN67585))) JR.increment)), 
+                    JR.exec (JR.setField "id" "I" JR.this (JR.postUpdate jstatic_index (\jwN67612 -> (JR.setStatic "AllMotionRecognizer.index" "I" (JR.lit jwN67612))) JR.increment)), 
                     JR.exec (JR.setField "motionGestureRecognizer" "" JR.this (JR.new MotionGestureRecognizer.jnew_1 [ (JR.thisField "id") ])), 
                     JR.exec (JR.setField "touchButtonRecognizer" "" JR.this (JR.new TouchButtonRecognizer.jnew_0 [])) ]) ])
         (jregister jheap)

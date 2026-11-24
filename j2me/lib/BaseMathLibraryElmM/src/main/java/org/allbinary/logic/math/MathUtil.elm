@@ -87,7 +87,7 @@ jm_getTotalDigits_1 jheap jthis jargs =
                     JR.declare "total" "I" (JR.int 0), 
                     JR.while (JR.map2 JR.greater (JR.local "digits") (JR.int 0)) (JR.run [ 
                         JR.exec (JR.setLocal "digits" "I" (JR.map2 JR.div (JR.local "digits") (JR.int 10))), 
-                        JR.exec (JR.postUpdate (JR.local "total") (\jwN65857 -> (JR.setLocal "total" "I" (JR.lit jwN65857))) JR.increment) ]), 
+                        JR.exec (JR.postUpdate (JR.local "total") (\jwN65858 -> (JR.setLocal "total" "I" (JR.lit jwN65858))) JR.increment) ]), 
                     JR.return (JR.local "total") ])
         (jregister jheap)
         jthis
@@ -120,7 +120,7 @@ jm_sqrtd_1 jheap jthis jargs =
                     JR.ifElse (JR.map2 JR.less (JR.local "x") (JR.int 0)) (JR.run [ 
                         JR.return (JR.cast "D" (JR.map JR.neg (JR.float 1.0))) ]) identity, 
                     JR.declare "result" "D" (JR.cast "D" (JR.local "x")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "ACCURACY")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66585 -> (JR.setLocal "index" "I" (JR.lit jwN66585))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "ACCURACY")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66586 -> (JR.setLocal "index" "I" (JR.lit jwN66586))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "result" "D" (JR.map2 JR.div ((JR.map2 JR.add (JR.local "result") ((JR.map2 JR.div (JR.cast "D" (JR.local "x")) (JR.local "result"))))) (JR.float 2.0))) ]) ], 
                     JR.return (JR.local "result") ])
         (jregister jheap)

@@ -100,7 +100,7 @@ jm_process_1 jheap jthis jargs =
                     JR.declare "destroyEventCircularStaticPool" "" (JR.callStatic DestroyEventCircularStaticPool.jm_getInstance_0 []), 
                     JR.declare "destroyedEvent" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "layerInterface" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71477 -> (JR.setLocal "index" "I" (JR.lit jwN71477))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71534 -> (JR.setLocal "index" "I" (JR.lit jwN71534))) JR.increment) ]) (JR.run [ 
                         JR.declare "layerInterfaceCanBeNull" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.local "layerInterfaceCanBeNull") JR.null) (JR.run [ 
                             JR.exec (JR.setLocal "layerInterface" "" (JR.local "layerInterfaceCanBeNull")), 

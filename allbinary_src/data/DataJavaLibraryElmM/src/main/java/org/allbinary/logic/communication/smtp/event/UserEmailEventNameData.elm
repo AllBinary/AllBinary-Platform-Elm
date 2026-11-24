@@ -250,7 +250,7 @@ jm_initNextId_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.exec (JR.setField "eventNameId" "I" JR.this jstatic_nextId), 
-                    JR.exec (JR.postUpdate jstatic_nextId (\jwN66490 -> (JR.setStatic "UserEmailEventNameData.nextId" "I" (JR.lit jwN66490))) JR.increment) ])
+                    JR.exec (JR.postUpdate jstatic_nextId (\jwN66497 -> (JR.setStatic "UserEmailEventNameData.nextId" "I" (JR.lit jwN66497))) JR.increment) ])
         (jregister jheap)
         jthis
         jargs

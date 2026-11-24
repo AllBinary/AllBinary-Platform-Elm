@@ -58,7 +58,7 @@ jinit_2 jheap jthis jargs =
                 identity,
                 (JR.run [ 
                     JR.exec (JR.setField "scaleProperties" "" JR.this (JR.new ScaleProperties.jnew_0 [])), 
-                    JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN75702 -> (JR.setField "scaleHeight" "I" (JR.lit jtN75702) (JR.local "fontSize")))), 
+                    JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN75843 -> (JR.setField "scaleHeight" "I" (JR.lit jtN75843) (JR.local "fontSize")))), 
                     JR.exec (JR.setField "maxLength" "I" JR.this (JR.local "maxLength")) ]) ])
         (jregister jheap)
         jthis
@@ -91,7 +91,7 @@ jm_setInitialScale_1 jheap jthis jargs =
                     JR.declare "fontSize" "I" (JR.field "scaleHeight" (JR.thisField "scaleProperties")), 
                     JR.exec (JR.setField "scaleProperties" "" JR.this (JR.local "scaleProperties")), 
                     JR.ifElse (JR.map2 JR.less (JR.field "scaleHeight" (JR.thisField "scaleProperties")) (JR.int 6)) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN76466 -> (JR.setField "scaleHeight" "I" (JR.lit jtN76466) (JR.local "fontSize")))) ]) identity ])
+                        JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN76607 -> (JR.setField "scaleHeight" "I" (JR.lit jtN76607) (JR.local "fontSize")))) ]) identity ])
         (jregister jheap)
         jthis
         jargs

@@ -71,9 +71,9 @@ jm_process_1 jheap jthis jargs =
                     JR.ifElse (JR.map2 JR.greater (JR.thisField "oscillate") (JR.thisField "oscillateMax")) (JR.run [ 
                         JR.exec (JR.setField "oscillatePositive" "Z" JR.this (JR.bool False)) ]) identity ]), 
                     JR.ifElse (JR.thisField "oscillatePositive") (JR.run [ 
-                        JR.exec (JR.postUpdate (JR.thisField "oscillate") (\jwN68701 -> (JR.setField "oscillate" "I" JR.this (JR.lit jwN68701))) JR.increment), 
+                        JR.exec (JR.postUpdate (JR.thisField "oscillate") (\jwN68736 -> (JR.setField "oscillate" "I" JR.this (JR.lit jwN68736))) JR.increment), 
                         JR.exec (JR.invoke "addint_1" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.invoke "getVelocityProperties_0" JR.this []) []) [ (JR.int 2000) ]) ]) (JR.run [ 
-                        JR.exec (JR.postUpdate (JR.thisField "oscillate") (\jwN68636 -> (JR.setField "oscillate" "I" JR.this (JR.lit jwN68636))) JR.decrement), 
+                        JR.exec (JR.postUpdate (JR.thisField "oscillate") (\jwN68671 -> (JR.setField "oscillate" "I" JR.this (JR.lit jwN68671))) JR.decrement), 
                         JR.exec (JR.invoke "subtractint_1" (JR.invoke "getVelocityXBasicDecimalP_0" (JR.invoke "getVelocityProperties_0" JR.this []) []) [ (JR.int 2000) ]) ]) ])
         (jregister jheap)
         jthis

@@ -128,7 +128,7 @@ jm_nextLevel_0 : JR.Method
 jm_nextLevel_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.exec (JR.postUpdate (JR.thisField "level") (\jwN68956 -> (JR.setField "level" "I" JR.this (JR.lit jwN68956))) JR.increment), 
+                    JR.exec (JR.postUpdate (JR.thisField "level") (\jwN68973 -> (JR.setField "level" "I" JR.this (JR.lit jwN68973))) JR.increment), 
                     JR.exec (JR.invoke "update_0" JR.this []) ])
         (jregister jheap)
         jthis
@@ -139,7 +139,7 @@ jm_previousLevel_0 : JR.Method
 jm_previousLevel_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.exec (JR.postUpdate (JR.thisField "level") (\jwN69016 -> (JR.setField "level" "I" JR.this (JR.lit jwN69016))) JR.decrement), 
+                    JR.exec (JR.postUpdate (JR.thisField "level") (\jwN69033 -> (JR.setField "level" "I" JR.this (JR.lit jwN69033))) JR.decrement), 
                     JR.ifElse (JR.map2 JR.less (JR.thisField "level") (JR.int 0)) (JR.run [ 
                         JR.exec (JR.setField "level" "I" JR.this (JR.int 0)) ]) identity, 
                     JR.exec (JR.invoke "update_0" JR.this []) ])

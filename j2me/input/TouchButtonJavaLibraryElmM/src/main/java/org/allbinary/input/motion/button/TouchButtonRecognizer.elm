@@ -103,7 +103,7 @@ jm_releaseTouchButtonInput_3 jheap jthis jargs =
                         JR.declare "rectangle" "" (JR.lit (JR.defaultOf "")), 
                         JR.declare "point" "" (JR.lit (JR.defaultOf "")), 
                         JR.declare "touchButton" "" (JR.lit (JR.defaultOf "")), 
-                        JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69950 -> (JR.setLocal "index" "I" (JR.lit jwN69950))) JR.decrement) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69989 -> (JR.setLocal "index" "I" (JR.lit jwN69989))) JR.decrement) ]) (JR.run [ 
                             JR.exec (JR.setLocal "touchButton" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                             JR.exec (JR.setLocal "rectangle" "" (JR.invoke "getRectangle_0" (JR.local "touchButton") [])), 
                             JR.exec (JR.setLocal "point" "" (JR.invoke "getPoint_0" (JR.local "rectangle") [])), 
@@ -127,7 +127,7 @@ jm_pressTouchButtonInput_3 jheap jthis jargs =
                     JR.declare "touchButton" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "touchButtonInput" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "gameKeyEvent" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70996 -> (JR.setLocal "index" "I" (JR.lit jwN70996))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71035 -> (JR.setLocal "index" "I" (JR.lit jwN71035))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.setLocal "touchButton" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                         JR.exec (JR.setLocal "rectangle" "" (JR.invoke "getRectangle_0" (JR.local "touchButton") [])), 
                         JR.exec (JR.setLocal "point" "" (JR.invoke "getPoint_0" (JR.local "rectangle") [])), 

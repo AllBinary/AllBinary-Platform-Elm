@@ -143,7 +143,7 @@ jm_read_0 jheap jthis jargs =
                         JR.declare "logConfigNodeVector" "" (JR.callStatic DomSearchHelper.jm_getAllNodes_2 [ (JR.field "NAME" (JR.callStatic LogConfigData.jm_getInstance_0 [])), (JR.invoke "getChildNodes_0" (JR.local "logConfigsNode") []) ]), 
                         JR.exec (JR.setStatic "LoggingInitInfo.logConfigInfoList" "" (JR.new BasicArrayListD.jnew_0 [])), 
                         JR.declare "size" "I" (JR.invoke "size_0" (JR.local "logConfigNodeVector") []), 
-                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN69104 -> (JR.setLocal "i" "I" (JR.lit jwN69104))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN69127 -> (JR.setLocal "i" "I" (JR.lit jwN69127))) JR.increment) ]) (JR.run [ 
                             JR.declare "node" "" (JR.invoke "get_1" (JR.local "logConfigNodeVector") [ (JR.local "i") ]), 
                             JR.declare "logConfigInfo" "" (JR.new LogConfig.jnew_1 [ (JR.local "node") ]), 
                             JR.exec (JR.invoke "add_1" jstatic_logConfigInfoList [ (JR.local "logConfigInfo") ]) ]) ] ]) [ ( [ "Exception" ], "e", (JR.run [ 
@@ -217,7 +217,7 @@ jm_getTypeNameList_0 jheap jthis jargs =
                     JR.exec (JR.callStatic jm_updateIfNeeded_0 []), 
                     JR.declare "allLogTypeVector" "" (JR.new BasicArrayListD.jnew_0 []), 
                     JR.declare "size" "I" (JR.invoke "size_0" jstatic_logConfigInfoList []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70084 -> (JR.setLocal "index" "I" (JR.lit jwN70084))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70107 -> (JR.setLocal "index" "I" (JR.lit jwN70107))) JR.increment) ]) (JR.run [ 
                         JR.declare "logConfigInfo" "" (JR.aget (JR.field "objectArray" jstatic_logConfigInfoList) (JR.local "index")), 
                         JR.declare "logTypeVector" "" (JR.invoke "getTypeVector_0" (JR.local "logConfigInfo") []), 
                         JR.ifElse (JR.invoke "isEnabled_0" (JR.local "logConfigInfo") []) (JR.run [ 
@@ -235,7 +235,7 @@ jm_getTypeList_0 jheap jthis jargs =
                     JR.exec (JR.callStatic jm_updateIfNeeded_0 []), 
                     JR.declare "allLogTypeVector" "" (JR.new BasicArrayListD.jnew_0 []), 
                     JR.declare "size" "I" (JR.invoke "size_0" jstatic_logConfigInfoList []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70525 -> (JR.setLocal "index" "I" (JR.lit jwN70525))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70548 -> (JR.setLocal "index" "I" (JR.lit jwN70548))) JR.increment) ]) (JR.run [ 
                         JR.declare "logConfigInfo" "" (JR.aget (JR.field "objectArray" jstatic_logConfigInfoList) (JR.local "index")), 
                         JR.declare "logTypeVector" "" (JR.invoke "getTypeVector_0" (JR.local "logConfigInfo") []), 
                         JR.ifElse (JR.invoke "isEnabled_0" (JR.local "logConfigInfo") []) (JR.run [ 

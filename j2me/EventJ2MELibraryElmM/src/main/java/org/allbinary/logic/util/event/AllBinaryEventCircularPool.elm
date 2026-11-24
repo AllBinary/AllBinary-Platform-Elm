@@ -67,8 +67,8 @@ jm_initAllBinaryEventCircularPool_1 jheap jthis jargs =
         (JR.run [ 
                     JR.exec (JR.invoke "setIndex_1" (JR.thisField "circularIndexUtil") [ (JR.int 0) ]), 
                     JR.declare "size" "I" (JR.invoke "getSize_0" (JR.thisField "circularIndexUtil") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66163 -> (JR.setLocal "index" "I" (JR.lit jwN66163))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "OBJECT_ARRAY") (\jaN66067 -> JR.andThen (JR.local "index") (\jiN66067 -> (JR.aset (JR.lit jaN66067) (JR.lit jiN66067) (JR.invoke "getInstance_0" (JR.local "allBinaryEventObjectFactoryInterface") []))))) ]) ] ])
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66168 -> (JR.setLocal "index" "I" (JR.lit jwN66168))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "OBJECT_ARRAY") (\jaN66072 -> JR.andThen (JR.local "index") (\jiN66072 -> (JR.aset (JR.lit jaN66072) (JR.lit jiN66072) (JR.invoke "getInstance_0" (JR.local "allBinaryEventObjectFactoryInterface") []))))) ]) ] ])
         (jregister jheap)
         jthis
         jargs

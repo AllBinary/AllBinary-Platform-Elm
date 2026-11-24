@@ -68,9 +68,9 @@ jm_load_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.declare "params" "" (JR.newArray "" [ (JR.int 1) ]), 
-                    JR.exec (JR.andThen (JR.local "params") (\jaN66240 -> JR.andThen (JR.int 0) (\jiN66240 -> (JR.aset (JR.lit jaN66240) (JR.lit jiN66240) (JR.invoke "getLibraryName_0" JR.this []))))), 
+                    JR.exec (JR.andThen (JR.local "params") (\jaN66243 -> JR.andThen (JR.int 0) (\jiN66243 -> (JR.aset (JR.lit jaN66243) (JR.lit jiN66243) (JR.invoke "getLibraryName_0" JR.this []))))), 
                     JR.declare "classes" "" (JR.newArray "" [ (JR.int 1) ]), 
-                    JR.exec (JR.andThen (JR.local "classes") (\jaN66331 -> JR.andThen (JR.int 0) (\jiN66331 -> (JR.aset (JR.lit jaN66331) (JR.lit jiN66331) (JR.getClass (JR.invoke "getLibraryName_0" JR.this [])))))), 
+                    JR.exec (JR.andThen (JR.local "classes") (\jaN66334 -> JR.andThen (JR.int 0) (\jiN66334 -> (JR.aset (JR.lit jaN66334) (JR.lit jiN66334) (JR.getClass (JR.invoke "getLibraryName_0" JR.this [])))))), 
                     JR.exec (JR.setField "loader" "" JR.this (JR.new NativeLibraryClassLoader.jnew_1 [ (JR.invoke "getClassLoader_0" (JR.getClass JR.this) []) ])), 
                     JR.declare "myClass" "" (JR.invoke "loadClass_1" (JR.thisField "loader") [ (JR.str "dynamic.NativeLibraryHelper") ]), 
                     JR.declare "constructor" "" (JR.invoke "getConstructor_1" (JR.local "myClass") [ (JR.local "classes") ]), 

@@ -84,7 +84,7 @@ jm_process_1 jheap jthis jargs =
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
                     JR.declare "layerInterface" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "dropLayerInterface" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68423 -> (JR.setLocal "index" "I" (JR.lit jwN68423))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68457 -> (JR.setLocal "index" "I" (JR.lit jwN68457))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "layerInterface" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                         JR.exec (JR.setLocal "dropLayerInterface" "" (JR.local "layerInterface")), 
                         JR.exec (JR.setLocal "layerInterface" "" (JR.invoke "getDroppedLayer_0" (JR.local "dropLayerInterface") [])), 

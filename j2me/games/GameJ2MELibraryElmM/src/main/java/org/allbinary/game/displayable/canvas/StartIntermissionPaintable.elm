@@ -113,9 +113,9 @@ jm_paint_1 jheap jthis jargs =
                     JR.declare "displayInfo" "" (JR.callStatic DisplayInfoSingleton.jm_getInstance_0 []), 
                     JR.exec (JR.invoke "setBasicColorP3_3" (JR.thisField "basicSetColorUtil") [ (JR.local "graphics"), (JR.thisField "basicColor"), (JR.thisField "color") ]), 
                     JR.declare "beginWidth" "I" (JR.lit (JR.defaultOf "I")), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "lineYOffsetArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75719 -> (JR.setLocal "index" "I" (JR.lit jwN75719))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "lineYOffsetArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN75832 -> (JR.setLocal "index" "I" (JR.lit jwN75832))) JR.decrement) ]) (JR.run [ 
                         JR.ifElse (JR.thisField "hasChanged") (JR.run [ 
-                            JR.exec (JR.andThen (JR.thisField "lastWidth") (\jaN75383 -> JR.andThen (JR.local "index") (\jiN75383 -> (JR.aset (JR.lit jaN75383) (JR.lit jiN75383) ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.aget (JR.thisField "stringArray") (JR.local "index")) ]) (JR.int 1))))))) ]) identity, 
+                            JR.exec (JR.andThen (JR.thisField "lastWidth") (\jaN75496 -> JR.andThen (JR.local "index") (\jiN75496 -> (JR.aset (JR.lit jaN75496) (JR.lit jiN75496) ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.invoke "getFont_0" (JR.local "graphics") []) [ (JR.aget (JR.thisField "stringArray") (JR.local "index")) ]) (JR.int 1))))))) ]) identity, 
                         JR.exec (JR.setLocal "beginWidth" "I" (JR.aget (JR.thisField "lastWidth") (JR.local "index"))), 
                         JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.aget (JR.thisField "stringArray") (JR.local "index")), (JR.map2 JR.sub (JR.invoke "getLastHalfWidth_0" (JR.local "displayInfo") []) (JR.local "beginWidth")), (JR.map2 JR.sub (JR.invoke "getLastHalfHeight_0" (JR.local "displayInfo") []) (JR.aget (JR.thisField "lineYOffsetArray") (JR.local "index"))), (JR.thisField "anchor") ]) ]) ], 
                     JR.exec (JR.setField "hasChanged" "Z" JR.this (JR.bool False)), 
@@ -130,9 +130,9 @@ jm_update_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.declare "level" "I" (JR.invoke "getCurrentLevel_0" (JR.invoke "getGameInfo_0" (JR.invoke "getLayerManager_0" (JR.thisField "gameCanvas") []) []) []), 
-                    JR.exec (JR.andThen (JR.thisField "stringArray") (\jaN76013 -> JR.andThen (JR.int 0) (\jiN76013 -> (JR.aset (JR.lit jaN76013) (JR.lit jiN76013) (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "BEGIN_LEVEL") ]) [ (JR.local "level") ]) []))))), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "stringArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 1)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN76221 -> (JR.setLocal "index" "I" (JR.lit jwN76221))) JR.decrement) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "stringArray") (\jaN76110 -> JR.andThen (JR.local "index") (\jiN76110 -> (JR.aset (JR.lit jaN76110) (JR.lit jiN76110) (JR.thisField "EMPTY_STRING"))))) ]) ] ])
+                    JR.exec (JR.andThen (JR.thisField "stringArray") (\jaN76126 -> JR.andThen (JR.int 0) (\jiN76126 -> (JR.aset (JR.lit jaN76126) (JR.lit jiN76126) (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "BEGIN_LEVEL") ]) [ (JR.local "level") ]) []))))), 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "stringArray")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 1)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN76334 -> (JR.setLocal "index" "I" (JR.lit jwN76334))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "stringArray") (\jaN76223 -> JR.andThen (JR.local "index") (\jiN76223 -> (JR.aset (JR.lit jaN76223) (JR.lit jiN76223) (JR.thisField "EMPTY_STRING"))))) ]) ] ])
         (jregister jheap)
         jthis
         jargs

@@ -90,12 +90,12 @@ jm_disable_2 : JR.Method
 jm_disable_2 jheap jthis jargs =
     JR.method [ ( "inputProcessorArray", "" ), ( "collidableDestroyableDamageableLayer", "" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN68770 -> JR.andThen Canvas.jstatic_UP (\jiN68770 -> (JR.aset (JR.lit jaN68770) (JR.lit jiN68770) (JR.new SpecialUpGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN68834 -> JR.andThen Canvas.jstatic_DOWN (\jiN68834 -> (JR.aset (JR.lit jaN68834) (JR.lit jiN68834) (JR.new SpecialDownGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN68894 -> JR.andThen Canvas.jstatic_RIGHT (\jiN68894 -> (JR.aset (JR.lit jaN68894) (JR.lit jiN68894) (JR.new SpecialRightGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN68954 -> JR.andThen Canvas.jstatic_LEFT (\jiN68954 -> (JR.aset (JR.lit jaN68954) (JR.lit jiN68954) (JR.new SpecialLeftGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69014 -> JR.andThen Canvas.jstatic_KEY_NUM0 (\jiN69014 -> (JR.aset (JR.lit jaN69014) (JR.lit jiN69014) (JR.new Special1GameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69078 -> JR.andThen Canvas.jstatic_KEY_NUM5 (\jiN69078 -> (JR.aset (JR.lit jaN69078) (JR.lit jiN69078) (JR.new Special3GameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))) ])
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN68826 -> JR.andThen Canvas.jstatic_UP (\jiN68826 -> (JR.aset (JR.lit jaN68826) (JR.lit jiN68826) (JR.new SpecialUpGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN68890 -> JR.andThen Canvas.jstatic_DOWN (\jiN68890 -> (JR.aset (JR.lit jaN68890) (JR.lit jiN68890) (JR.new SpecialDownGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN68950 -> JR.andThen Canvas.jstatic_RIGHT (\jiN68950 -> (JR.aset (JR.lit jaN68950) (JR.lit jiN68950) (JR.new SpecialRightGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69010 -> JR.andThen Canvas.jstatic_LEFT (\jiN69010 -> (JR.aset (JR.lit jaN69010) (JR.lit jiN69010) (JR.new SpecialLeftGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69070 -> JR.andThen Canvas.jstatic_KEY_NUM0 (\jiN69070 -> (JR.aset (JR.lit jaN69070) (JR.lit jiN69070) (JR.new Special1GameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69134 -> JR.andThen Canvas.jstatic_KEY_NUM5 (\jiN69134 -> (JR.aset (JR.lit jaN69134) (JR.lit jiN69134) (JR.new Special3GameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))) ])
         (jregister jheap)
         jthis
         jargs
@@ -105,12 +105,12 @@ jm_enable_2 : JR.Method
 jm_enable_2 jheap jthis jargs =
     JR.method [ ( "inputProcessorArray", "" ), ( "collidableDestroyableDamageableLayer", "" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69219 -> JR.andThen Canvas.jstatic_UP (\jiN69219 -> (JR.aset (JR.lit jaN69219) (JR.lit jiN69219) (JR.new SpecialAnalogUpGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69279 -> JR.andThen Canvas.jstatic_DOWN (\jiN69279 -> (JR.aset (JR.lit jaN69279) (JR.lit jiN69279) (JR.new SpecialAnalogDownGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69339 -> JR.andThen Canvas.jstatic_RIGHT (\jiN69339 -> (JR.aset (JR.lit jaN69339) (JR.lit jiN69339) (JR.new SpecialAnalogRightGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69399 -> JR.andThen Canvas.jstatic_LEFT (\jiN69399 -> (JR.aset (JR.lit jaN69399) (JR.lit jiN69399) (JR.new SpecialAnalogLeftGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69459 -> JR.andThen Canvas.jstatic_KEY_NUM0 (\jiN69459 -> (JR.aset (JR.lit jaN69459) (JR.lit jiN69459) (JR.new SpecialAnalogLeftTriggerGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
-                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69523 -> JR.andThen Canvas.jstatic_KEY_NUM5 (\jiN69523 -> (JR.aset (JR.lit jaN69523) (JR.lit jiN69523) (JR.new SpecialAnalogRightTriggerGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))) ])
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69275 -> JR.andThen Canvas.jstatic_UP (\jiN69275 -> (JR.aset (JR.lit jaN69275) (JR.lit jiN69275) (JR.new SpecialAnalogUpGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69335 -> JR.andThen Canvas.jstatic_DOWN (\jiN69335 -> (JR.aset (JR.lit jaN69335) (JR.lit jiN69335) (JR.new SpecialAnalogDownGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69395 -> JR.andThen Canvas.jstatic_RIGHT (\jiN69395 -> (JR.aset (JR.lit jaN69395) (JR.lit jiN69395) (JR.new SpecialAnalogRightGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69455 -> JR.andThen Canvas.jstatic_LEFT (\jiN69455 -> (JR.aset (JR.lit jaN69455) (JR.lit jiN69455) (JR.new SpecialAnalogLeftGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69515 -> JR.andThen Canvas.jstatic_KEY_NUM0 (\jiN69515 -> (JR.aset (JR.lit jaN69515) (JR.lit jiN69515) (JR.new SpecialAnalogLeftTriggerGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))), 
+                    JR.exec (JR.andThen (JR.local "inputProcessorArray") (\jaN69579 -> JR.andThen Canvas.jstatic_KEY_NUM5 (\jiN69579 -> (JR.aset (JR.lit jaN69579) (JR.lit jiN69579) (JR.new SpecialAnalogRightTriggerGameInputProcessor.jnew_1 [ (JR.local "collidableDestroyableDamageableLayer") ]))))) ])
         (jregister jheap)
         jthis
         jargs

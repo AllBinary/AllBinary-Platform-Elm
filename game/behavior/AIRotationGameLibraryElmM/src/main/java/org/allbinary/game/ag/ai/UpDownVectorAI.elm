@@ -71,12 +71,12 @@ jm_processAI_1 jheap jthis jargs =
                         JR.declare "basicDecimal" "" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.thisField "velocityInterface") []), 
                         JR.exec (JR.invoke "setint_1" (JR.local "basicDecimal") [ (JR.int 0) ]), 
                         JR.exec (JR.invoke "addint_1" (JR.local "basicDecimal") [ (JR.local "y") ]), 
-                        JR.exec (JR.postUpdate (JR.thisField "index") (\jwN69371 -> (JR.setField "index" "I" JR.this (JR.lit jwN69371))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.postUpdate (JR.thisField "index") (\jwN69414 -> (JR.setField "index" "I" JR.this (JR.lit jwN69414))) JR.increment) ]) (JR.run [ 
                     JR.ifElse (JR.map2 JR.less (JR.thisField "index") (JR.int 10)) (JR.run [ 
                         JR.declare "basicDecimal" "" (JR.invoke "getVelocityYBasicDecimalP_0" (JR.thisField "velocityInterface") []), 
                         JR.exec (JR.invoke "setint_1" (JR.local "basicDecimal") [ (JR.int 0) ]), 
                         JR.exec (JR.invoke "subtractint_1" (JR.local "basicDecimal") [ (JR.local "y") ]), 
-                        JR.exec (JR.postUpdate (JR.thisField "index") (\jwN69232 -> (JR.setField "index" "I" JR.this (JR.lit jwN69232))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.postUpdate (JR.thisField "index") (\jwN69275 -> (JR.setField "index" "I" JR.this (JR.lit jwN69275))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setField "index" "I" JR.this (JR.int 0)), 
                         JR.exec (JR.invoke "processAI_1" JR.this [ (JR.local "allBinaryLayerManager") ]) ]) ]) ])
         (jregister jheap)

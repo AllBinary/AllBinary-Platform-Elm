@@ -74,8 +74,8 @@ jm_showProgressOptionallyInTheBackground_2 jheap jthis jargs =
                     JR.declare "progressCanvas" "" (JR.callStatic ProgressCanvasFactory.jm_getInstance_0 []), 
                     JR.exec (JR.invoke "startBackground_1" (JR.local "progressCanvas") [ (JR.local "background") ]), 
                     JR.declare "paintableArray" "" (JR.newArray "" [ (JR.int 2) ]), 
-                    JR.exec (JR.andThen (JR.local "paintableArray") (\jaN74375 -> JR.andThen (JR.int 0) (\jiN74375 -> (JR.aset (JR.lit jaN74375) (JR.lit jiN74375) (JR.local "progressCanvas"))))), 
-                    JR.exec (JR.andThen (JR.local "paintableArray") (\jaN74408 -> JR.andThen (JR.int 1) (\jiN74408 -> (JR.aset (JR.lit jaN74408) (JR.lit jiN74408) (JR.invoke "getDefaultPaintableInterface_0" (JR.local "demoCanvas") []))))), 
+                    JR.exec (JR.andThen (JR.local "paintableArray") (\jaN74483 -> JR.andThen (JR.int 0) (\jiN74483 -> (JR.aset (JR.lit jaN74483) (JR.lit jiN74483) (JR.local "progressCanvas"))))), 
+                    JR.exec (JR.andThen (JR.local "paintableArray") (\jaN74516 -> JR.andThen (JR.int 1) (\jiN74516 -> (JR.aset (JR.lit jaN74516) (JR.lit jiN74516) (JR.invoke "getDefaultPaintableInterface_0" (JR.local "demoCanvas") []))))), 
                     JR.exec (JR.invoke "setDefaultPaintableInterface_1" (JR.local "demoCanvas") [ (JR.new PaintableComposite.jnew_1 [ (JR.local "paintableArray") ]) ]), 
                     JR.exec (JR.invoke "setPaintableInterface_1" (JR.local "demoCanvas") [ (JR.invoke "getDefaultPaintableInterface_0" (JR.local "demoCanvas") []) ]) ])
         (jregister jheap)

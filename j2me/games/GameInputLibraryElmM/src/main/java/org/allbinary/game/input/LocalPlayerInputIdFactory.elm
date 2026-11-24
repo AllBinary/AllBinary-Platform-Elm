@@ -69,8 +69,8 @@ jinit_0 jheap jthis jargs =
                 JR.exec (JR.setField "totalDevicesMapped" "I" JR.this (JR.int 0)),
                 identity,
                 (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "deviceIdToplayerId")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66864 -> (JR.setLocal "index" "I" (JR.lit jwN66864))) JR.decrement) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "deviceIdToplayerId") (\jaN66755 -> JR.andThen (JR.local "index") (\jiN66755 -> (JR.aset (JR.lit jaN66755) (JR.lit jiN66755) (JR.map JR.neg (JR.int 1)))))) ]) ] ]) ])
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "deviceIdToplayerId")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66871 -> (JR.setLocal "index" "I" (JR.lit jwN66871))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "deviceIdToplayerId") (\jaN66762 -> JR.andThen (JR.local "index") (\jiN66762 -> (JR.aset (JR.lit jaN66762) (JR.lit jiN66762) (JR.map JR.neg (JR.int 1)))))) ]) ] ]) ])
         (jregister jheap)
         jthis
         jargs
@@ -110,16 +110,16 @@ jm_getPlayerForDevice_1 jheap jthis jargs =
                         JR.declare "playerInputId" "I" (JR.aget (JR.thisField "deviceIdToplayerId") (JR.local "deviceId")), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.local "playerInputId") (JR.map JR.neg (JR.int 1))) (JR.run [ 
                             JR.return (JR.local "playerInputId") ]) identity ]) (JR.run [ 
-                        JR.run [ JR.exec (JR.setLocal "index" "I" (JR.map2 JR.sub (JR.thisField "totalDevicesMapped") (JR.int 1))), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67207 -> (JR.setLocal "index" "I" (JR.lit jwN67207))) JR.decrement) ]) (JR.run [ 
+                        JR.run [ JR.exec (JR.setLocal "index" "I" (JR.map2 JR.sub (JR.thisField "totalDevicesMapped") (JR.int 1))), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67214 -> (JR.setLocal "index" "I" (JR.lit jwN67214))) JR.decrement) ]) (JR.run [ 
                             JR.ifElse (JR.map2 JR.equals (JR.aget (JR.thisField "playerIdToDeviceId") (JR.local "index")) (JR.local "deviceId")) (JR.run [ 
                                 JR.return (JR.local "index") ]) identity ]) ] ]), 
                     JR.exec (JR.setLocal "index" "I" (JR.thisField "totalDevicesMapped")), 
                     JR.ifElse (JR.map2 JR.less (JR.local "deviceId") (JR.thisField "MAX_FAST_DEVICEID")) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "deviceIdToplayerId") (\jaN67499 -> JR.andThen (JR.local "deviceId") (\jiN67499 -> (JR.aset (JR.lit jaN67499) (JR.lit jiN67499) (JR.local "index"))))) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "deviceIdToplayerId") (\jaN67506 -> JR.andThen (JR.local "deviceId") (\jiN67506 -> (JR.aset (JR.lit jaN67506) (JR.lit jiN67506) (JR.local "index"))))) ]) (JR.run [ 
                         JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Added DeviceId: ") ]) [ (JR.local "deviceId") ]) [ (JR.str " beyond fast Id list") ]) []), JR.this, (JR.str "getPlayerForDevice") ]) ]), 
-                    JR.exec (JR.andThen (JR.thisField "playerIdToDeviceId") (\jaN67546 -> JR.andThen (JR.local "index") (\jiN67546 -> (JR.aset (JR.lit jaN67546) (JR.lit jiN67546) (JR.local "deviceId"))))), 
+                    JR.exec (JR.andThen (JR.thisField "playerIdToDeviceId") (\jaN67553 -> JR.andThen (JR.local "index") (\jiN67553 -> (JR.aset (JR.lit jaN67553) (JR.lit jiN67553) (JR.local "deviceId"))))), 
                     JR.exec (JR.invoke "addPlayer_1" (JR.callStatic AnalogLocationInputFactory.jm_getInstance_0 []) [ (JR.thisField "totalDevicesMapped") ]), 
-                    JR.exec (JR.postUpdate (JR.thisField "totalDevicesMapped") (\jwN67628 -> (JR.setField "totalDevicesMapped" "I" JR.this (JR.lit jwN67628))) JR.increment), 
+                    JR.exec (JR.postUpdate (JR.thisField "totalDevicesMapped") (\jwN67635 -> (JR.setField "totalDevicesMapped" "I" JR.this (JR.lit jwN67635))) JR.increment), 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Added DeviceId: ") ]) [ (JR.local "deviceId") ]) [ (JR.str " at: ") ]) [ (JR.local "index") ]) [ (JR.str " Total: ") ]) [ (JR.thisField "totalDevicesMapped") ]) []), JR.this, (JR.str "getPlayerForDevice") ]), 
                     JR.return (JR.local "index") ])
         (jregister jheap)
@@ -132,9 +132,9 @@ jm_getTotalDevicesInPlay_0 jheap jthis jargs =
     JR.method [] "I"
         (JR.run [ 
                     JR.declare "total" "I" (JR.int 0), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.thisField "totalDevicesMapped") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68019 -> (JR.setLocal "index" "I" (JR.lit jwN68019))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.thisField "totalDevicesMapped") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68026 -> (JR.setLocal "index" "I" (JR.lit jwN68026))) JR.decrement) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.aget (JR.thisField "playersInPlay") (JR.local "index")) (JR.bool True)) (JR.run [ 
-                            JR.exec (JR.postUpdate (JR.local "total") (\jwN67939 -> (JR.setLocal "total" "I" (JR.lit jwN67939))) JR.increment) ]) identity ]) ], 
+                            JR.exec (JR.postUpdate (JR.local "total") (\jwN67946 -> (JR.setLocal "total" "I" (JR.lit jwN67946))) JR.increment) ]) identity ]) ], 
                     JR.return (JR.local "total") ])
         (jregister jheap)
         jthis
@@ -156,7 +156,7 @@ jm_setPlayerInPlay_1 jheap jthis jargs =
     JR.method [ ( "playerInputId", "I" ) ] ""
         (JR.run [ 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Setting PlayerInPlay with playerInputId: ") ]) [ (JR.local "playerInputId") ]) []), JR.this, (JR.str "setPlayerInPlay") ]), 
-                    JR.exec (JR.andThen (JR.thisField "playersInPlay") (\jaN68239 -> JR.andThen (JR.local "playerInputId") (\jiN68239 -> (JR.aset (JR.lit jaN68239) (JR.lit jiN68239) (JR.bool True))))) ])
+                    JR.exec (JR.andThen (JR.thisField "playersInPlay") (\jaN68246 -> JR.andThen (JR.local "playerInputId") (\jiN68246 -> (JR.aset (JR.lit jaN68246) (JR.lit jiN68246) (JR.bool True))))) ])
         (jregister jheap)
         jthis
         jargs
@@ -167,7 +167,7 @@ jm_setPlayerOutOfPlay_1 jheap jthis jargs =
     JR.method [ ( "playerInputId", "I" ) ] ""
         (JR.run [ 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Setting PlayerOutOfPlay with playerInputId: ") ]) [ (JR.local "playerInputId") ]) []), JR.this, (JR.str "setPlayerOutOfPlay") ]), 
-                    JR.exec (JR.andThen (JR.thisField "playersInPlay") (\jaN68403 -> JR.andThen (JR.local "playerInputId") (\jiN68403 -> (JR.aset (JR.lit jaN68403) (JR.lit jiN68403) (JR.bool False))))) ])
+                    JR.exec (JR.andThen (JR.thisField "playersInPlay") (\jaN68410 -> JR.andThen (JR.local "playerInputId") (\jiN68410 -> (JR.aset (JR.lit jaN68410) (JR.lit jiN68410) (JR.bool False))))) ])
         (jregister jheap)
         jthis
         jargs

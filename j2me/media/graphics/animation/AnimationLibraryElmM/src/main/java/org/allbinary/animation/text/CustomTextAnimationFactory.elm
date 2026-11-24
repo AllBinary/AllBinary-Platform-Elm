@@ -63,7 +63,7 @@ jinit_3 jheap jthis jargs =
                 (JR.run [ 
                     JR.exec (JR.setField "scaleProperties" "" JR.this (JR.new ScaleProperties.jnew_0 [])), 
                     JR.exec (JR.setField "text" "" JR.this (JR.local "text")), 
-                    JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN68207 -> (JR.setField "scaleHeight" "I" (JR.lit jtN68207) (JR.map2 JR.sub (JR.local "fontSize") ((JR.map2 JR.div (JR.local "fontSize") (JR.int 4))))))), 
+                    JR.exec (JR.andThen (JR.thisField "scaleProperties") (\jtN68235 -> (JR.setField "scaleHeight" "I" (JR.lit jtN68235) (JR.map2 JR.sub (JR.local "fontSize") ((JR.map2 JR.div (JR.local "fontSize") (JR.int 4))))))), 
                     JR.exec (JR.setField "initScaleHeight" "I" JR.this (JR.field "scaleHeight" (JR.thisField "scaleProperties"))), 
                     JR.exec (JR.setField "animationBehaviorFactory" "" JR.this (JR.local "animationBehaviorFactory")), 
                     JR.exec (JR.setField "font" "" JR.this (JR.callStatic Font.jm_getFont_3 [ Font.jstatic_FACE_SYSTEM, Font.jstatic_STYLE_PLAIN, (JR.thisField "initScaleHeight") ])) ]) ])
@@ -82,8 +82,8 @@ jm_createDXY_5 jheap jthis jargs =
     JR.method [ ( "text", "" ), ( "fontSize", "I" ), ( "dx", "I" ), ( "dy", "I" ), ( "animationBehaviorFactory", "" ) ] ""
         (JR.run [ 
                     JR.declare "customTextAnimationFactory" "" (JR.new jnew_3 [ (JR.local "text"), (JR.local "fontSize"), (JR.local "animationBehaviorFactory") ]), 
-                    JR.exec (JR.andThen (JR.local "customTextAnimationFactory") (\jtN67610 -> (JR.setField "dx" "" (JR.lit jtN67610) (JR.local "dx")))), 
-                    JR.exec (JR.andThen (JR.local "customTextAnimationFactory") (\jtN67643 -> (JR.setField "dy" "" (JR.lit jtN67643) (JR.local "dy")))), 
+                    JR.exec (JR.andThen (JR.local "customTextAnimationFactory") (\jtN67638 -> (JR.setField "dx" "" (JR.lit jtN67638) (JR.local "dx")))), 
+                    JR.exec (JR.andThen (JR.local "customTextAnimationFactory") (\jtN67671 -> (JR.setField "dy" "" (JR.lit jtN67671) (JR.local "dy")))), 
                     JR.return (JR.local "customTextAnimationFactory") ])
         (jregister jheap)
         jthis

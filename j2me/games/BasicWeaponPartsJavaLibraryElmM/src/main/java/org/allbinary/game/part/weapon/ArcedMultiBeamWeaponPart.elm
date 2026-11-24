@@ -70,7 +70,7 @@ jm_processScore_5 jheap jthis jargs =
                     JR.declare "minAngle" "S" (JR.cast "S" ((JR.map2 JR.sub (JR.cast "I" (JR.local "angle")) ((JR.map2 JR.shr ((JR.map2 JR.mul (JR.cast "I" (JR.local "increment")) (JR.thisField "total"))) (JR.int 1)))))), 
                     JR.declare "next" "I" (JR.int 0), 
                     JR.declare "weaponLayer" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "total")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71657 -> (JR.setLocal "index" "I" (JR.lit jwN71657))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "total")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71737 -> (JR.setLocal "index" "I" (JR.lit jwN71737))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "weaponLayer" "" (JR.invoke "getInstanceWeaponLayer_8" (JR.thisField "weaponLayerCircularStaticPool") [ (JR.invoke "getOwnerLayerInterface_0" JR.this []), (JR.invoke "getX_0" (JR.thisField "relativeRelationship") []), (JR.invoke "getY_0" (JR.thisField "relativeRelationship") []), (JR.int 0), ((JR.map2 JR.add (JR.local "minAngle") (JR.local "increment"))), (JR.cast "I" (JR.local "otherAngle")), (JR.local "weaponProperties"), (JR.local "scoreableInterface") ])), 
                         JR.exec (JR.invoke "append_1" (JR.local "allbinaryLayerManager") [ (JR.local "weaponLayer") ]), 
                         JR.exec (JR.setLocal "next" "I" (JR.map2 JR.add (JR.local "next") (JR.local "increment"))) ]) ] ])

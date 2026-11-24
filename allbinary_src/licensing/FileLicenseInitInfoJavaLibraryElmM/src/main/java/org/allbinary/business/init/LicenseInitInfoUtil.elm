@@ -119,7 +119,7 @@ jm_write_1 jheap jthis jargs =
                         JR.declare "numberOfLicenseServers" "I" (JR.invoke "getNumberOfServers_0" (JR.local "initData") []), 
                         JR.exec (JR.invoke "writeInt_1" (JR.local "dataOutputStream") [ (JR.local "numberOfLicenseServers") ]), 
                         JR.declare "licenseServerCrypted" "" (JR.lit (JR.defaultOf "")), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfLicenseServers")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68443 -> (JR.setLocal "index" "I" (JR.lit jwN68443))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfLicenseServers")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68465 -> (JR.setLocal "index" "I" (JR.lit jwN68465))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "licenseServerCrypted" "" (JR.invoke "getByteArray_1" (JR.local "tsUtil") [ (JR.invoke "encrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 3) ]) [ (JR.invoke "getServer_1" (JR.local "initData") [ (JR.local "index") ]) ]) ])), 
                             JR.exec (JR.invoke "writeUTF_1" (JR.local "dataOutputStream") [ (JR.callStatic DatabaseEncoder.jm_encode_1 [ (JR.local "licenseServerCrypted") ]) ]) ]) ] ]) [ ( [ "Exception" ], "e", (JR.run [ 
                         JR.exec (JR.invoke "put_4" (JR.thisField "logUtil") [ (JR.concat (JR.str "Command Failed: ") (JR.thisField "INITFILENAME")), JR.this, (JR.str "write"), (JR.local "e") ]), 
@@ -160,7 +160,7 @@ jm_readAgain_1 jheap jthis jargs =
                             JR.declare "numberOfLicenseServers" "I" (JR.invoke "readInt_0" (JR.local "iData") []), 
                             JR.declare "NEXT_FILE" "" (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "NEXT" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.str " License Server From File: ") ]) []), 
                             JR.declare "licenseServerDecoded" "" (JR.lit (JR.defaultOf "")), 
-                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfLicenseServers")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69925 -> (JR.setLocal "index" "I" (JR.lit jwN69925))) JR.increment) ]) (JR.run [ 
+                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "numberOfLicenseServers")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69947 -> (JR.setLocal "index" "I" (JR.lit jwN69947))) JR.increment) ]) (JR.run [ 
                                 JR.exec (JR.setLocal "decodedByteArray" "" (JR.callStatic DatabaseEncoder.jm_decode_1 [ (JR.invoke "readUTF_0" (JR.local "iData") []) ])), 
                                 JR.exec (JR.setLocal "licenseServerDecoded" "" (JR.withState JR.newString [ (JR.local "decodedByteArray") ])), 
                                 JR.exec (JR.invoke "setServer_2" (JR.local "initInfo") [ (JR.invoke "decrypt_1" (JR.new WeakCrypt.jnew_1 [ (JR.int 3) ]) [ (JR.local "licenseServerDecoded") ]), (JR.local "index") ]), 

@@ -94,7 +94,7 @@ jm_delete_3 jheap jthis jargs =
                             JR.exec (JR.invoke "appendint_1" (JR.local "stringBuffer") [ (JR.local "end") ]), 
                             JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.local "stringBuffer") []), JR.this, (JR.str "initialize()") ]), 
                             JR.declare "nextFile" "" (JR.lit (JR.defaultOf "")), 
-                            JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "end")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69032 -> (JR.setLocal "index" "I" (JR.lit jwN69032))) JR.increment) ]) (JR.run [ 
+                            JR.run [ JR.declare "index" "I" (JR.local "start"), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "end")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69050 -> (JR.setLocal "index" "I" (JR.lit jwN69050))) JR.increment) ]) (JR.run [ 
                                 JR.exec (JR.setLocal "nextFile" "" (JR.invoke "get_1" (JR.local "fileBasicArrayList") [ (JR.local "index") ])), 
                                 JR.try (JR.run [ 
                                     JR.ifElse (JR.map2 JR.less (JR.invoke "indexOf_1" (JR.invoke "getPath_0" (JR.local "nextFile") []) [ (JR.field "FILE" (JR.callStatic FileUploadData.jm_getInstance_0 [])) ]) (JR.int 0)) (JR.run [ 

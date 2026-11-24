@@ -63,7 +63,7 @@ jm_isHighScoreCommand_1 : JR.Method
 jm_isHighScoreCommand_1 jheap jthis jargs =
     JR.method [ ( "command", "" ) ] "Z"
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "HIGH_SCORE_COMMANDS")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66209 -> (JR.setLocal "index" "I" (JR.lit jwN66209))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "HIGH_SCORE_COMMANDS")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66213 -> (JR.setLocal "index" "I" (JR.lit jwN66213))) JR.decrement) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.local "command") (JR.aget (JR.thisField "HIGH_SCORE_COMMANDS") (JR.local "index"))) (JR.run [ 
                             JR.return (JR.bool True) ]) identity ]) ], 
                     JR.return (JR.bool False) ])
@@ -76,7 +76,7 @@ jm_getIndex_1 : JR.Method
 jm_getIndex_1 jheap jthis jargs =
     JR.method [ ( "command", "" ) ] "I"
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "HIGH_SCORE_COMMANDS")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66416 -> (JR.setLocal "index" "I" (JR.lit jwN66416))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "HIGH_SCORE_COMMANDS")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66420 -> (JR.setLocal "index" "I" (JR.lit jwN66420))) JR.decrement) ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.local "command") (JR.aget (JR.thisField "HIGH_SCORE_COMMANDS") (JR.local "index"))) (JR.run [ 
                             JR.return (JR.local "index") ]) identity ]) ], 
                     JR.throw (JR.new (JR.newThrowable "Exception" [ "Exception" ]) [ (JR.str "No Such Command") ]) ])

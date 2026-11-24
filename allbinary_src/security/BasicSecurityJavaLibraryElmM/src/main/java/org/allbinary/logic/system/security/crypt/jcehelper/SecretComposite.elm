@@ -92,7 +92,7 @@ jm_mutilate_1 : JR.Method
 jm_mutilate_1 jheap jthis jargs =
     JR.method [ ( "array", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "key"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66759 -> (JR.setLocal "index" "I" (JR.lit jwN66759))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "key"))) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66762 -> (JR.setLocal "index" "I" (JR.lit jwN66762))) JR.increment) ]) (JR.run [ 
                         JR.declare "value" "B" (JR.aget (JR.thisField "key") (JR.local "index")), 
                         JR.ifElse (JR.and (JR.map2 JR.less (JR.cast "I" (JR.local "value")) (JR.int 8)) (JR.map2 JR.greater (JR.cast "I" (JR.local "value")) (JR.int 0))) (JR.run [ 
                             JR.exec (JR.setLocal "array" "" (JR.invoke "xorByte_2" (JR.thisField "byteUtil") [ (JR.local "array"), (JR.cast "I" (JR.local "value")) ])) ]) identity ]) ], 

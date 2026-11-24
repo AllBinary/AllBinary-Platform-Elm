@@ -88,7 +88,7 @@ jm_getNextGroup_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.declare "group" "" (JR.aget (JR.field "objectArray" (JR.thisField "list")) (JR.thisField "index")), 
-                    JR.exec (JR.postUpdate (JR.thisField "index") (\jwN66889 -> (JR.setField "index" "I" JR.this (JR.lit jwN66889))) JR.increment), 
+                    JR.exec (JR.postUpdate (JR.thisField "index") (\jwN66900 -> (JR.setField "index" "I" JR.this (JR.lit jwN66900))) JR.increment), 
                     JR.return (JR.local "group") ])
         (jregister jheap)
         jthis
@@ -125,7 +125,7 @@ jm_init_2 jheap jthis jargs =
                             JR.exec (JR.invoke "delete_2" (JR.local "stringMaker") [ (JR.int 0), (JR.invoke "length_0" (JR.local "stringMaker") []) ]), 
                             JR.exec (JR.setLocal "name" "" (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.local "stringMaker") [ (JR.local "TEAM") ]) [ (JR.local "size") ]) [])) ]), 
                         JR.exec (JR.invoke "add_1" (JR.thisField "list") [ (JR.new Group.jnew_2 [ (JR.local "name"), (JR.cast "S" ((JR.map2 JR.add (JR.local "size") (JR.int 3)))) ]) ]), 
-                        JR.exec (JR.postUpdate (JR.local "size") (\jwN67671 -> (JR.setLocal "size" "I" (JR.lit jwN67671))) JR.increment) ]) ])
+                        JR.exec (JR.postUpdate (JR.local "size") (\jwN67682 -> (JR.setLocal "size" "I" (JR.lit jwN67682))) JR.increment) ]) ])
         (jregister jheap)
         jthis
         jargs

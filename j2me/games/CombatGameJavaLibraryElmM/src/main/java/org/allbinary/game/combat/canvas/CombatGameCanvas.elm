@@ -110,10 +110,10 @@ jm_initConfigurablePortion_1 jheap jthis jargs =
                     JR.declare "gameFeatureFactory" "" (JR.callStatic GameFeatureFactory.jm_getInstance_0 []), 
                     JR.ifElse (JR.and (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "DROPPED_ITEMS" (JR.local "gameFeatureFactory")) ]) (JR.invoke "isFeature_1" (JR.local "features") [ (JR.field "DROPPED_ITEMS_FROM_DEATH" (JR.local "gameFeatureFactory")) ])) (JR.run [ 
                         JR.exec (JR.setStatic "CombatGameCanvas.basicLayerProcessor" "" (JR.newArray "" [ (JR.int 2) ])), 
-                        JR.exec (JR.andThen jstatic_basicLayerProcessor (\jaN76289 -> JR.andThen (JR.int 0) (\jiN76289 -> (JR.aset (JR.lit jaN76289) (JR.lit jiN76289) (JR.callStatic DestroyedLayerProcessor.jm_getInstance_0 []))))), 
-                        JR.exec (JR.andThen jstatic_basicLayerProcessor (\jaN76338 -> JR.andThen (JR.int 1) (\jiN76338 -> (JR.aset (JR.lit jaN76338) (JR.lit jiN76338) (JR.callStatic DropLayerProcessor.jm_getInstance_0 []))))) ]) (JR.run [ 
+                        JR.exec (JR.andThen jstatic_basicLayerProcessor (\jaN76428 -> JR.andThen (JR.int 0) (\jiN76428 -> (JR.aset (JR.lit jaN76428) (JR.lit jiN76428) (JR.callStatic DestroyedLayerProcessor.jm_getInstance_0 []))))), 
+                        JR.exec (JR.andThen jstatic_basicLayerProcessor (\jaN76477 -> JR.andThen (JR.int 1) (\jiN76477 -> (JR.aset (JR.lit jaN76477) (JR.lit jiN76477) (JR.callStatic DropLayerProcessor.jm_getInstance_0 []))))) ]) (JR.run [ 
                         JR.exec (JR.setStatic "CombatGameCanvas.basicLayerProcessor" "" (JR.newArray "" [ (JR.int 1) ])), 
-                        JR.exec (JR.andThen jstatic_basicLayerProcessor (\jaN76185 -> JR.andThen (JR.int 0) (\jiN76185 -> (JR.aset (JR.lit jaN76185) (JR.lit jiN76185) (JR.callStatic DestroyedLayerProcessor.jm_getInstance_0 []))))) ]) ])
+                        JR.exec (JR.andThen jstatic_basicLayerProcessor (\jaN76324 -> JR.andThen (JR.int 0) (\jiN76324 -> (JR.aset (JR.lit jaN76324) (JR.lit jiN76324) (JR.callStatic DestroyedLayerProcessor.jm_getInstance_0 []))))) ]) ])
         (jregister jheap)
         jthis
         jargs
@@ -124,7 +124,7 @@ jm_processPlayingGame_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.exec (JR.callVia AllBinaryGameCanvas.jvtable "processPlayingGame_0" JR.this []), 
-                    JR.run [ JR.declare "index" "I" (JR.alength jstatic_basicLayerProcessor), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN76518 -> (JR.setLocal "index" "I" (JR.lit jwN76518))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength jstatic_basicLayerProcessor), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN76657 -> (JR.setLocal "index" "I" (JR.lit jwN76657))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "process_1" (JR.aget jstatic_basicLayerProcessor (JR.local "index")) [ (JR.thisField "gameLayerManager") ]) ]) ] ])
         (jregister jheap)
         jthis
@@ -136,7 +136,7 @@ jm_cleanupGame_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.exec (JR.callVia AllBinaryGameCanvas.jvtable "cleanupGame_0" JR.this []), 
-                    JR.run [ JR.declare "index" "I" (JR.alength jstatic_basicLayerProcessor), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN76707 -> (JR.setLocal "index" "I" (JR.lit jwN76707))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.alength jstatic_basicLayerProcessor), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN76846 -> (JR.setLocal "index" "I" (JR.lit jwN76846))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.invoke "clear_0" (JR.invoke "getList_0" (JR.aget jstatic_basicLayerProcessor (JR.local "index")) []) []) ]) ], 
                     JR.exec (JR.invoke "clear_0" (JR.callStatic GroupLayerManagerListener.jm_getInstance_0 []) []), 
                     JR.exec (JR.invoke "log_0" (JR.callStatic GroupLayerManagerListener.jm_getInstance_0 []) []), 

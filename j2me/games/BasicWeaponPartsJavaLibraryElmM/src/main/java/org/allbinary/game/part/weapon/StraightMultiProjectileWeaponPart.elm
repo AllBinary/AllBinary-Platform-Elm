@@ -93,7 +93,7 @@ jm_processScore_5 jheap jthis jargs =
                     JR.declare "weaponLayer" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "increment" "I" (JR.map2 JR.div (JR.local "reducedWidth") ((JR.map2 JR.sub (JR.thisField "total") (JR.int 1)))), 
                     JR.declare "next" "I" (JR.map JR.neg (JR.local "halfWidth")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "total")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72435 -> (JR.setLocal "index" "I" (JR.lit jwN72435))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "total")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72515 -> (JR.setLocal "index" "I" (JR.lit jwN72515))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "sine" "J" ((JR.map2 JR.mul (JR.cast "J" (JR.local "next")) (JR.invoke "sin_1" (JR.thisField "noDecimalTrigTable") [ (JR.cast "I" (JR.local "angle")) ])))), 
                         JR.exec (JR.setLocal "beamX" "I" (JR.cast "I" ((JR.map2 JR.div (JR.local "sine") (JR.cast "J" (JR.field "SCALE" (JR.thisField "noDecimalTrigTable"))))))), 
                         JR.exec (JR.setLocal "cosine" "J" ((JR.map2 JR.mul (JR.cast "J" (JR.local "next")) (JR.invoke "cos_1" (JR.thisField "noDecimalTrigTable") [ (JR.cast "I" (JR.local "angle")) ])))), 

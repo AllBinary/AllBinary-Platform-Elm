@@ -109,7 +109,7 @@ jm_nextFrame_0 jheap jthis jargs =
                         JR.exec (JR.invoke "previousFrame_0" JR.this []), 
                         JR.exec (JR.setField "lastFrameStartTime" "J" JR.this (JR.local "currentTime")) ]) identity, 
                     JR.ifElse (JR.map2 JR.equals (JR.invoke "getFrame_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.int 0)) []) (JR.int 0)) (JR.run [ 
-                        JR.exec (JR.andThen (JR.local "indexedAnimationBehavior") (\jtN69639 -> (JR.postUpdate (JR.field "loopIndex" (JR.lit jtN69639)) (\jwN69639 -> (JR.setField "loopIndex" "I" (JR.lit jtN69639) (JR.lit jwN69639))) JR.increment))) ]) identity ])
+                        JR.exec (JR.andThen (JR.local "indexedAnimationBehavior") (\jtN69667 -> (JR.postUpdate (JR.field "loopIndex" (JR.lit jtN69667)) (\jwN69667 -> (JR.setField "loopIndex" "I" (JR.lit jtN69667) (JR.lit jwN69667))) JR.increment))) ]) identity ])
         (jregister jheap)
         jthis
         jargs
@@ -171,7 +171,7 @@ jm_setFrame_1 : JR.Method
 jm_setFrame_1 jheap jthis jargs =
     JR.method [ ( "frame", "I" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "sizeP")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70291 -> (JR.setLocal "index" "I" (JR.lit jwN70291))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "sizeP")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70319 -> (JR.setLocal "index" "I" (JR.lit jwN70319))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "setFrame_1" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) [ (JR.local "frame") ]) ]) ] ])
         (jregister jheap)
         jthis
@@ -204,7 +204,7 @@ jm_previousFrame_0 : JR.Method
 jm_previousFrame_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "sizeP")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70676 -> (JR.setLocal "index" "I" (JR.lit jwN70676))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "sizeP")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70704 -> (JR.setLocal "index" "I" (JR.lit jwN70704))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "previousFrame_0" (JR.aget (JR.thisField "animationInterfaceArray") (JR.local "index")) []) ]) ] ])
         (jregister jheap)
         jthis
@@ -231,7 +231,7 @@ jm_paintXY_3 jheap jthis jargs =
                         JR.exec (JR.setLocal "x" "I" ((JR.map2 JR.div ((JR.map2 JR.sub (JR.invoke "getLastWidth_0" (JR.thisField "displayInfoSingleton") []) (JR.thisField "widthP"))) (JR.int 2)))) ]) identity, 
                     JR.declare "deltaX" "I" (JR.lit (JR.defaultOf "I")), 
                     JR.declare "deltaY" "I" (JR.lit (JR.defaultOf "I")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "sizeP")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71502 -> (JR.setLocal "index" "I" (JR.lit jwN71502))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.thisField "sizeP")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71530 -> (JR.setLocal "index" "I" (JR.lit jwN71530))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "deltaX" "I" (JR.map2 JR.add (JR.aget (JR.thisField "dxArray") (JR.local "index")) (JR.local "x"))), 
                         JR.exec (JR.setLocal "deltaY" "I" (JR.map2 JR.add (JR.aget (JR.thisField "dyArray") (JR.local "index")) (JR.thisField "y"))), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.aget (JR.thisField "basicColorArray") (JR.local "index")) (JR.thisField "CLEAR_COLOR")) (JR.run [ 

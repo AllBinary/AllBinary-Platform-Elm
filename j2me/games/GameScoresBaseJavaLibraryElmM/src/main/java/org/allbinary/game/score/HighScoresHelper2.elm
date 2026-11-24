@@ -108,7 +108,7 @@ jm_selectHighScores_0 jheap jthis jargs =
                     JR.declare "index" "I" (JR.int 0), 
                     JR.while (JR.and (JR.map2 JR.less (JR.invoke "getTotal_0" (JR.local "highScores") []) (JR.int 1)) (JR.map2 JR.less (JR.local "index") (JR.alength (JR.thisField "highScoresArrayP")))) (JR.run [ 
                         JR.exec (JR.setLocal "highScores" "" (JR.aget (JR.thisField "highScoresArrayP") (JR.invoke "next_0" (JR.thisField "circularIndexUtil") []))), 
-                        JR.exec (JR.postUpdate (JR.local "index") (\jwN66878 -> (JR.setLocal "index" "I" (JR.lit jwN66878))) JR.increment) ]), 
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN66888 -> (JR.setLocal "index" "I" (JR.lit jwN66888))) JR.increment) ]), 
                     JR.exec (JR.invoke "setSelectedHighScores_1" JR.this [ (JR.local "highScores") ]) ])
         (jregister jheap)
         jthis

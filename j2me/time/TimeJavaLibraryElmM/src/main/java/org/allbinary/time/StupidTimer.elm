@@ -90,7 +90,7 @@ jm_visit_2 jheap jthis jargs =
                     JR.while (JR.invoke "visitBool_1" JR.this [ (JR.local "visitorInterface") ]) (JR.run [ 
                         JR.ifElse (JR.map2 JR.equals (JR.map2 JR.rem (JR.local "index") (JR.int 10)) (JR.int 0)) (JR.run [ 
                             JR.exec (JR.callStatic PreLogUtil.jm_put_3 [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.local "WAITING_FOR") ]) [ (JR.local "index") ]) []), JR.this, (JR.field "VISIT" (JR.thisField "commonStrings")) ]) ]) identity, 
-                        JR.exec (JR.postUpdate (JR.local "index") (\jwN67620 -> (JR.setLocal "index" "I" (JR.lit jwN67620))) JR.increment), 
+                        JR.exec (JR.postUpdate (JR.local "index") (\jwN67633 -> (JR.setLocal "index" "I" (JR.lit jwN67633))) JR.increment), 
                         (JR.run [ 
                             JR.exec (JR.invoke "waitObjectFor_2" (JR.thisField "threadObjectUtil") [ JR.this, (JR.int 1800) ]) ]), 
                         JR.ifElse (JR.invoke "isTimeTNT_0" (JR.local "timeDelayHelper") []) (JR.run [ 

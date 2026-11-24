@@ -74,10 +74,10 @@ jinit_0 jheap jthis jargs =
                 JR.exec (JR.setField "nextIndex" "I" JR.this (JR.int 0)),
                 identity,
                 (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "listOfList")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67631 -> (JR.setLocal "index" "I" (JR.lit jwN67631))) JR.decrement) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "listOfList") (\jaN67515 -> JR.andThen (JR.local "index") (\jiN67515 -> (JR.aset (JR.lit jaN67515) (JR.lit jiN67515) (JR.new BasicArrayListD.jnew_0 []))))) ]) ], 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "availableListOfList")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67769 -> (JR.setLocal "index" "I" (JR.lit jwN67769))) JR.decrement) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "availableListOfList") (\jaN67657 -> JR.andThen (JR.local "index") (\jiN67657 -> (JR.aset (JR.lit jaN67657) (JR.lit jiN67657) (JR.new BasicArrayListD.jnew_0 []))))) ]) ] ]) ])
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "listOfList")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67648 -> (JR.setLocal "index" "I" (JR.lit jwN67648))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "listOfList") (\jaN67532 -> JR.andThen (JR.local "index") (\jiN67532 -> (JR.aset (JR.lit jaN67532) (JR.lit jiN67532) (JR.new BasicArrayListD.jnew_0 []))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "availableListOfList")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN67786 -> (JR.setLocal "index" "I" (JR.lit jwN67786))) JR.decrement) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "availableListOfList") (\jaN67674 -> JR.andThen (JR.local "index") (\jiN67674 -> (JR.aset (JR.lit jaN67674) (JR.lit jiN67674) (JR.new BasicArrayListD.jnew_0 []))))) ]) ] ]) ])
         (jregister jheap)
         jthis
         jargs
@@ -105,7 +105,7 @@ jm_releaseAll_0 : JR.Method
 jm_releaseAll_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "listOfList")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68177 -> (JR.setLocal "index" "I" (JR.lit jwN68177))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.alength (JR.thisField "listOfList")) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68194 -> (JR.setLocal "index" "I" (JR.lit jwN68194))) JR.decrement) ]) (JR.run [ 
                         JR.exec (JR.invoke "clear_0" (JR.aget (JR.thisField "availableListOfList") (JR.local "index")) []), 
                         JR.exec (JR.invoke "addAllList_1" (JR.aget (JR.thisField "availableListOfList") (JR.local "index")) [ (JR.aget (JR.thisField "listOfList") (JR.local "index")) ]) ]) ], 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "ImageCache: ") ]) [ (JR.invoke "toString_0" JR.this []) ]) []), JR.this, (JR.str "releaseAll") ]) ])
@@ -120,7 +120,7 @@ jm_getIndexWH_2 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "foundIndex" "I" (JR.map JR.neg (JR.int 1)), 
                     JR.declare "size" "I" (JR.alength (JR.thisField "widths")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68565 -> (JR.setLocal "index" "I" (JR.lit jwN68565))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68582 -> (JR.setLocal "index" "I" (JR.lit jwN68582))) JR.increment) ]) (JR.run [ 
                         JR.ifElse (JR.and (JR.map2 JR.equals (JR.aget (JR.thisField "widths") (JR.local "index")) (JR.local "width")) (JR.map2 JR.equals (JR.aget (JR.thisField "heights") (JR.local "index")) (JR.local "height"))) (JR.run [ 
                             JR.exec (JR.setLocal "foundIndex" "I" (JR.local "index")), 
                             JR.return (JR.local "foundIndex") ]) identity ]) ], 
@@ -189,7 +189,7 @@ jm_toString_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.declare "stringBuffer" "" (JR.new StringMaker.jnew_0 []), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.thisField "nextIndex") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70120 -> (JR.setLocal "index" "I" (JR.lit jwN70120))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.thisField "nextIndex") (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70137 -> (JR.setLocal "index" "I" (JR.lit jwN70137))) JR.decrement) ]) (JR.run [ 
                         JR.declare "width" "I" (JR.aget (JR.thisField "widths") (JR.local "index")), 
                         JR.declare "height" "I" (JR.aget (JR.thisField "heights") (JR.local "index")), 
                         JR.declare "total" "I" (JR.invoke "size_0" (JR.aget (JR.thisField "listOfList") (JR.local "index")) []), 

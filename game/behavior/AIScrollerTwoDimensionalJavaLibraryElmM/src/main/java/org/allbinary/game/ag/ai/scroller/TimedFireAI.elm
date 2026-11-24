@@ -78,7 +78,7 @@ jm_processAI_1 jheap jthis jargs =
                     JR.declare "timeFiredInterface" "" (JR.invoke "getOwnerLayerInterface_0" JR.this []), 
                     JR.ifElse (JR.and (JR.invoke "isTime_1" (JR.thisField "maxFireDelayTimeHelper") [ (JR.field "startTime" (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])) ]) (JR.map2 JR.less (JR.plus (JR.invoke "getLastFireTime_0" (JR.local "timeFiredInterface") []) (JR.field "delay" (JR.thisField "maxFireDelayTimeHelper"))) (JR.invoke "getStartTime_0" (JR.thisField "maxFireDelayTimeHelper") []))) (JR.run [ 
                         JR.exec (JR.callVia BasicAI.jvtable "processKeyAI_1" JR.this [ Canvas.jstatic_KEY_NUM1 ]), 
-                        JR.exec (JR.andThen (JR.thisField "maxFireDelayTimeHelper") (\jtN68986 -> (JR.setField "delay" "" (JR.lit jtN68986) (JR.thisField "delay")))) ]) identity ])
+                        JR.exec (JR.andThen (JR.thisField "maxFireDelayTimeHelper") (\jtN69028 -> (JR.setField "delay" "" (JR.lit jtN69028) (JR.thisField "delay")))) ]) identity ])
         (jregister jheap)
         jthis
         jargs

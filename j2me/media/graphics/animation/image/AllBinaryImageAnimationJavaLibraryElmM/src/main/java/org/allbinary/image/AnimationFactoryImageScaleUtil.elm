@@ -105,8 +105,8 @@ jm_processAdjust_1 jheap jthis jargs =
                         JR.declare "scaleX" "F" (JR.map2 JR.div ((JR.cast "F" (JR.field "scaleWidth" (JR.local "scaleProperties")))) ((JR.cast "F" (JR.field "width" (JR.local "animationFactoryInitializationVisitor"))))), 
                         JR.declare "scaleY" "F" (JR.map2 JR.div ((JR.cast "F" (JR.field "scaleHeight" (JR.local "scaleProperties")))) ((JR.cast "F" (JR.field "height" (JR.local "animationFactoryInitializationVisitor"))))), 
                         JR.ifElse (JR.or ((JR.and (JR.map2 JR.equals (JR.local "scaleX") (JR.float 1.0)) (JR.map2 JR.equals (JR.local "scaleY") (JR.float 1.0)))) ((JR.or (JR.map2 JR.equals (JR.local "scaleX") (JR.float 0.0)) (JR.map2 JR.equals (JR.local "scaleY") (JR.float 0.0))))) identity (JR.run [ 
-                            JR.exec (JR.andThen (JR.local "animationFactoryInitializationVisitor") (\jtN68375 -> (JR.setField "dx" "I" (JR.lit jtN68375) (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.field "originalDx" (JR.local "animationFactoryInitializationVisitor"))) (JR.local "scaleX"))))))), 
-                            JR.exec (JR.andThen (JR.local "animationFactoryInitializationVisitor") (\jtN68441 -> (JR.setField "dy" "I" (JR.lit jtN68441) (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.field "originalDy" (JR.local "animationFactoryInitializationVisitor"))) (JR.local "scaleY"))))))) ]) ]) identity ])
+                            JR.exec (JR.andThen (JR.local "animationFactoryInitializationVisitor") (\jtN68392 -> (JR.setField "dx" "I" (JR.lit jtN68392) (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.field "originalDx" (JR.local "animationFactoryInitializationVisitor"))) (JR.local "scaleX"))))))), 
+                            JR.exec (JR.andThen (JR.local "animationFactoryInitializationVisitor") (\jtN68458 -> (JR.setField "dy" "I" (JR.lit jtN68458) (JR.cast "I" ((JR.map2 JR.mul (JR.cast "F" (JR.field "originalDy" (JR.local "animationFactoryInitializationVisitor"))) (JR.local "scaleY"))))))) ]) ]) identity ])
         (jregister jheap)
         jthis
         jargs

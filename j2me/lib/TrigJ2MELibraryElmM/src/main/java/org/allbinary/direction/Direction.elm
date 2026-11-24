@@ -62,7 +62,7 @@ jinit_4 jheap jthis jargs =
                     JR.exec (JR.setField "otherName" "" JR.this (JR.local "otherName")), 
                     JR.exec (JR.setField "value" "I" JR.this (JR.local "value")), 
                     JR.exec (JR.setField "frameFactor" "I" JR.this (JR.local "frameFactor")), 
-                    JR.exec (JR.andThen jstatic_directionArray (\jaN66085 -> JR.andThen (JR.local "value") (\jiN66085 -> (JR.aset (JR.lit jaN66085) (JR.lit jiN66085) JR.this)))) ]) ])
+                    JR.exec (JR.andThen jstatic_directionArray (\jaN66087 -> JR.andThen (JR.local "value") (\jiN66087 -> (JR.aset (JR.lit jaN66087) (JR.lit jiN66087) JR.this)))) ]) ])
         (jregister jheap)
         jthis
         jargs

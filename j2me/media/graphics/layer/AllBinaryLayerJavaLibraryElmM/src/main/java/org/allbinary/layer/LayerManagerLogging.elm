@@ -168,7 +168,7 @@ jm_log_1 jheap jthis jargs =
                     JR.exec (JR.invoke "append_1" (JR.invoke "append_1" (JR.thisField "stringBuilder") [ (JR.callStatic JInteger.jm_toHexString_1 [ (JR.invoke "hashCode_1" (JR.callStatic TsUtil.jm_getInstance_0 []) [ (JR.local "layerManager") ]) ]) ]) [ (JR.field "COLON_SEP" (JR.local "commonSeps")) ]), 
                     JR.exec (JR.invoke "append_1" (JR.invoke "appendint_1" (JR.thisField "stringBuilder") [ (JR.local "size") ]) [ (JR.field "COLON_SEP" (JR.local "commonSeps")) ]), 
                     JR.declare "allBinaryLayer" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70888 -> (JR.setLocal "index" "I" (JR.lit jwN70888))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70914 -> (JR.setLocal "index" "I" (JR.lit jwN70914))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "allBinaryLayer" "" ((JR.invoke "getLayerAt_1" (JR.local "layerManager") [ (JR.local "index") ]))), 
                         JR.exec (JR.invoke "append_1" (JR.invoke "append_1" (JR.thisField "stringBuilder") [ (JR.invoke "getName_0" (JR.local "allBinaryLayer") []) ]) [ (JR.field "COMMA" (JR.local "commonSeps")) ]) ]) ], 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.thisField "stringBuilder") []), JR.this, (JR.thisField "REMOVE") ]) ])

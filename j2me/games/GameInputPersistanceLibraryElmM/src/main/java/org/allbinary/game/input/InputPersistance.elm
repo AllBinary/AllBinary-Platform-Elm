@@ -166,10 +166,10 @@ jm_save_2 jheap jthis jargs =
                         JR.declare "smallIntegerSingletonFactory" "" (JR.callStatic SmallIntegerSingletonFactory.jm_getInstance_0 []), 
                         JR.declare "inputObjectArray" "" (JR.invoke "getKeysAsArray_1" (JR.thisField "hashtableUtil") [ (JR.local "hashtable") ]), 
                         JR.declare "size" "I" (JR.alength (JR.local "inputObjectArray")), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72370 -> (JR.setLocal "index" "I" (JR.lit jwN72370))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72401 -> (JR.setLocal "index" "I" (JR.lit jwN72401))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "gameActionInput" "" (JR.aget (JR.local "inputObjectArray") (JR.local "index"))), 
                             JR.exec (JR.setLocal "list" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.aget (JR.local "inputObjectArray") (JR.local "index")) ])), 
-                            JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN72304 -> (JR.setLocal "index2" "I" (JR.lit jwN72304))) JR.increment) ]) (JR.run [ 
+                            JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN72335 -> (JR.setLocal "index2" "I" (JR.lit jwN72335))) JR.increment) ]) (JR.run [ 
                                 JR.declare "gameActionInputIdAsString" "" (JR.invoke "toString_0" (JR.invoke "getAt_1" (JR.local "smallIntegerSingletonFactory") [ (JR.invoke "getId_0" (JR.local "gameActionInput") []) ]) []), 
                                 JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.local "gameActionInputIdAsString") ]), 
                                 JR.exec (JR.invoke "writeUTF_1" (JR.local "outputStream") [ (JR.field "EQUALS" (JR.local "commonSeps")) ]), 

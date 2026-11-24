@@ -114,7 +114,7 @@ jm_update_0 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "list" "" (JR.invoke "getGameKeyEventList_0" JR.this []), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72119 -> (JR.setLocal "index" "I" (JR.lit jwN72119))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN72195 -> (JR.setLocal "index" "I" (JR.lit jwN72195))) JR.increment) ]) (JR.run [ 
                         JR.declare "anyType" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                         JR.declare "key" "I" (JR.callStatic GameKeyEventUtil.jm_getKey_1 [ (JR.local "anyType") ]), 
                         JR.ifElse (JR.map2 JR.equals (JR.local "key") Canvas.jstatic_RIGHT) (JR.run [ 

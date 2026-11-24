@@ -58,7 +58,7 @@ jinit_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ identity,
                 (JR.run [ 
-                    JR.exec (JR.setField "id" "I" JR.this (JR.postUpdate jstatic_index (\jwN66066 -> (JR.setStatic "AllMotionRecognizer.index" "I" (JR.lit jwN66066))) JR.increment)) ]) ])
+                    JR.exec (JR.setField "id" "I" JR.this (JR.postUpdate jstatic_index (\jwN66073 -> (JR.setStatic "AllMotionRecognizer.index" "I" (JR.lit jwN66073))) JR.increment)) ]) ])
         (jregister jheap)
         jthis
         jargs

@@ -88,7 +88,7 @@ jm_addAll_1 : JR.Method
 jm_addAll_1 jheap jthis jargs =
     JR.method [ ( "usedList", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "usedList") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66832 -> (JR.setLocal "index" "I" (JR.lit jwN66832))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "usedList") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN66844 -> (JR.setLocal "index" "I" (JR.lit jwN66844))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.declare "anyType" "" (JR.aget (JR.field "objectArray" (JR.local "usedList")) (JR.local "index")), 
                         JR.exec (JR.invoke "add_1" JR.this [ (JR.local "anyType") ]) ]) ], 
                     JR.exec (JR.invoke "clear_0" (JR.local "usedList") []) ])
@@ -101,7 +101,7 @@ jm_releaseUsedBackToPool_1 : JR.Method
 jm_releaseUsedBackToPool_1 jheap jthis jargs =
     JR.method [ ( "usedList", "" ) ] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "usedList") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67139 -> (JR.setLocal "index" "I" (JR.lit jwN67139))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "usedList") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67151 -> (JR.setLocal "index" "I" (JR.lit jwN67151))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.declare "list" "" (JR.aget (JR.field "objectArray" (JR.local "usedList")) (JR.local "index")), 
                         JR.ifElse (JR.map2 JR.equals (JR.invoke "size_0" (JR.local "list") []) (JR.int 0)) (JR.run [ 
                             JR.exec (JR.invoke "removeAt_1" (JR.local "usedList") [ (JR.local "index") ]), 

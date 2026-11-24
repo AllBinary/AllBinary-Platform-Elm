@@ -134,10 +134,10 @@ jinit_0 jheap jthis jargs =
                 identity,
                 (JR.run [ 
                     JR.declare "size" "I" (JR.alength (JR.thisField "last")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69865 -> (JR.setLocal "index" "I" (JR.lit jwN69865))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "last") (\jaN69709 -> JR.andThen (JR.local "index") (\jiN69709 -> (JR.aset (JR.lit jaN69709) (JR.lit jiN69709) (JR.int 0))))), 
-                        JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN69745 -> JR.andThen (JR.local "index") (\jiN69745 -> (JR.aset (JR.lit jaN69745) (JR.lit jiN69745) (JR.int 0))))), 
-                        JR.exec (JR.andThen (JR.thisField "full") (\jaN69781 -> JR.andThen (JR.local "index") (\jiN69781 -> (JR.aset (JR.lit jaN69781) (JR.lit jiN69781) (JR.int 0))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69897 -> (JR.setLocal "index" "I" (JR.lit jwN69897))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "last") (\jaN69741 -> JR.andThen (JR.local "index") (\jiN69741 -> (JR.aset (JR.lit jaN69741) (JR.lit jiN69741) (JR.int 0))))), 
+                        JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN69777 -> JR.andThen (JR.local "index") (\jiN69777 -> (JR.aset (JR.lit jaN69777) (JR.lit jiN69777) (JR.int 0))))), 
+                        JR.exec (JR.andThen (JR.thisField "full") (\jaN69813 -> JR.andThen (JR.local "index") (\jiN69813 -> (JR.aset (JR.lit jaN69813) (JR.lit jiN69813) (JR.int 0))))) ]) ], 
                     JR.ifElse (JR.callStatic AndroidUtil.jm_isAndroid_0 []) (JR.run [ 
                         JR.exec (JR.setField "scaleLargestTo" "F" JR.this (JR.float 640.0)) ]) (JR.run [ 
                         JR.exec (JR.setField "scaleLargestTo" "F" JR.this (JR.float 1080.0)) ]) ]) ])
@@ -264,12 +264,12 @@ jm_setLastSizeForce_3 jheap jthis jargs =
                     JR.exec (JR.setField "yOffset" "I" JR.this (JR.map2 JR.sub (JR.local "aFullHeight") (JR.local "aLastHeight"))), 
                     JR.exec (JR.setField "left" "I" JR.this (JR.invoke "getLeft_1" (JR.thisField "scalableListener") [ (JR.thisField "xOffset") ])), 
                     JR.exec (JR.setField "top" "I" JR.this (JR.invoke "getTop_1" (JR.thisField "scalableListener") [ (JR.thisField "yOffset") ])), 
-                    JR.exec (JR.andThen (JR.thisField "full") (\jaN72848 -> JR.andThen (JR.thisField "WIDTH") (\jiN72848 -> (JR.aset (JR.lit jaN72848) (JR.lit jiN72848) (JR.local "aFullWidth"))))), 
-                    JR.exec (JR.andThen (JR.thisField "full") (\jaN72895 -> JR.andThen (JR.thisField "HEIGHT") (\jiN72895 -> (JR.aset (JR.lit jaN72895) (JR.lit jiN72895) (JR.local "aFullHeight"))))), 
-                    JR.exec (JR.andThen (JR.thisField "last") (\jaN72938 -> JR.andThen (JR.thisField "WIDTH") (\jiN72938 -> (JR.aset (JR.lit jaN72938) (JR.lit jiN72938) (JR.local "aLastWidth"))))), 
-                    JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN72981 -> JR.andThen (JR.thisField "WIDTH") (\jiN72981 -> (JR.aset (JR.lit jaN72981) (JR.lit jiN72981) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "WIDTH")) (JR.int 1))))))), 
-                    JR.exec (JR.andThen (JR.thisField "last") (\jaN73055 -> JR.andThen (JR.thisField "HEIGHT") (\jiN73055 -> (JR.aset (JR.lit jaN73055) (JR.lit jiN73055) (JR.local "aLastHeight"))))), 
-                    JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN73098 -> JR.andThen (JR.thisField "HEIGHT") (\jiN73098 -> (JR.aset (JR.lit jaN73098) (JR.lit jiN73098) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "HEIGHT")) (JR.int 1))))))), 
+                    JR.exec (JR.andThen (JR.thisField "full") (\jaN72880 -> JR.andThen (JR.thisField "WIDTH") (\jiN72880 -> (JR.aset (JR.lit jaN72880) (JR.lit jiN72880) (JR.local "aFullWidth"))))), 
+                    JR.exec (JR.andThen (JR.thisField "full") (\jaN72927 -> JR.andThen (JR.thisField "HEIGHT") (\jiN72927 -> (JR.aset (JR.lit jaN72927) (JR.lit jiN72927) (JR.local "aFullHeight"))))), 
+                    JR.exec (JR.andThen (JR.thisField "last") (\jaN72970 -> JR.andThen (JR.thisField "WIDTH") (\jiN72970 -> (JR.aset (JR.lit jaN72970) (JR.lit jiN72970) (JR.local "aLastWidth"))))), 
+                    JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN73013 -> JR.andThen (JR.thisField "WIDTH") (\jiN73013 -> (JR.aset (JR.lit jaN73013) (JR.lit jiN73013) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "WIDTH")) (JR.int 1))))))), 
+                    JR.exec (JR.andThen (JR.thisField "last") (\jaN73087 -> JR.andThen (JR.thisField "HEIGHT") (\jiN73087 -> (JR.aset (JR.lit jaN73087) (JR.lit jiN73087) (JR.local "aLastHeight"))))), 
+                    JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN73130 -> JR.andThen (JR.thisField "HEIGHT") (\jiN73130 -> (JR.aset (JR.lit jaN73130) (JR.lit jiN73130) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "HEIGHT")) (JR.int 1))))))), 
                     JR.exec (JR.invoke "setCustom_3" (JR.callStatic SWTJOGLProcessor.jm_getInstance_0 []) [ (JR.local "aLastWidth"), (JR.local "aLastHeight"), (JR.thisField "ratio") ]), 
                     JR.exec (JR.invoke "add_1" JR.this [ (JR.thisField "SET_LAST_SIZE_METHOD_NAME") ]) ])
         (jregister jheap)
@@ -391,12 +391,12 @@ jm_update_2 jheap jthis jargs =
                             JR.exec (JR.setField "yOffset" "I" JR.this (JR.map2 JR.sub (JR.local "aFullHeight") (JR.local "aLastHeight"))), 
                             JR.exec (JR.setField "left" "I" JR.this (JR.invoke "getLeft_1" (JR.thisField "scalableListener") [ (JR.thisField "xOffset") ])), 
                             JR.exec (JR.setField "top" "I" JR.this (JR.invoke "getTop_1" (JR.thisField "scalableListener") [ (JR.thisField "yOffset") ])), 
-                            JR.exec (JR.andThen (JR.thisField "full") (\jaN77179 -> JR.andThen (JR.thisField "WIDTH") (\jiN77179 -> (JR.aset (JR.lit jaN77179) (JR.lit jiN77179) (JR.local "aFullWidth"))))), 
-                            JR.exec (JR.andThen (JR.thisField "full") (\jaN77226 -> JR.andThen (JR.thisField "HEIGHT") (\jiN77226 -> (JR.aset (JR.lit jaN77226) (JR.lit jiN77226) (JR.local "aFullHeight"))))), 
-                            JR.exec (JR.andThen (JR.thisField "last") (\jaN77269 -> JR.andThen (JR.thisField "WIDTH") (\jiN77269 -> (JR.aset (JR.lit jaN77269) (JR.lit jiN77269) (JR.local "aLastWidth"))))), 
-                            JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN77312 -> JR.andThen (JR.thisField "WIDTH") (\jiN77312 -> (JR.aset (JR.lit jaN77312) (JR.lit jiN77312) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "WIDTH")) (JR.int 1))))))), 
-                            JR.exec (JR.andThen (JR.thisField "last") (\jaN77386 -> JR.andThen (JR.thisField "HEIGHT") (\jiN77386 -> (JR.aset (JR.lit jaN77386) (JR.lit jiN77386) (JR.local "aLastHeight"))))), 
-                            JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN77429 -> JR.andThen (JR.thisField "HEIGHT") (\jiN77429 -> (JR.aset (JR.lit jaN77429) (JR.lit jiN77429) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "HEIGHT")) (JR.int 1))))))), 
+                            JR.exec (JR.andThen (JR.thisField "full") (\jaN77211 -> JR.andThen (JR.thisField "WIDTH") (\jiN77211 -> (JR.aset (JR.lit jaN77211) (JR.lit jiN77211) (JR.local "aFullWidth"))))), 
+                            JR.exec (JR.andThen (JR.thisField "full") (\jaN77258 -> JR.andThen (JR.thisField "HEIGHT") (\jiN77258 -> (JR.aset (JR.lit jaN77258) (JR.lit jiN77258) (JR.local "aFullHeight"))))), 
+                            JR.exec (JR.andThen (JR.thisField "last") (\jaN77301 -> JR.andThen (JR.thisField "WIDTH") (\jiN77301 -> (JR.aset (JR.lit jaN77301) (JR.lit jiN77301) (JR.local "aLastWidth"))))), 
+                            JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN77344 -> JR.andThen (JR.thisField "WIDTH") (\jiN77344 -> (JR.aset (JR.lit jaN77344) (JR.lit jiN77344) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "WIDTH")) (JR.int 1))))))), 
+                            JR.exec (JR.andThen (JR.thisField "last") (\jaN77418 -> JR.andThen (JR.thisField "HEIGHT") (\jiN77418 -> (JR.aset (JR.lit jaN77418) (JR.lit jiN77418) (JR.local "aLastHeight"))))), 
+                            JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN77461 -> JR.andThen (JR.thisField "HEIGHT") (\jiN77461 -> (JR.aset (JR.lit jaN77461) (JR.lit jiN77461) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "HEIGHT")) (JR.int 1))))))), 
                             JR.exec (JR.invoke "setCustom_3" (JR.callStatic SWTJOGLProcessor.jm_getInstance_0 []) [ (JR.local "aLastWidth"), (JR.local "aLastHeight"), (JR.thisField "ratio") ]), 
                             JR.exec (JR.invoke "add_1" JR.this [ (JR.field "UPDATE" (JR.thisField "commonStrings")) ]) ]) identity ]) identity ])
         (jregister jheap)
@@ -555,10 +555,10 @@ jm_setCustom_2 : JR.Method
 jm_setCustom_2 jheap jthis jargs =
     JR.method [ ( "width", "I" ), ( "height", "I" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "last") (\jaN79649 -> JR.andThen (JR.thisField "CUSTOM_WIDTH") (\jiN79649 -> (JR.aset (JR.lit jaN79649) (JR.lit jiN79649) (JR.local "width"))))), 
-                    JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN79696 -> JR.andThen (JR.thisField "CUSTOM_WIDTH") (\jiN79696 -> (JR.aset (JR.lit jaN79696) (JR.lit jiN79696) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "CUSTOM_WIDTH")) (JR.int 1))))))), 
-                    JR.exec (JR.andThen (JR.thisField "last") (\jaN79770 -> JR.andThen (JR.thisField "CUSTOM_HEIGHT") (\jiN79770 -> (JR.aset (JR.lit jaN79770) (JR.lit jiN79770) (JR.local "height"))))), 
-                    JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN79813 -> JR.andThen (JR.thisField "CUSTOM_HEIGHT") (\jiN79813 -> (JR.aset (JR.lit jaN79813) (JR.lit jiN79813) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "CUSTOM_HEIGHT")) (JR.int 1))))))) ])
+                    JR.exec (JR.andThen (JR.thisField "last") (\jaN79681 -> JR.andThen (JR.thisField "CUSTOM_WIDTH") (\jiN79681 -> (JR.aset (JR.lit jaN79681) (JR.lit jiN79681) (JR.local "width"))))), 
+                    JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN79728 -> JR.andThen (JR.thisField "CUSTOM_WIDTH") (\jiN79728 -> (JR.aset (JR.lit jaN79728) (JR.lit jiN79728) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "CUSTOM_WIDTH")) (JR.int 1))))))), 
+                    JR.exec (JR.andThen (JR.thisField "last") (\jaN79802 -> JR.andThen (JR.thisField "CUSTOM_HEIGHT") (\jiN79802 -> (JR.aset (JR.lit jaN79802) (JR.lit jiN79802) (JR.local "height"))))), 
+                    JR.exec (JR.andThen (JR.thisField "lastHalf") (\jaN79845 -> JR.andThen (JR.thisField "CUSTOM_HEIGHT") (\jiN79845 -> (JR.aset (JR.lit jaN79845) (JR.lit jiN79845) ((JR.map2 JR.shr (JR.aget (JR.thisField "last") (JR.thisField "CUSTOM_HEIGHT")) (JR.int 1))))))) ])
         (jregister jheap)
         jthis
         jargs

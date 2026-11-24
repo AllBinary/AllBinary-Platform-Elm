@@ -111,7 +111,7 @@ jm_nextFrame_0 jheap jthis jargs =
                         JR.ifElse (JR.invoke "isTime_1" (JR.thisField "timeDelayHelper") [ (JR.field "startTime" (JR.callStatic GameTickTimeDelayHelperFactory.jm_getInstance_0 [])) ]) (JR.run [ 
                             JR.exec (JR.invoke "previousFrame_0" JR.this []), 
                             JR.ifElse (JR.map2 JR.equals (JR.invoke "getFrame_0" JR.this []) (JR.int 0)) (JR.run [ 
-                                JR.exec (JR.postUpdate (JR.thisField "loopCount") (\jwN68607 -> (JR.setField "loopCount" "I" JR.this (JR.lit jwN68607))) JR.increment) ]) identity ]) identity ]) identity ])
+                                JR.exec (JR.postUpdate (JR.thisField "loopCount") (\jwN68635 -> (JR.setField "loopCount" "I" JR.this (JR.lit jwN68635))) JR.increment) ]) identity ]) identity ]) identity ])
         (jregister jheap)
         jthis
         jargs

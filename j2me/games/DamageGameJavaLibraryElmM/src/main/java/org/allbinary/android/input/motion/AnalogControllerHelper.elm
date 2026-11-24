@@ -70,7 +70,7 @@ jm_right_2 : JR.Method
 jm_right_2 jheap jthis jargs =
     JR.method [ ( "collidableDestroyableDamageableLayer", "" ), ( "xAnalogValue", "I" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "rightTimeElapsedHelper") (\jtN68989 -> (JR.setField "delay" "I" (JR.lit jtN68989) ((JR.map2 JR.shr ((JR.map2 JR.sub (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
+                    JR.exec (JR.andThen (JR.thisField "rightTimeElapsedHelper") (\jtN69034 -> (JR.setField "delay" "I" (JR.lit jtN69034) ((JR.map2 JR.shr ((JR.map2 JR.sub (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
                     JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "rightTimeElapsedHelper") []) (JR.run [ 
                         JR.exec (JR.invoke "right_0" (JR.local "collidableDestroyableDamageableLayer") []) ]) identity ])
         (jregister jheap)
@@ -82,7 +82,7 @@ jm_left_2 : JR.Method
 jm_left_2 jheap jthis jargs =
     JR.method [ ( "collidableDestroyableDamageableLayer", "" ), ( "xAnalogValue", "I" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "leftTimeElapsedHelper") (\jtN69184 -> (JR.setField "delay" "I" (JR.lit jtN69184) ((JR.map2 JR.shr ((JR.map2 JR.add (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
+                    JR.exec (JR.andThen (JR.thisField "leftTimeElapsedHelper") (\jtN69229 -> (JR.setField "delay" "I" (JR.lit jtN69229) ((JR.map2 JR.shr ((JR.map2 JR.add (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
                     JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "leftTimeElapsedHelper") []) (JR.run [ 
                         JR.exec (JR.invoke "left_0" (JR.local "collidableDestroyableDamageableLayer") []) ]) identity ])
         (jregister jheap)
@@ -94,7 +94,7 @@ jm_up_2 : JR.Method
 jm_up_2 jheap jthis jargs =
     JR.method [ ( "collidableDestroyableDamageableLayer", "" ), ( "xAnalogValue", "I" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "upTimeElapsedHelper") (\jtN69379 -> (JR.setField "delay" "I" (JR.lit jtN69379) ((JR.map2 JR.shr ((JR.map2 JR.sub (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
+                    JR.exec (JR.andThen (JR.thisField "upTimeElapsedHelper") (\jtN69424 -> (JR.setField "delay" "I" (JR.lit jtN69424) ((JR.map2 JR.shr ((JR.map2 JR.sub (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
                     JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "upTimeElapsedHelper") []) (JR.run [ 
                         JR.exec (JR.invoke "up_0" (JR.local "collidableDestroyableDamageableLayer") []) ]) identity ])
         (jregister jheap)
@@ -106,7 +106,7 @@ jm_down_2 : JR.Method
 jm_down_2 jheap jthis jargs =
     JR.method [ ( "collidableDestroyableDamageableLayer", "" ), ( "xAnalogValue", "I" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "downTimeElapsedHelper") (\jtN69574 -> (JR.setField "delay" "I" (JR.lit jtN69574) ((JR.map2 JR.shr ((JR.map2 JR.add (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
+                    JR.exec (JR.andThen (JR.thisField "downTimeElapsedHelper") (\jtN69619 -> (JR.setField "delay" "I" (JR.lit jtN69619) ((JR.map2 JR.shr ((JR.map2 JR.add (JR.thisField "SCALE_VALUE") (JR.local "xAnalogValue"))) (JR.thisField "reduceTimeFactor")))))), 
                     JR.ifElse (JR.invoke "isTimeTNT_0" (JR.thisField "downTimeElapsedHelper") []) (JR.run [ 
                         JR.exec (JR.invoke "down_0" (JR.local "collidableDestroyableDamageableLayer") []) ]) identity ])
         (jregister jheap)

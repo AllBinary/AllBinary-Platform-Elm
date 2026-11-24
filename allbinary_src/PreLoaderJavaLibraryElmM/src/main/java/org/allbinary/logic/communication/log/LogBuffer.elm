@@ -75,7 +75,7 @@ jm_logAll_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "logEntryVector") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66747 -> (JR.setLocal "index" "I" (JR.lit jwN66747))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN66760 -> (JR.setLocal "index" "I" (JR.lit jwN66760))) JR.increment) ]) (JR.run [ 
                         JR.declare "log" "" (JR.invoke "get_1" (JR.thisField "logEntryVector") [ (JR.local "index") ]), 
                         JR.exec (JR.invoke "putL_1" (JR.thisField "logUtil") [ (JR.local "log") ]) ]) ] ])
         (jregister jheap)

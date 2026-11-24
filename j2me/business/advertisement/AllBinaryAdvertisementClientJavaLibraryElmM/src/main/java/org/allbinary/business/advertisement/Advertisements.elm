@@ -112,7 +112,7 @@ jm_stopAllPage_0 : JR.Method
 jm_stopAllPage_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "pageList") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67193 -> (JR.setLocal "index" "I" (JR.lit jwN67193))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "pageList") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67203 -> (JR.setLocal "index" "I" (JR.lit jwN67203))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.declare "advertisementProcessorInterface" "" (JR.aget (JR.field "objectArray" (JR.thisField "pageList")) (JR.local "index")), 
                         JR.exec (JR.invoke "stop_0" (JR.local "advertisementProcessorInterface") []) ]) ] ])
         (jregister jheap)
@@ -135,7 +135,7 @@ jm_startAll_0 : JR.Method
 jm_startAll_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "bannerList") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67507 -> (JR.setLocal "index" "I" (JR.lit jwN67507))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "bannerList") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67517 -> (JR.setLocal "index" "I" (JR.lit jwN67517))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.declare "advertisementProcessorInterface" "" (JR.aget (JR.field "objectArray" (JR.thisField "bannerList")) (JR.local "index")), 
                         JR.exec (JR.invoke "start_0" (JR.local "advertisementProcessorInterface") []) ]) ] ])
         (jregister jheap)
@@ -147,7 +147,7 @@ jm_stopAllBanner_0 : JR.Method
 jm_stopAllBanner_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "bannerList") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67696 -> (JR.setLocal "index" "I" (JR.lit jwN67696))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.thisField "bannerList") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67706 -> (JR.setLocal "index" "I" (JR.lit jwN67706))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.declare "advertisementProcessorInterface" "" (JR.aget (JR.field "objectArray" (JR.thisField "bannerList")) (JR.local "index")), 
                         JR.exec (JR.invoke "stop_0" (JR.local "advertisementProcessorInterface") []) ]) ] ])
         (jregister jheap)

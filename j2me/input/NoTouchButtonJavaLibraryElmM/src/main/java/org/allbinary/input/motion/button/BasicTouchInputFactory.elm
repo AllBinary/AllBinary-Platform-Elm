@@ -135,7 +135,7 @@ jm_updateAllList_2 jheap jthis jargs =
     JR.method [ ( "list", "" ), ( "inputToGameKeyMapping", "" ) ] ""
         (JR.run [ 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.field "START" (JR.callStatic CommonLabels.jm_getInstance_0 [])) ]) [ (JR.invoke "size_0" (JR.local "list") []) ]) []), JR.this, (JR.str "updateAll") ]), 
-                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69891 -> (JR.setLocal "index" "I" (JR.lit jwN69891))) JR.decrement) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.map2 JR.sub (JR.invoke "size_0" (JR.local "list") []) (JR.int 1)), JR.for (JR.map2 JR.greaterEquals (JR.local "index") (JR.int 0)) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69914 -> (JR.setLocal "index" "I" (JR.lit jwN69914))) JR.decrement) ]) (JR.run [ 
                         JR.declare "touchButtonInput" "" (JR.invoke "get_1" (JR.local "list") [ (JR.local "index") ]), 
                         JR.exec (JR.invoke "update_1" (JR.local "touchButtonInput") [ (JR.local "inputToGameKeyMapping") ]) ]) ] ])
         (jregister jheap)

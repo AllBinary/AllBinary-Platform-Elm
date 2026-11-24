@@ -89,7 +89,7 @@ jm_getRelativeRelationshipList_2 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "featureReleaseList" "" (JR.invoke "getList_0" JR.this []), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.invoke "getList_0" JR.this []) []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68355 -> (JR.setLocal "index" "I" (JR.lit jwN68355))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68384 -> (JR.setLocal "index" "I" (JR.lit jwN68384))) JR.increment) ]) (JR.run [ 
                         JR.declare "featureInterface" "" (JR.aget (JR.field "objectArray" (JR.local "featureReleaseList")) (JR.local "index")), 
                         JR.ifElse (JR.invoke "isFeature_0" (JR.local "featureInterface") []) (JR.run [ 
                             JR.declare "list" "" (JR.invoke "getResourceRelativeRelationshipList_1" (JR.local "featureInterface") [ (JR.local "resource") ]), 
@@ -108,7 +108,7 @@ jm_duplicate_2 jheap jthis jargs =
                     JR.declare "pointFactory" "" (JR.callStatic PointFactory.jm_getInstance_0 []), 
                     JR.declare "newList" "" (JR.new BasicArrayListD.jnew_0 []), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68910 -> (JR.setLocal "index" "I" (JR.lit jwN68910))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68939 -> (JR.setLocal "index" "I" (JR.lit jwN68939))) JR.increment) ]) (JR.run [ 
                         JR.declare "relativeRelationship" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index")), 
                         JR.exec (JR.invoke "add_1" (JR.local "newList") [ (JR.new RelativeLayerRelationship.jnew_3 [ (JR.local "layer"), (JR.invoke "createXY_2" (JR.local "pointFactory") [ (JR.invoke "getX_0" (JR.local "relativeRelationship") []), (JR.invoke "getY_0" (JR.local "relativeRelationship") []) ]), (JR.invoke "getImmutableInstance_0" (JR.callStatic BasicArrayListUtil.jm_getInstance_0 []) []) ]) ]) ]) ], 
                     JR.return (JR.local "newList") ])

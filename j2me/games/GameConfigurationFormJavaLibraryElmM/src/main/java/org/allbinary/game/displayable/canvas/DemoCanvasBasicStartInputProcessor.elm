@@ -70,7 +70,7 @@ jm_processInputList_0 jheap jthis jargs =
                     JR.declare "list" "" (JR.invoke "getGameKeyEventList_0" JR.this []), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
                     JR.declare "gameKeyEvent" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69585 -> (JR.setLocal "index" "I" (JR.lit jwN69585))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69623 -> (JR.setLocal "index" "I" (JR.lit jwN69623))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "gameKeyEvent" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                         JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "Start GameKey: ") ]) [ (JR.invoke "toString_1" (JR.callStatic StringUtil.jm_getInstance_0 []) [ (JR.local "gameKeyEvent") ]) ]) []), JR.this, (JR.field "PROCESS_INPUT" (JR.callStatic GameInputStrings.jm_getInstance_0 [])) ]) ]) ], 
                     JR.exec (JR.invoke "commandAction_2" (JR.invoke "getCustomCommandListener_0" (JR.invoke "getCanvas_0" JR.this []) []) [ (JR.field "START_COMMAND" (JR.callStatic GameCommandsFactory.jm_getInstance_0 [])), NullCanvas.jstatic_NULL_CANVAS ]), 

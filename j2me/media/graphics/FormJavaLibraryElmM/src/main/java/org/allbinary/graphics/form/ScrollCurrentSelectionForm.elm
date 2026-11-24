@@ -139,7 +139,7 @@ jm_processHorizontalForm_0 jheap jthis jargs =
                     JR.declare "size" "I" (JR.invoke "size_0" JR.this []), 
                     JR.declare "totalWidth" "I" (JR.int 0), 
                     JR.declare "item" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69338 -> (JR.setLocal "index" "I" (JR.lit jwN69338))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69368 -> (JR.setLocal "index" "I" (JR.lit jwN69368))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "item" "" (JR.invoke "get_1" JR.this [ (JR.local "index") ])), 
                         JR.exec (JR.setLocal "totalWidth" "I" (JR.map2 JR.add (JR.local "totalWidth") (JR.plus (JR.invoke "getMinimumWidth_0" (JR.local "item") []) (JR.thisField "border")))) ]) ], 
                     JR.exec (JR.setField "dx" "I" JR.this (JR.map2 JR.sub (JR.plus (JR.thisField "x") ((JR.map2 JR.shr (JR.invoke "getWidth_0" (JR.thisField "rectangle") []) (JR.int 1)))) ((JR.map2 JR.shr (JR.local "totalWidth") (JR.int 1))))), 
@@ -160,7 +160,7 @@ jm_processVerticalForm_0 jheap jthis jargs =
                     JR.declare "totalHeight" "I" (JR.int 0), 
                     JR.declare "size" "I" (JR.invoke "size_0" JR.this []), 
                     JR.declare "item2" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69974 -> (JR.setLocal "index" "I" (JR.lit jwN69974))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70004 -> (JR.setLocal "index" "I" (JR.lit jwN70004))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "item2" "" (JR.invoke "get_1" JR.this [ (JR.local "index") ])), 
                         JR.ifElse (JR.map2 JR.less (JR.thisField "maxWidth") (JR.invoke "getMinimumWidth_0" (JR.local "item2") [])) (JR.run [ 
                             JR.exec (JR.setField "maxWidth" "I" JR.this (JR.invoke "getMinimumWidth_0" (JR.local "item2") [])) ]) identity, 
@@ -250,7 +250,7 @@ jm_paint_1 jheap jthis jargs =
                         JR.declare "size" "I" (JR.invoke "size_0" JR.this []), 
                         JR.declare "formTypeFactory" "" (JR.callStatic FormTypeFactory.jm_getInstance_0 []), 
                         JR.declare "item" "" (JR.lit (JR.defaultOf "")), 
-                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71954 -> (JR.setLocal "index" "I" (JR.lit jwN71954))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN71984 -> (JR.setLocal "index" "I" (JR.lit jwN71984))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "item" "" (JR.invoke "get_1" JR.this [ (JR.local "index") ])), 
                             JR.declare "diffX" "I" (JR.invoke "getDx_4" (JR.thisField "preItemIndexDx") [ (JR.local "index"), (JR.local "item"), (JR.thisField "dx"), (JR.thisField "dy") ]), 
                             JR.ifElse (JR.map2 JR.equals (JR.local "index") (JR.invoke "getSelectedIndex_0" JR.this [])) (JR.run [ 

@@ -202,7 +202,7 @@ jm_setWait_1 : JR.Method
 jm_setWait_1 jheap jthis jargs =
     JR.method [ ( "wait", "I" ) ] ""
         (JR.run [ 
-                    JR.exec (JR.andThen (JR.thisField "loopTimeHelper") (\jtN70984 -> (JR.setField "delay" "I" (JR.lit jtN70984) (JR.local "wait")))), 
+                    JR.exec (JR.andThen (JR.thisField "loopTimeHelper") (\jtN71015 -> (JR.setField "delay" "I" (JR.lit jtN71015) (JR.local "wait")))), 
                     JR.exec (JR.setField "pauseWait" "J" JR.this (JR.map2 JR.mul (JR.cast "J" (JR.local "wait")) (JR.long 3))), 
                     JR.exec (JR.invoke "putF_3" (JR.thisField "logUtil") [ (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.str "setWait - delay: ") ]) [ (JR.field "delay" (JR.thisField "loopTimeHelper")) ]) []), JR.this, (JR.field "CONSTRUCTOR" (JR.thisField "commonStrings")) ]) ])
         (jregister jheap)

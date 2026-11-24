@@ -86,7 +86,7 @@ jm_changeDirectionIfCliffReached_0 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "list" "" (JR.invoke "getList_0" (JR.thisField "terrainEventListener") []), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "list") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69547 -> (JR.setLocal "index" "I" (JR.lit jwN69547))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69593 -> (JR.setLocal "index" "I" (JR.lit jwN69593))) JR.increment) ]) (JR.run [ 
                         JR.declare "terrainEvent" "" (JR.invoke "removeAt_1" (JR.local "list") [ (JR.local "index") ]), 
                         JR.declare "basicTerrainInfo" "" (JR.invoke "getBasicTerrainInfo_0" (JR.local "terrainEvent") []), 
                         JR.declare "angle" "" (JR.invoke "getAngle_0" (JR.local "basicTerrainInfo") []), 

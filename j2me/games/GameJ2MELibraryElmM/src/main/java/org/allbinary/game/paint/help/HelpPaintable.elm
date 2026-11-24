@@ -84,8 +84,8 @@ jm_updateMeasurement_1 jheap jthis jargs =
                     JR.exec (JR.setField "titleBeginWidth" "I" JR.this ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.thisField "title") ]) (JR.int 1)))), 
                     JR.exec (JR.setField "charHeight" "I" JR.this (JR.invoke "getHeight_0" (JR.local "font") [])), 
                     JR.declare "size" "I" (JR.alength (JR.thisField "inputInfo")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68567 -> (JR.setLocal "index" "I" (JR.lit jwN68567))) JR.increment) ]) (JR.run [ 
-                        JR.exec (JR.andThen (JR.thisField "beginWidthArray") (\jaN68432 -> JR.andThen (JR.local "index") (\jiN68432 -> (JR.aset (JR.lit jaN68432) (JR.lit jiN68432) ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.aget (JR.thisField "inputInfo") (JR.local "index")) ]) (JR.int 1))))))) ]) ], 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68587 -> (JR.setLocal "index" "I" (JR.lit jwN68587))) JR.increment) ]) (JR.run [ 
+                        JR.exec (JR.andThen (JR.thisField "beginWidthArray") (\jaN68452 -> JR.andThen (JR.local "index") (\jiN68452 -> (JR.aset (JR.lit jaN68452) (JR.lit jiN68452) ((JR.map2 JR.shr (JR.invoke "stringWidth_1" (JR.local "font") [ (JR.aget (JR.thisField "inputInfo") (JR.local "index")) ]) (JR.int 1))))))) ]) ], 
                     JR.exec (JR.setField "myFontProcessor" "" JR.this (JR.callStatic MyFontProcessor.jm_getInstance_0 [])) ])
         (jregister jheap)
         jthis
@@ -113,7 +113,7 @@ jm_paint_1 jheap jthis jargs =
                     JR.exec (JR.invoke "setColor_1" (JR.local "graphics") [ (JR.invoke "intValue_0" (JR.thisField "basicColor") []) ]), 
                     JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.thisField "title"), (JR.map2 JR.sub (JR.local "halfWidth") (JR.thisField "titleBeginWidth")), (JR.thisField "charHeight"), (JR.thisField "anchor") ]), 
                     JR.declare "size" "I" (JR.alength (JR.thisField "inputInfo")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69298 -> (JR.setLocal "index" "I" (JR.lit jwN69298))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69318 -> (JR.setLocal "index" "I" (JR.lit jwN69318))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.invoke "drawString_4" (JR.local "graphics") [ (JR.aget (JR.thisField "inputInfo") (JR.local "index")), (JR.map2 JR.sub (JR.local "halfWidth") (JR.aget (JR.thisField "beginWidthArray") (JR.local "index"))), (JR.map2 JR.mul ((JR.map2 JR.add (JR.local "index") (JR.int 3))) (JR.thisField "charHeight")), (JR.thisField "anchor") ]) ]) ] ])
         (jregister jheap)
         jthis

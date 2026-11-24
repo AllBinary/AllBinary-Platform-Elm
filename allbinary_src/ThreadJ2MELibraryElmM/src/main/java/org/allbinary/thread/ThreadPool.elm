@@ -110,7 +110,7 @@ jm_init_0 jheap jthis jargs =
                         JR.exec (JR.setField "isAlive" "Z" JR.this (JR.bool True)), 
                         JR.exec (JR.setField "taskQueue" "" JR.this (JR.new BasicArrayListD.jnew_0 [])), 
                         JR.declare "pooledThread" "" (JR.lit (JR.defaultOf "")), 
-                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.thisField "numThreads")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN68120 -> (JR.setLocal "i" "I" (JR.lit jwN68120))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "i" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "i") (JR.thisField "numThreads")) (JR.run [ JR.exec (JR.postUpdate (JR.local "i") (\jwN68137 -> (JR.setLocal "i" "I" (JR.lit jwN68137))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "pooledThread" "" (JR.new PooledThread.jnew_1 [ JR.this ])), 
                             JR.exec (JR.invoke "setPriority_1" (JR.local "pooledThread") [ (JR.thisField "priority") ]), 
                             JR.exec (JR.invoke "start_0" (JR.local "pooledThread") []) ]) ] ]) identity ])
@@ -140,7 +140,7 @@ jm_runTaskWithPriority_1 jheap jthis jargs =
                             JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "taskQueue") []), 
                             JR.declare "runnable" "" (JR.lit (JR.defaultOf "")), 
                             JR.declare "lowerPriorityRunnable" "" (JR.field "NULL_PRIORITY_RUNNABLE" (JR.thisField "threadObjectUtil")), 
-                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68613 -> (JR.setLocal "index" "I" (JR.lit jwN68613))) JR.increment) ]) (JR.run [ 
+                            JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68630 -> (JR.setLocal "index" "I" (JR.lit jwN68630))) JR.increment) ]) (JR.run [ 
                                 JR.exec (JR.setLocal "runnable" "" (JR.invoke "get_1" (JR.thisField "taskQueue") [ (JR.local "index") ])), 
                                 JR.ifElse (JR.map2 JR.greater (JR.invoke "getPriority_0" (JR.local "runnable") []) (JR.invoke "getPriority_0" (JR.local "task") [])) (JR.run [ 
                                     JR.exec (JR.setLocal "lowerPriorityRunnable" "" (JR.local "runnable")), 
@@ -283,7 +283,7 @@ jm_createName_0 : JR.Method
 jm_createName_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
-                    JR.return (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "poolName") ]) [ jstatic_ROOT_NAME ]) [ (JR.postUpdate (JR.thisField "threadID") (\jwN70076 -> (JR.setField "threadID" "I" JR.this (JR.lit jwN70076))) JR.increment) ]) []) ])
+                    JR.return (JR.invoke "toString_0" (JR.invoke "appendint_1" (JR.invoke "append_1" (JR.invoke "append_1" (JR.new StringMaker.jnew_0 []) [ (JR.thisField "poolName") ]) [ jstatic_ROOT_NAME ]) [ (JR.postUpdate (JR.thisField "threadID") (\jwN70093 -> (JR.setField "threadID" "I" JR.this (JR.lit jwN70093))) JR.increment) ]) []) ])
         (jregister jheap)
         jthis
         jargs

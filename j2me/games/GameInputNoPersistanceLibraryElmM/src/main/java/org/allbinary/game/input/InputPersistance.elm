@@ -103,10 +103,10 @@ jm_save_2 jheap jthis jargs =
                     JR.declare "input" "" (JR.lit (JR.defaultOf "")), 
                     JR.declare "inputObjectArray" "" (JR.invoke "getKeysAsArray_1" (JR.thisField "hashtableUtil") [ (JR.local "hashtable") ]), 
                     JR.declare "size" "I" (JR.alength (JR.local "inputObjectArray")), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69445 -> (JR.setLocal "index" "I" (JR.lit jwN69445))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN69471 -> (JR.setLocal "index" "I" (JR.lit jwN69471))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.setLocal "gameActionInput" "" (JR.aget (JR.local "inputObjectArray") (JR.local "index"))), 
                         JR.exec (JR.setLocal "list" "" (JR.invoke "get_1" (JR.local "hashtable") [ (JR.aget (JR.local "inputObjectArray") (JR.local "index")) ])), 
-                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN69379 -> (JR.setLocal "index2" "I" (JR.lit jwN69379))) JR.increment) ]) (JR.run [ 
+                        JR.run [ JR.declare "index2" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index2") (JR.invoke "size_0" (JR.local "list") [])) (JR.run [ JR.exec (JR.postUpdate (JR.local "index2") (\jwN69405 -> (JR.setLocal "index2" "I" (JR.lit jwN69405))) JR.increment) ]) (JR.run [ 
                             JR.exec (JR.setLocal "input" "" (JR.invoke "get_1" (JR.local "list") [ (JR.local "index2") ])) ]) ] ]) ], 
                     JR.exec (JR.invoke "closeRecordStore_0" (JR.local "recordStore") []) ])
         (jregister jheap)

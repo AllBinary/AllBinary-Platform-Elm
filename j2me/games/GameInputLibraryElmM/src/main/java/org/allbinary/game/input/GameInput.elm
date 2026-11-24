@@ -121,7 +121,7 @@ jm_removeNonAIInputGameKeyEvents_0 jheap jthis jargs =
         (JR.run [ 
                     JR.declare "list" "" (JR.thisField "gameKeyEventList"), 
                     JR.declare "gameKeyEvent" "" (JR.lit (JR.defaultOf "")), 
-                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN67992 -> (JR.setLocal "index" "I" (JR.lit jwN67992))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index") (\jwN68004 -> (JR.setLocal "index" "I" (JR.lit jwN68004))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                         JR.exec (JR.setLocal "gameKeyEvent" "" (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index"))), 
                         JR.ifElse (JR.map2 JR.notEquals (JR.invoke "getSourceId_0" (JR.local "gameKeyEvent") []) (JR.int 1)) (JR.run [ 
                             JR.exec (JR.invoke "removeAt_1" (JR.local "list") [ (JR.local "index") ]) ]) identity ]) ] ])
@@ -137,9 +137,9 @@ jm_update_0 jheap jthis jargs =
                     JR.declare "removeList" "" (JR.thisField "removalGameKeyEventList"), 
                     JR.declare "list" "" (JR.thisField "gameKeyEventList"), 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.local "removeList") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68461 -> (JR.setLocal "index" "I" (JR.lit jwN68461))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN68473 -> (JR.setLocal "index" "I" (JR.lit jwN68473))) JR.increment) ]) (JR.run [ 
                         JR.declare "anyType" "" (JR.aget (JR.field "objectArray" (JR.local "removeList")) (JR.local "index")), 
-                        JR.run [ JR.declare "index2" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index2") (\jwN68353 -> (JR.setLocal "index2" "I" (JR.lit jwN68353))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
+                        JR.run [ JR.declare "index2" "I" (JR.invoke "size_0" (JR.local "list") []), JR.for (JR.map2 JR.greaterEquals (JR.update1 (JR.local "index2") (\jwN68365 -> (JR.setLocal "index2" "I" (JR.lit jwN68365))) JR.decrement) (JR.int 0)) (JR.run [  ]) (JR.run [ 
                             JR.ifElse (JR.map2 JR.equals (JR.aget (JR.field "objectArray" (JR.local "list")) (JR.local "index2")) (JR.local "anyType")) (JR.run [ 
                                 JR.exec (JR.invoke "removeAt_1" (JR.local "list") [ (JR.local "index2") ]) ]) identity ]) ] ]) ], 
                     JR.exec (JR.invoke "clear_0" (JR.local "removeList") []) ])

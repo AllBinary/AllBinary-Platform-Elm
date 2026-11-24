@@ -199,7 +199,7 @@ jm_removeAllCommands_0 jheap jthis jargs =
     JR.method [] ""
         (JR.run [ 
                     JR.declare "size" "I" (JR.invoke "size_0" (JR.thisField "commandStack") []), 
-                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70066 -> (JR.setLocal "index" "I" (JR.lit jwN70066))) JR.increment) ]) (JR.run [ 
+                    JR.run [ JR.declare "index" "I" (JR.int 0), JR.for (JR.map2 JR.less (JR.local "index") (JR.local "size")) (JR.run [ JR.exec (JR.postUpdate (JR.local "index") (\jwN70095 -> (JR.setLocal "index" "I" (JR.lit jwN70095))) JR.increment) ]) (JR.run [ 
                         JR.exec (JR.callVia Canvas.jvtable "removeCommand_1" JR.this [ (JR.invoke "pop_0" (JR.thisField "commandStack") []) ]) ]) ] ])
         (jregister jheap)
         jthis
